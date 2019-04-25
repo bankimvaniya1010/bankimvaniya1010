@@ -1,0 +1,2589 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="GTEModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="agentmaster">
+          <Key>
+            <PropertyRef Name="agentid" />
+          </Key>
+          <Property Name="agentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="agentname" Type="varchar" MaxLength="45" />
+          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="mobile" Type="varchar" MaxLength="45" />
+          <Property Name="isactive" Type="int" />
+        </EntityType>
+        <EntityType Name="alternateadressproofmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="alternatedobproof">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="alternateidproofmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="answer_mastersecondarylanguage">
+          <Key>
+            <PropertyRef Name="secondaryanswerid" />
+          </Key>
+          <Property Name="secondaryanswerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="answerid" Type="int" />
+          <Property Name="secondaryfieldnamelanguage" Type="varchar" MaxLength="2" />
+          <Property Name="secondaryfieldnamevalue" Type="mediumtext" />
+        </EntityType>
+        <EntityType Name="answermaster">
+          <Key>
+            <PropertyRef Name="answerid" />
+          </Key>
+          <Property Name="answerid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="answerdescription" Type="varchar" MaxLength="200" />
+          <Property Name="gteqscore" Type="int" />
+          <Property Name="riskqscore" Type="int" />
+        </EntityType>
+        <EntityType Name="answeroptionssecondary">
+          <Key>
+            <PropertyRef Name="answeroptionid" />
+          </Key>
+          <Property Name="answeroptionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="optionid" Type="int" />
+          <Property Name="secondaryfieldnamelanguage" Type="varchar" MaxLength="5" />
+          <Property Name="secondaryfieldnamevalue" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="applcantdetailfieldvalidationmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="keyname" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="applicant_education">
+          <Key>
+            <PropertyRef Name="applicationeduId" />
+          </Key>
+          <Property Name="applicationeduId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantID" Type="bigint" />
+          <Property Name="courseId" Type="int" />
+          <Property Name="board_universityname" Type="varchar" MaxLength="100" />
+          <Property Name="Institute" Type="varchar" MaxLength="100" />
+          <Property Name="percentage" Type="varchar" MaxLength="10" />
+          <Property Name="course_startdate" Type="date" />
+          <Property Name="course_enddate" Type="date" />
+          <Property Name="repeats_backlog" Type="varchar" MaxLength="200" />
+          <Property Name="othercourse_name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="applicant_gapsdetails">
+          <Key>
+            <PropertyRef Name="gapId" />
+          </Key>
+          <Property Name="gapId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantId" Type="bigint" />
+          <Property Name="gap_from" Type="date" />
+          <Property Name="gap_to" Type="date" />
+          <Property Name="explanation" Type="longtext" />
+          <Property Name="creationdate" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="applicant_languagetest">
+          <Key>
+            <PropertyRef Name="lanugagetestID" />
+          </Key>
+          <Property Name="lanugagetestID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantId" Type="bigint" />
+          <Property Name="IsTestDone" Type="int" />
+          <Property Name="examDate" Type="datetime" Precision="0" />
+          <Property Name="testId" Type="int" />
+          <Property Name="overallscore" Type="varchar" MaxLength="10" />
+          <Property Name="speaking" Type="varchar" MaxLength="10" />
+          <Property Name="reading" Type="varchar" MaxLength="10" />
+          <Property Name="listening" Type="varchar" MaxLength="10" />
+          <Property Name="writing" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Applicant_master">
+          <Key>
+            <PropertyRef Name="applicantID" />
+          </Key>
+          <Property Name="applicantID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="passport_no" Type="varchar" MaxLength="15" />
+          <Property Name="dob" Type="date" />
+          <Property Name="pan_no" Type="varchar" MaxLength="15" />
+          <Property Name="votercard_no" Type="varchar" MaxLength="20" />
+          <Property Name="adhar_no" Type="varchar" MaxLength="20" />
+          <Property Name="gender" Type="int" />
+          <Property Name="mobile_no" Type="varchar" MaxLength="13" />
+          <Property Name="course_applied" Type="varchar" MaxLength="100" />
+          <Property Name="university_applied" Type="varchar" MaxLength="100" />
+          <Property Name="intakeforwhichapplied" Type="varchar" MaxLength="100" />
+          <Property Name="status" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="userid" Type="bigint" />
+          <Property Name="personaldetails" Type="int" />
+          <Property Name="acadmicdetails" Type="int" />
+          <Property Name="englishprofiency" Type="int" />
+          <Property Name="agedetails" Type="int" />
+          <Property Name="financaildetails" Type="int" />
+          <Property Name="creationtime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="isusercreated" Type="int" />
+          <Property Name="nationality" Type="varchar" MaxLength="20" />
+          <Property Name="mailsentdatetime" Type="datetime" Precision="0" />
+          <Property Name="isanswerdprimaryquestion" Type="int" />
+          <Property Name="isanswerdaddonquestion" Type="int" />
+          <Property Name="isuploadedvideointerview" Type="int" />
+        </EntityType>
+        <EntityType Name="applicantdatavalidation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="keyid" Type="int" />
+          <Property Name="isvalid" Type="int" />
+          <Property Name="proofofvalidation" Type="varchar" MaxLength="200" />
+          <Property Name="lastvalidatedtime" Type="datetime" Precision="0" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="remarks" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="applicantdetails">
+          <Key>
+            <PropertyRef Name="applicantpersonaldetailsid" />
+          </Key>
+          <Property Name="applicantpersonaldetailsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="title" Type="int" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="prefferedname" Type="varchar" MaxLength="50" />
+          <Property Name="middlename" Type="varchar" MaxLength="50" />
+          <Property Name="dateofbirth" Type="datetime" Precision="0" />
+          <Property Name="gender" Type="int" />
+          <Property Name="nationality" Type="varchar" MaxLength="45" />
+          <Property Name="countryofbirth" Type="varchar" MaxLength="45" />
+          <Property Name="maritalstatus" Type="int" />
+          <Property Name="isdisable" Type="int" />
+          <Property Name="disabilitydescription" Type="varchar" MaxLength="50" />
+          <Property Name="postaladdrees1" Type="varchar" MaxLength="45" />
+          <Property Name="postaladdrees2" Type="varchar" MaxLength="45" />
+          <Property Name="postaladdrees3" Type="varchar" MaxLength="45" />
+          <Property Name="postalcity" Type="varchar" MaxLength="45" />
+          <Property Name="postalstate" Type="varchar" MaxLength="45" />
+          <Property Name="postalcountry" Type="varchar" MaxLength="5" />
+          <Property Name="postalpostcode" Type="varchar" MaxLength="8" />
+          <Property Name="residentailpostcode" Type="varchar" MaxLength="8" />
+          <Property Name="residentialaddress1" Type="varchar" MaxLength="45" />
+          <Property Name="residentialaddress2" Type="varchar" MaxLength="45" />
+          <Property Name="residentialaddress3" Type="varchar" MaxLength="45" />
+          <Property Name="residentialcity" Type="varchar" MaxLength="45" />
+          <Property Name="residentialstate" Type="varchar" MaxLength="45" />
+          <Property Name="residentialcountry" Type="varchar" MaxLength="45" />
+          <Property Name="mobileno" Type="varchar" MaxLength="45" />
+          <Property Name="homephone" Type="varchar" MaxLength="45" />
+          <Property Name="workphone" Type="varchar" MaxLength="45" />
+          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="skypeid" Type="varchar" MaxLength="45" />
+          <Property Name="haveskypeid" Type="int" />
+          <Property Name="whatsappno" Type="varchar" MaxLength="15" />
+          <Property Name="isdifferentwhatsapp" Type="int" />
+          <Property Name="issameaspostal" Type="int" />
+          <Property Name="nomineefullname" Type="varchar" MaxLength="100" />
+          <Property Name="relationshipwithnominee" Type="varchar" MaxLength="45" />
+          <Property Name="nomineeemail" Type="varchar" MaxLength="45" />
+          <Property Name="nomineemobile" Type="varchar" MaxLength="15" />
+          <Property Name="passportno" Type="varchar" MaxLength="20" />
+          <Property Name="passportissuedate" Type="datetime" Precision="0" />
+          <Property Name="passportexpirydate" Type="datetime" Precision="0" />
+          <Property Name="passportissueCity" Type="varchar" MaxLength="45" />
+          <Property Name="alternativeiddentiproof" Type="int" />
+          <Property Name="alternativeprooftype" Type="int" />
+          <Property Name="alternativeproofno" Type="varchar" MaxLength="45" />
+          <Property Name="alternativedobproof" Type="int" />
+          <Property Name="alternativeproofdobtype" Type="int" />
+          <Property Name="alternativeproofdobno" Type="varchar" MaxLength="45" />
+          <Property Name="alternativeresidenceproof" Type="int" />
+          <Property Name="alternativeresidenceprooftype" Type="int" />
+          <Property Name="alternativeresidenceproofno" Type="varchar" MaxLength="45" />
+          <Property Name="linkedprofile" Type="varchar" MaxLength="200" />
+          <Property Name="facebookprofle" Type="varchar" MaxLength="200" />
+          <Property Name="twiterprofile" Type="varchar" MaxLength="200" />
+          <Property Name="othertitle" Type="varchar" MaxLength="20" />
+          <Property Name="personaldetailsaved time" Type="datetime" Precision="0" />
+          <Property Name="contactdetailsavetime" Type="datetime" Precision="0" />
+          <Property Name="identificationsavetime" Type="datetime" Precision="0" />
+          <Property Name="socialprofilesavetime" Type="datetime" Precision="0" />
+          <Property Name="passportissuecountry" Type="varchar" MaxLength="5" />
+          <Property Name="havewhatsup" Type="int" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="isstudentreferbyagent" Type="int" />
+        </EntityType>
+        <EntityType Name="applicantdocumentmaster">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="documentname" Type="varchar" MaxLength="45" />
+          <Property Name="filename" Type="varchar" MaxLength="45" />
+          <Property Name="uploadedtime" Type="datetime" Precision="0" />
+          <Property Name="fileextension" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="applicanteducationdetails">
+          <Key>
+            <PropertyRef Name="applicantdeducationdetailsid" />
+          </Key>
+          <Property Name="applicantdeducationdetailsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="ishighschooldone" Type="int" />
+          <Property Name="highschoolcountry" Type="char" MaxLength="5" />
+          <Property Name="highschoolstartdate" Type="datetime" Precision="0" />
+          <Property Name="highschoolendate" Type="datetime" Precision="0" />
+          <Property Name="highschoolname" Type="varchar" MaxLength="45" />
+          <Property Name="highschoolqualificationtype" Type="varchar" MaxLength="45" />
+          <Property Name="highschoolmodeid" Type="int" />
+          <Property Name="highschoolmediumid" Type="int" />
+          <Property Name="highschoolgradetypeid" Type="int" />
+          <Property Name="highschoolgradedeclared" Type="int" />
+          <Property Name="highschoolreusltdate" Type="datetime" Precision="0" />
+          <Property Name="highschoolverificationname" Type="varchar" MaxLength="45" />
+          <Property Name="highschoolrelationship" Type="varchar" MaxLength="45" />
+          <Property Name="highschoolverificationemail" Type="varchar" MaxLength="45" />
+          <Property Name="highestdegree" Type="varchar" MaxLength="45" />
+          <Property Name="issecondarydone" Type="int" />
+          <Property Name="secondarycountry" Type="varchar" MaxLength="5" />
+          <Property Name="secondarystartdate" Type="datetime" Precision="0" />
+          <Property Name="secondaryendate" Type="datetime" Precision="0" />
+          <Property Name="secondaryname" Type="varchar" MaxLength="45" />
+          <Property Name="secondaryqualifucationtype" Type="varchar" MaxLength="45" />
+          <Property Name="secondarymodestudy" Type="int" />
+          <Property Name="secondarymediumstudy" Type="int" />
+          <Property Name="secondarygradetypeid" Type="int" />
+          <Property Name="secondarygradedeclared" Type="int" />
+          <Property Name="secondaryresultdate" Type="datetime" Precision="0" />
+          <Property Name="secondaryverificationname" Type="varchar" MaxLength="45" />
+          <Property Name="relationshipwitnsecondaryverification" Type="varchar" MaxLength="45" />
+          <Property Name="secondaryverificationemail" Type="varchar" MaxLength="45" />
+          <Property Name="secondaryhighesteducation" Type="varchar" MaxLength="45" />
+          <Property Name="isdiplomadone" Type="int" />
+          <Property Name="diplomacountry" Type="varchar" MaxLength="5" />
+          <Property Name="diplomastartdate" Type="datetime" Precision="0" />
+          <Property Name="diplomaendate" Type="datetime" Precision="0" />
+          <Property Name="diplomaschoolname" Type="varchar" MaxLength="45" />
+          <Property Name="diplomaqualificationtype" Type="varchar" MaxLength="45" />
+          <Property Name="diplomastudymodeid" Type="int" />
+          <Property Name="diplomamediumid" Type="int" />
+          <Property Name="diplomagradetypeid" Type="int" />
+          <Property Name="diplomagradeachieved" Type="int" />
+          <Property Name="diplomaresultdate" Type="datetime" Precision="0" />
+          <Property Name="diplomaverificationname" Type="varchar" MaxLength="45" />
+          <Property Name="relationshipwithdiplomaverification" Type="varchar" MaxLength="45" />
+          <Property Name="diplomaverificationemail" Type="varchar" MaxLength="45" />
+          <Property Name="higestdiploma" Type="varchar" MaxLength="45" />
+          <Property Name="ishighereducation" Type="int" />
+          <Property Name="diplomaverificationmobile" Type="varchar" MaxLength="15" />
+          <Property Name="secondaryverificationmobile" Type="varchar" MaxLength="15" />
+          <Property Name="highschoolverificationmobile" Type="varchar" MaxLength="15" />
+          <Property Name="lastsavetime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="applicantemployerdetails">
+          <Key>
+            <PropertyRef Name="employerId" />
+          </Key>
+          <Property Name="employerId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="designation" Type="varchar" MaxLength="45" />
+          <Property Name="organization" Type="varchar" MaxLength="100" />
+          <Property Name="website" Type="varchar" MaxLength="45" />
+          <Property Name="city" Type="varchar" MaxLength="45" />
+          <Property Name="country" Type="varchar" MaxLength="45" />
+          <Property Name="contactpersonwithdetails" Type="varchar" MaxLength="200" />
+          <Property Name="salary" Type="float" />
+          <Property Name="durationfrom" Type="date" />
+          <Property Name="durationto" Type="date" />
+          <Property Name="applicantId" Type="int" />
+          <Property Name="creationdate" Type="datetime" Precision="0" />
+          <Property Name="wishtoaddemployer" Type="int" />
+          <Property Name="briefdescription" Type="varchar" MaxLength="500" />
+          <Property Name="nameofreportingmanger" Type="varchar" MaxLength="45" />
+          <Property Name="relationshipwithcontact" Type="varchar" MaxLength="45" />
+          <Property Name="emailid" Type="varchar" MaxLength="45" />
+          <Property Name="linkedinidofcontact" Type="varchar" MaxLength="45" />
+          <Property Name="lastsavedtime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="applicantformmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formname" Type="int" />
+          <Property Name="primaryfieldid" Type="int" />
+          <Property Name="secondaryfieldnamelanguage" Type="varchar" MaxLength="5" />
+          <Property Name="secondaryfielddnamevalue" Type="varchar" MaxLength="500" />
+          <Property Name="fieldnameinstructions" Type="varchar" MaxLength="500" />
+          <Property Name="secondaryfieldnameinstructions" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="applicanthighereducation">
+          <Key>
+            <PropertyRef Name="applicanthighereducationid" />
+          </Key>
+          <Property Name="applicanthighereducationid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="coursename" Type="varchar" MaxLength="45" />
+          <Property Name="countryofhighereducation" Type="varchar" MaxLength="5" />
+          <Property Name="startdate" Type="datetime" Precision="0" />
+          <Property Name="endate" Type="datetime" Precision="0" />
+          <Property Name="schoolname" Type="varchar" MaxLength="45" />
+          <Property Name="qualificationtype" Type="varchar" MaxLength="45" />
+          <Property Name="studymodeid" Type="int" />
+          <Property Name="studymediumid" Type="int" />
+          <Property Name="gradetypeid" Type="int" />
+          <Property Name="finalgradeacheived" Type="int" />
+          <Property Name="resultdate" Type="datetime" Precision="0" />
+          <Property Name="verificationname" Type="varchar" MaxLength="45" />
+          <Property Name="relationshipwithverification" Type="varchar" MaxLength="45" />
+          <Property Name="verificationemail" Type="varchar" MaxLength="45" />
+          <Property Name="verificationmobile" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="applicantlanguagecompetency">
+          <Key>
+            <PropertyRef Name="applicantlanguagecompetencyid" />
+          </Key>
+          <Property Name="applicantlanguagecompetencyid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="homelanuage" Type="varchar" MaxLength="45" />
+          <Property Name="isenglishintesive" Type="int" />
+          <Property Name="countryofcourse" Type="varchar" MaxLength="5" />
+          <Property Name="yearofcompletion" Type="datetime" Precision="0" />
+          <Property Name="instituename" Type="varchar" MaxLength="45" />
+          <Property Name="studymode" Type="int" />
+          <Property Name="qualificationtype" Type="varchar" MaxLength="45" />
+          <Property Name="gradetype" Type="varchar" MaxLength="45" />
+          <Property Name="giveenglishtest" Type="int" />
+          <Property Name="testname" Type="varchar" MaxLength="45" />
+          <Property Name="centerno" Type="varchar" MaxLength="45" />
+          <Property Name="isfinalgradeachieved" Type="int" />
+          <Property Name="expectedgraderesult" Type="datetime" Precision="0" />
+          <Property Name="candidateno" Type="varchar" MaxLength="45" />
+          <Property Name="candidateid" Type="varchar" MaxLength="45" />
+          <Property Name="examdate" Type="datetime" Precision="0" />
+          <Property Name="overallscore" Type="varchar" MaxLength="10" />
+          <Property Name="speakingscore" Type="varchar" MaxLength="10" />
+          <Property Name="listeningscore" Type="varchar" MaxLength="10" />
+          <Property Name="readingscore" Type="varchar" MaxLength="10" />
+          <Property Name="writingscore" Type="varchar" MaxLength="10" />
+          <Property Name="cefrlevel" Type="varchar" MaxLength="3" />
+          <Property Name="testreportreferenceno" Type="varchar" MaxLength="45" />
+          <Property Name="lastsavedtime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="applicantprogressbar">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="profile" Type="int" />
+          <Property Name="question" Type="int" />
+          <Property Name="video" Type="int" />
+          <Property Name="documents" Type="int" />
+        </EntityType>
+        <EntityType Name="Applicantreferencecheck">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" />
+          <Property Name="isverified" Type="int" />
+          <Property Name="referncekey" Type="varchar" MaxLength="50" />
+          <Property Name="requestsenttime" Type="datetime" Precision="0" />
+          <Property Name="referenceverifiedtime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="applicantscores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantID" Type="int" />
+          <Property Name="answerId" Type="int" />
+          <Property Name="answervalue" Type="int" />
+          <Property Name="timetakentoanswervalue" Type="int" />
+          <Property Name="universityid" Type="int" />
+        </EntityType>
+        <EntityType Name="applicantsubjectwisegrade">
+          <Key>
+            <PropertyRef Name="applicantgradeid" />
+          </Key>
+          <Property Name="applicantgradeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseid" Type="varchar" MaxLength="10" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="gradeid" Type="int" />
+          <Property Name="subject" Type="varchar" MaxLength="45" />
+          <Property Name="grade" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="applicantuniversitymapping">
+          <Key>
+            <PropertyRef Name="mappingId" />
+          </Key>
+          <Property Name="mappingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityId" Type="int" />
+        </EntityType>
+        <EntityType Name="applicantvideomaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="videofilename" Type="varchar" MaxLength="45" />
+          <Property Name="uploadedtime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="applicantvisadetails">
+          <Key>
+            <PropertyRef Name="applicantvisadetailsid" />
+          </Key>
+          <Property Name="applicantvisadetailsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="hasvisa" Type="int" />
+          <Property Name="applicantvisatype" Type="varchar" MaxLength="45" />
+          <Property Name="validityfrom" Type="datetime" Precision="0" />
+          <Property Name="validityto" Type="datetime" Precision="0" />
+          <Property Name="visano" Type="varchar" MaxLength="45" />
+          <Property Name="visaapplied" Type="int" />
+          <Property Name="city" Type="varchar" MaxLength="45" />
+          <Property Name="country" Type="varchar" MaxLength="45" />
+          <Property Name="firstvisit" Type="datetime" Precision="0" />
+          <Property Name="havelivedearlier" Type="int" />
+          <Property Name="haveparent" Type="int" />
+          <Property Name="isvisadenied" Type="int" />
+          <Property Name="isparentvisadenied" Type="int" />
+        </EntityType>
+        <EntityType Name="countriesmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="country_code" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="country_name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="coursemaster">
+          <Key>
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursename" Type="varchar" MaxLength="45" />
+          <Property Name="coursetypeid" Type="int" />
+        </EntityType>
+        <EntityType Name="coursetypemaster">
+          <Key>
+            <PropertyRef Name="coursetypeId" />
+          </Key>
+          <Property Name="coursetypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursetypename" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="disabilitymaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="documentvalidationbyagent">
+          <Key>
+            <PropertyRef Name="documentvalidationId" />
+          </Key>
+          <Property Name="documentvalidationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="documentid" Type="int" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="lastupdatedate" Type="datetime" Precision="0" />
+          <Property Name="remarks" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="educationmediummaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="financial_support_details">
+          <Key>
+            <PropertyRef Name="financialid" />
+          </Key>
+          <Property Name="financialid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="bigint" />
+          <Property Name="financial_intstitue_name" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="contact_no" Type="varchar" MaxLength="45" />
+          <Property Name="branch_manager_name" Type="varchar" MaxLength="100" />
+          <Property Name="branch_manager_contactno" Type="varchar" MaxLength="45" />
+          <Property Name="branch_manager_mobile" Type="varchar" MaxLength="15" />
+          <Property Name="typeoffunds" Type="varchar" MaxLength="10" />
+          <Property Name="accountholdername" Type="varchar" MaxLength="100" />
+          <Property Name="relationship" Type="varchar" MaxLength="100" />
+          <Property Name="accountno" Type="varchar" MaxLength="45" />
+          <Property Name="accountopeningDate" Type="date" />
+          <Property Name="accountbalance" Type="decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="formmaster">
+          <Key>
+            <PropertyRef Name="formid" />
+          </Key>
+          <Property Name="formid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formname" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="grademaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="inferencemaster">
+          <Key>
+            <PropertyRef Name="inferenceid" />
+          </Key>
+          <Property Name="inferenceid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="invalidatamaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="emailaddress" Type="varchar" MaxLength="100" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="passportno" Type="varchar" MaxLength="45" />
+          <Property Name="creationtime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="isfollowupdone" Type="int" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="majordiscipline_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="preliminary_questionmaster">
+          <Key>
+            <PropertyRef Name="preliminaryid" />
+          </Key>
+          <Property Name="preliminaryid" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question" Type="varchar" MaxLength="200" />
+          <Property Name="answer1" Type="varchar" MaxLength="45" />
+          <Property Name="answer2" Type="varchar" MaxLength="45" />
+          <Property Name="answer3" Type="varchar" MaxLength="45" />
+          <Property Name="answer4" Type="varchar" MaxLength="45" />
+          <Property Name="status" Type="int" />
+          <Property Name="correctanswer" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="preliminaryapplicantanswers">
+          <Key>
+            <PropertyRef Name="preliminaryapplicantanswersid" />
+          </Key>
+          <Property Name="preliminaryapplicantanswersid" Type="bigint" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="preliminaryid" Type="int" />
+          <Property Name="answer" Type="varchar" MaxLength="45" />
+          <Property Name="answersubmittedtime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="preliminaryvideomaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="videourl" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="primaryfieldmaster">
+          <Key>
+            <PropertyRef Name="primaryfieldid" />
+          </Key>
+          <Property Name="primaryfieldid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formid" Type="int" />
+          <Property Name="primaryfiledname" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="profilemaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="basicinfo" Type="int" />
+          <Property Name="educationinfo" Type="int" />
+          <Property Name="employerinfo" Type="int" />
+          <Property Name="finacialinfo" Type="int" />
+          <Property Name="englishtest" Type="int" />
+          <Property Name="sponsorsdetails" Type="int" />
+        </EntityType>
+        <EntityType Name="question_master">
+          <Key>
+            <PropertyRef Name="questionid" />
+          </Key>
+          <Property Name="questionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="isprimary" Type="int" />
+          <Property Name="infrencecategoryId" Type="int" />
+        </EntityType>
+        <EntityType Name="relative_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="bigint" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="age" Type="int" />
+          <Property Name="relationship" Type="varchar" MaxLength="50" />
+          <Property Name="city" Type="varchar" MaxLength="50" />
+          <Property Name="country" Type="varchar" MaxLength="50" />
+          <Property Name="isinautralia" Type="int" />
+          <Property Name="isdependent" Type="int" />
+          <Property Name="firstName" Type="varchar" MaxLength="100" />
+          <Property Name="passport_no" Type="varchar" MaxLength="15" />
+          <Property Name="nationality" Type="varchar" MaxLength="45" />
+          <Property Name="dob" Type="date" />
+        </EntityType>
+        <EntityType Name="rolemaster">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rolename" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="secondaryLanguagemaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="languagecode" Type="varchar" MaxLength="5" />
+          <Property Name="secondaryLanguagename" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="sponsor_details">
+          <Key>
+            <PropertyRef Name="sponserID" />
+          </Key>
+          <Property Name="sponserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantID" Type="bigint" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="employment_details" Type="varchar" MaxLength="100" />
+          <Property Name="designation" Type="varchar" MaxLength="100" />
+          <Property Name="relationship" Type="varchar" MaxLength="45" />
+          <Property Name="annualincome" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="isfiledItr" Type="int" />
+          <Property Name="durationfrom" Type="date" />
+          <Property Name="durationto" Type="date" />
+          <Property Name="creationdate" Type="date" />
+        </EntityType>
+        <EntityType Name="studymodemaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="titlemaster">
+          <Key>
+            <PropertyRef Name="titleid" />
+          </Key>
+          <Property Name="titleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="titlename" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tooltipmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="field" Type="varchar" MaxLength="50" />
+          <Property Name="tooltips" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="university_campusmapping">
+          <Key>
+            <PropertyRef Name="universitylocationid" />
+          </Key>
+          <Property Name="universitylocationid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="campusid" Type="int" />
+          <Property Name="cityname" Type="varchar" MaxLength="50" />
+          <Property Name="countryid" Type="int" />
+        </EntityType>
+        <EntityType Name="university_master">
+          <Key>
+            <PropertyRef Name="universityID" />
+          </Key>
+          <Property Name="universityID" Type="int" Nullable="false" />
+          <Property Name="university_name" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="varchar" MaxLength="200" />
+          <Property Name="website" Type="varchar" MaxLength="45" />
+          <Property Name="contact_person" Type="varchar" MaxLength="100" />
+          <Property Name="email" Type="varchar" MaxLength="45" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="universitycampus">
+          <Key>
+            <PropertyRef Name="campusid" />
+          </Key>
+          <Property Name="campusid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="campusname" Type="varchar" MaxLength="45" />
+          <Property Name="universityid" Type="int" />
+        </EntityType>
+        <EntityType Name="universitywisefieldmapping">
+          <Key>
+            <PropertyRef Name="universitywisefieldmappingid" />
+          </Key>
+          <Property Name="universitywisefieldmappingid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="primaryfieldid" Type="int" />
+          <Property Name="formid" Type="int" />
+        </EntityType>
+        <EntityType Name="universitywiseformmapping">
+          <Key>
+            <PropertyRef Name="universitywiseformmappingid" />
+          </Key>
+          <Property Name="universitywiseformmappingid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="formid" Type="int" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
+          <Property Name="usercreationdate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="int" />
+          <Property Name="role" Type="int" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" />
+          <Property Name="year" Type="int" />
+          <Property Name="degreeid" Type="int" />
+          <Property Name="courseid" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GTE_documentverification">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="int" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="documentname" Type="varchar" MaxLength="45" />
+          <Property Name="documentvalidationId" Type="int" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="lastupdatedate" Type="datetime" Precision="0" />
+          <Property Name="remarks" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Function Name="fetchapplicantDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GTE" />
+        <Function Name="shell_creation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GTE">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="pwd" Type="varchar" Mode="In" />
+          <Parameter Name="aId" Type="int" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="GTEModelStoreContainer">
+          <EntitySet Name="agentmaster" EntityType="Self.agentmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="alternateadressproofmaster" EntityType="Self.alternateadressproofmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="alternatedobproof" EntityType="Self.alternatedobproof" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="alternateidproofmaster" EntityType="Self.alternateidproofmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="answer_mastersecondarylanguage" EntityType="Self.answer_mastersecondarylanguage" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="answermaster" EntityType="Self.answermaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="answeroptionssecondary" EntityType="Self.answeroptionssecondary" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applcantdetailfieldvalidationmaster" EntityType="Self.applcantdetailfieldvalidationmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicant_education" EntityType="Self.applicant_education" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicant_gapsdetails" EntityType="Self.applicant_gapsdetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicant_languagetest" EntityType="Self.applicant_languagetest" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="Applicant_master" EntityType="Self.Applicant_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantdatavalidation" EntityType="Self.applicantdatavalidation" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantdetails" EntityType="Self.applicantdetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantdocumentmaster" EntityType="Self.applicantdocumentmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicanteducationdetails" EntityType="Self.applicanteducationdetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantemployerdetails" EntityType="Self.applicantemployerdetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantformmaster" EntityType="Self.applicantformmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicanthighereducation" EntityType="Self.applicanthighereducation" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantlanguagecompetency" EntityType="Self.applicantlanguagecompetency" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantprogressbar" EntityType="Self.applicantprogressbar" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="Applicantreferencecheck" EntityType="Self.Applicantreferencecheck" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantscores" EntityType="Self.applicantscores" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantsubjectwisegrade" EntityType="Self.applicantsubjectwisegrade" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="countriesmaster" EntityType="Self.countriesmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="financial_support_details" EntityType="Self.financial_support_details" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="formmaster" EntityType="Self.formmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="grademaster" EntityType="Self.grademaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="preliminaryapplicantanswers" EntityType="Self.preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="preliminaryvideomaster" EntityType="Self.preliminaryvideomaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="primaryfieldmaster" EntityType="Self.primaryfieldmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="profilemaster" EntityType="Self.profilemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="question_master" EntityType="Self.question_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="secondaryLanguagemaster" EntityType="Self.secondaryLanguagemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="sponsor_details" EntityType="Self.sponsor_details" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="university_campusmapping" EntityType="Self.university_campusmapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitycampus" EntityType="Self.universitycampus" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="GTE_documentverification" EntityType="Self.GTE_documentverification" store:Type="Views" store:Schema="GTE" store:Name="GTE.documentverification">
+            <DefiningQuery>SELECT
+`GTE_documentverification`.`documentid`, 
+`GTE_documentverification`.`applicantid`, 
+`GTE_documentverification`.`documentname`, 
+`GTE_documentverification`.`documentvalidationId`, 
+`GTE_documentverification`.`agentid`, 
+`GTE_documentverification`.`lastupdatedate`, 
+`GTE_documentverification`.`remarks`
+FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GTEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="alternateadressproofmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="alternatedobproof">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="alternateidproofmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="answer_mastersecondarylanguage">
+          <Key>
+            <PropertyRef Name="secondaryanswerid" />
+          </Key>
+          <Property Name="secondaryanswerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="answerid" Type="Int32" />
+          <Property Name="secondaryfieldnamelanguage" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryfieldnamevalue" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="answermaster">
+          <Key>
+            <PropertyRef Name="answerid" />
+          </Key>
+          <Property Name="answerid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="answerdescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="gteqscore" Type="Int32" />
+          <Property Name="riskqscore" Type="Int32" />
+        </EntityType>
+        <EntityType Name="answeroptionssecondary">
+          <Key>
+            <PropertyRef Name="answeroptionid" />
+          </Key>
+          <Property Name="answeroptionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="optionid" Type="Int32" />
+          <Property Name="secondaryfieldnamelanguage" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryfieldnamevalue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicant_education">
+          <Key>
+            <PropertyRef Name="applicationeduId" />
+          </Key>
+          <Property Name="applicationeduId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantID" Type="Int64" />
+          <Property Name="courseId" Type="Int32" />
+          <Property Name="board_universityname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Institute" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="percentage" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="course_startdate" Type="DateTime" />
+          <Property Name="course_enddate" Type="DateTime" />
+          <Property Name="repeats_backlog" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="othercourse_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicant_gapsdetails">
+          <Key>
+            <PropertyRef Name="gapId" />
+          </Key>
+          <Property Name="gapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantId" Type="Int64" />
+          <Property Name="gap_from" Type="DateTime" />
+          <Property Name="gap_to" Type="DateTime" />
+          <Property Name="explanation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="creationdate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="applicant_languagetest">
+          <Key>
+            <PropertyRef Name="lanugagetestID" />
+          </Key>
+          <Property Name="lanugagetestID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantId" Type="Int64" />
+          <Property Name="IsTestDone" Type="Int32" />
+          <Property Name="examDate" Type="DateTime" />
+          <Property Name="testId" Type="Int32" />
+          <Property Name="overallscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="speaking" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="reading" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="listening" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="writing" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Applicant_master">
+          <Key>
+            <PropertyRef Name="applicantID" />
+          </Key>
+          <Property Name="applicantID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="passport_no" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" />
+          <Property Name="pan_no" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="votercard_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="adhar_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="mobile_no" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="course_applied" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="university_applied" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="intakeforwhichapplied" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="userid" Type="Int64" />
+          <Property Name="personaldetails" Type="Int32" />
+          <Property Name="acadmicdetails" Type="Int32" />
+          <Property Name="englishprofiency" Type="Int32" />
+          <Property Name="agedetails" Type="Int32" />
+          <Property Name="financaildetails" Type="Int32" />
+          <Property Name="creationtime" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isusercreated" Type="Int32" />
+          <Property Name="nationality" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="mailsentdatetime" Type="DateTime" />
+          <Property Name="isanswerdprimaryquestion" Type="Int32" />
+          <Property Name="isanswerdaddonquestion" Type="Int32" />
+          <Property Name="isuploadedvideointerview" Type="Int32" />
+        </EntityType>
+        <EntityType Name="applicantdocumentmaster">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="filename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="uploadedtime" Type="DateTime" />
+          <Property Name="fileextension" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicantformmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formname" Type="Int32" />
+          <Property Name="primaryfieldid" Type="Int32" />
+          <Property Name="secondaryfieldnamelanguage" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryfielddnamevalue" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="fieldnameinstructions" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryfieldnameinstructions" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicantprogressbar">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="profile" Type="Int32" />
+          <Property Name="question" Type="Int32" />
+          <Property Name="video" Type="Int32" />
+          <Property Name="documents" Type="Int32" />
+        </EntityType>
+        <EntityType Name="applicantscores">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantID" Type="Int32" />
+          <Property Name="answerId" Type="Int32" />
+          <Property Name="answervalue" Type="Int32" />
+          <Property Name="timetakentoanswervalue" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="applicantsubjectwisegrade">
+          <Key>
+            <PropertyRef Name="applicantgradeid" />
+          </Key>
+          <Property Name="applicantgradeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseid" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="gradeid" Type="Int32" />
+          <Property Name="subject" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="grade" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicantuniversitymapping">
+          <Key>
+            <PropertyRef Name="mappingId" />
+          </Key>
+          <Property Name="mappingId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="applicantvideomaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="videofilename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="uploadedtime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="applicantvisadetails">
+          <Key>
+            <PropertyRef Name="applicantvisadetailsid" />
+          </Key>
+          <Property Name="applicantvisadetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="hasvisa" Type="Int32" />
+          <Property Name="applicantvisatype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="validityfrom" Type="DateTime" />
+          <Property Name="validityto" Type="DateTime" />
+          <Property Name="visano" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="visaapplied" Type="Int32" />
+          <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="firstvisit" Type="DateTime" />
+          <Property Name="havelivedearlier" Type="Int32" />
+          <Property Name="haveparent" Type="Int32" />
+          <Property Name="isvisadenied" Type="Int32" />
+          <Property Name="isparentvisadenied" Type="Int32" />
+        </EntityType>
+        <EntityType Name="coursemaster">
+          <Key>
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="coursetypeid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="coursetypemaster">
+          <Key>
+            <PropertyRef Name="coursetypeId" />
+          </Key>
+          <Property Name="coursetypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursetypename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="disabilitymaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="documentvalidationbyagent">
+          <Key>
+            <PropertyRef Name="documentvalidationId" />
+          </Key>
+          <Property Name="documentvalidationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documentid" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="lastupdatedate" Type="DateTime" />
+          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="educationmediummaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="financial_support_details">
+          <Key>
+            <PropertyRef Name="financialid" />
+          </Key>
+          <Property Name="financialid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int64" />
+          <Property Name="financial_intstitue_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="contact_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="branch_manager_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="branch_manager_contactno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="branch_manager_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="typeoffunds" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="accountholdername" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="relationship" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="accountno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="accountopeningDate" Type="DateTime" />
+          <Property Name="accountbalance" Type="Decimal" />
+        </EntityType>
+        <EntityType Name="formmaster">
+          <Key>
+            <PropertyRef Name="formid" />
+          </Key>
+          <Property Name="formid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="grademaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="inferencemaster">
+          <Key>
+            <PropertyRef Name="inferenceid" />
+          </Key>
+          <Property Name="inferenceid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="invalidatamaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="emailaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="passportno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="creationtime" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isfollowupdone" Type="Int32" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="majordiscipline_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="primaryfieldmaster">
+          <Key>
+            <PropertyRef Name="primaryfieldid" />
+          </Key>
+          <Property Name="primaryfieldid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formid" Type="Int32" />
+          <Property Name="primaryfiledname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="profilemaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="basicinfo" Type="Int32" />
+          <Property Name="educationinfo" Type="Int32" />
+          <Property Name="employerinfo" Type="Int32" />
+          <Property Name="finacialinfo" Type="Int32" />
+          <Property Name="englishtest" Type="Int32" />
+          <Property Name="sponsorsdetails" Type="Int32" />
+        </EntityType>
+        <EntityType Name="question_master">
+          <Key>
+            <PropertyRef Name="questionid" />
+          </Key>
+          <Property Name="questionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="isprimary" Type="Int32" />
+          <Property Name="infrencecategoryId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="relative_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isinautralia" Type="Int32" />
+          <Property Name="isdependent" Type="Int32" />
+          <Property Name="firstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="passport_no" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nationality" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="dob" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="rolemaster">
+          <Key>
+            <PropertyRef Name="roleid" />
+          </Key>
+          <Property Name="roleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rolename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="secondaryLanguagemaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="languagecode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryLanguagename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sponsor_details">
+          <Key>
+            <PropertyRef Name="sponserID" />
+          </Key>
+          <Property Name="sponserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantID" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="employment_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="relationship" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="annualincome" Type="Decimal" />
+          <Property Name="isfiledItr" Type="Int32" />
+          <Property Name="durationfrom" Type="DateTime" />
+          <Property Name="durationto" Type="DateTime" />
+          <Property Name="creationdate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="studymodemaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="titlemaster">
+          <Key>
+            <PropertyRef Name="titleid" />
+          </Key>
+          <Property Name="titleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titlename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="university_master">
+          <Key>
+            <PropertyRef Name="universityID" />
+          </Key>
+          <Property Name="universityID" Type="Int32" Nullable="false" />
+          <Property Name="university_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="contact_person" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="universitywisefieldmapping">
+          <Key>
+            <PropertyRef Name="universitywisefieldmappingid" />
+          </Key>
+          <Property Name="universitywisefieldmappingid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="primaryfieldid" Type="Int32" />
+          <Property Name="formid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="universitywiseformmapping">
+          <Key>
+            <PropertyRef Name="universitywiseformmappingid" />
+          </Key>
+          <Property Name="universitywiseformmappingid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="formid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="usercreationdate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="role" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="year" Type="Int32" />
+          <Property Name="degreeid" Type="Int32" />
+          <Property Name="courseid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="GTE_documentverification">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="documentvalidationId" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="lastupdatedate" Type="DateTime" />
+          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="GTEEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alternateadressproofmaster" EntityType="Self.alternateadressproofmaster" />
+          <EntitySet Name="alternatedobproof" EntityType="Self.alternatedobproof" />
+          <EntitySet Name="alternateidproofmaster" EntityType="Self.alternateidproofmaster" />
+          <EntitySet Name="answer_mastersecondarylanguage" EntityType="Self.answer_mastersecondarylanguage" />
+          <EntitySet Name="answermaster" EntityType="Self.answermaster" />
+          <EntitySet Name="answeroptionssecondary" EntityType="Self.answeroptionssecondary" />
+          <EntitySet Name="applicant_education" EntityType="Self.applicant_education" />
+          <EntitySet Name="applicant_gapsdetails" EntityType="Self.applicant_gapsdetails" />
+          <EntitySet Name="applicant_languagetest" EntityType="Self.applicant_languagetest" />
+          <EntitySet Name="Applicant_master" EntityType="Self.Applicant_master" />
+          <EntitySet Name="applicantdocumentmaster" EntityType="Self.applicantdocumentmaster" />
+          <EntitySet Name="applicantformmaster" EntityType="Self.applicantformmaster" />
+          <EntitySet Name="applicantprogressbar" EntityType="Self.applicantprogressbar" />
+          <EntitySet Name="applicantscores" EntityType="Self.applicantscores" />
+          <EntitySet Name="applicantsubjectwisegrade" EntityType="Self.applicantsubjectwisegrade" />
+          <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" />
+          <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" />
+          <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" />
+          <EntitySet Name="coursemaster" EntityType="Self.coursemaster" />
+          <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" />
+          <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" />
+          <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" />
+          <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" />
+          <EntitySet Name="financial_support_details" EntityType="Self.financial_support_details" />
+          <EntitySet Name="formmaster" EntityType="Self.formmaster" />
+          <EntitySet Name="grademaster" EntityType="Self.grademaster" />
+          <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" />
+          <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" />
+          <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" />
+          <EntitySet Name="primaryfieldmaster" EntityType="Self.primaryfieldmaster" />
+          <EntitySet Name="profilemaster" EntityType="Self.profilemaster" />
+          <EntitySet Name="question_master" EntityType="Self.question_master" />
+          <EntitySet Name="relative_master" EntityType="Self.relative_master" />
+          <EntitySet Name="rolemaster" EntityType="Self.rolemaster" />
+          <EntitySet Name="secondaryLanguagemaster" EntityType="Self.secondaryLanguagemaster" />
+          <EntitySet Name="sponsor_details" EntityType="Self.sponsor_details" />
+          <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" />
+          <EntitySet Name="titlemaster" EntityType="Self.titlemaster" />
+          <EntitySet Name="university_master" EntityType="Self.university_master" />
+          <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" />
+          <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" />
+          <EntitySet Name="user" EntityType="Self.user" />
+          <EntitySet Name="GTE_documentverification" EntityType="Self.GTE_documentverification" />
+          <FunctionImport Name="fetchapplicantDetail" />
+          <FunctionImport Name="shell_creation">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="pwd" Mode="In" Type="String" />
+            <Parameter Name="aId" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
+          <EntitySet Name="applicanthighereducation" EntityType="GTEModel.applicanthighereducation" />
+          <EntitySet Name="applicantemployerdetails" EntityType="GTEModel.applicantemployerdetails" />
+          <EntitySet Name="applicantlanguagecompetency" EntityType="GTEModel.applicantlanguagecompetency" />
+          <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
+          <EntitySet Name="universitycampus" EntityType="GTEModel.universitycampus" />
+          <EntitySet Name="applcantdetailfieldvalidationmaster" EntityType="GTEModel.applcantdetailfieldvalidationmaster" />
+          <EntitySet Name="applicantdatavalidation" EntityType="GTEModel.applicantdatavalidation" />
+          <EntitySet Name="tooltipmaster" EntityType="GTEModel.tooltipmaster" />
+          <EntitySet Name="university_campusmapping" EntityType="GTEModel.university_campusmapping" />
+          <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
+          <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
+          <EntitySet Name="preliminaryvideomaster" EntityType="GTEModel.preliminaryvideomaster" />
+          <EntitySet Name="Applicantreferencecheck" EntityType="GTEModel.Applicantreferencecheck" />
+          <EntitySet Name="agentmaster" EntityType="GTEModel.agentmaster" />
+          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
+        </EntityContainer>
+        <EntityType Name="applicanteducationdetails">
+          <Key>
+            <PropertyRef Name="applicantdeducationdetailsid" />
+          </Key>
+          <Property Name="applicantdeducationdetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="ishighschooldone" Type="Int32" />
+          <Property Name="highschoolcountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolstartdate" Type="DateTime" />
+          <Property Name="highschoolendate" Type="DateTime" />
+          <Property Name="highschoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolqualificationtype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolmodeid" Type="Int32" />
+          <Property Name="highschoolmediumid" Type="Int32" />
+          <Property Name="highschoolgradetypeid" Type="Int32" />
+          <Property Name="highschoolgradedeclared" Type="Int32" />
+          <Property Name="highschoolreusltdate" Type="DateTime" />
+          <Property Name="highschoolverificationname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolrelationship" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolverificationemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="highestdegree" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="issecondarydone" Type="Int32" />
+          <Property Name="secondarycountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="secondarystartdate" Type="DateTime" />
+          <Property Name="secondaryendate" Type="DateTime" />
+          <Property Name="secondaryname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryqualifucationtype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="secondarymodestudy" Type="Int32" />
+          <Property Name="secondarymediumstudy" Type="Int32" />
+          <Property Name="secondarygradetypeid" Type="Int32" />
+          <Property Name="secondarygradedeclared" Type="Int32" />
+          <Property Name="secondaryresultdate" Type="DateTime" />
+          <Property Name="secondaryverificationname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwitnsecondaryverification" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryverificationemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryhighesteducation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isdiplomadone" Type="Int32" />
+          <Property Name="diplomacountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="diplomastartdate" Type="DateTime" />
+          <Property Name="diplomaendate" Type="DateTime" />
+          <Property Name="diplomaschoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaqualificationtype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="diplomastudymodeid" Type="Int32" />
+          <Property Name="diplomamediumid" Type="Int32" />
+          <Property Name="diplomagradetypeid" Type="Int32" />
+          <Property Name="diplomagradeachieved" Type="Int32" />
+          <Property Name="diplomaresultdate" Type="DateTime" />
+          <Property Name="diplomaverificationname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithdiplomaverification" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaverificationemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="higestdiploma" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ishighereducation" Type="Int32" />
+          <Property Name="diplomaverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="lastsavetime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="applicanthighereducation">
+          <Key>
+            <PropertyRef Name="applicanthighereducationid" />
+          </Key>
+          <Property Name="applicanthighereducationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="countryofhighereducation" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="startdate" Type="DateTime" />
+          <Property Name="endate" Type="DateTime" />
+          <Property Name="schoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="qualificationtype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="studymodeid" Type="Int32" />
+          <Property Name="studymediumid" Type="Int32" />
+          <Property Name="gradetypeid" Type="Int32" />
+          <Property Name="finalgradeacheived" Type="Int32" />
+          <Property Name="resultdate" Type="DateTime" />
+          <Property Name="verificationname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithverification" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="verificationemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="verificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicantemployerdetails">
+          <Key>
+            <PropertyRef Name="employerId" />
+          </Key>
+          <Property Name="employerId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="designation" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="organization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="contactpersonwithdetails" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="salary" Type="Single" />
+          <Property Name="durationfrom" Type="DateTime" />
+          <Property Name="durationto" Type="DateTime" />
+          <Property Name="applicantId" Type="Int32" />
+          <Property Name="creationdate" Type="DateTime" />
+          <Property Name="wishtoaddemployer" Type="Int32" />
+          <Property Name="briefdescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="nameofreportingmanger" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithcontact" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="emailid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="linkedinidofcontact" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="lastsavedtime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="applicantlanguagecompetency">
+          <Key>
+            <PropertyRef Name="applicantlanguagecompetencyid" />
+          </Key>
+          <Property Name="applicantlanguagecompetencyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="homelanuage" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isenglishintesive" Type="Int32" />
+          <Property Name="countryofcourse" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="yearofcompletion" Type="DateTime" />
+          <Property Name="instituename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="studymode" Type="Int32" />
+          <Property Name="qualificationtype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="gradetype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="giveenglishtest" Type="Int32" />
+          <Property Name="testname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="centerno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isfinalgradeachieved" Type="Int32" />
+          <Property Name="expectedgraderesult" Type="DateTime" />
+          <Property Name="candidateno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="candidateid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="examdate" Type="DateTime" />
+          <Property Name="overallscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="speakingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="listeningscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="readingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="writingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cefrlevel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="testreportreferenceno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="lastsavedtime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="countriesmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="country_code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="country_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="universitycampus">
+          <Key>
+            <PropertyRef Name="campusid" />
+          </Key>
+          <Property Name="campusid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="campusname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="applcantdetailfieldvalidationmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="keyname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicantdatavalidation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" />
+          <Property Name="keyid" Type="Int32" />
+          <Property Name="isvalid" Type="Int32" />
+          <Property Name="proofofvalidation" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="lastvalidatedtime" Type="DateTime" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tooltipmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="field" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="tooltips" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="university_campusmapping">
+          <Key>
+            <PropertyRef Name="universitylocationid" />
+          </Key>
+          <Property Name="universitylocationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="campusid" Type="Int32" />
+          <Property Name="cityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="preliminary_questionmaster">
+          <Key>
+            <PropertyRef Name="preliminaryid" />
+          </Key>
+          <Property Name="preliminaryid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answer2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answer3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answer4" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="correctanswer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="preliminaryapplicantanswers">
+          <Key>
+            <PropertyRef Name="preliminaryapplicantanswersid" />
+          </Key>
+          <Property Name="preliminaryapplicantanswersid" Type="Int64" Nullable="false" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="preliminaryid" Type="Int32" />
+          <Property Name="answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answersubmittedtime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="preliminaryvideomaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Applicantreferencecheck">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="isverified" Type="Int32" />
+          <Property Name="referncekey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="requestsenttime" Type="DateTime" />
+          <Property Name="referenceverifiedtime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="agentmaster">
+          <Key>
+            <PropertyRef Name="agentid" />
+          </Key>
+          <Property Name="agentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="agentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isactive" Type="Int32" />
+        </EntityType>
+        <EntityType Name="applicantdetails">
+          <Key>
+            <PropertyRef Name="applicantpersonaldetailsid" />
+          </Key>
+          <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="title" Type="Int32" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateofbirth" Type="DateTime" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="nationality" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="countryofbirth" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="maritalstatus" Type="Int32" />
+          <Property Name="isdisable" Type="Int32" />
+          <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcountry" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="haveskypeid" Type="Int32" />
+          <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="isdifferentwhatsapp" Type="Int32" />
+          <Property Name="issameaspostal" Type="Int32" />
+          <Property Name="nomineefullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithnominee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineeemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineemobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="passportissuedate" Type="DateTime" />
+          <Property Name="passportexpirydate" Type="DateTime" />
+          <Property Name="passportissueCity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeiddentiproof" Type="Int32" />
+          <Property Name="alternativeprooftype" Type="Int32" />
+          <Property Name="alternativeproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativedobproof" Type="Int32" />
+          <Property Name="alternativeproofdobtype" Type="Int32" />
+          <Property Name="alternativeproofdobno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeresidenceproof" Type="Int32" />
+          <Property Name="alternativeresidenceprooftype" Type="Int32" />
+          <Property Name="alternativeresidenceproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="linkedprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="facebookprofle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="twiterprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="othertitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="personaldetailsaved_time" Type="DateTime" />
+          <Property Name="contactdetailsavetime" Type="DateTime" />
+          <Property Name="identificationsavetime" Type="DateTime" />
+          <Property Name="socialprofilesavetime" Type="DateTime" />
+          <Property Name="passportissuecountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="havewhatsup" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="isstudentreferbyagent" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GTEModelStoreContainer" CdmEntityContainer="GTEEntities">
+          <EntitySetMapping Name="alternateadressproofmaster">
+            <EntityTypeMapping TypeName="GTEModel.alternateadressproofmaster">
+              <MappingFragment StoreEntitySet="alternateadressproofmaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alternatedobproof">
+            <EntityTypeMapping TypeName="GTEModel.alternatedobproof">
+              <MappingFragment StoreEntitySet="alternatedobproof">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alternateidproofmaster">
+            <EntityTypeMapping TypeName="GTEModel.alternateidproofmaster">
+              <MappingFragment StoreEntitySet="alternateidproofmaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="answer_mastersecondarylanguage">
+            <EntityTypeMapping TypeName="GTEModel.answer_mastersecondarylanguage">
+              <MappingFragment StoreEntitySet="answer_mastersecondarylanguage">
+                <ScalarProperty Name="secondaryanswerid" ColumnName="secondaryanswerid" />
+                <ScalarProperty Name="answerid" ColumnName="answerid" />
+                <ScalarProperty Name="secondaryfieldnamelanguage" ColumnName="secondaryfieldnamelanguage" />
+                <ScalarProperty Name="secondaryfieldnamevalue" ColumnName="secondaryfieldnamevalue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="answermaster">
+            <EntityTypeMapping TypeName="GTEModel.answermaster">
+              <MappingFragment StoreEntitySet="answermaster">
+                <ScalarProperty Name="answerid" ColumnName="answerid" />
+                <ScalarProperty Name="answerdescription" ColumnName="answerdescription" />
+                <ScalarProperty Name="gteqscore" ColumnName="gteqscore" />
+                <ScalarProperty Name="riskqscore" ColumnName="riskqscore" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="answeroptionssecondary">
+            <EntityTypeMapping TypeName="GTEModel.answeroptionssecondary">
+              <MappingFragment StoreEntitySet="answeroptionssecondary">
+                <ScalarProperty Name="answeroptionid" ColumnName="answeroptionid" />
+                <ScalarProperty Name="optionid" ColumnName="optionid" />
+                <ScalarProperty Name="secondaryfieldnamelanguage" ColumnName="secondaryfieldnamelanguage" />
+                <ScalarProperty Name="secondaryfieldnamevalue" ColumnName="secondaryfieldnamevalue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicant_education">
+            <EntityTypeMapping TypeName="GTEModel.applicant_education">
+              <MappingFragment StoreEntitySet="applicant_education">
+                <ScalarProperty Name="applicationeduId" ColumnName="applicationeduId" />
+                <ScalarProperty Name="applicantID" ColumnName="applicantID" />
+                <ScalarProperty Name="courseId" ColumnName="courseId" />
+                <ScalarProperty Name="board_universityname" ColumnName="board_universityname" />
+                <ScalarProperty Name="Institute" ColumnName="Institute" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+                <ScalarProperty Name="course_startdate" ColumnName="course_startdate" />
+                <ScalarProperty Name="course_enddate" ColumnName="course_enddate" />
+                <ScalarProperty Name="repeats_backlog" ColumnName="repeats_backlog" />
+                <ScalarProperty Name="othercourse_name" ColumnName="othercourse_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicant_gapsdetails">
+            <EntityTypeMapping TypeName="GTEModel.applicant_gapsdetails">
+              <MappingFragment StoreEntitySet="applicant_gapsdetails">
+                <ScalarProperty Name="gapId" ColumnName="gapId" />
+                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
+                <ScalarProperty Name="gap_from" ColumnName="gap_from" />
+                <ScalarProperty Name="gap_to" ColumnName="gap_to" />
+                <ScalarProperty Name="explanation" ColumnName="explanation" />
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicant_languagetest">
+            <EntityTypeMapping TypeName="GTEModel.applicant_languagetest">
+              <MappingFragment StoreEntitySet="applicant_languagetest">
+                <ScalarProperty Name="lanugagetestID" ColumnName="lanugagetestID" />
+                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
+                <ScalarProperty Name="IsTestDone" ColumnName="IsTestDone" />
+                <ScalarProperty Name="examDate" ColumnName="examDate" />
+                <ScalarProperty Name="testId" ColumnName="testId" />
+                <ScalarProperty Name="overallscore" ColumnName="overallscore" />
+                <ScalarProperty Name="speaking" ColumnName="speaking" />
+                <ScalarProperty Name="reading" ColumnName="reading" />
+                <ScalarProperty Name="listening" ColumnName="listening" />
+                <ScalarProperty Name="writing" ColumnName="writing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applicant_master">
+            <EntityTypeMapping TypeName="GTEModel.Applicant_master">
+              <MappingFragment StoreEntitySet="Applicant_master">
+                <ScalarProperty Name="applicantID" ColumnName="applicantID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="passport_no" ColumnName="passport_no" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+                <ScalarProperty Name="pan_no" ColumnName="pan_no" />
+                <ScalarProperty Name="votercard_no" ColumnName="votercard_no" />
+                <ScalarProperty Name="adhar_no" ColumnName="adhar_no" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
+                <ScalarProperty Name="course_applied" ColumnName="course_applied" />
+                <ScalarProperty Name="university_applied" ColumnName="university_applied" />
+                <ScalarProperty Name="intakeforwhichapplied" ColumnName="intakeforwhichapplied" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="personaldetails" ColumnName="personaldetails" />
+                <ScalarProperty Name="acadmicdetails" ColumnName="acadmicdetails" />
+                <ScalarProperty Name="englishprofiency" ColumnName="englishprofiency" />
+                <ScalarProperty Name="agedetails" ColumnName="agedetails" />
+                <ScalarProperty Name="financaildetails" ColumnName="financaildetails" />
+                <ScalarProperty Name="creationtime" ColumnName="creationtime" />
+                <ScalarProperty Name="isusercreated" ColumnName="isusercreated" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="mailsentdatetime" ColumnName="mailsentdatetime" />
+                <ScalarProperty Name="isanswerdprimaryquestion" ColumnName="isanswerdprimaryquestion" />
+                <ScalarProperty Name="isanswerdaddonquestion" ColumnName="isanswerdaddonquestion" />
+                <ScalarProperty Name="isuploadedvideointerview" ColumnName="isuploadedvideointerview" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantdocumentmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantdocumentmaster">
+              <MappingFragment StoreEntitySet="applicantdocumentmaster">
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="documentname" ColumnName="documentname" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
+                <ScalarProperty Name="fileextension" ColumnName="fileextension" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantformmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantformmaster">
+              <MappingFragment StoreEntitySet="applicantformmaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="formname" ColumnName="formname" />
+                <ScalarProperty Name="primaryfieldid" ColumnName="primaryfieldid" />
+                <ScalarProperty Name="secondaryfieldnamelanguage" ColumnName="secondaryfieldnamelanguage" />
+                <ScalarProperty Name="secondaryfielddnamevalue" ColumnName="secondaryfielddnamevalue" />
+                <ScalarProperty Name="fieldnameinstructions" ColumnName="fieldnameinstructions" />
+                <ScalarProperty Name="secondaryfieldnameinstructions" ColumnName="secondaryfieldnameinstructions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantprogressbar">
+            <EntityTypeMapping TypeName="GTEModel.applicantprogressbar">
+              <MappingFragment StoreEntitySet="applicantprogressbar">
+                <ScalarProperty Name="int" ColumnName="int" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="profile" ColumnName="profile" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="video" ColumnName="video" />
+                <ScalarProperty Name="documents" ColumnName="documents" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantscores">
+            <EntityTypeMapping TypeName="GTEModel.applicantscores">
+              <MappingFragment StoreEntitySet="applicantscores">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="applicantID" ColumnName="applicantID" />
+                <ScalarProperty Name="answerId" ColumnName="answerId" />
+                <ScalarProperty Name="answervalue" ColumnName="answervalue" />
+                <ScalarProperty Name="timetakentoanswervalue" ColumnName="timetakentoanswervalue" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantsubjectwisegrade">
+            <EntityTypeMapping TypeName="GTEModel.applicantsubjectwisegrade">
+              <MappingFragment StoreEntitySet="applicantsubjectwisegrade">
+                <ScalarProperty Name="applicantgradeid" ColumnName="applicantgradeid" />
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="gradeid" ColumnName="gradeid" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantuniversitymapping">
+            <EntityTypeMapping TypeName="GTEModel.applicantuniversitymapping">
+              <MappingFragment StoreEntitySet="applicantuniversitymapping">
+                <ScalarProperty Name="mappingId" ColumnName="mappingId" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="universityId" ColumnName="universityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantvideomaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantvideomaster">
+              <MappingFragment StoreEntitySet="applicantvideomaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="videofilename" ColumnName="videofilename" />
+                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantvisadetails">
+            <EntityTypeMapping TypeName="GTEModel.applicantvisadetails">
+              <MappingFragment StoreEntitySet="applicantvisadetails">
+                <ScalarProperty Name="applicantvisadetailsid" ColumnName="applicantvisadetailsid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="hasvisa" ColumnName="hasvisa" />
+                <ScalarProperty Name="applicantvisatype" ColumnName="applicantvisatype" />
+                <ScalarProperty Name="validityfrom" ColumnName="validityfrom" />
+                <ScalarProperty Name="validityto" ColumnName="validityto" />
+                <ScalarProperty Name="visano" ColumnName="visano" />
+                <ScalarProperty Name="visaapplied" ColumnName="visaapplied" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="firstvisit" ColumnName="firstvisit" />
+                <ScalarProperty Name="havelivedearlier" ColumnName="havelivedearlier" />
+                <ScalarProperty Name="haveparent" ColumnName="haveparent" />
+                <ScalarProperty Name="isvisadenied" ColumnName="isvisadenied" />
+                <ScalarProperty Name="isparentvisadenied" ColumnName="isparentvisadenied" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coursemaster">
+            <EntityTypeMapping TypeName="GTEModel.coursemaster">
+              <MappingFragment StoreEntitySet="coursemaster">
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="coursetypeid" ColumnName="coursetypeid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coursetypemaster">
+            <EntityTypeMapping TypeName="GTEModel.coursetypemaster">
+              <MappingFragment StoreEntitySet="coursetypemaster">
+                <ScalarProperty Name="coursetypeId" ColumnName="coursetypeId" />
+                <ScalarProperty Name="coursetypename" ColumnName="coursetypename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="disabilitymaster">
+            <EntityTypeMapping TypeName="GTEModel.disabilitymaster">
+              <MappingFragment StoreEntitySet="disabilitymaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="documentvalidationbyagent">
+            <EntityTypeMapping TypeName="GTEModel.documentvalidationbyagent">
+              <MappingFragment StoreEntitySet="documentvalidationbyagent">
+                <ScalarProperty Name="documentvalidationId" ColumnName="documentvalidationId" />
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="educationmediummaster">
+            <EntityTypeMapping TypeName="GTEModel.educationmediummaster">
+              <MappingFragment StoreEntitySet="educationmediummaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="financial_support_details">
+            <EntityTypeMapping TypeName="GTEModel.financial_support_details">
+              <MappingFragment StoreEntitySet="financial_support_details">
+                <ScalarProperty Name="financialid" ColumnName="financialid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="financial_intstitue_name" ColumnName="financial_intstitue_name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
+                <ScalarProperty Name="branch_manager_name" ColumnName="branch_manager_name" />
+                <ScalarProperty Name="branch_manager_contactno" ColumnName="branch_manager_contactno" />
+                <ScalarProperty Name="branch_manager_mobile" ColumnName="branch_manager_mobile" />
+                <ScalarProperty Name="typeoffunds" ColumnName="typeoffunds" />
+                <ScalarProperty Name="accountholdername" ColumnName="accountholdername" />
+                <ScalarProperty Name="relationship" ColumnName="relationship" />
+                <ScalarProperty Name="accountno" ColumnName="accountno" />
+                <ScalarProperty Name="accountopeningDate" ColumnName="accountopeningDate" />
+                <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="formmaster">
+            <EntityTypeMapping TypeName="GTEModel.formmaster">
+              <MappingFragment StoreEntitySet="formmaster">
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="formname" ColumnName="formname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grademaster">
+            <EntityTypeMapping TypeName="GTEModel.grademaster">
+              <MappingFragment StoreEntitySet="grademaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inferencemaster">
+            <EntityTypeMapping TypeName="GTEModel.inferencemaster">
+              <MappingFragment StoreEntitySet="inferencemaster">
+                <ScalarProperty Name="inferenceid" ColumnName="inferenceid" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="invalidatamaster">
+            <EntityTypeMapping TypeName="GTEModel.invalidatamaster">
+              <MappingFragment StoreEntitySet="invalidatamaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="emailaddress" ColumnName="emailaddress" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="passportno" ColumnName="passportno" />
+                <ScalarProperty Name="creationtime" ColumnName="creationtime" />
+                <ScalarProperty Name="isfollowupdone" ColumnName="isfollowupdone" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="majordiscipline_master">
+            <EntityTypeMapping TypeName="GTEModel.majordiscipline_master">
+              <MappingFragment StoreEntitySet="majordiscipline_master">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="primaryfieldmaster">
+            <EntityTypeMapping TypeName="GTEModel.primaryfieldmaster">
+              <MappingFragment StoreEntitySet="primaryfieldmaster">
+                <ScalarProperty Name="primaryfieldid" ColumnName="primaryfieldid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="primaryfiledname" ColumnName="primaryfiledname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="profilemaster">
+            <EntityTypeMapping TypeName="GTEModel.profilemaster">
+              <MappingFragment StoreEntitySet="profilemaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="basicinfo" ColumnName="basicinfo" />
+                <ScalarProperty Name="educationinfo" ColumnName="educationinfo" />
+                <ScalarProperty Name="employerinfo" ColumnName="employerinfo" />
+                <ScalarProperty Name="finacialinfo" ColumnName="finacialinfo" />
+                <ScalarProperty Name="englishtest" ColumnName="englishtest" />
+                <ScalarProperty Name="sponsorsdetails" ColumnName="sponsorsdetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="question_master">
+            <EntityTypeMapping TypeName="GTEModel.question_master">
+              <MappingFragment StoreEntitySet="question_master">
+                <ScalarProperty Name="questionid" ColumnName="questionid" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="isprimary" ColumnName="isprimary" />
+                <ScalarProperty Name="infrencecategoryId" ColumnName="infrencecategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relative_master">
+            <EntityTypeMapping TypeName="GTEModel.relative_master">
+              <MappingFragment StoreEntitySet="relative_master">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="relationship" ColumnName="relationship" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="isinautralia" ColumnName="isinautralia" />
+                <ScalarProperty Name="isdependent" ColumnName="isdependent" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="passport_no" ColumnName="passport_no" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="dob" ColumnName="dob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rolemaster">
+            <EntityTypeMapping TypeName="GTEModel.rolemaster">
+              <MappingFragment StoreEntitySet="rolemaster">
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="rolename" ColumnName="rolename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="secondaryLanguagemaster">
+            <EntityTypeMapping TypeName="GTEModel.secondaryLanguagemaster">
+              <MappingFragment StoreEntitySet="secondaryLanguagemaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="languagecode" ColumnName="languagecode" />
+                <ScalarProperty Name="secondaryLanguagename" ColumnName="secondaryLanguagename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sponsor_details">
+            <EntityTypeMapping TypeName="GTEModel.sponsor_details">
+              <MappingFragment StoreEntitySet="sponsor_details">
+                <ScalarProperty Name="sponserID" ColumnName="sponserID" />
+                <ScalarProperty Name="applicantID" ColumnName="applicantID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="employment_details" ColumnName="employment_details" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="relationship" ColumnName="relationship" />
+                <ScalarProperty Name="annualincome" ColumnName="annualincome" />
+                <ScalarProperty Name="isfiledItr" ColumnName="isfiledItr" />
+                <ScalarProperty Name="durationfrom" ColumnName="durationfrom" />
+                <ScalarProperty Name="durationto" ColumnName="durationto" />
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studymodemaster">
+            <EntityTypeMapping TypeName="GTEModel.studymodemaster">
+              <MappingFragment StoreEntitySet="studymodemaster">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="titlemaster">
+            <EntityTypeMapping TypeName="GTEModel.titlemaster">
+              <MappingFragment StoreEntitySet="titlemaster">
+                <ScalarProperty Name="titleid" ColumnName="titleid" />
+                <ScalarProperty Name="titlename" ColumnName="titlename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="university_master">
+            <EntityTypeMapping TypeName="GTEModel.university_master">
+              <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="universityID" ColumnName="universityID" />
+                <ScalarProperty Name="university_name" ColumnName="university_name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universitywisefieldmapping">
+            <EntityTypeMapping TypeName="GTEModel.universitywisefieldmapping">
+              <MappingFragment StoreEntitySet="universitywisefieldmapping">
+                <ScalarProperty Name="universitywisefieldmappingid" ColumnName="universitywisefieldmappingid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="primaryfieldid" ColumnName="primaryfieldid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universitywiseformmapping">
+            <EntityTypeMapping TypeName="GTEModel.universitywiseformmapping">
+              <MappingFragment StoreEntitySet="universitywiseformmapping">
+                <ScalarProperty Name="universitywiseformmappingid" ColumnName="universitywiseformmappingid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="GTEModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="usercreationdate" ColumnName="usercreationdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="degreeid" ColumnName="degreeid" />
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GTE_documentverification">
+            <EntityTypeMapping TypeName="GTEModel.GTE_documentverification">
+              <MappingFragment StoreEntitySet="GTE_documentverification">
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="documentname" ColumnName="documentname" />
+                <ScalarProperty Name="documentvalidationId" ColumnName="documentvalidationId" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="fetchapplicantDetail" FunctionName="GTEModel.Store.fetchapplicantDetail" />
+          <FunctionImportMapping FunctionImportName="shell_creation" FunctionName="GTEModel.Store.shell_creation" />
+          <EntitySetMapping Name="applicanteducationdetails">
+            <EntityTypeMapping TypeName="GTEModel.applicanteducationdetails">
+              <MappingFragment StoreEntitySet="applicanteducationdetails">
+                <ScalarProperty Name="lastsavetime" ColumnName="lastsavetime" />
+                <ScalarProperty Name="highschoolverificationmobile" ColumnName="highschoolverificationmobile" />
+                <ScalarProperty Name="secondaryverificationmobile" ColumnName="secondaryverificationmobile" />
+                <ScalarProperty Name="diplomaverificationmobile" ColumnName="diplomaverificationmobile" />
+                <ScalarProperty Name="ishighereducation" ColumnName="ishighereducation" />
+                <ScalarProperty Name="higestdiploma" ColumnName="higestdiploma" />
+                <ScalarProperty Name="diplomaverificationemail" ColumnName="diplomaverificationemail" />
+                <ScalarProperty Name="relationshipwithdiplomaverification" ColumnName="relationshipwithdiplomaverification" />
+                <ScalarProperty Name="diplomaverificationname" ColumnName="diplomaverificationname" />
+                <ScalarProperty Name="diplomaresultdate" ColumnName="diplomaresultdate" />
+                <ScalarProperty Name="diplomagradeachieved" ColumnName="diplomagradeachieved" />
+                <ScalarProperty Name="diplomagradetypeid" ColumnName="diplomagradetypeid" />
+                <ScalarProperty Name="diplomamediumid" ColumnName="diplomamediumid" />
+                <ScalarProperty Name="diplomastudymodeid" ColumnName="diplomastudymodeid" />
+                <ScalarProperty Name="diplomaqualificationtype" ColumnName="diplomaqualificationtype" />
+                <ScalarProperty Name="diplomaschoolname" ColumnName="diplomaschoolname" />
+                <ScalarProperty Name="diplomaendate" ColumnName="diplomaendate" />
+                <ScalarProperty Name="diplomastartdate" ColumnName="diplomastartdate" />
+                <ScalarProperty Name="diplomacountry" ColumnName="diplomacountry" />
+                <ScalarProperty Name="isdiplomadone" ColumnName="isdiplomadone" />
+                <ScalarProperty Name="secondaryhighesteducation" ColumnName="secondaryhighesteducation" />
+                <ScalarProperty Name="secondaryverificationemail" ColumnName="secondaryverificationemail" />
+                <ScalarProperty Name="relationshipwitnsecondaryverification" ColumnName="relationshipwitnsecondaryverification" />
+                <ScalarProperty Name="secondaryverificationname" ColumnName="secondaryverificationname" />
+                <ScalarProperty Name="secondaryresultdate" ColumnName="secondaryresultdate" />
+                <ScalarProperty Name="secondarygradedeclared" ColumnName="secondarygradedeclared" />
+                <ScalarProperty Name="secondarygradetypeid" ColumnName="secondarygradetypeid" />
+                <ScalarProperty Name="secondarymediumstudy" ColumnName="secondarymediumstudy" />
+                <ScalarProperty Name="secondarymodestudy" ColumnName="secondarymodestudy" />
+                <ScalarProperty Name="secondaryqualifucationtype" ColumnName="secondaryqualifucationtype" />
+                <ScalarProperty Name="secondaryname" ColumnName="secondaryname" />
+                <ScalarProperty Name="secondaryendate" ColumnName="secondaryendate" />
+                <ScalarProperty Name="secondarystartdate" ColumnName="secondarystartdate" />
+                <ScalarProperty Name="secondarycountry" ColumnName="secondarycountry" />
+                <ScalarProperty Name="issecondarydone" ColumnName="issecondarydone" />
+                <ScalarProperty Name="highestdegree" ColumnName="highestdegree" />
+                <ScalarProperty Name="highschoolverificationemail" ColumnName="highschoolverificationemail" />
+                <ScalarProperty Name="highschoolrelationship" ColumnName="highschoolrelationship" />
+                <ScalarProperty Name="highschoolverificationname" ColumnName="highschoolverificationname" />
+                <ScalarProperty Name="highschoolreusltdate" ColumnName="highschoolreusltdate" />
+                <ScalarProperty Name="highschoolgradedeclared" ColumnName="highschoolgradedeclared" />
+                <ScalarProperty Name="highschoolgradetypeid" ColumnName="highschoolgradetypeid" />
+                <ScalarProperty Name="highschoolmediumid" ColumnName="highschoolmediumid" />
+                <ScalarProperty Name="highschoolmodeid" ColumnName="highschoolmodeid" />
+                <ScalarProperty Name="highschoolqualificationtype" ColumnName="highschoolqualificationtype" />
+                <ScalarProperty Name="highschoolname" ColumnName="highschoolname" />
+                <ScalarProperty Name="highschoolendate" ColumnName="highschoolendate" />
+                <ScalarProperty Name="highschoolstartdate" ColumnName="highschoolstartdate" />
+                <ScalarProperty Name="highschoolcountry" ColumnName="highschoolcountry" />
+                <ScalarProperty Name="ishighschooldone" ColumnName="ishighschooldone" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicantdeducationdetailsid" ColumnName="applicantdeducationdetailsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicanthighereducation">
+            <EntityTypeMapping TypeName="GTEModel.applicanthighereducation">
+              <MappingFragment StoreEntitySet="applicanthighereducation">
+                <ScalarProperty Name="verificationmobile" ColumnName="verificationmobile" />
+                <ScalarProperty Name="verificationemail" ColumnName="verificationemail" />
+                <ScalarProperty Name="relationshipwithverification" ColumnName="relationshipwithverification" />
+                <ScalarProperty Name="verificationname" ColumnName="verificationname" />
+                <ScalarProperty Name="resultdate" ColumnName="resultdate" />
+                <ScalarProperty Name="finalgradeacheived" ColumnName="finalgradeacheived" />
+                <ScalarProperty Name="gradetypeid" ColumnName="gradetypeid" />
+                <ScalarProperty Name="studymediumid" ColumnName="studymediumid" />
+                <ScalarProperty Name="studymodeid" ColumnName="studymodeid" />
+                <ScalarProperty Name="qualificationtype" ColumnName="qualificationtype" />
+                <ScalarProperty Name="schoolname" ColumnName="schoolname" />
+                <ScalarProperty Name="endate" ColumnName="endate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="countryofhighereducation" ColumnName="countryofhighereducation" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicanthighereducationid" ColumnName="applicanthighereducationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantemployerdetails">
+            <EntityTypeMapping TypeName="GTEModel.applicantemployerdetails">
+              <MappingFragment StoreEntitySet="applicantemployerdetails">
+                <ScalarProperty Name="lastsavedtime" ColumnName="lastsavedtime" />
+                <ScalarProperty Name="linkedinidofcontact" ColumnName="linkedinidofcontact" />
+                <ScalarProperty Name="emailid" ColumnName="emailid" />
+                <ScalarProperty Name="relationshipwithcontact" ColumnName="relationshipwithcontact" />
+                <ScalarProperty Name="nameofreportingmanger" ColumnName="nameofreportingmanger" />
+                <ScalarProperty Name="briefdescription" ColumnName="briefdescription" />
+                <ScalarProperty Name="wishtoaddemployer" ColumnName="wishtoaddemployer" />
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
+                <ScalarProperty Name="durationto" ColumnName="durationto" />
+                <ScalarProperty Name="durationfrom" ColumnName="durationfrom" />
+                <ScalarProperty Name="salary" ColumnName="salary" />
+                <ScalarProperty Name="contactpersonwithdetails" ColumnName="contactpersonwithdetails" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="organization" ColumnName="organization" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="employerId" ColumnName="employerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantlanguagecompetency">
+            <EntityTypeMapping TypeName="GTEModel.applicantlanguagecompetency">
+              <MappingFragment StoreEntitySet="applicantlanguagecompetency">
+                <ScalarProperty Name="lastsavedtime" ColumnName="lastsavedtime" />
+                <ScalarProperty Name="testreportreferenceno" ColumnName="testreportreferenceno" />
+                <ScalarProperty Name="cefrlevel" ColumnName="cefrlevel" />
+                <ScalarProperty Name="writingscore" ColumnName="writingscore" />
+                <ScalarProperty Name="readingscore" ColumnName="readingscore" />
+                <ScalarProperty Name="listeningscore" ColumnName="listeningscore" />
+                <ScalarProperty Name="speakingscore" ColumnName="speakingscore" />
+                <ScalarProperty Name="overallscore" ColumnName="overallscore" />
+                <ScalarProperty Name="examdate" ColumnName="examdate" />
+                <ScalarProperty Name="candidateid" ColumnName="candidateid" />
+                <ScalarProperty Name="candidateno" ColumnName="candidateno" />
+                <ScalarProperty Name="expectedgraderesult" ColumnName="expectedgraderesult" />
+                <ScalarProperty Name="isfinalgradeachieved" ColumnName="isfinalgradeachieved" />
+                <ScalarProperty Name="centerno" ColumnName="centerno" />
+                <ScalarProperty Name="testname" ColumnName="testname" />
+                <ScalarProperty Name="giveenglishtest" ColumnName="giveenglishtest" />
+                <ScalarProperty Name="gradetype" ColumnName="gradetype" />
+                <ScalarProperty Name="qualificationtype" ColumnName="qualificationtype" />
+                <ScalarProperty Name="studymode" ColumnName="studymode" />
+                <ScalarProperty Name="instituename" ColumnName="instituename" />
+                <ScalarProperty Name="yearofcompletion" ColumnName="yearofcompletion" />
+                <ScalarProperty Name="countryofcourse" ColumnName="countryofcourse" />
+                <ScalarProperty Name="isenglishintesive" ColumnName="isenglishintesive" />
+                <ScalarProperty Name="homelanuage" ColumnName="homelanuage" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicantlanguagecompetencyid" ColumnName="applicantlanguagecompetencyid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countriesmaster">
+            <EntityTypeMapping TypeName="GTEModel.countriesmaster">
+              <MappingFragment StoreEntitySet="countriesmaster">
+                <ScalarProperty Name="country_name" ColumnName="country_name" />
+                <ScalarProperty Name="country_code" ColumnName="country_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universitycampus">
+            <EntityTypeMapping TypeName="GTEModel.universitycampus">
+              <MappingFragment StoreEntitySet="universitycampus">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="campusname" ColumnName="campusname" />
+                <ScalarProperty Name="campusid" ColumnName="campusid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applcantdetailfieldvalidationmaster">
+            <EntityTypeMapping TypeName="GTEModel.applcantdetailfieldvalidationmaster">
+              <MappingFragment StoreEntitySet="applcantdetailfieldvalidationmaster">
+                <ScalarProperty Name="keyname" ColumnName="keyname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantdatavalidation">
+            <EntityTypeMapping TypeName="GTEModel.applicantdatavalidation">
+              <MappingFragment StoreEntitySet="applicantdatavalidation">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="lastvalidatedtime" ColumnName="lastvalidatedtime" />
+                <ScalarProperty Name="proofofvalidation" ColumnName="proofofvalidation" />
+                <ScalarProperty Name="isvalid" ColumnName="isvalid" />
+                <ScalarProperty Name="keyid" ColumnName="keyid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tooltipmaster">
+            <EntityTypeMapping TypeName="GTEModel.tooltipmaster">
+              <MappingFragment StoreEntitySet="tooltipmaster">
+                <ScalarProperty Name="tooltips" ColumnName="tooltips" />
+                <ScalarProperty Name="field" ColumnName="field" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="university_campusmapping">
+            <EntityTypeMapping TypeName="GTEModel.university_campusmapping">
+              <MappingFragment StoreEntitySet="university_campusmapping">
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="cityname" ColumnName="cityname" />
+                <ScalarProperty Name="campusid" ColumnName="campusid" />
+                <ScalarProperty Name="universitylocationid" ColumnName="universitylocationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preliminary_questionmaster">
+            <EntityTypeMapping TypeName="GTEModel.preliminary_questionmaster">
+              <MappingFragment StoreEntitySet="preliminary_questionmaster">
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="answer4" ColumnName="answer4" />
+                <ScalarProperty Name="answer3" ColumnName="answer3" />
+                <ScalarProperty Name="answer2" ColumnName="answer2" />
+                <ScalarProperty Name="answer1" ColumnName="answer1" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preliminaryapplicantanswers">
+            <EntityTypeMapping TypeName="GTEModel.preliminaryapplicantanswers">
+              <MappingFragment StoreEntitySet="preliminaryapplicantanswers">
+                <ScalarProperty Name="answersubmittedtime" ColumnName="answersubmittedtime" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="preliminaryapplicantanswersid" ColumnName="preliminaryapplicantanswersid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preliminaryvideomaster">
+            <EntityTypeMapping TypeName="GTEModel.preliminaryvideomaster">
+              <MappingFragment StoreEntitySet="preliminaryvideomaster">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="videourl" ColumnName="videourl" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applicantreferencecheck">
+            <EntityTypeMapping TypeName="GTEModel.Applicantreferencecheck">
+              <MappingFragment StoreEntitySet="Applicantreferencecheck">
+                <ScalarProperty Name="referenceverifiedtime" ColumnName="referenceverifiedtime" />
+                <ScalarProperty Name="requestsenttime" ColumnName="requestsenttime" />
+                <ScalarProperty Name="referncekey" ColumnName="referncekey" />
+                <ScalarProperty Name="isverified" ColumnName="isverified" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="agentmaster">
+            <EntityTypeMapping TypeName="GTEModel.agentmaster">
+              <MappingFragment StoreEntitySet="agentmaster">
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="agentname" ColumnName="agentname" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantdetails">
+            <EntityTypeMapping TypeName="GTEModel.applicantdetails">
+              <MappingFragment StoreEntitySet="applicantdetails">
+                <ScalarProperty Name="isstudentreferbyagent" ColumnName="isstudentreferbyagent" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="havewhatsup" ColumnName="havewhatsup" />
+                <ScalarProperty Name="passportissuecountry" ColumnName="passportissuecountry" />
+                <ScalarProperty Name="socialprofilesavetime" ColumnName="socialprofilesavetime" />
+                <ScalarProperty Name="identificationsavetime" ColumnName="identificationsavetime" />
+                <ScalarProperty Name="contactdetailsavetime" ColumnName="contactdetailsavetime" />
+                <ScalarProperty Name="personaldetailsaved_time" ColumnName="personaldetailsaved time" />
+                <ScalarProperty Name="othertitle" ColumnName="othertitle" />
+                <ScalarProperty Name="twiterprofile" ColumnName="twiterprofile" />
+                <ScalarProperty Name="facebookprofle" ColumnName="facebookprofle" />
+                <ScalarProperty Name="linkedprofile" ColumnName="linkedprofile" />
+                <ScalarProperty Name="alternativeresidenceproofno" ColumnName="alternativeresidenceproofno" />
+                <ScalarProperty Name="alternativeresidenceprooftype" ColumnName="alternativeresidenceprooftype" />
+                <ScalarProperty Name="alternativeresidenceproof" ColumnName="alternativeresidenceproof" />
+                <ScalarProperty Name="alternativeproofdobno" ColumnName="alternativeproofdobno" />
+                <ScalarProperty Name="alternativeproofdobtype" ColumnName="alternativeproofdobtype" />
+                <ScalarProperty Name="alternativedobproof" ColumnName="alternativedobproof" />
+                <ScalarProperty Name="alternativeproofno" ColumnName="alternativeproofno" />
+                <ScalarProperty Name="alternativeprooftype" ColumnName="alternativeprooftype" />
+                <ScalarProperty Name="alternativeiddentiproof" ColumnName="alternativeiddentiproof" />
+                <ScalarProperty Name="passportissueCity" ColumnName="passportissueCity" />
+                <ScalarProperty Name="passportexpirydate" ColumnName="passportexpirydate" />
+                <ScalarProperty Name="passportissuedate" ColumnName="passportissuedate" />
+                <ScalarProperty Name="passportno" ColumnName="passportno" />
+                <ScalarProperty Name="nomineemobile" ColumnName="nomineemobile" />
+                <ScalarProperty Name="nomineeemail" ColumnName="nomineeemail" />
+                <ScalarProperty Name="relationshipwithnominee" ColumnName="relationshipwithnominee" />
+                <ScalarProperty Name="nomineefullname" ColumnName="nomineefullname" />
+                <ScalarProperty Name="issameaspostal" ColumnName="issameaspostal" />
+                <ScalarProperty Name="isdifferentwhatsapp" ColumnName="isdifferentwhatsapp" />
+                <ScalarProperty Name="whatsappno" ColumnName="whatsappno" />
+                <ScalarProperty Name="haveskypeid" ColumnName="haveskypeid" />
+                <ScalarProperty Name="skypeid" ColumnName="skypeid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="workphone" ColumnName="workphone" />
+                <ScalarProperty Name="homephone" ColumnName="homephone" />
+                <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+                <ScalarProperty Name="residentialcountry" ColumnName="residentialcountry" />
+                <ScalarProperty Name="residentialstate" ColumnName="residentialstate" />
+                <ScalarProperty Name="residentialcity" ColumnName="residentialcity" />
+                <ScalarProperty Name="residentialaddress3" ColumnName="residentialaddress3" />
+                <ScalarProperty Name="residentialaddress2" ColumnName="residentialaddress2" />
+                <ScalarProperty Name="residentialaddress1" ColumnName="residentialaddress1" />
+                <ScalarProperty Name="residentailpostcode" ColumnName="residentailpostcode" />
+                <ScalarProperty Name="postalpostcode" ColumnName="postalpostcode" />
+                <ScalarProperty Name="postalcountry" ColumnName="postalcountry" />
+                <ScalarProperty Name="postalstate" ColumnName="postalstate" />
+                <ScalarProperty Name="postalcity" ColumnName="postalcity" />
+                <ScalarProperty Name="postaladdrees3" ColumnName="postaladdrees3" />
+                <ScalarProperty Name="postaladdrees2" ColumnName="postaladdrees2" />
+                <ScalarProperty Name="postaladdrees1" ColumnName="postaladdrees1" />
+                <ScalarProperty Name="disabilitydescription" ColumnName="disabilitydescription" />
+                <ScalarProperty Name="isdisable" ColumnName="isdisable" />
+                <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
+                <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="prefferedname" ColumnName="prefferedname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

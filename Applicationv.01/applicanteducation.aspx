@@ -1,0 +1,2623 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="applicanteducation.aspx.cs" Inherits="applicanteducation" MasterPageFile="~/student.master" %>
+
+<asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
+
+
+    <div class="container-fluid page__container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item active">Education Details</li>
+        </ol>
+        <h1 class="h2">Education Details</h1>
+
+    </div>
+    <div class="page ">
+        <div class="container page__container p-0">
+            <div class="row m-0">
+                <div class="col-lg container-fluid page__container">
+
+                    <div class="card" style="width: 650px;">
+                        <div class="list-group list-group-fit">
+                            <!----High School Start------>
+                            <div class="list-group-item">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                    <div class="form-row">
+                                        <label id="label-highschool" for="highschool" class="col-md-3 col-form-label form-label">Have you completed high school?</label>
+                                        <div class="col-md-9">
+                                            <asp:RadioButton ID="rblHighYes" CssClass="form-control" runat="server" GroupName="highschool" Text="Yes" />
+                                            <asp:RadioButton ID="rblHighNo" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I am currently studying for my high school qualification " />
+                                            <asp:RadioButton ID="rblHighNot" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I do not have a high school qualification " />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolCountry">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolCountry">
+                                    <div class="form-row">
+                                        <label id="label-highschoolCountry" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School Education</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
+                                                <asp:ListItem Value="AF">Afghanistan</asp:ListItem>
+                                                <asp:ListItem Value="AL">Albania</asp:ListItem>
+                                                <asp:ListItem Value="DZ">Algeria</asp:ListItem>
+                                                <asp:ListItem Value="AS">American Samoa</asp:ListItem>
+                                                <asp:ListItem Value="AD">Andorra</asp:ListItem>
+                                                <asp:ListItem Value="AO">Angola</asp:ListItem>
+                                                <asp:ListItem Value="AI">Anguilla</asp:ListItem>
+                                                <asp:ListItem Value="AQ">Antarctica</asp:ListItem>
+                                                <asp:ListItem Value="AG">Antigua And Barbuda</asp:ListItem>
+                                                <asp:ListItem Value="AR">Argentina</asp:ListItem>
+                                                <asp:ListItem Value="AM">Armenia</asp:ListItem>
+                                                <asp:ListItem Value="AW">Aruba</asp:ListItem>
+                                                <asp:ListItem Value="AU">Australia</asp:ListItem>
+                                                <asp:ListItem Value="AT">Austria</asp:ListItem>
+                                                <asp:ListItem Value="AZ">Azerbaijan</asp:ListItem>
+                                                <asp:ListItem Value="BS">Bahamas</asp:ListItem>
+                                                <asp:ListItem Value="BH">Bahrain</asp:ListItem>
+                                                <asp:ListItem Value="BD">Bangladesh</asp:ListItem>
+                                                <asp:ListItem Value="BB">Barbados</asp:ListItem>
+                                                <asp:ListItem Value="BY">Belarus</asp:ListItem>
+                                                <asp:ListItem Value="BE">Belgium</asp:ListItem>
+                                                <asp:ListItem Value="BZ">Belize</asp:ListItem>
+                                                <asp:ListItem Value="BJ">Benin</asp:ListItem>
+                                                <asp:ListItem Value="BM">Bermuda</asp:ListItem>
+                                                <asp:ListItem Value="BT">Bhutan</asp:ListItem>
+                                                <asp:ListItem Value="BO">Bolivia</asp:ListItem>
+                                                <asp:ListItem Value="BA">Bosnia And Herzegowina</asp:ListItem>
+                                                <asp:ListItem Value="BW">Botswana</asp:ListItem>
+                                                <asp:ListItem Value="BV">Bouvet Island</asp:ListItem>
+                                                <asp:ListItem Value="BR">Brazil</asp:ListItem>
+                                                <asp:ListItem Value="IO">British Indian Ocean Territory</asp:ListItem>
+                                                <asp:ListItem Value="BN">Brunei Darussalam</asp:ListItem>
+                                                <asp:ListItem Value="BG">Bulgaria</asp:ListItem>
+                                                <asp:ListItem Value="BF">Burkina Faso</asp:ListItem>
+                                                <asp:ListItem Value="BI">Burundi</asp:ListItem>
+                                                <asp:ListItem Value="KH">Cambodia</asp:ListItem>
+                                                <asp:ListItem Value="CM">Cameroon</asp:ListItem>
+                                                <asp:ListItem Value="CA">Canada</asp:ListItem>
+                                                <asp:ListItem Value="CV">Cape Verde</asp:ListItem>
+                                                <asp:ListItem Value="KY">Cayman Islands</asp:ListItem>
+                                                <asp:ListItem Value="CF">Central African Republic</asp:ListItem>
+                                                <asp:ListItem Value="TD">Chad</asp:ListItem>
+                                                <asp:ListItem Value="CL">Chile</asp:ListItem>
+                                                <asp:ListItem Value="CN">China</asp:ListItem>
+                                                <asp:ListItem Value="CX">Christmas Island</asp:ListItem>
+                                                <asp:ListItem Value="CC">Cocos (Keeling) Islands</asp:ListItem>
+                                                <asp:ListItem Value="CO">Colombia</asp:ListItem>
+                                                <asp:ListItem Value="KM">Comoros</asp:ListItem>
+                                                <asp:ListItem Value="CG">Congo</asp:ListItem>
+                                                <asp:ListItem Value="CK">Cook Islands</asp:ListItem>
+                                                <asp:ListItem Value="CR">Costa Rica</asp:ListItem>
+                                                <asp:ListItem Value="CI">Cote D'Ivoire</asp:ListItem>
+                                                <asp:ListItem Value="HR">Croatia (Local Name: Hrvatska)</asp:ListItem>
+                                                <asp:ListItem Value="CU">Cuba</asp:ListItem>
+                                                <asp:ListItem Value="CY">Cyprus</asp:ListItem>
+                                                <asp:ListItem Value="CZ">Czech Republic</asp:ListItem>
+                                                <asp:ListItem Value="DK">Denmark</asp:ListItem>
+                                                <asp:ListItem Value="DJ">Djibouti</asp:ListItem>
+                                                <asp:ListItem Value="DM">Dominica</asp:ListItem>
+                                                <asp:ListItem Value="DO">Dominican Republic</asp:ListItem>
+                                                <asp:ListItem Value="TP">East Timor</asp:ListItem>
+                                                <asp:ListItem Value="EC">Ecuador</asp:ListItem>
+                                                <asp:ListItem Value="EG">Egypt</asp:ListItem>
+                                                <asp:ListItem Value="SV">El Salvador</asp:ListItem>
+                                                <asp:ListItem Value="GQ">Equatorial Guinea</asp:ListItem>
+                                                <asp:ListItem Value="ER">Eritrea</asp:ListItem>
+                                                <asp:ListItem Value="EE">Estonia</asp:ListItem>
+                                                <asp:ListItem Value="ET">Ethiopia</asp:ListItem>
+                                                <asp:ListItem Value="FK">Falkland Islands (Malvinas)</asp:ListItem>
+                                                <asp:ListItem Value="FO">Faroe Islands</asp:ListItem>
+                                                <asp:ListItem Value="FJ">Fiji</asp:ListItem>
+                                                <asp:ListItem Value="FI">Finland</asp:ListItem>
+                                                <asp:ListItem Value="FR">France</asp:ListItem>
+                                                <asp:ListItem Value="GF">French Guiana</asp:ListItem>
+                                                <asp:ListItem Value="PF">French Polynesia</asp:ListItem>
+                                                <asp:ListItem Value="TF">French Southern Territories</asp:ListItem>
+                                                <asp:ListItem Value="GA">Gabon</asp:ListItem>
+                                                <asp:ListItem Value="GM">Gambia</asp:ListItem>
+                                                <asp:ListItem Value="GE">Georgia</asp:ListItem>
+                                                <asp:ListItem Value="DE">Germany</asp:ListItem>
+                                                <asp:ListItem Value="GH">Ghana</asp:ListItem>
+                                                <asp:ListItem Value="GI">Gibraltar</asp:ListItem>
+                                                <asp:ListItem Value="GR">Greece</asp:ListItem>
+                                                <asp:ListItem Value="GL">Greenland</asp:ListItem>
+                                                <asp:ListItem Value="GD">Grenada</asp:ListItem>
+                                                <asp:ListItem Value="GP">Guadeloupe</asp:ListItem>
+                                                <asp:ListItem Value="GU">Guam</asp:ListItem>
+                                                <asp:ListItem Value="GT">Guatemala</asp:ListItem>
+                                                <asp:ListItem Value="GN">Guinea</asp:ListItem>
+                                                <asp:ListItem Value="GW">Guinea-Bissau</asp:ListItem>
+                                                <asp:ListItem Value="GY">Guyana</asp:ListItem>
+                                                <asp:ListItem Value="HT">Haiti</asp:ListItem>
+                                                <asp:ListItem Value="HM">Heard And Mc Donald Islands</asp:ListItem>
+                                                <asp:ListItem Value="VA">Holy See (Vatican City State)</asp:ListItem>
+                                                <asp:ListItem Value="HN">Honduras</asp:ListItem>
+                                                <asp:ListItem Value="HK">Hong Kong</asp:ListItem>
+                                                <asp:ListItem Value="HU">Hungary</asp:ListItem>
+                                                <asp:ListItem Value="IS">Icel And</asp:ListItem>
+                                                <asp:ListItem Value="IN">India</asp:ListItem>
+                                                <asp:ListItem Value="ID">Indonesia</asp:ListItem>
+                                                <asp:ListItem Value="IR">Iran (Islamic Republic Of)</asp:ListItem>
+                                                <asp:ListItem Value="IQ">Iraq</asp:ListItem>
+                                                <asp:ListItem Value="IE">Ireland</asp:ListItem>
+                                                <asp:ListItem Value="IL">Israel</asp:ListItem>
+                                                <asp:ListItem Value="IT">Italy</asp:ListItem>
+                                                <asp:ListItem Value="JM">Jamaica</asp:ListItem>
+                                                <asp:ListItem Value="JP">Japan</asp:ListItem>
+                                                <asp:ListItem Value="JO">Jordan</asp:ListItem>
+                                                <asp:ListItem Value="KZ">Kazakhstan</asp:ListItem>
+                                                <asp:ListItem Value="KE">Kenya</asp:ListItem>
+                                                <asp:ListItem Value="KI">Kiribati</asp:ListItem>
+                                                <asp:ListItem Value="KP">Korea, Dem People'S Republic</asp:ListItem>
+                                                <asp:ListItem Value="KR">Korea, Republic Of</asp:ListItem>
+                                                <asp:ListItem Value="KW">Kuwait</asp:ListItem>
+                                                <asp:ListItem Value="KG">Kyrgyzstan</asp:ListItem>
+                                                <asp:ListItem Value="LA">Lao People'S Dem Republic</asp:ListItem>
+                                                <asp:ListItem Value="LV">Latvia</asp:ListItem>
+                                                <asp:ListItem Value="LB">Lebanon</asp:ListItem>
+                                                <asp:ListItem Value="LS">Lesotho</asp:ListItem>
+                                                <asp:ListItem Value="LR">Liberia</asp:ListItem>
+                                                <asp:ListItem Value="LY">Libyan Arab Jamahiriya</asp:ListItem>
+                                                <asp:ListItem Value="LI">Liechtenstein</asp:ListItem>
+                                                <asp:ListItem Value="LT">Lithuania</asp:ListItem>
+                                                <asp:ListItem Value="LU">Luxembourg</asp:ListItem>
+                                                <asp:ListItem Value="MO">Macau</asp:ListItem>
+                                                <asp:ListItem Value="MK">Macedonia</asp:ListItem>
+                                                <asp:ListItem Value="MG">Madagascar</asp:ListItem>
+                                                <asp:ListItem Value="MW">Malawi</asp:ListItem>
+                                                <asp:ListItem Value="MY">Malaysia</asp:ListItem>
+                                                <asp:ListItem Value="MV">Maldives</asp:ListItem>
+                                                <asp:ListItem Value="ML">Mali</asp:ListItem>
+                                                <asp:ListItem Value="MT">Malta</asp:ListItem>
+                                                <asp:ListItem Value="MH">Marshall Islands</asp:ListItem>
+                                                <asp:ListItem Value="MQ">Martinique</asp:ListItem>
+                                                <asp:ListItem Value="MR">Mauritania</asp:ListItem>
+                                                <asp:ListItem Value="MU">Mauritius</asp:ListItem>
+                                                <asp:ListItem Value="YT">Mayotte</asp:ListItem>
+                                                <asp:ListItem Value="MX">Mexico</asp:ListItem>
+                                                <asp:ListItem Value="FM">Micronesia, Federated States</asp:ListItem>
+                                                <asp:ListItem Value="MD">Moldova, Republic Of</asp:ListItem>
+                                                <asp:ListItem Value="MC">Monaco</asp:ListItem>
+                                                <asp:ListItem Value="MN">Mongolia</asp:ListItem>
+                                                <asp:ListItem Value="MS">Montserrat</asp:ListItem>
+                                                <asp:ListItem Value="MA">Morocco</asp:ListItem>
+                                                <asp:ListItem Value="MZ">Mozambique</asp:ListItem>
+                                                <asp:ListItem Value="MM">Myanmar</asp:ListItem>
+                                                <asp:ListItem Value="NA">Namibia</asp:ListItem>
+                                                <asp:ListItem Value="NR">Nauru</asp:ListItem>
+                                                <asp:ListItem Value="NP">Nepal</asp:ListItem>
+                                                <asp:ListItem Value="NL">Netherlands</asp:ListItem>
+                                                <asp:ListItem Value="AN">Netherlands Ant Illes</asp:ListItem>
+                                                <asp:ListItem Value="NC">New Caledonia</asp:ListItem>
+                                                <asp:ListItem Value="NZ">New Zealand</asp:ListItem>
+                                                <asp:ListItem Value="NI">Nicaragua</asp:ListItem>
+                                                <asp:ListItem Value="NE">Niger</asp:ListItem>
+                                                <asp:ListItem Value="NG">Nigeria</asp:ListItem>
+                                                <asp:ListItem Value="NU">Niue</asp:ListItem>
+                                                <asp:ListItem Value="NF">Norfolk Island</asp:ListItem>
+                                                <asp:ListItem Value="MP">Northern Mariana Islands</asp:ListItem>
+                                                <asp:ListItem Value="NO">Norway</asp:ListItem>
+                                                <asp:ListItem Value="OM">Oman</asp:ListItem>
+                                                <asp:ListItem Value="PK">Pakistan</asp:ListItem>
+                                                <asp:ListItem Value="PW">Palau</asp:ListItem>
+                                                <asp:ListItem Value="PA">Panama</asp:ListItem>
+                                                <asp:ListItem Value="PG">Papua New Guinea</asp:ListItem>
+                                                <asp:ListItem Value="PY">Paraguay</asp:ListItem>
+                                                <asp:ListItem Value="PE">Peru</asp:ListItem>
+                                                <asp:ListItem Value="PH">Philippines</asp:ListItem>
+                                                <asp:ListItem Value="PN">Pitcairn</asp:ListItem>
+                                                <asp:ListItem Value="PL">Poland</asp:ListItem>
+                                                <asp:ListItem Value="PT">Portugal</asp:ListItem>
+                                                <asp:ListItem Value="PR">Puerto Rico</asp:ListItem>
+                                                <asp:ListItem Value="QA">Qatar</asp:ListItem>
+                                                <asp:ListItem Value="RE">Reunion</asp:ListItem>
+                                                <asp:ListItem Value="RO">Romania</asp:ListItem>
+                                                <asp:ListItem Value="RU">Russian Federation</asp:ListItem>
+                                                <asp:ListItem Value="RW">Rwanda</asp:ListItem>
+                                                <asp:ListItem Value="KN">Saint K Itts And Nevis</asp:ListItem>
+                                                <asp:ListItem Value="LC">Saint Lucia</asp:ListItem>
+                                                <asp:ListItem Value="VC">Saint Vincent, The Grenadines</asp:ListItem>
+                                                <asp:ListItem Value="WS">Samoa</asp:ListItem>
+                                                <asp:ListItem Value="SM">San Marino</asp:ListItem>
+                                                <asp:ListItem Value="ST">Sao Tome And Principe</asp:ListItem>
+                                                <asp:ListItem Value="SA">Saudi Arabia</asp:ListItem>
+                                                <asp:ListItem Value="SN">Senegal</asp:ListItem>
+                                                <asp:ListItem Value="SC">Seychelles</asp:ListItem>
+                                                <asp:ListItem Value="SL">Sierra Leone</asp:ListItem>
+                                                <asp:ListItem Value="SG">Singapore</asp:ListItem>
+                                                <asp:ListItem Value="SK">Slovakia (Slovak Republic)</asp:ListItem>
+                                                <asp:ListItem Value="SI">Slovenia</asp:ListItem>
+                                                <asp:ListItem Value="SB">Solomon Islands</asp:ListItem>
+                                                <asp:ListItem Value="SO">Somalia</asp:ListItem>
+                                                <asp:ListItem Value="ZA">South Africa</asp:ListItem>
+                                                <asp:ListItem Value="GS">South Georgia , S Sandwich Is.</asp:ListItem>
+                                                <asp:ListItem Value="ES">Spain</asp:ListItem>
+                                                <asp:ListItem Value="LK">Sri Lanka</asp:ListItem>
+                                                <asp:ListItem Value="SH">St. Helena</asp:ListItem>
+                                                <asp:ListItem Value="PM">St. Pierre And Miquelon</asp:ListItem>
+                                                <asp:ListItem Value="SD">Sudan</asp:ListItem>
+                                                <asp:ListItem Value="SR">Suriname</asp:ListItem>
+                                                <asp:ListItem Value="SJ">Svalbard, Jan Mayen Islands</asp:ListItem>
+                                                <asp:ListItem Value="SZ">Sw Aziland</asp:ListItem>
+                                                <asp:ListItem Value="SE">Sweden</asp:ListItem>
+                                                <asp:ListItem Value="CH">Switzerland</asp:ListItem>
+                                                <asp:ListItem Value="SY">Syrian Arab Republic</asp:ListItem>
+                                                <asp:ListItem Value="TW">Taiwan</asp:ListItem>
+                                                <asp:ListItem Value="TJ">Tajikistan</asp:ListItem>
+                                                <asp:ListItem Value="TZ">Tanzania, United Republic Of</asp:ListItem>
+                                                <asp:ListItem Value="TH">Thailand</asp:ListItem>
+                                                <asp:ListItem Value="TG">Togo</asp:ListItem>
+                                                <asp:ListItem Value="TK">Tokelau</asp:ListItem>
+                                                <asp:ListItem Value="TO">Tonga</asp:ListItem>
+                                                <asp:ListItem Value="TT">Trinidad And Tobago</asp:ListItem>
+                                                <asp:ListItem Value="TN">Tunisia</asp:ListItem>
+                                                <asp:ListItem Value="TR">Turkey</asp:ListItem>
+                                                <asp:ListItem Value="TM">Turkmenistan</asp:ListItem>
+                                                <asp:ListItem Value="TC">Turks And Caicos Islands</asp:ListItem>
+                                                <asp:ListItem Value="TV">Tuvalu</asp:ListItem>
+                                                <asp:ListItem Value="UG">Uganda</asp:ListItem>
+                                                <asp:ListItem Value="UA">Ukraine</asp:ListItem>
+                                                <asp:ListItem Value="AE">United Arab Emirates</asp:ListItem>
+                                                <asp:ListItem Value="GB">United Kingdom</asp:ListItem>
+                                                <asp:ListItem Value="US">United States</asp:ListItem>
+                                                <asp:ListItem Value="UM">United States Minor Is.</asp:ListItem>
+                                                <asp:ListItem Value="UY">Uruguay</asp:ListItem>
+                                                <asp:ListItem Value="UZ">Uzbekistan</asp:ListItem>
+                                                <asp:ListItem Value="VU">Vanuatu</asp:ListItem>
+                                                <asp:ListItem Value="VE">Venezuela</asp:ListItem>
+                                                <asp:ListItem Value="VN">Viet Nam</asp:ListItem>
+                                                <asp:ListItem Value="VG">Virgin Islands (British)</asp:ListItem>
+                                                <asp:ListItem Value="VI">Virgin Islands (U.S.)</asp:ListItem>
+                                                <asp:ListItem Value="WF">Wallis And Futuna Islands</asp:ListItem>
+                                                <asp:ListItem Value="EH">Western Sahara</asp:ListItem>
+                                                <asp:ListItem Value="YE">Yemen</asp:ListItem>
+                                                <asp:ListItem Value="ZR">Zaire</asp:ListItem>
+                                                <asp:ListItem Value="ZM">Zambia</asp:ListItem>
+                                                <asp:ListItem Value="ZW">Zimbabwe</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolstartDate">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
+                                    <div class="form-row">
+                                        <label id="label-highschoolstartDate" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                        <div class="col-md-6">
+                                            <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="today">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolendDate">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolendateDate">
+                                    <div class="form-row">
+                                        <label id="label-highschoolendDate" for="highschoolendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                        <div class="col-md-6">
+                                            <input id="txtEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolName">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolName">
+                                    <div class="form-row">
+                                        <label id="label-highschoolName" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                        <div class="col-md-6">
+                                            <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Name of School">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolQualificationtype">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolQualificationtype">
+                                    <div class="form-row">
+                                        <label id="label-highschoolQualificationtype" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                        <div class="col-md-6">
+                                            <input id="txthighschoolQualificationtype" runat="server" type="text" placeholder="Qualification Type
+
+"
+                                                value="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolstudymode">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstudymode">
+                                    <div class="form-row">
+                                        <label id="label-highschoolstudymode" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlHighSchoolStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoollanguage">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoollanguage">
+                                    <div class="form-row">
+                                        <label id="label-highschoollanguage" for="highschoollanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlHighschoolMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="gradetype">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-gradetype">
+                                    <div class="form-row">
+                                        <label id="label-gradetype" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlHighSchoolGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolgradeachieved">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-gradeachieved">
+                                    <div class="form-row">
+                                        <label id="label-gradeachieved" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                        <div class="col-md-9">
+                                            <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
+                                            <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
+                                            <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="ExpectedHighSchoolDategrade">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHighSchoolDategrade">
+                                    <div class="form-row">
+                                        <label id="label-ExpectedHighSchoolDategrade" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                        <div class="col-md-6">
+                                            <input id="txtExpectedHighSchoolResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolverify">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolverify">
+                                    <div class="form-row">
+                                        <label id="label-highschoolverify" for="highschoolverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                        <div class="col-md-6">
+                                            <input id="txthighschoolverify" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolrelation">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolrelation">
+                                    <div class="form-row">
+                                        <label id="label-highschoolrelation" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                        <div class="col-md-6">
+                                            <input id="txthighschoolrelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolcontactEmail">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolcontactEmail">
+                                    <div class="form-row">
+                                        <label id="label-highschoolcontactEmail" for="highschoolcontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                        <div class="col-md-6">
+                                            <input id="txthighschoolcontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highschoolcontactMobile">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolcontactMobile">
+                                    <div class="form-row">
+                                        <label id="label-highschoolcontactMobile" for="highschoolcontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification</label>
+                                        <div class="col-md-6">
+                                            <input id="txtMobilehighSchool" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="higestEducation">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-higestEducation">
+                                    <div class="form-row">
+                                        <label id="label-higestEducation" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
+                                        <div class="col-md-6">
+                                            <input id="txtHigestEducation" runat="server" type="text" placeholder="Highest Education" value="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group-item" id="highshoolgrade">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
+                                    <div class="form-row">
+                                        <input type="button" class="btn btn-success" id="btn10th" value="Add Subject and their Grades" />
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-9">
+                                            <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                                                <asp:GridView ID="grd10" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grd10_DataBound" OnRowDeleted="grd10_RowDeleted" OnRowDeleting="grd10_RowDeleting">
+                                                    <Columns>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbldesignation" runat="server"
+                                                                    Text='<%#Eval("courseid")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblorganization" runat="server"
+                                                                    Text='<%#Eval("subject")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+
+                                                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                                    </Columns>
+                                                </asp:GridView>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!----High School END------>
+
+                            <!----Secondary Start------>
+                            <div id="SecondarySection">
+                                <div class="list-group-item" id="Secondary">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Secondary">
+                                        <div class="form-row">
+                                            <label id="label-Secondary" for="Secondary" class="col-md-3 col-form-label form-label">Have you completed Senior Secondary school? (Year 12)?</label>
+                                            <div class="col-md-9">
+                                                <asp:RadioButton ID="rblSecondaryYes" CssClass="form-control" runat="server" GroupName="Secondary" Text="Yes" />
+                                                <asp:RadioButton ID="rblSecondaryNo" CssClass="form-control" runat="server" GroupName="Secondary" Text="No  - I am currently still studying for my Senior Secondary " />
+                                                <asp:RadioButton ID="rblSecondaryNot" CssClass="form-control" runat="server" GroupName="Secondary" Text="No - I do not have a Senior Secondary qualification" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="SecondaryCountry">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryCountry">
+                                        <div class="form-row">
+                                            <label id="label-SecondaryCountry" for="SecondaryCountry" class="col-md-3 col-form-label form-label">Country of Secondary Education</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlSecondaryCountry" CssClass="form-control" runat="server">
+                                                    <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
+                                                    <asp:ListItem Value="AF">Afghanistan</asp:ListItem>
+                                                    <asp:ListItem Value="AL">Albania</asp:ListItem>
+                                                    <asp:ListItem Value="DZ">Algeria</asp:ListItem>
+                                                    <asp:ListItem Value="AS">American Samoa</asp:ListItem>
+                                                    <asp:ListItem Value="AD">Andorra</asp:ListItem>
+                                                    <asp:ListItem Value="AO">Angola</asp:ListItem>
+                                                    <asp:ListItem Value="AI">Anguilla</asp:ListItem>
+                                                    <asp:ListItem Value="AQ">Antarctica</asp:ListItem>
+                                                    <asp:ListItem Value="AG">Antigua And Barbuda</asp:ListItem>
+                                                    <asp:ListItem Value="AR">Argentina</asp:ListItem>
+                                                    <asp:ListItem Value="AM">Armenia</asp:ListItem>
+                                                    <asp:ListItem Value="AW">Aruba</asp:ListItem>
+                                                    <asp:ListItem Value="AU">Australia</asp:ListItem>
+                                                    <asp:ListItem Value="AT">Austria</asp:ListItem>
+                                                    <asp:ListItem Value="AZ">Azerbaijan</asp:ListItem>
+                                                    <asp:ListItem Value="BS">Bahamas</asp:ListItem>
+                                                    <asp:ListItem Value="BH">Bahrain</asp:ListItem>
+                                                    <asp:ListItem Value="BD">Bangladesh</asp:ListItem>
+                                                    <asp:ListItem Value="BB">Barbados</asp:ListItem>
+                                                    <asp:ListItem Value="BY">Belarus</asp:ListItem>
+                                                    <asp:ListItem Value="BE">Belgium</asp:ListItem>
+                                                    <asp:ListItem Value="BZ">Belize</asp:ListItem>
+                                                    <asp:ListItem Value="BJ">Benin</asp:ListItem>
+                                                    <asp:ListItem Value="BM">Bermuda</asp:ListItem>
+                                                    <asp:ListItem Value="BT">Bhutan</asp:ListItem>
+                                                    <asp:ListItem Value="BO">Bolivia</asp:ListItem>
+                                                    <asp:ListItem Value="BA">Bosnia And Herzegowina</asp:ListItem>
+                                                    <asp:ListItem Value="BW">Botswana</asp:ListItem>
+                                                    <asp:ListItem Value="BV">Bouvet Island</asp:ListItem>
+                                                    <asp:ListItem Value="BR">Brazil</asp:ListItem>
+                                                    <asp:ListItem Value="IO">British Indian Ocean Territory</asp:ListItem>
+                                                    <asp:ListItem Value="BN">Brunei Darussalam</asp:ListItem>
+                                                    <asp:ListItem Value="BG">Bulgaria</asp:ListItem>
+                                                    <asp:ListItem Value="BF">Burkina Faso</asp:ListItem>
+                                                    <asp:ListItem Value="BI">Burundi</asp:ListItem>
+                                                    <asp:ListItem Value="KH">Cambodia</asp:ListItem>
+                                                    <asp:ListItem Value="CM">Cameroon</asp:ListItem>
+                                                    <asp:ListItem Value="CA">Canada</asp:ListItem>
+                                                    <asp:ListItem Value="CV">Cape Verde</asp:ListItem>
+                                                    <asp:ListItem Value="KY">Cayman Islands</asp:ListItem>
+                                                    <asp:ListItem Value="CF">Central African Republic</asp:ListItem>
+                                                    <asp:ListItem Value="TD">Chad</asp:ListItem>
+                                                    <asp:ListItem Value="CL">Chile</asp:ListItem>
+                                                    <asp:ListItem Value="CN">China</asp:ListItem>
+                                                    <asp:ListItem Value="CX">Christmas Island</asp:ListItem>
+                                                    <asp:ListItem Value="CC">Cocos (Keeling) Islands</asp:ListItem>
+                                                    <asp:ListItem Value="CO">Colombia</asp:ListItem>
+                                                    <asp:ListItem Value="KM">Comoros</asp:ListItem>
+                                                    <asp:ListItem Value="CG">Congo</asp:ListItem>
+                                                    <asp:ListItem Value="CK">Cook Islands</asp:ListItem>
+                                                    <asp:ListItem Value="CR">Costa Rica</asp:ListItem>
+                                                    <asp:ListItem Value="CI">Cote D'Ivoire</asp:ListItem>
+                                                    <asp:ListItem Value="HR">Croatia (Local Name: Hrvatska)</asp:ListItem>
+                                                    <asp:ListItem Value="CU">Cuba</asp:ListItem>
+                                                    <asp:ListItem Value="CY">Cyprus</asp:ListItem>
+                                                    <asp:ListItem Value="CZ">Czech Republic</asp:ListItem>
+                                                    <asp:ListItem Value="DK">Denmark</asp:ListItem>
+                                                    <asp:ListItem Value="DJ">Djibouti</asp:ListItem>
+                                                    <asp:ListItem Value="DM">Dominica</asp:ListItem>
+                                                    <asp:ListItem Value="DO">Dominican Republic</asp:ListItem>
+                                                    <asp:ListItem Value="TP">East Timor</asp:ListItem>
+                                                    <asp:ListItem Value="EC">Ecuador</asp:ListItem>
+                                                    <asp:ListItem Value="EG">Egypt</asp:ListItem>
+                                                    <asp:ListItem Value="SV">El Salvador</asp:ListItem>
+                                                    <asp:ListItem Value="GQ">Equatorial Guinea</asp:ListItem>
+                                                    <asp:ListItem Value="ER">Eritrea</asp:ListItem>
+                                                    <asp:ListItem Value="EE">Estonia</asp:ListItem>
+                                                    <asp:ListItem Value="ET">Ethiopia</asp:ListItem>
+                                                    <asp:ListItem Value="FK">Falkland Islands (Malvinas)</asp:ListItem>
+                                                    <asp:ListItem Value="FO">Faroe Islands</asp:ListItem>
+                                                    <asp:ListItem Value="FJ">Fiji</asp:ListItem>
+                                                    <asp:ListItem Value="FI">Finland</asp:ListItem>
+                                                    <asp:ListItem Value="FR">France</asp:ListItem>
+                                                    <asp:ListItem Value="GF">French Guiana</asp:ListItem>
+                                                    <asp:ListItem Value="PF">French Polynesia</asp:ListItem>
+                                                    <asp:ListItem Value="TF">French Southern Territories</asp:ListItem>
+                                                    <asp:ListItem Value="GA">Gabon</asp:ListItem>
+                                                    <asp:ListItem Value="GM">Gambia</asp:ListItem>
+                                                    <asp:ListItem Value="GE">Georgia</asp:ListItem>
+                                                    <asp:ListItem Value="DE">Germany</asp:ListItem>
+                                                    <asp:ListItem Value="GH">Ghana</asp:ListItem>
+                                                    <asp:ListItem Value="GI">Gibraltar</asp:ListItem>
+                                                    <asp:ListItem Value="GR">Greece</asp:ListItem>
+                                                    <asp:ListItem Value="GL">Greenland</asp:ListItem>
+                                                    <asp:ListItem Value="GD">Grenada</asp:ListItem>
+                                                    <asp:ListItem Value="GP">Guadeloupe</asp:ListItem>
+                                                    <asp:ListItem Value="GU">Guam</asp:ListItem>
+                                                    <asp:ListItem Value="GT">Guatemala</asp:ListItem>
+                                                    <asp:ListItem Value="GN">Guinea</asp:ListItem>
+                                                    <asp:ListItem Value="GW">Guinea-Bissau</asp:ListItem>
+                                                    <asp:ListItem Value="GY">Guyana</asp:ListItem>
+                                                    <asp:ListItem Value="HT">Haiti</asp:ListItem>
+                                                    <asp:ListItem Value="HM">Heard And Mc Donald Islands</asp:ListItem>
+                                                    <asp:ListItem Value="VA">Holy See (Vatican City State)</asp:ListItem>
+                                                    <asp:ListItem Value="HN">Honduras</asp:ListItem>
+                                                    <asp:ListItem Value="HK">Hong Kong</asp:ListItem>
+                                                    <asp:ListItem Value="HU">Hungary</asp:ListItem>
+                                                    <asp:ListItem Value="IS">Icel And</asp:ListItem>
+                                                    <asp:ListItem Value="IN">India</asp:ListItem>
+                                                    <asp:ListItem Value="ID">Indonesia</asp:ListItem>
+                                                    <asp:ListItem Value="IR">Iran (Islamic Republic Of)</asp:ListItem>
+                                                    <asp:ListItem Value="IQ">Iraq</asp:ListItem>
+                                                    <asp:ListItem Value="IE">Ireland</asp:ListItem>
+                                                    <asp:ListItem Value="IL">Israel</asp:ListItem>
+                                                    <asp:ListItem Value="IT">Italy</asp:ListItem>
+                                                    <asp:ListItem Value="JM">Jamaica</asp:ListItem>
+                                                    <asp:ListItem Value="JP">Japan</asp:ListItem>
+                                                    <asp:ListItem Value="JO">Jordan</asp:ListItem>
+                                                    <asp:ListItem Value="KZ">Kazakhstan</asp:ListItem>
+                                                    <asp:ListItem Value="KE">Kenya</asp:ListItem>
+                                                    <asp:ListItem Value="KI">Kiribati</asp:ListItem>
+                                                    <asp:ListItem Value="KP">Korea, Dem People'S Republic</asp:ListItem>
+                                                    <asp:ListItem Value="KR">Korea, Republic Of</asp:ListItem>
+                                                    <asp:ListItem Value="KW">Kuwait</asp:ListItem>
+                                                    <asp:ListItem Value="KG">Kyrgyzstan</asp:ListItem>
+                                                    <asp:ListItem Value="LA">Lao People'S Dem Republic</asp:ListItem>
+                                                    <asp:ListItem Value="LV">Latvia</asp:ListItem>
+                                                    <asp:ListItem Value="LB">Lebanon</asp:ListItem>
+                                                    <asp:ListItem Value="LS">Lesotho</asp:ListItem>
+                                                    <asp:ListItem Value="LR">Liberia</asp:ListItem>
+                                                    <asp:ListItem Value="LY">Libyan Arab Jamahiriya</asp:ListItem>
+                                                    <asp:ListItem Value="LI">Liechtenstein</asp:ListItem>
+                                                    <asp:ListItem Value="LT">Lithuania</asp:ListItem>
+                                                    <asp:ListItem Value="LU">Luxembourg</asp:ListItem>
+                                                    <asp:ListItem Value="MO">Macau</asp:ListItem>
+                                                    <asp:ListItem Value="MK">Macedonia</asp:ListItem>
+                                                    <asp:ListItem Value="MG">Madagascar</asp:ListItem>
+                                                    <asp:ListItem Value="MW">Malawi</asp:ListItem>
+                                                    <asp:ListItem Value="MY">Malaysia</asp:ListItem>
+                                                    <asp:ListItem Value="MV">Maldives</asp:ListItem>
+                                                    <asp:ListItem Value="ML">Mali</asp:ListItem>
+                                                    <asp:ListItem Value="MT">Malta</asp:ListItem>
+                                                    <asp:ListItem Value="MH">Marshall Islands</asp:ListItem>
+                                                    <asp:ListItem Value="MQ">Martinique</asp:ListItem>
+                                                    <asp:ListItem Value="MR">Mauritania</asp:ListItem>
+                                                    <asp:ListItem Value="MU">Mauritius</asp:ListItem>
+                                                    <asp:ListItem Value="YT">Mayotte</asp:ListItem>
+                                                    <asp:ListItem Value="MX">Mexico</asp:ListItem>
+                                                    <asp:ListItem Value="FM">Micronesia, Federated States</asp:ListItem>
+                                                    <asp:ListItem Value="MD">Moldova, Republic Of</asp:ListItem>
+                                                    <asp:ListItem Value="MC">Monaco</asp:ListItem>
+                                                    <asp:ListItem Value="MN">Mongolia</asp:ListItem>
+                                                    <asp:ListItem Value="MS">Montserrat</asp:ListItem>
+                                                    <asp:ListItem Value="MA">Morocco</asp:ListItem>
+                                                    <asp:ListItem Value="MZ">Mozambique</asp:ListItem>
+                                                    <asp:ListItem Value="MM">Myanmar</asp:ListItem>
+                                                    <asp:ListItem Value="NA">Namibia</asp:ListItem>
+                                                    <asp:ListItem Value="NR">Nauru</asp:ListItem>
+                                                    <asp:ListItem Value="NP">Nepal</asp:ListItem>
+                                                    <asp:ListItem Value="NL">Netherlands</asp:ListItem>
+                                                    <asp:ListItem Value="AN">Netherlands Ant Illes</asp:ListItem>
+                                                    <asp:ListItem Value="NC">New Caledonia</asp:ListItem>
+                                                    <asp:ListItem Value="NZ">New Zealand</asp:ListItem>
+                                                    <asp:ListItem Value="NI">Nicaragua</asp:ListItem>
+                                                    <asp:ListItem Value="NE">Niger</asp:ListItem>
+                                                    <asp:ListItem Value="NG">Nigeria</asp:ListItem>
+                                                    <asp:ListItem Value="NU">Niue</asp:ListItem>
+                                                    <asp:ListItem Value="NF">Norfolk Island</asp:ListItem>
+                                                    <asp:ListItem Value="MP">Northern Mariana Islands</asp:ListItem>
+                                                    <asp:ListItem Value="NO">Norway</asp:ListItem>
+                                                    <asp:ListItem Value="OM">Oman</asp:ListItem>
+                                                    <asp:ListItem Value="PK">Pakistan</asp:ListItem>
+                                                    <asp:ListItem Value="PW">Palau</asp:ListItem>
+                                                    <asp:ListItem Value="PA">Panama</asp:ListItem>
+                                                    <asp:ListItem Value="PG">Papua New Guinea</asp:ListItem>
+                                                    <asp:ListItem Value="PY">Paraguay</asp:ListItem>
+                                                    <asp:ListItem Value="PE">Peru</asp:ListItem>
+                                                    <asp:ListItem Value="PH">Philippines</asp:ListItem>
+                                                    <asp:ListItem Value="PN">Pitcairn</asp:ListItem>
+                                                    <asp:ListItem Value="PL">Poland</asp:ListItem>
+                                                    <asp:ListItem Value="PT">Portugal</asp:ListItem>
+                                                    <asp:ListItem Value="PR">Puerto Rico</asp:ListItem>
+                                                    <asp:ListItem Value="QA">Qatar</asp:ListItem>
+                                                    <asp:ListItem Value="RE">Reunion</asp:ListItem>
+                                                    <asp:ListItem Value="RO">Romania</asp:ListItem>
+                                                    <asp:ListItem Value="RU">Russian Federation</asp:ListItem>
+                                                    <asp:ListItem Value="RW">Rwanda</asp:ListItem>
+                                                    <asp:ListItem Value="KN">Saint K Itts And Nevis</asp:ListItem>
+                                                    <asp:ListItem Value="LC">Saint Lucia</asp:ListItem>
+                                                    <asp:ListItem Value="VC">Saint Vincent, The Grenadines</asp:ListItem>
+                                                    <asp:ListItem Value="WS">Samoa</asp:ListItem>
+                                                    <asp:ListItem Value="SM">San Marino</asp:ListItem>
+                                                    <asp:ListItem Value="ST">Sao Tome And Principe</asp:ListItem>
+                                                    <asp:ListItem Value="SA">Saudi Arabia</asp:ListItem>
+                                                    <asp:ListItem Value="SN">Senegal</asp:ListItem>
+                                                    <asp:ListItem Value="SC">Seychelles</asp:ListItem>
+                                                    <asp:ListItem Value="SL">Sierra Leone</asp:ListItem>
+                                                    <asp:ListItem Value="SG">Singapore</asp:ListItem>
+                                                    <asp:ListItem Value="SK">Slovakia (Slovak Republic)</asp:ListItem>
+                                                    <asp:ListItem Value="SI">Slovenia</asp:ListItem>
+                                                    <asp:ListItem Value="SB">Solomon Islands</asp:ListItem>
+                                                    <asp:ListItem Value="SO">Somalia</asp:ListItem>
+                                                    <asp:ListItem Value="ZA">South Africa</asp:ListItem>
+                                                    <asp:ListItem Value="GS">South Georgia , S Sandwich Is.</asp:ListItem>
+                                                    <asp:ListItem Value="ES">Spain</asp:ListItem>
+                                                    <asp:ListItem Value="LK">Sri Lanka</asp:ListItem>
+                                                    <asp:ListItem Value="SH">St. Helena</asp:ListItem>
+                                                    <asp:ListItem Value="PM">St. Pierre And Miquelon</asp:ListItem>
+                                                    <asp:ListItem Value="SD">Sudan</asp:ListItem>
+                                                    <asp:ListItem Value="SR">Suriname</asp:ListItem>
+                                                    <asp:ListItem Value="SJ">Svalbard, Jan Mayen Islands</asp:ListItem>
+                                                    <asp:ListItem Value="SZ">Sw Aziland</asp:ListItem>
+                                                    <asp:ListItem Value="SE">Sweden</asp:ListItem>
+                                                    <asp:ListItem Value="CH">Switzerland</asp:ListItem>
+                                                    <asp:ListItem Value="SY">Syrian Arab Republic</asp:ListItem>
+                                                    <asp:ListItem Value="TW">Taiwan</asp:ListItem>
+                                                    <asp:ListItem Value="TJ">Tajikistan</asp:ListItem>
+                                                    <asp:ListItem Value="TZ">Tanzania, United Republic Of</asp:ListItem>
+                                                    <asp:ListItem Value="TH">Thailand</asp:ListItem>
+                                                    <asp:ListItem Value="TG">Togo</asp:ListItem>
+                                                    <asp:ListItem Value="TK">Tokelau</asp:ListItem>
+                                                    <asp:ListItem Value="TO">Tonga</asp:ListItem>
+                                                    <asp:ListItem Value="TT">Trinidad And Tobago</asp:ListItem>
+                                                    <asp:ListItem Value="TN">Tunisia</asp:ListItem>
+                                                    <asp:ListItem Value="TR">Turkey</asp:ListItem>
+                                                    <asp:ListItem Value="TM">Turkmenistan</asp:ListItem>
+                                                    <asp:ListItem Value="TC">Turks And Caicos Islands</asp:ListItem>
+                                                    <asp:ListItem Value="TV">Tuvalu</asp:ListItem>
+                                                    <asp:ListItem Value="UG">Uganda</asp:ListItem>
+                                                    <asp:ListItem Value="UA">Ukraine</asp:ListItem>
+                                                    <asp:ListItem Value="AE">United Arab Emirates</asp:ListItem>
+                                                    <asp:ListItem Value="GB">United Kingdom</asp:ListItem>
+                                                    <asp:ListItem Value="US">United States</asp:ListItem>
+                                                    <asp:ListItem Value="UM">United States Minor Is.</asp:ListItem>
+                                                    <asp:ListItem Value="UY">Uruguay</asp:ListItem>
+                                                    <asp:ListItem Value="UZ">Uzbekistan</asp:ListItem>
+                                                    <asp:ListItem Value="VU">Vanuatu</asp:ListItem>
+                                                    <asp:ListItem Value="VE">Venezuela</asp:ListItem>
+                                                    <asp:ListItem Value="VN">Viet Nam</asp:ListItem>
+                                                    <asp:ListItem Value="VG">Virgin Islands (British)</asp:ListItem>
+                                                    <asp:ListItem Value="VI">Virgin Islands (U.S.)</asp:ListItem>
+                                                    <asp:ListItem Value="WF">Wallis And Futuna Islands</asp:ListItem>
+                                                    <asp:ListItem Value="EH">Western Sahara</asp:ListItem>
+                                                    <asp:ListItem Value="YE">Yemen</asp:ListItem>
+                                                    <asp:ListItem Value="ZR">Zaire</asp:ListItem>
+                                                    <asp:ListItem Value="ZM">Zambia</asp:ListItem>
+                                                    <asp:ListItem Value="ZW">Zimbabwe</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="SecondarystartDate">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-SecondarystartDate">
+                                        <div class="form-row">
+                                            <label id="label-SecondarystartDate" for="SecondarystartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                            <div class="col-md-6">
+                                                <input id="txtSecondaryStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="today">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="SecondaryendDate">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryendDate">
+                                        <div class="form-row">
+                                            <label id="label-SecondaryendDate" for="SecondaryendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                            <div class="col-md-6">
+                                                <input id="txtSecondaryEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="SecondaryschoolName">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryschoolName">
+                                        <div class="form-row">
+                                            <label id="label-SecondaryschoolName" for="SecondaryschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                            <div class="col-md-6">
+                                                <input id="txtSecondarySchoolName" runat="server" type="text" class="form-control" placeholder="Name of School
+
+">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="SecondaryQualificationtype">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryQualificationtype">
+                                        <div class="form-row">
+                                            <label id="label-SecondaryQualificationtype" for="SecondaryQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                            <div class="col-md-6">
+                                                <input id="txtSecondaryQualificationtype" runat="server" type="text" placeholder="Qualification Type
+
+"
+                                                    value="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="Secondarystudymode">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Secondarystudymode">
+                                        <div class="form-row">
+                                            <label id="label-Secondarystudymode" for="Secondarystudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlSecondaryStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="Secondarylanguage">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Secondarylanguage">
+                                        <div class="form-row">
+                                            <label id="label-Secondarylanguage" for="Secondarylanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlSecondaryMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="Secondarygradetype">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Secondarygradetype">
+                                        <div class="form-row">
+                                            <label id="label-Secondarygradetype" for="Secondarygradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlSecondaryGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="Secondarygradeachieved">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Secondarygradeachieved">
+                                        <div class="form-row">
+                                            <label id="label-Secondarygradeachieved" for="Secondarygradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                            <div class="col-md-9">
+                                                <asp:RadioButton CssClass="form-control" ID="rblSecondarygradeachievedYes" runat="server" GroupName="Secondarygradeachieved" Text="Results Declared" />
+                                                <asp:RadioButton CssClass="form-control" ID="SecondarygradeachievedYet" runat="server" GroupName="Secondarygradeachieved" Text=" Examination not conducted yet" />
+                                                <asp:RadioButton CssClass="form-control" ID="SecondarygradeachievedNo" runat="server" GroupName="Secondarygradeachieved" Text="Examination Conducted, but Result not declared" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="ExpectedSecondaryDategrade">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedSecondaryDategrade">
+                                        <div class="form-row">
+                                            <label id="label-ExpectedSecondaryDategrade" for="ExpectedSecondaryDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                            <div class="col-md-6">
+                                                <input id="txtExpectedSecondaryResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="Secondaryverify">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Secondaryverify">
+                                        <div class="form-row">
+                                            <label id="label-Secondaryverify" for="Secondaryverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                            <div class="col-md-6">
+                                                <input id="txtSecondaryverify" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="secondaryschoolrelation">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-secondaryschoolrelation">
+                                        <div class="form-row">
+                                            <label id="label-secondaryschoolrelation" for="secondaryschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                            <div class="col-md-6">
+                                                <input id="txtsecondaryschoolrelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="secondarycontactEmail">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-secondarycontactEmail">
+                                        <div class="form-row">
+                                            <label id="label-secondarycontactEmail" for="secondarycontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                            <div class="col-md-6">
+                                                <input id="txtsecondarycontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="secondarycontactMobile">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-secondarycontactMobile">
+                                        <div class="form-row">
+                                            <label id="label-secondarycontactMobile" for="secondarycontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification </label>
+                                            <div class="col-md-6">
+                                                <input id="txtsecondarycontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="secondarygrade">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
+                                        <div class="form-row">
+                                            <input type="button" class="btn btn-success" id="btn12th" value="Add Subject and their Grades" />
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-9">
+                                                <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                                                    <asp:GridView ID="grdSecondary" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdSecondary_DataBound" OnRowDeleted="grdSecondary_RowDeleted" OnRowDeleting="grdSecondary_RowDeleting">
+                                                        <Columns>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldesignation" runat="server"
+                                                                        Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblorganization" runat="server"
+                                                                        Text='<%#Eval("subject")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                        Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                        Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                                        </Columns>
+                                                    </asp:GridView>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!----Secondary END------>
+                            <!----Higher Education Start------>
+                            <div id="HigherSectionSection">
+                                <div class="list-group-item" id="higher">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higher">
+                                        <div class="form-row">
+                                            <label id="label-higher" for="higher" class="col-md-3 col-form-label form-label">
+                                                Have you completed any Higher (Under Graduate, Masters or PhD) degree? 
+?</label>
+                                            <div class="col-md-9">
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherYes" runat="server" GroupName="higher" Text="Yes" />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text=" I am currently studying for my higher qualification" />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text="No- I do not have a higher qualification " />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="highercourse">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
+                                        <div class="form-row">
+                                            <label id="label-highercourse" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlCourse" runat="server" CssClass="form-control">
+                                                    <asp:ListItem Value="" Selected="True">Select Course</asp:ListItem>
+                                                    <asp:ListItem Value="UG">Under Graduate</asp:ListItem>
+                                                    <asp:ListItem Value="PG">Post Graduate</asp:ListItem>
+                                                    <asp:ListItem Value="Phd">PhD</asp:ListItem>
+                                                    <asp:ListItem Value="Other">Other</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherCountry">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherCountry">
+                                        <div class="form-row">
+                                            <label id="label-higherCountry" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHigherCountry" CssClass="form-control" runat="server">
+                                                    <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
+                                                    <asp:ListItem Value="AF">Afghanistan</asp:ListItem>
+                                                    <asp:ListItem Value="AL">Albania</asp:ListItem>
+                                                    <asp:ListItem Value="DZ">Algeria</asp:ListItem>
+                                                    <asp:ListItem Value="AS">American Samoa</asp:ListItem>
+                                                    <asp:ListItem Value="AD">Andorra</asp:ListItem>
+                                                    <asp:ListItem Value="AO">Angola</asp:ListItem>
+                                                    <asp:ListItem Value="AI">Anguilla</asp:ListItem>
+                                                    <asp:ListItem Value="AQ">Antarctica</asp:ListItem>
+                                                    <asp:ListItem Value="AG">Antigua And Barbuda</asp:ListItem>
+                                                    <asp:ListItem Value="AR">Argentina</asp:ListItem>
+                                                    <asp:ListItem Value="AM">Armenia</asp:ListItem>
+                                                    <asp:ListItem Value="AW">Aruba</asp:ListItem>
+                                                    <asp:ListItem Value="AU">Australia</asp:ListItem>
+                                                    <asp:ListItem Value="AT">Austria</asp:ListItem>
+                                                    <asp:ListItem Value="AZ">Azerbaijan</asp:ListItem>
+                                                    <asp:ListItem Value="BS">Bahamas</asp:ListItem>
+                                                    <asp:ListItem Value="BH">Bahrain</asp:ListItem>
+                                                    <asp:ListItem Value="BD">Bangladesh</asp:ListItem>
+                                                    <asp:ListItem Value="BB">Barbados</asp:ListItem>
+                                                    <asp:ListItem Value="BY">Belarus</asp:ListItem>
+                                                    <asp:ListItem Value="BE">Belgium</asp:ListItem>
+                                                    <asp:ListItem Value="BZ">Belize</asp:ListItem>
+                                                    <asp:ListItem Value="BJ">Benin</asp:ListItem>
+                                                    <asp:ListItem Value="BM">Bermuda</asp:ListItem>
+                                                    <asp:ListItem Value="BT">Bhutan</asp:ListItem>
+                                                    <asp:ListItem Value="BO">Bolivia</asp:ListItem>
+                                                    <asp:ListItem Value="BA">Bosnia And Herzegowina</asp:ListItem>
+                                                    <asp:ListItem Value="BW">Botswana</asp:ListItem>
+                                                    <asp:ListItem Value="BV">Bouvet Island</asp:ListItem>
+                                                    <asp:ListItem Value="BR">Brazil</asp:ListItem>
+                                                    <asp:ListItem Value="IO">British Indian Ocean Territory</asp:ListItem>
+                                                    <asp:ListItem Value="BN">Brunei Darussalam</asp:ListItem>
+                                                    <asp:ListItem Value="BG">Bulgaria</asp:ListItem>
+                                                    <asp:ListItem Value="BF">Burkina Faso</asp:ListItem>
+                                                    <asp:ListItem Value="BI">Burundi</asp:ListItem>
+                                                    <asp:ListItem Value="KH">Cambodia</asp:ListItem>
+                                                    <asp:ListItem Value="CM">Cameroon</asp:ListItem>
+                                                    <asp:ListItem Value="CA">Canada</asp:ListItem>
+                                                    <asp:ListItem Value="CV">Cape Verde</asp:ListItem>
+                                                    <asp:ListItem Value="KY">Cayman Islands</asp:ListItem>
+                                                    <asp:ListItem Value="CF">Central African Republic</asp:ListItem>
+                                                    <asp:ListItem Value="TD">Chad</asp:ListItem>
+                                                    <asp:ListItem Value="CL">Chile</asp:ListItem>
+                                                    <asp:ListItem Value="CN">China</asp:ListItem>
+                                                    <asp:ListItem Value="CX">Christmas Island</asp:ListItem>
+                                                    <asp:ListItem Value="CC">Cocos (Keeling) Islands</asp:ListItem>
+                                                    <asp:ListItem Value="CO">Colombia</asp:ListItem>
+                                                    <asp:ListItem Value="KM">Comoros</asp:ListItem>
+                                                    <asp:ListItem Value="CG">Congo</asp:ListItem>
+                                                    <asp:ListItem Value="CK">Cook Islands</asp:ListItem>
+                                                    <asp:ListItem Value="CR">Costa Rica</asp:ListItem>
+                                                    <asp:ListItem Value="CI">Cote D'Ivoire</asp:ListItem>
+                                                    <asp:ListItem Value="HR">Croatia (Local Name: Hrvatska)</asp:ListItem>
+                                                    <asp:ListItem Value="CU">Cuba</asp:ListItem>
+                                                    <asp:ListItem Value="CY">Cyprus</asp:ListItem>
+                                                    <asp:ListItem Value="CZ">Czech Republic</asp:ListItem>
+                                                    <asp:ListItem Value="DK">Denmark</asp:ListItem>
+                                                    <asp:ListItem Value="DJ">Djibouti</asp:ListItem>
+                                                    <asp:ListItem Value="DM">Dominica</asp:ListItem>
+                                                    <asp:ListItem Value="DO">Dominican Republic</asp:ListItem>
+                                                    <asp:ListItem Value="TP">East Timor</asp:ListItem>
+                                                    <asp:ListItem Value="EC">Ecuador</asp:ListItem>
+                                                    <asp:ListItem Value="EG">Egypt</asp:ListItem>
+                                                    <asp:ListItem Value="SV">El Salvador</asp:ListItem>
+                                                    <asp:ListItem Value="GQ">Equatorial Guinea</asp:ListItem>
+                                                    <asp:ListItem Value="ER">Eritrea</asp:ListItem>
+                                                    <asp:ListItem Value="EE">Estonia</asp:ListItem>
+                                                    <asp:ListItem Value="ET">Ethiopia</asp:ListItem>
+                                                    <asp:ListItem Value="FK">Falkland Islands (Malvinas)</asp:ListItem>
+                                                    <asp:ListItem Value="FO">Faroe Islands</asp:ListItem>
+                                                    <asp:ListItem Value="FJ">Fiji</asp:ListItem>
+                                                    <asp:ListItem Value="FI">Finland</asp:ListItem>
+                                                    <asp:ListItem Value="FR">France</asp:ListItem>
+                                                    <asp:ListItem Value="GF">French Guiana</asp:ListItem>
+                                                    <asp:ListItem Value="PF">French Polynesia</asp:ListItem>
+                                                    <asp:ListItem Value="TF">French Southern Territories</asp:ListItem>
+                                                    <asp:ListItem Value="GA">Gabon</asp:ListItem>
+                                                    <asp:ListItem Value="GM">Gambia</asp:ListItem>
+                                                    <asp:ListItem Value="GE">Georgia</asp:ListItem>
+                                                    <asp:ListItem Value="DE">Germany</asp:ListItem>
+                                                    <asp:ListItem Value="GH">Ghana</asp:ListItem>
+                                                    <asp:ListItem Value="GI">Gibraltar</asp:ListItem>
+                                                    <asp:ListItem Value="GR">Greece</asp:ListItem>
+                                                    <asp:ListItem Value="GL">Greenland</asp:ListItem>
+                                                    <asp:ListItem Value="GD">Grenada</asp:ListItem>
+                                                    <asp:ListItem Value="GP">Guadeloupe</asp:ListItem>
+                                                    <asp:ListItem Value="GU">Guam</asp:ListItem>
+                                                    <asp:ListItem Value="GT">Guatemala</asp:ListItem>
+                                                    <asp:ListItem Value="GN">Guinea</asp:ListItem>
+                                                    <asp:ListItem Value="GW">Guinea-Bissau</asp:ListItem>
+                                                    <asp:ListItem Value="GY">Guyana</asp:ListItem>
+                                                    <asp:ListItem Value="HT">Haiti</asp:ListItem>
+                                                    <asp:ListItem Value="HM">Heard And Mc Donald Islands</asp:ListItem>
+                                                    <asp:ListItem Value="VA">Holy See (Vatican City State)</asp:ListItem>
+                                                    <asp:ListItem Value="HN">Honduras</asp:ListItem>
+                                                    <asp:ListItem Value="HK">Hong Kong</asp:ListItem>
+                                                    <asp:ListItem Value="HU">Hungary</asp:ListItem>
+                                                    <asp:ListItem Value="IS">Icel And</asp:ListItem>
+                                                    <asp:ListItem Value="IN">India</asp:ListItem>
+                                                    <asp:ListItem Value="ID">Indonesia</asp:ListItem>
+                                                    <asp:ListItem Value="IR">Iran (Islamic Republic Of)</asp:ListItem>
+                                                    <asp:ListItem Value="IQ">Iraq</asp:ListItem>
+                                                    <asp:ListItem Value="IE">Ireland</asp:ListItem>
+                                                    <asp:ListItem Value="IL">Israel</asp:ListItem>
+                                                    <asp:ListItem Value="IT">Italy</asp:ListItem>
+                                                    <asp:ListItem Value="JM">Jamaica</asp:ListItem>
+                                                    <asp:ListItem Value="JP">Japan</asp:ListItem>
+                                                    <asp:ListItem Value="JO">Jordan</asp:ListItem>
+                                                    <asp:ListItem Value="KZ">Kazakhstan</asp:ListItem>
+                                                    <asp:ListItem Value="KE">Kenya</asp:ListItem>
+                                                    <asp:ListItem Value="KI">Kiribati</asp:ListItem>
+                                                    <asp:ListItem Value="KP">Korea, Dem People'S Republic</asp:ListItem>
+                                                    <asp:ListItem Value="KR">Korea, Republic Of</asp:ListItem>
+                                                    <asp:ListItem Value="KW">Kuwait</asp:ListItem>
+                                                    <asp:ListItem Value="KG">Kyrgyzstan</asp:ListItem>
+                                                    <asp:ListItem Value="LA">Lao People'S Dem Republic</asp:ListItem>
+                                                    <asp:ListItem Value="LV">Latvia</asp:ListItem>
+                                                    <asp:ListItem Value="LB">Lebanon</asp:ListItem>
+                                                    <asp:ListItem Value="LS">Lesotho</asp:ListItem>
+                                                    <asp:ListItem Value="LR">Liberia</asp:ListItem>
+                                                    <asp:ListItem Value="LY">Libyan Arab Jamahiriya</asp:ListItem>
+                                                    <asp:ListItem Value="LI">Liechtenstein</asp:ListItem>
+                                                    <asp:ListItem Value="LT">Lithuania</asp:ListItem>
+                                                    <asp:ListItem Value="LU">Luxembourg</asp:ListItem>
+                                                    <asp:ListItem Value="MO">Macau</asp:ListItem>
+                                                    <asp:ListItem Value="MK">Macedonia</asp:ListItem>
+                                                    <asp:ListItem Value="MG">Madagascar</asp:ListItem>
+                                                    <asp:ListItem Value="MW">Malawi</asp:ListItem>
+                                                    <asp:ListItem Value="MY">Malaysia</asp:ListItem>
+                                                    <asp:ListItem Value="MV">Maldives</asp:ListItem>
+                                                    <asp:ListItem Value="ML">Mali</asp:ListItem>
+                                                    <asp:ListItem Value="MT">Malta</asp:ListItem>
+                                                    <asp:ListItem Value="MH">Marshall Islands</asp:ListItem>
+                                                    <asp:ListItem Value="MQ">Martinique</asp:ListItem>
+                                                    <asp:ListItem Value="MR">Mauritania</asp:ListItem>
+                                                    <asp:ListItem Value="MU">Mauritius</asp:ListItem>
+                                                    <asp:ListItem Value="YT">Mayotte</asp:ListItem>
+                                                    <asp:ListItem Value="MX">Mexico</asp:ListItem>
+                                                    <asp:ListItem Value="FM">Micronesia, Federated States</asp:ListItem>
+                                                    <asp:ListItem Value="MD">Moldova, Republic Of</asp:ListItem>
+                                                    <asp:ListItem Value="MC">Monaco</asp:ListItem>
+                                                    <asp:ListItem Value="MN">Mongolia</asp:ListItem>
+                                                    <asp:ListItem Value="MS">Montserrat</asp:ListItem>
+                                                    <asp:ListItem Value="MA">Morocco</asp:ListItem>
+                                                    <asp:ListItem Value="MZ">Mozambique</asp:ListItem>
+                                                    <asp:ListItem Value="MM">Myanmar</asp:ListItem>
+                                                    <asp:ListItem Value="NA">Namibia</asp:ListItem>
+                                                    <asp:ListItem Value="NR">Nauru</asp:ListItem>
+                                                    <asp:ListItem Value="NP">Nepal</asp:ListItem>
+                                                    <asp:ListItem Value="NL">Netherlands</asp:ListItem>
+                                                    <asp:ListItem Value="AN">Netherlands Ant Illes</asp:ListItem>
+                                                    <asp:ListItem Value="NC">New Caledonia</asp:ListItem>
+                                                    <asp:ListItem Value="NZ">New Zealand</asp:ListItem>
+                                                    <asp:ListItem Value="NI">Nicaragua</asp:ListItem>
+                                                    <asp:ListItem Value="NE">Niger</asp:ListItem>
+                                                    <asp:ListItem Value="NG">Nigeria</asp:ListItem>
+                                                    <asp:ListItem Value="NU">Niue</asp:ListItem>
+                                                    <asp:ListItem Value="NF">Norfolk Island</asp:ListItem>
+                                                    <asp:ListItem Value="MP">Northern Mariana Islands</asp:ListItem>
+                                                    <asp:ListItem Value="NO">Norway</asp:ListItem>
+                                                    <asp:ListItem Value="OM">Oman</asp:ListItem>
+                                                    <asp:ListItem Value="PK">Pakistan</asp:ListItem>
+                                                    <asp:ListItem Value="PW">Palau</asp:ListItem>
+                                                    <asp:ListItem Value="PA">Panama</asp:ListItem>
+                                                    <asp:ListItem Value="PG">Papua New Guinea</asp:ListItem>
+                                                    <asp:ListItem Value="PY">Paraguay</asp:ListItem>
+                                                    <asp:ListItem Value="PE">Peru</asp:ListItem>
+                                                    <asp:ListItem Value="PH">Philippines</asp:ListItem>
+                                                    <asp:ListItem Value="PN">Pitcairn</asp:ListItem>
+                                                    <asp:ListItem Value="PL">Poland</asp:ListItem>
+                                                    <asp:ListItem Value="PT">Portugal</asp:ListItem>
+                                                    <asp:ListItem Value="PR">Puerto Rico</asp:ListItem>
+                                                    <asp:ListItem Value="QA">Qatar</asp:ListItem>
+                                                    <asp:ListItem Value="RE">Reunion</asp:ListItem>
+                                                    <asp:ListItem Value="RO">Romania</asp:ListItem>
+                                                    <asp:ListItem Value="RU">Russian Federation</asp:ListItem>
+                                                    <asp:ListItem Value="RW">Rwanda</asp:ListItem>
+                                                    <asp:ListItem Value="KN">Saint K Itts And Nevis</asp:ListItem>
+                                                    <asp:ListItem Value="LC">Saint Lucia</asp:ListItem>
+                                                    <asp:ListItem Value="VC">Saint Vincent, The Grenadines</asp:ListItem>
+                                                    <asp:ListItem Value="WS">Samoa</asp:ListItem>
+                                                    <asp:ListItem Value="SM">San Marino</asp:ListItem>
+                                                    <asp:ListItem Value="ST">Sao Tome And Principe</asp:ListItem>
+                                                    <asp:ListItem Value="SA">Saudi Arabia</asp:ListItem>
+                                                    <asp:ListItem Value="SN">Senegal</asp:ListItem>
+                                                    <asp:ListItem Value="SC">Seychelles</asp:ListItem>
+                                                    <asp:ListItem Value="SL">Sierra Leone</asp:ListItem>
+                                                    <asp:ListItem Value="SG">Singapore</asp:ListItem>
+                                                    <asp:ListItem Value="SK">Slovakia (Slovak Republic)</asp:ListItem>
+                                                    <asp:ListItem Value="SI">Slovenia</asp:ListItem>
+                                                    <asp:ListItem Value="SB">Solomon Islands</asp:ListItem>
+                                                    <asp:ListItem Value="SO">Somalia</asp:ListItem>
+                                                    <asp:ListItem Value="ZA">South Africa</asp:ListItem>
+                                                    <asp:ListItem Value="GS">South Georgia , S Sandwich Is.</asp:ListItem>
+                                                    <asp:ListItem Value="ES">Spain</asp:ListItem>
+                                                    <asp:ListItem Value="LK">Sri Lanka</asp:ListItem>
+                                                    <asp:ListItem Value="SH">St. Helena</asp:ListItem>
+                                                    <asp:ListItem Value="PM">St. Pierre And Miquelon</asp:ListItem>
+                                                    <asp:ListItem Value="SD">Sudan</asp:ListItem>
+                                                    <asp:ListItem Value="SR">Suriname</asp:ListItem>
+                                                    <asp:ListItem Value="SJ">Svalbard, Jan Mayen Islands</asp:ListItem>
+                                                    <asp:ListItem Value="SZ">Sw Aziland</asp:ListItem>
+                                                    <asp:ListItem Value="SE">Sweden</asp:ListItem>
+                                                    <asp:ListItem Value="CH">Switzerland</asp:ListItem>
+                                                    <asp:ListItem Value="SY">Syrian Arab Republic</asp:ListItem>
+                                                    <asp:ListItem Value="TW">Taiwan</asp:ListItem>
+                                                    <asp:ListItem Value="TJ">Tajikistan</asp:ListItem>
+                                                    <asp:ListItem Value="TZ">Tanzania, United Republic Of</asp:ListItem>
+                                                    <asp:ListItem Value="TH">Thailand</asp:ListItem>
+                                                    <asp:ListItem Value="TG">Togo</asp:ListItem>
+                                                    <asp:ListItem Value="TK">Tokelau</asp:ListItem>
+                                                    <asp:ListItem Value="TO">Tonga</asp:ListItem>
+                                                    <asp:ListItem Value="TT">Trinidad And Tobago</asp:ListItem>
+                                                    <asp:ListItem Value="TN">Tunisia</asp:ListItem>
+                                                    <asp:ListItem Value="TR">Turkey</asp:ListItem>
+                                                    <asp:ListItem Value="TM">Turkmenistan</asp:ListItem>
+                                                    <asp:ListItem Value="TC">Turks And Caicos Islands</asp:ListItem>
+                                                    <asp:ListItem Value="TV">Tuvalu</asp:ListItem>
+                                                    <asp:ListItem Value="UG">Uganda</asp:ListItem>
+                                                    <asp:ListItem Value="UA">Ukraine</asp:ListItem>
+                                                    <asp:ListItem Value="AE">United Arab Emirates</asp:ListItem>
+                                                    <asp:ListItem Value="GB">United Kingdom</asp:ListItem>
+                                                    <asp:ListItem Value="US">United States</asp:ListItem>
+                                                    <asp:ListItem Value="UM">United States Minor Is.</asp:ListItem>
+                                                    <asp:ListItem Value="UY">Uruguay</asp:ListItem>
+                                                    <asp:ListItem Value="UZ">Uzbekistan</asp:ListItem>
+                                                    <asp:ListItem Value="VU">Vanuatu</asp:ListItem>
+                                                    <asp:ListItem Value="VE">Venezuela</asp:ListItem>
+                                                    <asp:ListItem Value="VN">Viet Nam</asp:ListItem>
+                                                    <asp:ListItem Value="VG">Virgin Islands (British)</asp:ListItem>
+                                                    <asp:ListItem Value="VI">Virgin Islands (U.S.)</asp:ListItem>
+                                                    <asp:ListItem Value="WF">Wallis And Futuna Islands</asp:ListItem>
+                                                    <asp:ListItem Value="EH">Western Sahara</asp:ListItem>
+                                                    <asp:ListItem Value="YE">Yemen</asp:ListItem>
+                                                    <asp:ListItem Value="ZR">Zaire</asp:ListItem>
+                                                    <asp:ListItem Value="ZM">Zambia</asp:ListItem>
+                                                    <asp:ListItem Value="ZW">Zimbabwe</asp:ListItem>
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherstartDate">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
+                                        <div class="form-row">
+                                            <label id="label-higherstartDate" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                            <div class="col-md-6">
+                                                <input id="txtHigherStartDate" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherendDate">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherendDate">
+                                        <div class="form-row">
+                                            <label id="label-higherendDate" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                            <div class="col-md-6">
+                                                <input id="txtHigherEndDate" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherschoolName">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherschoolName">
+                                        <div class="form-row">
+                                            <label id="label-higherschoolName" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                            <div class="col-md-6">
+                                                <input id="txtHigherschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
+
+">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherQualificationtype">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
+                                        <div class="form-row">
+                                            <label id="label-higherQualificationtype" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                            <div class="col-md-6">
+                                                <input id="txtHigherQualificationtype" runat="server" type="text" placeholder="Qualification Type
+
+"
+                                                    value="" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherstudymode">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherstudymode">
+                                        <div class="form-row">
+                                            <label id="label-higherstudymode" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHigherStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherlanguage">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherlanguage">
+                                        <div class="form-row">
+                                            <label id="label-higherlanguage" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHigherMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="highergradetype">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
+                                        <div class="form-row">
+                                            <label id="label-highergradetype" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHigherGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="highergradeachieved">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highergradeachieved">
+                                        <div class="form-row">
+                                            <label id="label-highergradeachieved" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                            <div class="col-md-9">
+                                                <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYes" runat="server" GroupName="highergradeachieved" Text="Results Declared" />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYet" runat="server" GroupName="highergradeachieved" Text=" Examination not conducted yet" />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedNo" runat="server" GroupName="highergradeachieved" Text="Examination Conducted, but Result not declared" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="ExpectedHigherDategrade">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHigherDategrade">
+                                        <div class="form-row">
+                                            <label id="label-ExpectedHigherDategrade" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                            <div class="col-md-6">
+                                                <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherverify">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
+                                        <div class="form-row">
+                                            <label id="label-higherverify" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                            <div class="col-md-6">
+                                                <input id="txtHigherVerification" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="higherrelation">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-higherrelation">
+                                        <div class="form-row">
+                                            <label id="label-higherrelation" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                            <div class="col-md-6">
+                                                <input id="txtHigherRelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="highercontactEmail">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highercontactEmail">
+                                        <div class="form-row">
+                                            <label id="label-highercontactEmail" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                            <div class="col-md-6">
+                                                <input id="txtHighercontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="highercontactMobile">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highercontactMobile">
+                                        <div class="form-row">
+                                            <label id="label-highercontactMobile" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                            <div class="col-md-6">
+                                                <input id="txthighercontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="highergrade">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
+                                        <div class="form-row">
+                                            <input type="button" class="btn btn-success" id="btnhigher" value="Add Subject and their Grades" />
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-9">
+                                                <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                                                    <asp:GridView ID="grdHigher" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigher_DataBound" OnRowDeleted="grdHigher_RowDeleted" OnRowDeleting="grdHigher_RowDeleting">
+                                                        <Columns>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lbldesignation" runat="server"
+                                                                        Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblorganization" runat="server"
+                                                                        Text='<%#Eval("subject")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                        Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                        Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+
+                                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                                        </Columns>
+                                                    </asp:GridView>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="list-group-item" id="addanother">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highergrade">
+                                        <div class="form-row">
+
+                                            <div class="col-md-6">
+
+                                                <asp:Button ID="btnAddanother" runat="server" Text="Add Another Higher Qualification" CssClass="btn btn-success" OnClick="btnAddanother_Click" />
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="col-md-9">
+                                                <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                                                    <asp:GridView ID="grdHigherCourses" DataKeyNames="applicanthighereducationid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigherCourses_DataBound" OnRowDeleted="grdHigherCourses_RowDeleted" OnRowDeleting="grdHigherCourses_RowDeleting" OnRowEditing="grdHigherCourses_RowEditing" OnRowCommand="grdHigherCourses_RowCommand">
+                                                        <Columns>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="id" Visible="false">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblId" runat="server"
+                                                                        Text='<%#Eval("applicanthighereducationid")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblCourse" runat="server"
+                                                                        Text='<%#Eval("coursename")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="School Name">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblSchool" runat="server"
+                                                                        Text='<%#Eval("schoolname")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Start Date">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblStart" runat="server"
+                                                                        Text='<%#Eval("startdate", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="End Date ">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblEnd" runat="server"
+                                                                        Text='<%#Eval("endate", "{0:dd/MM/yyyy}")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Edit" ShowHeader="False">
+
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#Eval("applicanthighereducationid")%>' CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                                        </Columns>
+                                                    </asp:GridView>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!----Higher Education END------>
+                            <!----Diploma Start------>
+                            <div class="list-group-item" id="diploma">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diploma">
+                                    <div class="form-row">
+                                        <label id="label-diploma" for="diploma" class="col-md-3 col-form-label form-label">Have you completed any Diploma or Certificate Programs ?</label>
+                                        <div class="col-md-9">
+                                            <asp:RadioButton CssClass="form-control" ID="rbldiplomaYes" runat="server" GroupName="diploma" Text="Yes" />
+                                            <asp:RadioButton CssClass="form-control" ID="rbldiplomaNo" runat="server" GroupName="diploma" Text="I am currently studying for my Diploma/Certificate" />
+                                            <asp:RadioButton CssClass="form-control" ID="rbldiplomaNot" runat="server" GroupName="diploma" Text="No - I do not have a Diploma/Certificate qualification" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomaCountry">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomaCountry">
+                                    <div class="form-row">
+                                        <label id="label-diplomaCountry" for="diplomaCountry" class="col-md-3 col-form-label form-label">Country of Diploma or Certificate Programs</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlDiplomaCountry" runat="server" CssClass="form-control">
+                                                <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
+                                                <asp:ListItem Value="AF">Afghanistan</asp:ListItem>
+                                                <asp:ListItem Value="AL">Albania</asp:ListItem>
+                                                <asp:ListItem Value="DZ">Algeria</asp:ListItem>
+                                                <asp:ListItem Value="AS">American Samoa</asp:ListItem>
+                                                <asp:ListItem Value="AD">Andorra</asp:ListItem>
+                                                <asp:ListItem Value="AO">Angola</asp:ListItem>
+                                                <asp:ListItem Value="AI">Anguilla</asp:ListItem>
+                                                <asp:ListItem Value="AQ">Antarctica</asp:ListItem>
+                                                <asp:ListItem Value="AG">Antigua And Barbuda</asp:ListItem>
+                                                <asp:ListItem Value="AR">Argentina</asp:ListItem>
+                                                <asp:ListItem Value="AM">Armenia</asp:ListItem>
+                                                <asp:ListItem Value="AW">Aruba</asp:ListItem>
+                                                <asp:ListItem Value="AU">Australia</asp:ListItem>
+                                                <asp:ListItem Value="AT">Austria</asp:ListItem>
+                                                <asp:ListItem Value="AZ">Azerbaijan</asp:ListItem>
+                                                <asp:ListItem Value="BS">Bahamas</asp:ListItem>
+                                                <asp:ListItem Value="BH">Bahrain</asp:ListItem>
+                                                <asp:ListItem Value="BD">Bangladesh</asp:ListItem>
+                                                <asp:ListItem Value="BB">Barbados</asp:ListItem>
+                                                <asp:ListItem Value="BY">Belarus</asp:ListItem>
+                                                <asp:ListItem Value="BE">Belgium</asp:ListItem>
+                                                <asp:ListItem Value="BZ">Belize</asp:ListItem>
+                                                <asp:ListItem Value="BJ">Benin</asp:ListItem>
+                                                <asp:ListItem Value="BM">Bermuda</asp:ListItem>
+                                                <asp:ListItem Value="BT">Bhutan</asp:ListItem>
+                                                <asp:ListItem Value="BO">Bolivia</asp:ListItem>
+                                                <asp:ListItem Value="BA">Bosnia And Herzegowina</asp:ListItem>
+                                                <asp:ListItem Value="BW">Botswana</asp:ListItem>
+                                                <asp:ListItem Value="BV">Bouvet Island</asp:ListItem>
+                                                <asp:ListItem Value="BR">Brazil</asp:ListItem>
+                                                <asp:ListItem Value="IO">British Indian Ocean Territory</asp:ListItem>
+                                                <asp:ListItem Value="BN">Brunei Darussalam</asp:ListItem>
+                                                <asp:ListItem Value="BG">Bulgaria</asp:ListItem>
+                                                <asp:ListItem Value="BF">Burkina Faso</asp:ListItem>
+                                                <asp:ListItem Value="BI">Burundi</asp:ListItem>
+                                                <asp:ListItem Value="KH">Cambodia</asp:ListItem>
+                                                <asp:ListItem Value="CM">Cameroon</asp:ListItem>
+                                                <asp:ListItem Value="CA">Canada</asp:ListItem>
+                                                <asp:ListItem Value="CV">Cape Verde</asp:ListItem>
+                                                <asp:ListItem Value="KY">Cayman Islands</asp:ListItem>
+                                                <asp:ListItem Value="CF">Central African Republic</asp:ListItem>
+                                                <asp:ListItem Value="TD">Chad</asp:ListItem>
+                                                <asp:ListItem Value="CL">Chile</asp:ListItem>
+                                                <asp:ListItem Value="CN">China</asp:ListItem>
+                                                <asp:ListItem Value="CX">Christmas Island</asp:ListItem>
+                                                <asp:ListItem Value="CC">Cocos (Keeling) Islands</asp:ListItem>
+                                                <asp:ListItem Value="CO">Colombia</asp:ListItem>
+                                                <asp:ListItem Value="KM">Comoros</asp:ListItem>
+                                                <asp:ListItem Value="CG">Congo</asp:ListItem>
+                                                <asp:ListItem Value="CK">Cook Islands</asp:ListItem>
+                                                <asp:ListItem Value="CR">Costa Rica</asp:ListItem>
+                                                <asp:ListItem Value="CI">Cote D'Ivoire</asp:ListItem>
+                                                <asp:ListItem Value="HR">Croatia (Local Name: Hrvatska)</asp:ListItem>
+                                                <asp:ListItem Value="CU">Cuba</asp:ListItem>
+                                                <asp:ListItem Value="CY">Cyprus</asp:ListItem>
+                                                <asp:ListItem Value="CZ">Czech Republic</asp:ListItem>
+                                                <asp:ListItem Value="DK">Denmark</asp:ListItem>
+                                                <asp:ListItem Value="DJ">Djibouti</asp:ListItem>
+                                                <asp:ListItem Value="DM">Dominica</asp:ListItem>
+                                                <asp:ListItem Value="DO">Dominican Republic</asp:ListItem>
+                                                <asp:ListItem Value="TP">East Timor</asp:ListItem>
+                                                <asp:ListItem Value="EC">Ecuador</asp:ListItem>
+                                                <asp:ListItem Value="EG">Egypt</asp:ListItem>
+                                                <asp:ListItem Value="SV">El Salvador</asp:ListItem>
+                                                <asp:ListItem Value="GQ">Equatorial Guinea</asp:ListItem>
+                                                <asp:ListItem Value="ER">Eritrea</asp:ListItem>
+                                                <asp:ListItem Value="EE">Estonia</asp:ListItem>
+                                                <asp:ListItem Value="ET">Ethiopia</asp:ListItem>
+                                                <asp:ListItem Value="FK">Falkland Islands (Malvinas)</asp:ListItem>
+                                                <asp:ListItem Value="FO">Faroe Islands</asp:ListItem>
+                                                <asp:ListItem Value="FJ">Fiji</asp:ListItem>
+                                                <asp:ListItem Value="FI">Finland</asp:ListItem>
+                                                <asp:ListItem Value="FR">France</asp:ListItem>
+                                                <asp:ListItem Value="GF">French Guiana</asp:ListItem>
+                                                <asp:ListItem Value="PF">French Polynesia</asp:ListItem>
+                                                <asp:ListItem Value="TF">French Southern Territories</asp:ListItem>
+                                                <asp:ListItem Value="GA">Gabon</asp:ListItem>
+                                                <asp:ListItem Value="GM">Gambia</asp:ListItem>
+                                                <asp:ListItem Value="GE">Georgia</asp:ListItem>
+                                                <asp:ListItem Value="DE">Germany</asp:ListItem>
+                                                <asp:ListItem Value="GH">Ghana</asp:ListItem>
+                                                <asp:ListItem Value="GI">Gibraltar</asp:ListItem>
+                                                <asp:ListItem Value="GR">Greece</asp:ListItem>
+                                                <asp:ListItem Value="GL">Greenland</asp:ListItem>
+                                                <asp:ListItem Value="GD">Grenada</asp:ListItem>
+                                                <asp:ListItem Value="GP">Guadeloupe</asp:ListItem>
+                                                <asp:ListItem Value="GU">Guam</asp:ListItem>
+                                                <asp:ListItem Value="GT">Guatemala</asp:ListItem>
+                                                <asp:ListItem Value="GN">Guinea</asp:ListItem>
+                                                <asp:ListItem Value="GW">Guinea-Bissau</asp:ListItem>
+                                                <asp:ListItem Value="GY">Guyana</asp:ListItem>
+                                                <asp:ListItem Value="HT">Haiti</asp:ListItem>
+                                                <asp:ListItem Value="HM">Heard And Mc Donald Islands</asp:ListItem>
+                                                <asp:ListItem Value="VA">Holy See (Vatican City State)</asp:ListItem>
+                                                <asp:ListItem Value="HN">Honduras</asp:ListItem>
+                                                <asp:ListItem Value="HK">Hong Kong</asp:ListItem>
+                                                <asp:ListItem Value="HU">Hungary</asp:ListItem>
+                                                <asp:ListItem Value="IS">Icel And</asp:ListItem>
+                                                <asp:ListItem Value="IN">India</asp:ListItem>
+                                                <asp:ListItem Value="ID">Indonesia</asp:ListItem>
+                                                <asp:ListItem Value="IR">Iran (Islamic Republic Of)</asp:ListItem>
+                                                <asp:ListItem Value="IQ">Iraq</asp:ListItem>
+                                                <asp:ListItem Value="IE">Ireland</asp:ListItem>
+                                                <asp:ListItem Value="IL">Israel</asp:ListItem>
+                                                <asp:ListItem Value="IT">Italy</asp:ListItem>
+                                                <asp:ListItem Value="JM">Jamaica</asp:ListItem>
+                                                <asp:ListItem Value="JP">Japan</asp:ListItem>
+                                                <asp:ListItem Value="JO">Jordan</asp:ListItem>
+                                                <asp:ListItem Value="KZ">Kazakhstan</asp:ListItem>
+                                                <asp:ListItem Value="KE">Kenya</asp:ListItem>
+                                                <asp:ListItem Value="KI">Kiribati</asp:ListItem>
+                                                <asp:ListItem Value="KP">Korea, Dem People'S Republic</asp:ListItem>
+                                                <asp:ListItem Value="KR">Korea, Republic Of</asp:ListItem>
+                                                <asp:ListItem Value="KW">Kuwait</asp:ListItem>
+                                                <asp:ListItem Value="KG">Kyrgyzstan</asp:ListItem>
+                                                <asp:ListItem Value="LA">Lao People'S Dem Republic</asp:ListItem>
+                                                <asp:ListItem Value="LV">Latvia</asp:ListItem>
+                                                <asp:ListItem Value="LB">Lebanon</asp:ListItem>
+                                                <asp:ListItem Value="LS">Lesotho</asp:ListItem>
+                                                <asp:ListItem Value="LR">Liberia</asp:ListItem>
+                                                <asp:ListItem Value="LY">Libyan Arab Jamahiriya</asp:ListItem>
+                                                <asp:ListItem Value="LI">Liechtenstein</asp:ListItem>
+                                                <asp:ListItem Value="LT">Lithuania</asp:ListItem>
+                                                <asp:ListItem Value="LU">Luxembourg</asp:ListItem>
+                                                <asp:ListItem Value="MO">Macau</asp:ListItem>
+                                                <asp:ListItem Value="MK">Macedonia</asp:ListItem>
+                                                <asp:ListItem Value="MG">Madagascar</asp:ListItem>
+                                                <asp:ListItem Value="MW">Malawi</asp:ListItem>
+                                                <asp:ListItem Value="MY">Malaysia</asp:ListItem>
+                                                <asp:ListItem Value="MV">Maldives</asp:ListItem>
+                                                <asp:ListItem Value="ML">Mali</asp:ListItem>
+                                                <asp:ListItem Value="MT">Malta</asp:ListItem>
+                                                <asp:ListItem Value="MH">Marshall Islands</asp:ListItem>
+                                                <asp:ListItem Value="MQ">Martinique</asp:ListItem>
+                                                <asp:ListItem Value="MR">Mauritania</asp:ListItem>
+                                                <asp:ListItem Value="MU">Mauritius</asp:ListItem>
+                                                <asp:ListItem Value="YT">Mayotte</asp:ListItem>
+                                                <asp:ListItem Value="MX">Mexico</asp:ListItem>
+                                                <asp:ListItem Value="FM">Micronesia, Federated States</asp:ListItem>
+                                                <asp:ListItem Value="MD">Moldova, Republic Of</asp:ListItem>
+                                                <asp:ListItem Value="MC">Monaco</asp:ListItem>
+                                                <asp:ListItem Value="MN">Mongolia</asp:ListItem>
+                                                <asp:ListItem Value="MS">Montserrat</asp:ListItem>
+                                                <asp:ListItem Value="MA">Morocco</asp:ListItem>
+                                                <asp:ListItem Value="MZ">Mozambique</asp:ListItem>
+                                                <asp:ListItem Value="MM">Myanmar</asp:ListItem>
+                                                <asp:ListItem Value="NA">Namibia</asp:ListItem>
+                                                <asp:ListItem Value="NR">Nauru</asp:ListItem>
+                                                <asp:ListItem Value="NP">Nepal</asp:ListItem>
+                                                <asp:ListItem Value="NL">Netherlands</asp:ListItem>
+                                                <asp:ListItem Value="AN">Netherlands Ant Illes</asp:ListItem>
+                                                <asp:ListItem Value="NC">New Caledonia</asp:ListItem>
+                                                <asp:ListItem Value="NZ">New Zealand</asp:ListItem>
+                                                <asp:ListItem Value="NI">Nicaragua</asp:ListItem>
+                                                <asp:ListItem Value="NE">Niger</asp:ListItem>
+                                                <asp:ListItem Value="NG">Nigeria</asp:ListItem>
+                                                <asp:ListItem Value="NU">Niue</asp:ListItem>
+                                                <asp:ListItem Value="NF">Norfolk Island</asp:ListItem>
+                                                <asp:ListItem Value="MP">Northern Mariana Islands</asp:ListItem>
+                                                <asp:ListItem Value="NO">Norway</asp:ListItem>
+                                                <asp:ListItem Value="OM">Oman</asp:ListItem>
+                                                <asp:ListItem Value="PK">Pakistan</asp:ListItem>
+                                                <asp:ListItem Value="PW">Palau</asp:ListItem>
+                                                <asp:ListItem Value="PA">Panama</asp:ListItem>
+                                                <asp:ListItem Value="PG">Papua New Guinea</asp:ListItem>
+                                                <asp:ListItem Value="PY">Paraguay</asp:ListItem>
+                                                <asp:ListItem Value="PE">Peru</asp:ListItem>
+                                                <asp:ListItem Value="PH">Philippines</asp:ListItem>
+                                                <asp:ListItem Value="PN">Pitcairn</asp:ListItem>
+                                                <asp:ListItem Value="PL">Poland</asp:ListItem>
+                                                <asp:ListItem Value="PT">Portugal</asp:ListItem>
+                                                <asp:ListItem Value="PR">Puerto Rico</asp:ListItem>
+                                                <asp:ListItem Value="QA">Qatar</asp:ListItem>
+                                                <asp:ListItem Value="RE">Reunion</asp:ListItem>
+                                                <asp:ListItem Value="RO">Romania</asp:ListItem>
+                                                <asp:ListItem Value="RU">Russian Federation</asp:ListItem>
+                                                <asp:ListItem Value="RW">Rwanda</asp:ListItem>
+                                                <asp:ListItem Value="KN">Saint K Itts And Nevis</asp:ListItem>
+                                                <asp:ListItem Value="LC">Saint Lucia</asp:ListItem>
+                                                <asp:ListItem Value="VC">Saint Vincent, The Grenadines</asp:ListItem>
+                                                <asp:ListItem Value="WS">Samoa</asp:ListItem>
+                                                <asp:ListItem Value="SM">San Marino</asp:ListItem>
+                                                <asp:ListItem Value="ST">Sao Tome And Principe</asp:ListItem>
+                                                <asp:ListItem Value="SA">Saudi Arabia</asp:ListItem>
+                                                <asp:ListItem Value="SN">Senegal</asp:ListItem>
+                                                <asp:ListItem Value="SC">Seychelles</asp:ListItem>
+                                                <asp:ListItem Value="SL">Sierra Leone</asp:ListItem>
+                                                <asp:ListItem Value="SG">Singapore</asp:ListItem>
+                                                <asp:ListItem Value="SK">Slovakia (Slovak Republic)</asp:ListItem>
+                                                <asp:ListItem Value="SI">Slovenia</asp:ListItem>
+                                                <asp:ListItem Value="SB">Solomon Islands</asp:ListItem>
+                                                <asp:ListItem Value="SO">Somalia</asp:ListItem>
+                                                <asp:ListItem Value="ZA">South Africa</asp:ListItem>
+                                                <asp:ListItem Value="GS">South Georgia , S Sandwich Is.</asp:ListItem>
+                                                <asp:ListItem Value="ES">Spain</asp:ListItem>
+                                                <asp:ListItem Value="LK">Sri Lanka</asp:ListItem>
+                                                <asp:ListItem Value="SH">St. Helena</asp:ListItem>
+                                                <asp:ListItem Value="PM">St. Pierre And Miquelon</asp:ListItem>
+                                                <asp:ListItem Value="SD">Sudan</asp:ListItem>
+                                                <asp:ListItem Value="SR">Suriname</asp:ListItem>
+                                                <asp:ListItem Value="SJ">Svalbard, Jan Mayen Islands</asp:ListItem>
+                                                <asp:ListItem Value="SZ">Sw Aziland</asp:ListItem>
+                                                <asp:ListItem Value="SE">Sweden</asp:ListItem>
+                                                <asp:ListItem Value="CH">Switzerland</asp:ListItem>
+                                                <asp:ListItem Value="SY">Syrian Arab Republic</asp:ListItem>
+                                                <asp:ListItem Value="TW">Taiwan</asp:ListItem>
+                                                <asp:ListItem Value="TJ">Tajikistan</asp:ListItem>
+                                                <asp:ListItem Value="TZ">Tanzania, United Republic Of</asp:ListItem>
+                                                <asp:ListItem Value="TH">Thailand</asp:ListItem>
+                                                <asp:ListItem Value="TG">Togo</asp:ListItem>
+                                                <asp:ListItem Value="TK">Tokelau</asp:ListItem>
+                                                <asp:ListItem Value="TO">Tonga</asp:ListItem>
+                                                <asp:ListItem Value="TT">Trinidad And Tobago</asp:ListItem>
+                                                <asp:ListItem Value="TN">Tunisia</asp:ListItem>
+                                                <asp:ListItem Value="TR">Turkey</asp:ListItem>
+                                                <asp:ListItem Value="TM">Turkmenistan</asp:ListItem>
+                                                <asp:ListItem Value="TC">Turks And Caicos Islands</asp:ListItem>
+                                                <asp:ListItem Value="TV">Tuvalu</asp:ListItem>
+                                                <asp:ListItem Value="UG">Uganda</asp:ListItem>
+                                                <asp:ListItem Value="UA">Ukraine</asp:ListItem>
+                                                <asp:ListItem Value="AE">United Arab Emirates</asp:ListItem>
+                                                <asp:ListItem Value="GB">United Kingdom</asp:ListItem>
+                                                <asp:ListItem Value="US">United States</asp:ListItem>
+                                                <asp:ListItem Value="UM">United States Minor Is.</asp:ListItem>
+                                                <asp:ListItem Value="UY">Uruguay</asp:ListItem>
+                                                <asp:ListItem Value="UZ">Uzbekistan</asp:ListItem>
+                                                <asp:ListItem Value="VU">Vanuatu</asp:ListItem>
+                                                <asp:ListItem Value="VE">Venezuela</asp:ListItem>
+                                                <asp:ListItem Value="VN">Viet Nam</asp:ListItem>
+                                                <asp:ListItem Value="VG">Virgin Islands (British)</asp:ListItem>
+                                                <asp:ListItem Value="VI">Virgin Islands (U.S.)</asp:ListItem>
+                                                <asp:ListItem Value="WF">Wallis And Futuna Islands</asp:ListItem>
+                                                <asp:ListItem Value="EH">Western Sahara</asp:ListItem>
+                                                <asp:ListItem Value="YE">Yemen</asp:ListItem>
+                                                <asp:ListItem Value="ZR">Zaire</asp:ListItem>
+                                                <asp:ListItem Value="ZM">Zambia</asp:ListItem>
+                                                <asp:ListItem Value="ZW">Zimbabwe</asp:ListItem>
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomastartDate">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomastartDate">
+                                    <div class="form-row">
+                                        <label id="label-diplomastartDate" for="diplomastartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                        <div class="col-md-6">
+                                            <input id="txtDiplomaStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="today">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomaendDate">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomaendDate">
+                                    <div class="form-row">
+                                        <label id="label-diplomaendDate" for="diplomaendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                        <div class="col-md-6">
+                                            <input id="txtDiplomaEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomaschoolName">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomaschoolName">
+                                    <div class="form-row">
+                                        <label id="label-diplomaschoolName" for="diplomaschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                        <div class="col-md-6">
+                                            <input id="txtDiplomaschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
+
+">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomaQualificationtype">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomaQualificationtype">
+                                    <div class="form-row">
+                                        <label id="label-diplomaQualificationtype" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                        <div class="col-md-6">
+                                            <input id="txtDiplomaQualificationtype" runat="server" type="text" placeholder="Qualification Type
+
+"
+                                                value="" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomastudymode">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomastudymode">
+                                    <div class="form-row">
+                                        <label id="label-diplomastudymode" for="diplomastudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlDiplomaStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomalanguage">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomalanguage">
+                                    <div class="form-row">
+                                        <label id="label-diplomalanguage" for="diplomalanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlDiplomaMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomagradetype">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomagradetype">
+                                    <div class="form-row">
+                                        <label id="label-diplomagradetype" for="diplomagradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlDiplomaGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomagradeachieved">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomagradeachieved">
+                                    <div class="form-row">
+                                        <label id="label-diplomagradeachieved" for="diplomagradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                        <div class="col-md-9">
+                                            <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYes" runat="server" GroupName="DiplomaGrade" Text="Results Declared" />
+                                            <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYet" runat="server" GroupName="DiplomaGrade" Text=" Examination not conducted yet" />
+                                            <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeNot" runat="server" GroupName="DiplomaGrade" Text="Examination Conducted, but Result not declared" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="ExpectedDiplomaDategrade">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedDiplomaDategrade">
+                                    <div class="form-row">
+                                        <label id="label-ExpectedDiplomaDategrade" for="ExpectedDiplomaDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                        <div class="col-md-6">
+                                            <input id="txtExpectedDiplomaResult" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomaverify">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomaverify">
+                                    <div class="form-row">
+                                        <label id="label-diplomaverify" for="diplomaverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                        <div class="col-md-6">
+                                            <input id="txtDiplomaVerify" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomarelation">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomarelation">
+                                    <div class="form-row">
+                                        <label id="label-diplomarelation" for="diplomarelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                        <div class="col-md-6">
+                                            <input id="txtDiplomaRelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomacontactEmail">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomacontactEmail">
+                                    <div class="form-row">
+                                        <label id="label-diplomacontactEmail" for="diplomacontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
+                                        <div class="col-md-6">
+                                            <input id="txtDiplomacontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomacontactMobile">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-diplomacontactMobile">
+                                    <div class="form-row">
+                                        <label id="label-diplomacontactMobile" for="diplomacontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                        <div class="col-md-6">
+                                            <input id="txtdiplomacontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="diplomagrade">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
+                                    <div class="form-row">
+                                        <input type="button" class="btn btn-success" id="btndiploma" value="Add Subject and their Grades" />
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="col-md-9">
+                                            <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                                                <asp:GridView ID="grdDiploma" runat="server" DataKeyNames="applicantgradeid" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdDiploma_DataBound" OnRowDeleted="grdDiploma_RowDeleted" OnRowDeleting="grdDiploma_RowDeleting">
+                                                    <Columns>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lbldesignation" runat="server"
+                                                                    Text='<%#Eval("courseid")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblorganization" runat="server"
+                                                                    Text='<%#Eval("subject")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+
+                                                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                                    </Columns>
+                                                </asp:GridView>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!----Diploma END------>
+                            <div class="list-group-item">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                                    <div class="form-row">
+                                         <a href="applicantlanguage.aspx" class="btn btn-success" style="margin-right: 10px;">English Language Competency</a>
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <div class="col-md-6">
+                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
+                                            <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="page-nav" class="col-lg-auto page-nav">
+
+                    <div>
+                        <span id="tooltip"></span>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container page__container">
+            <div class="footer">
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+             $(".form-control")
+                .mouseover(function () {
+                    var controlId = $(this).attr('id');
+                    var title = $(this).attr('title');
+                    $("#tooltip").text(title);
+                });
+            var input = document.querySelector("#ContentPlaceHolder1_txtMobilehighSchool");
+            window.intlTelInput(input, {
+                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+            });
+            var input = document.querySelector("#ContentPlaceHolder1_txtsecondarycontactMobile");
+            window.intlTelInput(input, {
+                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+            });
+            var input = document.querySelector("#ContentPlaceHolder1_txthighercontactMobile");
+            window.intlTelInput(input, {
+                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+            });
+            var input = document.querySelector("#ContentPlaceHolder1_txtdiplomacontactMobile");
+            window.intlTelInput(input, {
+                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+            });
+            $("#higestEducation").hide()
+            // Attach Button click event listener 
+            $("#btn10th").click(function () {
+                var grade = $("#ContentPlaceHolder1_ddlHighSchoolGrade").val();
+                var course = "tenth"
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+
+            });
+            $("#btn12th").click(function () {
+                var grade = $("#ContentPlaceHolder1_ddlSecondaryGrade").val();
+                var course = "twelth"
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+
+            });
+            $("#btnhigher").click(function () {
+                var grade = $("#ContentPlaceHolder1_ddlHigherGrade").val();
+                var course = $("#ContentPlaceHolder1_ddlCourse").val()
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+
+            });
+            $("#btndiploma").click(function () {
+                var grade = $("#ContentPlaceHolder1_ddlDiplomaGrade").val();
+                var course = "diploma"
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+
+            });
+            var highschool = $("input[type=radio][name='ctl00$ContentPlaceHolder1$highschool']:checked").val()
+            if (highschool == 'rblHighYes') {
+                $("#highschoolCountry").show();
+                $("#highschoolstartDate").show();
+                $("#highschoolendDate").show();
+                $("#highschoolstudymode").show();
+                $("#highschoollanguage").show();
+                $("#gradetype").show();
+                $("#highschoolgradeachieved").show();
+                $("#ExpectedHighSchoolDategrade").hide();
+                $("#highschoolverify").show();
+                $("#highschoolrelation").show();
+                $("#highschoolcontactEmail").show();
+                $("#highschoolYear").show();
+                $("#highschoolName").show();
+                $("#highschoolQualificationtype").show();
+                $("#higestEducation").hide();
+                $("#highshoolgrade").show();
+                $("#SecondarySection").show();
+                $("#highschoolcontactMobile").show();
+
+                var HighschoolGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$HighschoolGrade']:checked").val();
+                if (HighschoolGrade == "rblYes") {
+                    $("#ExpectedHighSchoolDategrade").hide();
+                }
+                else
+                    $("#ExpectedHighSchoolDategrade").show();
+            }
+            else if (highschool == 'rblHighNot') {
+                $("#highschoolCountry").show();
+                $("#highschoolstartDate").show();
+                $("#highschoolendDate").show();
+                $("#highschoolstudymode").show();
+                $("#highschoollanguage").show();
+                $("#gradetype").show();
+                $("#highschoolgradeachieved").show();
+                $("#ExpectedHighSchoolDategrade").show();
+                $("#highschoolverify").hide();
+                $("#highschoolrelation").hide();
+                $("#highschoolcontactEmail").hide();
+                $("#highschoolcontactMobile").hide();
+                $("#highschoolYear").show();
+                $("#highschoolName").show();
+                $("#highschoolQualificationtype").show();
+                $("#higestEducation").hide();
+                $("#SecondarySection").hide();
+                $("#highshoolgrade").hide();
+
+            }
+            else {
+                $("#highschoolCountry").hide();
+                $("#highschoolstartDate").hide();
+                $("#highschoolendDate").hide();
+                $("#highschoolstudymode").hide();
+                $("#highschoollanguage").hide();
+                $("#gradetype").hide();
+                $("#highschoolcontactMobile").hide();
+                $("#highschoolgradeachieved").hide();
+                $("#ExpectedHighSchoolDategrade").hide();
+                $("#highschoolverify").hide();
+                $("#highschoolrelation").hide();
+                $("#highschoolcontactEmail").hide();
+                $("#highschoolYear").hide();
+                $("#highschoolName").hide();
+                $("#highschoolQualificationtype").hide();
+                $("#higestEducation").hide();
+                $("#SecondarySection").hide();
+                $("#highshoolgrade").hide();
+                $("#highshoolgrade").hide();
+            }
+
+
+            var Secondary = $("input[type=radio][name='ctl00$ContentPlaceHolder1$Secondary']:checked").val();
+            if (Secondary == 'rblSecondaryYes') {
+                $("#SecondaryCountry").show();
+                $("#SecondarystartDate").show();
+                $("#SecondaryendDate").show();
+                $("#Secondarystudymode").show();
+                $("#Secondarylanguage").show();
+                $("#Secondarygradetype").show();
+                $("#Secondarygradeachieved").show();
+                $("#ExpectedSecondaryDategrade").hide();
+                $("#Secondaryverify").show();
+                $("#secondaryschoolrelation").show();
+                $("#secondarygrade").show();
+                $("#SecondaryschoolName").show();
+                $("#SecondaryQualificationtype").show();
+                $("#HigherSectionSection").show();
+                $("#secondarycontactEmail").show();
+                $("#higher").show();
+                $("#secondarygrade").show();
+                $("#secondarycontactMobile").show();
+
+            }
+            else if (Secondary == 'rblSecondaryNot') {
+                $("#SecondaryCountry").show();
+                $("#SecondarystartDate").show();
+                $("#SecondaryendDate").show();
+                $("#Secondarystudymode").show();
+                $("#Secondarylanguage").show();
+                $("#Secondarygradetype").show();
+                $("#Secondarygradeachieved").show();
+                $("#ExpectedSecondaryDategrade").hide();
+                $("#Secondaryverify").hide();
+                $("#secondaryschoolrelation").hide();
+                $("#secondarygrade").show();
+                $("#SecondaryschoolName").show();
+                $("#SecondaryQualificationtype").show();
+                $("#secondarygrade").hide();
+                $("#secondarycontactEmail").hide();
+                $("#secondarycontactMobile").hide();
+            }
+            else {
+                $("#higher").hide();
+                $("#SecondaryCountry").hide();
+                $("#SecondarystartDate").hide();
+                $("#SecondaryendDate").hide();
+                $("#Secondarystudymode").hide();
+                $("#Secondarylanguage").hide();
+                $("#Secondarygradetype").hide();
+                $("#Secondarygradeachieved").hide();
+                $("#ExpectedSecondaryDategrade").hide();
+                $("#Secondaryverify").hide();
+                $("#secondaryschoolrelation").hide();
+                $("#secondarygrade").hide();
+                $("#SecondaryschoolName").hide();
+                $("#SecondaryQualificationtype").hide();
+                $("#HigherSectionSection").show();
+                $("#secondarycontactEmail").hide();
+                $("#SecondaryEducation").hide();
+                $("#secondarygrade").hide();
+                $("#secondarycontactMobile").hide();
+            }
+
+            var Higher = $("input[type=radio][name='ctl00$ContentPlaceHolder1$higher']:checked").val();
+            if (Higher == 'rblhigherYes') {
+                $("#highercourse").show();
+                $("#higherCountry").show();
+                $("#higherstartDate").show();
+                $("#higherendDate").show();
+                $("#higherschoolName").show();
+                $("#higherQualificationtype").show();
+                $("#higherstudymode").show();
+                $("#higherlanguage").show();
+                $("#highergradetype").show();
+                $("#highergradeachieved").show();
+                $("#ExpectedHigherDategrade").hide();
+                $("#higherverify").show();
+                $("#higherrelation").show();
+                $("#highercontactEmail").show();
+                $("#highergrade").show();
+                $("#addanother").show();
+                $("#highercontactMobile").show();
+
+            }
+            else if (Higher == 'rblhigherNo') {
+                $("#highercourse").show();
+                $("#higherCountry").show();
+                $("#higherstartDate").show();
+                $("#higherendDate").show();
+                $("#higherschoolName").show();
+                $("#higherQualificationtype").show();
+                $("#higherstudymode").show();
+                $("#higherlanguage").show();
+                $("#highergradetype").show();
+                $("#highergradeachieved").show();
+                $("#ExpectedHigherDategrade").show();
+                $("#higherverify").show();
+                $("#higherrelation").show();
+                $("#highercontactEmail").show();
+                $("#highergrade").hide();
+                $("#addanother").hide();
+                $("#highercontactMobile").hide();
+                var HigherGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$highergradeachieved']:checked").val();
+                if (HigherGrade == "rblhighergradeachievedYes") {
+                    $("#ExpectedHigherDategrade").hide();
+                }
+                else {
+                    $("#ExpectedHigherDategrade").show();
+                }
+            }
+            else {
+                $("#highercourse").hide();
+                $("#higherCountry").hide();
+                $("#higherstartDate").hide();
+                $("#higherendDate").hide();
+                $("#higherschoolName").hide();
+                $("#higherQualificationtype").hide();
+                $("#higherstudymode").hide();
+                $("#higherlanguage").hide();
+                $("#highergradetype").hide();
+                $("#highergradeachieved").hide();
+                $("#ExpectedHigherDategrade").hide();
+                $("#higherverify").hide();
+                $("#higherrelation").hide();
+                $("#highercontactEmail").hide();
+                $("#highergrade").hide();
+                $("#addanother").hide();
+                $("#highercontactMobile").hide();
+            }
+            var Diploma = $("input[type=radio][name='ctl00$ContentPlaceHolder1$diploma']:checked").val();
+            if (Diploma == "rbldiplomaYes") {
+
+                $("#diplomaCountry").show();
+                $("#diplomastartDate").show();
+                $("#diplomaendDate").show();
+                $("#diplomaschoolName").show();
+                $("#diplomaQualificationtype").show();
+                $("#diplomastudymode").show();
+                $("#diplomalanguage").show();
+                $("#diplomagradetype").show();
+                $("#diplomagradeachieved").show();
+                $("#ExpectedDiplomaDategrade").show();
+                $("#diplomaverify").show();
+                $("#diplomarelation").show();
+                $("#diplomacontactEmail").show();
+                $("#diplomagrade").show();
+                $("#diplomacontactMobile").show();
+
+            }
+            else if (Diploma == "higherNot") {
+                $("#diplomaCountry").show();
+                $("#diplomastartDate").show();
+                $("#diplomaendDate").show();
+                $("#diplomaschoolName").show();
+                $("#diplomaQualificationtype").show();
+                $("#diplomastudymode").show();
+                $("#diplomalanguage").show();
+                $("#diplomagradetype").show();
+                $("#diplomagradeachieved").show();
+                $("#ExpectedDiplomaDategrade").show();
+                $("#diplomaverify").show();
+                $("#diplomarelation").show();
+                $("#diplomacontactEmail").show();
+                $("#diplomagrade").hide();
+                $("#diplomacontactMobile").hide();
+                var DiplomaGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$DiplomaGrade']:checked").val();
+                if (DiplomaGrade == "rblDiplomaGradeYes") {
+                    $("#ExpectedDiplomaDategrade").hide();
+                }
+                else
+                    $("#ExpectedDiplomaDategrade").show();
+            }
+            else {
+                $("#diplomaCountry").hide();
+                $("#diplomastartDate").hide();
+                $("#diplomaendDate").hide();
+                $("#diplomaschoolName").hide();
+                $("#diplomaQualificationtype").hide();
+                $("#diplomastudymode").hide();
+                $("#diplomalanguage").hide();
+                $("#diplomagradetype").hide();
+                $("#diplomagradeachieved").hide();
+                $("#ExpectedDiplomaDategrade").hide();
+                $("#diplomaverify").hide();
+                $("#diplomarelation").hide();
+                $("#diplomacontactEmail").hide();
+                $("#diplomagrade").hide();
+                $("#diplomacontactMobile").hide();
+            }
+
+            //var SecondaryGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$Secondarygradeachieved']:checked").val();
+            //if (SecondaryGrade == "rblSecondarygradeachievedYes") {
+            //    $("#ExpectedSecondaryDategrade").hide();
+            //}
+            //else
+            //    $("#ExpectedSecondaryDategrade").show();
+
+
+
+        });
+
+        //$("#highschoolCountry").hide();
+        //$("#highschoolYear").hide();
+        //$("#highschoolName").hide();
+        //$("#highschoolQualificationtype").hide();
+        //$("#higestEducation").hide();
+        //$("#TertiaryCountry").hide();
+        //$("#TertiaryYear").hide();
+        //$("#TertiarySchool").hide();
+        //$("#TertiaryQualification").hide();
+
+        //Handle High School
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$highschool']").click(function () {
+                if ($("#ContentPlaceHolder1_rblHighYes").is(":checked")) {
+                    $("#highschoolCountry").show();
+                    $("#highschoolstartDate").show();
+                    $("#highschoolendDate").show();
+                    $("#highschoolstudymode").show();
+                    $("#highschoollanguage").show();
+                    $("#gradetype").show();
+                    $("#highschoolgradeachieved").show();
+                    $("#ExpectedHighSchoolDategrade").hide();
+                    $("#highschoolverify").show();
+                    $("#highschoolrelation").show();
+                    $("#highschoolcontactEmail").show();
+                    $("#highschoolYear").show();
+                    $("#highschoolName").show();
+                    $("#highschoolQualificationtype").show();
+                    $("#higestEducation").hide();
+                    $("#highshoolgrade").show();
+                    $("#highschoolcontactMobile").show();
+                    $("#SecondarySection").show();
+                }
+                else if ($("#ContentPlaceHolder1_rblHighNot").is(":checked")) {
+                    $("#highschoolCountry").hide();
+                    $("#highschoolstartDate").hide();
+                    $("#highschoolendDate").hide();
+                    $("#highschoolstudymode").hide();
+                    $("#highschoollanguage").hide();
+                    $("#gradetype").hide();
+                    $("#highschoolgradeachieved").hide();
+                    $("#ExpectedHighSchoolDategrade").hide();
+                    $("#highschoolverify").hide();
+                    $("#highschoolrelation").hide();
+                    $("#highschoolcontactEmail").hide();
+                    $("#highschoolYear").hide();
+                    $("#highschoolName").hide();
+                    $("#highschoolQualificationtype").hide();
+                    $("#higestEducation").show();
+                    $("#SecondarySection").hide();
+                    $("#highshoolgrade").hide();
+                    $("#highschoolcontactMobile").hide();
+                }
+                else {
+                    $("#highschoolCountry").show();
+                    $("#highschoolstartDate").show();
+                    $("#highschoolendDate").show();
+                    $("#highschoolstudymode").show();
+                    $("#highschoollanguage").show();
+                    $("#gradetype").show();
+                    $("#highschoolgradeachieved").show();
+                    $("#ExpectedHighSchoolDategrade").show();
+                    $("#highschoolverify").hide();
+                    $("#highschoolrelation").hide();
+                    $("#highschoolcontactEmail").hide();
+                    $("#highschoolYear").show();
+                    $("#highschoolName").show();
+                    $("#highschoolQualificationtype").show();
+                    $("#higestEducation").hide();
+                    $("#SecondarySection").hide();
+                    $("#highshoolgrade").hide();
+                    $("#highschoolcontactMobile").hide();
+                }
+            });
+        });
+        //handle higher secondary
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$Secondary']").click(function () {
+                if ($("#ContentPlaceHolder1_rblSecondaryYes").is(":checked")) {
+                    $("#SecondaryCountry").show();
+                    $("#SecondarystartDate").show();
+                    $("#SecondaryendDate").show();
+                    $("#Secondarystudymode").show();
+                    $("#Secondarylanguage").show();
+                    $("#Secondarygradetype").show();
+                    $("#Secondarygradeachieved").show();
+                    $("#ExpectedSecondaryDategrade").hide();
+                    $("#Secondaryverify").show();
+                    $("#secondaryschoolrelation").show();
+                    $("#secondarygrade").show();
+                    $("#SecondaryschoolName").show();
+                    $("#SecondaryQualificationtype").show();
+                    $("#HigherSectionSection").show();
+                    $("#secondarycontactEmail").show();
+                    $("#SecondaryEducation").hide();
+                    $("#higher").show();
+                    $("#secondarygrade").show();
+                    $("#secondarycontactMobile").show();
+                }
+                else if ($("#ContentPlaceHolder1_rblSecondaryNo").is(":checked")) {
+                    $("#SecondaryCountry").show();
+                    $("#SecondarystartDate").show();
+                    $("#SecondaryendDate").show();
+                    $("#Secondarystudymode").show();
+                    $("#Secondarylanguage").show();
+                    $("#Secondarygradetype").show();
+                    $("#Secondarygradeachieved").show();
+                    $("#ExpectedSecondaryDategrade").hide();
+                    $("#Secondaryverify").hide();
+                    $("#secondaryschoolrelation").hide();
+                    $("#secondarygrade").show();
+                    $("#SecondaryschoolName").show();
+                    $("#SecondaryQualificationtype").show();
+                    $("#secondarygrade").hide();
+                    $("#secondarycontactMobile").hide();
+                }
+                else {
+                    $("#secondarycontactEmail").hide();
+                    $("#SecondaryCountry").hide();
+                    $("#SecondarystartDate").hide();
+                    $("#SecondaryendDate").hide();
+                    $("#Secondarystudymode").hide();
+                    $("#Secondarylanguage").hide();
+                    $("#Secondarygradetype").hide();
+                    $("#Secondarygradeachieved").hide();
+                    $("#ExpectedSecondaryDategrade").hide();
+                    $("#Secondaryverify").hide();
+                    $("#secondaryschoolrelation").hide();
+                    $("#secondarygrade").hide();
+                    $("#SecondaryschoolName").hide();
+                    $("#SecondaryQualificationtype").hide();
+                    $("#HigherSectionSection").show();
+                    $("#secondarycontactEmail").hide();
+                    $("#SecondaryEducation").hide();
+                    $("#secondarygrade").hide();
+                    $("#secondarycontactMobile").hide();
+                }
+            });
+        });
+
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$higher']").click(function () {
+                if ($("#ContentPlaceHolder1_rblhigherYes").is(":checked")) {
+                    $("#highercourse").show();
+                    $("#higherCountry").show();
+                    $("#higherstartDate").show();
+                    $("#higherendDate").show();
+                    $("#higherschoolName").show();
+                    $("#higherQualificationtype").show();
+                    $("#higherstudymode").show();
+                    $("#higherlanguage").show();
+                    $("#highergradetype").show();
+                    $("#highergradeachieved").show();
+                    $("#ExpectedHigherDategrade").hide();
+                    $("#higherverify").show();
+                    $("#higherrelation").show();
+                    $("#highercontactEmail").show();
+                    $("#highergrade").show();
+                    $("#addanother").show();
+                    $("#highercontactMobile").show();
+                }
+                else if ($("#ContentPlaceHolder1_higherNot").is(":checked")) {
+                    $("#highercourse").show();
+                    $("#higherCountry").show();
+                    $("#higherstartDate").show();
+                    $("#higherendDate").show();
+                    $("#higherschoolName").show();
+                    $("#higherQualificationtype").show();
+                    $("#higherstudymode").show();
+                    $("#higherlanguage").show();
+                    $("#highergradetype").show();
+                    $("#highergradeachieved").show();
+                    $("#ExpectedHigherDategrade").hide();
+                    $("#higherverify").show();
+                    $("#higherrelation").show();
+                    $("#highercontactEmail").show();
+                    $("#highergrade").hide();
+                    $("#addanother").hide();
+                    $("#highercontactMobile").hide();
+                }
+                else {
+                    $("#highercourse").hide();
+                    $("#higherCountry").hide();
+                    $("#higherstartDate").hide();
+                    $("#higherendDate").hide();
+                    $("#higherschoolName").hide();
+                    $("#higherQualificationtype").hide();
+                    $("#higherstudymode").hide();
+                    $("#higherlanguage").hide();
+                    $("#highergradetype").hide();
+                    $("#highergradeachieved").hide();
+                    $("#ExpectedHigherDategrade").show();
+                    $("#higherverify").hide();
+                    $("#higherrelation").hide();
+                    $("#highercontactEmail").hide();
+                    $("#highergrade").hide();
+                    $("#addanother").hide();
+                    $("#highercontactMobile").hide();
+                }
+            });
+        });
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$diploma']").click(function () {
+                if ($("#ContentPlaceHolder1_rbldiplomaYes").is(":checked")) {
+
+                    $("#diplomaCountry").show();
+                    $("#diplomastartDate").show();
+                    $("#diplomaendDate").show();
+                    $("#diplomaschoolName").show();
+                    $("#diplomaQualificationtype").show();
+                    $("#diplomastudymode").show();
+                    $("#diplomalanguage").show();
+                    $("#diplomagradetype").show();
+                    $("#diplomagradeachieved").show();
+                    $("#ExpectedDiplomaDategrade").show();
+                    $("#diplomaverify").show();
+                    $("#diplomarelation").show();
+                    $("#diplomacontactEmail").show();
+                    $("#diplomagrade").show();
+                    $("#diplomacontactMobile").show();
+
+                }
+                else if ($("#ContentPlaceHolder1_rbldiplomaNo").is(":checked")) {
+                    $("#diplomaCountry").show();
+                    $("#diplomastartDate").show();
+                    $("#diplomaendDate").show();
+                    $("#diplomaschoolName").show();
+                    $("#diplomaQualificationtype").show();
+                    $("#diplomastudymode").show();
+                    $("#diplomalanguage").show();
+                    $("#diplomagradetype").show();
+                    $("#diplomagradeachieved").show();
+                    $("#ExpectedDiplomaDategrade").show();
+                    $("#diplomaverify").show();
+                    $("#diplomarelation").show();
+                    $("#diplomacontactEmail").show();
+                    $("#diplomagrade").hide();
+                    $("#diplomacontactMobile").hide();
+                }
+                else {
+                    $("#diplomaCountry").hide();
+                    $("#diplomastartDate").hide();
+                    $("#diplomaendDate").hide();
+                    $("#diplomaschoolName").hide();
+                    $("#diplomaQualificationtype").hide();
+                    $("#diplomastudymode").hide();
+                    $("#diplomalanguage").hide();
+                    $("#diplomagradetype").hide();
+                    $("#diplomagradeachieved").hide();
+                    $("#ExpectedDiplomaDategrade").hide();
+                    $("#diplomaverify").hide();
+                    $("#diplomarelation").hide();
+                    $("#diplomacontactEmail").hide();
+                    $("#diplomagrade").hide();
+                    $("#diplomacontactMobile").hide();
+                }
+            });
+        });
+
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$HighschoolGrade']").click(function () {
+                if ($("#ContentPlaceHolder1_rblYes").is(":checked")) {
+                    $("#ExpectedHighSchoolDategrade").hide();
+                }
+                else {
+                    $("#ExpectedHighSchoolDategrade").show();
+                }
+            });
+        });
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$DiplomaGrade']").click(function () {
+                if ($("#ContentPlaceHolder1_rblDiplomaGradeYes").is(":checked")) {
+                    $("#ExpectedDiplomaDategrade").hide();
+                }
+                else {
+                    $("#ExpectedDiplomaDategrade").show();
+                }
+            });
+        });
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$Secondarygradeachieved']").click(function () {
+                if ($("#ContentPlaceHolder1_rblSecondarygradeachievedYes").is(":checked")) {
+                    $("#ExpectedSecondaryDategrade").hide();
+                }
+                else {
+                    $("#ExpectedSecondaryDategrade").show();
+                }
+            });
+        });
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$highergradeachieved']").click(function () {
+                if ($("#ContentPlaceHolder1_rblhighergradeachievedYes").is(":checked")) {
+                    $("#ExpectedHigherDategrade").hide();
+                }
+                else {
+                    $("#ExpectedHigherDategrade").show();
+                }
+            });
+        });
+        $('#ContentPlaceHolder1_txtStartDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtEndDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtExpectedHighSchoolResult').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtDiplomaStartDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtDiplomaEndDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtExpectedDiplomaResult').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtSecondaryStartDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtSecondaryEndDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtExpectedSecondaryResult').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtHigherStartDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtHigherEndDate').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        $('#ContentPlaceHolder1_txtExpectedHigherDategrade').flatpickr({
+
+            dateFormat: 'Y-m-d'
+        });
+        //document.getElementById("ContentPlaceHolder1_dob").flatpickr({
+        //    wrap: true,
+        //    weekNumbers: true,
+        //    enableTime: true, // enables timepicker default is false    
+        //    time_24hr: true, // set to false for AM PM default is false
+        //    onChange: function (selectedDates, dateStr, instance) {
+        //        console.log("changed");
+        //    }
+        //});
+
+        function ConfirmOnDelete(item) {
+            if (confirm("Are you sure to delete: " + item + "?") == true)
+                return true;
+            else
+                return false;
+        }
+
+    </script>
+
+
+</asp:Content>
