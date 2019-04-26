@@ -40,7 +40,7 @@ public partial class uploaddocuments : System.Web.UI.Page
         if (avatar.HasFile)  //fileupload control contains a file  
             try
             {
-                docPath = docPath + "/" + ApplicantID + "/Documents/";
+                docPath = docPath + "/" + UserID + "/Documents/";
                 if (!Directory.Exists(docPath))
                     Directory.CreateDirectory(docPath);
                 string extension = Path.GetExtension(avatar.PostedFile.FileName);
@@ -83,7 +83,7 @@ public partial class uploaddocuments : System.Web.UI.Page
                 Response.Redirect(webURL + "Login.aspx");
             UserID = Convert.ToInt32(Session["UserID"].ToString());
             ApplicantID = Convert.ToInt32(Session["Applicant"].ToString());
-            docPath = docPath + "/" + ApplicantID + "/Documents/";
+            docPath = docPath + "/" + UserID + "/Documents/";
             Response.ContentType = ContentType;
 
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(docPath + filePath));

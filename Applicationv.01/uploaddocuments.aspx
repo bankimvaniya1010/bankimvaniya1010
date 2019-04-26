@@ -120,15 +120,15 @@
 
                             <label class="form-label">Passport Size Photo Graph</label>
                             <label class="form-label">Passport Copy (Bio Pages)</label>
-                            <%if (appDetails[0].alternativeiddentiproof == 1)
+                            <%if ((appDetails.Count > 0) && (appDetails[0].alternativeiddentiproof == 1))
                                 { %>
                             <label class="form-label">Proof of Identity </label>
                             <%} %>
-                            <%if (appDetails[0].alternativedobproof == 1)
+                            <%if ((appDetails.Count > 0) && (appDetails[0].alternativedobproof == 1))
                                 { %>
                             <label class="form-label">Proof of Date of Birth</label>
                             <%} %>
-                            <%if (appDetails[0].alternativeresidenceproof == 1)
+                            <%if ((appDetails.Count > 0) && (appDetails[0].alternativeresidenceproof == 1))
                                 { %>
                             <label class="form-label">Proof of Residence </label>
                             <%} %>
@@ -157,8 +157,8 @@
                                 { %>
                             <label class="form-label">Proof of High Education(Phd)</label>
                             <%}
-                                }
-                            }%>
+                                    }
+                                }%>
                             <%if ((appEduDetails.Count > 0) && (appEduDetails[0].isdiplomadone == 1))
                                 { %>
                             <label class="form-label">Proof of Certificate / Diploma</label>

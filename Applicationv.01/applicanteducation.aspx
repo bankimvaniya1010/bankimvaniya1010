@@ -19,10 +19,10 @@
                     <div class="card" style="width: 650px;">
                         <div class="list-group list-group-fit">
                             <!----High School Start------>
-                            <div class="list-group-item">
+                            <div class="list-group-item" id="highschool" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                     <div class="form-row">
-                                        <label id="label-highschool" for="highschool" class="col-md-3 col-form-label form-label">Have you completed high school?</label>
+                                        <label id="labelhighschool" runat="server" for="highschool" class="col-md-3 col-form-label form-label">Have you completed high school?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="rblHighYes" CssClass="form-control" runat="server" GroupName="highschool" Text="Yes" />
                                             <asp:RadioButton ID="rblHighNo" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I am currently studying for my high school qualification " />
@@ -31,10 +31,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolCountry">
+                            <div class="list-group-item" id="highschoolCountry" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolCountry">
                                     <div class="form-row">
-                                        <label id="label-highschoolCountry" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School Education</label>
+                                        <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School Education</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
@@ -280,40 +280,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolstartDate">
+                            <div class="list-group-item" id="highschoolstartDate" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
                                     <div class="form-row">
-                                        <label id="label-highschoolstartDate" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                        <label id="labelhighschoolstartDate" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
                                         <div class="col-md-6">
                                             <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="today">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolendDate">
+                            <div class="list-group-item" id="highschoolendDate" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolendateDate">
                                     <div class="form-row">
-                                        <label id="label-highschoolendDate" for="highschoolendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                        <label id="labelhighschoolendDate" runat="server" for="highschoolendDate" class="col-md-3 col-form-label form-label">End Date </label>
                                         <div class="col-md-6">
                                             <input id="txtEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolName">
+                            <div class="list-group-item" id="highschoolName" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolName">
                                     <div class="form-row">
-                                        <label id="label-highschoolName" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                        <label id="labelhighschoolName" runat="server" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
                                         <div class="col-md-6">
                                             <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Name of School">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolQualificationtype">
+                            <div class="list-group-item" id="highschoolQualificationtype" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolQualificationtype">
                                     <div class="form-row">
-                                        <label id="label-highschoolQualificationtype" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                        <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <input id="txthighschoolQualificationtype" runat="server" type="text" placeholder="Qualification Type
 
@@ -323,40 +323,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolstudymode">
+                            <div class="list-group-item" id="highschoolstudymode" runat="server" style="display:none"> 
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstudymode">
                                     <div class="form-row">
-                                        <label id="label-highschoolstudymode" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                        <label id="labelhighschoolstudymode" runat="server" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoollanguage">
+                            <div class="list-group-item" id="highschoollanguage" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoollanguage">
                                     <div class="form-row">
-                                        <label id="label-highschoollanguage" for="highschoollanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                        <label id="labelhighschoollanguage" runat="server" for="highschoollanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighschoolMedium" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="gradetype">
+                            <div class="list-group-item" id="gradetype" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-gradetype">
                                     <div class="form-row">
-                                        <label id="label-gradetype" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                        <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolGrade" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolgradeachieved">
+                            <div class="list-group-item" id="highschoolgradeachieved" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-gradeachieved">
                                     <div class="form-row">
-                                        <label id="label-gradeachieved" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                        <label id="labelgradeachieved" runat="server" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
                                             <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
@@ -365,60 +365,60 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="ExpectedHighSchoolDategrade">
+                            <div class="list-group-item" id="ExpectedHighSchoolDategrade" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHighSchoolDategrade">
                                     <div class="form-row">
-                                        <label id="label-ExpectedHighSchoolDategrade" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                        <label id="labelExpectedHighSchoolDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
                                             <input id="txtExpectedHighSchoolResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolverify">
+                            <div class="list-group-item" id="highschoolverify" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolverify">
                                     <div class="form-row">
-                                        <label id="label-highschoolverify" for="highschoolverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                        <label id="labelhighschoolverify" runat="server" for="highschoolverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                         <div class="col-md-6">
                                             <input id="txthighschoolverify" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolrelation">
+                            <div class="list-group-item" id="highschoolrelation" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolrelation">
                                     <div class="form-row">
-                                        <label id="label-highschoolrelation" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                        <label id="labelhighschoolrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                         <div class="col-md-6">
                                             <input id="txthighschoolrelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolcontactEmail">
+                            <div class="list-group-item" id="highschoolcontactEmail" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolcontactEmail">
                                     <div class="form-row">
-                                        <label id="label-highschoolcontactEmail" for="highschoolcontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                        <label id="labelhighschoolcontactEmail" runat="server" for="highschoolcontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                         <div class="col-md-6">
                                             <input id="txthighschoolcontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="highschoolcontactMobile">
+                            <div class="list-group-item" id="highschoolcontactMobile" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolcontactMobile">
                                     <div class="form-row">
-                                        <label id="label-highschoolcontactMobile" for="highschoolcontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification</label>
+                                        <label id="labelhighschoolcontactMobile" runat="server" for="highschoolcontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification</label>
                                         <div class="col-md-6">
                                             <input id="txtMobilehighSchool" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="higestEducation">
+                            <div class="list-group-item" id="higestEducation" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-higestEducation">
                                     <div class="form-row">
-                                        <label id="label-higestEducation" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
+                                        <label id="labelhigestEducation" runat="server" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
                                         <div class="col-md-6">
                                             <input id="txtHigestEducation" runat="server" type="text" placeholder="Highest Education" value="" class="form-control">
                                         </div>
@@ -426,10 +426,10 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="highshoolgrade">
+                            <div class="list-group-item" id="highshoolgrade" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                     <div class="form-row">
-                                        <input type="button" class="btn btn-success" id="btn10th" value="Add Subject and their Grades" />
+                                        <input type="button" runat="server" class="btn btn-success" id="btn10th" value="Add Subject and their Grades" />
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-9">
@@ -476,10 +476,10 @@
 
                             <!----Secondary Start------>
                             <div id="SecondarySection">
-                                <div class="list-group-item" id="Secondary">
+                                <div class="list-group-item" id="Secondary" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondary">
                                         <div class="form-row">
-                                            <label id="label-Secondary" for="Secondary" class="col-md-3 col-form-label form-label">Have you completed Senior Secondary school? (Year 12)?</label>
+                                            <label id="labelSecondary" runat="server" for="Secondary" class="col-md-3 col-form-label form-label">Have you completed Senior Secondary school? (Year 12)?</label>
                                             <div class="col-md-9">
                                                 <asp:RadioButton ID="rblSecondaryYes" CssClass="form-control" runat="server" GroupName="Secondary" Text="Yes" />
                                                 <asp:RadioButton ID="rblSecondaryNo" CssClass="form-control" runat="server" GroupName="Secondary" Text="No  - I am currently still studying for my Senior Secondary " />
@@ -488,10 +488,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="SecondaryCountry">
+                                <div class="list-group-item" id="SecondaryCountry" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryCountry">
                                         <div class="form-row">
-                                            <label id="label-SecondaryCountry" for="SecondaryCountry" class="col-md-3 col-form-label form-label">Country of Secondary Education</label>
+                                            <label id="labelSecondaryCountry" runat="server" for="SecondaryCountry" class="col-md-3 col-form-label form-label">Country of Secondary Education</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryCountry" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
@@ -737,30 +737,30 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="SecondarystartDate">
+                                <div class="list-group-item" id="SecondarystartDate" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondarystartDate">
                                         <div class="form-row">
-                                            <label id="label-SecondarystartDate" for="SecondarystartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                            <label id="labelSecondarystartDate" runat="server" for="SecondarystartDate" class="col-md-3 col-form-label form-label">Start Date </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondaryStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="today">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="SecondaryendDate">
+                                <div class="list-group-item" id="SecondaryendDate" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryendDate">
                                         <div class="form-row">
-                                            <label id="label-SecondaryendDate" for="SecondaryendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                            <label id="labelSecondaryendDate" runat="server" for="SecondaryendDate" class="col-md-3 col-form-label form-label">End Date </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondaryEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="SecondaryschoolName">
+                                <div class="list-group-item" id="SecondaryschoolName" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryschoolName">
                                         <div class="form-row">
-                                            <label id="label-SecondaryschoolName" for="SecondaryschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                            <label id="labelSecondaryschoolName" runat="server" for="SecondaryschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondarySchoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
@@ -769,10 +769,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="SecondaryQualificationtype">
+                                <div class="list-group-item" id="SecondaryQualificationtype" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryQualificationtype">
                                         <div class="form-row">
-                                            <label id="label-SecondaryQualificationtype" for="SecondaryQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                            <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondaryQualificationtype" runat="server" type="text" placeholder="Qualification Type
 
@@ -782,40 +782,40 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="Secondarystudymode">
+                                <div class="list-group-item" id="Secondarystudymode" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondarystudymode">
                                         <div class="form-row">
-                                            <label id="label-Secondarystudymode" for="Secondarystudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                            <label id="labelSecondarystudymode" runat="server" for="Secondarystudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="Secondarylanguage">
+                                <div class="list-group-item" id="Secondarylanguage" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondarylanguage">
                                         <div class="form-row">
-                                            <label id="label-Secondarylanguage" for="Secondarylanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                            <label id="labelSecondarylanguage" runat="server" for="Secondarylanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryMedium" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="Secondarygradetype">
+                                <div class="list-group-item" id="Secondarygradetype" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondarygradetype">
                                         <div class="form-row">
-                                            <label id="label-Secondarygradetype" for="Secondarygradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                            <label id="labelSecondarygradetype" runat="server" for="Secondarygradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryGrade" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="Secondarygradeachieved">
+                                <div class="list-group-item" id="Secondarygradeachieved" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondarygradeachieved">
                                         <div class="form-row">
-                                            <label id="label-Secondarygradeachieved" for="Secondarygradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                            <label id="labelSecondarygradeachieved" runat="server" for="Secondarygradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
                                             <div class="col-md-9">
                                                 <asp:RadioButton CssClass="form-control" ID="rblSecondarygradeachievedYes" runat="server" GroupName="Secondarygradeachieved" Text="Results Declared" />
                                                 <asp:RadioButton CssClass="form-control" ID="SecondarygradeachievedYet" runat="server" GroupName="Secondarygradeachieved" Text=" Examination not conducted yet" />
@@ -824,60 +824,60 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="ExpectedSecondaryDategrade">
+                                <div class="list-group-item" id="ExpectedSecondaryDategrade" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedSecondaryDategrade">
                                         <div class="form-row">
-                                            <label id="label-ExpectedSecondaryDategrade" for="ExpectedSecondaryDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                            <label id="labelExpectedSecondaryDategrade" runat="server" style="display:none" for="ExpectedSecondaryDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
                                                 <input id="txtExpectedSecondaryResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="Secondaryverify">
+                                <div class="list-group-item" id="Secondaryverify" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondaryverify">
                                         <div class="form-row">
-                                            <label id="label-Secondaryverify" for="Secondaryverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                            <label id="labelSecondaryverify" runat="server" for="Secondaryverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondaryverify" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="secondaryschoolrelation">
+                                <div class="list-group-item" id="secondaryschoolrelation" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-secondaryschoolrelation">
                                         <div class="form-row">
-                                            <label id="label-secondaryschoolrelation" for="secondaryschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                            <label id="labelsecondaryschoolrelation" runat="server" for="secondaryschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                             <div class="col-md-6">
                                                 <input id="txtsecondaryschoolrelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="secondarycontactEmail">
+                                <div class="list-group-item" id="secondarycontactEmail" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-secondarycontactEmail">
                                         <div class="form-row">
-                                            <label id="label-secondarycontactEmail" for="secondarycontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                            <label id="labelsecondarycontactEmail" runat="server" for="secondarycontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
                                                 <input id="txtsecondarycontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="secondarycontactMobile">
+                                <div class="list-group-item" id="secondarycontactMobile" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-secondarycontactMobile">
                                         <div class="form-row">
-                                            <label id="label-secondarycontactMobile" for="secondarycontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification </label>
+                                            <label id="labelsecondarycontactMobile" runat="server" for="secondarycontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtsecondarycontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="secondarygrade">
+                                <div class="list-group-item" id="secondarygrade" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                         <div class="form-row">
-                                            <input type="button" class="btn btn-success" id="btn12th" value="Add Subject and their Grades" />
+                                            <input type="button" runat="server" class="btn btn-success" id="btn12th" value="Add Subject and their Grades" />
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-9">
@@ -924,10 +924,10 @@
                             <!----Secondary END------>
                             <!----Higher Education Start------>
                             <div id="HigherSectionSection">
-                                <div class="list-group-item" id="higher">
+                                <div class="list-group-item" id="higher" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higher">
                                         <div class="form-row">
-                                            <label id="label-higher" for="higher" class="col-md-3 col-form-label form-label">
+                                            <label id="labelhigher" runat="server" for="higher" class="col-md-3 col-form-label form-label">
                                                 Have you completed any Higher (Under Graduate, Masters or PhD) degree? 
 ?</label>
                                             <div class="col-md-9">
@@ -938,10 +938,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="highercourse">
+                                <div class="list-group-item" id="highercourse" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
                                         <div class="form-row">
-                                            <label id="label-highercourse" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
+                                            <label id="labelhighercourse" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlCourse" runat="server" CssClass="form-control">
                                                     <asp:ListItem Value="" Selected="True">Select Course</asp:ListItem>
@@ -954,10 +954,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherCountry">
+                                <div class="list-group-item" id="higherCountry" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherCountry">
                                         <div class="form-row">
-                                            <label id="label-higherCountry" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
+                                            <label id="labelhigherCountry" runat="server" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherCountry" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
@@ -1203,30 +1203,30 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherstartDate">
+                                <div class="list-group-item" id="higherstartDate" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
                                         <div class="form-row">
-                                            <label id="label-higherstartDate" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                            <label id="labelhigherstartDate" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherStartDate" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherendDate">
+                                <div class="list-group-item" id="higherendDate" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherendDate">
                                         <div class="form-row">
-                                            <label id="label-higherendDate" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                            <label id="labelhigherendDate" runat="server" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherEndDate" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherschoolName">
+                                <div class="list-group-item" id="higherschoolName" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherschoolName">
                                         <div class="form-row">
-                                            <label id="label-higherschoolName" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                            <label id="labelhigherschoolName" runat="server" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
@@ -1235,10 +1235,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherQualificationtype">
+                                <div class="list-group-item" id="higherQualificationtype" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                         <div class="form-row">
-                                            <label id="label-higherQualificationtype" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                            <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherQualificationtype" runat="server" type="text" placeholder="Qualification Type
 
@@ -1248,40 +1248,40 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherstudymode">
+                                <div class="list-group-item" id="higherstudymode" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherstudymode">
                                         <div class="form-row">
-                                            <label id="label-higherstudymode" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                            <label id="labelhigherstudymode" runat="server" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherlanguage">
+                                <div class="list-group-item" id="higherlanguage" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherlanguage">
                                         <div class="form-row">
-                                            <label id="label-higherlanguage" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                            <label id="labelhigherlanguage" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherMedium" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="highergradetype">
+                                <div class="list-group-item" id="highergradetype" runat="server">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
                                         <div class="form-row">
-                                            <label id="label-highergradetype" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                            <label id="labelhighergradetype" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherGrade" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="highergradeachieved">
+                                <div class="list-group-item" id="highergradeachieved" runat="server" style="display:none" >
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highergradeachieved">
                                         <div class="form-row">
-                                            <label id="label-highergradeachieved" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                            <label id="labelhighergradeachieved" runat="server" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
                                             <div class="col-md-9">
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYes" runat="server" GroupName="highergradeachieved" Text="Results Declared" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYet" runat="server" GroupName="highergradeachieved" Text=" Examination not conducted yet" />
@@ -1290,60 +1290,60 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="ExpectedHigherDategrade">
+                                <div class="list-group-item" id="ExpectedHigherDategrade" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHigherDategrade">
                                         <div class="form-row">
-                                            <label id="label-ExpectedHigherDategrade" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                            <label id="labelExpectedHigherDategrade" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
                                                 <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherverify">
+                                <div class="list-group-item" id="higherverify" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
                                         <div class="form-row">
-                                            <label id="label-higherverify" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                            <label id="labelhigherverify" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherVerification" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="higherrelation">
+                                <div class="list-group-item" id="higherrelation" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherrelation">
                                         <div class="form-row">
-                                            <label id="label-higherrelation" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                            <label id="labelhigherrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherRelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="highercontactEmail">
+                                <div class="list-group-item" id="highercontactEmail" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highercontactEmail">
                                         <div class="form-row">
-                                            <label id="label-highercontactEmail" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                            <label id="labelhighercontactEmail" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
                                                 <input id="txtHighercontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="highercontactMobile">
+                                <div class="list-group-item" id="highercontactMobile" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highercontactMobile">
                                         <div class="form-row">
-                                            <label id="label-highercontactMobile" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                            <label id="labelhighercontactMobile" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txthighercontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="highergrade">
+                                <div class="list-group-item" id="highergrade" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                         <div class="form-row">
-                                            <input type="button" class="btn btn-success" id="btnhigher" value="Add Subject and their Grades" />
+                                            <input type="button" runat="server" class="btn btn-success" id="btnhigher" value="Add Subject and their Grades" />
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-9">
@@ -1387,7 +1387,7 @@
 
 
                                 </div>
-                                <div class="list-group-item" id="addanother">
+                                <div class="list-group-item" id="addanother" runat="server" style="display:none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highergrade">
                                         <div class="form-row">
 
@@ -1450,10 +1450,10 @@
                             </div>
                             <!----Higher Education END------>
                             <!----Diploma Start------>
-                            <div class="list-group-item" id="diploma">
+                            <div class="list-group-item" id="diploma" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diploma">
                                     <div class="form-row">
-                                        <label id="label-diploma" for="diploma" class="col-md-3 col-form-label form-label">Have you completed any Diploma or Certificate Programs ?</label>
+                                        <label id="labeldiploma" runat="server" for="diploma" class="col-md-3 col-form-label form-label">Have you completed any Diploma or Certificate Programs ?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaYes" runat="server" GroupName="diploma" Text="Yes" />
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaNo" runat="server" GroupName="diploma" Text="I am currently studying for my Diploma/Certificate" />
@@ -1462,10 +1462,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomaCountry">
+                            <div class="list-group-item" id="diplomaCountry" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaCountry">
                                     <div class="form-row">
-                                        <label id="label-diplomaCountry" for="diplomaCountry" class="col-md-3 col-form-label form-label">Country of Diploma or Certificate Programs</label>
+                                        <label id="labeldiplomaCountry" runat="server" for="diplomaCountry" class="col-md-3 col-form-label form-label">Country of Diploma or Certificate Programs</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaCountry" runat="server" CssClass="form-control">
                                                 <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
@@ -1711,30 +1711,30 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomastartDate">
+                            <div class="list-group-item" id="diplomastartDate" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomastartDate">
                                     <div class="form-row">
-                                        <label id="label-diplomastartDate" for="diplomastartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                        <label id="labeldiplomastartDate" runat="server" for="diplomastartDate" class="col-md-3 col-form-label form-label">Start Date </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="today">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomaendDate">
+                            <div class="list-group-item" id="diplomaendDate" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaendDate">
                                     <div class="form-row">
-                                        <label id="label-diplomaendDate" for="diplomaendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                        <label id="labeldiplomaendDate" runat="server" for="diplomaendDate" class="col-md-3 col-form-label form-label">End Date </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomaschoolName">
+                            <div class="list-group-item" id="diplomaschoolName" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaschoolName">
                                     <div class="form-row">
-                                        <label id="label-diplomaschoolName" for="diplomaschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                        <label id="labeldiplomaschoolName" runat="server" for="diplomaschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
@@ -1743,10 +1743,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomaQualificationtype">
+                            <div class="list-group-item" id="diplomaQualificationtype" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaQualificationtype">
                                     <div class="form-row">
-                                        <label id="label-diplomaQualificationtype" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                        <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaQualificationtype" runat="server" type="text" placeholder="Qualification Type
 
@@ -1756,40 +1756,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomastudymode">
+                            <div class="list-group-item" id="diplomastudymode" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomastudymode">
                                     <div class="form-row">
-                                        <label id="label-diplomastudymode" for="diplomastudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                        <label id="labeldiplomastudymode" runat="server" for="diplomastudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomalanguage">
+                            <div class="list-group-item" id="diplomalanguage" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomalanguage">
                                     <div class="form-row">
-                                        <label id="label-diplomalanguage" for="diplomalanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                        <label id="labeldiplomalanguage" runat="server" for="diplomalanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaMedium" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomagradetype">
+                            <div class="list-group-item" id="diplomagradetype" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomagradetype">
                                     <div class="form-row">
-                                        <label id="label-diplomagradetype" for="diplomagradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                        <label id="labeldiplomagradetype" runat="server" for="diplomagradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaGrade" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomagradeachieved">
+                            <div class="list-group-item" id="diplomagradeachieved" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomagradeachieved">
                                     <div class="form-row">
-                                        <label id="label-diplomagradeachieved" for="diplomagradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                        <label id="labeldiplomagradeachieved" runat="server" for="diplomagradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
                                         <div class="col-md-9">
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYes" runat="server" GroupName="DiplomaGrade" Text="Results Declared" />
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYet" runat="server" GroupName="DiplomaGrade" Text=" Examination not conducted yet" />
@@ -1798,60 +1798,60 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="ExpectedDiplomaDategrade">
+                            <div class="list-group-item" id="ExpectedDiplomaDategrade" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedDiplomaDategrade">
                                     <div class="form-row">
-                                        <label id="label-ExpectedDiplomaDategrade" for="ExpectedDiplomaDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                        <label id="labelExpectedDiplomaDategrade" runat="server" for="ExpectedDiplomaDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
                                             <input id="txtExpectedDiplomaResult" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomaverify">
+                            <div class="list-group-item" id="diplomaverify" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaverify">
                                     <div class="form-row">
-                                        <label id="label-diplomaverify" for="diplomaverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                        <label id="labeldiplomaverify" runat="server" for="diplomaverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaVerify" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomarelation">
+                            <div class="list-group-item" id="diplomarelation" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomarelation">
                                     <div class="form-row">
-                                        <label id="label-diplomarelation" for="diplomarelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                        <label id="labeldiplomarelation" runat="server" for="diplomarelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaRelation" runat="server" type="text" class="form-control" placeholder="Relationship with the Contact">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomacontactEmail">
+                            <div class="list-group-item" id="diplomacontactEmail" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomacontactEmail">
                                     <div class="form-row">
-                                        <label id="label-diplomacontactEmail" for="diplomacontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
+                                        <label id="labeldiplomacontactEmail" runat="server" for="diplomacontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomacontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomacontactMobile">
+                            <div class="list-group-item" id="diplomacontactMobile" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomacontactMobile">
                                     <div class="form-row">
-                                        <label id="label-diplomacontactMobile" for="diplomacontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                        <label id="labeldiplomacontactMobile" runat="server" for="diplomacontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
                                         <div class="col-md-6">
                                             <input id="txtdiplomacontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomagrade">
+                            <div class="list-group-item" id="diplomagrade" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                     <div class="form-row">
-                                        <input type="button" class="btn btn-success" id="btndiploma" value="Add Subject and their Grades" />
+                                        <input type="button" runat="server" class="btn btn-success" id="btndiploma" value="Add Subject and their Grades" />
                                     </div>
                                     <div class="form-row">
                                         <div class="col-md-9">
