@@ -31,7 +31,7 @@ public partial class uploadvideo : System.Web.UI.Page
         if (avatar.HasFile)  //fileupload control contains a file  
             try
             {
-                docPath = docPath + "/" + ApplicantID + "/video/";
+                docPath = docPath + "/" + UserID + "/video/";
                 if (!Directory.Exists(docPath))
                     Directory.CreateDirectory(docPath);
                 string extension = Path.GetExtension(avatar.PostedFile.FileName);
@@ -72,7 +72,7 @@ public partial class uploadvideo : System.Web.UI.Page
                 Response.Redirect(webURL + "Login.aspx");
             UserID = Convert.ToInt32(Session["UserID"].ToString());
             ApplicantID = Convert.ToInt32(Session["Applicant"].ToString());
-            docPath = docPath + "/" + ApplicantID + "/video/";
+            docPath = docPath + "/" + UserID + "/video/";
             Response.ContentType = ContentType;
 
             Response.AppendHeader("Content-Disposition", "attachment; filename=" + Path.GetFileName(docPath + filePath));
