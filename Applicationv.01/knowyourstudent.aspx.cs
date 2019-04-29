@@ -26,7 +26,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             BindAlternateAgeProof();
             BindAlternateProof();
             BindAlternateIDProof();
-            PopulatePersonalInfo(); SetControlsUniversitywise(1);
+            PopulatePersonalInfo();SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         }
     }
 
@@ -277,71 +277,130 @@ public partial class knowyourstudent : System.Web.UI.Page
         }
     }
     private void SetControlsUniversitywise(int universityID)
-    {
-
-        var fields = (from pfm in db.primaryfieldmaster
-                      join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                      where ufm.universityid == universityID && ufm.formid == 8
-                      select new
-                      {
-                          primaryfiledname = pfm.primaryfiledname,
-
-                      }).ToList();
-        for (int k = 0; k < fields.Count; k++)
+    {try
         {
-            switch (fields[k].primaryfiledname)
+            string SecondaryLanguage = "";
+            if (Session["SecondaryLang"] != null)
             {
-                case "PASSPORT NUMBER":
-                    passportno.Attributes.Add("style", "display:block;");
-                    labelpassportno.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "DATE OF ISSUE":
-                    dateofissue.Attributes.Add("style", "display:block;");
-                    labeldateofissue.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "COUNTRY OF ISSUE":
-                    countryIssue.Attributes.Add("style", "display:block;");
-                    labelcountryIssue.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "EXPIRY DATE":
-                    expirydate.Attributes.Add("style", "display:block;");
-                    labelexpirydate.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "CITY OF ISSUE":
-                    issueplace.Attributes.Add("style", "display:block;");
-                    labelissueplace.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "ALTERNATIVE PROOF OF IDENTITY":
-                    alternateidentity.Attributes.Add("style", "display:block;");
-                    alternateIdentitytype.Attributes.Add("style", "display:block;");
-                    alternateIdentityNo.Attributes.Add("style", "display:block;");
-                    labelalternateidentity.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "ALTERNATIVE PROOF OF DATE OF BIRTH":
-                    alternatedobidentity.Attributes.Add("style", "display:block;");
-                    alternatedobIdentitytype.Attributes.Add("style", "display:block;");
-                    alternatedobIdentityNo.Attributes.Add("style", "display:block;");
-                    labelalternatedobidentity.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "ALTERNATIVE PROOF OF RESIDENCE":
-                    alternateresidenceidenity.Attributes.Add("style", "display:block;");
-                    alternateresidenceIdentitytype.Attributes.Add("style", "display:block;");
-                    alternateresidenceIdentityNo.Attributes.Add("style", "display:block;");
-                    labelalternateresidenceidenity.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "IDENTITY TYPE":
-                    labelalternatedobIdentitytype.InnerHtml = fields[k].primaryfiledname;
-                    labelalternateIdentitytype.InnerHtml = fields[k].primaryfiledname;
-                    labelalternateresidenceIdentitytype.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "IDENTITY NUMBER":
-                    labelalternateIdentityNo.InnerHtml = fields[k].primaryfiledname;
-                    labelalternatedobIdentityNo.InnerHtml = fields[k].primaryfiledname;
-                    labelalternateresidenceIdentityNo.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                default:
-                    break;
+                SecondaryLanguage = Session["SecondaryLang"].ToString();
             }
+            var fields = (from pfm in db.primaryfieldmaster
+                          join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.universityid == universityID && ufm.formid == 8 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            if (fields.Count == 0 && SecondaryLanguage != "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 8 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            }
+            else if (fields.Count == 0 && SecondaryLanguage == "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 8 && ufm.universityid == universityID
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+            if (fields.Count == 0)
+            {
+                fields = (from pfm in db.primaryfieldmaster
+
+                          where pfm.formid == 8
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+
+            for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {
+                    case "PASSPORT NUMBER":
+                        passportno.Attributes.Add("style", "display:block;");
+                        labelpassportno.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "DATE OF ISSUE":
+                        dateofissue.Attributes.Add("style", "display:block;");
+                        labeldateofissue.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "COUNTRY OF ISSUE":
+                        countryIssue.Attributes.Add("style", "display:block;");
+                        labelcountryIssue.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "EXPIRY DATE":
+                        expirydate.Attributes.Add("style", "display:block;");
+                        labelexpirydate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "CITY OF ISSUE":
+                        issueplace.Attributes.Add("style", "display:block;");
+                        labelissueplace.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "ALTERNATIVE PROOF OF IDENTITY":
+                        alternateidentity.Attributes.Add("style", "display:block;");
+                        alternateIdentitytype.Attributes.Add("style", "display:block;");
+                        alternateIdentityNo.Attributes.Add("style", "display:block;");
+                        labelalternateidentity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "ALTERNATIVE PROOF OF DATE OF BIRTH":
+                        alternatedobidentity.Attributes.Add("style", "display:block;");
+                        alternatedobIdentitytype.Attributes.Add("style", "display:block;");
+                        alternatedobIdentityNo.Attributes.Add("style", "display:block;");
+                        labelalternatedobidentity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "ALTERNATIVE PROOF OF RESIDENCE":
+                        alternateresidenceidenity.Attributes.Add("style", "display:block;");
+                        alternateresidenceIdentitytype.Attributes.Add("style", "display:block;");
+                        alternateresidenceIdentityNo.Attributes.Add("style", "display:block;");
+                        labelalternateresidenceidenity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "IDENTITY TYPE":
+                        labelalternatedobIdentitytype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelalternateIdentitytype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelalternateresidenceIdentitytype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "IDENTITY NUMBER":
+                        labelalternateIdentityNo.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelalternatedobIdentityNo.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelalternateresidenceIdentityNo.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
         }
     }
 }

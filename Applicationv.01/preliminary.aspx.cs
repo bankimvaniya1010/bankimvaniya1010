@@ -16,6 +16,7 @@ public partial class preliminary : System.Web.UI.Page
     Logger objLog = new Logger();
     protected string Score, Results = "";
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
@@ -23,12 +24,16 @@ public partial class preliminary : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (!IsPostBack)
         {
-            VideoList = db.preliminaryvideomaster.Where(x => x.status == 1).ToList();
+            VideoList = db.preliminaryvideomaster.Where(x => x.status == 1 && x.universityid== UniversityID).ToList();
+            if(VideoList.Count==0)
+                VideoList = db.preliminaryvideomaster.Where(x => x.status == 1).ToList();
             video.Visible = true;
             questions.Visible = false;
             results.Visible = false;
         }
     }
+   
+
     public List<T> Randomize<T>(List<T> list)
     {
         List<T> randomizedList = new List<T>();
@@ -45,7 +50,33 @@ public partial class preliminary : System.Web.UI.Page
     {
         try
         {
-            QuestionsList = db.preliminary_questionmaster.ToList();
+          var  QuestionsList = (from um in db.university_master
+                             join pqm in db.preliminary_questionmaster on um.universityID equals pqm.universityid
+                             into combined
+                             from x in combined.DefaultIfEmpty()
+                             where x.universityid == UniversityID
+                             select new
+                             {
+                                 preliminaryid = x.preliminaryid,
+                                 question = x.question,
+                                 answer1 = x.answer1,
+                                 answer2 = x.answer2,
+                                 answer3 = x.answer3,
+                                 answer4 = x.answer4,
+                             }).ToList();
+            if (QuestionsList.Count == 0)
+            {
+                QuestionsList = (from  pqm in db.preliminary_questionmaster 
+                                 select new
+                                 {
+                                     preliminaryid = pqm.preliminaryid,
+                                     question = pqm.question,
+                                     answer1 = pqm.answer1,
+                                     answer2 = pqm.answer2,
+                                     answer3 = pqm.answer3,
+                                     answer4 = pqm.answer4,
+                                 }).ToList();
+            }
             QuestionsList = Randomize(QuestionsList);
             QuestionsList = QuestionsList.Skip(0).Take(5).ToList();
             Session["Questions"] = QuestionsList;

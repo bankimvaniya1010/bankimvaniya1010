@@ -81,62 +81,6 @@ public partial class applicant_education
     public string othercourse_name { get; set; }
 }
 
-public partial class applicant_gapsdetails
-{
-    public int gapId { get; set; }
-    public Nullable<long> applicantId { get; set; }
-    public Nullable<System.DateTime> gap_from { get; set; }
-    public Nullable<System.DateTime> gap_to { get; set; }
-    public string explanation { get; set; }
-    public Nullable<System.DateTime> creationdate { get; set; }
-}
-
-public partial class applicant_languagetest
-{
-    public long lanugagetestID { get; set; }
-    public Nullable<long> applicantId { get; set; }
-    public Nullable<int> IsTestDone { get; set; }
-    public Nullable<System.DateTime> examDate { get; set; }
-    public Nullable<int> testId { get; set; }
-    public string overallscore { get; set; }
-    public string speaking { get; set; }
-    public string reading { get; set; }
-    public string listening { get; set; }
-    public string writing { get; set; }
-}
-
-public partial class Applicant_master
-{
-    public long applicantID { get; set; }
-    public string name { get; set; }
-    public string passport_no { get; set; }
-    public Nullable<System.DateTime> dob { get; set; }
-    public string pan_no { get; set; }
-    public string votercard_no { get; set; }
-    public string adhar_no { get; set; }
-    public Nullable<int> gender { get; set; }
-    public string mobile_no { get; set; }
-    public string course_applied { get; set; }
-    public string university_applied { get; set; }
-    public string intakeforwhichapplied { get; set; }
-    public Nullable<int> status { get; set; }
-    public Nullable<int> universityid { get; set; }
-    public string email { get; set; }
-    public Nullable<long> userid { get; set; }
-    public Nullable<int> personaldetails { get; set; }
-    public Nullable<int> acadmicdetails { get; set; }
-    public Nullable<int> englishprofiency { get; set; }
-    public Nullable<int> agedetails { get; set; }
-    public Nullable<int> financaildetails { get; set; }
-    public System.DateTime creationtime { get; set; }
-    public Nullable<int> isusercreated { get; set; }
-    public string nationality { get; set; }
-    public Nullable<System.DateTime> mailsentdatetime { get; set; }
-    public Nullable<int> isanswerdprimaryquestion { get; set; }
-    public Nullable<int> isanswerdaddonquestion { get; set; }
-    public Nullable<int> isuploadedvideointerview { get; set; }
-}
-
 public partial class applicantdatavalidation
 {
     public long id { get; set; }
@@ -489,24 +433,6 @@ public partial class educationmediummaster
     public string description { get; set; }
 }
 
-public partial class financial_support_details
-{
-    public long financialid { get; set; }
-    public Nullable<long> applicantid { get; set; }
-    public string financial_intstitue_name { get; set; }
-    public string address { get; set; }
-    public string contact_no { get; set; }
-    public string branch_manager_name { get; set; }
-    public string branch_manager_contactno { get; set; }
-    public string branch_manager_mobile { get; set; }
-    public string typeoffunds { get; set; }
-    public string accountholdername { get; set; }
-    public string relationship { get; set; }
-    public string accountno { get; set; }
-    public Nullable<System.DateTime> accountopeningDate { get; set; }
-    public Nullable<decimal> accountbalance { get; set; }
-}
-
 public partial class formmaster
 {
     public int formid { get; set; }
@@ -563,6 +489,7 @@ public partial class preliminary_questionmaster
     public string answer4 { get; set; }
     public Nullable<int> status { get; set; }
     public string correctanswer { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class preliminaryapplicantanswers
@@ -580,6 +507,7 @@ public partial class preliminaryvideomaster
     public string videourl { get; set; }
     public string description { get; set; }
     public Nullable<int> status { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class primaryfieldmaster
@@ -637,21 +565,6 @@ public partial class secondaryLanguagemaster
     public int id { get; set; }
     public string languagecode { get; set; }
     public string secondaryLanguagename { get; set; }
-}
-
-public partial class sponsor_details
-{
-    public long sponserID { get; set; }
-    public Nullable<long> applicantID { get; set; }
-    public string name { get; set; }
-    public string employment_details { get; set; }
-    public string designation { get; set; }
-    public string relationship { get; set; }
-    public Nullable<decimal> annualincome { get; set; }
-    public Nullable<int> isfiledItr { get; set; }
-    public Nullable<System.DateTime> durationfrom { get; set; }
-    public Nullable<System.DateTime> durationto { get; set; }
-    public Nullable<System.DateTime> creationdate { get; set; }
 }
 
 public partial class studymodemaster

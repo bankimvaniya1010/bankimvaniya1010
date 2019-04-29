@@ -23,14 +23,16 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
     {
         try
         {
-            var QuestionList = (from q in db.preliminaryvideomaster
+            var QuestionList = (from q in db.preliminaryvideomaster join um in db.university_master
+                                on q.universityid equals um.universityID
 
                                 select new
                                 {
                                     id = q.id,
                                     videourl = q.videourl,
                                     description = q.description,
-                                    status = q.status
+                                    status = q.status,
+                                    UniversityName= um.university_name
                                 }).ToList();
             if (QuestionList != null)
             {
@@ -55,10 +57,13 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
                 preliminaryvideomaster objVideo = new preliminaryvideomaster();
                 TextBox txtVideoURL = (TextBox)QuestiontGridView.FooterRow.FindControl("txtVideoFooter");
                 TextBox txtDescription = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescriptionFooter");
+                DropDownList ddlUniversity = (DropDownList)QuestiontGridView.FooterRow.FindControl("ddlUniversityFooter");
                 CheckBox chkStatus = (CheckBox)QuestiontGridView.FooterRow.FindControl("chkValidFooter");
 
                 objVideo.videourl = txtVideoURL.Text.Trim();
                 objVideo.description = txtDescription.Text.Trim();
+                if (ddlUniversity.SelectedValue != "")
+                    objVideo.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
                 objVideo.status = chkStatus.Checked==true?1:0;
                 db.preliminaryvideomaster.Add(objVideo);
 
@@ -87,10 +92,13 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
             preliminaryvideomaster qm = db.preliminaryvideomaster.Where(b => b.id == ID).First();
             TextBox txtVideoURL = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtVideoURL");
             TextBox txtDescription = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescription");
+            DropDownList ddlUniversity = (DropDownList)QuestiontGridView.Rows[e.RowIndex].FindControl("ddlUniversity");
             CheckBox chkStatus = (CheckBox)QuestiontGridView.Rows[e.RowIndex].FindControl("chkValidEdit");
             qm.videourl = txtVideoURL.Text.Trim();
             qm.description = txtDescription.Text.Trim();
             qm.status = chkStatus.Checked == true ? 1 : 0;
+            if (ddlUniversity.SelectedValue != "")
+                qm.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
             QuestiontGridView.EditIndex = -1;
             db.SaveChanges();
             BindGrid();
@@ -120,7 +128,7 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[5].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
@@ -151,5 +159,52 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void QuestiontGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        ListItem lst = new ListItem("Please select", "0");
+        var University = db.university_master.ToList();
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            if (e.Row.DataItem != null)
+            {
+                //check if is in edit mode
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+
+                    DropDownList ddlUniversityEdit = (e.Row.FindControl("ddlUniversity") as DropDownList);
+                    string selectedName = ""; // DataBinder.Eval(e.Row.DataItem, "inferenceDescription").ToString();
+
+                    Label lblUniversity = (e.Row.FindControl("lblUniversityEdit") as Label);
+                    if (lblUniversity != null)
+                        selectedName = lblUniversity.Text;
+                    if (ddlUniversityEdit != null)
+                    {
+
+                        ddlUniversityEdit.DataSource = University;
+                        ddlUniversityEdit.DataTextField = "university_name";
+                        ddlUniversityEdit.DataValueField = "universityID";
+                        ddlUniversityEdit.DataBind();
+                        ddlUniversityEdit.Items.Insert(0, lst);
+                        ddlUniversityEdit.Items.FindByText(selectedName).Selected = true;
+                    }
+                }
+            }
+        }
+        if (e.Row.RowType == DataControlRowType.Footer)
+        {
+            DropDownList ddlUniversityFooter = (e.Row.FindControl("ddlUniversityFooter") as DropDownList);
+            if (ddlUniversityFooter != null)
+            {
+
+                ddlUniversityFooter.DataSource = University;
+                ddlUniversityFooter.DataTextField = "university_name";
+                ddlUniversityFooter.DataValueField = "universityID";
+                ddlUniversityFooter.DataBind();
+                ddlUniversityFooter.Items.Insert(0, lst);
+            }
+        }
+
     }
 }

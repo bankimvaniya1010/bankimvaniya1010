@@ -3,6 +3,9 @@ using System.Configuration;
 using System.IO;
 using System.Net.Mail;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+
 public class Common
 {
     Logger log = new Logger();
@@ -180,10 +183,10 @@ public class Common
     public string GetDisability(int id)
     {
         string Disability = "";
-       
+
         var GetDisability = db.disabilitymaster.Where(x => x.id == id).FirstOrDefault();
-        if(GetDisability!=null)
-        Disability = GetDisability.description;
+        if (GetDisability != null)
+            Disability = GetDisability.description;
 
         return Disability;
     }
@@ -437,5 +440,18 @@ public class Common
         }
         return country;
     }
-
+    [Serializable]
+    public class FieldList
+    {
+        public List<FieldInfo> FieldInfos { get; set; }
+    }
+    [Serializable]
+    public class FieldInfo
+    {
+        public string PrimaryFiledName { get; set; }
+        public string FieldNameInstructions { get; set; }
+        public string SecondaryFieldnameInstructions { get; set; }
+        public string SecondaryFieldnameLanguage { get; set; }
+        public string SecondaryFielddnameValue { get; set; }
+    }
 }

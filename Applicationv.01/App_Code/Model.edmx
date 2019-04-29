@@ -85,65 +85,6 @@
           <Property Name="repeats_backlog" Type="varchar" MaxLength="200" />
           <Property Name="othercourse_name" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="applicant_gapsdetails">
-          <Key>
-            <PropertyRef Name="gapId" />
-          </Key>
-          <Property Name="gapId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="applicantId" Type="bigint" />
-          <Property Name="gap_from" Type="date" />
-          <Property Name="gap_to" Type="date" />
-          <Property Name="explanation" Type="longtext" />
-          <Property Name="creationdate" Type="datetime" Precision="0" />
-        </EntityType>
-        <EntityType Name="applicant_languagetest">
-          <Key>
-            <PropertyRef Name="lanugagetestID" />
-          </Key>
-          <Property Name="lanugagetestID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="applicantId" Type="bigint" />
-          <Property Name="IsTestDone" Type="int" />
-          <Property Name="examDate" Type="datetime" Precision="0" />
-          <Property Name="testId" Type="int" />
-          <Property Name="overallscore" Type="varchar" MaxLength="10" />
-          <Property Name="speaking" Type="varchar" MaxLength="10" />
-          <Property Name="reading" Type="varchar" MaxLength="10" />
-          <Property Name="listening" Type="varchar" MaxLength="10" />
-          <Property Name="writing" Type="varchar" MaxLength="10" />
-        </EntityType>
-        <EntityType Name="Applicant_master">
-          <Key>
-            <PropertyRef Name="applicantID" />
-          </Key>
-          <Property Name="applicantID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="100" />
-          <Property Name="passport_no" Type="varchar" MaxLength="15" />
-          <Property Name="dob" Type="date" />
-          <Property Name="pan_no" Type="varchar" MaxLength="15" />
-          <Property Name="votercard_no" Type="varchar" MaxLength="20" />
-          <Property Name="adhar_no" Type="varchar" MaxLength="20" />
-          <Property Name="gender" Type="int" />
-          <Property Name="mobile_no" Type="varchar" MaxLength="13" />
-          <Property Name="course_applied" Type="varchar" MaxLength="100" />
-          <Property Name="university_applied" Type="varchar" MaxLength="100" />
-          <Property Name="intakeforwhichapplied" Type="varchar" MaxLength="100" />
-          <Property Name="status" Type="int" />
-          <Property Name="universityid" Type="int" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
-          <Property Name="userid" Type="bigint" />
-          <Property Name="personaldetails" Type="int" />
-          <Property Name="acadmicdetails" Type="int" />
-          <Property Name="englishprofiency" Type="int" />
-          <Property Name="agedetails" Type="int" />
-          <Property Name="financaildetails" Type="int" />
-          <Property Name="creationtime" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="isusercreated" Type="int" />
-          <Property Name="nationality" Type="varchar" MaxLength="20" />
-          <Property Name="mailsentdatetime" Type="datetime" Precision="0" />
-          <Property Name="isanswerdprimaryquestion" Type="int" />
-          <Property Name="isanswerdaddonquestion" Type="int" />
-          <Property Name="isuploadedvideointerview" Type="int" />
-        </EntityType>
         <EntityType Name="applicantdatavalidation">
           <Key>
             <PropertyRef Name="id" />
@@ -517,25 +458,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="45" />
         </EntityType>
-        <EntityType Name="financial_support_details">
-          <Key>
-            <PropertyRef Name="financialid" />
-          </Key>
-          <Property Name="financialid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="applicantid" Type="bigint" />
-          <Property Name="financial_intstitue_name" Type="varchar" MaxLength="100" />
-          <Property Name="address" Type="varchar" MaxLength="100" />
-          <Property Name="contact_no" Type="varchar" MaxLength="45" />
-          <Property Name="branch_manager_name" Type="varchar" MaxLength="100" />
-          <Property Name="branch_manager_contactno" Type="varchar" MaxLength="45" />
-          <Property Name="branch_manager_mobile" Type="varchar" MaxLength="15" />
-          <Property Name="typeoffunds" Type="varchar" MaxLength="10" />
-          <Property Name="accountholdername" Type="varchar" MaxLength="100" />
-          <Property Name="relationship" Type="varchar" MaxLength="100" />
-          <Property Name="accountno" Type="varchar" MaxLength="45" />
-          <Property Name="accountopeningDate" Type="date" />
-          <Property Name="accountbalance" Type="decimal" Precision="10" Scale="0" />
-        </EntityType>
         <EntityType Name="formmaster">
           <Key>
             <PropertyRef Name="formid" />
@@ -588,6 +510,7 @@
           <Property Name="answer4" Type="varchar" MaxLength="45" />
           <Property Name="status" Type="int" />
           <Property Name="correctanswer" Type="varchar" MaxLength="45" />
+          <Property Name="universityid" Type="int" />
         </EntityType>
         <EntityType Name="preliminaryapplicantanswers">
           <Key>
@@ -607,6 +530,7 @@
           <Property Name="videourl" Type="varchar" MaxLength="100" />
           <Property Name="description" Type="varchar" MaxLength="1000" />
           <Property Name="status" Type="int" />
+          <Property Name="universityid" Type="int" />
         </EntityType>
         <EntityType Name="primaryfieldmaster">
           <Key>
@@ -670,22 +594,6 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="languagecode" Type="varchar" MaxLength="5" />
           <Property Name="secondaryLanguagename" Type="varchar" MaxLength="45" />
-        </EntityType>
-        <EntityType Name="sponsor_details">
-          <Key>
-            <PropertyRef Name="sponserID" />
-          </Key>
-          <Property Name="sponserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="applicantID" Type="bigint" />
-          <Property Name="name" Type="varchar" MaxLength="100" />
-          <Property Name="employment_details" Type="varchar" MaxLength="100" />
-          <Property Name="designation" Type="varchar" MaxLength="100" />
-          <Property Name="relationship" Type="varchar" MaxLength="45" />
-          <Property Name="annualincome" Type="decimal" Precision="10" Scale="0" />
-          <Property Name="isfiledItr" Type="int" />
-          <Property Name="durationfrom" Type="date" />
-          <Property Name="durationto" Type="date" />
-          <Property Name="creationdate" Type="date" />
         </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
@@ -804,9 +712,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="answeroptionssecondary" EntityType="Self.answeroptionssecondary" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applcantdetailfieldvalidationmaster" EntityType="Self.applcantdetailfieldvalidationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicant_education" EntityType="Self.applicant_education" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="applicant_gapsdetails" EntityType="Self.applicant_gapsdetails" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="applicant_languagetest" EntityType="Self.applicant_languagetest" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="Applicant_master" EntityType="Self.Applicant_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantdatavalidation" EntityType="Self.applicantdatavalidation" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantdetails" EntityType="Self.applicantdetails" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantdocumentmaster" EntityType="Self.applicantdocumentmaster" Schema="GTE" store:Type="Tables" />
@@ -828,7 +733,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="financial_support_details" EntityType="Self.financial_support_details" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formmaster" EntityType="Self.formmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="grademaster" EntityType="Self.grademaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
@@ -843,7 +747,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="secondaryLanguagemaster" EntityType="Self.secondaryLanguagemaster" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="sponsor_details" EntityType="Self.sponsor_details" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
@@ -931,65 +834,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="course_enddate" Type="DateTime" />
           <Property Name="repeats_backlog" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="othercourse_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="applicant_gapsdetails">
-          <Key>
-            <PropertyRef Name="gapId" />
-          </Key>
-          <Property Name="gapId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantId" Type="Int64" />
-          <Property Name="gap_from" Type="DateTime" />
-          <Property Name="gap_to" Type="DateTime" />
-          <Property Name="explanation" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="creationdate" Type="DateTime" />
-        </EntityType>
-        <EntityType Name="applicant_languagetest">
-          <Key>
-            <PropertyRef Name="lanugagetestID" />
-          </Key>
-          <Property Name="lanugagetestID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantId" Type="Int64" />
-          <Property Name="IsTestDone" Type="Int32" />
-          <Property Name="examDate" Type="DateTime" />
-          <Property Name="testId" Type="Int32" />
-          <Property Name="overallscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="speaking" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="reading" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="listening" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="writing" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Applicant_master">
-          <Key>
-            <PropertyRef Name="applicantID" />
-          </Key>
-          <Property Name="applicantID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="passport_no" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="dob" Type="DateTime" />
-          <Property Name="pan_no" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="votercard_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="adhar_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="gender" Type="Int32" />
-          <Property Name="mobile_no" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
-          <Property Name="course_applied" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="university_applied" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="intakeforwhichapplied" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="userid" Type="Int64" />
-          <Property Name="personaldetails" Type="Int32" />
-          <Property Name="acadmicdetails" Type="Int32" />
-          <Property Name="englishprofiency" Type="Int32" />
-          <Property Name="agedetails" Type="Int32" />
-          <Property Name="financaildetails" Type="Int32" />
-          <Property Name="creationtime" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="isusercreated" Type="Int32" />
-          <Property Name="nationality" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="mailsentdatetime" Type="DateTime" />
-          <Property Name="isanswerdprimaryquestion" Type="Int32" />
-          <Property Name="isanswerdaddonquestion" Type="Int32" />
-          <Property Name="isuploadedvideointerview" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -1123,25 +967,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="financial_support_details">
-          <Key>
-            <PropertyRef Name="financialid" />
-          </Key>
-          <Property Name="financialid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int64" />
-          <Property Name="financial_intstitue_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="contact_no" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="branch_manager_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="branch_manager_contactno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="branch_manager_mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="typeoffunds" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="accountholdername" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="relationship" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="accountno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="accountopeningDate" Type="DateTime" />
-          <Property Name="accountbalance" Type="Decimal" />
-        </EntityType>
         <EntityType Name="formmaster">
           <Key>
             <PropertyRef Name="formid" />
@@ -1245,22 +1070,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="languagecode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="secondaryLanguagename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="sponsor_details">
-          <Key>
-            <PropertyRef Name="sponserID" />
-          </Key>
-          <Property Name="sponserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantID" Type="Int64" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="employment_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="relationship" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="annualincome" Type="Decimal" />
-          <Property Name="isfiledItr" Type="Int32" />
-          <Property Name="durationfrom" Type="DateTime" />
-          <Property Name="durationto" Type="DateTime" />
-          <Property Name="creationdate" Type="DateTime" />
-        </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1341,9 +1150,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="answermaster" EntityType="Self.answermaster" />
           <EntitySet Name="answeroptionssecondary" EntityType="Self.answeroptionssecondary" />
           <EntitySet Name="applicant_education" EntityType="Self.applicant_education" />
-          <EntitySet Name="applicant_gapsdetails" EntityType="Self.applicant_gapsdetails" />
-          <EntitySet Name="applicant_languagetest" EntityType="Self.applicant_languagetest" />
-          <EntitySet Name="Applicant_master" EntityType="Self.Applicant_master" />
           <EntitySet Name="applicantdocumentmaster" EntityType="Self.applicantdocumentmaster" />
           <EntitySet Name="applicantformmaster" EntityType="Self.applicantformmaster" />
           <EntitySet Name="applicantprogressbar" EntityType="Self.applicantprogressbar" />
@@ -1357,7 +1163,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" />
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" />
-          <EntitySet Name="financial_support_details" EntityType="Self.financial_support_details" />
           <EntitySet Name="formmaster" EntityType="Self.formmaster" />
           <EntitySet Name="grademaster" EntityType="Self.grademaster" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" />
@@ -1369,7 +1174,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="relative_master" EntityType="Self.relative_master" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" />
           <EntitySet Name="secondaryLanguagemaster" EntityType="Self.secondaryLanguagemaster" />
-          <EntitySet Name="sponsor_details" EntityType="Self.sponsor_details" />
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" />
           <EntitySet Name="university_master" EntityType="Self.university_master" />
@@ -1395,12 +1199,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicantdatavalidation" EntityType="GTEModel.applicantdatavalidation" />
           <EntitySet Name="tooltipmaster" EntityType="GTEModel.tooltipmaster" />
           <EntitySet Name="university_campusmapping" EntityType="GTEModel.university_campusmapping" />
-          <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
-          <EntitySet Name="preliminaryvideomaster" EntityType="GTEModel.preliminaryvideomaster" />
           <EntitySet Name="Applicantreferencecheck" EntityType="GTEModel.Applicantreferencecheck" />
           <EntitySet Name="agentmaster" EntityType="GTEModel.agentmaster" />
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
+          <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
+          <EntitySet Name="preliminaryvideomaster" EntityType="GTEModel.preliminaryvideomaster" />
         </EntityContainer>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -1589,19 +1393,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="cityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="countryid" Type="Int32" />
         </EntityType>
-        <EntityType Name="preliminary_questionmaster">
-          <Key>
-            <PropertyRef Name="preliminaryid" />
-          </Key>
-          <Property Name="preliminaryid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="question" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="answer1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="answer2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="answer3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="answer4" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="correctanswer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="preliminaryapplicantanswers">
           <Key>
             <PropertyRef Name="preliminaryapplicantanswersid" />
@@ -1611,15 +1402,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="preliminaryid" Type="Int32" />
           <Property Name="answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="answersubmittedtime" Type="DateTime" />
-        </EntityType>
-        <EntityType Name="preliminaryvideomaster">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Int32" />
         </EntityType>
         <EntityType Name="Applicantreferencecheck">
           <Key>
@@ -1717,6 +1499,30 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="agentid" Type="Int32" />
           <Property Name="isstudentreferbyagent" Type="Int32" />
         </EntityType>
+        <EntityType Name="preliminary_questionmaster">
+          <Key>
+            <PropertyRef Name="preliminaryid" />
+          </Key>
+          <Property Name="preliminaryid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="answer1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answer2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answer3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answer4" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="correctanswer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="preliminaryvideomaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1790,68 +1596,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="course_enddate" ColumnName="course_enddate" />
                 <ScalarProperty Name="repeats_backlog" ColumnName="repeats_backlog" />
                 <ScalarProperty Name="othercourse_name" ColumnName="othercourse_name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicant_gapsdetails">
-            <EntityTypeMapping TypeName="GTEModel.applicant_gapsdetails">
-              <MappingFragment StoreEntitySet="applicant_gapsdetails">
-                <ScalarProperty Name="gapId" ColumnName="gapId" />
-                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
-                <ScalarProperty Name="gap_from" ColumnName="gap_from" />
-                <ScalarProperty Name="gap_to" ColumnName="gap_to" />
-                <ScalarProperty Name="explanation" ColumnName="explanation" />
-                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicant_languagetest">
-            <EntityTypeMapping TypeName="GTEModel.applicant_languagetest">
-              <MappingFragment StoreEntitySet="applicant_languagetest">
-                <ScalarProperty Name="lanugagetestID" ColumnName="lanugagetestID" />
-                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
-                <ScalarProperty Name="IsTestDone" ColumnName="IsTestDone" />
-                <ScalarProperty Name="examDate" ColumnName="examDate" />
-                <ScalarProperty Name="testId" ColumnName="testId" />
-                <ScalarProperty Name="overallscore" ColumnName="overallscore" />
-                <ScalarProperty Name="speaking" ColumnName="speaking" />
-                <ScalarProperty Name="reading" ColumnName="reading" />
-                <ScalarProperty Name="listening" ColumnName="listening" />
-                <ScalarProperty Name="writing" ColumnName="writing" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Applicant_master">
-            <EntityTypeMapping TypeName="GTEModel.Applicant_master">
-              <MappingFragment StoreEntitySet="Applicant_master">
-                <ScalarProperty Name="applicantID" ColumnName="applicantID" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="passport_no" ColumnName="passport_no" />
-                <ScalarProperty Name="dob" ColumnName="dob" />
-                <ScalarProperty Name="pan_no" ColumnName="pan_no" />
-                <ScalarProperty Name="votercard_no" ColumnName="votercard_no" />
-                <ScalarProperty Name="adhar_no" ColumnName="adhar_no" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="mobile_no" ColumnName="mobile_no" />
-                <ScalarProperty Name="course_applied" ColumnName="course_applied" />
-                <ScalarProperty Name="university_applied" ColumnName="university_applied" />
-                <ScalarProperty Name="intakeforwhichapplied" ColumnName="intakeforwhichapplied" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
-                <ScalarProperty Name="personaldetails" ColumnName="personaldetails" />
-                <ScalarProperty Name="acadmicdetails" ColumnName="acadmicdetails" />
-                <ScalarProperty Name="englishprofiency" ColumnName="englishprofiency" />
-                <ScalarProperty Name="agedetails" ColumnName="agedetails" />
-                <ScalarProperty Name="financaildetails" ColumnName="financaildetails" />
-                <ScalarProperty Name="creationtime" ColumnName="creationtime" />
-                <ScalarProperty Name="isusercreated" ColumnName="isusercreated" />
-                <ScalarProperty Name="nationality" ColumnName="nationality" />
-                <ScalarProperty Name="mailsentdatetime" ColumnName="mailsentdatetime" />
-                <ScalarProperty Name="isanswerdprimaryquestion" ColumnName="isanswerdprimaryquestion" />
-                <ScalarProperty Name="isanswerdaddonquestion" ColumnName="isanswerdaddonquestion" />
-                <ScalarProperty Name="isuploadedvideointerview" ColumnName="isuploadedvideointerview" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2000,26 +1744,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="financial_support_details">
-            <EntityTypeMapping TypeName="GTEModel.financial_support_details">
-              <MappingFragment StoreEntitySet="financial_support_details">
-                <ScalarProperty Name="financialid" ColumnName="financialid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="financial_intstitue_name" ColumnName="financial_intstitue_name" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="contact_no" ColumnName="contact_no" />
-                <ScalarProperty Name="branch_manager_name" ColumnName="branch_manager_name" />
-                <ScalarProperty Name="branch_manager_contactno" ColumnName="branch_manager_contactno" />
-                <ScalarProperty Name="branch_manager_mobile" ColumnName="branch_manager_mobile" />
-                <ScalarProperty Name="typeoffunds" ColumnName="typeoffunds" />
-                <ScalarProperty Name="accountholdername" ColumnName="accountholdername" />
-                <ScalarProperty Name="relationship" ColumnName="relationship" />
-                <ScalarProperty Name="accountno" ColumnName="accountno" />
-                <ScalarProperty Name="accountopeningDate" ColumnName="accountopeningDate" />
-                <ScalarProperty Name="accountbalance" ColumnName="accountbalance" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="formmaster">
             <EntityTypeMapping TypeName="GTEModel.formmaster">
               <MappingFragment StoreEntitySet="formmaster">
@@ -2131,23 +1855,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="languagecode" ColumnName="languagecode" />
                 <ScalarProperty Name="secondaryLanguagename" ColumnName="secondaryLanguagename" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sponsor_details">
-            <EntityTypeMapping TypeName="GTEModel.sponsor_details">
-              <MappingFragment StoreEntitySet="sponsor_details">
-                <ScalarProperty Name="sponserID" ColumnName="sponserID" />
-                <ScalarProperty Name="applicantID" ColumnName="applicantID" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="employment_details" ColumnName="employment_details" />
-                <ScalarProperty Name="designation" ColumnName="designation" />
-                <ScalarProperty Name="relationship" ColumnName="relationship" />
-                <ScalarProperty Name="annualincome" ColumnName="annualincome" />
-                <ScalarProperty Name="isfiledItr" ColumnName="isfiledItr" />
-                <ScalarProperty Name="durationfrom" ColumnName="durationfrom" />
-                <ScalarProperty Name="durationto" ColumnName="durationto" />
-                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2429,20 +2136,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="preliminary_questionmaster">
-            <EntityTypeMapping TypeName="GTEModel.preliminary_questionmaster">
-              <MappingFragment StoreEntitySet="preliminary_questionmaster">
-                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="answer4" ColumnName="answer4" />
-                <ScalarProperty Name="answer3" ColumnName="answer3" />
-                <ScalarProperty Name="answer2" ColumnName="answer2" />
-                <ScalarProperty Name="answer1" ColumnName="answer1" />
-                <ScalarProperty Name="question" ColumnName="question" />
-                <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="preliminaryapplicantanswers">
             <EntityTypeMapping TypeName="GTEModel.preliminaryapplicantanswers">
               <MappingFragment StoreEntitySet="preliminaryapplicantanswers">
@@ -2451,16 +2144,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="preliminaryapplicantanswersid" ColumnName="preliminaryapplicantanswersid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="preliminaryvideomaster">
-            <EntityTypeMapping TypeName="GTEModel.preliminaryvideomaster">
-              <MappingFragment StoreEntitySet="preliminaryvideomaster">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="videourl" ColumnName="videourl" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2560,6 +2243,32 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preliminary_questionmaster">
+            <EntityTypeMapping TypeName="GTEModel.preliminary_questionmaster">
+              <MappingFragment StoreEntitySet="preliminary_questionmaster">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="answer4" ColumnName="answer4" />
+                <ScalarProperty Name="answer3" ColumnName="answer3" />
+                <ScalarProperty Name="answer2" ColumnName="answer2" />
+                <ScalarProperty Name="answer1" ColumnName="answer1" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preliminaryvideomaster">
+            <EntityTypeMapping TypeName="GTEModel.preliminaryvideomaster">
+              <MappingFragment StoreEntitySet="preliminaryvideomaster">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="videourl" ColumnName="videourl" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

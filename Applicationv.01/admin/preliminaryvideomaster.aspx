@@ -30,7 +30,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowCommand="QuestiontGridView_RowCommand" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnDataBound="QuestiontGridView_DataBound" OnRowDeleting="QuestiontGridView_RowDeleting">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowCommand="QuestiontGridView_RowCommand" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnDataBound="QuestiontGridView_DataBound" OnRowDeleting="QuestiontGridView_RowDeleting" OnRowDataBound="QuestiontGridView_RowDataBound">
 
                         <Columns>
 
@@ -61,6 +61,20 @@
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("description") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="University" SortExpression="universityid">
+                                <EditItemTemplate>
+                                     <asp:Label ID="lblUniversityEdit" style="display:none" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
+                                    <asp:DropDownList ID="ddlUniversity"  runat="server" ></asp:DropDownList>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please Select University ' ControlToValidate='ddlUniversity' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:DropDownList ID="ddlUniversityFooter" runat="server" ></asp:DropDownList>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Please Select University ' ControlToValidate='ddlUniversityFooter' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Status" SortExpression="status">

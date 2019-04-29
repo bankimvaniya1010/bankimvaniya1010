@@ -22,7 +22,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
         userID = objUser.userid;
         if (!IsPostBack)
         {
-            PopulatePersonalInfo(); SetToolTips(); SetControlsUniversitywise(1);
+            PopulatePersonalInfo(); SetToolTips(); SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         }
     }
     private void PopulatePersonalInfo()
@@ -274,83 +274,142 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     }
     private void SetControlsUniversitywise(int universityID)
     {
-
-        var fields = (from pfm in db.primaryfieldmaster
-                      join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                      where ufm.universityid == universityID && ufm.formid == 4
-                      select new
-                      {
-                          primaryfiledname = pfm.primaryfiledname,
-
-                      }).ToList();
-        for (int k = 0; k < fields.Count; k++)
+        try
         {
-            switch (fields[k].primaryfiledname)
+            string SecondaryLanguage = "";
+            if (Session["SecondaryLang"] != null)
             {
-                case "EMAIL":
-                    email.Attributes.Add("style", "display:block;");
-                    labelemail.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "MOBILE/CELLULAR NUMBER":
-                    mobile.Attributes.Add("style", "display:block;");
-                    labelMobile.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "HOME PHONE":
-                    phone.Attributes.Add("style", "display:block;");
-                    labelphone.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
-                    skype.Attributes.Add("style", "display:block;");
-                    labelskype.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "SKYPE ID":
-                    skypeDesc.Attributes.Add("style", "display:block;");
-                    labelskypeDesc.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
-                    whatsapp.Attributes.Add("style", "display:block;");
-                    labelwhatsapp.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
-                    whatsappHave.Attributes.Add("style", "display:block;");
-                    labelwhatsappHave.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "WHATSAPP NUMBER":
-                    whatsappDesc.Attributes.Add("style", "display:block;");
-                    labelwhatsappDesc.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "POSTAL ADDRESS":
-                    postal.Attributes.Add("style", "display:block;");
-                    labelpostal.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
-                    address.Attributes.Add("style", "display:block;");
-                    labeladdress.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "CURRENT RESIDENTIAL ADDRESS":
-                    residential.Attributes.Add("style", "display:block;");
-                    labelResidential.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "GUARDIAN FULL NAME":
-                    guardianname.Attributes.Add("style", "display:block;");
-                    labelguardianname.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "RELATIONSHIP WITH GUARDIAN":
-                    guardianrelation.Attributes.Add("style", "display:block;");
-                    labelrelation.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "EMAIL OF GUARDIAN":
-                    guardianemail.Attributes.Add("style", "display:block;");
-                    labelguardianemail.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "MOBILE/CELLULAR NUMBER OF GUARDIAN":
-                    guardianmobile.Attributes.Add("style", "display:block;");
-                    labelguardianmobile.InnerHtml = fields[k].primaryfiledname;
-                    break;
-
-                default:
-                    break;
+                SecondaryLanguage = Session["SecondaryLang"].ToString();
             }
+
+            var fields = (from pfm in db.primaryfieldmaster
+                          join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.universityid == universityID && ufm.formid == 4 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            if (fields.Count == 0 && SecondaryLanguage != "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 4 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            }
+            else if (fields.Count == 0 && SecondaryLanguage == "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 4 && ufm.universityid == universityID
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+            if (fields.Count == 0)
+            {
+                fields = (from pfm in db.primaryfieldmaster
+
+                          where pfm.formid == 4
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+                for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {
+                    case "EMAIL":
+                        email.Attributes.Add("style", "display:block;");
+                        labelemail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "MOBILE/CELLULAR NUMBER":
+                        mobile.Attributes.Add("style", "display:block;");
+                        labelMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "HOME PHONE":
+                        phone.Attributes.Add("style", "display:block;");
+                        labelphone.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                        skype.Attributes.Add("style", "display:block;");
+                        labelskype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "SKYPE ID":
+                        skypeDesc.Attributes.Add("style", "display:block;");
+                        labelskypeDesc.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                        whatsapp.Attributes.Add("style", "display:block;");
+                        labelwhatsapp.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                        whatsappHave.Attributes.Add("style", "display:block;");
+                        labelwhatsappHave.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "WHATSAPP NUMBER":
+                        whatsappDesc.Attributes.Add("style", "display:block;");
+                        labelwhatsappDesc.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "POSTAL ADDRESS":
+                        postal.Attributes.Add("style", "display:block;");
+                        labelpostal.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
+                        address.Attributes.Add("style", "display:block;");
+                        labeladdress.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "CURRENT RESIDENTIAL ADDRESS":
+                        residential.Attributes.Add("style", "display:block;");
+                        labelResidential.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "GUARDIAN FULL NAME":
+                        guardianname.Attributes.Add("style", "display:block;");
+                        labelguardianname.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "RELATIONSHIP WITH GUARDIAN":
+                        guardianrelation.Attributes.Add("style", "display:block;");
+                        labelrelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "EMAIL OF GUARDIAN":
+                        guardianemail.Attributes.Add("style", "display:block;");
+                        labelguardianemail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "MOBILE/CELLULAR NUMBER OF GUARDIAN":
+                        guardianmobile.Attributes.Add("style", "display:block;");
+                        labelguardianmobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+        catch (Exception ex) {
+            objLog.WriteLog(ex.ToString());
         }
     }
 }
