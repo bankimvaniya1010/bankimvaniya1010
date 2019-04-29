@@ -26,6 +26,8 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
         try
         {
             var QuestionList = (from q in db.preliminary_questionmaster
+                                join um in db.university_master
+on q.universityid equals um.universityID
 
                                 select new
                                 {
@@ -35,7 +37,8 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
                                     answer2 = q.answer2,
                                     answer3 = q.answer3,
                                     answer4 = q.answer4,
-                                    correctanswer = q.correctanswer
+                                    correctanswer = q.correctanswer,
+                                    UniversityName = um.university_name
                                 }).ToList();
             if (QuestionList != null)
             {
@@ -64,13 +67,15 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
                 TextBox txtAnswer3 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer3Footer");
                 TextBox txtAnswer4 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer4Footer");
                 TextBox txtCorrectAnswer = (TextBox)QuestiontGridView.FooterRow.FindControl("txtCorrectAnswerFooter");
+                DropDownList ddlUniversity = (DropDownList)QuestiontGridView.FooterRow.FindControl("ddlUniversityFooter");
                 objQuestion.question = txtQuestion.Text.Trim();
                 objQuestion.answer1 = txtAnswer1.Text.Trim();
                 objQuestion.answer2 = txtAnswer2.Text.Trim();
                 objQuestion.answer3 = txtAnswer3.Text.Trim();
                 objQuestion.answer4 = txtAnswer4.Text.Trim();
                 objQuestion.correctanswer = txtCorrectAnswer.Text.Trim();
-
+                if(ddlUniversity.SelectedValue!="")
+                    objQuestion.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
                 db.preliminary_questionmaster.Add(objQuestion);
                 db.SaveChanges();
                 BindGrid();
@@ -101,12 +106,15 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
             TextBox txtAnswer3 = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtAnswer3");
             TextBox txtAnswer4 = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtAnswer4");
             TextBox txtCorrectAnswer = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtCorrectAnswer");
+            DropDownList ddlUniversity = (DropDownList)QuestiontGridView.Rows[e.RowIndex].FindControl("ddlUniversity");
             qm.question = txtQuestion.Text.Trim();
             qm.answer1 = txtAnswer1.Text.Trim();
             qm.answer2 = txtAnswer2.Text.Trim();
             qm.answer3 = txtAnswer3.Text.Trim();
             qm.answer4 = txtAnswer4.Text.Trim();
             qm.correctanswer = txtCorrectAnswer.Text.Trim();
+            if (ddlUniversity.SelectedValue != "")
+                qm.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
             QuestiontGridView.EditIndex = -1;
             db.SaveChanges();
             BindGrid();
@@ -136,7 +144,7 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[8].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[9].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
@@ -167,5 +175,52 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void QuestiontGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        ListItem lst = new ListItem("Please select", "0");
+        var University = db.university_master.ToList();
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            if (e.Row.DataItem != null)
+            {
+                //check if is in edit mode
+                if ((e.Row.RowState & DataControlRowState.Edit) > 0)
+                {
+
+                    DropDownList ddlUniversityEdit = (e.Row.FindControl("ddlUniversity") as DropDownList);
+                    string selectedName = ""; // DataBinder.Eval(e.Row.DataItem, "inferenceDescription").ToString();
+
+                    Label lblUniversity = (e.Row.FindControl("lblUniversityEdit") as Label);
+                    if (lblUniversity != null)
+                        selectedName = lblUniversity.Text;
+                    if (ddlUniversityEdit != null)
+                    {
+
+                        ddlUniversityEdit.DataSource = University;
+                        ddlUniversityEdit.DataTextField = "university_name";
+                        ddlUniversityEdit.DataValueField = "universityID";
+                        ddlUniversityEdit.DataBind();
+                        ddlUniversityEdit.Items.Insert(0, lst);
+                        ddlUniversityEdit.Items.FindByText(selectedName).Selected = true;
+                    }
+                }
+            }
+        }
+        if (e.Row.RowType == DataControlRowType.Footer)
+        {
+            DropDownList ddlUniversityFooter = (e.Row.FindControl("ddlUniversityFooter") as DropDownList);
+            if (ddlUniversityFooter != null)
+            {
+
+                ddlUniversityFooter.DataSource = University;
+                ddlUniversityFooter.DataTextField = "university_name";
+                ddlUniversityFooter.DataValueField = "universityID";
+                ddlUniversityFooter.DataBind();
+                ddlUniversityFooter.Items.Insert(0, lst);
+            }
+        }
+
     }
 }

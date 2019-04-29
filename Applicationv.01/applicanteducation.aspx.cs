@@ -42,226 +42,277 @@ public partial class applicanteducation : System.Web.UI.Page
             binddiplomagrade();
             bindhighergrade();
             bindhigherCourses();
-            //SetControlsUniversitywise(1);
+          SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         }
     }
     private void SetControlsUniversitywise(int universityID)
     {
-
-        var fields = (from pfm in db.primaryfieldmaster
-                      join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                      where ufm.universityid == universityID && ufm.formid == 2
-                      select new
-                      {
-                          primaryfiledname = pfm.primaryfiledname,
-
-                      }).ToList();
-        if (fields.Count == 0)
+        try
         {
-            fields = (from pfm in db.primaryfieldmaster
-                      join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                      where ufm.formid == 2
-                      select new
-                      {
-                          primaryfiledname = pfm.primaryfiledname,
-
-                      }).ToList();
-        }
-        for (int k = 0; k < fields.Count; k++)
-        {
-            switch (fields[k].primaryfiledname)
+            string SecondaryLanguage = "";
+            if (Session["SecondaryLang"] != null)
             {
-                case "HAVE YOU COMPLETED HIGH SCHOOL":
-                    highschool.Attributes.Add("style", "display:block;");
-                    labelhighschool.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "COUNTRY OF HIGH SCHOOL EDUCATION":
-                    highschoolCountry.Attributes.Add("style", "display:block;");
-                    labelhighschoolCountry.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "START DATE":
-                    highschoolstartDate.Attributes.Add("style", "display:block;");
-                    labelhighschoolstartDate.InnerHtml = fields[k].primaryfiledname;
-                    SecondarystartDate.Attributes.Add("style", "display:block;");
-                    labelSecondarystartDate.InnerHtml = fields[k].primaryfiledname;
-                    higherstartDate.Attributes.Add("style", "display:block;");
-                    labelhigherstartDate.InnerHtml = fields[k].primaryfiledname;
-                    diplomastartDate.Attributes.Add("style", "display:block;");
-                    labeldiplomastartDate.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "END DATE":
-                    highschoolendDate.Attributes.Add("style", "display:block;");
-                    labelhighschoolendDate.InnerHtml = fields[k].primaryfiledname;
-                    SecondaryendDate.Attributes.Add("style", "display:block;");
-                    labelSecondaryendDate.InnerHtml = fields[k].primaryfiledname;
-                    higherendDate.Attributes.Add("style", "display:block;");
-                    labelhigherendDate.InnerHtml = fields[k].primaryfiledname;
-                    diplomaendDate.Attributes.Add("style", "display:block;");
-                    labeldiplomaendDate.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "NAME OF SCHOOL":
-                    highschool.Attributes.Add("style", "display:block;");
-                    labelhighschool.InnerHtml = fields[k].primaryfiledname;
-                    SecondaryschoolName.Attributes.Add("style", "display:block;");
-                    labelSecondaryschoolName.InnerHtml = fields[k].primaryfiledname;
-                    higherschoolName.Attributes.Add("style", "display:block;");
-                    labelhigherschoolName.InnerHtml = fields[k].primaryfiledname;
-                    diplomaschoolName.Attributes.Add("style", "display:block;");
-                    labeldiplomaschoolName.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "QUALIFICATION TYPE":
-                    highschoolQualificationtype.Attributes.Add("style", "display:block;");
-                    labelhighschoolQualificationtype.InnerHtml = fields[k].primaryfiledname;
-                    SecondaryQualificationtype.Attributes.Add("style", "display:block;");
-                    labelSecondaryQualificationtype.InnerHtml = fields[k].primaryfiledname;
-                    higherQualificationtype.Attributes.Add("style", "display:block;");
-                    labelhigherQualificationtype.InnerHtml = fields[k].primaryfiledname;
-                    diplomaQualificationtype.Attributes.Add("style", "display:block;");
-                    labeldiplomaQualificationtype.InnerHtml = fields[k].primaryfiledname;
-                    break;
+                SecondaryLanguage = Session["SecondaryLang"].ToString();
+            }
 
-                case "MODE OF STUDY":
-                    highschoolstudymode.Attributes.Add("style", "display:block;");
-                    labelhighschoolstudymode.InnerHtml = fields[k].primaryfiledname;
-                    Secondarystudymode.Attributes.Add("style", "display:block;");
-                    labelSecondarystudymode.InnerHtml = fields[k].primaryfiledname;
-                    higherstudymode.Attributes.Add("style", "display:block;");
-                    labelhigherstudymode.InnerHtml = fields[k].primaryfiledname;
-                    diplomastudymode.Attributes.Add("style", "display:block;");
-                    labeldiplomastudymode.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "LANGUAGE (MEDIUM) OF STUDY":
-                    highschoollanguage.Attributes.Add("style", "display:block;");
-                    labelhighschoollanguage.InnerHtml = fields[k].primaryfiledname;
-                    Secondarylanguage.Attributes.Add("style", "display:block;");
-                    labelSecondarylanguage.InnerHtml = fields[k].primaryfiledname;
-                    higherlanguage.Attributes.Add("style", "display:block;");
-                    labelhigherlanguage.InnerHtml = fields[k].primaryfiledname;
-                    diplomalanguage.Attributes.Add("style", "display:block;");
-                    labeldiplomalanguage.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "GRADE TYPE":
-                    gradetype.Attributes.Add("style", "display:block;");
-                    labelgradetype.InnerHtml = fields[k].primaryfiledname;
-                    Secondarygradetype.Attributes.Add("style", "display:block;");
-                    labelSecondarygradetype.InnerHtml = fields[k].primaryfiledname;
-                    highergradetype.Attributes.Add("style", "display:block;");
-                    labelhighergradetype.InnerHtml = fields[k].primaryfiledname;
-                    diplomagradetype.Attributes.Add("style", "display:block;");
-                    labeldiplomagradetype.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "FINAL GRADE ACHIEVED":
-                    highschoolgradeachieved.Attributes.Add("style", "display:block;");
-                    labelgradeachieved.InnerHtml = fields[k].primaryfiledname;
-                    Secondarygradeachieved.Attributes.Add("style", "display:block;");
-                    labelSecondarygradeachieved.InnerHtml = fields[k].primaryfiledname;
-                    highergradeachieved.Attributes.Add("style", "display:block;");
-                    labelhighergradeachieved.InnerHtml = fields[k].primaryfiledname;
-                    diplomagradeachieved.Attributes.Add("style", "display:block;");
-                    labeldiplomagradeachieved.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "EXPECTED DATES WHEN RESULTS WILL BE DECLARED":
-                    ExpectedHighSchoolDategrade.Attributes.Add("style", "display:block;");
-                    labelExpectedHighSchoolDategrade.InnerHtml = fields[k].primaryfiledname;
-                    ExpectedSecondaryDategrade.Attributes.Add("style", "display:block;");
-                    labelExpectedSecondaryDategrade.InnerHtml = fields[k].primaryfiledname;
-                    ExpectedHigherDategrade.Attributes.Add("style", "display:block;");
-                    labelExpectedHigherDategrade.InnerHtml = fields[k].primaryfiledname;
-                    ExpectedDiplomaDategrade.Attributes.Add("style", "display:block;");
-                    labelExpectedDiplomaDategrade.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "NAME OF CONTACT WHO CAN VERIFY THIS QUALIFICATION":
-                    highschoolverify.Attributes.Add("style", "display:block;");
-                    labelhighschoolverify.InnerHtml = fields[k].primaryfiledname;
-                    Secondaryverify.Attributes.Add("style", "display:block;");
-                    labelSecondaryverify.InnerHtml = fields[k].primaryfiledname;
-                    higherverify.Attributes.Add("style", "display:block;");
-                    labelhigherverify.InnerHtml = fields[k].primaryfiledname;
-                    diplomaverify.Attributes.Add("style", "display:block;");
-                    labeldiplomaverify.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "RELATIONSHIP WITH THE CONTACT":
-                    highschoolrelation.Attributes.Add("style", "display:block;");
-                    labelhighschoolrelation.InnerHtml = fields[k].primaryfiledname;
-                    secondaryschoolrelation.Attributes.Add("style", "display:block;");
-                    labelsecondaryschoolrelation.InnerHtml = fields[k].primaryfiledname;
-                    higherrelation.Attributes.Add("style", "display:block;");
-                    labelhigherrelation.InnerHtml = fields[k].primaryfiledname;
-                    diplomarelation.Attributes.Add("style", "display:block;");
-                    labeldiplomarelation.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
-                    highschoolcontactEmail.Attributes.Add("style", "display:block;");
-                    labelhighschoolcontactEmail.InnerHtml = fields[k].primaryfiledname;
-                    secondarycontactEmail.Attributes.Add("style", "display:block;");
-                    labelsecondarycontactEmail.InnerHtml = fields[k].primaryfiledname;
-                    highercontactEmail.Attributes.Add("style", "display:block;");
-                    labelhighercontactEmail.InnerHtml = fields[k].primaryfiledname;
-                    diplomacontactEmail.Attributes.Add("style", "display:block;");
-                    labeldiplomacontactEmail.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "MOBILE/CELLULAR NUMBER OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
-                    highschoolcontactMobile.Attributes.Add("style", "display:block;");
-                    labelhighschoolcontactMobile.InnerHtml = fields[k].primaryfiledname;
-                    secondarycontactMobile.Attributes.Add("style", "display:block;");
-                    labelsecondarycontactMobile.InnerHtml = fields[k].primaryfiledname;
-                    highercontactMobile.Attributes.Add("style", "display:block;");
-                    labelhighercontactMobile.InnerHtml = fields[k].primaryfiledname;
-                    diplomacontactMobile.Attributes.Add("style", "display:block;");
-                    labeldiplomacontactMobile.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "HIGHEST EDUCATION":
-                    higestEducation.Attributes.Add("style", "display:block;");
-                    labelhigestEducation.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
-                    Secondary.Attributes.Add("style", "display:block;");
-                    labelSecondary.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "COUNTRY OF SECONDARY EDUCATION":
-                    SecondaryCountry.Attributes.Add("style", "display:block;");
-                    labelSecondaryCountry.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "Add Subject and their Grades":
-                    highshoolgrade.Attributes.Add("style", "display:block;");
-                    btn10th.Value = fields[k].primaryfiledname;
-                    secondarygrade.Attributes.Add("style", "display:block;");
-                    btn12th.Value = fields[k].primaryfiledname;
-                    highergrade.Attributes.Add("style", "display:block;");
-                    btnhigher.Value = fields[k].primaryfiledname;
-                    diplomagrade.Attributes.Add("style", "display:block;");
-                    btndiploma.Value = fields[k].primaryfiledname;
-                    break;
-                case "HAVE YOU COMPLETED ANY HIGHER (UNDER GRADUATE, MASTERS OR PHD) DEGREE":
-                    higher.Attributes.Add("style", "display:block;");
-                    labelhigher.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "Add Another Higher Qualification":
-                    addanother.Attributes.Add("style", "display:block;");
-                    btnAddanother.Text = fields[k].primaryfiledname;
-                    break;
+            var fields = (from pfm in db.primaryfieldmaster
+                          join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.universityid == universityID && ufm.formid == 2 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            if (fields.Count == 0 && SecondaryLanguage != "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 2 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            }
+            else if (fields.Count == 0 && SecondaryLanguage == "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 2 && ufm.universityid == universityID
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+            if (fields.Count == 0)
+            {
+                fields = (from pfm in db.primaryfieldmaster
 
-                case "HIGHER COURSE":
-                    highercourse.Attributes.Add("style", "display:block;");
-                    labelhighercourse.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "Country of Higher Education":
-                    higherCountry.Attributes.Add("style", "display:block;");
-                    labelhigherCountry.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAMS":
-                    diploma.Attributes.Add("style", "display:block;");
-                    labeldiploma.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "COUNTRY OF DIPLOMA OR CERTIFICATE PROGRAMS":
-                    diplomaCountry.Attributes.Add("style", "display:block;");
-                    labeldiplomaCountry.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                default:
-                    break;
+                          where pfm.formid == 2
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+
+            for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {
+                    case "HAVE YOU COMPLETED HIGH SCHOOL":
+                        highschool.Attributes.Add("style", "display:block;");
+                        labelhighschool.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "COUNTRY OF HIGH SCHOOL EDUCATION":
+                        highschoolCountry.Attributes.Add("style", "display:block;");
+                        labelhighschoolCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "START DATE":
+                        highschoolstartDate.Attributes.Add("style", "display:block;");
+                        labelhighschoolstartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        SecondarystartDate.Attributes.Add("style", "display:block;");
+                        labelSecondarystartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherstartDate.Attributes.Add("style", "display:block;");
+                        labelhigherstartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomastartDate.Attributes.Add("style", "display:block;");
+                        labeldiplomastartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "END DATE":
+                        highschoolendDate.Attributes.Add("style", "display:block;");
+                        labelhighschoolendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        SecondaryendDate.Attributes.Add("style", "display:block;");
+                        labelSecondaryendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherendDate.Attributes.Add("style", "display:block;");
+                        labelhigherendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomaendDate.Attributes.Add("style", "display:block;");
+                        labeldiplomaendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "NAME OF SCHOOL":
+                        highschool.Attributes.Add("style", "display:block;");
+                        labelhighschool.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        SecondaryschoolName.Attributes.Add("style", "display:block;");
+                        labelSecondaryschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherschoolName.Attributes.Add("style", "display:block;");
+                        labelhigherschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomaschoolName.Attributes.Add("style", "display:block;");
+                        labeldiplomaschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "QUALIFICATION TYPE":
+                        highschoolQualificationtype.Attributes.Add("style", "display:block;");
+                        labelhighschoolQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        SecondaryQualificationtype.Attributes.Add("style", "display:block;");
+                        labelSecondaryQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherQualificationtype.Attributes.Add("style", "display:block;");
+                        labelhigherQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomaQualificationtype.Attributes.Add("style", "display:block;");
+                        labeldiplomaQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+
+                    case "MODE OF STUDY":
+                        highschoolstudymode.Attributes.Add("style", "display:block;");
+                        labelhighschoolstudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        Secondarystudymode.Attributes.Add("style", "display:block;");
+                        labelSecondarystudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherstudymode.Attributes.Add("style", "display:block;");
+                        labelhigherstudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomastudymode.Attributes.Add("style", "display:block;");
+                        labeldiplomastudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "LANGUAGE (MEDIUM) OF STUDY":
+                        highschoollanguage.Attributes.Add("style", "display:block;");
+                        labelhighschoollanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        Secondarylanguage.Attributes.Add("style", "display:block;");
+                        labelSecondarylanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherlanguage.Attributes.Add("style", "display:block;");
+                        labelhigherlanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomalanguage.Attributes.Add("style", "display:block;");
+                        labeldiplomalanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "GRADE TYPE":
+                        gradetype.Attributes.Add("style", "display:block;");
+                        labelgradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        Secondarygradetype.Attributes.Add("style", "display:block;");
+                        labelSecondarygradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        highergradetype.Attributes.Add("style", "display:block;");
+                        labelhighergradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomagradetype.Attributes.Add("style", "display:block;");
+                        labeldiplomagradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "FINAL GRADE ACHIEVED":
+                        highschoolgradeachieved.Attributes.Add("style", "display:block;");
+                        labelgradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        Secondarygradeachieved.Attributes.Add("style", "display:block;");
+                        labelSecondarygradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        highergradeachieved.Attributes.Add("style", "display:block;");
+                        labelhighergradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomagradeachieved.Attributes.Add("style", "display:block;");
+                        labeldiplomagradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "EXPECTED DATES WHEN RESULTS WILL BE DECLARED":
+                        ExpectedHighSchoolDategrade.Attributes.Add("style", "display:block;");
+                        labelExpectedHighSchoolDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        ExpectedSecondaryDategrade.Attributes.Add("style", "display:block;");
+                        labelExpectedSecondaryDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        ExpectedHigherDategrade.Attributes.Add("style", "display:block;");
+                        labelExpectedHigherDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        ExpectedDiplomaDategrade.Attributes.Add("style", "display:block;");
+                        labelExpectedDiplomaDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "NAME OF CONTACT WHO CAN VERIFY THIS QUALIFICATION":
+                        highschoolverify.Attributes.Add("style", "display:block;");
+                        labelhighschoolverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        Secondaryverify.Attributes.Add("style", "display:block;");
+                        labelSecondaryverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherverify.Attributes.Add("style", "display:block;");
+                        labelhigherverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomaverify.Attributes.Add("style", "display:block;");
+                        labeldiplomaverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "RELATIONSHIP WITH THE CONTACT":
+                        highschoolrelation.Attributes.Add("style", "display:block;");
+                        labelhighschoolrelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        secondaryschoolrelation.Attributes.Add("style", "display:block;");
+                        labelsecondaryschoolrelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        higherrelation.Attributes.Add("style", "display:block;");
+                        labelhigherrelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomarelation.Attributes.Add("style", "display:block;");
+                        labeldiplomarelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
+                        highschoolcontactEmail.Attributes.Add("style", "display:block;");
+                        labelhighschoolcontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        secondarycontactEmail.Attributes.Add("style", "display:block;");
+                        labelsecondarycontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        highercontactEmail.Attributes.Add("style", "display:block;");
+                        labelhighercontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomacontactEmail.Attributes.Add("style", "display:block;");
+                        labeldiplomacontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "MOBILE/CELLULAR NUMBER OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
+                        highschoolcontactMobile.Attributes.Add("style", "display:block;");
+                        labelhighschoolcontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        secondarycontactMobile.Attributes.Add("style", "display:block;");
+                        labelsecondarycontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        highercontactMobile.Attributes.Add("style", "display:block;");
+                        labelhighercontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomacontactMobile.Attributes.Add("style", "display:block;");
+                        labeldiplomacontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "HIGHEST EDUCATION":
+                        higestEducation.Attributes.Add("style", "display:block;");
+                        labelhigestEducation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
+                        Secondary.Attributes.Add("style", "display:block;");
+                        labelSecondary.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "COUNTRY OF SECONDARY EDUCATION":
+                        SecondaryCountry.Attributes.Add("style", "display:block;");
+                        labelSecondaryCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "Add Subject and their Grades":
+                        highshoolgrade.Attributes.Add("style", "display:block;");
+                        btn10th.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        secondarygrade.Attributes.Add("style", "display:block;");
+                        btn12th.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        highergrade.Attributes.Add("style", "display:block;");
+                        btnhigher.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        diplomagrade.Attributes.Add("style", "display:block;");
+                        btndiploma.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "HAVE YOU COMPLETED ANY HIGHER (UNDER GRADUATE, MASTERS OR PHD) DEGREE":
+                        higher.Attributes.Add("style", "display:block;");
+                        labelhigher.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "Add Another Higher Qualification":
+                        addanother.Attributes.Add("style", "display:block;");
+                        btnAddanother.Text = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+
+                    case "HIGHER COURSE":
+                        highercourse.Attributes.Add("style", "display:block;");
+                        labelhighercourse.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "Country of Higher Education":
+                        higherCountry.Attributes.Add("style", "display:block;");
+                        labelhigherCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAMS":
+                        diploma.Attributes.Add("style", "display:block;");
+                        labeldiploma.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "COUNTRY OF DIPLOMA OR CERTIFICATE PROGRAMS":
+                        diplomaCountry.Attributes.Add("style", "display:block;");
+                        labeldiplomaCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
     }
+
     private void SetToolTips()
     {
         try

@@ -22,7 +22,11 @@ public partial class _Default : System.Web.UI.Page
         //applicantID = (int)am.applicantID;
         Session["Applicant"] = UserID;
         if (!IsPostBack)
-        { SetprogressStatus(); BindRadiobuttonlist(); }
+        {
+            SetprogressStatus(); BindRadiobuttonlist();
+            //if (Session["SecondaryLang"] == null)
+            //    Session["SecondaryLang"] = "ar";
+        }
     }
 
     protected void SetSecondaryLanguage(object sender, EventArgs e)
@@ -59,7 +63,7 @@ public partial class _Default : System.Web.UI.Page
         catch (Exception ex)
         {
             log.WriteLog(ex.ToString());
-           
+
         }
     }
 }

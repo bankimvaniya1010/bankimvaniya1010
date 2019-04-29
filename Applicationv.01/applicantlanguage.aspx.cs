@@ -25,127 +25,176 @@ public partial class applicantlanguage : System.Web.UI.Page
             SetToolTips();
             BindGrade();
             BindStudyMode();
-            LanguageDetails(); SetControlsUniversitywise(1);
+            LanguageDetails();SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         }
     }
     private void SetControlsUniversitywise(int universityID)
     {
-
-        var fields = (from pfm in db.primaryfieldmaster
-                      join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                      where ufm.universityid == universityID && ufm.formid == 3
-                      select new
-                      {
-                          primaryfiledname = pfm.primaryfiledname,
-
-                      }).ToList();
-        if (fields.Count == 0)
+        try
         {
-            fields = (from pfm in db.primaryfieldmaster
-                      join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                      where ufm.formid == 3
-                      select new
-                      {
-                          primaryfiledname = pfm.primaryfiledname,
-
-                      }).ToList();
-        }
-        for (int k = 0; k < fields.Count; k++)
-        {
-            switch (fields[k].primaryfiledname)
+            string SecondaryLanguage = "";
+            if (Session["SecondaryLang"] != null)
             {
-                case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
-                    homelanguage.Attributes.Add("style", "display:block;");
-                    labelhomelanguage.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
-                    EnglishBackground.Attributes.Add("style", "display:block;");
-                    labelEnglishBackground.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
-                    EnglishTest.Attributes.Add("style", "display:block;");
-                    labelEnglishTest.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "TEST NAME":
-                    testName.Attributes.Add("style", "display:block;");
-                    labeltestName.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "CENTRE NO":
-                    CentreNo.Attributes.Add("style", "display:block;");
-                    labelCentreNo.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "CANDIDATE NO":
-                    CandidateID.Attributes.Add("style", "display:block;");
-                    labelCandidateID.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "CANDIDATE ID":
-                    CandidateID.Attributes.Add("style", "display:block;");
-                    labelCandidateID.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "TEST DATE":
-                    LanguageTestDate.Attributes.Add("style", "display:block;");
-                    labelLanguageTestDate.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "OVERALL SCORE":
-                    LanguageScore.Attributes.Add("style", "display:block;");
-                    labelLanguageScore.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "COUNTRY OF ENGLISH LANGUAGE INTENSIVE COURSE":
-                    Language.Attributes.Add("style", "display:block;");
-                    labelLanguage.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "YEAR OF COMPLETION/EXPECTED":
-                    YearCompletion.Attributes.Add("style", "display:block;");
-                    labelYearCompletion.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "NAME OF COLLEGE OR UNIVERSITY":
-                    NameCollege.Attributes.Add("style", "display:block;");
-                    labelNameCollege.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "MODE OF STUDY":
-                    studymode.Attributes.Add("style", "display:block;");
-                    labelstudymode.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "QUALIFICATION TYPE":
-                    QualificationType.Attributes.Add("style", "display:block;");
-                    labelQualificationType.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "GRADE TYPE":
-                    gradetype.Attributes.Add("style", "display:block;");
-                    labelgradetype.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "FINAL GRADE ACHIEVED":
-                    gradeachieved.Attributes.Add("style", "display:block;");
-                    labelgradeachieved.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "SPEAKING SCORE":
-                    SpeakingScore.Attributes.Add("style", "display:block;");
-                    labelSpeakingScore.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "LISTENING SCORE":
-                    ListeningScore.Attributes.Add("style", "display:block;");
-                    labelListeningScore.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "READING SCORE":
-                    ReadingScore.Attributes.Add("style", "display:block;");
-                    labelReadingScore.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "WRITING SCORE":
-                    WritingScore.Attributes.Add("style", "display:block;");
-                    labelWritingScore.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "CEFR LEVEL":
-                    CEFR.Attributes.Add("style", "display:block;");
-                    labelCEFR.InnerHtml = fields[k].primaryfiledname;
-                    break;
-                case "TEST REPORT REFERENCE NO":
-                    testRefno.Attributes.Add("style", "display:block;");
-                    labeltestRefno.InnerHtml = fields[k].primaryfiledname;
-                    break;
-
-                default:
-                    break;
+                SecondaryLanguage = Session["SecondaryLang"].ToString();
             }
+
+            var fields = (from pfm in db.primaryfieldmaster
+                          join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.universityid == universityID && ufm.formid == 3 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            if (fields.Count == 0 && SecondaryLanguage != "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 3 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            }
+            else if (fields.Count == 0 && SecondaryLanguage == "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 3 && ufm.universityid == universityID
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+            if (fields.Count == 0)
+            {
+                fields = (from  pfm in db.primaryfieldmaster 
+                          
+                          where pfm.formid == 3
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = "",
+                              secondaryfieldnameinstructions = "",
+                              secondaryfieldnamelanguage = "",
+                              secondaryfielddnamevalue = ""
+                          }).ToList();
+            }
+            for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {
+                    case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
+                        homelanguage.Attributes.Add("style", "display:block;");
+                        labelhomelanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
+                        EnglishBackground.Attributes.Add("style", "display:block;");
+                        labelEnglishBackground.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                        EnglishTest.Attributes.Add("style", "display:block;");
+                        labelEnglishTest.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "TEST NAME":
+                        testName.Attributes.Add("style", "display:block;");
+                        labeltestName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "CENTRE NO":
+                        CentreNo.Attributes.Add("style", "display:block;");
+                        labelCentreNo.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "CANDIDATE NO":
+                        CandidateID.Attributes.Add("style", "display:block;");
+                        labelCandidateID.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "CANDIDATE ID":
+                        CandidateID.Attributes.Add("style", "display:block;");
+                        labelCandidateID.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "TEST DATE":
+                        LanguageTestDate.Attributes.Add("style", "display:block;");
+                        labelLanguageTestDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "OVERALL SCORE":
+                        LanguageScore.Attributes.Add("style", "display:block;");
+                        labelLanguageScore.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "COUNTRY OF ENGLISH LANGUAGE INTENSIVE COURSE":
+                        Language.Attributes.Add("style", "display:block;");
+                        labelLanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "YEAR OF COMPLETION/EXPECTED":
+                        YearCompletion.Attributes.Add("style", "display:block;");
+                        labelYearCompletion.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "NAME OF COLLEGE OR UNIVERSITY":
+                        NameCollege.Attributes.Add("style", "display:block;");
+                        labelNameCollege.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "MODE OF STUDY":
+                        studymode.Attributes.Add("style", "display:block;");
+                        labelstudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "QUALIFICATION TYPE":
+                        QualificationType.Attributes.Add("style", "display:block;");
+                        labelQualificationType.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "GRADE TYPE":
+                        gradetype.Attributes.Add("style", "display:block;");
+                        labelgradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "FINAL GRADE ACHIEVED":
+                        gradeachieved.Attributes.Add("style", "display:block;");
+                        labelgradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "SPEAKING SCORE":
+                        SpeakingScore.Attributes.Add("style", "display:block;");
+                        labelSpeakingScore.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "LISTENING SCORE":
+                        ListeningScore.Attributes.Add("style", "display:block;");
+                        labelListeningScore.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "READING SCORE":
+                        ReadingScore.Attributes.Add("style", "display:block;");
+                        labelReadingScore.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "WRITING SCORE":
+                        WritingScore.Attributes.Add("style", "display:block;");
+                        labelWritingScore.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "CEFR LEVEL":
+                        CEFR.Attributes.Add("style", "display:block;");
+                        labelCEFR.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+                    case "TEST REPORT REFERENCE NO":
+                        testRefno.Attributes.Add("style", "display:block;");
+                        labeltestRefno.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
         }
     }
     private void SetToolTips()
