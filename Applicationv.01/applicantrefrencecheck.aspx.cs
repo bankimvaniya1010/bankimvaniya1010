@@ -28,7 +28,7 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     {
         try
         {
-            var RefInfo = (from pInfo in db.Applicantreferencecheck
+            var RefInfo = (from pInfo in db.applicantreferencecheck
                            where pInfo.applicantid == userID
                            select pInfo).ToList();
             grdRefernce.DataSource = RefInfo;
@@ -134,7 +134,7 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     }
     protected void btnReference_Click(object sender, EventArgs e)
     {
-        Applicantreferencecheck objReference = new Applicantreferencecheck();
+        applicantreferencecheck objReference = new applicantreferencecheck();
         try
         {
            
@@ -145,7 +145,7 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
                 objReference.applicantid = userID;
                 objReference.requestsenttime = DateTime.Now;
                 objReference.referncekey = Guid.NewGuid().ToString();
-                db.Applicantreferencecheck.Add(objReference);
+                db.applicantreferencecheck.Add(objReference);
                 db.SaveChanges();
             var profileInfo = (from pInfo in db.applicantdetails
                                where pInfo.applicantid == userID
@@ -184,8 +184,8 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
         try
         {
             int ID = Convert.ToInt32(grdRefernce.DataKeys[e.RowIndex].Values[0]);
-            Applicantreferencecheck objRef = db.Applicantreferencecheck.Where(b => b.id == ID).First();
-            db.Applicantreferencecheck.Remove(objRef);
+            applicantreferencecheck objRef = db.applicantreferencecheck.Where(b => b.id == ID).First();
+            db.applicantreferencecheck.Remove(objRef);
             db.SaveChanges();
             BindRefrenceList();
         }

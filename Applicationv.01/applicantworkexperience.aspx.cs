@@ -112,16 +112,30 @@ public partial class applicantworkexperience : System.Web.UI.Page
                               secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
                               secondaryfielddnamevalue = afm.secondaryfielddnamevalue
                           }).ToList();
-            if (fields.Count == 0)
+            if (fields.Count == 0 && SecondaryLanguage != "")
             {
                 fields = (from ufm in db.universitywisefieldmapping
                           join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          into combined
-                          from x in combined.DefaultIfEmpty()
-                          where ufm.universityid == universityID && x.formid == 5
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 5 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
                           select new
                           {
-                              primaryfiledname = x.primaryfiledname,
+                              primaryfiledname = pfm.primaryfiledname,
+                              fieldnameinstructions = afm.fieldnameinstructions,
+                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
+                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
+                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                          }).ToList();
+            }
+            else if (fields.Count == 0 && SecondaryLanguage == "")
+            {
+                fields = (from ufm in db.universitywisefieldmapping
+                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
+                          where ufm.formid == 5 && ufm.universityid == universityID
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
                               fieldnameinstructions = "",
                               secondaryfieldnameinstructions = "",
                               secondaryfieldnamelanguage = "",
@@ -131,6 +145,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
+
                           where pfm.formid == 5
                           select new
                           {
@@ -220,7 +235,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var employerInfo = (from pInfo in db.applicantemployerdetails
-                                where pInfo.applicantId == userID && pInfo.employerId == employerId
+                                where pInfo.applicantid == userID && pInfo.employerid == employerId
                                 select pInfo).FirstOrDefault();
             if (employerInfo != null)
             {
@@ -284,7 +299,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 objEmployer.relationshipwithcontact = txtrelationship.Value;
                 objEmployer.emailid = txtEmail.Value;
                 objEmployer.linkedinidofcontact = txtlinkedin.Value;
-                objEmployer.applicantId = userID;
+                objEmployer.applicantid = userID;
                 objEmployer.lastsavedtime = DateTime.Now;
                 db.applicantemployerdetails.Add(objEmployer);
             }
@@ -292,7 +307,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             {
                 int eID = Convert.ToInt32(employerid);
                 var employerInfo = (from pInfo in db.applicantemployerdetails
-                                    where pInfo.employerId == eID
+                                    where pInfo.employerid == eID
                                     select pInfo).FirstOrDefault();
 
                 if (employerInfo != null)
@@ -337,7 +352,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var empDetails = (from eInfo in db.applicantemployerdetails
-                              where eInfo.applicantId == userID
+                              where eInfo.applicantid == userID
                               select eInfo).ToList();
             grdEmployment.DataSource = empDetails;
             grdEmployment.DataBind();
@@ -353,7 +368,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             int id = Convert.ToInt32(grdEmployment.DataKeys[e.RowIndex].Values[0]);
-            applicantemployerdetails grade = db.applicantemployerdetails.Where(b => b.employerId == id).First();
+            applicantemployerdetails grade = db.applicantemployerdetails.Where(b => b.employerid == id).First();
             db.applicantemployerdetails.Remove(grade);
             db.SaveChanges();
             BindEmploymentDetails();

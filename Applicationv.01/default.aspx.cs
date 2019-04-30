@@ -37,9 +37,9 @@ public partial class _Default : System.Web.UI.Page
 
     private void BindRadiobuttonlist()
     {
-        var slm = db.secondaryLanguagemaster.ToList();
+        var slm = db.secondarylanguagemaster.ToList();
         rblLanguage.DataSource = slm;
-        rblLanguage.DataTextField = "secondaryLanguagename";
+        rblLanguage.DataTextField = "secondarylanguagename";
         rblLanguage.DataValueField = "languagecode";
         rblLanguage.DataBind();
     }

@@ -40,9 +40,9 @@ public partial class educationinfo : System.Web.UI.Page
         durationFrom = durationfrom.Value;
         durationTo = durationto.Value;
         applicant_education objApplicant = new applicant_education();
-        objApplicant.applicantID = ApplicantID;
+        objApplicant.applicantid = ApplicantID;
         objApplicant.board_universityname = txtBoardUniversity.Value;
-        objApplicant.courseId = Convert.ToInt32(ddlCourse.SelectedValue);
+        objApplicant.courseid = Convert.ToInt32(ddlCourse.SelectedValue);
         objApplicant.course_startdate = Convert.ToDateTime(durationFrom);
         objApplicant.course_enddate = Convert.ToDateTime(durationTo);
         objApplicant.Institute = txtInstitute.Value;
@@ -57,7 +57,7 @@ public partial class educationinfo : System.Web.UI.Page
     private void BindEducationDetails(int ApplicantID)
     {
         var CourseDetails = (from pInfo in db.applicant_education
-                             where pInfo.applicantID == ApplicantID
+                             where pInfo.applicantid == ApplicantID
                              select pInfo).ToList();
         grdEducation.DataSource = CourseDetails;
         grdEducation.DataBind();

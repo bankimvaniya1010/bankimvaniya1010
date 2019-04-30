@@ -70,8 +70,8 @@ public partial class applcantdetailfieldvalidationmaster
 public partial class applicant_education
 {
     public long applicationeduId { get; set; }
-    public Nullable<long> applicantID { get; set; }
-    public Nullable<int> courseId { get; set; }
+    public Nullable<long> applicantid { get; set; }
+    public Nullable<int> courseid { get; set; }
     public string board_universityname { get; set; }
     public string Institute { get; set; }
     public string percentage { get; set; }
@@ -140,7 +140,7 @@ public partial class applicantdetails
     public string passportno { get; set; }
     public Nullable<System.DateTime> passportissuedate { get; set; }
     public Nullable<System.DateTime> passportexpirydate { get; set; }
-    public string passportissueCity { get; set; }
+    public string passportissuecity { get; set; }
     public Nullable<int> alternativeiddentiproof { get; set; }
     public Nullable<int> alternativeprooftype { get; set; }
     public string alternativeproofno { get; set; }
@@ -154,7 +154,7 @@ public partial class applicantdetails
     public string facebookprofle { get; set; }
     public string twiterprofile { get; set; }
     public string othertitle { get; set; }
-    public Nullable<System.DateTime> personaldetailsaved_time { get; set; }
+    public Nullable<System.DateTime> personaldetailsavedtime { get; set; }
     public Nullable<System.DateTime> contactdetailsavetime { get; set; }
     public Nullable<System.DateTime> identificationsavetime { get; set; }
     public Nullable<System.DateTime> socialprofilesavetime { get; set; }
@@ -198,7 +198,7 @@ public partial class applicanteducationdetails
     public Nullable<System.DateTime> secondarystartdate { get; set; }
     public Nullable<System.DateTime> secondaryendate { get; set; }
     public string secondaryname { get; set; }
-    public string secondaryqualifucationtype { get; set; }
+    public string secondaryqualificationtype { get; set; }
     public Nullable<int> secondarymodestudy { get; set; }
     public Nullable<int> secondarymediumstudy { get; set; }
     public Nullable<int> secondarygradetypeid { get; set; }
@@ -232,7 +232,7 @@ public partial class applicanteducationdetails
 
 public partial class applicantemployerdetails
 {
-    public long employerId { get; set; }
+    public long employerid { get; set; }
     public string designation { get; set; }
     public string organization { get; set; }
     public string website { get; set; }
@@ -242,7 +242,7 @@ public partial class applicantemployerdetails
     public Nullable<float> salary { get; set; }
     public Nullable<System.DateTime> durationfrom { get; set; }
     public Nullable<System.DateTime> durationto { get; set; }
-    public Nullable<int> applicantId { get; set; }
+    public Nullable<int> applicantid { get; set; }
     public Nullable<System.DateTime> creationdate { get; set; }
     public Nullable<int> wishtoaddemployer { get; set; }
     public string briefdescription { get; set; }
@@ -317,7 +317,7 @@ public partial class applicantlanguagecompetency
 
 public partial class applicantprogressbar
 {
-    public int @int { get; set; }
+    public int id { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> profile { get; set; }
     public Nullable<int> question { get; set; }
@@ -325,7 +325,7 @@ public partial class applicantprogressbar
     public Nullable<int> documents { get; set; }
 }
 
-public partial class Applicantreferencecheck
+public partial class applicantreferencecheck
 {
     public int id { get; set; }
     public Nullable<int> applicantid { get; set; }
@@ -341,8 +341,8 @@ public partial class Applicantreferencecheck
 public partial class applicantscores
 {
     public long id { get; set; }
-    public Nullable<int> applicantID { get; set; }
-    public Nullable<int> answerId { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> answerid { get; set; }
     public Nullable<int> answervalue { get; set; }
     public Nullable<int> timetakentoanswervalue { get; set; }
     public Nullable<int> universityid { get; set; }
@@ -360,9 +360,9 @@ public partial class applicantsubjectwisegrade
 
 public partial class applicantuniversitymapping
 {
-    public int mappingId { get; set; }
+    public int mappingid { get; set; }
     public Nullable<int> applicantid { get; set; }
-    public Nullable<int> universityId { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicantvideomaster
@@ -408,7 +408,7 @@ public partial class coursemaster
 
 public partial class coursetypemaster
 {
-    public int coursetypeId { get; set; }
+    public int coursetypeid { get; set; }
     public string coursetypename { get; set; }
 }
 
@@ -420,7 +420,7 @@ public partial class disabilitymaster
 
 public partial class documentvalidationbyagent
 {
-    public int documentvalidationId { get; set; }
+    public int documentvalidationid { get; set; }
     public Nullable<int> documentid { get; set; }
     public Nullable<int> agentid { get; set; }
     public Nullable<System.DateTime> lastupdatedate { get; set; }
@@ -534,7 +534,7 @@ public partial class question_master
     public int questionid { get; set; }
     public string description { get; set; }
     public Nullable<int> isprimary { get; set; }
-    public Nullable<int> infrencecategoryId { get; set; }
+    public Nullable<int> infrencecategoryid { get; set; }
 }
 
 public partial class relative_master
@@ -560,11 +560,11 @@ public partial class rolemaster
     public string rolename { get; set; }
 }
 
-public partial class secondaryLanguagemaster
+public partial class secondarylanguagemaster
 {
     public int id { get; set; }
     public string languagecode { get; set; }
-    public string secondaryLanguagename { get; set; }
+    public string secondarylanguagename { get; set; }
 }
 
 public partial class studymodemaster
@@ -596,7 +596,7 @@ public partial class university_campusmapping
 
 public partial class university_master
 {
-    public int universityID { get; set; }
+    public int universityid { get; set; }
     public string university_name { get; set; }
     public string address { get; set; }
     public string website { get; set; }

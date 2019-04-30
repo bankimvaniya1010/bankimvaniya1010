@@ -51,7 +51,7 @@ public partial class preliminary : System.Web.UI.Page
         try
         {
           var  QuestionsList = (from um in db.university_master
-                             join pqm in db.preliminary_questionmaster on um.universityID equals pqm.universityid
+                             join pqm in db.preliminary_questionmaster on um.universityid equals pqm.universityid
                              into combined
                              from x in combined.DefaultIfEmpty()
                              where x.universityid == UniversityID

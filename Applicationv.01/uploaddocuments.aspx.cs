@@ -30,7 +30,7 @@ public partial class uploaddocuments : System.Web.UI.Page
             appDetails = db.applicantdetails.Where(x => x.applicantid == UserID).ToList();
             appEduDetails = db.applicanteducationdetails.Where(x => x.applicantid == UserID).ToList();
             appLangDetails = db.applicantlanguagecompetency.Where(x => x.applicantid == UserID).ToList();
-            appEmpDetails = db.applicantemployerdetails.Where(x => x.applicantId == UserID).ToList();
+            appEmpDetails = db.applicantemployerdetails.Where(x => x.applicantid == UserID).ToList();
             appHigherDetails = db.applicanthighereducation.Where(x => x.applicantid == UserID).ToList();
             BindDocuments();
         }

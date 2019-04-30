@@ -222,7 +222,7 @@
                                                 <div class="form-row">
 
                                                     <div class="col-md-6">
-                                                        CITY OF ISSUE: <%= objApplicant[0].passportissueCity == null ? "" : objApplicant[0].passportissueCity.ToString() %>
+                                                        CITY OF ISSUE: <%= objApplicant[0].passportissuecity == null ? "" : objApplicant[0].passportissuecity.ToString() %>
                                                     </div>
                                                     <div class="col-md-6">
                                                         Alternate ID Proof:<%= objApplicant[0].alternativeiddentiproof.ToString() == "1" ? "Yes" : "No" %>
@@ -436,7 +436,7 @@
                                                         NAME OF SCHOOL:<%= objEdu[0].secondaryname == null ? "" : objEdu[0].secondaryname.ToString() %>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        QUALIFICATION TYPE:<%= objEdu[0].secondaryqualifucationtype == null ? "" : objEdu[0].secondaryqualifucationtype.ToString() %>
+                                                        QUALIFICATION TYPE:<%= objEdu[0].secondaryqualificationtype == null ? "" : objEdu[0].secondaryqualificationtype.ToString() %>
                                                     </div>
                                                 </div>
                                             </div>

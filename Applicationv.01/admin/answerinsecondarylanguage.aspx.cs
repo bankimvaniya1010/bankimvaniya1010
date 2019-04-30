@@ -126,7 +126,7 @@ public partial class admin_answerinsecondarylanguage : System.Web.UI.Page
             {
 
 
-                var SecondaryLanguage = db.secondaryLanguagemaster.ToList();
+                var SecondaryLanguage = db.secondarylanguagemaster.ToList();
                 var answermaster = db.answermaster.ToList();
                 var primaryfieldmaster = db.primaryfieldmaster.ToList();
                 DropDownList ddlAnswerEdit = (e.Row.FindControl("ddlAnswerEdit") as DropDownList);
