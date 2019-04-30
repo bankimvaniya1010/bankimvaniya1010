@@ -113,7 +113,7 @@ public partial class admin_fieldmaster : System.Web.UI.Page
             }
             if ((e.Row.RowType == DataControlRowType.DataRow && FormFieldGridView.EditIndex == e.Row.RowIndex) || (e.Row.RowType == DataControlRowType.Footer))
             {
-                var SecondaryLanguage = db.secondaryLanguagemaster.ToList();
+                var SecondaryLanguage = db.secondarylanguagemaster.ToList();
                 var formMaster = db.formmaster.ToList();
                 var primaryfieldmaster = db.primaryfieldmaster.ToList();
                 DropDownList ddlFormNameEdit = (e.Row.FindControl("ddlFormname") as DropDownList);

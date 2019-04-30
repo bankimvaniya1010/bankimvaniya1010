@@ -17,7 +17,7 @@ public partial class referencecheck : System.Web.UI.Page
     {
         if ((Request.QueryString["referncekey"] != null) && (Request.QueryString["referncekey"] != null))
             referenceKey = Convert.ToString(Request.QueryString["referncekey"]);
-        var RefInfo = (from pInfo in db.Applicantreferencecheck
+        var RefInfo = (from pInfo in db.applicantreferencecheck
                        where pInfo.referncekey == referenceKey
                        select pInfo).FirstOrDefault();
         if (RefInfo == null)
@@ -41,7 +41,7 @@ public partial class referencecheck : System.Web.UI.Page
     {
         try
         {
-            var RefInfo = (from pInfo in db.Applicantreferencecheck
+            var RefInfo = (from pInfo in db.applicantreferencecheck
                            where pInfo.referncekey == referenceKey
                            select pInfo).FirstOrDefault();
             if (chkVerify.Checked)

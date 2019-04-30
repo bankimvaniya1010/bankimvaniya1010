@@ -37,7 +37,7 @@ public partial class employerinfo : System.Web.UI.Page
     private void BindEmploymentDetails(int ApplicantID)
     {
         var empDetails = (from eInfo in db.applicantemployerdetails
-                          where eInfo.applicantId == ApplicantID
+                          where eInfo.applicantid == ApplicantID
                           select eInfo).ToList();
         grdEmployment.DataSource = empDetails;
         grdEmployment.DataBind();
@@ -49,7 +49,7 @@ public partial class employerinfo : System.Web.UI.Page
         endTo = txtEmploymentEnd.Value;
 
         applicantemployerdetails objEmployment = new applicantemployerdetails();
-        objEmployment.applicantId = ApplicantID;
+        objEmployment.applicantid = ApplicantID;
         objEmployment.durationfrom = Convert.ToDateTime(startFrom);
         objEmployment.durationto = Convert.ToDateTime(endTo);
         objEmployment.contactpersonwithdetails = txtContactPerson.Value;

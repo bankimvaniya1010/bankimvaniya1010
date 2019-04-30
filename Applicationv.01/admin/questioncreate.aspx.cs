@@ -22,13 +22,13 @@ public partial class questioncreate : System.Web.UI.Page
         try
         {
             var QuestionList = (from q in db.question_master
-                                join i in db.inferencemaster on q.infrencecategoryId equals i.inferenceid
+                                join i in db.inferencemaster on q.infrencecategoryid equals i.inferenceid
                                 select new
                                 {
                                     questionid = q.questionid,
                                     description = q.description,
                                     isprimary = q.isprimary,
-                                    infrencecategoryId = q.infrencecategoryId,
+                                    infrencecategoryid = q.infrencecategoryid,
                                     inferenceDescription = i.description
                                 }).ToList();
             if (QuestionList != null)
@@ -177,7 +177,7 @@ public partial class questioncreate : System.Web.UI.Page
                 //    objQuestion.primaryquestionid = 0;
                 //else
                 //    objQuestion.primaryquestionid = Convert.ToInt32(ddlPrimaryQuestionID.SelectedValue);
-                objQuestion.infrencecategoryId = Convert.ToInt32(ddlInferenceID.SelectedValue);
+                objQuestion.infrencecategoryid = Convert.ToInt32(ddlInferenceID.SelectedValue);
                 db.question_master.Add(objQuestion);
                 db.SaveChanges();
                 BindQuestions();
@@ -243,7 +243,7 @@ public partial class questioncreate : System.Web.UI.Page
             //    qm.primaryquestionid = QuestionID;
             //else
             //    qm.primaryquestionid = Convert.ToInt32(ddlPrimaryQuestionID.SelectedValue);
-            qm.infrencecategoryId = Convert.ToInt32(ddlInferenceID.SelectedValue);
+            qm.infrencecategoryid = Convert.ToInt32(ddlInferenceID.SelectedValue);
             QuestiontGridView.EditIndex = -1;
             db.SaveChanges();
             BindQuestions();

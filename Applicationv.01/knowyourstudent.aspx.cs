@@ -42,7 +42,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                 profileInfo.passportno = txtPassportNo.Value;
                 profileInfo.passportissuedate = Convert.ToDateTime(txtdateofissue.Value);
                 profileInfo.passportexpirydate = Convert.ToDateTime(txtexpirydate.Value);
-                profileInfo.passportissueCity = txtissueplaceCity.Value;
+                profileInfo.passportissuecity = txtissueplaceCity.Value;
                 if (rblalternateidenityYes.Checked == true)
                     profileInfo.alternativeiddentiproof = 1;
                 else
@@ -105,7 +105,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                 txtPassportNo.Value = profileInfo.passportno;
                 txtdateofissue.Value = Convert.ToDateTime(profileInfo.passportissuedate).ToString("yyyy-MM-dd");
                 txtexpirydate.Value = Convert.ToDateTime(profileInfo.passportexpirydate).ToString("yyyy-MM-dd");
-                txtissueplaceCity.Value = profileInfo.passportissueCity;
+                txtissueplaceCity.Value = profileInfo.passportissuecity;
                 if (profileInfo.alternativeiddentiproof == 1)
                     rblalternateidenityYes.Checked = true;
                 else

@@ -65,8 +65,8 @@ public partial class questions : System.Web.UI.Page
         try
         {
             var QuestionsList = (from q in db.answermaster
-                                 join s in db.applicantscores on q.answerid equals s.answerId
-                                 where s.applicantID == UserID
+                                 join s in db.applicantscores on q.answerid equals s.answerid
+                                 where s.applicantid == UserID
                                  select new
                                  {
                                      answerId = q.answerid,
@@ -217,9 +217,9 @@ public partial class questions : System.Web.UI.Page
                 if (PreviuosSavedValue == 5)
                 {
                     int answerID = Convert.ToInt32(val);
-                    var result = db.applicantscores.SingleOrDefault(b => b.answerId == answerID && b.applicantID == UserID);
-                    result.applicantID = ApplicantID;
-                    result.answerId = answerID;
+                    var result = db.applicantscores.SingleOrDefault(b => b.answerid == answerID && b.applicantid == UserID);
+                    result.applicantid = ApplicantID;
+                    result.answerid = answerID;
                     result.answervalue = Convert.ToInt32(UserValues[val]);
 
                     db.SaveChanges();
@@ -361,11 +361,11 @@ public partial class questions : System.Web.UI.Page
         try
         {
 
-            var answerbyQuestion = (from q in db.applicantscores.Where(q => q.applicantID == userID && q.answerId == answerID)
+            var answerbyQuestion = (from q in db.applicantscores.Where(q => q.applicantid == userID && q.answerid == answerID)
 
                                     select new
                                     {
-                                        questionID = q.answerId,
+                                        questionID = q.answerid,
                                         answerValue = q.answervalue
                                     }).FirstOrDefault();
             if ((answerbyQuestion != null) && (answerbyQuestion.answerValue != null))

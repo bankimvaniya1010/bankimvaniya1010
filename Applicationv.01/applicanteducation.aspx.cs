@@ -748,7 +748,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 else
                     SecondarygradeachievedNo.Checked = true;
 
-                txtSecondaryQualificationtype.Value = EducationInfo.secondaryqualifucationtype;
+                txtSecondaryQualificationtype.Value = EducationInfo.secondaryqualificationtype;
                 txtsecondaryschoolrelation.Value = EducationInfo.relationshipwitnsecondaryverification;
                 if (EducationInfo.secondaryresultdate != null)
                     txtExpectedSecondaryResult.Value = Convert.ToDateTime(EducationInfo.secondaryresultdate).ToString("yyyy-MM-dd");
@@ -958,7 +958,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.secondarygradedeclared = 3;
                 if (ddlSecondaryGrade.SelectedValue != "")
                     objEdu.secondarygradetypeid = Convert.ToInt32(ddlSecondaryGrade.SelectedValue);
-                objEdu.secondaryqualifucationtype = txtSecondaryQualificationtype.Value;
+                objEdu.secondaryqualificationtype = txtSecondaryQualificationtype.Value;
                 objEdu.relationshipwitnsecondaryverification = txtsecondaryschoolrelation.Value;
                 if (txtExpectedSecondaryResult.Value != "")
                     objEdu.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);
@@ -1078,7 +1078,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     EducationInfo.secondarygradedeclared = 3;
                 if (ddlSecondaryGrade.SelectedValue != "")
                     EducationInfo.secondarygradetypeid = Convert.ToInt32(ddlSecondaryGrade.SelectedValue);
-                EducationInfo.secondaryqualifucationtype = txtSecondaryQualificationtype.Value;
+                EducationInfo.secondaryqualificationtype = txtSecondaryQualificationtype.Value;
                 EducationInfo.relationshipwitnsecondaryverification = txtsecondaryschoolrelation.Value;
                 if (txtExpectedSecondaryResult.Value != "")
                     EducationInfo.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);

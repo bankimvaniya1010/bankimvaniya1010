@@ -27,7 +27,7 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
         {
             var QuestionList = (from q in db.preliminary_questionmaster
                                 join um in db.university_master
-on q.universityid equals um.universityID
+on q.universityid equals um.universityid
 
                                 select new
                                 {

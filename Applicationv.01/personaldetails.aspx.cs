@@ -221,7 +221,7 @@ public partial class personaldetails : System.Web.UI.Page
                 else
                     rblAgentNo.Checked = true;
 
-                lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsaved_time.ToString();
+                lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsavedtime.ToString();
                 //if (profileInfo.haveyoustudyinstitue == 1)
                 //{
                 //    isStudyBefore = 1;
@@ -281,7 +281,7 @@ public partial class personaldetails : System.Web.UI.Page
             if (ddlBirthCountry.SelectedValue != "")
                 profileInfo.countryofbirth = ddlBirthCountry.SelectedValue;
             profileInfo.othertitle = txtTitle.Value;
-            profileInfo.personaldetailsaved_time = DateTime.Now;
+            profileInfo.personaldetailsavedtime = DateTime.Now;
             if (rblDisabilityYes.Checked)
                 profileInfo.isdisable = 1;
             else
