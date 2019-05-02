@@ -35,17 +35,14 @@ public partial class login : System.Web.UI.Page
             else
             {
                 pnl_warning.Visible = false;
-                string password = objCom.DecodeFrom64(chkUser.password);
-                if (password == txt_pass.Text.ToString())
-
+                string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
+                if (encodedPassword == chkUser.password)
                 {
-
                     Session["LoginInfo"] = chkUser;
                     Session["UserID"] = chkUser.userid;
                     Session["Role"] = chkUser.role;
                     switch (chkUser.role)
                     {
-
                         case 1:
                             Response.Redirect(webURL + "admin/default.aspx");
                             break;
