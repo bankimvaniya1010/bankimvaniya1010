@@ -39,7 +39,7 @@ public partial class register : System.Web.UI.Page
             {
                 usrObj.name = name.Value.Trim();
                 usrObj.username = username.Value.Trim();
-                usrObj.password = objCom.EncodePasswordToBase64(password.Value.Trim());
+                usrObj.password = objCom.EncodePasswordToMD5(password.Value.Trim());
                 usrObj.role = 3;
                 usrObj.email = email.Value.Trim();
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
@@ -48,10 +48,10 @@ public partial class register : System.Web.UI.Page
                     usrObj.year = Convert.ToInt32(rblYear1.Text);
                 else if (rblYear2.Checked)
                     usrObj.year = Convert.ToInt32(rblYear2.Text);
-
-                usrObj.year = Convert.ToInt32(rblYear3.Text);
-                if(ddlDegree.SelectedValue!="")
-                usrObj.degreeid = Convert.ToInt32(ddlDegree.SelectedValue);
+                else if (rblYear3.Checked)
+                    usrObj.year = Convert.ToInt32(rblYear3.Text);
+                if (ddlDegree.SelectedValue != "")
+                    usrObj.degreeid = Convert.ToInt32(ddlDegree.SelectedValue);
                 if (ddlCourse.SelectedValue != "")
                     usrObj.courseid = Convert.ToInt32(ddlCourse.SelectedValue);
                 db.user.Add(usrObj);

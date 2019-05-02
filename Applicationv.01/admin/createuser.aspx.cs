@@ -53,7 +53,7 @@ public partial class createuser : System.Web.UI.Page
                 usrObj.name = txtName.Value.Trim();
                 usrObj.username = txtUsername.Value.Trim();
                 usrObj.mobile = TxtMobile.Value.Trim();
-                usrObj.password = objCom.EncodePasswordToBase64(Txtpassword.Value.Trim());
+                usrObj.password = objCom.EncodePasswordToMD5(Txtpassword.Value.Trim());
                 usrObj.role = Convert.ToInt32(ddlRole.SelectedItem.Value);
                 usrObj.email = txtEmail.Value.Trim();
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);

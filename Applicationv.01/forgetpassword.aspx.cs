@@ -25,7 +25,7 @@ public partial class forgetpassword : System.Web.UI.Page
         {
             lblMessage.Visible = true;
             string password = System.Web.Security.Membership.GeneratePassword(8, 2);
-            login.password = objCom.EncodePasswordToBase64(password);
+            login.password = objCom.EncodePasswordToMD5(password);
             db.SaveChanges();
             StringBuilder sb = new StringBuilder();
             sb.Append("Dear User, <br/>");

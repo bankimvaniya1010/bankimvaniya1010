@@ -32,7 +32,7 @@ public partial class registeragent : System.Web.UI.Page
             {
                 usrObj.name = name.Value.Trim();
                 usrObj.username = username.Value.Trim();
-                usrObj.password = objCom.EncodePasswordToBase64(password.Value.Trim());
+                usrObj.password = objCom.EncodePasswordToMD5(password.Value.Trim());
                 usrObj.role = 2;
                 usrObj.email = email.Value.Trim();
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
