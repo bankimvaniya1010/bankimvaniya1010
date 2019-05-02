@@ -49,16 +49,22 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantuniversitymapping> applicantuniversitymapping { get; set; }
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
+    public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
     public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<coursetypemaster> coursetypemaster { get; set; }
     public virtual DbSet<disabilitymaster> disabilitymaster { get; set; }
+    public virtual DbSet<documentvalidationbyagent> documentvalidationbyagent { get; set; }
     public virtual DbSet<educationmediummaster> educationmediummaster { get; set; }
+    public virtual DbSet<fieldvalidationmaster> fieldvalidationmaster { get; set; }
+    public virtual DbSet<formfieldmapping> formfieldmapping { get; set; }
+    public virtual DbSet<formfieldmaster> formfieldmaster { get; set; }
     public virtual DbSet<formmaster> formmaster { get; set; }
     public virtual DbSet<grademaster> grademaster { get; set; }
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
     public virtual DbSet<invalidatamaster> invalidatamaster { get; set; }
     public virtual DbSet<majordiscipline_master> majordiscipline_master { get; set; }
+    public virtual DbSet<master_name> master_name { get; set; }
     public virtual DbSet<preliminary_questionmaster> preliminary_questionmaster { get; set; }
     public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
     public virtual DbSet<preliminaryvideomaster> preliminaryvideomaster { get; set; }
@@ -76,9 +82,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
+    public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
     public virtual DbSet<user> user { get; set; }
-    public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
-    public virtual DbSet<documentvalidationbyagent> documentvalidationbyagent { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

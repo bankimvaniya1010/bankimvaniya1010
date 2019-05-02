@@ -392,6 +392,12 @@ public partial class applicantvisadetails
     public Nullable<int> isparentvisadenied { get; set; }
 }
 
+public partial class controlmaster
+{
+    public int id { get; set; }
+    public string controltype { get; set; }
+}
+
 public partial class countriesmaster
 {
     public int id { get; set; }
@@ -433,6 +439,31 @@ public partial class educationmediummaster
     public string description { get; set; }
 }
 
+public partial class fieldvalidationmaster
+{
+    public int fieldvalidationid { get; set; }
+    public Nullable<int> formfieldid { get; set; }
+    public string regularexpression { get; set; }
+}
+
+public partial class formfieldmapping
+{
+    public int id { get; set; }
+    public Nullable<int> formfieldid { get; set; }
+    public Nullable<int> formid { get; set; }
+    public Nullable<int> universityid { get; set; }
+}
+
+public partial class formfieldmaster
+{
+    public int formfieldid { get; set; }
+    public string name { get; set; }
+    public string type { get; set; }
+    public string tooltips { get; set; }
+    public Nullable<int> treemasterid { get; set; }
+    public Nullable<int> isvalidation { get; set; }
+}
+
 public partial class formmaster
 {
     public int formid { get; set; }
@@ -443,17 +474,6 @@ public partial class grademaster
 {
     public int id { get; set; }
     public string description { get; set; }
-}
-
-public partial class GTE_documentverification
-{
-    public int documentid { get; set; }
-    public Nullable<int> applicantid { get; set; }
-    public string documentname { get; set; }
-    public Nullable<int> documentvalidationId { get; set; }
-    public Nullable<int> agentid { get; set; }
-    public Nullable<System.DateTime> lastupdatedate { get; set; }
-    public string remarks { get; set; }
 }
 
 public partial class inferencemaster
@@ -477,6 +497,12 @@ public partial class majordiscipline_master
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class master_name
+{
+    public int masterid { get; set; }
+    public string mastername { get; set; }
 }
 
 public partial class preliminary_questionmaster
@@ -625,6 +651,16 @@ public partial class universitywiseformmapping
     public int universitywiseformmappingid { get; set; }
     public Nullable<int> universityid { get; set; }
     public Nullable<int> formid { get; set; }
+}
+
+public partial class universitywisemastermapping
+{
+    public int universitywisemastermappingid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> masterid { get; set; }
+    public Nullable<int> mastervalueid { get; set; }
+    public Nullable<int> created_by { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
 }
 
 public partial class user

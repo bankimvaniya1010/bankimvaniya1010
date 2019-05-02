@@ -29,36 +29,41 @@
         <EntityTypeShape EntityType="GTEModel.applicantuniversitymapping" Width="1.5" PointX="12.75" PointY="11.75" />
         <EntityTypeShape EntityType="GTEModel.applicantvideomaster" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.applicantvisadetails" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="GTEModel.countriesmaster" Width="1.5" PointX="14.75" PointY="3.75" />
-        <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="14.75" PointY="6.75" />
-        <EntityTypeShape EntityType="GTEModel.coursetypemaster" Width="1.5" PointX="14.75" PointY="9.75" />
-        <EntityTypeShape EntityType="GTEModel.disabilitymaster" Width="1.5" PointX="14.75" PointY="12.75" />
-        <EntityTypeShape EntityType="GTEModel.educationmediummaster" Width="1.5" PointX="8.75" PointY="15.75" />
-        <EntityTypeShape EntityType="GTEModel.formmaster" Width="1.5" PointX="10.75" PointY="15.75" />
-        <EntityTypeShape EntityType="GTEModel.grademaster" Width="1.5" PointX="12.75" PointY="15.75" />
-        <EntityTypeShape EntityType="GTEModel.inferencemaster" Width="1.5" PointX="14.75" PointY="15.75" />
-        <EntityTypeShape EntityType="GTEModel.invalidatamaster" Width="1.5" PointX="16.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GTEModel.majordiscipline_master" Width="1.5" PointX="16.75" PointY="4.75" />
-        <EntityTypeShape EntityType="GTEModel.preliminary_questionmaster" Width="1.5" PointX="16.75" PointY="7.75" />
-        <EntityTypeShape EntityType="GTEModel.preliminaryapplicantanswers" Width="1.5" PointX="16.75" PointY="11.75" />
-        <EntityTypeShape EntityType="GTEModel.preliminaryvideomaster" Width="1.5" PointX="16.75" PointY="14.75" />
-        <EntityTypeShape EntityType="GTEModel.primaryfieldmaster" Width="1.5" PointX="16.75" PointY="17.75" />
-        <EntityTypeShape EntityType="GTEModel.profilemaster" Width="1.5" PointX="18.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GTEModel.question_master" Width="1.5" PointX="18.75" PointY="4.75" />
-        <EntityTypeShape EntityType="GTEModel.relative_master" Width="1.5" PointX="6.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GTEModel.rolemaster" Width="1.5" PointX="18.75" PointY="7.75" />
-        <EntityTypeShape EntityType="GTEModel.secondarylanguagemaster" Width="1.5" PointX="8.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GTEModel.studymodemaster" Width="1.5" PointX="18.75" PointY="10.75" />
-        <EntityTypeShape EntityType="GTEModel.titlemaster" Width="1.5" PointX="10.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GTEModel.tooltipmaster" Width="1.5" PointX="12.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GTEModel.university_campusmapping" Width="1.5" PointX="18.75" PointY="13.75" />
-        <EntityTypeShape EntityType="GTEModel.university_master" Width="1.5" PointX="18.75" PointY="16.75" />
-        <EntityTypeShape EntityType="GTEModel.universitycampus" Width="1.5" PointX="0.75" PointY="19.75" />
-        <EntityTypeShape EntityType="GTEModel.universitywisefieldmapping" Width="1.5" PointX="20.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GTEModel.universitywiseformmapping" Width="1.5" PointX="20.75" PointY="3.75" />
-        <EntityTypeShape EntityType="GTEModel.user" Width="1.5" PointX="20.75" PointY="6.75" />
-        <EntityTypeShape EntityType="GTEModel.GTE_documentverification" Width="1.5" PointX="20.75" PointY="11.75" />
-        <EntityTypeShape EntityType="GTEModel.documentvalidationbyagent" Width="1.5" PointX="15.375" PointY="20.75" />
+        <EntityTypeShape EntityType="GTEModel.controlmaster" Width="1.5" PointX="14.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GTEModel.countriesmaster" Width="1.5" PointX="14.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="14.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GTEModel.coursetypemaster" Width="1.5" PointX="14.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GTEModel.disabilitymaster" Width="1.5" PointX="6.75" PointY="15.75" />
+        <EntityTypeShape EntityType="GTEModel.documentvalidationbyagent" Width="1.5" PointX="8.75" PointY="15.75" />
+        <EntityTypeShape EntityType="GTEModel.educationmediummaster" Width="1.5" PointX="10.75" PointY="15.75" />
+        <EntityTypeShape EntityType="GTEModel.fieldvalidationmaster" Width="1.5" PointX="12.75" PointY="15.75" />
+        <EntityTypeShape EntityType="GTEModel.formfieldmapping" Width="1.5" PointX="14.75" PointY="15.75" />
+        <EntityTypeShape EntityType="GTEModel.formfieldmaster" Width="1.5" PointX="16.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GTEModel.formmaster" Width="1.5" PointX="16.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GTEModel.grademaster" Width="1.5" PointX="16.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GTEModel.inferencemaster" Width="1.5" PointX="16.75" PointY="9.75" />
+        <EntityTypeShape EntityType="GTEModel.invalidatamaster" Width="1.5" PointX="16.75" PointY="12.75" />
+        <EntityTypeShape EntityType="GTEModel.majordiscipline_master" Width="1.5" PointX="16.75" PointY="16.75" />
+        <EntityTypeShape EntityType="GTEModel.master_name" Width="1.5" PointX="18.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GTEModel.preliminary_questionmaster" Width="1.5" PointX="18.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GTEModel.preliminaryapplicantanswers" Width="1.5" PointX="6.75" PointY="18.75" />
+        <EntityTypeShape EntityType="GTEModel.preliminaryvideomaster" Width="1.5" PointX="18.75" PointY="7.75" />
+        <EntityTypeShape EntityType="GTEModel.primaryfieldmaster" Width="1.5" PointX="8.75" PointY="18.75" />
+        <EntityTypeShape EntityType="GTEModel.profilemaster" Width="1.5" PointX="18.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GTEModel.question_master" Width="1.5" PointX="10.75" PointY="18.75" />
+        <EntityTypeShape EntityType="GTEModel.relative_master" Width="1.5" PointX="12.75" PointY="18.75" />
+        <EntityTypeShape EntityType="GTEModel.rolemaster" Width="1.5" PointX="18.75" PointY="14.75" />
+        <EntityTypeShape EntityType="GTEModel.secondarylanguagemaster" Width="1.5" PointX="18.75" PointY="17.75" />
+        <EntityTypeShape EntityType="GTEModel.studymodemaster" Width="1.5" PointX="0.75" PointY="19.75" />
+        <EntityTypeShape EntityType="GTEModel.titlemaster" Width="1.5" PointX="14.75" PointY="19.75" />
+        <EntityTypeShape EntityType="GTEModel.tooltipmaster" Width="1.5" PointX="20.75" PointY="0.75" />
+        <EntityTypeShape EntityType="GTEModel.university_campusmapping" Width="1.5" PointX="20.75" PointY="3.75" />
+        <EntityTypeShape EntityType="GTEModel.university_master" Width="1.5" PointX="20.75" PointY="6.75" />
+        <EntityTypeShape EntityType="GTEModel.universitycampus" Width="1.5" PointX="20.75" PointY="10.75" />
+        <EntityTypeShape EntityType="GTEModel.universitywisefieldmapping" Width="1.5" PointX="20.75" PointY="13.75" />
+        <EntityTypeShape EntityType="GTEModel.universitywiseformmapping" Width="1.5" PointX="20.75" PointY="16.75" />
+        <EntityTypeShape EntityType="GTEModel.universitywisemastermapping" Width="1.5" PointX="16.75" PointY="20.75" />
+        <EntityTypeShape EntityType="GTEModel.user" Width="1.5" PointX="18.75" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -411,6 +411,13 @@
           <Property Name="isvisadenied" Type="int" />
           <Property Name="isparentvisadenied" Type="int" />
         </EntityType>
+        <EntityType Name="controlmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="controltype" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="countriesmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -458,6 +465,34 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="fieldvalidationmaster">
+          <Key>
+            <PropertyRef Name="fieldvalidationid" />
+          </Key>
+          <Property Name="fieldvalidationid" Type="int" Nullable="false" />
+          <Property Name="formfieldid" Type="int" />
+          <Property Name="regularexpression" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="formfieldmapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formfieldid" Type="int" />
+          <Property Name="formid" Type="int" />
+          <Property Name="universityid" Type="int" />
+        </EntityType>
+        <EntityType Name="formfieldmaster">
+          <Key>
+            <PropertyRef Name="formfieldid" />
+          </Key>
+          <Property Name="formfieldid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="type" Type="varchar" MaxLength="45" />
+          <Property Name="tooltips" Type="varchar" MaxLength="45" />
+          <Property Name="treemasterid" Type="int" />
+          <Property Name="isvalidation" Type="int" />
+        </EntityType>
         <EntityType Name="formmaster">
           <Key>
             <PropertyRef Name="formid" />
@@ -497,6 +532,13 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="master_name">
+          <Key>
+            <PropertyRef Name="masterid" />
+          </Key>
+          <Property Name="masterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mastername" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="preliminary_questionmaster">
           <Key>
@@ -663,6 +705,17 @@
           <Property Name="universityid" Type="int" />
           <Property Name="formid" Type="int" />
         </EntityType>
+        <EntityType Name="universitywisemastermapping">
+          <Key>
+            <PropertyRef Name="universitywisemastermappingid" />
+          </Key>
+          <Property Name="universitywisemastermappingid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="masterid" Type="int" />
+          <Property Name="mastervalueid" Type="int" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="userid" />
@@ -679,20 +732,6 @@
           <Property Name="year" Type="int" />
           <Property Name="degreeid" Type="int" />
           <Property Name="courseid" Type="int" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="GTE_documentverification">
-          <Key>
-            <PropertyRef Name="documentid" />
-          </Key>
-          <Property Name="documentid" Type="int" Nullable="false" />
-          <Property Name="applicantid" Type="int" />
-          <Property Name="documentname" Type="varchar" MaxLength="45" />
-          <Property Name="documentvalidationId" Type="int" />
-          <Property Name="agentid" Type="int" />
-          <Property Name="lastupdatedate" Type="datetime" Precision="0" />
-          <Property Name="remarks" Type="varchar" MaxLength="200" />
         </EntityType>
         <Function Name="fetchapplicantDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GTE" />
         <Function Name="shell_creation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GTE">
@@ -727,17 +766,22 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="controlmaster" EntityType="Self.controlmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countriesmaster" EntityType="Self.countriesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="fieldvalidationmaster" EntityType="Self.fieldvalidationmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="formfieldmapping" EntityType="Self.formfieldmapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="formfieldmaster" EntityType="Self.formfieldmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formmaster" EntityType="Self.formmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="grademaster" EntityType="Self.grademaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="master_name" EntityType="Self.master_name" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="Self.preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminaryvideomaster" EntityType="Self.preliminaryvideomaster" Schema="GTE" store:Type="Tables" />
@@ -755,18 +799,8 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="universitycampus" EntityType="Self.universitycampus" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="GTE_documentverification" EntityType="Self.GTE_documentverification" store:Type="Views" store:Schema="GTE" store:Name="GTE.documentverification">
-            <DefiningQuery>SELECT
-`GTE_documentverification`.`documentid`, 
-`GTE_documentverification`.`applicantid`, 
-`GTE_documentverification`.`documentname`, 
-`GTE_documentverification`.`documentvalidationId`, 
-`GTE_documentverification`.`agentid`, 
-`GTE_documentverification`.`lastupdatedate`, 
-`GTE_documentverification`.`remarks`
-FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
-          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -805,16 +839,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicantuniversitymapping" EntityType="GTEModel.applicantuniversitymapping" />
           <EntitySet Name="applicantvideomaster" EntityType="GTEModel.applicantvideomaster" />
           <EntitySet Name="applicantvisadetails" EntityType="GTEModel.applicantvisadetails" />
+          <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
           <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           <EntitySet Name="coursetypemaster" EntityType="GTEModel.coursetypemaster" />
           <EntitySet Name="disabilitymaster" EntityType="GTEModel.disabilitymaster" />
+          <EntitySet Name="documentvalidationbyagent" EntityType="GTEModel.documentvalidationbyagent" />
           <EntitySet Name="educationmediummaster" EntityType="GTEModel.educationmediummaster" />
+          <EntitySet Name="fieldvalidationmaster" EntityType="GTEModel.fieldvalidationmaster" />
+          <EntitySet Name="formfieldmapping" EntityType="GTEModel.formfieldmapping" />
+          <EntitySet Name="formfieldmaster" EntityType="GTEModel.formfieldmaster" />
           <EntitySet Name="formmaster" EntityType="GTEModel.formmaster" />
           <EntitySet Name="grademaster" EntityType="GTEModel.grademaster" />
           <EntitySet Name="inferencemaster" EntityType="GTEModel.inferencemaster" />
           <EntitySet Name="invalidatamaster" EntityType="GTEModel.invalidatamaster" />
           <EntitySet Name="majordiscipline_master" EntityType="GTEModel.majordiscipline_master" />
+          <EntitySet Name="master_name" EntityType="GTEModel.master_name" />
           <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
           <EntitySet Name="preliminaryvideomaster" EntityType="GTEModel.preliminaryvideomaster" />
@@ -832,9 +872,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="universitycampus" EntityType="GTEModel.universitycampus" />
           <EntitySet Name="universitywisefieldmapping" EntityType="GTEModel.universitywisefieldmapping" />
           <EntitySet Name="universitywiseformmapping" EntityType="GTEModel.universitywiseformmapping" />
+          <EntitySet Name="universitywisemastermapping" EntityType="GTEModel.universitywisemastermapping" />
           <EntitySet Name="user" EntityType="GTEModel.user" />
-          <EntitySet Name="GTE_documentverification" EntityType="GTEModel.GTE_documentverification" />
-          <EntitySet Name="documentvalidationbyagent" EntityType="GTEModel.documentvalidationbyagent" />
           </EntityContainer>
         <EntityType Name="agentmaster">
           <Key>
@@ -1242,6 +1281,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="isvisadenied" Type="Int32" />
           <Property Name="isparentvisadenied" Type="Int32" />
         </EntityType>
+        <EntityType Name="controlmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="controltype" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="countriesmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1272,12 +1318,50 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="documentvalidationbyagent">
+          <Key>
+            <PropertyRef Name="documentvalidationid" />
+          </Key>
+          <Property Name="documentvalidationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="documentid" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="lastupdatedate" Type="DateTime" />
+          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="educationmediummaster">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="fieldvalidationmaster">
+          <Key>
+            <PropertyRef Name="fieldvalidationid" />
+          </Key>
+          <Property Name="fieldvalidationid" Type="Int32" Nullable="false" />
+          <Property Name="formfieldid" Type="Int32" />
+          <Property Name="regularexpression" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="formfieldmapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formfieldid" Type="Int32" />
+          <Property Name="formid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="formfieldmaster">
+          <Key>
+            <PropertyRef Name="formfieldid" />
+          </Key>
+          <Property Name="formfieldid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="tooltips" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="treemasterid" Type="Int32" />
+          <Property Name="isvalidation" Type="Int32" />
         </EntityType>
         <EntityType Name="formmaster">
           <Key>
@@ -1318,6 +1402,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="master_name">
+          <Key>
+            <PropertyRef Name="masterid" />
+          </Key>
+          <Property Name="masterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mastername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="preliminary_questionmaster">
           <Key>
@@ -1484,6 +1575,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universityid" Type="Int32" />
           <Property Name="formid" Type="Int32" />
         </EntityType>
+        <EntityType Name="universitywisemastermapping">
+          <Key>
+            <PropertyRef Name="universitywisemastermappingid" />
+          </Key>
+          <Property Name="universitywisemastermappingid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="masterid" Type="Int32" />
+          <Property Name="mastervalueid" Type="Int32" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="userid" />
@@ -1500,28 +1602,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="year" Type="Int32" />
           <Property Name="degreeid" Type="Int32" />
           <Property Name="courseid" Type="Int32" />
-        </EntityType>
-        <EntityType Name="GTE_documentverification">
-          <Key>
-            <PropertyRef Name="documentid" />
-          </Key>
-          <Property Name="documentid" Type="Int32" Nullable="false" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="documentvalidationId" Type="Int32" />
-          <Property Name="agentid" Type="Int32" />
-          <Property Name="lastupdatedate" Type="DateTime" />
-          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="documentvalidationbyagent">
-          <Key>
-            <PropertyRef Name="documentvalidationid" />
-          </Key>
-          <Property Name="documentvalidationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="documentid" Type="Int32" />
-          <Property Name="agentid" Type="Int32" />
-          <Property Name="lastupdatedate" Type="DateTime" />
-          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1961,6 +2041,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="controlmaster">
+            <EntityTypeMapping TypeName="GTEModel.controlmaster">
+              <MappingFragment StoreEntitySet="controlmaster">
+                <ScalarProperty Name="controltype" ColumnName="controltype" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="countriesmaster">
             <EntityTypeMapping TypeName="GTEModel.countriesmaster">
               <MappingFragment StoreEntitySet="countriesmaster">
@@ -1995,11 +2083,53 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="documentvalidationbyagent">
+            <EntityTypeMapping TypeName="GTEModel.documentvalidationbyagent">
+              <MappingFragment StoreEntitySet="documentvalidationbyagent">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+                <ScalarProperty Name="documentvalidationid" ColumnName="documentvalidationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="educationmediummaster">
             <EntityTypeMapping TypeName="GTEModel.educationmediummaster">
               <MappingFragment StoreEntitySet="educationmediummaster">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="fieldvalidationmaster">
+            <EntityTypeMapping TypeName="GTEModel.fieldvalidationmaster">
+              <MappingFragment StoreEntitySet="fieldvalidationmaster">
+                <ScalarProperty Name="regularexpression" ColumnName="regularexpression" />
+                <ScalarProperty Name="formfieldid" ColumnName="formfieldid" />
+                <ScalarProperty Name="fieldvalidationid" ColumnName="fieldvalidationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="formfieldmapping">
+            <EntityTypeMapping TypeName="GTEModel.formfieldmapping">
+              <MappingFragment StoreEntitySet="formfieldmapping">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="formfieldid" ColumnName="formfieldid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="formfieldmaster">
+            <EntityTypeMapping TypeName="GTEModel.formfieldmaster">
+              <MappingFragment StoreEntitySet="formfieldmaster">
+                <ScalarProperty Name="isvalidation" ColumnName="isvalidation" />
+                <ScalarProperty Name="treemasterid" ColumnName="treemasterid" />
+                <ScalarProperty Name="tooltips" ColumnName="tooltips" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="formfieldid" ColumnName="formfieldid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2045,6 +2175,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="majordiscipline_master">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="master_name">
+            <EntityTypeMapping TypeName="GTEModel.master_name">
+              <MappingFragment StoreEntitySet="master_name">
+                <ScalarProperty Name="mastername" ColumnName="mastername" />
+                <ScalarProperty Name="masterid" ColumnName="masterid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2230,6 +2368,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="universitywisemastermapping">
+            <EntityTypeMapping TypeName="GTEModel.universitywisemastermapping">
+              <MappingFragment StoreEntitySet="universitywisemastermapping">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="mastervalueid" ColumnName="mastervalueid" />
+                <ScalarProperty Name="masterid" ColumnName="masterid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="universitywisemastermappingid" ColumnName="universitywisemastermappingid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="user">
             <EntityTypeMapping TypeName="GTEModel.user">
               <MappingFragment StoreEntitySet="user">
@@ -2245,30 +2395,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="userid" ColumnName="userid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="GTE_documentverification">
-            <EntityTypeMapping TypeName="GTEModel.GTE_documentverification">
-              <MappingFragment StoreEntitySet="GTE_documentverification">
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
-                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
-                <ScalarProperty Name="agentid" ColumnName="agentid" />
-                <ScalarProperty Name="documentvalidationId" ColumnName="documentvalidationId" />
-                <ScalarProperty Name="documentname" ColumnName="documentname" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="documentid" ColumnName="documentid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="documentvalidationbyagent">
-            <EntityTypeMapping TypeName="GTEModel.documentvalidationbyagent">
-              <MappingFragment StoreEntitySet="documentvalidationbyagent">
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
-                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
-                <ScalarProperty Name="agentid" ColumnName="agentid" />
-                <ScalarProperty Name="documentid" ColumnName="documentid" />
-                <ScalarProperty Name="documentvalidationid" ColumnName="documentvalidationid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

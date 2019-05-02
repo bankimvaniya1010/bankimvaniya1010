@@ -121,8 +121,8 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="Default.aspx">Dashboard</a>
                                             <a class="dropdown-item" href="createuser.aspx">Create User</a>
-                                           <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
-                                             <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Preliminary Video</a>
+                                            <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
+                                            <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Preliminary Video</a>
                                             <a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>
                                             <a class="dropdown-item" href="educationmediummaster.aspx">Education Medium Master</a>
                                             <a class="dropdown-item" href="alternateaddressproof.aspx">Alternate Address Proof</a>
@@ -147,10 +147,11 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Settings</a>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item " href="formmaster.aspx">Forms</a>
-                                             <a class="dropdown-item " href="primaryfieldmaster.aspx">Fields</a>
+                                            <a class="dropdown-item " href="formfieldmaster.aspx">Form Field Master</a>
+                                            <a class="dropdown-item " href="formfieldmapping.aspx">Form Fields Mapping</a>
                                             <a class="dropdown-item" href="fieldmaster.aspx">Secondary Language</a>
-                                           <a class="dropdown-item" href="universityformmapping.aspx">University Forms</a>
-                                              <a class="dropdown-item" href="universityfieldmapping.aspx">University Fields</a>
+                                            <a class="dropdown-item" href="universityformmapping.aspx">University Forms</a>
+                                            <a class="dropdown-item" href="universityfieldmapping.aspx">University Fields</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/login.aspx">Login</a>
 

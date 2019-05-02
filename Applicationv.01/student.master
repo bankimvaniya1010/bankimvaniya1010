@@ -34,7 +34,7 @@
     <!-- App CSS -->
     <link type="text/css" href="assets/css/app.css" rel="stylesheet">
     <link type="text/css" href="assets/css/app.rtl.css" rel="stylesheet">
-     <link type="text/css" href="assets/css/intlTelInput.css" rel="stylesheet">
+    <link type="text/css" href="assets/css/intlTelInput.css" rel="stylesheet">
 </head>
 
 <body class=" layout-fluid">
@@ -135,8 +135,8 @@
                     <div class="mdk-drawer__content ">
                         <div class="sidebar sidebar-left sidebar-dark bg-dark o-hidden" data-perfect-scrollbar>
                             <div class="sidebar-p-y">
-                               
-                               
+
+
                                 <!-- Account menu -->
                                 <div class="sidebar-heading">Account</div>
                                 <ul class="sidebar-menu">
@@ -204,7 +204,8 @@
                                                 </a>
                                             </li>--%>
                                         </ul>
-                                    </li><li class="sidebar-menu-item">
+                                    </li>
+                                    <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                             Preliminary Screening
@@ -227,13 +228,16 @@
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="personal_menu">
+                                            <%for (int k = 0; k < formList.Count; k++)
+                                                {
+                                                    string[] formDeatils = formList[k].ToString().Split('|');   %>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="personaldetails.aspx">
-                                                    <span class="sidebar-menu-text">Personal Details</span>
+                                                <a class="sidebar-menu-button" href="applicantinformation.aspx?pageid=<%=formDeatils[0] %>">
+                                                    <span class="sidebar-menu-text"><%=formDeatils[1] %></span>
                                                 </a>
                                             </li>
-
-                                            <li class="sidebar-menu-item">
+                                            <%} %>
+                                            <%--   <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="applicantcontactdetail.aspx">
                                                     <span class="sidebar-menu-text">Contact Details</span>
                                                 </a>
@@ -273,7 +277,7 @@
                                                     <span class="sidebar-menu-text">Review & Verify</span>
                                                 </a>
                                             </li>
-                                            <%--  <li class="sidebar-menu-item">
+                                              <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="employerinfo.aspx">
                                                     <span class="sidebar-menu-text">Employer's Information</span>
                                                 </a>
@@ -658,10 +662,11 @@
     <!-- Easy Countdown -->
     <script src="assets/vendor/jquery.countdown.min.js"></script>
 
-    
-       <script src="assets/js/intlTelInput-jquery.min.js"></script>
-     <script src="assets/js/intlTelInput.min.js"></script>
- <script src="assets/js/prism.js"></script>    <!-- Init -->
+
+    <script src="assets/js/intlTelInput-jquery.min.js"></script>
+    <script src="assets/js/intlTelInput.min.js"></script>
+    <script src="assets/js/prism.js"></script>
+    <!-- Init -->
     <script src="assets/js/countdown.js"></script>
 </body>
 
