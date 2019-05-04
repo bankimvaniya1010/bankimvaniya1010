@@ -77,6 +77,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<studymodemaster> studymodemaster { get; set; }
     public virtual DbSet<titlemaster> titlemaster { get; set; }
     public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
+    public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }

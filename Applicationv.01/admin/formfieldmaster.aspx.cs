@@ -30,8 +30,8 @@ public partial class admin_formfieldmaster : System.Web.UI.Page
                                  name = ffm.name,
                                  tooltips = ffm.tooltips,
                                  isvalidation = ffm.isvalidation,
-                                 type = ffm.type,
-                                 treemasterid = ffm.treemasterid
+                                 type = ffm.type
+                                
 
                              }).ToList();
             if (FieldList != null)
