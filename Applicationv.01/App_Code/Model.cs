@@ -452,6 +452,7 @@ public partial class formfieldmapping
     public Nullable<int> formfieldid { get; set; }
     public Nullable<int> formid { get; set; }
     public Nullable<int> universityid { get; set; }
+    public Nullable<int> displayorder { get; set; }
 }
 
 public partial class formfieldmaster
@@ -460,8 +461,10 @@ public partial class formfieldmaster
     public string name { get; set; }
     public string type { get; set; }
     public string tooltips { get; set; }
-    public Nullable<int> treemasterid { get; set; }
     public Nullable<int> isvalidation { get; set; }
+    public Nullable<bool> isdepedent { get; set; }
+    public Nullable<int> depedentformfieldid { get; set; }
+    public string depedentformfieldvalue { get; set; }
 }
 
 public partial class formmaster
@@ -610,6 +613,14 @@ public partial class tooltipmaster
     public int id { get; set; }
     public string field { get; set; }
     public string tooltips { get; set; }
+}
+
+public partial class typemaster
+{
+    public int typemasterid { get; set; }
+    public Nullable<int> typeid { get; set; }
+    public string value { get; set; }
+    public Nullable<int> formfieldid { get; set; }
 }
 
 public partial class university_campusmapping

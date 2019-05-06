@@ -481,17 +481,20 @@
           <Property Name="formfieldid" Type="int" />
           <Property Name="formid" Type="int" />
           <Property Name="universityid" Type="int" />
+          <Property Name="displayorder" Type="int" />
         </EntityType>
         <EntityType Name="formfieldmaster">
           <Key>
             <PropertyRef Name="formfieldid" />
           </Key>
           <Property Name="formfieldid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="name" Type="varchar" MaxLength="500" />
           <Property Name="type" Type="varchar" MaxLength="45" />
-          <Property Name="tooltips" Type="varchar" MaxLength="45" />
-          <Property Name="treemasterid" Type="int" />
+          <Property Name="tooltips" Type="varchar" MaxLength="500" />
           <Property Name="isvalidation" Type="int" />
+          <Property Name="isdepedent" Type="bit" />
+          <Property Name="depedentformfieldid" Type="int" />
+          <Property Name="depedentformfieldvalue" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="formmaster">
           <Key>
@@ -659,6 +662,15 @@
           <Property Name="field" Type="varchar" MaxLength="50" />
           <Property Name="tooltips" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="typemaster">
+          <Key>
+            <PropertyRef Name="typemasterid" />
+          </Key>
+          <Property Name="typemasterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="typeid" Type="int" />
+          <Property Name="value" Type="varchar" MaxLength="200" />
+          <Property Name="formfieldid" Type="int" />
+        </EntityType>
         <EntityType Name="university_campusmapping">
           <Key>
             <PropertyRef Name="universitylocationid" />
@@ -794,6 +806,7 @@
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="typemaster" EntityType="Self.typemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_campusmapping" EntityType="Self.university_campusmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitycampus" EntityType="Self.universitycampus" Schema="GTE" store:Type="Tables" />
@@ -867,6 +880,7 @@
           <EntitySet Name="studymodemaster" EntityType="GTEModel.studymodemaster" />
           <EntitySet Name="titlemaster" EntityType="GTEModel.titlemaster" />
           <EntitySet Name="tooltipmaster" EntityType="GTEModel.tooltipmaster" />
+          <EntitySet Name="typemaster" EntityType="GTEModel.typemaster" />
           <EntitySet Name="university_campusmapping" EntityType="GTEModel.university_campusmapping" />
           <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
           <EntitySet Name="universitycampus" EntityType="GTEModel.universitycampus" />
@@ -1351,17 +1365,20 @@
           <Property Name="formfieldid" Type="Int32" />
           <Property Name="formid" Type="Int32" />
           <Property Name="universityid" Type="Int32" />
+          <Property Name="displayorder" Type="Int32" />
         </EntityType>
         <EntityType Name="formfieldmaster">
           <Key>
             <PropertyRef Name="formfieldid" />
           </Key>
           <Property Name="formfieldid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="tooltips" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="treemasterid" Type="Int32" />
+          <Property Name="tooltips" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="isvalidation" Type="Int32" />
+          <Property Name="isdepedent" Type="Boolean" />
+          <Property Name="depedentformfieldid" Type="Int32" />
+          <Property Name="depedentformfieldvalue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="formmaster">
           <Key>
@@ -1528,6 +1545,15 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="field" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="tooltips" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="typemaster">
+          <Key>
+            <PropertyRef Name="typemasterid" />
+          </Key>
+          <Property Name="typemasterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="typeid" Type="Int32" />
+          <Property Name="value" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="formfieldid" Type="Int32" />
         </EntityType>
         <EntityType Name="university_campusmapping">
           <Key>
@@ -2114,6 +2140,7 @@
           <EntitySetMapping Name="formfieldmapping">
             <EntityTypeMapping TypeName="GTEModel.formfieldmapping">
               <MappingFragment StoreEntitySet="formfieldmapping">
+                <ScalarProperty Name="displayorder" ColumnName="displayorder" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="formid" ColumnName="formid" />
                 <ScalarProperty Name="formfieldid" ColumnName="formfieldid" />
@@ -2124,8 +2151,10 @@
           <EntitySetMapping Name="formfieldmaster">
             <EntityTypeMapping TypeName="GTEModel.formfieldmaster">
               <MappingFragment StoreEntitySet="formfieldmaster">
+                <ScalarProperty Name="depedentformfieldvalue" ColumnName="depedentformfieldvalue" />
+                <ScalarProperty Name="depedentformfieldid" ColumnName="depedentformfieldid" />
+                <ScalarProperty Name="isdepedent" ColumnName="isdepedent" />
                 <ScalarProperty Name="isvalidation" ColumnName="isvalidation" />
-                <ScalarProperty Name="treemasterid" ColumnName="treemasterid" />
                 <ScalarProperty Name="tooltips" ColumnName="tooltips" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -2314,6 +2343,16 @@
                 <ScalarProperty Name="tooltips" ColumnName="tooltips" />
                 <ScalarProperty Name="field" ColumnName="field" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="typemaster">
+            <EntityTypeMapping TypeName="GTEModel.typemaster">
+              <MappingFragment StoreEntitySet="typemaster">
+                <ScalarProperty Name="formfieldid" ColumnName="formfieldid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+                <ScalarProperty Name="typemasterid" ColumnName="typemasterid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
