@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Web.UI.HtmlControls;
 using System.Collections;
+using System.Globalization;
 
 public partial class applicantinformation : System.Web.UI.Page
 {
@@ -34,6 +35,8 @@ public partial class applicantinformation : System.Web.UI.Page
     {
         var ControlsList = (from fm in db.formfieldmaster
                             join ffm in db.formfieldmapping on fm.formfieldid equals ffm.formfieldid
+                            join fvm in db.fieldvalidationmaster on fm.formfieldid equals fvm.formfieldid into combined
+                            from x in combined.DefaultIfEmpty()
                             where ffm.universityid == universityID && ffm.formid == pageID
 
                             select new
@@ -45,6 +48,8 @@ public partial class applicantinformation : System.Web.UI.Page
                                 depedentformfieldid = fm.depedentformfieldid,
                                 depedentformfieldvalue = fm.depedentformfieldvalue,
                                 type = fm.type,
+                                isvalidation = fm.isvalidation,
+                                regularexpression = x.regularexpression,
                                 displayOrder = ffm.displayorder
                             }).ToList();
 
@@ -63,6 +68,9 @@ public partial class applicantinformation : System.Web.UI.Page
                 lstDiv.Attributes["depedendentvalue"] = ControlsList[k].depedentformfieldvalue.ToString();
             }
             lstDiv.Attributes["controltype"] = ControlsList[k].type.ToString();
+            { lstDiv.Attributes["required"] = ControlsList[k].isvalidation.ToString(); }
+            if (!string.IsNullOrEmpty(ControlsList[k].regularexpression))
+                lstDiv.Attributes["expression"] = ControlsList[k].regularexpression.ToString();
             lstDiv.Attributes["formfieldid"] = ControlsList[k].formfieldid.ToString();
             System.Web.UI.HtmlControls.HtmlGenericControl formgroupDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
             formgroupDiv.Attributes["class"] = "form-group m-0";
@@ -88,7 +96,7 @@ public partial class applicantinformation : System.Web.UI.Page
             if (ControlsList[k].type.ToLower() == "textbox")
             {
                 TextBox txtcustombox = new TextBox();
-                txtcustombox.ID = "txt" + ControlsList[k].name.Replace(" ", "");
+                txtcustombox.ID = ControlsList[k].name.Replace(" ", "");
 
                 txtcustombox.Attributes["class"] = "form-control";
                 txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
@@ -98,7 +106,7 @@ public partial class applicantinformation : System.Web.UI.Page
             if (ControlsList[k].type.ToLower() == "dropdownlist")
             {
                 DropDownList ddllst = new DropDownList();
-                ddllst.ID = "ddl" + ControlsList[k].name.Replace(" ", ""); ;
+                ddllst.ID = ControlsList[k].name.Replace(" ", ""); ;
                 lstDiv.Attributes["parentcontrolid"] = ddllst.ID;
 
                 ddllst.Attributes["class"] = "form-control";
@@ -111,11 +119,37 @@ public partial class applicantinformation : System.Web.UI.Page
                 mycontrol.Controls.Add(ddllst);
 
             }
+            if (ControlsList[k].type.ToLower() == "calendardropdownlist")
+            {
+                DropDownList ddlDay = new DropDownList();
+                ddlDay.ID = "dd"+ ControlsList[k].name.Replace(" ", ""); ;
+                lstDiv.Attributes["parentcontrolid"] = ddlDay.ID;
+                ddlDay.Attributes["class"] = "form-control";
+                ddlDay.Attributes.Add("title", ControlsList[k].tooltips);
+               
+                mycontrol.Controls.Add(ddlDay);
+                DropDownList ddlMonth = new DropDownList();
+                ddlMonth.ID = "mm"+ ControlsList[k].name.Replace(" ", ""); ;
+                lstDiv.Attributes["parentcontrolid"] = ddlMonth.ID;
+                ddlMonth.Attributes["class"] = "form-control";
+                ddlMonth.Attributes.Add("title", ControlsList[k].tooltips);
+              
+                mycontrol.Controls.Add(ddlMonth);
+                DropDownList ddlYr = new DropDownList();
+                ddlYr.ID = "yy" + ControlsList[k].name.Replace(" ", ""); ;
+                lstDiv.Attributes["parentcontrolid"] = ddlYr.ID;
+                ddlYr.Attributes["class"] = "form-control";
+                ddlYr.Attributes.Add("title", ControlsList[k].tooltips);
+             
+              
+                mycontrol.Controls.Add(ddlYr);
+                lstDiv.Attributes["calendarDropID"] = ddlDay.ID + "|" + ddlMonth.ID + "|" + ddlYr.ID;
 
+            }
             if (ControlsList[k].type.ToLower() == "radiobutton")
             {
                 RadioButtonList radioButton = new RadioButtonList();
-                radioButton.ID = "rd" + ControlsList[k].name.Replace(" ", "");
+                radioButton.ID = ControlsList[k].name.Replace(" ", "");
 
                 lstDiv.Attributes["parentcontrolid"] = radioButton.ID;
                 radioButton.Attributes["class"] = "form-control";
@@ -131,7 +165,7 @@ public partial class applicantinformation : System.Web.UI.Page
             if (ControlsList[k].type.ToLower() == "calendar")
             {
                 TextBox txtcustombox = new TextBox();
-                txtcustombox.ID = "txt" + ControlsList[k].name.Replace(" ", "");
+                txtcustombox.ID = ControlsList[k].name.Replace(" ", "");
                 txtcustombox.Attributes["class"] = "form-control";
                 txtcustombox.Attributes["data-toggle"] = "flatpickr";
                 txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
@@ -140,4 +174,64 @@ public partial class applicantinformation : System.Web.UI.Page
             }
         }
     }
+    //private void ddlMonth_SelectedValueChanged(object sender, EventArgs e)
+    //{
+    //    FillDays();
+    //}
+    //private void ddlYear_SelectedValueChanged(object sender, EventArgs e)
+    //{
+    //    FillDays();
+    //}
+
+    //public void FillMonth(DropDownList ddlMonth)
+    //{
+    //    try
+    //    {
+    //        // ddlYear.Items.FindByValue(System.DateTime.Now.Year.ToString()).Selected = true;  //set current year as selected
+    //        DateTimeFormatInfo info = DateTimeFormatInfo.GetInstance(null);
+    //        //Fill Months
+    //        for (int i = 1; i <= 12; i++)
+    //        {
+    //            ddlMonth.Items.Add(new ListItem(info.GetMonthName(i).Substring(0, 3).ToUpper(), i.ToString()));
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        objLog.WriteLog(ex.ToString());
+    //    }
+    //}
+    //public void FillYears(DropDownList ddlYear)
+    //{
+    //    try
+    //    {
+    //        int maxYers = DateTime.Now.AddYears(-15).Year;
+    //        for (int i = 1975; i <= maxYers; i++)
+    //        {
+    //            ddlYear.Items.Add(i.ToString());
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        objLog.WriteLog(ex.ToString());
+    //    }
+    //}
+    //public void FillDays(DropDownList ddlYear, DropDownList ddlMonth, DropDownList ddlDay)
+    //{
+    //    try
+    //    {
+    //        //getting numbner of days in selected month & year
+    //        int noofdays = DateTime.DaysInMonth(Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(ddlMonth.SelectedValue));
+
+    //        //Fill days
+    //        for (int i = 1; i <= noofdays; i++)
+    //        {
+    //            ddlDay.Items.Add(i.ToString());
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        objLog.WriteLog(ex.ToString());
+    //    }
+    //    // ddlDay.Items.FindByValue(System.DateTime.Now.Day.ToString()).Selected = true;// Set current date as selected
+    //}
 }

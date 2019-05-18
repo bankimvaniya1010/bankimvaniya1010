@@ -69,7 +69,79 @@
                     $("#tooltip").text(title);
                 });
             var controlarray = [];
+            var validateControlArray = [];
             $.each($('.list-group-item'), function (i, attrib) {
+                if ($(this).attr('controltype') === 'calendardropdownlist') {
+                    const monthNames = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"
+                    ];
+                    var combineIDs = $(this).attr('calendardropid').split('|');
+                   
+                    var qntYears = 15;
+                    var selectYear = $('#ContentPlaceHolder1_' + combineIDs[2]);
+                    var selectMonth = $('#ContentPlaceHolder1_' + combineIDs[1]);
+                    var selectDay = $('#ContentPlaceHolder1_' + combineIDs[0]);
+                    var currentYear = new Date().getFullYear();
+
+                    for (var y = 0; y < qntYears; y++) {
+                        let date = new Date(currentYear);
+                        var yearElem = document.createElement("option");
+                        yearElem.value = currentYear
+                        yearElem.textContent = currentYear;
+                        selectYear.append(yearElem);
+                        currentYear--;
+                    }
+
+                    for (var m = 0; m < 12; m++) {
+                        let monthNum = new Date(2018, m).getMonth()
+                        let month = monthNames[monthNum];
+                        var monthElem = document.createElement("option");
+                        monthElem.value = monthNum;
+                        monthElem.textContent = month;
+                        selectMonth.append(monthElem);
+                    }
+
+                    var d = new Date();
+                    var month = d.getMonth();
+                    var year = d.getFullYear();
+                    var day = d.getDate();
+
+                    selectYear.val(year);
+                    selectYear.on("change", AdjustDays);
+                    selectMonth.val(month);
+                    selectMonth.on("change", AdjustDays);
+
+                    AdjustDays();
+                    selectDay.val(day)
+
+                    function AdjustDays() {
+                        var year = selectYear.val();
+                        var month = parseInt(selectMonth.val()) + 1;
+                        selectDay.empty();
+
+                        //get the last day, so the number of days in that month
+                        var days = new Date(year, month, 0).getDate();
+
+                        //lets create the days of that month
+                        for (var d = 1; d <= days; d++) {
+                            var dayElem = document.createElement("option");
+                            dayElem.value = d;
+                            dayElem.textContent = d;
+                            selectDay.append(dayElem);
+                        }
+                    }
+
+                }
+                if (typeof $(this).attr('expression') !== 'undefined') {
+                    var controlshavetovalidate = {};
+                    if ($(this).attr('required') == 'required') {
+                        controlshavetovalidate["primary"] = 1;
+                    }
+                    controlshavetovalidate["controlid"] = $(this).attr('id');
+                    controlshavetovalidate["regularexpression"] = $(this).attr('expression');
+                    validateControlArray.push(controlshavetovalidate);
+                }
+                validateControlArray.push(controlshavetovalidate);
                 if ($(this).attr('isdepedent') == 'True') {
                     var DepedentControls = {};
                     DepedentControls["depedendentvalue"] = $(this).attr('depedendentvalue');
@@ -88,12 +160,13 @@
             // for (var i = 0; i < controlarray.length; i++)
             $.each(controlarray, function (index, value) {
                 var dyanmiccontrol = value;
-
+                console.log(controlarray);
                 switch (dyanmiccontrol.controltype.toLowerCase()) {
                     case 'dropdownlist':
                         {
                             $('#ContentPlaceHolder1_' + dyanmiccontrol.parentcontrolid).change(function () {
-                                if ($(this).val().toLowerCase() == dyanmiccontrol.depedendentvalue.toLowerCase()) {
+
+                                if ($('#ContentPlaceHolder1_' + dyanmiccontrol.parentcontrolid + ' option:selected').text().toLowerCase() == dyanmiccontrol.depedendentvalue.toLowerCase()) {
                                     $('#' + dyanmiccontrol.childcontroldivid).css({ 'display': 'block' });
                                 }
                                 else { $('#' + dyanmiccontrol.childcontroldivid).css({ 'display': 'none' }); }
@@ -103,9 +176,7 @@
                         {
                             $('input:radio').click(function () {
                                 if ($(this).attr('name').indexOf(dyanmiccontrol.parentcontrolid) > -1) {
-                                    console.log($('input[name="' + $(this).attr('name') + '"]:radio:checked').val().toLowerCase());
-                                    console.log(dyanmiccontrol.depedendentvalue.toLowerCase());
-                                    console.log(dyanmiccontrol.childcontroldivid);
+
                                     if ($('input[name="' + $(this).attr('name') + '"]:radio:checked').val().toLowerCase() == dyanmiccontrol.depedendentvalue.toLowerCase()) {
                                         $('#' + dyanmiccontrol.childcontroldivid).css({ 'display': 'block' });
                                     }
@@ -114,6 +185,7 @@
                             });
 
                         }
+
                 }
 
                 //else if (dyanmiccontrol.controltype.toLowerCase() == "radiobutton") {
@@ -129,15 +201,14 @@
 
             // Set Dateformat for Calendar
 
-                        $("input[type='text']").each(function () {
+            $("input[type='text']").each(function () {
                 if ($(this).attr('data-toggle') == 'flatpickr') {
                     $('#' + $(this).attr('id')).flatpickr({
                         dateFormat: 'Y-m-d'
                     });
                 }
             });
-
-
+            // Bind Day,Month and Year Dropdown
 
 
 
