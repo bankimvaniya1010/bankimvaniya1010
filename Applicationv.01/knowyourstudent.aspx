@@ -329,7 +329,7 @@
                             <div class="list-group-item" id="alternateIdentitytype" runat="server" style="display:none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateIdentitytype">
                                     <div class="form-row">
-                                        <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-3 col-form-label form-label">Identity Type </label>
+                                        <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-3 col-form-label form-label">Alternative Proof Identity Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternateIdentitytype" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -340,7 +340,7 @@
                             <div class="list-group-item" id="alternateIdentityNo" runat="server" style="display:none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateIdentityNo">
                                     <div class="form-row">
-                                        <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Identity Number</label>
+                                        <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Alternative Proof Identity Number</label>
                                         <div class="col-md-6">
                                             <input id="txtalternateIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number">
                                         </div>
@@ -362,7 +362,7 @@
                             <div class="list-group-item" id="alternatedobIdentitytype" runat="server" style="display:none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternatedobIdentitytype">
                                     <div class="form-row">
-                                        <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Identity Type </label>
+                                        <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Alternative Proof Identity Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternatedobIdentitytype" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
@@ -373,7 +373,7 @@
                             <div class="list-group-item" id="alternatedobIdentityNo" runat="server" style="display:none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternatedobIdentityNo">
                                     <div class="form-row">
-                                        <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">Identity Number</label>
+                                        <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">Alternative Proof Identity Number</label>
                                         <div class="col-md-6">
                                             <input id="txtalternatedobIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number">
                                         </div>
@@ -394,7 +394,7 @@
                             <div class="list-group-item" id="alternateresidenceIdentitytype" runat="server" style="display:none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceIdentitytype">
                                     <div class="form-row">
-                                        <label id="labelalternateresidenceIdentitytype" runat="server"  for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Identity Type </label>
+                                        <label id="labelalternateresidenceIdentitytype" runat="server"  for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Alternative Proof Identity Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternateresidenceIdentitytype" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
@@ -405,7 +405,7 @@
                             <div class="list-group-item" id="alternateresidenceIdentityNo" runat="server" style="display:none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceIdentityNo">
                                     <div class="form-row">
-                                        <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Identity Number</label>
+                                        <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Alternative Proof Identity Number</label>
                                         <div class="col-md-6">
                                             <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number">
                                         </div>

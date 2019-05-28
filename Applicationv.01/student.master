@@ -228,16 +228,13 @@
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="personal_menu">
-                                            <%for (int k = 0; k < formList.Count; k++)
-                                                {
-                                                    string[] formDeatils = formList[k].ToString().Split('|');   %>
+                                           
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantinformation.aspx?pageid=<%=formDeatils[0] %>">
-                                                    <span class="sidebar-menu-text"><%=formDeatils[1] %></span>
+                                                <a class="sidebar-menu-button" href="personaldetails.aspx">
+                                                    <span class="sidebar-menu-text">Personal Details</span>
                                                 </a>
                                             </li>
-                                            <%} %>
-                                            <%--   <li class="sidebar-menu-item">
+                                            <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="applicantcontactdetail.aspx">
                                                     <span class="sidebar-menu-text">Contact Details</span>
                                                 </a>

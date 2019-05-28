@@ -26,8 +26,7 @@ public partial class applicantreview : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (user)Session["LoginInfo"];
         userID = objUser.userid;
-        if (!IsPostBack)
-        {
+       
             objApplicant = (from pInfo in db.applicantdetails
                             where pInfo.applicantid == userID
                             select pInfo).ToList();
@@ -72,7 +71,7 @@ public partial class applicantreview : System.Web.UI.Page
                       where pInfo.applicantid == userID
                       select pInfo).ToList();
         }
-    }
+    
 
    
 }
