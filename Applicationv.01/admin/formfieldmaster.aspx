@@ -31,7 +31,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnRowCancelingEdit="FormFieldGridView_RowCancelingEdit" OnRowCommand="FormFieldGridView_RowCommand" OnRowDataBound="FormFieldGridView_RowDataBound" OnRowDeleting="FormFieldGridView_RowDeleting" OnRowEditing="FormFieldGridView_RowEditing" OnRowUpdating="FormFieldGridView_RowUpdating">
+                        CellSpacing="2" OnRowCancelingEdit="FormFieldGridView_RowCancelingEdit" OnRowCommand="FormFieldGridView_RowCommand" OnRowDataBound="FormFieldGridView_RowDataBound" OnRowDeleting="FormFieldGridView_RowDeleting" OnRowEditing="FormFieldGridView_RowEditing" OnRowUpdating="FormFieldGridView_RowUpdating" OnPageIndexChanging="FormFieldGridView_PageIndexChanging">
 
                         <Columns>
                             <asp:BoundField DataField="formfieldid" HeaderText="Form Field id" InsertVisible="False"

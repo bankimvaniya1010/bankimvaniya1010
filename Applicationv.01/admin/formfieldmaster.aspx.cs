@@ -190,4 +190,10 @@ public partial class admin_formfieldmaster : System.Web.UI.Page
         FormFieldGridView.EditIndex = e.NewEditIndex;
         BindFormFieldView();
     }
+
+    protected void FormFieldGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FormFieldGridView.PageIndex = e.NewPageIndex;
+        BindFormFieldView();
+    }
 }
