@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class applicantworkexperience : System.Web.UI.Page
 {
+    int formId = 0;
     int userID = 0, ApplicantID = 0;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
@@ -20,6 +21,12 @@ public partial class applicantworkexperience : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
+        if ((Request.QueryString["formid"] == null) && (Request.QueryString["formid"].ToString() == ""))
+        {
+            Response.Redirect(webURL + "default.aspx");
+        }
+        else
+            formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
             SetToolTips();
@@ -103,7 +110,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.universityid == universityID && ufm.formid == 7 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          where ufm.universityid == universityID && ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -117,7 +124,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 fields = (from ufm in db.universitywisefieldmapping
                           join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == 7 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          where ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -132,7 +139,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 fields = (from ufm in db.universitywisefieldmapping
                           join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == 7 && ufm.universityid == universityID
+                          where ufm.formid == formId && ufm.universityid == universityID
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -146,7 +153,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             {
                 fields = (from pfm in db.primaryfieldmaster
 
-                          where pfm.formid == 7
+                          where pfm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
