@@ -661,13 +661,11 @@
           <Property Name="languagecode" Type="varchar" MaxLength="5" />
           <Property Name="secondarylanguagename" Type="varchar" MaxLength="45" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'def.GTE.studentcoursemapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="studentcoursemapping">
           <Key>
-            <PropertyRef Name="studentid" />
-            <PropertyRef Name="courseid" />
+            <PropertyRef Name="id" />
           </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="studentid" Type="int" Nullable="false" />
           <Property Name="courseid" Type="int" Nullable="false" />
         </EntityType>
@@ -888,6 +886,7 @@ warning 6002: The table/view 'def.GTE.studentcoursemapping' does not have a prim
           <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="secondarylanguagemaster" EntityType="Self.secondarylanguagemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="studentcoursemapping" EntityType="Self.studentcoursemapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="students" EntityType="Self.students" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studylevelmaster" EntityType="Self.studylevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
@@ -900,12 +899,6 @@ warning 6002: The table/view 'def.GTE.studentcoursemapping' does not have a prim
           <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="studentcoursemapping" EntityType="Self.studentcoursemapping" store:Type="Tables" store:Schema="GTE">
-            <DefiningQuery>SELECT
-`studentcoursemapping`.`studentid`, 
-`studentcoursemapping`.`courseid`
-FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_adminusers_rolemaster" Association="Self.FK_adminusers_rolemaster">
             <End Role="rolemaster" EntitySet="rolemaster" />
             <End Role="adminusers" EntitySet="adminusers" />
@@ -987,6 +980,7 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
           <EntitySet Name="relative_master" EntityType="GTEModel.relative_master" />
           <EntitySet Name="rolemaster" EntityType="GTEModel.rolemaster" />
           <EntitySet Name="secondarylanguagemaster" EntityType="GTEModel.secondarylanguagemaster" />
+          <EntitySet Name="studentcoursemapping" EntityType="GTEModel.studentcoursemapping" />
           <EntitySet Name="students" EntityType="GTEModel.students" />
           <EntitySet Name="studylevelmaster" EntityType="GTEModel.studylevelmaster" />
           <EntitySet Name="studymodemaster" EntityType="GTEModel.studymodemaster" />
@@ -1003,12 +997,16 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
             <End Role="rolemaster" EntitySet="rolemaster" />
             <End Role="adminusers" EntitySet="adminusers" />
           </AssociationSet>
+          <AssociationSet Name="FK_studentcoursemapping_registrationcourses" Association="GTEModel.FK_studentcoursemapping_registrationcourses">
+            <End Role="registrationcourses" EntitySet="registrationcourses" />
+            <End Role="studentcoursemapping" EntitySet="studentcoursemapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentcoursemapping_students" Association="GTEModel.FK_studentcoursemapping_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="studentcoursemapping" EntitySet="studentcoursemapping" />
+          </AssociationSet>
           <AssociationSet Name="FK_students_studylevelmaster" Association="GTEModel.FK_students_studylevelmaster">
             <End Role="studylevelmaster" EntitySet="studylevelmaster" />
-            <End Role="students" EntitySet="students" />
-          </AssociationSet>
-          <AssociationSet Name="studentcoursemapping" Association="GTEModel.studentcoursemapping">
-            <End Role="registrationcourses" EntitySet="registrationcourses" />
             <End Role="students" EntitySet="students" />
           </AssociationSet>
           </EntityContainer>
@@ -1635,7 +1633,7 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
           </Key>
           <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="coursename" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="students" Relationship="GTEModel.studentcoursemapping" FromRole="registrationcourses" ToRole="students" />
+          <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_registrationcourses" FromRole="registrationcourses" ToRole="studentcoursemapping" />
         </EntityType>
         <EntityType Name="relative_master">
           <Key>
@@ -1671,6 +1669,16 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
           <Property Name="languagecode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="secondarylanguagename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="studentcoursemapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentid" Type="Int32" Nullable="false" />
+          <Property Name="courseid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="registrationcourses" Relationship="GTEModel.FK_studentcoursemapping_registrationcourses" FromRole="studentcoursemapping" ToRole="registrationcourses" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="studentcoursemapping" ToRole="students" />
+        </EntityType>
         <EntityType Name="students">
           <Key>
             <PropertyRef Name="studentid" />
@@ -1684,8 +1692,8 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
           <Property Name="studylevelid" Type="Int32" Nullable="false" />
           <Property Name="status" Type="Int32" Nullable="false" />
           <Property Name="creationdate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
           <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
-          <NavigationProperty Name="registrationcourses" Relationship="GTEModel.studentcoursemapping" FromRole="students" ToRole="registrationcourses" />
         </EntityType>
         <EntityType Name="studylevelmaster">
           <Key>
@@ -1795,6 +1803,30 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_studentcoursemapping_registrationcourses">
+          <End Type="GTEModel.registrationcourses" Role="registrationcourses" Multiplicity="1" />
+          <End Type="GTEModel.studentcoursemapping" Role="studentcoursemapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registrationcourses">
+              <PropertyRef Name="courseid" />
+            </Principal>
+            <Dependent Role="studentcoursemapping">
+              <PropertyRef Name="courseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentcoursemapping_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.studentcoursemapping" Role="studentcoursemapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="studentcoursemapping">
+              <PropertyRef Name="studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_students_studylevelmaster">
           <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="1" />
           <End Type="GTEModel.students" Role="students" Multiplicity="*" />
@@ -1806,10 +1838,6 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
               <PropertyRef Name="studylevelid" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="studentcoursemapping">
-          <End Type="GTEModel.registrationcourses" Role="registrationcourses" Multiplicity="*" />
-          <End Type="GTEModel.students" Role="students" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -2526,6 +2554,15 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="studentcoursemapping">
+            <EntityTypeMapping TypeName="GTEModel.studentcoursemapping">
+              <MappingFragment StoreEntitySet="studentcoursemapping">
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+                <ScalarProperty Name="studentid" ColumnName="studentid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="students">
             <EntityTypeMapping TypeName="GTEModel.students">
               <MappingFragment StoreEntitySet="students">
@@ -2647,14 +2684,6 @@ FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="studentcoursemapping" TypeName="GTEModel.studentcoursemapping" StoreEntitySet="studentcoursemapping">
-            <EndProperty Name="students">
-              <ScalarProperty Name="studentid" ColumnName="studentid" />
-            </EndProperty>
-            <EndProperty Name="registrationcourses">
-              <ScalarProperty Name="courseid" ColumnName="courseid" />
-            </EndProperty>
-          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
