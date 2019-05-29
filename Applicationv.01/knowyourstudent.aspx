@@ -19,7 +19,7 @@
                     <div class="card" style="width: 650px;">
                         <div class="list-group list-group-fit">
 
-                            <div class="list-group-item" id="passportno" runat="server" style="display:none;" >
+                            <div class="list-group-item" id="passportno" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-passportno">
                                     <div class="form-row">
                                         <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="dateofissue" runat="server" style="display:none;">
+                            <div class="list-group-item" id="dateofissue" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dateofissue">
                                     <div class="form-row">
                                         <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Date of Issue </label>
@@ -42,7 +42,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" runat="server" style="display:none;" id="expirydate">
+                            <div class="list-group-item" runat="server" style="display: none;" id="expirydate">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-expirydate">
                                     <div class="form-row">
                                         <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">Expiry Date </label>
@@ -53,12 +53,12 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="list-group-item" runat="server" style="display:none;" id="countryIssue">
+                            <div class="list-group-item" runat="server" style="display: none;" id="countryIssue">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-countryIssue">
                                     <div class="form-row">
                                         <label id="labelcountryIssue" runat="server" for="countryIssue" class="col-md-3 col-form-label form-label">COUNTRY OF ISSUE </label>
                                         <div class="col-md-6">
-                                             <asp:DropDownList ID="ddlCountryofIssue" CssClass="form-control" runat="server">
+                                            <asp:DropDownList ID="ddlCountryofIssue" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="" Selected="True">Select Country</asp:ListItem>
                                                 <asp:ListItem Value="AF">Afghanistan</asp:ListItem>
                                                 <asp:ListItem Value="AL">Albania</asp:ListItem>
@@ -303,7 +303,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="issueplace" runat="server" style="display:none;">
+                            <div class="list-group-item" id="issueplace" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-issueplace">
                                     <div class="form-row">
                                         <label id="labelissueplace" runat="server" for="issueplace" class="col-md-3 col-form-label form-label">CITY OF ISSUE </label>
@@ -315,7 +315,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="alternateidentity" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternateidentity" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateidenity">
                                     <div class="form-row">
                                         <label id="labelalternateidentity" runat="server" for="alternateidenity" class="col-md-3 col-form-label form-label">Alternative Proof of Identity </label>
@@ -326,7 +326,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="alternateIdentitytype" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternateIdentitytype" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateIdentitytype">
                                     <div class="form-row">
                                         <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-3 col-form-label form-label">Alternative Proof Identity Type </label>
@@ -337,7 +337,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="alternateIdentityNo" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternateIdentityNo" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateIdentityNo">
                                     <div class="form-row">
                                         <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Alternative Proof Identity Number</label>
@@ -348,7 +348,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" runat="server" style="display:none;" id="alternatedobidentity">
+                            <div class="list-group-item" runat="server" style="display: none;" id="alternatedobidentity">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternatedobidenity">
                                     <div class="form-row">
                                         <label id="labelalternatedobidentity" runat="server" for="alternatedobidenity" class="col-md-3 col-form-label form-label">Alternative Proof of Date of Birth </label>
@@ -359,7 +359,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="alternatedobIdentitytype" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternatedobIdentitytype" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternatedobIdentitytype">
                                     <div class="form-row">
                                         <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Alternative Proof Identity Type </label>
@@ -370,7 +370,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="alternatedobIdentityNo" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternatedobIdentityNo" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternatedobIdentityNo">
                                     <div class="form-row">
                                         <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">Alternative Proof Identity Number</label>
@@ -380,7 +380,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="alternateresidenceidenity" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternateresidenceidenity" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceidenity">
                                     <div class="form-row">
                                         <label id="labelalternateresidenceidenity" runat="server" for="alternateresidenceidenity" class="col-md-3 col-form-label form-label">Alternative Proof of Residence </label>
@@ -391,10 +391,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="alternateresidenceIdentitytype" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternateresidenceIdentitytype" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceIdentitytype">
                                     <div class="form-row">
-                                        <label id="labelalternateresidenceIdentitytype" runat="server"  for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Alternative Proof Identity Type </label>
+                                        <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Alternative Proof Identity Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternateresidenceIdentitytype" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
@@ -402,7 +402,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="alternateresidenceIdentityNo" runat="server" style="display:none;">
+                            <div class="list-group-item" id="alternateresidenceIdentityNo" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceIdentityNo">
                                     <div class="form-row">
                                         <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Alternative Proof Identity Number</label>
@@ -415,7 +415,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                         <a href="applicanteducation.aspx" class="btn btn-success" style="margin-right: 10px;">Education Details</a>
+                                        <a href="applicanteducation.aspx" class="btn btn-success" style="margin-right: 10px;">Education Details</a>
                                         <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
@@ -428,7 +428,7 @@
                         </div>
                     </div>
                 </div>
-                 <div id="page-nav" class="col-lg-auto page-nav">
+                <div id="page-nav" class="col-lg-auto page-nav">
 
                     <div>
                         <span id="tooltip"></span>
@@ -459,7 +459,7 @@
         });
 
         $(document).ready(function () {
-             
+
             $(".form-control")
                 .mouseover(function () {
                     var controlId = $(this).attr('id');
@@ -468,66 +468,74 @@
                 });
             var alternateidenity = $("input[type=radio][name='ctl00$ContentPlaceHolder1$alternateidenity']:checked").val()
             if (alternateidenity == 'rblalternateidenityYes') {
-                $("#alternateIdentitytype").show();
-                $("#alternateIdentityNo").show();
+                $("#<%=alternateIdentitytype.ClientID%>").show();
+                $("#<%=alternateIdentityNo.ClientID%>").show();
             } else {
-                $("#alternateIdentitytype").hide();
-                $("#alternateIdentityNo").hide();
+
+                $("#<%=alternateIdentitytype.ClientID%>").hide();
+                $("#<%=alternateIdentityNo.ClientID%>").hide();
 
             }
             var alternateidenitydob = $("input[type=radio][name='ctl00$ContentPlaceHolder1$alternatedobidenity']:checked").val()
             if (alternateidenitydob == 'rblalternatedobidenityYes') {
-                $("#alternatedobIdentitytype").show();
-                $("#alternatedobIdentityNo").show();
+                $("#<%=alternatedobIdentitytype.ClientID%>").show();
+                $("#<%=alternatedobIdentityNo.ClientID%>").show();
             } else {
-                $("#alternatedobIdentitytype").hide();
-                $("#alternatedobIdentityNo").hide();
+
+                $("#<%=alternatedobIdentitytype.ClientID%>").hide();
+                $("#<%=alternatedobIdentityNo.ClientID%>").hide();
 
             }
             var alternateidenityres = $("input[type=radio][name='ctl00$ContentPlaceHolder1$alternateresidenceidenity']:checked").val()
-             if (alternateidenityres == 'rblalternateresidenceidenityYes') {
-                $("#alternateresidenceIdentitytype").show();
-                $("#alternateresidenceIdentityNo").show();
+            if (alternateidenityres == 'rblalternateresidenceidenityYes') {
+                $("#<%=alternateresidenceIdentitytype.ClientID%>").show();
+                $("#<%=alternateresidenceIdentityNo.ClientID%>").show();
             } else {
-                $("#alternateresidenceIdentitytype").hide();
-                $("#alternateresidenceIdentityNo").hide();
+
+                $("#<%=alternateresidenceIdentitytype.ClientID%>").hide();
+                $("#<%=alternateresidenceIdentityNo.ClientID%>").hide();
 
             }
         });
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$alternateidenity']").click(function () {
-                if ($("#ContentPlaceHolder1_rblalternateidenityYes").is(":checked")) {
-                    $("#alternateIdentitytype").show();
-                    $("#alternateIdentityNo").show();
+                if ($("#<%=rblalternateidenityYes.ClientID%>").is(":checked")) {
+                    $("#<%=alternateIdentitytype.ClientID%>").show();
+                    $("#<%=alternateIdentityNo.ClientID%>").show();
                 } else {
-                    $("#alternateIdentitytype").hide();
-                    $("#alternateIdentityNo").hide();
+
+                    $("#<%=alternateIdentitytype.ClientID%>").hide();
+                    $("#<%=alternateIdentityNo.ClientID%>").hide();
 
                 }
+
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$alternatedobidenity']").click(function () {
-                if ($("#ContentPlaceHolder1_rblalternatedobidenityYes").is(":checked")) {
-                    $("#alternatedobIdentitytype").show();
-                    $("#alternatedobIdentityNo").show();
+                if ($("#<%=rblalternatedobidenityYes.ClientID%>").is(":checked")) {
+                    $("#<%=alternatedobIdentitytype.ClientID%>").show();
+                    $("#<%=alternatedobIdentityNo.ClientID%>").show();
                 } else {
-                    $("#alternatedobIdentitytype").hide();
-                    $("#alternatedobIdentityNo").hide();
+
+                    $("#<%=alternatedobIdentitytype.ClientID%>").hide();
+                    $("#<%=alternatedobIdentityNo.ClientID%>").hide();
 
                 }
+
             });
         });
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$alternateresidenceidenity']").click(function () {
-                if ($("#ContentPlaceHolder1_rblalternateresidenceidenityYes").is(":checked")) {
-                    $("#alternateresidenceIdentitytype").show();
-                    $("#alternateresidenceIdentityNo").show();
+                if ($("#<%=rblalternateresidenceidenityYes.ClientID%>").is(":checked")) {
+                    $("#<%=alternateresidenceIdentitytype.ClientID%>").show();
+                    $("#<%=alternateresidenceIdentityNo.ClientID%>").show();
                 } else {
-                    $("#alternateresidenceIdentitytype").hide();
-                    $("#alternateresidenceIdentityNo").hide();
+
+                    $("#<%=alternateresidenceIdentitytype.ClientID%>").hide();
+                    $("#<%=alternateresidenceIdentityNo.ClientID%>").hide();
 
                 }
             });

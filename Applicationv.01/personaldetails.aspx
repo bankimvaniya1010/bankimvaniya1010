@@ -737,13 +737,13 @@
             });
             var Disability = $("input[type=radio][name='ctl00$ContentPlaceHolder1$disability']:checked").val();
             if (Disability == 'rblDisabilityYes') {
-                $("#disabilitydesc").show();
-            } else { $("#disabilitydesc").hide(); }
+                $("#<%=disabilitydesc.ClientID%>").show();
+            } else { $("#<%=disabilitydesc.ClientID%>").hide(); }
 
             var agent = $("input[type=radio][name='ctl00$ContentPlaceHolder1$agent']:checked").val();
             if (agent == 'rblAgentYes') {
-                $("#agentList").show(); $("#addnewagent").show();
-            } else { $("#agentList").hide(); $("#addnewagent").hide(); }
+                $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
+            } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
 
             var i = 0;
             $(".form-control")
@@ -759,25 +759,20 @@
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$disability']").click(function () {
-                if ($("#ContentPlaceHolder1_rblDisabilityYes").is(":checked")) {
-                    $("#disabilitydesc").show();
+                if ($("#<%=rblDisabilityYes.ClientID%>").is(":checked")) {
+                    $("#<%=disabilitydesc.ClientID%>").show();
 
                 } else {
-                    $("#disabilitydesc").hide();
+                    $("#<%=disabilitydesc.ClientID%>").hide();
 
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$agent']").click(function () {
-                if ($("#ContentPlaceHolder1_rblAgentYes").is(":checked")) {
-                    $("#ContentPlaceHolder1_agentList").show();
-                    $("#ContentPlaceHolder1_addnewagent").show();
-
-                } else {
-                    $("#ContentPlaceHolder1_agentList").hide();
-                    $("#ContentPlaceHolder1_addnewagent").hide();
-                }
+                if ($("#<%=rblAgentYes.ClientID%>").is(":checked")) {
+                    $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
+                } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
             });
         });
         //$('#ContentPlaceHolder1_txtCourseStartDate').flatpickr({

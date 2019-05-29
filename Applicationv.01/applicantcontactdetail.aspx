@@ -18,18 +18,18 @@
 
                     <div class="card" style="width: 650px;">
 
-                        <div class="list-group list-group-fit" id="email" runat="server" style="display:none">
+                        <div class="list-group list-group-fit" id="email" runat="server" style="display: none">
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                     <div class="form-row">
-                                        <label id="labelemail" runat="server"  for="email" class="col-md-3 col-form-label form-label">Email *</label>
+                                        <label id="labelemail" runat="server" for="email" class="col-md-3 col-form-label form-label">Email *</label>
                                         <div class="col-md-6">
                                             <input id="txtEmail" runat="server" type="text" placeholder="email" disabled="disabled" value="" required="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="mobile" runat="server" style="display:none">
+                            <div class="list-group-item" id="mobile" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                                     <div class="form-row">
                                         <label id="labelMobile" runat="server" for="Mobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number *</label>
@@ -39,7 +39,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="phone" runat="server" style="display:none">
+                            <div class="list-group-item" id="phone" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                                     <div class="form-row">
                                         <label id="labelphone" runat="server" for="phone" class="col-md-3 col-form-label form-label">Home phone</label>
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="skype" runat="server" style="display:none">
+                            <div class="list-group-item" id="skype" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skype">
                                     <div class="form-row">
                                         <label id="labelskype" runat="server" for="skype" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="skypeDesc" runat="server" style="display:none">
+                            <div class="list-group-item" id="skypeDesc" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
                                         <label id="labelskypeDesc" runat="server" for="skypeDesc" class="col-md-3 col-form-label form-label">Skype ID</label>
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="whatsapp" runat="server" style="display:none">
+                            <div class="list-group-item" id="whatsapp" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                                     <div class="form-row">
                                         <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="whatsappHave" runat="server" style="display:none">
+                            <div class="list-group-item" id="whatsappHave" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsappHave">
                                     <div class="form-row">
                                         <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-3 col-form-label form-label">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="whatsappDesc" runat="server" style="display:none">
+                            <div class="list-group-item" id="whatsappDesc" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
                                         <label id="labelwhatsappDesc" runat="server" for="whatsappDesc" class="col-md-3 col-form-label form-label">Whatsapp Number</label>
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="postal" runat="server" style="display:none">
+                            <div class="list-group-item" id="postal" runat="server" style="display: none">
                                 <div class="form-group m-0" role="postal" aria-labelledby="label-postal">
                                     <div class="form-row">
                                         <label id="labelpostal" runat="server" for="postal" class="col-md-3 col-form-label form-label">Postal Address</label>
@@ -360,7 +360,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="address" runat="server" style="display:none">
+                            <div class="list-group-item" id="address" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-address">
                                     <div class="form-row">
                                         <label id="labeladdress" runat="server" for="address" class="col-md-3 col-form-label form-label">Is your Postal Address same as your current residential address</label>
@@ -371,7 +371,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="residential" runat="server" style="display:none">
+                            <div class="list-group-item" id="residential" runat="server" style="display: none">
                                 <div class="form-group m-0" role="Residential" aria-labelledby="label-Residential ">
                                     <div class="form-row">
                                         <label id="labelResidential" runat="server" for="title" class="col-md-3 col-form-label form-label">Current Residential  Address</label>
@@ -633,7 +633,7 @@
                                     <label id="gurdianmessgae" runat="server" for="gurdian" class="col-md-9 col-form-label form-label">You age today is #Year# Years and #Month# Months. Please provide the name & details of your authorized Guardian</label>
 
                                 </div>
-                                <div class="list-group-item" id="guardianname" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianname" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-nomineename">
                                         <div class="form-row">
                                             <label id="labelguardianname" runat="server" for="nomineename" class="col-md-3 col-form-label form-label">GUARDIAN Full Name</label>
@@ -643,7 +643,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="guardianrelation" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianrelation" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-relationnominee">
                                         <div class="form-row">
                                             <label id="labelrelation" runat="server" for="relationnominee" class="col-md-3 col-form-label form-label">Relationship with GUARDIAN</label>
@@ -653,7 +653,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="guardianemail" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianemail" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-emailnominee">
                                         <div class="form-row">
                                             <label id="labelguardianemail" runat="server" for="emailnominee" class="col-md-3 col-form-label form-label">Email of GUARDIAN</label>
@@ -663,7 +663,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="guardianmobile" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianmobile" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-mobilenominee">
                                         <div class="form-row">
                                             <label id="labelguardianmobile" runat="server" for="mobilenominee" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of GUARDIAN</label>
@@ -691,7 +691,7 @@
 
 
                 </div>
-                 <div id="page-nav" class="col-lg-auto page-nav">
+                <div id="page-nav" class="col-lg-auto page-nav">
 
                     <div>
                         <span id="tooltip"></span>
@@ -714,7 +714,7 @@
     </div>
     <script>
         $(document).ready(function () {
-            
+
             $(".form-control")
                 .mouseover(function () {
                     var controlId = $(this).attr('id');
@@ -729,36 +729,32 @@
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-           
+
             var input = document.querySelector("#ContentPlaceHolder1_txtWhatsappNo");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
             var skype = $("input[type=radio][name='ctl00$ContentPlaceHolder1$skype']:checked").val()
             if (skype == 'rblSkypeYes') {
-                $("#skypeDesc").show();
-
+                $("#<%=skypeDesc.ClientID%>").show()
             } else {
-                $("#skypeDesc").hide();
-
+                $("#<%=skypeDesc.ClientID%>").hide()
             }
             var whatsup = $("input[type=radio][name='ctl00$ContentPlaceHolder1$whatsappSame']:checked").val()
             if (whatsup == 'rblWhatsupsameNo') {
-                $("#whatsappDesc").show();
 
-            } else {
-                $("#whatsappDesc").hide();
-
+                $("#<%=whatsappDesc.ClientID%>").show()
+                } else {
+                    $("#<%=whatsappDesc.ClientID%>").hide()
             }
             var whatsupsame = $("input[type=radio][name='ctl00$ContentPlaceHolder1$whatsapp']:checked").val()
             if (whatsup == 'rblwhatsappYes') {
-                $("#whatsappHave").show();
-
-            } else {
-                $("#whatsappHave").hide();
-
+                $("#<%=whatsappHave.ClientID%>").show()
+                } else {
+                    $("#<%=whatsappHave.ClientID%>").hide()
             }
-             var input = document.querySelector("#ContentPlaceHolder1_txtMobileNominee");
+
+            var input = document.querySelector("#ContentPlaceHolder1_txtMobileNominee");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
@@ -766,34 +762,33 @@
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$skype']").click(function () {
-                if ($("#ContentPlaceHolder1_rblSkypeYes").is(":checked")) {
-                    $("#skypeDesc").show();
 
+                if ($("#<%=rblSkypeYes.ClientID%>").is(":checked")) {
+
+                    $("#<%=skypeDesc.ClientID%>").show()
                 } else {
-                    $("#skypeDesc").hide();
-
+                    $("#<%=skypeDesc.ClientID%>").hide()
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$whatsappSame']").click(function () {
-                if ($("#ContentPlaceHolder1_rblWhatsupsameNo").is(":checked")) {
-                    $("#whatsappDesc").show();
+                if ($("#<%=rblWhatsupsameNo.ClientID%>").is(":checked")) {
 
+                    $("#<%=whatsappDesc.ClientID%>").show()
                 } else {
-                    $("#whatsappDesc").hide();
-
+                    $("#<%=whatsappDesc.ClientID%>").hide()
                 }
+
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$whatsapp']").click(function () {
-                if ($("#ContentPlaceHolder1_rblwhatsappYes").is(":checked")) {
-                    $("#whatsappHave").show();
+                if ($("#<%=rblwhatsappYes.ClientID%>").is(":checked")) {
 
+                    $("#<%=whatsappHave.ClientID%>").show()
                 } else {
-                    $("#whatsappHave").hide();
-
+                    $("#<%=whatsappHave.ClientID%>").hide()
                 }
             });
         });

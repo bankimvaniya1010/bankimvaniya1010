@@ -103,7 +103,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.universityid == universityID && ufm.formid == 5 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          where ufm.universityid == universityID && ufm.formid == 7 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -117,7 +117,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 fields = (from ufm in db.universitywisefieldmapping
                           join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == 5 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          where ufm.formid == 7 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -132,7 +132,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 fields = (from ufm in db.universitywisefieldmapping
                           join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == 5 && ufm.universityid == universityID
+                          where ufm.formid == 7 && ufm.universityid == universityID
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -146,7 +146,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             {
                 fields = (from pfm in db.primaryfieldmaster
 
-                          where pfm.formid == 5
+                          where pfm.formid == 7
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -177,7 +177,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
 
                     case "CITY":
                         employercity.Attributes.Add("style", "display:block;");
-                        employercity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemployercity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         break;
                     case "COUNTRY":
                         employercountry.Attributes.Add("style", "display:block;");

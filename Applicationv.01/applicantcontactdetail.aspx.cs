@@ -285,7 +285,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.universityid == universityID && ufm.formid == 4 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          where ufm.universityid == universityID && ufm.formid == 2 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -299,7 +299,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 fields = (from ufm in db.universitywisefieldmapping
                           join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == 4 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          where ufm.formid == 2 && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -314,7 +314,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 fields = (from ufm in db.universitywisefieldmapping
                           join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == 4 && ufm.universityid == universityID
+                          where ufm.formid == 2 && ufm.universityid == universityID
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -328,7 +328,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             {
                 fields = (from pfm in db.primaryfieldmaster
 
-                          where pfm.formid == 4
+                          where pfm.formid == 2
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
