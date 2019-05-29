@@ -41,11 +41,11 @@ public partial class createuser : System.Web.UI.Page
     protected void Button1_Click(object sender, EventArgs e)
     {
         Common objCom = new Common();
-        user usrObj = new user();
+        adminusers usrObj = new adminusers();
         try
         {
 
-            var existingUser = (from cats in db.user
+            var existingUser = (from cats in db.adminusers
                                 where cats.username.Equals(txtUsername.Value.Trim())
                                 select cats.username).SingleOrDefault();
             if (string.IsNullOrEmpty(existingUser))
@@ -54,11 +54,11 @@ public partial class createuser : System.Web.UI.Page
                 usrObj.username = txtUsername.Value.Trim();
                 usrObj.mobile = TxtMobile.Value.Trim();
                 usrObj.password = objCom.EncodePasswordToMD5(Txtpassword.Value.Trim());
-                usrObj.role = Convert.ToInt32(ddlRole.SelectedItem.Value);
+                usrObj.roleid = Convert.ToInt32(ddlRole.SelectedItem.Value);
                 usrObj.email = txtEmail.Value.Trim();
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
                 usrObj.status = 1;
-                db.user.Add(usrObj);
+                db.adminusers.Add(usrObj);
                 db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
             }

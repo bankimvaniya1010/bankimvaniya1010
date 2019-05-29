@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GTEModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="adminusers">
+          <Key>
+            <PropertyRef Name="adminid" />
+          </Key>
+          <Property Name="adminid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleid" Type="int" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="creationdate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="agentmaster">
           <Key>
             <PropertyRef Name="agentid" />
@@ -469,7 +483,7 @@
           <Key>
             <PropertyRef Name="fieldvalidationid" />
           </Key>
-          <Property Name="fieldvalidationid" Type="int" Nullable="false" />
+          <Property Name="fieldvalidationid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="formfieldid" Type="int" />
           <Property Name="regularexpression" Type="varchar" MaxLength="200" />
         </EntityType>
@@ -607,6 +621,13 @@
           <Property Name="isprimary" Type="int" />
           <Property Name="infrencecategoryid" Type="int" />
         </EntityType>
+        <EntityType Name="registrationcourses">
+          <Key>
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursename" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="relative_master">
           <Key>
             <PropertyRef Name="id" />
@@ -639,6 +660,37 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="languagecode" Type="varchar" MaxLength="5" />
           <Property Name="secondarylanguagename" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.GTE.studentcoursemapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="studentcoursemapping">
+          <Key>
+            <PropertyRef Name="studentid" />
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="studentid" Type="int" Nullable="false" />
+          <Property Name="courseid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="studentid" />
+          </Key>
+          <Property Name="studentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="enrollmentyear" Type="int" Nullable="false" />
+          <Property Name="studylevelid" Type="int" Nullable="false" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="creationdate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studylevelmaster">
+          <Key>
+            <PropertyRef Name="studylevelid" />
+          </Key>
+          <Property Name="studylevelid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studylevel" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
@@ -728,23 +780,54 @@
           <Property Name="created_by" Type="int" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="userid" />
-          </Key>
-          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="100" />
-          <Property Name="password" Type="varchar" MaxLength="45" />
-          <Property Name="usercreationdate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
-          <Property Name="status" Type="int" />
-          <Property Name="role" Type="int" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="email" Type="varchar" MaxLength="50" />
-          <Property Name="mobile" Type="varchar" MaxLength="15" />
-          <Property Name="year" Type="int" />
-          <Property Name="degreeid" Type="int" />
-          <Property Name="courseid" Type="int" />
-        </EntityType>
+        <Association Name="FK_adminusers_rolemaster">
+          <End Role="rolemaster" Type="Self.rolemaster" Multiplicity="1" />
+          <End Role="adminusers" Type="Self.adminusers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rolemaster">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="adminusers">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentcoursemapping_registrationcourses">
+          <End Role="registrationcourses" Type="Self.registrationcourses" Multiplicity="1" />
+          <End Role="studentcoursemapping" Type="Self.studentcoursemapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="registrationcourses">
+              <PropertyRef Name="courseid" />
+            </Principal>
+            <Dependent Role="studentcoursemapping">
+              <PropertyRef Name="courseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentcoursemapping_students">
+          <End Role="students" Type="Self.students" Multiplicity="1" />
+          <End Role="studentcoursemapping" Type="Self.studentcoursemapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="studentcoursemapping">
+              <PropertyRef Name="studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students_studylevelmaster">
+          <End Role="studylevelmaster" Type="Self.studylevelmaster" Multiplicity="1" />
+          <End Role="students" Type="Self.students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studylevelmaster">
+              <PropertyRef Name="studylevelid" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="studylevelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="fetchapplicantDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GTE" />
         <Function Name="shell_creation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="GTE">
           <Parameter Name="username" Type="varchar" Mode="In" />
@@ -754,6 +837,7 @@
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="GTEModelStoreContainer">
+          <EntitySet Name="adminusers" EntityType="Self.adminusers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="agentmaster" EntityType="Self.agentmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="alternateadressproofmaster" EntityType="Self.alternateadressproofmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="alternatedobproof" EntityType="Self.alternatedobproof" Schema="GTE" store:Type="Tables" />
@@ -800,9 +884,12 @@
           <EntitySet Name="primaryfieldmaster" EntityType="Self.primaryfieldmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="profilemaster" EntityType="Self.profilemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="question_master" EntityType="Self.question_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="registrationcourses" EntityType="Self.registrationcourses" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="secondarylanguagemaster" EntityType="Self.secondarylanguagemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="students" EntityType="Self.students" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="studylevelmaster" EntityType="Self.studylevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
@@ -813,7 +900,28 @@
           <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="studentcoursemapping" EntityType="Self.studentcoursemapping" store:Type="Tables" store:Schema="GTE">
+            <DefiningQuery>SELECT
+`studentcoursemapping`.`studentid`, 
+`studentcoursemapping`.`courseid`
+FROM `studentcoursemapping` AS `studentcoursemapping`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_adminusers_rolemaster" Association="Self.FK_adminusers_rolemaster">
+            <End Role="rolemaster" EntitySet="rolemaster" />
+            <End Role="adminusers" EntitySet="adminusers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentcoursemapping_registrationcourses" Association="Self.FK_studentcoursemapping_registrationcourses">
+            <End Role="registrationcourses" EntitySet="registrationcourses" />
+            <End Role="studentcoursemapping" EntitySet="studentcoursemapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentcoursemapping_students" Association="Self.FK_studentcoursemapping_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="studentcoursemapping" EntitySet="studentcoursemapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students_studylevelmaster" Association="Self.FK_students_studylevelmaster">
+            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -828,6 +936,7 @@
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="email" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="adminusers" EntityType="GTEModel.adminusers" />
           <EntitySet Name="agentmaster" EntityType="GTEModel.agentmaster" />
           <EntitySet Name="alternateadressproofmaster" EntityType="GTEModel.alternateadressproofmaster" />
           <EntitySet Name="alternatedobproof" EntityType="GTEModel.alternatedobproof" />
@@ -874,9 +983,12 @@
           <EntitySet Name="primaryfieldmaster" EntityType="GTEModel.primaryfieldmaster" />
           <EntitySet Name="profilemaster" EntityType="GTEModel.profilemaster" />
           <EntitySet Name="question_master" EntityType="GTEModel.question_master" />
+          <EntitySet Name="registrationcourses" EntityType="GTEModel.registrationcourses" />
           <EntitySet Name="relative_master" EntityType="GTEModel.relative_master" />
           <EntitySet Name="rolemaster" EntityType="GTEModel.rolemaster" />
           <EntitySet Name="secondarylanguagemaster" EntityType="GTEModel.secondarylanguagemaster" />
+          <EntitySet Name="students" EntityType="GTEModel.students" />
+          <EntitySet Name="studylevelmaster" EntityType="GTEModel.studylevelmaster" />
           <EntitySet Name="studymodemaster" EntityType="GTEModel.studymodemaster" />
           <EntitySet Name="titlemaster" EntityType="GTEModel.titlemaster" />
           <EntitySet Name="tooltipmaster" EntityType="GTEModel.tooltipmaster" />
@@ -887,8 +999,34 @@
           <EntitySet Name="universitywisefieldmapping" EntityType="GTEModel.universitywisefieldmapping" />
           <EntitySet Name="universitywiseformmapping" EntityType="GTEModel.universitywiseformmapping" />
           <EntitySet Name="universitywisemastermapping" EntityType="GTEModel.universitywisemastermapping" />
-          <EntitySet Name="user" EntityType="GTEModel.user" />
+          <AssociationSet Name="FK_adminusers_rolemaster" Association="GTEModel.FK_adminusers_rolemaster">
+            <End Role="rolemaster" EntitySet="rolemaster" />
+            <End Role="adminusers" EntitySet="adminusers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students_studylevelmaster" Association="GTEModel.FK_students_studylevelmaster">
+            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="studentcoursemapping" Association="GTEModel.studentcoursemapping">
+            <End Role="registrationcourses" EntitySet="registrationcourses" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
           </EntityContainer>
+        <EntityType Name="adminusers">
+          <Key>
+            <PropertyRef Name="adminid" />
+          </Key>
+          <Property Name="adminid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleid" Type="Int32" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="creationdate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="rolemaster" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="adminusers" ToRole="rolemaster" />
+        </EntityType>
         <EntityType Name="agentmaster">
           <Key>
             <PropertyRef Name="agentid" />
@@ -1353,7 +1491,7 @@
           <Key>
             <PropertyRef Name="fieldvalidationid" />
           </Key>
-          <Property Name="fieldvalidationid" Type="Int32" Nullable="false" />
+          <Property Name="fieldvalidationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="formfieldid" Type="Int32" />
           <Property Name="regularexpression" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
@@ -1491,6 +1629,14 @@
           <Property Name="isprimary" Type="Int32" />
           <Property Name="infrencecategoryid" Type="Int32" />
         </EntityType>
+        <EntityType Name="registrationcourses">
+          <Key>
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="students" Relationship="GTEModel.studentcoursemapping" FromRole="registrationcourses" ToRole="students" />
+        </EntityType>
         <EntityType Name="relative_master">
           <Key>
             <PropertyRef Name="id" />
@@ -1515,6 +1661,7 @@
           </Key>
           <Property Name="roleid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="rolename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="adminusers" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="rolemaster" ToRole="adminusers" />
         </EntityType>
         <EntityType Name="secondarylanguagemaster">
           <Key>
@@ -1523,6 +1670,30 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="languagecode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="secondarylanguagename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="studentid" />
+          </Key>
+          <Property Name="studentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enrollmentyear" Type="Int32" Nullable="false" />
+          <Property Name="studylevelid" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="creationdate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
+          <NavigationProperty Name="registrationcourses" Relationship="GTEModel.studentcoursemapping" FromRole="students" ToRole="registrationcourses" />
+        </EntityType>
+        <EntityType Name="studylevelmaster">
+          <Key>
+            <PropertyRef Name="studylevelid" />
+          </Key>
+          <Property Name="studylevelid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studylevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="studylevelmaster" ToRole="students" />
         </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
@@ -1612,23 +1783,34 @@
           <Property Name="created_by" Type="Int32" />
           <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="userid" />
-          </Key>
-          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="usercreationdate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="role" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="year" Type="Int32" />
-          <Property Name="degreeid" Type="Int32" />
-          <Property Name="courseid" Type="Int32" />
-        </EntityType>
+        <Association Name="FK_adminusers_rolemaster">
+          <End Type="GTEModel.rolemaster" Role="rolemaster" Multiplicity="1" />
+          <End Type="GTEModel.adminusers" Role="adminusers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rolemaster">
+              <PropertyRef Name="roleid" />
+            </Principal>
+            <Dependent Role="adminusers">
+              <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students_studylevelmaster">
+          <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="1" />
+          <End Type="GTEModel.students" Role="students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studylevelmaster">
+              <PropertyRef Name="studylevelid" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="studylevelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="studentcoursemapping">
+          <End Type="GTEModel.registrationcourses" Role="registrationcourses" Multiplicity="*" />
+          <End Type="GTEModel.students" Role="students" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1637,6 +1819,21 @@
         <EntityContainerMapping StorageEntityContainer="GTEModelStoreContainer" CdmEntityContainer="GTEEntities">
           <FunctionImportMapping FunctionImportName="fetchapplicantDetail" FunctionName="GTEModel.Store.fetchapplicantDetail" />
           <FunctionImportMapping FunctionImportName="shell_creation" FunctionName="GTEModel.Store.shell_creation" />
+          <EntitySetMapping Name="adminusers">
+            <EntityTypeMapping TypeName="GTEModel.adminusers">
+              <MappingFragment StoreEntitySet="adminusers">
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="roleid" ColumnName="roleid" />
+                <ScalarProperty Name="adminid" ColumnName="adminid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="agentmaster">
             <EntityTypeMapping TypeName="GTEModel.agentmaster">
               <MappingFragment StoreEntitySet="agentmaster">
@@ -2285,6 +2482,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="registrationcourses">
+            <EntityTypeMapping TypeName="GTEModel.registrationcourses">
+              <MappingFragment StoreEntitySet="registrationcourses">
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="relative_master">
             <EntityTypeMapping TypeName="GTEModel.relative_master">
               <MappingFragment StoreEntitySet="relative_master">
@@ -2318,6 +2523,29 @@
                 <ScalarProperty Name="secondarylanguagename" ColumnName="secondarylanguagename" />
                 <ScalarProperty Name="languagecode" ColumnName="languagecode" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="GTEModel.students">
+              <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="studylevelid" ColumnName="studylevelid" />
+                <ScalarProperty Name="enrollmentyear" ColumnName="enrollmentyear" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="studentid" ColumnName="studentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studylevelmaster">
+            <EntityTypeMapping TypeName="GTEModel.studylevelmaster">
+              <MappingFragment StoreEntitySet="studylevelmaster">
+                <ScalarProperty Name="studylevel" ColumnName="studylevel" />
+                <ScalarProperty Name="studylevelid" ColumnName="studylevelid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2419,24 +2647,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="GTEModel.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="courseid" ColumnName="courseid" />
-                <ScalarProperty Name="degreeid" ColumnName="degreeid" />
-                <ScalarProperty Name="year" ColumnName="year" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="usercreationdate" ColumnName="usercreationdate" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+          <AssociationSetMapping Name="studentcoursemapping" TypeName="GTEModel.studentcoursemapping" StoreEntitySet="studentcoursemapping">
+            <EndProperty Name="students">
+              <ScalarProperty Name="studentid" ColumnName="studentid" />
+            </EndProperty>
+            <EndProperty Name="registrationcourses">
+              <ScalarProperty Name="courseid" ColumnName="courseid" />
+            </EndProperty>
+          </AssociationSetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

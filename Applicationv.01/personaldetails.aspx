@@ -17,7 +17,7 @@
                 <div class="col-lg container-fluid page__container">
 
                     <div class="card" style="width: 650px;">
-                        <div class="list-group list-group-fit" id="title" runat="server" style="display:none">
+                        <div class="list-group list-group-fit" id="title" runat="server" style="display: none">
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="firstname" runat="server" style="display:none">
+                            <div class="list-group-item" id="firstname" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
                                     <div class="form-row">
                                         <label id="labelfirstname" runat="server" for="firstname" class="col-md-3 col-form-label form-label">First Name *</label>
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="lastname" runat="server" style="display:none">
+                            <div class="list-group-item" id="lastname" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-lastname">
                                     <div class="form-row">
                                         <label id="labellastname" runat="server" for="lastname" class="col-md-3 col-form-label form-label">Last Name *</label>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="preferedname" runat="server" style="display:none">
+                            <div class="list-group-item" id="preferedname" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-preferreName">
                                     <div class="form-row">
                                         <label id="labelpreferreName" runat="server" for="preferreName" class="col-md-3 col-form-label form-label">Preferred Name</label>
@@ -72,7 +72,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="middlename" runat="server" style="display:none">
+                            <div class="list-group-item" id="middlename" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-middlename">
                                     <div class="form-row">
                                         <label id="labelmiddlename" runat="server" for="middlename" class="col-md-3 col-form-label form-label">Other middle names</label>
@@ -85,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="dob" runat="server" style="display:none">
+                            <div class="list-group-item" id="dob" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dob">
                                     <div class="form-row">
                                         <label id="labeldob" runat="server" for="dob" class="col-md-3 col-form-label form-label">Date of birth *</label>
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="gender" runat="server" style="display:none">
+                            <div class="list-group-item" id="gender" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-gender">
                                     <div class="form-row">
                                         <label id="labelgender" runat="server" for="gender" class="col-md-3 col-form-label form-label">Gender *</label>
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="nationality" runat="server" style="display:none">
+                            <div class="list-group-item" id="nationality" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Nationality">
                                     <div class="form-row">
                                         <label id="labelNationality" runat="server" for="Nationality" class="col-md-3 col-form-label form-label">Nationality and citizenship</label>
@@ -359,7 +359,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="birthcountry" runat="server" style="display:none">
+                            <div class="list-group-item" id="birthcountry" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-birthcountry">
                                     <div class="form-row">
                                         <label id="labelbirthcountry" runat="server" for="birthcountry" class="col-md-3 col-form-label form-label">Country of birth</label>
@@ -609,7 +609,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="marital" runat="server" style="display:none">
+                            <div class="list-group-item" id="marital" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Marital">
                                     <div class="form-row">
                                         <label id="labelMarital" runat="server" for="Marital" class="col-md-3 col-form-label form-label">Marital Status</label>
@@ -627,7 +627,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="disability" runat="server" style="display:none">
+                            <div class="list-group-item" id="disability" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-disability">
                                     <div class="form-row">
                                         <label id="labeldisability" runat="server" for="disability" class="col-md-3 col-form-label form-label">Do you have any disability, impairment, or a long term condition</label>
@@ -639,7 +639,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="disabilitydesc" runat="server" style="display:none">
+                            <div class="list-group-item" id="disabilitydesc" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-disabilitydesc">
                                     <div class="form-row">
                                         <label id="labeldisabilitydesc" runat="server" for="disabilitydesc" class="col-md-3 col-form-label form-label">Disability Description</label>
@@ -649,7 +649,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="agent" runat="server" style="display:none">
+                            <div class="list-group-item" id="agent" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-agent">
                                     <div class="form-row">
                                         <label id="labelagent" runat="server" for="agent" class="col-md-3 col-form-label form-label">Are you reffered by Agent</label>
@@ -660,17 +660,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="agentList" runat="server" style="display:none">
+                            <div class="list-group-item" id="agentList" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
                                     <div class="form-row">
-                                        <label id="labelagentList" runat="server"  for="agentList" class="col-md-3 col-form-label form-label">Agent Name</label>
+                                        <label id="labelagentList" runat="server" for="agentList" class="col-md-3 col-form-label form-label">Agent Name</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlAgent" runat="server" CssClass="form-control"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="addnewagent" runat="server" style="display:none">
+                            <div class="list-group-item" id="addnewagent" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-addnewagent">
                                     <div class="form-row">
                                         <label id="labeladdnewagent" runat="server" for="addnewagent" class="col-md-3 col-form-label form-label">If didn't find agent name in the list then add his email ID to sent registeration link</label>
@@ -742,8 +742,8 @@
 
             var agent = $("input[type=radio][name='ctl00$ContentPlaceHolder1$agent']:checked").val();
             if (agent == 'rblAgentYes') {
-                $("#agentList").show();    $("#addnewagent").show();
-            } else { $("#agentList").hide();    $("#addnewagent").hide(); }
+                $("#agentList").show(); $("#addnewagent").show();
+            } else { $("#agentList").hide(); $("#addnewagent").hide(); }
 
             var i = 0;
             $(".form-control")
@@ -771,12 +771,12 @@
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$agent']").click(function () {
                 if ($("#ContentPlaceHolder1_rblAgentYes").is(":checked")) {
-                    $("#agentList").show();
-                     $("#addnewagent").show();
-                    
+                    $("#ContentPlaceHolder1_agentList").show();
+                    $("#ContentPlaceHolder1_addnewagent").show();
+
                 } else {
-                    $("#agentList").hide();
-                        $("#addnewagent").hide();
+                    $("#ContentPlaceHolder1_agentList").hide();
+                    $("#ContentPlaceHolder1_addnewagent").hide();
                 }
             });
         });

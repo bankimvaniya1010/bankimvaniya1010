@@ -17,8 +17,8 @@ public partial class dashboard : System.Web.UI.Page
     {
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
-        var objUser = (user)Session["LoginInfo"];
-        userID = objUser.userid;
+        var objUser = (adminusers)Session["LoginInfo"];
+        userID = objUser.adminid;
         if (!IsPostBack)
             BindService();
 

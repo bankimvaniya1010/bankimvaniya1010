@@ -10,6 +10,21 @@
 using System;
 using System.Collections.Generic;
 
+public partial class adminusers
+{
+    public int adminid { get; set; }
+    public int roleid { get; set; }
+    public string username { get; set; }
+    public string password { get; set; }
+    public string name { get; set; }
+    public string email { get; set; }
+    public string mobile { get; set; }
+    public int status { get; set; }
+    public System.DateTime creationdate { get; set; }
+
+    public virtual rolemaster rolemaster { get; set; }
+}
+
 public partial class agentmaster
 {
     public int agentid { get; set; }
@@ -566,6 +581,21 @@ public partial class question_master
     public Nullable<int> infrencecategoryid { get; set; }
 }
 
+public partial class registrationcourses
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public registrationcourses()
+    {
+        this.students = new HashSet<students>();
+    }
+
+    public int courseid { get; set; }
+    public string coursename { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<students> students { get; set; }
+}
+
 public partial class relative_master
 {
     public long id { get; set; }
@@ -585,8 +615,17 @@ public partial class relative_master
 
 public partial class rolemaster
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public rolemaster()
+    {
+        this.adminusers = new HashSet<adminusers>();
+    }
+
     public int roleid { get; set; }
     public string rolename { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<adminusers> adminusers { get; set; }
 }
 
 public partial class secondarylanguagemaster
@@ -594,6 +633,44 @@ public partial class secondarylanguagemaster
     public int id { get; set; }
     public string languagecode { get; set; }
     public string secondarylanguagename { get; set; }
+}
+
+public partial class students
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public students()
+    {
+        this.registrationcourses = new HashSet<registrationcourses>();
+    }
+
+    public int studentid { get; set; }
+    public string username { get; set; }
+    public string password { get; set; }
+    public string name { get; set; }
+    public string email { get; set; }
+    public int enrollmentyear { get; set; }
+    public int studylevelid { get; set; }
+    public int status { get; set; }
+    public System.DateTime creationdate { get; set; }
+
+    public virtual studylevelmaster studylevelmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<registrationcourses> registrationcourses { get; set; }
+}
+
+public partial class studylevelmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public studylevelmaster()
+    {
+        this.students = new HashSet<students>();
+    }
+
+    public int studylevelid { get; set; }
+    public string studylevel { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<students> students { get; set; }
 }
 
 public partial class studymodemaster
@@ -672,20 +749,4 @@ public partial class universitywisemastermapping
     public Nullable<int> mastervalueid { get; set; }
     public Nullable<int> created_by { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
-}
-
-public partial class user
-{
-    public int userid { get; set; }
-    public string username { get; set; }
-    public string password { get; set; }
-    public Nullable<System.DateTime> usercreationdate { get; set; }
-    public Nullable<int> status { get; set; }
-    public Nullable<int> role { get; set; }
-    public string name { get; set; }
-    public string email { get; set; }
-    public string mobile { get; set; }
-    public Nullable<int> year { get; set; }
-    public Nullable<int> degreeid { get; set; }
-    public Nullable<int> courseid { get; set; }
 }

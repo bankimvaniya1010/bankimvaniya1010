@@ -20,7 +20,7 @@ public partial class forgetpassword : System.Web.UI.Page
     protected void btn_login_Click(object sender, EventArgs e)
     {
         try { 
-        var login = db.user.Where(l => l.email == email.Value).FirstOrDefault();
+        var login = db.students.Where(l => l.email == email.Value).FirstOrDefault();
         if (login != null)
         {
             lblMessage.Visible = true;

@@ -24,7 +24,7 @@ public partial class login : System.Web.UI.Page
     {
         try
         {
-            var chkUser = (from usr in db.user
+            var chkUser = (from usr in db.students
                            where (usr.username.Equals(txtUser.Text.Trim()))
                            select usr).FirstOrDefault();
             if (chkUser == null)
@@ -39,26 +39,26 @@ public partial class login : System.Web.UI.Page
                 if (encodedPassword == chkUser.password)
                 {
                     Session["LoginInfo"] = chkUser;
-                    Session["UserID"] = chkUser.userid;
-                    Session["Role"] = chkUser.role;
-                    switch (chkUser.role)
-                    {
-                        case 1:
-                            Response.Redirect(webURL + "admin/default.aspx");
-                            break;
-                        case 2:
-                            Response.Redirect(webURL + "agentdashboard.aspx");
-                            break;
-                        case 3:
-                            Response.Redirect(webURL + "default.aspx");
-                            break;
-                        case 4:
-                            Response.Redirect(webURL + "universitydashboard.aspx");
-                            break;
-                        default:
-                            Response.Redirect(webURL + "login.aspx");
-                            break;
-                    }
+                    Session["UserID"] = chkUser.studentid;
+
+                    //switch (chkUser.role)
+                    //{
+                    //    case 1:
+                    //        Response.Redirect(webURL + "admin/default.aspx");
+                    //        break;
+                    //    case 2:
+                    //        Response.Redirect(webURL + "agentdashboard.aspx");
+                    //        break;
+                    //    case 3:
+                    Response.Redirect(webURL + "default.aspx");
+                    //            break;
+                    //        case 4:
+                    //            Response.Redirect(webURL + "universitydashboard.aspx");
+                    //            break;
+                    //        default:
+                    //            Response.Redirect(webURL + "login.aspx");
+                    //            break;
+                    //    }
                 }
                 else
                 { Response.Redirect(webURL + "login.aspx"); }
