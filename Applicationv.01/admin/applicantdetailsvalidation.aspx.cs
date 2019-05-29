@@ -27,8 +27,8 @@ public partial class admin_applicantdetailsvalidation : System.Web.UI.Page
     {
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
-        var objUser = (user)Session["LoginInfo"];
-        agentID = objUser.userid;
+        var objUser = (students)Session["LoginInfo"];
+        agentID = objUser.studentid;
         if ((Request.QueryString["ID"] != null) && (Request.QueryString["ID"] != null))
             userID = Convert.ToInt32(Request.QueryString["ID"]);
         if (!IsPostBack)

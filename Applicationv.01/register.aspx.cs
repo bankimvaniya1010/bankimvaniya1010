@@ -18,6 +18,7 @@ public partial class register : System.Web.UI.Page
         if (!IsPostBack)
         {
             BindCourses();
+            BindStudyLevel();
             rblYear1.Text = DateTime.Now.Year.ToString();
             rblYear2.Text = DateTime.Now.AddYears(1).Year.ToString();
             rblYear3.Text = DateTime.Now.AddYears(2).Year.ToString();
@@ -27,12 +28,12 @@ public partial class register : System.Web.UI.Page
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
         Common objCom = new Common();
-        user usrObj = new user();
+        students usrObj = new students();
         applicantdetails objapplicant = new applicantdetails();
         try
         {
 
-            var existingUser = (from cats in db.user
+            var existingUser = (from cats in db.students
                                 where cats.username.Equals(username.Value.Trim())
                                 select cats.username).SingleOrDefault();
             if (string.IsNullOrEmpty(existingUser))
@@ -40,29 +41,27 @@ public partial class register : System.Web.UI.Page
                 usrObj.name = name.Value.Trim();
                 usrObj.username = username.Value.Trim();
                 usrObj.password = objCom.EncodePasswordToMD5(password.Value.Trim());
-                usrObj.role = 3;
+                // usrObj.role = 3;
                 usrObj.email = email.Value.Trim();
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
-                usrObj.status = 1;
+                usrObj.studylevelid = Convert.ToInt32(rblstudyLevel.SelectedValue);
                 if (rblYear1.Checked)
-                    usrObj.year = Convert.ToInt32(rblYear1.Text);
+                    usrObj.enrollmentyear = Convert.ToInt32(rblYear1.Text);
                 else if (rblYear2.Checked)
-                    usrObj.year = Convert.ToInt32(rblYear2.Text);
+                    usrObj.enrollmentyear = Convert.ToInt32(rblYear2.Text);
                 else if (rblYear3.Checked)
-                    usrObj.year = Convert.ToInt32(rblYear3.Text);
-                if (ddlDegree.SelectedValue != "")
-                    usrObj.degreeid = Convert.ToInt32(ddlDegree.SelectedValue);
-                if (ddlCourse.SelectedValue != "")
-                    usrObj.courseid = Convert.ToInt32(ddlCourse.SelectedValue);
-                db.user.Add(usrObj);
+                    usrObj.enrollmentyear = Convert.ToInt32(rblYear3.Text);
+
+                db.students.Add(usrObj);
                 db.SaveChanges();
-                var id = usrObj.userid;
+                var id = usrObj.studentid;
                 objapplicant.applicantid = id;
                 // objapplicant = Convert.ToInt32(ddlUniversity.SelectedValue);
                 objapplicant.email = email.Value.Trim();
                 objapplicant.firstname = name.Value.Trim();
                 db.applicantdetails.Add(objapplicant);
                 db.SaveChanges();
+                SaveCourses(id);
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Dear " + name.Value.Trim() + ",");
                 webURL = webURL + "login.aspx";
@@ -87,11 +86,36 @@ public partial class register : System.Web.UI.Page
     private void BindCourses()
     {
         ListItem lst = new ListItem("Please select", "0");
-        var courses = db.coursemaster.ToList();
-        ddlCourse.DataSource = courses;
-        ddlCourse.DataTextField = "coursename";
-        ddlCourse.DataValueField = "courseid";
-        ddlCourse.DataBind();
-        ddlCourse.Items.Insert(0, lst);
+        var courses = db.registrationcourses.ToList();
+        lstCourse.DataSource = courses;
+        lstCourse.DataTextField = "coursename";
+        lstCourse.DataValueField = "courseid";
+        lstCourse.DataBind();
+        lstCourse.Items.Insert(0, lst);
+    }
+    private void BindStudyLevel()
+    {
+
+        var studyLevel = db.studylevelmaster.ToList();
+        rblstudyLevel.DataSource = studyLevel;
+        rblstudyLevel.DataTextField = "studylevel";
+        rblstudyLevel.DataValueField = "studylevelid";
+        rblstudyLevel.DataBind();
+
+    }
+    private void SaveCourses(int studentid)
+    {
+        for (int i = 0; i < lstCourse.Items.Count; i++)
+        {
+            //studentcoursemapping objCourse = new studentcoursemapping();
+            //if (lstCourse.Items[i].Selected == true)
+            //{
+            //    objCourse.studentid = studentid;
+            //    objCourse.courseid = Convert.ToInt32(lstCourse.Items[i].Value);
+            //    db.studentcoursemapping.Add(objCourse);
+            //    db.SaveChanges();
+            //}
+
+        }
     }
 }

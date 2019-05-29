@@ -24,8 +24,8 @@ public partial class applicantreview : System.Web.UI.Page
     {
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
-        var objUser = (user)Session["LoginInfo"];
-        userID = objUser.userid;
+        var objUser = (students)Session["LoginInfo"];
+        userID = objUser.studentid;
        
             objApplicant = (from pInfo in db.applicantdetails
                             where pInfo.applicantid == userID

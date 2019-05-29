@@ -20,12 +20,12 @@ public partial class registeragent : System.Web.UI.Page
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
         Common objCom = new Common();
-        user usrObj = new user();
+        adminusers usrObj = new adminusers();
         applicantdetails objapplicant = new applicantdetails();
         try
         {
 
-            var existingUser = (from cats in db.user
+            var existingUser = (from cats in db.adminusers
                                 where cats.username.Equals(username.Value.Trim())
                                 select cats.username).SingleOrDefault();
             if (string.IsNullOrEmpty(existingUser))
@@ -33,13 +33,13 @@ public partial class registeragent : System.Web.UI.Page
                 usrObj.name = name.Value.Trim();
                 usrObj.username = username.Value.Trim();
                 usrObj.password = objCom.EncodePasswordToMD5(password.Value.Trim());
-                usrObj.role = 2;
+                usrObj.roleid = 2;
                 usrObj.email = email.Value.Trim();
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
                 usrObj.status = 1;
                
                   
-                db.user.Add(usrObj);
+                db.adminusers.Add(usrObj);
                 db.SaveChanges();
               
                 StringBuilder sb = new StringBuilder();

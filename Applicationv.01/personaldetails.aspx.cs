@@ -23,8 +23,8 @@ public partial class personaldetails : System.Web.UI.Page
     {
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
-        var objUser = (user)Session["LoginInfo"];
-        userID = objUser.userid;
+        var objUser = (students)Session["LoginInfo"];
+        userID = objUser.studentid;
 
         if (!IsPostBack)
         {
@@ -137,7 +137,7 @@ public partial class personaldetails : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var agent = db.user.Where(x => x.role == 2).ToList();
+            var agent = db.adminusers.Where(x => x.roleid == 2).ToList();
             ddlAgent.DataSource = agent;
             ddlAgent.DataTextField = "name";
             ddlAgent.DataValueField = "userid";

@@ -25,6 +25,7 @@ public partial class GTEEntities : DbContext
         throw new UnintentionalCodeFirstException();
     }
 
+    public virtual DbSet<adminusers> adminusers { get; set; }
     public virtual DbSet<agentmaster> agentmaster { get; set; }
     public virtual DbSet<alternateadressproofmaster> alternateadressproofmaster { get; set; }
     public virtual DbSet<alternatedobproof> alternatedobproof { get; set; }
@@ -71,9 +72,12 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<primaryfieldmaster> primaryfieldmaster { get; set; }
     public virtual DbSet<profilemaster> profilemaster { get; set; }
     public virtual DbSet<question_master> question_master { get; set; }
+    public virtual DbSet<registrationcourses> registrationcourses { get; set; }
     public virtual DbSet<relative_master> relative_master { get; set; }
     public virtual DbSet<rolemaster> rolemaster { get; set; }
     public virtual DbSet<secondarylanguagemaster> secondarylanguagemaster { get; set; }
+    public virtual DbSet<students> students { get; set; }
+    public virtual DbSet<studylevelmaster> studylevelmaster { get; set; }
     public virtual DbSet<studymodemaster> studymodemaster { get; set; }
     public virtual DbSet<titlemaster> titlemaster { get; set; }
     public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
@@ -84,7 +88,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
-    public virtual DbSet<user> user { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

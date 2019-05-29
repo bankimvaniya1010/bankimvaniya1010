@@ -18,8 +18,8 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     {
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
-        var objUser = (user)Session["LoginInfo"];
-        userID = objUser.userid;
+        var objUser = (students)Session["LoginInfo"];
+        userID = objUser.studentid;
         if (!IsPostBack)
         {
             PopulatePersonalInfo(); SetToolTips(); SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
