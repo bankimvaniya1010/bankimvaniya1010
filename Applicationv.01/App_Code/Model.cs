@@ -586,14 +586,14 @@ public partial class registrationcourses
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public registrationcourses()
     {
-        this.students = new HashSet<students>();
+        this.studentcoursemapping = new HashSet<studentcoursemapping>();
     }
 
     public int courseid { get; set; }
     public string coursename { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<students> students { get; set; }
+    public virtual ICollection<studentcoursemapping> studentcoursemapping { get; set; }
 }
 
 public partial class relative_master
@@ -635,12 +635,22 @@ public partial class secondarylanguagemaster
     public string secondarylanguagename { get; set; }
 }
 
+public partial class studentcoursemapping
+{
+    public int id { get; set; }
+    public int studentid { get; set; }
+    public int courseid { get; set; }
+
+    public virtual registrationcourses registrationcourses { get; set; }
+    public virtual students students { get; set; }
+}
+
 public partial class students
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public students()
     {
-        this.registrationcourses = new HashSet<registrationcourses>();
+        this.studentcoursemapping = new HashSet<studentcoursemapping>();
     }
 
     public int studentid { get; set; }
@@ -653,9 +663,9 @@ public partial class students
     public int status { get; set; }
     public System.DateTime creationdate { get; set; }
 
-    public virtual studylevelmaster studylevelmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<registrationcourses> registrationcourses { get; set; }
+    public virtual ICollection<studentcoursemapping> studentcoursemapping { get; set; }
+    public virtual studylevelmaster studylevelmaster { get; set; }
 }
 
 public partial class studylevelmaster

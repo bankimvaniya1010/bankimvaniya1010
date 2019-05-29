@@ -107,14 +107,14 @@ public partial class register : System.Web.UI.Page
     {
         for (int i = 0; i < lstCourse.Items.Count; i++)
         {
-            //studentcoursemapping objCourse = new studentcoursemapping();
-            //if (lstCourse.Items[i].Selected == true)
-            //{
-            //    objCourse.studentid = studentid;
-            //    objCourse.courseid = Convert.ToInt32(lstCourse.Items[i].Value);
-            //    db.studentcoursemapping.Add(objCourse);
-            //    db.SaveChanges();
-            //}
+            studentcoursemapping objCourse = new studentcoursemapping();
+            if (lstCourse.Items[i].Selected == true)
+            {
+                objCourse.studentid = studentid;
+                objCourse.courseid = Convert.ToInt32(lstCourse.Items[i].Value);
+                db.studentcoursemapping.Add(objCourse);
+                db.SaveChanges();
+            }
 
         }
     }
