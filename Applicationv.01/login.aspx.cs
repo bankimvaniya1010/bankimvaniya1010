@@ -24,6 +24,7 @@ public partial class login : System.Web.UI.Page
     {
         try
         {
+            string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
             var chkUser = (from usr in db.students
                            where (usr.username.Equals(txtUser.Text.Trim()))
                            select usr).FirstOrDefault();
@@ -34,10 +35,7 @@ public partial class login : System.Web.UI.Page
             }
             else
             {
-                pnl_warning.Visible = false;
-                string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
-                if (encodedPassword == chkUser.password)
-                {
+                pnl_warning.Visible = false;                
                     Session["LoginInfo"] = chkUser;
                     Session["UserID"] = chkUser.studentid;
 
@@ -58,10 +56,7 @@ public partial class login : System.Web.UI.Page
                     //        default:
                     //            Response.Redirect(webURL + "login.aspx");
                     //            break;
-                    //    }
-                }
-                else
-                { Response.Redirect(webURL + "login.aspx"); }
+                    //    }                
 
             }
         }

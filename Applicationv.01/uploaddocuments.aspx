@@ -120,7 +120,7 @@
 
                             <label class="form-label">Passport Size Photo Graph</label>
                             <label class="form-label">Passport Copy (Bio Pages)</label>
-                            <%if ((appDetails.Count > 0) && (appDetails[0].alternativeiddentiproof == 1))
+                          <%--  <%if ((appDetails.Count > 0) && (appDetails[0].alternativeiddentiproof == 1))
                                 { %>
                             <label class="form-label">Proof of Identity </label>
                             <%} %>
@@ -131,7 +131,7 @@
                             <%if ((appDetails.Count > 0) && (appDetails[0].alternativeresidenceproof == 1))
                                 { %>
                             <label class="form-label">Proof of Residence </label>
-                            <%} %>
+                            <%} %>--%>
                             <%if ((appEduDetails.Count > 0) && appEduDetails[0].ishighschooldone == 1)
                                 { %>
                             <label class="form-label">Proof of High School</label>

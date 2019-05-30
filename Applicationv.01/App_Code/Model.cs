@@ -155,15 +155,12 @@ public partial class applicantdetails
     public string passportno { get; set; }
     public Nullable<System.DateTime> passportissuedate { get; set; }
     public Nullable<System.DateTime> passportexpirydate { get; set; }
+    public Nullable<int> alternativeIdentityproofId { get; set; }
     public string passportissuecity { get; set; }
-    public Nullable<int> alternativeiddentiproof { get; set; }
-    public Nullable<int> alternativeprooftype { get; set; }
-    public string alternativeproofno { get; set; }
-    public Nullable<int> alternativedobproof { get; set; }
-    public Nullable<int> alternativeproofdobtype { get; set; }
+    public string alternativeIdentityproofno { get; set; }
+    public Nullable<int> alternativeproofdobId { get; set; }
     public string alternativeproofdobno { get; set; }
-    public Nullable<int> alternativeresidenceproof { get; set; }
-    public Nullable<int> alternativeresidenceprooftype { get; set; }
+    public Nullable<int> alternativeresidenceproofId { get; set; }
     public string alternativeresidenceproofno { get; set; }
     public string linkedprofile { get; set; }
     public string facebookprofle { get; set; }
@@ -407,6 +404,27 @@ public partial class applicantvisadetails
     public Nullable<int> isparentvisadenied { get; set; }
 }
 
+public partial class citymaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public citymaster()
+    {
+        this.university_master = new HashSet<university_master>();
+    }
+
+    public int city_id { get; set; }
+    public string description { get; set; }
+    public decimal cost_of_living { get; set; }
+    public string around { get; set; }
+    public string weather { get; set; }
+    public string geting_there { get; set; }
+    public string name { get; set; }
+    public int country_id { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<university_master> university_master { get; set; }
+}
+
 public partial class controlmaster
 {
     public int id { get; set; }
@@ -433,6 +451,19 @@ public partial class coursetypemaster
     public string coursetypename { get; set; }
 }
 
+public partial class credentialmaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+    public string overall_rank_type1 { get; set; }
+    public string overall_rank_type2 { get; set; }
+    public string overall_rank_type3 { get; set; }
+    public string awards { get; set; }
+    public string ranking_by_subject { get; set; }
+    public string ranking_by_region { get; set; }
+    public bool rank_improved { get; set; }
+}
+
 public partial class disabilitymaster
 {
     public int id { get; set; }
@@ -452,6 +483,21 @@ public partial class educationmediummaster
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class facilitiesmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public facilitiesmaster()
+    {
+        this.universitycampus = new HashSet<universitycampus>();
+    }
+
+    public int id { get; set; }
+    public string facility_name { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitycampus> universitycampus { get; set; }
 }
 
 public partial class fieldvalidationmaster
@@ -492,6 +538,17 @@ public partial class grademaster
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class GTE_documentverification
+{
+    public int documentid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public string documentname { get; set; }
+    public Nullable<int> documentvalidationId { get; set; }
+    public Nullable<int> agentid { get; set; }
+    public Nullable<System.DateTime> lastupdatedate { get; set; }
+    public string remarks { get; set; }
 }
 
 public partial class inferencemaster
@@ -571,6 +628,30 @@ public partial class profilemaster
     public Nullable<int> finacialinfo { get; set; }
     public Nullable<int> englishtest { get; set; }
     public Nullable<int> sponsorsdetails { get; set; }
+}
+
+public partial class qualificationcountriesmapping
+{
+    public int id { get; set; }
+    public int qualificationid { get; set; }
+    public int countriesid { get; set; }
+
+    public virtual qualificationmaster qualificationmaster { get; set; }
+}
+
+public partial class qualificationmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public qualificationmaster()
+    {
+        this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
+    }
+
+    public int qualificationid { get; set; }
+    public string qualificationname { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
 }
 
 public partial class question_master
@@ -727,6 +808,22 @@ public partial class university_master
     public string contact_person { get; set; }
     public string email { get; set; }
     public string mobile { get; set; }
+    public string affiliation { get; set; }
+    public string type { get; set; }
+    public string year_established { get; set; }
+    public string short_description { get; set; }
+    public string long_description { get; set; }
+    public Nullable<int> cityid { get; set; }
+    public Nullable<int> countryid { get; set; }
+    public decimal latitude { get; set; }
+    public decimal longitude { get; set; }
+    public string time_zone { get; set; }
+    public string closest_airport { get; set; }
+    public string distance_from_airport { get; set; }
+    public string distance_from_railway { get; set; }
+    public string getting_around { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
 }
 
 public partial class universitycampus
@@ -734,6 +831,13 @@ public partial class universitycampus
     public int campusid { get; set; }
     public string campusname { get; set; }
     public Nullable<int> universityid { get; set; }
+    public string description { get; set; }
+    public string facilities { get; set; }
+    public string research { get; set; }
+    public string faculty_description { get; set; }
+    public Nullable<int> facility_id { get; set; }
+
+    public virtual facilitiesmaster facilitiesmaster { get; set; }
 }
 
 public partial class universitywisefieldmapping

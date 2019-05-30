@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class knowyourstudent : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0;
+    int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -18,7 +18,10 @@ public partial class knowyourstudent : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
+            Response.Redirect(webURL + "Login.aspx", true);
+
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
@@ -29,11 +32,13 @@ public partial class knowyourstudent : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
+            BindCountry();
             SetToolTips();
-            BindAlternateAgeProof();
-            BindAlternateProof();
+            BindAlternateDobProof();
             BindAlternateIDProof();
-            PopulatePersonalInfo();SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            PopulatePersonalInfo();
+            SetControlsUniversitywise();
+            BindResidenceIdProof();
         }
     }
 
@@ -49,25 +54,11 @@ public partial class knowyourstudent : System.Web.UI.Page
                 profileInfo.passportno = txtPassportNo.Value;
                 profileInfo.passportissuedate = Convert.ToDateTime(txtdateofissue.Value);
                 profileInfo.passportexpirydate = Convert.ToDateTime(txtexpirydate.Value);
-                profileInfo.passportissuecity = txtissueplaceCity.Value;
-                if (rblalternateidenityYes.Checked == true)
-                    profileInfo.alternativeiddentiproof = 1;
-                else
-                    profileInfo.alternativeiddentiproof = 0;
-                if (rblalternateresidenceidenityYes.Checked == true)
-                    profileInfo.alternativeresidenceproof = 1;
-                else
-                    profileInfo.alternativeresidenceproof = 0;
-
-                if (rblalternatedobidenityYes.Checked == true)
-                    profileInfo.alternativedobproof = 1;
-                else
-                    profileInfo.alternativedobproof = 0;
-
-
+                profileInfo.passportissuecity = txtissueplaceCity.Value;            
+                
                 if (ddlalternatedobIdentitytype.SelectedValue != "")
                 {
-                    profileInfo.alternativeproofdobtype = Convert.ToInt32(ddlalternatedobIdentitytype.SelectedValue);
+                    profileInfo.alternativeproofdobId = Convert.ToInt32(ddlalternatedobIdentitytype.SelectedValue);
 
                 }
                 if (ddlCountryofIssue.SelectedValue != "")
@@ -77,18 +68,18 @@ public partial class knowyourstudent : System.Web.UI.Page
                 }
                 if (ddlalternateresidenceIdentitytype.SelectedValue != "")
                 {
-                    profileInfo.alternativeresidenceprooftype = Convert.ToInt32(ddlalternateresidenceIdentitytype.SelectedValue);
+                    profileInfo.alternativeresidenceproofId = Convert.ToInt32(ddlalternateresidenceIdentitytype.SelectedValue);
 
                 }
                 if (ddlalternateIdentitytype.SelectedValue != "")
                 {
-                    profileInfo.alternativeprooftype = Convert.ToInt32(ddlalternateIdentitytype.SelectedValue);
+                   profileInfo.alternativeIdentityproofId = Convert.ToInt32(ddlalternateIdentitytype.SelectedValue);
 
                 }
 
                 profileInfo.alternativeproofdobno = txtalternatedobIdentityNo.Value;
                 profileInfo.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;
-                profileInfo.alternativeproofno = txtalternateIdentityNo.Value;
+                profileInfo.alternativeIdentityproofno = txtalternateIdentityNo.Value;
                 profileInfo.identificationsavetime = DateTime.Now;
                 db.SaveChanges();
                 lblMessage.Text = "Your Contact Details have been saved";
@@ -113,33 +104,20 @@ public partial class knowyourstudent : System.Web.UI.Page
                 txtdateofissue.Value = Convert.ToDateTime(profileInfo.passportissuedate).ToString("yyyy-MM-dd");
                 txtexpirydate.Value = Convert.ToDateTime(profileInfo.passportexpirydate).ToString("yyyy-MM-dd");
                 txtissueplaceCity.Value = profileInfo.passportissuecity;
-                if (profileInfo.alternativeiddentiproof == 1)
-                    rblalternateidenityYes.Checked = true;
-                else
-                    rblalternateidenityNo.Checked = false;
-                if (profileInfo.alternativeresidenceproof == 1)
-                    rblalternateresidenceidenityYes.Checked = true;
-                else
-                    rblalternateresidenceidenityNo.Checked = false;
-                if (profileInfo.alternativedobproof == 1)
-                    rblalternatedobidenityYes.Checked = true;
-                else
-                    rblalternatedobidenityNo.Checked = false;
-
-                if (profileInfo.alternativeproofdobtype != null)
+                if (profileInfo.alternativeIdentityproofId != null)
                 {
                     ddlalternatedobIdentitytype.ClearSelection();
-                    ddlalternatedobIdentitytype.Items.FindByValue(profileInfo.alternativeproofdobtype.ToString()).Selected = true;
+                    ddlalternatedobIdentitytype.Items.FindByValue(profileInfo.alternativeproofdobId.ToString()).Selected = true;
                 }
-                if (profileInfo.alternativeresidenceprooftype != null)
+                if (profileInfo.alternativeresidenceproofId != null)
                 {
                     ddlalternateresidenceIdentitytype.ClearSelection();
-                    ddlalternateresidenceIdentitytype.Items.FindByValue(profileInfo.alternativeresidenceprooftype.ToString()).Selected = true;
+                    ddlalternateresidenceIdentitytype.Items.FindByValue(profileInfo.alternativeresidenceproofId.ToString()).Selected = true;
                 }
-                if (profileInfo.alternativeprooftype != null)
+                if (profileInfo.alternativeIdentityproofId != null)
                 {
                     ddlalternateIdentitytype.ClearSelection();
-                    ddlalternateIdentitytype.Items.FindByValue(profileInfo.alternativeprooftype.ToString()).Selected = true;
+                    ddlalternateIdentitytype.Items.FindByValue(profileInfo.alternativeIdentityproofId.ToString()).Selected = true;
                 }
                 if (profileInfo.passportissuecountry != null)
                 {
@@ -148,7 +126,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                 }
                 txtalternatedobIdentityNo.Value = profileInfo.alternativeproofdobno;
                 txtalternateresidenceIdentityNo.Value = profileInfo.alternativeresidenceproofno;
-                txtalternateIdentityNo.Value = profileInfo.alternativeproofno;
+                txtalternateIdentityNo.Value = profileInfo.alternativeIdentityproofno;
                 lblSaveTime.Text = " Record was last saved at " + profileInfo.identificationsavetime.ToString();
             }
         }
@@ -157,39 +135,42 @@ public partial class knowyourstudent : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void BindAlternateAgeProof()
+    private void BindCountry()
     {
         try
         {
-            ListItem lst = new ListItem("Please select", "0");
-            var age = db.alternatedobproof.ToList();
-            ddlalternatedobIdentitytype.DataSource = age;
-            ddlalternatedobIdentitytype.DataTextField = "description";
-            ddlalternatedobIdentitytype.DataValueField = "id";
-            ddlalternatedobIdentitytype.DataBind();
-            ddlalternatedobIdentitytype.Items.Insert(0, lst);
+            ListItem lst = new ListItem("Please Select", "0");
+            var country = db.countriesmaster.ToList();
+            ddlCountryofIssue.DataSource = country;
+            ddlCountryofIssue.DataTextField = "country_name";
+            ddlCountryofIssue.DataValueField = "country_code";
+            ddlCountryofIssue.DataBind();
+            ddlCountryofIssue.Items.Insert(0, lst);
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void BindAlternateProof()
+    private void BindAlternateDobProof()
     {
-        try
+        try 
         {
             ListItem lst = new ListItem("Please select", "0");
-            var address = db.alternateadressproofmaster.ToList();
-            ddlalternateIdentitytype.DataSource = address;
-            ddlalternateIdentitytype.DataTextField = "description";
-            ddlalternateIdentitytype.DataValueField = "id";
-            ddlalternateIdentitytype.DataBind();
-            ddlalternateIdentitytype.Items.Insert(0, lst);
-            ddlalternateresidenceIdentitytype.DataSource = address;
-            ddlalternateresidenceIdentitytype.DataTextField = "description";
-            ddlalternateresidenceIdentitytype.DataValueField = "id";
-            ddlalternateresidenceIdentitytype.DataBind();
-            ddlalternateresidenceIdentitytype.Items.Insert(0, lst);
+            var dobtype = (from ap in db.alternatedobproof
+                           join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
+                           join mn in db.master_name on ump.masterid equals mn.masterid
+                           where ump.universityid == universityID && ump.masterid == 2
+                           select new
+                           {
+                               description = ap.description,
+                               id = ap.id
+                           }).ToList();
+            ddlalternatedobIdentitytype.DataSource = dobtype;
+            ddlalternatedobIdentitytype.DataTextField = "description";
+            ddlalternatedobIdentitytype.DataValueField = "id";
+            ddlalternatedobIdentitytype.DataBind();
+            ddlalternatedobIdentitytype.Items.Insert(0, lst);
         }
         catch (Exception ex)
         {
@@ -202,8 +183,17 @@ public partial class knowyourstudent : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var Id = db.alternateidproofmaster.ToList();
-            ddlalternateIdentitytype.DataSource = Id;
+            var identitytype = (from ap in db.alternateidproofmaster
+                      join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
+                      join mn in db.master_name on ump.masterid equals mn.masterid
+                      where ump.universityid == universityID && ump.masterid == 3
+                      select new
+                      {
+                          description = ap.description,
+                          id = ap.id
+                      }).ToList();
+
+            ddlalternateIdentitytype.DataSource = identitytype;
             ddlalternateIdentitytype.DataTextField = "description";
             ddlalternateIdentitytype.DataValueField = "id";
             ddlalternateIdentitytype.DataBind();
@@ -214,6 +204,33 @@ public partial class knowyourstudent : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private void BindResidenceIdProof()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var addresstype = (from ap in db.alternateadressproofmaster
+                                join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
+                                join mn in db.master_name on ump.masterid equals mn.masterid
+                                where ump.universityid == universityID && ump.masterid == 1
+                                select new
+                                {
+                                    description = ap.description,
+                                    id = ap.id
+                                }).ToList();
+
+            ddlalternateresidenceIdentitytype.DataSource = addresstype;
+            ddlalternateresidenceIdentitytype.DataTextField = "description";
+            ddlalternateresidenceIdentitytype.DataValueField = "id";
+            ddlalternateresidenceIdentitytype.DataBind();
+            ddlalternateresidenceIdentitytype.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
     private void SetToolTips()
     {
         try
@@ -238,25 +255,12 @@ public partial class knowyourstudent : System.Web.UI.Page
                         break;
                     case "PassportIssueCity":
                         txtissueplaceCity.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "HavealternativeAddressProof":
-                        rblalternateresidenceidenityYes.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblalternateresidenceidenityNo.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "HaveAlternativeDob":
-                        rblalternatedobidenityNo.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblalternatedobidenityYes.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "HavealternativeID":
-                        rblalternateidenityYes.ToolTip = lstToolTips[k].tooltips;
-                        rblalternateidenityNo.ToolTip = lstToolTips[k].tooltips;
-                        break;
+                        break;                                      
                     case "AlternativeIDNo":
                         txtalternateIdentityNo.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "AlternativeIdentitytype":
-                        ddlalternateIdentitytype.Attributes.Add("title", lstToolTips[k].tooltips);
-                        
+                        ddlalternateIdentitytype.Attributes.Add("title", lstToolTips[k].tooltips);                        
                         break;
                     case "AlternativeDobno":
                         txtalternatedobIdentityNo.Attributes.Add("title", lstToolTips[k].tooltips);
@@ -283,7 +287,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void SetControlsUniversitywise(int universityID)
+    private void SetControlsUniversitywise()
     {try
         {
             string SecondaryLanguage = "";
@@ -373,32 +377,16 @@ public partial class knowyourstudent : System.Web.UI.Page
                         labelissueplace.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         break;
                     case "ALTERNATIVE PROOF OF IDENTITY":
-                        alternateidentity.Attributes.Add("style", "display:block;");
                         alternateIdentitytype.Attributes.Add("style", "display:block;");
                         alternateIdentityNo.Attributes.Add("style", "display:block;");
-                        labelalternateidentity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         break;
                     case "ALTERNATIVE PROOF OF DATE OF BIRTH":
-                        alternatedobidentity.Attributes.Add("style", "display:block;");
                         alternatedobIdentitytype.Attributes.Add("style", "display:block;");
-                        alternatedobIdentityNo.Attributes.Add("style", "display:block;");
-                        labelalternatedobidentity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        alternatedobIdentityNo.Attributes.Add("style", "display:block;");                        
                         break;
                     case "ALTERNATIVE PROOF OF RESIDENCE":
-                        alternateresidenceidenity.Attributes.Add("style", "display:block;");
                         alternateresidenceIdentitytype.Attributes.Add("style", "display:block;");
                         alternateresidenceIdentityNo.Attributes.Add("style", "display:block;");
-                        labelalternateresidenceidenity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
-                        break;
-                    case "IDENTITY TYPE":
-                        labelalternatedobIdentitytype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
-                        labelalternateIdentitytype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
-                        labelalternateresidenceIdentitytype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
-                        break;
-                    case "IDENTITY NUMBER":
-                        labelalternateIdentityNo.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
-                        labelalternatedobIdentityNo.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
-                        labelalternateresidenceIdentityNo.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         break;
                     default:
                         break;
