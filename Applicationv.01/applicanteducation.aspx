@@ -439,25 +439,25 @@
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbldesignation" runat="server"
-                                                                    Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                    Text='<%#Eval("courseid.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblorganization" runat="server"
-                                                                    Text='<%#Eval("subject")%>'></asp:Label>
+                                                                    Text='<%#Eval("subject.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                    Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                                    Text='<%#Eval("gradetype.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                    Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                                    Text='<%#Eval("studentgrade.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
 
@@ -887,25 +887,25 @@
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbldesignation" runat="server"
-                                                                        Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                        Text='<%#Eval("courseid.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblorganization" runat="server"
-                                                                        Text='<%#Eval("subject")%>'></asp:Label>
+                                                                        Text='<%#Eval("subject.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                        Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                                        Text='<%#Eval("gradetype.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                        Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                                        Text='<%#Eval("studentgrade.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
@@ -932,8 +932,8 @@
 ?</label>
                                             <div class="col-md-9">
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherYes" runat="server" GroupName="higher" Text="Yes" />
-                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text=" I am currently studying for my higher qualification" />
-                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text="No- I do not have a higher qualification " />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text=" I am currently studying for my higher qualification" />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text="No- I do not have a higher qualification " />
                                             </div>
                                         </div>
                                     </div>
@@ -1353,25 +1353,25 @@
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbldesignation" runat="server"
-                                                                        Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                        Text='<%#Eval("courseid.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblorganization" runat="server"
-                                                                        Text='<%#Eval("subject")%>'></asp:Label>
+                                                                        Text='<%#Eval("subject.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                        Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                                        Text='<%#Eval("gradetype.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                        Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                                        Text='<%#Eval("studentgrade.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
 
@@ -1404,37 +1404,37 @@
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="id" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblId" runat="server"
-                                                                        Text='<%#Eval("applicanthighereducationid")%>'></asp:Label>
+                                                                        Text='<%#Eval("applicanthighereducationid.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblCourse" runat="server"
-                                                                        Text='<%#Eval("coursename")%>'></asp:Label>
+                                                                        Text='<%#Eval("coursename.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="School Name">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblSchool" runat="server"
-                                                                        Text='<%#Eval("schoolname")%>'></asp:Label>
+                                                                        Text='<%#Eval("schoolname.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Start Date">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblStart" runat="server"
-                                                                        Text='<%#Eval("startdate", "{0:dd/MM/yyyy}") %>'></asp:Label>
+                                                                        Text='<%#Eval("startdate", "{0:dd/MM/yyyy}.ClientID%>") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="End Date ">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblEnd" runat="server"
-                                                                        Text='<%#Eval("endate", "{0:dd/MM/yyyy}")%>'></asp:Label>
+                                                                        Text='<%#Eval("endate", "{0:dd/MM/yyyy}.ClientID%>")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
 
                                                                 <ItemTemplate>
-                                                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#Eval("applicanthighereducationid")%>' CommandName="Edit" Text="Edit"></asp:LinkButton>
+                                                                    <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#Eval("applicanthighereducationid.ClientID%>")%>' CommandName="Edit" Text="Edit"></asp:LinkButton>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
@@ -1861,25 +1861,25 @@
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lbldesignation" runat="server"
-                                                                    Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                    Text='<%#Eval("courseid.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblorganization" runat="server"
-                                                                    Text='<%#Eval("subject")%>'></asp:Label>
+                                                                    Text='<%#Eval("subject.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                    Text='<%#Eval("gradetype")%>'></asp:Label>
+                                                                    Text='<%#Eval("gradetype.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblcontactpersonwithdetails" runat="server"
-                                                                    Text='<%#Eval("studentgrade")%>'></asp:Label>
+                                                                    Text='<%#Eval("studentgrade.ClientID%>")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
 
@@ -1939,616 +1939,608 @@
                     var title = $(this).attr('title');
                     $("#tooltip").text(title);
                 });
-            var input = document.querySelector("#ContentPlaceHolder1_txtMobilehighSchool");
+            var input = document.querySelector("#<%=txtMobilehighSchool.ClientID%>");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-            var input = document.querySelector("#ContentPlaceHolder1_txtsecondarycontactMobile");
+            var input = document.querySelector("#<%=txtsecondarycontactMobile.ClientID%>");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-            var input = document.querySelector("#ContentPlaceHolder1_txthighercontactMobile");
+            var input = document.querySelector("#<%=txthighercontactMobile.ClientID%>");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-            var input = document.querySelector("#ContentPlaceHolder1_txtdiplomacontactMobile");
+            var input = document.querySelector("#<%=txtdiplomacontactMobile.ClientID%>");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-            $("#higestEducation").hide()
+            $("#<%=higestEducation.ClientID%>").hide()
             // Attach Button click event listener 
-            $("#btn10th").click(function () {
-                var grade = $("#ContentPlaceHolder1_ddlHighSchoolGrade").val();
+            $("#<%=btn10th.ClientID%>").click(function () {
+                var grade = $("#<%=ddlHighSchoolGrade.ClientID%>").val();
                 var course = "tenth"
                 var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
-            $("#btn12th").click(function () {
-                var grade = $("#ContentPlaceHolder1_ddlSecondaryGrade").val();
+            $("#<%=btn12th.ClientID%>").click(function () {
+                var grade = $("#<%=ddlSecondaryGrade.ClientID%>").val();
                 var course = "twelth"
                 var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
-            $("#btnhigher").click(function () {
-                var grade = $("#ContentPlaceHolder1_ddlHigherGrade").val();
-                var course = $("#ContentPlaceHolder1_ddlCourse").val()
+            $("#<%=btnhigher.ClientID%>").click(function () {
+                var grade = $("#<%=ddlHigherGrade.ClientID%>").val();
+                var course = $("#<%=ddlCourse.ClientID%>").val()
                 var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
-            $("#btndiploma").click(function () {
-                var grade = $("#ContentPlaceHolder1_ddlDiplomaGrade").val();
+            $("#<%=btndiploma.ClientID%>").click(function () {
+                var grade = $("#<%=ddlDiplomaGrade.ClientID%>").val();
                 var course = "diploma"
                 var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             var highschool = $("input[type=radio][name='ctl00$ContentPlaceHolder1$highschool']:checked").val()
             if (highschool == 'rblHighYes') {
-                $("#highschoolCountry").show();
-                $("#highschoolstartDate").show();
-                $("#highschoolendDate").show();
-                $("#highschoolstudymode").show();
-                $("#highschoollanguage").show();
-                $("#gradetype").show();
-                $("#highschoolgradeachieved").show();
-                $("#ExpectedHighSchoolDategrade").hide();
-                $("#highschoolverify").show();
-                $("#highschoolrelation").show();
-                $("#highschoolcontactEmail").show();
+                $("#<%=highschoolCountry.ClientID%>").show();
+                $("#<%=highschoolstartDate.ClientID%>").show();
+                $("#<%=highschoolendDate.ClientID%>").show();
+                $("#<%=highschoolstudymode.ClientID%>").show();
+                $("#<%=highschoollanguage.ClientID%>").show();
+                $("#<%=gradetype.ClientID%>").show();
+                $("#<%=highschoolgradeachieved.ClientID%>").show();
+                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
+                $("#<%=highschoolverify.ClientID%>").show();
+                $("#<%=highschoolrelation.ClientID%>").show();
+                $("#<%=highschoolcontactEmail.ClientID%>").show();
                 $("#highschoolYear").show();
-                $("#highschoolName").show();
-                $("#highschoolQualificationtype").show();
-                $("#higestEducation").hide();
-                $("#highshoolgrade").show();
+                $("#<%=highschoolName.ClientID%>").show();
+                $("#<%=highschoolQualificationtype.ClientID%>").show();
+                $("#<%=higestEducation.ClientID%>").hide();
+                $("#<%=highshoolgrade.ClientID%>").show();
                 $("#SecondarySection").show();
-                $("#highschoolcontactMobile").show();
+                $("#<%=highschoolcontactMobile.ClientID%>").show();
 
                 var HighschoolGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$HighschoolGrade']:checked").val();
-                if (HighschoolGrade == "rblYes") {
-                    $("#ExpectedHighSchoolDategrade").hide();
+                if (HighschoolGrade == "rblYes.ClientID%>") {
+                    $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
                 }
                 else
-                    $("#ExpectedHighSchoolDategrade").show();
+                    $("#<%=ExpectedHighSchoolDategrade.ClientID%>").show();
             }
             else if (highschool == 'rblHighNot') {
-                $("#highschoolCountry").show();
-                $("#highschoolstartDate").show();
-                $("#highschoolendDate").show();
-                $("#highschoolstudymode").show();
-                $("#highschoollanguage").show();
-                $("#gradetype").show();
-                $("#highschoolgradeachieved").show();
-                $("#ExpectedHighSchoolDategrade").show();
-                $("#highschoolverify").hide();
-                $("#highschoolrelation").hide();
-                $("#highschoolcontactEmail").hide();
-                $("#highschoolcontactMobile").hide();
+                $("#<%=highschoolCountry.ClientID%>").show();
+                $("#<%=highschoolstartDate.ClientID%>").show();
+                $("#<%=highschoolendDate.ClientID%>").show();
+                $("#<%=highschoolstudymode.ClientID%>").show();
+                $("#<%=highschoollanguage.ClientID%>").show();
+                $("#<%=gradetype.ClientID%>").show();
+                $("#<%=highschoolgradeachieved.ClientID%>").show();
+                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").show();
+                $("#<%=highschoolverify.ClientID%>").hide();
+                $("#<%=highschoolrelation.ClientID%>").hide();
+                $("#<%=highschoolcontactEmail.ClientID%>").hide();
+                $("#<%=highschoolcontactMobile.ClientID%>").hide();
                 $("#highschoolYear").show();
-                $("#highschoolName").show();
-                $("#highschoolQualificationtype").show();
-                $("#higestEducation").hide();
+                $("#<%=highschoolName.ClientID%>").show();
+                $("#<%=highschoolQualificationtype.ClientID%>").show();
+                $("#<%=higestEducation.ClientID%>").hide();
                 $("#SecondarySection").hide();
-                $("#highshoolgrade").hide();
+                $("#<%=highshoolgrade.ClientID%>").hide();
 
             }
             else {
-                $("#highschoolCountry").hide();
-                $("#highschoolstartDate").hide();
-                $("#highschoolendDate").hide();
-                $("#highschoolstudymode").hide();
-                $("#highschoollanguage").hide();
-                $("#gradetype").hide();
-                $("#highschoolcontactMobile").hide();
-                $("#highschoolgradeachieved").hide();
-                $("#ExpectedHighSchoolDategrade").hide();
-                $("#highschoolverify").hide();
-                $("#highschoolrelation").hide();
-                $("#highschoolcontactEmail").hide();
+                $("#<%=highschoolCountry.ClientID%>").hide();
+                $("#<%=highschoolstartDate.ClientID%>").hide();
+                $("#<%=highschoolendDate.ClientID%>").hide();
+                $("#<%=highschoolstudymode.ClientID%>").hide();
+                $("#<%=highschoollanguage.ClientID%>").hide();
+                $("#<%=gradetype.ClientID%>").hide();
+                $("#<%=highschoolcontactMobile.ClientID%>").hide();
+                $("#<%=highschoolgradeachieved.ClientID%>").hide();
+                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
+                $("#<%=highschoolverify.ClientID%>").hide();
+                $("#<%=highschoolrelation.ClientID%>").hide();
+                $("#<%=highschoolcontactEmail.ClientID%>").hide();
                 $("#highschoolYear").hide();
-                $("#highschoolName").hide();
-                $("#highschoolQualificationtype").hide();
-                $("#higestEducation").hide();
+                $("#<%=highschoolName.ClientID%>").hide();
+                $("#<%=highschoolQualificationtype.ClientID%>").hide();
+                $("#<%=higestEducation.ClientID%>").hide();
                 $("#SecondarySection").hide();
-                $("#highshoolgrade").hide();
-                $("#highshoolgrade").hide();
+                $("#<%=highshoolgrade.ClientID%>").hide();
+                $("#<%=highshoolgrade.ClientID%>").hide();
             }
 
 
             var Secondary = $("input[type=radio][name='ctl00$ContentPlaceHolder1$Secondary']:checked").val();
             if (Secondary == 'rblSecondaryYes') {
-                $("#SecondaryCountry").show();
-                $("#SecondarystartDate").show();
-                $("#SecondaryendDate").show();
-                $("#Secondarystudymode").show();
-                $("#Secondarylanguage").show();
-                $("#Secondarygradetype").show();
-                $("#Secondarygradeachieved").show();
-                $("#ExpectedSecondaryDategrade").hide();
-                $("#Secondaryverify").show();
-                $("#secondaryschoolrelation").show();
-                $("#secondarygrade").show();
-                $("#SecondaryschoolName").show();
-                $("#SecondaryQualificationtype").show();
+                $("#<%=SecondaryCountry.ClientID%>").show();
+                $("#<%=SecondarystartDate.ClientID%>").show();
+                $("#<%=SecondaryendDate.ClientID%>").show();
+                $("#<%=Secondarystudymode.ClientID%>").show();
+                $("#<%=Secondarylanguage.ClientID%>").show();
+                $("#<%=Secondarygradetype.ClientID%>").show();
+                $("#<%=Secondarygradeachieved.ClientID%>").show();
+                $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
+                $("#<%=Secondaryverify.ClientID%>").show();
+                $("#<%=secondaryschoolrelation.ClientID%>").show();
+                $("#<%=secondarygrade.ClientID%>").show();
+                $("#<%=SecondaryschoolName.ClientID%>").show();
+                $("#<%=SecondaryQualificationtype.ClientID%>").show();
                 $("#HigherSectionSection").show();
-                $("#secondarycontactEmail").show();
-                $("#higher").show();
-                $("#secondarygrade").show();
-                $("#secondarycontactMobile").show();
+                $("#<%=secondarycontactEmail.ClientID%>").show();
+                $("#<%=higher.ClientID%>").show();
+                $("#<%=secondarygrade.ClientID%>").show();
+                $("#<%=secondarycontactMobile.ClientID%>").show();
 
             }
             else if (Secondary == 'rblSecondaryNot') {
-                $("#SecondaryCountry").show();
-                $("#SecondarystartDate").show();
-                $("#SecondaryendDate").show();
-                $("#Secondarystudymode").show();
-                $("#Secondarylanguage").show();
-                $("#Secondarygradetype").show();
-                $("#Secondarygradeachieved").show();
-                $("#ExpectedSecondaryDategrade").hide();
-                $("#Secondaryverify").hide();
-                $("#secondaryschoolrelation").hide();
-                $("#secondarygrade").show();
-                $("#SecondaryschoolName").show();
-                $("#SecondaryQualificationtype").show();
-                $("#secondarygrade").hide();
-                $("#secondarycontactEmail").hide();
-                $("#secondarycontactMobile").hide();
+                $("#<%=SecondaryCountry.ClientID%>").show();
+                $("#<%=SecondarystartDate.ClientID%>").show();
+                $("#<%=SecondaryendDate.ClientID%>").show();
+                $("#<%=Secondarystudymode.ClientID%>").show();
+                $("#<%=Secondarylanguage.ClientID%>").show();
+                $("#<%=Secondarygradetype.ClientID%>").show();
+                $("#<%=Secondarygradeachieved.ClientID%>").show();
+                $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
+                $("#<%=Secondaryverify.ClientID%>").hide();
+                $("#<%=secondaryschoolrelation.ClientID%>").hide();
+                $("#<%=secondarygrade.ClientID%>").show();
+                $("#<%=SecondaryschoolName.ClientID%>").show();
+                $("#<%=SecondaryQualificationtype.ClientID%>").show();
+                $("#<%=secondarygrade.ClientID%>").hide();
+                $("#<%=secondarycontactEmail.ClientID%>").hide();
+                $("#<%=secondarycontactMobile.ClientID%>").hide();
             }
             else {
-                $("#higher").hide();
-                $("#SecondaryCountry").hide();
-                $("#SecondarystartDate").hide();
-                $("#SecondaryendDate").hide();
-                $("#Secondarystudymode").hide();
-                $("#Secondarylanguage").hide();
-                $("#Secondarygradetype").hide();
-                $("#Secondarygradeachieved").hide();
-                $("#ExpectedSecondaryDategrade").hide();
-                $("#Secondaryverify").hide();
-                $("#secondaryschoolrelation").hide();
-                $("#secondarygrade").hide();
-                $("#SecondaryschoolName").hide();
-                $("#SecondaryQualificationtype").hide();
+                $("#<%=higher.ClientID%>").hide();
+                $("#<%=SecondaryCountry.ClientID%>").hide();
+                $("#<%=SecondarystartDate.ClientID%>").hide();
+                $("#<%=SecondaryendDate.ClientID%>").hide();
+                $("#<%=Secondarystudymode.ClientID%>").hide();
+                $("#<%=Secondarylanguage.ClientID%>").hide();
+                $("#<%=Secondarygradetype.ClientID%>").hide();
+                $("#<%=Secondarygradeachieved.ClientID%>").hide();
+                $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
+                $("#<%=Secondaryverify.ClientID%>").hide();
+                $("#<%=secondaryschoolrelation.ClientID%>").hide();
+                $("#<%=secondarygrade.ClientID%>").hide();
+                $("#<%=SecondaryschoolName.ClientID%>").hide();
+                $("#<%=SecondaryQualificationtype.ClientID%>").hide();
                 $("#HigherSectionSection").show();
-                $("#secondarycontactEmail").hide();
+                $("#<%=secondarycontactEmail.ClientID%>").hide();
                 $("#SecondaryEducation").hide();
-                $("#secondarygrade").hide();
-                $("#secondarycontactMobile").hide();
+                $("#<%=secondarygrade.ClientID%>").hide();
+                $("#<%=secondarycontactMobile.ClientID%>").hide();
             }
 
             var Higher = $("input[type=radio][name='ctl00$ContentPlaceHolder1$higher']:checked").val();
             if (Higher == 'rblhigherYes') {
-                $("#highercourse").show();
-                $("#higherCountry").show();
-                $("#higherstartDate").show();
-                $("#higherendDate").show();
-                $("#higherschoolName").show();
-                $("#higherQualificationtype").show();
-                $("#higherstudymode").show();
-                $("#higherlanguage").show();
-                $("#highergradetype").show();
-                $("#highergradeachieved").show();
-                $("#ExpectedHigherDategrade").hide();
-                $("#higherverify").show();
-                $("#higherrelation").show();
-                $("#highercontactEmail").show();
-                $("#highergrade").show();
-                $("#addanother").show();
-                $("#highercontactMobile").show();
+                $("#<%=highercourse.ClientID%>").show();
+                $("#<%=higherCountry.ClientID%>").show();
+                $("#<%=higherstartDate.ClientID%>").show();
+                $("#<%=higherendDate.ClientID%>").show();
+                $("#<%=higherschoolName.ClientID%>").show();
+                $("#<%=higherQualificationtype.ClientID%>").show();
+                $("#<%=higherstudymode.ClientID%>").show();
+                $("#<%=higherlanguage.ClientID%>").show();
+                $("#<%=highergradetype.ClientID%>").show();
+                $("#<%=highergradeachieved.ClientID%>").show();
+                $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
+                $("#<%=higherverify.ClientID%>").show();
+                $("#<%=higherrelation.ClientID%>").show();
+                $("#<%=highercontactEmail.ClientID%>").show();
+                $("#<%=highergrade.ClientID%>").show();
+                $("#<%=addanother.ClientID%>").show();
+                $("#<%=highercontactMobile.ClientID%>").show();
 
             }
-            else if (Higher == 'rblhigherNo') {
-                $("#highercourse").show();
-                $("#higherCountry").show();
-                $("#higherstartDate").show();
-                $("#higherendDate").show();
-                $("#higherschoolName").show();
-                $("#higherQualificationtype").show();
-                $("#higherstudymode").show();
-                $("#higherlanguage").show();
-                $("#highergradetype").show();
-                $("#highergradeachieved").show();
-                $("#ExpectedHigherDategrade").show();
-                $("#higherverify").show();
-                $("#higherrelation").show();
-                $("#highercontactEmail").show();
-                $("#highergrade").hide();
-                $("#addanother").hide();
-                $("#highercontactMobile").hide();
+            else if (Higher == 'rblhigherNot') {
+                $("#<%=highercourse.ClientID%>").show();
+                $("#<%=higherCountry.ClientID%>").show();
+                $("#<%=higherstartDate.ClientID%>").show();
+                $("#<%=higherendDate.ClientID%>").show();
+                $("#<%=higherschoolName.ClientID%>").show();
+                $("#<%=higherQualificationtype.ClientID%>").show();
+                $("#<%=higherstudymode.ClientID%>").show();
+                $("#<%=higherlanguage.ClientID%>").show();
+                $("#<%=highergradetype.ClientID%>").show();
+                $("#<%=highergradeachieved.ClientID%>").show();
+                $("#<%=ExpectedHigherDategrade.ClientID%>").show();
+                $("#<%=higherverify.ClientID%>").show();
+                $("#<%=higherrelation.ClientID%>").show();
+                $("#<%=highercontactEmail.ClientID%>").show();
+                $("#<%=highergrade.ClientID%>").hide();
+                $("#<%=addanother.ClientID%>").hide();
+                $("#<%=highercontactMobile.ClientID%>").hide();
                 var HigherGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$highergradeachieved']:checked").val();
                 if (HigherGrade == "rblhighergradeachievedYes") {
-                    $("#ExpectedHigherDategrade").hide();
+                    $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
                 }
                 else {
-                    $("#ExpectedHigherDategrade").show();
+                    $("#<%=ExpectedHigherDategrade.ClientID%>").show();
                 }
             }
             else {
-                $("#highercourse").hide();
-                $("#higherCountry").hide();
-                $("#higherstartDate").hide();
-                $("#higherendDate").hide();
-                $("#higherschoolName").hide();
-                $("#higherQualificationtype").hide();
-                $("#higherstudymode").hide();
-                $("#higherlanguage").hide();
-                $("#highergradetype").hide();
-                $("#highergradeachieved").hide();
-                $("#ExpectedHigherDategrade").hide();
-                $("#higherverify").hide();
-                $("#higherrelation").hide();
-                $("#highercontactEmail").hide();
-                $("#highergrade").hide();
-                $("#addanother").hide();
-                $("#highercontactMobile").hide();
+                $("#<%=highercourse.ClientID%>").hide();
+                $("#<%=higherCountry.ClientID%>").hide();
+                $("#<%=higherstartDate.ClientID%>").hide();
+                $("#<%=higherendDate.ClientID%>").hide();
+                $("#<%=higherschoolName.ClientID%>").hide();
+                $("#<%=higherQualificationtype.ClientID%>").hide();
+                $("#<%=higherstudymode.ClientID%>").hide();
+                $("#<%=higherlanguage.ClientID%>").hide();
+                $("#<%=highergradetype.ClientID%>").hide();
+                $("#<%=highergradeachieved.ClientID%>").hide();
+                $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
+                $("#<%=higherverify.ClientID%>").hide();
+                $("#<%=higherrelation.ClientID%>").hide();
+                $("#<%=highercontactEmail.ClientID%>").hide();
+                $("#<%=highergrade.ClientID%>").hide();
+                $("#<%=addanother.ClientID%>").hide();
+                $("#<%=highercontactMobile.ClientID%>").hide();
             }
             var Diploma = $("input[type=radio][name='ctl00$ContentPlaceHolder1$diploma']:checked").val();
             if (Diploma == "rbldiplomaYes") {
 
-                $("#diplomaCountry").show();
-                $("#diplomastartDate").show();
-                $("#diplomaendDate").show();
-                $("#diplomaschoolName").show();
-                $("#diplomaQualificationtype").show();
-                $("#diplomastudymode").show();
-                $("#diplomalanguage").show();
-                $("#diplomagradetype").show();
-                $("#diplomagradeachieved").show();
-                $("#ExpectedDiplomaDategrade").show();
-                $("#diplomaverify").show();
-                $("#diplomarelation").show();
-                $("#diplomacontactEmail").show();
-                $("#diplomagrade").show();
-                $("#diplomacontactMobile").show();
+                $("#<%=diplomaCountry.ClientID%>").show();
+                $("#<%=diplomastartDate.ClientID%>").show();
+                $("#<%=diplomaendDate.ClientID%>").show();
+                $("#<%=diplomaschoolName.ClientID%>").show();
+                $("#<%=diplomaQualificationtype.ClientID%>").show();
+                $("#<%=diplomastudymode.ClientID%>").show();
+                $("#<%=diplomalanguage.ClientID%>").show();
+                $("#<%=diplomagradetype.ClientID%>").show();
+                $("#<%=diplomagradeachieved.ClientID%>").show();
+                $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
+                $("#<%=diplomaverify.ClientID%>").show();
+                $("#<%=diplomarelation.ClientID%>").show();
+                $("#<%=diplomacontactEmail.ClientID%>").show();
+                $("#<%=diplomagrade.ClientID%>").show();
+                $("#<%=diplomacontactMobile.ClientID%>").show();
 
             }
             else if (Diploma == "higherNot") {
-                $("#diplomaCountry").show();
-                $("#diplomastartDate").show();
-                $("#diplomaendDate").show();
-                $("#diplomaschoolName").show();
-                $("#diplomaQualificationtype").show();
-                $("#diplomastudymode").show();
-                $("#diplomalanguage").show();
-                $("#diplomagradetype").show();
-                $("#diplomagradeachieved").show();
-                $("#ExpectedDiplomaDategrade").show();
-                $("#diplomaverify").show();
-                $("#diplomarelation").show();
-                $("#diplomacontactEmail").show();
-                $("#diplomagrade").hide();
-                $("#diplomacontactMobile").hide();
+                $("#<%=diplomaCountry.ClientID%>").show();
+                $("#<%=diplomastartDate.ClientID%>").show();
+                $("#<%=diplomaendDate.ClientID%>").show();
+                $("#<%=diplomaschoolName.ClientID%>").show();
+                $("#<%=diplomaQualificationtype.ClientID%>").show();
+                $("#<%=diplomastudymode.ClientID%>").show();
+                $("#<%=diplomalanguage.ClientID%>").show();
+                $("#<%=diplomagradetype.ClientID%>").show();
+                $("#<%=diplomagradeachieved.ClientID%>").show();
+                $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
+                $("#<%=diplomaverify.ClientID%>").show();
+                $("#<%=diplomarelation.ClientID%>").show();
+                $("#<%=diplomacontactEmail.ClientID%>").show();
+                $("#<%=diplomagrade.ClientID%>").hide();
+                $("#<%=diplomacontactMobile.ClientID%>").hide();
                 var DiplomaGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$DiplomaGrade']:checked").val();
-                if (DiplomaGrade == "rblDiplomaGradeYes") {
-                    $("#ExpectedDiplomaDategrade").hide();
+                if (DiplomaGrade == "rblDiplomaGradeYes.ClientID%>") {
+                    $("#<%=ExpectedDiplomaDategrade.ClientID%>").hide();
                 }
                 else
-                    $("#ExpectedDiplomaDategrade").show();
+                    $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
             }
             else {
-                $("#diplomaCountry").hide();
-                $("#diplomastartDate").hide();
-                $("#diplomaendDate").hide();
-                $("#diplomaschoolName").hide();
-                $("#diplomaQualificationtype").hide();
-                $("#diplomastudymode").hide();
-                $("#diplomalanguage").hide();
-                $("#diplomagradetype").hide();
-                $("#diplomagradeachieved").hide();
-                $("#ExpectedDiplomaDategrade").hide();
-                $("#diplomaverify").hide();
-                $("#diplomarelation").hide();
-                $("#diplomacontactEmail").hide();
-                $("#diplomagrade").hide();
-                $("#diplomacontactMobile").hide();
+                $("#<%=diplomaCountry.ClientID%>").hide();
+                $("#<%=diplomastartDate.ClientID%>").hide();
+                $("#<%=diplomaendDate.ClientID%>").hide();
+                $("#<%=diplomaschoolName.ClientID%>").hide();
+                $("#<%=diplomaQualificationtype.ClientID%>").hide();
+                $("#<%=diplomastudymode.ClientID%>").hide();
+                $("#<%=diplomalanguage.ClientID%>").hide();
+                $("#<%=diplomagradetype.ClientID%>").hide();
+                $("#<%=diplomagradeachieved.ClientID%>").hide();
+                $("#<%=ExpectedDiplomaDategrade.ClientID%>").hide();
+                $("#<%=diplomaverify.ClientID%>").hide();
+                $("#<%=diplomarelation.ClientID%>").hide();
+                $("#<%=diplomacontactEmail.ClientID%>").hide();
+                $("#<%=diplomagrade.ClientID%>").hide();
+                $("#<%=diplomacontactMobile.ClientID%>").hide();
             }
 
-            //var SecondaryGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$Secondarygradeachieved']:checked").val();
-            //if (SecondaryGrade == "rblSecondarygradeachievedYes") {
-            //    $("#ExpectedSecondaryDategrade").hide();
+            //var SecondaryGrade = $("input[type=radio][name='ctl00$ContentPlaceHolder1$Secondarygradeachieved']:checked.ClientID%>").val();
+            //if (SecondaryGrade == "rblSecondarygradeachievedYes.ClientID%>") {
+            //    $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
             //}
             //else
-            //    $("#ExpectedSecondaryDategrade").show();
+            //    $("#<%=ExpectedSecondaryDategrade.ClientID%>").show();
 
 
 
         });
 
-        //$("#highschoolCountry").hide();
-        //$("#highschoolYear").hide();
-        //$("#highschoolName").hide();
-        //$("#highschoolQualificationtype").hide();
-        //$("#higestEducation").hide();
-        //$("#TertiaryCountry").hide();
-        //$("#TertiaryYear").hide();
-        //$("#TertiarySchool").hide();
-        //$("#TertiaryQualification").hide();
+        
 
         //Handle High School
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$highschool']").click(function () {
-                if ($("#ContentPlaceHolder1_rblHighYes").is(":checked")) {
-                    $("#highschoolCountry").show();
-                    $("#highschoolstartDate").show();
-                    $("#highschoolendDate").show();
-                    $("#highschoolstudymode").show();
-                    $("#highschoollanguage").show();
-                    $("#gradetype").show();
-                    $("#highschoolgradeachieved").show();
-                    $("#ExpectedHighSchoolDategrade").hide();
-                    $("#highschoolverify").show();
-                    $("#highschoolrelation").show();
-                    $("#highschoolcontactEmail").show();
+                if ($("#<%=rblHighYes.ClientID%>").is(":checked")) {
+                    $("#<%=highschoolCountry.ClientID%>").show();
+                    $("#<%=highschoolstartDate.ClientID%>").show();
+                    $("#<%=highschoolendDate.ClientID%>").show();
+                    $("#<%=highschoolstudymode.ClientID%>").show();
+                    $("#<%=highschoollanguage.ClientID%>").show();
+                    $("#<%=gradetype.ClientID%>").show();
+                    $("#<%=highschoolgradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
+                    $("#<%=highschoolverify.ClientID%>").show();
+                    $("#<%=highschoolrelation.ClientID%>").show();
+                    $("#<%=highschoolcontactEmail.ClientID%>").show();
                     $("#highschoolYear").show();
-                    $("#highschoolName").show();
-                    $("#highschoolQualificationtype").show();
-                    $("#higestEducation").hide();
-                    $("#highshoolgrade").show();
-                    $("#highschoolcontactMobile").show();
+                    $("#<%=highschoolName.ClientID%>").show();
+                    $("#<%=highschoolQualificationtype.ClientID%>").show();
+                    $("#<%=higestEducation.ClientID%>").hide();
+                    $("#<%=highshoolgrade.ClientID%>").show();
+                    $("#<%=highschoolcontactMobile.ClientID%>").show();
                     $("#SecondarySection").show();
                 }
-                else if ($("#ContentPlaceHolder1_rblHighNot").is(":checked")) {
-                    $("#highschoolCountry").hide();
-                    $("#highschoolstartDate").hide();
-                    $("#highschoolendDate").hide();
-                    $("#highschoolstudymode").hide();
-                    $("#highschoollanguage").hide();
-                    $("#gradetype").hide();
-                    $("#highschoolgradeachieved").hide();
-                    $("#ExpectedHighSchoolDategrade").hide();
-                    $("#highschoolverify").hide();
-                    $("#highschoolrelation").hide();
-                    $("#highschoolcontactEmail").hide();
+                else if ($("#<%=rblHighNot.ClientID%>").is(":checked")) {
+                    $("#<%=highschoolCountry.ClientID%>").hide();
+                    $("#<%=highschoolstartDate.ClientID%>").hide();
+                    $("#<%=highschoolendDate.ClientID%>").hide();
+                    $("#<%=highschoolstudymode.ClientID%>").hide();
+                    $("#<%=highschoollanguage.ClientID%>").hide();
+                    $("#<%=gradetype.ClientID%>").hide();
+                    $("#<%=highschoolgradeachieved.ClientID%>").hide();
+                    $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
+                    $("#<%=highschoolverify.ClientID%>").hide();
+                    $("#<%=highschoolrelation.ClientID%>").hide();
+                    $("#<%=highschoolcontactEmail.ClientID%>").hide();
                     $("#highschoolYear").hide();
-                    $("#highschoolName").hide();
-                    $("#highschoolQualificationtype").hide();
-                    $("#higestEducation").show();
+                    $("#<%=highschoolName.ClientID%>").hide();
+                    $("#<%=highschoolQualificationtype.ClientID%>").hide();
+                    $("#<%=higestEducation.ClientID%>").show();
                     $("#SecondarySection").hide();
-                    $("#highshoolgrade").hide();
-                    $("#highschoolcontactMobile").hide();
+                    $("#<%=highshoolgrade.ClientID%>").hide();
+                    $("#<%=highschoolcontactMobile.ClientID%>").hide();
                 }
                 else {
-                    $("#highschoolCountry").show();
-                    $("#highschoolstartDate").show();
-                    $("#highschoolendDate").show();
-                    $("#highschoolstudymode").show();
-                    $("#highschoollanguage").show();
-                    $("#gradetype").show();
-                    $("#highschoolgradeachieved").show();
-                    $("#ExpectedHighSchoolDategrade").show();
-                    $("#highschoolverify").hide();
-                    $("#highschoolrelation").hide();
-                    $("#highschoolcontactEmail").hide();
+                    $("#<%=highschoolCountry.ClientID%>").show();
+                    $("#<%=highschoolstartDate.ClientID%>").show();
+                    $("#<%=highschoolendDate.ClientID%>").show();
+                    $("#<%=highschoolstudymode.ClientID%>").show();
+                    $("#<%=highschoollanguage.ClientID%>").show();
+                    $("#<%=gradetype.ClientID%>").show();
+                    $("#<%=highschoolgradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedHighSchoolDategrade.ClientID%>").show();
+                    $("#<%=highschoolverify.ClientID%>").hide();
+                    $("#<%=highschoolrelation.ClientID%>").hide();
+                    $("#<%=highschoolcontactEmail.ClientID%>").hide();
                     $("#highschoolYear").show();
-                    $("#highschoolName").show();
-                    $("#highschoolQualificationtype").show();
-                    $("#higestEducation").hide();
+                    $("#<%=highschoolName.ClientID%>").show();
+                    $("#<%=highschoolQualificationtype.ClientID%>").show();
+                    $("#<%=higestEducation.ClientID%>").hide();
                     $("#SecondarySection").hide();
-                    $("#highshoolgrade").hide();
-                    $("#highschoolcontactMobile").hide();
+                    $("#<%=highshoolgrade.ClientID%>").hide();
+                    $("#<%=highschoolcontactMobile.ClientID%>").hide();
                 }
             });
         });
         //handle higher secondary
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$Secondary']").click(function () {
-                if ($("#ContentPlaceHolder1_rblSecondaryYes").is(":checked")) {
-                    $("#SecondaryCountry").show();
-                    $("#SecondarystartDate").show();
-                    $("#SecondaryendDate").show();
-                    $("#Secondarystudymode").show();
-                    $("#Secondarylanguage").show();
-                    $("#Secondarygradetype").show();
-                    $("#Secondarygradeachieved").show();
-                    $("#ExpectedSecondaryDategrade").hide();
-                    $("#Secondaryverify").show();
-                    $("#secondaryschoolrelation").show();
-                    $("#secondarygrade").show();
-                    $("#SecondaryschoolName").show();
-                    $("#SecondaryQualificationtype").show();
-                    $("#HigherSectionSection").show();
-                    $("#secondarycontactEmail").show();
+                if ($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) {
+                    $("#<%=SecondaryCountry.ClientID%>").show();
+                    $("#<%=SecondarystartDate.ClientID%>").show();
+                    $("#<%=SecondaryendDate.ClientID%>").show();
+                    $("#<%=Secondarystudymode.ClientID%>").show();
+                    $("#<%=Secondarylanguage.ClientID%>").show();
+                    $("#<%=Secondarygradetype.ClientID%>").show();
+                    $("#<%=Secondarygradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
+                    $("#<%=Secondaryverify.ClientID%>").show();
+                    $("#<%=secondaryschoolrelation.ClientID%>").show();
+                    $("#<%=secondarygrade.ClientID%>").show();
+                    $("#<%=SecondaryschoolName.ClientID%>").show();
+                    $("#<%=SecondaryQualificationtype.ClientID%>").show();
+                    $("HigherSectionSection").show();
+                    $("#<%=secondarycontactEmail.ClientID%>").show();
                     $("#SecondaryEducation").hide();
-                    $("#higher").show();
-                    $("#secondarygrade").show();
-                    $("#secondarycontactMobile").show();
+                    $("#<%=higher.ClientID%>").show();
+                    $("#<%=secondarygrade.ClientID%>").show();
+                    $("#<%=secondarycontactMobile.ClientID%>").show();
                 }
-                else if ($("#ContentPlaceHolder1_rblSecondaryNo").is(":checked")) {
-                    $("#SecondaryCountry").show();
-                    $("#SecondarystartDate").show();
-                    $("#SecondaryendDate").show();
-                    $("#Secondarystudymode").show();
-                    $("#Secondarylanguage").show();
-                    $("#Secondarygradetype").show();
-                    $("#Secondarygradeachieved").show();
-                    $("#ExpectedSecondaryDategrade").hide();
-                    $("#Secondaryverify").hide();
-                    $("#secondaryschoolrelation").hide();
-                    $("#secondarygrade").show();
-                    $("#SecondaryschoolName").show();
-                    $("#SecondaryQualificationtype").show();
-                    $("#secondarygrade").hide();
-                    $("#secondarycontactMobile").hide();
+                else if ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) {
+                    $("#<%=SecondaryCountry.ClientID%>").show();
+                    $("#<%=SecondarystartDate.ClientID%>").show();
+                    $("#<%=SecondaryendDate.ClientID%>").show();
+                    $("#<%=Secondarystudymode.ClientID%>").show();
+                    $("#<%=Secondarylanguage.ClientID%>").show();
+                    $("#<%=Secondarygradetype.ClientID%>").show();
+                    $("#<%=Secondarygradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
+                    $("#<%=Secondaryverify.ClientID%>").hide();
+                    $("#<%=secondaryschoolrelation.ClientID%>").hide();
+                    $("#<%=secondarygrade.ClientID%>").show();
+                    $("#<%=SecondaryschoolName.ClientID%>").show();
+                    $("#<%=SecondaryQualificationtype.ClientID%>").show();
+                    $("#<%=secondarygrade.ClientID%>").hide();
+                    $("#<%=secondarycontactMobile.ClientID%>").hide();
                 }
                 else {
-                    $("#secondarycontactEmail").hide();
-                    $("#SecondaryCountry").hide();
-                    $("#SecondarystartDate").hide();
-                    $("#SecondaryendDate").hide();
-                    $("#Secondarystudymode").hide();
-                    $("#Secondarylanguage").hide();
-                    $("#Secondarygradetype").hide();
-                    $("#Secondarygradeachieved").hide();
-                    $("#ExpectedSecondaryDategrade").hide();
-                    $("#Secondaryverify").hide();
-                    $("#secondaryschoolrelation").hide();
-                    $("#secondarygrade").hide();
-                    $("#SecondaryschoolName").hide();
-                    $("#SecondaryQualificationtype").hide();
+                    $("#<%=secondarycontactEmail.ClientID%>").hide();
+                    $("#<%=SecondaryCountry.ClientID%>").hide();
+                    $("#<%=SecondarystartDate.ClientID%>").hide();
+                    $("#<%=SecondaryendDate.ClientID%>").hide();
+                    $("#<%=Secondarystudymode.ClientID%>").hide();
+                    $("#<%=Secondarylanguage.ClientID%>").hide();
+                    $("#<%=Secondarygradetype.ClientID%>").hide();
+                    $("#<%=Secondarygradeachieved.ClientID%>").hide();
+                    $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
+                    $("#<%=Secondaryverify.ClientID%>").hide();
+                    $("#<%=secondaryschoolrelation.ClientID%>").hide();
+                    $("#<%=secondarygrade.ClientID%>").hide();
+                    $("#<%=SecondaryschoolName.ClientID%>").hide();
+                    $("#<%=SecondaryQualificationtype.ClientID%>").hide();
                     $("#HigherSectionSection").show();
-                    $("#secondarycontactEmail").hide();
-                    $("#SecondaryEducation").hide();
-                    $("#secondarygrade").hide();
-                    $("#secondarycontactMobile").hide();
+                    $("#<%=secondarycontactEmail.ClientID%>").hide();
+                    $("#SecondaryEducation>").hide();
+                    $("#<%=secondarygrade.ClientID%>").hide();
+                    $("#<%=secondarycontactMobile.ClientID%>").hide();
                 }
             });
         });
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$higher']").click(function () {
-                if ($("#ContentPlaceHolder1_rblhigherYes").is(":checked")) {
-                    $("#highercourse").show();
-                    $("#higherCountry").show();
-                    $("#higherstartDate").show();
-                    $("#higherendDate").show();
-                    $("#higherschoolName").show();
-                    $("#higherQualificationtype").show();
-                    $("#higherstudymode").show();
-                    $("#higherlanguage").show();
-                    $("#highergradetype").show();
-                    $("#highergradeachieved").show();
-                    $("#ExpectedHigherDategrade").hide();
-                    $("#higherverify").show();
-                    $("#higherrelation").show();
-                    $("#highercontactEmail").show();
-                    $("#highergrade").show();
-                    $("#addanother").show();
-                    $("#highercontactMobile").show();
+                if ($("#<%=rblhigherYes.ClientID%>").is(":checked")) {
+                    $("#<%=highercourse.ClientID%>").show();
+                    $("#<%=higherCountry.ClientID%>").show();
+                    $("#<%=higherstartDate.ClientID%>").show();
+                    $("#<%=higherendDate.ClientID%>").show();
+                    $("#<%=higherschoolName.ClientID%>").show();
+                    $("#<%=higherQualificationtype.ClientID%>").show();
+                    $("#<%=higherstudymode.ClientID%>").show();
+                    $("#<%=higherlanguage.ClientID%>").show();
+                    $("#<%=highergradetype.ClientID%>").show();
+                    $("#<%=highergradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
+                    $("#<%=higherverify.ClientID%>").show();
+                    $("#<%=higherrelation.ClientID%>").show();
+                    $("#<%=highercontactEmail.ClientID%>").show();
+                    $("#<%=highergrade.ClientID%>").show();
+                    $("#<%=addanother.ClientID%>").show();
+                    $("#<%=highercontactMobile.ClientID%>").show();
                 }
-                else if ($("#ContentPlaceHolder1_higherNot").is(":checked")) {
-                    $("#highercourse").show();
-                    $("#higherCountry").show();
-                    $("#higherstartDate").show();
-                    $("#higherendDate").show();
-                    $("#higherschoolName").show();
-                    $("#higherQualificationtype").show();
-                    $("#higherstudymode").show();
-                    $("#higherlanguage").show();
-                    $("#highergradetype").show();
-                    $("#highergradeachieved").show();
-                    $("#ExpectedHigherDategrade").hide();
-                    $("#higherverify").show();
-                    $("#higherrelation").show();
-                    $("#highercontactEmail").show();
-                    $("#highergrade").hide();
-                    $("#addanother").hide();
-                    $("#highercontactMobile").hide();
+                else if ($("#<%=rblhigherNot.ClientID%>").is(":checked")) {
+                    $("#<%=highercourse.ClientID%>").show();
+                    $("#<%=higherCountry.ClientID%>").show();
+                    $("#<%=higherstartDate.ClientID%>").show();
+                    $("#<%=higherendDate.ClientID%>").show();
+                    $("#<%=higherschoolName.ClientID%>").show();
+                    $("#<%=higherQualificationtype.ClientID%>").show();
+                    $("#<%=higherstudymode.ClientID%>").show();
+                    $("#<%=higherlanguage.ClientID%>").show();
+                    $("#<%=highergradetype.ClientID%>").show();
+                    $("#<%=highergradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedHigherDategrade.ClientID%>").show();
+                    $("#<%=higherverify.ClientID%>").show();
+                    $("#<%=higherrelation.ClientID%>").show();
+                    $("#<%=highercontactEmail.ClientID%>").show();
+                    $("#<%=highergrade.ClientID%>").hide();
+                    $("#<%=addanother.ClientID%>").hide();
+                    $("#<%=highercontactMobile.ClientID%>").hide();
                 }
                 else {
-                    $("#highercourse").hide();
-                    $("#higherCountry").hide();
-                    $("#higherstartDate").hide();
-                    $("#higherendDate").hide();
-                    $("#higherschoolName").hide();
-                    $("#higherQualificationtype").hide();
-                    $("#higherstudymode").hide();
-                    $("#higherlanguage").hide();
-                    $("#highergradetype").hide();
-                    $("#highergradeachieved").hide();
-                    $("#ExpectedHigherDategrade").show();
-                    $("#higherverify").hide();
-                    $("#higherrelation").hide();
-                    $("#highercontactEmail").hide();
-                    $("#highergrade").hide();
-                    $("#addanother").hide();
-                    $("#highercontactMobile").hide();
+                    $("#<%=highercourse.ClientID%>").hide();
+                    $("#<%=higherCountry.ClientID%>").hide();
+                    $("#<%=higherstartDate.ClientID%>").hide();
+                    $("#<%=higherendDate.ClientID%>").hide();
+                    $("#<%=higherschoolName.ClientID%>").hide();
+                    $("#<%=higherQualificationtype.ClientID%>").hide();
+                    $("#<%=higherstudymode.ClientID%>").hide();
+                    $("#<%=higherlanguage.ClientID%>").hide();
+                    $("#<%=highergradetype.ClientID%>").hide();
+                    $("#<%=highergradeachieved.ClientID%>").hide();
+                    $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
+                    $("#<%=higherverify.ClientID%>").hide();
+                    $("#<%=higherrelation.ClientID%>").hide();
+                    $("#<%=highercontactEmail.ClientID%>").hide();
+                    $("#<%=highergrade.ClientID%>").hide();
+                    $("#<%=addanother.ClientID%>").hide();
+                    $("#<%=highercontactMobile.ClientID%>").hide();
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$diploma']").click(function () {
-                if ($("#ContentPlaceHolder1_rbldiplomaYes").is(":checked")) {
+                if ($("#<%=rbldiplomaYes.ClientID%>").is(":checked")) {
 
-                    $("#diplomaCountry").show();
-                    $("#diplomastartDate").show();
-                    $("#diplomaendDate").show();
-                    $("#diplomaschoolName").show();
-                    $("#diplomaQualificationtype").show();
-                    $("#diplomastudymode").show();
-                    $("#diplomalanguage").show();
-                    $("#diplomagradetype").show();
-                    $("#diplomagradeachieved").show();
-                    $("#ExpectedDiplomaDategrade").show();
-                    $("#diplomaverify").show();
-                    $("#diplomarelation").show();
-                    $("#diplomacontactEmail").show();
-                    $("#diplomagrade").show();
-                    $("#diplomacontactMobile").show();
+                    $("#<%=diplomaCountry.ClientID%>").show();
+                    $("#<%=diplomastartDate.ClientID%>").show();
+                    $("#<%=diplomaendDate.ClientID%>").show();
+                    $("#<%=diplomaschoolName.ClientID%>").show();
+                    $("#<%=diplomaQualificationtype.ClientID%>").show();
+                    $("#<%=diplomastudymode.ClientID%>").show();
+                    $("#<%=diplomalanguage.ClientID%>").show();
+                    $("#<%=diplomagradetype.ClientID%>").show();
+                    $("#<%=diplomagradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
+                    $("#<%=diplomaverify.ClientID%>").show();
+                    $("#<%=diplomarelation.ClientID%>").show();
+                    $("#<%=diplomacontactEmail.ClientID%>").show();
+                    $("#<%=diplomagrade.ClientID%>").show();
+                    $("#<%=diplomacontactMobile.ClientID%>").show();
 
                 }
-                else if ($("#ContentPlaceHolder1_rbldiplomaNo").is(":checked")) {
-                    $("#diplomaCountry").show();
-                    $("#diplomastartDate").show();
-                    $("#diplomaendDate").show();
-                    $("#diplomaschoolName").show();
-                    $("#diplomaQualificationtype").show();
-                    $("#diplomastudymode").show();
-                    $("#diplomalanguage").show();
-                    $("#diplomagradetype").show();
-                    $("#diplomagradeachieved").show();
-                    $("#ExpectedDiplomaDategrade").show();
-                    $("#diplomaverify").show();
-                    $("#diplomarelation").show();
-                    $("#diplomacontactEmail").show();
-                    $("#diplomagrade").hide();
-                    $("#diplomacontactMobile").hide();
+                else if ($("#<%=rbldiplomaNo.ClientID%>").is(":checked")) {
+                    $("#<%=diplomaCountry.ClientID%>").show();
+                    $("#<%=diplomastartDate.ClientID%>").show();
+                    $("#<%=diplomaendDate.ClientID%>").show();
+                    $("#<%=diplomaschoolName.ClientID%>").show();
+                    $("#<%=diplomaQualificationtype.ClientID%>").show();
+                    $("#<%=diplomastudymode.ClientID%>").show();
+                    $("#<%=diplomalanguage.ClientID%>").show();
+                    $("#<%=diplomagradetype.ClientID%>").show();
+                    $("#<%=diplomagradeachieved.ClientID%>").show();
+                    $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
+                    $("#<%=diplomaverify.ClientID%>").show();
+                    $("#<%=diplomarelation.ClientID%>").show();
+                    $("#<%=diplomacontactEmail.ClientID%>").show();
+                    $("#<%=diplomagrade.ClientID%>").hide();
+                    $("#<%=diplomacontactMobile.ClientID%>").hide();
                 }
                 else {
-                    $("#diplomaCountry").hide();
-                    $("#diplomastartDate").hide();
-                    $("#diplomaendDate").hide();
-                    $("#diplomaschoolName").hide();
-                    $("#diplomaQualificationtype").hide();
-                    $("#diplomastudymode").hide();
-                    $("#diplomalanguage").hide();
-                    $("#diplomagradetype").hide();
-                    $("#diplomagradeachieved").hide();
-                    $("#ExpectedDiplomaDategrade").hide();
-                    $("#diplomaverify").hide();
-                    $("#diplomarelation").hide();
-                    $("#diplomacontactEmail").hide();
-                    $("#diplomagrade").hide();
-                    $("#diplomacontactMobile").hide();
+                    $("#<%=diplomaCountry.ClientID%>").hide();
+                    $("#<%=diplomastartDate.ClientID%>").hide();
+                    $("#<%=diplomaendDate.ClientID%>").hide();
+                    $("#<%=diplomaschoolName.ClientID%>").hide();
+                    $("#<%=diplomaQualificationtype.ClientID%>").hide();
+                    $("#<%=diplomastudymode.ClientID%>").hide();
+                    $("#<%=diplomalanguage.ClientID%>").hide();
+                    $("#<%=diplomagradetype.ClientID%>").hide();
+                    $("#<%=diplomagradeachieved.ClientID%>").hide();
+                    $("#<%=ExpectedDiplomaDategrade.ClientID%>").hide();
+                    $("#<%=diplomaverify.ClientID%>").hide();
+                    $("#<%=diplomarelation.ClientID%>").hide();
+                    $("#<%=diplomacontactEmail.ClientID%>").hide();
+                    $("#<%=diplomagrade.ClientID%>").hide();
+                    $("#<%=diplomacontactMobile.ClientID%>").hide();
                 }
             });
         });
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$HighschoolGrade']").click(function () {
-                if ($("#ContentPlaceHolder1_rblYes").is(":checked")) {
-                    $("#ExpectedHighSchoolDategrade").hide();
+                if ($("#<%=rblYes.ClientID%>").is(":checked")) {
+                    $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
                 }
                 else {
-                    $("#ExpectedHighSchoolDategrade").show();
+                    $("#<%=ExpectedHighSchoolDategrade.ClientID%>").show();
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$DiplomaGrade']").click(function () {
-                if ($("#ContentPlaceHolder1_rblDiplomaGradeYes").is(":checked")) {
-                    $("#ExpectedDiplomaDategrade").hide();
+                if ($("#<%=rblDiplomaGradeYes.ClientID%>").is(":checked")) {
+                    $("#<%=ExpectedDiplomaDategrade.ClientID%>").hide();
                 }
                 else {
-                    $("#ExpectedDiplomaDategrade").show();
+                    $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$Secondarygradeachieved']").click(function () {
-                if ($("#ContentPlaceHolder1_rblSecondarygradeachievedYes").is(":checked")) {
-                    $("#ExpectedSecondaryDategrade").hide();
+                if ($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(":checked")) {
+                    $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
                 }
                 else {
-                    $("#ExpectedSecondaryDategrade").show();
+                    $("#<%=ExpectedSecondaryDategrade.ClientID%>").show();
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$highergradeachieved']").click(function () {
-                if ($("#ContentPlaceHolder1_rblhighergradeachievedYes").is(":checked")) {
-                    $("#ExpectedHigherDategrade").hide();
+                if ($("#<%=rblhighergradeachievedYes.ClientID%>").is(":checked")) {
+                    $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
                 }
                 else {
-                    $("#ExpectedHigherDategrade").show();
+                    $("#<%=ExpectedHigherDategrade.ClientID%>").show();
                 }
             });
         });
@@ -2600,18 +2592,18 @@
 
             dateFormat: 'Y-m-d'
         });
-        //document.getElementById("ContentPlaceHolder1_dob").flatpickr({
+        //document.getElementById("ContentPlaceHolder1_dob.ClientID%>").flatpickr({
         //    wrap: true,
         //    weekNumbers: true,
         //    enableTime: true, // enables timepicker default is false    
         //    time_24hr: true, // set to false for AM PM default is false
         //    onChange: function (selectedDates, dateStr, instance) {
-        //        console.log("changed");
+        //        console.log("changed.ClientID%>");
         //    }
         //});
 
         function ConfirmOnDelete(item) {
-            if (confirm("Are you sure to delete: " + item + "?") == true)
+            if (confirm("Are you sure to delete: " + item + "?.ClientID%>") == true)
                 return true;
             else
                 return false;

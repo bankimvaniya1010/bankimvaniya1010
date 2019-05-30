@@ -12,10 +12,6 @@ public partial class admin_Default : System.Web.UI.Page
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL +"Login.aspx");
-        if (Session["Role"].ToString() != "1")
-        {
-            //lblwarning.Text = "You are not authorised access this page";
-            //pnlLink.Visible = false;
-        }
+       
     }
 }

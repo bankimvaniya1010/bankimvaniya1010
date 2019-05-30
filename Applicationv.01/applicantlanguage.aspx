@@ -42,8 +42,8 @@
                                         <label id="labelEnglishBackground" runat="server" for="EnglishBackground" class="col-md-3 col-form-label form-label">Have you studied an English Language Intensive Course for students from non-English speaking backgrounds</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblEnglishBackgroundYes" runat="server" GroupName="EnglishBackground" Text="Yes" />
-                                            <asp:RadioButton ID="rblEnglishBackgroundNo" runat="server" GroupName="EnglishBackground" Text="No  - I am currently still studying for my English Language Course" />
-                                            <asp:RadioButton ID="rblEnglishBackgroundNot" runat="server" GroupName="EnglishBackground" Text="No - I have not studied an English Language Intensive Course for people from non-English speaking backgrounds" />
+                                            <asp:RadioButton ID="rblEnglishBackgroundNot" runat="server" GroupName="EnglishBackground" Text="No  - I am currently still studying for my English Language Course" />
+                                            <asp:RadioButton ID="rblEnglishBackgroundNo" runat="server" GroupName="EnglishBackground" Text="No - I have not studied an English Language Intensive Course for people from non-English speaking backgrounds" />
                                         </div>
                                     </div>
                                 </div>
@@ -556,81 +556,81 @@
                 });
             var highschool = $("input[type=radio][name='ctl00$ContentPlaceHolder1$EnglishBackground']:checked").val()
             if (highschool == 'rblEnglishBackgroundYes') {
-                $("#Language").show();
-                $("#YearCompletion").show();
-                $("#NameCollege").show();
-                $("#studymode").show();
-                $("#QualificationType").show();
-                $("#gradetype").show();
-                $("#ExpectedDategrade").hide();
-                $("#highschoolgradeachieved").show();
+                $("#<%=Language.ClientID%>").show();
+                $("#<%=YearCompletion.ClientID%>").show();
+                $("#<%=NameCollege.ClientID%>").show();
+                $("#<%=studymode.ClientID%>").show();
+                $("#<%=QualificationType.ClientID%>").show();
+                $("#<%=gradetype.ClientID%>").show();
+                $("#<%=ExpectedDategrade.ClientID%>").hide();
+                $("#<%=gradeachieved.ClientID%>").show();
 
 
             }
-            else if (highschool == 'rblHighNot') {
-                $("#Language").show();
-                $("#YearCompletion").show();
-                $("#NameCollege").show();
-                $("#studymode").show();
-                $("#QualificationType").show();
-                $("#gradetype").show();
-                $("#ExpectedDategrade").show();
-                $("#highschoolgradeachieved").hide();
+            else if (highschool == 'rblEnglishBackgroundNot') {
+                $("#<%=Language.ClientID%>").show();
+                $("#<%=YearCompletion.ClientID%>").show();
+                $("#<%=NameCollege.ClientID%>").show();
+                $("#<%=studymode.ClientID%>").show();
+                $("#<%=QualificationType.ClientID%>").show();
+                $("#<%=gradetype.ClientID%>").show();
+                $("#<%=ExpectedDategrade.ClientID%>").show();
+                $("#<%=gradeachieved.ClientID%>").hide();
             }
             else {
-                $("#Language").hide();
-                $("#YearCompletion").hide();
-                $("#NameCollege").hide();
-                $("#studymode").hide();
-                $("#QualificationType").hide();
-                $("#gradetype").hide();
-                $("#ExpectedDategrade").hide();
-                $("#highschoolgradeachieved").hide();
+                $("#<%=Language.ClientID%>").hide();
+                $("#<%=YearCompletion.ClientID%>").hide();
+                $("#<%=NameCollege.ClientID%>").hide();
+                $("#<%=studymode.ClientID%>").hide();
+                $("#<%=QualificationType.ClientID%>").hide();
+                $("#<%=gradetype.ClientID%>").hide();
+                $("#<%=ExpectedDategrade.ClientID%>").hide();
+                $("#<%=gradeachieved.ClientID%>").hide();
             }
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$EnglishBackground']").click(function () {
-                if ($("#ContentPlaceHolder1_rblEnglishBackgroundNot").is(":checked")) {
-                    $("#Language").hide();
-                    $("#YearCompletion").hide();
-                    $("#NameCollege").hide();
-                    $("#studymode").hide();
-                    $("#QualificationType").hide();
-                    $("#gradetype").hide();
-                    $("#ExpectedDategrade").hide();
-                    $("#highschoolgradeachieved").hide();
+                if ($("#<%=rblEnglishBackgroundNo.ClientID%>").is(":checked")) {
+                    $("#<%=Language.ClientID%>").hide();
+                    $("#<%=YearCompletion.ClientID%>").hide();
+                    $("#<%=NameCollege.ClientID%>").hide();
+                    $("#<%=studymode.ClientID%>").hide();
+                    $("#<%=QualificationType.ClientID%>").hide();
+                    $("#<%=gradetype.ClientID%>").hide();
+                    $("#<%=ExpectedDategrade.ClientID%>").hide();
+                    $("#<%=gradeachieved.ClientID%>").hide();
 
-                } else if ($("#ContentPlaceHolder1_rblEnglishBackgroundNo").is(":checked")) {
-                    $("#Language").show();
-                    $("#YearCompletion").show();
-                    $("#NameCollege").show();
-                    $("#studymode").show();
-                    $("#QualificationType").show();
-                    $("#gradetype").show();
-                    $("#ExpectedDategrade").show();
-                    $("#highschoolgradeachieved").hide();
+                } else if ($("#<%=rblEnglishBackgroundNot.ClientID%>").is(":checked")) {
+                    $("#<%=Language.ClientID%>").show();
+                    $("#<%=YearCompletion.ClientID%>").show();
+                    $("#<%=NameCollege.ClientID%>").show();
+                    $("#<%=studymode.ClientID%>").show();
+                    $("#<%=QualificationType.ClientID%>").show();
+                    $("#<%=gradetype.ClientID%>").show();
+                    $("#<%=ExpectedDategrade.ClientID%>").show();
+                    $("#<%=gradeachieved.ClientID%>").hide();
                 }
                 else {
-                    $("#Language").show();
-                    $("#YearCompletion").show();
-                    $("#NameCollege").show();
-                    $("#studymode").show();
-                    $("#QualificationType").show();
-                    $("#gradetype").show();
-                    $("#ExpectedDategrade").hide();
-                    $("#highschoolgradeachieved").show();
+                    $("#<%=Language.ClientID%>").show();
+                    $("#<%=YearCompletion.ClientID%>").show();
+                    $("#<%=NameCollege.ClientID%>").show();
+                    $("#<%=studymode.ClientID%>").show();
+                    $("#<%=QualificationType.ClientID%>").show();
+                    $("#<%=gradetype.ClientID%>").show();
+                    $("#<%=ExpectedDategrade.ClientID%>").hide();
+                    $("#<%=gradeachieved.ClientID%>").show();
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$EnglishTest']").click(function () {
-                if ($("#ContentPlaceHolder1_rblEnglishBackgroundYes").is(":checked")) {
-                    $("#LanguageScore").show();
-                    $("#LanguageTestDate").show();
+                if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(":checked")) {
+                    $("#<%=LanguageScore.ClientID%>").show();
+                    $("#<%=LanguageTestDate.ClientID%>").show();
 
                 } else {
-                    $("#LanguageScore").show();
-                    $("#LanguageTestDate").show();
+                    $("#<%=LanguageScore.ClientID%>").show();
+                    $("#<%=LanguageTestDate.ClientID%>").show();
 
                 }
             });
@@ -648,13 +648,13 @@
             dateFormat: 'Y-m-d'
         });
 
-        //document.getElementById("ContentPlaceHolder1_dob").flatpickr({
+        //document.getElementById("ContentPlaceHolder1_dob.ClientID%>").flatpickr({
         //    wrap: true,
         //    weekNumbers: true,
         //    enableTime: true, // enables timepicker default is false    
         //    time_24hr: true, // set to false for AM PM default is false
         //    onChange: function (selectedDates, dateStr, instance) {
-        //        console.log("changed");
+        //        console.log("changed.ClientID%>");
         //    }
         //});
 

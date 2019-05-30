@@ -22,7 +22,7 @@
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                     <div class="form-row">
-                                        <label id="labelemail" runat="server"  for="email" class="col-md-3 col-form-label form-label">Email *</label>
+                                        <label id="labelemail" runat="server" for="email" class="col-md-3 col-form-label form-label">Email *</label>
                                         <div class="col-md-6">
                                             <input id="txtEmail" runat="server" type="text" placeholder="email" disabled="disabled" value="" required="" class="form-control">
                                         </div>
@@ -691,7 +691,7 @@
 
 
                 </div>
-                 <div id="page-nav" class="col-lg-auto page-nav">
+                <div id="page-nav" class="col-lg-auto page-nav">
 
                     <div>
                         <span id="tooltip"></span>
@@ -714,7 +714,7 @@
     </div>
     <script>
         $(document).ready(function () {
-            
+
             $(".form-control")
                 .mouseover(function () {
                     var controlId = $(this).attr('id');
@@ -729,36 +729,32 @@
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-           
+
             var input = document.querySelector("#ContentPlaceHolder1_txtWhatsappNo");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
             var skype = $("input[type=radio][name='ctl00$ContentPlaceHolder1$skype']:checked").val()
             if (skype == 'rblSkypeYes') {
-                $("#skypeDesc").show();
-
+                $("#<%=skypeDesc.ClientID%>").show()
             } else {
-                $("#skypeDesc").hide();
-
+                $("#<%=skypeDesc.ClientID%>").hide()
             }
             var whatsup = $("input[type=radio][name='ctl00$ContentPlaceHolder1$whatsappSame']:checked").val()
             if (whatsup == 'rblWhatsupsameNo') {
-                $("#whatsappDesc").show();
 
-            } else {
-                $("#whatsappDesc").hide();
-
+                $("#<%=whatsappDesc.ClientID%>").show()
+                } else {
+                    $("#<%=whatsappDesc.ClientID%>").hide()
             }
             var whatsupsame = $("input[type=radio][name='ctl00$ContentPlaceHolder1$whatsapp']:checked").val()
             if (whatsup == 'rblwhatsappYes') {
-                $("#whatsappHave").show();
-
-            } else {
-                $("#whatsappHave").hide();
-
+                $("#<%=whatsappHave.ClientID%>").show()
+                } else {
+                    $("#<%=whatsappHave.ClientID%>").hide()
             }
-             var input = document.querySelector("#ContentPlaceHolder1_txtMobileNominee");
+
+            var input = document.querySelector("#ContentPlaceHolder1_txtMobileNominee");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
@@ -766,34 +762,33 @@
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$skype']").click(function () {
-                if ($("#ContentPlaceHolder1_rblSkypeYes").is(":checked")) {
-                    $("#skypeDesc").show();
 
+                if ($("#<%=rblSkypeYes.ClientID%>").is(":checked")) {
+
+                    $("#<%=skypeDesc.ClientID%>").show()
                 } else {
-                    $("#skypeDesc").hide();
-
+                    $("#<%=skypeDesc.ClientID%>").hide()
                 }
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$whatsappSame']").click(function () {
-                if ($("#ContentPlaceHolder1_rblWhatsupsameNo").is(":checked")) {
-                    $("#whatsappDesc").show();
+                if ($("#<%=rblWhatsupsameNo.ClientID%>").is(":checked")) {
 
+                    $("#<%=whatsappDesc.ClientID%>").show()
                 } else {
-                    $("#whatsappDesc").hide();
-
+                    $("#<%=whatsappDesc.ClientID%>").hide()
                 }
+
             });
         });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$whatsapp']").click(function () {
-                if ($("#ContentPlaceHolder1_rblwhatsappYes").is(":checked")) {
-                    $("#whatsappHave").show();
+                if ($("#<%=rblwhatsappYes.ClientID%>").is(":checked")) {
 
+                    $("#<%=whatsappHave.ClientID%>").show()
                 } else {
-                    $("#whatsappHave").hide();
-
+                    $("#<%=whatsappHave.ClientID%>").hide()
                 }
             });
         });

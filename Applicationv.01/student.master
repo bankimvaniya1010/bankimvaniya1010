@@ -230,42 +230,42 @@
                                         <ul class="sidebar-submenu sm-indent collapse" id="personal_menu">
                                            
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="personaldetails.aspx">
+                                                <a class="sidebar-menu-button" href="personaldetails.aspx?formid=1">
                                                     <span class="sidebar-menu-text">Personal Details</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantcontactdetail.aspx">
+                                                <a class="sidebar-menu-button" href="applicantcontactdetail.aspx?formid=2">
                                                     <span class="sidebar-menu-text">Contact Details</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="knowyourstudent.aspx">
+                                                <a class="sidebar-menu-button" href="knowyourstudent.aspx?formid=3">
                                                     <span class="sidebar-menu-text">Identification Details</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicanteducation.aspx">
+                                                <a class="sidebar-menu-button" href="applicanteducation.aspx?formid=4">
                                                     <span class="sidebar-menu-text">Education Details</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantlanguage.aspx">
+                                                <a class="sidebar-menu-button" href="applicantlanguage.aspx?formid=5">
                                                     <span class="sidebar-menu-text">English Language Competency</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantworkexperience.aspx">
+                                                <a class="sidebar-menu-button" href="applicantworkexperience.aspx?formid=7">
                                                     <span class="sidebar-menu-text">Work Experience</span>
                                                 </a>
                                             </li>
                                              <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantrefrencecheck.aspx">
+                                                <a class="sidebar-menu-button" href="applicantrefrencecheck.aspx?formid=6">
                                                     <span class="sidebar-menu-text">Reference Check</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantsocial.aspx">
+                                                <a class="sidebar-menu-button" href="applicantsocial.aspx?formid=8">
                                                     <span class="sidebar-menu-text">Social Profile</span>
                                                 </a>
                                             </li>
@@ -279,7 +279,7 @@
                                                     <span class="sidebar-menu-text">Employer's Information</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item">
+                                         <%-- <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="sponsor.aspx">
                                                     <span class="sidebar-menu-text">Sponsor's Detail</span>
                                                 </a>

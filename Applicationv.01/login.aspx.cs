@@ -50,7 +50,7 @@ public partial class login : System.Web.UI.Page
                     //        Response.Redirect(webURL + "agentdashboard.aspx");
                     //        break;
                     //    case 3:
-                    Response.Redirect(webURL + "default.aspx");
+                    Response.Redirect(webURL + "default.aspx",true);
                     //            break;
                     //        case 4:
                     //            Response.Redirect(webURL + "universitydashboard.aspx");
