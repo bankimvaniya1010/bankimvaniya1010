@@ -20,8 +20,9 @@ public partial class admin_login : System.Web.UI.Page
     {
         try
         {
+            string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
             var chkUser = (from usr in db.adminusers
-                           where (usr.username.Equals(txtUser.Text.Trim()))
+                           where (usr.username.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
                            select usr).FirstOrDefault();
             if (chkUser == null)
             {
@@ -31,18 +32,10 @@ public partial class admin_login : System.Web.UI.Page
             else
             {
                 pnl_warning.Visible = false;
-                string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
-                if (encodedPassword == chkUser.password)
-                {
-                    Session["LoginInfo"] = chkUser;
-                    Session["UserID"] = chkUser.adminid;
-                    Response.Redirect(webURL + "admin/default.aspx");                   
-                }
-                else
-                {
-                    Response.Redirect(webURL + "login.aspx");
-                }
-
+                Session["LoginInfo"] = chkUser;
+                Session["UserID"] = chkUser.adminid;
+                Response.Redirect(webURL + "admin/default.aspx");              
+               
             }
         }
 

@@ -152,6 +152,7 @@
                                             <a class="dropdown-item" href="fieldmaster.aspx">Secondary Language</a>
                                             <a class="dropdown-item" href="universityformmapping.aspx">University Forms</a>
                                             <a class="dropdown-item" href="universityfieldmapping.aspx">University Fields</a>
+                                            <a class="dropdown-item" href="masterfieldmapping.aspx">University Master Fields</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/login.aspx">Login</a>
 

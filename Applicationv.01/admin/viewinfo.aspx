@@ -224,9 +224,9 @@
                                             <div class="col-md-6">
                                                 CITY OF ISSUE: <%= objApplicant[0].passportissuecity == null ? "" : objApplicant[0].passportissuecity.ToString() %>
                                             </div>
-                                            <div class="col-md-6">
+                                           <%-- <div class="col-md-6">
                                                 Alternate ID Proof:<%= objApplicant[0].alternativeiddentiproof.ToString() == "1" ? "Yes" : "No" %>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
                                 </div>
@@ -235,10 +235,10 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                IDENTITY TYPE:<%=objComm.GetIdentityProof(Convert.ToInt32(objApplicant[0].alternativeprooftype)) %>
+                                                IDENTITY TYPE:<%=objComm.GetIdentityProof(Convert.ToInt32(objApplicant[0].alternativeIdentityproofId)) %>
                                             </div>
                                             <div class="col-md-6">
-                                                IDENTITY NUMBER:<%= objApplicant[0].alternativeproofno == null ? "" : objApplicant[0].alternativeproofno.ToString()%>
+                                                IDENTITY NUMBER:<%= objApplicant[0].alternativeIdentityproofno == null ? "" : objApplicant[0].alternativeIdentityproofno.ToString()%>
                                             </div>
                                         </div>
                                     </div>
@@ -247,11 +247,11 @@
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                         <div class="form-row">
 
-                                            <div class="col-md-6">
+                                            <%--<div class="col-md-6">
                                                 ALTERNATIVE PROOF OF DATE OF BIRTH: <%= objApplicant[0].alternativedobproof.ToString() == "1" ? "Yes" : "No" %>
-                                            </div>
+                                            </div>--%>
                                             <div class="col-md-6">
-                                                IDENTITY TYPE:<%=objComm.GetDOBProof(Convert.ToInt32(objApplicant[0].alternativeproofdobtype)) %>
+                                                IDENTITY TYPE:<%=objComm.GetDOBProof(Convert.ToInt32(objApplicant[0].alternativeproofdobId)) %>
                                             </div>
                                         </div>
                                     </div>
@@ -264,18 +264,19 @@
                                             <div class="col-md-6">
                                                 IDENTITY NUMBER:<%= objApplicant[0].alternativeproofdobno == null ? "" : objApplicant[0].alternativeproofdobno.ToString() %>
                                             </div>
-                                            <div class="col-md-6">
+                                            <%--<div class="col-md-6">
                                                 ALTERNATIVE PROOF OF RESIDENCE:<%= objApplicant[0].alternativedobproof.ToString() == "1" ? "Yes" : "No" %>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                IDENTITY TYPE:<%=objComm.GetAddressProof(Convert.ToInt32(objApplicant[0].alternativeproofdobtype)) %>
+                                                IDENTITY TYPE:<%=objComm.GetAddressProof(Convert.ToInt32(objApplicant[0].alternativeproofdobId)) %>
                                             </div>
                                             <div class="col-md-6">
                                                 IDENTITY NUMBER:<%= objApplicant[0].alternativeresidenceproofno == null ? "" : objApplicant[0].alternativeresidenceproofno.ToString() %>
