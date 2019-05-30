@@ -21,9 +21,9 @@ public partial class applicanteducation : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) && (Request.QueryString["formid"].ToString() == ""))
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx");
+            Response.Redirect(webURL + "default.aspx",true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
@@ -151,8 +151,8 @@ public partial class applicanteducation : System.Web.UI.Page
                         labeldiplomaendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         break;
                     case "NAME OF SCHOOL":
-                        highschool.Attributes.Add("style", "display:block;");
-                        labelhighschool.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        highschoolName.Attributes.Add("style", "display:block;");
+                        labelhighschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         SecondaryschoolName.Attributes.Add("style", "display:block;");
                         labelSecondaryschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         higherschoolName.Attributes.Add("style", "display:block;");

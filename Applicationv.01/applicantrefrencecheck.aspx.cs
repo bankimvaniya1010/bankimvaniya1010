@@ -20,9 +20,9 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) && (Request.QueryString["formid"].ToString() == ""))
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx");
+            Response.Redirect(webURL + "default.aspx",true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());

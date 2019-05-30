@@ -21,9 +21,9 @@ public partial class applicantworkexperience : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) && (Request.QueryString["formid"].ToString() == ""))
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx");
+            Response.Redirect(webURL + "default.aspx", true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
@@ -31,7 +31,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         {
             SetToolTips();
             // PopulateEmployerInfo(1);
-            BindEmploymentDetails();SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            BindEmploymentDetails(); SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         }
     }
     private void SetToolTips()

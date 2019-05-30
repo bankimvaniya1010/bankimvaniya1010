@@ -537,37 +537,37 @@
 
             var emp = $("#<%=hdnemployer.ClientID%>").val()
             if (emp != '') {
-                $("#position").show();
-                $("#employer").show();
-                $("#startdate").show();
-                $("#endate").show();
-                $("#briefDescription").show();
-                $("#employercity").show();
-                $("#employercountry").show();
-                $("#reportingmanger").show();
-                $("#employmentverification").show();
-                $("#relationship").show();
-                $("#email").show();
-                $("#linkedin").show();
+                $("#<%=position.ClientID%>").show();
+                $("#<%=employer.ClientID%>").show();
+                $("#<%=startdate.ClientID%>").show();
+                $("#<%=endate.ClientID%>").show();
+                $("#<%=briefDescription.ClientID%>").show();
+                $("#<%=employercity.ClientID%>").show();
+                $("#<%=employercountry.ClientID%>").show();
+                $("#<%=reportingmanger.ClientID%>").show();
+                $("#<%=employmentverification.ClientID%>").show();
+                $("#<%=relationship.ClientID%>").show();
+                $("#<%=email.ClientID%>").show();
+                $("#<%=linkedin.ClientID%>").show();
                 // $("#PreviousEmployment").show();
-                $("#employerwebsite").show();
-                $("#employment").show();
+                $("#<%=employerwebsite.ClientID%>").show();
+
 
             }
             else {
-                $("#employerwebsite").hide();
-                $("#position").hide();
-                $("#employer").hide();
-                $("#startdate").hide();
-                $("#endate").hide();
-                $("#briefDescription").hide();
-                $("#employercity").hide();
-                $("#employercountry").hide();
-                $("#reportingmanger").hide();
-                $("#employmentverification").hide();
-                $("#relationship").hide();
-                $("#email").hide();
-                $("#linkedin").hide();
+                $("#<%=employerwebsite.ClientID%>").hide();
+                $("#<%=position.ClientID%>").hide();
+                $("#<%=employer.ClientID%>").hide();
+                $("#<%=startdate.ClientID%>").hide();
+                $("#<%=endate.ClientID%>").hide();
+                $("#<%=briefDescription.ClientID%>").hide();
+                $("#<%=employercity.ClientID%>").hide();
+                $("#<%=employercountry.ClientID%>").hide();
+                $("#<%=reportingmanger.ClientID%>").hide();
+                $("#<%=employmentverification.ClientID%>").hide();
+                $("#<%=relationship.ClientID%>").hide();
+                $("#<%=email.ClientID%>").hide();
+                $("#<%=linkedin.ClientID%>").hide();
                 //$("#PreviousEmployment").hide();
             }
 
@@ -575,37 +575,38 @@
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$Employment']").click(function () {
-                if ($("#ContentPlaceHolder1_rblEmploymentYes").is(":checked")) {
-                    $("#position").show();
-                    $("#employer").show();
-                    $("#startdate").show();
-                    $("#endate").show();
-                    $("#briefDescription").show();
-                    $("#employercity").show();
-                    $("#employercountry").show();
-                    $("#reportingmanger").show();
-                    $("#employmentverification").show();
-                    $("#relationship").show();
-                    $("#email").show();
-                    $("#linkedin").show();
-                    //$("#PreviousEmployment").show();
+                if ($("#<%=rblEmploymentYes.ClientID%>").is(":checked")) {
+                    $("#<%=position.ClientID%>").show();
+                    $("#<%=employer.ClientID%>").show();
+                    $("#<%=startdate.ClientID%>").show();
+                    $("#<%=endate.ClientID%>").show();
+                    $("#<%=briefDescription.ClientID%>").show();
+                    $("#<%=employercity.ClientID%>").show();
+                    $("#<%=employercountry.ClientID%>").show();
+                    $("#<%=reportingmanger.ClientID%>").show();
+                    $("#<%=employmentverification.ClientID%>").show();
+                    $("#<%=relationship.ClientID%>").show();
+                    $("#<%=email.ClientID%>").show();
+                    $("#<%=linkedin.ClientID%>").show();
+                    // $("#PreviousEmployment").show();
+                    $("#<%=employerwebsite.ClientID%>").show();
 
 
-                } else {
-                    $("#position").hide();
-                    $("#employer").hide();
-                    $("#startdate").hide();
-                    $("#endate").hide();
-                    $("#briefDescription").hide();
-                    $("#employercity").hide();
-                    $("#employercountry").hide();
-                    $("#reportingmanger").hide();
-                    $("#employmentverification").hide();
-                    $("#relationship").hide();
-                    $("#email").hide();
-                    $("#linkedin").hide();
-                    // $("#PreviousEmployment").hide();
-                    $("#employerwebsite").hide();
+                }
+                else {
+                    $("#<%=employerwebsite.ClientID%>").hide();
+                    $("#<%=position.ClientID%>").hide();
+                    $("#<%=employer.ClientID%>").hide();
+                    $("#<%=startdate.ClientID%>").hide();
+                    $("#<%=endate.ClientID%>").hide();
+                    $("#<%=briefDescription.ClientID%>").hide();
+                    $("#<%=employercity.ClientID%>").hide();
+                    $("#<%=employercountry.ClientID%>").hide();
+                    $("#<%=reportingmanger.ClientID%>").hide();
+                    $("#<%=employmentverification.ClientID%>").hide();
+                    $("#<%=relationship.ClientID%>").hide();
+                    $("#<%=email.ClientID%>").hide();
+                    $("#<%=linkedin.ClientID%>").hide();
                 }
             });
         });
