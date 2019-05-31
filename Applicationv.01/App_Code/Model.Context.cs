@@ -95,6 +95,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
+    public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

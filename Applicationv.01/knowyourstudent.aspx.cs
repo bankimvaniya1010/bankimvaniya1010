@@ -32,7 +32,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
-            BindCountry();
+            objCom.BindCountries(ddlCountryofIssue);
             SetToolTips();
             BindAlternateDobProof();
             BindAlternateIDProof();
@@ -136,23 +136,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void BindCountry()
-    {
-        try
-        {
-            ListItem lst = new ListItem("Please Select", "0");
-            var country = db.countriesmaster.ToList();
-            ddlCountryofIssue.DataSource = country;
-            ddlCountryofIssue.DataTextField = "country_name";
-            ddlCountryofIssue.DataValueField = "country_code";
-            ddlCountryofIssue.DataBind();
-            ddlCountryofIssue.Items.Insert(0, lst);
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
+   
     private void BindAlternateDobProof()
     {
         try 

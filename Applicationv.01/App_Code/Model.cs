@@ -402,6 +402,12 @@ public partial class applicantvisadetails
     public Nullable<int> isparentvisadenied { get; set; }
 }
 
+public partial class cefrlevelmaster
+{
+    public int id { get; set; }
+    public string name { get; set; }
+}
+
 public partial class citymaster
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -421,6 +427,7 @@ public partial class citymaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<university_master> university_master { get; set; }
+    public virtual countriesmaster countriesmaster { get; set; }
 }
 
 public partial class controlmaster
@@ -431,9 +438,18 @@ public partial class controlmaster
 
 public partial class countriesmaster
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public countriesmaster()
+    {
+        this.citymaster = new HashSet<citymaster>();
+    }
+
     public int id { get; set; }
     public string country_code { get; set; }
     public string country_name { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<citymaster> citymaster { get; set; }
 }
 
 public partial class coursemaster
