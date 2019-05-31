@@ -420,6 +420,13 @@
           <Property Name="isvisadenied" Type="int" />
           <Property Name="isparentvisadenied" Type="int" />
         </EntityType>
+        <EntityType Name="cefrlevelmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="44" />
+        </EntityType>
         <EntityType Name="citymaster">
           <Key>
             <PropertyRef Name="city_id" />
@@ -879,6 +886,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_cityMaster_countriesMaster">
+          <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="1" />
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="citymaster">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_qualificationmaster_qualificationcountrymapping">
           <End Role="qualificationmaster" Type="Self.qualificationmaster" Multiplicity="1" />
           <End Role="qualificationcountriesmapping" Type="Self.qualificationcountriesmapping" Multiplicity="*" />
@@ -973,6 +992,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="cefrlevelmaster" EntityType="Self.cefrlevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="controlmaster" EntityType="Self.controlmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countriesmaster" EntityType="Self.countriesmaster" Schema="GTE" store:Type="Tables" />
@@ -1035,6 +1055,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_campus_facilityMaster" Association="Self.FK_campus_facilityMaster">
             <End Role="facilitiesmaster" EntitySet="facilitiesmaster" />
             <End Role="universitycampus" EntitySet="universitycampus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cityMaster_countriesMaster" Association="Self.FK_cityMaster_countriesMaster">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="citymaster" EntitySet="citymaster" />
           </AssociationSet>
           <AssociationSet Name="FK_qualificationmaster_qualificationcountrymapping" Association="Self.FK_qualificationmaster_qualificationcountrymapping">
             <End Role="qualificationmaster" EntitySet="qualificationmaster" />
@@ -1168,6 +1192,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
+          <EntitySet Name="cefrlevelmaster" EntityType="GTEModel.cefrlevelmaster" />
+          <AssociationSet Name="FK_cityMaster_countriesMaster" Association="GTEModel.FK_cityMaster_countriesMaster">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="citymaster" EntitySet="citymaster" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="adminusers">
           <Key>
@@ -1475,6 +1504,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="country_code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="country_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
         </EntityType>
         <EntityType Name="coursemaster">
           <Key>
@@ -1903,6 +1933,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="country_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="citymaster" ToRole="university_master" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="citymaster" ToRole="countriesmaster" />
         </EntityType>
         <EntityType Name="credentialmaster">
           <Key>
@@ -2115,6 +2146,25 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="ishighereducation" Type="Int32" />
           <Property Name="lastsavetime" Type="DateTime" />
         </EntityType>
+        <EntityType Name="cefrlevelmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="44" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_cityMaster_countriesMaster">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="citymaster">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3038,6 +3088,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="ishighschooldone" ColumnName="ishighschooldone" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantdeducationdetailsid" ColumnName="applicantdeducationdetailsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cefrlevelmaster">
+            <EntityTypeMapping TypeName="GTEModel.cefrlevelmaster">
+              <MappingFragment StoreEntitySet="cefrlevelmaster">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
