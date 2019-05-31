@@ -133,7 +133,7 @@
                                             <a class="dropdown-item" href="majordesription.aspx">Major Discipline Master</a>
                                             <a class="dropdown-item" href="sutdymode.aspx">Study Mode Master</a>
                                             <a class="dropdown-item" href="titlemaster.aspx">Title Master</a>
-
+                                            <a class="dropdown-item" href="qualificationmaster.aspx">Qualification Master</a>
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -147,8 +147,8 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Settings</a>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item " href="formmaster.aspx">Forms</a>
-                                           <%-- <a class="dropdown-item " href="formfieldmaster.aspx">Form Field Master</a>
-                                            <a class="dropdown-item " href="formfieldmapping.aspx">Form Fields Mapping</a>--%>
+                                            <a class="dropdown-item " href="qualificationcountrymapping.aspx">Qualification Conutry Mapping</a>
+                                            <%--  <a class="dropdown-item " href="formfieldmapping.aspx">Form Fields Mapping</a>--%>
                                             <a class="dropdown-item" href="fieldmaster.aspx">Secondary Language</a>
                                             <a class="dropdown-item" href="universityformmapping.aspx">University Forms</a>
                                             <a class="dropdown-item" href="universityfieldmapping.aspx">University Fields</a>

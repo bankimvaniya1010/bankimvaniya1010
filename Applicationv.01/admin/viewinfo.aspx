@@ -307,7 +307,7 @@
                                                 Completed High School:<%= objEdu[0].ishighschooldone.ToString() == "1" ? "Yes" : "No" %>
                                             </div>
                                             <div class="col-md-6">
-                                                COUNTRY OF HIGH SCHOOL EDUCATION:<%=objComm.GetCountryDiscription(objEdu[0].highschoolcountry) %>
+                                                COUNTRY OF HIGH SCHOOL EDUCATION:<%=objComm.GetCountryDiscription(Convert.ToInt32(objEdu[0].highschoolcountry)) %>
                                             </div>
                                         </div>
                                     </div>
@@ -382,7 +382,7 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                RELATIONSHIP WITH THE CONTACT:<%= objEdu[0].highschoolrelationship == null ? "" : objEdu[0].highschoolrelationship.ToString() %>
+                                                RELATIONSHIP WITH THE CONTACT:<%= objEdu[0].highschoolverificationrelationship == null ? "" : objEdu[0].highschoolverificationrelationship.ToString() %>
                                             </div>
                                             <div class="col-md-6">
                                                 EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION:<%= objEdu[0].highschoolverificationemail == null ? "" : objEdu[0].highschoolverificationemail.ToString() %>
@@ -412,7 +412,7 @@
                                                 HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)?:<%= objEdu[0].issecondarydone.ToString() == "1" ? "Yes" : "No" %>
                                             </div>
                                             <div class="col-md-6">
-                                                COUNTRY OF SENIOR SECONDARY SCHOOL:<%=objComm.GetCountryDiscription(objEdu[0].secondarycountry) %>
+                                                COUNTRY OF SENIOR SECONDARY SCHOOL:<%=objComm.GetCountryDiscription(Convert.ToInt32(objEdu[0].secondarycountry)) %>
                                             </div>
                                         </div>
                                     </div>
@@ -487,7 +487,7 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                RELATIONSHIP WITH THE CONTACT:<%= objEdu[0].relationshipwitnsecondaryverification == null ? "" : objEdu[0].relationshipwitnsecondaryverification.ToString() %>
+                                                RELATIONSHIP WITH THE CONTACT:<%= objEdu[0].secondaryverificationrelationship == null ? "" : objEdu[0].secondaryverificationrelationship.ToString() %>
                                             </div>
                                             <div class="col-md-6">
                                                 EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION:<%= objEdu[0].secondaryverificationemail == null ? "" : objEdu[0].secondaryverificationemail.ToString() %>
@@ -625,7 +625,7 @@
                                                 Completed  DIPLOMA OR CERTIFICATE PROGRAMS :<%= objEdu[0].isdiplomadone.ToString() == "1" ? "Yes" : "No" %>
                                             </div>
                                             <div class="col-md-6">
-                                                COUNTRY OF DIPLOMA OR CERTIFICATE PROGRAMS :<%=objComm.GetCountryDiscription(objEdu[0].diplomacountry) %>
+                                                COUNTRY OF DIPLOMA OR CERTIFICATE PROGRAMS :<%=objComm.GetCountryDiscription(Convert.ToInt32(objEdu[0].diplomacountry)) %>
                                             </div>
                                         </div>
                                     </div>
@@ -700,7 +700,7 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                RELATIONSHIP WITH THE CONTACT:<%= objEdu[0].relationshipwithdiplomaverification == null ? "" : objEdu[0].relationshipwithdiplomaverification.ToString() %>
+                                                RELATIONSHIP WITH THE CONTACT:<%= objEdu[0].diplomaverificationrelationship == null ? "" : objEdu[0].diplomaverificationrelationship.ToString() %>
                                             </div>
                                             <div class="col-md-6">
                                                 EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION:<%= objEdu[0].diplomaverificationemail == null ? "" : objEdu[0].diplomaverificationemail.ToString() %>

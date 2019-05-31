@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
-
+using System.Web.UI.WebControls;
 public class Common
 {
     Logger log = new Logger();
@@ -471,6 +471,43 @@ public class Common
         }
         return country;
     }
+    public string GetCountryDiscription(int countryid)
+    {
+        string country = "";
+        try
+        {
+            var Country = db.countriesmaster.Where(x => x.id == countryid).FirstOrDefault();
+            if (Country != null)
+                country = Country.country_name;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return country;
+    }
+    public void BindCountries(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var studymode = db.countriesmaster.ToList();
+            ddl.DataSource = studymode;
+            ddl.DataTextField = "country_name";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+
+
+
+    }
+
     [Serializable]
     public class FieldList
     {

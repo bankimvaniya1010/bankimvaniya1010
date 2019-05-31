@@ -191,54 +191,52 @@ public partial class applicanteducationdetails
     public int applicantdeducationdetailsid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> ishighschooldone { get; set; }
-    public string highschoolcountry { get; set; }
+    public Nullable<int> highschoolcountry { get; set; }
     public Nullable<System.DateTime> highschoolstartdate { get; set; }
     public Nullable<System.DateTime> highschoolendate { get; set; }
     public string highschoolname { get; set; }
-    public string highschoolqualificationtype { get; set; }
+    public Nullable<int> highschoolqualificationtype { get; set; }
     public Nullable<int> highschoolmodeid { get; set; }
     public Nullable<int> highschoolmediumid { get; set; }
     public Nullable<int> highschoolgradetypeid { get; set; }
     public Nullable<int> highschoolgradedeclared { get; set; }
     public Nullable<System.DateTime> highschoolreusltdate { get; set; }
     public string highschoolverificationname { get; set; }
-    public string highschoolrelationship { get; set; }
+    public string highschoolverificationrelationship { get; set; }
     public string highschoolverificationemail { get; set; }
+    public string highschoolverificationmobile { get; set; }
     public string highestdegree { get; set; }
     public Nullable<int> issecondarydone { get; set; }
-    public string secondarycountry { get; set; }
+    public Nullable<int> secondarycountry { get; set; }
     public Nullable<System.DateTime> secondarystartdate { get; set; }
     public Nullable<System.DateTime> secondaryendate { get; set; }
     public string secondaryname { get; set; }
-    public string secondaryqualificationtype { get; set; }
+    public Nullable<int> secondaryqualificationtype { get; set; }
     public Nullable<int> secondarymodestudy { get; set; }
     public Nullable<int> secondarymediumstudy { get; set; }
     public Nullable<int> secondarygradetypeid { get; set; }
     public Nullable<int> secondarygradedeclared { get; set; }
     public Nullable<System.DateTime> secondaryresultdate { get; set; }
     public string secondaryverificationname { get; set; }
-    public string relationshipwitnsecondaryverification { get; set; }
+    public string secondaryverificationrelationship { get; set; }
     public string secondaryverificationemail { get; set; }
-    public string secondaryhighesteducation { get; set; }
+    public string secondaryverificationmobile { get; set; }
     public Nullable<int> isdiplomadone { get; set; }
-    public string diplomacountry { get; set; }
+    public Nullable<int> diplomacountry { get; set; }
     public Nullable<System.DateTime> diplomastartdate { get; set; }
     public Nullable<System.DateTime> diplomaendate { get; set; }
     public string diplomaschoolname { get; set; }
-    public string diplomaqualificationtype { get; set; }
+    public Nullable<int> diplomaqualificationtype { get; set; }
     public Nullable<int> diplomastudymodeid { get; set; }
     public Nullable<int> diplomamediumid { get; set; }
     public Nullable<int> diplomagradetypeid { get; set; }
     public Nullable<int> diplomagradeachieved { get; set; }
     public Nullable<System.DateTime> diplomaresultdate { get; set; }
     public string diplomaverificationname { get; set; }
-    public string relationshipwithdiplomaverification { get; set; }
+    public string diplomaverificationrelationship { get; set; }
     public string diplomaverificationemail { get; set; }
-    public string higestdiploma { get; set; }
-    public Nullable<int> ishighereducation { get; set; }
     public string diplomaverificationmobile { get; set; }
-    public string secondaryverificationmobile { get; set; }
-    public string highschoolverificationmobile { get; set; }
+    public Nullable<int> ishighereducation { get; set; }
     public Nullable<System.DateTime> lastsavetime { get; set; }
 }
 

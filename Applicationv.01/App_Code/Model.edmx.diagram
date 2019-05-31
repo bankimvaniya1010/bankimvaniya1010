@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="GTEModel.applicant_education" Width="1.5" PointX="10.75" PointY="6.75" />
         <EntityTypeShape EntityType="GTEModel.applicantdatavalidation" Width="1.5" PointX="10.75" PointY="10.75" />
         <EntityTypeShape EntityType="GTEModel.applicantdocumentmaster" Width="1.5" PointX="11.75" PointY="0.75" />
-        <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="2.75" PointY="11.75" />
         <EntityTypeShape EntityType="GTEModel.applicantemployerdetails" Width="1.5" PointX="4.75" PointY="11.75" />
         <EntityTypeShape EntityType="GTEModel.applicantformmaster" Width="1.5" PointX="6.75" PointY="11.75" />
         <EntityTypeShape EntityType="GTEModel.applicanthighereducation" Width="1.5" PointX="12.75" PointY="3.75" />
@@ -82,6 +81,7 @@
         <AssociationConnector Association="GTEModel.FK_campus_facilityMaster" />
         <AssociationConnector Association="GTEModel.FK_qualificationmaster_qualificationcountrymapping" />
         <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="0.75" PointY="23.75" />
+        <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="0.75" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
