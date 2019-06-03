@@ -279,29 +279,6 @@
                 $("#<%=hidCityField.ClientID%>").val($("#<%=ddlCity.ClientID%>").val());
             });
 
-            $('#form1').submit(function () {
-                var txtUniLongitude = $('#txtUniLongitude').val();
-                var txtUniLatitude = $('#txtUniLatitude').val();
-                var countryValue = $('#ddlCountry').val();
-                var cityValue = $('#hidCityField').val();
-
-                if (!txtUniLongitude || isNaN(parseFloat(txtUniLongitude)))
-                    errorMsg("Please enter correct University Longitude");
-                else if (!txtUniLatitude || isNaN(parseFloat(txtUniLatitude)))
-                    errorMsg("Please enter correct University Latitude");
-                else if (countryValue == '' || countryValue == 0)
-                    errorMsg("Please select country for university");
-                else if (cityValue == '' || cityValue == 0)
-                    errorMsg("Please select city for university");
-
-            });
-
-            errorMsg(msg)
-            {
-                alert(msg);
-                return false;
-            }
-
         });
     </script>
 </asp:Content>

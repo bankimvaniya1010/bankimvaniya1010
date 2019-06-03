@@ -107,27 +107,4 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('#form1').submit(function () {
-
-                var txtUniID = $('#txtUniID').val();
-                var failitiesValue = $('#ddlFacilities').val();
-
-                if (!txtUniID)
-                    errorMsg("Please enter University ID");
-                else if (isNaN(parseInt(txtUniID)))
-                    errorMsg("Please enter numeric University ID greater than 0");
-                else if ($('#failitiesValue').val() == '' || failitiesValue == 0)
-                    errorMsg("Please select facilities");
-
-            });
-
-            errorMsg(msg)
-            {
-                alert(msg);
-                return false;
-            }
-        });
-    </script>
 </asp:Content>

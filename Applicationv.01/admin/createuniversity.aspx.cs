@@ -36,6 +36,32 @@ public partial class admin_createuniversity : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
+        decimal latitude;
+        decimal longitude;
+        int countryValue;
+        int cityValue;
+
+        if (!Decimal.TryParse(txtUniLatitude.Value.Trim(), out latitude))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please enter university's latitude')", true);
+            return;
+        }
+        if (!Decimal.TryParse(txtUniLongitude.Value.Trim(), out longitude))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please enter university's longitude')", true);
+            return;
+        }
+        if (!Int32.TryParse(hidCityField.Value.Trim(), out cityValue))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select city for university')", true);
+            return;
+        }
+        if (!Int32.TryParse(ddlCountry.SelectedItem.Value, out countryValue))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select country for university')", true);
+            return;
+        }
+
         university_master universityObj = new university_master();
         try
         {
@@ -55,10 +81,10 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.year_established = txtYearEstablish.Value.Trim();
                 universityObj.short_description = txtUniSDescription.Value.Trim();
                 universityObj.long_description = txtUniLatitude.Value.Trim();
-                universityObj.cityid = Convert.ToInt32(hidCityField.Value);
-                universityObj.countryid= Convert.ToInt32(ddlCountry.SelectedItem.Value);
-                universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
-                universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
+                universityObj.cityid = cityValue;
+                universityObj.countryid = countryValue;
+                universityObj.latitude = latitude;
+                universityObj.longitude = longitude;
                 universityObj.time_zone = txtUniTimeZone.Value.Trim();
                 universityObj.closest_airport = txtUniAirport.Value.Trim();
                 universityObj.distance_from_airport = txtUniAirportDistance.Value.Trim();

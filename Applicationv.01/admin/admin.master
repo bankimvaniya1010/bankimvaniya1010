@@ -39,7 +39,7 @@
 
 <body class=" fixed-layout">
 
-    <form runat="server" id="form1">
+    <form runat="server">
 
 
 
