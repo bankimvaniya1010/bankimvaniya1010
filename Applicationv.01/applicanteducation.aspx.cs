@@ -1401,7 +1401,7 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             var qualificationContriesWise = (from qm in db.qualificationmaster
                                              join qcm in db.qualificationcountriesmapping on qm.qualificationid equals qcm.qualificationid
-                                             where qcm.countriesid == country
+                                             where qcm.countryid == country
                                              select new
                                              {
                                                  qualificationid = qm.qualificationid,
