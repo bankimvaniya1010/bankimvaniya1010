@@ -96,7 +96,7 @@
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" />
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" OnClientClick="return validateForm" />
                                     <asp:Label ID="lblMessage" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -107,4 +107,20 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        function validateForm() {
+
+            var campName = $('#<%=txtCampName.ClientID%>').val();
+            var universityID = $('#<%=txtUniID.ClientID%>').val();
+
+            if (campName == '') {
+                alert("Please enter university campus name");
+                return false;
+            }
+            else if (universityID == '') {
+                alert("Please enter university campus ID");
+                return false;
+            }            
+        }
+    </script>
 </asp:Content>

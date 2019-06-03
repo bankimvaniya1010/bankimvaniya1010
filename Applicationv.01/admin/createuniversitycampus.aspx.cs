@@ -43,26 +43,14 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        int universityId = -1;
+        int universityId = Convert.ToInt32(txtUniID.Value.Trim());
         int facilityID;
-
-        if (!Int32.TryParse(ddlFacilities.SelectedItem.Value, out facilityID))
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select facility for university')", true);
-            return;
-        }
-        if (!Int32.TryParse(txtUniID.Value.Trim(), out universityId))
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please enter university ID')", true);
-            return;
-        }
-
         universitycampus universityCampusObj = new universitycampus();
         try
         {
             var existingUniversityCampus = (from universityCampus in db.universitycampus
                                             where universityCampus.campusname.Equals(txtCampName.Value.Trim()) && universityCampus.universityid == universityId
-                                            select universityCampus.campusname).SingleOrDefault();
+                                            select universityCampus.campusname).FirstOrDefault();
             if (string.IsNullOrEmpty(existingUniversityCampus))
             {
                 universityCampusObj.campusname = txtCampName.Value.Trim();
@@ -71,7 +59,8 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
                 universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
                 universityCampusObj.research = txtCampResearch.Value.Trim();
                 universityCampusObj.universityid = universityId;
-                universityCampusObj.facility_id = facilityID;
+                if (!Int32.TryParse(ddlFacilities.SelectedItem.Value, out facilityID))
+                    universityCampusObj.facility_id = Convert.ToInt32(ddlFacilities.SelectedItem.Value);
                 
                 db.universitycampus.Add(universityCampusObj);
                 db.SaveChanges();

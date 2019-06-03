@@ -242,7 +242,7 @@
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" />
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" OnClientClick="return validateForm()" />
                                     <asp:Label ID="lblMessage" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -265,6 +265,7 @@
                     data: { countryId: $("#<%=ddlCountry.ClientID%>").val() },
                     success: function (response) {
                         if (response.d) {
+                            $("#<%=ddlCity.ClientID%>").not(':first').remove();
                             var result = JSON.parse(response.d);
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddlCity.ClientID%>").append($("<option></option>").val(result[i].city_id).html(result[i].name));
@@ -280,5 +281,26 @@
             });
 
         });
+
+        function validateForm() {
+
+            var countryValue = $('#<%=ddlCountry.ClientID%>').val();
+            var cityValue = $('#<%=hidCityField.ClientID%>').val();
+            var universityName = $('#<%=txtUniName.ClientID%>').val();
+
+            if (countryValue == '' || countryValue == 0) {
+                alert("Please select country for university");
+                return false;
+            }
+            else if (cityValue == '' || cityValue == 0) {
+                alert("Please select city for university");
+                return false;
+            }
+            else if (universityName == '') {
+                alert("Please enter name for university");
+                return false;
+            }
+
+        }
     </script>
 </asp:Content>

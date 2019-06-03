@@ -96,7 +96,7 @@
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
-                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" />
+                                    <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" OnClientClick="return validateForm()"/>
                                     <asp:Label ID="lblMessage" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -107,4 +107,23 @@
             </div>
         </div>
     </div>
-</asp:Content>
+
+<script type="text/javascript">
+    function validateForm() {
+
+        var countryValue = $('#<%=ddlCountry.ClientID%>').val();
+        var cityName = $('#<%=txtCityName%>').val();
+
+        if (countryValue == '' || countryValue == 0) {
+            alert("Please select country for city");
+            return false;
+        }
+        else if (cityName == '') {
+            alert("Please enter name for city");
+            return false;
+        }
+            
+    }
+</script>
+
+    </asp:Content>
