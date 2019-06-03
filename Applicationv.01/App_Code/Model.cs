@@ -305,7 +305,8 @@ public partial class applicantlanguagecompetency
     public Nullable<System.DateTime> yearofcompletion { get; set; }
     public string instituename { get; set; }
     public Nullable<int> studymode { get; set; }
-    public string qualificationtype { get; set; }
+    public Nullable<int> qualificationtype { get; set; }
+    public string qualificationname { get; set; }
     public string gradetype { get; set; }
     public Nullable<int> giveenglishtest { get; set; }
     public string testname { get; set; }
@@ -323,7 +324,6 @@ public partial class applicantlanguagecompetency
     public string cefrlevel { get; set; }
     public string testreportreferenceno { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
-    public string qualificationname { get; set; }
 }
 
 public partial class applicantprogressbar
@@ -443,6 +443,7 @@ public partial class countriesmaster
     public countriesmaster()
     {
         this.citymaster = new HashSet<citymaster>();
+        this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
     }
 
     public int id { get; set; }
@@ -451,6 +452,8 @@ public partial class countriesmaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<citymaster> citymaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
 }
 
 public partial class coursemaster
@@ -644,8 +647,9 @@ public partial class qualificationcountriesmapping
 {
     public int id { get; set; }
     public int qualificationid { get; set; }
-    public int countriesid { get; set; }
+    public int countryid { get; set; }
 
+    public virtual countriesmaster countriesmaster { get; set; }
     public virtual qualificationmaster qualificationmaster { get; set; }
 }
 
@@ -778,6 +782,30 @@ public partial class studymodemaster
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class subjectmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public subjectmaster()
+    {
+        this.subjectwisecountrymapping = new HashSet<subjectwisecountrymapping>();
+    }
+
+    public int id { get; set; }
+    public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<subjectwisecountrymapping> subjectwisecountrymapping { get; set; }
+}
+
+public partial class subjectwisecountrymapping
+{
+    public int id { get; set; }
+    public int subjectid { get; set; }
+    public int countyid { get; set; }
+
+    public virtual subjectmaster subjectmaster { get; set; }
 }
 
 public partial class titlemaster

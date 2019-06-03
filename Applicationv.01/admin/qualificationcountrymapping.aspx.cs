@@ -41,7 +41,7 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
         {
             chkQualification.Items.Clear();
             BindQualification();
-            var qualificationuniversitywise = db.qualificationcountriesmapping.Where(x => x.countriesid == countryID).ToList();
+            var qualificationuniversitywise = db.qualificationcountriesmapping.Where(x => x.countryid == countryID).ToList();
             for (int k = 0; k < qualificationuniversitywise.Count; k++)
             {
                 chkQualification.Items.FindByValue(qualificationuniversitywise[k].qualificationid.ToString()).Selected = true;
@@ -66,7 +66,7 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
         {
             int countryID = Convert.ToInt32(ddlCountry.SelectedValue);
 
-            IEnumerable<qualificationcountriesmapping> list = db.qualificationcountriesmapping.Where(x => x.countriesid == countryID).ToList();
+            IEnumerable<qualificationcountriesmapping> list = db.qualificationcountriesmapping.Where(x => x.countryid == countryID).ToList();
             // Use Remove Range function to delete all records at once
             db.qualificationcountriesmapping.RemoveRange(list);
             // Save changes
@@ -80,7 +80,7 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
 
                     qualificationcountriesmapping mappingObj = new qualificationcountriesmapping();
                     mappingObj.qualificationid = qualificationID;
-                    mappingObj.countriesid = countryID;
+                    mappingObj.countryid = countryID;
                     db.qualificationcountriesmapping.Add(mappingObj);
                     db.SaveChanges();
                 }

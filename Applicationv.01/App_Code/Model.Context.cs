@@ -42,7 +42,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
     public virtual DbSet<applicantformmaster> applicantformmaster { get; set; }
     public virtual DbSet<applicanthighereducation> applicanthighereducation { get; set; }
-    public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
     public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
     public virtual DbSet<applicantreferencecheck> applicantreferencecheck { get; set; }
     public virtual DbSet<applicantscores> applicantscores { get; set; }
@@ -76,7 +75,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<preliminaryvideomaster> preliminaryvideomaster { get; set; }
     public virtual DbSet<primaryfieldmaster> primaryfieldmaster { get; set; }
     public virtual DbSet<profilemaster> profilemaster { get; set; }
-    public virtual DbSet<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
     public virtual DbSet<qualificationmaster> qualificationmaster { get; set; }
     public virtual DbSet<question_master> question_master { get; set; }
     public virtual DbSet<registrationcourses> registrationcourses { get; set; }
@@ -96,6 +94,10 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
+    public virtual DbSet<subjectmaster> subjectmaster { get; set; }
+    public virtual DbSet<subjectwisecountrymapping> subjectwisecountrymapping { get; set; }
+    public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
+    public virtual DbSet<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

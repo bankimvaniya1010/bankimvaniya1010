@@ -133,14 +133,18 @@ public partial class applicantlanguage : System.Web.UI.Page
                     case "NAME OF COLLEGE OR UNIVERSITY":
                         NameCollege.Attributes.Add("style", "display:block;");
                         labelNameCollege.InnerHtml = setInnerHtml(fields[k]);
+                        break;                    
+                    case "QUALIFICATION TYPE":
+                        QualificationType.Attributes.Add("style", "display:block;");
+                        labelQualificationType.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Name of Qualification":
+                        QualificationName.Attributes.Add("style", "display:block;");
+                        labelQualificationName.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "MODE OF STUDY":
                         studymode.Attributes.Add("style", "display:block;");
                         labelstudymode.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "QUALIFICATION TYPE":
-                        QualificationType.Attributes.Add("style", "display:block;");
-                        labelQualificationType.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "GRADE TYPE":
                         gradetype.Attributes.Add("style", "display:block;");
@@ -216,7 +220,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         ddlStudyMode.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "IntensiveQualiicationtype":
-                        txtQualificationType.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlQualificationType.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "IntensiveGradeType":
                         ddlGrade.Attributes.Add("title", lstToolTips[k].tooltips);
@@ -333,6 +337,34 @@ public partial class applicantlanguage : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    private void BindQualificationType()
+    {
+        try
+        {
+
+            ListItem lst = new ListItem("Please select", "0");
+            var qualificationType = (from qm in db.qualificationmaster
+                                     join qcm in db.qualificationcountriesmapping on qm.qualificationid equals qcm.qualificationid
+                                     join adm in db.applicantdetails on userID equals adm.applicantid
+                                     where qcm.countryid.ToString() == adm.postalcountry
+                                     select new
+                                     {
+                                         description = qm.qualificationname,
+                                         id = qm.qualificationid
+                                     }).ToList();
+            ddlQualificationType.DataSource = qualificationType;
+            ddlQualificationType.DataTextField = "description";
+            ddlQualificationType.DataValueField = "id";
+            ddlQualificationType.DataBind();
+            ddlQualificationType.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
     private void PopulateLanguageDetails()
     {
         try
@@ -359,7 +391,11 @@ public partial class applicantlanguage : System.Web.UI.Page
                     ddlGrade.Items.FindByValue(LanguageInfo.gradetype.ToString()).Selected = true;
                 }
                 txtExpectedDategrade.Value = Convert.ToDateTime(LanguageInfo.expectedgraderesult).ToString("yyyy-MM-dd");
-
+                if(LanguageInfo.qualificationtype != null)
+                {
+                    ddlQualificationType.ClearSelection();
+                    ddlQualificationType.Items.FindByValue(LanguageInfo.qualificationtype.ToString()).Selected = true;
+                }
 
                 if (LanguageInfo.isenglishintesive == 1)
                     rblEnglishBackgroundYes.Checked = true;
@@ -374,12 +410,11 @@ public partial class applicantlanguage : System.Web.UI.Page
                 txtCandidateID.Value = LanguageInfo.candidateid;
                 if (LanguageInfo.yearofcompletion != null)
                     txtYearCompletion.Value = Convert.ToDateTime(LanguageInfo.yearofcompletion).ToString("yyyy-MM-dd");
-                txtNameCollege.Value = LanguageInfo.instituename;
-                txtQualificationType.Value = LanguageInfo.qualificationtype;
-                // txtNameQualifucation.Value = LanguageInfo.qualificationanme;
+                txtNameCollege.Value = LanguageInfo.instituename;               
+                txtQualificationName.Value = LanguageInfo.qualificationname;
                 if (LanguageInfo.giveenglishtest == 1)
                     rblLanguageielts.Checked = true;
-                else if (LanguageInfo.isenglishintesive == 2)
+                else if (LanguageInfo.giveenglishtest == 2)
                     rblLanguagepearsons.Checked = true;
                 else
                     rblLanguagtofel.Checked = true;
@@ -409,142 +444,76 @@ public partial class applicantlanguage : System.Web.UI.Page
     {
         try
         {
+            var mode = "new";
             var LanguageInfo = (from pInfo in db.applicantlanguagecompetency
                                 where pInfo.applicantid == userID
                                 select pInfo).FirstOrDefault();
+
             applicantlanguagecompetency objLanguage = new applicantlanguagecompetency();
-            if (LanguageInfo == null)
-            {
-                objLanguage.homelanuage = txthomelanguage.Value;
-                if (ddlLanguage.SelectedValue != "")
-                {
-                    objLanguage.countryofcourse = ddlLanguage.SelectedValue;
-
-                }
-                if (ddlStudyMode.SelectedValue != "")
-                {
-                    objLanguage.studymode = Convert.ToInt32(ddlStudyMode.SelectedValue);
-
-                }
-                if (ddlGrade.SelectedValue != "")
-                {
-                    objLanguage.gradetype = ddlGrade.SelectedValue;
-
-                }
-                objLanguage.expectedgraderesult = Convert.ToDateTime(txtExpectedDategrade.Value);
-                //objLanguage.highschoollanguage = txthighschoollangugae.Value;
-                //objLanguage.postsecondarylanguage = txtPostSecondaryLanguage.Value;
-                //if (rblEnglishYes.Checked)
-                //    objLanguage.isenglishinhighschool = 1;
-                //else
-                //    objLanguage.isenglishinhighschool = 0;
-
-                //objLanguage.highschoolgrade = txtHighSchoolGrade.Value;
-                //if (rblPostSecondaryYes.Checked == true)
-                //    objLanguage.isenglishinsecondary = 1;
-                //else
-                //    objLanguage.isenglishinsecondary = 0;
-                //objLanguage.secondaryenglishgrade = txtPostSecondaryGrade.Value;
-
-                if (rblEnglishBackgroundYes.Checked)
-                    objLanguage.isenglishintesive = 1;
-                else if (rblEnglishBackgroundNo.Checked)
-                    objLanguage.isenglishintesive = 2;
-                else
-                    objLanguage.isenglishintesive = 3;
-
-                objLanguage.testname = txtTestName.Value;
-                objLanguage.centerno = txtCentreNo.Value;
-                objLanguage.candidateno = txtCandidateNo.Value;
-                objLanguage.candidateid = txtCandidateID.Value;
-                objLanguage.yearofcompletion = Convert.ToDateTime(txtYearCompletion.Value);
-                objLanguage.instituename = txtNameCollege.Value;
-                objLanguage.qualificationtype = txtQualificationType.Value;
-                // objLanguage.qualificationanme = txtNameQualifucation.Value;
-                if (rblLanguageielts.Checked)
-                    objLanguage.giveenglishtest = 1;
-                else if (rblLanguagepearsons.Checked)
-                    objLanguage.giveenglishtest = 2;
-
-                else
-                    objLanguage.giveenglishtest = 3;
-                objLanguage.examdate = Convert.ToDateTime(txtLanguageTestDate.Value);
-                objLanguage.overallscore = txtLanguageScore.Value;
-
-                objLanguage.speakingscore = txtSpeaking.Value;
-                objLanguage.listeningscore = txtListening.Value;
-                objLanguage.writingscore = txtWriting.Value;
-                objLanguage.readingscore = txtReading.Value;
-                objLanguage.testreportreferenceno = txttestRefno.Value;
-                if (ddlCEFR.SelectedValue != "")
-                {
-                    objLanguage.cefrlevel = ddlCEFR.SelectedValue;
-                    // ddlCEFR.Items.FindByValue(LanguageInfo.cefrlevel.ToString()).Selected = true;
-                }
-                objLanguage.applicantid = userID;
-                objLanguage.lastsavedtime = DateTime.Now;
-                db.applicantlanguagecompetency.Add(objLanguage);
-            }
+            if (LanguageInfo != null)
+                mode = "update";
             else
+                LanguageInfo = objLanguage;
+
+            objLanguage.homelanuage = txthomelanguage.Value;
+            if (ddlLanguage.SelectedValue != "")
             {
-                LanguageInfo.homelanuage = txthomelanguage.Value;
-                if (ddlLanguage.SelectedValue != "")
-                {
-                    LanguageInfo.countryofcourse = ddlLanguage.SelectedValue;
+                objLanguage.countryofcourse = ddlLanguage.SelectedValue;
 
-                }
-                if (ddlStudyMode.SelectedValue != "")
-                {
-                    LanguageInfo.studymode = Convert.ToInt32(ddlStudyMode.SelectedValue);
-
-                }
-                if (ddlGrade.SelectedValue != "")
-                {
-                    LanguageInfo.gradetype = ddlGrade.SelectedValue;
-
-                }
-                if (txtExpectedDategrade.Value != "")
-                    LanguageInfo.expectedgraderesult = Convert.ToDateTime(txtExpectedDategrade.Value);
-
-                LanguageInfo.testname = txtTestName.Value;
-                LanguageInfo.centerno = txtCentreNo.Value;
-                LanguageInfo.candidateno = txtCandidateNo.Value;
-                LanguageInfo.candidateid = txtCandidateID.Value;
-
-                if (rblEnglishBackgroundYes.Checked)
-                    LanguageInfo.isenglishintesive = 1;
-                else if (rblEnglishBackgroundNo.Checked)
-                    LanguageInfo.isenglishintesive = 2;
-                else
-                    LanguageInfo.isenglishintesive = 3;
-
-                //  LanguageInfo.coursename = txtEnglishCourse.Value;
-                LanguageInfo.yearofcompletion = Convert.ToDateTime(txtYearCompletion.Value);
-                LanguageInfo.instituename = txtNameCollege.Value;
-                LanguageInfo.qualificationtype = txtQualificationType.Value;
-                // LanguageInfo.qualificationanme = txtNameQualifucation.Value;
-                if (rblLanguageielts.Checked)
-                    LanguageInfo.giveenglishtest = 1;
-                else if (rblLanguagepearsons.Checked)
-                    LanguageInfo.giveenglishtest = 2;
-
-                else
-                    LanguageInfo.giveenglishtest = 3;
-                if (txtLanguageTestDate.Value != "")
-                    LanguageInfo.examdate = Convert.ToDateTime(txtLanguageTestDate.Value);
-                LanguageInfo.overallscore = txtLanguageScore.Value;
-                LanguageInfo.speakingscore = txtSpeaking.Value;
-                LanguageInfo.listeningscore = txtListening.Value;
-                LanguageInfo.writingscore = txtWriting.Value;
-                LanguageInfo.readingscore = txtReading.Value;
-                LanguageInfo.testreportreferenceno = txttestRefno.Value;
-                LanguageInfo.lastsavedtime = DateTime.Now;
-                if (ddlCEFR.SelectedValue != "")
-                {
-                    LanguageInfo.cefrlevel = ddlCEFR.SelectedValue;
-                    // ddlCEFR.Items.FindByValue(LanguageInfo.cefrlevel.ToString()).Selected = true;
-                }
             }
+            if (ddlStudyMode.SelectedValue != "")
+            {
+                objLanguage.studymode = Convert.ToInt32(ddlStudyMode.SelectedValue);
+
+            }
+            if (ddlGrade.SelectedValue != "")
+            {
+                objLanguage.gradetype = ddlGrade.SelectedValue;
+
+            }
+            if (ddlQualificationType.SelectedValue != "")
+            {
+                objLanguage.qualificationtype = Convert.ToInt32(ddlQualificationType.SelectedValue);
+            }
+            objLanguage.expectedgraderesult = Convert.ToDateTime(txtExpectedDategrade.Value);
+            if (rblEnglishBackgroundYes.Checked)
+                objLanguage.isenglishintesive = 1;
+            else if (rblEnglishBackgroundNot.Checked)
+                objLanguage.isenglishintesive = 2;
+            else if (rblEnglishBackgroundNo.Checked)
+                objLanguage.isenglishintesive = 3;
+
+            objLanguage.testname = txtTestName.Value;
+            objLanguage.centerno = txtCentreNo.Value;
+            objLanguage.candidateno = txtCandidateNo.Value;
+            objLanguage.candidateid = txtCandidateID.Value;
+            objLanguage.yearofcompletion = Convert.ToDateTime(txtYearCompletion.Value);
+            objLanguage.instituename = txtNameCollege.Value;
+            objLanguage.qualificationname= txtQualificationName.Value;
+            if (rblLanguageielts.Checked)
+                objLanguage.giveenglishtest = 1;
+            else if (rblLanguagepearsons.Checked)
+                objLanguage.giveenglishtest = 2;
+            else if (rblLanguagtofel.Checked)
+                objLanguage.giveenglishtest = 3;
+
+            objLanguage.examdate = Convert.ToDateTime(txtLanguageTestDate.Value);
+            objLanguage.overallscore = txtLanguageScore.Value;
+
+            objLanguage.speakingscore = txtSpeaking.Value;
+            objLanguage.listeningscore = txtListening.Value;
+            objLanguage.writingscore = txtWriting.Value;
+            objLanguage.readingscore = txtReading.Value;
+            objLanguage.testreportreferenceno = txttestRefno.Value;
+            if (ddlCEFR.SelectedValue != "")
+            {
+                objLanguage.cefrlevel = ddlCEFR.SelectedValue;                    
+            }
+            objLanguage.applicantid = userID;
+            objLanguage.lastsavedtime = DateTime.Now;
+
+            if(mode == "new")
+                db.applicantlanguagecompetency.Add(objLanguage);
             db.SaveChanges();
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
