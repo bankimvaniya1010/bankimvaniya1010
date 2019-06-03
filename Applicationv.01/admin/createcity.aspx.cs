@@ -15,7 +15,7 @@ public partial class admin_createcity : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null && (Session["UserID"] == null))
+        if (Session["Role"] == null || (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
 
         if (!IsPostBack)
@@ -27,8 +27,9 @@ public partial class admin_createcity : System.Web.UI.Page
         citymaster cityObj = new citymaster();
         try
         {
+            int countryId = Convert.ToInt32(ddlCountry.SelectedItem.Value);
             var existingCity = (from cities in db.citymaster
-                                where cities.name.Equals(txtCityName.Value.Trim())
+                                where cities.name.Equals(txtCityName.Value.Trim()) && cities.country_id == countryId
                                 select cities.name).SingleOrDefault();
             if (string.IsNullOrEmpty(existingCity))
             {
@@ -36,7 +37,7 @@ public partial class admin_createcity : System.Web.UI.Page
                 cityObj.description = txtCityDescription.Value.Trim();
                 cityObj.cost_of_living = Convert.ToDecimal(txtCityCost.Value.Trim());
                 cityObj.around = txtCityAround.Value.Trim();
-                cityObj.country_id = Convert.ToInt32(ddlCountry.SelectedItem.Value);
+                cityObj.country_id = countryId;
                 cityObj.geting_there = txtCityReaching.Value.Trim();
                 cityObj.weather = txtCityWeather.Value.Trim();
 
@@ -46,7 +47,7 @@ public partial class admin_createcity : System.Web.UI.Page
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University already available')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('City alreaady exists in this country')", true);
             }
         }
         catch (Exception ex)

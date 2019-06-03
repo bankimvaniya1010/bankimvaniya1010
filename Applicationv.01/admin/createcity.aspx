@@ -107,4 +107,27 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+         $(document).ready(function () {
+            $('#form1').submit(function () {
+
+                var txtCityCost = $('#txtCityCost').val();
+                var countryValue = $('#ddlCountry').val();
+
+                if (!txtCityCost)
+                    errorMsg("Please enter city's cost of living");
+                else if (isNaN(parseInt(txtCityCost)))
+                    errorMsg("Please enter city's cost of living in number");
+                else if ($('#countryValue').val() == '' || countryValue == 0)
+                    errorMsg("Please select country for city");
+
+            });
+
+            errorMsg(msg)
+            {
+                alert(msg);
+                return false;
+            }
+        });
+    </script>
 </asp:Content>

@@ -18,7 +18,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null && (Session["UserID"] == null))
+        if (Session["Role"] == null || (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
 
         if (!IsPostBack)
@@ -64,13 +64,14 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.distance_from_airport = txtUniAirportDistance.Value.Trim();
                 universityObj.distance_from_railway = txtUniRailDistance.Value.Trim();
                 universityObj.getting_around = txtUniGettingAround.Value.Trim();
+
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University already available')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University already exists')", true);
             }
         }
         catch (Exception ex)

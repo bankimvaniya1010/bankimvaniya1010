@@ -3,7 +3,6 @@
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
 </asp:Content>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-    <form id="form1" runat
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
@@ -254,7 +253,6 @@
             </div>
         </div>
     </div>
-        </form>
     <script type="text/javascript">
         $(document).ready(function () {
 
@@ -280,6 +278,29 @@
             $("#<%=ddlCity.ClientID%>").change(function () {
                 $("#<%=hidCityField.ClientID%>").val($("#<%=ddlCity.ClientID%>").val());
             });
+
+            $('#form1').submit(function () {
+                var txtUniLongitude = $('#txtUniLongitude').val();
+                var txtUniLatitude = $('#txtUniLatitude').val();
+                var countryValue = $('#ddlCountry').val();
+                var cityValue = $('#hidCityField').val();
+
+                if (!txtUniLongitude || isNaN(parseFloat(txtUniLongitude)))
+                    errorMsg("Please enter correct University Longitude");
+                else if (!txtUniLatitude || isNaN(parseFloat(txtUniLatitude)))
+                    errorMsg("Please enter correct University Latitude");
+                else if (countryValue == '' || countryValue == 0)
+                    errorMsg("Please select country for university");
+                else if (cityValue == '' || cityValue == 0)
+                    errorMsg("Please select city for university");
+
+            });
+
+            errorMsg(msg)
+            {
+                alert(msg);
+                return false;
+            }
 
         });
     </script>

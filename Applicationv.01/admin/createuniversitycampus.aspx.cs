@@ -14,7 +14,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null && (Session["UserID"] == null))
+        if (Session["Role"] == null || (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
 
         if (!IsPostBack)
@@ -46,8 +46,9 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
         universitycampus universityCampusObj = new universitycampus();
         try
         {
+            int universityId = Convert.ToInt32(txtUniID.Value.Trim());
             var existingUniversityCampus = (from universityCampus in db.universitycampus
-                                            where universityCampus.campusname.Equals(txtCampName.Value.Trim())
+                                            where universityCampus.campusname.Equals(txtCampName.Value.Trim()) && universityCampus.universityid == universityId
                                             select universityCampus.campusname).SingleOrDefault();
             if (string.IsNullOrEmpty(existingUniversityCampus))
             {
@@ -56,7 +57,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
                 universityCampusObj.facilities = txtCampFacility.Value.Trim();
                 universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
                 universityCampusObj.research = txtCampResearch.Value.Trim();
-                universityCampusObj.universityid = Convert.ToInt32(txtUniID.Value.Trim());
+                universityCampusObj.universityid = universityId;
                 universityCampusObj.facility_id = Convert.ToInt32(ddlFacilities.SelectedItem.Value);
                 
                 db.universitycampus.Add(universityCampusObj);
@@ -65,7 +66,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University already available')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University Campus already exists')", true);
             }
         }
         catch (Exception ex)

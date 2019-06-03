@@ -13,7 +13,7 @@ public partial class createuser : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null && (Session["UserID"] == null)) 
+        if (Session["Role"] == null || (Session["UserID"] == null)) 
             Response.Redirect(webURL +"Login.aspx");
       
         if (!IsPostBack)
