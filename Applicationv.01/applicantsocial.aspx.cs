@@ -19,7 +19,7 @@ public partial class applicantsocial : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
+            Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
@@ -63,6 +63,7 @@ public partial class applicantsocial : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
     private void PopulatePersonalInfo()
     {
         try
@@ -83,16 +84,16 @@ public partial class applicantsocial : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private String setInnerHtml(dynamic obj)
+    {
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+    }
     private void SetControlsUniversitywise(int universityID)
     {
-        try { 
-          string SecondaryLanguage = "";
-        if (Session["SecondaryLang"] != null)
-        {
-            SecondaryLanguage = Session["SecondaryLang"].ToString();
-        }
+        try {
+            string SecondaryLanguage = Utility.GetSecondaryLanguage();
 
-        var fields = (from pfm in db.primaryfieldmaster
+            var fields = (from pfm in db.primaryfieldmaster
                       join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
                       join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
                       where ufm.universityid == universityID && ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
@@ -155,15 +156,15 @@ public partial class applicantsocial : System.Web.UI.Page
                 {
                     case "LINK TO YOUR LINKEDIN PROFILE":
                         linkedin.Attributes.Add("style", "display:block;");
-                        labellinked.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labellinked.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LINK TO YOUR FACEBOOK PROFILE":
                         facebook.Attributes.Add("style", "display:block;");
-                        labelfacebook.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelfacebook.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LINK TO YOUR TWITTER HANDLE":
                         twitter.Attributes.Add("style", "display:block;");
-                        labeltwitter.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeltwitter.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     default:
                         break;
