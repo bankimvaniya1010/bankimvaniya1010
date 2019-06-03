@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Student - Edit account - Fixed layout</title>
 
+    <!-- jQuery -->
+    <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/vendor/jquery.min.js"></script>
+
     <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
     <meta name="robots" content="noindex">
 
@@ -121,6 +124,9 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="Default.aspx">Dashboard</a>
                                             <a class="dropdown-item" href="createuser.aspx">Create User</a>
+                                            <a class="dropdown-item" href="createuniversity.aspx">Create University</a>
+                                            <a class="dropdown-item" href="createuniversitycampus.aspx">Create University Campus</a>
+                                            <a class="dropdown-item" href="createcity.aspx">Create City</a>
                                             <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
                                             <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Preliminary Video</a>
                                             <a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>
@@ -517,10 +523,6 @@
 
 
 
-
-    <!-- jQuery -->
-    <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/vendor/jquery.min.js"></script>
-
     <!-- Bootstrap -->
     <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/vendor/popper.min.js"></script>
     <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/vendor/bootstrap.min.js"></script>
@@ -540,10 +542,6 @@
 
     <!-- App Settings (safe to remove) -->
     <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/js/app-settings.js"></script>
-
-
-
-
 
 
 
