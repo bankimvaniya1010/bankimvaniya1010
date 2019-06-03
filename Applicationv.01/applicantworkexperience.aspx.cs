@@ -18,7 +18,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
+            Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
@@ -97,15 +97,15 @@ public partial class applicantworkexperience : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private String setInnerHtml(dynamic obj)
+    {
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+    }
     private void SetControlsUniversitywise(int universityID)
     {
         try
         {
-            string SecondaryLanguage = "";
-            if (Session["SecondaryLang"] != null)
-            {
-                SecondaryLanguage = Session["SecondaryLang"].ToString();
-            }
+            string SecondaryLanguage = Utility.GetSecondaryLanguage();
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
@@ -171,60 +171,60 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 {
                     case "DO YOU WISH TO RECORD ANY WORK EXPERIENCE THAT MAY BE RELEVANT TO THE COURSE YOU ARE APPLYING FOR?":
                         employmentInfo.Attributes.Add("style", "display:block;");
-                        labelemployment.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemployment.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "WEBSITE":
                         employerwebsite.Attributes.Add("style", "display:block;");
-                        labelemployerwebsite.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemployerwebsite.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF ORGANIZATION":
                         employer.Attributes.Add("style", "display:block;");
-                        labelemployer.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemployer.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
                     case "CITY":
                         employercity.Attributes.Add("style", "display:block;");
-                        labelemployercity.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemployercity.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "COUNTRY":
                         employercountry.Attributes.Add("style", "display:block;");
-                        labelemployercountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemployercountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "POSITION/ROLE IN":
                         position.Attributes.Add("style", "display:block;");
-                        labelposition.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelposition.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "START DATE":
                         startdate.Attributes.Add("style", "display:block;");
-                        labelstartdate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelstartdate.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "END DATE":
                         endate.Attributes.Add("style", "display:block;");
-                        labelendate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelendate.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "BRIEF DESCRIPTION OF WHAT YOU DID":
                         briefDescription.Attributes.Add("style", "display:block;");
-                        labelbriefDescription.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelbriefDescription.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF YOUR REPORTING MANAGER":
                         reportingmanger.Attributes.Add("style", "display:block;");
-                        labelreportingmanger.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelreportingmanger.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
                         employmentverification.Attributes.Add("style", "display:block;");
-                        labelemploymentverification.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemploymentverification.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "RELATIONSHIP WITH THE CONTACT":
                         relationship.Attributes.Add("style", "display:block;");
-                        labelrelationship.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelrelationship.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
                         email.Attributes.Add("style", "display:block;");
-                        labelemail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelemail.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LINKEDIN PROFILE LINK OF THE CONTACT":
                         linkedin.Attributes.Add("style", "display:block;");
-                        labellinkedin.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labellinkedin.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
                     default:

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Validation;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -19,7 +20,7 @@ public partial class applicanteducation : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
+            Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
@@ -34,6 +35,27 @@ public partial class applicanteducation : System.Web.UI.Page
             objCom.BindCountries(ddlDiplomaCountry);
             objCom.BindCountries(ddlHigherCountry);
             objCom.BindCountries(ddlSecondaryCountry);
+            BindrelationswithContact(ddlHighSchoolVerificationRelationship);
+            BindrelationswithContact(ddlSecondaryVerificationRelationship);
+            BindrelationswithContact(ddlHigherVerificationRelationship);
+            BindrelationswithContact(ddlDiplomaVerificationRelationship);
+            FillMonth(ddlHighSchoolStartDateMonth);
+            FillMonth(ddlHighSchoolEndDateMonth);
+            FillMonth(ddlSecondaryStartDateMonth);
+            FillMonth(ddlSecondaryEndDateMonth);
+            FillMonth(ddlHigherStartDateMonth);
+            FillMonth(ddlHigherEndDateMonth);
+            FillMonth(ddlDiplomaStartDateMonth);
+            FillMonth(ddlDiplomaEndDateMonth);
+
+            FillYears(ddlHighSchoolStartDateYear);
+            FillYears(ddlHighSchoolEndDateYear);
+            FillYears(ddlSecondaryStartDateYear);
+            FillYears(ddlSecondaryEndDateYear);
+            FillYears(ddlHigherStartDateYear);
+            FillYears(ddlHigherEndDateYear);
+            FillYears(ddlDiplomaStartDateYear);
+            FillYears(ddlDiplomaEndDateYear);
 
             SetToolTips();
             BindStudyMode(ddlHighSchoolStudyMode);
@@ -57,15 +79,15 @@ public partial class applicanteducation : System.Web.UI.Page
             SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         }
     }
+    private String setInnerHtml(dynamic obj)
+    {
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+    }
     private void SetControlsUniversitywise(int universityID)
     {
         try
         {
-            string SecondaryLanguage = "";
-            if (Session["SecondaryLang"] != null)
-            {
-                SecondaryLanguage = Session["SecondaryLang"].ToString();
-            }
+            string SecondaryLanguage = Utility.GetSecondaryLanguage();
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
@@ -130,189 +152,189 @@ public partial class applicanteducation : System.Web.UI.Page
                 {
                     case "HAVE YOU COMPLETED HIGH SCHOOL":
                         highschool.Attributes.Add("style", "display:block;");
-                        labelhighschool.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "COUNTRY OF HIGH SCHOOL EDUCATION":
                         highschoolCountry.Attributes.Add("style", "display:block;");
-                        labelhighschoolCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "START DATE":
                         highschoolstartDate.Attributes.Add("style", "display:block;");
-                        labelhighschoolstartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolstartDate.InnerHtml = setInnerHtml(fields[k]);
                         SecondarystartDate.Attributes.Add("style", "display:block;");
-                        labelSecondarystartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondarystartDate.InnerHtml = setInnerHtml(fields[k]);
                         higherstartDate.Attributes.Add("style", "display:block;");
-                        labelhigherstartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherstartDate.InnerHtml = setInnerHtml(fields[k]);
                         diplomastartDate.Attributes.Add("style", "display:block;");
-                        labeldiplomastartDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomastartDate.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "END DATE":
                         highschoolendDate.Attributes.Add("style", "display:block;");
-                        labelhighschoolendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolendDate.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryendDate.Attributes.Add("style", "display:block;");
-                        labelSecondaryendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondaryendDate.InnerHtml = setInnerHtml(fields[k]);
                         higherendDate.Attributes.Add("style", "display:block;");
-                        labelhigherendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherendDate.InnerHtml = setInnerHtml(fields[k]);
                         diplomaendDate.Attributes.Add("style", "display:block;");
-                        labeldiplomaendDate.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomaendDate.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF SCHOOL":
                         highschoolName.Attributes.Add("style", "display:block;");
-                        labelhighschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolName.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryschoolName.Attributes.Add("style", "display:block;");
-                        labelSecondaryschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondaryschoolName.InnerHtml = setInnerHtml(fields[k]);
                         higherschoolName.Attributes.Add("style", "display:block;");
-                        labelhigherschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherschoolName.InnerHtml = setInnerHtml(fields[k]);
                         diplomaschoolName.Attributes.Add("style", "display:block;");
-                        labeldiplomaschoolName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomaschoolName.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "QUALIFICATION TYPE":
                         highschoolQualificationtype.Attributes.Add("style", "display:block;");
-                        labelhighschoolQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryQualificationtype.Attributes.Add("style", "display:block;");
-                        labelSecondaryQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondaryQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         higherQualificationtype.Attributes.Add("style", "display:block;");
-                        labelhigherQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         diplomaQualificationtype.Attributes.Add("style", "display:block;");
-                        labeldiplomaQualificationtype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomaQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
                     case "MODE OF STUDY":
                         highschoolstudymode.Attributes.Add("style", "display:block;");
-                        labelhighschoolstudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolstudymode.InnerHtml = setInnerHtml(fields[k]);
                         Secondarystudymode.Attributes.Add("style", "display:block;");
-                        labelSecondarystudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondarystudymode.InnerHtml = setInnerHtml(fields[k]);
                         higherstudymode.Attributes.Add("style", "display:block;");
-                        labelhigherstudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherstudymode.InnerHtml = setInnerHtml(fields[k]);
                         diplomastudymode.Attributes.Add("style", "display:block;");
-                        labeldiplomastudymode.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomastudymode.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LANGUAGE (MEDIUM) OF STUDY":
                         highschoollanguage.Attributes.Add("style", "display:block;");
-                        labelhighschoollanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoollanguage.InnerHtml = setInnerHtml(fields[k]);
                         Secondarylanguage.Attributes.Add("style", "display:block;");
-                        labelSecondarylanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondarylanguage.InnerHtml = setInnerHtml(fields[k]);
                         higherlanguage.Attributes.Add("style", "display:block;");
-                        labelhigherlanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherlanguage.InnerHtml = setInnerHtml(fields[k]);
                         diplomalanguage.Attributes.Add("style", "display:block;");
-                        labeldiplomalanguage.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomalanguage.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "GRADE TYPE":
                         gradetype.Attributes.Add("style", "display:block;");
-                        labelgradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelgradetype.InnerHtml = setInnerHtml(fields[k]);
                         Secondarygradetype.Attributes.Add("style", "display:block;");
-                        labelSecondarygradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondarygradetype.InnerHtml = setInnerHtml(fields[k]);
                         highergradetype.Attributes.Add("style", "display:block;");
-                        labelhighergradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighergradetype.InnerHtml = setInnerHtml(fields[k]);
                         diplomagradetype.Attributes.Add("style", "display:block;");
-                        labeldiplomagradetype.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomagradetype.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "FINAL GRADE ACHIEVED":
                         highschoolgradeachieved.Attributes.Add("style", "display:block;");
-                        labelgradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelgradeachieved.InnerHtml = setInnerHtml(fields[k]);
                         Secondarygradeachieved.Attributes.Add("style", "display:block;");
-                        labelSecondarygradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondarygradeachieved.InnerHtml = setInnerHtml(fields[k]);
                         highergradeachieved.Attributes.Add("style", "display:block;");
-                        labelhighergradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighergradeachieved.InnerHtml = setInnerHtml(fields[k]);
                         diplomagradeachieved.Attributes.Add("style", "display:block;");
-                        labeldiplomagradeachieved.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomagradeachieved.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "EXPECTED DATES WHEN RESULTS WILL BE DECLARED":
                         ExpectedHighSchoolDategrade.Attributes.Add("style", "display:block;");
-                        labelExpectedHighSchoolDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelExpectedHighSchoolDategrade.InnerHtml = setInnerHtml(fields[k]);
                         ExpectedSecondaryDategrade.Attributes.Add("style", "display:block;");
-                        labelExpectedSecondaryDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelExpectedSecondaryDategrade.InnerHtml = setInnerHtml(fields[k]);
                         ExpectedHigherDategrade.Attributes.Add("style", "display:block;");
-                        labelExpectedHigherDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelExpectedHigherDategrade.InnerHtml = setInnerHtml(fields[k]);
                         ExpectedDiplomaDategrade.Attributes.Add("style", "display:block;");
-                        labelExpectedDiplomaDategrade.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelExpectedDiplomaDategrade.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF CONTACT WHO CAN VERIFY THIS QUALIFICATION":
                         highschoolverify.Attributes.Add("style", "display:block;");
-                        labelhighschoolverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolverify.InnerHtml = setInnerHtml(fields[k]);
                         Secondaryverify.Attributes.Add("style", "display:block;");
-                        labelSecondaryverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondaryverify.InnerHtml = setInnerHtml(fields[k]);
                         higherverify.Attributes.Add("style", "display:block;");
-                        labelhigherverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherverify.InnerHtml = setInnerHtml(fields[k]);
                         diplomaverify.Attributes.Add("style", "display:block;");
-                        labeldiplomaverify.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomaverify.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "RELATIONSHIP WITH THE CONTACT":
                         highschoolrelation.Attributes.Add("style", "display:block;");
-                        labelhighschoolrelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolrelation.InnerHtml = setInnerHtml(fields[k]);
                         secondaryschoolrelation.Attributes.Add("style", "display:block;");
-                        labelsecondaryschoolrelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelsecondaryschoolrelation.InnerHtml = setInnerHtml(fields[k]);
                         higherrelation.Attributes.Add("style", "display:block;");
-                        labelhigherrelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherrelation.InnerHtml = setInnerHtml(fields[k]);
                         diplomarelation.Attributes.Add("style", "display:block;");
-                        labeldiplomarelation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomarelation.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
                         highschoolcontactEmail.Attributes.Add("style", "display:block;");
-                        labelhighschoolcontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolcontactEmail.InnerHtml = setInnerHtml(fields[k]);
                         secondarycontactEmail.Attributes.Add("style", "display:block;");
-                        labelsecondarycontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelsecondarycontactEmail.InnerHtml = setInnerHtml(fields[k]);
                         highercontactEmail.Attributes.Add("style", "display:block;");
-                        labelhighercontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighercontactEmail.InnerHtml = setInnerHtml(fields[k]);
                         diplomacontactEmail.Attributes.Add("style", "display:block;");
-                        labeldiplomacontactEmail.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomacontactEmail.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "MOBILE/CELLULAR NUMBER OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
                         highschoolcontactMobile.Attributes.Add("style", "display:block;");
-                        labelhighschoolcontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighschoolcontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         secondarycontactMobile.Attributes.Add("style", "display:block;");
-                        labelsecondarycontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelsecondarycontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         highercontactMobile.Attributes.Add("style", "display:block;");
-                        labelhighercontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighercontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         diplomacontactMobile.Attributes.Add("style", "display:block;");
-                        labeldiplomacontactMobile.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomacontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "HIGHEST EDUCATION":
                         higestEducation.Attributes.Add("style", "display:block;");
-                        labelhigestEducation.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigestEducation.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
                         Secondary.Attributes.Add("style", "display:block;");
-                        labelSecondary.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondary.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "COUNTRY OF SECONDARY EDUCATION":
                         SecondaryCountry.Attributes.Add("style", "display:block;");
-                        labelSecondaryCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelSecondaryCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "Add Subject and their Grades":
                         highshoolgrade.Attributes.Add("style", "display:block;");
-                        btn10th.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        btn10th.Value = setInnerHtml(fields[k]);
                         secondarygrade.Attributes.Add("style", "display:block;");
-                        btn12th.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        btn12th.Value = setInnerHtml(fields[k]);
                         highergrade.Attributes.Add("style", "display:block;");
-                        btnhigher.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        btnhigher.Value = setInnerHtml(fields[k]);
                         diplomagrade.Attributes.Add("style", "display:block;");
-                        btndiploma.Value = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        btndiploma.Value = setInnerHtml(fields[k]);
                         break;
                     case "HAVE YOU COMPLETED ANY HIGHER (UNDER GRADUATE, MASTERS OR PHD) DEGREE":
                         higher.Attributes.Add("style", "display:block;");
-                        labelhigher.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigher.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "Add Another Higher Qualification":
                         addanother.Attributes.Add("style", "display:block;");
-                        btnAddanother.Text = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        btnAddanother.Text = setInnerHtml(fields[k]);
                         break;
 
                     case "HIGHER COURSE":
                         highercourse.Attributes.Add("style", "display:block;");
-                        labelhighercourse.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhighercourse.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "Country of Higher Education":
                         higherCountry.Attributes.Add("style", "display:block;");
-                        labelhigherCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelhigherCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAMS":
                         diploma.Attributes.Add("style", "display:block;");
-                        labeldiploma.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiploma.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "COUNTRY OF DIPLOMA OR CERTIFICATE PROGRAMS":
                         diplomaCountry.Attributes.Add("style", "display:block;");
-                        labeldiplomaCountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldiplomaCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     default:
                         break;
@@ -358,16 +380,25 @@ public partial class applicanteducation : System.Web.UI.Page
                         ddlDiplomaCountry.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "StartDate":
-                        txtStartDate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtDiplomaStartDate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtHigherStartDate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtSecondaryStartDate.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHighSchoolStartDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHighSchoolStartDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlSecondaryStartDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlSecondaryStartDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHigherStartDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHigherStartDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlDiplomaStartDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlDiplomaStartDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
+
                         break;
                     case "Endate":
-                        txtEndDate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtDiplomaEndDate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtHigherEndDate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtSecondaryEndDate.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHighSchoolEndDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHighSchoolEndDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlSecondaryEndDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlSecondaryEndDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHigherEndDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHigherEndDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlDiplomaEndDateMonth.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlDiplomaEndDateYear.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "Schoolname":
                         txtSecondarySchoolName.Attributes.Add("title", lstToolTips[k].tooltips);
@@ -427,10 +458,10 @@ public partial class applicanteducation : System.Web.UI.Page
                         txtDiplomaVerificationName.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "ContactRelation":
-                        txtHighSchoolVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtHigherVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtSecondaryVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtDiplomaVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlDiplomaVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHigherVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlHighSchoolVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlSecondaryVerificationRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "ContactMobile":
                         txtDiplomacontactMobile.Attributes.Add("title", lstToolTips[k].tooltips);
@@ -490,7 +521,23 @@ public partial class applicanteducation : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
+    private void BindrelationswithContact(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var grade = db.educationverificationcontactmaster.ToList();
+            ddl.DataSource = grade;
+            ddl.DataTextField = "description";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
     private void BindEducationMedium(DropDownList ddl)
     {
         try
@@ -528,13 +575,30 @@ public partial class applicanteducation : System.Web.UI.Page
                 {
                     ddlCountryHighSchool.ClearSelection();
                     ddlCountryHighSchool.Items.FindByValue(Convert.ToString(EducationInfo.highschoolcountry)).Selected = true;
+                    bindQualification(ddlHighSchoolQualificationType, Convert.ToInt32(EducationInfo.highschoolcountry));
                 }
+
                 if (EducationInfo.highschoolstartdate != null)
-                    txtStartDate.Value = Convert.ToDateTime(EducationInfo.highschoolstartdate).ToString("yyyy-MM-dd");
+                {
+                    
+                    string[] HighschoolStartDate = EducationInfo.highschoolstartdate.ToString().Split('-');
+                    ddlHighSchoolStartDateMonth.ClearSelection();
+                    ddlHighSchoolStartDateMonth.Items.FindByValue(Convert.ToString(HighschoolStartDate[0])).Selected = true;
+                    ddlHighSchoolStartDateYear.ClearSelection();
+                    ddlHighSchoolStartDateYear.Items.FindByValue(Convert.ToString(HighschoolStartDate[1])).Selected = true;
+                }
                 if (EducationInfo.highschoolendate != null)
-                    txtEndDate.Value = Convert.ToDateTime(EducationInfo.highschoolendate).ToString("yyyy-MM-dd");
+                {
+                    string[] HighschoolEndDate = EducationInfo.highschoolendate.ToString().Split('-');
+                    ddlHighSchoolEndDateMonth.ClearSelection();
+                    ddlHighSchoolEndDateMonth.Items.FindByValue(Convert.ToString(HighschoolEndDate[0])).Selected = true;
+                    ddlHighSchoolEndDateYear.ClearSelection();
+                    ddlHighSchoolEndDateYear.Items.FindByValue(Convert.ToString(HighschoolEndDate[1])).Selected = true;
+                }
+               
+
                 txthighschoolName.Value = EducationInfo.highschoolname;
-                bindQualification(ddlHighSchoolQualificationType, Convert.ToInt32(EducationInfo.highschoolcountry));
+
                 if (EducationInfo.highschoolqualificationtype != null)
                 {
                     ddlHighSchoolQualificationType.ClearSelection();
@@ -567,7 +631,12 @@ public partial class applicanteducation : System.Web.UI.Page
                     txtExpectedHighSchoolResult.Value = Convert.ToDateTime(EducationInfo.highschoolreusltdate).ToString("yyyy-MM-dd");
                 txtHighSchoolVerificationName.Value = EducationInfo.highschoolverificationname;
 
-                txtHighSchoolVerificationRelationship.Value = EducationInfo.highschoolverificationrelationship;
+                if (EducationInfo.highschoolverificationrelationship != null)
+                {
+                    ddlHighSchoolVerificationRelationship.ClearSelection();
+                    ddlHighSchoolVerificationRelationship.Items.FindByValue(EducationInfo.highschoolverificationrelationship.ToString()).Selected = true;
+                }
+
 
                 txtHighSchoolcontactEmail.Value = EducationInfo.highschoolverificationemail;
                 txtHighSchoolcontactMobile.Value = EducationInfo.highschoolverificationmobile;
@@ -586,16 +655,29 @@ public partial class applicanteducation : System.Web.UI.Page
                 {
                     ddlSecondaryCountry.ClearSelection();
                     ddlSecondaryCountry.Items.FindByValue(Convert.ToString(EducationInfo.secondarycountry)).Selected = true;
+                    bindQualification(ddlSecondaryQualificationType, Convert.ToInt32(EducationInfo.secondarycountry));
                 }
                 if (EducationInfo.secondaryresultdate != null)
                     txtExpectedSecondaryResult.Value = Convert.ToDateTime(EducationInfo.secondaryresultdate).ToString("yyyy-MM-dd");
-
                 if (EducationInfo.secondarystartdate != null)
-                    txtSecondaryStartDate.Value = Convert.ToDateTime(EducationInfo.secondarystartdate).ToString("yyyy-MM-dd");
+                {
+                    string[] SecondaryStartDate = EducationInfo.secondarystartdate.ToString().Split('-');
+                    ddlSecondaryStartDateMonth.ClearSelection();
+                    ddlSecondaryStartDateMonth.Items.FindByValue(Convert.ToString(SecondaryStartDate[0])).Selected = true;
+                    ddlSecondaryStartDateYear.ClearSelection();
+                    ddlSecondaryStartDateYear.Items.FindByValue(Convert.ToString(SecondaryStartDate[1])).Selected = true;
+                }
                 if (EducationInfo.secondaryendate != null)
-                    txtSecondaryEndDate.Value = Convert.ToDateTime(EducationInfo.secondaryendate).ToString("yyyy-MM-dd");
+                {
+                    string[] SecondaryEndDate = EducationInfo.secondaryendate.ToString().Split('-');
+                    ddlSecondaryEndDateMonth.ClearSelection();
+                    ddlSecondaryEndDateMonth.Items.FindByValue(Convert.ToString(SecondaryEndDate[0])).Selected = true;
+                    ddlSecondaryEndDateYear.ClearSelection();
+                    ddlSecondaryEndDateYear.Items.FindByValue(Convert.ToString(SecondaryEndDate[1])).Selected = true;
+                }
+
                 txtSecondarySchoolName.Value = EducationInfo.secondaryname;
-                bindQualification(ddlSecondaryQualificationType, Convert.ToInt32(EducationInfo.secondarycountry));
+
                 if (EducationInfo.secondaryqualificationtype != null)
                 {
                     ddlSecondaryQualificationType.ClearSelection();
@@ -625,7 +707,13 @@ public partial class applicanteducation : System.Web.UI.Page
 
 
                 txtSecondaryVerificationName.Value = EducationInfo.secondaryverificationname;
-                txtSecondaryVerificationRelationship.Value = EducationInfo.secondaryverificationrelationship;
+                if (EducationInfo.secondaryverificationrelationship != null)
+                {
+                    ddlSecondaryVerificationRelationship.ClearSelection();
+                    ddlSecondaryVerificationRelationship.Items.FindByValue(EducationInfo.secondaryverificationrelationship.ToString()).Selected = true;
+                }
+
+
                 txtSecondarycontactEmail.Value = EducationInfo.secondaryverificationemail;
                 txtSecondarycontactMobile.Value = EducationInfo.secondaryverificationmobile;
 
@@ -643,13 +731,27 @@ public partial class applicanteducation : System.Web.UI.Page
                 {
                     ddlDiplomaCountry.ClearSelection();
                     ddlDiplomaCountry.Items.FindByValue(Convert.ToString(EducationInfo.diplomacountry)).Selected = true;
+                    bindQualification(ddlDiplomaQualificationType, Convert.ToInt32(EducationInfo.diplomacountry));
                 }
                 if (EducationInfo.diplomastartdate != null)
-                    txtDiplomaStartDate.Value = Convert.ToDateTime(EducationInfo.diplomastartdate).ToString("yyyy-MM-dd");
+                {
+                    string[] DiplomaStartDate = EducationInfo.diplomastartdate.ToString().Split('-');
+                    ddlDiplomaStartDateMonth.ClearSelection();
+                    ddlDiplomaStartDateMonth.Items.FindByValue(Convert.ToString(DiplomaStartDate[0])).Selected = true;
+                    ddlDiplomaStartDateYear.ClearSelection();
+                    ddlDiplomaStartDateYear.Items.FindByValue(Convert.ToString(DiplomaStartDate[1])).Selected = true;
+                }
                 if (EducationInfo.diplomaendate != null)
-                    txtDiplomaEndDate.Value = Convert.ToDateTime(EducationInfo.diplomaendate).ToString("yyyy-MM-dd");
+                {
+                    string[] DiplomaEndDate = EducationInfo.diplomaendate.ToString().Split('-');
+                    ddlDiplomaEndDateMonth.ClearSelection();
+                    ddlDiplomaEndDateMonth.Items.FindByValue(Convert.ToString(DiplomaEndDate[0])).Selected = true;
+                    ddlDiplomaEndDateYear.ClearSelection();
+                    ddlDiplomaEndDateYear.Items.FindByValue(Convert.ToString(DiplomaEndDate[1])).Selected = true;
+                }
+              
                 txtDiplomaschoolName.Value = EducationInfo.diplomaschoolname;
-                bindQualification(ddlDiplomaQualificationType, Convert.ToInt32(EducationInfo.diplomacountry));
+
                 if (EducationInfo.diplomaqualificationtype != null)
                 {
                     ddlDiplomaQualificationType.ClearSelection();
@@ -681,7 +783,12 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (EducationInfo.diplomaresultdate != null)
                     txtExpectedDiplomaResult.Value = Convert.ToDateTime(EducationInfo.diplomaresultdate).ToString("yyyy-MM-dd");
                 txtDiplomaVerificationName.Value = EducationInfo.diplomaverificationname;
-                txtDiplomaVerificationRelationship.Value = EducationInfo.diplomaverificationrelationship;
+                if (EducationInfo.diplomaverificationrelationship != null)
+                {
+                    ddlDiplomaVerificationRelationship.ClearSelection();
+                    ddlDiplomaVerificationRelationship.Items.FindByValue(EducationInfo.diplomaverificationrelationship.ToString()).Selected = true;
+                }
+
                 txtDiplomacontactEmail.Value = EducationInfo.diplomaverificationemail;
                 txtDiplomacontactMobile.Value = EducationInfo.diplomaverificationmobile;
 
@@ -704,18 +811,32 @@ public partial class applicanteducation : System.Web.UI.Page
                 {
                     ddlHigherCountry.ClearSelection();
                     ddlHigherCountry.Items.FindByValue(HigherEducation.countryofhighereducation).Selected = true;
+                    bindQualification(ddlHigherQualificationType, Convert.ToInt32(HigherEducation.countryofhighereducation));
                 }
                 if (HigherEducation.coursename != null)
                 {
                     ddlCourse.ClearSelection();
                     ddlCourse.Items.FindByValue(HigherEducation.coursename).Selected = true;
                 }
-                if (txtHigherStartDate.Value != "")
-                    txtHigherStartDate.Value = Convert.ToDateTime(HigherEducation.startdate).ToString("yyyy-MM-dd");
-                if (txtHigherEndDate.Value != "")
-                    txtHigherEndDate.Value = Convert.ToDateTime(HigherEducation.endate).ToString("yyyy-MM-dd");
+                if (HigherEducation.startdate != null)
+                {
+                    string[] HigherStartDate = HigherEducation.startdate.ToString().Split('-');
+                    ddlHigherStartDateMonth.ClearSelection();
+                    ddlHigherStartDateMonth.Items.FindByValue(Convert.ToString(HigherStartDate[0])).Selected = true;
+                    ddlHigherStartDateYear.ClearSelection();
+                    ddlHigherStartDateYear.Items.FindByValue(Convert.ToString(HigherStartDate[1])).Selected = true;
+                }
+                if (HigherEducation.endate != null)
+                {
+                    string[] HigherEndDate = HigherEducation.endate.ToString().Split('-');
+                    ddlHigherEndDateMonth.ClearSelection();
+                    ddlHigherEndDateMonth.Items.FindByValue(Convert.ToString(HigherEndDate[0])).Selected = true;
+                    ddlHigherEndDateYear.ClearSelection();
+                    ddlHigherEndDateYear.Items.FindByValue(Convert.ToString(HigherEndDate[1])).Selected = true;
+                }
+               
                 txtHigherschoolName.Value = HigherEducation.schoolname;
-                bindQualification(ddlHigherQualificationType, Convert.ToInt32(HigherEducation.countryofhighereducation));
+
                 if (HigherEducation.qualificationtype != null)
                 {
                     ddlHigherQualificationType.ClearSelection();
@@ -747,9 +868,48 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (HigherEducation.resultdate != null)
                     txtExpectedHigherDategrade.Value = Convert.ToDateTime(HigherEducation.resultdate).ToString("yyyy-MM-dd");
                 txtHigherVerificationName.Value = HigherEducation.verificationname;
-                txtHigherVerificationRelationship.Value = HigherEducation.relationshipwithverification;
+                if (HigherEducation.relationshipwithverification != null)
+                {
+                    ddlHigherVerificationRelationship.ClearSelection();
+                    ddlHigherVerificationRelationship.Items.FindByValue(HigherEducation.relationshipwithverification.ToString()).Selected = true;
+                }
+
                 txtHighercontactEmail.Value = HigherEducation.verificationemail;
                 txtHighercontactMobile.Value = HigherEducation.verificationmobile;
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    public void FillMonth(DropDownList ddl)
+    {
+        try
+        {
+            // ddlYear.Items.FindByValue(System.DateTime.Now.Year.ToString()).Selected = true;  //set current year as selected
+            DateTimeFormatInfo info = DateTimeFormatInfo.GetInstance(null);
+            //Fill Months
+            for (int i = 1; i <= 12; i++)
+            {
+                ddl.Items.Add(new ListItem(info.GetMonthName(i).Substring(0, 3).ToUpper(), i.ToString().PadLeft(2, '0')));
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+    public void FillYears(DropDownList ddl)
+    {
+        try
+        {
+            int maxYers = DateTime.Now.Year;
+            int minYrs = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["YearsSince"].ToString());
+            for (int i = minYrs; i <= maxYers; i++)
+            {
+                ddl.Items.Add(i.ToString());
             }
         }
         catch (Exception ex)
@@ -779,10 +939,11 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.ishighschooldone = 3;
                 if (ddlCountryHighSchool.SelectedValue != "")
                     objEdu.highschoolcountry = Convert.ToInt32(ddlCountryHighSchool.SelectedValue);
-                if (txtStartDate.Value != "")
-                    objEdu.highschoolstartdate = Convert.ToDateTime(txtStartDate.Value);
-                if (txtEndDate.Value != "")
-                    objEdu.highschoolendate = Convert.ToDateTime(txtEndDate.Value);
+
+                if ((ddlHighSchoolStartDateMonth.SelectedValue != "") && (ddlHighSchoolStartDateYear.SelectedValue != ""))
+                    objEdu.highschoolstartdate = ddlHighSchoolStartDateMonth.SelectedValue + "-" + ddlHighSchoolStartDateYear.SelectedValue;
+                if ((ddlHighSchoolEndDateMonth.SelectedValue != "") && (ddlHighSchoolEndDateYear.SelectedValue != ""))
+                    objEdu.highschoolendate = ddlHighSchoolEndDateMonth.SelectedValue + "-" + ddlHighSchoolEndDateYear.SelectedValue;
                 objEdu.highschoolname = txthighschoolName.Value;
                 if (ddlHighSchoolQualificationType.SelectedValue != "")
                     objEdu.highschoolqualificationtype = Convert.ToInt32(ddlHighSchoolQualificationType.SelectedValue);
@@ -802,7 +963,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (txtExpectedHighSchoolResult.Value != "")
                     objEdu.highschoolreusltdate = Convert.ToDateTime(txtExpectedHighSchoolResult.Value);
                 objEdu.highschoolverificationname = txtHighSchoolVerificationName.Value;
-                objEdu.highschoolverificationrelationship = txtHighSchoolVerificationRelationship.Value;
+                objEdu.highschoolverificationrelationship = Convert.ToInt32(ddlHighSchoolVerificationRelationship.SelectedValue);
                 objEdu.highschoolverificationemail = txtHighSchoolcontactEmail.Value;
                 objEdu.highschoolverificationmobile = txtHighSchoolcontactMobile.Value;
                 objEdu.highestdegree = txtHigestEducation.Value;
@@ -817,10 +978,10 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.issecondarydone = 3;
                 if (ddlSecondaryCountry.SelectedValue != "")
                     objEdu.secondarycountry = Convert.ToInt32(ddlSecondaryCountry.SelectedValue);
-                if (txtSecondaryStartDate.Value != "")
-                    objEdu.secondarystartdate = Convert.ToDateTime(txtSecondaryStartDate.Value);
-                if (txtSecondaryEndDate.Value != "")
-                    objEdu.secondaryendate = Convert.ToDateTime(txtSecondaryEndDate.Value);
+                if ((ddlSecondaryStartDateMonth.SelectedValue != "") && (ddlSecondaryStartDateYear.SelectedValue != ""))
+                    objEdu.secondarystartdate = ddlSecondaryStartDateMonth.SelectedValue + "-" + ddlSecondaryStartDateYear.SelectedValue;
+                if ((ddlSecondaryEndDateMonth.SelectedValue != "") && (ddlSecondaryEndDateYear.SelectedValue != ""))
+                    objEdu.secondaryendate = ddlSecondaryEndDateMonth.SelectedValue + "-" + ddlSecondaryEndDateYear.SelectedValue;
 
                 objEdu.secondaryname = txtSecondarySchoolName.Value;
                 if (ddlSecondaryQualificationType.SelectedValue != "")
@@ -841,7 +1002,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);
 
                 objEdu.secondaryverificationname = txtSecondaryVerificationName.Value;
-                objEdu.secondaryverificationrelationship = txtSecondaryVerificationRelationship.Value;
+                objEdu.secondaryverificationrelationship = Convert.ToInt32(ddlSecondaryVerificationRelationship.SelectedValue);
                 objEdu.secondaryverificationemail = txtSecondarycontactEmail.Value;
                 objEdu.secondaryverificationmobile = txtSecondarycontactMobile.Value;
 
@@ -855,10 +1016,12 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.isdiplomadone = 3;
                 if (ddlDiplomaCountry.SelectedValue != "")
                     objEdu.diplomacountry = Convert.ToInt32(ddlDiplomaCountry.SelectedValue);
-                if (txtDiplomaStartDate.Value != "")
-                    objEdu.diplomastartdate = Convert.ToDateTime(txtDiplomaStartDate.Value);
-                if (txtDiplomaEndDate.Value != "")
-                    objEdu.diplomaendate = Convert.ToDateTime(txtDiplomaEndDate.Value);
+                if ((ddlDiplomaStartDateMonth.SelectedValue != "") && (ddlDiplomaStartDateYear.SelectedValue != ""))
+                    objEdu.diplomastartdate = ddlDiplomaStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
+                if ((ddlDiplomaEndDateMonth.SelectedValue != "") && (ddlDiplomaEndDateYear.SelectedValue != ""))
+                    objEdu.diplomaendate = ddlDiplomaEndDateMonth.SelectedValue + "-" + ddlDiplomaEndDateYear.SelectedValue;
+
+
                 objEdu.diplomaschoolname = txtDiplomaschoolName.Value;
                 if (ddlDiplomaQualificationType.SelectedValue != "")
                     objEdu.diplomaqualificationtype = Convert.ToInt32(ddlDiplomaQualificationType.SelectedValue);
@@ -878,7 +1041,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
 
                 objEdu.diplomaverificationname = txtDiplomaVerificationName.Value;
-                objEdu.diplomaverificationrelationship = txtDiplomaVerificationRelationship.Value;
+                objEdu.diplomaverificationrelationship = Convert.ToInt32(ddlDiplomaVerificationRelationship.SelectedValue);
                 objEdu.diplomaverificationemail = txtDiplomacontactEmail.Value;
                 objEdu.diplomaverificationmobile = txtDiplomacontactMobile.Value;
 
@@ -906,10 +1069,11 @@ public partial class applicanteducation : System.Web.UI.Page
                     EducationInfo.ishighschooldone = 3;
                 if (ddlCountryHighSchool.SelectedValue != "")
                     EducationInfo.highschoolcountry = Convert.ToInt32(ddlCountryHighSchool.SelectedValue);
-                if (txtStartDate.Value != "")
-                    EducationInfo.highschoolstartdate = Convert.ToDateTime(txtStartDate.Value);
-                if (txtEndDate.Value != "")
-                    EducationInfo.highschoolendate = Convert.ToDateTime(txtEndDate.Value);
+                if ((ddlHighSchoolStartDateMonth.SelectedValue != "") && (ddlHighSchoolStartDateYear.SelectedValue != ""))
+                    EducationInfo.highschoolstartdate = ddlHighSchoolStartDateMonth.SelectedValue + "-" + ddlHighSchoolStartDateYear.SelectedValue;
+                if ((ddlHighSchoolEndDateMonth.SelectedValue != "") && (ddlHighSchoolEndDateYear.SelectedValue != ""))
+                    EducationInfo.highschoolendate = ddlHighSchoolEndDateMonth.SelectedValue + "-" + ddlHighSchoolEndDateYear.SelectedValue;
+
                 EducationInfo.highschoolname = txthighschoolName.Value;
                 if (ddlHighSchoolQualificationType.SelectedValue != "")
                     EducationInfo.highschoolqualificationtype = Convert.ToInt32(ddlHighSchoolQualificationType.SelectedValue);
@@ -929,7 +1093,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (txtExpectedHighSchoolResult.Value != "")
                     EducationInfo.highschoolreusltdate = Convert.ToDateTime(txtExpectedHighSchoolResult.Value);
                 EducationInfo.highschoolverificationname = txtHighSchoolVerificationName.Value;
-                EducationInfo.highschoolverificationrelationship = txtHighSchoolVerificationRelationship.Value;
+                EducationInfo.highschoolverificationrelationship = Convert.ToInt32(ddlHighSchoolVerificationRelationship.SelectedValue);
                 EducationInfo.highschoolverificationemail = txtHighSchoolcontactEmail.Value;
                 EducationInfo.highschoolverificationmobile = txtHighSchoolcontactMobile.Value;
                 EducationInfo.highestdegree = txtHigestEducation.Value;
@@ -944,10 +1108,11 @@ public partial class applicanteducation : System.Web.UI.Page
                     EducationInfo.issecondarydone = 3;
                 if (ddlSecondaryCountry.SelectedValue != "")
                     EducationInfo.secondarycountry = Convert.ToInt32(ddlSecondaryCountry.SelectedValue);
-                if (txtSecondaryStartDate.Value != "")
-                    EducationInfo.secondarystartdate = Convert.ToDateTime(txtSecondaryStartDate.Value);
-                if (txtSecondaryEndDate.Value != "")
-                    EducationInfo.secondaryendate = Convert.ToDateTime(txtSecondaryEndDate.Value);
+                if ((ddlSecondaryStartDateMonth.SelectedValue != "") && (ddlSecondaryStartDateYear.SelectedValue != ""))
+                    EducationInfo.secondarystartdate = ddlSecondaryStartDateMonth.SelectedValue + "-" + ddlSecondaryStartDateYear.SelectedValue;
+                if ((ddlSecondaryEndDateMonth.SelectedValue != "") && (ddlSecondaryEndDateYear.SelectedValue != ""))
+                    EducationInfo.secondaryendate = ddlSecondaryEndDateMonth.SelectedValue + "-" + ddlSecondaryEndDateYear.SelectedValue;
+
 
                 EducationInfo.secondaryname = txtSecondarySchoolName.Value;
                 if (ddlSecondaryQualificationType.SelectedValue != "")
@@ -968,7 +1133,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     EducationInfo.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);
 
                 EducationInfo.secondaryverificationname = txtSecondaryVerificationName.Value;
-                EducationInfo.secondaryverificationrelationship = txtSecondaryVerificationRelationship.Value;
+                EducationInfo.secondaryverificationrelationship = Convert.ToInt32(ddlSecondaryVerificationRelationship.SelectedValue);
                 EducationInfo.secondaryverificationemail = txtSecondarycontactEmail.Value;
                 EducationInfo.secondaryverificationmobile = txtSecondarycontactMobile.Value;
 
@@ -982,10 +1147,10 @@ public partial class applicanteducation : System.Web.UI.Page
                     EducationInfo.isdiplomadone = 3;
                 if (ddlDiplomaCountry.SelectedValue != "")
                     EducationInfo.diplomacountry = Convert.ToInt32(ddlDiplomaCountry.SelectedValue);
-                if (txtDiplomaStartDate.Value != "")
-                    EducationInfo.diplomastartdate = Convert.ToDateTime(txtDiplomaStartDate.Value);
-                if (txtDiplomaEndDate.Value != "")
-                    EducationInfo.diplomaendate = Convert.ToDateTime(txtDiplomaEndDate.Value);
+                if ((ddlDiplomaStartDateMonth.SelectedValue != "") && (ddlDiplomaStartDateYear.SelectedValue != ""))
+                    EducationInfo.diplomastartdate = ddlDiplomaStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
+                if ((ddlDiplomaEndDateMonth.SelectedValue != "") && (ddlDiplomaEndDateYear.SelectedValue != ""))
+                    EducationInfo.diplomaendate = ddlDiplomaEndDateMonth.SelectedValue + "-" + ddlDiplomaEndDateYear.SelectedValue;
                 EducationInfo.diplomaschoolname = txtDiplomaschoolName.Value;
                 if (ddlDiplomaQualificationType.SelectedValue != "")
                     EducationInfo.diplomaqualificationtype = Convert.ToInt32(ddlDiplomaQualificationType.SelectedValue);
@@ -1005,7 +1170,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     EducationInfo.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
 
                 EducationInfo.diplomaverificationname = txtDiplomaVerificationName.Value;
-                EducationInfo.diplomaverificationrelationship = txtDiplomaVerificationRelationship.Value;
+                EducationInfo.diplomaverificationrelationship = Convert.ToInt32(ddlDiplomaVerificationRelationship.SelectedValue); ;
                 EducationInfo.diplomaverificationemail = txtDiplomacontactEmail.Value;
                 EducationInfo.diplomaverificationmobile = txtDiplomacontactMobile.Value;
 
@@ -1042,10 +1207,11 @@ public partial class applicanteducation : System.Web.UI.Page
                     if (ddlHigherCountry.SelectedValue != "")
                         objEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
                     objEducation.coursename = ddlCourse.SelectedValue;
-                    if (txtHigherStartDate.Value != "")
-                        objEducation.startdate = Convert.ToDateTime(txtHigherStartDate.Value);
-                    if (txtHigherEndDate.Value != "")
-                        objEducation.endate = Convert.ToDateTime(txtHigherEndDate.Value);
+                    if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
+                        objEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
+                    if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
+                        objEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
+
                     objEducation.schoolname = txtHigherschoolName.Value;
                     if (ddlHigherQualificationType.SelectedValue != "")
                         objEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
@@ -1065,7 +1231,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     if (txtExpectedHigherDategrade.Value != "")
                         objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
 
-                    objEducation.relationshipwithverification = txtHigherVerificationRelationship.Value;
+                    objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
                     objEducation.verificationemail = txtHighercontactEmail.Value;
                     objEducation.verificationname = txtHigherVerificationName.Value;
                     objEducation.verificationmobile = txtHighercontactMobile.Value;
@@ -1085,10 +1251,12 @@ public partial class applicanteducation : System.Web.UI.Page
                     if (ddlHigherCountry.SelectedValue != "")
                         HigherEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
                     HigherEducation.coursename = ddlCourse.SelectedValue;
-                    if (txtHigherStartDate.Value != "")
-                        HigherEducation.startdate = Convert.ToDateTime(txtHigherStartDate.Value);
-                    if (txtHigherEndDate.Value != "")
-                        HigherEducation.endate = Convert.ToDateTime(txtHigherEndDate.Value);
+                    if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
+                        HigherEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
+                    if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
+                        HigherEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
+
+
                     HigherEducation.schoolname = txtHigherschoolName.Value;
                     if (ddlHigherQualificationType.SelectedValue != "")
                         HigherEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
@@ -1108,7 +1276,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     if (txtExpectedHigherDategrade.Value != "")
                         HigherEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
 
-                    HigherEducation.relationshipwithverification = txtHigherVerificationRelationship.Value;
+                    HigherEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
                     HigherEducation.verificationemail = txtHighercontactEmail.Value;
                     HigherEducation.verificationname = txtHigherVerificationName.Value;
                     HigherEducation.verificationmobile = txtHighercontactMobile.Value;
@@ -1133,7 +1301,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                    where pInfo.applicantid == userID && pInfo.coursename == ddlCourse.SelectedValue
                                    select pInfo).FirstOrDefault();
             applicanthighereducation objEducation = new applicanthighereducation();
-           
+
             if (HigherEducation == null)
             {
                 objEducation.applicantid = userID;
@@ -1147,10 +1315,10 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (ddlHigherCountry.SelectedValue != "")
                     objEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
                 objEducation.coursename = ddlCourse.SelectedValue;
-                if (txtHigherStartDate.Value != "")
-                    objEducation.startdate = Convert.ToDateTime(txtHigherStartDate.Value);
-                if (txtHigherEndDate.Value != "")
-                    objEducation.endate = Convert.ToDateTime(txtHigherEndDate.Value);
+                if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
+                    objEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
+                if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
+                    objEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
                 objEducation.schoolname = txtHigherschoolName.Value;
                 if (ddlHigherQualificationType.SelectedValue != "")
                     objEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
@@ -1170,7 +1338,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (txtExpectedHigherDategrade.Value != "")
                     objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
 
-                objEducation.relationshipwithverification = txtHigherVerificationRelationship.Value;
+                objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
                 objEducation.verificationemail = txtHighercontactEmail.Value;
                 objEducation.verificationname = txtHigherVerificationName.Value;
                 objEducation.verificationmobile = txtHighercontactMobile.Value;
@@ -1190,10 +1358,10 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (ddlHigherCountry.SelectedValue != "")
                     HigherEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
                 HigherEducation.coursename = ddlCourse.SelectedValue;
-                if (txtHigherStartDate.Value != "")
-                    HigherEducation.startdate = Convert.ToDateTime(txtHigherStartDate.Value);
-                if (txtHigherEndDate.Value != "")
-                    HigherEducation.endate = Convert.ToDateTime(txtHigherEndDate.Value);
+                if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
+                    HigherEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
+                if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
+                    HigherEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
                 HigherEducation.schoolname = txtHigherschoolName.Value;
                 if (ddlHigherQualificationType.SelectedValue != "")
                     HigherEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
@@ -1213,7 +1381,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (txtExpectedHigherDategrade.Value != "")
                     HigherEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
 
-                HigherEducation.relationshipwithverification = txtHigherVerificationRelationship.Value;
+                HigherEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
                 HigherEducation.verificationemail = txtHighercontactEmail.Value;
                 HigherEducation.verificationname = txtHigherVerificationName.Value;
                 HigherEducation.verificationmobile = txtHighercontactMobile.Value;
@@ -1239,7 +1407,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                                  qualificationid = qm.qualificationid,
                                                  qualificationname = qm.qualificationname,
                                              }).ToList();
-            
+
             ListItem lst = new ListItem("Please select", "0");
 
             ddl.DataSource = qualificationContriesWise;
@@ -1672,10 +1840,22 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (ddlHigherCountry.SelectedValue != "")
                     HigherEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
                 HigherEducation.coursename = ddlCourse.SelectedValue;
-                if (txtHigherStartDate.Value != "")
-                    HigherEducation.startdate = Convert.ToDateTime(txtHigherStartDate.Value);
-                if (txtHigherEndDate.Value != "")
-                    HigherEducation.endate = Convert.ToDateTime(txtHigherEndDate.Value);
+                if (HigherEducation.startdate != null)
+                {
+                    string[] HigherStartDate = HigherEducation.startdate.ToString().Split('-');
+                    ddlHigherStartDateMonth.ClearSelection();
+                    ddlHigherStartDateMonth.Items.FindByValue(Convert.ToString(HigherStartDate[0])).Selected = true;
+                    ddlHigherStartDateYear.ClearSelection();
+                    ddlHigherStartDateYear.Items.FindByValue(Convert.ToString(HigherStartDate[1])).Selected = true;
+                }
+                if (HigherEducation.endate != null)
+                {
+                    string[] HigherEndDate = HigherEducation.endate.ToString().Split('-');
+                    ddlHigherEndDateMonth.ClearSelection();
+                    ddlHigherEndDateMonth.Items.FindByValue(Convert.ToString(HigherEndDate[0])).Selected = true;
+                    ddlHigherEndDateYear.ClearSelection();
+                    ddlHigherEndDateYear.Items.FindByValue(Convert.ToString(HigherEndDate[1])).Selected = true;
+                }
                 HigherEducation.schoolname = txtHigherschoolName.Value;
                 if (ddlHigherQualificationType.SelectedValue != "")
                     HigherEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
@@ -1695,7 +1875,11 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (txtExpectedHigherDategrade.Value != "")
                     HigherEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
 
-                HigherEducation.relationshipwithverification = txtHigherVerificationRelationship.Value;
+                if (HigherEducation.relationshipwithverification != null)
+                {
+                    ddlHigherVerificationRelationship.ClearSelection();
+                    ddlHigherVerificationRelationship.Items.FindByValue(HigherEducation.relationshipwithverification.ToString()).Selected = true;
+                }
                 HigherEducation.verificationemail = txtHighercontactEmail.Value;
                 HigherEducation.verificationname = txtHigherVerificationName.Value;
                 HigherEducation.verificationmobile = txtHighercontactMobile.Value;

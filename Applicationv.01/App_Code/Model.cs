@@ -192,8 +192,8 @@ public partial class applicanteducationdetails
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> ishighschooldone { get; set; }
     public Nullable<int> highschoolcountry { get; set; }
-    public Nullable<System.DateTime> highschoolstartdate { get; set; }
-    public Nullable<System.DateTime> highschoolendate { get; set; }
+    public string highschoolstartdate { get; set; }
+    public string highschoolendate { get; set; }
     public string highschoolname { get; set; }
     public Nullable<int> highschoolqualificationtype { get; set; }
     public Nullable<int> highschoolmodeid { get; set; }
@@ -202,14 +202,14 @@ public partial class applicanteducationdetails
     public Nullable<int> highschoolgradedeclared { get; set; }
     public Nullable<System.DateTime> highschoolreusltdate { get; set; }
     public string highschoolverificationname { get; set; }
-    public string highschoolverificationrelationship { get; set; }
+    public Nullable<int> highschoolverificationrelationship { get; set; }
     public string highschoolverificationemail { get; set; }
     public string highschoolverificationmobile { get; set; }
     public string highestdegree { get; set; }
     public Nullable<int> issecondarydone { get; set; }
     public Nullable<int> secondarycountry { get; set; }
-    public Nullable<System.DateTime> secondarystartdate { get; set; }
-    public Nullable<System.DateTime> secondaryendate { get; set; }
+    public string secondarystartdate { get; set; }
+    public string secondaryendate { get; set; }
     public string secondaryname { get; set; }
     public Nullable<int> secondaryqualificationtype { get; set; }
     public Nullable<int> secondarymodestudy { get; set; }
@@ -218,13 +218,13 @@ public partial class applicanteducationdetails
     public Nullable<int> secondarygradedeclared { get; set; }
     public Nullable<System.DateTime> secondaryresultdate { get; set; }
     public string secondaryverificationname { get; set; }
-    public string secondaryverificationrelationship { get; set; }
+    public Nullable<int> secondaryverificationrelationship { get; set; }
     public string secondaryverificationemail { get; set; }
     public string secondaryverificationmobile { get; set; }
     public Nullable<int> isdiplomadone { get; set; }
     public Nullable<int> diplomacountry { get; set; }
-    public Nullable<System.DateTime> diplomastartdate { get; set; }
-    public Nullable<System.DateTime> diplomaendate { get; set; }
+    public string diplomastartdate { get; set; }
+    public string diplomaendate { get; set; }
     public string diplomaschoolname { get; set; }
     public Nullable<int> diplomaqualificationtype { get; set; }
     public Nullable<int> diplomastudymodeid { get; set; }
@@ -233,7 +233,7 @@ public partial class applicanteducationdetails
     public Nullable<int> diplomagradeachieved { get; set; }
     public Nullable<System.DateTime> diplomaresultdate { get; set; }
     public string diplomaverificationname { get; set; }
-    public string diplomaverificationrelationship { get; set; }
+    public Nullable<int> diplomaverificationrelationship { get; set; }
     public string diplomaverificationemail { get; set; }
     public string diplomaverificationmobile { get; set; }
     public Nullable<int> ishighereducation { get; set; }
@@ -280,8 +280,8 @@ public partial class applicanthighereducation
     public Nullable<int> applicantid { get; set; }
     public string coursename { get; set; }
     public string countryofhighereducation { get; set; }
-    public Nullable<System.DateTime> startdate { get; set; }
-    public Nullable<System.DateTime> endate { get; set; }
+    public string startdate { get; set; }
+    public string endate { get; set; }
     public string schoolname { get; set; }
     public string qualificationtype { get; set; }
     public Nullable<int> studymodeid { get; set; }
@@ -290,7 +290,7 @@ public partial class applicanthighereducation
     public Nullable<int> finalgradeacheived { get; set; }
     public Nullable<System.DateTime> resultdate { get; set; }
     public string verificationname { get; set; }
-    public string relationshipwithverification { get; set; }
+    public Nullable<int> relationshipwithverification { get; set; }
     public string verificationemail { get; set; }
     public string verificationmobile { get; set; }
 }
@@ -323,6 +323,7 @@ public partial class applicantlanguagecompetency
     public string cefrlevel { get; set; }
     public string testreportreferenceno { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
+    public string qualificationname { get; set; }
 }
 
 public partial class applicantprogressbar
@@ -425,9 +426,9 @@ public partial class citymaster
     public string name { get; set; }
     public int country_id { get; set; }
 
+    public virtual countriesmaster countriesmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<university_master> university_master { get; set; }
-    public virtual countriesmaster countriesmaster { get; set; }
 }
 
 public partial class controlmaster
@@ -499,6 +500,12 @@ public partial class educationmediummaster
     public string description { get; set; }
 }
 
+public partial class educationverificationcontactmaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
 public partial class facilitiesmaster
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -552,17 +559,6 @@ public partial class grademaster
 {
     public int id { get; set; }
     public string description { get; set; }
-}
-
-public partial class GTE_documentverification
-{
-    public int documentid { get; set; }
-    public Nullable<int> applicantid { get; set; }
-    public string documentname { get; set; }
-    public Nullable<int> documentvalidationId { get; set; }
-    public Nullable<int> agentid { get; set; }
-    public Nullable<System.DateTime> lastupdatedate { get; set; }
-    public string remarks { get; set; }
 }
 
 public partial class inferencemaster

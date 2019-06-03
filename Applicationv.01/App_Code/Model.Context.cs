@@ -36,7 +36,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applcantdetailfieldvalidationmaster> applcantdetailfieldvalidationmaster { get; set; }
     public virtual DbSet<applicant_education> applicant_education { get; set; }
     public virtual DbSet<applicantdatavalidation> applicantdatavalidation { get; set; }
+    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<applicantdocumentmaster> applicantdocumentmaster { get; set; }
+    public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
     public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
     public virtual DbSet<applicantformmaster> applicantformmaster { get; set; }
     public virtual DbSet<applicanthighereducation> applicanthighereducation { get; set; }
@@ -48,13 +50,18 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantuniversitymapping> applicantuniversitymapping { get; set; }
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
+    public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
+    public virtual DbSet<citymaster> citymaster { get; set; }
     public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
     public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<coursetypemaster> coursetypemaster { get; set; }
+    public virtual DbSet<credentialmaster> credentialmaster { get; set; }
     public virtual DbSet<disabilitymaster> disabilitymaster { get; set; }
     public virtual DbSet<documentvalidationbyagent> documentvalidationbyagent { get; set; }
     public virtual DbSet<educationmediummaster> educationmediummaster { get; set; }
+    public virtual DbSet<educationverificationcontactmaster> educationverificationcontactmaster { get; set; }
+    public virtual DbSet<facilitiesmaster> facilitiesmaster { get; set; }
     public virtual DbSet<fieldvalidationmaster> fieldvalidationmaster { get; set; }
     public virtual DbSet<formfieldmapping> formfieldmapping { get; set; }
     public virtual DbSet<formfieldmaster> formfieldmaster { get; set; }
@@ -69,6 +76,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<preliminaryvideomaster> preliminaryvideomaster { get; set; }
     public virtual DbSet<primaryfieldmaster> primaryfieldmaster { get; set; }
     public virtual DbSet<profilemaster> profilemaster { get; set; }
+    public virtual DbSet<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
+    public virtual DbSet<qualificationmaster> qualificationmaster { get; set; }
     public virtual DbSet<question_master> question_master { get; set; }
     public virtual DbSet<registrationcourses> registrationcourses { get; set; }
     public virtual DbSet<relative_master> relative_master { get; set; }
@@ -87,15 +96,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
-    public virtual DbSet<citymaster> citymaster { get; set; }
-    public virtual DbSet<credentialmaster> credentialmaster { get; set; }
-    public virtual DbSet<facilitiesmaster> facilitiesmaster { get; set; }
-    public virtual DbSet<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
-    public virtual DbSet<qualificationmaster> qualificationmaster { get; set; }
-    public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
-    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
-    public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
-    public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
