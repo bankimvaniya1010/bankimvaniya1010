@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class admin_universitymaster : System.Web.UI.Page
+{
+    Logger objLog = new Logger();
+    private GTEEntities db = new GTEEntities();
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if ((Session["Role"] == null) || (Session["UserID"] == null))
+            Response.Redirect(webURL + "Login.aspx");
+        if (!IsPostBack)
+            BindGrid();
+    }
+
+    private void BindGrid()
+    {
+        try
+        {
+            var universitiesList = (from um in db.university_master
+                                    join cities in db.citymaster on um.cityid equals cities.city_id
+                                    join countries in db.countriesmaster on um.countryid equals countries.id
+                                    select new
+                                    {
+                                        univerityID = um.universityid,
+                                        universityName = um.university_name,
+                                        city = cities.name,
+                                        country = countries.country_name,
+                                        address = um.address
+                                    }).ToList();
+            if (universitiesList != null)
+            {
+                universityGridView.DataSource = universitiesList;
+                universityGridView.DataBind();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void universityGridView_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+        int id = Convert.ToInt32(universityGridView.DataKeys[e.NewEditIndex].Value);
+        Response.Redirect("~/admin/edituniversitydetails.aspx?universityID=" +id);
+    }
+}

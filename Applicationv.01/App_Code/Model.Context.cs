@@ -51,7 +51,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
-    public virtual DbSet<citymaster> citymaster { get; set; }
     public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
     public virtual DbSet<coursemaster> coursemaster { get; set; }
@@ -93,11 +92,16 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
+    public virtual DbSet<customfieldmaster> customfieldmaster { get; set; }
+    public virtual DbSet<customfieldvalue> customfieldvalue { get; set; }
+    public virtual DbSet<relationshipwithcontact> relationshipwithcontact { get; set; }
+    public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
+    public virtual DbSet<citymaster> citymaster { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

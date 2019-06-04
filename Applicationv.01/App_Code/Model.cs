@@ -420,7 +420,7 @@ public partial class citymaster
 
     public int city_id { get; set; }
     public string description { get; set; }
-    public decimal cost_of_living { get; set; }
+    public Nullable<decimal> cost_of_living { get; set; }
     public string around { get; set; }
     public string weather { get; set; }
     public string geting_there { get; set; }
@@ -443,8 +443,8 @@ public partial class countriesmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public countriesmaster()
     {
-        this.citymaster = new HashSet<citymaster>();
         this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
+        this.citymaster = new HashSet<citymaster>();
     }
 
     public int id { get; set; }
@@ -452,9 +452,9 @@ public partial class countriesmaster
     public string country_name { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<citymaster> citymaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<citymaster> citymaster { get; set; }
 }
 
 public partial class coursemaster
@@ -481,6 +481,22 @@ public partial class credentialmaster
     public string ranking_by_subject { get; set; }
     public string ranking_by_region { get; set; }
     public bool rank_improved { get; set; }
+}
+
+public partial class customfieldmaster
+{
+    public int customfieldid { get; set; }
+    public int universityid { get; set; }
+    public int formid { get; set; }
+    public string labeldescription { get; set; }
+    public string type { get; set; }
+}
+
+public partial class customfieldvalue
+{
+    public int id { get; set; }
+    public Nullable<int> customfieldid { get; set; }
+    public string value { get; set; }
 }
 
 public partial class disabilitymaster
@@ -563,6 +579,17 @@ public partial class grademaster
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class GTE_documentverification
+{
+    public int documentid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public string documentname { get; set; }
+    public Nullable<int> documentvalidationId { get; set; }
+    public Nullable<int> agentid { get; set; }
+    public Nullable<System.DateTime> lastupdatedate { get; set; }
+    public string remarks { get; set; }
 }
 
 public partial class inferencemaster
@@ -690,6 +717,12 @@ public partial class registrationcourses
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<studentcoursemapping> studentcoursemapping { get; set; }
+}
+
+public partial class relationshipwithcontact
+{
+    public int relationshiptid { get; set; }
+    public string relationshipname { get; set; }
 }
 
 public partial class relative_master
