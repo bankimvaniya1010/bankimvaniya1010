@@ -153,7 +153,7 @@ public partial class admin_applicantdetailsvalidation : System.Web.UI.Page
                     case "Nationality":
                         dr["id"] = validateDatalist[k].id;
                         dr["KeyName"] = validateDatalist[k].keyname;
-                        dr["KeyValue"] = objCom.GetCountryDiscription(objApplicant[0].nationality);
+                        dr["KeyValue"] = objCom.GetCountryDiscription(Convert.ToInt32(objApplicant[0].nationality));
                         dr["isValid"] = validateDatalist[k].isvalid;
                         dr["proofofValidation"] = validateDatalist[k].proofofvalidation;
                         dr["remarks"] = validateDatalist[k].remarks;
@@ -162,7 +162,7 @@ public partial class admin_applicantdetailsvalidation : System.Web.UI.Page
                     case "Birth Country":
                         dr["id"] = validateDatalist[k].id;
                         dr["KeyName"] = validateDatalist[k].keyname;
-                        dr["KeyValue"] = objCom.GetCountryDiscription(objApplicant[0].countryofbirth); ;
+                        dr["KeyValue"] = objCom.GetCountryDiscription(Convert.ToInt32(objApplicant[0].countryofbirth)); ;
                         dr["isValid"] = validateDatalist[k].isvalid;
                         dr["proofofValidation"] = validateDatalist[k].proofofvalidation;
                         dr["remarks"] = validateDatalist[k].remarks;

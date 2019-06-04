@@ -34,6 +34,8 @@ public partial class personaldetails : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
+            objCom.BindCountries(ddlBirthCountry);
+            objCom.BindCountries(ddlNationality);
             BindAgent();
             BindTitle();
             FillMonth();
@@ -196,12 +198,12 @@ public partial class personaldetails : System.Web.UI.Page
                 if (profileInfo.nationality != null)
                 {
                     ddlNationality.ClearSelection();
-                    ddlNationality.Items.FindByValue(profileInfo.nationality).Selected = true;
+                    ddlNationality.Items.FindByValue(profileInfo.nationality.ToString()).Selected = true;
                 }
                 if (profileInfo.countryofbirth != null)
                 {
                     ddlBirthCountry.ClearSelection();
-                    ddlBirthCountry.Items.FindByValue(profileInfo.countryofbirth).Selected = true;
+                    ddlBirthCountry.Items.FindByValue(profileInfo.countryofbirth.ToString()).Selected = true;
                 }
                 if (profileInfo.maritalstatus != null)
                 {
@@ -283,9 +285,9 @@ public partial class personaldetails : System.Web.UI.Page
             else
                 profileInfo.gender = 0;
             if (ddlNationality.SelectedValue != "")
-                profileInfo.nationality = ddlNationality.SelectedValue;
+                profileInfo.nationality = Convert.ToInt32(ddlNationality.SelectedValue);
             if (ddlBirthCountry.SelectedValue != "")
-                profileInfo.countryofbirth = ddlBirthCountry.SelectedValue;
+                profileInfo.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
             profileInfo.othertitle = txtTitle.Value;
             profileInfo.personaldetailsavedtime = DateTime.Now;
             if (rblDisabilityYes.Checked)
@@ -300,26 +302,7 @@ public partial class personaldetails : System.Web.UI.Page
                 profileInfo.isstudentreferbyagent = 0;
             if (ddlAgent.SelectedValue != "")
                 profileInfo.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
-            // profileInfo.personaldetailsaved_time= DateTime.Now.ToString()
-            //if (rblStudyYes.Checked)
-            //{
-            //    profileInfo.studentid = txtStudentID.Value;
-            //    profileInfo.haveyoustudyinstitue = 1;
-            //}
-            //else
-            //    profileInfo.haveyoustudyinstitue = 0;
-            //if (rblApplyYes.Checked)
-            //{
-            //    profileInfo.studentid = txtAppliedStudentID.Value;
-            //    profileInfo.haveyouappliedinstitue = 1;
-            //}
-            //else
-            //    profileInfo.haveyouappliedinstitue = 0;
-            //profileInfo.coursename = txtCourseName.Value;
-            //profileInfo.courseenddate = Convert.ToDateTime(txtCourseEndate.Value);
-            //profileInfo.coursestartdate = Convert.ToDateTime(txtCourseStartDate.Value);
-            //txtCourseEndate.Value = Convert.ToDateTime(profileInfo.courseenddate).ToString("yyyy-MM-dd");
-            //txtCourseStartDate.Value = Convert.ToDateTime(profileInfo.courseenddate).ToString("yyyy-MM-dd");
+            
             db.SaveChanges();
             lblMessage.Text = "Your Personal Details have been saved";
             lblMessage.Visible = true;
@@ -398,72 +381,44 @@ public partial class personaldetails : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
+    private String setInnerHtml(dynamic obj)
+    {
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+    }
     private void SetControlsUniversitywise(int universityID)
     {
         try
         {
-            
-            string SecondaryLanguage = "";
-            if (Session["SecondaryLang"] != null)
-            {
-                SecondaryLanguage = Session["SecondaryLang"].ToString();
-            }
+
+            string SecondaryLanguage = Utility.GetSecondaryLanguage();
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.universityid == universityID && ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
+                          where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = afm.fieldnameinstructions,
-                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
-            if (fields.Count == 0 && SecondaryLanguage != "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
-                          select new
-                          {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = afm.fieldnameinstructions,
-                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
-                          }).ToList();
-            }
-            else if (fields.Count == 0 && SecondaryLanguage == "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && ufm.universityid == universityID
-                          select new
-                          {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
-                          }).ToList();
-            }
+
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
-
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where pfm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
             }
             for (int k = 0; k < fields.Count; k++)
@@ -472,63 +427,63 @@ public partial class personaldetails : System.Web.UI.Page
                 {
                     case "Title":
                         title.Attributes.Add("style", "display:block;");
-                        labeltitle.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeltitle.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "FIRST NAME":
                         firstname.Attributes.Add("style", "display:block;");
-                        labelfirstname.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelfirstname.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LAST NAME":
                         lastname.Attributes.Add("style", "display:block;");
-                        labellastname.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labellastname.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "PREFERRED NAME":
                         preferedname.Attributes.Add("style", "display:block;");
-                        labelpreferreName.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelpreferreName.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "OTHER MIDDLE NAMES":
                         middlename.Attributes.Add("style", "display:block;");
-                        labelmiddlename.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "DATE OF BIRTH":
                         dob.Attributes.Add("style", "display:block;");
-                        labeldob.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldob.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "GENDER":
                         gender.Attributes.Add("style", "display:block;");
-                        labelgender.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelgender.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NATIONALITY AND CITIZENSHIP":
                         nationality.Attributes.Add("style", "display:block;");
-                        labelNationality.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelNationality.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "COUNTRY OF BIRTH":
                         birthcountry.Attributes.Add("style", "display:block;");
-                        labelbirthcountry.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelbirthcountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "MARITAL STATUS":
                         marital.Attributes.Add("style", "display:block;");
-                        labelMarital.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelMarital.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
                         disability.Attributes.Add("style", "display:block;");
-                        labeldisability.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldisability.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "DISABILITY DESCRIPTION":
                         disabilitydesc.Attributes.Add("style", "display:block;");
-                        labeldisabilitydesc.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeldisabilitydesc.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "ARE YOU REFERRED BY AGENT":
                         agent.Attributes.Add("style", "display:block;");
-                        labelagent.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelagent.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "AGENT NAME":
                         agentList.Attributes.Add("style", "display:block;");
-                        labelagentList.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labelagentList.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "IF DIDN'T FIND AGENT NAME IN THE LIST THEN ADD HIS EMAIL ID TO SENT REGISTRATION LINK":
                         addnewagent.Attributes.Add("style", "display:block;");
-                        labeladdnewagent.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
+                        labeladdnewagent.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
                     default:

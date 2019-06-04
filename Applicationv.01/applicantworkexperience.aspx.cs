@@ -29,6 +29,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
+            objCom.BindCountries(ddlCountry);
             SetToolTips();
             // PopulateEmployerInfo(1);
             BindEmploymentDetails(); SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
@@ -109,61 +110,33 @@ public partial class applicantworkexperience : System.Web.UI.Page
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.universityid == universityID && ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
+                          where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = afm.fieldnameinstructions,
-                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
-            if (fields.Count == 0 && SecondaryLanguage != "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
-                          select new
-                          {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = afm.fieldnameinstructions,
-                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
-                          }).ToList();
-            }
-            else if (fields.Count == 0 && SecondaryLanguage == "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && ufm.universityid == universityID
-                          select new
-                          {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
-                          }).ToList();
-            }
+
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
-
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where pfm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
             }
-
 
             for (int k = 0; k < fields.Count; k++)
             {
@@ -256,7 +229,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 if (employerInfo.country != null)
                 {
                     ddlCountry.ClearSelection();
-                    ddlCountry.Items.FindByValue(employerInfo.country).Selected = true;
+                    ddlCountry.Items.FindByValue(employerInfo.country.ToString()).Selected = true;
                 }
                 txtPosition.Value = employerInfo.designation;
                 txtStartDate.Value = Convert.ToDateTime(employerInfo.durationfrom).ToString("yyyy-MM-dd");
@@ -294,7 +267,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 if (ddlCountry.SelectedValue != "")
                 {
 
-                    objEmployer.country = ddlCountry.SelectedValue;
+                    objEmployer.country = Convert.ToInt32(ddlCountry.SelectedValue);
 
                 }
                 objEmployer.designation = txtPosition.Value;
@@ -328,7 +301,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                     employerInfo.city = txtCity.Value;
                     if (ddlCountry.SelectedValue != "")
                     {
-                        employerInfo.country = ddlCountry.SelectedValue;
+                        employerInfo.country = Convert.ToInt32(ddlCountry.SelectedValue);
 
                     }
                     employerInfo.designation = txtPosition.Value;

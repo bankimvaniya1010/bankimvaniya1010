@@ -347,7 +347,7 @@ public partial class applicantlanguage : System.Web.UI.Page
             var qualificationType = (from qm in db.qualificationmaster
                                      join qcm in db.qualificationcountriesmapping on qm.qualificationid equals qcm.qualificationid
                                      join adm in db.applicantdetails on userID equals adm.applicantid
-                                     where qcm.countryid.ToString() == adm.postalcountry
+                                     where qcm.countryid == adm.postalcountry
                                      select new
                                      {
                                          description = qm.qualificationname,
