@@ -126,8 +126,8 @@
           <Property Name="middlename" Type="varchar" MaxLength="50" />
           <Property Name="dateofbirth" Type="datetime" Precision="0" />
           <Property Name="gender" Type="int" />
-          <Property Name="nationality" Type="varchar" MaxLength="45" />
-          <Property Name="countryofbirth" Type="varchar" MaxLength="45" />
+          <Property Name="nationality" Type="int" />
+          <Property Name="countryofbirth" Type="int" />
           <Property Name="maritalstatus" Type="int" />
           <Property Name="isdisable" Type="int" />
           <Property Name="disabilitydescription" Type="varchar" MaxLength="50" />
@@ -136,7 +136,7 @@
           <Property Name="postaladdrees3" Type="varchar" MaxLength="45" />
           <Property Name="postalcity" Type="varchar" MaxLength="45" />
           <Property Name="postalstate" Type="varchar" MaxLength="45" />
-          <Property Name="postalcountry" Type="varchar" MaxLength="5" />
+          <Property Name="postalcountry" Type="int" />
           <Property Name="postalpostcode" Type="varchar" MaxLength="8" />
           <Property Name="residentailpostcode" Type="varchar" MaxLength="8" />
           <Property Name="residentialaddress1" Type="varchar" MaxLength="45" />
@@ -144,7 +144,7 @@
           <Property Name="residentialaddress3" Type="varchar" MaxLength="45" />
           <Property Name="residentialcity" Type="varchar" MaxLength="45" />
           <Property Name="residentialstate" Type="varchar" MaxLength="45" />
-          <Property Name="residentialcountry" Type="varchar" MaxLength="45" />
+          <Property Name="residentialcountry" Type="int" />
           <Property Name="mobileno" Type="varchar" MaxLength="45" />
           <Property Name="homephone" Type="varchar" MaxLength="45" />
           <Property Name="workphone" Type="varchar" MaxLength="45" />
@@ -256,7 +256,7 @@
           <Property Name="organization" Type="varchar" MaxLength="100" />
           <Property Name="website" Type="varchar" MaxLength="45" />
           <Property Name="city" Type="varchar" MaxLength="45" />
-          <Property Name="country" Type="varchar" MaxLength="45" />
+          <Property Name="country" Type="int" />
           <Property Name="contactpersonwithdetails" Type="varchar" MaxLength="200" />
           <Property Name="salary" Type="float" />
           <Property Name="durationfrom" Type="date" />
@@ -1364,8 +1364,8 @@
           <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="dateofbirth" Type="DateTime" />
           <Property Name="gender" Type="Int32" />
-          <Property Name="nationality" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="countryofbirth" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nationality" Type="Int32" />
+          <Property Name="countryofbirth" Type="Int32" />
           <Property Name="maritalstatus" Type="Int32" />
           <Property Name="isdisable" Type="Int32" />
           <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1374,7 +1374,7 @@
           <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalcountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="postalcountry" Type="Int32" />
           <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -1382,7 +1382,7 @@
           <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialcountry" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcountry" Type="Int32" />
           <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -1494,7 +1494,7 @@
           <Property Name="organization" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="city" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="country" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="country" Type="Int32" />
           <Property Name="contactpersonwithdetails" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="salary" Type="Single" />
           <Property Name="durationfrom" Type="DateTime" />

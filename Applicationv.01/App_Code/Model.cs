@@ -120,8 +120,8 @@ public partial class applicantdetails
     public string middlename { get; set; }
     public Nullable<System.DateTime> dateofbirth { get; set; }
     public Nullable<int> gender { get; set; }
-    public string nationality { get; set; }
-    public string countryofbirth { get; set; }
+    public Nullable<int> nationality { get; set; }
+    public Nullable<int> countryofbirth { get; set; }
     public Nullable<int> maritalstatus { get; set; }
     public Nullable<int> isdisable { get; set; }
     public string disabilitydescription { get; set; }
@@ -130,7 +130,7 @@ public partial class applicantdetails
     public string postaladdrees3 { get; set; }
     public string postalcity { get; set; }
     public string postalstate { get; set; }
-    public string postalcountry { get; set; }
+    public Nullable<int> postalcountry { get; set; }
     public string postalpostcode { get; set; }
     public string residentailpostcode { get; set; }
     public string residentialaddress1 { get; set; }
@@ -138,7 +138,7 @@ public partial class applicantdetails
     public string residentialaddress3 { get; set; }
     public string residentialcity { get; set; }
     public string residentialstate { get; set; }
-    public string residentialcountry { get; set; }
+    public Nullable<int> residentialcountry { get; set; }
     public string mobileno { get; set; }
     public string homephone { get; set; }
     public string workphone { get; set; }
@@ -247,7 +247,7 @@ public partial class applicantemployerdetails
     public string organization { get; set; }
     public string website { get; set; }
     public string city { get; set; }
-    public string country { get; set; }
+    public Nullable<int> country { get; set; }
     public string contactpersonwithdetails { get; set; }
     public Nullable<float> salary { get; set; }
     public Nullable<System.DateTime> durationfrom { get; set; }

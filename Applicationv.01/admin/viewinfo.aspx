@@ -69,7 +69,7 @@
                                                 GENDER:<%= objApplicant[0].gender.ToString() == "1" ? "Male" : "Female" %>
                                             </div>
                                             <div class="col-md-6">
-                                                NATIONALITY AND CITIZENSHIP:<%=objComm.GetCountryDiscription(objApplicant[0].nationality) %>
+                                                NATIONALITY AND CITIZENSHIP:<%=objComm.GetCountryDiscription(Convert.ToInt32(objApplicant[0].nationality)) %>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                COUNTRY OF BIRTH:<%=objComm.GetCountryDiscription(objApplicant[0].countryofbirth) %>
+                                                COUNTRY OF BIRTH:<%=objComm.GetCountryDiscription(Convert.ToInt32(objApplicant[0].countryofbirth)) %>
                                             </div>
                                             <div class="col-md-6">
                                                 MARITAL STATUS: <%=objComm.GetMaritalStatus(Convert.ToInt32(objApplicant[0].maritalstatus)) %>
@@ -914,7 +914,7 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                COUNTRY:<%=objComm.GetCountryDiscription(objEmployer[k].country) %>
+                                                COUNTRY:<%=objComm.GetCountryDiscription(Convert.ToInt32(objEmployer[k].country)) %>
                                             </div>
                                             <div class="col-md-6">
                                                 POSITION/ROLE IN:<%=objEmployer[k].designation==null?"":objEmployer[k].designation.ToString() %>
