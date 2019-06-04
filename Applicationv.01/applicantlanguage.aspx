@@ -294,27 +294,18 @@
                     </div>
                 </div>
                 <div id="page-nav" class="col-lg-auto page-nav">
-
                     <div>
                         <span id="tooltip"></span>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
-
-
         <div class="container page__container">
             <div class="footer">
             </div>
-
         </div>
     </div>
     <script> 
-
-
         function showHideEnglishBackground(highschool)
         {
             if (highschool == 'rblEnglishBackgroundYes')
@@ -326,6 +317,8 @@
                 $("#<%=QualificationName.ClientID%>").show();
                 $("#<%=ExpectedDategrade.ClientID%>").hide();
                 $("#<%=gradeachieved.ClientID%>").show();
+                $("#<%=gradetype.ClientID%>").show();
+                $("#<%=studymode.ClientID%>").show();
                 
             }
             else if (highschool == 'rblEnglishBackgroundNot') {
@@ -406,8 +399,6 @@
             });
         });
 
-
-
         $('#ContentPlaceHolder1_txtLanguageTestDate').flatpickr({
 
             dateFormat: 'Y-m-d'
@@ -420,7 +411,6 @@
 
             dateFormat: 'Y-m-d'
         });
-
         //document.getElementById("ContentPlaceHolder1_dob.ClientID%>").flatpickr({
         //    wrap: true,
         //    weekNumbers: true,
@@ -430,10 +420,5 @@
         //        console.log("changed.ClientID%>");
         //    }
         //});
-
-
-
     </script>
-
-
 </asp:Content>
