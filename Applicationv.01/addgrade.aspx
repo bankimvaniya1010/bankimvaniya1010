@@ -50,7 +50,7 @@
                                         <div class="form-row">
                                             <label id="label-email" for="email" class="col-md-3 col-form-label form-label">Qualification</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlCourse" CssClass="form-control" runat="server" >
+                                                <asp:DropDownList ID="ddlCourse" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="" Text="Select Course"></asp:ListItem>
                                                     <asp:ListItem Value="tenth" Text="10Th"></asp:ListItem>
                                                     <asp:ListItem Value="twelth" Text="12th"></asp:ListItem>
@@ -69,7 +69,17 @@
                                         <div class="form-row">
                                             <label id="label-Mobile" for="Mobile" class="col-md-3 col-form-label form-label">Subject</label>
                                             <div class="col-md-6">
-                                                <input id="txtSubject" runat="server" type="text" placeholder="Subject" value="" class="form-control" />
+                                                <asp:DropDownList ID="ddlsubjects" CssClass="form-control" runat="server"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group-item" id="other" style="display: none;">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Others">
+                                        <div class="form-row">
+                                            <label id="label-others" for="Mobile" class="col-md-3 col-form-label form-label">Other Subject</label>
+                                            <div class="col-md-6">
+                                                <input id="txtOther" runat="server" type="text" placeholder="Subject" value="" class="form-control" />
                                             </div>
                                         </div>
                                     </div>
@@ -117,6 +127,7 @@
             </div>
         </div>
     </form>
+    <script src="assets/vendor/jquery.min.js"></script>
     <script type="text/javascript">
         function RefreshParent() {
             if (window.opener != null && !window.opener.closed) {
@@ -124,6 +135,18 @@
             }
         }
         window.onbeforeunload = RefreshParent;
+        $(document).ready(function () {
+            $('#<%=ddlsubjects.ClientID%>').change(function () {
+               
+                if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') {
+                    $('#other').css({ 'display': 'block' });
+                }
+                else {
+                    $('#other').css({ 'display': 'none' });
+                }
+
+            });
+        });
     </script>
 </body>
 </html>

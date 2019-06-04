@@ -202,27 +202,35 @@
                                             <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                 <asp:GridView ID="grd10" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grd10_DataBound" OnRowDeleted="grd10_RowDeleted" OnRowDeleting="grd10_RowDeleting">
                                                     <Columns>
+                                                        <asp:BoundField DataField="applicantgradeid"  HeaderText="ID" InsertVisible="False"
+                                                            ReadOnly="True" SortExpression="applicantgradeid" />
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbldesignation" runat="server"
-                                                                    Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                <asp:Label ID="lblcoursename" runat="server"
+                                                                    Text='<%#Eval("coursename")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblorganization" runat="server"
+                                                                <asp:Label ID="lblsubject" runat="server"
                                                                     Text='<%#Eval("subject")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblothers" runat="server"
+                                                                    Text='<%#Eval("othersubject")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                <asp:Label ID="lblGradeType" runat="server"
                                                                     Text='<%#Eval("gradetype")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                <asp:Label ID="lblGrade" runat="server"
                                                                     Text='<%#Eval("studentgrade")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
@@ -416,31 +424,38 @@
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdSecondary" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdSecondary_DataBound" OnRowDeleted="grdSecondary_RowDeleted" OnRowDeleting="grdSecondary_RowDeleting">
                                                         <Columns>
+                                                            <asp:BoundField DataField="applicantgradeid"  HeaderText="ID" InsertVisible="False"
+                                                                ReadOnly="True" SortExpression="applicantgradeid" />
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lbldesignation" runat="server"
-                                                                        Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                    <asp:Label ID="lblcoursename" runat="server"
+                                                                        Text='<%#Eval("coursename")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblorganization" runat="server"
+                                                                    <asp:Label ID="lblsubject" runat="server"
                                                                         Text='<%#Eval("subject")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblothers" runat="server"
+                                                                        Text='<%#Eval("othersubject")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    <asp:Label ID="lblGradeType" runat="server"
                                                                         Text='<%#Eval("gradetype")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    <asp:Label ID="lblGrade" runat="server"
                                                                         Text='<%#Eval("studentgrade")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-
                                                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
                                                         </Columns>
                                                     </asp:GridView>
@@ -647,27 +662,35 @@
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdHigher" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigher_DataBound" OnRowDeleted="grdHigher_RowDeleted" OnRowDeleting="grdHigher_RowDeleting">
                                                         <Columns>
+                                                            <asp:BoundField DataField="applicantgradeid"  HeaderText="ID" InsertVisible="False"
+                                                                ReadOnly="True" SortExpression="applicantgradeid" />
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lbldesignation" runat="server"
-                                                                        Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                    <asp:Label ID="lblcoursename" runat="server"
+                                                                        Text='<%#Eval("coursename")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblorganization" runat="server"
+                                                                    <asp:Label ID="lblsubject" runat="server"
                                                                         Text='<%#Eval("subject")%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblothers" runat="server"
+                                                                        Text='<%#Eval("othersubject")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    <asp:Label ID="lblGradeType" runat="server"
                                                                         Text='<%#Eval("gradetype")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                                 <ItemTemplate>
-                                                                    <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                    <asp:Label ID="lblGrade" runat="server"
                                                                         Text='<%#Eval("studentgrade")%>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
@@ -698,6 +721,7 @@
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdHigherCourses" DataKeyNames="applicanthighereducationid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigherCourses_DataBound" OnRowDeleted="grdHigherCourses_RowDeleted" OnRowDeleting="grdHigherCourses_RowDeleting" OnRowEditing="grdHigherCourses_RowEditing" OnRowCommand="grdHigherCourses_RowCommand">
                                                         <Columns>
+                                                            
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="id" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblId" runat="server"
@@ -789,7 +813,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlDiplomaEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -921,27 +945,35 @@
                                             <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                 <asp:GridView ID="grdDiploma" runat="server" DataKeyNames="applicantgradeid" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdDiploma_DataBound" OnRowDeleted="grdDiploma_RowDeleted" OnRowDeleting="grdDiploma_RowDeleting">
                                                     <Columns>
+                                                        <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
+                                                            ReadOnly="True" SortExpression="applicantgradeid" />
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lbldesignation" runat="server"
-                                                                    Text='<%#Eval("courseid")%>'></asp:Label>
+                                                                <asp:Label ID="lblcoursename" runat="server"
+                                                                    Text='<%#Eval("coursename")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblorganization" runat="server"
+                                                                <asp:Label ID="lblsubject" runat="server"
                                                                     Text='<%#Eval("subject")%>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblothers" runat="server"
+                                                                    Text='<%#Eval("othersubject")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                <asp:Label ID="lblGradeType" runat="server"
                                                                     Text='<%#Eval("gradetype")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblcontactpersonwithdetails" runat="server"
+                                                                <asp:Label ID="lblGrade" runat="server"
                                                                     Text='<%#Eval("studentgrade")%>'></asp:Label>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
@@ -1021,27 +1053,31 @@
             $("#<%=higestEducation.ClientID%>").hide()
             // Attach Button click event listener 
             $("#<%=btn10th.ClientID%>").click(function () {
+                var country = $("#<%=ddlCountryHighSchool.ClientID%>").val();
                 var grade = $("#<%=ddlHighSchoolGrade.ClientID%>").val();
                 var course = "tenth"
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             $("#<%=btn12th.ClientID%>").click(function () {
+                var country = $("#<%=ddlSecondaryCountry.ClientID%>").val();
                 var grade = $("#<%=ddlSecondaryGrade.ClientID%>").val();
                 var course = "twelth"
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             $("#<%=btnhigher.ClientID%>").click(function () {
+                var country = $("#<%=ddlHigherCountry.ClientID%>").val();
                 var grade = $("#<%=ddlHigherGrade.ClientID%>").val();
                 var course = $("#<%=ddlCourse.ClientID%>").val()
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             $("#<%=btndiploma.ClientID%>").click(function () {
+                var country = $("#<%=ddlDiplomaCountry.ClientID%>").val();
                 var grade = $("#<%=ddlDiplomaGrade.ClientID%>").val();
                 var course = "diploma"
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             var highschool = $("input[type=radio][name='ctl00$ContentPlaceHolder1$highschool']:checked").val()
@@ -1666,7 +1702,7 @@
         //});
 
         function ConfirmOnDelete(item) {
-            if (confirm("Are you sure to delete: " + item + "?.ClientID%>") == true)
+            if (confirm("Are you sure to delete: " + item + "") == true)
                 return true;
             else
                 return false;
