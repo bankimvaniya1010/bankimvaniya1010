@@ -362,11 +362,12 @@ public partial class applicantscores
 public partial class applicantsubjectwisegrade
 {
     public int applicantgradeid { get; set; }
-    public string courseid { get; set; }
+    public string coursename { get; set; }
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> gradeid { get; set; }
-    public string subject { get; set; }
+    public string othersubject { get; set; }
     public string grade { get; set; }
+    public Nullable<int> subjectid { get; set; }
 }
 
 public partial class applicantuniversitymapping
@@ -803,7 +804,7 @@ public partial class subjectwisecountrymapping
 {
     public int id { get; set; }
     public int subjectid { get; set; }
-    public int countyid { get; set; }
+    public int countryid { get; set; }
 
     public virtual subjectmaster subjectmaster { get; set; }
 }
@@ -853,8 +854,8 @@ public partial class university_master
     public string long_description { get; set; }
     public Nullable<int> cityid { get; set; }
     public Nullable<int> countryid { get; set; }
-    public decimal latitude { get; set; }
-    public decimal longitude { get; set; }
+    public Nullable<decimal> latitude { get; set; }
+    public Nullable<decimal> longitude { get; set; }
     public string time_zone { get; set; }
     public string closest_airport { get; set; }
     public string distance_from_airport { get; set; }

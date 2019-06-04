@@ -91,58 +91,31 @@ public partial class applicanteducation : System.Web.UI.Page
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.universityid == universityID && ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
+                          where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = afm.fieldnameinstructions,
-                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
-            if (fields.Count == 0 && SecondaryLanguage != "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
-                          select new
-                          {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = afm.fieldnameinstructions,
-                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
-                          }).ToList();
-            }
-            else if (fields.Count == 0 && SecondaryLanguage == "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && ufm.universityid == universityID
-                          select new
-                          {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
-                          }).ToList();
-            }
+
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
-
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where pfm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
             }
 
@@ -580,7 +553,7 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 if (EducationInfo.highschoolstartdate != null)
                 {
-                    
+
                     string[] HighschoolStartDate = EducationInfo.highschoolstartdate.ToString().Split('-');
                     ddlHighSchoolStartDateMonth.ClearSelection();
                     ddlHighSchoolStartDateMonth.Items.FindByValue(Convert.ToString(HighschoolStartDate[0])).Selected = true;
@@ -595,7 +568,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     ddlHighSchoolEndDateYear.ClearSelection();
                     ddlHighSchoolEndDateYear.Items.FindByValue(Convert.ToString(HighschoolEndDate[1])).Selected = true;
                 }
-               
+
 
                 txthighschoolName.Value = EducationInfo.highschoolname;
 
@@ -749,7 +722,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     ddlDiplomaEndDateYear.ClearSelection();
                     ddlDiplomaEndDateYear.Items.FindByValue(Convert.ToString(DiplomaEndDate[1])).Selected = true;
                 }
-              
+
                 txtDiplomaschoolName.Value = EducationInfo.diplomaschoolname;
 
                 if (EducationInfo.diplomaqualificationtype != null)
@@ -834,7 +807,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     ddlHigherEndDateYear.ClearSelection();
                     ddlHigherEndDateYear.Items.FindByValue(Convert.ToString(HigherEndDate[1])).Selected = true;
                 }
-               
+
                 txtHigherschoolName.Value = HigherEducation.schoolname;
 
                 if (HigherEducation.qualificationtype != null)
@@ -1448,13 +1421,16 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             var grade10 = (from a in db.applicantsubjectwisegrade
                            join g in db.grademaster on a.gradeid equals g.id
-                           where a.applicantid == userID && a.courseid == "tenth"
+                           join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                           from x in tmp.DefaultIfEmpty()
+                           where a.applicantid == userID && a.coursename == "tenth"
 
                            select new
                            {
                                applicantgradeid = a.applicantgradeid,
-                               courseid = a.courseid,
-                               subject = a.subject,
+                               coursename = a.coursename,
+                               othersubject = a.othersubject,
+                               subject = x.description,
                                gradetype = g.description,
                                studentgrade = a.grade
                            }).ToList();
@@ -1472,13 +1448,16 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             var gradediploma = (from a in db.applicantsubjectwisegrade
                                 join g in db.grademaster on a.gradeid equals g.id
-                                where a.applicantid == userID && a.courseid == "diploma"
+                                join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                                from x in tmp.DefaultIfEmpty()
+                                where a.applicantid == userID && a.coursename == "diploma"
 
                                 select new
                                 {
                                     applicantgradeid = a.applicantgradeid,
-                                    courseid = a.courseid,
-                                    subject = a.subject,
+                                    coursename = a.coursename,
+                                    othersubject = a.othersubject,
+                                    subject = x.description,
                                     gradetype = g.description,
                                     studentgrade = a.grade
                                 }).ToList();
@@ -1496,13 +1475,16 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             var gradeSecondary = (from a in db.applicantsubjectwisegrade
                                   join g in db.grademaster on a.gradeid equals g.id
-                                  where a.applicantid == userID && a.courseid == "twelth"
+                                  join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                                  from x in tmp.DefaultIfEmpty()
+                                  where a.applicantid == userID && a.coursename == "twelth"
 
                                   select new
                                   {
                                       applicantgradeid = a.applicantgradeid,
-                                      courseid = a.courseid,
-                                      subject = a.subject,
+                                      coursename = a.coursename,
+                                      othersubject = a.othersubject,
+                                      subject = x.description,
                                       gradetype = g.description,
                                       studentgrade = a.grade
                                   }).ToList();
@@ -1520,13 +1502,16 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             var gradehigher = (from a in db.applicantsubjectwisegrade
                                join g in db.grademaster on a.gradeid equals g.id
-                               where a.applicantid == userID && (a.courseid == "UG" || a.courseid == "PG" || a.courseid == "Phd" || a.courseid == "Other")
+                               join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                               from x in tmp.DefaultIfEmpty()
+                               where a.applicantid == userID && (a.coursename == "UG" || a.coursename == "PG" || a.coursename == "Phd" || a.coursename == "Other")
 
                                select new
                                {
                                    applicantgradeid = a.applicantgradeid,
-                                   courseid = a.courseid,
-                                   subject = a.subject,
+                                   coursename = a.coursename,
+                                   othersubject = a.othersubject,
+                                   subject = x.description,
                                    gradetype = g.description,
                                    studentgrade = a.grade
                                }).ToList();
@@ -1645,7 +1630,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[4].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
@@ -1679,7 +1664,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[4].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
@@ -1713,7 +1698,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[4].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
@@ -1747,7 +1732,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[4].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
@@ -1825,10 +1810,10 @@ public partial class applicanteducation : System.Web.UI.Page
             if (e.CommandName.Equals("Edit"))
 
             {
-                int courseid = Convert.ToInt32(e.CommandArgument.ToString());
+                int coursename = Convert.ToInt32(e.CommandArgument.ToString());
 
                 var HigherEducation = (from pInfo in db.applicanthighereducation
-                                       where pInfo.applicantid == userID && pInfo.applicanthighereducationid == courseid
+                                       where pInfo.applicantid == userID && pInfo.applicanthighereducationid == coursename
                                        select pInfo).FirstOrDefault();
                 if (rblhigherYes.Checked)
                     HigherEducation.finalgradeacheived = 1;

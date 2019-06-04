@@ -5,30 +5,31 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections;
-public partial class admin_qualificationcountrymapping : System.Web.UI.Page
+public partial class admin_subjectwisecountrymapping : System.Web.UI.Page
 {
-    ArrayList SelectedItems = new ArrayList();
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    ArrayList SelectedItems = new ArrayList();
+   
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             objCom.BindCountries(ddlCountry);
-            BindQualification();
+            BindSubject();
         }
     }
-    private void BindQualification()
+    private void BindSubject()
     {
         try
         {
-            var qualification = db.qualificationmaster.ToList();
-            chkQualification.DataSource = qualification;
-            chkQualification.DataTextField = "qualificationname";
-            chkQualification.DataValueField = "qualificationid";
-            chkQualification.DataBind();
+            var qualification = db.subjectmaster.ToList();
+            chkSubject.DataSource = qualification;
+            chkSubject.DataTextField = "description";
+            chkSubject.DataValueField = "id";
+            chkSubject.DataBind();
         }
         catch (Exception ex)
         {
@@ -40,12 +41,12 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
     {
         try
         {
-            chkQualification.Items.Clear();
-            BindQualification();
-            var qualificationuniversitywise = db.qualificationcountriesmapping.Where(x => x.countryid == countryID).ToList();
-            for (int k = 0; k < qualificationuniversitywise.Count; k++)
+            chkSubject.Items.Clear();
+            BindSubject();
+            var subjectuniversitywise = db.subjectwisecountrymapping.Where(x => x.countryid == countryID).ToList();
+            for (int k = 0; k < subjectuniversitywise.Count; k++)
             {
-                chkQualification.Items.FindByValue(qualificationuniversitywise[k].qualificationid.ToString()).Selected = true;
+                chkSubject.Items.FindByValue(subjectuniversitywise[k].subjectid.ToString()).Selected = true;
             }
         }
         catch (Exception ex)
@@ -59,13 +60,15 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
         BindPresected(Convert.ToInt32(ddlCountry.SelectedItem.Value));
     }
 
+
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         try
         {
             int countryID = Convert.ToInt32(ddlCountry.SelectedValue);
-            var list = db.qualificationcountriesmapping.Where(x => x.countryid == countryID).ToList();
-            foreach (ListItem li in chkQualification.Items)
+            var list = db.subjectwisecountrymapping.Where(x => x.countryid == countryID).ToList();
+            foreach (ListItem li in chkSubject.Items)
             {
 
                 if (li.Selected)
@@ -85,7 +88,7 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
 
                     foreach (var item in list)
                     {
-                        if (item.qualificationid == Convert.ToInt32(SelectedItems[k]))
+                        if (item.subjectid == Convert.ToInt32(SelectedItems[k]))
                         {
                             isAvailbale = true;
                             break;
@@ -103,7 +106,7 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
                     isAvailbale = false;
                     for (int k = 0; k < SelectedItems.Count; k++)
                     {
-                        if (item.qualificationid == Convert.ToInt32(SelectedItems[k]))
+                        if (item.subjectid == Convert.ToInt32(SelectedItems[k]))
                         {
                             isAvailbale = true;
                             break;
@@ -111,7 +114,7 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
 
                     }
                     if (isAvailbale == false)
-                        RemoveItem(Convert.ToInt32(item.qualificationid));
+                        RemoveItem(Convert.ToInt32(item.subjectid));
                 }
 
             }
@@ -132,14 +135,14 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
         }
     }
 
-    private void AddItem(int Qualificationid, int CountryID)
+    private void AddItem(int subjectID, int CountryID)
     {
         try
         {
-            qualificationcountriesmapping mappingObj = new qualificationcountriesmapping();
-            mappingObj.qualificationid = Qualificationid;
+            subjectwisecountrymapping mappingObj = new subjectwisecountrymapping();
+            mappingObj.subjectid = subjectID;
             mappingObj.countryid = CountryID;
-            db.qualificationcountriesmapping.Add(mappingObj);
+            db.subjectwisecountrymapping.Add(mappingObj);
             db.SaveChanges();
         }
         catch (Exception ex)
@@ -147,16 +150,16 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void RemoveItem(int Qualificationid)
+    private void RemoveItem(int subjectID)
     {
         try
         {
-            var notselectedItem = (from smap in db.qualificationcountriesmapping
-                                   where smap.qualificationid == Qualificationid
+            var notselectedItem = (from smap in db.subjectwisecountrymapping
+                                   where smap.subjectid == subjectID
                                    select smap).SingleOrDefault();
 
             //Delete it from memory
-            db.qualificationcountriesmapping.Remove(notselectedItem);
+            db.subjectwisecountrymapping.Remove(notselectedItem);
             //Save to database
             db.SaveChanges();
         }
