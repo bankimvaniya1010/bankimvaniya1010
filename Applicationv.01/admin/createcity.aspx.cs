@@ -40,8 +40,7 @@ public partial class admin_createcity : System.Web.UI.Page
                 cityObj.country_id = countryId;
                 cityObj.geting_there = txtCityReaching.Value.Trim();
                 cityObj.weather = txtCityWeather.Value.Trim();
-                if (!(txtCityCost.Value.Trim() == string.Empty))
-                    cityObj.cost_of_living = Convert.ToDecimal(txtCityCost.Value.Trim());
+                cityObj.cost_of_living = txtCityCost.Value.Trim();
 
                 db.citymaster.Add(cityObj);
                 db.SaveChanges();
@@ -49,7 +48,7 @@ public partial class admin_createcity : System.Web.UI.Page
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('City alreaady exists in this country')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('City already exists in this country')", true);
             }
         }
         catch (Exception ex)

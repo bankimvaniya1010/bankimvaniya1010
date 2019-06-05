@@ -38,9 +38,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
                     txtCityName.Value = existingCity.name;
                     txtCityWeather.Value = existingCity.weather;
                     txtCityReaching.Value = existingCity.geting_there;
-
-                    if(existingCity.cost_of_living.HasValue)
-                        txtCityCost.Value = Convert.ToString(existingCity.cost_of_living);
+                    txtCityCost.Value = existingCity.cost_of_living;
 
                     ddlCountry.SelectedIndex = Convert.ToInt32(existingCity.country_id);
                 }
@@ -65,8 +63,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
             cityObj.country_id = Convert.ToInt32(ddlCountry.SelectedItem.Value);
             cityObj.geting_there = txtCityReaching.Value.Trim();
             cityObj.weather = txtCityWeather.Value.Trim();
-            if (!string.IsNullOrEmpty(txtCityCost.Value))
-                cityObj.cost_of_living = Convert.ToDecimal(txtCityCost.Value.Trim());
+            cityObj.cost_of_living = txtCityCost.Value.Trim();
 
             db.SaveChanges();
             Response.Redirect("~/admin/citymaster.aspx?countryID=" + cityObj.country_id);

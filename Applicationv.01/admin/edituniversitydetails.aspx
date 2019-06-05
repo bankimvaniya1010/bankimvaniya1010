@@ -277,6 +277,10 @@
                     success: function (response) {
                         if (response.d) {
                             var result = JSON.parse(response.d);
+                            if ($("#<%=ddlCity.ClientID%>").length >= 1) {
+                                $("#<%=ddlCity.ClientID%>").empty();
+                                $("#<%=ddlCity.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select City"));
+                            }
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddlCity.ClientID%>").append($("<option></option>").val(result[i].city_id).html(result[i].name));
                             }

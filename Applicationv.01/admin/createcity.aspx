@@ -16,7 +16,7 @@
                 <div class="tab-pane active" id="first">
                     
                     <div class="form-group row">
-                         <label for="cityName" class="col-sm-3 col-form-label form-label">Country</label>
+                         <label for="country" class="col-sm-3 col-form-label form-label">Country</label>
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -108,22 +108,49 @@
         </div>
     </div>
 
-<script type="text/javascript">
-    function validateForm() {
+    <script type="text/javascript">
+        function validateForm() {
 
-        var countryValue = $('#<%=ddlCountry.ClientID%>').val();
-        var cityName = $('#<%=txtCityName%>').val();
-
-        if (countryValue == '' || countryValue == 0) {
-            alert("Please select country for city");
-            return false;
-        }
-        else if (cityName == '') {
-            alert("Please enter name for city");
-            return false;
-        }
+            var txtCityName = $('#<%=txtCityName.ClientID%>').val();
+            var txtCityDescription = $('#<%=txtCityDescription.ClientID%>').val();
+            var txtCityCost = $('#<%=txtCityCost.ClientID%>').val();
+            var txtCityAround = $('#<%=txtCityAround.ClientID%>').val();
+            var txtCityWeather = $('#<%=txtCityWeather.ClientID%>').val();
+            var txtCityReaching = $('#<%=txtCityReaching.ClientID%>').val();
+            var countryValue = $('#<%=ddlCountry.ClientID%>').val();
+   
+            if (countryValue == 0 || isNaN(parseInt(countryValue))) {
+                alert("Please select country");
+                return false;
+            }
+            else if (txtCityName == '') {
+                alert("Please enter name for city");
+                return false;
+            }
+            else if (txtCityDescription == '') {
+                alert("Please enter city description");
+                return false;
+            }
+            else if (txtCityCost == '') {
+                alert("Please enter city cost of living");
+                return false;
+            }
+            else if (txtCityAround == '') {
+                alert("Please enter city around");
+                return false;
+            }
+            else if (txtCityWeather == '') {
+                alert("Please enter city weather");
+                return false;
+            }
+            else if (txtCityReaching == '') {
+                alert("Please enter ways to reach city");
+                return false;
+            }
+                
+            return true;
             
-    }
-</script>
+        }
+    </script>
 
-    </asp:Content>
+</asp:Content>
