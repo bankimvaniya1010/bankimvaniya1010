@@ -253,6 +253,7 @@
           </Key>
           <Property Name="employerid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
+          <Property Name="wishtoaddemployer" Type="int" />
           <Property Name="designation" Type="varchar" MaxLength="45" />
           <Property Name="organization" Type="varchar" MaxLength="100" />
           <Property Name="website" Type="varchar" MaxLength="45" />
@@ -263,7 +264,6 @@
           <Property Name="durationfrom" Type="date" />
           <Property Name="durationto" Type="date" />
           <Property Name="creationdate" Type="datetime" Precision="0" />
-          <Property Name="wishtoaddemployer" Type="int" />
           <Property Name="briefdescription" Type="varchar" MaxLength="500" />
           <Property Name="nameofreportingmanger" Type="varchar" MaxLength="45" />
           <Property Name="relationshipwithcontact" Type="varchar" MaxLength="45" />
@@ -501,6 +501,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
           <Property Name="customfieldid" Type="int" />
           <Property Name="value" Type="varchar" MaxLength="200" />
         </EntityType>
@@ -797,6 +798,14 @@
           <Property Name="subjectid" Type="int" Nullable="false" />
           <Property Name="countryid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="timezonemaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="time_zone_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="time_zone_value" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="titlemaster">
           <Key>
             <PropertyRef Name="titleid" />
@@ -835,21 +844,21 @@
             <PropertyRef Name="universityid" />
           </Key>
           <Property Name="universityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="university_name" Type="varchar" MaxLength="100" />
-          <Property Name="address" Type="varchar" MaxLength="200" />
-          <Property Name="website" Type="varchar" MaxLength="45" />
-          <Property Name="contact_person" Type="varchar" MaxLength="100" />
-          <Property Name="email" Type="varchar" MaxLength="45" />
-          <Property Name="mobile" Type="varchar" MaxLength="15" />
-          <Property Name="affiliation" Type="varchar" MaxLength="50" />
-          <Property Name="type" Type="varchar" MaxLength="20" />
-          <Property Name="year_established" Type="varchar" MaxLength="20" />
-          <Property Name="short_description" Type="varchar" MaxLength="100" />
-          <Property Name="long_description" Type="varchar" MaxLength="200" />
-          <Property Name="cityid" Type="int" />
-          <Property Name="countryid" Type="int" />
-          <Property Name="latitude" Type="decimal" Precision="10" Scale="0" />
-          <Property Name="longitude" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="university_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="website" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="contact_person" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="affiliation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="year_established" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="short_description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="long_description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="latitude" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="longitude" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="time_zone" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="closest_airport" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="distance_from_airport" Type="varchar" MaxLength="50" Nullable="false" />
@@ -1020,7 +1029,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_universityMaster_cityMaster">
-          <End Role="citymaster" Type="Self.citymaster" Multiplicity="0..1" />
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
           <End Role="university_master" Type="Self.university_master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="citymaster">
@@ -1107,6 +1116,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectmaster" EntityType="Self.subjectmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectwisecountrymapping" EntityType="Self.subjectwisecountrymapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="timezonemaster" EntityType="Self.timezonemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="typemaster" EntityType="Self.typemaster" Schema="GTE" store:Type="Tables" />
@@ -1298,6 +1308,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="citymaster" EntitySet="citymaster" />
             <End Role="university_master" EntitySet="university_master" />
           </AssociationSet>
+          <EntitySet Name="timezonemaster" EntityType="GTEModel.timezonemaster" />
           </EntityContainer>
         <EntityType Name="adminusers">
           <Key>
@@ -2257,6 +2268,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="customfieldid" Type="Int32" />
           <Property Name="value" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="applicantid" Type="Int32" />
         </EntityType>
         <EntityType Name="relationshipwithcontact">
           <Key>
@@ -2309,21 +2321,21 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <PropertyRef Name="universityid" />
           </Key>
           <Property Name="universityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="university_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="contact_person" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="affiliation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="year_established" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="short_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="long_description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="cityid" Type="Int32" />
-          <Property Name="countryid" Type="Int32" />
-          <Property Name="latitude" Type="Decimal" />
-          <Property Name="longitude" Type="Decimal" />
+          <Property Name="university_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="contact_person" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="affiliation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="year_established" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="short_description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="long_description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="latitude" Type="Decimal" Nullable="false" />
+          <Property Name="longitude" Type="Decimal" Nullable="false" />
           <Property Name="time_zone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="closest_airport" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="distance_from_airport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -2332,7 +2344,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="university_master" ToRole="citymaster" />
         </EntityType>
         <Association Name="FK_universityMaster_cityMaster">
-          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="0..1" />
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="citymaster">
@@ -2343,6 +2355,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="timezonemaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="time_zone_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="time_zone_value" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3264,6 +3284,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="customfieldvalue">
             <EntityTypeMapping TypeName="GTEModel.customfieldvalue">
               <MappingFragment StoreEntitySet="customfieldvalue">
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="customfieldid" ColumnName="customfieldid" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -3329,6 +3350,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="university_name" ColumnName="university_name" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timezonemaster">
+            <EntityTypeMapping TypeName="GTEModel.timezonemaster">
+              <MappingFragment StoreEntitySet="timezonemaster">
+                <ScalarProperty Name="time_zone_value" ColumnName="time_zone_value" />
+                <ScalarProperty Name="time_zone_name" ColumnName="time_zone_name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

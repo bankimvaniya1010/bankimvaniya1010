@@ -102,6 +102,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<citymaster> citymaster { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
+    public virtual DbSet<timezonemaster> timezonemaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

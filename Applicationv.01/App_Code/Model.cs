@@ -497,6 +497,7 @@ public partial class customfieldvalue
     public int id { get; set; }
     public Nullable<int> customfieldid { get; set; }
     public string value { get; set; }
+    public Nullable<int> applicantid { get; set; }
 }
 
 public partial class disabilitymaster
@@ -842,6 +843,13 @@ public partial class subjectwisecountrymapping
     public virtual subjectmaster subjectmaster { get; set; }
 }
 
+public partial class timezonemaster
+{
+    public int ID { get; set; }
+    public string time_zone_name { get; set; }
+    public string time_zone_value { get; set; }
+}
+
 public partial class titlemaster
 {
     public int titleid { get; set; }
@@ -885,10 +893,10 @@ public partial class university_master
     public string year_established { get; set; }
     public string short_description { get; set; }
     public string long_description { get; set; }
-    public Nullable<int> cityid { get; set; }
-    public Nullable<int> countryid { get; set; }
-    public Nullable<decimal> latitude { get; set; }
-    public Nullable<decimal> longitude { get; set; }
+    public int cityid { get; set; }
+    public int countryid { get; set; }
+    public decimal latitude { get; set; }
+    public decimal longitude { get; set; }
     public string time_zone { get; set; }
     public string closest_airport { get; set; }
     public string distance_from_airport { get; set; }

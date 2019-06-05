@@ -92,6 +92,7 @@
         <AssociationConnector Association="GTEModel.FK_cityMaster_countriesMaster" />
         <EntityTypeShape EntityType="GTEModel.university_master" Width="1.5" PointX="10.25" PointY="9.625" />
         <AssociationConnector Association="GTEModel.FK_universityMaster_cityMaster" />
+        <EntityTypeShape EntityType="GTEModel.timezonemaster" Width="1.5" PointX="26.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

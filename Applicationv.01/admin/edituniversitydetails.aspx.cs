@@ -35,7 +35,11 @@ public partial class edituniversitydetails : System.Web.UI.Page
                 {
                     ViewState["universityID"] = universityId;
                     objCommon.BindCountries(ddlCountry);
-                    bindCityDropdown(existingUninversity.cityid.Value);
+                    objCommon.BindTimeZone(ddlTimeZone);
+                    bindCityDropdown(existingUninversity.cityid);
+
+                    string[] airportDistanceValue = existingUninversity.distance_from_airport.Split(' ');
+                    string[] railDistanceValue = existingUninversity.distance_from_railway.Split(' ');
 
                     txtUniName.Value = existingUninversity.university_name;
                     txtUniAddress.Value = existingUninversity.address;
@@ -48,20 +52,36 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtYearEstablish.Value = existingUninversity.year_established;
                     txtUniSDescription.Value = existingUninversity.short_description;
                     txtUniLDescription.Value = existingUninversity.long_description;
-                    txtUniTimeZone.Value = existingUninversity.time_zone;
                     txtUniAirport.Value = existingUninversity.closest_airport;
-                    txtUniAirportDistance.Value = existingUninversity.distance_from_airport;
-                    txtUniRailDistance.Value = existingUninversity.distance_from_railway;
+
+                    txtUniAirportDistance.Value = airportDistanceValue[0];
+                    foreach (ListItem item in airDistanceUnit.Items)
+                    {
+                        if (item.Text == airportDistanceValue[1])
+                        {
+                            item.Selected = true;
+                            break;
+                        }
+                    }
+
+                    txtUniRailDistance.Value = railDistanceValue[0];
+                    foreach (ListItem item in railDistanceUnit.Items)
+                    {
+                        if (item.Text == railDistanceValue[1])
+                        {
+                            item.Selected = true;
+                            break;
+                        }
+                    }
+
                     txtUniGettingAround.Value = existingUninversity.getting_around;
+                    txtUniLatitude.Value = Convert.ToString(existingUninversity.latitude);
+                    txtUniLongitude.Value = Convert.ToString(existingUninversity.longitude);
 
-                    if (existingUninversity.latitude.HasValue)
-                        txtUniLatitude.Value = Convert.ToString(existingUninversity.latitude);
-                    if (existingUninversity.longitude.HasValue)
-                        txtUniLongitude.Value =Convert.ToString(existingUninversity.longitude);
-
+                    ddlTimeZone.SelectedValue = existingUninversity.time_zone;
                     hidCityField.Value = Convert.ToString(existingUninversity.cityid);
                     ddlCity.SelectedIndex = Convert.ToInt32(existingUninversity.cityid);
-                    ddlCountry.SelectedIndex = existingUninversity.countryid.Value;
+                    ddlCountry.SelectedIndex = existingUninversity.countryid;
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University does not exists')", true);
@@ -119,19 +139,15 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.long_description = txtUniLatitude.Value.Trim();
             universityObj.cityid = Convert.ToInt32(hidCityField.Value.Trim());
             universityObj.countryid = Convert.ToInt32(ddlCountry.SelectedItem.Value);
-            universityObj.time_zone = txtUniTimeZone.Value.Trim();
+            universityObj.time_zone = ddlTimeZone.SelectedItem.Value;
             universityObj.closest_airport = txtUniAirport.Value.Trim();
-            universityObj.distance_from_airport = txtUniAirportDistance.Value.Trim();
-            universityObj.distance_from_railway = txtUniRailDistance.Value.Trim();
+            universityObj.distance_from_airport = txtUniAirportDistance.Value.Trim() + " " + airDistanceUnit.Value.Trim();
+            universityObj.distance_from_railway = txtUniRailDistance.Value.Trim() + " " + railDistanceUnit.Value.Trim();
             universityObj.getting_around = txtUniGettingAround.Value.Trim();
+            universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
+            universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
 
-            if (!string.IsNullOrEmpty(txtUniLatitude.Value.Trim()))
-                universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
-            if (!string.IsNullOrEmpty(txtUniLongitude.Value.Trim()))
-                universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
-
-            db.SaveChanges();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Saved Successfully')", true);
+            db.SaveChanges();            
             Response.Redirect("~/admin/universitymaster.aspx");
         }
         catch (Exception ex)

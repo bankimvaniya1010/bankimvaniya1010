@@ -54,7 +54,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtYearEstablish" type="text" runat="server" class="form-control" placeholder="University Year Established" />
+                                    <input id="txtYearEstablish" type="text" runat="server" maxlength="4" class="form-control" placeholder="University Year Established" />
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtEmail" type="text" runat="server" class="form-control" placeholder="University Email ID" />
+                                    <input id="txtEmail" type="email" runat="server" class="form-control" placeholder="University Email ID" />
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlCountry" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCountry" runat="server" class="form-control"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -153,7 +153,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <select id="ddlCity" name="ddlCity" runat="server">
+                                    <select id="ddlCity" name="ddlCity" runat="server" class="form-control">
                                         <option value="" selected="selected" disabled="disabled">Please Select City</option>
                                     </select>
                                     <asp:HiddenField ID="hidCityField" runat="server" />
@@ -189,7 +189,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtUniTimeZone" type="text" runat="server" class="form-control" placeholder="Location Time Zone" />
+                                    <asp:DropDownList ID="ddlTimeZone" name="ddlTimeZone" runat="server" class="form-control"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -213,6 +213,11 @@
                                 <div class="col-md-6">
                                     <input id="txtUniAirportDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest airport" />
                                 </div>
+                                <select id="airDistanceUnit" name="distanceUnit" runat="server" class="form-control col-md-4">
+                                    <option value="" disabled="disabled">Please Select Unit</option>
+                                    <option value="KM">KM</option>
+                                    <option value="Miles">Miles</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -224,6 +229,11 @@
                                 <div class="col-md-6">
                                     <input id="txtUniRailDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest Railway Station" />
                                 </div>
+                                <select id="railDistanceUnit" name="distanceUnit" runat="server" class="form-control col-md-4">
+                                    <option value="" disabled="disabled">Please Select Unit</option>
+                                    <option value="KM">KM</option>
+                                    <option value="Miles">Miles</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -283,22 +293,121 @@
         });
 
         function validateForm() {
+            var txtUniName = $('#<%=txtUniName.ClientID%>').val();
+            var txtUniAffiliation = $('#<%=txtUniAffiliation.ClientID%>').val();
+            var txtUniType = $('#<%=txtUniType.ClientID%>').val();
+            var txtUniGettingAround = $('#<%=txtUniGettingAround.ClientID%>').val();
+            var txtUniRailDistance = $('#<%=txtUniRailDistance.ClientID%>').val();
+            var txtUniAirportDistance = $('#<%=txtUniAirportDistance.ClientID%>').val();
+            var UniTimeZoneValue = $('#<%=ddlTimeZone.ClientID%>').val();
+            var txtUniLongitude = $('#<%=txtUniLongitude.ClientID%>').val();
+            var txtUniLatitude = $('#<%=txtUniLatitude.ClientID%>').val();
             var countryValue = $('#<%=ddlCountry.ClientID%>').val();
             var cityValue = $('#<%=hidCityField.ClientID%>').val();
-            var universityName = $('#<%=txtUniName.ClientID%>').val();
+            var txtUniAddress = $('#<%=txtUniAddress.ClientID%>').val();
+            var txtYearEstablish = $('#<%=txtYearEstablish.ClientID%>').val();
+            var txtEmail = $('#<%=txtEmail.ClientID%>').val();
+            var txtUniLDescription = $('#<%=txtUniLDescription.ClientID%>').val();
+            var txtUniSDescription = $('#<%=txtUniSDescription.ClientID%>').val();
+            var txtUniWebsite = $('#<%=txtUniWebsite.ClientID%>').val();
+            var txtUniContactPerson = $('#<%=txtUniContactPerson.ClientID%>').val();
+            var txtMobile = $('#<%=txtMobile.ClientID%>').val();
+            var txtUniAirport = $('#<%=txtUniAirport.ClientID%>').val();
+            var railDistanceUnit = $('#<%=railDistanceUnit.ClientID%>').val();
+            var airDistanceUnit = $('#<%=airDistanceUnit.ClientID%>').val();
 
-            if (countryValue == '' || countryValue == 0) {
-                alert("Please select country for university");
+            //regex
+            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+            
+            if (txtUniName == '') {
+                alert("Please enter University Name");
                 return false;
             }
-            else if (cityValue == '' || cityValue == 0) {
-                alert("Please select city for university");
+            else if (txtUniAffiliation == '') {
+                alert("Please enter University Affiliation");
                 return false;
             }
-            else if (universityName == '') {
-                alert("Please enter name for university");
+            else if (txtUniType == '') {
+                alert("Please enter University Type");
                 return false;
             }
+            else if (txtYearEstablish == '' || isNaN(parseInt(txtYearEstablish)) || parseInt(txtYearEstablish) >= new Date().getFullYear()) {
+                alert("Please enter correct university establishment year");
+                return false;
+            }
+            else if (txtUniSDescription == '') {
+                alert("Please enter University  Short Description");
+                return false;
+            }
+            else if (txtUniLDescription == '') {
+                alert("Please enter University long description");
+                return false;
+            }
+            else if (txtEmail == '' || !emailRegex.test(txtEmail)) {
+                alert("Please enter University Email ID");
+                return false;
+            }
+            else if (txtUniWebsite == '' || !urlRegex.test(txtUniWebsite)) {
+                alert("Please enter university website");
+                return false;
+            }
+            else if (txtUniContactPerson == '') {
+                alert("Please enter University contact person");
+                return false;
+            }
+            else if (txtMobile == '') {
+                alert("Please enter valid university mobile number");
+                return false;
+            }
+            else if (txtUniAddress == '') {
+                alert("Please enter University Address");
+                return false;
+            }
+            else if (countryValue == 0 || isNaN(parseInt(countryValue))) {
+                alert("Please select University Country");
+                return false;
+            }
+            else if (cityValue == 0 || isNaN(parseInt(cityValue))) {
+                alert("Please select University City");
+                return false;
+            }
+            else if (txtUniLatitude == '' || isNaN(parseFloat(txtUniLatitude))) {
+                alert("Please enter University Latitude");
+                return false;
+            }
+            else if (txtUniLongitude == '' || isNaN(parseFloat(txtUniLongitude))) {
+                alert("Please enter University Longitude");
+                return false;
+            }
+            else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
+                alert("Please select university time zone");
+                return false;
+            }
+            else if (txtUniAirport == '') {
+                alert("Please enter airport name");
+                return false;
+            }
+            else if (txtUniAirportDistance == '' || !airDistanceUnit || isNaN(parseFloat(txtUniAirportDistance))) {
+                if (txtUniAirportDistance != '' && !airDistanceUnit)
+                    alert("Please select distance unit");
+                else
+                    alert("Please enter nearest airport distance from university");
+                return false;
+            }
+            else if (txtUniRailDistance == '' || !railDistanceUnit || isNaN(parseFloat(txtUniRailDistance))) {
+                if (txtUniRailDistance != '' && !railDistanceUnit)
+                    alert("Please select distance unit");
+                else
+                    alert("Please enter nearest railway station distance from university");
+                return false;
+            }
+            else if (txtUniGettingAround == '') {
+                alert("Please enter University Getting Around");
+                return false;
+            }
+                
+            return true;
         }
     </script>
 </asp:Content>
