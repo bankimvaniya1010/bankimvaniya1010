@@ -28,7 +28,7 @@ public partial class personaldetails : System.Web.UI.Page
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx",true);
+            Response.Redirect(webURL + "default.aspx", true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
@@ -302,7 +302,7 @@ public partial class personaldetails : System.Web.UI.Page
                 profileInfo.isstudentreferbyagent = 0;
             if (ddlAgent.SelectedValue != "")
                 profileInfo.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
-            
+
             db.SaveChanges();
             lblMessage.Text = "Your Personal Details have been saved";
             lblMessage.Visible = true;
@@ -383,7 +383,7 @@ public partial class personaldetails : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
     }
     private void SetControlsUniversitywise(int universityID)
     {

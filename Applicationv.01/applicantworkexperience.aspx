@@ -141,7 +141,6 @@
                                             <label id="labelemployercountry" runat="server" for="employercountry" class="col-md-3 col-form-label form-label">Country</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control">
-                                                   
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -299,6 +298,7 @@
                 });
 
             var emp = $("#<%=hdnemployer.ClientID%>").val()
+
             if (emp != '') {
                 $("#<%=position.ClientID%>").show();
                 $("#<%=employer.ClientID%>").show();
@@ -312,7 +312,9 @@
                 $("#<%=relationship.ClientID%>").show();
                 $("#<%=email.ClientID%>").show();
                 $("#<%=linkedin.ClientID%>").show();
-                // $("#PreviousEmployment").show();
+                $("#PreviousEmployment").show();
+
+                $('#employment').addClass("collapse show");;
                 $("#<%=employerwebsite.ClientID%>").show();
 
 
@@ -331,7 +333,8 @@
                 $("#<%=relationship.ClientID%>").hide();
                 $("#<%=email.ClientID%>").hide();
                 $("#<%=linkedin.ClientID%>").hide();
-                //$("#PreviousEmployment").hide();
+
+                $('#employment').addClass("collapse");;
             }
 
         });
@@ -351,7 +354,7 @@
                     $("#<%=relationship.ClientID%>").show();
                     $("#<%=email.ClientID%>").show();
                     $("#<%=linkedin.ClientID%>").show();
-                    // $("#PreviousEmployment").show();
+                    $("#PreviousEmployment").show();
                     $("#<%=employerwebsite.ClientID%>").show();
 
 
@@ -410,11 +413,74 @@
                 return false;
         }
 
+        $(function () {
+            $('#<%=btn_login.ClientID%>').click(function () {
+                debugger;
+                var summary = "";
+                summary += isEmployerdetails();
+                summary = summary.replace(/undefined/g, "");
+
+                if (summary != "") {
+                    alert(summary);
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+        });
+        function isEmployerdetails() {
+            if ((($("#<%=rblEmploymentYes.ClientID%>").is(":checked")) || ($("#<%=rblEmploymentNo.ClientID%>").is(":checked")))) {
+                {
+                    if ($("#<%=rblEmploymentYes.ClientID%>").is(":checked")) {
+                        if ($("#<%=txtEmployer.ClientID%>").val() == "") {
+                            return ("Please enter  organization name" + "\n");
+                        }
+                        if ($("#<%=txtemployerwebsite.ClientID%>").val() == "") {
+                            return ("Please enter website name" + "\n");
+                        }
+                        if ($("#<%=txtCity.ClientID%>").val() == "") {
+                            return ("Please enter city name" + "\n");
+                        }
+                        if ($("#<%=ddlCountry.ClientID%>").val() == "0") {
+                            return ("Please select country" + "\n");
+                        }
+                        if ($("#<%=txtPosition.ClientID%>").val() == "") {
+                            return ("Please enter position details" + "\n");
+                        }
+                        if ($("#<%=txtStartDate.ClientID%>").val() == "") {
+                            return ("Please enter employment start date" + "\n");
+                        }
+                        if ($("#<%=txtEndate.ClientID%>").val() == "") {
+                            return ("Please enter employment end date" + "\n");
+                        }
+                        if ($("#<%=txtbriefDescription.ClientID%>").val() == "") {
+                            return ("Please enter previous job description" + "\n");
+                        }
+                        if ($("#<%=txtemploymentverification.ClientID%>").val() == "") {
+                            return ("Please enter details who can verify your employment" + "\n");
+                        }
+                        if ($("#<%=txtrelationship.ClientID%>").val() == "") {
+                            return ("Please enter relations who can verify your employment" + "\n");
+                        }
+                        if ($("#<%=txtreportingmanger.ClientID%>").val() == "") {
+                            return ("Please enter reporting manager name" + "\n");
+                        }
+                        if ($("#<%=txtlinkedin.ClientID%>").val() == "") {
+                            return ("Please enter linkedin details" + "\n");
+                        }
+                    }
+                }
+            }
+            else {
+                return ("Please select if you have previous experince" + "\n");
+
+            }
+        }
 
 
 
 
-//Code E
 
     </script>
 

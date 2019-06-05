@@ -14,6 +14,8 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if ((Session["Role"] == null) && (Session["UserID"] == null))
+            Response.Redirect(webURL + "admin/login.aspx", true);
         if (!IsPostBack)
         {
             objCom.BindCountries(ddlCountry);
@@ -70,8 +72,8 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
 
                 if (li.Selected)
                 {
-                    int subjectId = Convert.ToInt32(li.Value);
-                    SelectedItems.Add(subjectId);
+                    int QualificationID = Convert.ToInt32(li.Value);
+                    SelectedItems.Add(QualificationID);
                 }
 
             }

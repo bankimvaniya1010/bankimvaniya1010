@@ -81,7 +81,7 @@ public partial class applicanteducation : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
     }
     private void SetControlsUniversitywise(int universityID)
     {

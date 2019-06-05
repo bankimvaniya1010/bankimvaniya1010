@@ -129,6 +129,62 @@
     </form>
     <script src="assets/vendor/jquery.min.js"></script>
     <script type="text/javascript">
+        $(function () {
+            $('#<%=btn_login.ClientID%>').click(function () {
+                debugger;
+                var summary = "";
+                summary += isvalidCourse();
+                summary += isvalidGrade();
+                summary += isvalidSubject();
+                summary += isvalidGradeValue();
+              
+                if (summary != "") {
+                    alert(summary);
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+        });
+
+
+
+
+        function isvalidCourse() {
+            if ($("#<%=ddlCourse.ClientID%>").val() == "") {
+                return ("Please select course" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+        function isvalidGrade() {
+
+            if ($("#<%=ddlGradeType.ClientID%>").val() == "0") {
+                return ("Please select valid grade" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+        function isvalidSubject() {
+
+            if ($("#<%=ddlsubjects.ClientID%>").val() == "0") {
+                return ("Please select valid subject" + "\n");
+            }
+            else {
+                if (($("#<%=ddlsubjects.ClientID%>").val() == "Others") && ($("#<%=txtOther.ClientID%>").val() == "")) {
+                    return ("Please enter other subject details" + "\n");
+                }
+            }
+        }
+        function isvalidGradeValue() {
+            if ($("#<%=txtGrade.ClientID%>").val() == "") {
+                return ("Please enter grade value" + "\n");
+            }
+
+        }
         function RefreshParent() {
             if (window.opener != null && !window.opener.closed) {
                 window.opener.location.reload();
@@ -137,7 +193,7 @@
         window.onbeforeunload = RefreshParent;
         $(document).ready(function () {
             $('#<%=ddlsubjects.ClientID%>').change(function () {
-               
+
                 if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') {
                     $('#other').css({ 'display': 'block' });
                 }
