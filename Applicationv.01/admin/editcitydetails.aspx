@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="createcity.aspx.cs" Inherits="admin_createcity" MasterPageFile="~/admin/admin.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="editcitydetails.aspx.cs" Inherits="admin_editcitydetails" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
 </asp:Content>
@@ -6,17 +6,17 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Create City</li>
+            <li class="breadcrumb-item active">Edit City</li>
         </ol>
 
-        <h1 class="h2">Create City</h1>
+        <h1 class="h2">Edit City Details</h1>
 
         <div class="card">
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
-                    
+
                     <div class="form-group row">
-                         <label for="country" class="col-sm-3 col-form-label form-label">Country</label>
+                         <label for="cityName" class="col-sm-3 col-form-label form-label">Select Country for City</label>
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -97,7 +97,6 @@
                             <div class="media align-items-center">
                                 <div class="media-left">
                                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" OnClientClick="return validateForm()"/>
-                                    <asp:Label ID="lblMessage" runat="server"></asp:Label>
                                 </div>
                             </div>
                         </div>
@@ -106,8 +105,8 @@
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
     <script type="text/javascript">
         function validateForm() {
 
@@ -152,5 +151,4 @@
             
         }
     </script>
-
 </asp:Content>

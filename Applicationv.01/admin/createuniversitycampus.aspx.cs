@@ -29,7 +29,6 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             List<facilitiesmaster> facilityMaster = db.facilitiesmaster.ToList();
 
             ddlFacilities.DataSource = facilityMaster;
-            ddlFacilities.DataBind();
             ddlFacilities.DataTextField = "facility_name";
             ddlFacilities.DataValueField = "id";
             ddlFacilities.DataBind();

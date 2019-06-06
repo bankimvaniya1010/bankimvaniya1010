@@ -252,6 +252,8 @@
             <PropertyRef Name="employerid" />
           </Key>
           <Property Name="employerid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="wishtoaddemployer" Type="int" />
           <Property Name="designation" Type="varchar" MaxLength="45" />
           <Property Name="organization" Type="varchar" MaxLength="100" />
           <Property Name="website" Type="varchar" MaxLength="45" />
@@ -261,9 +263,7 @@
           <Property Name="salary" Type="float" />
           <Property Name="durationfrom" Type="date" />
           <Property Name="durationto" Type="date" />
-          <Property Name="applicantid" Type="int" />
           <Property Name="creationdate" Type="datetime" Precision="0" />
-          <Property Name="wishtoaddemployer" Type="int" />
           <Property Name="briefdescription" Type="varchar" MaxLength="500" />
           <Property Name="nameofreportingmanger" Type="varchar" MaxLength="45" />
           <Property Name="relationshipwithcontact" Type="varchar" MaxLength="45" />
@@ -435,7 +435,7 @@
           </Key>
           <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="cost_of_living" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="cost_of_living" Type="decimal" Precision="10" Scale="0" />
           <Property Name="around" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="weather" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="geting_there" Type="varchar" MaxLength="50" Nullable="false" />
@@ -485,6 +485,25 @@
           <Property Name="ranking_by_subject" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ranking_by_region" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="rank_improved" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customfieldmaster">
+          <Key>
+            <PropertyRef Name="customfieldid" />
+          </Key>
+          <Property Name="customfieldid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="formid" Type="int" Nullable="false" />
+          <Property Name="labeldescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customfieldvalue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="customfieldid" Type="int" />
+          <Property Name="value" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="disabilitymaster">
           <Key>
@@ -688,6 +707,13 @@
           <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coursename" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="relationshipwithcontact">
+          <Key>
+            <PropertyRef Name="relationshiptid" />
+          </Key>
+          <Property Name="relationshiptid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="relationshipname" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="relative_master">
           <Key>
             <PropertyRef Name="id" />
@@ -772,6 +798,14 @@
           <Property Name="subjectid" Type="int" Nullable="false" />
           <Property Name="countryid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="timezonemaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="time_zone_name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="time_zone_value" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="titlemaster">
           <Key>
             <PropertyRef Name="titleid" />
@@ -810,21 +844,21 @@
             <PropertyRef Name="universityid" />
           </Key>
           <Property Name="universityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="university_name" Type="varchar" MaxLength="100" />
-          <Property Name="address" Type="varchar" MaxLength="200" />
-          <Property Name="website" Type="varchar" MaxLength="45" />
-          <Property Name="contact_person" Type="varchar" MaxLength="100" />
-          <Property Name="email" Type="varchar" MaxLength="45" />
-          <Property Name="mobile" Type="varchar" MaxLength="15" />
-          <Property Name="affiliation" Type="varchar" MaxLength="50" />
-          <Property Name="type" Type="varchar" MaxLength="20" />
-          <Property Name="year_established" Type="varchar" MaxLength="20" />
-          <Property Name="short_description" Type="varchar" MaxLength="100" />
-          <Property Name="long_description" Type="varchar" MaxLength="200" />
-          <Property Name="cityid" Type="int" />
-          <Property Name="countryid" Type="int" />
-          <Property Name="latitude" Type="decimal" Precision="10" Scale="0" />
-          <Property Name="longitude" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="university_name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="website" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="contact_person" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="mobile" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="affiliation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="year_established" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="short_description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="long_description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="latitude" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="longitude" Type="decimal" Precision="10" Scale="0" Nullable="false" />
           <Property Name="time_zone" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="closest_airport" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="distance_from_airport" Type="varchar" MaxLength="50" Nullable="false" />
@@ -871,6 +905,20 @@
           <Property Name="mastervalueid" Type="int" />
           <Property Name="created_by" Type="int" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="GTE_documentverification">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="int" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="documentname" Type="varchar" MaxLength="45" />
+          <Property Name="documentvalidationId" Type="int" />
+          <Property Name="agentid" Type="int" />
+          <Property Name="lastupdatedate" Type="datetime" Precision="0" />
+          <Property Name="remarks" Type="varchar" MaxLength="200" />
         </EntityType>
         <Association Name="FK_adminusers_rolemaster">
           <End Role="rolemaster" Type="Self.rolemaster" Multiplicity="1" />
@@ -981,7 +1029,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_universityMaster_cityMaster">
-          <End Role="citymaster" Type="Self.citymaster" Multiplicity="0..1" />
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
           <End Role="university_master" Type="Self.university_master" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="citymaster">
@@ -1033,6 +1081,8 @@
           <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="credentialmaster" EntityType="Self.credentialmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="customfieldmaster" EntityType="Self.customfieldmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="customfieldvalue" EntityType="Self.customfieldvalue" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
@@ -1056,6 +1106,7 @@
           <EntitySet Name="qualificationmaster" EntityType="Self.qualificationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="question_master" EntityType="Self.question_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="registrationcourses" EntityType="Self.registrationcourses" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="relationshipwithcontact" EntityType="Self.relationshipwithcontact" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="secondarylanguagemaster" EntityType="Self.secondarylanguagemaster" Schema="GTE" store:Type="Tables" />
@@ -1065,6 +1116,7 @@
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectmaster" EntityType="Self.subjectmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectwisecountrymapping" EntityType="Self.subjectwisecountrymapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="timezonemaster" EntityType="Self.timezonemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="typemaster" EntityType="Self.typemaster" Schema="GTE" store:Type="Tables" />
@@ -1074,6 +1126,17 @@
           <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="GTE_documentverification" EntityType="Self.GTE_documentverification" store:Type="Views" store:Schema="GTE" store:Name="GTE.documentverification">
+            <DefiningQuery>SELECT
+`GTE_documentverification`.`documentid`, 
+`GTE_documentverification`.`applicantid`, 
+`GTE_documentverification`.`documentname`, 
+`GTE_documentverification`.`documentvalidationId`, 
+`GTE_documentverification`.`agentid`, 
+`GTE_documentverification`.`lastupdatedate`, 
+`GTE_documentverification`.`remarks`
+FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_adminusers_rolemaster" Association="Self.FK_adminusers_rolemaster">
             <End Role="rolemaster" EntitySet="rolemaster" />
             <End Role="adminusers" EntitySet="adminusers" />
@@ -1154,7 +1217,6 @@
           <EntitySet Name="applicantvideomaster" EntityType="GTEModel.applicantvideomaster" />
           <EntitySet Name="applicantvisadetails" EntityType="GTEModel.applicantvisadetails" />
           <EntitySet Name="cefrlevelmaster" EntityType="GTEModel.cefrlevelmaster" />
-          <EntitySet Name="citymaster" EntityType="GTEModel.citymaster" />
           <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
           <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
@@ -1196,7 +1258,6 @@
           <EntitySet Name="tooltipmaster" EntityType="GTEModel.tooltipmaster" />
           <EntitySet Name="typemaster" EntityType="GTEModel.typemaster" />
           <EntitySet Name="university_campusmapping" EntityType="GTEModel.university_campusmapping" />
-          <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
           <EntitySet Name="universitycampus" EntityType="GTEModel.universitycampus" />
           <EntitySet Name="universitywisefieldmapping" EntityType="GTEModel.universitywisefieldmapping" />
           <EntitySet Name="universitywiseformmapping" EntityType="GTEModel.universitywiseformmapping" />
@@ -1204,14 +1265,6 @@
           <AssociationSet Name="FK_adminusers_rolemaster" Association="GTEModel.FK_adminusers_rolemaster">
             <End Role="rolemaster" EntitySet="rolemaster" />
             <End Role="adminusers" EntitySet="adminusers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cityMaster_countriesMaster" Association="GTEModel.FK_cityMaster_countriesMaster">
-            <End Role="countriesmaster" EntitySet="countriesmaster" />
-            <End Role="citymaster" EntitySet="citymaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_universityMaster_cityMaster" Association="GTEModel.FK_universityMaster_cityMaster">
-            <End Role="citymaster" EntitySet="citymaster" />
-            <End Role="university_master" EntitySet="university_master" />
           </AssociationSet>
           <AssociationSet Name="FK_qualificationcountriesmapping_countriesmaster" Association="GTEModel.FK_qualificationcountriesmapping_countriesmaster">
             <End Role="countriesmaster" EntitySet="countriesmaster" />
@@ -1241,6 +1294,21 @@
             <End Role="subjectmaster" EntitySet="subjectmaster" />
             <End Role="subjectwisecountrymapping" EntitySet="subjectwisecountrymapping" />
           </AssociationSet>
+          <EntitySet Name="customfieldmaster" EntityType="GTEModel.customfieldmaster" />
+          <EntitySet Name="customfieldvalue" EntityType="GTEModel.customfieldvalue" />
+          <EntitySet Name="relationshipwithcontact" EntityType="GTEModel.relationshipwithcontact" />
+          <EntitySet Name="GTE_documentverification" EntityType="GTEModel.GTE_documentverification" />
+          <EntitySet Name="citymaster" EntityType="GTEModel.citymaster" />
+          <AssociationSet Name="FK_cityMaster_countriesMaster" Association="GTEModel.FK_cityMaster_countriesMaster">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="citymaster" EntitySet="citymaster" />
+          </AssociationSet>
+          <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
+          <AssociationSet Name="FK_universityMaster_cityMaster" Association="GTEModel.FK_universityMaster_cityMaster">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="university_master" EntitySet="university_master" />
+          </AssociationSet>
+          <EntitySet Name="timezonemaster" EntityType="GTEModel.timezonemaster" />
           </EntityContainer>
         <EntityType Name="adminusers">
           <Key>
@@ -1667,21 +1735,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="44" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="citymaster">
-          <Key>
-            <PropertyRef Name="city_id" />
-          </Key>
-          <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cost_of_living" Type="Decimal" Nullable="false" />
-          <Property Name="around" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="weather" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="geting_there" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="country_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="citymaster" ToRole="countriesmaster" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="citymaster" ToRole="university_master" />
-        </EntityType>
         <EntityType Name="controlmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1696,8 +1749,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="country_code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="country_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
           <NavigationProperty Name="qualificationcountriesmapping" Relationship="GTEModel.FK_qualificationcountriesmapping_countriesmaster" FromRole="countriesmaster" ToRole="qualificationcountriesmapping" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
         </EntityType>
         <EntityType Name="coursemaster">
           <Key>
@@ -2060,33 +2113,6 @@
           <Property Name="cityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="countryid" Type="Int32" />
         </EntityType>
-        <EntityType Name="university_master">
-          <Key>
-            <PropertyRef Name="universityid" />
-          </Key>
-          <Property Name="universityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="university_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="website" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="contact_person" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="affiliation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="type" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="year_established" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="short_description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="long_description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="cityid" Type="Int32" />
-          <Property Name="countryid" Type="Int32" />
-          <Property Name="latitude" Type="Decimal" />
-          <Property Name="longitude" Type="Decimal" />
-          <Property Name="time_zone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="closest_airport" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="distance_from_airport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="distance_from_railway" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="getting_around" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="university_master" ToRole="citymaster" />
-        </EntityType>
         <EntityType Name="universitycampus">
           <Key>
             <PropertyRef Name="campusid" />
@@ -2138,30 +2164,6 @@
             </Principal>
             <Dependent Role="adminusers">
               <PropertyRef Name="roleid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cityMaster_countriesMaster">
-          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
-          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="countriesmaster">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="citymaster">
-              <PropertyRef Name="country_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_universityMaster_cityMaster">
-          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="0..1" />
-          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="citymaster">
-              <PropertyRef Name="city_id" />
-            </Principal>
-            <Dependent Role="university_master">
-              <PropertyRef Name="cityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2249,6 +2251,118 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="customfieldmaster">
+          <Key>
+            <PropertyRef Name="customfieldid" />
+          </Key>
+          <Property Name="customfieldid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="formid" Type="Int32" Nullable="false" />
+          <Property Name="labeldescription" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="customfieldvalue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customfieldid" Type="Int32" />
+          <Property Name="value" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="applicantid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="relationshipwithcontact">
+          <Key>
+            <PropertyRef Name="relationshiptid" />
+          </Key>
+          <Property Name="relationshiptid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="relationshipname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="GTE_documentverification">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="documentvalidationId" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="lastupdatedate" Type="DateTime" />
+          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="citymaster">
+          <Key>
+            <PropertyRef Name="city_id" />
+          </Key>
+          <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cost_of_living" Type="Decimal" />
+          <Property Name="around" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="weather" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="geting_there" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="country_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="citymaster" ToRole="countriesmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="citymaster" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK_cityMaster_countriesMaster">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="citymaster">
+              <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="university_master">
+          <Key>
+            <PropertyRef Name="universityid" />
+          </Key>
+          <Property Name="universityid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="university_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="website" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="contact_person" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="mobile" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="affiliation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="year_established" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="short_description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="long_description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="latitude" Type="Decimal" Nullable="false" />
+          <Property Name="longitude" Type="Decimal" Nullable="false" />
+          <Property Name="time_zone" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="closest_airport" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="distance_from_airport" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="distance_from_railway" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="getting_around" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="university_master" ToRole="citymaster" />
+        </EntityType>
+        <Association Name="FK_universityMaster_cityMaster">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="university_master">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="timezonemaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="time_zone_name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="time_zone_value" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2707,20 +2821,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="citymaster">
-            <EntityTypeMapping TypeName="GTEModel.citymaster">
-              <MappingFragment StoreEntitySet="citymaster">
-                <ScalarProperty Name="country_id" ColumnName="country_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="geting_there" ColumnName="geting_there" />
-                <ScalarProperty Name="weather" ColumnName="weather" />
-                <ScalarProperty Name="around" ColumnName="around" />
-                <ScalarProperty Name="cost_of_living" ColumnName="cost_of_living" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="city_id" ColumnName="city_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="controlmaster">
             <EntityTypeMapping TypeName="GTEModel.controlmaster">
               <MappingFragment StoreEntitySet="controlmaster">
@@ -3125,33 +3225,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="university_master">
-            <EntityTypeMapping TypeName="GTEModel.university_master">
-              <MappingFragment StoreEntitySet="university_master">
-                <ScalarProperty Name="getting_around" ColumnName="getting_around" />
-                <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
-                <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
-                <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
-                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="countryid" ColumnName="countryid" />
-                <ScalarProperty Name="cityid" ColumnName="cityid" />
-                <ScalarProperty Name="long_description" ColumnName="long_description" />
-                <ScalarProperty Name="short_description" ColumnName="short_description" />
-                <ScalarProperty Name="year_established" ColumnName="year_established" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="affiliation" ColumnName="affiliation" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="university_name" ColumnName="university_name" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="universitycampus">
             <EntityTypeMapping TypeName="GTEModel.universitycampus">
               <MappingFragment StoreEntitySet="universitycampus">
@@ -3194,6 +3267,98 @@
                 <ScalarProperty Name="masterid" ColumnName="masterid" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="universitywisemastermappingid" ColumnName="universitywisemastermappingid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customfieldmaster">
+            <EntityTypeMapping TypeName="GTEModel.customfieldmaster">
+              <MappingFragment StoreEntitySet="customfieldmaster">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="labeldescription" ColumnName="labeldescription" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="customfieldid" ColumnName="customfieldid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customfieldvalue">
+            <EntityTypeMapping TypeName="GTEModel.customfieldvalue">
+              <MappingFragment StoreEntitySet="customfieldvalue">
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="customfieldid" ColumnName="customfieldid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="relationshipwithcontact">
+            <EntityTypeMapping TypeName="GTEModel.relationshipwithcontact">
+              <MappingFragment StoreEntitySet="relationshipwithcontact">
+                <ScalarProperty Name="relationshipname" ColumnName="relationshipname" />
+                <ScalarProperty Name="relationshiptid" ColumnName="relationshiptid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GTE_documentverification">
+            <EntityTypeMapping TypeName="GTEModel.GTE_documentverification">
+              <MappingFragment StoreEntitySet="GTE_documentverification">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="documentvalidationId" ColumnName="documentvalidationId" />
+                <ScalarProperty Name="documentname" ColumnName="documentname" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citymaster">
+            <EntityTypeMapping TypeName="GTEModel.citymaster">
+              <MappingFragment StoreEntitySet="citymaster">
+                <ScalarProperty Name="country_id" ColumnName="country_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="geting_there" ColumnName="geting_there" />
+                <ScalarProperty Name="weather" ColumnName="weather" />
+                <ScalarProperty Name="around" ColumnName="around" />
+                <ScalarProperty Name="cost_of_living" ColumnName="cost_of_living" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="city_id" ColumnName="city_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="university_master">
+            <EntityTypeMapping TypeName="GTEModel.university_master">
+              <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="getting_around" ColumnName="getting_around" />
+                <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
+                <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
+                <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
+                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="long_description" ColumnName="long_description" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="year_established" ColumnName="year_established" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="affiliation" ColumnName="affiliation" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="university_name" ColumnName="university_name" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timezonemaster">
+            <EntityTypeMapping TypeName="GTEModel.timezonemaster">
+              <MappingFragment StoreEntitySet="timezonemaster">
+                <ScalarProperty Name="time_zone_value" ColumnName="time_zone_value" />
+                <ScalarProperty Name="time_zone_name" ColumnName="time_zone_name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

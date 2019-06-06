@@ -502,10 +502,23 @@ public class Common
         {
             log.WriteLog(ex.ToString());
         }
-
-
-
-
+    }
+    public void BindTimeZone(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select time zone", "0");
+            var timezones = db.timezonemaster.Select(x => new { id = x.ID, textField = "("+ x.time_zone_value +") "+ x.time_zone_name }).ToList();
+            ddl.DataSource = timezones;
+            ddl.DataTextField = "textField";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
     }
 
     [Serializable]

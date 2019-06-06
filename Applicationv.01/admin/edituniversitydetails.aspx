@@ -1,15 +1,16 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="createuniversity.aspx.cs" Inherits="admin_createuniversity" MasterPageFile="~/admin/admin.master" EnableEventValidation="false"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="edituniversitydetails.aspx.cs" Inherits="edituniversitydetails" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
 </asp:Content>
+
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Create University</li>
+            <li class="breadcrumb-item active">Edit University Details</li>
         </ol>
 
-        <h1 class="h2">University Create</h1>
+        <h1 class="h2">Edit University Detail</h1>
 
         <div class="card">
             <div class="tab-content card-body">
@@ -82,7 +83,7 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniEmail" class="col-sm-3 col-form-label form-label">University Email ID</label>
+                         <label for="uniEmail" class="col-sm-3 col-form-label form-label">University Email IDe</label>
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -119,7 +120,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtMobile" type="text" runat="server" class="form-control" placeholder="University Mobile Number" maxlength="10" />
+                                    <input id="txtMobile" type="text" runat="server" class="form-control" placeholder="University Mobile Number" />
                                 </div>
                             </div>
                         </div>
@@ -141,7 +142,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList id="ddlCountry" name="ddlCountry" runat="server" class="form-control"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlCountry" runat="server" class="form-control"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +214,7 @@
                                     <input id="txtUniAirportDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest airport" />
                                 </div>
                                 <select id="airDistanceUnit" name="distanceUnit" runat="server" class="form-control col-md-4">
-                                    <option value="" selected="selected" disabled="disabled">Please Select Unit</option>
+                                    <option value="" disabled="disabled">Please Select Unit</option>
                                     <option value="KM">KM</option>
                                     <option value="Miles">Miles</option>
                                 </select>
@@ -229,7 +230,7 @@
                                     <input id="txtUniRailDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest Railway Station" />
                                 </div>
                                 <select id="railDistanceUnit" name="distanceUnit" runat="server" class="form-control col-md-4">
-                                    <option value="" selected="selected" disabled="disabled">Please Select Unit</option>
+                                    <option value="" disabled="disabled">Please Select Unit</option>
                                     <option value="KM">KM</option>
                                     <option value="Miles">Miles</option>
                                 </select>
@@ -269,7 +270,7 @@
             $("#<%=ddlCountry.ClientID%>").change(function () {
                 $.ajax({
                     type: "GET",
-                    url: "createuniversity.aspx/GetCityDropdown",
+                    url: "edituniversitydetails.aspx/GetCityDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: { countryId: $("#<%=ddlCountry.ClientID%>").val() },
@@ -296,7 +297,6 @@
         });
 
         function validateForm() {
-
             var txtUniName = $('#<%=txtUniName.ClientID%>').val();
             var txtUniAffiliation = $('#<%=txtUniAffiliation.ClientID%>').val();
             var txtUniType = $('#<%=txtUniType.ClientID%>').val();
@@ -412,7 +412,6 @@
             }
                 
             return true;
-
         }
     </script>
 </asp:Content>

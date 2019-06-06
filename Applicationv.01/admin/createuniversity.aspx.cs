@@ -22,7 +22,10 @@ public partial class admin_createuniversity : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
 
         if (!IsPostBack)
+        {
             objCommon.BindCountries(ddlCountry);
+            objCommon.BindTimeZone(ddlTimeZone);
+        }
     }
 
     [WebMethod]
@@ -57,15 +60,13 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.long_description = txtUniLatitude.Value.Trim();
                 universityObj.cityid = Convert.ToInt32(hidCityField.Value);
                 universityObj.countryid = Convert.ToInt32(ddlCountry.SelectedItem.Value);
-                universityObj.time_zone = txtUniTimeZone.Value.Trim();
+                universityObj.time_zone = ddlTimeZone.SelectedItem.Value;
                 universityObj.closest_airport = txtUniAirport.Value.Trim();
-                universityObj.distance_from_airport = txtUniAirportDistance.Value.Trim();
-                universityObj.distance_from_railway = txtUniRailDistance.Value.Trim();
+                universityObj.distance_from_airport = txtUniAirportDistance.Value.Trim() + " " + airDistanceUnit.Value.Trim();
+                universityObj.distance_from_railway = txtUniRailDistance.Value.Trim() + " " + railDistanceUnit.Value.Trim();
                 universityObj.getting_around = txtUniGettingAround.Value.Trim();
-                if(!string.IsNullOrEmpty(txtUniLatitude.Value.Trim()))
-                    universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
-                if(!string.IsNullOrEmpty(txtUniLongitude.Value.Trim()))
-                    universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
+                universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
+                universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
 
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
