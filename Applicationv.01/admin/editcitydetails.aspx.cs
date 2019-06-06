@@ -24,7 +24,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
             {
                 int cityID;
                 if (!Int32.TryParse(Request.QueryString["cityID"], out cityID))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect("~/admin/Default.aspx");
 
                 citymaster existingCity = db.citymaster.Where(obj => obj.city_id == cityID).First();
 
@@ -47,7 +47,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect("~/admin/Default.aspx");
         }
     }
 

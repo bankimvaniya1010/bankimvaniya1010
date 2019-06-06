@@ -18,21 +18,21 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
 
         if (!IsPostBack)
-        { bindFacilityDropdown(); }
+        { bindUniversityDropdown(); }
     }
 
-    private void bindFacilityDropdown()
+    private void bindUniversityDropdown()
     {
         try
         {
-            ListItem lst = new ListItem("Please select", "0");
-            List<facilitiesmaster> facilityMaster = db.facilitiesmaster.ToList();
+            ListItem lst = new ListItem("Please select university", "0");
+            List<university_master> universityMaster = db.university_master.ToList();
 
-            ddlFacilities.DataSource = facilityMaster;
-            ddlFacilities.DataTextField = "facility_name";
-            ddlFacilities.DataValueField = "id";
-            ddlFacilities.DataBind();
-            ddlFacilities.Items.Insert(0, lst);
+            ddlUniversity.DataSource = universityMaster;
+            ddlUniversity.DataTextField = "university_name";
+            ddlUniversity.DataValueField = "universityid";
+            ddlUniversity.DataBind();
+            ddlUniversity.Items.Insert(0, lst);
         }
         catch (Exception ex)
         {
@@ -42,8 +42,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
 
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
-        int universityId = Convert.ToInt32(txtUniID.Value.Trim());
-        int facilityID;
+        int universityId = Convert.ToInt32(ddlUniversity.SelectedItem.Value);
         universitycampus universityCampusObj = new universitycampus();
         try
         {
@@ -54,12 +53,9 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             {
                 universityCampusObj.campusname = txtCampName.Value.Trim();
                 universityCampusObj.description = txtCampDescription.Value.Trim();
-                universityCampusObj.facilities = txtCampFacility.Value.Trim();
+                universityCampusObj.universityid = universityId;
                 universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
                 universityCampusObj.research = txtCampResearch.Value.Trim();
-                universityCampusObj.universityid = universityId;
-                if (!Int32.TryParse(ddlFacilities.SelectedItem.Value, out facilityID))
-                    universityCampusObj.facility_id = Convert.ToInt32(ddlFacilities.SelectedItem.Value);
                 
                 db.universitycampus.Add(universityCampusObj);
                 db.SaveChanges();

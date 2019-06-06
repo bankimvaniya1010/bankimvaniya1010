@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="createuniversitycampus.aspx.cs" Inherits="admin_createuniversitycampus" MasterPageFile="~/admin/admin.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="edituniversitycampus.aspx.cs" Inherits="admin_edituniversitycampus" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
 </asp:Content>
@@ -6,10 +6,10 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Create University Campus</li>
+            <li class="breadcrumb-item active">Edit University Campus</li>
         </ol>
 
-        <h1 class="h2">University Campus Create</h1>
+        <h1 class="h2">University Campus Edit</h1>
 
         <div class="card">
             <div class="tab-content card-body">
@@ -114,7 +114,7 @@
                 return false;
             }
 
-            return true;
+            return true;         
         }
     </script>
 </asp:Content>
