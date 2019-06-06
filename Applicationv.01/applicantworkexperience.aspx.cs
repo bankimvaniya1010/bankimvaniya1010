@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class applicantworkexperience : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0;
+    int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -17,6 +17,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
@@ -31,8 +32,10 @@ public partial class applicantworkexperience : System.Web.UI.Page
         {
             objCom.BindCountries(ddlCountry);
             SetToolTips();
+            BindRelationship();
             // PopulateEmployerInfo(1);
-            BindEmploymentDetails(); SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            BindEmploymentDetails();
+            SetControlsUniversitywise();
         }
     }
     private void SetToolTips()
@@ -52,7 +55,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         txtEmail.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "RelationwithVerification":
-                        txtrelationship.Attributes.Add("title", lstToolTips[k].tooltips);
+                        ddlRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "Verificationame":
                         txtemploymentverification.Attributes.Add("title", lstToolTips[k].tooltips);
@@ -100,9 +103,9 @@ public partial class applicantworkexperience : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
+        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
     }
-    private void SetControlsUniversitywise(int universityID)
+    private void SetControlsUniversitywise()
     {
         try
         {
@@ -237,7 +240,11 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 txtbriefDescription.Value = employerInfo.briefdescription;
                 txtreportingmanger.Value = employerInfo.nameofreportingmanger;
                 txtemploymentverification.Value = employerInfo.contactpersonwithdetails;
-                txtrelationship.Value = employerInfo.relationshipwithcontact;
+                if (employerInfo.relationshipwithcontact != null)
+                {
+                    ddlRelationship.ClearSelection();
+                    ddlRelationship.Items.FindByValue(employerInfo.relationshipwithcontact.ToString()).Selected = true;
+                }
                 txtEmail.Value = employerInfo.emailid;
                 txtlinkedin.Value = employerInfo.linkedinidofcontact;
                 lblSaveTime.Text = " Record was last saved at " + employerInfo.lastsavedtime.ToString();
@@ -253,73 +260,55 @@ public partial class applicantworkexperience : System.Web.UI.Page
     {
         try
         {
+            var noExperience = (from ad in db.applicantdetails
+                                where ad.applicantid == userID
+                                select ad).FirstOrDefault();
+            var mode = "new";
             string employerid = hdnemployer.Value;
-            if (employerid == "")
+            applicantemployerdetails objEmployer = new applicantemployerdetails();
+            if (employerid != "")
             {
-                applicantemployerdetails objEmployer = new applicantemployerdetails();
-                if (rblEmploymentYes.Checked)
-                    objEmployer.wishtoaddemployer = 1;
-                else
-                    objEmployer.wishtoaddemployer = 0;
-                objEmployer.organization = txtEmployer.Value;
-                objEmployer.website = txtemployerwebsite.Value;
-                objEmployer.city = txtCity.Value;
-                if (ddlCountry.SelectedValue != "")
-                {
-
-                    objEmployer.country = Convert.ToInt32(ddlCountry.SelectedValue);
-
-                }
-                objEmployer.designation = txtPosition.Value;
-                objEmployer.durationfrom = Convert.ToDateTime(txtStartDate.Value);
-                objEmployer.durationto = Convert.ToDateTime(txtEndate.Value);
-                objEmployer.briefdescription = txtbriefDescription.Value;
-                objEmployer.nameofreportingmanger = txtreportingmanger.Value;
-                objEmployer.contactpersonwithdetails = txtemploymentverification.Value;
-                objEmployer.relationshipwithcontact = txtrelationship.Value;
-                objEmployer.emailid = txtEmail.Value;
-                objEmployer.linkedinidofcontact = txtlinkedin.Value;
-                objEmployer.applicantid = userID;
-                objEmployer.lastsavedtime = DateTime.Now;
-                db.applicantemployerdetails.Add(objEmployer);
-            }
-            else
-            {
+                mode = "update";
                 int eID = Convert.ToInt32(employerid);
                 var employerInfo = (from pInfo in db.applicantemployerdetails
                                     where pInfo.employerid == eID
                                     select pInfo).FirstOrDefault();
+                objEmployer = employerInfo;
+            }
 
-                if (employerInfo != null)
-                {
-                    if (rblEmploymentYes.Checked)
-                        employerInfo.wishtoaddemployer = 1;
-                    else
-                        employerInfo.wishtoaddemployer = 0;
-                    employerInfo.organization = txtEmployer.Value;
-                    employerInfo.website = txtemployerwebsite.Value;
-                    employerInfo.city = txtCity.Value;
-                    if (ddlCountry.SelectedValue != "")
-                    {
-                        employerInfo.country = Convert.ToInt32(ddlCountry.SelectedValue);
-
-                    }
-                    employerInfo.designation = txtPosition.Value;
-                    employerInfo.durationfrom = Convert.ToDateTime(txtStartDate.Value);
-                    employerInfo.durationto = Convert.ToDateTime(txtEndate.Value);
-                    employerInfo.briefdescription = txtbriefDescription.Value;
-                    employerInfo.nameofreportingmanger = txtreportingmanger.Value;
-                    employerInfo.contactpersonwithdetails = txtemploymentverification.Value;
-                    employerInfo.relationshipwithcontact = txtrelationship.Value;
-                    employerInfo.emailid = txtEmail.Value;
-                    employerInfo.linkedinidofcontact = txtlinkedin.Value;
-                    employerInfo.lastsavedtime = DateTime.Now;
-                }
+            if (rblEmploymentYes.Checked)
+            {
+                noExperience.haveworkexperience = true;
+                objEmployer.wishtoaddemployer = 1;
+                objEmployer.organization = txtEmployer.Value;
+                objEmployer.designation = txtPosition.Value;               
+                objEmployer.website = txtemployerwebsite.Value;
+                objEmployer.city = txtCity.Value;
+                objEmployer.country = Convert.ToInt32(ddlCountry.SelectedValue);
+                objEmployer.briefdescription = txtbriefDescription.Value;
+                objEmployer.nameofreportingmanger = txtreportingmanger.Value;
+                objEmployer.contactpersonwithdetails = txtemploymentverification.Value;
+                objEmployer.relationshipwithcontact = ddlRelationship.SelectedValue;
+                objEmployer.emailid = txtEmail.Value;
+                objEmployer.linkedinidofcontact = txtlinkedin.Value;
+                objEmployer.durationfrom = Convert.ToDateTime(txtStartDate.Value);
+                objEmployer.durationto = Convert.ToDateTime(txtEndate.Value);
+                objEmployer.applicantid = userID;
+                objEmployer.lastsavedtime = DateTime.Now;
+                if (mode == "new")
+                    db.applicantemployerdetails.Add(objEmployer);                
+            }
+            else
+            {
+                noExperience.haveworkexperience = false;
             }
             db.SaveChanges();
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
             BindEmploymentDetails();
+
+
+
         }
         catch (Exception ex)
         {
@@ -343,6 +332,24 @@ public partial class applicantworkexperience : System.Web.UI.Page
         }
     }
 
+    private void BindRelationship()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var relationship = db.realtionshipmaster.ToList();
+            ddlRelationship.DataSource = relationship;
+            ddlRelationship.DataTextField = "relationshipname";
+            ddlRelationship.DataValueField = "relationshiptid";
+            ddlRelationship.DataBind();
+            ddlRelationship.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
     protected void grdEmployment_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         try
@@ -351,14 +358,14 @@ public partial class applicantworkexperience : System.Web.UI.Page
             applicantemployerdetails grade = db.applicantemployerdetails.Where(b => b.employerid == id).First();
             db.applicantemployerdetails.Remove(grade);
             db.SaveChanges();
-            BindEmploymentDetails();
+            BindEmploymentDetails(); 
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
     }
-
+    
     protected void grdEmployment_RowEditing(object sender, GridViewEditEventArgs e)
     {
 
@@ -404,6 +411,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 int employerid = Convert.ToInt32(e.CommandArgument.ToString());
                 PopulateEmployerInfo(employerid);
                 hdnemployer.Value = e.CommandArgument.ToString();
+                employment.Attributes.Add("style", "display:block");
             }
         }
         catch (Exception ex)

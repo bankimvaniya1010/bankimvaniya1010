@@ -26,7 +26,7 @@ public partial class login : System.Web.UI.Page
         {
             string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
             var chkUser = (from usr in db.students
-                           where (usr.username.Equals(txtUser.Text.Trim()))
+                           where (usr.username.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
                            select usr).FirstOrDefault();
             if (chkUser == null)
             {
