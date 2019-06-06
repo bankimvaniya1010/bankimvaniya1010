@@ -202,7 +202,7 @@
                                             <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                 <asp:GridView ID="grd10" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grd10_DataBound" OnRowDeleted="grd10_RowDeleted" OnRowDeleting="grd10_RowDeleting">
                                                     <Columns>
-                                                        <asp:BoundField DataField="applicantgradeid"  HeaderText="ID" InsertVisible="False"
+                                                        <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
                                                             ReadOnly="True" SortExpression="applicantgradeid" />
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                             <ItemTemplate>
@@ -424,7 +424,7 @@
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdSecondary" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdSecondary_DataBound" OnRowDeleted="grdSecondary_RowDeleted" OnRowDeleting="grdSecondary_RowDeleting">
                                                         <Columns>
-                                                            <asp:BoundField DataField="applicantgradeid"  HeaderText="ID" InsertVisible="False"
+                                                            <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
                                                                 ReadOnly="True" SortExpression="applicantgradeid" />
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                                 <ItemTemplate>
@@ -662,7 +662,7 @@
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdHigher" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigher_DataBound" OnRowDeleted="grdHigher_RowDeleted" OnRowDeleting="grdHigher_RowDeleting">
                                                         <Columns>
-                                                            <asp:BoundField DataField="applicantgradeid"  HeaderText="ID" InsertVisible="False"
+                                                            <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
                                                                 ReadOnly="True" SortExpression="applicantgradeid" />
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                                 <ItemTemplate>
@@ -721,7 +721,7 @@
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdHigherCourses" DataKeyNames="applicanthighereducationid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigherCourses_DataBound" OnRowDeleted="grdHigherCourses_RowDeleted" OnRowDeleting="grdHigherCourses_RowDeleting" OnRowEditing="grdHigherCourses_RowEditing" OnRowCommand="grdHigherCourses_RowCommand">
                                                         <Columns>
-                                                            
+
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="id" Visible="false">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblId" runat="server"
@@ -1707,7 +1707,274 @@
             else
                 return false;
         }
+        $(function () {
+            $('#<%=btn_login.ClientID%>').click(function () {
+               
+                var summary = "";
+                summary += isvalidHighSchool();
+                summary += isvalidSecondary();
+                summary += isvalidHigherEducation();
+                summary += isvalidDiploma();
+                summary = summary.replace(/undefined/g, "");
 
+                if (summary != "") {
+                    alert(summary);
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            });
+        });
+        function isvalidHighSchool() {
+            if (($("#<%=rblHighYes.ClientID%>").is(":checked")) || ($("#<%=rblHighNo.ClientID%>").is(":checked")) || ($("#<%=rblHighNot.ClientID%>").is(":checked"))) {
+                if (($("#<%=rblHighYes.ClientID%>").is(":checked")) || ($("#<%=rblHighNo.ClientID%>").is(":checked"))) {
+
+                    if ($("#<%=ddlCountryHighSchool.ClientID%>").val() == "0") {
+                        return ("Please select  high school country" + "\n");
+                    }
+                    if ($("#<%=txthighschoolName.ClientID%>").val() == "") {
+                        return ("Please enter high school name" + "\n");
+                    }
+                    if ($("#<%=ddlHighSchoolQualificationType.ClientID%>").val() == "0") {
+                        return ("Please select  high school qualification type" + "\n");
+                    }
+                    if ($("#<%=ddlHighSchoolStudyMode.ClientID%>").val() == "0") {
+                        return ("Please select high school study mode" + "\n");
+                    }
+                    if ($("#<%=ddlHighschoolMedium.ClientID%>").val() == "0") {
+                        return ("Please select  high school medium" + "\n");
+                    }
+                    if ($("#<%=ddlHighSchoolGrade.ClientID%>").val() == "0") {
+                        return ("Please select  high school grade" + "\n");
+                    }
+                    if (($("#<%=rblYes.ClientID%>").is(":checked")) || ($("#<%=rblNot.ClientID%>").is(":checked")) || ($("#<%=rblYetToConduct.ClientID%>").is(":checked"))) {
+                        if ((($("#<%=rblNot.ClientID%>").is(":checked")) || ($("#<%=rblYetToConduct.ClientID%>").is(":checked")))) {
+                            if ($("#<%=txtExpectedHighSchoolResult.ClientID%>").val() == "") {
+                                return ("Please enter high school grade declaration date" + "\n");
+                            }
+                           
+                        }
+                    }
+                    else {
+                        return ("Please select have you achieved high school final grade" + "\n");
+                    }
+
+                    if ($("#<%=txtHighSchoolVerificationName.ClientID%>").val() == "") {
+                        return ("Please enter high school contact person name" + "\n");
+                    }
+                    if ($("#<%=ddlHighSchoolVerificationRelationship.ClientID%>").val() == "0") {
+                        return ("Please select high school relationship with contact" + "\n");
+                    }
+                    if ($("#<%=txtHighSchoolcontactMobile.ClientID%>").val() == "") {
+                        return ("Please enter  high school contact mobile no" + "\n");
+                    }
+                    if ($("#<%=txtHighSchoolcontactEmail.ClientID%>").val() == "") {
+                        return ("Please enter a valid  e-mail address" + "\n");
+                    }
+                    else {
+                        var userinput = $("#<%=txtHighSchoolcontactEmail.ClientID%>").val();
+                        var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        if (!pattern.test(userinput)) {
+                            return ("Please enter a valid  e-mail address" + "\n");
+                        }
+                    }
+
+                }
+                else {
+                    if ($("#<%=txtHigestEducation.ClientID%>").val() == "") {
+                        return ("Please enter highest education what you have" + "\n");
+                    }
+                }
+            }
+            else {
+                return ("Please select have you completed high school" + "\n");
+            }
+
+        }
+        function isvalidSecondary() {
+            if (($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNot.ClientID%>").is(":checked"))) {
+                if ((($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")))) {
+
+                    if ($("#<%=ddlSecondaryCountry.ClientID%>").val() == "0") {
+                        return ("Please select  secondary country" + "\n");
+                    }
+                    if ($("#<%=txtSecondarySchoolName.ClientID%>").val() == "") {
+                        return ("Please enter secondary school name" + "\n");
+                    }
+                    if ($("#<%=ddlSecondaryQualificationType.ClientID%>").val() == "0") {
+                        return ("Please select secondary qualification type" + "\n");
+                    }
+                    if ($("#<%=ddlSecondaryStudyMode.ClientID%>").val() == "0") {
+                        return ("Please select secondary study mode" + "\n");
+                    }
+                    if ($("#<%=ddlSecondaryMedium.ClientID%>").val() == "0") {
+                        return ("Please select secondary medium" + "\n");
+                    }
+                    if ($("#<%=ddlSecondaryGrade.ClientID%>").val() == "0") {
+                        return ("Please select secondary grade" + "\n");
+                    }
+                    if (($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(":checked")) || ($("#<%=SecondarygradeachievedYet.ClientID%>").is(":checked")) || ($("#<%=SecondarygradeachievedNo.ClientID%>").is(":checked"))) {
+                        if (($("#<%=SecondarygradeachievedYet.ClientID%>").is(":checked")) || ($("#<%=SecondarygradeachievedNo.ClientID%>").is(":checked"))) {
+                            if ($("#<%=txtExpectedSecondaryResult.ClientID%>").val() == "") {
+                                return ("Please enter secondary grade declaration date" + "\n");
+                            }
+                        }
+                    }
+                    else {
+                        return ("Please select have you achieved secondary final grade" + "\n");
+                    }
+
+                    if ($("#<%=txtSecondaryVerificationName.ClientID%>").val() == "") {
+                        return ("Please enter secondary contact person name" + "\n");
+                    }
+                    if ($("#<%=ddlSecondaryVerificationRelationship.ClientID%>").val() == "0") {
+                        return ("Please select secondary relationship with contact" + "\n");
+                    }
+                    if ($("#<%=txtSecondarycontactMobile.ClientID%>").val() == "") {
+                        return ("Please enter  secondary contact mobile no" + "\n");
+                    }
+                    if ($("#<%=txtSecondarycontactEmail.ClientID%>").val() == "") {
+                        return ("Please enter a valid secondary e-mail address" + "\n");
+                    }
+                    else {
+                        var userinput = $("#<%=txtSecondarycontactEmail.ClientID%>").val();
+                        var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        if (!pattern.test(userinput)) {
+                            return ("Please enter a valid secondary  e-mail address" + "\n");
+                        }
+                    }
+
+                }
+            }
+            else {
+                return ("Please select have you completed secondary" + "\n");
+            }
+
+        }
+        function isvalidHigherEducation() {
+            if (($("#<%=rblhigherYes.ClientID%>").is(":checked")) || ($("#<%=rblhigherNo.ClientID%>").is(":checked")) || ($("#<%=rblhigherNot.ClientID%>").is(":checked"))) {
+                if (($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked"))) {
+
+                    if ($("#<%=ddlCourse.ClientID%>").val() == "0") {
+                        return ("Please select  higher course" + "\n");
+                    }
+                    if ($("#<%=ddlHigherCountry.ClientID%>").val() == "0") {
+                        return ("Please select  higher country" + "\n");
+                    }
+                    if ($("#<%=txtHigherschoolName.ClientID%>").val() == "") {
+                        return ("Please enter higher school name" + "\n");
+                    }
+                    if ($("#<%=ddlHigherQualificationType.ClientID%>").val() == "0") {
+                        return ("Please select higher qualification type" + "\n");
+                    }
+                    if ($("#<%=ddlHigherStudyMode.ClientID%>").val() == "0") {
+                        return ("Please select higher study mode" + "\n");
+                    }
+                    if ($("#<%=ddlHigherMedium.ClientID%>").val() == "0") {
+                        return ("Please select higher medium" + "\n");
+                    }
+                    if ($("#<%=ddlHigherGrade.ClientID%>").val() == "0") {
+                        return ("Please select higher grade" + "\n");
+                    }
+                    if (($("#<%=rblhighergradeachievedYes.ClientID%>").is(":checked")) || ($("#<%=rblhighergradeachievedNo.ClientID%>").is(":checked")) || ($("#<%=rblhighergradeachievedYet.ClientID%>").is(":checked"))) {
+                        if ((($("#<%=rblhighergradeachievedNo.ClientID%>").is(":checked")) || ($("#<%=rblhighergradeachievedYet.ClientID%>").is(":checked")))) {
+                             if ($("#<%=txtExpectedHigherDategrade.ClientID%>").val() == "") {
+                                return ("Please enter higher grade declaration date" + "\n");
+                            }
+                        }
+                    }
+                    else {
+                        return ("Please select have you achieved higher final grade" + "\n");
+                    }
+
+                    if ($("#<%=txtHigherVerificationName.ClientID%>").val() == "") {
+                        return ("Please enter higher contact person name" + "\n");
+                    }
+                    if ($("#<%=ddlHigherVerificationRelationship.ClientID%>").val() == "0") {
+                        return ("Please select higher relationship with contact" + "\n");
+                    }
+                    if ($("#<%=txtHighercontactMobile.ClientID%>").val() == "") {
+                        return ("Please enter  higher contact mobile no" + "\n");
+                    }
+                    if ($("#<%=txtHighercontactEmail.ClientID%>").val() == "") {
+                        return ("Please enter a valid higher e-mail address" + "\n");
+                    }
+                    else {
+                        var userinput = $("#<%=txtHighercontactEmail.ClientID%>").val();
+                        var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        if (!pattern.test(userinput)) {
+                            return ("Please enter a valid higher  e-mail address" + "\n");
+                        }
+                    }
+
+                }
+            }
+            else {
+                return ("Please select have you completed secondary" + "\n");
+            }
+
+        }
+        function isvalidDiploma() {
+            if (($("#<%=rbldiplomaYes.ClientID%>").is(":checked")) || ($("#<%=rbldiplomaNo.ClientID%>").is(":checked")) || ($("#<%=rbldiplomaNot.ClientID%>").is(":checked"))) {
+                if (($("#<%=rbldiplomaYes.ClientID%>").is(":checked")) || ($("#<%=rbldiplomaNo.ClientID%>").is(":checked"))) {
+
+                    if ($("#<%=ddlDiplomaCountry.ClientID%>").val() == "0") {
+                        return ("Please select  diploma country" + "\n");
+                    }
+                    if ($("#<%=txtDiplomaschoolName.ClientID%>").val() == "") {
+                        return ("Please enter diploma school name" + "\n");
+                    }
+                    if ($("#<%=ddlDiplomaQualificationType.ClientID%>").val() == "0") {
+                        return ("Please select diploma qualification type" + "\n");
+                    }
+                    if ($("#<%=ddlDiplomaStudyMode.ClientID%>").val() == "0") {
+                        return ("Please select diploma study mode" + "\n");
+                    }
+                    if ($("#<%=ddlDiplomaMedium.ClientID%>").val() == "0") {
+                        return ("Please select diploma medium" + "\n");
+                    }
+                    if ($("#<%=ddlDiplomaGrade.ClientID%>").val() == "0") {
+                        return ("Please select diploma grade" + "\n");
+                    }
+                    if (($("#<%=rblDiplomaGradeYes.ClientID%>").is(":checked")) || ($("#<%=rblDiplomaGradeNot.ClientID%>").is(":checked")) || ($("#<%=rblDiplomaGradeYet.ClientID%>").is(":checked"))) {
+                        if ((($("#<%=rblDiplomaGradeNot.ClientID%>").is(":checked")) || ($("#<%=rblDiplomaGradeYet.ClientID%>").is(":checked")))) {
+                             if ($("#<%=txtExpectedDiplomaResult.ClientID%>").val() == "") {
+                                return ("Please enter diploma grade declaration date" + "\n");
+                            }
+                        }
+                    }
+                    else {
+                        return ("Please select have you achieved diploma final grade" + "\n");
+                    }
+
+                    if ($("#<%=txtDiplomaVerificationName.ClientID%>").val() == "") {
+                        return ("Please enter diploma contact person name" + "\n");
+                    }
+                    if ($("#<%=ddlDiplomaVerificationRelationship.ClientID%>").val() == "0") {
+                        return ("Please select diploma relationship with contact" + "\n");
+                    }
+                    if ($("#<%=txtDiplomacontactMobile.ClientID%>").val() == "") {
+                        return ("Please enter  diploma contact mobile no" + "\n");
+                    }
+                    if ($("#<%=txtDiplomacontactEmail.ClientID%>").val() == "") {
+                        return ("Please enter a valid diploma e-mail address" + "\n");
+                    }
+                    else {
+                        var userinput = $("#<%=txtDiplomacontactEmail.ClientID%>").val();
+                        var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                        if (!pattern.test(userinput)) {
+                            return ("Please enter a valid diploma  e-mail address" + "\n");
+                        }
+                    }
+
+                }
+            }
+            else {
+                return ("Please select have you completed diploma" + "\n");
+            }
+
+        }
     </script>
 
 

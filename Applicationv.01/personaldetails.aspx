@@ -21,7 +21,7 @@
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
-                                        <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">Title</label>
+                                        <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">* Title</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlTitle" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -39,8 +39,7 @@
 
 "
                                                 value="" class="form-control" required="">
-                                            <div class="invalid-feedback">Please provide a valid name.</div>
-                                            <div class="valid-feedback">Looks good!</div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -54,8 +53,7 @@
 
 "
                                                 required="">
-                                            <div class="invalid-feedback">Please provide a valid name.</div>
-                                            <div class="valid-feedback">Looks good!</div>
+                                          
                                         </div>
                                     </div>
                                 </div>
@@ -115,7 +113,6 @@
                                         <label id="labelNationality" runat="server" for="Nationality" class="col-md-3 col-form-label form-label">Nationality and citizenship</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlNationality" CssClass="form-control" runat="server">
-                                               
                                             </asp:DropDownList>
 
                                         </div>
@@ -128,7 +125,6 @@
                                         <label id="labelbirthcountry" runat="server" for="birthcountry" class="col-md-3 col-form-label form-label">Country of birth</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlBirthCountry" runat="server" CssClass="form-control">
-                                                
                                             </asp:DropDownList>
 
                                         </div>
@@ -249,18 +245,165 @@
 
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            $('#ContentPlaceHolder1_ddlTitle').change(function () {
-                if ($(this).val() == '7') {
-                    $('#ContentPlaceHolder1_txtTitle').css({ 'display': 'block' });
+    <script type="text/javascript">
+        $(function () {
+            $('#<%=btn_login.ClientID%>').click(function () {
+               
+                var summary = "";
+                summary += isvalidTitle();
+                summary += isvalidFirstName();
+                summary += isvalidLastName();
+                summary += isvalidPreferedName();
+                summary += isvalidMiddleName();
+                summary += isvalidGender();
+                summary += isvalidNationality();
+                summary += isvalidCountryBirth();
+                summary += isvalidMaritalStatus();
+                summary += isvalidDisability();
+                summary += isvalidAgentDetails();
+                 summary = summary.replace(/undefined/g, "");
+                if (summary != "") {
+                    alert(summary);
+                    return false;
                 }
-                else { $('#ContentPlaceHolder1_txtTitle').css({ 'display': 'none' }); }
+                else {
+                    return true;
+                }
+            });
+        });
+        function isvalidTitle() {
+            if ($("#<%=ddlTitle.ClientID%>").val() == "0") {
+                return ("Please select valid title name" + "\n");
+            }
+            else {
+                if (($("#<%=ddlTitle.ClientID%>").val() == "7") && ($("#<%=txtTitle.ClientID%>").val() == "")) {
+                    return ("Please enter other title" + "\n");
+                }
+                else {
+                    return "";
+                }
+            }
+            return "";
+        }
+
+        function isvalidFirstName() {
+            if ($("#<%=txtFirstName.ClientID%>").val() == "") {
+                return ("Please enter first name" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+        function isvalidLastName() {
+
+            if ($("#<%=txtLastName.ClientID%>").val() == "") {
+                return ("Please enter last name" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+        function isvalidPreferedName() {
+
+            if ($("#<%=txtPreferedName.ClientID%>").val() == "") {
+                return ("Please enter prefered name" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+        function isvalidMiddleName() {
+
+            if ($("#<%=txtMiddleName.ClientID%>").val() == "") {
+                return ("Please enter middlename" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+        function isvalidGender() {
+           if ((($("#<%=rbtnFemale.ClientID%>").is(":checked")) || ($("#<%=rbtnMale.ClientID%>").is(":checked")))) {
+                // if ($('#enrollmentyear :radio:checked').length > 0) {
+                return "";
+            }
+            else {
+                return ("Please select Gender" + "\n");
+
+            }
+        }
+
+        function isvalidNationality() {
+            if ($("#<%=ddlNationality.ClientID%>").val() == "0") {
+                return ("Please select valid nationality" + "\n");
+            }
+            else {
+                return "";
+
+            }
+        }
+        function isvalidCountryBirth() {
+            if ($("#<%=ddlBirthCountry.ClientID%>").val() == "0") {
+                return ("Please select valid  birth country" + "\n");
+            }
+            else {
+                return "";
+
+            }
+        }
+        function isvalidMaritalStatus() {
+            if ($("#<%=ddlMarital.ClientID%>").val() == "0") {
+                return ("Please select marital status" + "\n");
+            }
+            else {
+                return "";
+
+            }
+        }
+        function isvalidDisability() {
+             if ((($("#<%=rblDisabilityNo.ClientID%>").is(":checked")) || ($("#<%=rblDisabilityYes.ClientID%>").is(":checked")))) {
+
+                if (($("#<%=ddlDisability.ClientID%>").val() == "0") && ($("#<%=rblDisabilityYes.ClientID%>").is(":checked"))) {
+                    return ("Please select valid disability" + "\n");
+                }
+                else { return ""; }
+                return "";
+            }
+            else {
+                return ("Please select have you disability" + "\n");
+
+            }
+        }
+        function isvalidAgentDetails() {
+            if ((($("#<%=rblAgentNo.ClientID%>").is(":checked")) || ($("#<%=rblAgentYes.ClientID%>").is(":checked")))) {
+
+                if (($("#<%=ddlAgent.ClientID%>").val() == "0") && ($("#<%=rblAgentYes.ClientID%>").is(":checked"))) {
+                    return ("Please select valid agent details" + "\n");
+                }
+                else { return ""; }
+                return "";
+            }
+            else {
+                return ("Please select have you referred by agent" + "\n");
+
+            }
+        }
+
+
+        $(document).ready(function () {
+            $('#<%=ddlTitle.ClientID%>').change(function () {
+                if ($('#<%=ddlTitle.ClientID%>').val() == '7') {
+                    $('#<%=txtTitle.ClientID%>').css({ 'display': 'block' });
+                }
+                else { $('#<%=txtTitle.ClientID%>').css({ 'display': 'none' }); }
                 if (($(this).val() == '2') || ($(this).val() == '3') || ($(this).val() == '4')) {
                     $('#ContentPlaceHolder1_rbtnFemale').prop("checked", true);
                 }
                 else { $('#ContentPlaceHolder1_rbtnMale').prop("checked", true); }
             });
+            if ($('#<%=ddlTitle.ClientID%>').val() == '7') {
+                $('#<%=txtTitle.ClientID%>').css({ 'display': 'block' });
+            }
+            else { $('#<%=txtTitle.ClientID%>').css({ 'display': 'none' }); }
             var Disability = $("input[type=radio][name='ctl00$ContentPlaceHolder1$disability']:checked").val();
             if (Disability == 'rblDisabilityYes') {
                 $("#<%=disabilitydesc.ClientID%>").show();
