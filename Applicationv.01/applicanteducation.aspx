@@ -202,7 +202,7 @@
                                             <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                 <asp:GridView ID="grd10" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grd10_DataBound" OnRowDeleted="grd10_RowDeleted" OnRowDeleting="grd10_RowDeleting">
                                                     <Columns>
-                                                        <asp:BoundField DataField="applicantgradeid"HeaderText="ID"InsertVisible="False"
+                                                        <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
                                                             ReadOnly="True" SortExpression="applicantgradeid" />
                                                         <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
                                                             <ItemTemplate>
