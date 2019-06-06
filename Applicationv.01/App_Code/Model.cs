@@ -174,6 +174,7 @@ public partial class applicantdetails
     public Nullable<int> havewhatsup { get; set; }
     public Nullable<int> agentid { get; set; }
     public Nullable<int> isstudentreferbyagent { get; set; }
+    public Nullable<bool> haveworkexperience { get; set; }
 }
 
 public partial class applicantdocumentmaster
@@ -420,7 +421,7 @@ public partial class citymaster
 
     public int city_id { get; set; }
     public string description { get; set; }
-    public Nullable<decimal> cost_of_living { get; set; }
+    public string cost_of_living { get; set; }
     public string around { get; set; }
     public string weather { get; set; }
     public string geting_there { get; set; }
@@ -532,14 +533,28 @@ public partial class facilitiesmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public facilitiesmaster()
     {
-        this.universitycampus = new HashSet<universitycampus>();
+        this.facility_campus_mapping = new HashSet<facility_campus_mapping>();
     }
 
     public int id { get; set; }
     public string facility_name { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitycampus> universitycampus { get; set; }
+    public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
+}
+
+public partial class facility_campus_mapping
+{
+    public int id { get; set; }
+    public int campusId { get; set; }
+    public int facilityId { get; set; }
+    public bool IsFree { get; set; }
+    public int cost { get; set; }
+    public int facility_site { get; set; }
+    public string distance { get; set; }
+
+    public virtual facilitiesmaster facilitiesmaster { get; set; }
+    public virtual universitycampus universitycampus { get; set; }
 }
 
 public partial class fieldvalidationmaster
@@ -705,6 +720,12 @@ public partial class question_master
     public Nullable<int> infrencecategoryid { get; set; }
 }
 
+public partial class realtionshipmaster
+{
+    public int relationshiptid { get; set; }
+    public string relationshipname { get; set; }
+}
+
 public partial class registrationcourses
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -718,12 +739,6 @@ public partial class registrationcourses
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<studentcoursemapping> studentcoursemapping { get; set; }
-}
-
-public partial class relationshipwithcontact
-{
-    public int relationshiptid { get; set; }
-    public string relationshipname { get; set; }
 }
 
 public partial class relative_master
@@ -881,6 +896,12 @@ public partial class university_campusmapping
 
 public partial class university_master
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public university_master()
+    {
+        this.universitycampus = new HashSet<universitycampus>();
+    }
+
     public int universityid { get; set; }
     public string university_name { get; set; }
     public string address { get; set; }
@@ -904,20 +925,28 @@ public partial class university_master
     public string getting_around { get; set; }
 
     public virtual citymaster citymaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitycampus> universitycampus { get; set; }
 }
 
 public partial class universitycampus
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public universitycampus()
+    {
+        this.facility_campus_mapping = new HashSet<facility_campus_mapping>();
+    }
+
     public int campusid { get; set; }
     public string campusname { get; set; }
-    public Nullable<int> universityid { get; set; }
+    public int universityid { get; set; }
     public string description { get; set; }
-    public string facilities { get; set; }
     public string research { get; set; }
     public string faculty_description { get; set; }
-    public Nullable<int> facility_id { get; set; }
 
-    public virtual facilitiesmaster facilitiesmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitywisefieldmapping
