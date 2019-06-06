@@ -34,6 +34,7 @@ public partial class admin_login : System.Web.UI.Page
                 pnl_warning.Visible = false;
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.adminid;
+                Session["Role"] = chkUser.roleid;
                 Response.Redirect(webURL + "admin/default.aspx");              
                
             }
