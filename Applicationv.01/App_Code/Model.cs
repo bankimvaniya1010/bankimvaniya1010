@@ -244,6 +244,8 @@ public partial class applicanteducationdetails
 public partial class applicantemployerdetails
 {
     public long employerid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> wishtoaddemployer { get; set; }
     public string designation { get; set; }
     public string organization { get; set; }
     public string website { get; set; }
@@ -253,9 +255,7 @@ public partial class applicantemployerdetails
     public Nullable<float> salary { get; set; }
     public Nullable<System.DateTime> durationfrom { get; set; }
     public Nullable<System.DateTime> durationto { get; set; }
-    public Nullable<int> applicantid { get; set; }
     public Nullable<System.DateTime> creationdate { get; set; }
-    public Nullable<int> wishtoaddemployer { get; set; }
     public string briefdescription { get; set; }
     public string nameofreportingmanger { get; set; }
     public string relationshipwithcontact { get; set; }
@@ -444,8 +444,8 @@ public partial class countriesmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public countriesmaster()
     {
-        this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
         this.citymaster = new HashSet<citymaster>();
+        this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
     }
 
     public int id { get; set; }
@@ -453,9 +453,9 @@ public partial class countriesmaster
     public string country_name { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<citymaster> citymaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
 }
 
 public partial class coursemaster
@@ -496,9 +496,9 @@ public partial class customfieldmaster
 public partial class customfieldvalue
 {
     public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
     public Nullable<int> customfieldid { get; set; }
     public string value { get; set; }
-    public Nullable<int> applicantid { get; set; }
 }
 
 public partial class disabilitymaster
@@ -550,7 +550,7 @@ public partial class facility_campus_mapping
     public int facilityId { get; set; }
     public bool IsFree { get; set; }
     public int cost { get; set; }
-    public int facility_site { get; set; }
+    public string facility_site { get; set; }
     public string distance { get; set; }
 
     public virtual facilitiesmaster facilitiesmaster { get; set; }

@@ -124,8 +124,6 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="Default.aspx">Dashboard</a>
                                             <a class="dropdown-item" href="createuser.aspx">Create User</a>
-                                            <a class="dropdown-item" href="createuniversity.aspx">Create University</a>
-                                            <a class="dropdown-item" href="createuniversitycampus.aspx">Create University Campus</a>
                                             <a class="dropdown-item" href="createcity.aspx">Create City</a>
                                             <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
                                             <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Preliminary Video</a>
@@ -153,7 +151,7 @@
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Settings</a>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item " href="formmaster.aspx">Forms</a>
-                                            <a class="dropdown-item " href="qualificationcountrymapping.aspx">Qualification Conutry Mapping</a>
+                                            <a class="dropdown-item " href="qualificationcountrymapping.aspx">Qualification Country Mapping</a>
                                             <%--  <a class="dropdown-item " href="formfieldmapping.aspx">Form Fields Mapping</a>--%>
                                             <a class="dropdown-item" href="fieldmaster.aspx">Secondary Language</a>
                                             <a class="dropdown-item" href="universityformmapping.aspx">University Forms</a>
@@ -175,7 +173,15 @@
                                             <a class="dropdown-item" href="fixed-student-help-center.html">Help Center</a>
                                         </div>
                                     </li>
-
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">University</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="createuniversity.aspx">Create University</a>
+                                            <a class="dropdown-item" href="createuniversitycampus.aspx">Create University Campus</a>
+                                            <a class="dropdown-item" href="createfacility.aspx">Create Facility</a>
+                                            <a class="dropdown-item" href="createcampusfacilitymapping.aspx">University Campus Facility Mapping</a>
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
 
