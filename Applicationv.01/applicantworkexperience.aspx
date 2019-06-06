@@ -415,7 +415,7 @@
 
         $(function () {
             $('#<%=btn_login.ClientID%>').click(function () {
-                debugger;
+                
                 var summary = "";
                 summary += isEmployerdetails();
                 summary = summary.replace(/undefined/g, "");

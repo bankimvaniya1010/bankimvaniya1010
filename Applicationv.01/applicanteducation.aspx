@@ -1709,7 +1709,7 @@
         }
         $(function () {
             $('#<%=btn_login.ClientID%>').click(function () {
-                debugger;
+               
                 var summary = "";
                 summary += isvalidHighSchool();
                 summary += isvalidSecondary();

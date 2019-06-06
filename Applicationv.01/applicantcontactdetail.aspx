@@ -240,7 +240,7 @@
 
         $(function () {
             $('#<%=btn_login.ClientID%>').click(function () {
-                debugger;
+               
                 var summary = "";
                 summary += isvalidEmail();
                 summary += isvalidMobile();

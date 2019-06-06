@@ -131,7 +131,7 @@
     <script type="text/javascript">
         $(function () {
             $('#<%=btn_login.ClientID%>').click(function () {
-                debugger;
+               
                 var summary = "";
                 summary += isvalidCourse();
                 summary += isvalidGrade();
