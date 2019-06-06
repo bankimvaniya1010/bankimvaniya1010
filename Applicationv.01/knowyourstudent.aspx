@@ -35,8 +35,7 @@
                                     <div class="form-row">
                                         <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Date of Issue </label>
                                         <div class="col-md-6">
-
-                                            <input id="txtdateofissue" runat="server" type="text" class="form-control" placeholder="DOB" data-toggle="flatpickr" value="today">
+                                            <input id="txtdateofissue" runat="server" type="text" class="form-control" placeholder="DOB" data-toggle="flatpickr" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -47,8 +46,7 @@
                                     <div class="form-row">
                                         <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">Expiry Date </label>
                                         <div class="col-md-6">
-
-                                            <input id="txtexpirydate" runat="server" type="text" class="form-control" placeholder="DOB" data-toggle="flatpickr" value="today">
+                                            <input id="txtexpirydate" runat="server" type="text" class="form-control" placeholder="DOB" data-toggle="flatpickr" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -135,9 +133,9 @@
                             <div class="list-group-item" id="alternateresidenceIdentityNo" runat="server" style="display: none;">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceIdentityNo">
                                     <div class="form-row">
-                                        <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Residence Proof Number</label>
+                                        <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo" class="col-md-3 col-form-label form-label">Residence Proof Number</label>
                                         <div class="col-md-6">
-                                            <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number">
+                                            <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Residence Proof Number">
                                         </div>
                                     </div>
                                 </div>
@@ -146,7 +144,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicanteducation.aspx" class="btn btn-success" style="margin-right: 10px;">Education Details</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -181,12 +179,42 @@
 
         $('#ContentPlaceHolder1_txtdateofissue').flatpickr({
 
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d', defaultDate:""
         });
         $('#ContentPlaceHolder1_txtexpirydate').flatpickr({
 
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d', defaultDate:""
         });
+
+         function validateForm() {
+            var flag = false; 
+            if (!$("#<%=passportno.ClientID%>").is(':hidden') && $("#<%=txtPassportNo.ClientID%>").val() == "")
+                alert("Please Enter Passport Number");
+            else if (!$("#<%=dateofissue.ClientID%>").is(':hidden') && $("#<%=txtdateofissue.ClientID%>").val() == "")
+                alert("Please Enter Date Of Issue");
+            else if (!$("#<%=expirydate.ClientID%>").is(':hidden') && $("#<%=txtexpirydate.ClientID%>").val() == "")
+                alert("Please Select Expiry Date");
+            else if (!$("#<%=countryIssue.ClientID%>").is(':hidden') && $("#<%=ddlCountryofIssue.ClientID%>").val() === "0")
+                alert("Please Select Country");
+            else if (!$("#<%=issueplace.ClientID%>").is(':hidden') && $("#<%=txtissueplaceCity.ClientID%>").val() == "")
+                alert("Please Enter City name");
+            else if (!$("#<%=alternateIdentitytype.ClientID%>").is(':hidden') && $("#<%=ddlalternateIdentitytype.ClientID%>").val() === "0")
+                alert("Please Select Alternate Identity Proof");
+            else if (!$("#<%=alternateIdentityNo.ClientID%>").is(':hidden') && $("#<%=txtalternateIdentityNo.ClientID%>").val() == "")
+                alert("Please Enter Identity Proof Number");
+            else if (!$("#<%=alternatedobIdentitytype.ClientID%>").is(':hidden') && $("#<%=ddlalternatedobIdentitytype.ClientID%>").val() === "0")
+                alert("Please Select Alternate DOB Proof");
+            else if (!$("#<%=alternatedobIdentityNo.ClientID%>").is(':hidden') && $("#<%=txtalternatedobIdentityNo.ClientID%>").val() == "")
+                alert("Please Enter DOB Proof Number");
+            else if (!$("#<%=alternateresidenceIdentitytype.ClientID%>").is(':hidden') && $("#<%=ddlalternateresidenceIdentitytype.ClientID%>").val() === "0")
+                alert("Please Select Alternate Residence Proof");
+            else if (!$("#<%=alternateresidenceIdentityNo.ClientID%>").is(':hidden') && $("#<%=txtalternateresidenceIdentityNo.ClientID%>").val() == "")
+                alert("Please Enter Residence Proof Number");
+            else 
+                flag = true;           
+
+            return flag;
+        }     
 
         $(document).ready(function () {
 
