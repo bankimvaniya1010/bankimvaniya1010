@@ -46,45 +46,51 @@ public partial class knowyourstudent : System.Web.UI.Page
     {
         try
         {
+            var mode = "new";
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID
-                               select pInfo).FirstOrDefault();
+                                where pInfo.applicantid == userID
+                                select pInfo).FirstOrDefault();
+            applicantdetails objapplicantDetail = new applicantdetails();
             if (profileInfo != null)
             {
-                profileInfo.passportno = txtPassportNo.Value;
-                profileInfo.passportissuedate = Convert.ToDateTime(txtdateofissue.Value);
-                profileInfo.passportexpirydate = Convert.ToDateTime(txtexpirydate.Value);
-                profileInfo.passportissuecity = txtissueplaceCity.Value;            
-                
-                if (ddlalternatedobIdentitytype.SelectedValue != "")
-                {
-                    profileInfo.alternativeproofdobId = Convert.ToInt32(ddlalternatedobIdentitytype.SelectedValue);
-
-                }
-                if (ddlCountryofIssue.SelectedValue != "")
-                {
-                    profileInfo.passportissuecountry = ddlCountryofIssue.SelectedValue;
-
-                }
-                if (ddlalternateresidenceIdentitytype.SelectedValue != "")
-                {
-                    profileInfo.alternativeresidenceproofId = Convert.ToInt32(ddlalternateresidenceIdentitytype.SelectedValue);
-
-                }
-                if (ddlalternateIdentitytype.SelectedValue != "")
-                {
-                   profileInfo.alternativeIdentityproofId = Convert.ToInt32(ddlalternateIdentitytype.SelectedValue);
-
-                }
-
-                profileInfo.alternativeproofdobno = txtalternatedobIdentityNo.Value;
-                profileInfo.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;
-                profileInfo.alternativeIdentityproofno = txtalternateIdentityNo.Value;
-                profileInfo.identificationsavetime = DateTime.Now;
-                db.SaveChanges();
-                lblMessage.Text = "Your Contact Details have been saved";
-                lblMessage.Visible = true;
+                mode = "update";
+                objapplicantDetail = profileInfo;
             }
+            objapplicantDetail.passportno = txtPassportNo.Value;
+            objapplicantDetail.passportissuedate = Convert.ToDateTime(txtdateofissue.Value);
+            objapplicantDetail.passportexpirydate = Convert.ToDateTime(txtexpirydate.Value);
+            if (ddlCountryofIssue.SelectedValue != "")
+            {
+                objapplicantDetail.passportissuecountry = ddlCountryofIssue.SelectedValue;
+
+            }
+            objapplicantDetail.passportissuecity = txtissueplaceCity.Value;
+            if (ddlalternateIdentitytype.SelectedValue != "")
+            {
+                objapplicantDetail.alternativeIdentityproofId = Convert.ToInt32(ddlalternateIdentitytype.SelectedValue);
+
+            }
+            if (ddlalternatedobIdentitytype.SelectedValue != "")
+            {
+                objapplicantDetail.alternativeproofdobId = Convert.ToInt32(ddlalternatedobIdentitytype.SelectedValue);
+
+            }
+            
+            if (ddlalternateresidenceIdentitytype.SelectedValue != "")
+            {
+                objapplicantDetail.alternativeresidenceproofId = Convert.ToInt32(ddlalternateresidenceIdentitytype.SelectedValue);
+
+            }      
+            objapplicantDetail.alternativeproofdobno = txtalternatedobIdentityNo.Value;
+            objapplicantDetail.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;
+            objapplicantDetail.alternativeIdentityproofno = txtalternateIdentityNo.Value;
+            objapplicantDetail.identificationsavetime = DateTime.Now;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantDetail);
+            db.SaveChanges();
+            lblMessage.Text = "Your Contact Details have been saved";
+            lblMessage.Visible = true;
+            
         }
         catch (Exception ex)
         {
