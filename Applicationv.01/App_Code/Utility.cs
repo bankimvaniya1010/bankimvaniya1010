@@ -15,4 +15,11 @@ public static class Utility
             SecondaryLanguage = HttpContext.Current.Session["SecondaryLang"].ToString();
         return SecondaryLanguage;
     }
+
+    public static Boolean CheckAdminLogin()
+    {
+        if (HttpContext.Current.Session["Role"] == null || HttpContext.Current.Session["UserID"] == null)
+            return false;
+        return true;
+    }
 }
