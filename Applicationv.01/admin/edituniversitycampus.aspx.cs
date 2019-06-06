@@ -23,7 +23,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             {
                 int universityCampusId;
                 if (!Int32.TryParse(Request.QueryString["universityCampusID"], out universityCampusId))
-                    Response.Redirect("~/admin/Default.aspx");
+                    Response.Redirect("~/admin/default.aspx");
 
                 universitycampus existingUninversityCampus = db.universitycampus.Where(obj => obj.campusid == universityCampusId).First();
 
@@ -42,7 +42,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University Campus does not exists')", true);
             }
             else
-                Response.Redirect("~/admin/Default.aspx");
+                Response.Redirect("~/admin/default.aspx");
         }
     }
 
@@ -69,8 +69,6 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         int campusID = Convert.ToInt32(ViewState["campusID"]);
-        int facilityID;
-        int universityId;
 
         universitycampus universityCampusObj = db.universitycampus.Where(x => x.campusid == campusID).First();
         try
@@ -80,12 +78,6 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             //universityCampusObj.facilities = txtCampFacility.Value.Trim();
             universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
             universityCampusObj.research = txtCampResearch.Value.Trim();
-
-            //if (Int32.TryParse(txtUniID.Value.Trim(), out universityId))
-            //    universityCampusObj.universityid = universityId;
-
-            //if (Int32.TryParse(ddlFacilities.SelectedItem.Value, out facilityID))
-            //    universityCampusObj.facility_id = facilityID;
 
             db.SaveChanges();
             Response.Redirect("~/admin/universitycampusmaster.aspx?universityID=" + universityCampusObj.universityid);
