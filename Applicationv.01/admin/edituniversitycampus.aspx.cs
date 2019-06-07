@@ -33,7 +33,6 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
                     bindUniversityDropdown(existingUninversityCampus.universityid);
 
                     txtCampName.Value = existingUninversityCampus.campusname;
-                    //txtUniID.Value = Convert.ToString(existingUninversityCampus.universityid.Value);
                     txtCampDescription.Value = existingUninversityCampus.description;
                     txtCampResearch.Value = existingUninversityCampus.research;
                     txtFacultyDescription.Value = existingUninversityCampus.faculty_description;
@@ -54,11 +53,12 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             List<university_master> universityMaster = db.university_master.ToList();
 
             ddlUniversity.DataSource = universityMaster;
-            ddlUniversity.DataBind();
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityid";
-            ddlUniversity.SelectedIndex = universityID;
+            ddlUniversity.DataBind();
             ddlUniversity.Items.Insert(0, lst);
+            ddlUniversity.SelectedIndex = universityID;
+            
         }
         catch (Exception ex)
         {
@@ -73,9 +73,9 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
         universitycampus universityCampusObj = db.universitycampus.Where(x => x.campusid == campusID).First();
         try
         {
+            universityCampusObj.universityid = Convert.ToInt32(ddlUniversity.SelectedItem.Value);
             universityCampusObj.campusname = txtCampName.Value.Trim();
             universityCampusObj.description = txtCampDescription.Value.Trim();
-            //universityCampusObj.facilities = txtCampFacility.Value.Trim();
             universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
             universityCampusObj.research = txtCampResearch.Value.Trim();
 
