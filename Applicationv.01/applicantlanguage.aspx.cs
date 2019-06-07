@@ -179,7 +179,10 @@ public partial class applicantlanguage : System.Web.UI.Page
                         testRefno.Attributes.Add("style", "display:block;");
                         labeltestRefno.InnerHtml = setInnerHtml(fields[k]);
                         break;
-
+                    case "EXPECTED DATE WHEN RESULTS WILL BE DECLARED":
+                        ExpectedDategrade.Attributes.Add("style", "display:block;");
+                        labelExpectedDategrade.InnerHtml = setInnerHtml(fields[k]);
+                        break;
                     default:
                         break;
                 }

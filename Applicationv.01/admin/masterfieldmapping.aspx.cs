@@ -92,9 +92,9 @@ public partial class admin_mastermapping : System.Web.UI.Page
         int UniversityID = Convert.ToInt32(ddlUniversity.SelectedValue);
         int MasterID = Convert.ToInt16(ddlMaster.SelectedValue);
 
-        //var objUser = (students)Session["LoginInfo"];
-        //userID = objUser.studentid;
-        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        var objUser = (adminusers)Session["LoginInfo"];
+        UserID = objUser.adminid;
+        
         IEnumerable<universitywisemastermapping> list = db.universitywisemastermapping.Where(x => x.universityid == UniversityID && x.masterid == MasterID).ToList();
         db.universitywisemastermapping.RemoveRange(list);
         db.SaveChanges();
