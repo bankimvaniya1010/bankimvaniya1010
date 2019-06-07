@@ -53,7 +53,7 @@
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
-                                    <asp:Button ID="btn_submit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btn_submit_Click" />                                    
+                                    <asp:Button ID="btn_submit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btn_submit_Click"  OnClientClick="return validateForm()" />                                    
                                 </div>
                             </div>
                         </div>
@@ -66,18 +66,21 @@
     </div>
   
    <script type="text/javascript">
-       $("#btn_submit").click(function () {
-           if ($("#ddlUniversity").Val() == "0")
-            {
-                alert("Please select University");
-            }
-           if ($("#ddlMaster").Val() == "0")
-            {
-                alert("Please select Master");
-            }
-           
-         });  
-       
+       function validateForm()
+        {
+             var flag = false; 
+            if ($("#<%=ddlUniversity.ClientID%>").val() === "0")
+                alert("Please Select University");           
+
+            else if ($("#<%=ddlMaster.ClientID%>").val() === "0")
+                alert("Please Select Master");
+
+            else 
+                flag = true;           
+
+            return flag;
+             
+        }     
           
     </script>
 </asp:Content>
