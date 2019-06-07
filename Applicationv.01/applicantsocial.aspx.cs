@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class applicantsocial : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0;
+    int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
     Logger objLog = new Logger();
@@ -18,6 +18,7 @@ public partial class applicantsocial : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
@@ -31,7 +32,8 @@ public partial class applicantsocial : System.Web.UI.Page
         if (!IsPostBack)
         {
             SetToolTips();
-            PopulatePersonalInfo();SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            PopulatePersonalInfo();
+            SetControlsUniversitywise();
         }
     }
     private void SetToolTips()
@@ -88,67 +90,41 @@ public partial class applicantsocial : System.Web.UI.Page
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
     }
-    private void SetControlsUniversitywise(int universityID)
+    private void SetControlsUniversitywise()
     {
         try {
             string SecondaryLanguage = Utility.GetSecondaryLanguage();
 
             var fields = (from pfm in db.primaryfieldmaster
-                      join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                      join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                      where ufm.universityid == universityID && ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
-                      select new
-                      {
-                          primaryfiledname = pfm.primaryfiledname,
-                          fieldnameinstructions = afm.fieldnameinstructions,
-                          secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                          secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                          secondaryfielddnamevalue = afm.secondaryfielddnamevalue
-                      }).ToList();
-            if (fields.Count == 0 && SecondaryLanguage != "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && (afm.secondaryfieldnamelanguage == SecondaryLanguage)
+                          join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
+                          where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = afm.fieldnameinstructions,
-                              secondaryfieldnameinstructions = afm.secondaryfieldnameinstructions,
-                              secondaryfieldnamelanguage = afm.secondaryfieldnamelanguage,
-                              secondaryfielddnamevalue = afm.secondaryfielddnamevalue
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
-            }
-            else if (fields.Count == 0 && SecondaryLanguage == "")
-            {
-                fields = (from ufm in db.universitywisefieldmapping
-                          join pfm in db.primaryfieldmaster on ufm.primaryfieldid equals pfm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid
-                          where ufm.formid == formId && ufm.universityid == universityID
-                          select new
-                          {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
-                          }).ToList();
-            }
+
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
-
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where pfm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = "",
-                              secondaryfieldnameinstructions = "",
-                              secondaryfieldnamelanguage = "",
-                              secondaryfielddnamevalue = ""
+                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
+                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
+                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
+                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
             }
+
 
             for (int k = 0; k < fields.Count; k++)
             {
@@ -179,18 +155,26 @@ public partial class applicantsocial : System.Web.UI.Page
     {
         try
         {
+
+            var mode = "new";
             var profileInfo = (from pInfo in db.applicantdetails
                                where pInfo.applicantid == userID
                                select pInfo).FirstOrDefault();
+            applicantdetails objapplicantDetail = new applicantdetails();
             if (profileInfo != null)
             {
-                profileInfo.facebookprofle = txtFacebook.Value;
-                profileInfo.linkedprofile = txtLinkedin.Value;
-                profileInfo.facebookprofle = txtTwitter.Value;
-                db.SaveChanges();
-                lblMessage.Text = "Your Contact Details have been saved";
-                lblMessage.Visible = true;
+                mode = "update";
+                objapplicantDetail = profileInfo;
             }
+            objapplicantDetail.facebookprofle = txtFacebook.Value;
+            objapplicantDetail.linkedprofile = txtLinkedin.Value;
+            objapplicantDetail.twiterprofile = txtTwitter.Value;
+            objapplicantDetail.applicantid = userID;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantDetail);
+            db.SaveChanges();
+            lblMessage.Text = "Your Contact Details have been saved";
+            lblMessage.Visible = true;
         }
         catch (Exception ex)
         {

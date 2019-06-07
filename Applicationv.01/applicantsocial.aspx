@@ -30,6 +30,7 @@
                                         <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">Link to your LinkedIn profile</label>
                                         <div class="col-md-6">
                                             <input id="txtLinkedin" runat="server" type="text" class="form-control" placeholder="Link to your LinkedIn profile ">
+                                            <asp:CheckBox ID="chkLinkeIn" runat="server" Text="Does Not Have LinkedIn Account"/>
                                         </div>
                                     </div>
                                 </div>
@@ -40,6 +41,7 @@
                                         <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">Link to your Facebook profile </label>
                                         <div class="col-md-6">
                                             <input id="txtFacebook" runat="server" type="text" class="form-control" placeholder="Link to your Facebook profile ">
+                                            <asp:CheckBox ID="ChkFacebook" runat="server" Text="Does Not Have Facebook Account"/>
                                         </div>
                                     </div>
                                 </div>
@@ -50,6 +52,7 @@
                                         <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">Link to your twitter handle </label>
                                         <div class="col-md-6">
                                             <input id="txtTwitter" runat="server" type="text" class="form-control" placeholder="Link to your twitter handle ">
+                                            <asp:CheckBox ID="chkTwitter" runat="server" Text="Does Not Have Twitter Account"/>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +61,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicantreview.aspx" class="btn btn-success" style="margin-right: 10px;">Review</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -71,18 +74,12 @@
                     </div>
                 </div>
 <div id="page-nav" class="col-lg-auto page-nav">
-
                     <div>
                         <span id="tooltip"></span>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
-
-
         <div class="container page__container">
             <div class="footer">
             </div>
@@ -90,10 +87,20 @@
         </div>
     </div>
     <script>
-        $("#position").hide();
-        $("#employer").hide();
-        $("#startdate").hide();
-        $("#endate").hide();
+         function validateForm() {
+            var flag = false; 
+            if (!$("#<%=linkedin.ClientID%>").is(':hidden') && $("#<%=txtLinkedin.ClientID%>").val() == "" && !$("#<%=chkLinkeIn.ClientID%>").is(":checked"))
+                alert("Please Enter LinkedIn Profile");
+            else if (!$("#<%=facebook.ClientID%>").is(':hidden') && $("#<%=txtFacebook.ClientID%>").val() == "" && !$("#<%=ChkFacebook.ClientID%>").is(":checked"))
+                alert("Please Enter Facebook Profile");
+            else if (!$("#<%=twitter.ClientID%>").is(':hidden') && $("#<%=txtTwitter.ClientID%>").val() == "" && !$("#<%=chkTwitter.ClientID%>").is(":checked"))
+                alert("Please Select Twitter Profile");            
+            else 
+                flag = true;           
+
+            return flag;
+        }   
+       
         $(document).ready(function () {
 
             $(".form-control")
@@ -101,49 +108,35 @@
                     var controlId = $(this).attr('id');
                     var title = $(this).attr('title');
                     $("#tooltip").text(title);
-                });
-        });
+                });             
 
-        $(function () {
-            $("input[name='ctl00$ContentPlaceHolder1$Employment']").click(function () {
-                if ($("#ContentPlaceHolder1_rblEmploymentYes").is(":checked")) {
-                    $("#position").show();
-                    $("#employer").show();
-                    $("#startdate").show();
-                    $("#endate").show();
-                } else {
-                    $("#position").hide();
-                    $("#employer").hide();
-                    $("#startdate").hide();
-                    $("#endate").hide();
+            $("#<%=chkLinkeIn.ClientID%>").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#<%=txtLinkedin.ClientID%>").val("");
+                    $("#<%=txtLinkedin.ClientID%>").attr("disabled", "disabled");
                 }
+                else
+                    $("#<%=txtLinkedin.ClientID%>").removeAttr("disabled"); 
             });
-        });
 
-        $('#ContentPlaceHolder1_txtStartDate').flatpickr({
+            $("#<%=ChkFacebook.ClientID%>").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#<%=txtFacebook.ClientID%>").val("");
+                    $("#<%=txtFacebook.ClientID%>").attr("disabled", "disabled");
+                }
+                else
+                    $("#<%=txtFacebook.ClientID%>").removeAttr("disabled"); 
+            });
 
-            dateFormat: 'Y-m-d'
-        });
-
-        $('#ContentPlaceHolder1_txtEnddate').flatpickr({
-
-            dateFormat: 'Y-m-d'
-        });
-
-
-        //document.getElementById("ContentPlaceHolder1_dob").flatpickr({
-        //    wrap: true,
-        //    weekNumbers: true,
-        //    enableTime: true, // enables timepicker default is false    
-        //    time_24hr: true, // set to false for AM PM default is false
-        //    onChange: function (selectedDates, dateStr, instance) {
-        //        console.log("changed");
-        //    }
-        //});
-
-
+            $("#<%=chkTwitter.ClientID%>").change(function () {
+                if ($(this).is(":checked")) {
+                    $("#<%=txtTwitter.ClientID%>").val("");
+                    $("#<%=txtTwitter.ClientID%>").attr("disabled", "disabled");
+                }
+                else
+                    $("#<%=txtTwitter.ClientID%>").removeAttr("disabled"); 
+            });
+        }); 
 
     </script>
-
-
 </asp:Content>
