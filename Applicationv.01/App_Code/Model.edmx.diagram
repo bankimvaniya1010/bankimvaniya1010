@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="GTEModel.alternateadressproofmaster" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.alternatedobproof" Width="1.5" PointX="11.75" PointY="8.75" />
         <EntityTypeShape EntityType="GTEModel.alternateidproofmaster" Width="1.5" PointX="12.75" PointY="11.75" />
-        <EntityTypeShape EntityType="GTEModel.answer_mastersecondarylanguage" Width="1.5" PointX="5.75" PointY="13.75" />
+        <EntityTypeShape EntityType="GTEModel.answer_mastersecondarylanguage" Width="1.5" PointX="6.625" PointY="19.875" />
         <EntityTypeShape EntityType="GTEModel.answermaster" Width="1.5" PointX="7.75" PointY="13.75" />
         <EntityTypeShape EntityType="GTEModel.answeroptionssecondary" Width="1.5" PointX="13.75" PointY="8.75" />
         <EntityTypeShape EntityType="GTEModel.applcantdetailfieldvalidationmaster" Width="1.5" PointX="9.75" PointY="13.75" />
@@ -38,7 +38,7 @@
         <EntityTypeShape EntityType="GTEModel.countriesmaster" Width="1.5" PointX="0.75" PointY="4.375" />
         <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="17.75" PointY="18.75" />
         <EntityTypeShape EntityType="GTEModel.coursetypemaster" Width="1.5" PointX="19.75" PointY="5.75" />
-        <EntityTypeShape EntityType="GTEModel.credentialmaster" Width="1.5" PointX="8.75" PointY="19.75" />
+        <EntityTypeShape EntityType="GTEModel.credentialmaster" Width="1.5" PointX="5.5" PointY="12.75" />
         <EntityTypeShape EntityType="GTEModel.customfieldmaster" Width="1.5" PointX="19.75" PointY="15.75" />
         <EntityTypeShape EntityType="GTEModel.customfieldvalue" Width="1.5" PointX="19.75" PointY="18.75" />
         <EntityTypeShape EntityType="GTEModel.disabilitymaster" Width="1.5" PointX="20.75" PointY="0.75" />
@@ -98,6 +98,8 @@
         <EntityTypeShape EntityType="GTEModel.facility_campus_mapping" Width="1.5" PointX="9.75" PointY="4.375" />
         <AssociationConnector Association="GTEModel.FK_mapping_facilitiesMaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_campusdetail" />
+        <EntityTypeShape EntityType="GTEModel.maritalstatusmaster" Width="1.5" PointX="5.375" PointY="26.75" />
+        <AssociationConnector Association="GTEModel.FK_credential_university" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

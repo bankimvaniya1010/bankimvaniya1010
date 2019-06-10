@@ -482,6 +482,9 @@ public partial class credentialmaster
     public string ranking_by_subject { get; set; }
     public string ranking_by_region { get; set; }
     public bool rank_improved { get; set; }
+    public int university_id { get; set; }
+
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class customfieldmaster
@@ -627,6 +630,12 @@ public partial class invalidatamaster
 }
 
 public partial class majordiscipline_master
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
+public partial class maritalstatusmaster
 {
     public int id { get; set; }
     public string description { get; set; }
@@ -901,6 +910,7 @@ public partial class university_master
     public university_master()
     {
         this.universitycampus = new HashSet<universitycampus>();
+        this.credentialmaster = new HashSet<credentialmaster>();
     }
 
     public int universityid { get; set; }
@@ -928,6 +938,8 @@ public partial class university_master
     public virtual citymaster citymaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus> universitycampus { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<credentialmaster> credentialmaster { get; set; }
 }
 
 public partial class universitycampus
