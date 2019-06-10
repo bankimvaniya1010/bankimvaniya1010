@@ -98,6 +98,7 @@
         <AssociationConnector Association="GTEModel.FK_students_studylevelmaster" />
         <AssociationConnector Association="GTEModel.FK_subjectmaster_subjectwisecountrymapping" />
         <AssociationConnector Association="GTEModel.FK_campus_universityMaster" />
+        <EntityTypeShape EntityType="GTEModel.maritalstatusmaster" Width="1.5" PointX="5.375" PointY="26.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

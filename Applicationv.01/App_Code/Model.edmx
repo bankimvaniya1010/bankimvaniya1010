@@ -505,6 +505,7 @@
           <Property Name="applicantid" Type="int" />
           <Property Name="customfieldid" Type="int" />
           <Property Name="value" Type="varchar" MaxLength="200" />
+          <Property Name="formid" Type="int" />
         </EntityType>
         <EntityType Name="disabilitymaster">
           <Key>
@@ -552,9 +553,9 @@
           <Property Name="campusId" Type="int" Nullable="false" />
           <Property Name="facilityId" Type="int" Nullable="false" />
           <Property Name="IsFree" Type="bit" Nullable="false" />
-          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="cost" Type="int" />
           <Property Name="facility_site" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="distance" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="distance" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="fieldvalidationmaster">
           <Key>
@@ -626,6 +627,13 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="maritalstatusmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="master_name">
           <Key>
@@ -1132,6 +1140,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="maritalstatusmaster" EntityType="Self.maritalstatusmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="master_name" EntityType="Self.master_name" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="Self.preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
@@ -1362,6 +1371,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitycampus" EntitySet="universitycampus" />
           </AssociationSet>
+          <EntitySet Name="maritalstatusmaster" EntityType="GTEModel.maritalstatusmaster" />
           </EntityContainer>
         <EntityType Name="adminusers">
           <Key>
@@ -1868,6 +1878,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="applicantid" Type="Int32" />
           <Property Name="customfieldid" Type="Int32" />
           <Property Name="value" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="formid" Type="Int32" />
         </EntityType>
         <EntityType Name="disabilitymaster">
           <Key>
@@ -2455,6 +2466,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="maritalstatusmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2991,6 +3009,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="customfieldvalue">
             <EntityTypeMapping TypeName="GTEModel.customfieldvalue">
               <MappingFragment StoreEntitySet="customfieldvalue">
+                <ScalarProperty Name="formid" ColumnName="formid" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="customfieldid" ColumnName="customfieldid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
@@ -3463,6 +3482,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="documentname" ColumnName="documentname" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="documentid" ColumnName="documentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maritalstatusmaster">
+            <EntityTypeMapping TypeName="GTEModel.maritalstatusmaster">
+              <MappingFragment StoreEntitySet="maritalstatusmaster">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

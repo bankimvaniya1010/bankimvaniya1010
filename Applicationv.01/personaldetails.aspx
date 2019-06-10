@@ -87,10 +87,14 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dob">
                                     <div class="form-row">
                                         <label id="labeldob" runat="server" for="dob" class="col-md-3 col-form-label form-label">Date of birth *</label>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6"> 
+                                            <asp:DropDownList ID="ddlYear" CssClass="form-control" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                                <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
+                                            </asp:DropDownList>
+                                            <asp:DropDownList ID="ddlMonth" CssClass="form-control" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                                <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
+                                            </asp:DropDownList>                                            
                                             <asp:DropDownList ID="ddlDay" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <asp:DropDownList ID="ddlMonth" CssClass="form-control" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
-                                            <asp:DropDownList ID="ddlYear" CssClass="form-control" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" AutoPostBack="true" runat="server"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
@@ -136,14 +140,7 @@
                                     <div class="form-row">
                                         <label id="labelMarital" runat="server" for="Marital" class="col-md-3 col-form-label form-label">Marital Status</label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlMarital" runat="server" CssClass="form-control">
-                                                <asp:ListItem Value="" Selected="True">Select Marital Status</asp:ListItem>
-                                                <asp:ListItem Value="1">Married</asp:ListItem>
-                                                <asp:ListItem Value="2">Widowed</asp:ListItem>
-                                                <asp:ListItem Value="3">Separated</asp:ListItem>
-                                                <asp:ListItem Value="4">Divorced</asp:ListItem>
-                                                <asp:ListItem Value="5">Single</asp:ListItem>
-
+                                            <asp:DropDownList ID="ddlMarital" runat="server" CssClass="form-control"> 
                                             </asp:DropDownList>
                                         </div>
                                     </div>
@@ -255,12 +252,13 @@
                 summary += isvalidLastName();
                 summary += isvalidPreferedName();
                 summary += isvalidMiddleName();
+                summary += isvalidDOB();
                 summary += isvalidGender();
                 summary += isvalidNationality();
                 summary += isvalidCountryBirth();
                 summary += isvalidMaritalStatus();
                 summary += isvalidDisability();
-                summary += isvalidAgentDetails();
+                summary += isvalidAgentDetails();                
                  summary = summary.replace(/undefined/g, "");
                 if (summary != "") {
                     alert(summary);
@@ -271,8 +269,15 @@
                 }
             });
         });
+        function isvalidDOB() {
+            if(!$("#<%=dob.ClientID%>").is(':hidden') && $("#<%=ddlYear.ClientID%>").val() == "0" || $("#<%=ddlMonth.ClientID%>").val() == "0" || $("#<%=ddlDay.ClientID%>").val() == "0")
+                return ("Please select Date Of Birth" + "\n");           
+            else 
+                return "";
+        }
+
         function isvalidTitle() {
-            if ($("#<%=ddlTitle.ClientID%>").val() == "0") {
+            if (!$("#<%=title.ClientID%>").is(':hidden') && $("#<%=ddlTitle.ClientID%>").val() == "0") {
                 return ("Please select valid title name" + "\n");
             }
             else {
@@ -287,7 +292,7 @@
         }
 
         function isvalidFirstName() {
-            if ($("#<%=txtFirstName.ClientID%>").val() == "") {
+            if (!$("#<%=firstname.ClientID%>").is(':hidden') && $("#<%=txtFirstName.ClientID%>").val() == "") {
                 return ("Please enter first name" + "\n");
             }
             else {
@@ -296,7 +301,7 @@
         }
         function isvalidLastName() {
 
-            if ($("#<%=txtLastName.ClientID%>").val() == "") {
+            if (!$("#<%=lastname.ClientID%>").is(':hidden') && $("#<%=txtLastName.ClientID%>").val() == "") {
                 return ("Please enter last name" + "\n");
             }
             else {
@@ -305,7 +310,7 @@
         }
         function isvalidPreferedName() {
 
-            if ($("#<%=txtPreferedName.ClientID%>").val() == "") {
+            if (!$("#<%=preferedname.ClientID%>").is(':hidden') && $("#<%=txtPreferedName.ClientID%>").val() == "") {
                 return ("Please enter prefered name" + "\n");
             }
             else {
@@ -314,7 +319,7 @@
         }
         function isvalidMiddleName() {
 
-            if ($("#<%=txtMiddleName.ClientID%>").val() == "") {
+            if (!$("#<%=middlename.ClientID%>").is(':hidden') && $("#<%=txtMiddleName.ClientID%>").val() == "") {
                 return ("Please enter middlename" + "\n");
             }
             else {
@@ -322,7 +327,7 @@
             }
         }
         function isvalidGender() {
-           if ((($("#<%=rbtnFemale.ClientID%>").is(":checked")) || ($("#<%=rbtnMale.ClientID%>").is(":checked")))) {
+           if (!$("#<%=gender.ClientID%>").is(':hidden') && $("#<%=rbtnFemale.ClientID%>").is(":checked") || $("#<%=rbtnMale.ClientID%>").is(":checked")) {
                 // if ($('#enrollmentyear :radio:checked').length > 0) {
                 return "";
             }
@@ -333,7 +338,7 @@
         }
 
         function isvalidNationality() {
-            if ($("#<%=ddlNationality.ClientID%>").val() == "0") {
+            if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val() == "0") {
                 return ("Please select valid nationality" + "\n");
             }
             else {
@@ -342,7 +347,7 @@
             }
         }
         function isvalidCountryBirth() {
-            if ($("#<%=ddlBirthCountry.ClientID%>").val() == "0") {
+            if (!$("#<%=birthcountry.ClientID%>").is(':hidden') && $("#<%=ddlBirthCountry.ClientID%>").val() == "0") {
                 return ("Please select valid  birth country" + "\n");
             }
             else {
@@ -351,7 +356,7 @@
             }
         }
         function isvalidMaritalStatus() {
-            if ($("#<%=ddlMarital.ClientID%>").val() == "0") {
+            if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() == "0") {
                 return ("Please select marital status" + "\n");
             }
             else {
@@ -359,17 +364,21 @@
 
             }
         }
-        function isvalidDisability() {
-             if ((($("#<%=rblDisabilityNo.ClientID%>").is(":checked")) || ($("#<%=rblDisabilityYes.ClientID%>").is(":checked")))) {
+        function isvalidDisability() {      
+             if(!$("#<%=disability.ClientID%>").is(':hidden') && !$("#<%=rblDisabilityNo.ClientID%>").is(":checked") || !$("#<%=rblDisabilityYes.ClientID%>").is(":checked")) {
 
-                if (($("#<%=ddlDisability.ClientID%>").val() == "0") && ($("#<%=rblDisabilityYes.ClientID%>").is(":checked"))) {
+                 if(!$("#<%=disability.ClientID%>").is(':hidden') && $("#<%=ddlDisability.ClientID%>").val() == "0" && !$("#<%=rblDisabilityYes.ClientID%>").is(":checked"))
+                 {
                     return ("Please select valid disability" + "\n");
-                }
-                else { return ""; }
-                return "";
+                 }
+                 else
+                 {
+                     return "";
+                 }
+                return ("Please select disability" + "\n"); 
             }
-            else {
-                return ("Please select have you disability" + "\n");
+             else {
+                 return "";
 
             }
         }
@@ -391,23 +400,31 @@
 
         $(document).ready(function () {
             $('#<%=ddlTitle.ClientID%>').change(function () {
-                if ($('#<%=ddlTitle.ClientID%>').val() == '7') {
+                if ($('#<%=ddlTitle.ClientID%>').val() == '7')
+                {
                     $('#<%=txtTitle.ClientID%>').css({ 'display': 'block' });
                 }
                 else { $('#<%=txtTitle.ClientID%>').css({ 'display': 'none' }); }
-                if (($(this).val() == '2') || ($(this).val() == '3') || ($(this).val() == '4')) {
+
+                if (($(this).val() == '2') || ($(this).val() == '3') || ($(this).val() == '4'))
+                {
                     $('#ContentPlaceHolder1_rbtnFemale').prop("checked", true);
                 }
                 else { $('#ContentPlaceHolder1_rbtnMale').prop("checked", true); }
             });
-            if ($('#<%=ddlTitle.ClientID%>').val() == '7') {
+
+            if ($('#<%=ddlTitle.ClientID%>').val() == '7')
+            {
                 $('#<%=txtTitle.ClientID%>').css({ 'display': 'block' });
             }
             else { $('#<%=txtTitle.ClientID%>').css({ 'display': 'none' }); }
+
             var Disability = $("input[type=radio][name='ctl00$ContentPlaceHolder1$disability']:checked").val();
-            if (Disability == 'rblDisabilityYes') {
+            if (Disability == 'rblDisabilityYes')
+            {
                 $("#<%=disabilitydesc.ClientID%>").show();
-            } else { $("#<%=disabilitydesc.ClientID%>").hide(); }
+            }
+            else { $("#<%=disabilitydesc.ClientID%>").hide(); }
 
             var agent = $("input[type=radio][name='ctl00$ContentPlaceHolder1$agent']:checked").val();
             if (agent == 'rblAgentYes') {
@@ -421,9 +438,6 @@
                     var title = $(this).attr('title');
                     $("#tooltip").text(title);
                 });
-
-
-
         });
 
         $(function () {
@@ -444,27 +458,6 @@
                 } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
             });
         });
-        //$('#ContentPlaceHolder1_txtCourseStartDate').flatpickr({
-
-        //    dateFormat: 'Y-m-d'
-        //});
-
-        //$('#ContentPlaceHolder1_txtCourseEndate').flatpickr({
-
-        //    dateFormat: 'Y-m-d'
-        //});
-
-        //document.getElementById("ContentPlaceHolder1_dob").flatpickr({
-        //    wrap: true,
-        //    weekNumbers: true,
-        //    enableTime: true, // enables timepicker default is false    
-        //    time_24hr: true, // set to false for AM PM default is false
-        //    onChange: function (selectedDates, dateStr, instance) {
-        //        console.log("changed");
-        //    }
-        //});
-
-
 
     </script>
 

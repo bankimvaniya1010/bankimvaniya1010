@@ -631,6 +631,12 @@ public partial class majordiscipline_master
     public string description { get; set; }
 }
 
+public partial class maritalstatusmaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
 public partial class master_name
 {
     public int masterid { get; set; }
