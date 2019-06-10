@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class applicantcontactdetail : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0;
+    int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -17,6 +17,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
@@ -31,7 +32,9 @@ public partial class applicantcontactdetail : System.Web.UI.Page
         {
             objCom.BindCountries(ddlpostalCountry);
             objCom.BindCountries(ddlResidentialCountry);
-            PopulatePersonalInfo(); SetToolTips(); SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            PopulatePersonalInfo();
+            SetToolTips();
+            SetControlsUniversitywise();
         }
     }
     private void PopulatePersonalInfo()
@@ -39,7 +42,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
         try
         {
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
@@ -131,68 +134,77 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     {
         try
         {
+            var mode = "new";
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
-
-            profileInfo.mobileno = txtMobile.Value;
-            //  profileInfo.workphone = txtworkphone.Value;
-            profileInfo.homephone = txtHomePhone.Value;
-            profileInfo.email = txtEmail.Value;
-            profileInfo.postaladdrees1 = txtAddressLine1.Value;
-            profileInfo.postaladdrees2 = txtAddressLine2.Value;
-            profileInfo.postaladdrees3 = txtAddressLine3.Value;
-            profileInfo.postalcity = txtCity.Value;
+            applicantdetails objapplicantDetail = new applicantdetails();
+            if (profileInfo != null)
+            {
+                mode = "update";
+                objapplicantDetail = profileInfo;
+            }
+            objapplicantDetail.mobileno = txtMobile.Value;
+            //  objapplicantDetail.workphone = txtworkphone.Value;
+            objapplicantDetail.homephone = txtHomePhone.Value;
+            objapplicantDetail.email = txtEmail.Value;
+            objapplicantDetail.postaladdrees1 = txtAddressLine1.Value;
+            objapplicantDetail.postaladdrees2 = txtAddressLine2.Value;
+            objapplicantDetail.postaladdrees3 = txtAddressLine3.Value;
+            objapplicantDetail.postalcity = txtCity.Value;
             if (ddlpostalCountry.SelectedValue != "")
-                profileInfo.postalcountry = Convert.ToInt32(ddlpostalCountry.SelectedValue);
-            profileInfo.postalstate = txtState.Value;
-            profileInfo.postalpostcode = txtPostal.Value;
+                objapplicantDetail.postalcountry = Convert.ToInt32(ddlpostalCountry.SelectedValue);
+            objapplicantDetail.postalstate = txtState.Value;
+            objapplicantDetail.postalpostcode = txtPostal.Value;
             if (rblSkypeYes.Checked == true)
             {
-                profileInfo.haveskypeid = 1;
-                profileInfo.skypeid = txtSkype.Text;
+                objapplicantDetail.haveskypeid = 1;
+                objapplicantDetail.skypeid = txtSkype.Text;
             }
 
             else
-            { profileInfo.haveskypeid = 0; }
+            { objapplicantDetail.haveskypeid = 0; }
 
             if (rblwhatsappYes.Checked)
             {
-                profileInfo.havewhatsup = 1;
+                objapplicantDetail.havewhatsup = 1;
             }
 
 
             else
-            { profileInfo.havewhatsup = 2; }
+            { objapplicantDetail.havewhatsup = 2; }
             if (rblWhatsupsameYes.Checked)
             {
-                profileInfo.isdifferentwhatsapp = 1;
+                objapplicantDetail.isdifferentwhatsapp = 1;
             }
 
 
             else
-            { profileInfo.isdifferentwhatsapp = 2; }
+            { objapplicantDetail.isdifferentwhatsapp = 2; }
 
             if (rblAddressYes.Checked == true)
-                profileInfo.issameaspostal = 1;
+                objapplicantDetail.issameaspostal = 1;
             else
-                profileInfo.issameaspostal = 1;
+                objapplicantDetail.issameaspostal = 1;
 
-            profileInfo.residentialaddress1 = txtResidentialAddress1.Value;
-            profileInfo.residentialaddress2 = txtResidentialAddress2.Value;
-            profileInfo.residentialaddress3 = txtResidentialAddress3.Value;
-            profileInfo.residentialcity = txtResidentialCity.Value;
-            profileInfo.residentialstate = txtResidentialState.Value;
+            objapplicantDetail.residentialaddress1 = txtResidentialAddress1.Value;
+            objapplicantDetail.residentialaddress2 = txtResidentialAddress2.Value;
+            objapplicantDetail.residentialaddress3 = txtResidentialAddress3.Value;
+            objapplicantDetail.residentialcity = txtResidentialCity.Value;
+            objapplicantDetail.residentialstate = txtResidentialState.Value;
             if (ddlResidentialCountry.SelectedValue != "")
-                profileInfo.residentialcountry = Convert.ToInt32(ddlResidentialCountry.SelectedValue);
+                objapplicantDetail.residentialcountry = Convert.ToInt32(ddlResidentialCountry.SelectedValue);
 
-            profileInfo.nomineefullname = txtNomineeName.Value;
-            profileInfo.residentailpostcode = txtResidentialpostal.Value;
-            profileInfo.nomineeemail = txtEmailNominee.Value;
-            profileInfo.nomineemobile = txtMobileNominee.Value;
-            profileInfo.relationshipwithnominee = txtRelationNominee.Value;
-            profileInfo.contactdetailsavetime = DateTime.Now;
-
+            objapplicantDetail.nomineefullname = txtNomineeName.Value;
+            objapplicantDetail.residentailpostcode = txtResidentialpostal.Value;
+            objapplicantDetail.nomineeemail = txtEmailNominee.Value;
+            objapplicantDetail.nomineemobile = txtMobileNominee.Value;
+            objapplicantDetail.relationshipwithnominee = txtRelationNominee.Value;
+            objapplicantDetail.contactdetailsavetime = DateTime.Now;
+            objapplicantDetail.universityid = universityID;
+            objapplicantDetail.applicantid = userID;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
@@ -288,7 +300,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
     }
-    private void SetControlsUniversitywise(int universityID)
+    private void SetControlsUniversitywise()
     {
         try
         {

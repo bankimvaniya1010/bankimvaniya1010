@@ -48,7 +48,7 @@ public partial class knowyourstudent : System.Web.UI.Page
         {
             var mode = "new";
             var profileInfo = (from pInfo in db.applicantdetails
-                                where pInfo.applicantid == userID
+                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                 select pInfo).FirstOrDefault();
             applicantdetails objapplicantDetail = new applicantdetails();
             if (profileInfo != null)
@@ -86,6 +86,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             objapplicantDetail.alternativeIdentityproofno = txtalternateIdentityNo.Value;
             objapplicantDetail.identificationsavetime = DateTime.Now;
             objapplicantDetail.applicantid = userID;
+            objapplicantDetail.universityid = universityID;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
@@ -104,7 +105,7 @@ public partial class knowyourstudent : System.Web.UI.Page
         try
         {
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {

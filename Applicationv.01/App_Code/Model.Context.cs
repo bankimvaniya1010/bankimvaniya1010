@@ -105,6 +105,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<facility_campus_mapping> facility_campus_mapping { get; set; }
     public virtual DbSet<maritalstatusmaster> maritalstatusmaster { get; set; }
+    public virtual DbSet<universitygrouping> universitygrouping { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

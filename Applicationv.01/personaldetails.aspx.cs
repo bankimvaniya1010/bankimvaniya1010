@@ -194,7 +194,7 @@ public partial class personaldetails : System.Web.UI.Page
         try
         {
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
@@ -218,13 +218,13 @@ public partial class personaldetails : System.Web.UI.Page
                     ddlDay.ClearSelection();
                     ddlYear.ClearSelection();
                     ddlMonth.Items.FindByValue(dob.Month.ToString()).Selected = true;
-                    ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;
+                    ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;                   
                     ddlDay.Items.FindByValue(dob.Day.ToString()).Selected = true;
 
                 }
                 if (profileInfo.gender == 1)
                     rbtnMale.Checked = true;
-                else
+                else if (profileInfo.gender == 0)
                     rbtnFemale.Checked = true;
                 if (profileInfo.nationality != null)
                 {
@@ -275,7 +275,7 @@ public partial class personaldetails : System.Web.UI.Page
         {
             var mode = "new";
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             applicantdetails objapplicantDetail = new applicantdetails();
             if (profileInfo != null)
@@ -314,6 +314,7 @@ public partial class personaldetails : System.Web.UI.Page
             if (ddlAgent.SelectedValue != "")
                 objapplicantDetail.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
             objapplicantDetail.applicantid = userID;
+            objapplicantDetail.universityid = universityID;
             objapplicantDetail.personaldetailsavedtime = DateTime.Now;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);

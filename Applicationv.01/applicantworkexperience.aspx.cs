@@ -218,7 +218,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var employerInfo = (from pInfo in db.applicantemployerdetails
-                                where pInfo.applicantid == userID && pInfo.employerid == employerId
+                                where pInfo.applicantid == userID && pInfo.employerid == employerId && pInfo.universityid == universityID
                                 select pInfo).FirstOrDefault();
             if (employerInfo != null)
             {
@@ -261,7 +261,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var noExperience = (from ad in db.applicantdetails
-                                where ad.applicantid == userID
+                                where ad.applicantid == userID && ad.universityid == universityID
                                 select ad).FirstOrDefault();
             var mode = "new";
             string employerid = hdnemployer.Value;
@@ -271,7 +271,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 mode = "update";
                 int eID = Convert.ToInt32(employerid);
                 var employerInfo = (from pInfo in db.applicantemployerdetails
-                                    where pInfo.employerid == eID
+                                    where pInfo.employerid == eID && pInfo.universityid == universityID
                                     select pInfo).FirstOrDefault();
                 objEmployer = employerInfo;
             }
@@ -295,6 +295,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 objEmployer.durationto = Convert.ToDateTime(txtEndate.Value);
                 objEmployer.applicantid = userID;
                 objEmployer.lastsavedtime = DateTime.Now;
+                objEmployer.universityid = universityID;
                 if (mode == "new")
                     db.applicantemployerdetails.Add(objEmployer);                
             }
@@ -321,7 +322,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var empDetails = (from eInfo in db.applicantemployerdetails
-                              where eInfo.applicantid == userID
+                              where eInfo.applicantid == userID && eInfo.universityid == universityID
                               select eInfo).ToList();
             grdEmployment.DataSource = empDetails;
             grdEmployment.DataBind();

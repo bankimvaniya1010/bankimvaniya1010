@@ -199,6 +199,7 @@
           </Key>
           <Property Name="applicantdeducationdetailsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
           <Property Name="ishighschooldone" Type="int" />
           <Property Name="highschoolcountry" Type="int" />
           <Property Name="highschoolstartdate" Type="varchar" MaxLength="7" />
@@ -254,6 +255,7 @@
           </Key>
           <Property Name="employerid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
           <Property Name="wishtoaddemployer" Type="int" />
           <Property Name="designation" Type="varchar" MaxLength="45" />
           <Property Name="organization" Type="varchar" MaxLength="100" />
@@ -312,6 +314,7 @@
           </Key>
           <Property Name="applicantlanguagecompetencyid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
           <Property Name="homelanuage" Type="varchar" MaxLength="45" />
           <Property Name="isenglishintesive" Type="int" />
           <Property Name="countryofcourse" Type="varchar" MaxLength="5" />
@@ -898,6 +901,14 @@
           <Property Name="research" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="faculty_description" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="universitygrouping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="groupingheaduniversityid" Type="int" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="universitywisefieldmapping">
           <Key>
             <PropertyRef Name="universitywisefieldmappingid" />
@@ -964,6 +975,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_childsuniversityid_universitymaster">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="universitygrouping" Type="Self.universitygrouping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitygrouping">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_cityMaster_countriesMaster">
           <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="1" />
           <End Role="citymaster" Type="Self.citymaster" Multiplicity="*" />
@@ -1009,6 +1032,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="facility_campus_mapping">
               <PropertyRef Name="facilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parentUniID_universitymaster">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="universitygrouping" Type="Self.universitygrouping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitygrouping">
+              <PropertyRef Name="groupingheaduniversityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1181,6 +1216,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="university_campusmapping" EntityType="Self.university_campusmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitycampus" EntityType="Self.universitycampus" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitygrouping" EntityType="Self.universitygrouping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
@@ -1203,6 +1239,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitycampus" EntitySet="universitycampus" />
           </AssociationSet>
+          <AssociationSet Name="FK_childsuniversityid_universitymaster" Association="Self.FK_childsuniversityid_universitymaster">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitygrouping" EntitySet="universitygrouping" />
+          </AssociationSet>
           <AssociationSet Name="FK_cityMaster_countriesMaster" Association="Self.FK_cityMaster_countriesMaster">
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="citymaster" EntitySet="citymaster" />
@@ -1218,6 +1258,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_mapping_facilitiesMaster" Association="Self.FK_mapping_facilitiesMaster">
             <End Role="facilitiesmaster" EntitySet="facilitiesmaster" />
             <End Role="facility_campus_mapping" EntitySet="facility_campus_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parentUniID_universitymaster" Association="Self.FK_parentUniID_universitymaster">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitygrouping" EntitySet="universitygrouping" />
           </AssociationSet>
           <AssociationSet Name="FK_qualificationcountriesmapping_countriesmaster" Association="Self.FK_qualificationcountriesmapping_countriesmaster">
             <End Role="countriesmaster" EntitySet="countriesmaster" />
@@ -1392,6 +1436,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_credential_university" Association="GTEModel.FK_credential_university">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="credentialmaster" EntitySet="credentialmaster" />
+          </AssociationSet>
+          <EntitySet Name="universitygrouping" EntityType="GTEModel.universitygrouping" />
+          <AssociationSet Name="FK_childsuniversityid_universitymaster" Association="GTEModel.FK_childsuniversityid_universitymaster">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitygrouping" EntitySet="universitygrouping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_parentUniID_universitymaster" Association="GTEModel.FK_parentUniID_universitymaster">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitygrouping" EntitySet="universitygrouping" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="adminusers">
@@ -1637,6 +1690,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="diplomaverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ishighereducation" Type="Int32" />
           <Property Name="lastsavetime" Type="DateTime" />
+          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantemployerdetails">
           <Key>
@@ -1661,6 +1715,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="emailid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="linkedinidofcontact" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="lastsavedtime" Type="DateTime" />
+          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantformmaster">
           <Key>
@@ -1727,6 +1782,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="cefrlevel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="testreportreferenceno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="lastsavedtime" Type="DateTime" />
+          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantprogressbar">
           <Key>
@@ -2278,6 +2334,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="university_master" ToRole="citymaster" />
           <NavigationProperty Name="universitycampus" Relationship="GTEModel.FK_campus_universityMaster" FromRole="university_master" ToRole="universitycampus" />
           <NavigationProperty Name="credentialmaster" Relationship="GTEModel.FK_credential_university" FromRole="university_master" ToRole="credentialmaster" />
+          <NavigationProperty Name="universitygrouping" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
+          <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -2509,6 +2567,40 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="universitygrouping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="groupingheaduniversityid" Type="Int32" Nullable="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="universitygrouping" ToRole="university_master" />
+          <NavigationProperty Name="university_master1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="universitygrouping" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK_childsuniversityid_universitymaster">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.universitygrouping" Role="universitygrouping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitygrouping">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_parentUniID_universitymaster">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.universitygrouping" Role="universitygrouping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitygrouping">
+              <PropertyRef Name="groupingheaduniversityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2721,6 +2813,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicanteducationdetails">
             <EntityTypeMapping TypeName="GTEModel.applicanteducationdetails">
               <MappingFragment StoreEntitySet="applicanteducationdetails">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="lastsavetime" ColumnName="lastsavetime" />
                 <ScalarProperty Name="ishighereducation" ColumnName="ishighereducation" />
                 <ScalarProperty Name="diplomaverificationmobile" ColumnName="diplomaverificationmobile" />
@@ -2777,6 +2870,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantemployerdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantemployerdetails">
               <MappingFragment StoreEntitySet="applicantemployerdetails">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="lastsavedtime" ColumnName="lastsavedtime" />
                 <ScalarProperty Name="linkedinidofcontact" ColumnName="linkedinidofcontact" />
                 <ScalarProperty Name="emailid" ColumnName="emailid" />
@@ -2838,6 +2932,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantlanguagecompetency">
             <EntityTypeMapping TypeName="GTEModel.applicantlanguagecompetency">
               <MappingFragment StoreEntitySet="applicantlanguagecompetency">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="lastsavedtime" ColumnName="lastsavedtime" />
                 <ScalarProperty Name="testreportreferenceno" ColumnName="testreportreferenceno" />
                 <ScalarProperty Name="cefrlevel" ColumnName="cefrlevel" />
@@ -3526,6 +3621,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <EntityTypeMapping TypeName="GTEModel.maritalstatusmaster">
               <MappingFragment StoreEntitySet="maritalstatusmaster">
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universitygrouping">
+            <EntityTypeMapping TypeName="GTEModel.universitygrouping">
+              <MappingFragment StoreEntitySet="universitygrouping">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="groupingheaduniversityid" ColumnName="groupingheaduniversityid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
