@@ -100,6 +100,9 @@
         <AssociationConnector Association="GTEModel.FK_mapping_campusdetail" />
         <EntityTypeShape EntityType="GTEModel.maritalstatusmaster" Width="1.5" PointX="5.375" PointY="26.75" />
         <AssociationConnector Association="GTEModel.FK_credential_university" />
+        <EntityTypeShape EntityType="GTEModel.universitygrouping" Width="1.5" PointX="7.5" PointY="29.375" />
+        <AssociationConnector Association="GTEModel.FK_childsuniversityid_universitymaster" />
+        <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

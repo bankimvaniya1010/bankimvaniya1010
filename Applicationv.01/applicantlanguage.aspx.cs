@@ -374,7 +374,7 @@ public partial class applicantlanguage : System.Web.UI.Page
         try
         {
             var LanguageInfo = (from pInfo in db.applicantlanguagecompetency
-                                where pInfo.applicantid == userID
+                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                 select pInfo).FirstOrDefault();
             if (LanguageInfo != null)
             {
@@ -450,7 +450,7 @@ public partial class applicantlanguage : System.Web.UI.Page
         {
             var mode = "new";
             var LanguageInfo = (from pInfo in db.applicantlanguagecompetency
-                                where pInfo.applicantid == userID
+                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                 select pInfo).FirstOrDefault();
 
             applicantlanguagecompetency objLanguage = new applicantlanguagecompetency();
@@ -528,6 +528,7 @@ public partial class applicantlanguage : System.Web.UI.Page
             objLanguage.testreportreferenceno = txttestRefno.Value;
             objLanguage.applicantid = userID;
             objLanguage.lastsavedtime = DateTime.Now;
+            objLanguage.universityid = universityID;
 
             if (mode == "new")
                 db.applicantlanguagecompetency.Add(objLanguage);

@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 public partial class applicanteducation : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0, universityid = 0;
+    int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -19,6 +19,7 @@ public partial class applicanteducation : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
@@ -76,14 +77,14 @@ public partial class applicanteducation : System.Web.UI.Page
             binddiplomagrade();
             bindhighergrade();
             bindhigherCourses();
-            SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            SetControlsUniversitywise();
         }
     }
     private String setInnerHtml(dynamic obj)
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
     }
-    private void SetControlsUniversitywise(int universityID)
+    private void SetControlsUniversitywise()
     {
         try
         {
@@ -896,7 +897,7 @@ public partial class applicanteducation : System.Web.UI.Page
         try
         {
             var EducationInfo = (from pInfo in db.applicanteducationdetails
-                                 where pInfo.applicantid == userID
+                                 where pInfo.applicantid == userID && pInfo.universityid == universityID
                                  select pInfo).FirstOrDefault();
             applicanteducationdetails objEdu = new applicanteducationdetails();
             if (EducationInfo == null)
@@ -1027,6 +1028,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEdu.ishighereducation = 2;
                 else
                     objEdu.ishighereducation = 3;
+                objEdu.universityid = universityID;
                 db.applicanteducationdetails.Add(objEdu);
 
             }
