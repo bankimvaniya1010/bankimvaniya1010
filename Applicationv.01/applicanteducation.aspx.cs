@@ -17,6 +17,9 @@ public partial class applicanteducation : System.Web.UI.Page
     Logger objLog = new Logger();
     protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -30,8 +33,13 @@ public partial class applicanteducation : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlCountryHighSchool);
             objCom.BindCountries(ddlDiplomaCountry);
             objCom.BindCountries(ddlHigherCountry);

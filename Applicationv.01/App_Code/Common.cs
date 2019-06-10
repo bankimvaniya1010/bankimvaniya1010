@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 public class Common
 {
     Logger log = new Logger();
@@ -520,7 +521,157 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
+    public List<customfieldmaster> CustomControlist(int formID, int universityID)
+    {
+        List<customfieldmaster> ControlsList = new List<customfieldmaster>();
+        try
+        {
 
+            ControlsList = db.customfieldmaster.Where(x => x.formid == formID && x.universityid == universityID).ToList();
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return ControlsList;
+    }
+    public List<customfieldvalue> CustomControValue(int formID, int applicatiID)
+    {
+        List<customfieldvalue> ControlsValue = new List<customfieldvalue>();
+        try
+        {
+
+            ControlsValue = db.customfieldvalue.Where(x => x.formid == formID && x.applicantid == applicatiID).ToList();
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return ControlsValue;
+    }
+    public void AddCustomControl(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv)
+    {
+        try
+        {
+            for (int k = 0; k < ControlsList.Count; k++)
+            {
+
+                System.Web.UI.HtmlControls.HtmlGenericControl lstDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                lstDiv.Attributes["class"] = "list-group-item";
+                mainDiv.Controls.Add(lstDiv);
+
+                lstDiv.Attributes["controltype"] = ControlsList[k].type.ToString();
+
+                System.Web.UI.HtmlControls.HtmlGenericControl formgroupDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                formgroupDiv.Attributes["class"] = "form-group m-0";
+                formgroupDiv.Attributes["role"] = "group";
+                formgroupDiv.Attributes["aria - labelledby"] = ControlsList[k].labeldescription;
+                lstDiv.Controls.Add(formgroupDiv);
+                System.Web.UI.HtmlControls.HtmlGenericControl divFormRow = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                divFormRow.Attributes["class"] = "form-row";
+                formgroupDiv.Controls.Add(divFormRow);
+
+
+                System.Web.UI.HtmlControls.HtmlGenericControl label1 = new System.Web.UI.HtmlControls.HtmlGenericControl("Label");
+                label1.ID = "label" + ControlsList[k].labeldescription;
+                label1.Attributes["class"] = "col-md-3 col-form-label form-label";
+                label1.Attributes["for"] = ControlsList[k].labeldescription;
+                label1.InnerHtml = ControlsList[k].labeldescription;
+                divFormRow.Controls.Add(label1);
+                System.Web.UI.HtmlControls.HtmlGenericControl mycontrol = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                mycontrol.Attributes["class"] = "col-md-6";
+                divFormRow.Controls.Add(mycontrol);
+
+                if (ControlsList[k].type.ToLower() == "textbox")
+                {
+                    TextBox txtcustombox = new TextBox();
+                    txtcustombox.ID = "txt" + ControlsList[k].customfieldid;
+
+                    txtcustombox.Attributes["class"] = "form-control";
+                    // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
+                    mycontrol.Controls.Add(txtcustombox);
+
+
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+    }
+
+    public void SaveCustomValue(int applicatID, int CustomFieldId, string Userinput, int formid)
+    {
+        customfieldvalue objCustom = new customfieldvalue();
+        try
+        {
+            var existingCustomValue = (from customvalue in db.customfieldvalue
+                                       where (customvalue.applicantid == applicatID && customvalue.customfieldid == CustomFieldId)
+                                       select customvalue).FirstOrDefault();
+            if (existingCustomValue != null)
+                objCustom = existingCustomValue;
+
+            objCustom.applicantid = applicatID;
+            objCustom.customfieldid = CustomFieldId;
+            objCustom.value = Userinput;
+            objCustom.formid = formid;
+            if (existingCustomValue == null)
+                db.customfieldvalue.Add(objCustom);
+            db.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+    }
+    public void SetCustomData(int formID, int applicatiID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv)
+    {
+        try
+        {
+            var CustomControlsValue = CustomControValue(formID, applicatiID);
+            for (int k = 0; k < CustomControlsValue.Count; k++)
+            {
+                int customValueFieldId = (int)CustomControlsValue[k].customfieldid;
+                for (int j = 0; j < CustomControls.Count; j++)
+                {
+                    int customControlFieldId = (int)CustomControls[j].customfieldid;
+                    if (customValueFieldId == customControlFieldId)
+                    {
+                        string OptionID = "txt" + customValueFieldId;
+                        TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
+                        txtDynamic.Text = CustomControlsValue[k].value;
+                        break;
+                    }
+                }
+                // objCom.SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formId);
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+    public void SaveCustomData(int applicatID, int formID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv)
+    {
+        try
+        {
+            for (int k = 0; k < CustomControls.Count; k++)
+            {
+                int customFieldId = CustomControls[k].customfieldid;
+                string OptionID = "txt" + customFieldId;
+                TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
+                SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formID);
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
     [Serializable]
     public class FieldList
     {

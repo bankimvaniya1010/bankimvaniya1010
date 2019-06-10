@@ -18,7 +18,7 @@
 
                     <div class="card" style="width: 650px;">
 
-                        <div class="list-group list-group-fit" id="email" runat="server" style="display:none">
+                        <div class="list-group list-group-fit" id="email" runat="server" style="display: none">
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                     <div class="form-row">
@@ -29,17 +29,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="mobile" runat="server" style="display:none">
+                            <div class="list-group-item" id="mobile" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                                     <div class="form-row">
                                         <label id="labelMobile" runat="server" for="Mobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number *</label>
                                         <div class="col-md-6">
-                                            <input id="txtMobile" runat="server" type="tel" placeholder="Mobile/Cellular Number" required="" value="" class="form-control">
+                                            <input id="txtMobile" runat="server" type="text" placeholder="Mobile/Cellular Number" value="" class="form-control">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="phone" runat="server" style="display:none">
+                            <div class="list-group-item" id="phone" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                                     <div class="form-row">
                                         <label id="labelphone" runat="server" for="phone" class="col-md-3 col-form-label form-label">Home phone</label>
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="skype" runat="server" style="display:none">
+                            <div class="list-group-item" id="skype" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skype">
                                     <div class="form-row">
                                         <label id="labelskype" runat="server" for="skype" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="skypeDesc" runat="server" style="display:none">
+                            <div class="list-group-item" id="skypeDesc" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
                                         <label id="labelskypeDesc" runat="server" for="skypeDesc" class="col-md-3 col-form-label form-label">Skype ID</label>
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="whatsapp" runat="server" style="display:none">
+                            <div class="list-group-item" id="whatsapp" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                                     <div class="form-row">
                                         <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
@@ -83,7 +83,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="whatsappHave" runat="server" style="display:none">
+                            <div class="list-group-item" id="whatsappHave" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsappHave">
                                     <div class="form-row">
                                         <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-3 col-form-label form-label">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="whatsappDesc" runat="server" style="display:none">
+                            <div class="list-group-item" id="whatsappDesc" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
                                         <label id="labelwhatsappDesc" runat="server" for="whatsappDesc" class="col-md-3 col-form-label form-label">Whatsapp Number</label>
@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="postal" runat="server" style="display:none">
+                            <div class="list-group-item" id="postal" runat="server" style="display: none">
                                 <div class="form-group m-0" role="postal" aria-labelledby="label-postal">
                                     <div class="form-row">
                                         <label id="labelpostal" runat="server" for="postal" class="col-md-3 col-form-label form-label">Postal Address</label>
@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="address" runat="server" style="display:none">
+                            <div class="list-group-item" id="address" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-address">
                                     <div class="form-row">
                                         <label id="labeladdress" runat="server" for="address" class="col-md-3 col-form-label form-label">Is your Postal Address same as your current residential address</label>
@@ -133,7 +133,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="residential" runat="server" style="display:none">
+                            <div class="list-group-item" id="residential" runat="server" style="display: none">
                                 <div class="form-group m-0" role="Residential" aria-labelledby="label-Residential ">
                                     <div class="form-row">
                                         <label id="labelResidential" runat="server" for="title" class="col-md-3 col-form-label form-label">Current Residential  Address</label>
@@ -157,7 +157,7 @@
                                     <label id="gurdianmessgae" runat="server" for="gurdian" class="col-md-9 col-form-label form-label">You age today is #Year# Years and #Month# Months. Please provide the name & details of your authorized Guardian</label>
 
                                 </div>
-                                <div class="list-group-item" id="guardianname" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianname" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-nomineename">
                                         <div class="form-row">
                                             <label id="labelguardianname" runat="server" for="nomineename" class="col-md-3 col-form-label form-label">GUARDIAN Full Name</label>
@@ -167,7 +167,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="guardianrelation" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianrelation" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-relationnominee">
                                         <div class="form-row">
                                             <label id="labelrelation" runat="server" for="relationnominee" class="col-md-3 col-form-label form-label">Relationship with GUARDIAN</label>
@@ -177,7 +177,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="guardianemail" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianemail" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-emailnominee">
                                         <div class="form-row">
                                             <label id="labelguardianemail" runat="server" for="emailnominee" class="col-md-3 col-form-label form-label">Email of GUARDIAN</label>
@@ -187,7 +187,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="guardianmobile" runat="server" style="display:none">
+                                <div class="list-group-item" id="guardianmobile" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-mobilenominee">
                                         <div class="form-row">
                                             <label id="labelguardianmobile" runat="server" for="mobilenominee" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of GUARDIAN</label>
@@ -198,11 +198,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="knowyourstudent.aspx" class="btn btn-success" style="margin-right: 10px;">Identification Details</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_login_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -240,201 +241,122 @@
 
         $(function () {
             $('#<%=btn_login.ClientID%>').click(function () {
-               
-                var summary = "";
-                summary += isvalidEmail();
-                summary += isvalidMobile();
-                summary += isvalidHome();
-                summary += isvalidSkype();
-                summary += isvalidWhatsapp();
-                summary += isvalidPostalAddress();
-                summary += isvalidPostalResidentail();
-                summary += isvalidResidentailAddress();
-                summary += isvalidGuardiandetails();
-                 summary = summary.replace(/undefined/g, "");
-                if (summary != "") {
-                    alert(summary);
-                    return false;
-                }
-                else {
-                    return true;
-                }
+
+                //var summary = "";
+                //summary += isvalidEmail();
+                //summary += isvalidMobile();
+                //summary += isvalidHome();
+                //summary += isvalidSkype();
+                //summary += isvalidWhatsapp();
+                //summary += isvalidPostalAddress();
+                //summary += isvalidPostalResidentail();
+                //summary += isvalidResidentailAddress();
+                //summary += isvalidGuardiandetails();
+                //summary = summary.replace(/undefined/g, "");
+                //if (summary != "") {
+                //    alert(summary);
+                //    return false;
+                //}
+                //else {
+                //    return true;
+                //}
             });
         });
 
-        function isvalidEmail() {
 
-            if ($("#<%=txtEmail.ClientID%>").val() == "") {
-                return ("Please enter  e-mail address" + "\n");
-            }
-            else {
+        function validateForm() {
+            var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var flag = false;
+            if ((!$("#<%=email.ClientID%>").is(':hidden')) && (($("#<%=txtEmail.ClientID%>").val() == "") && (!emailRegex.test($("#<%=txtEmail.ClientID%>").val()))))
+                alert("Please enter  e-mail address");
+            else if (!$("#<%=mobile.ClientID%>").is(':hidden') && $("#<%=txtMobile.ClientID%>").val() == "")
+                alert("Please enter mobile no");
+            else if (!$("#<%=phone.ClientID%>").is(':hidden') && $("#<%=txtHomePhone.ClientID%>").val() == "")
+                alert("Please enter home phone");
+            else if (!$("#<%=skype.ClientID%>").is(':hidden') && !($("#<%=rblSkypeYes.ClientID%>").is(':checked') || $("#<%=rblSkypeNo.ClientID%>").is(':checked')))
+                alert("Please Select Option to record your Skype ID");
+            else if ((!$("#<%=skypeDesc.ClientID%>").is(':hidden')) && ($("#<%=txtSkype.ClientID%>").val() == ""))
+                alert("Please enter enter Skype ID");
+            else if (!$("#<%=whatsapp.ClientID%>").is(':hidden') && !($("#<%=rblwhatsappYes.ClientID%>").is(':checked') || $("#<%=rblwhatsappDif.ClientID%>").is(':checked')))
+                alert("Please Select Option to record your whatsapp detail");
+            else if (!$("#<%=whatsappHave.ClientID%>").is(':hidden') && !($("#<%=rblWhatsupsameYes.ClientID%>").is(':checked') || $("#<%=rblWhatsupsameNo.ClientID%>").is(':checked')))
+                alert("Please Select Option to capture whatsapp another no if not same as contact no");
+            else if (!$("#<%=whatsappDesc.ClientID%>").is(':hidden') && $("#<%=txtWhatsappNo.ClientID%>").val() == "")
+                alert("Please enter whatsapp no");
+            else if (!$("#<%=whatsappDesc.ClientID%>").is(':hidden') && $("#<%=txtWhatsappNo.ClientID%>").val() == "")
+                alert("Please enter whatsapp no");
+            else if (!$("#<%=whatsappDesc.ClientID%>").is(':hidden') && $("#<%=txtWhatsappNo.ClientID%>").val() == "")
+                alert("Please enter whatsapp no");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtAddressLine1.ClientID%>").val() == "")
+                alert("Please enter first postal address line");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtAddressLine2.ClientID%>").val() == "")
+                alert("Please enter second postal address line");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtAddressLine3.ClientID%>").val() == "")
+                alert("Please enter second postal address line");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtCity.ClientID%>").val() == "")
+                alert("Please enter postal city");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtState.ClientID%>").val() == "")
+                alert("Please enter postal state");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtPostal.ClientID%>").val() == "")
+                alert("Please enter postal postal code");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=ddlpostalCountry.ClientID%>").val() == "0")
+                alert("Please select valid postal country");
+            else if (!$("#<%=address.ClientID%>").is(':hidden') && !($("#<%=rblAddressYes.ClientID%>").is(':checked') || $("#<%=rblAddressNo.ClientID%>").is(':checked')))
+                alert("Please Select Option to record is your postal and residentail address is same");
+            else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress1.ClientID%>").val() == ""))
+                alert("Please enter first residential address line");
+            else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress2.ClientID%>").val() == ""))
+                alert("Please enter second residential address line");
+            else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress3.ClientID%>").val() == ""))
+                alert("Please enter third residential address line");
+            else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialCity.ClientID%>").val() == ""))
+                alert("Please enter residential city");
+            else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialState.ClientID%>").val() == ""))
+                alert("Please enter residential state");
+            else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialpostal.ClientID%>").val() == ""))
+                alert("Please enter residential postal code");
+            else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=ddlResidentialCountry.ClientID%>").val() == "0"))
+                alert("Please enter residential Country");
+            else if ((!$("#<%=guardianname.ClientID%>").is(':hidden')) && ($("#<%=txtNomineeName.ClientID%>").val() == ""))
+                alert("Please enter residential postal code" + "\n");
+            else if ((!$("#<%=guardianmobile.ClientID%>").is(':hidden')) && ($("#<%=txtMobileNominee.ClientID%>").val() == ""))
+                alert("Please enter guardian mobile no");
+            else if ((!$("#<%=guardianrelation.ClientID%>").is(':hidden')) && ($("#<%=txtRelationNominee.ClientID%>").val() == ""))
+                alert("Please enter relationships with guardian");
+           
+            else if ((!$("#<%=guardianemail.ClientID%>").is(':hidden')) && (($("#<%=txtEmailNominee.ClientID%>").val() == "") && (!emailRegex.test($("#<%=txtEmailNominee.ClientID%>").val()))))
+                alert("Please enter guardian e-mail address");
 
-                var userinput = $("#<%=txtEmail.ClientID%>").val();
-                var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            else
+                flag = true;
+            if (flag == true)
+                flag = customcontrolValidation();
+            return flag;
 
-                if (!pattern.test(userinput)) {
-                    return ("Please enter a valid e-mail address" + "\n");
-                }
-                else {
-                    return "";
-                }
-            }
-        }
-
-
-        function isvalidMobile() {
-            if ($("#<%=txtMobile.ClientID%>").val() == "") {
-                return ("Please enter mobile no" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidHome() {
-
-            if ($("#<%=txtHomePhone.ClientID%>").val() == "") {
-                return ("Please enter home phone" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidSkype() {
-            if ((($("#<%=rblSkypeNo.ClientID%>").is(":checked")) || ($("#<%=rblSkypeYes.ClientID%>").is(":checked")))) {
-
-                if (($("#<%=txtSkype.ClientID%>").val() == "") && ($("#<%=rblSkypeYes.ClientID%>").is(":checked"))) {
-                    return ("Please enter Skype ID" + "\n");
-                }
-
-            }
-            else {
-                return ("Please select if you have Skype ID" + "\n");
-
-            }
-        }
-        function isvalidWhatsapp() {
-            if ((($("#<%=rblwhatsappYes.ClientID%>").is(":checked")) || ($("#<%=rblAddressYes.ClientID%>").is(":checked")))) {
-                if ($("#<%=rblwhatsappYes.ClientID%>").is(":checked")) {
-                       if (($("#<%=txtWhatsappNo.ClientID%>").val() == "") && ($("#<%=rblwhatsappDif.ClientID%>").is(":checked"))) {
-                        return ("Please enter other whats app no" + "\n");
-                    }
-                }
-                else {
-                      return ("Please select if you have different or same whatsapp no" + "\n");
-                }
-            }
-            else {
-                return ("Please select if you use whatsapp no" + "\n");
-
-            }
-        }
-        function isvalidResidentailAddress() {
-
-            if ($("#<%=txtResidentialAddress1.ClientID%>").val() == "") {
-                return ("Please enter first residential address line" + "\n");
-            }
-
-            if ($("#<%=txtResidentialAddress2.ClientID%>").val() == "") {
-                return ("Please enter second residential address line" + "\n");
-            }
-
-            if ($("#<%=txtResidentialAddress3.ClientID%>").val() == "") {
-                return ("Please enter third residential address line" + "\n");
-            }
-
-            if ($("#<%=txtResidentialCity.ClientID%>").val() == "") {
-                return ("Please enter residential city" + "\n");
-            }
-
-            if ($("#<%=txtResidentialState.ClientID%>").val() == "") {
-                return ("Please enter residential state" + "\n");
-            }
-
-            if ($("#<%=txtResidentialpostal.ClientID%>").val() == "") {
-                return ("Please enter residential postal code" + "\n");
-            }
-
-        }
-        function isvalidResidentailCountry() {
-            if ($("#<%=ddlResidentialCountry.ClientID%>").val() == "0") {
-                return ("Please select valid residential country" + "\n");
-            }
-            else {
-                return "";
-
-            }
-        }
-        function isvalidPostalAddress() {
-
-            if ($("#<%=txtAddressLine1.ClientID%>").val() == "") {
-                return ("Please enter first postal address line" + "\n");
-            }
-            if ($("#<%=txtAddressLine2.ClientID%>").val() == "") {
-                return ("Please enter second postal address line" + "\n");
-            }
-
-            if ($("#<%=txtAddressLine3.ClientID%>").val() == "") {
-                return ("Please enter second postal address line" + "\n");
-            }
-
-            if ($("#<%=txtCity.ClientID%>").val() == "") {
-                return ("Please enter postal city" + "\n");
-            }
-
-            if ($("#<%=txtState.ClientID%>").val() == "") {
-                return ("Please enter postal state" + "\n");
-            }
-            if ($("#<%=txtPostal.ClientID%>").val() == "") {
-                return ("Please enter postal postal code" + "\n");
-            }
-
-            if ($("#<%=ddlpostalCountry.ClientID%>").val() == "0") {
-                return ("Please select valid postal country" + "\n");
-            }
 
         }
 
-        function isvalidPostalResidentail() {
+        function customcontrolValidation() {
+            var flag = false;
+            var Count = '<%=CustomControls.Count%>';
+             if (Count == '0')
+                 flag = true;
+             <% for (int k = 0; k < CustomControls.Count; k++)
+        {
+            TextBox txtDynamic = (TextBox)mainDiv.FindControl("txt" + CustomControls[k].customfieldid);
+            var Description = CustomControls[k].labeldescription.ToLower();
+                    %>
 
-            if ((($("#<%=rblAddressNo.ClientID%>").is(":checked")) || ($("#<%=rblAddressYes.ClientID%>").is(":checked")))) {
-                // if ($('#enrollmentyear :radio:checked').length > 0) {
-                return "";
-            }
-            else {
-                return ("Please select if you have postal and resdentail address is same" + "\n");
-
-            }
+             if ($("#<%=txtDynamic.ClientID%>").val() == "") {
+                 alert("Please enter <%= Description%>" + "\n");
+                 flag = false;
+                 return false;
+             }
+             else
+                 flag = true;
+               <% }%>
+            return flag;
         }
-        function isvalidGuardiandetails() {
-            if ($("#<%=txtNomineeName.ClientID%>").is(":visible")) {
-
-                if ($("#<%=txtNomineeName.ClientID%>").val() == "") {
-                    return ("Please enter guardian name" + "\n");
-                }
-                if ($("#<%=txtMobileNominee.ClientID%>").val() == "") {
-                    return ("Please enter guardian mobile no" + "\n");
-                }
-
-                if ($("#<%=txtRelationNominee.ClientID%>").val() == "") {
-                    return ("Please enter relationships with guardian" + "\n");
-                }
-
-                if ($("#<%=txtEmailNominee.ClientID%>").val() == "") {
-                    return ("Please enter guardian e-mail address" + "\n");
-                }
-                else {
-                    var userinput = $("#<%=txtEmailNominee.ClientID%>").val();
-                    var pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-                    if (!pattern.test(userinput)) {
-                        return ("Please enter a valid guardian e-mail address" + "\n");
-                    }
-
-                }
-
-            }
-
-        }
-
 
         $(document).ready(function () {
 
@@ -444,43 +366,45 @@
                     var title = $(this).attr('title');
                     $("#tooltip").text(title);
                 });
-            var input = document.querySelector("#ContentPlaceHolder1_txtMobile");
-            window.intlTelInput(input, {
-                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
-            });
-            var input = document.querySelector("#ContentPlaceHolder1_txtHomePhone");
-            window.intlTelInput(input, {
-                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
-            });
+            if (!$("#<%=skype.ClientID%>").is(':hidden') && $("#<%=rblSkypeYes.ClientID%>").is(':checked'))
+                $("#<%=skypeDesc.ClientID%>").show();
+             else
+                 $("#<%=skypeDesc.ClientID%>").hide();
 
-            var input = document.querySelector("#ContentPlaceHolder1_txtWhatsappNo");
-            window.intlTelInput(input, {
-                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
-            });
-            var skype = $("input[type=radio][name='ctl00$ContentPlaceHolder1$skype']:checked").val()
-            if (skype == 'rblSkypeYes') {
-                $("#<%=skypeDesc.ClientID%>").show()
-            } else {
-                $("#<%=skypeDesc.ClientID%>").hide()
-            }
-            var whatsup = $("input[type=radio][name='ctl00$ContentPlaceHolder1$whatsappSame']:checked").val()
-            if (whatsup == 'rblWhatsupsameNo') {
-
+            if (!$("#<%=whatsappHave.ClientID%>").is(':hidden') && $("#<%=rblWhatsupsameNo.ClientID%>").is(':checked'))
                 $("#<%=whatsappDesc.ClientID%>").show()
-            } else {
-                $("#<%=whatsappDesc.ClientID%>").hide()
+            else
+                $("#<%=whatsappDesc.ClientID%>").hide();
+            if (!$("#<%=whatsapp.ClientID%>").is(':hidden') && $("#<%=rblwhatsappYes.ClientID%>").is(':checked'))
+                $("#<%=whatsappHave.ClientID%>").show();
+            else
+                $("#<%=whatsappHave.ClientID%>").hide();
+            if (!$("#<%=mobile.ClientID%>").is(':hidden')) {
+                var input = document.querySelector("#<%=txtMobile.ClientID%>");
+                window.intlTelInput(input, {
+                    utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+                });
             }
-            var whatsupsame = $("input[type=radio][name='ctl00$ContentPlaceHolder1$whatsapp']:checked").val()
-            if (whatsup == 'rblwhatsappYes') {
-                $("#<%=whatsappHave.ClientID%>").show()
-            } else {
-                $("#<%=whatsappHave.ClientID%>").hide()
+            if (!$("#<%=phone.ClientID%>").is(':hidden')) {
+                var input = document.querySelector("#<%=txtHomePhone.ClientID%>");
+                window.intlTelInput(input, {
+                    utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+                });
+            }
+            if (!$("#<%=whatsappDesc.ClientID%>").is(':hidden')) {
+                var input = document.querySelector("#<%=txtWhatsappNo.ClientID%>");
+                window.intlTelInput(input, {
+                    utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+                });
+            }
+            if (!$("#<%=guardianmobile.ClientID%>").is(':hidden')) {
+                var input = document.querySelector("#<%=txtMobileNominee.ClientID%>");
+                window.intlTelInput(input, {
+                    utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+                });
             }
 
-            var input = document.querySelector("#ContentPlaceHolder1_txtMobileNominee");
-            window.intlTelInput(input, {
-                utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
-            });
+
         });
 
         $(function () {
@@ -488,9 +412,9 @@
 
                 if ($("#<%=rblSkypeYes.ClientID%>").is(":checked")) {
 
-                    $("#<%=skypeDesc.ClientID%>").show()
+                    $("#<%=skypeDesc.ClientID%>").show();
                 } else {
-                    $("#<%=skypeDesc.ClientID%>").hide()
+                    $("#<%=skypeDesc.ClientID%>").hide();
                 }
             });
         });
@@ -498,9 +422,9 @@
             $("input[name='ctl00$ContentPlaceHolder1$whatsappSame']").click(function () {
                 if ($("#<%=rblWhatsupsameNo.ClientID%>").is(":checked")) {
 
-                    $("#<%=whatsappDesc.ClientID%>").show()
+                    $("#<%=whatsappDesc.ClientID%>").show();
                 } else {
-                    $("#<%=whatsappDesc.ClientID%>").hide()
+                    $("#<%=whatsappDesc.ClientID%>").hide();
                 }
 
             });
@@ -509,36 +433,35 @@
             $("input[name='ctl00$ContentPlaceHolder1$whatsapp']").click(function () {
                 if ($("#<%=rblwhatsappYes.ClientID%>").is(":checked")) {
 
-                    $("#<%=whatsappHave.ClientID%>").show()
+                    $("#<%=whatsappHave.ClientID%>").show();
                 } else {
-                    $("#<%=whatsappHave.ClientID%>").hide()
+                    $("#<%=whatsappHave.ClientID%>").hide();
                 }
             });
         });
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$address']").click(function () {
-                if ($("#ContentPlaceHolder1_rblAddressYes").is(":checked")) {
-                    $("#ContentPlaceHolder1_txtResidentialAddress1").val($("#ContentPlaceHolder1_txtAddressLine1").val());
-                    $("#ContentPlaceHolder1_txtResidentialAddress2").val($("#ContentPlaceHolder1_txtAddressLine2").val());
-                    $("#ContentPlaceHolder1_txtResidentialAddress3").val($("#ContentPlaceHolder1_txtAddressLine3").val());
-                    $("#ContentPlaceHolder1_txtResidentialCity").val($("#ContentPlaceHolder1_txtCity").val());
-                    $("#ContentPlaceHolder1_txtResidentialState").val($("#ContentPlaceHolder1_txtState").val());
-                    $("#ContentPlaceHolder1_txtResidentialpostal").val($("#ContentPlaceHolder1_txtpostal").val());
-                    $('#ContentPlaceHolder1_ddlResidential option[value="3"]').attr("selected", "selected");
-                    var country = $('#ContentPlaceHolder1_ddlpostalCountry').val();
-                    $("#ContentPlaceHolder1_ddlResidential").val(country);
+                if ($("#<%=rblAddressYes.ClientID%>").is(":checked")) {
+                    $("#<%=txtResidentialAddress1.ClientID%>").val($("#<%=txtAddressLine1.ClientID%>").val());
+                    $("#<%=txtResidentialAddress2.ClientID%>").val($("#<%=txtAddressLine2.ClientID%>").val());
+                    $("#<%=txtResidentialAddress3.ClientID%>").val($("#<%=txtAddressLine3.ClientID%>").val());
+                    $("#<%=txtResidentialCity.ClientID%>").val($("#<%=txtCity.ClientID%>").val());
+                    $("#<%=txtResidentialState.ClientID%>").val($("#<%=txtState.ClientID%>").val());
+                    $("#<%=txtResidentialpostal.ClientID%>").val($("#<%=txtPostal.ClientID%>").val());
+                    var country = $("#<%=ddlpostalCountry.ClientID%>").val();
+                    $("#<%=ddlResidentialCountry.ClientID%>").val(country);
 
 
 
                 } else {
-                    $("#ContentPlaceHolder1_txtResidentialAddress1").val('');
-                    $("#ContentPlaceHolder1_txtResidentialAddress2").val('');
-                    $("#ContentPlaceHolder1_txtResidentialAddress3").val('');
-                    $("#ContentPlaceHolder1_txtResidentialCity").val('');
-                    $("#ContentPlaceHolder1_txtResidentialState").val('');
-                    $("#ContentPlaceHolder1_txtResidentialpostal").val('');
-                    $('#ContentPlaceHolder1_ddlResidential').val('');
+                    $("#<%=txtResidentialAddress1.ClientID%>").val('');
+                    $("#<%=txtResidentialAddress2.ClientID%>").val('');
+                    $("#<%=txtResidentialAddress3.ClientID%>").val('');
+                    $("#<%=txtResidentialCity.ClientID%>").val('');
+                    $("#<%=txtResidentialState.ClientID%>").val('');
+                    $("#<%=txtResidentialpostal.ClientID%>").val('');
+                    $("#<%=ddlResidentialCountry.ClientID%>").val('');
 
                 }
             });

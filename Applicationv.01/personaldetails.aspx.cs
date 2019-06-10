@@ -18,6 +18,8 @@ public partial class personaldetails : System.Web.UI.Page
     protected int isStudyBefore = 0, isApplyBefore = 0;
     protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
 
 
     protected void Page_Load(object sender, EventArgs e)
@@ -33,8 +35,13 @@ public partial class personaldetails : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlBirthCountry);
             objCom.BindCountries(ddlNationality);
             BindMaritalstatus();
