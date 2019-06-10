@@ -28,14 +28,12 @@
                                     <div class="form-row">
                                         <label id="labelhomelanguage" runat="server" for="homelanguage" class="col-md-3 col-form-label form-label">What language do you speak at home</label>
                                         <div class="col-md-6">
-                                            <input id="txthomelanguage" runat="server" type="text" placeholder="What language do you speak at home
-"
-                                                value="" class="form-control">
+                                            <input id="txthomelanguage" runat="server" type="text" placeholder="What language do you speak at home" value="" class="form-control">                                                
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                      
                             <div class="list-group-item" id="EnglishBackground" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-EnglishBackground">
                                     <div class="form-row">
@@ -48,6 +46,8 @@
                                     </div>
                                 </div>
                             </div>
+                        <div id="BackgroundfieldContainer" runat="server" style="display:none;">  
+                            
                             <div class="list-group-item" id="Language" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Language">
                                     <div class="form-row">
@@ -55,7 +55,6 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlLanguage" runat="server" CssClass="form-control">                                               
                                             </asp:DropDownList>
-
                                         </div>
                                     </div>
                                 </div>
@@ -65,8 +64,7 @@
                                     <div class="form-row">
                                         <label id="labelYearCompletion" runat="server" for="YearCompletion" class="col-md-3 col-form-label form-label">Year of Completion/Expected </label>
                                         <div class="col-md-6">
-
-                                            <input id="txtYearCompletion" runat="server" type="text" class="form-control" placeholder="DOB" data-toggle="flatpickr" value="today">
+                                            <input id="txtYearCompletion" runat="server" type="text" class="form-control" placeholder="Completion Year" data-toggle="flatpickr" value="">
                                         </div>
                                     </div>
                                 </div>
@@ -138,12 +136,14 @@
                                     <div class="form-row">
                                         <label id="labelExpectedDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
-                                            <input id="txtExpectedDategrade" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                            <input id="txtExpectedDategrade" runat="server" type="text" class="form-control" placeholder="Expected Date" data-toggle="flatpickr" value="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                      </div>                             
+                
+                     
                             <div class="list-group-item" id="EnglishTest" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-EnglishTest">
                                     <div class="form-row">
@@ -156,106 +156,111 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="testName" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-testName">
-                                    <div class="form-row">
-                                        <label id="labeltestName" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Name </label>
-                                        <div class="col-md-6">
-                                            <input id="txtTestName" runat="server" type="text" placeholder="Test Score" value="" class="form-control">
+
+                          <div id="TestfieldContainer" runat="server" style = "display:none;">
+                                                      
+                                <div class="list-group-item" id="testName" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-testName">
+                                        <div class="form-row">
+                                            <label id="labeltestName" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Name </label>
+                                            <div class="col-md-6">
+                                                <input id="txtTestName" runat="server" type="text" placeholder="Test Name" value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="CentreNo" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-CentreNo">
-                                    <div class="form-row">
-                                        <label id="labelCentreNo" runat="server" for="testName" class="col-md-3 col-form-label form-label">Centre No </label>
-                                        <div class="col-md-6">
-                                            <input id="txtCentreNo" runat="server" type="text" placeholder="Centre No" value="" class="form-control">
+                                <div class="list-group-item" id="CentreNo" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-CentreNo">
+                                        <div class="form-row">
+                                            <label id="labelCentreNo" runat="server" for="testName" class="col-md-3 col-form-label form-label">Centre No </label>
+                                            <div class="col-md-6">
+                                                <input id="txtCentreNo" runat="server" type="text" placeholder="Centre No" value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="CandidateNo" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-CandidateNo">
-                                    <div class="form-row">
-                                        <label id="labelCandidateNo" runat="server" for="CandidateNo" class="col-md-3 col-form-label form-label">Candidate No </label>
-                                        <div class="col-md-6">
-                                            <input id="txtCandidateNo" runat="server" type="text" placeholder="Candidate No" value="" class="form-control">
+                                <div class="list-group-item" id="CandidateNo" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-CandidateNo">
+                                        <div class="form-row">
+                                            <label id="labelCandidateNo" runat="server" for="CandidateNo" class="col-md-3 col-form-label form-label">Candidate No </label>
+                                            <div class="col-md-6">
+                                                <input id="txtCandidateNo" runat="server" type="text" placeholder="Candidate No" value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="CandidateID" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-CandidateID">
-                                    <div class="form-row">
-                                        <label id="labelCandidateID" runat="server" for="CandidateID" class="col-md-3 col-form-label form-label">Candidate ID </label>
-                                        <div class="col-md-6">
-                                            <input id="txtCandidateID" runat="server" type="text" placeholder="Candidate ID" value="" class="form-control">
+                                <div class="list-group-item" id="CandidateID" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-CandidateID">
+                                        <div class="form-row">
+                                            <label id="labelCandidateID" runat="server" for="CandidateID" class="col-md-3 col-form-label form-label">Candidate ID </label>
+                                            <div class="col-md-6">
+                                                <input id="txtCandidateID" runat="server" type="text" placeholder="Candidate ID" value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="LanguageTestDate" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-LanguageTestDate">
-                                    <div class="form-row">
-                                        <label id="labelLanguageTestDate" runat="server" for="LanguageTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
-                                        <div class="col-md-6">
-                                            <input id="txtLanguageTestDate" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                <div class="list-group-item" id="LanguageTestDate" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-LanguageTestDate">
+                                        <div class="form-row">
+                                            <label id="labelLanguageTestDate" runat="server" for="LanguageTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
+                                            <div class="col-md-6">
+                                                <input id="txtLanguageTestDate" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="LanguageScore" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-LanguageScore">
-                                    <div class="form-row">
-                                        <label id="labelLanguageScore" runat="server" for="LanguageScore" class="col-md-3 col-form-label form-label">Overall Score </label>
-                                        <div class="col-md-6">
-                                            <input id="txtLanguageScore" runat="server" type="text" placeholder="Test Score" value="" class="form-control">
+                                <div class="list-group-item" id="LanguageScore" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-LanguageScore">
+                                        <div class="form-row">
+                                            <label id="labelLanguageScore" runat="server" for="LanguageScore" class="col-md-3 col-form-label form-label">Overall Score </label>
+                                            <div class="col-md-6">
+                                                <input id="txtLanguageScore" runat="server" type="text" placeholder="OverAll Score" value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="SpeakingScore" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-SpeakingScore">
-                                    <div class="form-row">
-                                        <label id="labelSpeakingScore" runat="server" for="SpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score </label>
-                                        <div class="col-md-6">
-                                            <input id="txtSpeaking" runat="server" type="text" placeholder="Speaking Score" value="" class="form-control">
+                                <div class="list-group-item" id="SpeakingScore" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-SpeakingScore">
+                                        <div class="form-row">
+                                            <label id="labelSpeakingScore" runat="server" for="SpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score </label>
+                                            <div class="col-md-6">
+                                                <input id="txtSpeaking" runat="server" type="text" placeholder="Speaking Score" value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="ListeningScore" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-ListeningScore">
-                                    <div class="form-row">
-                                        <label id="labelListeningScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Listening Score </label>
-                                        <div class="col-md-6">
-                                            <input id="txtListening" runat="server" type="text" placeholder="Listening Score " value="" class="form-control">
+                                <div class="list-group-item" id="ListeningScore" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-ListeningScore">
+                                        <div class="form-row">
+                                            <label id="labelListeningScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Listening Score </label>
+                                            <div class="col-md-6">
+                                                <input id="txtListening" runat="server" type="text" placeholder="Listening Score " value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="ReadingScore" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-ReadingScore">
-                                    <div class="form-row">
-                                        <label id="labelReadingScore" runat="server" for="ReadingScore" class="col-md-3 col-form-label form-label">Reading Score </label>
-                                        <div class="col-md-6">
-                                            <input id="txtReading" runat="server" type="text" placeholder="Reading Score" value="" class="form-control">
+                                <div class="list-group-item" id="ReadingScore" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-ReadingScore">
+                                        <div class="form-row">
+                                            <label id="labelReadingScore" runat="server" for="ReadingScore" class="col-md-3 col-form-label form-label">Reading Score </label>
+                                            <div class="col-md-6">
+                                                <input id="txtReading" runat="server" type="text" placeholder="Reading Score" value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item" id="WritingScore" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-WritingScore">
-                                    <div class="form-row">
-                                        <label id="labelWritingScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Writing Score </label>
-                                        <div class="col-md-6">
-                                            <input id="txtWriting" runat="server" type="text" placeholder="Writing Score " value="" class="form-control">
+                                <div class="list-group-item" id="WritingScore" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-WritingScore">
+                                        <div class="form-row">
+                                            <label id="labelWritingScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Writing Score </label>
+                                            <div class="col-md-6">
+                                                <input id="txtWriting" runat="server" type="text" placeholder="Writing Score " value="" class="form-control">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                         </div>
+                         
                             <div class="list-group-item" id="CEFR" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-CEFR">
                                     <div class="form-row">
@@ -276,12 +281,12 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>  
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicantworkexperience.aspx" class="btn btn-success" style="margin-right: 10px;">Work Experience</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -289,7 +294,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -306,73 +310,127 @@
         </div>
     </div>
     <script> 
-        function showHideEnglishBackground(highschool)
+        function validateForm()
         {
-            if (highschool == 'rblEnglishBackgroundYes')
+            
+            var flag = false;            
+            if (!$("#<%=homelanguage.ClientID%>").is(':hidden') && $("#<%=txthomelanguage.ClientID%>").val() == "")
+                alert("Please Mention Language You Speak At Home");
+           
+            else if (!$("#<%=EnglishBackground.ClientID%>").is(':hidden') && !($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNo.ClientID%>").is(':checked')))
+                alert("Please Select Have you studied an English Language Intensive Course");
+
+            else
+            {
+                var flag1 = true;
+                if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked'))
                 {
-                $("#<%=Language.ClientID%>").show();
-                $("#<%=YearCompletion.ClientID%>").show();
-                $("#<%=NameCollege.ClientID%>").show();               
-                $("#<%=QualificationType.ClientID%>").show(); 
-                $("#<%=QualificationName.ClientID%>").show();
-                $("#<%=ExpectedDategrade.ClientID%>").hide();
-                $("#<%=gradeachieved.ClientID%>").show();
-                $("#<%=gradetype.ClientID%>").show();
-                $("#<%=studymode.ClientID%>").show();
-                
-            }
-            else if (highschool == 'rblEnglishBackgroundNot') {
-                $("#<%=Language.ClientID%>").show();
-                $("#<%=YearCompletion.ClientID%>").show();
-                $("#<%=NameCollege.ClientID%>").show();
-                $("#<%=QualificationType.ClientID%>").show();
-                $("#<%=QualificationName.ClientID%>").show();
-                $("#<%=ExpectedDategrade.ClientID%>").show();
-                $("#<%=gradeachieved.ClientID%>").hide();
-                $("#<%=gradetype.ClientID%>").show();
-                $("#<%=studymode.ClientID%>").show();
-                
-            }
-            else {
-                $("#<%=Language.ClientID%>").hide();
-                $("#<%=YearCompletion.ClientID%>").hide();
-                $("#<%=NameCollege.ClientID%>").hide();               
-                $("#<%=QualificationType.ClientID%>").hide();
-                $("#<%=QualificationName.ClientID%>").hide();
-                $("#<%=ExpectedDategrade.ClientID%>").hide();
-                $("#<%=gradeachieved.ClientID%>").hide();
-                $("#<%=gradetype.ClientID%>").hide();
-                $("#<%=studymode.ClientID%>").hide();                
-            }
-        }
+                    if (!$("#<%=Language.ClientID%>").is(':hidden') && $("#<%=ddlLanguage.ClientID%>").val() === "0") {
+                        alert("Please Select Country");
+                        flag1 = false;
+                    }
+                    else if (!$("#<%=YearCompletion.ClientID%>").is(':hidden') && $("#<%=txtYearCompletion.ClientID%>").val() == "") {
 
-        function showHideEnglishtest(test) {
+                        alert("Please Enter Year Of Completion");
+                        flag1 = false;
+                    }
+                    else if (!$("#<%=NameCollege.ClientID%>").is(':hidden') && $("#<%=txtNameCollege.ClientID%>").val() == "") {
+                        alert("Please Enter Name Of College");
+                        flag1 = false;
+                    }
 
-            if (test) {
-                $("#<%=testName.ClientID%>").show();
-                $("#<%=CentreNo.ClientID%>").show();
-                $("#<%=CandidateID.ClientID%>").show();
-                $("#<%=CandidateNo.ClientID%>").show();
-                $("#<%=LanguageScore.ClientID%>").show();
-                $("#<%=LanguageTestDate.ClientID%>").show();
-                $("#<%=SpeakingScore.ClientID%>").show();
-                $("#<%=ListeningScore.ClientID%>").show();
-                $("#<%=ReadingScore.ClientID%>").show();
-                $("#<%=WritingScore.ClientID%>").show();
-            }
-            else {
-                $("#<%=testName.ClientID%>").hide();
-                $("#<%=CentreNo.ClientID%>").hide();
-                $("#<%=CandidateID.ClientID%>").hide();
-                $("#<%=CandidateNo.ClientID%>").hide();
-                $("#<%=LanguageScore.ClientID%>").hide();
-                $("#<%=LanguageTestDate.ClientID%>").hide();
-                $("#<%=SpeakingScore.ClientID%>").hide();
-                $("#<%=ListeningScore.ClientID%>").hide();
-                $("#<%=ReadingScore.ClientID%>").hide();
-                $("#<%=WritingScore.ClientID%>").hide();
-            }
-        }
+                    else if (!$("#<%=studymode.ClientID%>").is(':hidden') && $("#<%=ddlStudyMode.ClientID%>").val() === "0") {
+                        alert("Please Select Study Mode");
+                        flag1 = false;
+                    }
+                        
+                    else if (!$("#<%=QualificationType.ClientID%>").is(':hidden') && $("#<%=ddlQualificationType.ClientID%>").val() === "0") {
+                         alert("Please Select Qualification Type");
+                         flag1 = false;
+                   }
+                       
+                    else if (!$("#<%=QualificationName.ClientID%>").is(':hidden') && $("#<%=txtQualificationName.ClientID%>").val() == "") {
+                         alert("Please Enter Qualification Name");
+                         flag1 = false;
+                    }
+                       
+                    else if (!$("#<%=gradetype.ClientID%>").is(':hidden') && $("#<%=ddlGrade.ClientID%>").val() === "0") {
+                        alert("Please Select Grade Type");
+                        flag1 = false;
+                    }
+                        
+                }
+
+                if (flag1) {
+                   
+                    if (!$("#<%=EnglishTest.ClientID%>").is(':hidden') && !($("#<%=rblLanguageielts.ClientID%>").is(':checked') || $("#<%=rblLanguagepearsons.ClientID%>").is(':checked') || $("#<%=rblLanguagtofel.ClientID%>").is(':checked')))
+                        alert("Please Select Option If You Have you sat any one English Language competency tests ");
+                    else 
+                    {
+                        var flag2 = true;
+                        if ($("#<%=rblLanguageielts.ClientID%>").is(':checked') || $("#<%=rblLanguagepearsons.ClientID%>").is(':checked') || $("#<%=rblLanguagtofel.ClientID%>").is(':checked'))
+                        {
+                            if (!$("#<%=testName.ClientID%>").is(':hidden') && $("#<%=txtTestName.ClientID%>").val() == "") {
+                                alert("Please Enter Test Name");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=CentreNo.ClientID%>").is(':hidden') && $("#<%=txtCentreNo.ClientID%>").val() == "") {
+                                alert("Please Enter Center Number");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=CandidateNo.ClientID%>").is(':hidden') && $("#<%=txtCandidateNo.ClientID%>").val() == "") {
+                                alert("Please Enter Candidate Number");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=CandidateID.ClientID%>").is(':hidden') && $("#<%=txtCandidateID.ClientID%>").val() == "") {
+                                alert("Please Enter Candidate ID");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=LanguageTestDate.ClientID%>").is(':hidden') && $("#<%=txtLanguageTestDate.ClientID%>").val() == "") {
+                                alert("Please Select Test Date");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=LanguageScore.ClientID%>").is(':hidden') && $("#<%=txtLanguageScore.ClientID%>").val() == "") {
+                                alert("Please Enter OverAll Score");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=SpeakingScore.ClientID%>").is(':hidden') && $("#<%=txtSpeaking.ClientID%>").val() == "") {
+                                alert("Please Enter Speaking Score");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=ListeningScore.ClientID%>").is(':hidden') && $("#<%=txtListening.ClientID%>").val() == "") {
+                                alert("Please Enter Listening Score");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=ReadingScore.ClientID%>").is(':hidden') && $("#<%=txtReading.ClientID%>").val() == "") {
+                                alert("Please Enter Reading Score");
+                                flag2 = false;
+                            }
+                            else if (!$("#<%=WritingScore.ClientID%>").is(':hidden') && $("#<%=txtWriting.ClientID%>").val() == "") {
+                                alert("Please Enter Writing Score");
+                                flag2 = false;
+                            }
+                        }
+                                       
+                    }
+                    if (flag2) {
+                         if (!$("#<%=CEFR.ClientID%>").is(':hidden') && $("#<%=ddlCEFR.ClientID%>").val() === "0")
+                        alert("Please Select CEFR Test");
+
+                        else if (!$("#<%=testRefno.ClientID%>").is(':hidden') && $("#<%=txttestRefno.ClientID%>").val() == "")
+                        alert("Please Enter Test Refference Number");
+                    }             
+            
+                    else 
+                        flag = true;  
+                }
+                flag = true;
+            }                    
+
+            return flag;
+             
+        }     
+
 
         $(document).ready(function ()
         {
@@ -383,42 +441,41 @@
                     var title = $(this).attr('title');
                     $("#tooltip").text(title);
                   });
-            showHideEnglishBackground($("input[type=radio][name='ctl00$ContentPlaceHolder1$EnglishBackground']:checked").val())
-            showHideEnglishtest($("input[type=radio][name='ctl00$ContentPlaceHolder1$EnglishTest']:checked").val())   
+          
         });
-
+       
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$EnglishBackground']").click(function () {
-                showHideEnglishBackground($("input[type=radio][name='ctl00$ContentPlaceHolder1$EnglishBackground']:checked").val())
+                if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(":checked") || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(":checked")) 
+                    $("#<%=BackgroundfieldContainer.ClientID%>").show();               
+                else 
+                    $("#<%=BackgroundfieldContainer.ClientID%>").hide();
             });
         });
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$EnglishTest']").click(function () {
-                showHideEnglishtest($("input[type=radio][name='ctl00$ContentPlaceHolder1$EnglishTest']:checked").val())   
+               if ($("#<%=rblLanguageielts.ClientID%>").is(":checked") || $("#<%=rblLanguagepearsons.ClientID%>").is(":checked") || $("#<%=rblLanguagtofel.ClientID%>").is(":checked")) 
+                    $("#<%=TestfieldContainer.ClientID%>").show();                
+                else 
+                    $("#<%=TestfieldContainer.ClientID%>").hide();
+                 
             });
         });
 
         $('#ContentPlaceHolder1_txtLanguageTestDate').flatpickr({
 
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d', defaultDate:""
         });
+
         $('#ContentPlaceHolder1_txtYearCompletion').flatpickr({
-
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d', defaultDate:""
         });
+
         $('#ContentPlaceHolder1_txtExpectedDategrade').flatpickr({
-
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d', defaultDate:""
         });
-        //document.getElementById("ContentPlaceHolder1_dob.ClientID%>").flatpickr({
-        //    wrap: true,
-        //    weekNumbers: true,
-        //    enableTime: true, // enables timepicker default is false    
-        //    time_24hr: true, // set to false for AM PM default is false
-        //    onChange: function (selectedDates, dateStr, instance) {
-        //        console.log("changed.ClientID%>");
-        //    }
-        //});
+
+     
     </script>
 </asp:Content>

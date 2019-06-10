@@ -85,6 +85,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             objapplicantDetail.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;
             objapplicantDetail.alternativeIdentityproofno = txtalternateIdentityNo.Value;
             objapplicantDetail.identificationsavetime = DateTime.Now;
+            objapplicantDetail.applicantid = userID;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
