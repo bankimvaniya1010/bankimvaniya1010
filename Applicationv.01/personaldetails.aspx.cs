@@ -220,12 +220,13 @@ public partial class personaldetails : System.Web.UI.Page
                     DateTime dob = Convert.ToDateTime(profileInfo.dateofbirth);
                     FillMonth();
                     FillYears();
-                    FillDays();
+                  
                     ddlMonth.ClearSelection();
                     ddlDay.ClearSelection();
                     ddlYear.ClearSelection();
                     ddlMonth.Items.FindByValue(dob.Month.ToString()).Selected = true;
-                    ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;                   
+                    ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;
+                    FillDays();
                     ddlDay.Items.FindByValue(dob.Day.ToString()).Selected = true;
 
                 }
@@ -326,6 +327,7 @@ public partial class personaldetails : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Personal Details have been saved";
             lblMessage.Visible = true;
         }

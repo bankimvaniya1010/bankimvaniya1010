@@ -1267,6 +1267,7 @@ public partial class applicanteducation : System.Web.UI.Page
             }
             db.SaveChanges();
             lblMessage.Text = "Your Education Details have been saved";
+            objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Visible = true;
         }
 

@@ -214,6 +214,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }
