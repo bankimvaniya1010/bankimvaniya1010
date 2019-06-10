@@ -499,6 +499,7 @@ public partial class customfieldvalue
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> customfieldid { get; set; }
     public string value { get; set; }
+    public Nullable<int> formid { get; set; }
 }
 
 public partial class disabilitymaster
@@ -549,7 +550,7 @@ public partial class facility_campus_mapping
     public int campusId { get; set; }
     public int facilityId { get; set; }
     public bool IsFree { get; set; }
-    public int cost { get; set; }
+    public Nullable<int> cost { get; set; }
     public string facility_site { get; set; }
     public string distance { get; set; }
 
@@ -944,9 +945,9 @@ public partial class universitycampus
     public string research { get; set; }
     public string faculty_description { get; set; }
 
+    public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
-    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitywisefieldmapping

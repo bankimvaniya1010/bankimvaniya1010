@@ -178,8 +178,9 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="createuniversity.aspx">Create University</a>
                                             <a class="dropdown-item" href="createuniversitycampus.aspx">Create University Campus</a>
-                                            <a class="dropdown-item" href="createfacility.aspx">Create Facility</a>
+                                            <a class="dropdown-item" href="createfacility.aspx">Add Facility</a>
                                             <a class="dropdown-item" href="createcampusfacilitymapping.aspx">University Campus Facility Mapping</a>
+                                            <a class="dropdown-item" href="universitycampusmaster.aspx">View all campus</a>
                                         </div>
                                     </li>
                                 </ul>

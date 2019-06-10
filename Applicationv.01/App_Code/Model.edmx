@@ -505,6 +505,7 @@
           <Property Name="applicantid" Type="int" />
           <Property Name="customfieldid" Type="int" />
           <Property Name="value" Type="varchar" MaxLength="200" />
+          <Property Name="formid" Type="int" />
         </EntityType>
         <EntityType Name="disabilitymaster">
           <Key>
@@ -552,9 +553,9 @@
           <Property Name="campusId" Type="int" Nullable="false" />
           <Property Name="facilityId" Type="int" Nullable="false" />
           <Property Name="IsFree" Type="bit" Nullable="false" />
-          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="cost" Type="int" />
           <Property Name="facility_site" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="distance" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="distance" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="fieldvalidationmaster">
           <Key>
@@ -1274,7 +1275,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="educationmediummaster" EntityType="GTEModel.educationmediummaster" />
           <EntitySet Name="educationverificationcontactmaster" EntityType="GTEModel.educationverificationcontactmaster" />
           <EntitySet Name="facilitiesmaster" EntityType="GTEModel.facilitiesmaster" />
-          <EntitySet Name="facility_campus_mapping" EntityType="GTEModel.facility_campus_mapping" />
           <EntitySet Name="fieldvalidationmaster" EntityType="GTEModel.fieldvalidationmaster" />
           <EntitySet Name="formfieldmapping" EntityType="GTEModel.formfieldmapping" />
           <EntitySet Name="formfieldmaster" EntityType="GTEModel.formfieldmaster" />
@@ -1330,14 +1330,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="qualificationcountriesmapping" EntitySet="qualificationcountriesmapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_mapping_facilitiesMaster" Association="GTEModel.FK_mapping_facilitiesMaster">
-            <End Role="facilitiesmaster" EntitySet="facilitiesmaster" />
-            <End Role="facility_campus_mapping" EntitySet="facility_campus_mapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_mapping_campusdetail" Association="GTEModel.FK_mapping_campusdetail">
-            <End Role="universitycampus" EntitySet="universitycampus" />
-            <End Role="facility_campus_mapping" EntitySet="facility_campus_mapping" />
-          </AssociationSet>
           <AssociationSet Name="FK_qualificationmaster_qualificationcountrymapping" Association="GTEModel.FK_qualificationmaster_qualificationcountrymapping">
             <End Role="qualificationmaster" EntitySet="qualificationmaster" />
             <End Role="qualificationcountriesmapping" EntitySet="qualificationcountriesmapping" />
@@ -1361,6 +1353,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_campus_universityMaster" Association="GTEModel.FK_campus_universityMaster">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitycampus" EntitySet="universitycampus" />
+          </AssociationSet>
+          <EntitySet Name="facility_campus_mapping" EntityType="GTEModel.facility_campus_mapping" />
+          <AssociationSet Name="FK_mapping_facilitiesMaster" Association="GTEModel.FK_mapping_facilitiesMaster">
+            <End Role="facilitiesmaster" EntitySet="facilitiesmaster" />
+            <End Role="facility_campus_mapping" EntitySet="facility_campus_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_mapping_campusdetail" Association="GTEModel.FK_mapping_campusdetail">
+            <End Role="universitycampus" EntitySet="universitycampus" />
+            <End Role="facility_campus_mapping" EntitySet="facility_campus_mapping" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="adminusers">
@@ -1868,6 +1869,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="applicantid" Type="Int32" />
           <Property Name="customfieldid" Type="Int32" />
           <Property Name="value" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="formid" Type="Int32" />
         </EntityType>
         <EntityType Name="disabilitymaster">
           <Key>
@@ -1907,20 +1909,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" />
           <Property Name="facility_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="facility_campus_mapping" Relationship="GTEModel.FK_mapping_facilitiesMaster" FromRole="facilitiesmaster" ToRole="facility_campus_mapping" />
-        </EntityType>
-        <EntityType Name="facility_campus_mapping">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="campusId" Type="Int32" Nullable="false" />
-          <Property Name="facilityId" Type="Int32" Nullable="false" />
-          <Property Name="IsFree" Type="Boolean" Nullable="false" />
-          <Property Name="cost" Type="Int32" Nullable="false" />
-          <Property Name="facility_site" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="distance" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="facilitiesmaster" Relationship="GTEModel.FK_mapping_facilitiesMaster" FromRole="facility_campus_mapping" ToRole="facilitiesmaster" />
-          <NavigationProperty Name="universitycampus" Relationship="GTEModel.FK_mapping_campusdetail" FromRole="facility_campus_mapping" ToRole="universitycampus" />
         </EntityType>
         <EntityType Name="fieldvalidationmaster">
           <Key>
@@ -2268,8 +2256,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="research" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="faculty_description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="facility_campus_mapping" Relationship="GTEModel.FK_mapping_campusdetail" FromRole="universitycampus" ToRole="facility_campus_mapping" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_campus_universityMaster" FromRole="universitycampus" ToRole="university_master" />
+          <NavigationProperty Name="facility_campus_mapping" Relationship="GTEModel.FK_mapping_campusdetail" FromRole="universitycampus" ToRole="facility_campus_mapping" />
         </EntityType>
         <EntityType Name="universitywisefieldmapping">
           <Key>
@@ -2359,30 +2347,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_mapping_facilitiesMaster">
-          <End Type="GTEModel.facilitiesmaster" Role="facilitiesmaster" Multiplicity="1" />
-          <End Type="GTEModel.facility_campus_mapping" Role="facility_campus_mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="facilitiesmaster">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="facility_campus_mapping">
-              <PropertyRef Name="facilityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_mapping_campusdetail">
-          <End Type="GTEModel.universitycampus" Role="universitycampus" Multiplicity="1" />
-          <End Type="GTEModel.facility_campus_mapping" Role="facility_campus_mapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="universitycampus">
-              <PropertyRef Name="campusid" />
-            </Principal>
-            <Dependent Role="facility_campus_mapping">
-              <PropertyRef Name="campusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_qualificationmaster_qualificationcountrymapping">
           <End Type="GTEModel.qualificationmaster" Role="qualificationmaster" Multiplicity="1" />
           <End Type="GTEModel.qualificationcountriesmapping" Role="qualificationcountriesmapping" Multiplicity="*" />
@@ -2452,6 +2416,44 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="universitycampus">
               <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="facility_campus_mapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="campusId" Type="Int32" Nullable="false" />
+          <Property Name="facilityId" Type="Int32" Nullable="false" />
+          <Property Name="IsFree" Type="Boolean" Nullable="false" />
+          <Property Name="cost" Type="Int32" />
+          <Property Name="facility_site" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="distance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="facilitiesmaster" Relationship="GTEModel.FK_mapping_facilitiesMaster" FromRole="facility_campus_mapping" ToRole="facilitiesmaster" />
+          <NavigationProperty Name="universitycampus" Relationship="GTEModel.FK_mapping_campusdetail" FromRole="facility_campus_mapping" ToRole="universitycampus" />
+        </EntityType>
+        <Association Name="FK_mapping_facilitiesMaster">
+          <End Type="GTEModel.facilitiesmaster" Role="facilitiesmaster" Multiplicity="1" />
+          <End Type="GTEModel.facility_campus_mapping" Role="facility_campus_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="facilitiesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="facility_campus_mapping">
+              <PropertyRef Name="facilityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_mapping_campusdetail">
+          <End Type="GTEModel.universitycampus" Role="universitycampus" Multiplicity="1" />
+          <End Type="GTEModel.facility_campus_mapping" Role="facility_campus_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="universitycampus">
+              <PropertyRef Name="campusid" />
+            </Principal>
+            <Dependent Role="facility_campus_mapping">
+              <PropertyRef Name="campusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2991,6 +2993,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="customfieldvalue">
             <EntityTypeMapping TypeName="GTEModel.customfieldvalue">
               <MappingFragment StoreEntitySet="customfieldvalue">
+                <ScalarProperty Name="formid" ColumnName="formid" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="customfieldid" ColumnName="customfieldid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
@@ -3037,19 +3040,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <EntityTypeMapping TypeName="GTEModel.facilitiesmaster">
               <MappingFragment StoreEntitySet="facilitiesmaster">
                 <ScalarProperty Name="facility_name" ColumnName="facility_name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="facility_campus_mapping">
-            <EntityTypeMapping TypeName="GTEModel.facility_campus_mapping">
-              <MappingFragment StoreEntitySet="facility_campus_mapping">
-                <ScalarProperty Name="distance" ColumnName="distance" />
-                <ScalarProperty Name="facility_site" ColumnName="facility_site" />
-                <ScalarProperty Name="cost" ColumnName="cost" />
-                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
-                <ScalarProperty Name="facilityId" ColumnName="facilityId" />
-                <ScalarProperty Name="campusId" ColumnName="campusId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3463,6 +3453,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="documentname" ColumnName="documentname" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="documentid" ColumnName="documentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facility_campus_mapping">
+            <EntityTypeMapping TypeName="GTEModel.facility_campus_mapping">
+              <MappingFragment StoreEntitySet="facility_campus_mapping">
+                <ScalarProperty Name="distance" ColumnName="distance" />
+                <ScalarProperty Name="facility_site" ColumnName="facility_site" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="IsFree" ColumnName="IsFree" />
+                <ScalarProperty Name="facilityId" ColumnName="facilityId" />
+                <ScalarProperty Name="campusId" ColumnName="campusId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
