@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Text;
 public partial class personaldetails : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0;
+    int userID = 0, ApplicantID = 0, universityID;
     bool isAgent = false;
     int formId = 0;
     private GTEEntities db = new GTEEntities();
@@ -22,6 +22,7 @@ public partial class personaldetails : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
@@ -36,6 +37,7 @@ public partial class personaldetails : System.Web.UI.Page
         {
             objCom.BindCountries(ddlBirthCountry);
             objCom.BindCountries(ddlNationality);
+            BindMaritalstatus();
             BindAgent();
             BindTitle();
             FillMonth();
@@ -44,7 +46,7 @@ public partial class personaldetails : System.Web.UI.Page
             BindDisability();
             PopulatePersonalInfo();
             SetToolTips();
-            SetControlsUniversitywise(Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            SetControlsUniversitywise();
         }
     }
     public void FillMonth()
@@ -83,14 +85,25 @@ public partial class personaldetails : System.Web.UI.Page
     {
         try
         {
-            //getting numbner of days in selected month & year
-            int noofdays = DateTime.DaysInMonth(Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(ddlMonth.SelectedValue));
-
-            //Fill days
-            for (int i = 1; i <= noofdays; i++)
+            ddlDay.Items.Clear();
+            ddlDay.Items.Add("Select Day");
+            List<dynamic> daysData = new List<dynamic>();
+            daysData.Add(new { displayName = "Select Day", value = 0 });
+            if (Convert.ToInt32(ddlYear.SelectedValue) > 0 && Convert.ToInt32(ddlMonth.SelectedValue) > 0)
             {
-                ddlDay.Items.Add(i.ToString());
+                //getting numbner of days in selected month & year
+                int noofdays = DateTime.DaysInMonth(Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(ddlMonth.SelectedValue));
+                //Fill days         
+                
+                for (int i = 1; i <= noofdays; i++)
+                {
+                    daysData.Add(new { displayName = i.ToString(), value = i });
+                }
             }
+            ddlDay.DataSource = daysData;
+            ddlDay.DataTextField = "displayName";
+            ddlDay.DataValueField = "value";
+            ddlDay.DataBind();
         }
         catch (Exception ex)
         {
@@ -106,6 +119,25 @@ public partial class personaldetails : System.Web.UI.Page
     {
         FillDays();
     }
+
+    private void BindMaritalstatus()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var title = db.maritalstatusmaster.ToList();
+            ddlMarital.DataSource = title;
+            ddlMarital.DataTextField = "description";
+            ddlMarital.DataValueField = "id";
+            ddlMarital.DataBind();
+            ddlMarital.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
     private void BindTitle()
     {
         try
@@ -145,10 +177,10 @@ public partial class personaldetails : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var agent = db.adminusers.Where(x => x.roleid == 2).ToList();
+            var agent = db.adminusers.Where(x => x.roleid == 1).ToList();
             ddlAgent.DataSource = agent;
             ddlAgent.DataTextField = "name";
-            ddlAgent.DataValueField = "userid";
+            ddlAgent.DataValueField = "adminid";
             ddlAgent.DataBind();
             ddlAgent.Items.Insert(0, lst);
         }
@@ -166,20 +198,19 @@ public partial class personaldetails : System.Web.UI.Page
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
-                txtFirstName.Value = profileInfo.firstname;
-                txtLastName.Value = profileInfo.lastname;
-                txtMiddleName.Value = profileInfo.middlename;
-                txtPreferedName.Value = profileInfo.prefferedname;
                 txtTitle.Value = profileInfo.othertitle;
                 if (profileInfo.title != null)
                 {
                     ddlTitle.ClearSelection();
-                    ddlTitle.Items.FindByValue(profileInfo.title.ToString()).Selected = true; ;// Set current date as selected
+                    ddlTitle.Items.FindByValue(profileInfo.title.ToString()).Selected = true;
                 }
+                txtFirstName.Value = profileInfo.firstname;
+                txtLastName.Value = profileInfo.lastname;
+                txtMiddleName.Value = profileInfo.middlename;
+                txtPreferedName.Value = profileInfo.prefferedname;               
                 if (profileInfo.dateofbirth != null)
                 {
                     DateTime dob = Convert.ToDateTime(profileInfo.dateofbirth);
-
                     FillMonth();
                     FillYears();
                     FillDays();
@@ -210,49 +241,26 @@ public partial class personaldetails : System.Web.UI.Page
                     ddlMarital.ClearSelection();
                     ddlMarital.Items.FindByValue(profileInfo.maritalstatus.ToString()).Selected = true;
                 }
+                if (profileInfo.isdisable == 1)
+                    rblDisabilityYes.Checked = true;
+                else
+                    rblDisabilityNo.Checked = true;
                 if (profileInfo.disabilitydescription != null)
                 {
                     ddlDisability.ClearSelection();
                     ddlDisability.Items.FindByValue(profileInfo.disabilitydescription.ToString()).Selected = true;
                 }
-                if (profileInfo.isdisable == 1)
-                    rblDisabilityYes.Checked = true;
-                else
-                    rblDisabilityNo.Checked = true;
-                if (profileInfo.agentid != null)
-                {
-                    ddlAgent.ClearSelection();
-                    ddlAgent.Items.FindByValue(profileInfo.agentid.ToString()).Selected = true;
-                }
                 if (profileInfo.isstudentreferbyagent == 1)
                     rblAgentYes.Checked = true;
                 else
                     rblAgentNo.Checked = true;
+                if (profileInfo.agentid != null)
+                {
+                    ddlAgent.ClearSelection();
+                    ddlAgent.Items.FindByValue(profileInfo.agentid.ToString()).Selected = true;
+                }              
 
-                lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsavedtime.ToString();
-                //if (profileInfo.haveyoustudyinstitue == 1)
-                //{
-                //    isStudyBefore = 1;
-                //    txtStudentID.Value = profileInfo.studentid;
-                //    rblStudyYes.Checked = true;
-                //}
-                //else
-                //    rblStudyNO.Checked = true;
-                //if (profileInfo.haveyouappliedinstitue == 1)
-                //{
-                //    isApplyBefore = 1;
-                //    txtAppliedStudentID.Value = profileInfo.studentid;
-                //    rblApplyYes.Checked = true;
-                //}
-                //else
-                //    rblApplyNo.Checked = true;
-                //txtCourseName.Value = profileInfo.coursename;
-                //txtStudentID.Value = profileInfo.studentid;
-                //if (profileInfo.courseenddate != null)
-                //    txtCourseEndate.Value = Convert.ToDateTime(profileInfo.courseenddate).ToString("yyyy-MM-dd");
-                //if (profileInfo.coursestartdate != null)
-                //    txtCourseStartDate.Value = Convert.ToDateTime(profileInfo.coursestartdate).ToString("yyyy-MM-dd");
-
+                lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsavedtime.ToString();                
             }
         }
         catch (Exception ex)
@@ -265,57 +273,58 @@ public partial class personaldetails : System.Web.UI.Page
     {
         try
         {
+            var mode = "new";
             var profileInfo = (from pInfo in db.applicantdetails
                                where pInfo.applicantid == userID
                                select pInfo).FirstOrDefault();
-            profileInfo.firstname = txtFirstName.Value;
-            profileInfo.lastname = txtLastName.Value;
-            profileInfo.middlename = txtMiddleName.Value;
-            profileInfo.prefferedname = txtPreferedName.Value;
-            if (ddlMarital.SelectedValue != "")
-                profileInfo.maritalstatus = Convert.ToInt32(ddlMarital.SelectedValue);
-            profileInfo.title = Convert.ToInt32(ddlTitle.SelectedValue);
+            applicantdetails objapplicantDetail = new applicantdetails();
+            if (profileInfo != null)
+            {
+                mode = "update";
+                objapplicantDetail = profileInfo;
+            }
+            objapplicantDetail.title = Convert.ToInt32(ddlTitle.SelectedValue);
+            objapplicantDetail.othertitle = txtTitle.Value;
+            objapplicantDetail.firstname = txtFirstName.Value;
+            objapplicantDetail.lastname = txtLastName.Value;
+            objapplicantDetail.middlename = txtMiddleName.Value;
+            objapplicantDetail.prefferedname = txtPreferedName.Value;            
             string dateofBirth = ddlYear.SelectedValue + "-" + ddlMonth.SelectedValue + "-" + ddlDay.SelectedValue;
-            profileInfo.dateofbirth = Convert.ToDateTime(dateofBirth);
-            //ddlDay.Items.FindByValue(dob.Day.ToString()).Selected = true;
-            // ddlMonth.Items.FindByValue(dob.Month.ToString()).Selected = true;
-            // ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;
+            objapplicantDetail.dateofbirth = Convert.ToDateTime(dateofBirth);
             if (rbtnMale.Checked)
-                profileInfo.gender = 1;
-            else
-                profileInfo.gender = 0;
+                objapplicantDetail.gender = 1;
+            else if (rbtnFemale.Checked)
+                objapplicantDetail.gender = 0;
             if (ddlNationality.SelectedValue != "")
-                profileInfo.nationality = Convert.ToInt32(ddlNationality.SelectedValue);
+                objapplicantDetail.nationality = Convert.ToInt32(ddlNationality.SelectedValue);
             if (ddlBirthCountry.SelectedValue != "")
-                profileInfo.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
-            profileInfo.othertitle = txtTitle.Value;
-            profileInfo.personaldetailsavedtime = DateTime.Now;
+                objapplicantDetail.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
+            if (ddlMarital.SelectedValue != "")
+                objapplicantDetail.maritalstatus = Convert.ToInt32(ddlMarital.SelectedValue);
             if (rblDisabilityYes.Checked)
-                profileInfo.isdisable = 1;
-            else
-                profileInfo.isdisable = 2;
+                objapplicantDetail.isdisable = 1;
+            else if(rblDisabilityNo.Checked)
+                objapplicantDetail.isdisable = 2;
             if (ddlDisability.SelectedValue != "")
-                profileInfo.disabilitydescription = ddlDisability.SelectedValue;
+                objapplicantDetail.disabilitydescription = ddlDisability.SelectedValue;
             if (rblAgentYes.Checked)
-                profileInfo.isstudentreferbyagent = 1;
-            else
-                profileInfo.isstudentreferbyagent = 0;
+                objapplicantDetail.isstudentreferbyagent = 1;
+            else if(rblAgentNo.Checked)
+                objapplicantDetail.isstudentreferbyagent = 0;
             if (ddlAgent.SelectedValue != "")
-                profileInfo.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
-
+                objapplicantDetail.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
+            objapplicantDetail.applicantid = userID;
+            objapplicantDetail.personaldetailsavedtime = DateTime.Now;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
             lblMessage.Text = "Your Personal Details have been saved";
             lblMessage.Visible = true;
-
-
-
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
-
-
     }
 
     private void SetToolTips()
@@ -385,7 +394,7 @@ public partial class personaldetails : System.Web.UI.Page
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
     }
-    private void SetControlsUniversitywise(int universityID)
+    private void SetControlsUniversitywise()
     {
         try
         {
