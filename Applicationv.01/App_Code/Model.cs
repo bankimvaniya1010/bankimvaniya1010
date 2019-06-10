@@ -482,6 +482,9 @@ public partial class credentialmaster
     public string ranking_by_subject { get; set; }
     public string ranking_by_region { get; set; }
     public bool rank_improved { get; set; }
+    public int university_id { get; set; }
+
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class customfieldmaster
@@ -499,6 +502,7 @@ public partial class customfieldvalue
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> customfieldid { get; set; }
     public string value { get; set; }
+    public Nullable<int> formid { get; set; }
 }
 
 public partial class disabilitymaster
@@ -549,7 +553,7 @@ public partial class facility_campus_mapping
     public int campusId { get; set; }
     public int facilityId { get; set; }
     public bool IsFree { get; set; }
-    public int cost { get; set; }
+    public Nullable<int> cost { get; set; }
     public string facility_site { get; set; }
     public string distance { get; set; }
 
@@ -906,6 +910,7 @@ public partial class university_master
     public university_master()
     {
         this.universitycampus = new HashSet<universitycampus>();
+        this.credentialmaster = new HashSet<credentialmaster>();
     }
 
     public int universityid { get; set; }
@@ -933,6 +938,8 @@ public partial class university_master
     public virtual citymaster citymaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus> universitycampus { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<credentialmaster> credentialmaster { get; set; }
 }
 
 public partial class universitycampus
@@ -950,9 +957,9 @@ public partial class universitycampus
     public string research { get; set; }
     public string faculty_description { get; set; }
 
+    public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
-    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitywisefieldmapping
