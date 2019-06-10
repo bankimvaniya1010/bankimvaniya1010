@@ -1541,7 +1541,7 @@
             if (flag == true)
                 flag = customcontrolValidation();
             return flag;
-            return flag;
+           
         }
         function customcontrolValidation() {
             var flag = false;
