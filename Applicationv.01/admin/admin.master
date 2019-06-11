@@ -181,6 +181,7 @@
                                             <a class="dropdown-item" href="createfacility.aspx">Add Facility</a>
                                             <a class="dropdown-item" href="createcampusfacilitymapping.aspx">University Campus Facility Mapping</a>
                                             <a class="dropdown-item" href="universitycampusmaster.aspx">View all campus</a>
+                                            <a class="dropdown-item" href="adduniversitygrouping.aspx">Grouping</a>
                                         </div>
                                     </li>
                                 </ul>

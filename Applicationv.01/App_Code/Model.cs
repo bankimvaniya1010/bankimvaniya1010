@@ -297,7 +297,6 @@ public partial class applicanthighereducation
     public Nullable<int> relationshipwithverification { get; set; }
     public string verificationemail { get; set; }
     public string verificationmobile { get; set; }
-    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicantlanguagecompetency
@@ -354,7 +353,6 @@ public partial class applicantreferencecheck
     public string referncekey { get; set; }
     public Nullable<System.DateTime> requestsenttime { get; set; }
     public Nullable<System.DateTime> referenceverifiedtime { get; set; }
-    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicantscores
@@ -631,6 +629,17 @@ public partial class grademaster
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class GTE_documentverification
+{
+    public int documentid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public string documentname { get; set; }
+    public Nullable<int> documentvalidationId { get; set; }
+    public Nullable<int> agentid { get; set; }
+    public Nullable<System.DateTime> lastupdatedate { get; set; }
+    public string remarks { get; set; }
 }
 
 public partial class inferencemaster
@@ -910,6 +919,15 @@ public partial class tooltipmaster
     public int id { get; set; }
     public string field { get; set; }
     public string tooltips { get; set; }
+}
+
+public partial class tooltipmasterold
+{
+    public int id { get; set; }
+    public string field { get; set; }
+    public string tooltips { get; set; }
+    public int fieldid { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
 }
 
 public partial class typemaster
