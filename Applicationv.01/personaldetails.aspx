@@ -17,8 +17,8 @@
                 <div class="col-lg container-fluid page__container">
 
                     <div class="card" style="width: 650px;">
-                        <div class="list-group list-group-fit" id="title" runat="server" style="display: none">
-                            <div class="list-group-item">
+                        <div class="list-group list-group-fit">
+                            <div class="list-group-item" id="title" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-title">
                                     <div class="form-row">
                                         <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">* Title</label>
