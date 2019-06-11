@@ -31,7 +31,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
-        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
@@ -54,69 +54,67 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
+                txtEmail.Value = profileInfo.email;
+                txtMobile.Value = profileInfo.mobileno;              
+                txtHomePhone.Value = profileInfo.homephone;
+                if (profileInfo.haveskypeid == 1)
+                {
+                    rblSkypeYes.Checked = true;
+                    txtSkype.Text = profileInfo.skypeid;
+                }
+                else if(profileInfo.haveskypeid == 0)
+                { rblSkypeNo.Checked = true; }
+
+                if (profileInfo.havewhatsup == 1)
+                {
+                    rblwhatsappYes.Checked = true;                    
+                }
+                else if(profileInfo.havewhatsup == 2)
+                {
+                    rblwhatsappNo.Checked = true;
+                }
+
+                if (profileInfo.isdifferentwhatsapp == 1)
+                {
+                    rblWhatsupsameYes.Checked = true;
+                }
+                else if(profileInfo.isdifferentwhatsapp == 2)
+                {
+                    rblWhatsupsameNo.Checked = true;
+                    txtWhatsappNo.Text = profileInfo.whatsappno;
+                }
                 txtAddressLine1.Value = profileInfo.postaladdrees1;
                 txtAddressLine2.Value = profileInfo.postaladdrees2;
                 txtAddressLine3.Value = profileInfo.postaladdrees3;
                 txtCity.Value = profileInfo.postalcity;
-                txtState.Value = profileInfo.postalstate;
-                txtResidentialpostal.Value = profileInfo.residentailpostcode;
+                txtState.Value = profileInfo.postalstate;               
                 txtPostal.Value = profileInfo.postalpostcode;
                 if (profileInfo.postalcountry != null)
                 {
                     ddlpostalCountry.ClearSelection();
                     ddlpostalCountry.Items.FindByValue(profileInfo.postalcountry.ToString()).Selected = true;
                 }
-                txtResidentialAddress1.Value = profileInfo.residentialaddress1;
-                txtResidentialAddress2.Value = profileInfo.residentialaddress2;
-                txtResidentialAddress3.Value = profileInfo.residentialaddress3;
-                txtResidentialCity.Value = profileInfo.residentialcity;
-                txtResidentialState.Value = profileInfo.residentialstate;
-                if (profileInfo.residentialcountry != null)
+                if (profileInfo.issameaspostal == 1)
+                    rblAddressYes.Checked = true;
+                else if (profileInfo.issameaspostal == 2)
                 {
-                    ddlResidentialCountry.ClearSelection();
-                    ddlResidentialCountry.Items.FindByValue(profileInfo.residentialcountry.ToString()).Selected = true;
+                    rblAddressNo.Checked = false;
+                    txtResidentialAddress1.Value = profileInfo.residentialaddress1;
+                    txtResidentialAddress2.Value = profileInfo.residentialaddress2;
+                    txtResidentialAddress3.Value = profileInfo.residentialaddress3;
+                    txtResidentialCity.Value = profileInfo.residentialcity;
+                    txtResidentialState.Value = profileInfo.residentialstate;
+                    txtResidentialpostal.Value = profileInfo.residentailpostcode;
+                    if (profileInfo.residentialcountry != null)
+                    {
+                        ddlResidentialCountry.ClearSelection();
+                        ddlResidentialCountry.Items.FindByValue(profileInfo.residentialcountry.ToString()).Selected = true;
+                    }
                 }
-                txtMobile.Value = profileInfo.mobileno;
-                // txtworkphone.Value = profileInfo.workphone;
-                txtHomePhone.Value = profileInfo.homephone;
-                txtEmail.Value = profileInfo.email;
-                // txtConfirmEmail.Value = profileInfo.email;
                 txtNomineeName.Value = profileInfo.nomineefullname;
                 txtEmailNominee.Value = profileInfo.nomineeemail;
                 txtMobileNominee.Value = profileInfo.nomineemobile;
                 txtRelationNominee.Value = profileInfo.relationshipwithnominee;
-                if (profileInfo.haveskypeid == 1)
-                {
-                    rblSkypeYes.Checked = true;
-
-                    txtSkype.Text = profileInfo.skypeid;
-                }
-
-                else
-                { rblSkypeNo.Checked = true; }
-
-                if (profileInfo.isdifferentwhatsapp == 1)
-                {
-                    rblWhatsupsameYes.Checked = true;
-                }
-                else
-                {
-                    rblWhatsupsameNo.Checked = true;
-                }
-                if (profileInfo.havewhatsup == 1)
-                {
-                    rblwhatsappYes.Checked = true;
-                }
-                else
-                {
-                    rblwhatsappDif.Checked = true;
-                }
-
-
-                if (profileInfo.issameaspostal == 1)
-                    rblAddressYes.Checked = true;
-                else
-                    rblAddressNo.Checked = false;
                 DateTime zeroTime = new DateTime(1, 1, 1);
                 DateTime Dob = Convert.ToDateTime(profileInfo.dateofbirth);
                 Age objAge = new Age(Dob, DateTime.Now);
@@ -125,7 +123,6 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 {
                     guardian.Visible = true;
                     gurdianmessgae.InnerText = gurdianmessgae.InnerText.Replace("#Year#", objAge.Years.ToString()).Replace("#Month#", objAge.Months.ToString());
-
                 }
                 else
                     guardian.Visible = false;
@@ -152,59 +149,62 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 mode = "update";
                 objapplicantDetail = profileInfo;
             }
-            objapplicantDetail.mobileno = txtMobile.Value;
-            //  objapplicantDetail.workphone = txtworkphone.Value;
-            objapplicantDetail.homephone = txtHomePhone.Value;
+           
             objapplicantDetail.email = txtEmail.Value;
-            objapplicantDetail.postaladdrees1 = txtAddressLine1.Value;
-            objapplicantDetail.postaladdrees2 = txtAddressLine2.Value;
-            objapplicantDetail.postaladdrees3 = txtAddressLine3.Value;
-            objapplicantDetail.postalcity = txtCity.Value;
-            if (ddlpostalCountry.SelectedValue != "")
-                objapplicantDetail.postalcountry = Convert.ToInt32(ddlpostalCountry.SelectedValue);
-            objapplicantDetail.postalstate = txtState.Value;
-            objapplicantDetail.postalpostcode = txtPostal.Value;
+            objapplicantDetail.mobileno = txtMobile.Value;
+            objapplicantDetail.homephone = txtHomePhone.Value;
+
             if (rblSkypeYes.Checked == true)
             {
                 objapplicantDetail.haveskypeid = 1;
                 objapplicantDetail.skypeid = txtSkype.Text;
             }
 
-            else
+            else if (rblSkypeNo.Checked == true)
             { objapplicantDetail.haveskypeid = 0; }
 
-            if (rblwhatsappYes.Checked)
-            {
-                objapplicantDetail.havewhatsup = 1;
+            if (rblwhatsappYes.Checked) {
+                objapplicantDetail.havewhatsup = 1;               
             }
-
-
-            else
+            else if (rblwhatsappNo.Checked == true)
             { objapplicantDetail.havewhatsup = 2; }
-            if (rblWhatsupsameYes.Checked)
-            {
+
+            if (rblWhatsupsameYes.Checked) {
                 objapplicantDetail.isdifferentwhatsapp = 1;
             }
+            else if(rblwhatsappNo.Checked)
+            {
+                objapplicantDetail.isdifferentwhatsapp = 2;
+                objapplicantDetail.whatsappno = txtWhatsappNo.Text;
+            }
 
-
-            else
-            { objapplicantDetail.isdifferentwhatsapp = 2; }
+            objapplicantDetail.postaladdrees1 = txtAddressLine1.Value;
+            objapplicantDetail.postaladdrees2 = txtAddressLine2.Value;
+            objapplicantDetail.postaladdrees3 = txtAddressLine3.Value;
+            objapplicantDetail.postalcity = txtCity.Value;
+            objapplicantDetail.postalstate = txtState.Value;
+            objapplicantDetail.postalpostcode = txtPostal.Value;
+            if (ddlpostalCountry.SelectedValue != "")
+                objapplicantDetail.postalcountry = Convert.ToInt32(ddlpostalCountry.SelectedValue);
 
             if (rblAddressYes.Checked == true)
+            {
                 objapplicantDetail.issameaspostal = 1;
-            else
-                objapplicantDetail.issameaspostal = 1;
+            }
 
-            objapplicantDetail.residentialaddress1 = txtResidentialAddress1.Value;
-            objapplicantDetail.residentialaddress2 = txtResidentialAddress2.Value;
-            objapplicantDetail.residentialaddress3 = txtResidentialAddress3.Value;
-            objapplicantDetail.residentialcity = txtResidentialCity.Value;
-            objapplicantDetail.residentialstate = txtResidentialState.Value;
-            if (ddlResidentialCountry.SelectedValue != "")
-                objapplicantDetail.residentialcountry = Convert.ToInt32(ddlResidentialCountry.SelectedValue);
-
+            else if (rblAddressNo.Checked == true)
+            {
+                objapplicantDetail.issameaspostal = 2;
+                objapplicantDetail.residentialaddress1 = txtResidentialAddress1.Value;
+                objapplicantDetail.residentialaddress2 = txtResidentialAddress2.Value;
+                objapplicantDetail.residentialaddress3 = txtResidentialAddress3.Value;
+                objapplicantDetail.residentialcity = txtResidentialCity.Value;
+                objapplicantDetail.residentialstate = txtResidentialState.Value;
+                objapplicantDetail.residentailpostcode = txtResidentialpostal.Value;
+                if (ddlResidentialCountry.SelectedValue != "")
+                    objapplicantDetail.residentialcountry = Convert.ToInt32(ddlResidentialCountry.SelectedValue);
+            }
             objapplicantDetail.nomineefullname = txtNomineeName.Value;
-            objapplicantDetail.residentailpostcode = txtResidentialpostal.Value;
             objapplicantDetail.nomineeemail = txtEmailNominee.Value;
             objapplicantDetail.nomineemobile = txtMobileNominee.Value;
             objapplicantDetail.relationshipwithnominee = txtRelationNominee.Value;
@@ -251,7 +251,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         break;
                     case "Havewhatsapp":
                         rblwhatsappYes.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblwhatsappDif.Attributes.Add("title", lstToolTips[k].tooltips);
+                        rblwhatsappNo.Attributes.Add("title", lstToolTips[k].tooltips);
                         break;
                     case "Coonectwithwhatsapp":
                         rblWhatsupsameNo.Attributes.Add("title", lstToolTips[k].tooltips);
@@ -408,7 +408,6 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         guardianmobile.Attributes.Add("style", "display:block;");
                         labelguardianmobile.InnerHtml = setInnerHtml(fields[k]);
                         break;
-
                     default:
                         break;
                 }
