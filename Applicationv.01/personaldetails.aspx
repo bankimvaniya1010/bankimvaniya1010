@@ -203,11 +203,12 @@
                                     </div>
                                 </div>
                             </div>
+                               <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicantcontactdetail.aspx" class="btn btn-success" style="margin-right: 10px;">Contact Details</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_login" OnClientClick="return validateForm();" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -242,195 +243,103 @@
 
         </div>
     </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#<%=btn_login.ClientID%>').click(function () {
-               
-                var summary = "";
-                summary += isvalidTitle();
-                summary += isvalidFirstName();
-                summary += isvalidLastName();
-                summary += isvalidPreferedName();
-                summary += isvalidMiddleName();
-                summary += isvalidDOB();
-                summary += isvalidGender();
-                summary += isvalidNationality();
-                summary += isvalidCountryBirth();
-                summary += isvalidMaritalStatus();
-                summary += isvalidDisability();
-                summary += isvalidAgentDetails();                
-                 summary = summary.replace(/undefined/g, "");
-                if (summary != "") {
-                    alert(summary);
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            });
-        });
-        function isvalidDOB() {
-            if(!$("#<%=dob.ClientID%>").is(':hidden') && $("#<%=ddlYear.ClientID%>").val() == "0" || $("#<%=ddlMonth.ClientID%>").val() == "0" || $("#<%=ddlDay.ClientID%>").val() == "0")
-                return ("Please select Date Of Birth" + "\n");           
-            else 
-                return "";
+      <script type="text/javascript">
+       
+        function validateForm() {
+
+            var flag = false;
+            if (!$("#<%=title.ClientID%>").is(':hidden') && $("#<%=ddlTitle.ClientID%>").val() == "0")
+                alert("Please select valid title name");
+            else if ((!$("#<%=title.ClientID%>").is(':hidden')) && ($("#<%=ddlTitle.ClientID%> option:selected").text() == "Others" && $("#<%=txtTitle.ClientID%>").val() == ""))
+                alert("Please enter other title");
+            else if (!$("#<%=firstname.ClientID%>").is(':hidden') && $("#<%=txtFirstName.ClientID%>").val() == "")
+                alert("Please enter first name");
+            else if (!$("#<%=lastname.ClientID%>").is(':hidden') && $("#<%=txtLastName.ClientID%>").val() == "")
+                alert("Please enter last name");
+            else if (!$("#<%=preferedname.ClientID%>").is(':hidden') && $("#<%=txtPreferedName.ClientID%>").val() == "")
+                alert("Please enter prefered name");
+            else if (!$("#<%=middlename.ClientID%>").is(':hidden') && $("#<%=txtMiddleName.ClientID%>").val() == "")
+                alert("Please enter middle name");
+            else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked')))
+                alert("Please Select Option to record Gender");
+            else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0")))
+                alert("Please Select valid date of birth");
+            else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val() === "0")
+                alert("Please select valid nationality");
+            else if (!$("#<%=birthcountry.ClientID%>").is(':hidden') && $("#<%=ddlBirthCountry.ClientID%>").val() === "0")
+                alert("Please select valid birth country");
+            else if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() === "0")
+                alert("Please select valid marital status");
+            else if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() === "0")
+                alert("Please select valid marital status");
+            else if (!$("#<%=disability.ClientID%>").is(':hidden') && !($("#<%=rblDisabilityYes.ClientID%>").is(':checked') || $("#<%=rblDisabilityNo.ClientID%>").is(':checked')))
+                alert("Please Select Option to record disability");
+            else if (!$("#<%=disabilitydesc.ClientID%>").is(':hidden') && $("#<%=ddlDisability.ClientID%>").val() === "0")
+                alert("Please select select valid disability");
+            else if (!$("#<%=agent.ClientID%>").is(':hidden') && !($("#<%=rblAgentYes.ClientID%>").is(':checked') || $("#<%=rblAgentNo.ClientID%>").is(':checked')))
+                alert("Please Select Option to record reffrerd by agent");
+            else if (!$("#<%=agentList.ClientID%>").is(':hidden') && ($("#<%=ddlAgent.ClientID%>").val() === "0"))
+                alert("Please Select valid agent details");
+
+            else
+                flag = true;
+            if (flag == true)
+                flag = customcontrolValidation();
+            return flag;
+
+
         }
 
-        function isvalidTitle() {
-            if (!$("#<%=title.ClientID%>").is(':hidden') && $("#<%=ddlTitle.ClientID%>").val() == "0") {
-                return ("Please select valid title name" + "\n");
+        function customcontrolValidation() {
+            var flag = false;
+            var Count = '<%=CustomControls.Count%>';
+            if (Count == '0')
+                flag = true;
+             <% for (int k = 0; k < CustomControls.Count; k++)
+        {
+            TextBox txtDynamic = (TextBox)mainDiv.FindControl("txt" + CustomControls[k].customfieldid);
+            var Description = CustomControls[k].labeldescription.ToLower();
+                    %>
+
+            if ($("#<%=txtDynamic.ClientID%>").val() == "") {
+                alert("Please enter <%= Description%>" + "\n");
+                flag = false;
+                return false;
             }
-            else {
-                if (($("#<%=ddlTitle.ClientID%>").val() == "7") && ($("#<%=txtTitle.ClientID%>").val() == "")) {
-                    return ("Please enter other title" + "\n");
-                }
-                else {
-                    return "";
-                }
-            }
-            return "";
+            else
+                flag = true;
+               <% }%>
+            return flag;
         }
-
-        function isvalidFirstName() {
-            if (!$("#<%=firstname.ClientID%>").is(':hidden') && $("#<%=txtFirstName.ClientID%>").val() == "") {
-                return ("Please enter first name" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidLastName() {
-
-            if (!$("#<%=lastname.ClientID%>").is(':hidden') && $("#<%=txtLastName.ClientID%>").val() == "") {
-                return ("Please enter last name" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidPreferedName() {
-
-            if (!$("#<%=preferedname.ClientID%>").is(':hidden') && $("#<%=txtPreferedName.ClientID%>").val() == "") {
-                return ("Please enter prefered name" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidMiddleName() {
-
-            if (!$("#<%=middlename.ClientID%>").is(':hidden') && $("#<%=txtMiddleName.ClientID%>").val() == "") {
-                return ("Please enter middlename" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidGender() {
-           if (!$("#<%=gender.ClientID%>").is(':hidden') && $("#<%=rbtnFemale.ClientID%>").is(":checked") || $("#<%=rbtnMale.ClientID%>").is(":checked")) {
-                // if ($('#enrollmentyear :radio:checked').length > 0) {
-                return "";
-            }
-            else {
-                return ("Please select Gender" + "\n");
-
-            }
-        }
-
-        function isvalidNationality() {
-            if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val() == "0") {
-                return ("Please select valid nationality" + "\n");
-            }
-            else {
-                return "";
-
-            }
-        }
-        function isvalidCountryBirth() {
-            if (!$("#<%=birthcountry.ClientID%>").is(':hidden') && $("#<%=ddlBirthCountry.ClientID%>").val() == "0") {
-                return ("Please select valid  birth country" + "\n");
-            }
-            else {
-                return "";
-
-            }
-        }
-        function isvalidMaritalStatus() {
-            if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() == "0") {
-                return ("Please select marital status" + "\n");
-            }
-            else {
-                return "";
-
-            }
-        }
-        function isvalidDisability() {      
-             if(!$("#<%=disability.ClientID%>").is(':hidden') && !$("#<%=rblDisabilityNo.ClientID%>").is(":checked") || !$("#<%=rblDisabilityYes.ClientID%>").is(":checked")) {
-
-                 if(!$("#<%=disability.ClientID%>").is(':hidden') && $("#<%=ddlDisability.ClientID%>").val() == "0" && !$("#<%=rblDisabilityYes.ClientID%>").is(":checked"))
-                 {
-                    return ("Please select valid disability" + "\n");
-                 }
-                 else
-                 {
-                     return "";
-                 }
-                return ("Please select disability" + "\n"); 
-            }
-             else {
-                 return "";
-
-            }
-        }
-        function isvalidAgentDetails() {
-            if ((($("#<%=rblAgentNo.ClientID%>").is(":checked")) || ($("#<%=rblAgentYes.ClientID%>").is(":checked")))) {
-
-                if (($("#<%=ddlAgent.ClientID%>").val() == "0") && ($("#<%=rblAgentYes.ClientID%>").is(":checked"))) {
-                    return ("Please select valid agent details" + "\n");
-                }
-                else { return ""; }
-                return "";
-            }
-            else {
-                return ("Please select have you referred by agent" + "\n");
-
-            }
-        }
-
-
         $(document).ready(function () {
-            $('#<%=ddlTitle.ClientID%>').change(function () {
-                if ($('#<%=ddlTitle.ClientID%>').val() == '7')
-                {
+            if (!$("#<%=title.ClientID%>").is(':hidden')) {
+                $('#<%=ddlTitle.ClientID%>').change(function () {
+                    if ($("#<%=ddlTitle.ClientID%> option:selected").text() == "Others") {
+                        $('#<%=txtTitle.ClientID%>').css({ 'display': 'block' });
+                    }
+                    else { $('#<%=txtTitle.ClientID%>').css({ 'display': 'none' }); }
+
+                });
+                if ($("#<%=ddlTitle.ClientID%> option:selected").text() == "Others") {
                     $('#<%=txtTitle.ClientID%>').css({ 'display': 'block' });
                 }
                 else { $('#<%=txtTitle.ClientID%>').css({ 'display': 'none' }); }
 
-                if (($(this).val() == '2') || ($(this).val() == '3') || ($(this).val() == '4'))
-                {
-                    $('#ContentPlaceHolder1_rbtnFemale').prop("checked", true);
-                }
-                else { $('#ContentPlaceHolder1_rbtnMale').prop("checked", true); }
-            });
 
-            if ($('#<%=ddlTitle.ClientID%>').val() == '7')
-            {
-                $('#<%=txtTitle.ClientID%>').css({ 'display': 'block' });
             }
-            else { $('#<%=txtTitle.ClientID%>').css({ 'display': 'none' }); }
+            if (!$("#<%=disability.ClientID%>").is(':hidden')) {
 
-            var Disability = $("input[type=radio][name='ctl00$ContentPlaceHolder1$disability']:checked").val();
-            if (Disability == 'rblDisabilityYes')
-            {
-                $("#<%=disabilitydesc.ClientID%>").show();
+                if ($("#<%=rblDisabilityYes.ClientID%>").is(':checked')) {
+                    $("#<%=disabilitydesc.ClientID%>").show();
+                } else { $("#<%=disabilitydesc.ClientID%>").hide(); }
             }
-            else { $("#<%=disabilitydesc.ClientID%>").hide(); }
+            if (!$("#<%=agent.ClientID%>").is(':hidden')) {
 
-            var agent = $("input[type=radio][name='ctl00$ContentPlaceHolder1$agent']:checked").val();
-            if (agent == 'rblAgentYes') {
-                $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
-            } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
-
+                if ($("#<%=rblAgentYes.ClientID%>").is(':checked')) {
+                    $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
+                } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
+            }
+            // to handle Tool tips
             var i = 0;
             $(".form-control")
                 .mouseover(function () {
@@ -438,6 +347,9 @@
                     var title = $(this).attr('title');
                     $("#tooltip").text(title);
                 });
+
+
+
         });
 
         $(function () {
@@ -458,6 +370,8 @@
                 } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
             });
         });
+
+
 
     </script>
 

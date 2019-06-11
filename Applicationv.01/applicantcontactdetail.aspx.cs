@@ -15,6 +15,9 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     Logger objLog = new Logger();
     protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -28,8 +31,13 @@ public partial class applicantcontactdetail : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlpostalCountry);
             objCom.BindCountries(ddlResidentialCountry);
             PopulatePersonalInfo();
@@ -206,6 +214,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }

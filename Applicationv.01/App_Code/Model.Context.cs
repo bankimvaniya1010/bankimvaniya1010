@@ -64,6 +64,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<educationmediummaster> educationmediummaster { get; set; }
     public virtual DbSet<educationverificationcontactmaster> educationverificationcontactmaster { get; set; }
     public virtual DbSet<facilitiesmaster> facilitiesmaster { get; set; }
+    public virtual DbSet<facility_campus_mapping> facility_campus_mapping { get; set; }
     public virtual DbSet<fieldvalidationmaster> fieldvalidationmaster { get; set; }
     public virtual DbSet<formfieldmapping> formfieldmapping { get; set; }
     public virtual DbSet<formfieldmaster> formfieldmaster { get; set; }
@@ -72,6 +73,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
     public virtual DbSet<invalidatamaster> invalidatamaster { get; set; }
     public virtual DbSet<majordiscipline_master> majordiscipline_master { get; set; }
+    public virtual DbSet<maritalstatusmaster> maritalstatusmaster { get; set; }
     public virtual DbSet<master_name> master_name { get; set; }
     public virtual DbSet<preliminary_questionmaster> preliminary_questionmaster { get; set; }
     public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
@@ -99,13 +101,10 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
+    public virtual DbSet<universitygrouping> universitygrouping { get; set; }
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
-    public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
-    public virtual DbSet<facility_campus_mapping> facility_campus_mapping { get; set; }
-    public virtual DbSet<maritalstatusmaster> maritalstatusmaster { get; set; }
-    public virtual DbSet<universitygrouping> universitygrouping { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
