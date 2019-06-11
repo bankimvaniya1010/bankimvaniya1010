@@ -41,15 +41,11 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
     public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
     public virtual DbSet<applicantformmaster> applicantformmaster { get; set; }
-    public virtual DbSet<applicanthighereducation> applicanthighereducation { get; set; }
     public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
     public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
-    public virtual DbSet<applicantreferencecheck> applicantreferencecheck { get; set; }
     public virtual DbSet<applicantscores> applicantscores { get; set; }
-    public virtual DbSet<applicantsubjectwisegrade> applicantsubjectwisegrade { get; set; }
     public virtual DbSet<applicantuniversitymapping> applicantuniversitymapping { get; set; }
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
-    public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
     public virtual DbSet<citymaster> citymaster { get; set; }
     public virtual DbSet<controlmaster> controlmaster { get; set; }
@@ -105,6 +101,12 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
+    public virtual DbSet<applicanthighereducation> applicanthighereducation { get; set; }
+    public virtual DbSet<applicantreferencecheck> applicantreferencecheck { get; set; }
+    public virtual DbSet<applicantsubjectwisegrade> applicantsubjectwisegrade { get; set; }
+    public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
+    public virtual DbSet<tooltipmasterold> tooltipmasterold { get; set; }
+    public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
