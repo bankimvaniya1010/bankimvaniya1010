@@ -228,10 +228,10 @@
     </div>
     <script>
         function validateForm() {
-            var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
             var flag = false;
-            if (!$("#<%=email.ClientID%>").is(':hidden') && $("#<%=txtEmail.ClientID%>").val() == "" && !(emailRegex.test($("#<%=txtEmail.ClientID%>").val())))
-                alert("Please enter e-mail address");
+            if (!$("#<%=email.ClientID%>").is(':hidden') && !($("#<%=txtEmail.ClientID%>").val() == "" || (emailRegex.test($("#<%=txtEmail.ClientID%>").val()))))
+                alert("Please enter Valid e-mail address");
             else if (!$("#<%=mobile.ClientID%>").is(':hidden') && $("#<%=txtMobile.ClientID%>").val() == "")
                 alert("Please enter mobile no");
             else if (!$("#<%=phone.ClientID%>").is(':hidden') && $("#<%=txtHomePhone.ClientID%>").val() == "")
