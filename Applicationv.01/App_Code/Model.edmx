@@ -292,6 +292,7 @@
           </Key>
           <Property Name="applicanthighereducationid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
           <Property Name="coursename" Type="varchar" MaxLength="45" />
           <Property Name="countryofhighereducation" Type="varchar" MaxLength="5" />
           <Property Name="startdate" Type="varchar" MaxLength="7" />
@@ -358,6 +359,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
           <Property Name="name" Type="varchar" MaxLength="100" />
           <Property Name="email" Type="varchar" MaxLength="50" />
           <Property Name="mobile" Type="varchar" MaxLength="15" />
@@ -1750,6 +1752,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="relationshipwithverification" Type="Int32" />
           <Property Name="verificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="verificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantlanguagecompetency">
           <Key>
@@ -1808,6 +1811,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="referncekey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="requestsenttime" Type="DateTime" />
           <Property Name="referenceverifiedtime" Type="DateTime" />
+          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantscores">
           <Key>
@@ -2909,6 +2913,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicanthighereducation">
             <EntityTypeMapping TypeName="GTEModel.applicanthighereducation">
               <MappingFragment StoreEntitySet="applicanthighereducation">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="verificationmobile" ColumnName="verificationmobile" />
                 <ScalarProperty Name="verificationemail" ColumnName="verificationemail" />
                 <ScalarProperty Name="relationshipwithverification" ColumnName="relationshipwithverification" />
@@ -2978,6 +2983,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantreferencecheck">
             <EntityTypeMapping TypeName="GTEModel.applicantreferencecheck">
               <MappingFragment StoreEntitySet="applicantreferencecheck">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="referenceverifiedtime" ColumnName="referenceverifiedtime" />
                 <ScalarProperty Name="requestsenttime" ColumnName="requestsenttime" />
                 <ScalarProperty Name="referncekey" ColumnName="referncekey" />

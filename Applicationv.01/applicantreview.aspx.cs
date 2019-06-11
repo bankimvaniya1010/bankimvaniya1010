@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class applicantreview : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0;
+    int userID = 0, ApplicantID = 0 , universityID;
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<applicantdetails> objApplicant = new List<applicantdetails>();
@@ -22,18 +22,19 @@ public partial class applicantreview : System.Web.UI.Page
     protected Common objComm = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
        
             objApplicant = (from pInfo in db.applicantdetails
-                            where pInfo.applicantid == userID
+                            where pInfo.applicantid == userID && pInfo.universityid == universityID
                             select pInfo).ToList();
             string Institutename = "";
             if (objApplicant[0].universityid != null)
             {
-                int universityID = Convert.ToInt32(objApplicant[0].universityid);
+               // int universityID = Convert.ToInt32(objApplicant[0].universityid);
                 var institute = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
                 if (institute != null)
                     Institutename = institute.university_name;
@@ -59,16 +60,16 @@ public partial class applicantreview : System.Web.UI.Page
             PostalAddress = objApplicant[0].postaladdrees1 == null ? "" : objApplicant[0].postaladdrees1.ToString() + " " + objApplicant[0].postaladdrees2 == null ? "" : objApplicant[0].postaladdrees2.ToString() + " " + objApplicant[0].postaladdrees3 == null ? "" : objApplicant[0].postaladdrees3.ToString() + " " + objApplicant[0].postalcity == null ? "" : objApplicant[0].postalcity.ToString() + " " + objApplicant[0].postalstate == null ? "" : objApplicant[0].postalstate.ToString() + " " + objApplicant[0].postalpostcode == null ? "" : objApplicant[0].postalpostcode.ToString() + " " + objComm.GetCountryDiscription(objApplicant[0].postalcountry.ToString());
             ResidentailAddress = objApplicant[0].residentialaddress1 == null ? "" : objApplicant[0].residentialaddress1.ToString() + " " + objApplicant[0].residentialaddress2 == null ? "" : objApplicant[0].residentialaddress2.ToString() + " " + objApplicant[0].residentialaddress3 == null ? "" : objApplicant[0].residentialaddress3.ToString() + " " + objApplicant[0].residentialcity == null ? "" : objApplicant[0].residentialcity.ToString() + " " + objApplicant[0].residentialstate == null ? "" : objApplicant[0].residentialstate.ToString() + " " + objApplicant[0].residentailpostcode == null ? "" : objApplicant[0].residentailpostcode.ToString() + " " + objComm.GetCountryDiscription(objApplicant[0].residentialcountry.ToString());
             objEmployer = (from pInfo in db.applicantemployerdetails
-                           where pInfo.applicantid == userID
+                           where pInfo.applicantid == userID && pInfo.universityid == universityID
                            select pInfo).ToList();
             objLanguage = (from pInfo in db.applicantlanguagecompetency
-                           where pInfo.applicantid == userID
+                           where pInfo.applicantid == userID && pInfo.universityid == universityID
                            select pInfo).ToList();
             objHigherEdu = (from pInfo in db.applicanthighereducation
-                            where pInfo.applicantid == userID
+                            where pInfo.applicantid == userID && pInfo.universityid == universityID
                             select pInfo).ToList();
             objEdu = (from pInfo in db.applicanteducationdetails
-                      where pInfo.applicantid == userID
+                      where pInfo.applicantid == userID && pInfo.universityid == universityID
                       select pInfo).ToList();
         }
     

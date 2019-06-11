@@ -535,7 +535,7 @@ public partial class applicanteducation : System.Web.UI.Page
         try
         {
             var EducationInfo = (from pInfo in db.applicanteducationdetails
-                                 where pInfo.applicantid == userID
+                                 where pInfo.applicantid == userID && pInfo.universityid == universityID
                                  select pInfo).FirstOrDefault();
             if (EducationInfo != null)
             {
@@ -777,7 +777,7 @@ public partial class applicanteducation : System.Web.UI.Page
             }
 
             var HigherEducation = (from pInfo in db.applicanthighereducation
-                                   where pInfo.applicantid == userID
+                                   where pInfo.applicantid == userID && pInfo.universityid == universityID
                                    select pInfo).FirstOrDefault();
             if (HigherEducation != null)
             {
@@ -1257,6 +1257,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     HigherEducation.verificationmobile = txtHighercontactMobile.Value;
                 }
             }
+            objEdu.universityid = universityID;
             db.SaveChanges();
             lblMessage.Text = "Your Education Details have been saved";
             lblMessage.Visible = true;
@@ -1273,7 +1274,7 @@ public partial class applicanteducation : System.Web.UI.Page
         try
         {
             var HigherEducation = (from pInfo in db.applicanthighereducation
-                                   where pInfo.applicantid == userID && pInfo.coursename == ddlCourse.SelectedValue
+                                   where pInfo.applicantid == userID && pInfo.coursename == ddlCourse.SelectedValue && pInfo.universityid == universityID
                                    select pInfo).FirstOrDefault();
             applicanthighereducation objEducation = new applicanthighereducation();
 
@@ -1531,7 +1532,7 @@ public partial class applicanteducation : System.Web.UI.Page
         try
         {
             var gradehigher = (from a in db.applicanthighereducation
-                               where a.applicantid == userID
+                               where a.applicantid == userID && a.universityid == universityID
 
                                select new
                                {
