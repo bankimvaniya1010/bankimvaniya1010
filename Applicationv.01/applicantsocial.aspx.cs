@@ -77,7 +77,7 @@ public partial class applicantsocial : System.Web.UI.Page
             {
                 txtFacebook.Value = profileInfo.facebookprofle;
                 txtLinkedin.Value = profileInfo.linkedprofile;
-                txtTwitter.Value = profileInfo.facebookprofle;
+                txtTwitter.Value = profileInfo.twiterprofile;
             }
             lblSaveTime.Text = " Record was last saved at " + profileInfo.socialprofilesavetime.ToString();
         }

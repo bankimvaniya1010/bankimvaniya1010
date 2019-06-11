@@ -296,6 +296,7 @@ public partial class applicanthighereducation
     public Nullable<int> relationshipwithverification { get; set; }
     public string verificationemail { get; set; }
     public string verificationmobile { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicantlanguagecompetency
@@ -351,6 +352,7 @@ public partial class applicantreferencecheck
     public string referncekey { get; set; }
     public Nullable<System.DateTime> requestsenttime { get; set; }
     public Nullable<System.DateTime> referenceverifiedtime { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicantscores
