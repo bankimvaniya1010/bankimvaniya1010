@@ -13,7 +13,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
+   
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -40,66 +40,102 @@ public partial class applicantworkexperience : System.Web.UI.Page
     }
     private void SetToolTips()
     {
+
+
         try
         {
-            lstToolTips = db.tooltipmaster.ToList();
-            for (int k = 0; k < lstToolTips.Count; k++)
+            var fields = (from pfm in db.primaryfieldmaster
+                          join utm in db.universitywisetooltipmaster
+                          on pfm.primaryfieldid equals utm.fieldid into
+                          tmpUniversity
+                          from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                          join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                          from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                          where x.formid == formId
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                              tooltips = (x == null ? String.Empty : x.tooltips)
+                          }).ToList();
+
+            
+            for (int k = 0; k < fields.Count; k++)
             {
-                switch (lstToolTips[k].field)
+                switch (fields[k].primaryfiledname)
                 {
-
-                    case "EmployerLinkedin":
-                        txtlinkedin.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "DO YOU WISH TO RECORD ANY WORK EXPERIENCE THAT MAY BE RELEVANT TO THE COURSE YOU ARE APPLYING FOR?":
+                        icemploymentInfo.Attributes.Add("style", "display:block;");
+                        icemploymentInfo.Attributes.Add("title", setTooltips(fields[k]));
                         break;
-                    case "VerificationEmail":
-                        txtEmail.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "WEBSITE":
+                        icemployerwebsite.Attributes.Add("style", "display:block;");
+                        icemployerwebsite.Attributes.Add("title", setTooltips(fields[k]));
                         break;
-                    case "RelationwithVerification":
-                        ddlRelationship.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "Verificationame":
-                        txtemploymentverification.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "Managername":
-                        txtreportingmanger.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "BriefDescitption":
-                        txtbriefDescription.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "EmploymentEnddate":
-                        txtEndate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "EmploymentStartdate":
-                        txtStartDate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "Postition":
-                        txtPosition.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "OrganizationCountry":
-
-                        ddlCountry.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "HaveWorkexperience":
-                        rblEmploymentYes.ToolTip = lstToolTips[k].tooltips;
-                        rblEmploymentNo.ToolTip = lstToolTips[k].tooltips;
-                        break;
-                    case "Organizationnane":
-                        txtEmployer.Attributes.Add("title", lstToolTips[k].tooltips);
-
-                        break;
-                    case "Organizationcity":
-                        txtCity.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "NAME OF ORGANIZATION":
+                        icemployer.Attributes.Add("style", "display:block;");
+                        icemployer.Attributes.Add("title", setTooltips(fields[k]));
                         break;
 
+                    case "CITY":
+                        icemployercity.Attributes.Add("style", "display:block;");
+                        icemployercity.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "COUNTRY":
+                        icemployercountry.Attributes.Add("style", "display:block;");
+                        icemployercountry.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "POSITION/ROLE IN":
+                        icposition.Attributes.Add("style", "display:block;");
+                        icposition.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "START DATE":
+                        icstartdate.Attributes.Add("style", "display:block;");
+                        icstartdate.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "END DATE":
+                        icenddate.Attributes.Add("style", "display:block;");
+                        icenddate.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "BRIEF DESCRIPTION OF WHAT YOU DID":
+                        icemploymentInfo.Attributes.Add("style", "display:block;");
+                        icemploymentInfo.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "NAME OF YOUR REPORTING MANAGER":
+                        icreportingmanger.Attributes.Add("style", "display:block;");
+                        icreportingmanger.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "NAME OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
+                        icemploymentverification.Attributes.Add("style", "display:block;");
+                        icemploymentverification.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "RELATIONSHIP WITH THE CONTACT":
+                        icrelationship.Attributes.Add("style", "display:block;");
+                        icrelationship.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
+                        icemail.Attributes.Add("style", "display:block;");
+                        icemail.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
+                    case "LINKEDIN PROFILE LINK OF THE CONTACT":
+                        iclinkedin.Attributes.Add("style", "display:block;");
+                        iclinkedin.Attributes.Add("title", setTooltips(fields[k]));
+                        break;
                     default:
                         break;
+
                 }
             }
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+
         }
+    }
+    private String setTooltips(dynamic obj)
+    {
+        return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
     private String setInnerHtml(dynamic obj)
     {
@@ -281,7 +317,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 noExperience.haveworkexperience = true;
                 objEmployer.wishtoaddemployer = 1;
                 objEmployer.organization = txtEmployer.Value;
-                objEmployer.designation = txtPosition.Value;               
+                objEmployer.designation = txtPosition.Value;
                 objEmployer.website = txtemployerwebsite.Value;
                 objEmployer.city = txtCity.Value;
                 objEmployer.country = Convert.ToInt32(ddlCountry.SelectedValue);
@@ -297,7 +333,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 objEmployer.lastsavedtime = DateTime.Now;
                 objEmployer.universityid = universityID;
                 if (mode == "new")
-                    db.applicantemployerdetails.Add(objEmployer);                
+                    db.applicantemployerdetails.Add(objEmployer);
             }
             else
             {
@@ -359,14 +395,14 @@ public partial class applicantworkexperience : System.Web.UI.Page
             applicantemployerdetails grade = db.applicantemployerdetails.Where(b => b.employerid == id).First();
             db.applicantemployerdetails.Remove(grade);
             db.SaveChanges();
-            BindEmploymentDetails(); 
+            BindEmploymentDetails();
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
     }
-    
+
     protected void grdEmployment_RowEditing(object sender, GridViewEditEventArgs e)
     {
 
