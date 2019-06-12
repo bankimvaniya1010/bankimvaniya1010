@@ -1,15 +1,43 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="customfieldaddition.aspx.cs" Inherits="admin_customfieldaddition" MasterPageFile="~/admin/admin.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="universitywisetooltipsaddedit.aspx.cs" Inherits="admin_universitywisetooltipsaddedit" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
+    <script>function validateForm() {
+            var University = $('#<%=ddlUniversity.ClientID%>').val();
+    var Form = $('#<%=ddlForm.ClientID%>').val();
+    var field = $('#<%=ddlField.ClientID%>').val();
+    var ToolTips = $('#<%=txtTooltips.ClientID%>').val();
+     if (University == 0 || isNaN(parseInt(University))) {
+                alert("Please select University name ");
+                return false;
+            }
+            if (Form == 0 || isNaN(parseInt(Form))) {
+                alert("Please select form name ");
+                return false;
+            }
+            else if (field == 0 || isNaN(parseInt(field))) {
+                alert("Please Select field name ");
+                return false;
+            }
+            else if (ToolTips == '') {
+                alert("Please enter Tooltips");
+                return false;
+            }
+
+
+            return true;
+
+        }
+    </script>
 </asp:Content>
+
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" ID="conten1" runat="server">
 
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Universitywise Custom Field Add/Edit </li>
+            <li class="breadcrumb-item active">Add ToolTips</li>
         </ol>
-        <h1 class="h2">Universitywise Custom Field Add/Edit</h1>
+        <h1 class="h2">Add ToolTips</h1>
 
         <div class="card">
 
@@ -17,7 +45,6 @@
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
 
-                   
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label form-label">University</label>
                         <div class="col-sm-8">
@@ -29,37 +56,35 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Form</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Form Name</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlForm" CssClass="form-control" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlForm" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlForm_SelectedIndexChanged"></asp:DropDownList>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Label Description</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Field Name</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:TextBox ID="txtDescription" CssClass="form-control" runat="server"></asp:TextBox>
+                                    <asp:DropDownList ID="ddlField" CssClass="form-control" runat="server"></asp:DropDownList>
                                 </div>
 
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Control Type</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Tool Tips</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlControlType" CssClass="form-control" runat="server">
-                                        <asp:ListItem Value="" Text="Please Select"></asp:ListItem>
-                                        <asp:ListItem Value="textbox" Text="Textbox"></asp:ListItem>
-                                    </asp:DropDownList>
+                                    <asp:TextBox ID="txtTooltips" CssClass="form-control" runat="server"></asp:TextBox>
                                 </div>
 
                             </div>
@@ -86,33 +111,5 @@
 
 
     </div>
-    <script>function validateForm() {
 
-            var University = $('#<%=ddlUniversity.ClientID%>').val();
-    var Form = $('#<%=ddlForm.ClientID%>').val();
-    var Description = $('#<%=txtDescription.ClientID%>').val();
-    var Control = $('#<%=ddlControlType.ClientID%>').val();
-            if (University == 0 || isNaN(parseInt(University))) {
-                alert("Please Select University ");
-                return false;
-            }
-            else if (Form == 0 || isNaN(parseInt(Form))) {
-                alert("Please Select Form ");
-                return false;
-            }
-            else if (Description == '') {
-                alert("Please enter Label Description");
-                return false;
-            }
-            else if (Control == '') {
-                alert("Please Select Control");
-                return false;
-            }
-
-            return true;
-
-        }
-    </script>
 </asp:Content>
-
-

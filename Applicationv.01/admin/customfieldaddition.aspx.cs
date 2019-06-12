@@ -22,13 +22,13 @@ public partial class admin_customfieldaddition : System.Web.UI.Page
             bindUniversity();
             if (Request.QueryString["id"] != null)
             {
+                if (Int32.TryParse(Request.QueryString["id"], out id))
+                    ViewState["id"] = id;
 
-                if (!Int32.TryParse(Request.QueryString["id"], out id))
-                    Response.Redirect("~/admin/default.aspx");
-                customfieldmaster customField = db.customfieldmaster.Where(obj => obj.customfieldid == id).First();
+                customfieldmaster customField = db.customfieldmaster.Where(obj => obj.customfieldid == id).FirstOrDefault();
                 if (customField != null)
                 {
-                    ViewState["id"] = id;
+
                     txtDescription.Text = customField.labeldescription;
                     if (customField.universityid != 0)
                     {
@@ -47,8 +47,6 @@ public partial class admin_customfieldaddition : System.Web.UI.Page
                         ddlControlType.Items.FindByValue(Convert.ToString(customField.type)).Selected = true;
                     }
                 }
-                else
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University Campus does not exists')", true);
             }
         }
     }
@@ -108,16 +106,32 @@ public partial class admin_customfieldaddition : System.Web.UI.Page
         customfieldmaster objCustom = new customfieldmaster();
         try
         {
-            
-            int UniversityID = Convert.ToInt32(ddlUniversity.SelectedValue);
+
+            int UniversityID = 0, formID = 0;
+            if (ddlUniversity.SelectedValue != "")
+                UniversityID = Convert.ToInt32(ddlUniversity.SelectedValue);
+            if (ddlForm.SelectedValue != "")
+                formID = Convert.ToInt32(ddlForm.SelectedValue);
             int id = Convert.ToInt32(ViewState["id"]);
 
             var existingCustomField = (from customfield in db.customfieldmaster
                                        where (customfield.customfieldid.Equals(id))
                                        select customfield).FirstOrDefault();
+            if (existingCustomField == null)
+            {
+                existingCustomField = (from customfield in db.customfieldmaster
+                                       where (customfield.formid == formID && customfield.universityid == UniversityID && customfield.labeldescription == txtDescription.Text.Trim())
+                                       select customfield).FirstOrDefault();
+
+            }
             if (existingCustomField != null)
             {
                 objCustom = existingCustomField;
+            }
+            if (existingCustomField != null && id == 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('This control is already available for the form')", true);
+                return;
             }
             if (ddlForm.SelectedValue != "")
                 objCustom.formid = Convert.ToInt32(ddlForm.SelectedValue);
@@ -128,12 +142,14 @@ public partial class admin_customfieldaddition : System.Web.UI.Page
             if (existingCustomField == null)
             {
                 db.customfieldmaster.Add(objCustom);
+                db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
             }
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Updated Successfully')", true);
-            db.SaveChanges();
-
+            {
+                db.SaveChanges();
+                Response.Redirect("~/admin/customfieldlisting.aspx", true);
+            }
         }
 
 
