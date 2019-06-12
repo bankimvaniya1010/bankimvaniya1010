@@ -123,6 +123,29 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="list-group-item" id="dualNationality" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-dualNationality">
+                                    <div class="form-row">
+                                        <label id="labelDualNationality" runat="server" for="dualNationality" class="col-md-3 col-form-label form-label">Do you have dual Citizenship?</label>
+                                        <div class="col-md-6">
+                                            <asp:RadioButton ID="rblNationalityYes" runat="server" CssClass="form-control" GroupName="dualnationality" Text="Yes" />
+                                            <asp:RadioButton ID="rblNationalityNo" runat="server" CssClass="form-control" GroupName="dualnationality" Text="No" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="secondNation" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-SecondNationality">
+                                    <div class="form-row">
+                                        <label id="labelSecondNation" runat="server" for="SecondNationality" class="col-md-3 col-form-label form-label">Nationality and citizenship</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlOtherNation" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="list-group-item" id="birthcountry" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-birthcountry">
                                     <div class="form-row">
@@ -266,6 +289,8 @@
                 alert("Please Select valid date of birth");
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val() === "0")
                 alert("Please select valid nationality");
+            else if (!$("#<%=rblNationalityYes.ClientID%>").is(':checked') && !$("#<%=secondNation.ClientID%>").is(':hidden') && $("#<%=ddlOtherNation.ClientID%>").val() === "0")
+                alert("Please select valid second nationality");
             else if (!$("#<%=birthcountry.ClientID%>").is(':hidden') && $("#<%=ddlBirthCountry.ClientID%>").val() === "0")
                 alert("Please select valid birth country");
             else if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() === "0")
@@ -339,6 +364,49 @@
                     $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
                 } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
             }
+                                    
+            $("#<%=rblNationalityYes.ClientID%>").click(function () {
+                $("#<%=secondNation.ClientID%>").show();
+            });
+
+            $("#<%=rblNationalityNo.ClientID%>").click(function () {
+                $("#<%=secondNation.ClientID%>").hide();
+            });
+            
+            $("#<%=ddlNationality.ClientID%>").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "personaldetails.aspx/checkDualCitizenship",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { countryId: $("#<%=ddlNationality.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if (result[0].dualcitizenship === true) {
+                                if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
+                                    $("#<%=dualNationality.ClientID%>").show();
+                                }
+                            }
+                            else {
+                                if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
+                                    $("#<%=dualNationality.ClientID%>").hide();
+                                    $("#<%=dualNationality.ClientID %> input[type='radio']").prop('checked', false);
+                                    $("#<%=ddlOtherNation.ClientID %>")[0].selectedIndex = 0;
+                                }
+                            }
+
+                        }
+                    }
+                });
+            });
+            if (!$("#<%=disability.ClientID%>").is(':hidden')) {
+
+                if ($("#<%=rblDisabilityYes.ClientID%>").is(':checked')) {
+                    $("#<%=disabilitydesc.ClientID%>").show();
+                } else { $("#<%=disabilitydesc.ClientID%>").hide(); }
+            }
+
             // to handle Tool tips
             var i = 0;
             $(".form-control")

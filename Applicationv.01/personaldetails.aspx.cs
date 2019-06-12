@@ -7,6 +7,10 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Globalization;
 using System.Text;
+using System.Web.Services;
+using System.Web.Script.Services;
+using Newtonsoft.Json;
+
 public partial class personaldetails : System.Web.UI.Page
 {
     int userID = 0, ApplicantID = 0, universityID;
@@ -44,6 +48,7 @@ public partial class personaldetails : System.Web.UI.Page
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlBirthCountry);
             objCom.BindCountries(ddlNationality);
+            objCom.BindCountries(ddlOtherNation);
             BindMaritalstatus();
             BindAgent();
             BindTitle();
@@ -305,6 +310,12 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.gender = 0;
             if (ddlNationality.SelectedValue != "")
                 objapplicantDetail.nationality = Convert.ToInt32(ddlNationality.SelectedValue);
+            if (ddlOtherNation.SelectedValue != "")
+                objapplicantDetail.nationality2 = Convert.ToInt32(ddlOtherNation.SelectedValue);
+            if (objapplicantDetail.nationality2.HasValue && objapplicantDetail.nationality.HasValue)
+                objapplicantDetail.hasdualcitizenship = true;
+            if (rblNationalityNo.Checked)
+                objapplicantDetail.hasdualcitizenship = false;
             if (ddlBirthCountry.SelectedValue != "")
                 objapplicantDetail.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
             if (ddlMarital.SelectedValue != "")
@@ -524,5 +535,14 @@ public partial class personaldetails : System.Web.UI.Page
         sb.Append(webURL + "registeragent.aspx" + " <br/>");
         sb.Append("Thank You Backend Team The Application Center,<br/>");
         objCom.SendMail(txtAgentname.Text, sb.ToString(), "Agent Registration Link");
+    }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string checkDualCitizenship(int countryId)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.countriesmaster.Where(x => x.id == countryId).Select(x => new { dualcitizenship = x.dual_citizenship_allowed }).ToList();
+        return JsonConvert.SerializeObject(temp);
     }
 }

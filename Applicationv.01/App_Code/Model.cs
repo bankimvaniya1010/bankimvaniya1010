@@ -121,6 +121,8 @@ public partial class applicantdetails
     public Nullable<System.DateTime> dateofbirth { get; set; }
     public Nullable<int> gender { get; set; }
     public Nullable<int> nationality { get; set; }
+    public Nullable<int> nationality2 { get; set; }
+    public Nullable<bool> hasdualcitizenship { get; set; }
     public Nullable<int> countryofbirth { get; set; }
     public Nullable<int> maritalstatus { get; set; }
     public Nullable<int> isdisable { get; set; }
@@ -456,6 +458,7 @@ public partial class countriesmaster
     public int id { get; set; }
     public string country_code { get; set; }
     public string country_name { get; set; }
+    public bool dual_citizenship_allowed { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<citymaster> citymaster { get; set; }
@@ -940,11 +943,11 @@ public partial class tooltipmaster
     public int fieldid { get; set; }
     public string tooltips { get; set; }
     public System.DateTime created_at { get; set; }
-    public string field { get; set; }
     public int formid { get; set; }
+    public string field { get; set; }
 
-    public virtual primaryfieldmaster primaryfieldmaster { get; set; }
     public virtual formmaster formmaster { get; set; }
+    public virtual primaryfieldmaster primaryfieldmaster { get; set; }
 }
 
 public partial class typemaster
