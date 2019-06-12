@@ -32,7 +32,6 @@ public partial class register : System.Web.UI.Page
         applicantdetails objapplicant = new applicantdetails();
         try
         {
-
             var existingUser = (from cats in db.students
                                 where cats.username.Equals(username.Value.Trim())
                                 select cats.username).SingleOrDefault();
@@ -52,6 +51,8 @@ public partial class register : System.Web.UI.Page
                 else if (rblYear3.Checked)
                     usrObj.enrollmentyear = Convert.ToInt32(rblYear3.Text);
 
+                usrObj.verificationkey = Guid.NewGuid().ToString();
+                usrObj.isverified = false;
                 db.students.Add(usrObj);
                 db.SaveChanges();
                 var id = usrObj.studentid;
@@ -64,8 +65,8 @@ public partial class register : System.Web.UI.Page
                 SaveCourses(id);
                 StringBuilder sb = new StringBuilder();
                 sb.Append("Dear " + name.Value.Trim() + ",");
-                webURL = webURL + "login.aspx";
-                sb.Append("Thank You to register with us We have sent a link to fill the personal details. Please fill the forms<br/>");
+                webURL = webURL + "verifystudent.aspx?referencekey="+ usrObj.verificationkey;
+                sb.Append("Thank You to register with us. We have sent a link to fill the personal details. Please fill the forms<br/>");
                 sb.Append("Please login with below link <br/>" + webURL + " <br/>");
                 sb.Append("Username:" + username.Value.Trim() + " <br/>");
                 sb.Append("Password:" + password.Value.Trim() + " <br/>");

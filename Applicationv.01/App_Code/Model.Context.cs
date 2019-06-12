@@ -89,7 +89,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<rolemaster> rolemaster { get; set; }
     public virtual DbSet<secondarylanguagemaster> secondarylanguagemaster { get; set; }
     public virtual DbSet<studentcoursemapping> studentcoursemapping { get; set; }
-    public virtual DbSet<students> students { get; set; }
     public virtual DbSet<studylevelmaster> studylevelmaster { get; set; }
     public virtual DbSet<studymodemaster> studymodemaster { get; set; }
     public virtual DbSet<subjectmaster> subjectmaster { get; set; }
@@ -106,6 +105,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywiseformmapping> universitywiseformmapping { get; set; }
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
+    public virtual DbSet<students> students { get; set; }
+    public virtual DbSet<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

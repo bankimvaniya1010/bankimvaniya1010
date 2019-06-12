@@ -616,6 +616,8 @@ public partial class formmaster
     public formmaster()
     {
         this.customfieldmaster = new HashSet<customfieldmaster>();
+        this.tooltipmaster = new HashSet<tooltipmaster>();
+        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
     public int formid { get; set; }
@@ -623,6 +625,10 @@ public partial class formmaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldmaster> customfieldmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
 
 public partial class grademaster
@@ -714,6 +720,7 @@ public partial class primaryfieldmaster
     public primaryfieldmaster()
     {
         this.tooltipmaster = new HashSet<tooltipmaster>();
+        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
     public int primaryfieldid { get; set; }
@@ -722,6 +729,8 @@ public partial class primaryfieldmaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
 
 public partial class profilemaster
@@ -857,6 +866,8 @@ public partial class students
     public int studylevelid { get; set; }
     public int status { get; set; }
     public System.DateTime creationdate { get; set; }
+    public string verificationkey { get; set; }
+    public bool isverified { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
@@ -930,8 +941,10 @@ public partial class tooltipmaster
     public string tooltips { get; set; }
     public System.DateTime created_at { get; set; }
     public string field { get; set; }
+    public int formid { get; set; }
 
     public virtual primaryfieldmaster primaryfieldmaster { get; set; }
+    public virtual formmaster formmaster { get; set; }
 }
 
 public partial class typemaster
@@ -960,6 +973,7 @@ public partial class university_master
         this.universitycampus = new HashSet<universitycampus>();
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
+        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
     public int universityid { get; set; }
@@ -995,6 +1009,8 @@ public partial class university_master
     public virtual ICollection<universitygrouping> universitygrouping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
 
 public partial class universitycampus
@@ -1050,4 +1066,18 @@ public partial class universitywisemastermapping
     public Nullable<int> mastervalueid { get; set; }
     public Nullable<int> created_by { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
+}
+
+public partial class universitywisetooltipmaster
+{
+    public int id { get; set; }
+    public int universityid { get; set; }
+    public int fieldid { get; set; }
+    public string tooltips { get; set; }
+    public int formid { get; set; }
+    public System.DateTime created_at { get; set; }
+
+    public virtual formmaster formmaster { get; set; }
+    public virtual primaryfieldmaster primaryfieldmaster { get; set; }
+    public virtual university_master university_master { get; set; }
 }
