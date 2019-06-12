@@ -710,9 +710,18 @@ public partial class preliminaryvideomaster
 
 public partial class primaryfieldmaster
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public primaryfieldmaster()
+    {
+        this.tooltipmaster = new HashSet<tooltipmaster>();
+    }
+
     public int primaryfieldid { get; set; }
     public Nullable<int> formid { get; set; }
     public string primaryfiledname { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
 }
 
 public partial class profilemaster
@@ -917,17 +926,12 @@ public partial class titlemaster
 public partial class tooltipmaster
 {
     public int id { get; set; }
-    public string field { get; set; }
-    public string tooltips { get; set; }
-}
-
-public partial class tooltipmasterold
-{
-    public int id { get; set; }
-    public string field { get; set; }
-    public string tooltips { get; set; }
     public int fieldid { get; set; }
-    public Nullable<System.DateTime> created_at { get; set; }
+    public string tooltips { get; set; }
+    public System.DateTime created_at { get; set; }
+    public string field { get; set; }
+
+    public virtual primaryfieldmaster primaryfieldmaster { get; set; }
 }
 
 public partial class typemaster
