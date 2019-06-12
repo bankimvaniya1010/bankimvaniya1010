@@ -35,35 +35,38 @@
                            <div class="list-group-item" id="message" runat="server" visible ="false">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-message">
                                     <div class="form-row">
-                                        <label id="label-message" for="message" class="col-md-3 col-form-label form-label">You have already verified</label>
+                                        <label id="label-message" for="message" class="col-md-3 col-form-label form-label">You have already verified applicant details</label>
                                         
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="list-group-item" id="button" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click"  />
-                                        <div class="col-md-6">
+                                        <div class="col-md-6">                                                                                 
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="list-group-item" id="lblMessages" runat="server" visible="false">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                                    <div class="form-row">                                        
+                                        <div class="col-md-6"> 
+                                            <asp:Label ID="lblMessage" runat="server">Thank You ...Applicant Details have been Verified</asp:Label>      
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                              
                         </div>
-
-
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-
         <div class="container page__container">
             <div class="footer">
             </div>
-
         </div>
     </div>
     

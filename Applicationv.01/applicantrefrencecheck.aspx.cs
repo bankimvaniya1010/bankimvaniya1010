@@ -14,6 +14,9 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     Logger objLog = new Logger();
     protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -27,8 +30,13 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        CustomControls = objCom.CustomControlist(formId,universityID);
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             BindRefrenceList();
             SetControlsUniversitywise();
         }
@@ -118,22 +126,31 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     }
 
     protected void btnReference_Click(object sender, EventArgs e)
-    {
-
-        applicantreferencecheck objReference = new applicantreferencecheck();
+    {       
         try
         {
-           
-                objReference.name = txtName.Value;
-                //  profileInfo.workphone = txtworkphone.Value;
+            var mode = "new";
+            var profileReference = (from pInfo in db.applicantreferencecheck
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               select pInfo).FirstOrDefault();
+            applicantreferencecheck objReference = new applicantreferencecheck();
+            if (profileReference != null)
+            {
+                mode = "update";
+                objReference = profileReference;
+            }
+            objReference.name = txtName.Value;              
                 objReference.mobile = txtMobile.Value;
                 objReference.email = txtEmail.Value;
                 objReference.applicantid = userID;
                 objReference.requestsenttime = DateTime.Now;
                 objReference.universityid = universityID;
                 objReference.referncekey = Guid.NewGuid().ToString();
-                db.applicantreferencecheck.Add(objReference);
+                if (mode == "new")
+                     db.applicantreferencecheck.Add(objReference);
                 db.SaveChanges();
+
+
             var profileInfo = (from pInfo in db.applicantdetails
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
@@ -208,6 +225,39 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void grdRefernce_RowEditing(object sender, GridViewEditEventArgs e)
+    {
+
+    }
+    protected void grdRefernce_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {                         
+            if (e.CommandName.Equals("Edit"))
+            {
+                int applicantid = Convert.ToInt32(e.CommandArgument.ToString());
+                PopulateRefernceInfo(applicantid);
+            }
+            
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+    private void PopulateRefernceInfo(int applicantid)
+    {
+        var RefInfo = (from pInfo in db.applicantreferencecheck
+                       where pInfo.applicantid == userID && pInfo.universityid == universityID
+                       select pInfo).FirstOrDefault();
+        if (RefInfo != null)
+        {
+            txtName.Value = RefInfo.name;
+            txtMobile.Value = RefInfo.mobile;
+            txtEmail.Value = RefInfo.email;
         }
     }
 }
