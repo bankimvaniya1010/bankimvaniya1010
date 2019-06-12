@@ -67,7 +67,7 @@ public partial class register : System.Web.UI.Page
                 sb.Append("Dear " + name.Value.Trim() + ",");
                 webURL = webURL + "verifystudent.aspx?key="+ usrObj.verificationkey;
                 sb.Append("Thank you for registering with us. Kindly click on below link to activate your account<br/>");
-                sb.Append("<a href=" + webURL + ">link</a> <br/>");
+                sb.Append("<a href=" + webURL + ">Activate Now</a> <br/>");
                 sb.Append("Thank You GTE Backend Team");
                 objCom.SendMail(email.Value.Trim(), sb.ToString(), "Registration with GTE");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your profile has been created. Please verify and login into your account to view other steps')", true);
