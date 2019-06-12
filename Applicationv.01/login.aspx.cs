@@ -33,30 +33,35 @@ public partial class login : System.Web.UI.Page
                 lbl_warning.Text = "Please enter valid user name and password.";
                 pnl_warning.Visible = true;
             }
+            else if (!chkUser.isverified)
+            {
+                lbl_warning.Text = "Please activate your account to login.";
+                pnl_warning.Visible = true;
+            }
             else
             {
                 pnl_warning.Visible = false;                
-                    Session["LoginInfo"] = chkUser;
-                    Session["UserID"] = chkUser.studentid;
+                Session["LoginInfo"] = chkUser;
+                Session["UserID"] = chkUser.studentid;
 
-                    //switch (chkUser.role)
-                    //{
-                    //    case 1:
-                    //        Response.Redirect(webURL + "admin/default.aspx");
-                    //        break;
-                    //    case 2:
-                    //        Response.Redirect(webURL + "agentdashboard.aspx");
-                    //        break;
-                    //    case 3:
-                    Response.Redirect(webURL + "default.aspx",true);
-                    //            break;
-                    //        case 4:
-                    //            Response.Redirect(webURL + "universitydashboard.aspx");
-                    //            break;
-                    //        default:
-                    //            Response.Redirect(webURL + "login.aspx");
-                    //            break;
-                    //    }                
+                //switch (chkUser.role)
+                //{
+                //    case 1:
+                //        Response.Redirect(webURL + "admin/default.aspx");
+                //        break;
+                //    case 2:
+                //        Response.Redirect(webURL + "agentdashboard.aspx");
+                //        break;
+                //    case 3:
+                Response.Redirect(webURL + "default.aspx",true);
+                //            break;
+                //        case 4:
+                //            Response.Redirect(webURL + "universitydashboard.aspx");
+                //            break;
+                //        default:
+                //            Response.Redirect(webURL + "login.aspx");
+                //            break;
+                //    }                
 
             }
         }
