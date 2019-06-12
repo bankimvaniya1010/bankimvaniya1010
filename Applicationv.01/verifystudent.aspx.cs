@@ -15,9 +15,9 @@ public partial class verifystudent : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (Request.QueryString["referencekey"] != null)
+            if (Request.QueryString["key"] != null)
             {
-                string referenceKey = Request.QueryString["referencekey"];
+                string referenceKey = Request.QueryString["key"];
                 students student = db.students.Where(obj => obj.verificationkey == referenceKey && obj.isverified == false).FirstOrDefault();
 
                 if (student != null)
