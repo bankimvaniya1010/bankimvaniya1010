@@ -15,19 +15,23 @@ public partial class referencecheck : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if ((Request.QueryString["referncekey"] != null) && (Request.QueryString["referncekey"] != null))
+        if ((Request.QueryString["referncekey"] != null) && (Request.QueryString["referncekey"] != ""))
             referenceKey = Convert.ToString(Request.QueryString["referncekey"]);
+        else
+            Response.Redirect("error.aspx", true);
+
         var RefInfo = (from pInfo in db.applicantreferencecheck
                        where pInfo.referncekey == referenceKey
                        select pInfo).FirstOrDefault();
         if (RefInfo == null)
-            Response.Redirect("error.aspx");
+            Response.Redirect("error.aspx", true);
         else
         {
             if (RefInfo.isverified == 1)
             {
                 message.Visible = true;
                 button.Visible = false;
+                confirmation.Visible = false;
             }
             else
             {
@@ -50,6 +54,9 @@ public partial class referencecheck : System.Web.UI.Page
                 RefInfo.isverified = 1;
             RefInfo.referenceverifiedtime = DateTime.Now;
             db.SaveChanges();
+            lblMessages.Visible = true;           
+            button.Visible = false;
+            confirmation.Visible = false;
         }
        
         catch (Exception ex)
