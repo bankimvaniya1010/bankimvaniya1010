@@ -16,7 +16,7 @@ public partial class personaldetails : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected int isStudyBefore = 0, isApplyBefore = 0;
-    protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
+
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
@@ -101,7 +101,7 @@ public partial class personaldetails : System.Web.UI.Page
                 //getting numbner of days in selected month & year
                 int noofdays = DateTime.DaysInMonth(Convert.ToInt32(ddlYear.SelectedValue), Convert.ToInt32(ddlMonth.SelectedValue));
                 //Fill days         
-                
+
                 for (int i = 1; i <= noofdays; i++)
                 {
                     daysData.Add(new { displayName = i.ToString(), value = i });
@@ -214,13 +214,13 @@ public partial class personaldetails : System.Web.UI.Page
                 txtFirstName.Value = profileInfo.firstname;
                 txtLastName.Value = profileInfo.lastname;
                 txtMiddleName.Value = profileInfo.middlename;
-                txtPreferedName.Value = profileInfo.prefferedname;               
+                txtPreferedName.Value = profileInfo.prefferedname;
                 if (profileInfo.dateofbirth != null)
                 {
                     DateTime dob = Convert.ToDateTime(profileInfo.dateofbirth);
                     FillMonth();
                     FillYears();
-                  
+
                     ddlMonth.ClearSelection();
                     ddlDay.ClearSelection();
                     ddlYear.ClearSelection();
@@ -266,9 +266,9 @@ public partial class personaldetails : System.Web.UI.Page
                 {
                     ddlAgent.ClearSelection();
                     ddlAgent.Items.FindByValue(profileInfo.agentid.ToString()).Selected = true;
-                }              
+                }
 
-                lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsavedtime.ToString();                
+                lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsavedtime.ToString();
             }
         }
         catch (Exception ex)
@@ -296,7 +296,7 @@ public partial class personaldetails : System.Web.UI.Page
             objapplicantDetail.firstname = txtFirstName.Value;
             objapplicantDetail.lastname = txtLastName.Value;
             objapplicantDetail.middlename = txtMiddleName.Value;
-            objapplicantDetail.prefferedname = txtPreferedName.Value;            
+            objapplicantDetail.prefferedname = txtPreferedName.Value;
             string dateofBirth = ddlYear.SelectedValue + "-" + ddlMonth.SelectedValue + "-" + ddlDay.SelectedValue;
             objapplicantDetail.dateofbirth = Convert.ToDateTime(dateofBirth);
             if (rbtnMale.Checked)
@@ -311,13 +311,13 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.maritalstatus = Convert.ToInt32(ddlMarital.SelectedValue);
             if (rblDisabilityYes.Checked)
                 objapplicantDetail.isdisable = 1;
-            else if(rblDisabilityNo.Checked)
+            else if (rblDisabilityNo.Checked)
                 objapplicantDetail.isdisable = 2;
             if (ddlDisability.SelectedValue != "")
                 objapplicantDetail.disabilitydescription = ddlDisability.SelectedValue;
             if (rblAgentYes.Checked)
                 objapplicantDetail.isstudentreferbyagent = 1;
-            else if(rblAgentNo.Checked)
+            else if (rblAgentNo.Checked)
                 objapplicantDetail.isstudentreferbyagent = 0;
             if (ddlAgent.SelectedValue != "")
                 objapplicantDetail.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
@@ -339,66 +339,106 @@ public partial class personaldetails : System.Web.UI.Page
 
     private void SetToolTips()
     {
+
+
         try
         {
-            lstToolTips = db.tooltipmaster.ToList();
-            for (int k = 0; k < lstToolTips.Count; k++)
-            {
-                switch (lstToolTips[k].field)
-                {
+            var fields = (from pfm in db.primaryfieldmaster
+                          join utm in db.universitywisetooltipmaster
+                          on pfm.primaryfieldid equals utm.fieldid into
+                          tmpUniversity
+                          from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                          join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                          from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                          where (x.formid == formId || z.formid == formId)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                              tooltips = (x == null ? String.Empty : x.tooltips)
+                          }).ToList();
 
+
+            for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {
                     case "Title":
-                        ddlTitle.ToolTip = lstToolTips[k].tooltips;
+                        icTitle.Attributes.Add("style", "display:block;");
+                        icTitle.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "OtherTitle":
-                        txtTitle.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "FIRST NAME":
+                        icfirstname.Attributes.Add("style", "display:block;");
+                        icfirstname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Firstname":
-                        txtFirstName.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "LAST NAME":
+                        iclastname.Attributes.Add("style", "display:block;");
+                        iclastname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Lastname":
-                        txtLastName.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "PREFERRED NAME":
+                        icPreferredname.Attributes.Add("style", "display:block;");
+                        icPreferredname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Prefered":
-                        txtPreferedName.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "OTHER MIDDLE NAMES":
+                        icmiddlename.Attributes.Add("style", "display:block;");
+                        icmiddlename.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Middlename":
-                        txtMiddleName.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "DATE OF BIRTH":
+                        icDoB.Attributes.Add("style", "display:block;");
+                        icDoB.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Dob":
-                        ddlMonth.ToolTip = lstToolTips[k].tooltips;
-                        ddlDay.ToolTip = lstToolTips[k].tooltips;
-                        ddlYear.ToolTip = lstToolTips[k].tooltips;
+                    case "GENDER":
+                        icGender.Attributes.Add("style", "display:block;");
+                        icGender.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Gender":
-                        rbtnMale.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rbtnFemale.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "NATIONALITY AND CITIZENSHIP":
+                        icNationality.Attributes.Add("style", "display:block;");
+                        icNationality.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Nationality":
-                        ddlNationality.ToolTip = lstToolTips[k].tooltips;
+                    case "COUNTRY OF BIRTH":
+                        icBirthCountry.Attributes.Add("style", "display:block;");
+                        icBirthCountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "CountryofBirth":
-                        ddlBirthCountry.ToolTip = lstToolTips[k].tooltips;
+                    case "MARITAL STATUS":
+                        icMarital.Attributes.Add("style", "display:block;");
+                        icMarital.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Maritalstatus":
-                        ddlMarital.ToolTip = lstToolTips[k].tooltips;
+                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
+                        icdisability.Attributes.Add("style", "display:block;");
+                        icdisability.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Havedisability":
-                        rblDisabilityNo.ToolTip = lstToolTips[k].tooltips;
-                        rblDisabilityYes.ToolTip = lstToolTips[k].tooltips;
+                    case "DISABILITY DESCRIPTION":
+                        icdisabilitydescription.Attributes.Add("style", "display:block;");
+                        icdisabilitydescription.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Disability":
-                        ddlDisability.ToolTip = lstToolTips[k].tooltips;
+                    case "ARE YOU REFERRED BY AGENT":
+                        icAgent.Attributes.Add("style", "display:block;");
+                        icAgent.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
+                    case "AGENT NAME":
+                        icAgentList.Attributes.Add("style", "display:block;");
+                        icAgentList.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "IF DIDN'T FIND AGENT NAME IN THE LIST THEN ADD HIS EMAIL ID TO SENT REGISTRATION LINK":
+                        icNewAgent.Attributes.Add("style", "display:block;");
+                        icNewAgent.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+
                     default:
                         break;
+
                 }
             }
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+
         }
+    }
+    private String setTooltips(dynamic obj)
+    {
+        return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
     private String setInnerHtml(dynamic obj)
     {

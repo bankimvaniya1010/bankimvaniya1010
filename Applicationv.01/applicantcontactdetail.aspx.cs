@@ -13,7 +13,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
+
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
@@ -55,21 +55,21 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (profileInfo != null)
             {
                 txtEmail.Value = profileInfo.email;
-                txtMobile.Value = profileInfo.mobileno;              
+                txtMobile.Value = profileInfo.mobileno;
                 txtHomePhone.Value = profileInfo.homephone;
                 if (profileInfo.haveskypeid == 1)
                 {
                     rblSkypeYes.Checked = true;
                     txtSkype.Text = profileInfo.skypeid;
                 }
-                else if(profileInfo.haveskypeid == 0)
+                else if (profileInfo.haveskypeid == 0)
                 { rblSkypeNo.Checked = true; }
 
                 if (profileInfo.havewhatsup == 1)
                 {
-                    rblwhatsappYes.Checked = true;                    
+                    rblwhatsappYes.Checked = true;
                 }
-                else if(profileInfo.havewhatsup == 2)
+                else if (profileInfo.havewhatsup == 2)
                 {
                     rblwhatsappNo.Checked = true;
                 }
@@ -78,7 +78,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 {
                     rblWhatsupsameYes.Checked = true;
                 }
-                else if(profileInfo.isdifferentwhatsapp == 2)
+                else if (profileInfo.isdifferentwhatsapp == 2)
                 {
                     rblWhatsupsameNo.Checked = true;
                     txtWhatsappNo.Text = profileInfo.whatsappno;
@@ -87,7 +87,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 txtAddressLine2.Value = profileInfo.postaladdrees2;
                 txtAddressLine3.Value = profileInfo.postaladdrees3;
                 txtCity.Value = profileInfo.postalcity;
-                txtState.Value = profileInfo.postalstate;               
+                txtState.Value = profileInfo.postalstate;
                 txtPostal.Value = profileInfo.postalpostcode;
                 if (profileInfo.postalcountry != null)
                 {
@@ -149,7 +149,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 mode = "update";
                 objapplicantDetail = profileInfo;
             }
-           
+
             objapplicantDetail.email = txtEmail.Value;
             objapplicantDetail.mobileno = txtMobile.Value;
             objapplicantDetail.homephone = txtHomePhone.Value;
@@ -163,16 +163,18 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             else if (rblSkypeNo.Checked == true)
             { objapplicantDetail.haveskypeid = 0; }
 
-            if (rblwhatsappYes.Checked) {
-                objapplicantDetail.havewhatsup = 1;               
+            if (rblwhatsappYes.Checked)
+            {
+                objapplicantDetail.havewhatsup = 1;
             }
             else if (rblwhatsappNo.Checked == true)
             { objapplicantDetail.havewhatsup = 2; }
 
-            if (rblWhatsupsameYes.Checked) {
+            if (rblWhatsupsameYes.Checked)
+            {
                 objapplicantDetail.isdifferentwhatsapp = 1;
             }
-            else if(rblwhatsappNo.Checked)
+            else if (rblwhatsappNo.Checked)
             {
                 objapplicantDetail.isdifferentwhatsapp = 2;
                 objapplicantDetail.whatsappno = txtWhatsappNo.Text;
@@ -225,85 +227,105 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     }
     private void SetToolTips()
     {
+
+
         try
         {
-            lstToolTips = db.tooltipmaster.ToList();
-            for (int k = 0; k < lstToolTips.Count; k++)
+            var fields = (from pfm in db.primaryfieldmaster
+                          join utm in db.universitywisetooltipmaster
+                          on pfm.primaryfieldid equals utm.fieldid into
+                          tmpUniversity
+                          from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                          join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                          from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                          where (x.formid == formId ||z.formid== formId)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                              tooltips = (x == null ? String.Empty : x.tooltips)
+                          }).ToList();
+
+
+            for (int k = 0; k < fields.Count; k++)
             {
-                switch (lstToolTips[k].field)
+                switch (fields[k].primaryfiledname)
                 {
-
-                    case "Email":
-                        txtEmail.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "EMAIL":
+                        icEmail.Attributes.Add("style", "display:block;");
+                        icEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Mobile":
-                        txtMobile.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "MOBILE/CELLULAR NUMBER":
+                        icMobile.Attributes.Add("style", "display:block;");
+                        icEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Homephone":
-                        txtHomePhone.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "HOME PHONE":
+                        icHomePhone.Attributes.Add("style", "display:block;");
+                        icHomePhone.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Haveskype":
-                        rblSkypeYes.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblSkypeNo.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                        icSkype.Attributes.Add("style", "display:block;");
+                        icSkype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Skypeid":
-                        txtSkype.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "SKYPE ID":
+                        icSkypeDesc.Attributes.Add("style", "display:block;");
+                        icSkypeDesc.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Havewhatsapp":
-                        rblwhatsappYes.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblwhatsappNo.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                        icWhatsapp.Attributes.Add("style", "display:block;");
+                        icWhatsapp.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Coonectwithwhatsapp":
-                        rblWhatsupsameNo.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblWhatsupsameYes.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                        icWhatsapphave.Attributes.Add("style", "display:block;");
+                        icWhatsapphave.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Anotherwhatsapp":
-                        txtWhatsappNo.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "WHATSAPP NUMBER":
+                        icWhatsappDesc.Attributes.Add("style", "display:block;");
+                        icWhatsappDesc.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Postalddress":
-                        txtAddressLine1.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtAddressLine2.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtAddressLine3.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtCity.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtState.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtPostal.Attributes.Add("title", lstToolTips[k].tooltips);
-                        ddlpostalCountry.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "POSTAL ADDRESS":
+                        icPostal.Attributes.Add("style", "display:block;");
+                        icPostal.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "ResedentialAddress":
-                        txtResidentialAddress1.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtResidentialAddress2.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtResidentialAddress3.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtResidentialCity.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtResidentialState.Attributes.Add("title", lstToolTips[k].tooltips);
-                        txtResidentialpostal.Attributes.Add("title", lstToolTips[k].tooltips);
-                        ddlResidentialCountry.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
+                        icAddress.Attributes.Add("style", "display:block;");
+                        icAddress.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Addresssame":
-                        rblAddressYes.ToolTip = lstToolTips[k].tooltips;
-                        rblAddressNo.ToolTip = lstToolTips[k].tooltips;
+                    case "CURRENT RESIDENTIAL ADDRESS":
+                        icResedentail.Attributes.Add("style", "display:block;");
+                        icResedentail.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Guardianname":
-                        txtNomineeName.Attributes.Add("title", lstToolTips[k].tooltips);
-
+                    case "GUARDIAN FULL NAME":
+                        icNomineeName.Attributes.Add("style", "display:block;");
+                        icNomineeName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "RelationswithGuardian":
-                        txtRelationNominee.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "RELATIONSHIP WITH GUARDIAN":
+                        icNomineeRealation.Attributes.Add("style", "display:block;");
+                        icNomineeRealation.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Guradianemail":
-                        txtEmailNominee.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "EMAIL OF GUARDIAN":
+                        icNomineeEmail.Attributes.Add("style", "display:block;");
+                        icNomineeEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "GuardianMobile":
-                        txtMobileNominee.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "MOBILE/CELLULAR NUMBER OF GUARDIAN":
+                        icNomineeMobile.Attributes.Add("style", "display:block;");
+                        icNomineeMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     default:
                         break;
+
                 }
             }
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+
         }
+    }
+    private String setTooltips(dynamic obj)
+    {
+        return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
     private String setInnerHtml(dynamic obj)
     {
