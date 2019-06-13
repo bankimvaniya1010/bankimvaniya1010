@@ -24,8 +24,8 @@
                                         <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">* Title</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlTitle" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
-                                            <input style="display: none" id="txtTitle" runat="server" type="text" placeholder="Title" value="" class="form-control">
+                                            </asp:DropDownList> <span class="helpicon"><i id="icTitle" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input style="display: none" id="txtTitle" runat="server" type="text" placeholder="Title" value="" class="form-control"> <span class="helpicon"><i id="icOtherTitle" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                             <input id="txtFirstName" runat="server" type="text" placeholder="First name as it appears in your passport
 
 "
-                                                value="" class="form-control" required="">
+                                                value="" class="form-control" required=""> <span class="helpicon"><i id="icfirstname" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@
                                             <input id="txtLastName" runat="server" type="text" class="form-control" placeholder="Last name as it appears in your passport
 
 "
-                                                required="">
+                                                required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                           
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@
                                         <div class="col-md-6">
                                             <input id="txtPreferedName" runat="server" type="text" class="form-control" placeholder="What name do you want us to use when we are communicating with you?
 
-">
+"> <span class="helpicon"><i id="icPreferredname" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                             <input id="txtMiddleName" runat="server" type="text" placeholder="As they appear in your passport
 
 "
-                                                value="" class="form-control">
+                                                value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                                             <asp:DropDownList ID="ddlMonth" CssClass="form-control" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                                 <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
                                             </asp:DropDownList>                                            
-                                            <asp:DropDownList ID="ddlDay" CssClass="form-control" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlDay" CssClass="form-control" runat="server"></asp:DropDownList> <span class="helpicon"><i id="icDoB" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +106,7 @@
                                         <div class="col-md-6">
                                             <input type="radio" id="rbtnMale" runat="server" name="gender" required>Male</input>
                                             <input type="radio" id="rbtnFemale" runat="server" name="gender" required>Female</input>
-
+                                             <span class="helpicon"><i id="icGender" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlNationality" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
-
+                                             <span class="helpicon"><i id="icNationality" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@
                                         <label id="labelbirthcountry" runat="server" for="birthcountry" class="col-md-3 col-form-label form-label">Country of birth</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlBirthCountry" runat="server" CssClass="form-control">
-                                            </asp:DropDownList>
+                                            </asp:DropDownList> <span class="helpicon"><i id="icBirthCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
 
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                                         <label id="labelMarital" runat="server" for="Marital" class="col-md-3 col-form-label form-label">Marital Status</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlMarital" runat="server" CssClass="form-control"> 
-                                            </asp:DropDownList>
+                                            </asp:DropDownList> <span class="helpicon"><i id="icMarital" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -152,7 +152,7 @@
                                         <label id="labeldisability" runat="server" for="disability" class="col-md-3 col-form-label form-label">Do you have any disability, impairment, or a long term condition</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblDisabilityYes" runat="server" CssClass="form-control" GroupName="disability" Text="Yes" />
-                                            <asp:RadioButton ID="rblDisabilityNo" runat="server" CssClass="form-control" GroupName="disability" Text="No" />
+                                            <asp:RadioButton ID="rblDisabilityNo" runat="server" CssClass="form-control" GroupName="disability" Text="No" /> <span class="helpicon"><i id="icdisability" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                                     <div class="form-row">
                                         <label id="labeldisabilitydesc" runat="server" for="disabilitydesc" class="col-md-3 col-form-label form-label">Disability Description</label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlDisability" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlDisability" runat="server" CssClass="form-control"></asp:DropDownList><span class="helpicon"><i id="icdisabilitydescription" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@
                                         <label id="labelagent" runat="server" for="agent" class="col-md-3 col-form-label form-label">Are you reffered by Agent</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblAgentYes" runat="server" CssClass="form-control" GroupName="agent" Text="Yes" />
-                                            <asp:RadioButton ID="rblAgentNo" runat="server" CssClass="form-control" GroupName="agent" Text="No" />
+                                            <asp:RadioButton ID="rblAgentNo" runat="server" CssClass="form-control" GroupName="agent" Text="No" /><span class="helpicon"><i id="icAgent" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -184,7 +184,7 @@
                                     <div class="form-row">
                                         <label id="labelagentList" runat="server" for="agentList" class="col-md-3 col-form-label form-label">Agent Name</label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlAgent" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlAgent" runat="server" CssClass="form-control"></asp:DropDownList><span class="helpicon"><i id="icAgentList" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +194,7 @@
                                     <div class="form-row">
                                         <label id="labeladdnewagent" runat="server" for="addnewagent" class="col-md-3 col-form-label form-label">If didn't find agent name in the list then add his email ID to sent registeration link</label>
                                         <div class="col-md-6">
-                                            <asp:TextBox ID="txtAgentname" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txtAgentname" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icNewAgent" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             &nbsp;
                                               <div class="col-md-6">
                                                   <asp:Button ID="btnNewAgent" runat="server" Text="Ask to Register" CssClass="btn btn-success" OnClick="btnNewAgent_Click" />
@@ -341,13 +341,11 @@
             }
             // to handle Tool tips
             var i = 0;
-            $(".form-control")
-                .mouseover(function () {
-                    var controlId = $(this).attr('id');
-                    var title = $(this).attr('title');
-                    $("#tooltip").text(title);
-                });
-
+             $('.fa-question-circle').tipso({
+				position: 'right',
+				background: 'rgba(0,0,0,0.8)',
+				useTitle: false,
+			});
 
 
         });

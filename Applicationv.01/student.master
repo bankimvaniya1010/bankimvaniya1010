@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Student - Dashboard</title>
-
+  
     <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
     <meta name="robots" content="noindex">
-
+    <link href="assets/css/tipso.min.css" rel="stylesheet" />
     <!-- Perfect Scrollbar -->
     <link type="text/css" href="assets/vendor/perfect-scrollbar.css" rel="stylesheet">
     <!-- Flatpickr -->
@@ -658,8 +658,7 @@
     <script src="assets/vendor/moment.min.js"></script>
     <!-- Easy Countdown -->
     <script src="assets/vendor/jquery.countdown.min.js"></script>
-
-
+    <script src="assets/js/tipso.min.js"></script>
     <script src="assets/js/intlTelInput-jquery.min.js"></script>
     <script src="assets/js/intlTelInput.min.js"></script>
     <script src="assets/js/prism.js"></script>
