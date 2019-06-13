@@ -123,6 +123,9 @@ public partial class applicantdetails
     public Nullable<int> nationality { get; set; }
     public Nullable<int> nationality2 { get; set; }
     public Nullable<bool> hasdualcitizenship { get; set; }
+    public string chinesecodenumber { get; set; }
+    public Nullable<bool> haschinesecodenumber { get; set; }
+    public string patronymicname { get; set; }
     public Nullable<int> countryofbirth { get; set; }
     public Nullable<int> maritalstatus { get; set; }
     public Nullable<int> isdisable { get; set; }
@@ -1083,4 +1086,10 @@ public partial class universitywisetooltipmaster
     public virtual formmaster formmaster { get; set; }
     public virtual primaryfieldmaster primaryfieldmaster { get; set; }
     public virtual university_master university_master { get; set; }
+}
+
+public partial class visatype
+{
+    public int id { get; set; }
+    public string description { get; set; }
 }

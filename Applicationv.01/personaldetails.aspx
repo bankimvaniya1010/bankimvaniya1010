@@ -122,6 +122,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group m-0" id="chineseCode" runat="server" role="group" aria-labelledby="label-chineseCommercialCode" style="display: none">
+                                    <div class="form-row">
+                                        <label id="labelChineseCode" runat="server" for="chineseCommercialCode" class="col-md-3 col-form-label form-label">Do you ever use a Chinese Commercial Code Number for your names?</label>
+                                        <div class="col-md-6">
+                                            <asp:RadioButton ID="rblChineseCodeYes" runat="server" CssClass="form-control" GroupName="chineseCommercialCode" Text="Yes" />
+                                            <asp:RadioButton ID="rblChineseCodeNo" runat="server" CssClass="form-control" GroupName="chineseCommercialCode" Text="No" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-0" role="group" runat="server" id="textChineseCodeDiv" style="display: none" aria-labelledby="label-chineseCodeNumber">
+                                    <div class="form-row">
+                                        <label id="lblChineseCodeNumber" runat="server" for="chineseCodeNumber" class="col-md-3 col-form-label form-label">Chinese Commercial Code Number</label>
+                                        <div class="col-md-6">
+                                            <input id="txtChineseCodeNumber" runat="server" type="text" class="form-control" placeholder="Chinese Commercial Code Number" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-0" id="russianName" runat="server" role="group" aria-labelledby="label-russianPatronymicName" style="display: none">
+                                    <div class="form-row">
+                                        <label id="labelRussianName" runat="server" for="russianPatronymicName" class="col-md-3 col-form-label form-label">In English, provide your patronymic name</label>
+                                        <div class="col-md-6">
+                                            <input id="txtPatronymicName" runat="server" type="text" class="form-control" placeholder="Patronymic name in English" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="list-group-item" id="dualNationality" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dualNationality">
@@ -305,6 +332,8 @@
                 alert("Please Select Option to record reffrerd by agent");
             else if (!$("#<%=agentList.ClientID%>").is(':hidden') && ($("#<%=ddlAgent.ClientID%>").val() === "0"))
                 alert("Please Select valid agent details");
+            else if ($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') && ($("#<%=txtChineseCodeNumber.ClientID%>").val() === ""))
+                alert("Please enter chinese commercial code number");
 
             else
                 flag = true;
@@ -364,7 +393,12 @@
                     $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
                 } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
             }
-                                    
+
+            if ($("#<%=chineseCode.ClientID%>").is(':hidden')) {
+                $("#<%=chineseCode.ClientID %> input[type='radio']").prop('checked', false);
+                $("#<%=txtChineseCodeNumber.ClientID %>").val('');
+            }
+
             $("#<%=rblNationalityYes.ClientID%>").click(function () {
                 $("#<%=secondNation.ClientID%>").show();
             });
@@ -372,11 +406,20 @@
             $("#<%=rblNationalityNo.ClientID%>").click(function () {
                 $("#<%=secondNation.ClientID%>").hide();
             });
-            
+
+            $("#<%=rblChineseCodeYes.ClientID%>").click(function () {
+                $("#<%=textChineseCodeDiv.ClientID%>").show();
+            });
+
+            $("#<%=rblChineseCodeNo.ClientID%>").click(function () {
+                $("#<%=textChineseCodeDiv.ClientID%>").hide();
+                $("#<%=txtChineseCodeNumber.ClientID%>").val('');
+            });
+
             $("#<%=ddlNationality.ClientID%>").change(function () {
                 countryVal = $("#<%=ddlNationality.ClientID%>").val().split("_");
                 dualcitizenship = (countryVal[1] == "True");
-                countryId = countryVal[0];
+                countryName = $("#<%=ddlNationality.ClientID%> option:selected").text().toUpperCase();
 
                 if (dualcitizenship) {
                     $("#<%=dualNationality.ClientID%>").show();
@@ -385,6 +428,23 @@
                     $("#<%=dualNationality.ClientID%>").hide();
                     $("#<%=dualNationality.ClientID %> input[type='radio']").prop('checked', false);
                     $("#<%=ddlOtherNation.ClientID %>")[0].selectedIndex = 0;
+                }
+
+                if (!$("#<%=chineseCode.ClientID%>").is(':hidden')) {
+                    $("#<%=chineseCode.ClientID%>").hide();
+                    $("#<%=chineseCode.ClientID %> input[type='radio']").prop('checked', false);
+                    $("#<%=txtChineseCodeNumber.ClientID %>").val('');
+                }
+                else if (!$("#<%=russianName.ClientID%>").is(':hidden')) {
+                    $("#<%=russianName.ClientID%>").hide();
+                    $("#<%=txtPatronymicName.ClientID %>").val('');
+                }
+
+                if (countryName == "<%=GlobalVariables.GetChinaCountryName %>") {
+                    $("#<%=chineseCode.ClientID%>").show();
+                }
+                else if (countryName == "<%=GlobalVariables.GetRussiaCountryName %>") {
+                    $("#<%=russianName.ClientID%>").show();
                 }
             });
 
