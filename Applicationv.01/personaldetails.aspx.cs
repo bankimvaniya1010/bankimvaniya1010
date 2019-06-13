@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Globalization;
 using System.Text;
+
 public partial class personaldetails : System.Web.UI.Page
 {
     int userID = 0, ApplicantID = 0, universityID;
@@ -43,7 +44,8 @@ public partial class personaldetails : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlBirthCountry);
-            objCom.BindCountries(ddlNationality);
+            objCom.BindCountries(ddlNationality, true);
+            objCom.BindCountries(ddlOtherNation);
             BindMaritalstatus();
             BindAgent();
             BindTitle();
@@ -304,7 +306,16 @@ public partial class personaldetails : System.Web.UI.Page
             else if (rbtnFemale.Checked)
                 objapplicantDetail.gender = 0;
             if (ddlNationality.SelectedValue != "")
-                objapplicantDetail.nationality = Convert.ToInt32(ddlNationality.SelectedValue);
+            {
+                string[] array = ddlNationality.SelectedValue.Split('_');
+                objapplicantDetail.nationality = Convert.ToInt32(array[0]);
+            }
+            if (ddlOtherNation.SelectedValue != "")   
+                objapplicantDetail.nationality2 = Convert.ToInt32(ddlOtherNation.SelectedValue);   
+            if (objapplicantDetail.nationality2.HasValue && objapplicantDetail.nationality.HasValue)
+                objapplicantDetail.hasdualcitizenship = true;
+            if (rblNationalityNo.Checked)
+                objapplicantDetail.hasdualcitizenship = false;
             if (ddlBirthCountry.SelectedValue != "")
                 objapplicantDetail.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
             if (ddlMarital.SelectedValue != "")
