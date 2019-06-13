@@ -9,9 +9,11 @@ using System.Web.UI.WebControls;
 public partial class applicantsocial : System.Web.UI.Page
 {
     int formId = 0;
+    Common objCom = new Common();
     int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
-    protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
     protected int isStudyBefore = 0, isApplyBefore = 0;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
@@ -29,8 +31,13 @@ public partial class applicantsocial : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             SetToolTips();
             PopulatePersonalInfo();
             SetControlsUniversitywise();
@@ -38,32 +45,57 @@ public partial class applicantsocial : System.Web.UI.Page
     }
     private void SetToolTips()
     {
+
+
         try
         {
-            lstToolTips = db.tooltipmaster.ToList();
-            for (int k = 0; k < lstToolTips.Count; k++)
-            {
-                switch (lstToolTips[k].field)
-                {
+            var fields = (from pfm in db.primaryfieldmaster
+                          join utm in db.universitywisetooltipmaster
+                          on pfm.primaryfieldid equals utm.fieldid into
+                          tmpUniversity
+                          from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                          join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                          from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                          where (x.formid == formId || z.formid == formId)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                              tooltips = (x == null ? String.Empty : x.tooltips)
+                          }).ToList();
 
-                    case "Linkedin":
-                        txtLinkedin.Attributes.Add("title", lstToolTips[k].tooltips);
+
+            for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {
+                    case "LINK TO YOUR LINKEDIN PROFILE":
+                        icLinkedin.Attributes.Add("style", "display:block;");
+                        icLinkedin.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Facebook":
-                        txtFacebook.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "LINK TO YOUR FACEBOOK PROFILE":
+                        icFacebook.Attributes.Add("style", "display:block;");
+                        icFacebook.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Twitter":
-                        txtTwitter.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "LINK TO YOUR TWITTER HANDLE":
+                        icTwitter.Attributes.Add("style", "display:block;");
+                        icTwitter.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     default:
                         break;
+
                 }
             }
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+
         }
+    }
+    private String setTooltips(dynamic obj)
+    {
+        return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
 
     private void PopulatePersonalInfo()
@@ -174,6 +206,8 @@ public partial class applicantsocial : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }

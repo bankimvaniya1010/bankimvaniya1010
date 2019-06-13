@@ -13,7 +13,8 @@ public partial class knowyourstudent : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -26,12 +27,17 @@ public partial class knowyourstudent : System.Web.UI.Page
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx",true);
+            Response.Redirect(webURL + "default.aspx", true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlCountryofIssue);
             SetToolTips();
             BindAlternateDobProof();
@@ -48,8 +54,8 @@ public partial class knowyourstudent : System.Web.UI.Page
         {
             var mode = "new";
             var profileInfo = (from pInfo in db.applicantdetails
-                                where pInfo.applicantid == userID && pInfo.universityid == universityID
-                                select pInfo).FirstOrDefault();
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               select pInfo).FirstOrDefault();
             applicantdetails objapplicantDetail = new applicantdetails();
             if (profileInfo != null)
             {
@@ -75,12 +81,12 @@ public partial class knowyourstudent : System.Web.UI.Page
                 objapplicantDetail.alternativeproofdobId = Convert.ToInt32(ddlalternatedobIdentitytype.SelectedValue);
 
             }
-            
+
             if (ddlalternateresidenceIdentitytype.SelectedValue != "")
             {
                 objapplicantDetail.alternativeresidenceproofId = Convert.ToInt32(ddlalternateresidenceIdentitytype.SelectedValue);
 
-            }      
+            }
             objapplicantDetail.alternativeproofdobno = txtalternatedobIdentityNo.Value;
             objapplicantDetail.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;
             objapplicantDetail.alternativeIdentityproofno = txtalternateIdentityNo.Value;
@@ -90,9 +96,11 @@ public partial class knowyourstudent : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
-            
+
         }
         catch (Exception ex)
         {
@@ -144,10 +152,10 @@ public partial class knowyourstudent : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-   
+
     private void BindAlternateDobProof()
     {
-        try 
+        try
         {
             ListItem lst = new ListItem("Please select", "0");
             var dobtype = (from ap in db.alternatedobproof
@@ -177,14 +185,14 @@ public partial class knowyourstudent : System.Web.UI.Page
         {
             ListItem lst = new ListItem("Please select", "0");
             var identitytype = (from ap in db.alternateidproofmaster
-                      join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
-                      join mn in db.master_name on ump.masterid equals mn.masterid
-                      where ump.universityid == universityID && ump.masterid == 3
-                      select new
-                      {
-                          description = ap.description,
-                          id = ap.id
-                      }).ToList();
+                                join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
+                                join mn in db.master_name on ump.masterid equals mn.masterid
+                                where ump.universityid == universityID && ump.masterid == 3
+                                select new
+                                {
+                                    description = ap.description,
+                                    id = ap.id
+                                }).ToList();
 
             ddlalternateIdentitytype.DataSource = identitytype;
             ddlalternateIdentitytype.DataTextField = "description";
@@ -203,14 +211,14 @@ public partial class knowyourstudent : System.Web.UI.Page
         {
             ListItem lst = new ListItem("Please select", "0");
             var addresstype = (from ap in db.alternateadressproofmaster
-                                join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
-                                join mn in db.master_name on ump.masterid equals mn.masterid
-                                where ump.universityid == universityID && ump.masterid == 1
-                                select new
-                                {
-                                    description = ap.description,
-                                    id = ap.id
-                                }).ToList();
+                               join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
+                               join mn in db.master_name on ump.masterid equals mn.masterid
+                               where ump.universityid == universityID && ump.masterid == 1
+                               select new
+                               {
+                                   description = ap.description,
+                                   id = ap.id
+                               }).ToList();
 
             ddlalternateresidenceIdentitytype.DataSource = addresstype;
             ddlalternateresidenceIdentitytype.DataTextField = "description";
@@ -226,59 +234,88 @@ public partial class knowyourstudent : System.Web.UI.Page
 
     private void SetToolTips()
     {
+
+
         try
         {
-            lstToolTips = db.tooltipmaster.ToList();
-            for (int k = 0; k < lstToolTips.Count; k++)
+            var fields = (from pfm in db.primaryfieldmaster
+                          join utm in db.universitywisetooltipmaster
+                          on pfm.primaryfieldid equals utm.fieldid into
+                          tmpUniversity
+                          from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                          join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                          from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                          where (x.formid == formId || z.formid == formId)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                              tooltips = (x == null ? String.Empty : x.tooltips)
+                          }).ToList();
+
+
+            for (int k = 0; k < fields.Count; k++)
             {
-                switch (lstToolTips[k].field)
+
+                switch (fields[k].primaryfiledname)
                 {
+                    case "PASSPORT NUMBER":
+                        icPassport.Attributes.Add("style", "display:block;");
+                        icPassport.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "DATE OF ISSUE":
+                        icPassportIssueDate.Attributes.Add("style", "display:block;");
+                        icPassportIssueDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "COUNTRY OF ISSUE":
+                        icCountryofIssue.Attributes.Add("style", "display:block;");
+                        icCountryofIssue.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "EXPIRY DATE":
+                        icPassportExpiryDate.Attributes.Add("style", "display:block;");
+                        icPassportExpiryDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "CITY OF ISSUE":
+                        icCityofIssue.Attributes.Add("style", "display:block;");
+                        icCityofIssue.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "ALTERNATIVE PROOF OF IDENTITY":
+                        icIdentityProofType.Attributes.Add("style", "display:block;");
+                        icIdentityProofType.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        
+                        break;
+                    case "ALTERNATIVE PROOF OF DATE OF BIRTH":
+                        icDOBProofType.Attributes.Add("style", "display:block;");
+                        icDOBProofType.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "ALTERNATIVE PROOF OF RESIDENCE":
+                        icResidencyProof.Attributes.Add("style", "display:block;");
+                        icResidencyProof.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "IDENTITY NUMBER":
+                        icResidencyProofNo.Attributes.Add("style", "display:block;");
+                        icResidencyProofNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        icDOBProofNo.Attributes.Add("style", "display:block;");
+                        icDOBProofNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        icIdentityProofNo.Attributes.Add("style", "display:block;");
+                        icIdentityProofNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
 
-                    case "Passportno":
-                        txtPassportNo.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "Passportissuedate":
-                        txtdateofissue.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "Passportexpirydate":
-                        txtexpirydate.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "PassportIssuecountry":
-                        ddlCountryofIssue.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "PassportIssueCity":
-                        txtissueplaceCity.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;                                      
-                    case "AlternativeIDNo":
-                        txtalternateIdentityNo.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "AlternativeIdentitytype":
-                        ddlalternateIdentitytype.Attributes.Add("title", lstToolTips[k].tooltips);                        
-                        break;
-                    case "AlternativeDobno":
-                        txtalternatedobIdentityNo.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    case "AlternativeDobType":
-                        ddlalternatedobIdentitytype.ToolTip = lstToolTips[k].tooltips;
-                      
-                        break;
-                    case "AlternativeAddressNo":
-                        txtalternateresidenceIdentityNo.Attributes.Add("title", lstToolTips[k].tooltips);
-
-                        break;
-                    case "AlternativeAddressType":
-                        ddlalternateresidenceIdentitytype.Attributes.Add("title", lstToolTips[k].tooltips);
-                        break;
-                    
                     default:
                         break;
+
                 }
             }
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+
         }
+    }
+    private String setTooltips(dynamic obj)
+    {
+        return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
 
     private String setInnerHtml(dynamic obj)
@@ -291,10 +328,11 @@ public partial class knowyourstudent : System.Web.UI.Page
         try
         {
             string SecondaryLanguage = Utility.GetSecondaryLanguage();
-            
+
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid  into tmp from x in tmp.Where(c=>c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
+                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
+                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {

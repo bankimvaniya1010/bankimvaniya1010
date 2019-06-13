@@ -310,8 +310,8 @@ public partial class personaldetails : System.Web.UI.Page
                 string[] array = ddlNationality.SelectedValue.Split('_');
                 objapplicantDetail.nationality = Convert.ToInt32(array[0]);
             }
-            if (ddlOtherNation.SelectedValue != "" && Convert.ToInt32(ddlOtherNation.SelectedValue) > 0)   
-                objapplicantDetail.nationality2 = Convert.ToInt32(ddlOtherNation.SelectedValue);   
+            if (ddlOtherNation.SelectedValue != "" && Convert.ToInt32(ddlOtherNation.SelectedValue) > 0)
+                objapplicantDetail.nationality2 = Convert.ToInt32(ddlOtherNation.SelectedValue);
             if (objapplicantDetail.nationality2.HasValue && objapplicantDetail.nationality.HasValue)
                 objapplicantDetail.hasdualcitizenship = true;
             if (rblNationalityNo.Checked)
@@ -347,7 +347,8 @@ public partial class personaldetails : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
-            objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Personal Details have been saved";
             lblMessage.Visible = true;
         }
