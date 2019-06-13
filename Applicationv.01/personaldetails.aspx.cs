@@ -310,12 +310,18 @@ public partial class personaldetails : System.Web.UI.Page
                 string[] array = ddlNationality.SelectedValue.Split('_');
                 objapplicantDetail.nationality = Convert.ToInt32(array[0]);
             }
-            if (ddlOtherNation.SelectedValue != "")   
+            if (ddlOtherNation.SelectedValue != "" && Convert.ToInt32(ddlOtherNation.SelectedValue) > 0)   
                 objapplicantDetail.nationality2 = Convert.ToInt32(ddlOtherNation.SelectedValue);   
             if (objapplicantDetail.nationality2.HasValue && objapplicantDetail.nationality.HasValue)
                 objapplicantDetail.hasdualcitizenship = true;
             if (rblNationalityNo.Checked)
                 objapplicantDetail.hasdualcitizenship = false;
+            if (rblChineseCodeYes.Checked)
+                objapplicantDetail.chinesecodenumber = txtChineseCodeNumber.Value.Trim();
+            else if (rblChineseCodeNo.Checked)
+                objapplicantDetail.haschinesecodenumber = false;
+            if (txtPatronymicName.Value != "")
+                objapplicantDetail.patronymicname = txtPatronymicName.Value.Trim();
             if (ddlBirthCountry.SelectedValue != "")
                 objapplicantDetail.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
             if (ddlMarital.SelectedValue != "")

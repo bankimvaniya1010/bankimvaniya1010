@@ -112,6 +112,7 @@
         <AssociationConnector Association="GTEModel.FK_childsuniversityid_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
+        <EntityTypeShape EntityType="GTEModel.visatype" Width="1.5" PointX="0.75" PointY="25.75" />
         <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="27.375" PointY="5.75" />
         </Diagram>
     </edmx:Diagrams>

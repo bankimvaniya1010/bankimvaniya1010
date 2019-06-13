@@ -129,6 +129,9 @@
           <Property Name="nationality" Type="int" />
           <Property Name="nationality2" Type="int" />
           <Property Name="hasdualcitizenship" Type="bit" />
+          <Property Name="chinesecodenumber" Type="varchar" MaxLength="50" />
+          <Property Name="haschinesecodenumber" Type="bit" />
+          <Property Name="patronymicname" Type="varchar" MaxLength="50" />
           <Property Name="countryofbirth" Type="int" />
           <Property Name="maritalstatus" Type="int" />
           <Property Name="isdisable" Type="int" />
@@ -960,6 +963,13 @@
           <Property Name="formid" Type="int" Nullable="false" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
+        <EntityType Name="visatype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="GTE_documentverification">
@@ -1352,6 +1362,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisetooltipmaster" EntityType="Self.universitywisetooltipmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="visatype" EntityType="Self.visatype" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="GTE_documentverification" EntityType="Self.GTE_documentverification" store:Type="Views" store:Schema="GTE" store:Name="GTE.documentverification">
             <DefiningQuery>SELECT
 `GTE_documentverification`.`documentid`, 
@@ -1650,6 +1661,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
           </AssociationSet>
+          <EntitySet Name="visatype" EntityType="GTEModel.visatype" />
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           </EntityContainer>
         <EntityType Name="adminusers">
@@ -2883,6 +2895,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="visatype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="applicantdetails">
           <Key>
             <PropertyRef Name="applicantpersonaldetailsid" />
@@ -2900,6 +2919,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="nationality" Type="Int32" />
           <Property Name="nationality2" Type="Int32" />
           <Property Name="hasdualcitizenship" Type="Boolean" />
+          <Property Name="chinesecodenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haschinesecodenumber" Type="Boolean" />
+          <Property Name="patronymicname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="countryofbirth" Type="Int32" />
           <Property Name="maritalstatus" Type="Int32" />
           <Property Name="isdisable" Type="Int32" />
@@ -3939,6 +3961,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="visatype">
+            <EntityTypeMapping TypeName="GTEModel.visatype">
+              <MappingFragment StoreEntitySet="visatype">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
@@ -3996,6 +4026,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="isdisable" ColumnName="isdisable" />
                 <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
                 <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
+                <ScalarProperty Name="patronymicname" ColumnName="patronymicname" />
+                <ScalarProperty Name="haschinesecodenumber" ColumnName="haschinesecodenumber" />
+                <ScalarProperty Name="chinesecodenumber" ColumnName="chinesecodenumber" />
                 <ScalarProperty Name="hasdualcitizenship" ColumnName="hasdualcitizenship" />
                 <ScalarProperty Name="nationality2" ColumnName="nationality2" />
                 <ScalarProperty Name="nationality" ColumnName="nationality" />
