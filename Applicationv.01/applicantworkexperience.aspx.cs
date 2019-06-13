@@ -51,7 +51,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                           from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
                           join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
                           from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
-                          where x.formid == formId
+                          where (x.formid == formId ||z.formid== formId)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -66,60 +66,60 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 {
                     case "DO YOU WISH TO RECORD ANY WORK EXPERIENCE THAT MAY BE RELEVANT TO THE COURSE YOU ARE APPLYING FOR?":
                         icemploymentInfo.Attributes.Add("style", "display:block;");
-                        icemploymentInfo.Attributes.Add("title", setTooltips(fields[k]));
+                        icemploymentInfo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "WEBSITE":
                         icemployerwebsite.Attributes.Add("style", "display:block;");
-                        icemployerwebsite.Attributes.Add("title", setTooltips(fields[k]));
+                        icemployerwebsite.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "NAME OF ORGANIZATION":
                         icemployer.Attributes.Add("style", "display:block;");
-                        icemployer.Attributes.Add("title", setTooltips(fields[k]));
+                        icemployer.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
 
                     case "CITY":
                         icemployercity.Attributes.Add("style", "display:block;");
-                        icemployercity.Attributes.Add("title", setTooltips(fields[k]));
+                        icemployercity.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "COUNTRY":
                         icemployercountry.Attributes.Add("style", "display:block;");
-                        icemployercountry.Attributes.Add("title", setTooltips(fields[k]));
+                        icemployercountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "POSITION/ROLE IN":
                         icposition.Attributes.Add("style", "display:block;");
-                        icposition.Attributes.Add("title", setTooltips(fields[k]));
+                        icposition.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "START DATE":
                         icstartdate.Attributes.Add("style", "display:block;");
-                        icstartdate.Attributes.Add("title", setTooltips(fields[k]));
+                        icstartdate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "END DATE":
                         icenddate.Attributes.Add("style", "display:block;");
-                        icenddate.Attributes.Add("title", setTooltips(fields[k]));
+                        icenddate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "BRIEF DESCRIPTION OF WHAT YOU DID":
                         icemploymentInfo.Attributes.Add("style", "display:block;");
-                        icemploymentInfo.Attributes.Add("title", setTooltips(fields[k]));
+                        icemploymentInfo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "NAME OF YOUR REPORTING MANAGER":
                         icreportingmanger.Attributes.Add("style", "display:block;");
-                        icreportingmanger.Attributes.Add("title", setTooltips(fields[k]));
+                        icreportingmanger.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "NAME OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
                         icemploymentverification.Attributes.Add("style", "display:block;");
-                        icemploymentverification.Attributes.Add("title", setTooltips(fields[k]));
+                        icemploymentverification.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "RELATIONSHIP WITH THE CONTACT":
                         icrelationship.Attributes.Add("style", "display:block;");
-                        icrelationship.Attributes.Add("title", setTooltips(fields[k]));
+                        icrelationship.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
                         icemail.Attributes.Add("style", "display:block;");
-                        icemail.Attributes.Add("title", setTooltips(fields[k]));
+                        icemail.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "LINKEDIN PROFILE LINK OF THE CONTACT":
                         iclinkedin.Attributes.Add("style", "display:block;");
-                        iclinkedin.Attributes.Add("title", setTooltips(fields[k]));
+                        iclinkedin.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     default:
                         break;

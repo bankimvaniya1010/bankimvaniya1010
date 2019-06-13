@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="applicantworkexperience.aspx.cs" Inherits="applicantworkexperience" MasterPageFile="~/student.master" %>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
-
+   
 
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
@@ -96,9 +96,6 @@
                                                 <asp:RadioButton ID="rblEmploymentYes" runat="server" GroupName="Employment" Text="Yes" />
                                                 <asp:RadioButton ID="rblEmploymentNo" runat="server" GroupName="Employment" Text="No" />
                                                 <span class="helpicon"><i id="icemploymentInfo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +107,8 @@
                                             <div class="form-row">
                                                 <label id="labelemployer" runat="server" for="employer" class="col-md-3 col-form-label form-label">Name of Organization </label>
                                                 <div class="col-md-6">
-                                                    <input id="txtEmployer" runat="server" type="text" class="form-control" placeholder="Name of Organization "> <span class="helpicon"><i id="icemployer" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtEmployer" runat="server" type="text" class="form-control" placeholder="Name of Organization ">
+                                                    <span class="helpicon"><i id="icemployer" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +119,8 @@
                                                 <label id="labelemployerwebsite" runat="server" for="employerwebsite" class="col-md-3 col-form-label form-label">Website of the Organization</label>
                                                 <div class="col-md-6">
                                                     <input id="txtemployerwebsite" runat="server" type="text" class="form-control" placeholder="Website" />
-                                                    <asp:CheckBox ID="chkWebsite" runat="server" Text="Does Not Have Website" /> <span class="helpicon"><i id="icemployerwebsite" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <asp:CheckBox ID="chkWebsite" runat="server" Text="Does Not Have Website" />
+                                                    <span class="helpicon"><i id="icemployerwebsite" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -320,7 +319,12 @@
                     var title = $(this).attr('title');
                     $("#tooltip").text(title);
                 });
-
+              $('.fa-question-circle').tipso({
+				position: 'right',
+				background: 'rgba(0,0,0,0.8)',
+				titleBackground: 'tomato',
+				useTitle: false,
+			});
             $("#<%=chkWebsite.ClientID%>").change(function () {
                 if ($(this).is(":checked")) {
                     $("#<%=txtemployerwebsite.ClientID%>").val("");
@@ -389,7 +393,7 @@
                 $("#<%=fieldContainer.ClientID%>").hide();
             }
         }
-
+      
     </script>
     <style type="text/css">
         .currRow {
