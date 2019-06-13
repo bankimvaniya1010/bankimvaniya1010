@@ -317,7 +317,10 @@ public partial class personaldetails : System.Web.UI.Page
             if (rblNationalityNo.Checked)
                 objapplicantDetail.hasdualcitizenship = false;
             if (rblChineseCodeYes.Checked)
+            {
                 objapplicantDetail.chinesecodenumber = txtChineseCodeNumber.Value.Trim();
+                objapplicantDetail.haschinesecodenumber = true;
+            }
             else if (rblChineseCodeNo.Checked)
                 objapplicantDetail.haschinesecodenumber = false;
             if (txtPatronymicName.Value != "")

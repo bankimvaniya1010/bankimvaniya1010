@@ -419,7 +419,7 @@
             $("#<%=ddlNationality.ClientID%>").change(function () {
                 countryVal = $("#<%=ddlNationality.ClientID%>").val().split("_");
                 dualcitizenship = (countryVal[1] == "True");
-                countryName = $("#<%=ddlNationality.ClientID%> option:selected").text();
+                countryName = $("#<%=ddlNationality.ClientID%> option:selected").text().toUpperCase();
 
                 if (dualcitizenship) {
                     $("#<%=dualNationality.ClientID%>").show();
@@ -440,10 +440,10 @@
                     $("#<%=txtPatronymicName.ClientID %>").val('');
                 }
 
-                if (countryName == "China") {
+                if (countryName == "<%=GlobalVariables.GetChinaCountryName %>") {
                     $("#<%=chineseCode.ClientID%>").show();
                 }
-                else if (countryName == "Russian Federation") {
+                else if (countryName == "<%=GlobalVariables.GetRussiaCountryName %>") {
                     $("#<%=russianName.ClientID%>").show();
                 }
             });
