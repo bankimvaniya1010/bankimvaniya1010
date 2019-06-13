@@ -12,7 +12,7 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
+
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
@@ -26,11 +26,11 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx",true);
+            Response.Redirect(webURL + "default.aspx", true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
-        CustomControls = objCom.CustomControlist(formId,universityID);
+        CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
@@ -39,6 +39,7 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             BindRefrenceList();
             SetControlsUniversitywise();
+            SetToolTips();
         }
     }
 
@@ -126,30 +127,31 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     }
 
     protected void btnReference_Click(object sender, EventArgs e)
-    {       
+    {
         try
         {
             var mode = "new";
             var profileReference = (from pInfo in db.applicantreferencecheck
-                               where pInfo.applicantid == userID && pInfo.universityid == universityID
-                               select pInfo).FirstOrDefault();
+                                    where pInfo.applicantid == userID && pInfo.universityid == universityID
+                                    select pInfo).FirstOrDefault();
             applicantreferencecheck objReference = new applicantreferencecheck();
             if (profileReference != null)
             {
                 mode = "update";
                 objReference = profileReference;
             }
-            objReference.name = txtName.Value;              
-                objReference.mobile = txtMobile.Value;
-                objReference.email = txtEmail.Value;
-                objReference.applicantid = userID;
-                objReference.requestsenttime = DateTime.Now;
-                objReference.universityid = universityID;
-                objReference.referncekey = Guid.NewGuid().ToString();
-                if (mode == "new")
-                     db.applicantreferencecheck.Add(objReference);
-                db.SaveChanges();
-
+            objReference.name = txtName.Value;
+            objReference.mobile = txtMobile.Value;
+            objReference.email = txtEmail.Value;
+            objReference.applicantid = userID;
+            objReference.requestsenttime = DateTime.Now;
+            objReference.universityid = universityID;
+            objReference.referncekey = Guid.NewGuid().ToString();
+            if (mode == "new")
+                db.applicantreferencecheck.Add(objReference);
+            db.SaveChanges();
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
 
             var profileInfo = (from pInfo in db.applicantdetails
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
@@ -235,13 +237,13 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     protected void grdRefernce_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         try
-        {                         
+        {
             if (e.CommandName.Equals("Edit"))
             {
                 int applicantid = Convert.ToInt32(e.CommandArgument.ToString());
                 PopulateRefernceInfo(applicantid);
             }
-            
+
         }
         catch (Exception ex)
         {
@@ -259,5 +261,60 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
             txtMobile.Value = RefInfo.mobile;
             txtEmail.Value = RefInfo.email;
         }
+    }
+    private void SetToolTips()
+    {
+
+
+        try
+        {
+            var fields = (from pfm in db.primaryfieldmaster
+                          join utm in db.universitywisetooltipmaster
+                          on pfm.primaryfieldid equals utm.fieldid into
+                          tmpUniversity
+                          from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                          join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                          from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                          where (x.formid == formId || z.formid == formId)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                              tooltips = (x == null ? String.Empty : x.tooltips)
+                          }).ToList();
+
+
+            for (int k = 0; k < fields.Count; k++)
+            {
+                switch (fields[k].primaryfiledname)
+                {
+                    case "NAME":
+                        icName.Attributes.Add("style", "display:block;");
+                        icName.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "MOBILE/CELLULAR NUMBER":
+                        icMobile.Attributes.Add("style", "display:block;");
+                        icMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "EMAIL":
+                        icEmail.Attributes.Add("style", "display:block;");
+                        icEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+
+                    default:
+                        break;
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+
+        }
+    }
+    private String setTooltips(dynamic obj)
+    {
+        return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
 }

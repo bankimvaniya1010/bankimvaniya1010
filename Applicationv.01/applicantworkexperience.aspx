@@ -313,16 +313,10 @@
         }
 
         $(document).ready(function () {
-            $(".fa-question-circle")
-                .mouseover(function () {
-                    var controlId = $(this).attr('id');
-                    var title = $(this).attr('title');
-                    $("#tooltip").text(title);
-                });
+          
               $('.fa-question-circle').tipso({
 				position: 'right',
 				background: 'rgba(0,0,0,0.8)',
-				titleBackground: 'tomato',
 				useTitle: false,
 			});
             $("#<%=chkWebsite.ClientID%>").change(function () {

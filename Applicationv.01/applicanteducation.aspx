@@ -27,6 +27,7 @@
                                             <asp:RadioButton ID="rblHighYes" CssClass="form-control" runat="server" GroupName="highschool" Text="Yes" />
                                             <asp:RadioButton ID="rblHighNo" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I am currently studying for my high school qualification " />
                                             <asp:RadioButton ID="rblHighNot" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I do not have a high school qualification " />
+                                            <span class="helpicon"><i id="ichighschool" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -38,6 +39,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCountryHighSchool_SelectedIndexChanged">
                                             </asp:DropDownList>
+                                            <span class="helpicon"><i id="ichighschoolCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -49,7 +51,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlHighSchoolStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                            <span class="helpicon"><i id="ichighschoolstartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +63,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlHighSchoolEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                            <span class="helpicon"><i id="ichighschoolendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -72,6 +74,7 @@
                                         <label id="labelhighschoolName" runat="server" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
                                         <div class="col-md-6">
                                             <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Name of School">
+                                            <span class="helpicon"><i id="ichighschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -82,7 +85,7 @@
                                         <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
+                                            </asp:DropDownList><span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -93,6 +96,7 @@
                                         <label id="labelhighschoolstudymode" runat="server" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <span class="helpicon"><i id="ichighschoolstudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -103,6 +107,7 @@
                                         <label id="labelhighschoollanguage" runat="server" for="highschoollanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighschoolMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <span class="helpicon"><i id="ichighschoollanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -113,6 +118,7 @@
                                         <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -125,6 +131,7 @@
                                             <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
                                             <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
                                             <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
+                                            <span class="helpicon"><i id="ichighschoolgradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -135,6 +142,7 @@
                                         <label id="labelExpectedHighSchoolDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
                                             <input id="txtExpectedHighSchoolResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                            <span class="helpicon"><i id="icExpectedHighSchoolDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -146,6 +154,7 @@
                                         <div class="col-md-6">
 
                                             <input id="txtHighSchoolVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                            <span class="helpicon"><i id="ichighschoolverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +165,7 @@
                                         <label id="labelhighschoolrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
-
+                                            <span class="helpicon"><i id="ichighschoolrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -167,6 +176,7 @@
                                         <label id="labelhighschoolcontactEmail" runat="server" for="highschoolcontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                         <div class="col-md-6">
                                             <input id="txtHighSchoolcontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                            <span class="helpicon"><i id="ichighschoolcontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -177,6 +187,7 @@
                                         <label id="labelhighschoolcontactMobile" runat="server" for="highschoolcontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification</label>
                                         <div class="col-md-6">
                                             <input id="txtHighSchoolcontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
+                                            <span class="helpicon"><i id="ichighschoolcontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -187,6 +198,7 @@
                                         <label id="labelhigestEducation" runat="server" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
                                         <div class="col-md-6">
                                             <input id="txtHigestEducation" runat="server" type="text" placeholder="Highest Education" value="" class="form-control">
+                                            <span class="helpicon"><i id="ichigestEducation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -258,6 +270,7 @@
                                                 <asp:RadioButton ID="rblSecondaryYes" CssClass="form-control" runat="server" GroupName="Secondary" Text="Yes" />
                                                 <asp:RadioButton ID="rblSecondaryNo" CssClass="form-control" runat="server" GroupName="Secondary" Text="No  - I am currently still studying for my Senior Secondary " />
                                                 <asp:RadioButton ID="rblSecondaryNot" CssClass="form-control" runat="server" GroupName="Secondary" Text="No - I do not have a Senior Secondary qualification" />
+                                                <span class="helpicon"><i id="icSecondary" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -269,6 +282,8 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryCountry" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSecondaryCountry_SelectedIndexChanged">
                                                 </asp:DropDownList>
+                                                <span class="helpicon"><i id="icSecondaryCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+
                                             </div>
                                         </div>
                                     </div>
@@ -280,7 +295,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlSecondaryStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                                <span class="helpicon"><i id="icSecondarystartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -292,7 +307,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlSecondaryEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                                <span class="helpicon"><i id="icSecondaryendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -304,7 +319,7 @@
                                             <div class="col-md-6">
                                                 <input id="txtSecondarySchoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
-">
+"><span class="helpicon"><i id="icSecondaryschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -316,7 +331,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryQualificationType" CssClass="form-control" runat="server">
                                                 </asp:DropDownList>
-
+                                                <span class="helpicon"><i id="icSecondaryQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -327,6 +342,7 @@
                                             <label id="labelSecondarystudymode" runat="server" for="Secondarystudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="icSecondarystudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -337,6 +353,7 @@
                                             <label id="labelSecondarylanguage" runat="server" for="Secondarylanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="icSecondarylanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -347,6 +364,7 @@
                                             <label id="labelSecondarygradetype" runat="server" for="Secondarygradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="icSecondarygradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -359,6 +377,7 @@
                                                 <asp:RadioButton CssClass="form-control" ID="rblSecondarygradeachievedYes" runat="server" GroupName="Secondarygradeachieved" Text="Results Declared" />
                                                 <asp:RadioButton CssClass="form-control" ID="SecondarygradeachievedYet" runat="server" GroupName="Secondarygradeachieved" Text=" Examination not conducted yet" />
                                                 <asp:RadioButton CssClass="form-control" ID="SecondarygradeachievedNo" runat="server" GroupName="Secondarygradeachieved" Text="Examination Conducted, but Result not declared" />
+                                                <span class="helpicon"><i id="icSecondarygradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -369,6 +388,7 @@
                                             <label id="labelExpectedSecondaryDategrade" runat="server" for="ExpectedSecondaryDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
                                                 <input id="txtExpectedSecondaryResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                                <span class="helpicon"><i id="icExpectedSecondaryDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -379,6 +399,7 @@
                                             <label id="labelSecondaryverify" runat="server" for="Secondaryverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondaryVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                                <span class="helpicon"><i id="icSecondaryverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -389,7 +410,7 @@
                                             <label id="labelsecondaryschoolrelation" runat="server" for="secondaryschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
-
+                                                <span class="helpicon"><i id="icsecondaryschoolrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -400,6 +421,7 @@
                                             <label id="labelsecondarycontactEmail" runat="server" for="secondarycontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondarycontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                                <span class="helpicon"><i id="icsecondarycontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -410,6 +432,7 @@
                                             <label id="labelsecondarycontactMobile" runat="server" for="secondarycontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondarycontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
+                                                <span class="helpicon"><i id="icsecondarycontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -481,6 +504,7 @@
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherYes" runat="server" GroupName="higher" Text="Yes" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text=" I am currently studying for my higher qualification" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text="No- I do not have a higher qualification " />
+                                                <span class="helpicon"><i id="ichigher" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -497,6 +521,7 @@
                                                     <asp:ListItem Value="Phd">PhD</asp:ListItem>
                                                     <asp:ListItem Value="Other">Other</asp:ListItem>
                                                 </asp:DropDownList>
+                                                <span class="helpicon"><i id="ichighercourse" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -508,6 +533,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherCountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlHigherCountry_SelectedIndexChanged">
                                                 </asp:DropDownList>
+                                                <span class="helpicon"><i id="ichigherCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -519,7 +545,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlHigherStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                                <span class="helpicon"><i id="ichigherstartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -531,7 +557,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlHigherEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                                <span class="helpicon"><i id="ichigherendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -543,7 +569,7 @@
                                             <div class="col-md-6">
                                                 <input id="txtHigherschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
-">
+"><span class="helpicon"><i id="ichigherschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -555,7 +581,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherQualificationType" CssClass="form-control" runat="server">
                                                 </asp:DropDownList>
-
+                                                <span class="helpicon"><i id="ichigherQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -567,6 +593,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
+                                            <span class="helpicon"><i id="ichigherstudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -576,6 +603,7 @@
                                             <label id="labelhigherlanguage" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="ichigherlanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -586,6 +614,7 @@
                                             <label id="labelhighergradetype" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="ichighergradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -598,6 +627,7 @@
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYes" runat="server" GroupName="highergradeachieved" Text="Results Declared" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYet" runat="server" GroupName="highergradeachieved" Text=" Examination not conducted yet" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedNo" runat="server" GroupName="highergradeachieved" Text="Examination Conducted, but Result not declared" />
+                                                <span class="helpicon"><i id="ichighergradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -608,6 +638,7 @@
                                             <label id="labelExpectedHigherDategrade" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
                                                 <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                                <span class="helpicon"><i id="icExpectedHigherDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -618,6 +649,7 @@
                                             <label id="labelhigherverify" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                                <span class="helpicon"><i id="ichigherverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -628,6 +660,7 @@
                                             <label id="labelhigherrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="ichigherrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -638,6 +671,7 @@
                                             <label id="labelhighercontactEmail" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
                                                 <input id="txtHighercontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                                <span class="helpicon"><i id="ichighercontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -648,6 +682,7 @@
                                             <label id="labelhighercontactMobile" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtHighercontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
+                                                <span class="helpicon"><i id="ichighercontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -779,6 +814,7 @@
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaYes" runat="server" GroupName="diploma" Text="Yes" />
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaNo" runat="server" GroupName="diploma" Text="I am currently studying for my Diploma/Certificate" />
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaNot" runat="server" GroupName="diploma" Text="No - I do not have a Diploma/Certificate qualification" />
+                                            <span class="helpicon"><i id="icdiploma" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -790,6 +826,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaCountry" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlDiplomaCountry_SelectedIndexChanged">
                                             </asp:DropDownList>
+                                            <span class="helpicon"><i id="icdiplomaCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -801,7 +838,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlDiplomaStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                            <span class="helpicon"><i id="icdiplomastartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -813,7 +850,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlDiplomaEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-
+                                            <span class="helpicon"><i id="icdiplomaendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -825,7 +862,7 @@
                                         <div class="col-md-6">
                                             <input id="txtDiplomaschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
-">
+"><span class="helpicon"><i id="icdiplomaschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -838,6 +875,7 @@
                                             <asp:DropDownList ID="ddlDiplomaQualificationType" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
 
+                                            <span class="helpicon"><i id="icdiplomaQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -848,6 +886,7 @@
                                         <label id="labeldiplomastudymode" runat="server" for="diplomastudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <span class="helpicon"><i id="icdiplomastudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -858,6 +897,7 @@
                                         <label id="labeldiplomalanguage" runat="server" for="diplomalanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <span class="helpicon"><i id="icdiplomalanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -868,6 +908,7 @@
                                         <label id="labeldiplomagradetype" runat="server" for="diplomagradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            <span class="helpicon"><i id="icdiplomagradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -880,6 +921,7 @@
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYes" runat="server" GroupName="DiplomaGrade" Text="Results Declared" />
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYet" runat="server" GroupName="DiplomaGrade" Text=" Examination not conducted yet" />
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeNot" runat="server" GroupName="DiplomaGrade" Text="Examination Conducted, but Result not declared" />
+                                            <span class="helpicon"><i id="icdiplomagradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -890,6 +932,7 @@
                                         <label id="labelExpectedDiplomaDategrade" runat="server" for="ExpectedDiplomaDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
                                             <input id="txtExpectedDiplomaResult" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                            <span class="helpicon"><i id="icExpectedDiplomaDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -900,6 +943,7 @@
                                         <label id="labeldiplomaverify" runat="server" for="diplomaverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
+                                            <span class="helpicon"><i id="icdiplomaverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -911,6 +955,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
 
+                                            <span class="helpicon"><i id="icdiplomarelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -921,6 +966,7 @@
                                         <label id="labeldiplomacontactEmail" runat="server" for="diplomacontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomacontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
+                                            <span class="helpicon"><i id="icdiplomacontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -931,6 +977,7 @@
                                         <label id="labeldiplomacontactMobile" runat="server" for="diplomacontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomacontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
+                                            <span class="helpicon"><i id="icdiplomacontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -1030,12 +1077,11 @@
     </div>
     <script>
         $(document).ready(function () {
-            $(".form-control")
-                .mouseover(function () {
-                    var controlId = $(this).attr('id');
-                    var title = $(this).attr('title');
-                    $("#tooltip").text(title);
-                });
+            $('.fa-question-circle').tipso({
+                position: 'right',
+                background: 'rgba(0,0,0,0.8)',
+                useTitle: false,
+            });
             var input = document.querySelector("#<%=txtHighSchoolcontactMobile.ClientID%>");
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
@@ -1058,31 +1104,31 @@
                 var country = $("#<%=ddlCountryHighSchool.ClientID%>").val();
                 var grade = $("#<%=ddlHighSchoolGrade.ClientID%>").val();
                 var course = "tenth"
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             $("#<%=btn12th.ClientID%>").click(function () {
                 var country = $("#<%=ddlSecondaryCountry.ClientID%>").val();
                 var grade = $("#<%=ddlSecondaryGrade.ClientID%>").val();
                 var course = "twelth"
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             $("#<%=btnhigher.ClientID%>").click(function () {
                 var country = $("#<%=ddlHigherCountry.ClientID%>").val();
                 var grade = $("#<%=ddlHigherGrade.ClientID%>").val();
                 var course = $("#<%=ddlCourse.ClientID%>").val()
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
             $("#<%=btndiploma.ClientID%>").click(function () {
                 var country = $("#<%=ddlDiplomaCountry.ClientID%>").val();
                 var grade = $("#<%=ddlDiplomaGrade.ClientID%>").val();
                 var course = "diploma"
-                var w = window.open("/addgrade.aspx?g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
 
             });
-           
+
             ToggleDiploma();
             ToggleHigherEducatin();
             ToggleSecondary();
@@ -1095,7 +1141,7 @@
         //Handle High School
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$highschool']").click(function () {
-                ToggleDiploma();
+                ToggleHighSchool();
             });
         });
         //handle higher secondary
@@ -1352,27 +1398,7 @@
                 $("#<%=highschoolcontactMobile.ClientID%>").show();
                 $("#SecondarySection").show();
             }
-            else if ($("#<%=rblHighNot.ClientID%>").is(":checked")) {
-                $("#<%=highschoolCountry.ClientID%>").hide();
-                $("#<%=highschoolstartDate.ClientID%>").hide();
-                $("#<%=highschoolendDate.ClientID%>").hide();
-                $("#<%=highschoolstudymode.ClientID%>").hide();
-                $("#<%=highschoollanguage.ClientID%>").hide();
-                $("#<%=gradetype.ClientID%>").hide();
-                $("#<%=highschoolgradeachieved.ClientID%>").hide();
-                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
-                $("#<%=highschoolverify.ClientID%>").hide();
-                $("#<%=highschoolrelation.ClientID%>").hide();
-                $("#<%=highschoolcontactEmail.ClientID%>").hide();
-                $("#highschoolYear").hide();
-                $("#<%=highschoolName.ClientID%>").hide();
-                $("#<%=highschoolQualificationtype.ClientID%>").hide();
-                $("#<%=higestEducation.ClientID%>").show();
-                $("#SecondarySection").hide();
-                $("#<%=highshoolgrade.ClientID%>").hide();
-                $("#<%=highschoolcontactMobile.ClientID%>").hide();
-            }
-            else {
+            else if ($("#<%=rblHighNo.ClientID%>").is(":checked")) {
                 $("#<%=highschoolCountry.ClientID%>").show();
                 $("#<%=highschoolstartDate.ClientID%>").show();
                 $("#<%=highschoolendDate.ClientID%>").show();
@@ -1391,6 +1417,27 @@
                 $("#SecondarySection").hide();
                 $("#<%=highshoolgrade.ClientID%>").hide();
                 $("#<%=highschoolcontactMobile.ClientID%>").hide();
+            }
+            else {
+                $("#<%=highschoolCountry.ClientID%>").hide();
+                $("#<%=highschoolstartDate.ClientID%>").hide();
+                $("#<%=highschoolendDate.ClientID%>").hide();
+                $("#<%=highschoolstudymode.ClientID%>").hide();
+                $("#<%=highschoollanguage.ClientID%>").hide();
+                $("#<%=gradetype.ClientID%>").hide();
+                $("#<%=highschoolgradeachieved.ClientID%>").hide();
+                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
+                $("#<%=highschoolverify.ClientID%>").hide();
+                $("#<%=highschoolrelation.ClientID%>").hide();
+                $("#<%=highschoolcontactEmail.ClientID%>").hide();
+                $("#highschoolYear").hide();
+                $("#<%=highschoolName.ClientID%>").hide();
+                $("#<%=highschoolQualificationtype.ClientID%>").hide();
+                $("#<%=higestEducation.ClientID%>").show();
+                $("#SecondarySection").hide();
+                $("#<%=highshoolgrade.ClientID%>").hide();
+                $("#<%=highschoolcontactMobile.ClientID%>").hide();
+
             }
         }
         function ConfirmOnDelete(item) {
@@ -1411,9 +1458,9 @@
             else if ((!$("#<%=highschoolCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlCountryHighSchool.ClientID%>").val() == "0"))
                 alert("Please select  high school country");
             else if ((!$("#<%=highschoolstartDate.ClientID%>").is(':hidden')) && (($("#<%=ddlHighSchoolStartDateMonth.ClientID%>").val() == "0") || ($("#<%=ddlHighSchoolStartDateYear.ClientID%>").val() == "0")))
-                alert("Please select high start date");
+                alert("Please select high school start date");
             else if ((!$("#<%=highschoolendDate.ClientID%>").is(':hidden')) && (($("#<%=ddlHighSchoolEndDateMonth.ClientID%>").val() == "0") || ($("#<%=ddlHighSchoolEndDateYear.ClientID%>").val() == "0")))
-                alert("Please select high end date");
+                alert("Please select high school end date");
             else if ((!$("#<%=highschoolName.ClientID%>").is(':hidden')) && ($("#<%=txthighschoolName.ClientID%>").val() == ""))
                 alert("Please enter high school name");
             else if ((!$("#<%=highschoolQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolQualificationType.ClientID%>").val() == "0"))
@@ -1423,7 +1470,7 @@
             else if ((!$("#<%=highschoollanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlHighschoolMedium.ClientID%>").val() == "0"))
                 alert("Please select  high school medium");
             else if ((!$("#<%=gradetype.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolGrade.ClientID%>").val() == "0"))
-                alert("Please select  high school grade");
+                alert("Please select  high school grade type");
             else if (!$("#<%=highschoolgradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblYes.ClientID%>").is(':checked') || $("#<%=rblNot.ClientID%>").is(':checked') || $("#<%=rblYetToConduct.ClientID%>").is(':checked')))
                 alert("Please select have you achieved high school final grade");
             else if ((!$("#<%=ExpectedHighSchoolDategrade.ClientID%>").is(':hidden')) && ($("#<%=txtExpectedHighSchoolResult.ClientID%>").val() == ""))
@@ -1432,11 +1479,10 @@
                 alert("Please enter high school contact person name");
             else if ((!$("#<%=highschoolrelation.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolVerificationRelationship.ClientID%>").val() == "0"))
                 alert("Please select high school relationship with contact");
-            else if ((!$("#<%=highschoolcontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtHighSchoolcontactMobile.ClientID%>").val() == ""))
-                alert("Please enter  high school contact mobile no");
             else if ((!$("#<%=highschoolcontactEmail.ClientID%>").is(':hidden')) && (($("#<%=txtHighSchoolcontactEmail.ClientID%>").val() == "") && (!emailRegex.test($("#<%=txtHighSchoolcontactEmail.ClientID%>").val()))))
                 alert("Please enter a valid  e-mail address");
-
+            else if ((!$("#<%=highschoolcontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtHighSchoolcontactMobile.ClientID%>").val() == ""))
+                alert("Please enter  high school contact mobile no");
             else if ((!$("#<%=Secondary.ClientID%>").is(':hidden')) && !(($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNot.ClientID%>").is(":checked"))))
                 alert("Please Select Option to record Secondary details");
             else if ((!$("#<%=SecondaryCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryCountry.ClientID%>").val() == "0"))
@@ -1454,7 +1500,7 @@
             else if ((!$("#<%=Secondarylanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryMedium.ClientID%>").val() == "0"))
                 alert("Please select secondary medium");
             else if ((!$("#<%=Secondarygradetype.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryGrade.ClientID%>").val() == "0"))
-                alert("Please select secondary grade");
+                alert("Please select secondary grade type");
             else if (!$("#<%=Secondarygradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(':checked') || $("#<%=SecondarygradeachievedYet.ClientID%>").is(':checked') || $("#<%=SecondarygradeachievedYet.ClientID%>").is(':checked')))
                 alert("Please select have you achieved secondary final grade");
             else if ((!$("#<%=ExpectedSecondaryDategrade.ClientID%>").is(':hidden')) && ($("#<%=txtExpectedSecondaryResult.ClientID%>").val() == ""))
@@ -1463,47 +1509,44 @@
                 alert("Please enter secondary contact person name");
             else if ((!$("#<%=secondaryschoolrelation.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryVerificationRelationship.ClientID%>").val() == "0"))
                 alert("Please select secondary relationship with contact");
-            else if ((!$("#<%=secondarycontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtSecondarycontactMobile.ClientID%>").val() == ""))
-                alert("Please enter  secondary contact mobile no");
             else if ((!$("#<%=secondarycontactEmail.ClientID%>").is(':hidden')) && (($("#<%=txtSecondarycontactEmail.ClientID%>").val() == "") && (!emailRegex.test($("#<%=txtSecondarycontactEmail.ClientID%>").val()))))
                 alert("Please enter a valid secondary e-mail address");
-
+            else if ((!$("#<%=secondarycontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtSecondarycontactMobile.ClientID%>").val() == ""))
+                alert("Please enter  secondary contact mobile no");
             else if ((!$("#<%=higher.ClientID%>").is(':hidden')) && !(($("#<%=rblhigherYes.ClientID%>").is(":checked")) || ($("#<%=rblhigherNo.ClientID%>").is(":checked")) || ($("#<%=rblhigherNot.ClientID%>").is(":checked"))))
                 alert("Please Select Option to record Secondary details");
             else if ((!$("#<%=highercourse.ClientID%>").is(':hidden')) && ($("#<%=ddlCourse.ClientID%>").val() === ""))
-                alert("Please select  higher course");
+                alert("Please select  higher education course");
             else if ((!$("#<%=higherCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherCountry.ClientID%>").val() == "0"))
-                alert("Please select  higher country");
+                alert("Please select  higher education country");
             else if ((!$("#<%=higherstartDate.ClientID%>").is(':hidden')) && (($("#<%=ddlHigherStartDateMonth.ClientID%>").val() == "0") || ($("#<%=ddlHigherStartDateYear.ClientID%>").val() == "0")))
-                alert("Please select higher start date");
+                alert("Please select higher education start date");
             else if ((!$("#<%=higherendDate.ClientID%>").is(':hidden')) && (($("#<%=ddlHigherEndDateMonth.ClientID%>").val() == "0") || ($("#<%=ddlHigherEndDateYear.ClientID%>").val() == "0")))
-                alert("Please select higher end date");
+                alert("Please select higher education end date");
 
             else if ((!$("#<%=higherschoolName.ClientID%>").is(':hidden')) && ($("#<%=txtHigherschoolName.ClientID%>").val() == ""))
-                alert("Please enter higher school name");
+                alert("Please enter higher education school name");
             else if ((!$("#<%=higherQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherQualificationType.ClientID%>").val() == "0"))
-                alert("Please select higher qualification type");
+                alert("Please select higher education qualification type");
             else if ((!$("#<%=higherstudymode.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherStudyMode.ClientID%>").val() == "0"))
-                alert("Please select higher study mode");
+                alert("Please select higher education study mode");
             else if ((!$("#<%=higherlanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherMedium.ClientID%>").val() == "0"))
-                alert("Please select higher medium");
+                alert("Please select higher education medium");
             else if ((!$("#<%=highergradetype.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherGrade.ClientID%>").val() == "0"))
-                alert("Please select higher grade");
+                alert("Please select higher education grade type");
 
             else if (!$("#<%=highergradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedYet.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedNo.ClientID%>").is(':checked')))
-                alert("Please select have you achieved higher  grade");
+                alert("Please select have you achieved higher education grade");
             else if ((!$("#<%=ExpectedHigherDategrade.ClientID%>").is(':hidden')) && ($("#<%=txtExpectedHigherDategrade.ClientID%>").val() == ""))
-                alert("Please enter higher grade declaration date");
+                alert("Please enter higher education grade declaration date");
             else if ((!$("#<%=higherverify.ClientID%>").is(':hidden')) && ($("#<%=txtHigherVerificationName.ClientID%>").val() == ""))
-                alert("Please enter higher contact person name");
+                alert("Please enter higher education contact person name");
             else if ((!$("#<%=higherrelation.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherVerificationRelationship.ClientID%>").val() == "0"))
-                alert("Please select higher relationship with contact");
-            else if ((!$("#<%=highercontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtHighercontactMobile.ClientID%>").val() == ""))
-                alert("Please enter  higher contact mobile no");
-
+                alert("Please select higher education relationship with contact");
             else if ((!$("#<%=highercontactEmail.ClientID%>").is(':hidden')) && (($("#<%=txtHighercontactEmail.ClientID%>").val() == "") && (!emailRegex.test($("#<%=txtHighercontactEmail.ClientID%>").val()))))
-                alert("Please enter a valid higher e-mail address");
-
+                alert("Please enter a valid higher education e-mail address");
+            else if ((!$("#<%=highercontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtHighercontactMobile.ClientID%>").val() == ""))
+                alert("Please enter  higher education contact mobile no");
             else if ((!$("#<%=diploma.ClientID%>").is(':hidden')) && !(($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNot.ClientID%>").is(":checked"))))
                 alert("Please Select Option to record Secondary details");
             else if ((!$("#<%=diplomaCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlDiplomaCountry.ClientID%>").val() == "0"))
@@ -1522,7 +1565,7 @@
             else if ((!$("#<%=diplomalanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlDiplomaMedium.ClientID%>").val() == "0"))
                 alert("Please select diploma medium");
             else if ((!$("#<%=diplomagradetype.ClientID%>").is(':hidden')) && ($("#<%=ddlDiplomaGrade.ClientID%>").val() == "0"))
-                alert("Please select diploma grade");
+                alert("Please select diploma grade type");
             else if ((!$("#<%=diplomagradeachieved.ClientID%>").is(':hidden')) && !(($("#<%=rblDiplomaGradeYes.ClientID%>").is(":checked")) || ($("#<%=rblDiplomaGradeYet.ClientID%>").is(":checked")) || ($("#<%=rblDiplomaGradeNot.ClientID%>").is(":checked"))))
                 alert("Please select have you achieved diploma final grade");
             else if ((!$("#<%=ExpectedDiplomaDategrade.ClientID%>").is(':hidden')) && ($("#<%=txtExpectedDiplomaResult.ClientID%>").val() == ""))
@@ -1531,17 +1574,16 @@
                 alert("Please enter diploma contact person name");
             else if ((!$("#<%=diplomarelation.ClientID%>").is(':hidden')) && ($("#<%=ddlDiplomaVerificationRelationship.ClientID%>").val() == "0"))
                 alert("Please select diploma relationship with contact");
-            else if ((!$("#<%=diplomacontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtDiplomacontactMobile.ClientID%>").val() == ""))
-                alert("Please enter  diploma contact mobile no");
             else if ((!$("#<%=diplomacontactEmail.ClientID%>").is(':hidden')) && (($("#<%=txtDiplomacontactEmail.ClientID%>").val() == "") && (!emailRegex.test($("#<%=txtDiplomacontactEmail.ClientID%>").val()))))
                 alert("Please enter a valid diploma e-mail address");
-
+            else if ((!$("#<%=diplomacontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtDiplomacontactMobile.ClientID%>").val() == ""))
+                alert("Please enter  diploma contact mobile no");
             else
                 flag = true;
             if (flag == true)
                 flag = customcontrolValidation();
             return flag;
-           
+
         }
         function customcontrolValidation() {
             var flag = false;

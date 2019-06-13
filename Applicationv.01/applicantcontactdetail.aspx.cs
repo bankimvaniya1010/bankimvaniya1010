@@ -216,7 +216,8 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
-            objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }
@@ -238,7 +239,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                           from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
                           join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
                           from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
-                          where (x.formid == formId ||z.formid== formId)
+                          where (x.formid == formId || z.formid == formId)
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname,
@@ -257,7 +258,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         break;
                     case "MOBILE/CELLULAR NUMBER":
                         icMobile.Attributes.Add("style", "display:block;");
-                        icEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        icMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "HOME PHONE":
                         icHomePhone.Attributes.Add("style", "display:block;");

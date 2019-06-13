@@ -9,11 +9,12 @@ using System.Web.UI.WebControls;
 public partial class applicantlanguage : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0 , universityID;
+    int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,12 +26,17 @@ public partial class applicantlanguage : System.Web.UI.Page
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx",true);
+            Response.Redirect(webURL + "default.aspx", true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlLanguage);
             SetToolTips();
             BindGrade();
@@ -134,7 +140,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                     case "NAME OF COLLEGE OR UNIVERSITY":
                         NameCollege.Attributes.Add("style", "display:block;");
                         labelNameCollege.InnerHtml = setInnerHtml(fields[k]);
-                        break;                    
+                        break;
                     case "QUALIFICATION TYPE":
                         QualificationType.Attributes.Add("style", "display:block;");
                         labelQualificationType.InnerHtml = setInnerHtml(fields[k]);
@@ -195,98 +201,141 @@ public partial class applicantlanguage : System.Web.UI.Page
     }
     private void SetToolTips()
     {
+
+
         try
         {
-            lstToolTips = db.tooltipmaster.ToList();
-            for (int k = 0; k < lstToolTips.Count; k++)
+            var fields = (from pfm in db.primaryfieldmaster
+                          join utm in db.universitywisetooltipmaster
+                          on pfm.primaryfieldid equals utm.fieldid into
+                          tmpUniversity
+                          from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                          join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                          from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                          where (x.formid == formId || z.formid == formId)
+                          select new
+                          {
+                              primaryfiledname = pfm.primaryfiledname,
+                              universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                              tooltips = (x == null ? String.Empty : x.tooltips)
+                          }).ToList();
+
+
+            for (int k = 0; k < fields.Count; k++)
             {
-                switch (lstToolTips[k].field)
+                switch (fields[k].primaryfiledname)
                 {
-
-                    case "Speakinglanguage":
-                        txthomelanguage.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
+                        ichomelanguage.Attributes.Add("style", "display:block;");
+                        ichomelanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Haveintensive":
-                        rblYes.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblNot.Attributes.Add("title", lstToolTips[k].tooltips);
-
+                    case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
+                        icEnglishBackground.Attributes.Add("style", "display:block;");
+                        icEnglishBackground.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Intensivecountry":
-                        ddlLanguage.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                        icEnglishTest.Attributes.Add("style", "display:block;");
+                        icEnglishTest.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "CompletionYear":
-                        txtYearCompletion.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "TEST NAME":
+                        ictestName.Attributes.Add("style", "display:block;");
+                        ictestName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IntensiveSchoolName":
-                        txtNameCollege.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "CENTRE NO":
+                        icCentreNo.Attributes.Add("style", "display:block;");
+                        icCentreNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Intensivestudymode":
-                        ddlStudyMode.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "CANDIDATE NO":
+                        icCandidateNo.Attributes.Add("style", "display:block;");
+                        icCandidateNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IntensiveQualiicationtype":
-                        ddlQualificationType.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "CANDIDATE ID":
+                        icCandidateID.Attributes.Add("style", "display:block;");
+                        icCandidateID.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IntensiveGradeType":
-                        ddlGrade.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "TEST DATE":
+                        icLanguageTestDate.Attributes.Add("style", "display:block;");
+                        icLanguageTestDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Intesivegradeachieved":
-                        rblEnglishBackgroundNo.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblEnglishBackgroundYes.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblEnglishBackgroundNot.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "OVERALL SCORE":
+                        icLanguageScore.Attributes.Add("style", "display:block;");
+                        icLanguageScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HaveEnglishTest":
-                        rblLanguageielts.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblLanguagepearsons.Attributes.Add("title", lstToolTips[k].tooltips);
-                        rblLanguagtofel.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "COUNTRY OF ENGLISH LANGUAGE INTENSIVE COURSE":
+                        icLanguage.Attributes.Add("style", "display:block;");
+                        icLanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Testname":
-                        txtTestName.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "YEAR OF COMPLETION/EXPECTED":
+                        icYearCompletion.Attributes.Add("style", "display:block;");
+                        icYearCompletion.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Centerno":
-                        txtCentreNo.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "NAME OF COLLEGE OR UNIVERSITY":
+                        icNameCollege.Attributes.Add("style", "display:block;");
+                        icNameCollege.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "CandidateID":
-                        txtCandidateID.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "QUALIFICATION TYPE":
+                        icQualificationType.Attributes.Add("style", "display:block;");
+                        icQualificationType.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Candidateno":
-                        txtCandidateNo.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "Name of Qualification":
+                        icQualificationName.Attributes.Add("style", "display:block;");
+                        icQualificationName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "TestDate":
-                        txtLanguageTestDate.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "MODE OF STUDY":
+                        icstudymode.Attributes.Add("style", "display:block;");
+                        icstudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "OverAllScore":
-                        txtLanguageScore.Attributes.Add("title", lstToolTips[k].tooltips);
-
+                    case "GRADE TYPE":
+                        icgradetype.Attributes.Add("style", "display:block;");
+                        icgradetype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "RedingScore":
-                        txtReading.Attributes.Add("title", lstToolTips[k].tooltips);
-
+                    case "FINAL GRADE ACHIEVED":
+                        icgradeachieved.Attributes.Add("style", "display:block;");
+                        icgradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "ListeningScore":
-                        txtListening.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "SPEAKING SCORE":
+                        icSpeakingScore.Attributes.Add("style", "display:block;");
+                        icSpeakingScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "WritingScore":
-                        txtWriting.Attributes.Add("title", lstToolTips[k].tooltips);
-
+                    case "LISTENING SCORE":
+                        icListeningScore.Attributes.Add("style", "display:block;");
+                        icListeningScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "SpeakingScore":
-                        txtSpeaking.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "READING SCORE":
+                        icReadingScore.Attributes.Add("style", "display:block;");
+                        icReadingScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "CEFRLevel":
-                        ddlCEFR.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "WRITING SCORE":
+                        icWritingScore.Attributes.Add("style", "display:block;");
+                        icWritingScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "TestRefrenceno":
-                        txttestRefno.Attributes.Add("title", lstToolTips[k].tooltips);
+                    case "CEFR LEVEL":
+                        icCEFR.Attributes.Add("style", "display:block;");
+                        icCEFR.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "TEST REPORT REFERENCE NO":
+                        ictestRefno.Attributes.Add("style", "display:block;");
+                        ictestRefno.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "EXPECTED DATE WHEN RESULTS WILL BE DECLARED":
+                        icExpectedDategrade.Attributes.Add("style", "display:block;");
+                        icExpectedDategrade.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     default:
                         break;
+
                 }
             }
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
+
         }
+    }
+    private String setTooltips(dynamic obj)
+    {
+        return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
     private void BindStudyMode()
     {
@@ -304,7 +353,7 @@ public partial class applicantlanguage : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
-    }   
+    }
 
     private void BindGrade()
     {
@@ -395,7 +444,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                     ddlGrade.Items.FindByValue(LanguageInfo.gradetype.ToString()).Selected = true;
                 }
                 txtExpectedDategrade.Value = Convert.ToDateTime(LanguageInfo.expectedgraderesult).ToString("yyyy-MM-dd");
-                if(LanguageInfo.qualificationtype != null)
+                if (LanguageInfo.qualificationtype != null)
                 {
                     ddlQualificationType.ClearSelection();
                     ddlQualificationType.Items.FindByValue(LanguageInfo.qualificationtype.ToString()).Selected = true;
@@ -414,13 +463,13 @@ public partial class applicantlanguage : System.Web.UI.Page
                 txtCandidateID.Value = LanguageInfo.candidateid;
                 if (LanguageInfo.yearofcompletion != null)
                     txtYearCompletion.Value = Convert.ToDateTime(LanguageInfo.yearofcompletion).ToString("yyyy-MM-dd");
-                txtNameCollege.Value = LanguageInfo.instituename;               
+                txtNameCollege.Value = LanguageInfo.instituename;
                 txtQualificationName.Value = LanguageInfo.qualificationname;
                 if (LanguageInfo.giveenglishtest == 1)
                     rblLanguageielts.Checked = true;
                 else if (LanguageInfo.giveenglishtest == 2)
                     rblLanguagepearsons.Checked = true;
-                else 
+                else
                     rblLanguagtofel.Checked = true;
                 if (LanguageInfo.examdate != null)
                     txtLanguageTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
@@ -533,6 +582,8 @@ public partial class applicantlanguage : System.Web.UI.Page
             if (mode == "new")
                 db.applicantlanguagecompetency.Add(objLanguage);
             db.SaveChanges();
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }

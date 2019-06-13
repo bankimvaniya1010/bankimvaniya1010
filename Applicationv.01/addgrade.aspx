@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Student - Dashboard</title>
-
+    <link href="assets/css/tipso.min.css" rel="stylesheet" />
     <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
     <meta name="robots" content="noindex">
 
@@ -45,10 +45,10 @@
                         <div class="card" style="width: 650px;">
 
                             <div class="list-group list-group-fit">
-                                <div class="list-group-item">
-                                    <div class="form-group m-0" role="group" aria-labelledby="label-email">
+                                <div class="list-group-item" id="Qualification" runat="server" style="display: none;">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-Qualification">
                                         <div class="form-row">
-                                            <label id="label-email" for="email" class="col-md-3 col-form-label form-label">Qualification</label>
+                                            <label id="labelQualification" runat="server" for="Qualification" class="col-md-3 col-form-label form-label">Qualification</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlCourse" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="" Text="Select Course"></asp:ListItem>
@@ -59,53 +59,53 @@
                                                     <asp:ListItem Value="Phd" Text="Phd"></asp:ListItem>
                                                     <asp:ListItem Value="diploma" Text="Diploma"></asp:ListItem>
                                                     <asp:ListItem Value="Other" Text="Other"></asp:ListItem>
-                                                </asp:DropDownList>
+                                                </asp:DropDownList><span class="helpicon"><i id="icQualification" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item">
+                                <div class="list-group-item" id="Subject" runat="server" style="display: none;">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                                         <div class="form-row">
-                                            <label id="label-Mobile" for="Mobile" class="col-md-3 col-form-label form-label">Subject</label>
+                                            <label id="labelSubject" runat="server" for="Subject" class="col-md-3 col-form-label form-label">Subject</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlsubjects" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlsubjects" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icSubject" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="other" style="display: none;">
+                                <div class="list-group-item" id="OtherSubject" runat="server" style="display: none;">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Others">
                                         <div class="form-row">
-                                            <label id="label-others" for="Mobile" class="col-md-3 col-form-label form-label">Other Subject</label>
+                                            <label id="labelothers" runat="server" for="Others" class="col-md-3 col-form-label form-label">Other Subject</label>
                                             <div class="col-md-6">
-                                                <input id="txtOther" runat="server" type="text" placeholder="Subject" value="" class="form-control" />
+                                                <input id="txtOther" runat="server" type="text" placeholder="Subject" value="" class="form-control" /><span class="helpicon"><i id="icOtherSubject" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item">
-                                    <div class="form-group m-0" role="group" aria-labelledby="label-phone">
+                                <div class="list-group-item" id="gradeType" runat="server" style="display: none;">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-gradeType">
                                         <div class="form-row">
-                                            <label id="label-phone" for="phone" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                            <label id="labelgradeType" runat="server" for="phone" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlGradeType" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlGradeType" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icGradeType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item">
-                                    <div class="form-group m-0" role="group" aria-labelledby="label-skype">
+                                <div class="list-group-item" id="grade" runat="server" style="display: none;">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-grade">
                                         <div class="form-row">
-                                            <label id="label-skype" for="skype" class="col-md-3 col-form-label form-label">Grade</label>
+                                            <label id="labelGrade" runat="server" for="grade" class="col-md-3 col-form-label form-label">Grade</label>
                                             <div class="col-md-6">
-                                                <input id="txtGrade" runat="server" type="text" placeholder="Grade" value="" class="form-control" />
+                                                <input id="txtGrade" runat="server" type="text" placeholder="Grade" value="" class="form-control" /><span class="helpicon"><i id="icGrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="page-nav__content" style="margin: 20px">
-                                    <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                    <asp:Button ID="btn_login" OnClientClick="return validateForm()" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
 
                                 </div>
 
@@ -128,63 +128,30 @@
         </div>
     </form>
     <script src="assets/vendor/jquery.min.js"></script>
+      <script src="assets/js/tipso.min.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#<%=btn_login.ClientID%>').click(function () {
-               
-                var summary = "";
-                summary += isvalidCourse();
-                summary += isvalidGrade();
-                summary += isvalidSubject();
-                summary += isvalidGradeValue();
-              
-                if (summary != "") {
-                    alert(summary);
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            });
-        });
 
 
 
-
-        function isvalidCourse() {
-            if ($("#<%=ddlCourse.ClientID%>").val() == "") {
-                return ("Please select course" + "\n");
-            }
-            else {
-                return "";
-            }
+        function validateForm() {
+            var flag = false;
+            if (!$("#<%=Qualification.ClientID%>").is(':hidden') && $("#<%=ddlCourse.ClientID%>").val() == "")
+                alert("Please Select Course name ");
+            else if (!$("#<%=Subject.ClientID%>").is(':hidden') && $("#<%=ddlsubjects.ClientID%>").val() == "0")
+                alert("Please Select Subject ");
+            else if (!$("#<%=OtherSubject.ClientID%>").is(':hidden') && $("#<%=txtOther.ClientID%>").val() == "")
+                alert("Please enter other subjects ");
+            else if (!$("#<%=gradeType.ClientID%>").is(':hidden') && $("#<%=ddlGradeType.ClientID%>").val() == "0")
+                alert("Please select valid grade type ");
+            else if (!$("#<%=grade.ClientID%>").is(':hidden') && $("#<%=txtGrade.ClientID%>").val() == "")
+                alert("Please enter grade value ");
+            else
+                flag = true;
+            return flag;
         }
-        function isvalidGrade() {
 
-            if ($("#<%=ddlGradeType.ClientID%>").val() == "0") {
-                return ("Please select valid grade" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidSubject() {
 
-            if ($("#<%=ddlsubjects.ClientID%>").val() == "0") {
-                return ("Please select valid subject" + "\n");
-            }
-            else {
-                if (($("#<%=ddlsubjects.ClientID%>").val() == "Others") && ($("#<%=txtOther.ClientID%>").val() == "")) {
-                    return ("Please enter other subject details" + "\n");
-                }
-            }
-        }
-        function isvalidGradeValue() {
-            if ($("#<%=txtGrade.ClientID%>").val() == "") {
-                return ("Please enter grade value" + "\n");
-            }
 
-        }
         function RefreshParent() {
             if (window.opener != null && !window.opener.closed) {
                 window.opener.location.reload();
@@ -201,6 +168,11 @@
                     $('#other').css({ 'display': 'none' });
                 }
 
+            });
+            $('.fa-question-circle').tipso({
+                position: 'right',
+                background: 'rgba(0,0,0,0.8)',
+                useTitle: false,
             });
         });
     </script>
