@@ -7,9 +7,6 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using System.Globalization;
 using System.Text;
-using System.Web.Services;
-using System.Web.Script.Services;
-using Newtonsoft.Json;
 
 public partial class personaldetails : System.Web.UI.Page
 {
@@ -578,14 +575,5 @@ public partial class personaldetails : System.Web.UI.Page
         sb.Append(webURL + "registeragent.aspx" + " <br/>");
         sb.Append("Thank You Backend Team The Application Center,<br/>");
         objCom.SendMail(txtAgentname.Text, sb.ToString(), "Agent Registration Link");
-    }
-
-    [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
-    public static string checkDualCitizenship(int countryId)
-    {
-        GTEEntities db1 = new GTEEntities();
-        var temp = db1.countriesmaster.Where(x => x.id == countryId).Select(x => new { dualcitizenship = x.dual_citizenship_allowed }).ToList();
-        return JsonConvert.SerializeObject(temp);
     }
 }

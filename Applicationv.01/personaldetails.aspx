@@ -378,19 +378,14 @@
                 dualcitizenship = (countryVal[1] == "True");
                 countryId = countryVal[0];
 
-                if (dualcitizenship === true) {
-                    if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
-                        $("#<%=dualNationality.ClientID%>").show();
-                    }
+                if (dualcitizenship) {
+                    $("#<%=dualNationality.ClientID%>").show();
                 }
                 else {
-                    if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
-                        $("#<%=dualNationality.ClientID%>").hide();
-                        $("#<%=dualNationality.ClientID %> input[type='radio']").prop('checked', false);
-                        $("#<%=ddlOtherNation.ClientID %>")[0].selectedIndex = 0;
-                    }
+                    $("#<%=dualNationality.ClientID%>").hide();
+                    $("#<%=dualNationality.ClientID %> input[type='radio']").prop('checked', false);
+                    $("#<%=ddlOtherNation.ClientID %>")[0].selectedIndex = 0;
                 }
-                
             });
 
             // to handle Tool tips
