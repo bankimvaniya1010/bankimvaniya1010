@@ -487,17 +487,33 @@ public class Common
         }
         return country;
     }
-    public void BindCountries(DropDownList ddl)
+    public void BindCountries(DropDownList ddl, bool addCitizenshipFlag = false)
     {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
             var studymode = db.countriesmaster.ToList();
-            ddl.DataSource = studymode;
-            ddl.DataTextField = "country_name";
-            ddl.DataValueField = "id";
-            ddl.DataBind();
-            ddl.Items.Insert(0, lst);
+            if (addCitizenshipFlag)
+            {
+                lst.Value += "_False";
+                ddl.Items.Insert(0, lst);
+                for (int i = 0; i < studymode.Count; i++)
+                {
+                    ListItem item = new ListItem();
+                    item.Text = studymode[i].country_name;
+                    item.Value = studymode[i].id + "_" + studymode[i].dual_citizenship_allowed;
+                    ddl.Items.Insert(i + 1, item);
+                }
+            }
+            else
+            {
+                ddl.DataSource = studymode;
+                ddl.DataTextField = "country_name";
+                ddl.DataValueField = "id";
+                ddl.DataBind();
+                ddl.Items.Insert(0, lst);
+            }
+                
         }
         catch (Exception ex)
         {
@@ -509,7 +525,7 @@ public class Common
         try
         {
             ListItem lst = new ListItem("Please select time zone", "0");
-            var timezones = db.timezonemaster.Select(x => new { id = x.ID, textField = "("+ x.time_zone_value +") "+ x.time_zone_name }).ToList();
+            var timezones = db.timezonemaster.Select(x => new { id = x.ID, textField = "(" + x.time_zone_value + ") " + x.time_zone_name }).ToList();
             ddl.DataSource = timezones;
             ddl.DataTextField = "textField";
             ddl.DataValueField = "id";

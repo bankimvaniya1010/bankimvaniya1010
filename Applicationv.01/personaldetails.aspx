@@ -287,9 +287,9 @@
                 alert("Please Select Option to record Gender");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0")))
                 alert("Please Select valid date of birth");
-            else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val() === "0")
+            else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val().split("_")[0] === "0")
                 alert("Please select valid nationality");
-            else if (!$("#<%=rblNationalityYes.ClientID%>").is(':checked') && !$("#<%=secondNation.ClientID%>").is(':hidden') && $("#<%=ddlOtherNation.ClientID%>").val() === "0")
+            else if (!$("#<%=nationality.ClientID%>").is(':hidden') && !$("#<%=rblNationalityYes.ClientID%>").is(':checked') && !$("#<%=secondNation.ClientID%>").is(':hidden') && $("#<%=ddlOtherNation.ClientID%>").val() === "0")
                 alert("Please select valid second nationality");
             else if (!$("#<%=birthcountry.ClientID%>").is(':hidden') && $("#<%=ddlBirthCountry.ClientID%>").val() === "0")
                 alert("Please select valid birth country");
@@ -374,38 +374,24 @@
             });
             
             $("#<%=ddlNationality.ClientID%>").change(function () {
-                $.ajax({
-                    type: "GET",
-                    url: "personaldetails.aspx/checkDualCitizenship",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: { countryId: $("#<%=ddlNationality.ClientID%>").val() },
-                    success: function (response) {
-                        if (response.d) {
-                            var result = JSON.parse(response.d);
-                            if (result[0].dualcitizenship === true) {
-                                if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
-                                    $("#<%=dualNationality.ClientID%>").show();
-                                }
-                            }
-                            else {
-                                if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
-                                    $("#<%=dualNationality.ClientID%>").hide();
-                                    $("#<%=dualNationality.ClientID %> input[type='radio']").prop('checked', false);
-                                    $("#<%=ddlOtherNation.ClientID %>")[0].selectedIndex = 0;
-                                }
-                            }
+                countryVal = $("#<%=ddlNationality.ClientID%>").val().split("_");
+                dualcitizenship = (countryVal[1] == "True");
+                countryId = countryVal[0];
 
-                        }
+                if (dualcitizenship === true) {
+                    if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
+                        $("#<%=dualNationality.ClientID%>").show();
                     }
-                });
+                }
+                else {
+                    if (!$("#<%=nationality.ClientID%>").is(':hidden')) {
+                        $("#<%=dualNationality.ClientID%>").hide();
+                        $("#<%=dualNationality.ClientID %> input[type='radio']").prop('checked', false);
+                        $("#<%=ddlOtherNation.ClientID %>")[0].selectedIndex = 0;
+                    }
+                }
+                
             });
-            if (!$("#<%=disability.ClientID%>").is(':hidden')) {
-
-                if ($("#<%=rblDisabilityYes.ClientID%>").is(':checked')) {
-                    $("#<%=disabilitydesc.ClientID%>").show();
-                } else { $("#<%=disabilitydesc.ClientID%>").hide(); }
-            }
 
             // to handle Tool tips
             var i = 0;
