@@ -335,7 +335,7 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantvisa.aspx">
+                                                <a class="sidebar-menu-button" href="applicantvisa.aspx?formid=10">
                                                     <span class="sidebar-menu-text">Visa</span>
                                                 </a>
                                             </li>
