@@ -330,7 +330,7 @@
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="Application">
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantcourse.aspx">
+                                                <a class="sidebar-menu-button" href="applicantcourse.aspx?formid=14">
                                                     <span class="sidebar-menu-text">Application</span>
                                                 </a>
                                             </li>
@@ -340,12 +340,12 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantfunding.aspx">
+                                                <a class="sidebar-menu-button" href="applicantfunding.aspx?formid=11">
                                                     <span class="sidebar-menu-text">Funding</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="applicantcredittransfer.aspx">
+                                                <a class="sidebar-menu-button" href="applicantcredittransfer.aspx?formid=12">
                                                     <span class="sidebar-menu-text">Credit Transfer</span>
                                                 </a>
                                             </li>

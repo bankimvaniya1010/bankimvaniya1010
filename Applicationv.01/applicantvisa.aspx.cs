@@ -65,7 +65,7 @@ public partial class applicantvisa : System.Web.UI.Page
         try
         {
             var VisaInfo = (from pInfo in db.applicantvisadetails
-                            where pInfo.applicantid == userID //&& pInfo.universityid == universityID
+                            where pInfo.applicantid == userID && pInfo.universityid == universityID
                             select pInfo).FirstOrDefault();
             if (VisaInfo != null)
             {
@@ -125,15 +125,14 @@ public partial class applicantvisa : System.Web.UI.Page
         {
             var mode = "new";
             var VisaInfo = (from pInfo in db.applicantvisadetails
-                            where pInfo.applicantid == userID
-                            select pInfo).FirstOrDefault();
-           
+                            where pInfo.applicantid == userID && pInfo.universityid == universityID
+                            select pInfo).FirstOrDefault();           
             applicantvisadetails objVisa = new applicantvisadetails();
             if (VisaInfo != null)
-                {
-                    mode = "update";
-                    objVisa = VisaInfo;
-                }
+            {
+                mode = "update";
+                objVisa = VisaInfo;
+            }
             if (rbtnYes.Checked == true)
             {
                 objVisa.hasvisa = 1;
@@ -148,17 +147,17 @@ public partial class applicantvisa : System.Web.UI.Page
             else if (rbtnNo.Checked == true)
                 objVisa.hasvisa = 2;
 
-            if (VisaApplicationYes.Checked)
+            if (VisaApplicationNo.Checked)
             {
-                objVisa.visaapplied = 1;
+                objVisa.visaapplied = 2;
                 objVisa.city = txtCity.Value;
                 if (ddlCountry.SelectedValue != "")
                 {
                     objVisa.country = ddlCountry.SelectedValue;
                 }
             }
-            else if (VisaApplicationNo.Checked)
-                objVisa.visaapplied = 2;
+            else if (VisaApplicationYes.Checked)
+                objVisa.visaapplied = 1;
            
             objVisa.firstvisit = Convert.ToDateTime(txtFirstVisit.Value);                
                 
@@ -183,10 +182,12 @@ public partial class applicantvisa : System.Web.UI.Page
                 objVisa.isparentvisadenied = 2;
            
             objVisa.applicantid = userID;
-            //objVisa.universityid == universityID;
+            objVisa.universityid = universityID;
             if (mode == "new")
-                db.applicantvisadetails.Add(objVisa);            
+               db.applicantvisadetails.Add(objVisa);            
             db.SaveChanges();
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
         }
         catch (Exception ex)
         {

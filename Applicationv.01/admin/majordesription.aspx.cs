@@ -28,7 +28,7 @@ public partial class admin_majordesription : System.Web.UI.Page
                              {
                                  id = q.id,
                                  description = q.description,
-
+                                 universityid = q.universityid,
                              }).ToList();
             if (MajorList != null)
             {
@@ -63,9 +63,10 @@ public partial class admin_majordesription : System.Web.UI.Page
                 majordiscipline_master objMajor = new majordiscipline_master();
 
                 TextBox txtDescription = (TextBox)gvMajorDescription.FooterRow.FindControl("txtDescription1");
+                DropDownList ddlUniversityFooter = (DropDownList)gvMajorDescription.FooterRow.FindControl("ddlUniversityFooter");
 
                 objMajor.description = txtDescription.Text.Trim();
-
+                objMajor.universityid = Convert.ToInt32(ddlUniversityFooter.SelectedValue);
                 db.majordiscipline_master.Add(objMajor);
                 db.SaveChanges();
                 BindMajorDescription();
@@ -81,6 +82,29 @@ public partial class admin_majordesription : System.Web.UI.Page
     {
         try
         {
+            var universitymaster = db.university_master.ToList();
+            DropDownList ddlUniversityEdit = (e.Row.FindControl("ddlUniversity") as DropDownList);
+            DropDownList ddlUniversityFooter = (e.Row.FindControl("ddlUniversityFooter") as DropDownList);
+            ListItem lst = new ListItem("Please select", "0");
+
+            if (ddlUniversityFooter != null)
+            {
+                ddlUniversityFooter.DataSource = universitymaster;
+                ddlUniversityFooter.DataTextField = "university_name";
+                ddlUniversityFooter.DataValueField = "universityid";
+                ddlUniversityFooter.DataBind();
+                ddlUniversityFooter.Items.Insert(0, lst);
+            }
+            if (ddlUniversityEdit != null)
+            {
+                ddlUniversityEdit.DataSource = universitymaster;
+                ddlUniversityEdit.DataTextField = "university_name";
+                ddlUniversityEdit.DataValueField = "universityid";
+                ddlUniversityEdit.DataBind();
+                ddlUniversityEdit.Items.Insert(0, lst);
+            }
+           
+           
             if (e.Row.RowState != DataControlRowState.Edit) // check for RowState
             {
                 if (e.Row.RowType == DataControlRowType.DataRow) //check for RowType
@@ -150,9 +174,11 @@ public partial class admin_majordesription : System.Web.UI.Page
 
 
             TextBox txtDescription = (TextBox)gvMajorDescription.Rows[e.RowIndex].FindControl("txtDescription");
+            DropDownList ddlUniversity = (DropDownList)gvMajorDescription.Rows[e.RowIndex].FindControl("ddlUniversity");
 
             objMajor.description = txtDescription.Text.Trim();
-
+            objMajor.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            
             gvMajorDescription.EditIndex = -1;
             db.SaveChanges();
             BindMajorDescription();
