@@ -5,6 +5,34 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GTEModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="accommodationplan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="admintooltips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="formid" Type="int" Nullable="false" />
+          <Property Name="fieldid" Type="int" Nullable="false" />
+          <Property Name="tooltips" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="adminuniversitywisetooltips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="formid" Type="int" Nullable="false" />
+          <Property Name="fieldid" Type="int" Nullable="false" />
+          <Property Name="tooltips" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="adminusers">
           <Key>
             <PropertyRef Name="adminid" />
@@ -134,6 +162,11 @@
           <Property Name="patronymicname" Type="varchar" MaxLength="50" />
           <Property Name="countryofbirth" Type="int" />
           <Property Name="maritalstatus" Type="int" />
+          <Property Name="ismarried" Type="bit" />
+          <Property Name="spousename" Type="varchar" MaxLength="50" />
+          <Property Name="spousenationality" Type="int" />
+          <Property Name="spousedob" Type="datetime" Precision="0" />
+          <Property Name="marriagedate" Type="datetime" Precision="0" />
           <Property Name="isdisable" Type="int" />
           <Property Name="disabilitydescription" Type="varchar" MaxLength="50" />
           <Property Name="postaladdrees1" Type="varchar" MaxLength="45" />
@@ -291,6 +324,19 @@
           <Property Name="fieldnameinstructions" Type="varchar" MaxLength="500" />
           <Property Name="secondaryfieldnameinstructions" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="applicantfundingmaster">
+          <Key>
+            <PropertyRef Name="applicantfundingmasterid" />
+          </Key>
+          <Property Name="applicantfundingmasterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studyoption" Type="int" />
+          <Property Name="familymember" Type="int" />
+          <Property Name="accommodationplan" Type="int" />
+          <Property Name="managemeal" Type="int" />
+          <Property Name="transportchoice" Type="int" />
+          <Property Name="trips" Type="int" />
+          <Property Name="entertainment" Type="int" />
+        </EntityType>
         <EntityType Name="applicanthighereducation">
           <Key>
             <PropertyRef Name="applicanthighereducationid" />
@@ -419,6 +465,7 @@
           </Key>
           <Property Name="applicantvisadetailsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
           <Property Name="hasvisa" Type="int" />
           <Property Name="applicantvisatype" Type="varchar" MaxLength="45" />
           <Property Name="validityfrom" Type="datetime" Precision="0" />
@@ -552,6 +599,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="entertainment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="facilitiesmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -570,6 +624,13 @@
           <Property Name="cost" Type="int" />
           <Property Name="facility_site" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="distance" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="familymember">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="fieldvalidationmaster">
           <Key>
@@ -641,6 +702,14 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="45" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="managemeal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="maritalstatusmaster">
           <Key>
@@ -820,6 +889,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="studyoptionmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="subjectmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -859,6 +935,20 @@
           <Property Name="tooltips" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="formid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transportchoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="trips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="typemaster">
           <Key>
@@ -985,6 +1075,66 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <Property Name="lastupdatedate" Type="datetime" Precision="0" />
           <Property Name="remarks" Type="varchar" MaxLength="200" />
         </EntityType>
+        <Association Name="fk_admintooltips_formmaster">
+          <End Role="formmaster" Type="Self.formmaster" Multiplicity="1" />
+          <End Role="admintooltips" Type="Self.admintooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="admintooltips">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_admintooltips_primaryfieldmaster">
+          <End Role="primaryfieldmaster" Type="Self.primaryfieldmaster" Multiplicity="1" />
+          <End Role="admintooltips" Type="Self.admintooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="primaryfieldmaster">
+              <PropertyRef Name="primaryfieldid" />
+            </Principal>
+            <Dependent Role="admintooltips">
+              <PropertyRef Name="fieldid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adminuniversitywisetooltips_formmaster">
+          <End Role="formmaster" Type="Self.formmaster" Multiplicity="1" />
+          <End Role="adminuniversitywisetooltips" Type="Self.adminuniversitywisetooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="adminuniversitywisetooltips">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adminuniversitywisetooltips_primaryfieldmaster">
+          <End Role="primaryfieldmaster" Type="Self.primaryfieldmaster" Multiplicity="1" />
+          <End Role="adminuniversitywisetooltips" Type="Self.adminuniversitywisetooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="primaryfieldmaster">
+              <PropertyRef Name="primaryfieldid" />
+            </Principal>
+            <Dependent Role="adminuniversitywisetooltips">
+              <PropertyRef Name="fieldid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adminuniversitywisetooltips_university_master">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="adminuniversitywisetooltips" Type="Self.adminuniversitywisetooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="adminuniversitywisetooltips">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_adminusers_rolemaster">
           <End Role="rolemaster" Type="Self.rolemaster" Multiplicity="1" />
           <End Role="adminusers" Type="Self.adminusers" Multiplicity="*" />
@@ -994,6 +1144,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="adminusers">
               <PropertyRef Name="roleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantvisadetails_university_master">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="0..1" />
+          <End Role="applicantvisadetails" Type="Self.applicantvisadetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="applicantvisadetails">
+              <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1282,6 +1444,9 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <Parameter Name="email" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="GTEModelStoreContainer">
+          <EntitySet Name="accommodationplan" EntityType="Self.accommodationplan" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="admintooltips" EntityType="Self.admintooltips" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="adminuniversitywisetooltips" EntityType="Self.adminuniversitywisetooltips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="adminusers" EntityType="Self.adminusers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="agentmaster" EntityType="Self.agentmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="alternateadressproofmaster" EntityType="Self.alternateadressproofmaster" Schema="GTE" store:Type="Tables" />
@@ -1298,6 +1463,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="applicanteducationdetails" EntityType="Self.applicanteducationdetails" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantemployerdetails" EntityType="Self.applicantemployerdetails" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantformmaster" EntityType="Self.applicantformmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantfundingmaster" EntityType="Self.applicantfundingmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicanthighereducation" EntityType="Self.applicanthighereducation" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantlanguagecompetency" EntityType="Self.applicantlanguagecompetency" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantprogressbar" EntityType="Self.applicantprogressbar" Schema="GTE" store:Type="Tables" />
@@ -1320,8 +1486,10 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationverificationcontactmaster" EntityType="Self.educationverificationcontactmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="entertainment" EntityType="Self.entertainment" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="facilitiesmaster" EntityType="Self.facilitiesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="facility_campus_mapping" EntityType="Self.facility_campus_mapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="familymember" EntityType="Self.familymember" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="fieldvalidationmaster" EntityType="Self.fieldvalidationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formfieldmapping" EntityType="Self.formfieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formfieldmaster" EntityType="Self.formfieldmaster" Schema="GTE" store:Type="Tables" />
@@ -1330,6 +1498,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="managemeal" EntityType="Self.managemeal" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="maritalstatusmaster" EntityType="Self.maritalstatusmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="master_name" EntityType="Self.master_name" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
@@ -1349,11 +1518,14 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="students" EntityType="Self.students" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studylevelmaster" EntityType="Self.studylevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="studyoptionmaster" EntityType="Self.studyoptionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectmaster" EntityType="Self.subjectmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectwisecountrymapping" EntityType="Self.subjectwisecountrymapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="timezonemaster" EntityType="Self.timezonemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="transportchoice" EntityType="Self.transportchoice" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="trips" EntityType="Self.trips" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="typemaster" EntityType="Self.typemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_campusmapping" EntityType="Self.university_campusmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
@@ -1375,9 +1547,33 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
 `GTE_documentverification`.`remarks`
 FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="fk_admintooltips_formmaster" Association="Self.fk_admintooltips_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="admintooltips" EntitySet="admintooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_admintooltips_primaryfieldmaster" Association="Self.fk_admintooltips_primaryfieldmaster">
+            <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
+            <End Role="admintooltips" EntitySet="admintooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adminuniversitywisetooltips_formmaster" Association="Self.fk_adminuniversitywisetooltips_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="adminuniversitywisetooltips" EntitySet="adminuniversitywisetooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adminuniversitywisetooltips_primaryfieldmaster" Association="Self.fk_adminuniversitywisetooltips_primaryfieldmaster">
+            <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
+            <End Role="adminuniversitywisetooltips" EntitySet="adminuniversitywisetooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adminuniversitywisetooltips_university_master" Association="Self.fk_adminuniversitywisetooltips_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="adminuniversitywisetooltips" EntitySet="adminuniversitywisetooltips" />
+          </AssociationSet>
           <AssociationSet Name="FK_adminusers_rolemaster" Association="Self.FK_adminusers_rolemaster">
             <End Role="rolemaster" EntitySet="rolemaster" />
             <End Role="adminusers" EntitySet="adminusers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantvisadetails_university_master" Association="Self.FK_applicantvisadetails_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="applicantvisadetails" EntitySet="applicantvisadetails" />
           </AssociationSet>
           <AssociationSet Name="FK_campus_universityMaster" Association="Self.FK_campus_universityMaster">
             <End Role="university_master" EntitySet="university_master" />
@@ -1625,7 +1821,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="subjectwisecountrymapping" EntitySet="subjectwisecountrymapping" />
           </AssociationSet>
           <EntitySet Name="visatype" EntityType="GTEModel.visatype" />
-          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
           <AssociationSet Name="FK_universityMaster_cityMaster" Association="GTEModel.FK_universityMaster_cityMaster">
             <End Role="citymaster" EntitySet="citymaster" />
@@ -1663,6 +1858,41 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_tooltips_primaryfieldmaster" Association="GTEModel.FK_tooltips_primaryfieldmaster">
             <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
             <End Role="tooltipmaster" EntitySet="tooltipmaster" />
+          </AssociationSet>
+          <EntitySet Name="accommodationplan" EntityType="GTEModel.accommodationplan" />
+          <EntitySet Name="admintooltips" EntityType="GTEModel.admintooltips" />
+          <EntitySet Name="adminuniversitywisetooltips" EntityType="GTEModel.adminuniversitywisetooltips" />
+          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
+          <EntitySet Name="applicantfundingmaster" EntityType="GTEModel.applicantfundingmaster" />
+          <EntitySet Name="entertainment" EntityType="GTEModel.entertainment" />
+          <EntitySet Name="familymember" EntityType="GTEModel.familymember" />
+          <EntitySet Name="managemeal" EntityType="GTEModel.managemeal" />
+          <EntitySet Name="studyoptionmaster" EntityType="GTEModel.studyoptionmaster" />
+          <EntitySet Name="transportchoice" EntityType="GTEModel.transportchoice" />
+          <EntitySet Name="trips" EntityType="GTEModel.trips" />
+          <AssociationSet Name="fk_admintooltips_formmaster" Association="GTEModel.fk_admintooltips_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="admintooltips" EntitySet="admintooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_admintooltips_primaryfieldmaster" Association="GTEModel.fk_admintooltips_primaryfieldmaster">
+            <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
+            <End Role="admintooltips" EntitySet="admintooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adminuniversitywisetooltips_formmaster" Association="GTEModel.fk_adminuniversitywisetooltips_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="adminuniversitywisetooltips" EntitySet="adminuniversitywisetooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adminuniversitywisetooltips_primaryfieldmaster" Association="GTEModel.fk_adminuniversitywisetooltips_primaryfieldmaster">
+            <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
+            <End Role="adminuniversitywisetooltips" EntitySet="adminuniversitywisetooltips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_adminuniversitywisetooltips_university_master" Association="GTEModel.fk_adminuniversitywisetooltips_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="adminuniversitywisetooltips" EntitySet="adminuniversitywisetooltips" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantvisadetails_university_master" Association="GTEModel.FK_applicantvisadetails_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="applicantvisadetails" EntitySet="applicantvisadetails" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="adminusers">
@@ -2018,6 +2248,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="haveparent" Type="Int32" />
           <Property Name="isvisadenied" Type="Int32" />
           <Property Name="isparentvisadenied" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantvisadetails_university_master" FromRole="applicantvisadetails" ToRole="university_master" />
         </EntityType>
         <EntityType Name="cefrlevelmaster">
           <Key>
@@ -2210,6 +2442,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="customfieldmaster" Relationship="GTEModel.FK_customfieldmaster_formmaster" FromRole="formmaster" ToRole="customfieldmaster" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_formmaster" FromRole="formmaster" ToRole="universitywisetooltipmaster" />
           <NavigationProperty Name="tooltipmaster" Relationship="GTEModel.FK_tooltips_formmaster" FromRole="formmaster" ToRole="tooltipmaster" />
+          <NavigationProperty Name="admintooltips" Relationship="GTEModel.fk_admintooltips_formmaster" FromRole="formmaster" ToRole="admintooltips" />
+          <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_formmaster" FromRole="formmaster" ToRole="adminuniversitywisetooltips" />
         </EntityType>
         <EntityType Name="grademaster">
           <Key>
@@ -2243,6 +2477,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="maritalstatusmaster">
           <Key>
@@ -2301,6 +2536,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="primaryfiledname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_primaryfieldmaster" FromRole="primaryfieldmaster" ToRole="universitywisetooltipmaster" />
           <NavigationProperty Name="tooltipmaster" Relationship="GTEModel.FK_tooltips_primaryfieldmaster" FromRole="primaryfieldmaster" ToRole="tooltipmaster" />
+          <NavigationProperty Name="admintooltips" Relationship="GTEModel.fk_admintooltips_primaryfieldmaster" FromRole="primaryfieldmaster" ToRole="admintooltips" />
+          <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_primaryfieldmaster" FromRole="primaryfieldmaster" ToRole="adminuniversitywisetooltips" />
         </EntityType>
         <EntityType Name="profilemaster">
           <Key>
@@ -2749,81 +2986,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="applicantdetails">
-          <Key>
-            <PropertyRef Name="applicantpersonaldetailsid" />
-          </Key>
-          <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="title" Type="Int32" />
-          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dateofbirth" Type="DateTime" />
-          <Property Name="gender" Type="Int32" />
-          <Property Name="nationality" Type="Int32" />
-          <Property Name="nationality2" Type="Int32" />
-          <Property Name="hasdualcitizenship" Type="Boolean" />
-          <Property Name="chinesecodenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="haschinesecodenumber" Type="Boolean" />
-          <Property Name="patronymicname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="countryofbirth" Type="Int32" />
-          <Property Name="maritalstatus" Type="Int32" />
-          <Property Name="isdisable" Type="Int32" />
-          <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalcountry" Type="Int32" />
-          <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialcountry" Type="Int32" />
-          <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="haveskypeid" Type="Int32" />
-          <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="isdifferentwhatsapp" Type="Int32" />
-          <Property Name="issameaspostal" Type="Int32" />
-          <Property Name="nomineefullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="relationshipwithnominee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="nomineeemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="nomineemobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="passportissuedate" Type="DateTime" />
-          <Property Name="passportexpirydate" Type="DateTime" />
-          <Property Name="alternativeIdentityproofId" Type="Int32" />
-          <Property Name="passportissuecity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeIdentityproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeproofdobId" Type="Int32" />
-          <Property Name="alternativeproofdobno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeresidenceproofId" Type="Int32" />
-          <Property Name="alternativeresidenceproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="linkedprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="facebookprofle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="twiterprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="othertitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="personaldetailsavedtime" Type="DateTime" />
-          <Property Name="contactdetailsavetime" Type="DateTime" />
-          <Property Name="identificationsavetime" Type="DateTime" />
-          <Property Name="socialprofilesavetime" Type="DateTime" />
-          <Property Name="passportissuecountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="havewhatsup" Type="Int32" />
-          <Property Name="agentid" Type="Int32" />
-          <Property Name="isstudentreferbyagent" Type="Int32" />
-          <Property Name="haveworkexperience" Type="Boolean" />
-        </EntityType>
         <EntityType Name="university_master">
           <Key>
             <PropertyRef Name="universityid" />
@@ -2858,6 +3020,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitygrouping" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
+          <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_university_master" FromRole="university_master" ToRole="adminuniversitywisetooltips" />
+          <NavigationProperty Name="applicantvisadetails" Relationship="GTEModel.FK_applicantvisadetails_university_master" FromRole="university_master" ToRole="applicantvisadetails" />
         </EntityType>
         <Association Name="FK_universityMaster_cityMaster">
           <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
@@ -2976,6 +3140,246 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="tooltipmaster">
               <PropertyRef Name="fieldid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="accommodationplan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="admintooltips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="formid" Type="Int32" Nullable="false" />
+          <Property Name="fieldid" Type="Int32" Nullable="false" />
+          <Property Name="tooltips" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="formmaster" Relationship="GTEModel.fk_admintooltips_formmaster" FromRole="admintooltips" ToRole="formmaster" />
+          <NavigationProperty Name="primaryfieldmaster" Relationship="GTEModel.fk_admintooltips_primaryfieldmaster" FromRole="admintooltips" ToRole="primaryfieldmaster" />
+        </EntityType>
+        <EntityType Name="adminuniversitywisetooltips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="formid" Type="Int32" Nullable="false" />
+          <Property Name="fieldid" Type="Int32" Nullable="false" />
+          <Property Name="tooltips" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="formmaster" Relationship="GTEModel.fk_adminuniversitywisetooltips_formmaster" FromRole="adminuniversitywisetooltips" ToRole="formmaster" />
+          <NavigationProperty Name="primaryfieldmaster" Relationship="GTEModel.fk_adminuniversitywisetooltips_primaryfieldmaster" FromRole="adminuniversitywisetooltips" ToRole="primaryfieldmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_adminuniversitywisetooltips_university_master" FromRole="adminuniversitywisetooltips" ToRole="university_master" />
+        </EntityType>
+        <EntityType Name="applicantdetails">
+          <Key>
+            <PropertyRef Name="applicantpersonaldetailsid" />
+          </Key>
+          <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="title" Type="Int32" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateofbirth" Type="DateTime" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="nationality" Type="Int32" />
+          <Property Name="nationality2" Type="Int32" />
+          <Property Name="hasdualcitizenship" Type="Boolean" />
+          <Property Name="chinesecodenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haschinesecodenumber" Type="Boolean" />
+          <Property Name="patronymicname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryofbirth" Type="Int32" />
+          <Property Name="maritalstatus" Type="Int32" />
+          <Property Name="ismarried" Type="Boolean" />
+          <Property Name="spousename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="spousenationality" Type="Int32" />
+          <Property Name="spousedob" Type="DateTime" />
+          <Property Name="marriagedate" Type="DateTime" />
+          <Property Name="isdisable" Type="Int32" />
+          <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcountry" Type="Int32" />
+          <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcountry" Type="Int32" />
+          <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="haveskypeid" Type="Int32" />
+          <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="isdifferentwhatsapp" Type="Int32" />
+          <Property Name="issameaspostal" Type="Int32" />
+          <Property Name="nomineefullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithnominee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineeemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineemobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="passportissuedate" Type="DateTime" />
+          <Property Name="passportexpirydate" Type="DateTime" />
+          <Property Name="alternativeIdentityproofId" Type="Int32" />
+          <Property Name="passportissuecity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeIdentityproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeproofdobId" Type="Int32" />
+          <Property Name="alternativeproofdobno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeresidenceproofId" Type="Int32" />
+          <Property Name="alternativeresidenceproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="linkedprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="facebookprofle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="twiterprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="othertitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="personaldetailsavedtime" Type="DateTime" />
+          <Property Name="contactdetailsavetime" Type="DateTime" />
+          <Property Name="identificationsavetime" Type="DateTime" />
+          <Property Name="socialprofilesavetime" Type="DateTime" />
+          <Property Name="passportissuecountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="havewhatsup" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="isstudentreferbyagent" Type="Int32" />
+          <Property Name="haveworkexperience" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="applicantfundingmaster">
+          <Key>
+            <PropertyRef Name="applicantfundingmasterid" />
+          </Key>
+          <Property Name="applicantfundingmasterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studyoption" Type="Int32" />
+          <Property Name="familymember" Type="Int32" />
+          <Property Name="accommodationplan" Type="Int32" />
+          <Property Name="managemeal" Type="Int32" />
+          <Property Name="transportchoice" Type="Int32" />
+          <Property Name="trips" Type="Int32" />
+          <Property Name="entertainment" Type="Int32" />
+        </EntityType>
+        <EntityType Name="entertainment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="familymember">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="managemeal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="studyoptionmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="transportchoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="trips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_admintooltips_formmaster">
+          <End Type="GTEModel.formmaster" Role="formmaster" Multiplicity="1" />
+          <End Type="GTEModel.admintooltips" Role="admintooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="admintooltips">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_admintooltips_primaryfieldmaster">
+          <End Type="GTEModel.primaryfieldmaster" Role="primaryfieldmaster" Multiplicity="1" />
+          <End Type="GTEModel.admintooltips" Role="admintooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="primaryfieldmaster">
+              <PropertyRef Name="primaryfieldid" />
+            </Principal>
+            <Dependent Role="admintooltips">
+              <PropertyRef Name="fieldid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adminuniversitywisetooltips_formmaster">
+          <End Type="GTEModel.formmaster" Role="formmaster" Multiplicity="1" />
+          <End Type="GTEModel.adminuniversitywisetooltips" Role="adminuniversitywisetooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="adminuniversitywisetooltips">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adminuniversitywisetooltips_primaryfieldmaster">
+          <End Type="GTEModel.primaryfieldmaster" Role="primaryfieldmaster" Multiplicity="1" />
+          <End Type="GTEModel.adminuniversitywisetooltips" Role="adminuniversitywisetooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="primaryfieldmaster">
+              <PropertyRef Name="primaryfieldid" />
+            </Principal>
+            <Dependent Role="adminuniversitywisetooltips">
+              <PropertyRef Name="fieldid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_adminuniversitywisetooltips_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.adminuniversitywisetooltips" Role="adminuniversitywisetooltips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="adminuniversitywisetooltips">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantvisadetails_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
+          <End Type="GTEModel.applicantvisadetails" Role="applicantvisadetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="applicantvisadetails">
+              <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3346,6 +3750,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantvisadetails">
             <EntityTypeMapping TypeName="GTEModel.applicantvisadetails">
               <MappingFragment StoreEntitySet="applicantvisadetails">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="isparentvisadenied" ColumnName="isparentvisadenied" />
                 <ScalarProperty Name="isvisadenied" ColumnName="isvisadenied" />
                 <ScalarProperty Name="haveparent" ColumnName="haveparent" />
@@ -3591,6 +3996,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="majordiscipline_master">
             <EntityTypeMapping TypeName="GTEModel.majordiscipline_master">
               <MappingFragment StoreEntitySet="majordiscipline_master">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -3932,6 +4338,77 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="university_master">
+            <EntityTypeMapping TypeName="GTEModel.university_master">
+              <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
+                <ScalarProperty Name="acceptedmaxage" ColumnName="acceptedmaxage" />
+                <ScalarProperty Name="getting_around" ColumnName="getting_around" />
+                <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
+                <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
+                <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
+                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="long_description" ColumnName="long_description" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="year_established" ColumnName="year_established" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="affiliation" ColumnName="affiliation" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="university_name" ColumnName="university_name" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tooltipmaster">
+            <EntityTypeMapping TypeName="GTEModel.tooltipmaster">
+              <MappingFragment StoreEntitySet="tooltipmaster">
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="tooltips" ColumnName="tooltips" />
+                <ScalarProperty Name="fieldid" ColumnName="fieldid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accommodationplan">
+            <EntityTypeMapping TypeName="GTEModel.accommodationplan">
+              <MappingFragment StoreEntitySet="accommodationplan">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="admintooltips">
+            <EntityTypeMapping TypeName="GTEModel.admintooltips">
+              <MappingFragment StoreEntitySet="admintooltips">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="tooltips" ColumnName="tooltips" />
+                <ScalarProperty Name="fieldid" ColumnName="fieldid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="adminuniversitywisetooltips">
+            <EntityTypeMapping TypeName="GTEModel.adminuniversitywisetooltips">
+              <MappingFragment StoreEntitySet="adminuniversitywisetooltips">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="tooltips" ColumnName="tooltips" />
+                <ScalarProperty Name="fieldid" ColumnName="fieldid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
@@ -3987,6 +4464,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="postaladdrees1" ColumnName="postaladdrees1" />
                 <ScalarProperty Name="disabilitydescription" ColumnName="disabilitydescription" />
                 <ScalarProperty Name="isdisable" ColumnName="isdisable" />
+                <ScalarProperty Name="marriagedate" ColumnName="marriagedate" />
+                <ScalarProperty Name="spousedob" ColumnName="spousedob" />
+                <ScalarProperty Name="spousenationality" ColumnName="spousenationality" />
+                <ScalarProperty Name="spousename" ColumnName="spousename" />
+                <ScalarProperty Name="ismarried" ColumnName="ismarried" />
                 <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
                 <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
                 <ScalarProperty Name="patronymicname" ColumnName="patronymicname" />
@@ -4008,42 +4490,64 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="university_master">
-            <EntityTypeMapping TypeName="GTEModel.university_master">
-              <MappingFragment StoreEntitySet="university_master">
-                <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
-                <ScalarProperty Name="acceptedmaxage" ColumnName="acceptedmaxage" />
-                <ScalarProperty Name="getting_around" ColumnName="getting_around" />
-                <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
-                <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
-                <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
-                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="countryid" ColumnName="countryid" />
-                <ScalarProperty Name="cityid" ColumnName="cityid" />
-                <ScalarProperty Name="long_description" ColumnName="long_description" />
-                <ScalarProperty Name="short_description" ColumnName="short_description" />
-                <ScalarProperty Name="year_established" ColumnName="year_established" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="affiliation" ColumnName="affiliation" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="university_name" ColumnName="university_name" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
+          <EntitySetMapping Name="applicantfundingmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantfundingmaster">
+              <MappingFragment StoreEntitySet="applicantfundingmaster">
+                <ScalarProperty Name="entertainment" ColumnName="entertainment" />
+                <ScalarProperty Name="trips" ColumnName="trips" />
+                <ScalarProperty Name="transportchoice" ColumnName="transportchoice" />
+                <ScalarProperty Name="managemeal" ColumnName="managemeal" />
+                <ScalarProperty Name="accommodationplan" ColumnName="accommodationplan" />
+                <ScalarProperty Name="familymember" ColumnName="familymember" />
+                <ScalarProperty Name="studyoption" ColumnName="studyoption" />
+                <ScalarProperty Name="applicantfundingmasterid" ColumnName="applicantfundingmasterid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tooltipmaster">
-            <EntityTypeMapping TypeName="GTEModel.tooltipmaster">
-              <MappingFragment StoreEntitySet="tooltipmaster">
-                <ScalarProperty Name="formid" ColumnName="formid" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
-                <ScalarProperty Name="tooltips" ColumnName="tooltips" />
-                <ScalarProperty Name="fieldid" ColumnName="fieldid" />
+          <EntitySetMapping Name="entertainment">
+            <EntityTypeMapping TypeName="GTEModel.entertainment">
+              <MappingFragment StoreEntitySet="entertainment">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="familymember">
+            <EntityTypeMapping TypeName="GTEModel.familymember">
+              <MappingFragment StoreEntitySet="familymember">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managemeal">
+            <EntityTypeMapping TypeName="GTEModel.managemeal">
+              <MappingFragment StoreEntitySet="managemeal">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studyoptionmaster">
+            <EntityTypeMapping TypeName="GTEModel.studyoptionmaster">
+              <MappingFragment StoreEntitySet="studyoptionmaster">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transportchoice">
+            <EntityTypeMapping TypeName="GTEModel.transportchoice">
+              <MappingFragment StoreEntitySet="transportchoice">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trips">
+            <EntityTypeMapping TypeName="GTEModel.trips">
+              <MappingFragment StoreEntitySet="trips">
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

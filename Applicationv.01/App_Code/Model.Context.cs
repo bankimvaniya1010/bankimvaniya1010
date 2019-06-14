@@ -105,9 +105,19 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
-    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
+    public virtual DbSet<accommodationplan> accommodationplan { get; set; }
+    public virtual DbSet<admintooltips> admintooltips { get; set; }
+    public virtual DbSet<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
+    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
+    public virtual DbSet<applicantfundingmaster> applicantfundingmaster { get; set; }
+    public virtual DbSet<entertainment> entertainment { get; set; }
+    public virtual DbSet<familymember> familymember { get; set; }
+    public virtual DbSet<managemeal> managemeal { get; set; }
+    public virtual DbSet<studyoptionmaster> studyoptionmaster { get; set; }
+    public virtual DbSet<transportchoice> transportchoice { get; set; }
+    public virtual DbSet<trips> trips { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
