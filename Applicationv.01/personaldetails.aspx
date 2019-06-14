@@ -294,6 +294,18 @@
         </div>
     </div>
       <script type="text/javascript">
+
+        function getAge(DOB) {
+            var today = new Date();
+            var birthDate = new Date(DOB);
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age = age - 1;
+            }
+
+            return age;
+        }
        
         function validateForm() {
 
@@ -334,15 +346,25 @@
                 alert("Please Select valid agent details");
             else if ($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') && ($("#<%=txtChineseCodeNumber.ClientID%>").val() === ""))
                 alert("Please enter chinese commercial code number");
+            else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() != "0") || ($("#<%=ddlMonth.ClientID%>").val() != "0") || ($("#<%=ddlYear.ClientID%>").val() != "0"))) {
+                var dob = $("#<%=ddlMonth.ClientID%>").val() + "/" + $("#<%=ddlDay.ClientID%>").val() + "/" + $("#<%=ddlYear.ClientID%>").val();
+                var age = getAge(dob);
+                var maxAge = <%=GlobalVariables.universityMaxAge%>;
+                var minAge = <%=GlobalVariables.universityMinAge%>;
 
+                if (age < minAge || age > maxAge) {
+                    alert("Please enter age within range. Max age:" + maxAge + " and Min age:" + minAge);
+                }
+                
+            }
             else
                 flag = true;
             if (flag == true)
                 flag = customcontrolValidation();
             return flag;
 
-
         }
+
 
         function customcontrolValidation() {
             var flag = false;
@@ -414,6 +436,19 @@
             $("#<%=rblChineseCodeNo.ClientID%>").click(function () {
                 $("#<%=textChineseCodeDiv.ClientID%>").hide();
                 $("#<%=txtChineseCodeNumber.ClientID%>").val('');
+            });
+
+            $("#<%=ddlTitle.ClientID%>").change(function () {
+                titleText = $("#<%=ddlTitle.ClientID%> option:selected").text();
+                if (titleText == "Ms" || titleText == "Mrs" || titleText == "Miss") {
+                    $("#<%=rbtnFemale.ClientID%>").prop('checked', true);
+                }
+                else if (titleText == "Dr") {
+                    $("#<%=rbtnMale.ClientID%>").prop('checked', true);
+                }
+                else if (titleText == "Mr") {
+                    $("#<%=rbtnMale.ClientID%>").prop('checked', true);
+                }
             });
 
             $("#<%=ddlNationality.ClientID%>").change(function () {

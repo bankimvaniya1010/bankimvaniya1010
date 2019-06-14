@@ -95,10 +95,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<subjectwisecountrymapping> subjectwisecountrymapping { get; set; }
     public virtual DbSet<timezonemaster> timezonemaster { get; set; }
     public virtual DbSet<titlemaster> titlemaster { get; set; }
-    public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
@@ -108,6 +106,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<applicantdetails> applicantdetails { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
+    public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
