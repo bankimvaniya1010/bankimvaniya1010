@@ -149,7 +149,7 @@ public partial class applicantdetails
     public string firstname { get; set; }
     public Nullable<bool> passportfirstname { get; set; }
     public string lastname { get; set; }
-    public Nullable<bool> passportsecondname { get; set; }
+    public Nullable<bool> passportlastname { get; set; }
     public string prefferedname { get; set; }
     public string middlename { get; set; }
     public Nullable<bool> passportmiddlename { get; set; }
@@ -528,7 +528,7 @@ public partial class coursemaster
 {
     public int courseid { get; set; }
     public string coursename { get; set; }
-    public Nullable<int> majordisciplineid { get; set; }
+    public Nullable<int> majordisciplineId { get; set; }
 }
 
 public partial class coursetypemaster

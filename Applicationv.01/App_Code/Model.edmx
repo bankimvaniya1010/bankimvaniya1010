@@ -151,7 +151,7 @@
           <Property Name="firstname" Type="varchar" MaxLength="50" />
           <Property Name="passportfirstname" Type="bit" />
           <Property Name="lastname" Type="varchar" MaxLength="50" />
-          <Property Name="passportsecondname" Type="bit" />
+          <Property Name="passportlastname" Type="bit" />
           <Property Name="prefferedname" Type="varchar" MaxLength="50" />
           <Property Name="middlename" Type="varchar" MaxLength="50" />
           <Property Name="passportmiddlename" Type="bit" />
@@ -525,7 +525,7 @@
           </Key>
           <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coursename" Type="varchar" MaxLength="45" />
-          <Property Name="majordisciplineid" Type="int" />
+          <Property Name="majordisciplineId" Type="int" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -1913,11 +1913,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="applicantvisadetails" EntitySet="applicantvisadetails" />
           </AssociationSet>
-          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <AssociationSet Name="FK_coursetypemaster_university_master" Association="GTEModel.FK_coursetypemaster_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="coursetypemaster" EntitySet="coursetypemaster" />
           </AssociationSet>
+          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           </EntityContainer>
         <EntityType Name="adminusers">
@@ -3324,6 +3324,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_coursetypemaster_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
+          <End Type="GTEModel.coursetypemaster" Role="coursetypemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="coursetypemaster">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="applicantdetails">
           <Key>
             <PropertyRef Name="applicantpersonaldetailsid" />
@@ -3335,7 +3347,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passportfirstname" Type="Boolean" />
           <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="passportsecondname" Type="Boolean" />
+          <Property Name="passportlastname" Type="Boolean" />
           <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="passportmiddlename" Type="Boolean" />
@@ -3407,25 +3419,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="isstudentreferbyagent" Type="Int32" />
           <Property Name="haveworkexperience" Type="Boolean" />
         </EntityType>
-        <Association Name="FK_coursetypemaster_university_master">
-          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
-          <End Type="GTEModel.coursetypemaster" Role="coursetypemaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="university_master">
-              <PropertyRef Name="universityid" />
-            </Principal>
-            <Dependent Role="coursetypemaster">
-              <PropertyRef Name="universityid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="coursemaster">
           <Key>
             <PropertyRef Name="courseid" />
           </Key>
           <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="majordisciplineid" Type="Int32" />
+          <Property Name="majordisciplineId" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4581,7 +4581,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="passportmiddlename" ColumnName="passportmiddlename" />
                 <ScalarProperty Name="middlename" ColumnName="middlename" />
                 <ScalarProperty Name="prefferedname" ColumnName="prefferedname" />
-                <ScalarProperty Name="passportsecondname" ColumnName="passportsecondname" />
+                <ScalarProperty Name="passportlastname" ColumnName="passportlastname" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />
                 <ScalarProperty Name="passportfirstname" ColumnName="passportfirstname" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
@@ -4595,7 +4595,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="coursemaster">
             <EntityTypeMapping TypeName="GTEModel.coursemaster">
               <MappingFragment StoreEntitySet="coursemaster">
-                <ScalarProperty Name="majordisciplineid" ColumnName="majordisciplineid" />
+                <ScalarProperty Name="majordisciplineId" ColumnName="majordisciplineId" />
                 <ScalarProperty Name="coursename" ColumnName="coursename" />
                 <ScalarProperty Name="courseid" ColumnName="courseid" />
               </MappingFragment>

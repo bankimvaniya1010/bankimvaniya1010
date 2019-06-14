@@ -42,6 +42,7 @@
                                             
                                         </div>
                                     </div>
+                                    <asp:CheckBox ID="passportFirstName" runat="server" />Passport first name same as above
                                 </div>
                             </div>
                             <div class="list-group-item" id="lastname" runat="server" style="display: none">
@@ -56,6 +57,7 @@
                                           
                                         </div>
                                     </div>
+                                    <asp:CheckBox ID="passportLastName" runat="server" />Passport last name same as above
                                 </div>
                             </div>
                             <div class="list-group-item" id="preferedname" runat="server" style="display: none">
@@ -81,6 +83,7 @@
                                                 value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
+                                    <asp:CheckBox ID="passportMiddleName" runat="server" />Passport middle name same as above
                                 </div>
                             </div>
                             <div class="list-group-item" id="dob" runat="server" style="display: none">
@@ -195,6 +198,53 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div id="statusMarried" runat="server" role="group" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-spouseName">
+                                        <div class="form-row">
+                                            <label id="lblSpouseName" runat="server" for="spouseName" class="col-md-3 col-form-label form-label">Spouse Name</label>
+                                            <div class="col-md-6">
+                                                <input id="txtSpouseName" runat="server" type="text" placeholder="Spouse Name" value="" class="form-control" required="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-NationalitySpouse">
+                                        <div class="form-row">
+                                            <label id="lblSpouseNatinality" runat="server" for="NationalitySpouse" class="col-md-3 col-form-label form-label">Nationality of Spouse</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlSpouseNationality" CssClass="form-control" runat="server">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-spousedob">
+                                        <div class="form-row">
+                                            <label id="lblSpouseDOB" runat="server" for="spousedob" class="col-md-3 col-form-label form-label">Spouse Date of birth</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlSpouseDOBYear" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSpouseDOBYear_SelectedIndexChanged">
+                                                    <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:DropDownList ID="ddlSpouseDOBMonth" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSpouseDOBMonth_SelectedIndexChanged">
+                                                    <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:DropDownList ID="ddlSpouseDOBDate" CssClass="form-control" runat="server"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-marriagedate">
+                                        <div class="form-row">
+                                            <label id="lblMarriageDate" runat="server" for="marriagedate" class="col-md-3 col-form-label form-label">Date of Marriage</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlMarriageYear" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlMarriageYear_SelectedIndexChanged">
+                                                    <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:DropDownList ID="ddlMarriageMonth" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlMarriageMonth_SelectedIndexChanged">
+                                                    <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
+                                                </asp:DropDownList>
+                                                <asp:DropDownList ID="ddlMarriageDate" CssClass="form-control" runat="server"></asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="list-group-item" id="disability" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-disability">
@@ -306,7 +356,43 @@
 
             return age;
         }
-       
+
+        function isValidUniversityAcceptAgeRange() {
+            var dob = $("#<%=ddlMonth.ClientID%>").val() + "/" + $("#<%=ddlDay.ClientID%>").val() + "/" + $("#<%=ddlYear.ClientID%>").val();
+            var age = getAge(dob);
+            var maxAge = <%=GlobalVariables.universityMaxAge%>;
+            var minAge = <%=GlobalVariables.universityMinAge%>;
+
+            if (age < minAge || age > maxAge) {
+                alert("Age should be between " + minAge + " & " + maxAge + " years");
+                return false;
+            }
+            return true;
+        }
+
+        function isValidMaritalDetails() {
+            var flag = false;
+            var personDOB = new Date($("#<%=ddlMonth.ClientID%>").val() + "/" + $("#<%=ddlDay.ClientID%>").val() + "/" + $("#<%=ddlYear.ClientID%>").val());
+            var marriageDate = new Date($("#<%=ddlMarriageMonth.ClientID%>").val() + "/" + $("#<%=ddlMarriageDate.ClientID%>").val() + "/" + $("#<%=ddlMarriageYear.ClientID%>").val());
+            var currentDate = new Date().getTime();
+            if ($("#<%=txtSpouseName.ClientID%>").val() == '')
+                alert("Please enter spouse name");
+            else if ($("#<%=ddlSpouseNationality.ClientID%>").val() === "0")
+                alert("Please enter nationality of Spouse");
+            else if (($("#<%=ddlSpouseDOBDate.ClientID%>").val() == "0") || ($("#<%=ddlSpouseDOBMonth.ClientID%>").val() == "0") || ($("#<%=ddlSpouseDOBYear.ClientID%>").val() == "0"))
+                alert("Please valid date of birth of spouse");
+            else if (($("#<%=ddlMarriageDate.ClientID%>").val() == "0") || ($("#<%=ddlMarriageMonth.ClientID%>").val() == "0") || ($("#<%=ddlMarriageYear.ClientID%>").val() == "0"))
+                alert("Please valid date of marriage");
+            else if (personDOB >= marriageDate)
+                alert("Please enter marriage date after date of birth");
+            else if (personDOB.getTime() === currentDate || marriageDate.getTime() === currentDate)
+                alert("Please enter dob or marriage dates prior to today's date");
+            else
+                flag = true;
+
+            return flag;
+        }
+
         function validateForm() {
 
             var flag = false;
@@ -316,25 +402,23 @@
                 alert("Please enter other title");
             else if (!$("#<%=firstname.ClientID%>").is(':hidden') && $("#<%=txtFirstName.ClientID%>").val() == "")
                 alert("Please enter first name");
+            else if (!$("#<%=passportFirstName.ClientID%>").prop('checked'))
+                alert("Kindly confirm first name is same as passport name");
             else if (!$("#<%=lastname.ClientID%>").is(':hidden') && $("#<%=txtLastName.ClientID%>").val() == "")
                 alert("Please enter last name");
+            else if (!$("#<%=passportLastName.ClientID%>").prop('checked'))
+                alert("Kindly confirm last name is same as passport name");
             else if (!$("#<%=preferedname.ClientID%>").is(':hidden') && $("#<%=txtPreferedName.ClientID%>").val() == "")
                 alert("Please enter prefered name");
             else if (!$("#<%=middlename.ClientID%>").is(':hidden') && $("#<%=txtMiddleName.ClientID%>").val() == "")
                 alert("Please enter middle name");
+            else if (!$("#<%=passportMiddleName.ClientID%>").prop('checked'))
+                alert("Kindly confirm middle name is same as passport name");
             else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked')))
                 alert("Please Select Option to record Gender");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0")))
                 alert("Please Select valid date of birth");
-            else if (!$("#<%=dob.ClientID%>").is(':hidden')) {
-                var dob = $("#<%=ddlMonth.ClientID%>").val() + "/" + $("#<%=ddlDay.ClientID%>").val() + "/" + $("#<%=ddlYear.ClientID%>").val();
-                var age = getAge(dob);
-                var maxAge = <%=GlobalVariables.universityMaxAge%>;
-                var minAge = <%=GlobalVariables.universityMinAge%>;
-
-                if (age < minAge || age > maxAge)
-                    alert("Age should be between " + minAge + " & " + maxAge + " years");   
-            }
+            else if (!isValidUniversityAcceptAgeRange()) { }
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val().split("_")[0] === "0")
                 alert("Please select valid nationality");
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && !$("#<%=rblNationalityYes.ClientID%>").is(':checked') && !$("#<%=secondNation.ClientID%>").is(':hidden') && $("#<%=ddlOtherNation.ClientID%>").val() === "0")
@@ -343,8 +427,7 @@
                 alert("Please select valid birth country");
             else if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() === "0")
                 alert("Please select valid marital status");
-            else if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() === "0")
-                alert("Please select valid marital status");
+            else if ($("#<%=ddlMarital.ClientID%> option:selected").text() === "Married" && !isValidMaritalDetails()) { }
             else if (!$("#<%=disability.ClientID%>").is(':hidden') && !($("#<%=rblDisabilityYes.ClientID%>").is(':checked') || $("#<%=rblDisabilityNo.ClientID%>").is(':checked')))
                 alert("Please Select Option to record disability");
             else if (!$("#<%=disabilitydesc.ClientID%>").is(':hidden') && $("#<%=ddlDisability.ClientID%>").val() === "0")
@@ -454,6 +537,29 @@
             $("#<%=rbtnFemale.ClientID%>").click(function () {
                 genderSelected = true;
             });
+
+            var maritalStatus = $("#<%=ddlMarital.ClientID%> option:selected").text();
+            $("#<%=ddlMarital.ClientID%>").change(function () {
+                maritalStatus = $("#<%=ddlMarital.ClientID%> option:selected").text();
+                if (maritalStatus == "Married")
+                    $("#<%=statusMarried.ClientID%>").show();
+                else {
+                    $("#<%=statusMarried.ClientID%>").hide();
+                    $("#<%=txtSpouseName.ClientID%>").val('');
+                    $("#<%=ddlSpouseNationality.ClientID%>").prop('selectedIndex', 0);
+                    $("#<%=ddlSpouseDOBYear.ClientID%>").prop('selectedIndex', 0);
+                    $("#<%=ddlSpouseDOBMonth.ClientID%>").prop('selectedIndex', 0);
+                    $("#<%=ddlSpouseDOBDate.ClientID%>").prop('selectedIndex', 0);
+                    $("#<%=ddlMarriageYear.ClientID%>").prop('selectedIndex', 0);
+                    $("#<%=ddlMarriageMonth.ClientID%>").prop('selectedIndex', 0);
+                    $("#<%=ddlMarriageDate.ClientID%>").prop('selectedIndex', 0);
+                    $("#<%=ddlSpouseNationality.ClientID%>").prop('selectedIndex', 0);
+                }
+            });
+            
+            if (maritalStatus == "Married") {
+                $("#<%=statusMarried.ClientID%>").show();
+            }
 
             $("#<%=ddlNationality.ClientID%>").change(function () {
                 countryVal = $("#<%=ddlNationality.ClientID%>").val().split("_");
