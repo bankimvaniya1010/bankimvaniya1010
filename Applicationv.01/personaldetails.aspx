@@ -42,6 +42,7 @@
                                             
                                         </div>
                                     </div>
+                                    <asp:CheckBox ID="passportFirstName" runat="server" />Passport first name same as above
                                 </div>
                             </div>
                             <div class="list-group-item" id="lastname" runat="server" style="display: none">
@@ -56,6 +57,7 @@
                                           
                                         </div>
                                     </div>
+                                    <asp:CheckBox ID="passportLastName" runat="server" />Passport last name same as above
                                 </div>
                             </div>
                             <div class="list-group-item" id="preferedname" runat="server" style="display: none">
@@ -81,6 +83,7 @@
                                                 value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
+                                    <asp:CheckBox ID="passportMiddleName" runat="server" />Passport middle name same as above
                                 </div>
                             </div>
                             <div class="list-group-item" id="dob" runat="server" style="display: none">
@@ -399,12 +402,18 @@
                 alert("Please enter other title");
             else if (!$("#<%=firstname.ClientID%>").is(':hidden') && $("#<%=txtFirstName.ClientID%>").val() == "")
                 alert("Please enter first name");
+            else if (!$("#<%=passportFirstName.ClientID%>").prop('checked'))
+                alert("Kindly confirm first name is same as passport name");
             else if (!$("#<%=lastname.ClientID%>").is(':hidden') && $("#<%=txtLastName.ClientID%>").val() == "")
                 alert("Please enter last name");
+            else if (!$("#<%=passportLastName.ClientID%>").prop('checked'))
+                alert("Kindly confirm last name is same as passport name");
             else if (!$("#<%=preferedname.ClientID%>").is(':hidden') && $("#<%=txtPreferedName.ClientID%>").val() == "")
                 alert("Please enter prefered name");
             else if (!$("#<%=middlename.ClientID%>").is(':hidden') && $("#<%=txtMiddleName.ClientID%>").val() == "")
                 alert("Please enter middle name");
+            else if (!$("#<%=passportMiddleName.ClientID%>").prop('checked'))
+                alert("Kindly confirm middle name is same as passport name");
             else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked')))
                 alert("Please Select Option to record Gender");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0")))

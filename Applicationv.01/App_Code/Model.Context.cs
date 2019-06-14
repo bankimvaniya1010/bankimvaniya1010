@@ -53,7 +53,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<citymaster> citymaster { get; set; }
     public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
-    public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<coursetypemaster> coursetypemaster { get; set; }
     public virtual DbSet<credentialmaster> credentialmaster { get; set; }
     public virtual DbSet<customfieldmaster> customfieldmaster { get; set; }
@@ -110,7 +109,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<accommodationplan> accommodationplan { get; set; }
     public virtual DbSet<admintooltips> admintooltips { get; set; }
     public virtual DbSet<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
-    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<applicantfundingmaster> applicantfundingmaster { get; set; }
     public virtual DbSet<entertainment> entertainment { get; set; }
     public virtual DbSet<familymember> familymember { get; set; }
@@ -118,6 +116,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<studyoptionmaster> studyoptionmaster { get; set; }
     public virtual DbSet<transportchoice> transportchoice { get; set; }
     public virtual DbSet<trips> trips { get; set; }
+    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
+    public virtual DbSet<coursemaster> coursemaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

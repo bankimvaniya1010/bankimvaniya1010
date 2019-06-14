@@ -149,9 +149,12 @@
           <Property Name="universityid" Type="int" />
           <Property Name="title" Type="int" />
           <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="passportfirstname" Type="bit" />
           <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="passportlastname" Type="bit" />
           <Property Name="prefferedname" Type="varchar" MaxLength="50" />
           <Property Name="middlename" Type="varchar" MaxLength="50" />
+          <Property Name="passportmiddlename" Type="bit" />
           <Property Name="dateofbirth" Type="datetime" Precision="0" />
           <Property Name="gender" Type="int" />
           <Property Name="nationality" Type="int" />
@@ -522,7 +525,7 @@
           </Key>
           <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coursename" Type="varchar" MaxLength="45" />
-          <Property Name="coursetypeid" Type="int" />
+          <Property Name="majordisciplineId" Type="int" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -530,6 +533,7 @@
           </Key>
           <Property Name="coursetypeid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coursetypename" Type="varchar" MaxLength="45" />
+          <Property Name="universityid" Type="int" />
         </EntityType>
         <EntityType Name="credentialmaster">
           <Key>
@@ -888,6 +892,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="45" />
+          <Property Name="universityid" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="studyoptionmaster">
           <Key>
@@ -1192,6 +1197,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="citymaster">
               <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_coursetypemaster_university_master">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="0..1" />
+          <End Role="coursetypemaster" Type="Self.coursetypemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="coursetypemaster">
+              <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1587,6 +1604,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="citymaster" EntitySet="citymaster" />
           </AssociationSet>
+          <AssociationSet Name="FK_coursetypemaster_university_master" Association="Self.FK_coursetypemaster_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="coursetypemaster" EntitySet="coursetypemaster" />
+          </AssociationSet>
           <AssociationSet Name="FK_credential_university" Association="Self.FK_credential_university">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="credentialmaster" EntitySet="credentialmaster" />
@@ -1709,7 +1730,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="citymaster" EntityType="GTEModel.citymaster" />
           <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
-          <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           <EntitySet Name="coursetypemaster" EntityType="GTEModel.coursetypemaster" />
           <EntitySet Name="credentialmaster" EntityType="GTEModel.credentialmaster" />
           <EntitySet Name="customfieldmaster" EntityType="GTEModel.customfieldmaster" />
@@ -1862,7 +1882,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="accommodationplan" EntityType="GTEModel.accommodationplan" />
           <EntitySet Name="admintooltips" EntityType="GTEModel.admintooltips" />
           <EntitySet Name="adminuniversitywisetooltips" EntityType="GTEModel.adminuniversitywisetooltips" />
-          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <EntitySet Name="applicantfundingmaster" EntityType="GTEModel.applicantfundingmaster" />
           <EntitySet Name="entertainment" EntityType="GTEModel.entertainment" />
           <EntitySet Name="familymember" EntityType="GTEModel.familymember" />
@@ -1894,6 +1913,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="applicantvisadetails" EntitySet="applicantvisadetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_coursetypemaster_university_master" Association="GTEModel.FK_coursetypemaster_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="coursetypemaster" EntitySet="coursetypemaster" />
+          </AssociationSet>
+          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
+          <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           </EntityContainer>
         <EntityType Name="adminusers">
           <Key>
@@ -2291,20 +2316,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
           <NavigationProperty Name="qualificationcountriesmapping" Relationship="GTEModel.FK_qualificationcountriesmapping_countriesmaster" FromRole="countriesmaster" ToRole="qualificationcountriesmapping" />
         </EntityType>
-        <EntityType Name="coursemaster">
-          <Key>
-            <PropertyRef Name="courseid" />
-          </Key>
-          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="coursetypeid" Type="Int32" />
-        </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
             <PropertyRef Name="coursetypeid" />
           </Key>
           <Property Name="coursetypeid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="coursetypename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_coursetypemaster_university_master" FromRole="coursetypemaster" ToRole="university_master" />
         </EntityType>
         <EntityType Name="credentialmaster">
           <Key>
@@ -2671,6 +2690,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="subjectmaster">
           <Key>
@@ -3022,6 +3042,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
           <NavigationProperty Name="adminuniversitywisetooltips" Relationship="GTEModel.fk_adminuniversitywisetooltips_university_master" FromRole="university_master" ToRole="adminuniversitywisetooltips" />
           <NavigationProperty Name="applicantvisadetails" Relationship="GTEModel.FK_applicantvisadetails_university_master" FromRole="university_master" ToRole="applicantvisadetails" />
+          <NavigationProperty Name="coursetypemaster" Relationship="GTEModel.FK_coursetypemaster_university_master" FromRole="university_master" ToRole="coursetypemaster" />
         </EntityType>
         <Association Name="FK_universityMaster_cityMaster">
           <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
@@ -3176,86 +3197,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="primaryfieldmaster" Relationship="GTEModel.fk_adminuniversitywisetooltips_primaryfieldmaster" FromRole="adminuniversitywisetooltips" ToRole="primaryfieldmaster" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.fk_adminuniversitywisetooltips_university_master" FromRole="adminuniversitywisetooltips" ToRole="university_master" />
         </EntityType>
-        <EntityType Name="applicantdetails">
-          <Key>
-            <PropertyRef Name="applicantpersonaldetailsid" />
-          </Key>
-          <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="title" Type="Int32" />
-          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="dateofbirth" Type="DateTime" />
-          <Property Name="gender" Type="Int32" />
-          <Property Name="nationality" Type="Int32" />
-          <Property Name="nationality2" Type="Int32" />
-          <Property Name="hasdualcitizenship" Type="Boolean" />
-          <Property Name="chinesecodenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="haschinesecodenumber" Type="Boolean" />
-          <Property Name="patronymicname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="countryofbirth" Type="Int32" />
-          <Property Name="maritalstatus" Type="Int32" />
-          <Property Name="ismarried" Type="Boolean" />
-          <Property Name="spousename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="spousenationality" Type="Int32" />
-          <Property Name="spousedob" Type="DateTime" />
-          <Property Name="marriagedate" Type="DateTime" />
-          <Property Name="isdisable" Type="Int32" />
-          <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalcountry" Type="Int32" />
-          <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialcountry" Type="Int32" />
-          <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="haveskypeid" Type="Int32" />
-          <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="isdifferentwhatsapp" Type="Int32" />
-          <Property Name="issameaspostal" Type="Int32" />
-          <Property Name="nomineefullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="relationshipwithnominee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="nomineeemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="nomineemobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="passportissuedate" Type="DateTime" />
-          <Property Name="passportexpirydate" Type="DateTime" />
-          <Property Name="alternativeIdentityproofId" Type="Int32" />
-          <Property Name="passportissuecity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeIdentityproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeproofdobId" Type="Int32" />
-          <Property Name="alternativeproofdobno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeresidenceproofId" Type="Int32" />
-          <Property Name="alternativeresidenceproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="linkedprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="facebookprofle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="twiterprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="othertitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="personaldetailsavedtime" Type="DateTime" />
-          <Property Name="contactdetailsavetime" Type="DateTime" />
-          <Property Name="identificationsavetime" Type="DateTime" />
-          <Property Name="socialprofilesavetime" Type="DateTime" />
-          <Property Name="passportissuecountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="havewhatsup" Type="Int32" />
-          <Property Name="agentid" Type="Int32" />
-          <Property Name="isstudentreferbyagent" Type="Int32" />
-          <Property Name="haveworkexperience" Type="Boolean" />
-        </EntityType>
         <EntityType Name="applicantfundingmaster">
           <Key>
             <PropertyRef Name="applicantfundingmasterid" />
@@ -3383,6 +3324,109 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_coursetypemaster_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
+          <End Type="GTEModel.coursetypemaster" Role="coursetypemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="coursetypemaster">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="applicantdetails">
+          <Key>
+            <PropertyRef Name="applicantpersonaldetailsid" />
+          </Key>
+          <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="title" Type="Int32" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passportfirstname" Type="Boolean" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passportlastname" Type="Boolean" />
+          <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="passportmiddlename" Type="Boolean" />
+          <Property Name="dateofbirth" Type="DateTime" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="nationality" Type="Int32" />
+          <Property Name="nationality2" Type="Int32" />
+          <Property Name="hasdualcitizenship" Type="Boolean" />
+          <Property Name="chinesecodenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haschinesecodenumber" Type="Boolean" />
+          <Property Name="patronymicname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryofbirth" Type="Int32" />
+          <Property Name="maritalstatus" Type="Int32" />
+          <Property Name="ismarried" Type="Boolean" />
+          <Property Name="spousename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="spousenationality" Type="Int32" />
+          <Property Name="spousedob" Type="DateTime" />
+          <Property Name="marriagedate" Type="DateTime" />
+          <Property Name="isdisable" Type="Int32" />
+          <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcountry" Type="Int32" />
+          <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcountry" Type="Int32" />
+          <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="haveskypeid" Type="Int32" />
+          <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="isdifferentwhatsapp" Type="Int32" />
+          <Property Name="issameaspostal" Type="Int32" />
+          <Property Name="nomineefullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithnominee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineeemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineemobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="passportissuedate" Type="DateTime" />
+          <Property Name="passportexpirydate" Type="DateTime" />
+          <Property Name="alternativeIdentityproofId" Type="Int32" />
+          <Property Name="passportissuecity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeIdentityproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeproofdobId" Type="Int32" />
+          <Property Name="alternativeproofdobno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeresidenceproofId" Type="Int32" />
+          <Property Name="alternativeresidenceproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="linkedprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="facebookprofle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="twiterprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="othertitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="personaldetailsavedtime" Type="DateTime" />
+          <Property Name="contactdetailsavetime" Type="DateTime" />
+          <Property Name="identificationsavetime" Type="DateTime" />
+          <Property Name="socialprofilesavetime" Type="DateTime" />
+          <Property Name="passportissuecountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="havewhatsup" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="isstudentreferbyagent" Type="Int32" />
+          <Property Name="haveworkexperience" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="coursemaster">
+          <Key>
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="majordisciplineId" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3809,18 +3853,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="coursemaster">
-            <EntityTypeMapping TypeName="GTEModel.coursemaster">
-              <MappingFragment StoreEntitySet="coursemaster">
-                <ScalarProperty Name="coursetypeid" ColumnName="coursetypeid" />
-                <ScalarProperty Name="coursename" ColumnName="coursename" />
-                <ScalarProperty Name="courseid" ColumnName="courseid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="coursetypemaster">
             <EntityTypeMapping TypeName="GTEModel.coursetypemaster">
               <MappingFragment StoreEntitySet="coursetypemaster">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="coursetypename" ColumnName="coursetypename" />
                 <ScalarProperty Name="coursetypeid" ColumnName="coursetypeid" />
               </MappingFragment>
@@ -4194,6 +4230,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="studymodemaster">
             <EntityTypeMapping TypeName="GTEModel.studymodemaster">
               <MappingFragment StoreEntitySet="studymodemaster">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -4409,6 +4446,68 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="applicantfundingmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantfundingmaster">
+              <MappingFragment StoreEntitySet="applicantfundingmaster">
+                <ScalarProperty Name="entertainment" ColumnName="entertainment" />
+                <ScalarProperty Name="trips" ColumnName="trips" />
+                <ScalarProperty Name="transportchoice" ColumnName="transportchoice" />
+                <ScalarProperty Name="managemeal" ColumnName="managemeal" />
+                <ScalarProperty Name="accommodationplan" ColumnName="accommodationplan" />
+                <ScalarProperty Name="familymember" ColumnName="familymember" />
+                <ScalarProperty Name="studyoption" ColumnName="studyoption" />
+                <ScalarProperty Name="applicantfundingmasterid" ColumnName="applicantfundingmasterid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="entertainment">
+            <EntityTypeMapping TypeName="GTEModel.entertainment">
+              <MappingFragment StoreEntitySet="entertainment">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="familymember">
+            <EntityTypeMapping TypeName="GTEModel.familymember">
+              <MappingFragment StoreEntitySet="familymember">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managemeal">
+            <EntityTypeMapping TypeName="GTEModel.managemeal">
+              <MappingFragment StoreEntitySet="managemeal">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studyoptionmaster">
+            <EntityTypeMapping TypeName="GTEModel.studyoptionmaster">
+              <MappingFragment StoreEntitySet="studyoptionmaster">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transportchoice">
+            <EntityTypeMapping TypeName="GTEModel.transportchoice">
+              <MappingFragment StoreEntitySet="transportchoice">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trips">
+            <EntityTypeMapping TypeName="GTEModel.trips">
+              <MappingFragment StoreEntitySet="trips">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
@@ -4479,9 +4578,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="nationality" ColumnName="nationality" />
                 <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="passportmiddlename" ColumnName="passportmiddlename" />
                 <ScalarProperty Name="middlename" ColumnName="middlename" />
                 <ScalarProperty Name="prefferedname" ColumnName="prefferedname" />
+                <ScalarProperty Name="passportlastname" ColumnName="passportlastname" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="passportfirstname" ColumnName="passportfirstname" />
                 <ScalarProperty Name="firstname" ColumnName="firstname" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
@@ -4490,65 +4592,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="applicantfundingmaster">
-            <EntityTypeMapping TypeName="GTEModel.applicantfundingmaster">
-              <MappingFragment StoreEntitySet="applicantfundingmaster">
-                <ScalarProperty Name="entertainment" ColumnName="entertainment" />
-                <ScalarProperty Name="trips" ColumnName="trips" />
-                <ScalarProperty Name="transportchoice" ColumnName="transportchoice" />
-                <ScalarProperty Name="managemeal" ColumnName="managemeal" />
-                <ScalarProperty Name="accommodationplan" ColumnName="accommodationplan" />
-                <ScalarProperty Name="familymember" ColumnName="familymember" />
-                <ScalarProperty Name="studyoption" ColumnName="studyoption" />
-                <ScalarProperty Name="applicantfundingmasterid" ColumnName="applicantfundingmasterid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="entertainment">
-            <EntityTypeMapping TypeName="GTEModel.entertainment">
-              <MappingFragment StoreEntitySet="entertainment">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="familymember">
-            <EntityTypeMapping TypeName="GTEModel.familymember">
-              <MappingFragment StoreEntitySet="familymember">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="managemeal">
-            <EntityTypeMapping TypeName="GTEModel.managemeal">
-              <MappingFragment StoreEntitySet="managemeal">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="studyoptionmaster">
-            <EntityTypeMapping TypeName="GTEModel.studyoptionmaster">
-              <MappingFragment StoreEntitySet="studyoptionmaster">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="transportchoice">
-            <EntityTypeMapping TypeName="GTEModel.transportchoice">
-              <MappingFragment StoreEntitySet="transportchoice">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="trips">
-            <EntityTypeMapping TypeName="GTEModel.trips">
-              <MappingFragment StoreEntitySet="trips">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="id" ColumnName="id" />
+          <EntitySetMapping Name="coursemaster">
+            <EntityTypeMapping TypeName="GTEModel.coursemaster">
+              <MappingFragment StoreEntitySet="coursemaster">
+                <ScalarProperty Name="majordisciplineId" ColumnName="majordisciplineId" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

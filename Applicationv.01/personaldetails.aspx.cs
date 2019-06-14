@@ -368,6 +368,10 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.spousename = txtSpouseName.Value.Trim();
                 objapplicantDetail.spousenationality = Convert.ToInt32(ddlSpouseNationality.SelectedValue);
             }
+            
+            objapplicantDetail.passportfirstname = passportFirstName.Checked;
+            objapplicantDetail.passportlastname = passportLastName.Checked;
+            objapplicantDetail.passportmiddlename = passportMiddleName.Checked;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();

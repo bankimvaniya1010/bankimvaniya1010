@@ -147,9 +147,12 @@ public partial class applicantdetails
     public Nullable<int> universityid { get; set; }
     public Nullable<int> title { get; set; }
     public string firstname { get; set; }
+    public Nullable<bool> passportfirstname { get; set; }
     public string lastname { get; set; }
+    public Nullable<bool> passportlastname { get; set; }
     public string prefferedname { get; set; }
     public string middlename { get; set; }
+    public Nullable<bool> passportmiddlename { get; set; }
     public Nullable<System.DateTime> dateofbirth { get; set; }
     public Nullable<int> gender { get; set; }
     public Nullable<int> nationality { get; set; }
@@ -525,13 +528,16 @@ public partial class coursemaster
 {
     public int courseid { get; set; }
     public string coursename { get; set; }
-    public Nullable<int> coursetypeid { get; set; }
+    public Nullable<int> majordisciplineId { get; set; }
 }
 
 public partial class coursetypemaster
 {
     public int coursetypeid { get; set; }
     public string coursetypename { get; set; }
+    public Nullable<int> universityid { get; set; }
+
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class credentialmaster
@@ -984,6 +990,7 @@ public partial class studymodemaster
 {
     public int id { get; set; }
     public string description { get; set; }
+    public int universityid { get; set; }
 }
 
 public partial class studyoptionmaster
@@ -1082,6 +1089,7 @@ public partial class university_master
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
         this.adminuniversitywisetooltips = new HashSet<adminuniversitywisetooltips>();
         this.applicantvisadetails = new HashSet<applicantvisadetails>();
+        this.coursetypemaster = new HashSet<coursetypemaster>();
     }
 
     public int universityid { get; set; }
@@ -1125,6 +1133,8 @@ public partial class university_master
     public virtual ICollection<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<applicantvisadetails> applicantvisadetails { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursetypemaster> coursetypemaster { get; set; }
 }
 
 public partial class universitycampus
