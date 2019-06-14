@@ -547,7 +547,13 @@ public partial class applicanteducation : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var studymode = db.studymodemaster.ToList();
+            var studymode = (from sd in db.studymodemaster
+                             where sd.universityid == universityID
+                             select new
+                             {
+                                 description = sd.description,
+                                 id = sd.id
+                             }).ToList();
 
             ddl.DataSource = studymode;
             ddl.DataTextField = "description";

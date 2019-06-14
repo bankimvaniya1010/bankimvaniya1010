@@ -28,7 +28,7 @@ public partial class admin_sutdymode : System.Web.UI.Page
                             {
                                 id = q.id,
                                 description = q.description,
-
+                                universityid = q.universityid,
                             }).ToList();
             if (ModeList != null)
             {
@@ -64,8 +64,10 @@ public partial class admin_sutdymode : System.Web.UI.Page
                 studymodemaster ObjMOde = new studymodemaster();
 
                 TextBox txtDescription = (TextBox)gvStudemode.FooterRow.FindControl("txtDescription1");
+                DropDownList ddlUniversityFooter = (DropDownList)gvStudemode.FooterRow.FindControl("ddlUniversityFooter");
 
                 ObjMOde.description = txtDescription.Text.Trim();
+                ObjMOde.universityid = Convert.ToInt32(ddlUniversityFooter.SelectedValue);
 
                 db.studymodemaster.Add(ObjMOde);
                 db.SaveChanges();
@@ -82,6 +84,27 @@ public partial class admin_sutdymode : System.Web.UI.Page
     {
         try
         {
+            var universitymaster = db.university_master.ToList();
+            DropDownList ddlUniversityEdit = (e.Row.FindControl("ddlUniversity") as DropDownList);
+            DropDownList ddlUniversityFooter = (e.Row.FindControl("ddlUniversityFooter") as DropDownList);
+            ListItem lst = new ListItem("Please select", "0");
+
+            if (ddlUniversityFooter != null)
+            {
+                ddlUniversityFooter.DataSource = universitymaster;
+                ddlUniversityFooter.DataTextField = "university_name";
+                ddlUniversityFooter.DataValueField = "universityid";
+                ddlUniversityFooter.DataBind();
+                ddlUniversityFooter.Items.Insert(0, lst);
+            }
+            if (ddlUniversityEdit != null)
+            {
+                ddlUniversityEdit.DataSource = universitymaster;
+                ddlUniversityEdit.DataTextField = "university_name";
+                ddlUniversityEdit.DataValueField = "universityid";
+                ddlUniversityEdit.DataBind();
+                ddlUniversityEdit.Items.Insert(0, lst);
+            }
             if (e.Row.RowState != DataControlRowState.Edit) // check for RowState
             {
                 if (e.Row.RowType == DataControlRowType.DataRow) //check for RowType
@@ -144,8 +167,10 @@ public partial class admin_sutdymode : System.Web.UI.Page
 
 
             TextBox txtDescription = (TextBox)gvStudemode.Rows[e.RowIndex].FindControl("txtDescription");
+            DropDownList ddlUniversity = (DropDownList)gvStudemode.Rows[e.RowIndex].FindControl("ddlUniversity");
 
             ObjMOde.description = txtDescription.Text.Trim();
+            ObjMOde.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
 
             gvStudemode.EditIndex = -1;
             db.SaveChanges();
