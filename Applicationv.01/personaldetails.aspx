@@ -346,16 +346,14 @@
                 alert("Please Select valid agent details");
             else if ($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') && ($("#<%=txtChineseCodeNumber.ClientID%>").val() === ""))
                 alert("Please enter chinese commercial code number");
-            else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() != "0") || ($("#<%=ddlMonth.ClientID%>").val() != "0") || ($("#<%=ddlYear.ClientID%>").val() != "0"))) {
+            else if (($("#<%=ddlDay.ClientID%>").val() != "0") && ($("#<%=ddlMonth.ClientID%>").val() != "0") && ($("#<%=ddlYear.ClientID%>").val() != "0")) {
                 var dob = $("#<%=ddlMonth.ClientID%>").val() + "/" + $("#<%=ddlDay.ClientID%>").val() + "/" + $("#<%=ddlYear.ClientID%>").val();
                 var age = getAge(dob);
                 var maxAge = <%=GlobalVariables.universityMaxAge%>;
                 var minAge = <%=GlobalVariables.universityMinAge%>;
 
-                if (age < minAge || age > maxAge) {
-                    alert("Please enter age within range. Max age:" + maxAge + " and Min age:" + minAge);
-                }
-                
+                if (age < minAge || age > maxAge)
+                    alert("Age should be between " + minAge + " & " + maxAge + " years");   
             }
             else
                 flag = true;
@@ -438,16 +436,20 @@
                 $("#<%=txtChineseCodeNumber.ClientID%>").val('');
             });
 
+            var titleSelected = false;
             $("#<%=ddlTitle.ClientID%>").change(function () {
-                titleText = $("#<%=ddlTitle.ClientID%> option:selected").text();
-                if (titleText == "Ms" || titleText == "Mrs" || titleText == "Miss") {
-                    $("#<%=rbtnFemale.ClientID%>").prop('checked', true);
-                }
-                else if (titleText == "Dr") {
-                    $("#<%=rbtnMale.ClientID%>").prop('checked', true);
-                }
-                else if (titleText == "Mr") {
-                    $("#<%=rbtnMale.ClientID%>").prop('checked', true);
+                if (!titleSelected) {
+                    titleText = $("#<%=ddlTitle.ClientID%> option:selected").text();
+                    titleSelected = true;
+                    if (titleText == "Ms" || titleText == "Mrs" || titleText == "Miss") {
+                        $("#<%=rbtnFemale.ClientID%>").prop('checked', true);
+                    }
+                    else if (titleText == "Dr") {
+                        $("#<%=rbtnMale.ClientID%>").prop('checked', true);
+                    }
+                    else if (titleText == "Mr") {
+                        $("#<%=rbtnMale.ClientID%>").prop('checked', true);
+                    }
                 }
             });
 
