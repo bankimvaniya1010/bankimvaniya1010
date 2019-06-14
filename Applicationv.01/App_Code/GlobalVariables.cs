@@ -12,6 +12,9 @@ public sealed class GlobalVariables
         //
     }
 
+    public static int universityMaxAge;
+    public static int universityMinAge;
+
     public static string GetChinaCountryName
     {
         get { return "China".ToUpper(); }

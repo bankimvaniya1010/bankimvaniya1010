@@ -56,6 +56,12 @@ public partial class personaldetails : System.Web.UI.Page
             PopulatePersonalInfo();
             SetToolTips();
             SetControlsUniversitywise();
+
+            int maxAge = db.university_master.Where(x => x.universityid == universityID).Select(x => x.acceptedmaxage).First();
+            int minAge = db.university_master.Where(x => x.universityid == universityID).Select(x => x.acceptedminage).First();
+
+            GlobalVariables.universityMaxAge = maxAge;
+            GlobalVariables.universityMinAge = minAge;
         }
     }
     public void FillMonth()
