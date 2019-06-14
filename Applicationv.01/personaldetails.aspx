@@ -440,15 +440,10 @@
             $("#<%=ddlTitle.ClientID%>").change(function () {
                 if (!genderSelected) {
                     titleText = $("#<%=ddlTitle.ClientID%> option:selected").text();
-                    if (titleText == "Ms" || titleText == "Mrs" || titleText == "Miss") {
+                    if (titleText == "Ms" || titleText == "Mrs" || titleText == "Miss")
                         $("#<%=rbtnFemale.ClientID%>").prop('checked', true);
-                    }
-                    else if (titleText == "Dr") {
+                    else if (titleText == "Dr" || titleText == "Mr")
                         $("#<%=rbtnMale.ClientID%>").prop('checked', true);
-                    }
-                    else if (titleText == "Mr") {
-                        $("#<%=rbtnMale.ClientID%>").prop('checked', true);
-                    }
                 }
             });
 
