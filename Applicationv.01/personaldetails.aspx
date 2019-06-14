@@ -326,6 +326,15 @@
                 alert("Please Select Option to record Gender");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0")))
                 alert("Please Select valid date of birth");
+            else if (!$("#<%=dob.ClientID%>").is(':hidden')) {
+                var dob = $("#<%=ddlMonth.ClientID%>").val() + "/" + $("#<%=ddlDay.ClientID%>").val() + "/" + $("#<%=ddlYear.ClientID%>").val();
+                var age = getAge(dob);
+                var maxAge = <%=GlobalVariables.universityMaxAge%>;
+                var minAge = <%=GlobalVariables.universityMinAge%>;
+
+                if (age < minAge || age > maxAge)
+                    alert("Age should be between " + minAge + " & " + maxAge + " years");   
+            }
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val().split("_")[0] === "0")
                 alert("Please select valid nationality");
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && !$("#<%=rblNationalityYes.ClientID%>").is(':checked') && !$("#<%=secondNation.ClientID%>").is(':hidden') && $("#<%=ddlOtherNation.ClientID%>").val() === "0")
@@ -346,15 +355,6 @@
                 alert("Please Select valid agent details");
             else if ($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') && ($("#<%=txtChineseCodeNumber.ClientID%>").val() === ""))
                 alert("Please enter chinese commercial code number");
-            else if (($("#<%=ddlDay.ClientID%>").val() != "0") && ($("#<%=ddlMonth.ClientID%>").val() != "0") && ($("#<%=ddlYear.ClientID%>").val() != "0")) {
-                var dob = $("#<%=ddlMonth.ClientID%>").val() + "/" + $("#<%=ddlDay.ClientID%>").val() + "/" + $("#<%=ddlYear.ClientID%>").val();
-                var age = getAge(dob);
-                var maxAge = <%=GlobalVariables.universityMaxAge%>;
-                var minAge = <%=GlobalVariables.universityMinAge%>;
-
-                if (age < minAge || age > maxAge)
-                    alert("Age should be between " + minAge + " & " + maxAge + " years");   
-            }
             else
                 flag = true;
             if (flag == true)
@@ -436,11 +436,10 @@
                 $("#<%=txtChineseCodeNumber.ClientID%>").val('');
             });
 
-            var titleSelected = false;
+            var genderSelected = false;
             $("#<%=ddlTitle.ClientID%>").change(function () {
-                if (!titleSelected) {
+                if (!genderSelected) {
                     titleText = $("#<%=ddlTitle.ClientID%> option:selected").text();
-                    titleSelected = true;
                     if (titleText == "Ms" || titleText == "Mrs" || titleText == "Miss") {
                         $("#<%=rbtnFemale.ClientID%>").prop('checked', true);
                     }
@@ -451,6 +450,14 @@
                         $("#<%=rbtnMale.ClientID%>").prop('checked', true);
                     }
                 }
+            });
+
+            $("#<%=rbtnMale.ClientID%>").click(function () {
+                genderSelected = true;
+            });
+
+            $("#<%=rbtnFemale.ClientID%>").click(function () {
+                genderSelected = true;
             });
 
             $("#<%=ddlNationality.ClientID%>").change(function () {
