@@ -129,8 +129,8 @@
         <AssociationConnector Association="GTEModel.fk_adminuniversitywisetooltips_university_master" />
         <AssociationConnector Association="GTEModel.FK_applicantvisadetails_university_master" />
         <AssociationConnector Association="GTEModel.FK_coursetypemaster_university_master" />
-        <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="28.375" PointY="10.75" />
         <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="5.375" PointY="29.75" />
+        <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="28.375" PointY="10.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
