@@ -88,7 +88,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             PopulateKYSDetails();
             SetControlsUniversitywise();
 
-            var obj = db.applicantdetails.Where(x => x.applicantid == userID).Select(x => new { Name = x.firstname + x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
+            var obj = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { Name = x.firstname + x.middlename + x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
 
             StudentName = obj.Name;
             StudentDOB = obj.dob.ToString();
@@ -467,8 +467,9 @@ public partial class knowyourstudent : System.Web.UI.Page
     public static void postConfirmation(bool confirmation)
     {
         GTEEntities db1 = new GTEEntities();
+        int universityID = Convert.ToInt32(ConfigurationManager.AppSettings["UniversityID"].ToString());
         int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
-        var details = db1.applicantdetails.Where(x => x.applicantid == userID).FirstOrDefault();
+        var details = db1.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
         details.verifiedpassportnamedob = confirmation;
         db1.SaveChanges();
     }
