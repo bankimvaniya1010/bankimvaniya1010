@@ -22,6 +22,11 @@ public partial class applicantcourse : System.Web.UI.Page
         userID = objUser.studentid;
         if (!IsPostBack)
         {
+            second.Attributes.Add("style", "display:none;");
+            third.Attributes.Add("style", "display:none;");
+            four.Attributes.Add("style", "display:none;");
+            five.Attributes.Add("style", "display:none;");
+
             BindUniversities(ddlCollege1);
             BindCourseType(ddlCourseType1);
 
@@ -36,8 +41,10 @@ public partial class applicantcourse : System.Web.UI.Page
 
             BindUniversities(ddlCollege5);
             BindCourseType(ddlcoursetype5);
+            PopulateAppllicationInfo();
         }
     }
+
     private void BindCourseType(DropDownList ddl)
     {
         try
@@ -143,7 +150,6 @@ public partial class applicantcourse : System.Web.UI.Page
         }
     }
 
-
     private void BindCampus(DropDownList ddl)
     {
         try
@@ -227,6 +233,7 @@ public partial class applicantcourse : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
     private void BindUniversities(DropDownList ddl)
     {
         try
@@ -269,6 +276,7 @@ public partial class applicantcourse : System.Web.UI.Page
         BindCountry(ddlCountry2);
         BindMajor(ddlMajor2);
         BindMode(ddlMode2);
+        second.Attributes.Add("style", "display:block;");
     }
     protected void ddlCollege3_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -277,6 +285,7 @@ public partial class applicantcourse : System.Web.UI.Page
         BindCountry(ddlCountry3);
         BindMajor(ddlMajor3);
         BindMode(ddlMode3);
+        third.Attributes.Add("style", "display:block;");
     }
     protected void ddlCollege4_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -285,6 +294,7 @@ public partial class applicantcourse : System.Web.UI.Page
         BindCountry(ddlCountry4);
         BindMajor(ddlMajor4);
         BindMode(ddlMode4);
+        four.Attributes.Add("style", "display:block;");
     }
     protected void ddlCollege5_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -293,6 +303,7 @@ public partial class applicantcourse : System.Web.UI.Page
         BindCountry(ddlCountry5);
         BindMajor(ddlMajor5);
         BindMode(ddlMode5);
+        five.Attributes.Add("style", "display:block;");
     }
 
 
@@ -303,21 +314,382 @@ public partial class applicantcourse : System.Web.UI.Page
     protected void ddlMajor2_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindCourses(ddlCourse2);
+        second.Attributes.Add("style", "display:block;");
     }
     protected void ddlMajor3_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindCourses(ddlCourse3);
+        third.Attributes.Add("style", "display:block;");
     }
     protected void ddlMajor4_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindCourses(ddlCourse4);
+        four.Attributes.Add("style", "display:block;");
     }
     protected void ddlMajor5_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindCourses(ddlCourse5);
+        five.Attributes.Add("style", "display:block;");
+    }
+
+    private void PopulateAppllicationInfo()
+    {
+        try
+        {
+            var applications = (from fInfo in db.applicationmaster
+                              where fInfo.applicantid == userID && fInfo.universityid == universityID
+                              select fInfo).ToList();
+            //Preference 1
+            for (var i = 0; i < applications.Count; i++)
+            {
+                var courseInfo = applications[i];
+                if (courseInfo.preferenceid == 1)
+                {
+                    if (courseInfo.college_universityname != null)
+                    {
+                        ddlCollege1.ClearSelection();
+                        ddlCollege1.Items.FindByValue(courseInfo.college_universityname.ToString()).Selected = true;
+                    }
+                    if (courseInfo.campus != null)
+                    {
+                        BindCampus(ddlCampus1);
+                        ddlCampus1.ClearSelection();
+                        ddlCampus1.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                    }
+                    if (courseInfo.city != null)
+                    {
+                        BindCity(ddlCity1);
+                        ddlCity1.ClearSelection();
+                        ddlCity1.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                    }
+                    if (courseInfo.country != null)
+                    {
+                        BindCountry(ddlCountry1);
+                        ddlCountry1.ClearSelection();
+                        ddlCountry1.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                    }
+                    if (courseInfo.modeofstudy != null)
+                    {
+                        BindMode(ddlmode1);
+                        ddlmode1.ClearSelection();
+                        ddlmode1.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                    }
+                    if (courseInfo.majorofdiscipline != null)
+                    {
+                        BindMajor(ddlMajor1);
+                        ddlMajor1.ClearSelection();
+                        ddlMajor1.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                    }
+                    if (courseInfo.coursetype != null)
+                    {
+                        BindCourseType(ddlCourseType1);
+                        ddlCourseType1.ClearSelection();
+                        ddlCourseType1.Items.FindByValue(courseInfo.coursetype.ToString()).Selected = true;
+                    }
+                    if (courseInfo.course != null)
+                    {
+                        BindCourses(ddlCourse1);
+                        ddlCourse1.ClearSelection();
+                        ddlCourse1.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                    }
+                    txtCommencementdate1.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
+                }
+
+                // Preference 2
+                if (courseInfo.preferenceid == 2)
+                {
+                    second.Attributes.Add("style", "display:block;");
+                    if (courseInfo.college_universityname != null)
+                    {
+                        ddlCollege2.ClearSelection();
+                        ddlCollege2.Items.FindByValue(courseInfo.college_universityname.ToString()).Selected = true;
+                    }
+                    if (courseInfo.campus != null)
+                    {
+                        BindCampus(ddlCampus2);
+                        ddlCampus2.ClearSelection();
+                        ddlCampus2.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                    }
+                    if (courseInfo.city != null)
+                    {
+                        BindCity(ddlCity2);
+                        ddlCity2.ClearSelection();
+                        ddlCity2.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                    }
+                    if (courseInfo.country != null)
+                    {
+
+                        BindCountry(ddlCountry2);
+                        ddlCountry2.ClearSelection();
+                        ddlCountry2.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                    }
+                    if (courseInfo.modeofstudy != null)
+                    {
+
+                        BindMode(ddlMode2);
+                        ddlMode2.ClearSelection();
+                        ddlMode2.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                    }
+                    if (courseInfo.majorofdiscipline != null)
+                    {
+
+                        BindMajor(ddlMajor2);
+                        ddlMajor2.ClearSelection();
+                        ddlMajor2.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                    }
+                    if (courseInfo.coursetype != null)
+                    {
+                        BindCourseType(ddlcoursetype2);
+                        ddlcoursetype2.ClearSelection();
+                        ddlcoursetype2.Items.FindByValue(courseInfo.coursetype.ToString()).Selected = true;
+                    }
+                    if (courseInfo.course != null)
+                    {
+                        BindCourses(ddlCourse2);
+                        ddlCourse2.ClearSelection();
+                        ddlCourse2.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                    }
+                    txtCommencementdate2.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
+
+                }
+
+                // Preference 3
+                if (courseInfo.preferenceid == 3)
+                {
+                    third.Attributes.Add("style", "display:block;");
+                    if (courseInfo.college_universityname != null)
+                    {
+                        ddlCollege3.ClearSelection();
+                        ddlCollege3.Items.FindByValue(courseInfo.college_universityname.ToString()).Selected = true;
+                    }
+                    if (courseInfo.campus != null)
+                    {
+                        BindCampus(ddlCampus3);
+                        ddlCampus3.ClearSelection();
+                        ddlCampus3.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                    }
+                    if (courseInfo.city != null)
+                    {
+                        BindCity(ddlCity3);
+                        ddlCity3.ClearSelection();
+                        ddlCity3.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                    }
+                    if (courseInfo.country != null)
+                    {
+
+                        BindCountry(ddlCountry3);
+                        ddlCountry3.ClearSelection();
+                        ddlCountry3.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                    }
+                    if (courseInfo.modeofstudy != null)
+                    {
+
+                        BindMode(ddlMode3);
+                        ddlMode3.ClearSelection();
+                        ddlMode3.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                    }
+                    if (courseInfo.majorofdiscipline != null)
+                    {
+
+                        BindMajor(ddlMajor3);
+                        ddlMajor3.ClearSelection();
+                        ddlMajor3.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                    }
+                    if (courseInfo.coursetype != null)
+                    {
+                        BindCourseType(ddlcoursetype3);
+                        ddlcoursetype3.ClearSelection();
+                        ddlcoursetype3.Items.FindByValue(courseInfo.coursetype.ToString()).Selected = true;
+                    }
+                    if (courseInfo.course != null)
+                    {
+                        BindCourses(ddlCourse3);
+                        ddlCourse3.ClearSelection();
+                        ddlCourse3.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                    }
+                    txtCommencementdate3.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
+
+                }
+
+                // Preference 4
+                if (courseInfo.preferenceid == 4)
+                {
+                    four.Attributes.Add("style", "display:block;");
+                    if (courseInfo.college_universityname != null)
+                    {
+                        ddlCollege4.ClearSelection();
+                        ddlCollege4.Items.FindByValue(courseInfo.college_universityname.ToString()).Selected = true;
+                    }
+                    if (courseInfo.campus != null)
+                    {
+                        BindCampus(ddlCampus4);
+                        ddlCampus4.ClearSelection();
+                        ddlCampus4.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                    }
+                    if (courseInfo.city != null)
+                    {
+                        BindCity(ddlCity4);
+                        ddlCity4.ClearSelection();
+                        ddlCity4.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                    }
+                    if (courseInfo.country != null)
+                    {
+
+                        BindCountry(ddlCountry4);
+                        ddlCountry4.ClearSelection();
+                        ddlCountry4.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                    }
+                    if (courseInfo.modeofstudy != null)
+                    {
+
+                        BindMode(ddlMode4);
+                        ddlMode4.ClearSelection();
+                        ddlMode4.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                    }
+                    if (courseInfo.majorofdiscipline != null)
+                    {
+
+                        BindMajor(ddlMajor4);
+                        ddlMajor4.ClearSelection();
+                        ddlMajor4.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                    }
+                    if (courseInfo.coursetype != null)
+                    {
+                        BindCourseType(ddlcoursetype4);
+                        ddlcoursetype4.ClearSelection();
+                        ddlcoursetype4.Items.FindByValue(courseInfo.coursetype.ToString()).Selected = true;
+                    }
+                    if (courseInfo.course != null)
+                    {
+                        BindCourses(ddlCourse4);
+                        ddlCourse4.ClearSelection();
+                        ddlCourse4.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                    }
+                    txtCommencementdate4.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
+
+                }
+
+                // Preference 5
+                if (courseInfo.preferenceid == 5)
+                {
+                    four.Attributes.Add("style", "display:block;");
+                    if (courseInfo.college_universityname != null)
+                    {
+                        ddlCollege5.ClearSelection();
+                        ddlCollege5.Items.FindByValue(courseInfo.college_universityname.ToString()).Selected = true;
+                    }
+                    if (courseInfo.campus != null)
+                    {
+                        BindCampus(ddlCampus5);
+                        ddlCampus5.ClearSelection();
+                        ddlCampus5.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                    }
+                    if (courseInfo.city != null)
+                    {
+                        BindCity(ddlCity5);
+                        ddlCity5.ClearSelection();
+                        ddlCity5.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                    }
+                    if (courseInfo.country != null)
+                    {
+
+                        BindCountry(ddlCountry5);
+                        ddlCountry5.ClearSelection();
+                        ddlCountry5.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                    }
+                    if (courseInfo.modeofstudy != null)
+                    {
+
+                        BindMode(ddlMode5);
+                        ddlMode5.ClearSelection();
+                        ddlMode5.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                    }
+                    if (courseInfo.majorofdiscipline != null)
+                    {
+
+                        BindMajor(ddlMajor5);
+                        ddlMajor5.ClearSelection();
+                        ddlMajor5.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                    }
+                    if (courseInfo.coursetype != null)
+                    {
+                        BindCourseType(ddlcoursetype5);
+                        ddlcoursetype5.ClearSelection();
+                        ddlcoursetype5.Items.FindByValue(courseInfo.coursetype.ToString()).Selected = true;
+                    }
+                    if (courseInfo.course != null)
+                    {
+                        BindCourses(ddlCourse5);
+                        ddlCourse5.ClearSelection();
+                        ddlCourse5.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                    }
+                    txtCommencementdate5.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
     }
 
 
+    private void SaveApplicantPreference(int preferenceid, string collegename,int campus, int city, int country, int modeofstudy, int majorofdiscipline, int coursetype, int course, DateTime commencementdate)
+    {
+        try
+        { 
+            var mode = "new";
+            var courseInfo = (from fInfo in db.applicationmaster
+                              where fInfo.applicantid == userID && fInfo.universityid == universityID && fInfo.preferenceid == preferenceid
+                              select fInfo).FirstOrDefault();
+            applicationmaster objapplicationmaster = new applicationmaster();
+            if (courseInfo != null)
+            {
+                mode = "update";
+                objapplicationmaster = courseInfo;
+            }
+            objapplicationmaster.college_universityname = collegename;
+            objapplicationmaster.campus = campus;
+            objapplicationmaster.city = city;
+            objapplicationmaster.country = country;
+            objapplicationmaster.modeofstudy = modeofstudy;
+            objapplicationmaster.majorofdiscipline = majorofdiscipline;
+            objapplicationmaster.coursetype = coursetype;
+            objapplicationmaster.course = course;
+            objapplicationmaster.commencementdate = commencementdate;
+            objapplicationmaster.preferenceid = preferenceid;
+            objapplicationmaster.applicantid = userID;
+            objapplicationmaster.universityid = universityID;
+            if (mode == "new")
+                db.applicationmaster.Add(objapplicationmaster);
+            db.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 
+    protected void btn_coursedetail_Click(object sender, EventArgs e)
+    {
+        try
+        {                  
+                SaveApplicantPreference(1, ddlCollege1.SelectedValue, Convert.ToInt32(ddlCampus1.SelectedValue) , Convert.ToInt32(ddlCity1.SelectedValue), Convert.ToInt32(ddlCountry1.SelectedValue), Convert.ToInt32(ddlmode1.SelectedValue), Convert.ToInt32(ddlMajor1.SelectedValue), Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(ddlCourse1.SelectedValue), Convert.ToDateTime(txtCommencementdate1.Value));
+            if (Convert.ToInt16(ddlCollege2.SelectedValue.ToString()) > 0)
+                SaveApplicantPreference(2, ddlCollege2.SelectedValue, Convert.ToInt32(ddlCampus2.SelectedValue), Convert.ToInt32(ddlCity2.SelectedValue), Convert.ToInt32(ddlCountry2.SelectedValue), Convert.ToInt32(ddlMode2.SelectedValue), Convert.ToInt32(ddlMajor2.SelectedValue), Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(ddlCourse2.SelectedValue), Convert.ToDateTime(txtCommencementdate2.Value));
+            if (Convert.ToInt16(ddlCollege3.SelectedValue.ToString()) > 0)
+                SaveApplicantPreference(3, ddlCollege3.SelectedValue, Convert.ToInt32(ddlCampus3.SelectedValue), Convert.ToInt32(ddlCity3.SelectedValue), Convert.ToInt32(ddlCountry3.SelectedValue), Convert.ToInt32(ddlMode3.SelectedValue), Convert.ToInt32(ddlMajor3.SelectedValue), Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(ddlCourse3.SelectedValue), Convert.ToDateTime(txtCommencementdate3.Value));
+            if (Convert.ToInt16(ddlCollege4.SelectedValue.ToString()) > 0)
+                SaveApplicantPreference(4, ddlCollege4.SelectedValue, Convert.ToInt32(ddlCampus4.SelectedValue), Convert.ToInt32(ddlCity4.SelectedValue), Convert.ToInt32(ddlCountry4.SelectedValue), Convert.ToInt32(ddlMode4.SelectedValue), Convert.ToInt32(ddlMajor4.SelectedValue), Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(ddlCourse4.SelectedValue), Convert.ToDateTime(txtCommencementdate4.Value));
+            if (Convert.ToInt16(ddlCollege5.SelectedValue.ToString()) > 0)
+                SaveApplicantPreference(5, ddlCollege5.SelectedValue, Convert.ToInt32(ddlCampus5.SelectedValue), Convert.ToInt32(ddlCity5.SelectedValue), Convert.ToInt32(ddlCountry5.SelectedValue), Convert.ToInt32(ddlMode5.SelectedValue), Convert.ToInt32(ddlMajor5.SelectedValue), Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(ddlCourse5.SelectedValue), Convert.ToDateTime(txtCommencementdate5.Value));
+           
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 
 }
