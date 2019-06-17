@@ -246,9 +246,9 @@
 
             var studentname = "<%=knowyourstudent.StudentName %>";
             var studentDateofBirth = "<%=knowyourstudent.StudentDOB %>";
-            var verifiedpassportDetails = "<%=knowyourstudent.VerifiedPassportDetails %>";
+            var verifiedpassportDetails = "<%=knowyourstudent.verifiedPassportDetails %>";
 
-            if (verifiedpassportDetails.toLowerCase() === "false") {
+            if (verifiedpassportDetails.toString().toLowerCase() == "false") {
                 var result = confirm("Kindly confirm name and date of birth details are same as in passport.\n Name: " + studentname + "\n Date of Birth: " + studentDateofBirth);
 
                 if (result) {
@@ -260,8 +260,7 @@
                         data: "{ 'confirmation': 'true' }"
                     });
                 }
-
-                else 
+                else
                     window.location("personaldetails.aspx?formid=1");
             }
             

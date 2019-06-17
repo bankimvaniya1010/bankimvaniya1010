@@ -31,7 +31,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item">
+                        <div class="list-group-item" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-college1">
                                 <div class="form-row">
                                     <label id="label-college1" for="college1" class="col-md-3 col-form-label form-label">University College Name</label>
@@ -43,11 +43,11 @@
                             </div>
                         </div>
 
-                        <div class="list-group-item" id="location1">
+                        <div class="list-group-item" id="location1" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-location1">
                                 <div class="form-row">
                                     <label id="label-location1" for="location1" class="col-md-3 col-form-label form-label">Select Location of Study</label>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" runat="server">
                                         <asp:DropDownList ID="ddlCampus1" runat="server" CssClass="form-control">    
                                             <asp:ListItem value="0">Select Campus</asp:ListItem>
                                         </asp:DropDownList>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                          <div class="list-group-item" id="coursetype1">
+                          <div class="list-group-item" id="coursetype1" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-coursetype1">
                                 <div class="form-row">
                                     <label id="label-coursetype1" for="course1" class="col-md-3 col-form-label form-label">Select Course Type</label>
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" id="mode1">
+                        <div class="list-group-item" id="mode1" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-mode1">
                                 <div class="form-row">
                                     <label id="label-mode1" for="mode1" class="col-md-3 col-form-label form-label">Select Mode of Study</label>
@@ -83,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" id="major1">
+                        <div class="list-group-item" id="major1" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-major1">
                                 <div class="form-row">
                                     <label id="label-major1" for="major1" class="col-md-3 col-form-label form-label">Select Major or Discipline</label>
@@ -96,7 +96,7 @@
                             </div>
                         </div>
                       
-                        <div class="list-group-item" id="course1">
+                        <div class="list-group-item" id="course1" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-course1">
                                 <div class="form-row">
                                     <label id="label-course1" for="course1" class="col-md-3 col-form-label form-label">Select Course</label>
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" id="commencementmonth1">
+                        <div class="list-group-item" id="commencementmonth1" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
                                     <label id="label-commencementmonth1" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
@@ -121,9 +121,9 @@
                         <!--- End First Preference-->
 
                         <!---  Second Preference-->
-                        <a class="btn btn-success" style="width: 200px" data-toggle="collapse" href="#second" role="button" aria-expanded="false" aria-controls="second">Add Second Preference
+                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('second');">Add Second Preference
                         </a>
-                        <div id="second" class="collapse">
+                        <div id="second" runat="server">
                             <div class="list-group list-group-fit" id="secondpref">
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="secondpref" aria-labelledby="label-secondpref">
@@ -137,7 +137,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="college2">
+                            <div class="list-group-item" id="college2" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-college2">
                                     <div class="form-row">
                                         <label id="label-college2" for="college2" class="col-md-3 col-form-label form-label">University College Name</label>
@@ -149,7 +149,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="location2">
+                            <div class="list-group-item" id="location2" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-location2">
                                     <div class="form-row">
                                         <label id="label-location2" for="location2" class="col-md-3 col-form-label form-label">Select Location of Study</label>
@@ -167,7 +167,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="coursetype2">
+                            <div class="list-group-item" id="coursetype2" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-coursetype1">
                                 <div class="form-row">
                                     <label id="label-coursetype2" for="course1" class="col-md-3 col-form-label form-label">Select Course Type</label>
@@ -177,7 +177,7 @@
                                 </div>
                             </div>
                         </div>
-                            <div class="list-group-item" id="mode2">
+                            <div class="list-group-item" id="mode2" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-mode2">
                                     <div class="form-row">
                                         <label id="label-mode2" for="mode2" class="col-md-3 col-form-label form-label">Select Mode of Study</label>
@@ -189,7 +189,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="major2">
+                            <div class="list-group-item" id="major2" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-major2">
                                     <div class="form-row">
                                         <label id="label-major2" for="major2" class="col-md-3 col-form-label form-label">Select Major or Discipline</label>
@@ -201,7 +201,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="course2">
+                            <div class="list-group-item" id="course2" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-course2">
                                     <div class="form-row">
                                         <label id="label-course2" for="course2" class="col-md-3 col-form-label form-label">Select Course</label>
@@ -213,12 +213,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="commencementmonth2">
+                            <div class="list-group-item" id="commencementmonth2" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
                                     <label id="label-commencementmonth2" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtCommencementdate2" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                         <input id="txtCommencementdate2" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
                                     </div>
                                 </div>
                             </div>
@@ -227,9 +227,9 @@
                         <!--- End Second Preference-->
 
                         <!---  Third Preference-->
-                        <a class="btn btn-success" style="width: 200px" data-toggle="collapse" href="#third" role="button" aria-expanded="false" aria-controls="second">Add Third Preference
+                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('third')">Add Third Preference
                         </a>
-                        <div id="third" class="collapse">
+                        <div id="third" runat="server">
                             <div class="list-group list-group-fit" id="thirdpref">
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-thirdpref">
@@ -243,7 +243,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="college3">
+                            <div class="list-group-item" id="college3" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-college3">
                                     <div class="form-row">
                                         <label id="label-college3" for="college3" class="col-md-3 col-form-label form-label">University College Name</label>
@@ -259,7 +259,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-location3">
                                     <div class="form-row">
                                         <label id="label-location3" for="location3" class="col-md-3 col-form-label form-label">Select Location of Study</label>
-                                        <div class="col-md-6">
+                                        <div class="col-md-6" runat="server">
                                             <asp:DropDownList ID="ddlCampus3" runat="server" CssClass="form-control">
                                                 <asp:ListItem value="0">Select Campus</asp:ListItem>
                                             </asp:DropDownList>
@@ -273,7 +273,7 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="list-group-item" id="coursetype3">
+                             <div class="list-group-item" id="coursetype3" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-coursetype1">
                                     <div class="form-row">
                                         <label id="label-coursetype3" for="course1" class="col-md-3 col-form-label form-label">Select Course Type</label>
@@ -283,7 +283,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="mode3">
+                            <div class="list-group-item" id="mode3" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-mode3">
                                     <div class="form-row">
                                         <label id="label-mode3" for="mode3" class="col-md-3 col-form-label form-label">Select Mode of Study</label>
@@ -295,7 +295,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="major3">
+                            <div class="list-group-item" id="major3" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-major3">
                                     <div class="form-row">
                                         <label id="label-major3" for="major3" class="col-md-3 col-form-label form-label">Select Major or Discipline</label>
@@ -307,7 +307,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="course3">
+                            <div class="list-group-item" id="course3" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-course3">
                                     <div class="form-row">
                                         <label id="label-course3" for="course3" class="col-md-3 col-form-label form-label">Select Course</label>
@@ -319,12 +319,12 @@
                                     </div>
                                 </div>
                             </div>
-                           <div class="list-group-item" id="commencementmonth3">
+                           <div class="list-group-item" id="commencementmonth3" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
                                     <label id="label-commencementmonth3" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtcommencementmonth3" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                        <input id="txtCommencementdate3" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
                                     </div>
                                 </div>
                             </div>
@@ -332,9 +332,9 @@
                         </div>
                         <!--- End Third Preference-->
                         <!---  Fourth Preference-->
-                        <a class="btn btn-success" style="width: 200px" data-toggle="collapse" href="#four" role="button" aria-expanded="false" aria-controls="second">Add Fourth Preference
+                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('four')">Add Fourth Preference
                         </a>
-                        <div id="four" class="collapse">
+                        <div id="four" runat="server">
                             <div class="list-group list-group-fit" id="fourthPref">
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-fourthPref">
@@ -348,7 +348,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="college4">
+                            <div class="list-group-item" id="college4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-college4">
                                     <div class="form-row">
                                         <label id="label-college4" for="college4" class="col-md-3 col-form-label form-label">University College Name</label>
@@ -378,7 +378,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="coursetype4">
+                            <div class="list-group-item" id="coursetype4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-coursetype1">
                                     <div class="form-row">
                                         <label id="label-coursetype4" for="course1" class="col-md-3 col-form-label form-label">Select Course Type</label>
@@ -388,7 +388,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="mode4">
+                            <div class="list-group-item" id="mode4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-mode4">
                                     <div class="form-row">
                                         <label id="label-mode4" for="mode4" class="col-md-3 col-form-label form-label">Select Mode of Study</label>
@@ -400,7 +400,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="major4">
+                            <div class="list-group-item" id="major4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-major4">
                                     <div class="form-row">
                                         <label id="label-major4" for="major4" class="col-md-3 col-form-label form-label">Select Major or Discipline</label>
@@ -412,7 +412,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="course4">
+                            <div class="list-group-item" id="course4" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-course4">
                                     <div class="form-row">
                                         <label id="label-course4" for="course4" class="col-md-3 col-form-label form-label">Select Course</label>
@@ -424,12 +424,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="commencementmonth4">
+                            <div class="list-group-item" id="commencementmonth4" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
                                     <label id="label-commencementmonth4" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtcommencementmonth4" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                        <input id="txtCommencementdate4" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
                                     </div>
                                 </div>
                             </div>
@@ -438,9 +438,9 @@
                         <!--- End Fourth Preference-->
 
                         <!---  Fifth Preference-->
-                        <a class="btn btn-success" style="width: 200px" data-toggle="collapse" href="#five" role="button" aria-expanded="false" aria-controls="second">Add Fifth Preference
+                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('five')">Add Fifth Preference
                         </a>
-                        <div id="five" class="collapse">
+                        <div id="five" runat="server">
                             <div class="list-group list-group-fit" id="fifthpref">
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-fifthpref">
@@ -454,7 +454,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="college5">
+                            <div class="list-group-item" id="college5" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-college5">
                                     <div class="form-row">
                                         <label id="label-college5" for="college5" class="col-md-3 col-form-label form-label">University College Name</label>
@@ -484,7 +484,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="coursetype5">
+                            <div class="list-group-item" id="coursetype5" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-coursetype1">
                                     <div class="form-row">
                                         <label id="label-coursetype5" for="course1" class="col-md-3 col-form-label form-label">Select Course Type</label>
@@ -494,7 +494,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="mode5">
+                            <div class="list-group-item" id="mode5" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-mode5">
                                     <div class="form-row">
                                         <label id="label-mode5" for="mode5" class="col-md-3 col-form-label form-label">Select Mode of Study</label>
@@ -506,7 +506,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="major5">
+                            <div class="list-group-item" id="major5" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-major2">
                                     <div class="form-row">
                                         <label id="label-major5" for="major5" class="col-md-3 col-form-label form-label">Select Major or Discipline</label>
@@ -518,7 +518,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="course5">
+                            <div class="list-group-item" id="course5" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-course5">
                                     <div class="form-row">
                                         <label id="label-course5" for="course5" class="col-md-3 col-form-label form-label">Select Course</label>
@@ -530,12 +530,12 @@
                                     </div>
                                 </div>
                             </div>
-                           <div class="list-group-item" id="commencementmonth5">
+                           <div class="list-group-item" id="commencementmonth5" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
                                     <label id="label-commencementmonth5" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtcommencementmonth5" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                        <input id="txtCommencementdate5" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
                                     </div>
                                 </div>
                             </div>
@@ -546,7 +546,7 @@
                         <div class="list-group-item">
                             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                 <div class="form-row">
-                                    <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" />
+                                    <asp:Button ID="btn_coursedetail" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_coursedetail_Click"  OnClientClick="return validateForm()"/>
                                     <div class="col-md-6">
                                     </div>
                                 </div>
@@ -567,12 +567,188 @@
         </div>
     </div>
     <script>
+        function validFirstPreference() {
+            var flag = false;
+            if ($("#<%=ddlCollege1.ClientID%>").val() == "0")
+                alert("Please Select University College Name");
+            else if ($("#<%=ddlCampus1.ClientID%>").val() == "0")
+                alert("Please Select Campus");
+            else if ($("#<%=ddlCity1.ClientID%>").val() == "0")
+                alert("Please Select City");
+            else if ($("#<%=ddlCountry1.ClientID%>").val() == "0")
+                alert("Please Select Country");
+            else if ($("#<%=ddlCourseType1.ClientID%>").val() == "0")
+                alert("Please Select Course Type");
+            else if ($("#<%=ddlmode1.ClientID%>").val() == "0")
+                alert("Please Select Mode Of Study");
+            else if ($("#<%=ddlMajor1.ClientID%>").val() == "0")
+                alert("Please Select Major Or Discipline");
+            else if ($("#<%=ddlCourse1.ClientID%>").val() == "0")
+                alert("Please Select Course");
+            else if ($("#<%=txtCommencementdate1.ClientID%>").val() == "")
+                alert("Please Select Commencement Date");
+            else
+                flag = true;
+            
+            return flag;
+        }
+        function validSecondPreference() {
+            var flag = false;
+            if (!$("#<%=second.ClientID%>").is(':hidden') || !($("#<%=ddlCollege2.ClientID%>").val() == "0")) {               
+                if ($("#<%=ddlCampus2.ClientID%>").val() == "0")
+                    alert("Please Select Campus");
+                else if ($("#<%=ddlCity2.ClientID%>").val() == "0")
+                    alert("Please Select City");
+                else if ($("#<%=ddlCountry2.ClientID%>").val() == "0")
+                    alert("Please Select Country");
+                else if ($("#<%=ddlcoursetype2.ClientID%>").val() == "0")
+                    alert("Please Select Course Type");
+                else if ($("#<%=ddlMode2.ClientID%>").val() == "0")
+                    alert("Please Select Mode Of Study");
+                else if ($("#<%=ddlMajor2.ClientID%>").val() == "0")
+                    alert("Please Select Major Or Discipline");
+                else if ($("#<%=ddlCourse2.ClientID%>").val() == "0")
+                    alert("Please Select Course");
+                else if ($("#<%=txtCommencementdate2.ClientID%>").val() == "")
+                    alert("Please Select Commencement Date");
+                else
+                    flag = true;
+            }
+            else
+                flag = true;
+            return flag;
+        }
+        function validThirdPreference() {
+            var flag = false;
+            if (!$("#<%=third.ClientID%>").is(':hidden') && !($("#<%=ddlCollege3.ClientID%>").val() == "0")) {
 
-         $('#ContentPlaceHolder1_txtCommencementdate').flatpickr({
+                    if ($("#<%=ddlCampus3.ClientID%>").val() == "0")
+                        alert("Please Select Campus");
+                    else if ($("#<%=ddlCity3.ClientID%>").val() == "0")
+                        alert("Please Select City");
+                    else if ($("#<%=ddlCountry3.ClientID%>").val() == "0")
+                        alert("Please Select Country");
+                    else if ($("#<%=ddlcoursetype3.ClientID%>").val() == "0")
+                        alert("Please Select Course Type");
+                    else if ($("#<%=ddlMode3.ClientID%>").val() == "0")
+                        alert("Please Select Mode Of Study");
+                    else if ($("#<%=ddlMajor3.ClientID%>").val() == "0")
+                        alert("Please Select Major Or Discipline");
+                    else if ($("#<%=ddlCourse3.ClientID%>").val() == "0")
+                        alert("Please Select Course");
+                    else if ($("#<%=txtCommencementdate3.ClientID%>").val() == "")
+                        alert("Please Select Commencement Date");
+                    else
+                        flag = true;                
+            }
+            else
+                flag = true;
+            return flag;
+        }
+        function validFourPreference() {
+            var flag = false;
+            if (!$("#<%=four.ClientID%>").is(':hidden') && !($("#<%=ddlCollege4.ClientID%>").val() == "0")) {
+                    if ($("#<%=ddlCampus4.ClientID%>").val() == "0")
+                        alert("Please Select Campus");
+                    else if ($("#<%=ddlCity4.ClientID%>").val() == "0")
+                        alert("Please Select City");
+                    else if ($("#<%=ddlCountry4.ClientID%>").val() == "0")
+                        alert("Please Select Country");
+                    else if ($("#<%=ddlcoursetype4.ClientID%>").val() == "0")
+                        alert("Please Select Course Type");
+                    else if ($("#<%=ddlMode4.ClientID%>").val() == "0")
+                        alert("Please Select Mode Of Study");
+                    else if ($("#<%=ddlMajor4.ClientID%>").val() == "0")
+                        alert("Please Select Major Or Discipline");
+                    else if ($("#<%=ddlCourse4.ClientID%>").val() == "0")
+                        alert("Please Select Course");
+                    else if ($("#<%=txtCommencementdate4.ClientID%>").val() == "")
+                        alert("Please Select Commencement Date");
+                    else
+                        flag = true;                
+            }
+            else
+                flag = true;
+            return flag;
+        }
+        function validFifthPreference() {
+            var flag = false;
+            if (!$("#<%=five.ClientID%>").is(':hidden') && !($("#<%=ddlCollege5.ClientID%>").val() == "0")) {
 
-            dateFormat: 'Y-m-d', defaultDate:""
+                    if ($("#<%=ddlCampus5.ClientID%>").val() == "0")
+                        alert("Please Select Campus");
+                    else if ($("#<%=ddlCity5.ClientID%>").val() == "0")
+                        alert("Please Select City");
+                    else if ($("#<%=ddlCountry5.ClientID%>").val() == "0")
+                        alert("Please Select Country");
+                    else if ($("#<%=ddlcoursetype5.ClientID%>").val() == "0")
+                        alert("Please Select Course Type");
+                    else if ($("#<%=ddlMode5.ClientID%>").val() == "0")
+                        alert("Please Select Mode Of Study");
+                    else if ($("#<%=ddlMajor5.ClientID%>").val() == "0")
+                        alert("Please Select Major Or Discipline");
+                    else if ($("#<%=ddlCourse5.ClientID%>").val() == "0")
+                        alert("Please Select Course");
+                    else if ($("#<%=txtCommencementdate5.ClientID%>").val() == "")
+                        alert("Please Select Commencement Date");
+                    else
+                        flag = true;
+            }
+            else
+                flag = true;
+            return flag;
+        }
+        function validateForm() {
+            return validFirstPreference() &&  validSecondPreference() && validThirdPreference() && validFourPreference() && validFifthPreference();
+        }
+
+        function toggleDivVisibility(divId) {
+            if (divId == 'second') {
+                if ($("#<%=second.ClientID%>").is(':hidden'))
+                    $("#<%=second.ClientID%>").show();
+                else
+                    $("#<%=second.ClientID%>").hide();
+            }
+            if (divId == 'third') {
+                if ($("#<%=third.ClientID%>").is(':hidden'))
+                    $("#<%=third.ClientID%>").show();
+                else
+                    $("#<%=third.ClientID%>").hide();
+            }
+            if (divId == 'four') {
+                if ($("#<%=four.ClientID%>").is(':hidden'))
+                    $("#<%=four.ClientID%>").show();
+                else
+                    $("#<%=four.ClientID%>").hide();
+            }
+            if (divId == 'five') {
+                if ($("#<%=five.ClientID%>").is(':hidden'))
+                    $("#<%=five.ClientID%>").show();
+                else
+                    $("#<%=five.ClientID%>").hide();
+            }            
+        }
+
+         $('#ContentPlaceHolder1_txtCommencementdate1').flatpickr({
+
+            dateFormat: 'Y-m-d',defaultDate:""
         });
-        
+        $('#ContentPlaceHolder1_txtCommencementdate2').flatpickr({
+
+            dateFormat: 'Y-m-d',defaultDate:""
+        });
+        $('#ContentPlaceHolder1_txtCommencementdate3').flatpickr({
+
+            dateFormat: 'Y-m-d',defaultDate:""
+        });
+        $('#ContentPlaceHolder1_txtCommencementdate4').flatpickr({
+
+            dateFormat: 'Y-m-d',defaultDate:""
+        });
+        $('#ContentPlaceHolder1_txtCommencementdate5').flatpickr({
+
+            dateFormat: 'Y-m-d',defaultDate:""
+        });       
   
 
     </script>
