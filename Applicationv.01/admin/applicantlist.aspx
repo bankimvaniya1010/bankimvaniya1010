@@ -43,10 +43,10 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                 <ItemTemplate>
-                                    <asp:LinkButton ID="lnkDoc" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewDoc" Text="View Documents"></asp:LinkButton>|
-                                     <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
+                                    <asp:LinkButton ID="lnkSocial" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Social" Text="View Social"></asp:LinkButton>|
+                                   <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
-                                </ItemTemplate>
+                          --%>      </ItemTemplate>
                             </asp:TemplateField>
 
                         </Columns>
