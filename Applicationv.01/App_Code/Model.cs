@@ -200,6 +200,7 @@ public partial class applicantdetails
     public string passportno { get; set; }
     public Nullable<System.DateTime> passportissuedate { get; set; }
     public Nullable<System.DateTime> passportexpirydate { get; set; }
+    public Nullable<bool> verifiedpassportnamedob { get; set; }
     public Nullable<int> alternativeIdentityproofId { get; set; }
     public string passportissuecity { get; set; }
     public string alternativeIdentityproofno { get; set; }
@@ -208,8 +209,11 @@ public partial class applicantdetails
     public Nullable<int> alternativeresidenceproofId { get; set; }
     public string alternativeresidenceproofno { get; set; }
     public string linkedprofile { get; set; }
+    public Nullable<bool> havelinkedinaccount { get; set; }
     public string facebookprofle { get; set; }
+    public Nullable<bool> havefacebookaccount { get; set; }
     public string twiterprofile { get; set; }
+    public Nullable<bool> havetwitteraccount { get; set; }
     public string othertitle { get; set; }
     public Nullable<System.DateTime> personaldetailsavedtime { get; set; }
     public Nullable<System.DateTime> contactdetailsavetime { get; set; }
@@ -736,6 +740,17 @@ public partial class grademaster
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class GTE_documentverification
+{
+    public int documentid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public string documentname { get; set; }
+    public Nullable<int> documentvalidationId { get; set; }
+    public Nullable<int> agentid { get; set; }
+    public Nullable<System.DateTime> lastupdatedate { get; set; }
+    public string remarks { get; set; }
 }
 
 public partial class inferencemaster

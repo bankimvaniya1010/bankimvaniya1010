@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -15,6 +17,14 @@ public partial class knowyourstudent : System.Web.UI.Page
     Logger objLog = new Logger();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+
+    private static string studentName;
+    private static string studentdob;
+    public static bool verifiedPassportDetails = true;
+
+    public static string StudentName { get; set; }
+    public static string StudentDOB { get; set; }
+
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,6 +46,18 @@ public partial class knowyourstudent : System.Web.UI.Page
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            var obj = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { Name = x.firstname + x.middlename + x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
+
+            if (obj != null && !string.IsNullOrEmpty(obj.Name) && obj.dob != null)
+            {
+                StudentName = obj.Name;
+                StudentDOB = obj.dob.ToString();
+                if (obj.verifiedDetails.HasValue)
+                    verifiedPassportDetails = obj.verifiedDetails.Value;
+            }
+            else
+                Response.Redirect("personaldetails.aspx?formid=1", true);
+
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlCountryofIssue);
@@ -282,7 +304,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                     case "ALTERNATIVE PROOF OF IDENTITY":
                         icIdentityProofType.Attributes.Add("style", "display:block;");
                         icIdentityProofType.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        
+
                         break;
                     case "ALTERNATIVE PROOF OF DATE OF BIRTH":
                         icDOBProofType.Attributes.Add("style", "display:block;");
@@ -412,5 +434,17 @@ public partial class knowyourstudent : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static void postConfirmation(bool confirmation)
+    {
+        GTEEntities db1 = new GTEEntities();
+        int universityID = Convert.ToInt32(ConfigurationManager.AppSettings["UniversityID"].ToString());
+        int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
+        var details = db1.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+        details.verifiedpassportnamedob = confirmation;
+        db1.SaveChanges();
     }
 }
