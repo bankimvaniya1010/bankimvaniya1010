@@ -26,7 +26,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="study">
+                            <div class="list-group-item" id="study" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                                     <div class="form-row">
                                         <label id="label-Mobile" for="Mobile" class="col-md-3 col-form-label form-label">Would you study-n-live alone or would your family members come along </label>
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="familymember">
+                            <div class="list-group-item" id="familymember" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                                     <div class="form-row">
                                         <label id="label-phone" for="phone" class="col-md-3 col-form-label form-label">No of Family members  </label>
@@ -215,6 +215,15 @@
                                     </div>
                                 </div>
                             </div>
+                             <div class="list-group-item">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                                <div class="form-row">
+                                    <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click"  OnClientClick="return validateForm()"/>
+                                    <div class="col-md-6">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -226,9 +235,33 @@
         </div>
     </div>
     <script>
+         function validateForm() {
+            var flag = false;
+            if ($("#<%=ddlstudy.ClientID%>").val() == "0")
+                alert("Please Select Would you study-n-live alone or would your family members come along");
+            else if ($("#<%=ddlstudy.ClientID%>").val() == "2" && $("#<%=ddlFamilyMember.ClientID%>").val() == "0")
+                alert("Please Select No of Family members");
+            else if ($("#<%=ddlAccomdation.ClientID%>").val() == "0")
+                alert("Please Select the kind of accommodation you plan to have");
+            else if ($("#<%=ddlCooking.ClientID%>").val() == "0")
+                alert("Please Select  how you plan to manage meals");
+            else if ($("#<%=ddltransportchoice.ClientID%>").val() == "0")
+                alert("Please Select your preferred choice of transport in the city");
+            else if ($("#<%=ddlTrips.ClientID%>").val() == "0")
+                alert("Please Select No of Trips you plan to take to your home country in a year");
+            else if ($("#<%=ddlEntertainment.ClientID%>").val() == "0")
+                alert("Please Select  How often in a week do you typically go out (entertainment) ");
+            else
+                flag = true;
+            
+            return flag;
+        }
         $(document).ready(function ()
-        {  
-            $("#familymember").hide();               
+        {    
+            if ($("#<%=ddlstudy.ClientID%>").val() == "2") 
+                        $("#familymember").show();
+                  else
+                        $("#familymember").hide();  
         });    
          $("#<%=ddlstudy.ClientID%>").change(function ()
                 {

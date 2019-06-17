@@ -325,6 +325,8 @@ public partial class applicantformmaster
 public partial class applicantfundingmaster
 {
     public int applicantfundingmasterid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
     public Nullable<int> studyoption { get; set; }
     public Nullable<int> familymember { get; set; }
     public Nullable<int> accommodationplan { get; set; }
@@ -332,8 +334,6 @@ public partial class applicantfundingmaster
     public Nullable<int> transportchoice { get; set; }
     public Nullable<int> trips { get; set; }
     public Nullable<int> entertainment { get; set; }
-    public Nullable<int> applicantid { get; set; }
-    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicanthighereducation
@@ -454,6 +454,7 @@ public partial class applicantvisadetails
 {
     public int applicantvisadetailsid { get; set; }
     public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
     public Nullable<int> hasvisa { get; set; }
     public string applicantvisatype { get; set; }
     public Nullable<System.DateTime> validityfrom { get; set; }
@@ -467,9 +468,25 @@ public partial class applicantvisadetails
     public Nullable<int> haveparent { get; set; }
     public Nullable<int> isvisadenied { get; set; }
     public Nullable<int> isparentvisadenied { get; set; }
-    public Nullable<int> universityid { get; set; }
 
     public virtual university_master university_master { get; set; }
+}
+
+public partial class applicationmaster
+{
+    public int applicationmasterid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> preferenceid { get; set; }
+    public string college_universityname { get; set; }
+    public Nullable<int> campus { get; set; }
+    public Nullable<int> city { get; set; }
+    public Nullable<int> country { get; set; }
+    public Nullable<int> modeofstudy { get; set; }
+    public Nullable<int> majorofdiscipline { get; set; }
+    public Nullable<int> coursetype { get; set; }
+    public Nullable<int> course { get; set; }
+    public Nullable<System.DateTime> commencementdate { get; set; }
 }
 
 public partial class cefrlevelmaster
@@ -574,9 +591,9 @@ public partial class customfieldmaster
     public System.DateTime created_at { get; set; }
 
     public virtual formmaster formmaster { get; set; }
+    public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
-    public virtual university_master university_master { get; set; }
 }
 
 public partial class customfieldvalue
@@ -693,43 +710,32 @@ public partial class formmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public formmaster()
     {
-        this.customfieldmaster = new HashSet<customfieldmaster>();
-        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
-        this.tooltipmaster = new HashSet<tooltipmaster>();
         this.admintooltips = new HashSet<admintooltips>();
         this.adminuniversitywisetooltips = new HashSet<adminuniversitywisetooltips>();
+        this.customfieldmaster = new HashSet<customfieldmaster>();
+        this.tooltipmaster = new HashSet<tooltipmaster>();
+        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
     public int formid { get; set; }
     public string formname { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<customfieldmaster> customfieldmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admintooltips> admintooltips { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<customfieldmaster> customfieldmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
 
 public partial class grademaster
 {
     public int id { get; set; }
     public string description { get; set; }
-}
-
-public partial class GTE_documentverification
-{
-    public int documentid { get; set; }
-    public Nullable<int> applicantid { get; set; }
-    public string documentname { get; set; }
-    public Nullable<int> documentvalidationId { get; set; }
-    public Nullable<int> agentid { get; set; }
-    public Nullable<System.DateTime> lastupdatedate { get; set; }
-    public string remarks { get; set; }
 }
 
 public partial class inferencemaster
@@ -810,10 +816,10 @@ public partial class primaryfieldmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public primaryfieldmaster()
     {
-        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
-        this.tooltipmaster = new HashSet<tooltipmaster>();
         this.admintooltips = new HashSet<admintooltips>();
         this.adminuniversitywisetooltips = new HashSet<adminuniversitywisetooltips>();
+        this.tooltipmaster = new HashSet<tooltipmaster>();
+        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
     public int primaryfieldid { get; set; }
@@ -821,13 +827,13 @@ public partial class primaryfieldmaster
     public string primaryfiledname { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admintooltips> admintooltips { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
 
 public partial class profilemaster
@@ -1083,15 +1089,15 @@ public partial class university_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public university_master()
     {
+        this.adminuniversitywisetooltips = new HashSet<adminuniversitywisetooltips>();
+        this.applicantvisadetails = new HashSet<applicantvisadetails>();
+        this.coursetypemaster = new HashSet<coursetypemaster>();
         this.credentialmaster = new HashSet<credentialmaster>();
         this.customfieldmaster = new HashSet<customfieldmaster>();
         this.universitycampus = new HashSet<universitycampus>();
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
-        this.adminuniversitywisetooltips = new HashSet<adminuniversitywisetooltips>();
-        this.applicantvisadetails = new HashSet<applicantvisadetails>();
-        this.coursetypemaster = new HashSet<coursetypemaster>();
     }
 
     public int universityid { get; set; }
@@ -1118,7 +1124,13 @@ public partial class university_master
     public int acceptedmaxage { get; set; }
     public int acceptedminage { get; set; }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual citymaster citymaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursetypemaster> coursetypemaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<credentialmaster> credentialmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -1131,12 +1143,6 @@ public partial class university_master
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<applicantvisadetails> applicantvisadetails { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<coursetypemaster> coursetypemaster { get; set; }
 }
 
 public partial class universitycampus

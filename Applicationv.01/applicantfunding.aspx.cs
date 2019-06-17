@@ -37,6 +37,7 @@ public partial class applicantfunding : System.Web.UI.Page
             BindTransportChoice();
             BindTrips();
             BindEntertainment();
+            PopulateFundingDetails();
         }
     }
     private void BindStydyOption()
@@ -158,6 +159,124 @@ public partial class applicantfunding : System.Web.UI.Page
             ddlEntertainment.DataValueField = "id";
             ddlEntertainment.DataBind();
             ddlEntertainment.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    private void PopulateFundingDetails()
+    {
+        try
+        {
+            var fundingInfo = (from fInfo in db.applicantfundingmaster
+                               where fInfo.applicantid == userID && fInfo.universityid == universityID
+                               select fInfo).FirstOrDefault();
+            if (fundingInfo != null)
+            {
+
+                if (fundingInfo.studyoption != null)
+                {
+                    ddlstudy.ClearSelection();
+                    ddlstudy.Items.FindByValue(fundingInfo.studyoption.ToString()).Selected = true;
+                }
+                if (fundingInfo.familymember != null)
+                {
+                    ddlFamilyMember.ClearSelection();
+                    ddlFamilyMember.Items.FindByValue(fundingInfo.familymember.ToString()).Selected = true;
+                }
+                if (fundingInfo.accommodationplan != null)
+                {
+                    ddlAccomdation.ClearSelection();
+                    ddlAccomdation.Items.FindByValue(fundingInfo.accommodationplan.ToString()).Selected = true;
+                }
+                if (fundingInfo.managemeal != null)
+                {
+                    ddlCooking.ClearSelection();
+                    ddlCooking.Items.FindByValue(fundingInfo.managemeal.ToString()).Selected = true;
+                }
+                if (fundingInfo.transportchoice != null)
+                {
+                    ddltransportchoice.ClearSelection();
+                    ddltransportchoice.Items.FindByValue(fundingInfo.transportchoice.ToString()).Selected = true;
+                }
+                if (fundingInfo.trips != null)
+                {
+                    ddlTrips.ClearSelection();
+                    ddlTrips.Items.FindByValue(fundingInfo.trips.ToString()).Selected = true;
+                }
+
+                if (fundingInfo.entertainment != null)
+                {
+                    ddlEntertainment.ClearSelection();
+                    ddlEntertainment.Items.FindByValue(fundingInfo.entertainment.ToString()).Selected = true;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }        
+
+    protected void btn_fundingdetails_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var mode = "new";
+            var fundingInfo = (from fInfo in db.applicantfundingmaster
+                               where fInfo.applicantid == userID && fInfo.universityid == universityID
+                               select fInfo).FirstOrDefault();
+            applicantfundingmaster objapplicantfunding = new applicantfundingmaster();
+            if (fundingInfo != null)
+            {
+                mode = "update";
+                objapplicantfunding = fundingInfo;
+            }
+            if (ddlstudy.SelectedValue != "")
+            {
+                objapplicantfunding.studyoption = Convert.ToInt32(ddlstudy.SelectedValue);
+            }
+            if (ddlstudy.SelectedValue == "2")
+            {
+                if (ddlFamilyMember.SelectedValue != "")
+                {
+                    objapplicantfunding.familymember = Convert.ToInt32(ddlFamilyMember.SelectedValue);
+                }
+            }
+            if (ddlAccomdation.SelectedValue != "")
+            {
+                objapplicantfunding.accommodationplan = Convert.ToInt32(ddlAccomdation.SelectedValue);
+            }
+
+            if (ddlCooking.SelectedValue != "")
+            {
+                objapplicantfunding.managemeal = Convert.ToInt32(ddlCooking.SelectedValue);
+            }
+            if (ddltransportchoice.SelectedValue != "")
+            {
+                objapplicantfunding.transportchoice = Convert.ToInt32(ddltransportchoice.SelectedValue);
+            }
+
+            if (ddlTrips.SelectedValue != "")
+            {
+                objapplicantfunding.trips= Convert.ToInt32(ddlTrips.SelectedValue);
+            }
+            if (ddlEntertainment.SelectedValue != "")
+            {
+                objapplicantfunding.entertainment = Convert.ToInt32(ddlEntertainment.SelectedValue);
+            }
+
+
+            objapplicantfunding.applicantid = userID;
+            objapplicantfunding.universityid = universityID;
+            if (mode == "new")
+                db.applicantfundingmaster.Add(objapplicantfunding);
+            db.SaveChanges();
+            
+            
+
         }
         catch (Exception ex)
         {
