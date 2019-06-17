@@ -48,12 +48,12 @@ public partial class admin_applicantlist : System.Web.UI.Page
         try
         {
             int ID = Convert.ToInt32(e.CommandArgument.ToString());
-            if (e.CommandName.Equals("ViewDoc"))
+            if (e.CommandName.Equals("Social"))
             {
-                Response.Redirect(webURL + "admin/validatedocument.aspx?ID=" + ID);
+                Response.Redirect(webURL + "admin/applicantsocial.aspx?userid=" + ID +"&formid=8");
             }
-            else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
-            else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
+            //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
+            //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
         }
         catch (Exception ex)
         {

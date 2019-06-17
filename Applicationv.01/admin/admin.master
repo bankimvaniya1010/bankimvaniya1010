@@ -12,7 +12,7 @@
 
     <!-- jQuery -->
     <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/vendor/jquery.min.js"></script>
-
+     <link href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/css/tipso.min.css" rel="stylesheet" />
     <!-- Prevent the demo from appearing in search engines (REMOVE THIS) -->
     <meta name="robots" content="noindex">
 
@@ -550,7 +550,7 @@
 
     <!-- App Settings (safe to remove) -->
     <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/js/app-settings.js"></script>
-
+      <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/js/tipso.min.js"></script>
 
 
 

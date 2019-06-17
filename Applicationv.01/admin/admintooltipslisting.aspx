@@ -1,0 +1,94 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="admintooltipslisting.aspx.cs" Inherits="admin_admintooltipslisting"  MasterPageFile="~/admin/admin.master" %>
+
+<asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
+    <script type="text/javascript" language="javascript">
+        function ConfirmOnDelete(item) {
+            if (confirm("Are you sure to delete: " + item + "?") == true)
+                return true;
+            else
+                return false;
+        }
+    </script>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolder1" ID="conten1" runat="server">
+
+    <div class="container page__container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
+            <li class="breadcrumb-item active">Tooltips Listing </li>
+        </ol>
+        <h1 class="h2">Tooltips Listing </h1>
+
+        <div class="card">
+
+
+            <div class="tab-content card-body">
+                 <div><a href="admintooltips.aspx">Add tooltips</a></div>
+                <div class="tab-pane active" id="first">
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-3 col-form-label form-label">Form</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlForm" CssClass="form-control" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlForm_SelectedIndexChanged"></asp:DropDownList>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <asp:GridView ID="gvField" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
+                        DataKeyNames="id"
+                        AllowPaging="True"
+                        CellPadding="3"
+                        PageSize="25"
+                        BorderStyle="None"
+                        BorderWidth="1px"
+                        CellSpacing="2" OnRowEditing="gvField_RowEditing" OnRowDataBound="gvField_RowDataBound" OnRowDeleting="gvField_RowDeleting">
+                        <Columns>
+                            <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
+                                ReadOnly="True" SortExpression="id" />
+                            <asp:TemplateField HeaderText="Description" SortExpression="Description">
+                                <ItemTemplate>
+
+                                    <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("tooltips") %>'></asp:Label>
+
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
+
+
+                            <asp:TemplateField HeaderText="Edit" ShowHeader="False">
+                                <ItemTemplate>
+
+                                    <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
+
+                                </ItemTemplate>
+
+                            </asp:TemplateField>
+
+                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+
+
+
+
+                        </Columns>
+
+
+
+                    </asp:GridView>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</asp:Content>
+
+
