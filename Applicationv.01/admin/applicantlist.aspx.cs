@@ -47,10 +47,12 @@ public partial class admin_applicantlist : System.Web.UI.Page
     {
         try
         {
+            string Comamandname = e.CommandName;
+            var form = db.formmaster.Where(x => x.formname.Contains(Comamandname)).FirstOrDefault();
             int ID = Convert.ToInt32(e.CommandArgument.ToString());
             if (e.CommandName.Equals("Social"))
             {
-                Response.Redirect(webURL + "admin/applicantsocial.aspx?userid=" + ID +"&formid=8");
+                Response.Redirect(webURL + "admin/applicantsocial.aspx?userid=" + ID + "&formid=" + form.formid,true);
             }
             //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
