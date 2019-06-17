@@ -418,7 +418,7 @@
                 alert("Please Select Option to record Gender");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0")))
                 alert("Please Select valid date of birth");
-            else if (!isValidUniversityAcceptAgeRange()) { }
+            else if (!$("#<%=dob.ClientID%>").is(':hidden') && !isValidUniversityAcceptAgeRange()) { }
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val().split("_")[0] === "0")
                 alert("Please select valid nationality");
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && !$("#<%=rblNationalityYes.ClientID%>").is(':checked') && !$("#<%=secondNation.ClientID%>").is(':hidden') && $("#<%=ddlOtherNation.ClientID%>").val() === "0")

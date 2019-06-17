@@ -251,8 +251,58 @@ public partial class personaldetails : System.Web.UI.Page
                     rbtnFemale.Checked = true;
                 if (profileInfo.nationality != null)
                 {
+                    string appendText = "";
+                    if (profileInfo.hasdualcitizenship.HasValue && profileInfo.hasdualcitizenship.Value)
+                    {
+                        appendText = "_True";
+                        rblNationalityYes.Checked = true;
+                        dualNationality.Visible = true;
+                        dualNationality.Style.Remove("display");
+                    }
+                    else
+                    {
+                        appendText = "_False";
+                        if(profileInfo.hasdualcitizenship.HasValue)
+                            rblNationalityNo.Checked = false;
+                    }
                     ddlNationality.ClearSelection();
-                    ddlNationality.Items.FindByValue(profileInfo.nationality.ToString()).Selected = true;
+                    ddlNationality.Items.FindByValue(profileInfo.nationality.ToString() + appendText).Selected = true;
+                    
+                    if (ddlNationality.SelectedItem.Text.ToUpper() == GlobalVariables.GetChinaCountryName)
+                    {
+                        if (profileInfo.haschinesecodenumber.HasValue && profileInfo.haschinesecodenumber.Value)
+                        {
+                            rblChineseCodeYes.Checked = true;
+                            txtChineseCodeNumber.Value = profileInfo.chinesecodenumber;
+                            chineseCode.Visible = true;
+                            labelChineseCode.Visible = true;
+                            rblChineseCodeNo.Visible = true;
+                            rblChineseCodeYes.Visible = true;
+                            textChineseCodeDiv.Visible = true;
+
+                            chineseCode.Style.Remove("display");
+                            textChineseCodeDiv.Style.Remove("display");
+                        }
+                    }
+                    else if (ddlNationality.SelectedItem.Text.ToUpper() == GlobalVariables.GetRussiaCountryName)
+                    {
+                        if (!string.IsNullOrEmpty(profileInfo.patronymicname))
+                        {
+                            txtPatronymicName.Value = profileInfo.patronymicname;
+                            russianName.Visible = true;
+                            russianName.Style.Remove("display");
+                        }
+                    }
+                }
+
+                if (profileInfo.nationality2.HasValue && profileInfo.nationality2.Value > 0)
+                {
+                    rblNationalityYes.Checked = true;
+                    ddlOtherNation.ClearSelection();
+                    ddlOtherNation.Items.FindByValue(profileInfo.nationality2.ToString()).Selected = true;
+                    secondNation.Visible = true;
+                    dualNationality.Style.Remove("display");
+                    secondNation.Style.Remove("display");
                 }
                 if (profileInfo.countryofbirth != null)
                 {
@@ -281,6 +331,52 @@ public partial class personaldetails : System.Web.UI.Page
                 {
                     ddlAgent.ClearSelection();
                     ddlAgent.Items.FindByValue(profileInfo.agentid.ToString()).Selected = true;
+                }
+
+                if (profileInfo.ispassportfirstname.HasValue && profileInfo.ispassportfirstname.Value)
+                    passportFirstName.Checked = profileInfo.ispassportfirstname.Value;
+
+                if (profileInfo.ispassportlastname.HasValue && profileInfo.ispassportlastname.Value)
+                    passportLastName.Checked = profileInfo.ispassportlastname.Value;
+
+                if (profileInfo.ispassportmiddlename.HasValue && profileInfo.ispassportmiddlename.Value)
+                    passportMiddleName.Checked = profileInfo.ispassportmiddlename.Value;
+
+                if (profileInfo.ismarried.HasValue && profileInfo.ismarried.Value)
+                {
+                    statusMarried.Visible = true;
+                    statusMarried.Style.Remove("display");
+                    txtSpouseName.Value = profileInfo.spousename;
+                    ddlSpouseNationality.ClearSelection();
+                    ddlSpouseNationality.Items.FindByValue(profileInfo.spousenationality.ToString()).Selected = true;
+                    if (profileInfo.spousedob != null)
+                    {
+                        DateTime spousedob = Convert.ToDateTime(profileInfo.spousedob);
+                        FillMonth(ddlSpouseDOBMonth);
+                        FillYears(ddlSpouseDOBYear);
+
+                        ddlSpouseDOBMonth.ClearSelection();
+                        ddlSpouseDOBDate.ClearSelection();
+                        ddlSpouseDOBYear.ClearSelection();
+                        ddlSpouseDOBMonth.Items.FindByValue(spousedob.Month.ToString()).Selected = true;
+                        ddlSpouseDOBYear.Items.FindByValue(spousedob.Year.ToString()).Selected = true;
+                        FillDays(ddlSpouseDOBDate, ddlSpouseDOBYear, ddlSpouseDOBMonth);
+                        ddlSpouseDOBDate.Items.FindByValue(spousedob.Day.ToString()).Selected = true;
+                    }
+                    if (profileInfo.marriagedate != null)
+                    {
+                        DateTime marriagedate = Convert.ToDateTime(profileInfo.marriagedate);
+                        FillMonth(ddlMarriageMonth);
+                        FillYears(ddlMarriageYear);
+
+                        ddlMarriageMonth.ClearSelection();
+                        ddlMarriageDate.ClearSelection();
+                        ddlMarriageYear.ClearSelection();
+                        ddlMarriageMonth.Items.FindByValue(marriagedate.Month.ToString()).Selected = true;
+                        ddlMarriageYear.Items.FindByValue(marriagedate.Year.ToString()).Selected = true;
+                        FillDays(ddlMarriageDate, ddlMarriageYear, ddlMarriageMonth);
+                        ddlMarriageDate.Items.FindByValue(marriagedate.Day.ToString()).Selected = true;
+                    }
                 }
 
                 lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsavedtime.ToString();
@@ -369,9 +465,9 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.spousenationality = Convert.ToInt32(ddlSpouseNationality.SelectedValue);
             }
             
-            objapplicantDetail.passportfirstname = passportFirstName.Checked;
-            objapplicantDetail.passportlastname = passportLastName.Checked;
-            objapplicantDetail.passportmiddlename = passportMiddleName.Checked;
+            objapplicantDetail.ispassportfirstname = passportFirstName.Checked;
+            objapplicantDetail.ispassportlastname = passportLastName.Checked;
+            objapplicantDetail.ispassportmiddlename = passportMiddleName.Checked;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();

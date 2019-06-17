@@ -147,12 +147,12 @@ public partial class applicantdetails
     public Nullable<int> universityid { get; set; }
     public Nullable<int> title { get; set; }
     public string firstname { get; set; }
-    public Nullable<bool> passportfirstname { get; set; }
+    public Nullable<bool> ispassportfirstname { get; set; }
     public string lastname { get; set; }
-    public Nullable<bool> passportlastname { get; set; }
+    public Nullable<bool> ispassportlastname { get; set; }
     public string prefferedname { get; set; }
     public string middlename { get; set; }
-    public Nullable<bool> passportmiddlename { get; set; }
+    public Nullable<bool> ispassportmiddlename { get; set; }
     public Nullable<System.DateTime> dateofbirth { get; set; }
     public Nullable<int> gender { get; set; }
     public Nullable<int> nationality { get; set; }
@@ -332,6 +332,8 @@ public partial class applicantfundingmaster
     public Nullable<int> transportchoice { get; set; }
     public Nullable<int> trips { get; set; }
     public Nullable<int> entertainment { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicanthighereducation
