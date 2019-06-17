@@ -202,6 +202,7 @@
           <Property Name="passportno" Type="varchar" MaxLength="20" />
           <Property Name="passportissuedate" Type="datetime" Precision="0" />
           <Property Name="passportexpirydate" Type="datetime" Precision="0" />
+          <Property Name="verifiedpassportnamedob" Type="bit" />
           <Property Name="alternativeIdentityproofId" Type="int" />
           <Property Name="passportissuecity" Type="varchar" MaxLength="45" />
           <Property Name="alternativeIdentityproofno" Type="varchar" MaxLength="45" />
@@ -484,6 +485,24 @@
           <Property Name="haveparent" Type="int" />
           <Property Name="isvisadenied" Type="int" />
           <Property Name="isparentvisadenied" Type="int" />
+        </EntityType>
+        <EntityType Name="applicationmaster">
+          <Key>
+            <PropertyRef Name="applicationmasterid" />
+          </Key>
+          <Property Name="applicationmasterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="preferenceid" Type="int" />
+          <Property Name="college-universityname" Type="varchar" MaxLength="50" />
+          <Property Name="campus" Type="int" />
+          <Property Name="city" Type="int" />
+          <Property Name="country" Type="int" />
+          <Property Name="modeofstudy" Type="int" />
+          <Property Name="majorofdiscipline" Type="int" />
+          <Property Name="coursetype" Type="int" />
+          <Property Name="course" Type="int" />
+          <Property Name="commencementdate" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="cefrlevelmaster">
           <Key>
@@ -1492,6 +1511,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicationmaster" EntityType="Self.applicationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="cefrlevelmaster" EntityType="Self.cefrlevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="controlmaster" EntityType="Self.controlmaster" Schema="GTE" store:Type="Tables" />
@@ -1921,6 +1941,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
+          <EntitySet Name="applicationmaster" EntityType="GTEModel.applicationmaster" />
           </EntityContainer>
         <EntityType Name="adminusers">
           <Key>
@@ -3410,6 +3431,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="passportissuedate" Type="DateTime" />
           <Property Name="passportexpirydate" Type="DateTime" />
+          <Property Name="verifiedpassportnamedob" Type="Boolean" />
           <Property Name="alternativeIdentityproofId" Type="Int32" />
           <Property Name="passportissuecity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="alternativeIdentityproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -3430,6 +3452,24 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="agentid" Type="Int32" />
           <Property Name="isstudentreferbyagent" Type="Int32" />
           <Property Name="haveworkexperience" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="applicationmaster">
+          <Key>
+            <PropertyRef Name="applicationmasterid" />
+          </Key>
+          <Property Name="applicationmasterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="preferenceid" Type="Int32" />
+          <Property Name="college_universityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="campus" Type="Int32" />
+          <Property Name="city" Type="Int32" />
+          <Property Name="country" Type="Int32" />
+          <Property Name="modeofstudy" Type="Int32" />
+          <Property Name="majorofdiscipline" Type="Int32" />
+          <Property Name="coursetype" Type="Int32" />
+          <Property Name="course" Type="Int32" />
+          <Property Name="commencementdate" Type="DateTime" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4546,6 +4586,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="alternativeIdentityproofno" ColumnName="alternativeIdentityproofno" />
                 <ScalarProperty Name="passportissuecity" ColumnName="passportissuecity" />
                 <ScalarProperty Name="alternativeIdentityproofId" ColumnName="alternativeIdentityproofId" />
+                <ScalarProperty Name="verifiedpassportnamedob" ColumnName="verifiedpassportnamedob" />
                 <ScalarProperty Name="passportexpirydate" ColumnName="passportexpirydate" />
                 <ScalarProperty Name="passportissuedate" ColumnName="passportissuedate" />
                 <ScalarProperty Name="passportno" ColumnName="passportno" />
@@ -4604,6 +4645,25 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicationmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicationmaster">
+              <MappingFragment StoreEntitySet="applicationmaster">
+                <ScalarProperty Name="commencementdate" ColumnName="commencementdate" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="coursetype" ColumnName="coursetype" />
+                <ScalarProperty Name="majorofdiscipline" ColumnName="majorofdiscipline" />
+                <ScalarProperty Name="modeofstudy" ColumnName="modeofstudy" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="campus" ColumnName="campus" />
+                <ScalarProperty Name="college_universityname" ColumnName="college-universityname" />
+                <ScalarProperty Name="preferenceid" ColumnName="preferenceid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicationmasterid" ColumnName="applicationmasterid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

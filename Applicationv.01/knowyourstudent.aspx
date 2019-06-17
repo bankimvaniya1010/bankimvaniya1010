@@ -243,6 +243,28 @@
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
+
+            var studentname = "<%=knowyourstudent.StudentName %>";
+            var studentDateofBirth = "<%=knowyourstudent.StudentDOB %>";
+            var verifiedpassportDetails = "<%=knowyourstudent.VerifiedPassportDetails %>";
+
+            if (verifiedpassportDetails.toLowerCase() === "false") {
+                var result = confirm("Kindly confirm name and date of birth details are same as in passport.\n Name: " + studentname + "\n Date of Birth: " + studentDateofBirth);
+
+                if (result) {
+                    $.ajax({
+                        type: "POST",
+                        url: "knowyourstudent.aspx/postConfirmation",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: "{ 'confirmation': 'true' }"
+                    });
+                }
+
+                else 
+                    window.location.replace("personaldetails.aspx?formid=1");
+            }
+            
         });
     </script>
 </asp:Content>

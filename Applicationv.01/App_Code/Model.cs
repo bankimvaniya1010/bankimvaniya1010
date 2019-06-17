@@ -200,6 +200,7 @@ public partial class applicantdetails
     public string passportno { get; set; }
     public Nullable<System.DateTime> passportissuedate { get; set; }
     public Nullable<System.DateTime> passportexpirydate { get; set; }
+    public Nullable<bool> verifiedpassportnamedob { get; set; }
     public Nullable<int> alternativeIdentityproofId { get; set; }
     public string passportissuecity { get; set; }
     public string alternativeIdentityproofno { get; set; }
@@ -470,6 +471,23 @@ public partial class applicantvisadetails
     public Nullable<int> universityid { get; set; }
 
     public virtual university_master university_master { get; set; }
+}
+
+public partial class applicationmaster
+{
+    public int applicationmasterid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> preferenceid { get; set; }
+    public string college_universityname { get; set; }
+    public Nullable<int> campus { get; set; }
+    public Nullable<int> city { get; set; }
+    public Nullable<int> country { get; set; }
+    public Nullable<int> modeofstudy { get; set; }
+    public Nullable<int> majorofdiscipline { get; set; }
+    public Nullable<int> coursetype { get; set; }
+    public Nullable<int> course { get; set; }
+    public Nullable<System.DateTime> commencementdate { get; set; }
 }
 
 public partial class cefrlevelmaster

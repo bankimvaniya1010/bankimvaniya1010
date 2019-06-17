@@ -118,6 +118,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<trips> trips { get; set; }
     public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<applicantdetails> applicantdetails { get; set; }
+    public virtual DbSet<applicationmaster> applicationmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
