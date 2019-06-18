@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_applicantlist : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0;
+    int userID = 0, ApplicantID = 0, universityID=0;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -16,6 +16,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!IsPostBack)
         { BindApplicant(); }
 
@@ -25,7 +26,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
     {
         try
         {
-            var applicant = (from q in db.applicantdetails
+            var applicant = (from q in db.applicantdetails where q.universityid== universityID
 
                              select new
                              {
@@ -50,7 +51,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             string Comamandname = e.CommandName;
             var form = db.formmaster.Where(x => x.formname.Contains(Comamandname)).FirstOrDefault();
             int ID = Convert.ToInt32(e.CommandArgument.ToString());
-            if (e.CommandName.Equals("Social"))
+            if (Comamandname.Equals("Social"))
             {
                 Response.Redirect(webURL + "admin/applicantsocial.aspx?userid=" + ID + "&formid=" + form.formid,true);
             }
@@ -61,5 +62,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void gvApplicant_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvApplicant.PageIndex = e.NewPageIndex;
+        BindApplicant();
     }
 }

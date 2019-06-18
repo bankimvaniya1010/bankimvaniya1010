@@ -31,7 +31,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnRowCommand="gvApplicant_RowCommand">
+                        CellSpacing="2" OnRowCommand="gvApplicant_RowCommand" OnPageIndexChanging="gvApplicant_PageIndexChanging">
 
                         <Columns>
                             <asp:BoundField DataField="applicantid" HeaderText="ID" InsertVisible="False"

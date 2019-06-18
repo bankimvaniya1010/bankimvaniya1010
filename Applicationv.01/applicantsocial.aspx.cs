@@ -27,7 +27,7 @@ public partial class applicantsocial : System.Web.UI.Page
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
-            Response.Redirect(webURL + "default.aspx",true);
+            Response.Redirect(webURL + "default.aspx", true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
@@ -108,8 +108,14 @@ public partial class applicantsocial : System.Web.UI.Page
             if (profileInfo != null)
             {
                 txtFacebook.Value = profileInfo.facebookprofle;
+                if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false))
+                    ChkFacebook.Checked = true;
                 txtLinkedin.Value = profileInfo.linkedprofile;
+                if ((profileInfo.havelinkedinaccount == null) || (profileInfo.havelinkedinaccount == false))
+                    chkLinkeIn.Checked = true;
                 txtTwitter.Value = profileInfo.twiterprofile;
+                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
+                    chkTwitter.Checked = true;
             }
             lblSaveTime.Text = " Record was last saved at " + profileInfo.socialprofilesavetime.ToString();
         }
@@ -124,7 +130,8 @@ public partial class applicantsocial : System.Web.UI.Page
     }
     private void SetControlsUniversitywise()
     {
-        try {
+        try
+        {
             string SecondaryLanguage = Utility.GetSecondaryLanguage();
 
             var fields = (from pfm in db.primaryfieldmaster
@@ -178,7 +185,8 @@ public partial class applicantsocial : System.Web.UI.Page
                         break;
                 }
             }
-            }  catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
@@ -199,8 +207,20 @@ public partial class applicantsocial : System.Web.UI.Page
                 objapplicantDetail = profileInfo;
             }
             objapplicantDetail.facebookprofle = txtFacebook.Value;
+            if (ChkFacebook.Checked)
+                objapplicantDetail.havefacebookaccount = false;
+            else
+                objapplicantDetail.havefacebookaccount = true;
             objapplicantDetail.linkedprofile = txtLinkedin.Value;
+            if (chkLinkeIn.Checked)
+                objapplicantDetail.havelinkedinaccount = false;
+            else
+                objapplicantDetail.havelinkedinaccount = true;
             objapplicantDetail.twiterprofile = txtTwitter.Value;
+            if (ChkFacebook.Checked)
+                objapplicantDetail.havetwitteraccount = false;
+            else
+                objapplicantDetail.havetwitteraccount = true;
             objapplicantDetail.applicantid = userID;
             objapplicantDetail.universityid = universityID;
             if (mode == "new")

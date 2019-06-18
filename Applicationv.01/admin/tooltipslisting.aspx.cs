@@ -57,7 +57,17 @@ public partial class admin_tooltipslisting : System.Web.UI.Page
 
             if (ddlForm.SelectedValue != "")
                 formID = Convert.ToInt32(ddlForm.SelectedValue);
-            var FieldList = db.tooltipmaster.Where(x => x.formid == formID ).ToList();
+            var FieldList = (from pfm in db.primaryfieldmaster
+                             join tooltips in db.tooltipmaster
+                             on pfm.primaryfieldid equals tooltips.fieldid
+                             where pfm.formid == formID
+                             select new
+                             {
+                                 id = tooltips.id,
+                                 primaryfiledname = pfm.primaryfiledname,
+                                 tooltips = tooltips.tooltips == null ? string.Empty : tooltips.tooltips
+                             }).ToList();
+
 
             if (FieldList != null)
             {
@@ -117,7 +127,7 @@ public partial class admin_tooltipslisting : System.Web.UI.Page
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[3].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[4].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter

@@ -22,8 +22,6 @@ public partial class admin_applicantsocial : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-       
-      
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -35,7 +33,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            userID= Convert.ToInt32(Request.QueryString["userid"].ToString());
+            userID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
@@ -112,11 +110,21 @@ public partial class admin_applicantsocial : System.Web.UI.Page
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
-                txtFacebook.Value = profileInfo.facebookprofle;
-                txtLinkedin.Value = profileInfo.linkedprofile;
-                txtTwitter.Value = profileInfo.twiterprofile;
+                if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false))
+                    lblFacebook.Text = "User has opted, he has no facebook account";
+                else
+                    lblFacebook.Text = profileInfo.facebookprofle;
+                if ((profileInfo.havelinkedinaccount == null) || (profileInfo.havelinkedinaccount == false))
+                    lblLinkedin.Text = "User has opted, he has no Linkedin  account";
+                else
+                    lblLinkedin.Text = profileInfo.linkedprofile;
+                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
+                    lblTwitter.Text = "User has opted, he has no Linkedin  account";
+                else
+                    lblTwitter.Text = profileInfo.twiterprofile;
+
             }
-           
+
         }
         catch (Exception ex)
         {
@@ -195,7 +203,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
         try
         {
 
-            
+
         }
         catch (Exception ex)
         {
