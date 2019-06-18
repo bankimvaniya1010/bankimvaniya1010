@@ -186,6 +186,7 @@
           <Property Name="residentialcity" Type="varchar" MaxLength="45" />
           <Property Name="residentialstate" Type="varchar" MaxLength="45" />
           <Property Name="residentialcountry" Type="int" />
+          <Property Name="haspreviousresidence" Type="bit" />
           <Property Name="mobileno" Type="varchar" MaxLength="45" />
           <Property Name="homephone" Type="varchar" MaxLength="45" />
           <Property Name="workphone" Type="varchar" MaxLength="45" />
@@ -427,6 +428,23 @@
           <Property Name="referncekey" Type="varchar" MaxLength="50" />
           <Property Name="requestsenttime" Type="datetime" Precision="0" />
           <Property Name="referenceverifiedtime" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="applicantresidencehistory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="residencestartdate" Type="datetime" Precision="0" />
+          <Property Name="residenceenddate" Type="datetime" Precision="0" />
+          <Property Name="residenceaddress1" Type="varchar" MaxLength="50" />
+          <Property Name="residenceaddress2" Type="varchar" MaxLength="50" />
+          <Property Name="residenceaddress3" Type="varchar" MaxLength="50" />
+          <Property Name="residencepostcode" Type="varchar" MaxLength="8" />
+          <Property Name="residentialstate" Type="varchar" MaxLength="50" />
+          <Property Name="residentialcity" Type="varchar" MaxLength="50" />
+          <Property Name="residentialcountry" Type="int" />
         </EntityType>
         <EntityType Name="applicantscores">
           <Key>
@@ -1509,6 +1527,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="applicantlanguagecompetency" EntityType="Self.applicantlanguagecompetency" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantprogressbar" EntityType="Self.applicantprogressbar" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantreferencecheck" EntityType="Self.applicantreferencecheck" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicantresidencehistory" EntityType="Self.applicantresidencehistory" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantscores" EntityType="Self.applicantscores" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantsubjectwisegrade" EntityType="Self.applicantsubjectwisegrade" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" Schema="GTE" store:Type="Tables" />
@@ -1943,8 +1962,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
           </AssociationSet>
-          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <EntitySet Name="GTE_documentverification" EntityType="GTEModel.GTE_documentverification" />
+          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
+          <EntitySet Name="applicantresidencehistory" EntityType="GTEModel.applicantresidencehistory" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -3378,6 +3398,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GTE_documentverification">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="documentvalidationId" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="lastupdatedate" Type="DateTime" />
+          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="applicantdetails">
           <Key>
             <PropertyRef Name="applicantpersonaldetailsid" />
@@ -3424,6 +3456,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="residentialcountry" Type="Int32" />
+          <Property Name="haspreviousresidence" Type="Boolean" />
           <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
@@ -3465,17 +3498,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="isstudentreferbyagent" Type="Int32" />
           <Property Name="haveworkexperience" Type="Boolean" />
         </EntityType>
-        <EntityType Name="GTE_documentverification">
+        <EntityType Name="applicantresidencehistory">
           <Key>
-            <PropertyRef Name="documentid" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="documentid" Type="Int32" Nullable="false" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="documentvalidationId" Type="Int32" />
-          <Property Name="agentid" Type="Int32" />
-          <Property Name="lastupdatedate" Type="DateTime" />
-          <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" Nullable="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="residencestartdate" Type="DateTime" />
+          <Property Name="residenceenddate" Type="DateTime" />
+          <Property Name="residenceaddress1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residenceaddress2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residenceaddress3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residencepostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentialstate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcountry" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4575,6 +4613,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="GTE_documentverification">
+            <EntityTypeMapping TypeName="GTEModel.GTE_documentverification">
+              <MappingFragment StoreEntitySet="GTE_documentverification">
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="documentvalidationId" ColumnName="documentvalidationId" />
+                <ScalarProperty Name="documentname" ColumnName="documentname" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
@@ -4618,6 +4669,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="workphone" ColumnName="workphone" />
                 <ScalarProperty Name="homephone" ColumnName="homephone" />
                 <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+                <ScalarProperty Name="haspreviousresidence" ColumnName="haspreviousresidence" />
                 <ScalarProperty Name="residentialcountry" ColumnName="residentialcountry" />
                 <ScalarProperty Name="residentialstate" ColumnName="residentialstate" />
                 <ScalarProperty Name="residentialcity" ColumnName="residentialcity" />
@@ -4663,16 +4715,21 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="GTE_documentverification">
-            <EntityTypeMapping TypeName="GTEModel.GTE_documentverification">
-              <MappingFragment StoreEntitySet="GTE_documentverification">
-                <ScalarProperty Name="remarks" ColumnName="remarks" />
-                <ScalarProperty Name="lastupdatedate" ColumnName="lastupdatedate" />
-                <ScalarProperty Name="agentid" ColumnName="agentid" />
-                <ScalarProperty Name="documentvalidationId" ColumnName="documentvalidationId" />
-                <ScalarProperty Name="documentname" ColumnName="documentname" />
+          <EntitySetMapping Name="applicantresidencehistory">
+            <EntityTypeMapping TypeName="GTEModel.applicantresidencehistory">
+              <MappingFragment StoreEntitySet="applicantresidencehistory">
+                <ScalarProperty Name="residentialcountry" ColumnName="residentialcountry" />
+                <ScalarProperty Name="residentialcity" ColumnName="residentialcity" />
+                <ScalarProperty Name="residentialstate" ColumnName="residentialstate" />
+                <ScalarProperty Name="residencepostcode" ColumnName="residencepostcode" />
+                <ScalarProperty Name="residenceaddress3" ColumnName="residenceaddress3" />
+                <ScalarProperty Name="residenceaddress2" ColumnName="residenceaddress2" />
+                <ScalarProperty Name="residenceaddress1" ColumnName="residenceaddress1" />
+                <ScalarProperty Name="residenceenddate" ColumnName="residenceenddate" />
+                <ScalarProperty Name="residencestartdate" ColumnName="residencestartdate" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="documentid" ColumnName="documentid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
