@@ -322,72 +322,72 @@
 
             for (var i = 1; i <= allAddressCount; i++)
             {
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#txtPrevAddStartDate_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) + " previous residential address start date");
+                if ($("#txtPrevAddStartDate_" + i).val() == "") {
+                    alert("Please enter previous residential address start date");
                     return false;
                 }
                 else {
                     var data = $("#txtPrevAddStartDate_" + i).val() + ";" + $("#<%=hidAddressStartDate.ClientID %>").val();
                     $("#<%=hidAddressStartDate.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#txtPrevAddEndDate_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) +" previous residential address end date");
+                if ($("#txtPrevAddEndDate_" + i).val() == "") {
+                    alert("Please enter previous residential address end date");
                     return false;
                 }
                 else {
                     var data = $("#txtPrevAddEndDate_" + i).val() + ";" + $("#<%=hidAddressEndDate.ClientID %>").val();
                     $("#<%=hidAddressEndDate.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddress1_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) +" previous first residential address line");
+                if ($("#prevAddress1_" + i).val() == "") {
+                    alert("Please enter previous residential address line 1");
                     return false;
                 } 
                 else {
                     var data = $("#prevAddress1_" + i).val() + ";" + $("#<%=hidAddress1.ClientID %>").val();
                     $("#<%=hidAddress1.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddress2_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) +" previous second residential address line");
+                if ($("#prevAddress2_" + i).val() == "") {
+                    alert("Please enter previous residential address line 2");
                     return false;
                 }
                 else {
                     var data = $("#prevAddress2_" + i).val() + ";" + $("#<%=hidAddress2.ClientID %>").val();
                     $("#<%=hidAddress2.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddress3_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) +" previous third residential address line");
+                if ($("#prevAddress3_" + i).val() == "") {
+                    alert("Please enter previous residential address line 3");
                     return false;
                 }
                 else {
                     var data = $("#prevAddress3_" + i).val() + ";" + $("#<%=hidAddress3.ClientID %>").val();
                     $("#<%=hidAddress3.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddressCity_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) +" previous residential city");
+                if ($("#prevAddressCity_" + i).val() == "") {
+                    alert("Please enter previous residential city");
                     return false;
                 }
                 else {
                     var data = $("#prevAddressCity_" + i).val() + ";" + $("#<%=hidAddressCity.ClientID %>").val();
                     $("#<%=hidAddressCity.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddressState_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) +" previous residential state");
+                if ($("#prevAddressState_" + i).val() == "") {
+                    alert("Please enter previous residential state");
                     return false;
                 }
                 else {
                     var data = $("#prevAddressState_" + i).val() + ";" + $("#<%=hidAddressState.ClientID %>").val();
                     $("#<%=hidAddressState.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddressPostalCode_" + i).val() == "")) {
-                    alert("Please enter" + (i + 1) +" previous residential postal code");
+                if ($("#prevAddressPostalCode_" + i).val() == "") {
+                    alert("Please enter previous residential postal code");
                     return false;
                 }
                 else {
                     var data = $("#prevAddressPostalCode_" + i).val() + ";" + $("#<%=hidAddressPostalCode.ClientID %>").val();
                     $("#<%=hidAddressPostalCode.ClientID %>").val(data);
                 }
-                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#ddlPrevAddressCountry_" + i).val() == "0")) {
-                    alert("Please enter" + (i + 1) +" previous residential Country");
+                if ($("#ddlPrevAddressCountry_" + i).val() == "0") {
+                    alert("Please enter previous residential Country");
                     return false;
                 }
                 else {
