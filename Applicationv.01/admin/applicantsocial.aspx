@@ -29,11 +29,12 @@
                         <div class="form-row">
                             <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">Link to your LinkedIn profile</label>
                             <div class="col-md-4">
-                                <input id="txtLinkedin" runat="server" type="text" class="form-control" placeholder="Link to your LinkedIn profile ">
-                                <asp:CheckBox ID="chkLinkeIn" runat="server" Text="Does Not Have LinkedIn Account" />
+                                <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
                                 <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4"> <input id="txtLinkedinComments" runat="server" type="text" class="form-control" placeholder="Admin Comments"></div>
+                            <div class="col-md-4">
+                                <input id="txtLinkedinComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -42,10 +43,12 @@
                         <div class="form-row">
                             <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">Link to your Facebook profile </label>
                             <div class="col-md-4">
-                                <input id="txtFacebook" runat="server" type="text" class="form-control" placeholder="Link to your Facebook profile ">
-                                <asp:CheckBox ID="ChkFacebook" runat="server" Text="Does Not Have Facebook Account" />
+                                <asp:Label ID="lblFacebook" runat="server"></asp:Label>
                                 <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                            </div> <div class="col-md-4"> <input id="txtFacebookComments" runat="server" type="text" class="form-control" placeholder="Admin Comments"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="txtFacebookComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -54,10 +57,12 @@
                         <div class="form-row">
                             <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">Link to your twitter handle </label>
                             <div class="col-md-4">
-                                <input id="txtTwitter" runat="server" type="text" class="form-control" placeholder="Link to your twitter handle ">
-                                <asp:CheckBox ID="chkTwitter" runat="server" Text="Does Not Have Twitter Account" />
+                                <asp:Label ID="lblTwitter" runat="server"></asp:Label>
                                 <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                            </div> <div class="col-md-4"> <input id="txtTwitterComments" runat="server" type="text" class="form-control" placeholder="Admin Comments"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="txtTwitterComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
                         </div>
                     </div>
                 </div>

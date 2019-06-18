@@ -88,8 +88,17 @@ public partial class admin_universitywisetooltipslisting : System.Web.UI.Page
 
             if (ddlForm.SelectedValue != "")
                 formID = Convert.ToInt32(ddlForm.SelectedValue);
+            var FieldList = (from pfm in db.primaryfieldmaster
+                             join utm in db.universitywisetooltipmaster
+                             on pfm.primaryfieldid equals utm.fieldid
+                             where pfm.formid == formID && utm.universityid == universityID
+                             select new
+                             {
+                                 id = utm.id,
+                                 primaryfiledname = pfm.primaryfiledname,
+                                 tooltips = utm.tooltips == null ? string.Empty : utm.tooltips
+                             }).ToList();
 
-            var FieldList = db.universitywisetooltipmaster.Where(x => x.formid == formID && x.universityid == universityID).ToList();
 
             if (FieldList != null)
             {
@@ -149,7 +158,7 @@ public partial class admin_universitywisetooltipslisting : System.Web.UI.Page
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[3].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[4].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter

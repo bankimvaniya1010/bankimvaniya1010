@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="admintooltipslisting.aspx.cs" Inherits="admin_admintooltipslisting"  MasterPageFile="~/admin/admin.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="admintooltipslisting.aspx.cs" Inherits="admin_admintooltipslisting" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
     <script type="text/javascript" language="javascript">
@@ -23,7 +23,7 @@
 
 
             <div class="tab-content card-body">
-                 <div><a href="admintooltips.aspx">Add tooltips</a></div>
+                <div><a href="admintooltips.aspx">Add tooltips</a></div>
                 <div class="tab-pane active" id="first">
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label form-label">Form</label>
@@ -36,9 +36,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <asp:GridView ID="gvField" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
                         DataKeyNames="id"
                         AllowPaging="True"
@@ -50,39 +47,25 @@
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
-                            <asp:TemplateField HeaderText="Description" SortExpression="Description">
+                            <asp:TemplateField HeaderText="Field Name">
                                 <ItemTemplate>
-
-                                    <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("tooltips") %>'></asp:Label>
-
+                                    <asp:Label ID="lblFieldName" runat="server" Text='<%# Bind("primaryfiledname") %>'></asp:Label>
                                 </ItemTemplate>
-
                             </asp:TemplateField>
-
-
+                            <asp:TemplateField HeaderText="Tooltips">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblTooltips" runat="server" Text='<%# Bind("tooltips") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                 <ItemTemplate>
-
                                     <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-
                                 </ItemTemplate>
-
                             </asp:TemplateField>
-
                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
-
-
-
-
                         </Columns>
-
-
-
                     </asp:GridView>
-
                 </div>
-
-
             </div>
         </div>
 

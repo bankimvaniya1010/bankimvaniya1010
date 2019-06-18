@@ -138,8 +138,8 @@
                                             <a class="dropdown-item" href="sutdymode.aspx">Study Mode Master</a>
                                             <a class="dropdown-item" href="titlemaster.aspx">Title Master</a>
                                             <a class="dropdown-item" href="qualificationmaster.aspx">Qualification Master</a>
-                                            <a class="dropdown-item" href="tooltipslisting.aspx">Tooltips</a>
-                                            <a class="dropdown-item" href="universitywisetooltipslisting.aspx">Universities Tool Tips</a>
+                                            <a class="dropdown-item" href="tooltipslisting.aspx">Student Tooltips</a>
+                                            <a class="dropdown-item" href="universitywisetooltipslisting.aspx">Universities Student Tool Tips</a>
                                             <a class="dropdown-item" href="admintooltipslisting.aspx">Admin Tool Tips</a>
                                             <a class="dropdown-item" href="adminuniversitywisetooltipslisting.aspx">Universities Wise Admin Tool Tips</a>
                                         </div>
