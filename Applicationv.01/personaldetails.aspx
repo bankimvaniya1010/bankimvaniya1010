@@ -203,7 +203,7 @@
                                         <div class="form-row">
                                             <label id="lblSpouseName" runat="server" for="spouseName" class="col-md-3 col-form-label form-label">Spouse Name</label>
                                             <div class="col-md-6">
-                                                <input id="txtSpouseName" runat="server" type="text" placeholder="Spouse Name" value="" class="form-control" required="" />
+                                                <input id="txtSpouseName" runat="server" type="text" placeholder="Spouse Name" value="" class="form-control" />
                                             </div>
                                         </div>
                                     </div>

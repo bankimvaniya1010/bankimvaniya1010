@@ -184,6 +184,7 @@ public partial class applicantdetails
     public string residentialcity { get; set; }
     public string residentialstate { get; set; }
     public Nullable<int> residentialcountry { get; set; }
+    public Nullable<bool> haspreviousresidence { get; set; }
     public string mobileno { get; set; }
     public string homephone { get; set; }
     public string workphone { get; set; }
@@ -416,6 +417,22 @@ public partial class applicantreferencecheck
     public string referncekey { get; set; }
     public Nullable<System.DateTime> requestsenttime { get; set; }
     public Nullable<System.DateTime> referenceverifiedtime { get; set; }
+}
+
+public partial class applicantresidencehistory
+{
+    public int id { get; set; }
+    public int applicantid { get; set; }
+    public int universityid { get; set; }
+    public Nullable<System.DateTime> residencestartdate { get; set; }
+    public Nullable<System.DateTime> residenceenddate { get; set; }
+    public string residenceaddress1 { get; set; }
+    public string residenceaddress2 { get; set; }
+    public string residenceaddress3 { get; set; }
+    public string residencepostcode { get; set; }
+    public string residentialstate { get; set; }
+    public string residentialcity { get; set; }
+    public Nullable<int> residentialcountry { get; set; }
 }
 
 public partial class applicantscores

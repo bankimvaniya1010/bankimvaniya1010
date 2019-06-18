@@ -20,7 +20,7 @@ public partial class knowyourstudent : System.Web.UI.Page
 
     private static string studentName;
     private static string studentdob;
-    public static bool verifiedPassportDetails = true;
+    public static bool verifiedPassportDetails = false;
 
     public static string StudentName { get; set; }
     public static string StudentDOB { get; set; }

@@ -130,6 +130,13 @@
                                             <asp:RadioButton ID="rblAddressNo" runat="server" CssClass="form-control" GroupName="address" Text="No" /><span class="helpicon"><i id="icAddress" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
+                                    <div class="form-row">
+                                        <label id="labelCurrentAddress" runat="server" for="currentAddressSelection" class="col-md-3 col-form-label form-label">Have you been living in the current address for Less than 1 year?</label>
+                                        <div class="col-md-6">
+                                            <asp:RadioButton ID="rblCurrentAddYes" runat="server" CssClass="form-control" GroupName="currentAddressSelection" Text="Yes" />
+                                            <asp:RadioButton ID="rblCurrentAddNo" runat="server" CssClass="form-control" GroupName="currentAddressSelection" Text="No" />
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="list-group-item" id="residential" runat="server" style="display: none">
@@ -149,6 +156,37 @@
 
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="addressHistory" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-prevaddress">
+                                    <asp:HiddenField ID="hidAddressHistory" runat="server" Value="0" />
+                                    <asp:HiddenField ID="hidAddressStartDate" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddressEndDate" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddress1" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddress2" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddress3" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddressCity" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddressState" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddressPostalCode" runat="server" Value="" />
+                                    <asp:HiddenField ID="hidAddressCountry" runat="server" Value="" />
+                                    <div class="form-row">
+                                        <label id="lblPrevAddress" runat="server" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>
+                                        <div class="col-md-6">
+                                            <input id="txtPrevAddStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="">
+                                            <input id="txtPrevAddEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="">
+                                            <input id="prevAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control">
+                                            <input id="prevAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
+                                            <input id="prevAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control">
+                                            <input id="prevAddressCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
+                                            <input id="prevAddressState" runat="server" type="text" placeholder="State" value="" class="form-control">
+                                            <input id="prevAddressPostalCode" runat="server" type="text" placeholder="Postal code" value="" class="form-control">
+                                            <asp:DropDownList ID="ddlPrevAddressCountry" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div id="container"></div>
+                                    <input id="addPrevAddressDiv" type="button" class="btn btn-success" value="Add More" />
                                 </div>
                             </div>
                             <div id="guardian" runat="server" visible="false">
@@ -227,6 +265,146 @@
         </div>
     </div>
     <script>
+
+        $('#ContentPlaceHolder1_txtPrevAddStartDate').flatpickr({
+
+            dateFormat: 'Y-m-d', defaultDate: ""
+        });
+        $('#ContentPlaceHolder1_txtPrevAddEndDate').flatpickr({
+            dateFormat: 'Y-m-d', defaultDate: ""
+        });
+
+        function isvalidPreviousResidentialAddressDates() {
+            var startDate = new Date($("#<%=txtPrevAddStartDate.ClientID%>").val());
+            var endDate = new Date($("#<%=txtPrevAddEndDate.ClientID%>").val());
+            if (startDate > endDate) {
+                alert("Please enter valid previous residential start date and end date.");
+                return false;
+            }
+
+            return true;
+        }
+
+        function isvalidAllAddressDetails() {
+            var flag = false;
+            if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=txtPrevAddStartDate.ClientID%>").val() == ""))
+                alert("Please enter previous residential address start date");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=txtPrevAddEndDate.ClientID%>").val() == ""))
+                alert("Please enter previous residential address end date");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=prevAddress1.ClientID%>").val() == ""))
+                alert("Please enter previous first residential address line");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=prevAddress2.ClientID%>").val() == ""))
+                alert("Please enter previous second residential address line");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=prevAddress3.ClientID%>").val() == ""))
+                alert("Please enter previous third residential address line");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=prevAddressCity.ClientID%>").val() == ""))
+                alert("Please enter previous residential city");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=prevAddressState.ClientID%>").val() == ""))
+                alert("Please enter previous residential state");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=prevAddressPostalCode.ClientID%>").val() == ""))
+                alert("Please enter previous residential postal code");
+            else if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#<%=ddlPrevAddressCountry.ClientID%>").val() == "0"))
+                alert("Please enter previous residential Country");
+            else if (!$("#<%=addressHistory.ClientID%>").is(':hidden') && !isvalidPreviousResidentialAddressDates()) { }
+            else
+                flag = true;
+
+            var allAddressCount = $("#<%=hidAddressHistory.ClientID %>").val();
+            $("#<%=hidAddressStartDate.ClientID %>").val('');
+            $("#<%=hidAddressEndDate.ClientID %>").val('');
+            $("#<%=hidAddress1.ClientID %>").val('');
+            $("#<%=hidAddress2.ClientID %>").val('');
+            $("#<%=hidAddress3.ClientID %>").val('');
+            $("#<%=hidAddressCity.ClientID %>").val('');
+            $("#<%=hidAddressState.ClientID %>").val('');
+            $("#<%=hidAddressPostalCode.ClientID %>").val('');
+            $("#<%=hidAddressCountry.ClientID %>").val('');
+
+            for (var i = 1; i <= allAddressCount; i++)
+            {
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#txtPrevAddStartDate_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) + " previous residential address start date");
+                    return false;
+                }
+                else {
+                    var data = $("#txtPrevAddStartDate_" + i).val() + ";" + $("#<%=hidAddressStartDate.ClientID %>").val();
+                    $("#<%=hidAddressStartDate.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#txtPrevAddEndDate_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) +" previous residential address end date");
+                    return false;
+                }
+                else {
+                    var data = $("#txtPrevAddEndDate_" + i).val() + ";" + $("#<%=hidAddressEndDate.ClientID %>").val();
+                    $("#<%=hidAddressEndDate.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddress1_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) +" previous first residential address line");
+                    return false;
+                } 
+                else {
+                    var data = $("#prevAddress1_" + i).val() + ";" + $("#<%=hidAddress1.ClientID %>").val();
+                    $("#<%=hidAddress1.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddress2_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) +" previous second residential address line");
+                    return false;
+                }
+                else {
+                    var data = $("#prevAddress2_" + i).val() + ";" + $("#<%=hidAddress2.ClientID %>").val();
+                    $("#<%=hidAddress2.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddress3_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) +" previous third residential address line");
+                    return false;
+                }
+                else {
+                    var data = $("#prevAddress3_" + i).val() + ";" + $("#<%=hidAddress3.ClientID %>").val();
+                    $("#<%=hidAddress3.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddressCity_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) +" previous residential city");
+                    return false;
+                }
+                else {
+                    var data = $("#prevAddressCity_" + i).val() + ";" + $("#<%=hidAddressCity.ClientID %>").val();
+                    $("#<%=hidAddressCity.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddressState_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) +" previous residential state");
+                    return false;
+                }
+                else {
+                    var data = $("#prevAddressState_" + i).val() + ";" + $("#<%=hidAddressState.ClientID %>").val();
+                    $("#<%=hidAddressState.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#prevAddressPostalCode_" + i).val() == "")) {
+                    alert("Please enter" + (i + 1) +" previous residential postal code");
+                    return false;
+                }
+                else {
+                    var data = $("#prevAddressPostalCode_" + i).val() + ";" + $("#<%=hidAddressPostalCode.ClientID %>").val();
+                    $("#<%=hidAddressPostalCode.ClientID %>").val(data);
+                }
+                if ((!$("#<%=addressHistory.ClientID%>").is(':hidden')) && ($("#ddlPrevAddressCountry_" + i).val() == "0")) {
+                    alert("Please enter" + (i + 1) +" previous residential Country");
+                    return false;
+                }
+                else {
+                    var data = $('#ddlPrevAddressCountry_'+ i).val() + ";" + $("#<%=hidAddressCountry.ClientID %>").val();
+                    $("#<%=hidAddressCountry.ClientID %>").val(data);
+                }
+                var startDate = new Date($("#txtPrevAddStartDate_" + i).val());
+                var endDate = new Date($("#txtPrevAddEndDate_" + i).val());
+                if (startDate > endDate) {
+                    alert("Please enter" + (i + 1) +" valid previous residential start date and end date.");
+                    return false;
+                }
+            }
+
+            return flag;
+        }
+
         function validateForm() {
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
             var flag = false;
@@ -281,7 +459,10 @@
                     alert("Please enter residential postal code");
                 else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=ddlResidentialCountry.ClientID%>").val() == "0"))
                     alert("Please enter residential Country");
-            }          
+            }
+            else if (!$("#<%=addressHistory.ClientID%>").is(':hidden') && !($("#<%=rblCurrentAddYes.ClientID%>").is(':checked') || $("#<%=rblCurrentAddNo.ClientID%>").is(':checked')))
+                 alert("Please Select Option to record your previous residential address.");
+            else if (!$("#<%=addressHistory.ClientID%>").is(':hidden') && $("#<%=rblCurrentAddYes.ClientID%>").is(':checked') && !isvalidAllAddressDetails()) { }
             else if ((!$("#<%=guardianname.ClientID%>").is(':hidden')) && ($("#<%=txtNomineeName.ClientID%>").val() == ""))
                 alert("Please enter guardianname name" + "\n");            
             else if ((!$("#<%=guardianrelation.ClientID%>").is(':hidden')) && ($("#<%=txtRelationNominee.ClientID%>").val() == ""))
@@ -353,7 +534,62 @@
             if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=rblAddressNo.ClientID%>").is(':checked'))
                 $("#<%=residential.ClientID%>").show();
             else
-                $("#<%=residential.ClientID%>").hide();
+                $("#<%=residential.ClientID%>").hide();                
+
+            $("#<%=rblCurrentAddYes.ClientID%>").click(function () {
+                $("#<%=addressHistory.ClientID%>").show();
+            });
+
+            $("#<%=rblCurrentAddNo.ClientID%>").click(function () {
+                $("#<%=hidAddressHistory.ClientID%>").val = 0;
+                $("#<%=hidAddressStartDate.ClientID%>").val('');
+                $("#<%=hidAddressEndDate.ClientID%>").val('');
+                $("#<%=hidAddress1.ClientID%>").val('');
+                $("#<%=hidAddress2.ClientID%>").val('');
+                $("#<%=hidAddress3.ClientID%>").val('');
+                $("#<%=hidAddressState.ClientID%>").val('');
+                $("#<%=hidAddressCity.ClientID%>").val('');
+                $("#<%=hidAddressPostalCode.ClientID%>").val('');
+                $("#<%=hidAddressCountry.ClientID%>").val('');
+            });
+
+            $("#addPrevAddressDiv").click(function () {
+                var hfPrevAddress = $("#<%=hidAddressHistory.ClientID %>");
+                var count = parseInt(hfPrevAddress.val()) + 1;
+                hfPrevAddress.val(count);
+
+                //Clone the DropDownList 
+                var ddl = $("#<%=ddlPrevAddressCountry.ClientID%>").clone();
+                //Set the ID and Name
+                ddl.attr("id", "ddlPrevAddressCountry_" + count);
+                ddl.attr("name", "ddlPrevAddressCountry_" + count);
+
+                $('#ddlPrevAddressCountry_'+ count).addClass('form-control');
+
+                $("#container").append('<div class="form-row">' +
+                    '<label id="lblPrevAddress_' + count + '" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>' +
+                    '<div class="col-md-6">' +
+                    '<input id="txtPrevAddStartDate_' + count + '" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="" />' +
+                    '<input id="txtPrevAddEndDate_' + count + '" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="" />' +
+                    '<input id="prevAddress1_' + count + '" type="text" placeholder="Address line 1" value="" class="form-control" />' +
+                    '<input id="prevAddress2_' + count + '" type="text" placeholder="Address line 2" value="" class="form-control" />' +
+                    '<input id="prevAddress3_' + count + '" type="text" placeholder="Address line 3" value="" class="form-control" />' +
+                    '<input id="prevAddressCity_' + count + '" type="text" placeholder="City, Town or Suburb" value="" class="form-control" />' +
+                    '<input id="prevAddressState_' + count + '" type="text" placeholder="State" value="" class="form-control" />' +
+                    '<input id="prevAddressPostalCode_' + count + '" type="text" placeholder="Postal code" value="" class="form-control" />');
+
+                $("#container").append(ddl);
+                $("#container").append('</div></div>');
+                                        
+                $('#txtPrevAddStartDate_' + count).flatpickr({
+
+                    dateFormat: 'Y-m-d', defaultDate: ""
+                });
+                $('#txtPrevAddEndDate_' + count).flatpickr({
+                    dateFormat: 'Y-m-d', defaultDate: ""
+                });
+
+            });
 
             if (!$("#<%=mobile.ClientID%>").is(':hidden')) {
                 var input = document.querySelector("#<%=txtMobile.ClientID%>");

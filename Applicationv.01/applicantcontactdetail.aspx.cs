@@ -40,6 +40,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlpostalCountry);
             objCom.BindCountries(ddlResidentialCountry);
+            objCom.BindCountries(ddlPrevAddressCountry);
             PopulatePersonalInfo();
             SetToolTips();
             SetControlsUniversitywise();
@@ -55,6 +56,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (profileInfo != null)
             {
                 txtEmail.Value = profileInfo.email;
+                txtEmail.Disabled = true;
                 txtMobile.Value = profileInfo.mobileno;
                 txtHomePhone.Value = profileInfo.homephone;
                 if (profileInfo.haveskypeid == 1)
@@ -205,6 +207,60 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 objapplicantDetail.residentailpostcode = txtResidentialpostal.Value;
                 if (ddlResidentialCountry.SelectedValue != "")
                     objapplicantDetail.residentialcountry = Convert.ToInt32(ddlResidentialCountry.SelectedValue);
+            }
+
+            if (rblCurrentAddYes.Checked)
+            {
+                objapplicantDetail.haspreviousresidence = true;
+                List<applicantresidencehistory> lstresidenceHistory = new List<applicantresidencehistory>();
+                applicantresidencehistory resHistory = new applicantresidencehistory();
+
+                resHistory.applicantid = userID;
+                resHistory.universityid = universityID;
+                resHistory.residencestartdate = Convert.ToDateTime(txtPrevAddStartDate.Value);
+                resHistory.residenceenddate = Convert.ToDateTime(txtPrevAddEndDate.Value);
+                resHistory.residenceaddress1 = prevAddress1.Value;
+                resHistory.residenceaddress2 = prevAddress2.Value;
+                resHistory.residenceaddress3 = prevAddress3.Value;
+                resHistory.residentialcity = prevAddressCity.Value;
+                resHistory.residentialstate = prevAddressState.Value;
+                resHistory.residencepostcode = prevAddressPostalCode.Value;
+                if (ddlResidentialCountry.SelectedValue != "")
+                    resHistory.residentialcountry = Convert.ToInt32(ddlPrevAddressCountry.SelectedValue);
+
+                lstresidenceHistory.Add(resHistory);
+                int total = Convert.ToInt32(hidAddressHistory.Value);
+                string[] prevAddressStartDates = hidAddressStartDate.Value.Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressEndDates = hidAddressEndDate.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddresses1 = hidAddress1.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddresses2 = hidAddress2.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddresses3 = hidAddress3.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressCities = hidAddressCity.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressStates = hidAddressState.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressCountries = hidAddressCountry.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressPostalCodes = hidAddressPostalCode.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+
+                for (int i = 1; i <= total; i++)
+                {
+                    applicantresidencehistory tempHistory = new applicantresidencehistory();
+
+                    tempHistory.applicantid = userID;
+                    tempHistory.universityid = universityID;
+                    tempHistory.residencestartdate = Convert.ToDateTime(prevAddressStartDates[i]);
+                    tempHistory.residenceenddate = Convert.ToDateTime(prevAddressEndDates[i]);
+                    tempHistory.residenceaddress1 = prevAddresses1[i];
+                    tempHistory.residenceaddress2 = prevAddresses2[i];
+                    tempHistory.residenceaddress3 = prevAddresses3[i];
+                    tempHistory.residentialcity = prevAddressCities[i];
+                    tempHistory.residentialstate = prevAddressStates[i];
+                    tempHistory.residencepostcode = prevAddressPostalCodes[i];
+                    tempHistory.residentialcountry = Convert.ToInt32(prevAddressCountries[i]);
+
+                    lstresidenceHistory.Add(tempHistory);
+                }
+
+                db.applicantresidencehistory.AddRange(lstresidenceHistory);
+                db.SaveChanges();
             }
             objapplicantDetail.nomineefullname = txtNomineeName.Value;
             objapplicantDetail.nomineeemail = txtEmailNominee.Value;
