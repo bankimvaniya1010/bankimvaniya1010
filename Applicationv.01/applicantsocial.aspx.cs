@@ -217,7 +217,7 @@ public partial class applicantsocial : System.Web.UI.Page
             else
                 objapplicantDetail.havelinkedinaccount = true;
             objapplicantDetail.twiterprofile = txtTwitter.Value;
-            if (ChkFacebook.Checked)
+            if (chkTwitter.Checked)
                 objapplicantDetail.havetwitteraccount = false;
             else
                 objapplicantDetail.havetwitteraccount = true;
