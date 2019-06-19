@@ -257,6 +257,8 @@ public partial class applicanteducationdetails
     public Nullable<int> highschoolverificationrelationship { get; set; }
     public string highschoolverificationemail { get; set; }
     public string highschoolverificationmobile { get; set; }
+    public string highschoolverificationkey { get; set; }
+    public Nullable<bool> ishighschoolverified { get; set; }
     public string highestdegree { get; set; }
     public Nullable<int> issecondarydone { get; set; }
     public Nullable<int> secondarycountry { get; set; }
@@ -273,6 +275,8 @@ public partial class applicanteducationdetails
     public Nullable<int> secondaryverificationrelationship { get; set; }
     public string secondaryverificationemail { get; set; }
     public string secondaryverificationmobile { get; set; }
+    public string secondaryverificationkey { get; set; }
+    public Nullable<bool> issecondaryverified { get; set; }
     public Nullable<int> isdiplomadone { get; set; }
     public Nullable<int> diplomacountry { get; set; }
     public string diplomastartdate { get; set; }
@@ -288,6 +292,8 @@ public partial class applicanteducationdetails
     public Nullable<int> diplomaverificationrelationship { get; set; }
     public string diplomaverificationemail { get; set; }
     public string diplomaverificationmobile { get; set; }
+    public string diplomaverificationkey { get; set; }
+    public Nullable<bool> isdiplomaverified { get; set; }
     public Nullable<int> ishighereducation { get; set; }
     public Nullable<System.DateTime> lastsavetime { get; set; }
 }
@@ -361,6 +367,8 @@ public partial class applicanthighereducation
     public Nullable<int> relationshipwithverification { get; set; }
     public string verificationemail { get; set; }
     public string verificationmobile { get; set; }
+    public string highereducationverificationkey { get; set; }
+    public Nullable<bool> ishighereducationverified { get; set; }
 }
 
 public partial class applicantlanguagecompetency

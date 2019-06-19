@@ -261,6 +261,8 @@
           <Property Name="highschoolverificationrelationship" Type="int" />
           <Property Name="highschoolverificationemail" Type="varchar" MaxLength="100" />
           <Property Name="highschoolverificationmobile" Type="varchar" MaxLength="15" />
+          <Property Name="highschoolverificationkey" Type="varchar" MaxLength="50" />
+          <Property Name="ishighschoolverified" Type="bit" />
           <Property Name="highestdegree" Type="varchar" MaxLength="45" />
           <Property Name="issecondarydone" Type="int" />
           <Property Name="secondarycountry" Type="int" />
@@ -277,6 +279,8 @@
           <Property Name="secondaryverificationrelationship" Type="int" />
           <Property Name="secondaryverificationemail" Type="varchar" MaxLength="100" />
           <Property Name="secondaryverificationmobile" Type="varchar" MaxLength="15" />
+          <Property Name="secondaryverificationkey" Type="varchar" MaxLength="50" />
+          <Property Name="issecondaryverified" Type="bit" />
           <Property Name="isdiplomadone" Type="int" />
           <Property Name="diplomacountry" Type="int" />
           <Property Name="diplomastartdate" Type="varchar" MaxLength="7" />
@@ -291,7 +295,9 @@
           <Property Name="diplomaverificationname" Type="varchar" MaxLength="100" />
           <Property Name="diplomaverificationrelationship" Type="int" />
           <Property Name="diplomaverificationemail" Type="varchar" MaxLength="100" />
-          <Property Name="diplomaverificationmobile" Type="varchar" MaxLength="15" />
+          <Property Name="diplomaverificationmobile" Type="varchar" MaxLength="50" />
+          <Property Name="diplomaverificationkey" Type="varchar" MaxLength="50" />
+          <Property Name="isdiplomaverified" Type="bit" />
           <Property Name="ishighereducation" Type="int" />
           <Property Name="lastsavetime" Type="datetime" Precision="0" />
         </EntityType>
@@ -369,6 +375,8 @@
           <Property Name="relationshipwithverification" Type="int" />
           <Property Name="verificationemail" Type="varchar" MaxLength="100" />
           <Property Name="verificationmobile" Type="varchar" MaxLength="15" />
+          <Property Name="highereducationverificationkey" Type="varchar" MaxLength="50" />
+          <Property Name="ishighereducationverified" Type="bit" />
         </EntityType>
         <EntityType Name="applicantlanguagecompetency">
           <Key>
@@ -1761,11 +1769,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicant_education" EntityType="GTEModel.applicant_education" />
           <EntitySet Name="applicantdatavalidation" EntityType="GTEModel.applicantdatavalidation" />
           <EntitySet Name="applicantdocumentmaster" EntityType="GTEModel.applicantdocumentmaster" />
-          <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
           <EntitySet Name="applicantemployerdetails" EntityType="GTEModel.applicantemployerdetails" />
           <EntitySet Name="applicantformmaster" EntityType="GTEModel.applicantformmaster" />
           <EntitySet Name="applicantfundingmaster" EntityType="GTEModel.applicantfundingmaster" />
-          <EntitySet Name="applicanthighereducation" EntityType="GTEModel.applicanthighereducation" />
           <EntitySet Name="applicantlanguagecompetency" EntityType="GTEModel.applicantlanguagecompetency" />
           <EntitySet Name="applicantprogressbar" EntityType="GTEModel.applicantprogressbar" />
           <EntitySet Name="applicantreferencecheck" EntityType="GTEModel.applicantreferencecheck" />
@@ -1965,6 +1971,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="GTE_documentverification" EntityType="GTEModel.GTE_documentverification" />
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <EntitySet Name="applicantresidencehistory" EntityType="GTEModel.applicantresidencehistory" />
+          <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
+          <EntitySet Name="applicanthighereducation" EntityType="GTEModel.applicanthighereducation" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -2118,62 +2126,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="uploadedtime" Type="DateTime" />
           <Property Name="fileextension" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="applicanteducationdetails">
-          <Key>
-            <PropertyRef Name="applicantdeducationdetailsid" />
-          </Key>
-          <Property Name="applicantdeducationdetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="ishighschooldone" Type="Int32" />
-          <Property Name="highschoolcountry" Type="Int32" />
-          <Property Name="highschoolstartdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="highschoolendate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="highschoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="highschoolqualificationtype" Type="Int32" />
-          <Property Name="highschoolmodeid" Type="Int32" />
-          <Property Name="highschoolmediumid" Type="Int32" />
-          <Property Name="highschoolgradetypeid" Type="Int32" />
-          <Property Name="highschoolgradedeclared" Type="Int32" />
-          <Property Name="highschoolreusltdate" Type="DateTime" />
-          <Property Name="highschoolverificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="highschoolverificationrelationship" Type="Int32" />
-          <Property Name="highschoolverificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="highschoolverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="highestdegree" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="issecondarydone" Type="Int32" />
-          <Property Name="secondarycountry" Type="Int32" />
-          <Property Name="secondarystartdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="secondaryendate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="secondaryname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="secondaryqualificationtype" Type="Int32" />
-          <Property Name="secondarymodestudy" Type="Int32" />
-          <Property Name="secondarymediumstudy" Type="Int32" />
-          <Property Name="secondarygradetypeid" Type="Int32" />
-          <Property Name="secondarygradedeclared" Type="Int32" />
-          <Property Name="secondaryresultdate" Type="DateTime" />
-          <Property Name="secondaryverificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="secondaryverificationrelationship" Type="Int32" />
-          <Property Name="secondaryverificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="secondaryverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="isdiplomadone" Type="Int32" />
-          <Property Name="diplomacountry" Type="Int32" />
-          <Property Name="diplomastartdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="diplomaendate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="diplomaschoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="diplomaqualificationtype" Type="Int32" />
-          <Property Name="diplomastudymodeid" Type="Int32" />
-          <Property Name="diplomamediumid" Type="Int32" />
-          <Property Name="diplomagradetypeid" Type="Int32" />
-          <Property Name="diplomagradeachieved" Type="Int32" />
-          <Property Name="diplomaresultdate" Type="DateTime" />
-          <Property Name="diplomaverificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="diplomaverificationrelationship" Type="Int32" />
-          <Property Name="diplomaverificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="diplomaverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="ishighereducation" Type="Int32" />
-          <Property Name="lastsavetime" Type="DateTime" />
-        </EntityType>
         <EntityType Name="applicantemployerdetails">
           <Key>
             <PropertyRef Name="employerid" />
@@ -2225,29 +2177,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="transportchoice" Type="Int32" />
           <Property Name="trips" Type="Int32" />
           <Property Name="entertainment" Type="Int32" />
-        </EntityType>
-        <EntityType Name="applicanthighereducation">
-          <Key>
-            <PropertyRef Name="applicanthighereducationid" />
-          </Key>
-          <Property Name="applicanthighereducationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="countryofhighereducation" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="startdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="endate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="schoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="qualificationtype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="studymodeid" Type="Int32" />
-          <Property Name="studymediumid" Type="Int32" />
-          <Property Name="gradetypeid" Type="Int32" />
-          <Property Name="finalgradeacheived" Type="Int32" />
-          <Property Name="resultdate" Type="DateTime" />
-          <Property Name="verificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="relationshipwithverification" Type="Int32" />
-          <Property Name="verificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="verificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicantlanguagecompetency">
           <Key>
@@ -3515,6 +3444,93 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="residentialcity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="residentialcountry" Type="Int32" />
         </EntityType>
+        <EntityType Name="applicanteducationdetails">
+          <Key>
+            <PropertyRef Name="applicantdeducationdetailsid" />
+          </Key>
+          <Property Name="applicantdeducationdetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="ishighschooldone" Type="Int32" />
+          <Property Name="highschoolcountry" Type="Int32" />
+          <Property Name="highschoolstartdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolendate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolqualificationtype" Type="Int32" />
+          <Property Name="highschoolmodeid" Type="Int32" />
+          <Property Name="highschoolmediumid" Type="Int32" />
+          <Property Name="highschoolgradetypeid" Type="Int32" />
+          <Property Name="highschoolgradedeclared" Type="Int32" />
+          <Property Name="highschoolreusltdate" Type="DateTime" />
+          <Property Name="highschoolverificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolverificationrelationship" Type="Int32" />
+          <Property Name="highschoolverificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="highschoolverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ishighschoolverified" Type="Boolean" />
+          <Property Name="highestdegree" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="issecondarydone" Type="Int32" />
+          <Property Name="secondarycountry" Type="Int32" />
+          <Property Name="secondarystartdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryendate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryqualificationtype" Type="Int32" />
+          <Property Name="secondarymodestudy" Type="Int32" />
+          <Property Name="secondarymediumstudy" Type="Int32" />
+          <Property Name="secondarygradetypeid" Type="Int32" />
+          <Property Name="secondarygradedeclared" Type="Int32" />
+          <Property Name="secondaryresultdate" Type="DateTime" />
+          <Property Name="secondaryverificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryverificationrelationship" Type="Int32" />
+          <Property Name="secondaryverificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryverificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="secondaryverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="issecondaryverified" Type="Boolean" />
+          <Property Name="isdiplomadone" Type="Int32" />
+          <Property Name="diplomacountry" Type="Int32" />
+          <Property Name="diplomastartdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaendate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaschoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaqualificationtype" Type="Int32" />
+          <Property Name="diplomastudymodeid" Type="Int32" />
+          <Property Name="diplomamediumid" Type="Int32" />
+          <Property Name="diplomagradetypeid" Type="Int32" />
+          <Property Name="diplomagradeachieved" Type="Int32" />
+          <Property Name="diplomaresultdate" Type="DateTime" />
+          <Property Name="diplomaverificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaverificationrelationship" Type="Int32" />
+          <Property Name="diplomaverificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaverificationmobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="diplomaverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isdiplomaverified" Type="Boolean" />
+          <Property Name="ishighereducation" Type="Int32" />
+          <Property Name="lastsavetime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="applicanthighereducation">
+          <Key>
+            <PropertyRef Name="applicanthighereducationid" />
+          </Key>
+          <Property Name="applicanthighereducationid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="countryofhighereducation" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="startdate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="endate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="schoolname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="qualificationtype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="studymodeid" Type="Int32" />
+          <Property Name="studymediumid" Type="Int32" />
+          <Property Name="gradetypeid" Type="Int32" />
+          <Property Name="finalgradeacheived" Type="Int32" />
+          <Property Name="resultdate" Type="DateTime" />
+          <Property Name="verificationname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithverification" Type="Int32" />
+          <Property Name="verificationemail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="verificationmobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="highereducationverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ishighereducationverified" Type="Boolean" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3684,63 +3700,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="applicanteducationdetails">
-            <EntityTypeMapping TypeName="GTEModel.applicanteducationdetails">
-              <MappingFragment StoreEntitySet="applicanteducationdetails">
-                <ScalarProperty Name="lastsavetime" ColumnName="lastsavetime" />
-                <ScalarProperty Name="ishighereducation" ColumnName="ishighereducation" />
-                <ScalarProperty Name="diplomaverificationmobile" ColumnName="diplomaverificationmobile" />
-                <ScalarProperty Name="diplomaverificationemail" ColumnName="diplomaverificationemail" />
-                <ScalarProperty Name="diplomaverificationrelationship" ColumnName="diplomaverificationrelationship" />
-                <ScalarProperty Name="diplomaverificationname" ColumnName="diplomaverificationname" />
-                <ScalarProperty Name="diplomaresultdate" ColumnName="diplomaresultdate" />
-                <ScalarProperty Name="diplomagradeachieved" ColumnName="diplomagradeachieved" />
-                <ScalarProperty Name="diplomagradetypeid" ColumnName="diplomagradetypeid" />
-                <ScalarProperty Name="diplomamediumid" ColumnName="diplomamediumid" />
-                <ScalarProperty Name="diplomastudymodeid" ColumnName="diplomastudymodeid" />
-                <ScalarProperty Name="diplomaqualificationtype" ColumnName="diplomaqualificationtype" />
-                <ScalarProperty Name="diplomaschoolname" ColumnName="diplomaschoolname" />
-                <ScalarProperty Name="diplomaendate" ColumnName="diplomaendate" />
-                <ScalarProperty Name="diplomastartdate" ColumnName="diplomastartdate" />
-                <ScalarProperty Name="diplomacountry" ColumnName="diplomacountry" />
-                <ScalarProperty Name="isdiplomadone" ColumnName="isdiplomadone" />
-                <ScalarProperty Name="secondaryverificationmobile" ColumnName="secondaryverificationmobile" />
-                <ScalarProperty Name="secondaryverificationemail" ColumnName="secondaryverificationemail" />
-                <ScalarProperty Name="secondaryverificationrelationship" ColumnName="secondaryverificationrelationship" />
-                <ScalarProperty Name="secondaryverificationname" ColumnName="secondaryverificationname" />
-                <ScalarProperty Name="secondaryresultdate" ColumnName="secondaryresultdate" />
-                <ScalarProperty Name="secondarygradedeclared" ColumnName="secondarygradedeclared" />
-                <ScalarProperty Name="secondarygradetypeid" ColumnName="secondarygradetypeid" />
-                <ScalarProperty Name="secondarymediumstudy" ColumnName="secondarymediumstudy" />
-                <ScalarProperty Name="secondarymodestudy" ColumnName="secondarymodestudy" />
-                <ScalarProperty Name="secondaryqualificationtype" ColumnName="secondaryqualificationtype" />
-                <ScalarProperty Name="secondaryname" ColumnName="secondaryname" />
-                <ScalarProperty Name="secondaryendate" ColumnName="secondaryendate" />
-                <ScalarProperty Name="secondarystartdate" ColumnName="secondarystartdate" />
-                <ScalarProperty Name="secondarycountry" ColumnName="secondarycountry" />
-                <ScalarProperty Name="issecondarydone" ColumnName="issecondarydone" />
-                <ScalarProperty Name="highestdegree" ColumnName="highestdegree" />
-                <ScalarProperty Name="highschoolverificationmobile" ColumnName="highschoolverificationmobile" />
-                <ScalarProperty Name="highschoolverificationemail" ColumnName="highschoolverificationemail" />
-                <ScalarProperty Name="highschoolverificationrelationship" ColumnName="highschoolverificationrelationship" />
-                <ScalarProperty Name="highschoolverificationname" ColumnName="highschoolverificationname" />
-                <ScalarProperty Name="highschoolreusltdate" ColumnName="highschoolreusltdate" />
-                <ScalarProperty Name="highschoolgradedeclared" ColumnName="highschoolgradedeclared" />
-                <ScalarProperty Name="highschoolgradetypeid" ColumnName="highschoolgradetypeid" />
-                <ScalarProperty Name="highschoolmediumid" ColumnName="highschoolmediumid" />
-                <ScalarProperty Name="highschoolmodeid" ColumnName="highschoolmodeid" />
-                <ScalarProperty Name="highschoolqualificationtype" ColumnName="highschoolqualificationtype" />
-                <ScalarProperty Name="highschoolname" ColumnName="highschoolname" />
-                <ScalarProperty Name="highschoolendate" ColumnName="highschoolendate" />
-                <ScalarProperty Name="highschoolstartdate" ColumnName="highschoolstartdate" />
-                <ScalarProperty Name="highschoolcountry" ColumnName="highschoolcountry" />
-                <ScalarProperty Name="ishighschooldone" ColumnName="ishighschooldone" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="applicantdeducationdetailsid" ColumnName="applicantdeducationdetailsid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="applicantemployerdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantemployerdetails">
               <MappingFragment StoreEntitySet="applicantemployerdetails">
@@ -3793,30 +3752,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantfundingmasterid" ColumnName="applicantfundingmasterid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicanthighereducation">
-            <EntityTypeMapping TypeName="GTEModel.applicanthighereducation">
-              <MappingFragment StoreEntitySet="applicanthighereducation">
-                <ScalarProperty Name="verificationmobile" ColumnName="verificationmobile" />
-                <ScalarProperty Name="verificationemail" ColumnName="verificationemail" />
-                <ScalarProperty Name="relationshipwithverification" ColumnName="relationshipwithverification" />
-                <ScalarProperty Name="verificationname" ColumnName="verificationname" />
-                <ScalarProperty Name="resultdate" ColumnName="resultdate" />
-                <ScalarProperty Name="finalgradeacheived" ColumnName="finalgradeacheived" />
-                <ScalarProperty Name="gradetypeid" ColumnName="gradetypeid" />
-                <ScalarProperty Name="studymediumid" ColumnName="studymediumid" />
-                <ScalarProperty Name="studymodeid" ColumnName="studymodeid" />
-                <ScalarProperty Name="qualificationtype" ColumnName="qualificationtype" />
-                <ScalarProperty Name="schoolname" ColumnName="schoolname" />
-                <ScalarProperty Name="endate" ColumnName="endate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="countryofhighereducation" ColumnName="countryofhighereducation" />
-                <ScalarProperty Name="coursename" ColumnName="coursename" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="applicanthighereducationid" ColumnName="applicanthighereducationid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4730,6 +4665,95 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicanteducationdetails">
+            <EntityTypeMapping TypeName="GTEModel.applicanteducationdetails">
+              <MappingFragment StoreEntitySet="applicanteducationdetails">
+                <ScalarProperty Name="lastsavetime" ColumnName="lastsavetime" />
+                <ScalarProperty Name="ishighereducation" ColumnName="ishighereducation" />
+                <ScalarProperty Name="isdiplomaverified" ColumnName="isdiplomaverified" />
+                <ScalarProperty Name="diplomaverificationkey" ColumnName="diplomaverificationkey" />
+                <ScalarProperty Name="diplomaverificationmobile" ColumnName="diplomaverificationmobile" />
+                <ScalarProperty Name="diplomaverificationemail" ColumnName="diplomaverificationemail" />
+                <ScalarProperty Name="diplomaverificationrelationship" ColumnName="diplomaverificationrelationship" />
+                <ScalarProperty Name="diplomaverificationname" ColumnName="diplomaverificationname" />
+                <ScalarProperty Name="diplomaresultdate" ColumnName="diplomaresultdate" />
+                <ScalarProperty Name="diplomagradeachieved" ColumnName="diplomagradeachieved" />
+                <ScalarProperty Name="diplomagradetypeid" ColumnName="diplomagradetypeid" />
+                <ScalarProperty Name="diplomamediumid" ColumnName="diplomamediumid" />
+                <ScalarProperty Name="diplomastudymodeid" ColumnName="diplomastudymodeid" />
+                <ScalarProperty Name="diplomaqualificationtype" ColumnName="diplomaqualificationtype" />
+                <ScalarProperty Name="diplomaschoolname" ColumnName="diplomaschoolname" />
+                <ScalarProperty Name="diplomaendate" ColumnName="diplomaendate" />
+                <ScalarProperty Name="diplomastartdate" ColumnName="diplomastartdate" />
+                <ScalarProperty Name="diplomacountry" ColumnName="diplomacountry" />
+                <ScalarProperty Name="isdiplomadone" ColumnName="isdiplomadone" />
+                <ScalarProperty Name="issecondaryverified" ColumnName="issecondaryverified" />
+                <ScalarProperty Name="secondaryverificationkey" ColumnName="secondaryverificationkey" />
+                <ScalarProperty Name="secondaryverificationmobile" ColumnName="secondaryverificationmobile" />
+                <ScalarProperty Name="secondaryverificationemail" ColumnName="secondaryverificationemail" />
+                <ScalarProperty Name="secondaryverificationrelationship" ColumnName="secondaryverificationrelationship" />
+                <ScalarProperty Name="secondaryverificationname" ColumnName="secondaryverificationname" />
+                <ScalarProperty Name="secondaryresultdate" ColumnName="secondaryresultdate" />
+                <ScalarProperty Name="secondarygradedeclared" ColumnName="secondarygradedeclared" />
+                <ScalarProperty Name="secondarygradetypeid" ColumnName="secondarygradetypeid" />
+                <ScalarProperty Name="secondarymediumstudy" ColumnName="secondarymediumstudy" />
+                <ScalarProperty Name="secondarymodestudy" ColumnName="secondarymodestudy" />
+                <ScalarProperty Name="secondaryqualificationtype" ColumnName="secondaryqualificationtype" />
+                <ScalarProperty Name="secondaryname" ColumnName="secondaryname" />
+                <ScalarProperty Name="secondaryendate" ColumnName="secondaryendate" />
+                <ScalarProperty Name="secondarystartdate" ColumnName="secondarystartdate" />
+                <ScalarProperty Name="secondarycountry" ColumnName="secondarycountry" />
+                <ScalarProperty Name="issecondarydone" ColumnName="issecondarydone" />
+                <ScalarProperty Name="highestdegree" ColumnName="highestdegree" />
+                <ScalarProperty Name="ishighschoolverified" ColumnName="ishighschoolverified" />
+                <ScalarProperty Name="highschoolverificationkey" ColumnName="highschoolverificationkey" />
+                <ScalarProperty Name="highschoolverificationmobile" ColumnName="highschoolverificationmobile" />
+                <ScalarProperty Name="highschoolverificationemail" ColumnName="highschoolverificationemail" />
+                <ScalarProperty Name="highschoolverificationrelationship" ColumnName="highschoolverificationrelationship" />
+                <ScalarProperty Name="highschoolverificationname" ColumnName="highschoolverificationname" />
+                <ScalarProperty Name="highschoolreusltdate" ColumnName="highschoolreusltdate" />
+                <ScalarProperty Name="highschoolgradedeclared" ColumnName="highschoolgradedeclared" />
+                <ScalarProperty Name="highschoolgradetypeid" ColumnName="highschoolgradetypeid" />
+                <ScalarProperty Name="highschoolmediumid" ColumnName="highschoolmediumid" />
+                <ScalarProperty Name="highschoolmodeid" ColumnName="highschoolmodeid" />
+                <ScalarProperty Name="highschoolqualificationtype" ColumnName="highschoolqualificationtype" />
+                <ScalarProperty Name="highschoolname" ColumnName="highschoolname" />
+                <ScalarProperty Name="highschoolendate" ColumnName="highschoolendate" />
+                <ScalarProperty Name="highschoolstartdate" ColumnName="highschoolstartdate" />
+                <ScalarProperty Name="highschoolcountry" ColumnName="highschoolcountry" />
+                <ScalarProperty Name="ishighschooldone" ColumnName="ishighschooldone" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicantdeducationdetailsid" ColumnName="applicantdeducationdetailsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicanthighereducation">
+            <EntityTypeMapping TypeName="GTEModel.applicanthighereducation">
+              <MappingFragment StoreEntitySet="applicanthighereducation">
+                <ScalarProperty Name="ishighereducationverified" ColumnName="ishighereducationverified" />
+                <ScalarProperty Name="highereducationverificationkey" ColumnName="highereducationverificationkey" />
+                <ScalarProperty Name="verificationmobile" ColumnName="verificationmobile" />
+                <ScalarProperty Name="verificationemail" ColumnName="verificationemail" />
+                <ScalarProperty Name="relationshipwithverification" ColumnName="relationshipwithverification" />
+                <ScalarProperty Name="verificationname" ColumnName="verificationname" />
+                <ScalarProperty Name="resultdate" ColumnName="resultdate" />
+                <ScalarProperty Name="finalgradeacheived" ColumnName="finalgradeacheived" />
+                <ScalarProperty Name="gradetypeid" ColumnName="gradetypeid" />
+                <ScalarProperty Name="studymediumid" ColumnName="studymediumid" />
+                <ScalarProperty Name="studymodeid" ColumnName="studymodeid" />
+                <ScalarProperty Name="qualificationtype" ColumnName="qualificationtype" />
+                <ScalarProperty Name="schoolname" ColumnName="schoolname" />
+                <ScalarProperty Name="endate" ColumnName="endate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="countryofhighereducation" ColumnName="countryofhighereducation" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicanthighereducationid" ColumnName="applicanthighereducationid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
