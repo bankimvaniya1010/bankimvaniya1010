@@ -113,6 +113,45 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         ddlResidentialCountry.Items.FindByValue(profileInfo.residentialcountry.ToString()).Selected = true;
                     }
                 }
+
+                if (profileInfo.haspreviousresidence.HasValue && profileInfo.haspreviousresidence.Value)
+                {
+                    rblCurrentAddYes.Checked = true;
+
+                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+
+                    txtPrevAddStartDate.Value = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
+                    txtPrevAddEndDate.Value = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
+                    prevAddress1.Value = lstOfResidences[0].residenceaddress1;
+                    prevAddress2.Value = lstOfResidences[0].residenceaddress2;
+                    prevAddress3.Value = lstOfResidences[0].residenceaddress3;
+                    prevAddressCity.Value = lstOfResidences[0].residentialcity;
+                    prevAddressState.Value = lstOfResidences[0].residentialstate;
+                    prevAddressPostalCode.Value = lstOfResidences[0].residencepostcode;
+                    if (lstOfResidences[0].residentialcountry != null)
+                    {
+                        ddlPrevAddressCountry.ClearSelection();
+                        ddlPrevAddressCountry.Items.FindByValue(lstOfResidences[0].residentialcountry.ToString()).Selected = true;
+                    }
+
+                    addressHistory.Style.Remove("display");
+
+                    for (int i = 1; i < lstOfResidences.Count; i++)
+                    {
+                        hidAddress1.Value += lstOfResidences[i].residenceaddress1 + ";";
+                        hidAddress2.Value += lstOfResidences[i].residenceaddress2 + ";";
+                        hidAddress3.Value += lstOfResidences[i].residenceaddress3 + ";";
+                        hidAddressCity.Value += lstOfResidences[i].residentialcity + ";";
+                        hidAddressStartDate.Value += Convert.ToDateTime(lstOfResidences[i].residencestartdate).ToString("yyyy-MM-dd") + ";";
+                        hidAddressEndDate.Value += Convert.ToDateTime(lstOfResidences[i].residenceenddate).ToString("yyyy-MM-dd") + ";";
+                        hidAddressState.Value += lstOfResidences[i].residentialstate + ";";
+                        hidAddressPostalCode.Value += lstOfResidences[i].residencepostcode + ";";
+                        hidAddressCountry.Value += lstOfResidences[i].residentialcountry + ";";
+                    }
+                }
+                else if(!profileInfo.haspreviousresidence.Value)
+                    rblCurrentAddNo.Checked = true;
+
                 txtNomineeName.Value = profileInfo.nomineefullname;
                 txtEmailNominee.Value = profileInfo.nomineeemail;
                 txtMobileNominee.Value = profileInfo.nomineemobile;
@@ -211,6 +250,13 @@ public partial class applicantcontactdetail : System.Web.UI.Page
 
             if (rblCurrentAddYes.Checked)
             {
+                var existinglst = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                if(existinglst != null)
+                {
+                    db.applicantresidencehistory.RemoveRange(existinglst);
+                    db.SaveChanges();
+                }
+
                 objapplicantDetail.haspreviousresidence = true;
                 List<applicantresidencehistory> lstresidenceHistory = new List<applicantresidencehistory>();
                 applicantresidencehistory resHistory = new applicantresidencehistory();
@@ -229,7 +275,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                     resHistory.residentialcountry = Convert.ToInt32(ddlPrevAddressCountry.SelectedValue);
 
                 lstresidenceHistory.Add(resHistory);
-                int total = Convert.ToInt32(hidAddressHistory.Value);
+                
                 string[] prevAddressStartDates = hidAddressStartDate.Value.Split(new char[] {';'}, StringSplitOptions.RemoveEmptyEntries);
                 string[] prevAddressEndDates = hidAddressEndDate.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 string[] prevAddresses1 = hidAddress1.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
@@ -239,8 +285,9 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 string[] prevAddressStates = hidAddressState.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 string[] prevAddressCountries = hidAddressCountry.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
                 string[] prevAddressPostalCodes = hidAddressPostalCode.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                int count = prevAddressStartDates.Length;
 
-                for (int i = 1; i <= total; i++)
+                for (int i = 0; i < count; i++)
                 {
                     applicantresidencehistory tempHistory = new applicantresidencehistory();
 
