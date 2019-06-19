@@ -22,4 +22,9 @@ public static class Utility
             return false;
         return true;
     }
+
+    public static int GetUniversityId()
+    {
+        return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    }
 }

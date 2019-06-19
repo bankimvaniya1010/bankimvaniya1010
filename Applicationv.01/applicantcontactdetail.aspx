@@ -517,7 +517,7 @@
 
             $("#container").append('<div class="form-row">' +
                 '<label id="lblPrevAddress_' + count + '" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>' +
-                '<div class="col-md-6">' +
+                '<div class="col-md-6" id="residenceBlock_'+ count+'">' +
                 '<input id="txtPrevAddStartDate_' + count + '" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="" />' +
                 '<input id="txtPrevAddEndDate_' + count + '" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="" />' +
                 '<input id="prevAddress1_' + count + '" type="text" placeholder="Address line 1" value="" class="form-control" />' +
@@ -526,8 +526,8 @@
                 '<input id="prevAddressCity_' + count + '" type="text" placeholder="City, Town or Suburb" value="" class="form-control" />' +
                 '<input id="prevAddressState_' + count + '" type="text" placeholder="State" value="" class="form-control" />' +
                 '<input id="prevAddressPostalCode_' + count + '" type="text" placeholder="Postal code" value="" class="form-control" />');
-
-            $("#container").append(ddl);
+            
+            $("#residenceBlock_"+count).append(ddl);
             $("#container").append('</div></div>');
                                         
             $('#txtPrevAddStartDate_' + count).flatpickr({
