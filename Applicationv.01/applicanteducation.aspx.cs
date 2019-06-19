@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -987,6 +988,7 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         try
         {
+            string applicantName = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
             var mode = "new";
             var EducationInfo = (from pInfo in db.applicanteducationdetails
                                  where pInfo.applicantid == userID && pInfo.universityid == universityID
@@ -1002,7 +1004,11 @@ public partial class applicanteducation : System.Web.UI.Page
 
             /// High School Details
             if (rblHighYes.Checked)
+            {
                 objEdu.ishighschooldone = 1;
+                objEdu.highschoolverificationkey = Guid.NewGuid().ToString();
+                objEdu.ishighschoolverified = false;
+            }
             else if (rblHighNo.Checked)
                 objEdu.ishighschooldone = 2;
             else
@@ -1041,7 +1047,11 @@ public partial class applicanteducation : System.Web.UI.Page
 
             /// Secondary Details
             if (rblSecondaryYes.Checked)
+            {
                 objEdu.issecondarydone = 1;
+                objEdu.secondaryverificationkey = Guid.NewGuid().ToString();
+                objEdu.issecondaryverified = false;
+            }
             else if (rblSecondaryNo.Checked)
                 objEdu.issecondarydone = 2;
             else
@@ -1079,7 +1089,11 @@ public partial class applicanteducation : System.Web.UI.Page
             /// Secondary Details End-----
             /// Diploma
             if (rbldiplomaYes.Checked)
+            {
                 objEdu.isdiplomadone = 1;
+                objEdu.diplomaverificationkey = Guid.NewGuid().ToString();
+                objEdu.isdiplomaverified = false;
+            }
             else if (rbldiplomaNo.Checked)
                 objEdu.isdiplomadone = 2;
             else
@@ -1135,11 +1149,11 @@ public partial class applicanteducation : System.Web.UI.Page
             var HigherEducation = (from pInfo in db.applicanthighereducation
                                    where pInfo.applicantid == userID && pInfo.coursename == Cousrsename
                                    select pInfo).FirstOrDefault();
-
+            applicanthighereducation objEducation = new applicanthighereducation();
             if (ddlCourse.SelectedValue != "")
             {
                 mode = "new";
-                applicanthighereducation objEducation = new applicanthighereducation();
+                
                 if (HigherEducation != null)
                 {
                     mode = "update";
@@ -1147,7 +1161,11 @@ public partial class applicanteducation : System.Web.UI.Page
                 }
                 objEducation.applicantid = userID;
                 if (rblhigherYes.Checked)
+                {
                     objEducation.finalgradeacheived = 1;
+                    objEducation.highereducationverificationkey = Guid.NewGuid().ToString();
+                    objEducation.ishighereducationverified = false;
+                }
                 else if (rblhigherNo.Checked)
                     objEducation.finalgradeacheived = 2;
                 else
@@ -1190,6 +1208,63 @@ public partial class applicanteducation : System.Web.UI.Page
 
             }
             db.SaveChanges();
+
+            if (rblHighYes.Checked)
+            {
+                string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.highschoolverificationkey +"&type=highschool";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Dear" + objEdu.highschoolverificationname + ",<br/><br/>");
+
+                sb.Append(applicantName + " has given your reference for high school education details check at the time of applying for his/her course.<br/>");
+                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
+                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
+                sb.Append("Thank You <br/>");
+                sb.Append("The Application Center Validation Team <br/>");
+                objCom.SendMail(objEdu.highschoolverificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+            }
+
+            if (rblSecondaryYes.Checked)
+            {
+                string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.secondaryverificationkey + "&type=secondary";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Dear" + objEdu.secondaryverificationname + ",<br/><br/>");
+
+                sb.Append(applicantName + " has given your reference for secondary school education details check at the time of applying for his/her course.<br/>");
+                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
+                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
+                sb.Append("Thank You <br/>");
+                sb.Append("The Application Center Validation Team <br/>");
+                objCom.SendMail(objEdu.secondaryverificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+            }
+
+            if (rbldiplomaYes.Checked)
+            {
+                string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.diplomaverificationkey + "&type=diploma";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Dear" + objEdu.diplomaverificationname + ",<br/><br/>");
+
+                sb.Append(applicantName + " has given your reference for diploma education details check at the time of applying for his/her course.<br/>");
+                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
+                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
+                sb.Append("Thank You <br/>");
+                sb.Append("The Application Center Validation Team <br/>");
+                objCom.SendMail(objEdu.diplomaverificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+            }
+
+            if (ddlCourse.SelectedValue != "" && rblhigherYes.Checked)
+            {
+                string url = webURL + "verifyeducationdetails.aspx?key=" + objEducation.highereducationverificationkey + "&type=highereducation";
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Dear" + objEducation.verificationname + ",<br/><br/>");
+
+                sb.Append(applicantName + " has given your reference for higher education details check at the time of applying for his/her course.<br/>");
+                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
+                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
+                sb.Append("Thank You <br/>");
+                sb.Append("The Application Center Validation Team <br/>");
+                objCom.SendMail(objEducation.verificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+            }
+
             lblMessage.Text = "Your Education Details have been saved";
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);

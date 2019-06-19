@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e224318253d04e139cb71a2f9b7b377f" Name="Diagram1" ZoomLevel="39">
+      <Diagram DiagramId="e224318253d04e139cb71a2f9b7b377f" Name="Diagram1" ZoomLevel="55">
         <AssociationConnector Association="GTEModel.FK_campus_facilityMaster" />
         <EntityTypeShape EntityType="GTEModel.relationshipwithcontact" Width="1.5" PointX="25.375" PointY="21.75" />
         <EntityTypeShape EntityType="GTEModel.accommodationplan" Width="1.5" PointX="0.75" PointY="9.25" />
@@ -22,11 +22,9 @@
         <EntityTypeShape EntityType="GTEModel.applicant_education" Width="1.5" PointX="14.75" PointY="2.25" />
         <EntityTypeShape EntityType="GTEModel.applicantdatavalidation" Width="1.5" PointX="14.75" PointY="11.25" />
         <EntityTypeShape EntityType="GTEModel.applicantdocumentmaster" Width="1.5" PointX="15.75" PointY="6.25" />
-        <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="16.75" PointY="9.25" />
         <EntityTypeShape EntityType="GTEModel.applicantemployerdetails" Width="1.5" PointX="17.75" PointY="2.25" />
         <EntityTypeShape EntityType="GTEModel.applicantformmaster" Width="1.5" PointX="18.75" PointY="8.25" />
         <EntityTypeShape EntityType="GTEModel.applicantfundingmaster" Width="1.5" PointX="18.75" PointY="12.25" />
-        <EntityTypeShape EntityType="GTEModel.applicanthighereducation" Width="1.5" PointX="18.75" PointY="16.25" />
         <EntityTypeShape EntityType="GTEModel.applicantlanguagecompetency" Width="1.5" PointX="20.75" PointY="2.25" />
         <EntityTypeShape EntityType="GTEModel.applicantprogressbar" Width="1.5" PointX="20.75" PointY="10.25" />
         <EntityTypeShape EntityType="GTEModel.applicantreferencecheck" Width="1.5" PointX="20.75" PointY="13.25" />
@@ -133,6 +131,8 @@
         <EntityTypeShape EntityType="GTEModel.GTE_documentverification" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="23.375" PointY="28.75" />
         <EntityTypeShape EntityType="GTEModel.applicantresidencehistory" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="29.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GTEModel.applicanthighereducation" Width="1.5" PointX="15.375" PointY="14.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
