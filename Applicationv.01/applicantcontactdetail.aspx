@@ -502,6 +502,43 @@
             return flag;
         }
 
+        function createResidenceElement() {
+            var hfPrevAddress = $("#<%=hidAddressHistory.ClientID %>");
+            var count = parseInt(hfPrevAddress.val()) + 1;
+            hfPrevAddress.val(count);
+
+            //Clone the DropDownList 
+            var ddl = $("#<%=ddlPrevAddressCountry.ClientID%>").clone();
+            //Set the ID and Name
+            ddl.attr("id", "ddlPrevAddressCountry_" + count);
+            ddl.attr("name", "ddlPrevAddressCountry_" + count);
+
+            $('#ddlPrevAddressCountry_'+ count).addClass('form-control');
+
+            $("#container").append('<div class="form-row">' +
+                '<label id="lblPrevAddress_' + count + '" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>' +
+                '<div class="col-md-6">' +
+                '<input id="txtPrevAddStartDate_' + count + '" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="" />' +
+                '<input id="txtPrevAddEndDate_' + count + '" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="" />' +
+                '<input id="prevAddress1_' + count + '" type="text" placeholder="Address line 1" value="" class="form-control" />' +
+                '<input id="prevAddress2_' + count + '" type="text" placeholder="Address line 2" value="" class="form-control" />' +
+                '<input id="prevAddress3_' + count + '" type="text" placeholder="Address line 3" value="" class="form-control" />' +
+                '<input id="prevAddressCity_' + count + '" type="text" placeholder="City, Town or Suburb" value="" class="form-control" />' +
+                '<input id="prevAddressState_' + count + '" type="text" placeholder="State" value="" class="form-control" />' +
+                '<input id="prevAddressPostalCode_' + count + '" type="text" placeholder="Postal code" value="" class="form-control" />');
+
+            $("#container").append(ddl);
+            $("#container").append('</div></div>');
+                                        
+            $('#txtPrevAddStartDate_' + count).flatpickr({
+
+                dateFormat: 'Y-m-d', defaultDate: ""
+            });
+            $('#txtPrevAddEndDate_' + count).flatpickr({
+                dateFormat: 'Y-m-d', defaultDate: ""
+            });
+        }
+
         $(document).ready(function () {
 
            $('.fa-question-circle').tipso({
@@ -554,42 +591,32 @@
             });
 
             $("#addPrevAddressDiv").click(function () {
-                var hfPrevAddress = $("#<%=hidAddressHistory.ClientID %>");
-                var count = parseInt(hfPrevAddress.val()) + 1;
-                hfPrevAddress.val(count);
-
-                //Clone the DropDownList 
-                var ddl = $("#<%=ddlPrevAddressCountry.ClientID%>").clone();
-                //Set the ID and Name
-                ddl.attr("id", "ddlPrevAddressCountry_" + count);
-                ddl.attr("name", "ddlPrevAddressCountry_" + count);
-
-                $('#ddlPrevAddressCountry_'+ count).addClass('form-control');
-
-                $("#container").append('<div class="form-row">' +
-                    '<label id="lblPrevAddress_' + count + '" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>' +
-                    '<div class="col-md-6">' +
-                    '<input id="txtPrevAddStartDate_' + count + '" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="" />' +
-                    '<input id="txtPrevAddEndDate_' + count + '" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="" />' +
-                    '<input id="prevAddress1_' + count + '" type="text" placeholder="Address line 1" value="" class="form-control" />' +
-                    '<input id="prevAddress2_' + count + '" type="text" placeholder="Address line 2" value="" class="form-control" />' +
-                    '<input id="prevAddress3_' + count + '" type="text" placeholder="Address line 3" value="" class="form-control" />' +
-                    '<input id="prevAddressCity_' + count + '" type="text" placeholder="City, Town or Suburb" value="" class="form-control" />' +
-                    '<input id="prevAddressState_' + count + '" type="text" placeholder="State" value="" class="form-control" />' +
-                    '<input id="prevAddressPostalCode_' + count + '" type="text" placeholder="Postal code" value="" class="form-control" />');
-
-                $("#container").append(ddl);
-                $("#container").append('</div></div>');
-                                        
-                $('#txtPrevAddStartDate_' + count).flatpickr({
-
-                    dateFormat: 'Y-m-d', defaultDate: ""
-                });
-                $('#txtPrevAddEndDate_' + count).flatpickr({
-                    dateFormat: 'Y-m-d', defaultDate: ""
-                });
-
+                createResidenceElement();
             });
+
+            var startDateArray = $("#<%=hidAddressStartDate.ClientID %>").val().split(';');
+            var endDateArray = $("#<%=hidAddressEndDate.ClientID %>").val().split(';');
+            var address1Array = $("#<%=hidAddress1.ClientID %>").val().split(';');
+            var address2Array = $("#<%=hidAddress2.ClientID %>").val().split(';');
+            var address3Array = $("#<%=hidAddress3.ClientID %>").val().split(';');
+            var cityArray = $("#<%=hidAddressCity.ClientID %>").val().split(';');
+            var stateArray = $("#<%=hidAddressState.ClientID %>").val().split(';');
+            var postalCodeArray = $("#<%=hidAddressPostalCode.ClientID %>").val().split(';');
+            var countryArray = $("#<%=hidAddressCountry.ClientID %>").val().split(';');
+
+            var count = countryArray.length - 1;
+            for (var i = 0; i < count; i++) {
+                createResidenceElement();
+                $("#prevAddress1_" + (i + 1)).val(address1Array[i]);
+                $("#prevAddress2_" + (i + 1)).val(address2Array[i]);
+                $("#prevAddress3_" + (i + 1)).val(address3Array[i]);
+                $("#prevAddressCity_" + (i + 1)).val(cityArray[i]);
+                $("#prevAddressState_" + (i + 1)).val(stateArray[i]);
+                $("#prevAddressPostalCode_" + (i + 1)).val(postalCodeArray[i]);
+                $("#txtPrevAddStartDate_" + (i + 1)).val(startDateArray[i]);
+                $("#txtPrevAddEndDate_" + (i + 1)).val(endDateArray[i]);
+                $("#ddlPrevAddressCountry_" + (i + 1)).prop('selectedIndex', countryArray[i]);
+            }
 
             if (!$("#<%=mobile.ClientID%>").is(':hidden')) {
                 var input = document.querySelector("#<%=txtMobile.ClientID%>");
