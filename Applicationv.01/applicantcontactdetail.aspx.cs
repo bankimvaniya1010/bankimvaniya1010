@@ -250,6 +250,13 @@ public partial class applicantcontactdetail : System.Web.UI.Page
 
             if (rblCurrentAddYes.Checked)
             {
+                var existinglst = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                if(existinglst != null)
+                {
+                    db.applicantresidencehistory.RemoveRange(existinglst);
+                    db.SaveChanges();
+                }
+
                 objapplicantDetail.haspreviousresidence = true;
                 List<applicantresidencehistory> lstresidenceHistory = new List<applicantresidencehistory>();
                 applicantresidencehistory resHistory = new applicantresidencehistory();

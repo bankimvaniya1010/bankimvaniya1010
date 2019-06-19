@@ -60,6 +60,7 @@ public partial class register : System.Web.UI.Page
                 // objapplicant = Convert.ToInt32(ddlUniversity.SelectedValue);
                 objapplicant.email = email.Value.Trim();
                 objapplicant.firstname = name.Value.Trim();
+                objapplicant.universityid = Utility.GetUniversityId();
                 db.applicantdetails.Add(objapplicant);
                 db.SaveChanges();
                 SaveCourses(id);
