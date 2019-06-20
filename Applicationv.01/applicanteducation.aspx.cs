@@ -1213,7 +1213,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.highschoolverificationkey +"&type=highschool";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEdu.highschoolverificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEdu.highschoolverificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for high school education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
@@ -1227,7 +1227,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.secondaryverificationkey + "&type=secondary";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEdu.secondaryverificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEdu.secondaryverificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for secondary school education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
@@ -1241,7 +1241,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.diplomaverificationkey + "&type=diploma";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEdu.diplomaverificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEdu.diplomaverificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for diploma education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
@@ -1255,7 +1255,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEducation.highereducationverificationkey + "&type=highereducation";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEducation.verificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEducation.verificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for higher education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");

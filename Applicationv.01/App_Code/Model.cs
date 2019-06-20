@@ -225,6 +225,8 @@ public partial class applicantdetails
     public Nullable<int> agentid { get; set; }
     public Nullable<int> isstudentreferbyagent { get; set; }
     public Nullable<bool> haveworkexperience { get; set; }
+    public string nomineeverificationkey { get; set; }
+    public Nullable<bool> isnomineeverified { get; set; }
 }
 
 public partial class applicantdocumentmaster
@@ -319,6 +321,8 @@ public partial class applicantemployerdetails
     public string relationshipwithcontact { get; set; }
     public string emailid { get; set; }
     public string linkedinidofcontact { get; set; }
+    public string employerverificationkey { get; set; }
+    public Nullable<bool> isemployerdetailverified { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
 }
 
