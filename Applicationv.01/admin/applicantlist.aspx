@@ -43,10 +43,19 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                 <ItemTemplate>
+                                    <asp:LinkButton ID="lnkPersonal" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Personal" Text="View Personal"></asp:LinkButton>|
+                                   <asp:LinkButton ID="lnkContact" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Contact" Text="View Contact Detail"></asp:LinkButton>|
+                                     <asp:LinkButton ID="lnkIdentification" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Identification" Text="View Identification Detail"></asp:LinkButton>|
+                                     <asp:LinkButton ID="lnkEducation" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Education" Text="View Education Detail"></asp:LinkButton>|
+                                    <asp:LinkButton ID="lnkLanguage" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Language" Text="View Language Detail"></asp:LinkButton>|
+                                    <asp:LinkButton ID="lnkEmployment" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Employers" Text="View Employment Detail"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkSocial" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Social" Text="View Social"></asp:LinkButton>|
-                                   <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
+                                    <asp:LinkButton ID="lnkVisa" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Visa" Text="View Visa"></asp:LinkButton>|
+                                  <asp:LinkButton ID="LnkFunding" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Funding" Text="View Funding"></asp:LinkButton>|
+                                    <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
-                          --%>      </ItemTemplate>
+                                    --%>
+                                </ItemTemplate>
                             </asp:TemplateField>
 
                         </Columns>

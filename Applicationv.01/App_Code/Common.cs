@@ -107,57 +107,121 @@ public class Common
     public string GetTitle(int id)
     {
         string title = "";
-        var GetTitle = db.titlemaster.Where(x => x.titleid == id).FirstOrDefault();
+        try
+        {
+            var GetTitle = db.titlemaster.Where(x => x.titleid == id).FirstOrDefault();
         if (GetTitle != null)
             title = GetTitle.titlename;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
         return title;
+    }
+    public string GetAgentName(int id)
+    {
+        string agentName = "";
+        try
+        {
+            var GetTitle = db.adminusers.Where(x => x.adminid == id).FirstOrDefault();
+        if (GetTitle != null)
+            agentName = GetTitle.name;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return agentName;
     }
     public string GetIdentityProof(int id)
     {
         string proofname = "";
-        var GetProof = db.alternateidproofmaster.Where(x => x.id == id).FirstOrDefault();
+        try
+        {
+            var GetProof = db.alternateidproofmaster.Where(x => x.id == id).FirstOrDefault();
         if (GetProof != null)
             proofname = GetProof.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
         return proofname;
     }
     public string GetAddressProof(int id)
     {
         string proofname = "";
-        var GetProof = db.alternateadressproofmaster.Where(x => x.id == id).FirstOrDefault();
+        try
+        {
+            var GetProof = db.alternateadressproofmaster.Where(x => x.id == id).FirstOrDefault();
         if (GetProof != null)
             proofname = GetProof.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
         return proofname;
     }
     public string GetDOBProof(int id)
     {
         string proofname = "";
-        var GetProof = db.alternatedobproof.Where(x => x.id == id).FirstOrDefault();
+        try
+        {
+            var GetProof = db.alternatedobproof.Where(x => x.id == id).FirstOrDefault();
         if (GetProof != null)
             proofname = GetProof.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
         return proofname;
     }
     public string GetStudyMode(int id)
     {
         string studyMode = "";
-        var StudyMode = db.studymodemaster.Where(x => x.id == id).FirstOrDefault();
+        try
+        {
+            var StudyMode = db.studymodemaster.Where(x => x.id == id).FirstOrDefault();
         if (StudyMode != null)
             studyMode = StudyMode.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
         return studyMode;
     }
     public string GetStudyMedium(int id)
     {
         string studyMedium = "";
-        var Medium = db.educationmediummaster.Where(x => x.id == id).FirstOrDefault();
+        try
+        {
+            var Medium = db.educationmediummaster.Where(x => x.id == id).FirstOrDefault();
         if (Medium != null)
             studyMedium = Medium.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
         return studyMedium;
     }
     public string GetGrade(int id)
     {
         string studygrade = "";
-        var Grade = db.grademaster.Where(x => x.id == id).FirstOrDefault();
+        try
+        {
+            var Grade = db.grademaster.Where(x => x.id == id).FirstOrDefault();
         if (Grade != null)
             studygrade = Grade.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
         return studygrade;
     }
     public string GetMaritalStatus(int id)
@@ -215,14 +279,201 @@ public class Common
     public string GetDisability(int id)
     {
         string Disability = "";
-
-        var GetDisability = db.disabilitymaster.Where(x => x.id == id).FirstOrDefault();
+        try
+        {
+            var GetDisability = db.disabilitymaster.Where(x => x.id == id).FirstOrDefault();
         if (GetDisability != null)
             Disability = GetDisability.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
 
         return Disability;
     }
+    public string GetQualificationType(int id)
+    {
+        string QualificationType = "";
+        try
+        {
+            var Qualification = db.qualificationmaster.Where(x => x.qualificationid == id).FirstOrDefault();
+        if (Qualification != null)
+            QualificationType = Qualification.qualificationname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
 
+        return QualificationType;
+    }
+    public string GetVerificationRelation(int id)
+    {
+        string relationshipname = "";
+        try
+        {
+            var Realtionships = db.realtionshipmaster.Where(x => x.relationshiptid == id).FirstOrDefault();
+        if (Realtionships != null)
+            relationshipname = Realtionships.relationshipname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+        return relationshipname;
+    }
+    public string GetCEFR(int id)
+    {
+        string CEFR = "";
+        try
+        {
+            var GetCEFR = db.cefrlevelmaster.Where(x => x.id == id).FirstOrDefault();
+        if (GetCEFR != null)
+            CEFR = GetCEFR.name;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return CEFR;
+    }
+    public string GetVisaType(int id)
+    {
+        string VisaType = "";
+        try
+        {
+            var GetVisa = db.visatype.Where(x => x.id == id).FirstOrDefault();
+        if (GetVisa != null)
+            VisaType = GetVisa.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return VisaType;
+    }
+    public string GetStudyOption(int id)
+    {
+        string StudyOption = "";
+        try
+        {
+            var GetStudyOption = db.studyoptionmaster.Where(x => x.id == id).FirstOrDefault();
+        if (GetStudyOption != null)
+            StudyOption = GetStudyOption.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return StudyOption;
+    }
+    public string GetFamilyMember(int id)
+    {
+        string familyMember = "";
+        try
+        {
+            var GetfamilyMember = db.familymember.Where(x => x.id == id).FirstOrDefault();
+        if (GetfamilyMember != null)
+            familyMember = GetfamilyMember.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return familyMember;
+    }
+    public string GetAccomdation(int id)
+    {
+        string Accomdation = "";
+        try
+        {
+            var GetAccomdation = db.accommodationplan.Where(x => x.id == id).FirstOrDefault();
+        if (GetAccomdation != null)
+            Accomdation = GetAccomdation.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Accomdation;
+    }
+    public string GetMeal(int id)
+    {
+        string Meal = "";
+        try
+        {
+            var GetMeal = db.managemeal.Where(x => x.id == id).FirstOrDefault();
+        if (GetMeal != null)
+            Meal = GetMeal.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Meal;
+    }
+    public string GetTransportChoice(int id)
+    {
+        string Transport = "";
+        try
+        {
+            var GetTransport = db.transportchoice.Where(x => x.id == id).FirstOrDefault();
+        if (GetTransport != null)
+            Transport = GetTransport.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Transport;
+    }
+    public string GetTrips(int id)
+    {
+        string Trips = "";
+        try
+        {
+            var GetTrips = db.trips.Where(x => x.id == id).FirstOrDefault();
+        if (GetTrips != null)
+            Trips = GetTrips.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Trips;
+    }
+    public string GetEntertainment(int id)
+    {
+        string Entertainment = "";
+        try
+        {
+            var GetEntertainment = db.entertainment.Where(x => x.id == id).FirstOrDefault();
+        if (GetEntertainment != null)
+            Entertainment = GetEntertainment.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Entertainment;
+    }
+    public string GetRealtionship(int id)
+    {
+        string RelationShip = "";
+        try
+        {
+            var GetRelationShip = db.realtionshipmaster.Where(x => x.relationshiptid == id).FirstOrDefault();
+            if (GetRelationShip != null)
+                RelationShip = GetRelationShip.relationshipname;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return RelationShip;
+    }
     public string GetCountryDiscription(string Code)
     {
         string country = "";
@@ -618,7 +869,67 @@ public class Common
         }
 
     }
+    public void AddCustomControlinAdmin(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv)
+    {
+        try
+        {
+            for (int k = 0; k < ControlsList.Count; k++)
+            {
 
+                System.Web.UI.HtmlControls.HtmlGenericControl lstDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                lstDiv.Attributes["class"] = "list-group-item";
+                mainDiv.Controls.Add(lstDiv);
+
+                lstDiv.Attributes["controltype"] = ControlsList[k].type.ToString();
+
+                System.Web.UI.HtmlControls.HtmlGenericControl formgroupDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                formgroupDiv.Attributes["class"] = "form-group m-0";
+                formgroupDiv.Attributes["role"] = "group";
+                formgroupDiv.Attributes["aria - labelledby"] = ControlsList[k].labeldescription;
+                lstDiv.Controls.Add(formgroupDiv);
+                System.Web.UI.HtmlControls.HtmlGenericControl divFormRow = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                divFormRow.Attributes["class"] = "form-row";
+                formgroupDiv.Controls.Add(divFormRow);
+
+
+                System.Web.UI.HtmlControls.HtmlGenericControl label1 = new System.Web.UI.HtmlControls.HtmlGenericControl("Label");
+                label1.ID = "label" + ControlsList[k].labeldescription;
+                label1.Attributes["class"] = "col-md-3 col-form-label form-label";
+                label1.Attributes["for"] = ControlsList[k].labeldescription;
+                label1.InnerHtml = ControlsList[k].labeldescription;
+                divFormRow.Controls.Add(label1);
+                System.Web.UI.HtmlControls.HtmlGenericControl mycontrol = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                mycontrol.Attributes["class"] = "col-md-4";
+                divFormRow.Controls.Add(mycontrol);
+                System.Web.UI.HtmlControls.HtmlGenericControl adminControl = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                adminControl.Attributes["class"] = "col-md-4";
+                divFormRow.Controls.Add(adminControl);
+
+                if (ControlsList[k].type.ToLower() == "textbox")
+                {
+                    Label lblinput = new Label();
+                    lblinput.ID = "lbl" + ControlsList[k].customfieldid;
+
+                  //  lblinput.Attributes["class"] = "form-control";
+                    // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
+                    mycontrol.Controls.Add(lblinput);
+
+                    TextBox txtcustombox = new TextBox();
+                    txtcustombox.ID = "txt" + ControlsList[k].customfieldid;
+
+                    txtcustombox.Attributes["class"] = "form-control";
+                    // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
+                    adminControl.Controls.Add(txtcustombox);
+                }
+            }
+        
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+    }
     public void SaveCustomValue(int applicatID, int CustomFieldId, string Userinput, int formid)
     {
         customfieldvalue objCustom = new customfieldvalue();
@@ -660,6 +971,33 @@ public class Common
                         string OptionID = "txt" + customValueFieldId;
                         TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
                         txtDynamic.Text = CustomControlsValue[k].value;
+                        break;
+                    }
+                }
+                // objCom.SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formId);
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+    public void SetCustomDataAdmin(int formID, int applicatiID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv)
+    {
+        try
+        {
+            var CustomControlsValue = CustomControValue(formID, applicatiID);
+            for (int k = 0; k < CustomControlsValue.Count; k++)
+            {
+                int customValueFieldId = (int)CustomControlsValue[k].customfieldid;
+                for (int j = 0; j < CustomControls.Count; j++)
+                {
+                    int customControlFieldId = (int)CustomControls[j].customfieldid;
+                    if (customValueFieldId == customControlFieldId)
+                    {
+                        string OptionID = "lbl" + customValueFieldId;
+                        Label lblDynamic = (Label)mainDiv.FindControl(OptionID);
+                        lblDynamic.Text = CustomControlsValue[k].value;
                         break;
                     }
                 }
