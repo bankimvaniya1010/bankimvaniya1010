@@ -780,6 +780,8 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 txtSecondarycontactEmail.Value = EducationInfo.secondaryverificationemail;
                 txtSecondarycontactMobile.Value = EducationInfo.secondaryverificationmobile;
+                if (!string.IsNullOrEmpty(EducationInfo.highschoolsecondaryschoolgapreason))
+                    txtSecondHighGapReason.Value = EducationInfo.highschoolsecondaryschoolgapreason;
 
                 /// Secondary Details End-----
                 /// Diploma
@@ -940,6 +942,8 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 txtHighercontactEmail.Value = HigherEducation.verificationemail;
                 txtHighercontactMobile.Value = HigherEducation.verificationmobile;
+                if (!string.IsNullOrEmpty(HigherEducation.secondaryschoolhighereducationgapreason))
+                    txtHigherSecondaryGap.Value = HigherEducation.secondaryschoolhighereducationgapreason;
             }
         }
         catch (Exception ex)
@@ -1123,6 +1127,8 @@ public partial class applicanteducation : System.Web.UI.Page
                 objEdu.diplomagradeachieved = 3;
             if (txtExpectedDiplomaResult.Value != "")
                 objEdu.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
+            if (txtSecondHighGapReason.Value != "")
+                objEdu.highschoolsecondaryschoolgapreason = txtSecondHighGapReason.Value;
 
             objEdu.diplomaverificationname = txtDiplomaVerificationName.Value;
             objEdu.diplomaverificationrelationship = Convert.ToInt32(ddlDiplomaVerificationRelationship.SelectedValue);
@@ -1197,6 +1203,9 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEducation.finalgradeacheived = 3;
                 if (txtExpectedHigherDategrade.Value != "")
                     objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
+
+                if (txtHigherSecondaryGap.Value != null)
+                    objEducation.secondaryschoolhighereducationgapreason = txtHigherSecondaryGap.Value;
 
                 objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
                 objEducation.verificationemail = txtHighercontactEmail.Value;

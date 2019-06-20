@@ -279,6 +279,7 @@ public partial class applicanteducationdetails
     public string secondaryverificationmobile { get; set; }
     public string secondaryverificationkey { get; set; }
     public Nullable<bool> issecondaryverified { get; set; }
+    public string highschoolsecondaryschoolgapreason { get; set; }
     public Nullable<int> isdiplomadone { get; set; }
     public Nullable<int> diplomacountry { get; set; }
     public string diplomastartdate { get; set; }
@@ -373,6 +374,7 @@ public partial class applicanthighereducation
     public string verificationmobile { get; set; }
     public string highereducationverificationkey { get; set; }
     public Nullable<bool> ishighereducationverified { get; set; }
+    public string secondaryschoolhighereducationgapreason { get; set; }
 }
 
 public partial class applicantlanguagecompetency

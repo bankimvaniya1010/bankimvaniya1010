@@ -15,6 +15,16 @@ public sealed class GlobalVariables
     public static int universityMaxAge;
     public static int universityMinAge;
 
+    public static int GetHighSchoolSecondaryAllowedGap
+    {
+        get { return 26; }
+    }
+
+    public static int GetHigherEduSecondarySchoolAllowedGap
+    {
+        get { return 12; }
+    }
+
     public static string GetChinaCountryName
     {
         get { return "China".ToUpper(); }
