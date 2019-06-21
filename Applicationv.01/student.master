@@ -279,6 +279,11 @@
                                                     <span class="sidebar-menu-text">Employer's Information</span>
                                                 </a>
                                             </li>
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button" href="clarificationquestion.aspx">
+                                                    <span class="sidebar-menu-text">Clarification Question</span>
+                                                </a>
+                                            </li>
                                          <%-- <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="sponsor.aspx">
                                                     <span class="sidebar-menu-text">Sponsor's Detail</span>
