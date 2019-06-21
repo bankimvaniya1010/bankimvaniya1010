@@ -537,6 +537,7 @@ public partial class citymaster
     public citymaster()
     {
         this.university_master = new HashSet<university_master>();
+        this.universitycampus_city_mapping = new HashSet<universitycampus_city_mapping>();
     }
 
     public int city_id { get; set; }
@@ -551,6 +552,35 @@ public partial class citymaster
     public virtual countriesmaster countriesmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<university_master> university_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
+}
+
+public partial class clarificationquestion_university_mapping
+{
+    public int id { get; set; }
+    public int universityid { get; set; }
+    public int clarificationquestionid { get; set; }
+    public int clarificationquestionanswer { get; set; }
+
+    public virtual university_master university_master { get; set; }
+    public virtual clarificationquestionsmaster clarificationquestionsmaster { get; set; }
+}
+
+public partial class clarificationquestionsmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public clarificationquestionsmaster()
+    {
+        this.clarificationquestion_university_mapping = new HashSet<clarificationquestion_university_mapping>();
+    }
+
+    public int id { get; set; }
+    public string question { get; set; }
+    public string questiontype { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
 }
 
 public partial class controlmaster
@@ -1145,6 +1175,7 @@ public partial class university_master
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
+        this.clarificationquestion_university_mapping = new HashSet<clarificationquestion_university_mapping>();
     }
 
     public int universityid { get; set; }
@@ -1190,6 +1221,8 @@ public partial class university_master
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
 }
 
 public partial class universitycampus
@@ -1198,6 +1231,7 @@ public partial class universitycampus
     public universitycampus()
     {
         this.facility_campus_mapping = new HashSet<facility_campus_mapping>();
+        this.universitycampus_city_mapping = new HashSet<universitycampus_city_mapping>();
     }
 
     public int campusid { get; set; }
@@ -1210,6 +1244,18 @@ public partial class universitycampus
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
     public virtual university_master university_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
+}
+
+public partial class universitycampus_city_mapping
+{
+    public int id { get; set; }
+    public int campusid { get; set; }
+    public int cityid { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual universitycampus universitycampus { get; set; }
 }
 
 public partial class universitygrouping
