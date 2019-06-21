@@ -228,6 +228,7 @@
           <Property Name="havewhatsup" Type="int" />
           <Property Name="agentid" Type="int" />
           <Property Name="isstudentreferbyagent" Type="int" />
+          <Property Name="motivationreason" Type="varchar" MaxLength="50" />
           <Property Name="haveworkexperience" Type="bit" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
@@ -1974,11 +1975,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
           </AssociationSet>
           <EntitySet Name="GTE_documentverification" EntityType="GTEModel.GTE_documentverification" />
-          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           <EntitySet Name="applicantresidencehistory" EntityType="GTEModel.applicantresidencehistory" />
           <EntitySet Name="applicantemployerdetails" EntityType="GTEModel.applicantemployerdetails" />
           <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
           <EntitySet Name="applicanthighereducation" EntityType="GTEModel.applicanthighereducation" />
+          <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -3320,96 +3321,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="lastupdatedate" Type="DateTime" />
           <Property Name="remarks" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="applicantdetails">
-          <Key>
-            <PropertyRef Name="applicantpersonaldetailsid" />
-          </Key>
-          <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="title" Type="Int32" />
-          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ispassportfirstname" Type="Boolean" />
-          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ispassportlastname" Type="Boolean" />
-          <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ispassportmiddlename" Type="Boolean" />
-          <Property Name="dateofbirth" Type="DateTime" />
-          <Property Name="gender" Type="Int32" />
-          <Property Name="nationality" Type="Int32" />
-          <Property Name="nationality2" Type="Int32" />
-          <Property Name="hasdualcitizenship" Type="Boolean" />
-          <Property Name="chinesecodenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="haschinesecodenumber" Type="Boolean" />
-          <Property Name="patronymicname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="countryofbirth" Type="Int32" />
-          <Property Name="maritalstatus" Type="Int32" />
-          <Property Name="ismarried" Type="Boolean" />
-          <Property Name="spousename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="spousenationality" Type="Int32" />
-          <Property Name="spousedob" Type="DateTime" />
-          <Property Name="marriagedate" Type="DateTime" />
-          <Property Name="isdisable" Type="Int32" />
-          <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="postalcountry" Type="Int32" />
-          <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="residentialcountry" Type="Int32" />
-          <Property Name="haspreviousresidence" Type="Boolean" />
-          <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="haveskypeid" Type="Int32" />
-          <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="isdifferentwhatsapp" Type="Int32" />
-          <Property Name="issameaspostal" Type="Int32" />
-          <Property Name="nomineefullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="relationshipwithnominee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="nomineeemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="nomineemobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="passportissuedate" Type="DateTime" />
-          <Property Name="passportexpirydate" Type="DateTime" />
-          <Property Name="verifiedpassportnamedob" Type="Boolean" />
-          <Property Name="alternativeIdentityproofId" Type="Int32" />
-          <Property Name="passportissuecity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeIdentityproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeproofdobId" Type="Int32" />
-          <Property Name="alternativeproofdobno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="alternativeresidenceproofId" Type="Int32" />
-          <Property Name="alternativeresidenceproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="linkedprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="havelinkedinaccount" Type="Boolean" />
-          <Property Name="facebookprofle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="havefacebookaccount" Type="Boolean" />
-          <Property Name="twiterprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="havetwitteraccount" Type="Boolean" />
-          <Property Name="othertitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="personaldetailsavedtime" Type="DateTime" />
-          <Property Name="contactdetailsavetime" Type="DateTime" />
-          <Property Name="identificationsavetime" Type="DateTime" />
-          <Property Name="socialprofilesavetime" Type="DateTime" />
-          <Property Name="passportissuecountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="havewhatsup" Type="Int32" />
-          <Property Name="agentid" Type="Int32" />
-          <Property Name="isstudentreferbyagent" Type="Int32" />
-          <Property Name="haveworkexperience" Type="Boolean" />
-          <Property Name="nomineeverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="isnomineeverified" Type="Boolean" />
-        </EntityType>
         <EntityType Name="applicantresidencehistory">
           <Key>
             <PropertyRef Name="id" />
@@ -3542,6 +3453,97 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="highereducationverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ishighereducationverified" Type="Boolean" />
           <Property Name="secondaryschoolhighereducationgapreason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicantdetails">
+          <Key>
+            <PropertyRef Name="applicantpersonaldetailsid" />
+          </Key>
+          <Property Name="applicantpersonaldetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="title" Type="Int32" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ispassportfirstname" Type="Boolean" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ispassportlastname" Type="Boolean" />
+          <Property Name="prefferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ispassportmiddlename" Type="Boolean" />
+          <Property Name="dateofbirth" Type="DateTime" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="nationality" Type="Int32" />
+          <Property Name="nationality2" Type="Int32" />
+          <Property Name="hasdualcitizenship" Type="Boolean" />
+          <Property Name="chinesecodenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haschinesecodenumber" Type="Boolean" />
+          <Property Name="patronymicname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryofbirth" Type="Int32" />
+          <Property Name="maritalstatus" Type="Int32" />
+          <Property Name="ismarried" Type="Boolean" />
+          <Property Name="spousename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="spousenationality" Type="Int32" />
+          <Property Name="spousedob" Type="DateTime" />
+          <Property Name="marriagedate" Type="DateTime" />
+          <Property Name="isdisable" Type="Int32" />
+          <Property Name="disabilitydescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postaladdrees3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="postalcountry" Type="Int32" />
+          <Property Name="postalpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentailpostcode" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialaddress3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialstate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="residentialcountry" Type="Int32" />
+          <Property Name="haspreviousresidence" Type="Boolean" />
+          <Property Name="mobileno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="homephone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="workphone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="skypeid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="haveskypeid" Type="Int32" />
+          <Property Name="whatsappno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="isdifferentwhatsapp" Type="Int32" />
+          <Property Name="issameaspostal" Type="Int32" />
+          <Property Name="nomineefullname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipwithnominee" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineeemail" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="nomineemobile" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="nomineeverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isnomineeverified" Type="Boolean" />
+          <Property Name="passportno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="passportissuedate" Type="DateTime" />
+          <Property Name="passportexpirydate" Type="DateTime" />
+          <Property Name="verifiedpassportnamedob" Type="Boolean" />
+          <Property Name="alternativeIdentityproofId" Type="Int32" />
+          <Property Name="passportissuecity" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeIdentityproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeproofdobId" Type="Int32" />
+          <Property Name="alternativeproofdobno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="alternativeresidenceproofId" Type="Int32" />
+          <Property Name="alternativeresidenceproofno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="linkedprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="havelinkedinaccount" Type="Boolean" />
+          <Property Name="facebookprofle" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="havefacebookaccount" Type="Boolean" />
+          <Property Name="twiterprofile" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="havetwitteraccount" Type="Boolean" />
+          <Property Name="othertitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="personaldetailsavedtime" Type="DateTime" />
+          <Property Name="contactdetailsavetime" Type="DateTime" />
+          <Property Name="identificationsavetime" Type="DateTime" />
+          <Property Name="socialprofilesavetime" Type="DateTime" />
+          <Property Name="passportissuecountry" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="havewhatsup" Type="Int32" />
+          <Property Name="agentid" Type="Int32" />
+          <Property Name="isstudentreferbyagent" Type="Int32" />
+          <Property Name="motivationreason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haveworkexperience" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4547,97 +4549,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="applicantdetails">
-            <EntityTypeMapping TypeName="GTEModel.applicantdetails">
-              <MappingFragment StoreEntitySet="applicantdetails">
-                <ScalarProperty Name="isnomineeverified" ColumnName="isnomineeverified" />
-                <ScalarProperty Name="nomineeverificationkey" ColumnName="nomineeverificationkey" />
-                <ScalarProperty Name="haveworkexperience" ColumnName="haveworkexperience" />
-                <ScalarProperty Name="isstudentreferbyagent" ColumnName="isstudentreferbyagent" />
-                <ScalarProperty Name="agentid" ColumnName="agentid" />
-                <ScalarProperty Name="havewhatsup" ColumnName="havewhatsup" />
-                <ScalarProperty Name="passportissuecountry" ColumnName="passportissuecountry" />
-                <ScalarProperty Name="socialprofilesavetime" ColumnName="socialprofilesavetime" />
-                <ScalarProperty Name="identificationsavetime" ColumnName="identificationsavetime" />
-                <ScalarProperty Name="contactdetailsavetime" ColumnName="contactdetailsavetime" />
-                <ScalarProperty Name="personaldetailsavedtime" ColumnName="personaldetailsavedtime" />
-                <ScalarProperty Name="othertitle" ColumnName="othertitle" />
-                <ScalarProperty Name="havetwitteraccount" ColumnName="havetwitteraccount" />
-                <ScalarProperty Name="twiterprofile" ColumnName="twiterprofile" />
-                <ScalarProperty Name="havefacebookaccount" ColumnName="havefacebookaccount" />
-                <ScalarProperty Name="facebookprofle" ColumnName="facebookprofle" />
-                <ScalarProperty Name="havelinkedinaccount" ColumnName="havelinkedinaccount" />
-                <ScalarProperty Name="linkedprofile" ColumnName="linkedprofile" />
-                <ScalarProperty Name="alternativeresidenceproofno" ColumnName="alternativeresidenceproofno" />
-                <ScalarProperty Name="alternativeresidenceproofId" ColumnName="alternativeresidenceproofId" />
-                <ScalarProperty Name="alternativeproofdobno" ColumnName="alternativeproofdobno" />
-                <ScalarProperty Name="alternativeproofdobId" ColumnName="alternativeproofdobId" />
-                <ScalarProperty Name="alternativeIdentityproofno" ColumnName="alternativeIdentityproofno" />
-                <ScalarProperty Name="passportissuecity" ColumnName="passportissuecity" />
-                <ScalarProperty Name="alternativeIdentityproofId" ColumnName="alternativeIdentityproofId" />
-                <ScalarProperty Name="verifiedpassportnamedob" ColumnName="verifiedpassportnamedob" />
-                <ScalarProperty Name="passportexpirydate" ColumnName="passportexpirydate" />
-                <ScalarProperty Name="passportissuedate" ColumnName="passportissuedate" />
-                <ScalarProperty Name="passportno" ColumnName="passportno" />
-                <ScalarProperty Name="nomineemobile" ColumnName="nomineemobile" />
-                <ScalarProperty Name="nomineeemail" ColumnName="nomineeemail" />
-                <ScalarProperty Name="relationshipwithnominee" ColumnName="relationshipwithnominee" />
-                <ScalarProperty Name="nomineefullname" ColumnName="nomineefullname" />
-                <ScalarProperty Name="issameaspostal" ColumnName="issameaspostal" />
-                <ScalarProperty Name="isdifferentwhatsapp" ColumnName="isdifferentwhatsapp" />
-                <ScalarProperty Name="whatsappno" ColumnName="whatsappno" />
-                <ScalarProperty Name="haveskypeid" ColumnName="haveskypeid" />
-                <ScalarProperty Name="skypeid" ColumnName="skypeid" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="workphone" ColumnName="workphone" />
-                <ScalarProperty Name="homephone" ColumnName="homephone" />
-                <ScalarProperty Name="mobileno" ColumnName="mobileno" />
-                <ScalarProperty Name="haspreviousresidence" ColumnName="haspreviousresidence" />
-                <ScalarProperty Name="residentialcountry" ColumnName="residentialcountry" />
-                <ScalarProperty Name="residentialstate" ColumnName="residentialstate" />
-                <ScalarProperty Name="residentialcity" ColumnName="residentialcity" />
-                <ScalarProperty Name="residentialaddress3" ColumnName="residentialaddress3" />
-                <ScalarProperty Name="residentialaddress2" ColumnName="residentialaddress2" />
-                <ScalarProperty Name="residentialaddress1" ColumnName="residentialaddress1" />
-                <ScalarProperty Name="residentailpostcode" ColumnName="residentailpostcode" />
-                <ScalarProperty Name="postalpostcode" ColumnName="postalpostcode" />
-                <ScalarProperty Name="postalcountry" ColumnName="postalcountry" />
-                <ScalarProperty Name="postalstate" ColumnName="postalstate" />
-                <ScalarProperty Name="postalcity" ColumnName="postalcity" />
-                <ScalarProperty Name="postaladdrees3" ColumnName="postaladdrees3" />
-                <ScalarProperty Name="postaladdrees2" ColumnName="postaladdrees2" />
-                <ScalarProperty Name="postaladdrees1" ColumnName="postaladdrees1" />
-                <ScalarProperty Name="disabilitydescription" ColumnName="disabilitydescription" />
-                <ScalarProperty Name="isdisable" ColumnName="isdisable" />
-                <ScalarProperty Name="marriagedate" ColumnName="marriagedate" />
-                <ScalarProperty Name="spousedob" ColumnName="spousedob" />
-                <ScalarProperty Name="spousenationality" ColumnName="spousenationality" />
-                <ScalarProperty Name="spousename" ColumnName="spousename" />
-                <ScalarProperty Name="ismarried" ColumnName="ismarried" />
-                <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
-                <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
-                <ScalarProperty Name="patronymicname" ColumnName="patronymicname" />
-                <ScalarProperty Name="haschinesecodenumber" ColumnName="haschinesecodenumber" />
-                <ScalarProperty Name="chinesecodenumber" ColumnName="chinesecodenumber" />
-                <ScalarProperty Name="hasdualcitizenship" ColumnName="hasdualcitizenship" />
-                <ScalarProperty Name="nationality2" ColumnName="nationality2" />
-                <ScalarProperty Name="nationality" ColumnName="nationality" />
-                <ScalarProperty Name="gender" ColumnName="gender" />
-                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
-                <ScalarProperty Name="ispassportmiddlename" ColumnName="ispassportmiddlename" />
-                <ScalarProperty Name="middlename" ColumnName="middlename" />
-                <ScalarProperty Name="prefferedname" ColumnName="prefferedname" />
-                <ScalarProperty Name="ispassportlastname" ColumnName="ispassportlastname" />
-                <ScalarProperty Name="lastname" ColumnName="lastname" />
-                <ScalarProperty Name="ispassportfirstname" ColumnName="ispassportfirstname" />
-                <ScalarProperty Name="firstname" ColumnName="firstname" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="applicantresidencehistory">
             <EntityTypeMapping TypeName="GTEModel.applicantresidencehistory">
               <MappingFragment StoreEntitySet="applicantresidencehistory">
@@ -4772,6 +4683,98 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicanthighereducationid" ColumnName="applicanthighereducationid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantdetails">
+            <EntityTypeMapping TypeName="GTEModel.applicantdetails">
+              <MappingFragment StoreEntitySet="applicantdetails">
+                <ScalarProperty Name="haveworkexperience" ColumnName="haveworkexperience" />
+                <ScalarProperty Name="motivationreason" ColumnName="motivationreason" />
+                <ScalarProperty Name="isstudentreferbyagent" ColumnName="isstudentreferbyagent" />
+                <ScalarProperty Name="agentid" ColumnName="agentid" />
+                <ScalarProperty Name="havewhatsup" ColumnName="havewhatsup" />
+                <ScalarProperty Name="passportissuecountry" ColumnName="passportissuecountry" />
+                <ScalarProperty Name="socialprofilesavetime" ColumnName="socialprofilesavetime" />
+                <ScalarProperty Name="identificationsavetime" ColumnName="identificationsavetime" />
+                <ScalarProperty Name="contactdetailsavetime" ColumnName="contactdetailsavetime" />
+                <ScalarProperty Name="personaldetailsavedtime" ColumnName="personaldetailsavedtime" />
+                <ScalarProperty Name="othertitle" ColumnName="othertitle" />
+                <ScalarProperty Name="havetwitteraccount" ColumnName="havetwitteraccount" />
+                <ScalarProperty Name="twiterprofile" ColumnName="twiterprofile" />
+                <ScalarProperty Name="havefacebookaccount" ColumnName="havefacebookaccount" />
+                <ScalarProperty Name="facebookprofle" ColumnName="facebookprofle" />
+                <ScalarProperty Name="havelinkedinaccount" ColumnName="havelinkedinaccount" />
+                <ScalarProperty Name="linkedprofile" ColumnName="linkedprofile" />
+                <ScalarProperty Name="alternativeresidenceproofno" ColumnName="alternativeresidenceproofno" />
+                <ScalarProperty Name="alternativeresidenceproofId" ColumnName="alternativeresidenceproofId" />
+                <ScalarProperty Name="alternativeproofdobno" ColumnName="alternativeproofdobno" />
+                <ScalarProperty Name="alternativeproofdobId" ColumnName="alternativeproofdobId" />
+                <ScalarProperty Name="alternativeIdentityproofno" ColumnName="alternativeIdentityproofno" />
+                <ScalarProperty Name="passportissuecity" ColumnName="passportissuecity" />
+                <ScalarProperty Name="alternativeIdentityproofId" ColumnName="alternativeIdentityproofId" />
+                <ScalarProperty Name="verifiedpassportnamedob" ColumnName="verifiedpassportnamedob" />
+                <ScalarProperty Name="passportexpirydate" ColumnName="passportexpirydate" />
+                <ScalarProperty Name="passportissuedate" ColumnName="passportissuedate" />
+                <ScalarProperty Name="passportno" ColumnName="passportno" />
+                <ScalarProperty Name="isnomineeverified" ColumnName="isnomineeverified" />
+                <ScalarProperty Name="nomineeverificationkey" ColumnName="nomineeverificationkey" />
+                <ScalarProperty Name="nomineemobile" ColumnName="nomineemobile" />
+                <ScalarProperty Name="nomineeemail" ColumnName="nomineeemail" />
+                <ScalarProperty Name="relationshipwithnominee" ColumnName="relationshipwithnominee" />
+                <ScalarProperty Name="nomineefullname" ColumnName="nomineefullname" />
+                <ScalarProperty Name="issameaspostal" ColumnName="issameaspostal" />
+                <ScalarProperty Name="isdifferentwhatsapp" ColumnName="isdifferentwhatsapp" />
+                <ScalarProperty Name="whatsappno" ColumnName="whatsappno" />
+                <ScalarProperty Name="haveskypeid" ColumnName="haveskypeid" />
+                <ScalarProperty Name="skypeid" ColumnName="skypeid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="workphone" ColumnName="workphone" />
+                <ScalarProperty Name="homephone" ColumnName="homephone" />
+                <ScalarProperty Name="mobileno" ColumnName="mobileno" />
+                <ScalarProperty Name="haspreviousresidence" ColumnName="haspreviousresidence" />
+                <ScalarProperty Name="residentialcountry" ColumnName="residentialcountry" />
+                <ScalarProperty Name="residentialstate" ColumnName="residentialstate" />
+                <ScalarProperty Name="residentialcity" ColumnName="residentialcity" />
+                <ScalarProperty Name="residentialaddress3" ColumnName="residentialaddress3" />
+                <ScalarProperty Name="residentialaddress2" ColumnName="residentialaddress2" />
+                <ScalarProperty Name="residentialaddress1" ColumnName="residentialaddress1" />
+                <ScalarProperty Name="residentailpostcode" ColumnName="residentailpostcode" />
+                <ScalarProperty Name="postalpostcode" ColumnName="postalpostcode" />
+                <ScalarProperty Name="postalcountry" ColumnName="postalcountry" />
+                <ScalarProperty Name="postalstate" ColumnName="postalstate" />
+                <ScalarProperty Name="postalcity" ColumnName="postalcity" />
+                <ScalarProperty Name="postaladdrees3" ColumnName="postaladdrees3" />
+                <ScalarProperty Name="postaladdrees2" ColumnName="postaladdrees2" />
+                <ScalarProperty Name="postaladdrees1" ColumnName="postaladdrees1" />
+                <ScalarProperty Name="disabilitydescription" ColumnName="disabilitydescription" />
+                <ScalarProperty Name="isdisable" ColumnName="isdisable" />
+                <ScalarProperty Name="marriagedate" ColumnName="marriagedate" />
+                <ScalarProperty Name="spousedob" ColumnName="spousedob" />
+                <ScalarProperty Name="spousenationality" ColumnName="spousenationality" />
+                <ScalarProperty Name="spousename" ColumnName="spousename" />
+                <ScalarProperty Name="ismarried" ColumnName="ismarried" />
+                <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
+                <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
+                <ScalarProperty Name="patronymicname" ColumnName="patronymicname" />
+                <ScalarProperty Name="haschinesecodenumber" ColumnName="haschinesecodenumber" />
+                <ScalarProperty Name="chinesecodenumber" ColumnName="chinesecodenumber" />
+                <ScalarProperty Name="hasdualcitizenship" ColumnName="hasdualcitizenship" />
+                <ScalarProperty Name="nationality2" ColumnName="nationality2" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="ispassportmiddlename" ColumnName="ispassportmiddlename" />
+                <ScalarProperty Name="middlename" ColumnName="middlename" />
+                <ScalarProperty Name="prefferedname" ColumnName="prefferedname" />
+                <ScalarProperty Name="ispassportlastname" ColumnName="ispassportlastname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="ispassportfirstname" ColumnName="ispassportfirstname" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

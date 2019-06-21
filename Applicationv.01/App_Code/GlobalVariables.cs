@@ -25,6 +25,11 @@ public sealed class GlobalVariables
         get { return 12; }
     }
 
+    public static int GetAgeMotivationLimit
+    {
+        get { return 30; }
+    }
+
     public static string GetChinaCountryName
     {
         get { return "China".ToUpper(); }

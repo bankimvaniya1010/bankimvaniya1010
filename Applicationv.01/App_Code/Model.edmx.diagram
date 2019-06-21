@@ -128,11 +128,11 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
         <EntityTypeShape EntityType="GTEModel.GTE_documentverification" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="23.375" PointY="28.75" />
         <EntityTypeShape EntityType="GTEModel.applicantresidencehistory" Width="1.5" PointX="5.375" PointY="4.75" />
         <EntityTypeShape EntityType="GTEModel.applicantemployerdetails" Width="1.5" PointX="12.375" PointY="29.75" />
         <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="29.375" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.applicanthighereducation" Width="1.5" PointX="15.375" PointY="14.75" />
+        <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="23.375" PointY="28.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

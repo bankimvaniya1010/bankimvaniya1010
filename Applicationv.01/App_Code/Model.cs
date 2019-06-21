@@ -198,6 +198,8 @@ public partial class applicantdetails
     public string relationshipwithnominee { get; set; }
     public string nomineeemail { get; set; }
     public string nomineemobile { get; set; }
+    public string nomineeverificationkey { get; set; }
+    public Nullable<bool> isnomineeverified { get; set; }
     public string passportno { get; set; }
     public Nullable<System.DateTime> passportissuedate { get; set; }
     public Nullable<System.DateTime> passportexpirydate { get; set; }
@@ -224,9 +226,8 @@ public partial class applicantdetails
     public Nullable<int> havewhatsup { get; set; }
     public Nullable<int> agentid { get; set; }
     public Nullable<int> isstudentreferbyagent { get; set; }
+    public string motivationreason { get; set; }
     public Nullable<bool> haveworkexperience { get; set; }
-    public string nomineeverificationkey { get; set; }
-    public Nullable<bool> isnomineeverified { get; set; }
 }
 
 public partial class applicantdocumentmaster
