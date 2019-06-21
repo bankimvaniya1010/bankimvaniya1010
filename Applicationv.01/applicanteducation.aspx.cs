@@ -780,6 +780,8 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 txtSecondarycontactEmail.Value = EducationInfo.secondaryverificationemail;
                 txtSecondarycontactMobile.Value = EducationInfo.secondaryverificationmobile;
+                if (!string.IsNullOrEmpty(EducationInfo.highschoolsecondaryschoolgapreason))
+                    txtSecondHighGapReason.Value = EducationInfo.highschoolsecondaryschoolgapreason;
 
                 /// Secondary Details End-----
                 /// Diploma
@@ -940,6 +942,8 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 txtHighercontactEmail.Value = HigherEducation.verificationemail;
                 txtHighercontactMobile.Value = HigherEducation.verificationmobile;
+                if (!string.IsNullOrEmpty(HigherEducation.secondaryschoolhighereducationgapreason))
+                    txtHigherSecondaryGap.Value = HigherEducation.secondaryschoolhighereducationgapreason;
             }
         }
         catch (Exception ex)
@@ -1123,6 +1127,8 @@ public partial class applicanteducation : System.Web.UI.Page
                 objEdu.diplomagradeachieved = 3;
             if (txtExpectedDiplomaResult.Value != "")
                 objEdu.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
+            if (txtSecondHighGapReason.Value != "")
+                objEdu.highschoolsecondaryschoolgapreason = txtSecondHighGapReason.Value;
 
             objEdu.diplomaverificationname = txtDiplomaVerificationName.Value;
             objEdu.diplomaverificationrelationship = Convert.ToInt32(ddlDiplomaVerificationRelationship.SelectedValue);
@@ -1198,6 +1204,9 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (txtExpectedHigherDategrade.Value != "")
                     objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
 
+                if (txtHigherSecondaryGap.Value != null)
+                    objEducation.secondaryschoolhighereducationgapreason = txtHigherSecondaryGap.Value;
+
                 objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
                 objEducation.verificationemail = txtHighercontactEmail.Value;
                 objEducation.verificationname = txtHigherVerificationName.Value;
@@ -1213,7 +1222,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.highschoolverificationkey +"&type=highschool";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEdu.highschoolverificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEdu.highschoolverificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for high school education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
@@ -1227,7 +1236,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.secondaryverificationkey + "&type=secondary";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEdu.secondaryverificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEdu.secondaryverificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for secondary school education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
@@ -1241,7 +1250,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.diplomaverificationkey + "&type=diploma";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEdu.diplomaverificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEdu.diplomaverificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for diploma education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
@@ -1255,7 +1264,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEducation.highereducationverificationkey + "&type=highereducation";
                 StringBuilder sb = new StringBuilder();
-                sb.Append("Dear" + objEducation.verificationname + ",<br/><br/>");
+                sb.Append("Dear " + objEducation.verificationname + ",<br/><br/>");
 
                 sb.Append(applicantName + " has given your reference for higher education details check at the time of applying for his/her course.<br/>");
                 sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");

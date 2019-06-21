@@ -303,6 +303,17 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="list-group-item" id="motivationReason" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" runat="server" aria-labelledby="label-motivation">
+                                    <div class="form-row">
+                                        <label id="lblMotivationReason" runat="server" for="motivation" class="col-md-3 col-form-label form-label">What is the key motivations for your continuing education at this stage ?</label>
+                                        <div class="col-md-6">
+                                            <input id="txtMotivationReason" runat="server" type="text" class="form-control" placeholder="Motivation Reason" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                                <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
@@ -438,6 +449,8 @@
                 alert("Please Select valid agent details");
             else if ($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') && ($("#<%=txtChineseCodeNumber.ClientID%>").val() === ""))
                 alert("Please enter chinese commercial code number");
+            else if (!$("#<%=motivationReason.ClientID%>").is(':hidden') && ($("#<%=txtMotivationReason.ClientID%>").val() == ""))
+                alert("Please enter motivation reason for continuing studies");
             else
                 flag = true;
             if (flag == true)
@@ -591,6 +604,27 @@
                 else if (countryName == "<%=GlobalVariables.GetRussiaCountryName %>") {
                     $("#<%=russianName.ClientID%>").show();
                 }
+            });
+
+            $("#<%=ddlDay.ClientID%>").change(function () {
+                var year = $("#<%=ddlYear.ClientID%>").val();
+                var month = $("#<%=ddlMonth.ClientID%>").val();
+                var day = $("#<%=ddlDay.ClientID%>").val();
+
+                if (!year || !month || !day)
+                    return;
+
+                var date = year + "/" + month + "/" + day;
+                var age = getAge(date);
+                var ageLimit = <%=GlobalVariables.GetAgeMotivationLimit%>;
+
+                if (age > ageLimit)
+                    $("#<%=motivationReason.ClientID%>").show();
+                else {
+                    $("#<%=motivationReason.ClientID%>").hide();
+                    $("#<%=txtMotivationReason.ClientID%>").val('');
+                }
+
             });
 
             // to handle Tool tips

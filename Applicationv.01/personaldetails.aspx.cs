@@ -379,6 +379,12 @@ public partial class personaldetails : System.Web.UI.Page
                     }
                 }
 
+                if (profileInfo.motivationreason != null)
+                {
+                    motivationReason.Style.Remove("display");
+                    txtMotivationReason.Value = profileInfo.motivationreason;
+                }
+
                 lblSaveTime.Text = " Record was last saved at " + profileInfo.personaldetailsavedtime.ToString();
             }
         }
@@ -464,6 +470,9 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.spousename = txtSpouseName.Value.Trim();
                 objapplicantDetail.spousenationality = Convert.ToInt32(ddlSpouseNationality.SelectedValue);
             }
+
+            if (txtMotivationReason.Value != null)
+                objapplicantDetail.motivationreason = txtMotivationReason.Value;
             
             objapplicantDetail.ispassportfirstname = passportFirstName.Checked;
             objapplicantDetail.ispassportlastname = passportLastName.Checked;
