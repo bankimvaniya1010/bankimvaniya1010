@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -313,12 +314,32 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             objapplicantDetail.nomineeemail = txtEmailNominee.Value;
             objapplicantDetail.nomineemobile = txtMobileNominee.Value;
             objapplicantDetail.relationshipwithnominee = txtRelationNominee.Value;
+            if (objapplicantDetail.nomineeemail != null)
+            {
+                objapplicantDetail.isnomineeverified = false;
+                objapplicantDetail.nomineeverificationkey = Guid.NewGuid().ToString();
+            }
             objapplicantDetail.contactdetailsavetime = DateTime.Now;
             objapplicantDetail.universityid = universityID;
             objapplicantDetail.applicantid = userID;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+
+            if (objapplicantDetail.nomineeemail != null)
+            {
+                string url = webURL + "verifynominee.aspx?key=" + objapplicantDetail.nomineeverificationkey;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Dear " + objapplicantDetail.nomineefullname + ",<br/><br/>");
+
+                sb.Append(objapplicantDetail.firstname + " " + objapplicantDetail.lastname + " has given your nomination for verification.<br/>");
+                sb.Append("Please validate nomination details of " + objapplicantDetail.firstname + " " + objapplicantDetail.lastname + " with link given below <br/>");
+                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
+                sb.Append("Thank You <br/>");
+                sb.Append("The Application Center Validation Team <br/>");
+                objCom.SendMail(objapplicantDetail.nomineeemail, sb.ToString(), "Nomination Detail check for" + objapplicantDetail.firstname + " " + objapplicantDetail.lastname);
+            }
+
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
             lblMessage.Text = "Your Contact Details have been saved";

@@ -198,6 +198,8 @@ public partial class applicantdetails
     public string relationshipwithnominee { get; set; }
     public string nomineeemail { get; set; }
     public string nomineemobile { get; set; }
+    public string nomineeverificationkey { get; set; }
+    public Nullable<bool> isnomineeverified { get; set; }
     public string passportno { get; set; }
     public Nullable<System.DateTime> passportissuedate { get; set; }
     public Nullable<System.DateTime> passportexpirydate { get; set; }
@@ -224,6 +226,7 @@ public partial class applicantdetails
     public Nullable<int> havewhatsup { get; set; }
     public Nullable<int> agentid { get; set; }
     public Nullable<int> isstudentreferbyagent { get; set; }
+    public string motivationreason { get; set; }
     public Nullable<bool> haveworkexperience { get; set; }
 }
 
@@ -277,6 +280,7 @@ public partial class applicanteducationdetails
     public string secondaryverificationmobile { get; set; }
     public string secondaryverificationkey { get; set; }
     public Nullable<bool> issecondaryverified { get; set; }
+    public string highschoolsecondaryschoolgapreason { get; set; }
     public Nullable<int> isdiplomadone { get; set; }
     public Nullable<int> diplomacountry { get; set; }
     public string diplomastartdate { get; set; }
@@ -319,6 +323,8 @@ public partial class applicantemployerdetails
     public string relationshipwithcontact { get; set; }
     public string emailid { get; set; }
     public string linkedinidofcontact { get; set; }
+    public string employerverificationkey { get; set; }
+    public Nullable<bool> isemployerdetailverified { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
 }
 
@@ -369,6 +375,7 @@ public partial class applicanthighereducation
     public string verificationmobile { get; set; }
     public string highereducationverificationkey { get; set; }
     public Nullable<bool> ishighereducationverified { get; set; }
+    public string secondaryschoolhighereducationgapreason { get; set; }
 }
 
 public partial class applicantlanguagecompetency

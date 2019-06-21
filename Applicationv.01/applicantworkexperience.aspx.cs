@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -296,6 +297,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     {
         try
         {
+            string applicantName = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
             var noExperience = (from ad in db.applicantdetails
                                 where ad.applicantid == userID && ad.universityid == universityID
                                 select ad).FirstOrDefault();
@@ -330,6 +332,8 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 objEmployer.durationfrom = Convert.ToDateTime(txtStartDate.Value);
                 objEmployer.durationto = Convert.ToDateTime(txtEndate.Value);
                 objEmployer.applicantid = userID;
+                objEmployer.employerverificationkey = Guid.NewGuid().ToString();
+                objEmployer.isemployerdetailverified = false;
                 objEmployer.lastsavedtime = DateTime.Now;
                 objEmployer.universityid = universityID;
                 if (mode == "new")
@@ -340,6 +344,21 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 noExperience.haveworkexperience = false;
             }
             db.SaveChanges();
+
+            if (rblEmploymentYes.Checked)
+            {
+                string url = webURL + "verifyemployment.aspx?key=" + objEmployer.employerverificationkey;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Dear " + objEmployer.contactpersonwithdetails + ",<br/><br/>");
+
+                sb.Append(applicantName + " has given your reference for past employment verification.<br/>");
+                sb.Append("Please validate employment details of " + applicantName + " with link given below <br/>");
+                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
+                sb.Append("Thank You <br/>");
+                sb.Append("The Application Center Validation Team <br/>");
+                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Nomination Detail check for" + applicantName);
+            }
+
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
             BindEmploymentDetails();
