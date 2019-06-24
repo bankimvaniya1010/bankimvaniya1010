@@ -437,16 +437,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="secondaryHighSchoolGap" runat="server" style="display: none">
-                                    <div class="form-group m-0" role="group" aria-labelledby="label-secondhighgap">
-                                        <div class="form-row">
-                                            <label id="lblSecondHighGap" runat="server" for="secondhighgap" class="col-md-3 col-form-label form-label">There seems to be gap between your High School & Secondary School, please provide reasons for this</label>
-                                            <div class="col-md-6">
-                                                <input id="txtSecondHighGapReason" runat="server" type="text" class="form-control" placeholder="Education gap reason">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="list-group-item" id="secondarygrade" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                         <div class="form-row">
@@ -695,17 +686,6 @@
                                             <div class="col-md-6">
                                                 <input id="txtHighercontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
                                                 <span class="helpicon"><i id="ichighercontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="list-group-item" id="highereduSecondarySchoolGap" runat="server" style="display: none">
-                                    <div class="form-group m-0" role="group" aria-labelledby="label-highersecondarygap">
-                                        <div class="form-row">
-                                            <label id="lblHigherSecondaryGap" runat="server" for="highersecondarygap" class="col-md-3 col-form-label form-label">There seems to be gap between your senior secondary school and higher studies, please provide reasons for this.</label>
-                                            <div class="col-md-6">
-                                                <input id="txtHigherSecondaryGap" runat="server" type="text" class="form-control" placeholder="Education gap reason">
                                             </div>
                                         </div>
                                     </div>
@@ -1158,102 +1138,7 @@
             ToggleSecondary();
             ToggleHighSchool();
 
-            $("#<%=ddlSecondaryEndDateMonth.ClientID%>").change(function () {
-                if($("#<%=ddlHighSchoolEndDateYear.ClientID%>").val() > 0 && $("#<%=ddlHighSchoolEndDateMonth.ClientID%>").val() > 0)
-                    checkAndDisplaySecondHighGapReason();
-
-                if ($("#<%=rblhigherYes.ClientID%>").is(":checked"))
-                    displayHigherSecondGapReason();
-            });
-
-            $("#<%=ddlSecondaryEndDateYear.ClientID%>").change(function () {
-                if($("#<%=ddlHighSchoolEndDateYear.ClientID%>").val() > 0 && $("#<%=ddlHighSchoolEndDateMonth.ClientID%>").val() > 0)
-                    checkAndDisplaySecondHighGapReason();
-
-                if ($("#<%=rblhigherYes.ClientID%>").is(":checked"))
-                    checkAndDisplayHigherSecondGapReason();
-            });
-
-            $("#<%=ddlHighSchoolEndDateYear.ClientID%>").change(function () {
-                if ($("#<%=rblSecondaryYes.ClientID%>").is(":checked"))
-                    checkAndDisplaySecondHighGapReason();
-            });
-
-            $("#<%=ddlHighSchoolEndDateMonth.ClientID%>").change(function () {
-                if ($("#<%=rblSecondaryYes.ClientID%>").is(":checked"))
-                    checkAndDisplaySecondHighGapReason();
-            });
-
-            $("#<%=ddlHigherStartDateMonth.ClientID%>").change(function () {
-                if($("#<%=rblSecondaryYes.ClientID%>").is(":checked") && $("#<%=ddlSecondaryEndDateYear.ClientID%>").val() > 0 && $("#<%=ddlSecondaryEndDateMonth.ClientID%>").val() > 0)
-                    checkAndDisplayHigherSecondGapReason();
-            });
-
-            $("#<%=ddlHigherStartDateYear.ClientID%>").change(function () {
-                if($("#<%=rblSecondaryYes.ClientID%>").is(":checked") && $("#<%=ddlSecondaryEndDateYear.ClientID%>").val() > 0 && $("#<%=ddlSecondaryEndDateMonth.ClientID%>").val() > 0)
-                    checkAndDisplayHigherSecondGapReason();
-            });
         });
-
-        function checkAndDisplaySecondHighGapReason() {
-            var secondarySchoolCompletionDate;
-            var highSchoolCompletionDate;
-
-            if($("#<%=ddlSecondaryEndDateYear.ClientID%>").val() > 0 && $("#<%=ddlSecondaryEndDateMonth.ClientID%>").val() > 0)
-                secondarySchoolCompletionDate = new Date($("#<%=ddlSecondaryEndDateYear.ClientID%>").val(), $("#<%=ddlSecondaryEndDateMonth.ClientID%>").val() - 1, 01);
-
-            if($("#<%=ddlHighSchoolEndDateYear.ClientID%>").val() > 0 && $("#<%=ddlHighSchoolEndDateMonth.ClientID%>").val() > 0)
-                highSchoolCompletionDate = new Date($("#<%=ddlHighSchoolEndDateYear.ClientID%>").val(), $("#<%=ddlHighSchoolEndDateMonth.ClientID%>").val() - 1, 01);
-
-            if (!secondarySchoolCompletionDate)
-                return;
-            else if (!highSchoolCompletionDate)
-                return;
-            else if (highSchoolCompletionDate > secondarySchoolCompletionDate) {
-                alert("Secondary school end date cannot be earlier than high school end date. Please select correct dates.");
-                return;
-            }
-            var differenceMonth = monthDiff(highSchoolCompletionDate, secondarySchoolCompletionDate);
-            var allowedMonthGap = <%=GlobalVariables.GetHighSchoolSecondaryAllowedGap%>;
-            if (differenceMonth > allowedMonthGap)
-                $("#<%=secondaryHighSchoolGap.ClientID%>").show();
-            else if (!$("#<%=secondaryHighSchoolGap.ClientID%>").is(':hidden'))
-                $("#<%=secondaryHighSchoolGap.ClientID%>").hide();
-        }
-
-        function checkAndDisplayHigherSecondGapReason() {
-            var secondarySchoolCompletionDate;
-            var higherEducationStartDate;
-
-            if($("#<%=ddlSecondaryEndDateYear.ClientID%>").val() > 0 && $("#<%=ddlSecondaryEndDateMonth.ClientID%>").val() > 0)
-                secondarySchoolCompletionDate = new Date($("#<%=ddlSecondaryEndDateYear.ClientID%>").val(), $("#<%=ddlSecondaryEndDateMonth.ClientID%>").val() - 1, 01);
-
-            if($("#<%=ddlHigherStartDateYear.ClientID%>").val() > 0 && $("#<%=ddlHigherStartDateMonth.ClientID%>").val() > 0)
-                higherEducationStartDate = new Date($("#<%=ddlHigherStartDateYear.ClientID%>").val(), $("#<%=ddlHigherStartDateMonth.ClientID%>").val() - 1, 01);
-
-            if (!secondarySchoolCompletionDate)
-                return;
-            else if (!higherEducationStartDate)
-                return;
-            else if (secondarySchoolCompletionDate > higherEducationStartDate) {
-                alert("Higher education start date cannot be earlier than secondary school end date. Please select correct dates.");
-                return;
-            }
-            var differenceMonth = monthDiff(secondarySchoolCompletionDate, higherEducationStartDate);
-            var allowedMonthGap = <%=GlobalVariables.GetHigherEduSecondarySchoolAllowedGap%>;
-            if (differenceMonth > allowedMonthGap)
-                $("#<%=highereduSecondarySchoolGap.ClientID%>").show();
-            else if (!$("#<%=highereduSecondarySchoolGap.ClientID%>").is(':hidden'))
-                $("#<%=highereduSecondarySchoolGap.ClientID%>").hide();
-        }
-
-        function monthDiff(d1, d2) {
-            var months;
-            months = (d2.getFullYear() - d1.getFullYear()) * 12;
-            months -= d1.getMonth() + 1;
-            months += d2.getMonth();
-            return months <= 0 ? 0 : months;
-        }
 
         //Handle High School
         $(function () {
