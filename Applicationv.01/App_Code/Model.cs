@@ -879,15 +879,6 @@ public partial class preliminaryapplicantanswers
     public Nullable<System.DateTime> answersubmittedtime { get; set; }
 }
 
-public partial class preliminaryvideomaster
-{
-    public int id { get; set; }
-    public string videourl { get; set; }
-    public string description { get; set; }
-    public Nullable<int> status { get; set; }
-    public Nullable<int> universityid { get; set; }
-}
-
 public partial class primaryfieldmaster
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -1143,6 +1134,18 @@ public partial class trips
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class tutorialmaster
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
+    public string videourl { get; set; }
+    public string description { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
 }
 
 public partial class typemaster

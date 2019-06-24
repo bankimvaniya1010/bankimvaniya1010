@@ -827,16 +827,6 @@
           <Property Name="answer" Type="varchar" MaxLength="45" />
           <Property Name="answersubmittedtime" Type="datetime" Precision="0" />
         </EntityType>
-        <EntityType Name="preliminaryvideomaster">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="videourl" Type="varchar" MaxLength="100" />
-          <Property Name="description" Type="varchar" MaxLength="1000" />
-          <Property Name="status" Type="int" />
-          <Property Name="universityid" Type="int" />
-        </EntityType>
         <EntityType Name="primaryfieldmaster">
           <Key>
             <PropertyRef Name="primaryfieldid" />
@@ -1028,6 +1018,19 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tutorialmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="documentpath" Type="varchar" MaxLength="200" />
+          <Property Name="videourl" Type="varchar" MaxLength="100" />
+          <Property Name="description" Type="varchar" MaxLength="1000" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="typemaster">
           <Key>
@@ -1654,7 +1657,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="master_name" EntityType="Self.master_name" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="Self.preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="preliminaryvideomaster" EntityType="Self.preliminaryvideomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="primaryfieldmaster" EntityType="Self.primaryfieldmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="profilemaster" EntityType="Self.profilemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="qualificationcountriesmapping" EntityType="Self.qualificationcountriesmapping" Schema="GTE" store:Type="Tables" />
@@ -1677,6 +1679,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="transportchoice" EntityType="Self.transportchoice" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="trips" EntityType="Self.trips" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="tutorialmaster" EntityType="Self.tutorialmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="typemaster" EntityType="Self.typemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_campusmapping" EntityType="Self.university_campusmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="university_master" EntityType="Self.university_master" Schema="GTE" store:Type="Tables" />
@@ -1909,7 +1912,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="master_name" EntityType="GTEModel.master_name" />
           <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
-          <EntitySet Name="preliminaryvideomaster" EntityType="GTEModel.preliminaryvideomaster" />
           <EntitySet Name="primaryfieldmaster" EntityType="GTEModel.primaryfieldmaster" />
           <EntitySet Name="profilemaster" EntityType="GTEModel.profilemaster" />
           <EntitySet Name="qualificationcountriesmapping" EntityType="GTEModel.qualificationcountriesmapping" />
@@ -2091,6 +2093,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="clarificationquestionsmaster" EntitySet="clarificationquestionsmaster" />
             <End Role="clarificationquestion_university_mapping" EntitySet="clarificationquestion_university_mapping" />
           </AssociationSet>
+          <EntitySet Name="tutorialmaster" EntityType="GTEModel.tutorialmaster" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -2699,16 +2702,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="preliminaryid" Type="Int32" />
           <Property Name="answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="answersubmittedtime" Type="DateTime" />
-        </EntityType>
-        <EntityType Name="preliminaryvideomaster">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="primaryfieldmaster">
           <Key>
@@ -3737,6 +3730,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tutorialmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="documentpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4382,17 +4388,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="preliminaryvideomaster">
-            <EntityTypeMapping TypeName="GTEModel.preliminaryvideomaster">
-              <MappingFragment StoreEntitySet="preliminaryvideomaster">
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="videourl" ColumnName="videourl" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="primaryfieldmaster">
             <EntityTypeMapping TypeName="GTEModel.primaryfieldmaster">
               <MappingFragment StoreEntitySet="primaryfieldmaster">
@@ -4994,6 +4989,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="clarificationquestionsmaster">
                 <ScalarProperty Name="questiontype" ColumnName="questiontype" />
                 <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tutorialmaster">
+            <EntityTypeMapping TypeName="GTEModel.tutorialmaster">
+              <MappingFragment StoreEntitySet="tutorialmaster">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="videourl" ColumnName="videourl" />
+                <ScalarProperty Name="documentpath" ColumnName="documentpath" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

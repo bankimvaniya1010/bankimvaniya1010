@@ -17,7 +17,11 @@
             <li class="breadcrumb-item active">Preliminary Video Master</li>
         </ol>
         <h1 class="h2">Preliminary Video Master</h1>
-
+          <div class="media align-items-center">  
+            <div class="media-left">
+                <a class="dropdown-item" href="tutorialmaster.aspx">Add New</a>                          
+            </div>
+        </div>
         <div class="card">
 
 
@@ -26,7 +30,7 @@
                     <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False" ShowFooter="true" Width="400px"
                         DataKeyNames="id"
                         AllowPaging="True"
-                        CellPadding="3"
+                        CellPadding="2"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
@@ -41,11 +45,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtVideoURL" TextMode="MultiLine" runat="server" Text='<%# Bind("videourl") %>'></asp:TextBox>
                                     <asp:RequiredFieldValidator runat='server' ID='requiredVideoEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Video Cannot Be Empty' ControlToValidate='txtVideoURL' />
-                                </EditItemTemplate>
-                                <FooterTemplate>
-                                    <asp:TextBox ID="txtVideoFooter" runat="server" TextMode="MultiLine"></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredVideoFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Question  Cannot Be Empty' ControlToValidate='txtVideoFooter' />
-                                </FooterTemplate>
+                                </EditItemTemplate>                               
                                 <ItemTemplate>
                                     <asp:Label ID="lblVideo" runat="server" Text='<%# Bind("videourl") %>'></asp:Label>
                                 </ItemTemplate>
@@ -54,11 +54,7 @@
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtDescription" TextMode="MultiLine" runat="server" Text='<%# Bind("description") %>'></asp:TextBox>
                                     <asp:RequiredFieldValidator runat='server' ID='requiredDescriptionEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Description Cannot Be Empty' ControlToValidate='txtDescription' />
-                                </EditItemTemplate>
-                                <FooterTemplate>
-                                    <asp:TextBox ID="txtDescriptionFooter" runat="server" TextMode="MultiLine"></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredDescriptionFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Description  Cannot Be Empty' ControlToValidate='txtDescriptionFooter' />
-                                </FooterTemplate>
+                                </EditItemTemplate>                               
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("description") %>'></asp:Label>
                                 </ItemTemplate>
@@ -68,11 +64,7 @@
                                      <asp:Label ID="lblUniversityEdit" style="display:none" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                     <asp:DropDownList ID="ddlUniversity"  runat="server" ></asp:DropDownList>
                                     <asp:RequiredFieldValidator runat='server' ID='requiredUniversityEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please Select University ' ControlToValidate='ddlUniversity' />
-                                </EditItemTemplate>
-                                <FooterTemplate>
-                                    <asp:DropDownList ID="ddlUniversityFooter" runat="server" ></asp:DropDownList>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Please Select University ' ControlToValidate='ddlUniversityFooter' />
-                                </FooterTemplate>
+                                </EditItemTemplate>                             
                                 <ItemTemplate>
                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                 </ItemTemplate>
@@ -80,8 +72,7 @@
                             <asp:TemplateField HeaderText="Status" SortExpression="status">
                                 <EditItemTemplate>
                                      <asp:CheckBox ID="chkValidEdit" runat="server"  />             </EditItemTemplate>
-                                <FooterTemplate>
-                                     <asp:CheckBox ID="chkValidFooter" runat="server"  />               </FooterTemplate>
+                               
                                 <ItemTemplate>
                                      <asp:CheckBox ID="chkValid" runat="server" Checked='<%# bool.Parse(Eval("status").ToString()=="1"?"True":"False") %>' />
                                 </ItemTemplate>
@@ -96,13 +87,7 @@
 
                                     <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel"></asp:LinkButton>
 
-                                </EditItemTemplate>
-
-                                <FooterTemplate>
-
-                                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="True" CommandName="AddNew" Text="Add New" ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>'></asp:LinkButton>
-
-                                </FooterTemplate>
+                                </EditItemTemplate>                              
 
                                 <ItemTemplate>
 
