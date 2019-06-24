@@ -1145,6 +1145,18 @@ public partial class trips
     public string description { get; set; }
 }
 
+public partial class tutorialmaster
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
+    public string videourl { get; set; }
+    public string description { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+}
+
 public partial class typemaster
 {
     public int typemasterid { get; set; }

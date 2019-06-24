@@ -126,7 +126,7 @@
                                             <a class="dropdown-item" href="createuser.aspx">Create User</a>
                                             <a class="dropdown-item" href="createcity.aspx">Create City</a>
                                             <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
-                                            <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Preliminary Video</a>
+                                            <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Tutorials</a>
                                             <a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>
                                             <a class="dropdown-item" href="educationmediummaster.aspx">Education Medium Master</a>
                                             <a class="dropdown-item" href="alternateaddressproof.aspx">Alternate Address Proof</a>

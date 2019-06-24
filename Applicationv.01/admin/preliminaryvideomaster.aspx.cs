@@ -23,7 +23,7 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
     {
         try
         {
-            var QuestionList = (from q in db.preliminaryvideomaster join um in db.university_master
+            var QuestionList = (from q in db.tutorialmaster join um in db.university_master
                                 on q.universityid equals um.universityid
 
                                 select new
@@ -54,7 +54,7 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
             if (e.CommandName.Equals("AddNew"))
 
             {
-                preliminaryvideomaster objVideo = new preliminaryvideomaster();
+                tutorialmaster objVideo = new tutorialmaster();
                 TextBox txtVideoURL = (TextBox)QuestiontGridView.FooterRow.FindControl("txtVideoFooter");
                 TextBox txtDescription = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescriptionFooter");
                 DropDownList ddlUniversity = (DropDownList)QuestiontGridView.FooterRow.FindControl("ddlUniversityFooter");
@@ -65,7 +65,7 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
                 if (ddlUniversity.SelectedValue != "")
                     objVideo.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
                 objVideo.status = chkStatus.Checked==true?1:0;
-                db.preliminaryvideomaster.Add(objVideo);
+                db.tutorialmaster.Add(objVideo);
 
                 db.SaveChanges();
                 BindGrid();
@@ -89,7 +89,7 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
         try
         {
             int ID = Convert.ToInt32(QuestiontGridView.DataKeys[e.RowIndex].Values[0]);
-            preliminaryvideomaster qm = db.preliminaryvideomaster.Where(b => b.id == ID).First();
+            tutorialmaster qm = db.tutorialmaster.Where(b => b.id == ID).First();
             TextBox txtVideoURL = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtVideoURL");
             TextBox txtDescription = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescription");
             DropDownList ddlUniversity = (DropDownList)QuestiontGridView.Rows[e.RowIndex].FindControl("ddlUniversity");
@@ -150,8 +150,8 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
         try
         {
             int ID = Convert.ToInt32(QuestiontGridView.DataKeys[e.RowIndex].Values[0]);
-            preliminaryvideomaster qm = db.preliminaryvideomaster.Where(b => b.id == ID).First();
-            db.preliminaryvideomaster.Remove(qm);
+            tutorialmaster qm = db.tutorialmaster.Where(b => b.id == ID).First();
+            db.tutorialmaster.Remove(qm);
             db.SaveChanges();
             BindGrid();
         }
@@ -207,4 +207,6 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
         }
 
     }
+
+  
 }
