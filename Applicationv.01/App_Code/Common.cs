@@ -1026,6 +1026,25 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
+    public List<dynamic> GetToolTips(int universityID, int formId)
+    {
+        var fields = (from pfm in db.primaryfieldmaster
+                      join utm in db.universitywisetooltipmaster
+                      on pfm.primaryfieldid equals utm.fieldid into
+                      tmpUniversity
+                      from z in tmpUniversity.Where(x => x.universityid == universityID && x.formid == formId).DefaultIfEmpty()
+                      join tm in db.tooltipmaster on pfm.primaryfieldid equals tm.fieldid into tmp
+                      from x in tmp.Where(c => c.formid == formId).DefaultIfEmpty()
+                      where (x.formid == formId || z.formid == formId)
+                      select new
+                      {
+                          primaryfiledname = pfm.primaryfiledname,
+                          universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
+                          tooltips = (x == null ? String.Empty : x.tooltips)
+                      }).ToList();
+        return fields.ToList<dynamic>();
+    }
+
     [Serializable]
     public class FieldList
     {

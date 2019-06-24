@@ -46,7 +46,7 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
             SetControlsUniversitywise();
             PopulateEmployerInfo();
 
-            
+
         }
     }
     private void SetToolTips()
@@ -150,7 +150,7 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+        return obj.primaryfiledname;
     }
     private void SetControlsUniversitywise()
     {
@@ -160,31 +160,19 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
-                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
-                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
-                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
-                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
+                              primaryfiledname = pfm.primaryfiledname
                           }).ToList();
 
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
-                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where pfm.formid == formId
                           select new
                           {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
-                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
-                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
-                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
+                              primaryfiledname = pfm.primaryfiledname
                           }).ToList();
             }
 

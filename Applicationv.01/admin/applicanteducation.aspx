@@ -20,7 +20,7 @@
             <li class="breadcrumb-item active">Applicant education details</li>
         </ol>
 
-        <div class="card" >
+        <div class="card">
             <div class="list-group list-group-fit">
                 <!----High School Start------>
                 <div class="list-group-item" id="highschool" runat="server" style="display: none">
@@ -253,7 +253,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 
                         <div class="form-row">
-                            <div class="col-md-9">
+                            <div class="col-md-4">
                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                     <asp:GridView ID="grd10" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false">
                                         <Columns>
@@ -520,7 +520,7 @@
                         <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 
                             <div class="form-row">
-                                <div class="col-md-9">
+                                <div class="col-md-4">
                                     <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                         <asp:GridView ID="grdSecondary" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false">
                                             <Columns>
@@ -578,7 +578,7 @@
                                 <label id="labelhigher" runat="server" for="higher" class="col-md-3 col-form-label form-label">
                                     Have you completed any Higher (Under Graduate, Masters or PhD) degree? 
 ?</label>
-                                <div class="col-md-9">
+                                <div class="col-md-4">
                                     <asp:Label ID="lblhigher" runat="server"> </asp:Label>
                                     <span class="helpicon"><i id="ichigher" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                 </div>
@@ -593,7 +593,7 @@
 
                     %>
 
-                   
+
                     <div class="list-group-item" id="highercourse" runat="server" style="display: none">
 
                         <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
@@ -601,7 +601,7 @@
                                 <label id="labelhighercourse" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
                                 <div class="col-md-4">
 
-                                    <asp:Label ID="lblhighercourse" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="lblhighercourse" runat="server" Text="<%=HigherEducation[k].coursename  %>"></asp:Label>
                                     <span class="helpicon"><i id="ichighercourse" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                 </div>
                                 <div class="col-md-4">
@@ -813,7 +813,7 @@
                         <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 
                             <div class="form-row">
-                                <div class="col-md-9">
+                                <div class="col-md-4">
                                     <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                         <asp:GridView ID="grdHigher" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false">
                                             <Columns>
@@ -862,7 +862,7 @@
 
 
                     </div>
-                    
+
                 </div>
                 <!----Higher Education END------>
                 <!----Diploma Start------>
@@ -1068,7 +1068,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lbldiplomacontactMobile" runat="server"></asp:Label>
                                 <span class="helpicon"><i id="icdiplomacontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                            </div> <div class="col-md-4">
+                            </div>
+                            <div class="col-md-4">
                                 <input id="txtdiplomacontactMobile" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
@@ -1078,7 +1079,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 
                         <div class="form-row">
-                            <div class="col-md-9">
+                            <div class="col-md-4">
                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                     <asp:GridView ID="grdDiploma" runat="server" DataKeyNames="applicantgradeid" CssClass="table" AutoGenerateColumns="false">
                                         <Columns>
