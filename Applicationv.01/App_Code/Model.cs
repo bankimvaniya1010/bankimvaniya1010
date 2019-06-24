@@ -879,15 +879,6 @@ public partial class preliminaryapplicantanswers
     public Nullable<System.DateTime> answersubmittedtime { get; set; }
 }
 
-public partial class preliminaryvideomaster
-{
-    public int id { get; set; }
-    public string videourl { get; set; }
-    public string description { get; set; }
-    public Nullable<int> status { get; set; }
-    public Nullable<int> universityid { get; set; }
-}
-
 public partial class primaryfieldmaster
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
