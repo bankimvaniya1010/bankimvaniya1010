@@ -14,8 +14,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
-    protected int isStudyBefore = 0, isApplyBefore = 0;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -133,7 +132,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+        return obj.primaryfiledname ;
     }
     private void SetControlsUniversitywise()
     {
@@ -143,31 +142,19 @@ public partial class admin_applicantsocial : System.Web.UI.Page
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
-                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
-                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
-                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
-                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
+                              primaryfiledname = pfm.primaryfiledname
                           }).ToList();
 
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
-                          join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
-                          from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where pfm.formid == formId
                           select new
                           {
-                              primaryfiledname = pfm.primaryfiledname,
-                              fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
-                              secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
-                              secondaryfieldnamelanguage = (x == null ? String.Empty : x.secondaryfieldnamelanguage),
-                              secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
+                              primaryfiledname = pfm.primaryfiledname
                           }).ToList();
             }
 
