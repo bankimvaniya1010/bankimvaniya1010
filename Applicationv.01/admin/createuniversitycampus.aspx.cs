@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -49,6 +52,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
             var existingUniversityCampus = (from universityCampus in db.universitycampus
                                             where universityCampus.campusname.Equals(txtCampName.Value.Trim()) && universityCampus.universityid == universityId
                                             select universityCampus.campusname).FirstOrDefault();
+
             if (string.IsNullOrEmpty(existingUniversityCampus))
             {
                 universityCampusObj.campusname = txtCampName.Value.Trim();
@@ -59,6 +63,19 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
                 
                 db.universitycampus.Add(universityCampusObj);
                 db.SaveChanges();
+
+                string[] citiesList = hidCities.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                int count = citiesList.Length;
+                for (int i = 0; i < count; i++)
+                {
+                    universitycampus_city_mapping mapping = new universitycampus_city_mapping();
+
+                    mapping.campusid = universityCampusObj.campusid;
+                    mapping.cityid = Convert.ToInt32(citiesList[i]);
+                    db.universitycampus_city_mapping.Add(mapping);
+                    db.SaveChanges();
+                }
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
             }
             else
@@ -70,5 +87,23 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
         {
             objLog.WriteLog(ex.StackTrace.ToString());
         }
+    }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetCityDropdown(int countryId)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.citymaster.Where(x => x.country_id == countryId).Select(x => new { x.city_id, x.name }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetCountries()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.countriesmaster.Select(x => new { countryID = x.id, countryName = x.country_name }).ToList();
+        return JsonConvert.SerializeObject(temp);
     }
 }
