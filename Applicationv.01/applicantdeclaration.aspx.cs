@@ -18,6 +18,8 @@ public partial class applicantdeclaration : System.Web.UI.Page
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if (GlobalVariables.isDeclarationDoneByApplicant)
+            Response.Redirect(webURL + "default.aspx", true);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
@@ -30,6 +32,8 @@ public partial class applicantdeclaration : System.Web.UI.Page
                 applicantProgressInfo.declarationdone = true;
                 db.applicantprogressbar.Add(applicantProgressInfo);
                 db.SaveChanges();
+                GlobalVariables.isDeclarationDoneByApplicant = true;
+                Response.Redirect(webURL + "default.aspx", true);
             }
             else
                 Response.Redirect(webURL + "preliminary.aspx", true);
