@@ -588,227 +588,867 @@
                             </div>
                         </div>
                     </div>
-                    <%for (int k = 0; k < HigherEducation.Count; k++)
-                        {
 
-                    %>
+                    <div id="UG" runat="server" visible="false">
+                        <div class="list-group-item" id="highercourse">
 
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
+                                <div class="form-row">
+                                    <label id="labelhighercourse" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
+                                    <div class="col-md-4">
+                                          <asp:Label ID="lblhighercourse" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercourse" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercourse" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
 
-                    <div class="list-group-item" id="highercourse" runat="server" style="display: none">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherCountry" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherCountry">
+                                <div class="form-row">
+                                    <label id="labelhigherCountry" runat="server" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherCountry" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherCountry" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherstartDate" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
+                                <div class="form-row">
+                                    <label id="labelhigherstartDate" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherschoolstartDate" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherstartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstartDate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherendDate" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherendDate">
+                                <div class="form-row">
+                                    <label id="labelhigherendDate" runat="server" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherendDate" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherendDate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherschoolName" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherschoolName">
+                                <div class="form-row">
+                                    <label id="labelhigherschoolName" runat="server" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherschoolName" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherschoolName" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherQualificationtype" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
+                                <div class="form-row">
+                                    <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherQualificationtype" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherQualificationtype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherstudymode" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherstudymode">
+                                <div class="form-row">
+                                    <label id="labelhigherstudymode" runat="server" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherstudymode" runat="server"></asp:Label>
 
-                        <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
-                            <div class="form-row">
-                                <label id="labelhighercourse" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
-                                <div class="col-md-4">
+                                        <span class="helpicon"><i id="ichigherstudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstudymode" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherlanguage" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherlanguage">
+                                <div class="form-row">
+                                    <label id="labelhigherlanguage" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherlanguage" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherlanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherlanguage" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradetype" runat="server">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
+                                <div class="form-row">
+                                    <label id="labelhighergradetype" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradetype" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradetype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradeachieved" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradeachieved">
+                                <div class="form-row">
+                                    <label id="labelhighergradeachieved" runat="server" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradeachieved" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradeachieved" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="ExpectedHigherDategrade" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHigherDategrade">
+                                <div class="form-row">
+                                    <label id="labelExpectedHigherDategrade" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblExpectedHigherDategrade" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="icExpectedHigherDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherverify" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
+                                <div class="form-row">
+                                    <label id="labelhigherverify" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherverify" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherverify" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherrelation" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherrelation">
+                                <div class="form-row">
+                                    <label id="labelhigherrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherschoolrelation" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherrelation" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactEmail" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactEmail">
+                                <div class="form-row">
+                                    <label id="labelhighercontactEmail" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactEmail" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactEmail" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactMobile" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactMobile">
+                                <div class="form-row">
+                                    <label id="labelhighercontactMobile" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactMobile" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactMobile" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="PG" runat="server" visible="false">
+                        <div class="list-group-item" id="highercoursePG">
 
-                                    <asp:Label ID="lblhighercourse" runat="server" Text="<%=HigherEducation[k].coursename  %>"></asp:Label>
-                                    <span class="helpicon"><i id="ichighercourse" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthighercourse" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
+                                <div class="form-row">
+                                    <label id="labelhighercoursePG" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercoursePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercoursePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercoursePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
 
-                    <div class="list-group-item" id="higherCountry" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherCountry">
-                            <div class="form-row">
-                                <label id="labelhigherCountry" runat="server" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherCountry" runat="server" Text="<%=HigherEducation[k].coursename %>"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherCountry" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="list-group-item" id="higherstartDate" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
-                            <div class="form-row">
-                                <label id="labelhigherstartDate" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherschoolstartDate" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherstartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherstartDate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item" id="higherendDate" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherendDate">
-                            <div class="form-row">
-                                <label id="labelhigherendDate" runat="server" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherendDate" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherendDate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                        <div class="list-group-item" id="higherCountryPG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherCountry">
+                                <div class="form-row">
+                                    <label id="labelhigherCountryPG" runat="server" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherCountryPG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="iclabelhigherCountryPG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txtlabelhigherCountryPG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="list-group-item" id="higherschoolName" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherschoolName">
-                            <div class="form-row">
-                                <label id="labelhigherschoolName" runat="server" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherschoolName" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherschoolName" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item" id="higherQualificationtype" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
-                            <div class="form-row">
-                                <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherQualificationtype" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherQualificationtype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                        <div class="list-group-item" id="higherstartDatePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
+                                <div class="form-row">
+                                    <label id="labelhigherstartDatePG" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherstartDatePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherstartDatePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstartDatePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="list-group-item" id="higherstudymode" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherstudymode">
-                            <div class="form-row">
-                                <label id="labelhigherstudymode" runat="server" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherstudymode" runat="server"></asp:Label>
+                        <div class="list-group-item" id="higherendDatePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherendDate">
+                                <div class="form-row">
+                                    <label id="labelhigherendDatePG" runat="server" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherendDatePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherendDatePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherendDatePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherschoolNamePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherschoolName">
+                                <div class="form-row">
+                                    <label id="labelhigherschoolNamePG" runat="server" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherschoolNamePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherschoolNamePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherschoolNamePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherQualificationtypePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
+                                <div class="form-row">
+                                    <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherQualificationtypePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherQualificationtypePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherQualificationtypePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherstudymodePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherstudymode">
+                                <div class="form-row">
+                                    <label id="labelhigherstudymodePG" runat="server" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherstudymodePG" runat="server"></asp:Label>
 
-                                    <span class="helpicon"><i id="ichigherstudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                        <span class="helpicon"><i id="ichigherstudymodePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstudymodePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherstudymode" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherlanguagePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherlanguage">
+                                <div class="form-row">
+                                    <label id="labelhigherlanguagePG" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherlanguagePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherlanguagePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherlanguagePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradetypePG" runat="server">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
+                                <div class="form-row">
+                                    <label id="labelhighergradetypePG" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradetypePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradetypePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradetypePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradeachievedPG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradeachieved">
+                                <div class="form-row">
+                                    <label id="labelhighergradeachievedPG" runat="server" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradeachievedPG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradeachievedPG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradeachievedPG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="ExpectedHigherDategradePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHigherDategrade">
+                                <div class="form-row">
+                                    <label id="labelExpectedHigherDategradePG" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblExpectedHigherDategradePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="icExpectedHigherDategradePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txtExpectedHigherDategradePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherverifyPG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
+                                <div class="form-row">
+                                    <label id="labelhigherverifyPG" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherverifyPG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherverifyPG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherverifyPG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherrelationPG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherrelation">
+                                <div class="form-row">
+                                    <label id="labelhigherrelationPG" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherrelationPG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherrelationPG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherrelationPG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactEmailPG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactEmail">
+                                <div class="form-row">
+                                    <label id="labelhighercontactEmailPG" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactEmailPG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactEmailPG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactEmailPG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactMobilePG" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactMobile">
+                                <div class="form-row">
+                                    <label id="labelhighercontactMobilePG" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactMobilePG" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactMobilePG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactMobilePG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="higherlanguage" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherlanguage">
-                            <div class="form-row">
-                                <label id="labelhigherlanguage" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherlanguage" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherlanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                    <div id="Phd" runat="server" visible="false">
+                        <div class="list-group-item" id="highercoursePhd">
+
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
+                                <div class="form-row">
+                                    <label id="labelhighercoursePhd" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercoursePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercoursePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercoursePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+
                                 </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherlanguage" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherCountryPhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherCountry">
+                                <div class="form-row">
+                                    <label id="labelhigherCountryPhd" runat="server" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherCountryPhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="iclabelhigherCountryPhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txtlabelhigherCountryPhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherstartDatePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
+                                <div class="form-row">
+                                    <label id="labelhigherstartDatePhd" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherstartDatePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherstartDatePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstartDatePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherendDatePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherendDate">
+                                <div class="form-row">
+                                    <label id="labelhigherendDatePhd" runat="server" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherendDatePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherendDatePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherendDatePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherschoolNamePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherschoolName">
+                                <div class="form-row">
+                                    <label id="labelhigherschoolNamePhd" runat="server" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherschoolNamePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherschoolNamePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherschoolNamePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherQualificationtypePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
+                                <div class="form-row">
+                                    <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherQualificationtypePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherQualificationtypePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherQualificationtypePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherstudymodePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherstudymode">
+                                <div class="form-row">
+                                    <label id="labelhigherstudymodePhd" runat="server" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherstudymodePhd" runat="server"></asp:Label>
+
+                                        <span class="helpicon"><i id="ichigherstudymodePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstudymodePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherlanguagePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherlanguage">
+                                <div class="form-row">
+                                    <label id="labelhigherlanguagePhd" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherlanguagePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherlanguagePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherlanguagePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradetypePhd" runat="server">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
+                                <div class="form-row">
+                                    <label id="labelhighergradetypePhd" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradetypePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradetypePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradetypePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradeachievedPhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradeachieved">
+                                <div class="form-row">
+                                    <label id="labelhighergradeachievedPhd" runat="server" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradeachievedPhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradeachievedPhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradeachievedPhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="ExpectedHigherDategradePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHigherDategrade">
+                                <div class="form-row">
+                                    <label id="labelExpectedHigherDategradePhd" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblExpectedHigherDategradePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="icExpectedHigherDategradePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txtExpectedHigherDategradePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherverifyPhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
+                                <div class="form-row">
+                                    <label id="labelhigherverifyPhd" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherverifyPhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherverifyPhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherverifyPhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherrelationPhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherrelation">
+                                <div class="form-row">
+                                    <label id="labelhigherrelationPhd" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherrelationPhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherrelationPhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherrelationPhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactEmailPhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactEmail">
+                                <div class="form-row">
+                                    <label id="labelhighercontactEmailPhd" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactEmailPhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactEmailPhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactEmailPhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactMobilePhd" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactMobile">
+                                <div class="form-row">
+                                    <label id="labelhighercontactMobilePhd" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactMobilePhd" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactMobilePhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactMobilePhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="highergradetype" runat="server">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
-                            <div class="form-row">
-                                <label id="labelhighergradetype" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhighergradetype" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichighergradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                    <div id="OtherHigherCourse" runat="server" visible="false">
+                        <div class="list-group-item" id="highercourseOther">
+
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
+                                <div class="form-row">
+                                    <label id="labelhighercourseOther" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercourseOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercourseOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercourseOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+
                                 </div>
-                                <div class="col-md-4">
-                                    <input id="txthighergradetype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherCountryOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherCountry">
+                                <div class="form-row">
+                                    <label id="labelhigherCountryOther" runat="server" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherCountryOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="iclabelhigherCountryOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txtlabelhigherCountryOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherstartDateOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
+                                <div class="form-row">
+                                    <label id="labelhigherstartDateOther" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherstartDateOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherstartDateOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstartDateOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherendDateOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherendDate">
+                                <div class="form-row">
+                                    <label id="labelhigherendDateOther" runat="server" for="higherendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherendDateOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherendDateOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherendDateOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherschoolNameOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherschoolName">
+                                <div class="form-row">
+                                    <label id="labelhigherschoolNameOther" runat="server" for="higherschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherschoolNameOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherschoolNameOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherschoolNameOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherQualificationtypeOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
+                                <div class="form-row">
+                                    <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherQualificationtypeOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherQualificationtypeOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherQualificationtypeOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherstudymodeOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherstudymode">
+                                <div class="form-row">
+                                    <label id="labelhigherstudymodeOther" runat="server" for="higherstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherstudymodeOther" runat="server"></asp:Label>
+
+                                        <span class="helpicon"><i id="ichigherstudymodeOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherstudymodeOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherlanguageOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherlanguage">
+                                <div class="form-row">
+                                    <label id="labelhigherlanguageOther" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherlanguageOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherlanguageOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherlanguageOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradetypeOther" runat="server">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
+                                <div class="form-row">
+                                    <label id="labelhighergradetypeOther" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradetypeOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradetypeOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradetypeOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highergradeachievedOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highergradeachieved">
+                                <div class="form-row">
+                                    <label id="labelhighergradeachievedOther" runat="server" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighergradeachievedOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighergradeachievedOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighergradeachievedOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="ExpectedHigherDategradeOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHigherDategrade">
+                                <div class="form-row">
+                                    <label id="labelExpectedHigherDategradeOther" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblExpectedHigherDategradeOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="icExpectedHigherDategradeOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txtExpectedHigherDategradeOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherverifyOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
+                                <div class="form-row">
+                                    <label id="labelhigherverifyOther" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherverifyOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherverifyOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherverifyOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="higherrelationOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-higherrelation">
+                                <div class="form-row">
+                                    <label id="labelhigherrelationOther" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhigherrelationOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichigherrelationOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthigherrelationOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactEmailOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactEmail">
+                                <div class="form-row">
+                                    <label id="labelhighercontactEmailOther" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactEmailOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactEmailOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactEmailOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group-item" id="highercontactMobileOther" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercontactMobile">
+                                <div class="form-row">
+                                    <label id="labelhighercontactMobileOther" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
+                                    <div class="col-md-4">
+                                        <asp:Label ID="lblhighercontactMobileOther" runat="server"></asp:Label>
+                                        <span class="helpicon"><i id="ichighercontactMobileOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input id="txthighercontactMobileOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="highergradeachieved" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-highergradeachieved">
-                            <div class="form-row">
-                                <label id="labelhighergradeachieved" runat="server" for="highergradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhighergradeachieved" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichighergradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthighergradeachieved" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item" id="ExpectedHigherDategrade" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHigherDategrade">
-                            <div class="form-row">
-                                <label id="labelExpectedHigherDategrade" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblExpectedHigherDategrade" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icExpectedHigherDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item" id="higherverify" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
-                            <div class="form-row">
-                                <label id="labelhigherverify" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherverify" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherverify" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item" id="higherrelation" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-higherrelation">
-                            <div class="form-row">
-                                <label id="labelhigherrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhigherschoolrelation" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichigherrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthigherrelation" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item" id="highercontactEmail" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-highercontactEmail">
-                            <div class="form-row">
-                                <label id="labelhighercontactEmail" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhighercontactEmail" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichighercontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthighercontactEmail" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-group-item" id="highercontactMobile" runat="server" style="display: none">
-                        <div class="form-group m-0" role="group" aria-labelledby="label-highercontactMobile">
-                            <div class="form-row">
-                                <label id="labelhighercontactMobile" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblhighercontactMobile" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="ichighercontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                </div>
-                                <div class="col-md-4">
-                                    <input id="txthighercontactMobile" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <%} %>
                     <div class="list-group-item" id="highergrade" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 

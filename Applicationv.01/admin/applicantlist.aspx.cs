@@ -89,7 +89,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
             {
                 Response.Redirect(webURL + "admin/applicantfunding.aspx?userid=" + ID + "&formid=" + form.formid, true);
             }
-
+            if (Comamandname.Equals("Reference"))
+            {
+                Response.Redirect(webURL + "admin/applicantreferncecheck.aspx?userid=" + ID + "&formid=" + form.formid, true);
+            }
             //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
         }
