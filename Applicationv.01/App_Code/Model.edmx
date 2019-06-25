@@ -823,7 +823,7 @@
           <Key>
             <PropertyRef Name="preliminaryapplicantanswersid" />
           </Key>
-          <Property Name="preliminaryapplicantanswersid" Type="bigint" Nullable="false" />
+          <Property Name="preliminaryapplicantanswersid" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
           <Property Name="preliminaryid" Type="int" />
           <Property Name="answer" Type="varchar" MaxLength="45" />
@@ -1912,7 +1912,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="maritalstatusmaster" EntityType="GTEModel.maritalstatusmaster" />
           <EntitySet Name="master_name" EntityType="GTEModel.master_name" />
           <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
-          <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
           <EntitySet Name="primaryfieldmaster" EntityType="GTEModel.primaryfieldmaster" />
           <EntitySet Name="profilemaster" EntityType="GTEModel.profilemaster" />
           <EntitySet Name="qualificationcountriesmapping" EntityType="GTEModel.qualificationcountriesmapping" />
@@ -2096,6 +2095,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="tutorialmaster" EntityType="GTEModel.tutorialmaster" />
           <EntitySet Name="applicantprogressbar" EntityType="GTEModel.applicantprogressbar" />
+          <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -2683,16 +2683,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="status" Type="Int32" />
           <Property Name="correctanswer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="universityid" Type="Int32" />
-        </EntityType>
-        <EntityType Name="preliminaryapplicantanswers">
-          <Key>
-            <PropertyRef Name="preliminaryapplicantanswersid" />
-          </Key>
-          <Property Name="preliminaryapplicantanswersid" Type="Int64" Nullable="false" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="preliminaryid" Type="Int32" />
-          <Property Name="answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="answersubmittedtime" Type="DateTime" />
         </EntityType>
         <EntityType Name="primaryfieldmaster">
           <Key>
@@ -3747,6 +3737,16 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="documents" Type="Int32" />
           <Property Name="declarationdone" Type="Boolean" />
         </EntityType>
+        <EntityType Name="preliminaryapplicantanswers">
+          <Key>
+            <PropertyRef Name="preliminaryapplicantanswersid" />
+          </Key>
+          <Property Name="preliminaryapplicantanswersid" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="preliminaryid" Type="Int32" />
+          <Property Name="answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="answersubmittedtime" Type="DateTime" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4366,17 +4366,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="answer1" ColumnName="answer1" />
                 <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="preliminaryapplicantanswers">
-            <EntityTypeMapping TypeName="GTEModel.preliminaryapplicantanswers">
-              <MappingFragment StoreEntitySet="preliminaryapplicantanswers">
-                <ScalarProperty Name="answersubmittedtime" ColumnName="answersubmittedtime" />
-                <ScalarProperty Name="answer" ColumnName="answer" />
-                <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="preliminaryapplicantanswersid" ColumnName="preliminaryapplicantanswersid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -5010,6 +4999,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="preliminaryapplicantanswers">
+            <EntityTypeMapping TypeName="GTEModel.preliminaryapplicantanswers">
+              <MappingFragment StoreEntitySet="preliminaryapplicantanswers">
+                <ScalarProperty Name="answersubmittedtime" ColumnName="answersubmittedtime" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="preliminaryapplicantanswersid" ColumnName="preliminaryapplicantanswersid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

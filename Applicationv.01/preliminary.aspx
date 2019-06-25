@@ -73,7 +73,7 @@
                     </asp:DataList>
                     <div class="card-footer" id="button" runat="server">
 
-                        <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" />
+                        <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
 
                         <%-- <a href="#" class="btn btn-white">Skip</a>
                         <a href="#" class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a>--%>
@@ -140,6 +140,24 @@
 
         </div>
     </div>
+    <script>
+        function validateForm() {
+            var questionCount = <%=preliminary.QuestionsCount%>;
+            for (var i = 0; i < questionCount; i++) {
+                var rdoans1 = $("#ContentPlaceHolder1_questionList_rdoans1_" + i);
+                var rdoans2 = $("#ContentPlaceHolder1_questionList_rdoans2_" + i);
+                var rdoans3 = $("#ContentPlaceHolder1_questionList_rdoans3_" + i);
+                var rdoans4 = $("#ContentPlaceHolder1_questionList_rdoans4_" + i);
+
+                if (!(rdoans1.is(':checked') || rdoans2.is(':checked') || rdoans3.is(':checked') || rdoans4.is(':checked'))) {
+                    alert("Please select one option for question no: " + (i + 1));
+                    return false;
+                }
+            }
+            return true;
+
+        }
+    </script>
 
 </asp:Content>
 
