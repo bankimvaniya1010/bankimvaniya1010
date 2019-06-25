@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="applicantworkexperince.aspx.cs" Inherits="admin_applicantworkexperince" MasterPageFile="~/admin/admin.master" %>
 
-<asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
+<asp:Content runat="server" ID="content1" ContentPlaceHolderID="head">
     <title></title>
     <script>
         $(document).ready(function () {
@@ -22,221 +22,219 @@
         <h1 class="h2">Applicant Work Experince</h1>
 
         <div class="card">
-            <div id="employment" runat="server" >
-                <div class="list-group-item" id="employmentInfo" runat="server" style="display: none">
+            <% 
+                for (int k = 0; k < EmployersDetail.Count; k++)
+                {
+
+            %>
+            <div id="employment">
+                <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employment">
                         <div class="form-row">
-                            <label id="labelemployment" runat="server" for="employment" class="col-md-3 col-form-label form-label">Do you wish to record any work experience that may be relevant to the course you are applying for?</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblemploymentInfo" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icemploymentInfo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                            </div>
-                            <div class="col-md-4">
-                                <input id="txtemploymentInfo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
-                            </div>
+                            <label id="labelemployment" for="employment" class="col-md-3 col-form-label form-label">Employment History:<%=k+1 %></label>
+
                         </div>
                     </div>
                 </div>
 
-                <div id="fieldContainer" runat="server">
-                    <div class="list-group-item" id="employer" runat="server" style="display: none;">
+                <div id="fieldContainer">
+                    <div class="list-group-item" id="employer" style=<%= employer == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-employer">
                             <div class="form-row">
-                                <label id="labelemployer" runat="server" for="employer" class="col-md-3 col-form-label form-label">Name of Organization </label>
+                                <label id="labelemployer" for="employer" class="col-md-3 col-form-label form-label"><%=employer %> </label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblemployer" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icemployer" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].organization %></span>
+                                    <span class="helpicon"><i id="<%="icemployer" + k %>" class="fa fa-question-circle" data-tipso="<%=employerToolTips %>" style=<%= employerToolTips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtemployer" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtemployer" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="employerwebsite" runat="server" style="display: none">
+                    <div class="list-group-item" id="employerwebsite" style=<%= employerwebsite == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                             <div class="form-row">
-                                <label id="labelemployerwebsite" runat="server" for="employerwebsite" class="col-md-3 col-form-label form-label">Website of the Organization</label>
+                                <label id="labelemployerwebsite" for="employerwebsite" class="col-md-3 col-form-label form-label"><%=employerwebsite %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblemployerwebsite" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icemployerwebsite" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].website %></span>
+                                    <span class="helpicon"><i id="<%="icemployerwebsite" + k %>" class="fa fa-question-circle" data-tipso="<%=employerwebsiteToolTips %>" style=<%= employerwebsiteToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtemployerwebsite" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtemployerwebsite" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="employercity" runat="server" style="display: none">
+                    <div class="list-group-item" id="employercity" style=<%= employercity == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-employercity">
                             <div class="form-row">
-                                <label id="labelemployercity" runat="server" for="employercity" class="col-md-3 col-form-label form-label">City</label>
+                                <label id="labelemployercity" for="employercity" class="col-md-3 col-form-label form-label"><%=employercity %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblemployercity" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icemployercity" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].city %></span>
+                                    <span class="helpicon"><i id="<%="icemployercity" + k %>" class="fa fa-question-circle" data-tipso="<%=employercityToolTips %>" style=<%= employercityToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtemployercity" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtemployercity" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="employercountry" runat="server" style="display: none">
+                    <div class="list-group-item" id="employercountry" style=<%= employercountry == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-employercountry">
                             <div class="form-row">
-                                <label id="labelemployercountry" runat="server" for="employercountry" class="col-md-3 col-form-label form-label">Country</label>
+                                <label id="labelemployercountry" for="employercountry" class="col-md-3 col-form-label form-label"><%=employercountry %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblemployercountry" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icemployercountry" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].country==null?"":objCom.GetCountryDiscription(Convert.ToInt32(EmployersDetail[k].country)) %></span>
+                                    <span class="helpicon"><i id="<%="icemployercountry" + k %>" class="fa fa-question-circle" data-tipso="<%=employercountryToolTips %>" style=<%= employercountryToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtemployercountry" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtemployercountry" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="position" runat="server" style="display: none">
+                    <div class="list-group-item" id="position" style=<%= position == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-position">
                             <div class="form-row">
-                                <label id="labelposition" runat="server" for="position" class="col-md-3 col-form-label form-label">Position/Role in</label>
+                                <label id="labelposition" for="position" class="col-md-3 col-form-label form-label"><%=position %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblposition" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icposition" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].designation %></span>
+                                    <span class="helpicon"><i id="<%="icposition" + k %>" class="fa fa-question-circle" data-tipso="<%=positionToolTips %>" style=<%= positionToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtposition" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtposition" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="list-group-item" id="startdate" runat="server" style="display: none">
+                    <div class="list-group-item" id="startdate" style=<%= startdate == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-startdate">
                             <div class="form-row">
-                                <label id="labelstartdate" runat="server" for="startdate" class="col-md-3 col-form-label form-label">Start Date</label>
+                                <label id="labelstartdate" for="startdate" class="col-md-3 col-form-label form-label"><%=startdate %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblstartdate" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icstartdate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=Convert.ToDateTime(EmployersDetail[k].durationfrom).ToString("yyyy-MM-dd") %></span>
+                                    <span class="helpicon"><i id="<%="icstartdate" + k %>" class="fa fa-question-circle" data-tipso="<%=startdateToolTips %>" style=<%= startdateToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtstartdate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtstartdate" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="endate" runat="server" style="display: none">
+                    <div class="list-group-item" id="endate" style=<%= enddate == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-endate">
                             <div class="form-row">
-                                <label id="labelendate" runat="server" for="endate" class="col-md-3 col-form-label form-label">End Date</label>
+                                <label id="labelendate" for="endate" class="col-md-3 col-form-label form-label"><%=enddate %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblendate" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icenddate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=Convert.ToDateTime(EmployersDetail[k].durationto).ToString("yyyy-MM-dd") %></span>
+                                    <span class="helpicon"><i id="<%="icenddate" + k %>" class="fa fa-question-circle" data-tipso="<%=enddateToolTips %>" style=<%= enddateToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtendate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtendate" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="briefDescription" runat="server" style="display: none">
+                    <div class="list-group-item" id="briefDescription" style=<%= BriefDescription == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-briefDescription">
                             <div class="form-row">
-                                <label id="labelbriefDescription" runat="server" for="briefDescription" class="col-md-3 col-form-label form-label">Brief Description of what you did</label>
+                                <label id="labelbriefDescription" for="briefDescription" class="col-md-3 col-form-label form-label"><%=BriefDescription %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblbriefDescription" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icbriefDescription" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].briefdescription %></span>
+                                    <span class="helpicon"><i id="<%="icbriefDescription" + k %>" class="fa fa-question-circle" data-tipso="<%=BriefDescriptionToolTips %>" style=<%= BriefDescriptionToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtbriefDescription" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtbriefDescription" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="reportingmanger" runat="server" style="display: none">
+                    <div class="list-group-item" id="reportingmanger" style=<%= reportingmanger == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-reportingmanger">
                             <div class="form-row">
-                                <label id="labelreportingmanger" runat="server" for="reportingmanger" class="col-md-3 col-form-label form-label">Name of your reporting Manager</label>
+                                <label id="labelreportingmanger" for="reportingmanger" class="col-md-3 col-form-label form-label"><%=reportingmanger %></label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblreportingmanger" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icreportingmanger" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].nameofreportingmanger %></span>
+                                    <span class="helpicon"><i id="<%="icreportingmanger" + k %>" class="fa fa-question-circle" data-tipso="<%=reportingmangerToolTips %>" style=<%= reportingmangerToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtreportingmanger" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtreportingmanger" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="employmentverification" runat="server" style="display: none">
+                    <div class="list-group-item" id="employmentverification" style=<%= employmentverification == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-employmentverification">
                             <div class="form-row">
-                                <label id="labelemploymentverification" runat="server" for="employmentverification" class="col-md-3 col-form-label form-label">Name of Contact who can verify your employment </label>
+                                <label id="labelemploymentverification" for="employmentverification" class="col-md-3 col-form-label form-label"><%=employmentverification %> </label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblemploymentverification" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icemploymentverification" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].contactpersonwithdetails %></span>
+                                    <span class="helpicon"><i id="<%="icemploymentverification" + k %>" class="fa fa-question-circle" data-tipso="<%=employmentverificationToolTips %>" style=<%= employmentverificationToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtemploymentverification" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtemploymentverification" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="relationship" runat="server" style="display: none">
+                    <div class="list-group-item" id="relationship" style=<%= relationship == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-relationship">
                             <div class="form-row">
-                                <label id="labelrelationship" runat="server" for="relationship" class="col-md-3 col-form-label form-label">Relationship with the Contact  </label>
+                                <label id="labelrelationship" for="relationship" class="col-md-3 col-form-label form-label"><%=relationship %>   </label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblrelationship" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icrelationship" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].relationshipwithcontact==null?"":objCom.GetRealtionship(Convert.ToInt32(EmployersDetail[k].relationshipwithcontact))%></span>
+                                    <span class="helpicon"><i id="<%="icrelationship" + k %>" class="fa fa-question-circle" data-tipso="<%=relationshipToolTips %>" style=<%= relationshipToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtrelationship" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtrelationship" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="email" runat="server" style="display: none">
+                    <div class="list-group-item" id="email" style=<%= email == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-email">
                             <div class="form-row">
-                                <label id="labelemail" runat="server" for="email" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
+                                <label id="labelemail" for="email" class="col-md-3 col-form-label form-label"><%=email %>  </label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lblemail" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icemail" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].emailid %></span>
+                                    <span class="helpicon"><i id="<%="icemail" + k %>" class="fa fa-question-circle" data-tipso="<%=emailToolTips %>" style=<%= emailToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtemail" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtemail" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="list-group-item" id="linkedin" runat="server" style="display: none">
+                    <div class="list-group-item" id="linkedin" style=<%= linkedin == "" ? "display:none;": "display:block;"  %>>
                         <div class="form-group m-0" role="group" aria-labelledby="label-linkedin">
                             <div class="form-row">
-                                <label id="labellinkedin" runat="server" for="linkedin" class="col-md-3 col-form-label form-label">LinkedIn Profile Link of the contact  </label>
+                                <label id="labellinkedin" for="linkedin" class="col-md-3 col-form-label form-label"><%=linkedin %>  </label>
                                 <div class="col-md-4">
-                                    <asp:Label ID="lbllinkedin" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="iclinkedin" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                    <span><%=EmployersDetail[k].linkedinidofcontact %></span>
+                                    <span class="helpicon"><i id="<%="iclinkedin" + k %>" class="fa fa-question-circle" data-tipso="<%=linkedinToolTips %>" style=<%= linkedinToolTips == "" ? "display:none;": "display:block;"  %>></i></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <input id="txtlinkedin" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    <input id="<%="txtlinkedin" + k %>" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <%} %>
                 <div id="mainDiv" runat="server"></div>
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
                             <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" />
-                            <div class="col-md-4">
-                                <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
-                                <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
 
