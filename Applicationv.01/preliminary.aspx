@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Preliminary Step</li>
         </ol>
-        <h1 class="h2">Preliminary Step </h1>
+        <h1 class="h2">Test Your Knowledge (Step 2/3)</h1>
 
     </div>
     <div class="page ">
@@ -119,6 +119,18 @@
                     </div>
                 </div>
 
+                <div class="card">
+                    <div class="card-body">
+                        <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
+                        <label id="lblInstruct1" runat="server" style="font-size:small;">1. Completing this section is mandatory.</label><br />
+                        <label id="lblInstruct2" runat="server" style="font-size:small;">2. Read the attached documents and watch the videos carefully.</label><br />
+                        <label id="lblInstruct3" runat="server" style="font-size:small;">3. Please accept the declaration that you have successfully reviewed and understood the information.</label><br />
+                        <label id="lblInstruct4" runat="server" style="font-size:small;">4. Take a quick test to check your knowledge.</label><br />
+                        <label id="lblInstruct5" runat="server" style="font-size:small;">5. To go to the next section you need to successfully answer the test question and achieve >65% grade.</label><br />
+                        <label id="lblInstruct6" runat="server" style="font-size:small;">6. Else you would required to take the test again post going through the tutorial again.</label><br />
+                        <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
+                    </div>
+                </div>
             </div>
         </div>
 

@@ -25,7 +25,6 @@
         <EntityTypeShape EntityType="GTEModel.applicantformmaster" Width="1.5" PointX="18.75" PointY="8.25" />
         <EntityTypeShape EntityType="GTEModel.applicantfundingmaster" Width="1.5" PointX="18.75" PointY="12.25" />
         <EntityTypeShape EntityType="GTEModel.applicantlanguagecompetency" Width="1.5" PointX="20.75" PointY="2.25" />
-        <EntityTypeShape EntityType="GTEModel.applicantprogressbar" Width="1.5" PointX="20.75" PointY="10.25" />
         <EntityTypeShape EntityType="GTEModel.applicantreferencecheck" Width="1.5" PointX="20.75" PointY="13.25" />
         <EntityTypeShape EntityType="GTEModel.applicantscores" Width="1.5" PointX="20.75" PointY="17.25" />
         <EntityTypeShape EntityType="GTEModel.applicantsubjectwisegrade" Width="1.5" PointX="16.75" PointY="22.25" />
@@ -140,6 +139,7 @@
         <EntityTypeShape EntityType="GTEModel.clarificationquestionsmaster" Width="1.5" PointX="17.375" PointY="0.875" />
         <AssociationConnector Association="GTEModel.FK_clarificationmaster_clarificationquestion_mapping" />
         <EntityTypeShape EntityType="GTEModel.tutorialmaster" Width="1.5" PointX="17.375" PointY="16.75" />
+        <EntityTypeShape EntityType="GTEModel.applicantprogressbar" Width="1.5" PointX="29.375" PointY="13.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
