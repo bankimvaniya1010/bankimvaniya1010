@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                     
                      <div class="form-group row" id="upload">
                         <label for="name" class="col-sm-3 col-form-label form-label">Upload File</label>
@@ -59,10 +59,12 @@
                                 <div class="col-md-6">
                                      <asp:Label ID="lblupload" runat="server" />
                                     <asp:FileUpload ID="FileUpload" runat="server" /> 
+                                    <input type="hidden" id="hidDocumentPath" runat="server" />
+                                    <asp:HyperLink runat="server" ID="uploadedFile" Target="_blank"></asp:HyperLink>
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div> 
                 
                           
                     <div class="form-group row" id="description" runat="server">
@@ -78,8 +80,11 @@
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
-                                <div class="media-left">
+                                <div class="media-left">                                  
                                     <asp:Button ID="btn_submit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btn_submit_Click"  OnClientClick="return validateForm()" />                                    
+                                   <div class="col-md-20">
+                                         <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
+                                   </div>                                  
                                 </div>
                             </div>
                         </div>
@@ -87,18 +92,20 @@
                 </div>
            </div>
         </div>
-    </div>
   
    <script>
        function validateUploadedFile() {
            var filePath = $("#<%=FileUpload.ClientID%>").val();
+           if (filePath == "") {
+               filePath = $("#<%=hidDocumentPath.ClientID%>").val();;
+           }
            if (filePath == "") {
                alert("Please upload a file");
                return false;
            }
            var docType = $("#<%=ddlType.ClientID%>").val();
            var fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toString().toLowerCase();
-           if (docType == "ppt" && !(fileExtension == "ppt" || fileExtension == "pptx")) {
+           if (docType == "ppt" && fileExtension != "ppt" && fileExtension != "pptx") {
                alert("Invalid File");
                return false;
            }
@@ -131,7 +138,7 @@
              $("#Videourl").show();
          else
                $("#Videourl").hide();  
-           if ($("#<%=ddlType.ClientID%>").val() == "ppt" || $("#<%=ddlType.ClientID%>").val() == "pdf")              
+         if ($("#<%=ddlType.ClientID%>").val() == "ppt" || $("#<%=ddlType.ClientID%>").val() == "pdf")              
              $("#upload").show();
          else
              $("#upload").hide();  

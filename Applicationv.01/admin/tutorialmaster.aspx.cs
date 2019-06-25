@@ -12,15 +12,33 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int universityID;
+    int universityID ;
+    int tutorialId;
+
+    tutorialmaster objtutorialmaster = new tutorialmaster();
     protected void Page_Load(object sender, EventArgs e)
     {
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["Role"] == null || (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
+
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+
+        if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
+        {
+            tutorialId = -1;
+            if (int.TryParse(Request.QueryString["id"], out tutorialId))
+            {
+                objtutorialmaster = db.tutorialmaster.Where(obj => obj.id == tutorialId).FirstOrDefault();
+                if (objtutorialmaster == null)
+                    tutorialId = -1;
+            }
+        }
+
         if (!IsPostBack)
         {
-            BindUniversity();           
+            BindUniversity();
+            if (objtutorialmaster != null)
+                PopulatetutorialInfo();
         }
     }
 
@@ -42,33 +60,91 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
         }
     }
 
-    protected void btn_submit_Click(object sender, EventArgs e)
+    private void PopulatetutorialInfo()
+    {
+        try {
+            var tutorailData = (from tInfo in db.tutorialmaster
+                                where tInfo.id == tutorialId
+                                select tInfo).FirstOrDefault();
+            if (tutorailData != null)
+            {
+                if (tutorailData.universityid != null)
+                {
+                    ddlUniversity.ClearSelection();
+                    ddlUniversity.Items.FindByValue(tutorailData.universityid.ToString()).Selected = true;
+                }
+                txtDescription.Value = tutorailData.description;
+                if (tutorailData.type == "video")
+                {
+                    txtVideourl.Value = tutorailData.videourl;
+                }
+                else if (tutorailData.type == "pdf" || tutorailData.type == "ppt")
+                {
+
+                    hidDocumentPath.Value = tutorailData.documentpath;
+                    uploadedFile.NavigateUrl = Server.MapPath("~") + "/Docs/" + tutorailData.documentpath;
+                    uploadedFile.Text = "View File";
+                }
+                if (tutorailData.type != null)
+                {
+                    ddlType.ClearSelection();
+                    ddlType.Items.FindByValue(tutorailData.type.ToString()).Selected = true;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.StackTrace.ToString());
+        }
+    }
+
+        protected void btn_submit_Click(object sender, EventArgs e)
     {
         try
         {
-            var tutorailData = (from tInfo in db.tutorialmaster
-                                where tInfo.universityid == universityID
-                                select tInfo).FirstOrDefault();
-            tutorialmaster objtutorialmaster = new tutorialmaster();
-            objtutorialmaster.videourl = txtVideourl.Value;
+            var mode = "new";
+            if (tutorialId != -1)
+            {
+                var tutorailData = (from tInfo in db.tutorialmaster
+                                    where tInfo.universityid == universityID && tInfo.id == tutorialId
+                                    select tInfo).FirstOrDefault();
+
+                if (tutorailData != null)
+                {
+                    mode = "update";
+                    objtutorialmaster = tutorailData;
+                }
+            }
+            
             objtutorialmaster.type = ddlType.SelectedValue;
             objtutorialmaster.description = txtDescription.Value;           
             objtutorialmaster.status = 1;
-            if (FileUpload.HasFile)
+            if (!ddlType.SelectedValue.ToString().Equals("video", StringComparison.OrdinalIgnoreCase) && (FileUpload.HasFile || !string.IsNullOrEmpty(hidDocumentPath.Value)))
             {
-                string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
-                string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(FileUpload.PostedFile.FileName));
-                string filePath = string.Concat(dirPath, "/", fileName);
-                DirectoryInfo di = new DirectoryInfo(dirPath);
-                if (!di.Exists)
-                    di.Create();
-                FileUpload.PostedFile.SaveAs(filePath);
-                objtutorialmaster.documentpath = fileName;
+                if (FileUpload.HasFile)
+                {
+                    string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                    string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(FileUpload.PostedFile.FileName));
+                    string filePath = string.Concat(dirPath, "/", fileName);
+                    DirectoryInfo di = new DirectoryInfo(dirPath);
+                    if (!di.Exists)
+                        di.Create();
+                    FileUpload.PostedFile.SaveAs(filePath);
+                    objtutorialmaster.documentpath = fileName;
+                    objtutorialmaster.videourl = "";
+                }
             }
-            objtutorialmaster.universityid = universityID;
-            db.tutorialmaster.Add(objtutorialmaster);
+            else
+            {
+                objtutorialmaster.videourl = txtVideourl.Value;
+                objtutorialmaster.documentpath = "";
+            }
+            objtutorialmaster.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            if (mode == "new")
+                db.tutorialmaster.Add(objtutorialmaster);
             db.SaveChanges();
-            
+            lblMessage.Text = "Saved Successfully";
+            lblMessage.Visible = true;
         }
         catch (Exception ex)
         {

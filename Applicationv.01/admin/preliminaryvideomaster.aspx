@@ -18,8 +18,9 @@
         </ol>
         <h1 class="h2">Preliminary Video Master</h1>
           <div class="media align-items-center">  
-            <div class="media-left">
-                <a class="dropdown-item" href="tutorialmaster.aspx">Add New</a>                          
+            <div class="form-row">
+                <a href="tutorialmaster.aspx" class="btn btn-success">Add New</a>
+                                      
             </div>
         </div>
         <div class="card">
@@ -27,59 +28,44 @@
 
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False" ShowFooter="true" Width="400px"
+                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False" Width="800px"
                         DataKeyNames="id"
                         AllowPaging="True"
                         CellPadding="2"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowCommand="QuestiontGridView_RowCommand" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnDataBound="QuestiontGridView_DataBound" OnRowDeleting="QuestiontGridView_RowDeleting" OnRowDataBound="QuestiontGridView_RowDataBound">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnDataBound="QuestiontGridView_DataBound" OnRowDeleting="QuestiontGridView_RowDeleting" >
 
                         <Columns>
 
                             <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
-
-                            <asp:TemplateField HeaderText="Video URL" SortExpression="Description">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtVideoURL" TextMode="MultiLine" runat="server" Text='<%# Bind("videourl") %>'></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredVideoEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Video Cannot Be Empty' ControlToValidate='txtVideoURL' />
-                                </EditItemTemplate>                               
-                                <ItemTemplate>
-                                    <asp:Label ID="lblVideo" runat="server" Text='<%# Bind("videourl") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Description" SortExpression="answer1">
-                                <EditItemTemplate>
-                                    <asp:TextBox ID="txtDescription" TextMode="MultiLine" runat="server" Text='<%# Bind("description") %>'></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredDescriptionEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Description Cannot Be Empty' ControlToValidate='txtDescription' />
-                                </EditItemTemplate>                               
+                           
+                            <asp:TemplateField HeaderText="Description" SortExpression="answer1">                                                            
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("description") %>'></asp:Label>
                                 </ItemTemplate>
+                            </asp:TemplateField>                            
+                            <asp:TemplateField HeaderText="type" SortExpression="type">                                                            
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltype" runat="server" Text='<%# Bind("type") %>'></asp:Label>
+                                </ItemTemplate>
                             </asp:TemplateField>
-                             <asp:TemplateField HeaderText="University" SortExpression="universityid">
-                                <EditItemTemplate>
-                                     <asp:Label ID="lblUniversityEdit" style="display:none" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
-                                    <asp:DropDownList ID="ddlUniversity"  runat="server" ></asp:DropDownList>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredUniversityEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please Select University ' ControlToValidate='ddlUniversity' />
-                                </EditItemTemplate>                             
+
+                             <asp:TemplateField HeaderText="University" SortExpression="universityid">                                                           
                                 <ItemTemplate>
                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Status" SortExpression="status">
-                                <EditItemTemplate>
-                                     <asp:CheckBox ID="chkValidEdit" runat="server"  />             </EditItemTemplate>
-                               
+                            <asp:TemplateField HeaderText="Status" SortExpression="status">  
                                 <ItemTemplate>
                                      <asp:CheckBox ID="chkValid" runat="server" Checked='<%# bool.Parse(Eval("status").ToString()=="1"?"True":"False") %>' />
                                 </ItemTemplate>
-                            </asp:TemplateField>
-                           
+                            </asp:TemplateField>                          
 
-                            <asp:TemplateField HeaderText="Edit" ShowHeader="False">
+
+                            <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 
 
                                 <EditItemTemplate>
 
@@ -90,9 +76,7 @@
                                 </EditItemTemplate>                              
 
                                 <ItemTemplate>
-
-                                    <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>
-
+                                    <a href="/admin/tutorialmaster.aspx?id=<%# Eval("id") %>">Edit</a>
                                 </ItemTemplate>
 
                             </asp:TemplateField>
@@ -108,10 +92,10 @@
                 </div>
 
 
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 </asp:Content>
 
 
