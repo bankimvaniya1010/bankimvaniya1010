@@ -206,22 +206,6 @@
                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                            Preliminary Screening
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu sm-indent collapse" id="preliminary">
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="preliminary.aspx">
-                                                    <span class="sidebar-menu-text">Questions</span>
-                                                </a>
-                                            </li>
-
-
-                                        </ul>
-                                    </li>
-                                    <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#personal_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                             Student Details

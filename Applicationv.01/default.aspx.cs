@@ -10,9 +10,19 @@ public partial class _Default : System.Web.UI.Page
     Logger log = new Logger();
     List<int> QuestionList = new List<int>();
     private GTEEntities db = new GTEEntities();
+    private Common objCommon = new Common();
     int UserID = 0, applicantID = 0;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string progressStatus = "";
+
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        if (GlobalVariables.isDeclarationDoneByApplicant)
+            this.MasterPageFile = "~/student.master";
+        else
+            this.MasterPageFile = "~/prescreening.master";
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
@@ -23,7 +33,7 @@ public partial class _Default : System.Web.UI.Page
         Session["Applicant"] = UserID;
         if (!IsPostBack)
         {
-            SetprogressStatus(); BindRadiobuttonlist();
+            /*SetprogressStatus();*/ BindRadiobuttonlist();
             //if (Session["SecondaryLang"] == null)
             //    Session["SecondaryLang"] = "ar";
         }
@@ -43,27 +53,27 @@ public partial class _Default : System.Web.UI.Page
         rblLanguage.DataValueField = "languagecode";
         rblLanguage.DataBind();
     }
-    private void SetprogressStatus()
-    {
-        try
-        {
-            var ap = db.applicantprogressbar.Where(b => b.applicantid == applicantID).First();
-            if (ap != null)
-            {
-                if (ap.documents == 1)
-                    document.Attributes["class"] = "progress-bar bg-success";
-                if (ap.profile == 1)
-                    profile.Attributes["class"] = "progress-bar bg-success";
-                if (ap.video == 1)
-                    Video.Attributes["class"] = "progress-bar bg-success";
-                if (ap.question == 1)
-                    question.Attributes["class"] = "progress-bar bg-success";
-            }
-        }
-        catch (Exception ex)
-        {
-            log.WriteLog(ex.ToString());
+    //private void SetprogressStatus()
+    //{
+    //    try
+    //    {
+    //        var ap = db.applicantprogressbar.Where(b => b.applicantid == applicantID).First();
+    //        if (ap != null)
+    //        {
+    //            if (ap.documents == 1)
+    //                document.Attributes["class"] = "progress-bar bg-success";
+    //            if (ap.profile == 1)
+    //                profile.Attributes["class"] = "progress-bar bg-success";
+    //            if (ap.video == 1)
+    //                Video.Attributes["class"] = "progress-bar bg-success";
+    //            if (ap.question == 1)
+    //                question.Attributes["class"] = "progress-bar bg-success";
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        log.WriteLog(ex.ToString());
 
-        }
-    }
+    //    }
+    //}
 }

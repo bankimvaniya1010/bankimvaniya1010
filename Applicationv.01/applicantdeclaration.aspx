@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="applicantdeclaration.aspx.cs" Inherits="applicantdeclaration"  MasterPageFile="~/student.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="applicantdeclaration.aspx.cs" Inherits="applicantdeclaration"  MasterPageFile="~/prescreening.master" %>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 

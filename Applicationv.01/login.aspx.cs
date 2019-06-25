@@ -43,6 +43,7 @@ public partial class login : System.Web.UI.Page
                 pnl_warning.Visible = false;                
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.studentid;
+                objCom.IsDeclarationDoneByApplicant(chkUser.studentid, 2); // university hardcoded
 
                 //switch (chkUser.role)
                 //{

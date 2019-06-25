@@ -26,7 +26,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !GlobalVariables.isDeclarationDoneByApplicant)
         {
             Response.Redirect(webURL + "default.aspx", true);
         }
