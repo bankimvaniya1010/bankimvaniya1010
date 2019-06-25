@@ -9,8 +9,8 @@ using System.Web.UI.WebControls;
 
 public partial class preliminary : System.Web.UI.Page
 {
-    List<preliminary_questionmaster> QuestionsList = new List<preliminary_questionmaster>();
-    protected List<preliminaryvideomaster> VideoList = new List<preliminaryvideomaster>();
+    public static int QuestionsCount = 0;
+    protected List<tutorialmaster> VideoList = new List<tutorialmaster>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
     Logger objLog = new Logger();
@@ -24,12 +24,12 @@ public partial class preliminary : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (!IsPostBack)
         {
-            VideoList = db.preliminaryvideomaster.Where(x => x.status == 1 && x.universityid== UniversityID).ToList();
+            VideoList = db.tutorialmaster.Where(x => x.status == 1 && x.universityid== UniversityID).ToList();
             if(VideoList.Count==0)
-                VideoList = db.preliminaryvideomaster.Where(x => x.status == 1).ToList();
+                VideoList = db.tutorialmaster.Where(x => x.status == 1).ToList();
             video.Visible = true;
             questions.Visible = false;
-            results.Visible = false;
+            //results.Visible = false;
         }
     }
    
@@ -77,6 +77,7 @@ public partial class preliminary : System.Web.UI.Page
                                      answer4 = pqm.answer4,
                                  }).ToList();
             }
+            QuestionsCount = QuestionsList.Count;
             QuestionsList = Randomize(QuestionsList);
             QuestionsList = QuestionsList.Skip(0).Take(5).ToList();
             Session["Questions"] = QuestionsList;
@@ -93,7 +94,7 @@ public partial class preliminary : System.Web.UI.Page
         video.Visible = false;
        
         questions.Visible = true;
-        results.Visible = false;
+        //results.Visible = false;
     }
 
     protected void btnsubmit_Click(object sender, EventArgs e)
@@ -133,34 +134,10 @@ public partial class preliminary : System.Web.UI.Page
                 }
 
 
-                if (SelectedValue == "")
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please give answer of question " + lblQuestion.Text + "')", true);
-                    //Response.Write("alert(Please give answer of question " + lblquestion.Text + "");
-                    break;
-                }
-                else
-                {
-                    answer.Add(questionID.Text, SelectedValue);
-
-                }
-                if (questionList.Items.Count == answer.Count)
-                {
-                    int count = Result(answer);
-                    Score = (count * 100 / 5).ToString() + "%";
-                    if (count >= 3)
-                        Results = "You response was quite postive, You can proceed for further steps";
-                    else
-                        Results = "You response was not quite impressive, Sorry We can't proceed for further steps";
-                    string messgae = Save(answer);
-
-                 
-                    video.Visible = false;
-                    questions.Visible = false;
-                    results.Visible = true;
-                    // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + messgae + "')", true);
-                }
+                answer.Add(questionID.Text, SelectedValue);
             }
+            string messgae = Save(answer);
+            Response.Redirect(webURL + "applicantdeclaration.aspx", true);
         }
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }

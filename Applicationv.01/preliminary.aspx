@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Preliminary Step</li>
         </ol>
-        <h1 class="h2">Preliminary Step </h1>
+        <h1 class="h2">Test Your Knowledge (Step 2/3)</h1>
 
     </div>
     <div class="page ">
@@ -73,7 +73,7 @@
                     </asp:DataList>
                     <div class="card-footer" id="button" runat="server">
 
-                        <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" />
+                        <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
 
                         <%-- <a href="#" class="btn btn-white">Skip</a>
                         <a href="#" class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a>--%>
@@ -119,6 +119,18 @@
                     </div>
                 </div>
 
+                <div class="card">
+                    <div class="card-body">
+                        <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
+                        <label id="lblInstruct1" runat="server" style="font-size:small;">1. Completing this section is mandatory.</label><br />
+                        <label id="lblInstruct2" runat="server" style="font-size:small;">2. Read the attached documents and watch the videos carefully.</label><br />
+                        <label id="lblInstruct3" runat="server" style="font-size:small;">3. Please accept the declaration that you have successfully reviewed and understood the information.</label><br />
+                        <label id="lblInstruct4" runat="server" style="font-size:small;">4. Take a quick test to check your knowledge.</label><br />
+                        <label id="lblInstruct5" runat="server" style="font-size:small;">5. To go to the next section you need to successfully answer the test question and achieve >65% grade.</label><br />
+                        <label id="lblInstruct6" runat="server" style="font-size:small;">6. Else you would required to take the test again post going through the tutorial again.</label><br />
+                        <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -128,6 +140,24 @@
 
         </div>
     </div>
+    <script>
+        function validateForm() {
+            var questionCount = <%=preliminary.QuestionsCount%>;
+            for (var i = 0; i < questionCount; i++) {
+                var rdoans1 = $("#ContentPlaceHolder1_questionList_rdoans1_" + i);
+                var rdoans2 = $("#ContentPlaceHolder1_questionList_rdoans2_" + i);
+                var rdoans3 = $("#ContentPlaceHolder1_questionList_rdoans3_" + i);
+                var rdoans4 = $("#ContentPlaceHolder1_questionList_rdoans4_" + i);
+
+                if (!(rdoans1.is(':checked') || rdoans2.is(':checked') || rdoans3.is(':checked') || rdoans4.is(':checked'))) {
+                    alert("Please select one option for question no: " + (i + 1));
+                    return false;
+                }
+            }
+            return true;
+
+        }
+    </script>
 
 </asp:Content>
 

@@ -43,7 +43,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantformmaster> applicantformmaster { get; set; }
     public virtual DbSet<applicantfundingmaster> applicantfundingmaster { get; set; }
     public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
-    public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
     public virtual DbSet<applicantreferencecheck> applicantreferencecheck { get; set; }
     public virtual DbSet<applicantscores> applicantscores { get; set; }
     public virtual DbSet<applicantsubjectwisegrade> applicantsubjectwisegrade { get; set; }
@@ -80,7 +79,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<maritalstatusmaster> maritalstatusmaster { get; set; }
     public virtual DbSet<master_name> master_name { get; set; }
     public virtual DbSet<preliminary_questionmaster> preliminary_questionmaster { get; set; }
-    public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
     public virtual DbSet<primaryfieldmaster> primaryfieldmaster { get; set; }
     public virtual DbSet<profilemaster> profilemaster { get; set; }
     public virtual DbSet<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
@@ -123,6 +121,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     public virtual DbSet<clarificationquestionsmaster> clarificationquestionsmaster { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
+    public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
+    public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
