@@ -55,7 +55,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return obj.primaryfiledname ;
+        return obj.primaryfiledname;
     }
     private void SetControlsUniversitywise()
     {
@@ -98,40 +98,64 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         labelhighschoolstartDate.InnerHtml = setInnerHtml(fields[k]);
                         SecondarystartDate.Attributes.Add("style", "display:block;");
                         labelSecondarystartDate.InnerHtml = setInnerHtml(fields[k]);
-                        higherstartDate.Attributes.Add("style", "display:block;");
-                        labelhigherstartDate.InnerHtml = setInnerHtml(fields[k]);
                         diplomastartDate.Attributes.Add("style", "display:block;");
                         labeldiplomastartDate.InnerHtml = setInnerHtml(fields[k]);
+                        higherstartDate.Attributes.Add("style", "display:block;");
+                        labelhigherstartDate.InnerHtml = setInnerHtml(fields[k]);
+                        higherstartDatePG.Attributes.Add("style", "display:block;");
+                        labelhigherstartDatePG.InnerHtml = setInnerHtml(fields[k]);
+                        higherstartDatePhd.Attributes.Add("style", "display:block;");
+                        labelhigherstartDatePhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherstartDateOther.Attributes.Add("style", "display:block;");
+                        labelhigherstartDateOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "END DATE":
                         highschoolendDate.Attributes.Add("style", "display:block;");
                         labelhighschoolendDate.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryendDate.Attributes.Add("style", "display:block;");
                         labelSecondaryendDate.InnerHtml = setInnerHtml(fields[k]);
-                        higherendDate.Attributes.Add("style", "display:block;");
-                        labelhigherendDate.InnerHtml = setInnerHtml(fields[k]);
                         diplomaendDate.Attributes.Add("style", "display:block;");
                         labeldiplomaendDate.InnerHtml = setInnerHtml(fields[k]);
+                        higherendDate.Attributes.Add("style", "display:block;");
+                        labelhigherendDate.InnerHtml = setInnerHtml(fields[k]);
+                        higherendDatePG.Attributes.Add("style", "display:block;");
+                        labelhigherendDatePG.InnerHtml = setInnerHtml(fields[k]);
+                        higherendDatePhd.Attributes.Add("style", "display:block;");
+                        labelhigherendDatePhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherendDateOther.Attributes.Add("style", "display:block;");
+                        labelhigherendDateOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF SCHOOL":
                         highschoolName.Attributes.Add("style", "display:block;");
                         labelhighschoolName.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryschoolName.Attributes.Add("style", "display:block;");
                         labelSecondaryschoolName.InnerHtml = setInnerHtml(fields[k]);
-                        higherschoolName.Attributes.Add("style", "display:block;");
-                        labelhigherschoolName.InnerHtml = setInnerHtml(fields[k]);
                         diplomaschoolName.Attributes.Add("style", "display:block;");
                         labeldiplomaschoolName.InnerHtml = setInnerHtml(fields[k]);
+                        higherschoolName.Attributes.Add("style", "display:block;");
+                        labelhigherschoolName.InnerHtml = setInnerHtml(fields[k]);
+                        higherschoolNamePG.Attributes.Add("style", "display:block;");
+                        labelhigherschoolNamePG.InnerHtml = setInnerHtml(fields[k]);
+                        higherschoolNamePhd.Attributes.Add("style", "display:block;");
+                        labelhigherschoolNamePhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherschoolNameOther.Attributes.Add("style", "display:block;");
+                        labelhigherschoolNameOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "QUALIFICATION TYPE":
                         highschoolQualificationtype.Attributes.Add("style", "display:block;");
                         labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryQualificationtype.Attributes.Add("style", "display:block;");
                         labelSecondaryQualificationtype.InnerHtml = setInnerHtml(fields[k]);
-                        higherQualificationtype.Attributes.Add("style", "display:block;");
-                        labelhigherQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         diplomaQualificationtype.Attributes.Add("style", "display:block;");
                         labeldiplomaQualificationtype.InnerHtml = setInnerHtml(fields[k]);
+                        higherQualificationtype.Attributes.Add("style", "display:block;");
+                        labelhigherQualificationtype.InnerHtml = setInnerHtml(fields[k]);
+                        higherQualificationtypePG.Attributes.Add("style", "display:block;");
+                        labelhigherQualificationtypePG.InnerHtml = setInnerHtml(fields[k]);
+                        higherQualificationtypePhd.Attributes.Add("style", "display:block;");
+                        labelhigherQualificationtypePhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherQualificationtypeOther.Attributes.Add("style", "display:block;");
+                        labelhigherQualificationtypeOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
                     case "MODE OF STUDY":
@@ -139,90 +163,144 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         labelhighschoolstudymode.InnerHtml = setInnerHtml(fields[k]);
                         Secondarystudymode.Attributes.Add("style", "display:block;");
                         labelSecondarystudymode.InnerHtml = setInnerHtml(fields[k]);
-                        higherstudymode.Attributes.Add("style", "display:block;");
-                        labelhigherstudymode.InnerHtml = setInnerHtml(fields[k]);
                         diplomastudymode.Attributes.Add("style", "display:block;");
                         labeldiplomastudymode.InnerHtml = setInnerHtml(fields[k]);
+                        higherstudymode.Attributes.Add("style", "display:block;");
+                        labelhigherstudymode.InnerHtml = setInnerHtml(fields[k]);
+                        higherstudymodePG.Attributes.Add("style", "display:block;");
+                        labelhigherstudymodePG.InnerHtml = setInnerHtml(fields[k]);
+                        higherstudymodePhd.Attributes.Add("style", "display:block;");
+                        labelhigherstudymodePhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherstudymodeOther.Attributes.Add("style", "display:block;");
+                        labelhigherstudymodeOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LANGUAGE (MEDIUM) OF STUDY":
                         highschoollanguage.Attributes.Add("style", "display:block;");
                         labelhighschoollanguage.InnerHtml = setInnerHtml(fields[k]);
                         Secondarylanguage.Attributes.Add("style", "display:block;");
                         labelSecondarylanguage.InnerHtml = setInnerHtml(fields[k]);
-                        higherlanguage.Attributes.Add("style", "display:block;");
-                        labelhigherlanguage.InnerHtml = setInnerHtml(fields[k]);
                         diplomalanguage.Attributes.Add("style", "display:block;");
                         labeldiplomalanguage.InnerHtml = setInnerHtml(fields[k]);
+                        higherlanguage.Attributes.Add("style", "display:block;");
+                        labelhigherlanguage.InnerHtml = setInnerHtml(fields[k]);
+                        higherlanguagePG.Attributes.Add("style", "display:block;");
+                        labelhigherlanguagePG.InnerHtml = setInnerHtml(fields[k]);
+                        higherlanguagePhd.Attributes.Add("style", "display:block;");
+                        labelhigherlanguagePhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherlanguageOther.Attributes.Add("style", "display:block;");
+                        labelhigherlanguageOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "GRADE TYPE":
                         gradetype.Attributes.Add("style", "display:block;");
                         labelgradetype.InnerHtml = setInnerHtml(fields[k]);
                         Secondarygradetype.Attributes.Add("style", "display:block;");
                         labelSecondarygradetype.InnerHtml = setInnerHtml(fields[k]);
-                        highergradetype.Attributes.Add("style", "display:block;");
-                        labelhighergradetype.InnerHtml = setInnerHtml(fields[k]);
                         diplomagradetype.Attributes.Add("style", "display:block;");
                         labeldiplomagradetype.InnerHtml = setInnerHtml(fields[k]);
+                        highergradetype.Attributes.Add("style", "display:block;");
+                        labelhighergradetype.InnerHtml = setInnerHtml(fields[k]);
+                        highergradetypePG.Attributes.Add("style", "display:block;");
+                        labelhighergradetypePG.InnerHtml = setInnerHtml(fields[k]);
+                        highergradetypePhd.Attributes.Add("style", "display:block;");
+                        labelhighergradetypePhd.InnerHtml = setInnerHtml(fields[k]);
+                        highergradetypeOther.Attributes.Add("style", "display:block;");
+                        labelhighergradetypeOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "FINAL GRADE ACHIEVED":
                         highschoolgradeachieved.Attributes.Add("style", "display:block;");
                         labelgradeachieved.InnerHtml = setInnerHtml(fields[k]);
                         Secondarygradeachieved.Attributes.Add("style", "display:block;");
                         labelSecondarygradeachieved.InnerHtml = setInnerHtml(fields[k]);
-                        highergradeachieved.Attributes.Add("style", "display:block;");
-                        labelhighergradeachieved.InnerHtml = setInnerHtml(fields[k]);
                         diplomagradeachieved.Attributes.Add("style", "display:block;");
                         labeldiplomagradeachieved.InnerHtml = setInnerHtml(fields[k]);
+                        highergradeachieved.Attributes.Add("style", "display:block;");
+                        labelhighergradeachieved.InnerHtml = setInnerHtml(fields[k]);
+                        highergradeachievedPG.Attributes.Add("style", "display:block;");
+                        labelhighergradeachievedPG.InnerHtml = setInnerHtml(fields[k]);
+                        highergradeachievedPhd.Attributes.Add("style", "display:block;");
+                        labelhighergradeachievedPhd.InnerHtml = setInnerHtml(fields[k]);
+                        highergradeachievedOther.Attributes.Add("style", "display:block;");
+                        labelhighergradeachievedOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "EXPECTED DATES WHEN RESULTS WILL BE DECLARED":
                         ExpectedHighSchoolDategrade.Attributes.Add("style", "display:block;");
                         labelExpectedHighSchoolDategrade.InnerHtml = setInnerHtml(fields[k]);
                         ExpectedSecondaryDategrade.Attributes.Add("style", "display:block;");
                         labelExpectedSecondaryDategrade.InnerHtml = setInnerHtml(fields[k]);
-                        ExpectedHigherDategrade.Attributes.Add("style", "display:block;");
-                        labelExpectedHigherDategrade.InnerHtml = setInnerHtml(fields[k]);
                         ExpectedDiplomaDategrade.Attributes.Add("style", "display:block;");
                         labelExpectedDiplomaDategrade.InnerHtml = setInnerHtml(fields[k]);
+                        ExpectedHigherDategrade.Attributes.Add("style", "display:block;");
+                        labelExpectedHigherDategrade.InnerHtml = setInnerHtml(fields[k]);
+                        ExpectedHigherDategradePG.Attributes.Add("style", "display:block;");
+                        labelExpectedHigherDategradePG.InnerHtml = setInnerHtml(fields[k]);
+                        ExpectedHigherDategradePhd.Attributes.Add("style", "display:block;");
+                        labelExpectedHigherDategradePhd.InnerHtml = setInnerHtml(fields[k]);
+                        ExpectedHigherDategradeOther.Attributes.Add("style", "display:block;");
+                        labelExpectedHigherDategradeOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF CONTACT WHO CAN VERIFY THIS QUALIFICATION":
                         highschoolverify.Attributes.Add("style", "display:block;");
                         labelhighschoolverify.InnerHtml = setInnerHtml(fields[k]);
                         Secondaryverify.Attributes.Add("style", "display:block;");
                         labelSecondaryverify.InnerHtml = setInnerHtml(fields[k]);
-                        higherverify.Attributes.Add("style", "display:block;");
-                        labelhigherverify.InnerHtml = setInnerHtml(fields[k]);
                         diplomaverify.Attributes.Add("style", "display:block;");
                         labeldiplomaverify.InnerHtml = setInnerHtml(fields[k]);
+                        higherverify.Attributes.Add("style", "display:block;");
+                        labelhigherverify.InnerHtml = setInnerHtml(fields[k]);
+                        higherverifyPG.Attributes.Add("style", "display:block;");
+                        labelhigherverifyPG.InnerHtml = setInnerHtml(fields[k]);
+                        higherverifyPhd.Attributes.Add("style", "display:block;");
+                        labelhigherverifyPhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherverifyOther.Attributes.Add("style", "display:block;");
+                        labelhigherverifyOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "RELATIONSHIP WITH THE CONTACT":
                         highschoolrelation.Attributes.Add("style", "display:block;");
                         labelhighschoolrelation.InnerHtml = setInnerHtml(fields[k]);
                         secondaryschoolrelation.Attributes.Add("style", "display:block;");
                         labelsecondaryschoolrelation.InnerHtml = setInnerHtml(fields[k]);
-                        higherrelation.Attributes.Add("style", "display:block;");
-                        labelhigherrelation.InnerHtml = setInnerHtml(fields[k]);
                         diplomarelation.Attributes.Add("style", "display:block;");
                         labeldiplomarelation.InnerHtml = setInnerHtml(fields[k]);
+                        higherrelation.Attributes.Add("style", "display:block;");
+                        labelhigherrelation.InnerHtml = setInnerHtml(fields[k]);
+                        higherrelationPG.Attributes.Add("style", "display:block;");
+                        labelhigherrelationPG.InnerHtml = setInnerHtml(fields[k]);
+                        higherrelationPhd.Attributes.Add("style", "display:block;");
+                        labelhigherrelationPhd.InnerHtml = setInnerHtml(fields[k]);
+                        higherrelationOther.Attributes.Add("style", "display:block;");
+                        labelhigherrelationOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
                         highschoolcontactEmail.Attributes.Add("style", "display:block;");
                         labelhighschoolcontactEmail.InnerHtml = setInnerHtml(fields[k]);
                         secondarycontactEmail.Attributes.Add("style", "display:block;");
                         labelsecondarycontactEmail.InnerHtml = setInnerHtml(fields[k]);
-                        highercontactEmail.Attributes.Add("style", "display:block;");
-                        labelhighercontactEmail.InnerHtml = setInnerHtml(fields[k]);
                         diplomacontactEmail.Attributes.Add("style", "display:block;");
                         labeldiplomacontactEmail.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactEmail.Attributes.Add("style", "display:block;");
+                        labelhighercontactEmail.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactEmailPG.Attributes.Add("style", "display:block;");
+                        labelhighercontactEmailPG.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactEmailPhd.Attributes.Add("style", "display:block;");
+                        labelhighercontactEmailPhd.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactEmailOther.Attributes.Add("style", "display:block;");
+                        labelhighercontactEmailOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "MOBILE/CELLULAR NUMBER OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
                         highschoolcontactMobile.Attributes.Add("style", "display:block;");
                         labelhighschoolcontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         secondarycontactMobile.Attributes.Add("style", "display:block;");
                         labelsecondarycontactMobile.InnerHtml = setInnerHtml(fields[k]);
-                        highercontactMobile.Attributes.Add("style", "display:block;");
-                        labelhighercontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         diplomacontactMobile.Attributes.Add("style", "display:block;");
                         labeldiplomacontactMobile.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactMobile.Attributes.Add("style", "display:block;");
+                        labelhighercontactMobile.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactMobilePG.Attributes.Add("style", "display:block;");
+                        labelhighercontactMobilePG.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactMobilePhd.Attributes.Add("style", "display:block;");
+                        labelhighercontactMobilePhd.InnerHtml = setInnerHtml(fields[k]);
+                        highercontactMobileOther.Attributes.Add("style", "display:block;");
+                        labelhighercontactMobileOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "HIGHEST EDUCATION":
                         higestEducation.Attributes.Add("style", "display:block;");
@@ -253,7 +331,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
 
 
                     case "HIGHER COURSE":
-                        highercourse.Attributes.Add("style", "display:block;");
+                        //highercourse.Attributes.Add("style", "display:block;");
                         labelhighercourse.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "Country of Higher Education":
@@ -318,40 +396,64 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         ichighschoolstartDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondarystartDate.Attributes.Add("style", "display:block;");
                         icSecondarystartDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherstartDate.Attributes.Add("style", "display:block;");
-                        ichigherstartDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomastartDate.Attributes.Add("style", "display:block;");
                         icdiplomastartDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstartDate.Attributes.Add("style", "display:block;");
+                        ichigherstartDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstartDatePG.Attributes.Add("style", "display:block;");
+                        ichigherstartDatePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstartDatePhd.Attributes.Add("style", "display:block;");
+                        ichigherstartDatePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstartDateOther.Attributes.Add("style", "display:block;");
+                        ichigherstartDateOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "END DATE":
                         ichighschoolendDate.Attributes.Add("style", "display:block;");
                         ichighschoolendDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondaryendDate.Attributes.Add("style", "display:block;");
                         icSecondaryendDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherendDate.Attributes.Add("style", "display:block;");
-                        ichigherendDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomaendDate.Attributes.Add("style", "display:block;");
                         icdiplomaendDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherendDate.Attributes.Add("style", "display:block;");
+                        ichigherendDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherendDatePG.Attributes.Add("style", "display:block;");
+                        ichigherendDatePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherendDatePhd.Attributes.Add("style", "display:block;");
+                        ichigherendDatePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherendDatePhd.Attributes.Add("style", "display:block;");
+                        ichigherendDatePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "NAME OF SCHOOL":
                         ichighschoolName.Attributes.Add("style", "display:block;");
                         ichighschoolName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondaryschoolName.Attributes.Add("style", "display:block;");
                         icSecondaryschoolName.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherschoolName.Attributes.Add("style", "display:block;");
-                        ichigherschoolName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomaschoolName.Attributes.Add("style", "display:block;");
                         icdiplomaschoolName.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherschoolName.Attributes.Add("style", "display:block;");
+                        ichigherschoolName.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherschoolNamePG.Attributes.Add("style", "display:block;");
+                        ichigherschoolNamePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherschoolNamePhd.Attributes.Add("style", "display:block;");
+                        ichigherschoolNamePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherschoolNameOther.Attributes.Add("style", "display:block;");
+                        ichigherschoolNameOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "QUALIFICATION TYPE":
                         ichighschoolQualificationtype.Attributes.Add("style", "display:block;");
                         ichighschoolQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondaryQualificationtype.Attributes.Add("style", "display:block;");
                         icSecondaryQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherQualificationtype.Attributes.Add("style", "display:block;");
-                        ichigherQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomaQualificationtype.Attributes.Add("style", "display:block;");
                         icdiplomaQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherQualificationtype.Attributes.Add("style", "display:block;");
+                        ichigherQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherQualificationtypePG.Attributes.Add("style", "display:block;");
+                        ichigherQualificationtypePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherQualificationtypePhd.Attributes.Add("style", "display:block;");
+                        ichigherQualificationtypePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherQualificationtypeOther.Attributes.Add("style", "display:block;");
+                        ichigherQualificationtypeOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
 
                     case "MODE OF STUDY":
@@ -359,90 +461,144 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         ichighschoolstudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondarystudymode.Attributes.Add("style", "display:block;");
                         icSecondarystudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherstudymode.Attributes.Add("style", "display:block;");
-                        ichigherstudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomastudymode.Attributes.Add("style", "display:block;");
                         icdiplomastudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstudymode.Attributes.Add("style", "display:block;");
+                        ichigherstudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstudymodePG.Attributes.Add("style", "display:block;");
+                        ichigherstudymodePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstudymodePhd.Attributes.Add("style", "display:block;");
+                        ichigherstudymodePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherstudymodeOther.Attributes.Add("style", "display:block;");
+                        ichigherstudymodeOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "LANGUAGE (MEDIUM) OF STUDY":
                         ichighschoollanguage.Attributes.Add("style", "display:block;");
                         ichighschoollanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondarylanguage.Attributes.Add("style", "display:block;");
                         icSecondarylanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherlanguage.Attributes.Add("style", "display:block;");
-                        ichigherlanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomalanguage.Attributes.Add("style", "display:block;");
                         icdiplomalanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherlanguage.Attributes.Add("style", "display:block;");
+                        ichigherlanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherlanguagePG.Attributes.Add("style", "display:block;");
+                        ichigherlanguagePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherlanguagePhd.Attributes.Add("style", "display:block;");
+                        ichigherlanguagePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherlanguageOther.Attributes.Add("style", "display:block;");
+                        ichigherlanguageOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "GRADE TYPE":
                         icgradetype.Attributes.Add("style", "display:block;");
                         icgradetype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondarygradetype.Attributes.Add("style", "display:block;");
                         icSecondarygradetype.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichighergradetype.Attributes.Add("style", "display:block;");
-                        ichighergradetype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomagradetype.Attributes.Add("style", "display:block;");
                         icdiplomagradetype.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradetype.Attributes.Add("style", "display:block;");
+                        ichighergradetype.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradetypePG.Attributes.Add("style", "display:block;");
+                        ichighergradetypePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradetypePhd.Attributes.Add("style", "display:block;");
+                        ichighergradetypePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradetypeOther.Attributes.Add("style", "display:block;");
+                        ichighergradetypeOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "FINAL GRADE ACHIEVED":
                         ichighschoolgradeachieved.Attributes.Add("style", "display:block;");
                         ichighschoolgradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondarygradeachieved.Attributes.Add("style", "display:block;");
                         icSecondarygradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichighergradeachieved.Attributes.Add("style", "display:block;");
-                        ichighergradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomagradeachieved.Attributes.Add("style", "display:block;");
                         icdiplomagradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradeachieved.Attributes.Add("style", "display:block;");
+                        ichighergradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradeachievedPG.Attributes.Add("style", "display:block;");
+                        ichighergradeachievedPG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradeachievedPhd.Attributes.Add("style", "display:block;");
+                        ichighergradeachievedPhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighergradeachievedOther.Attributes.Add("style", "display:block;");
+                        ichighergradeachievedOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "EXPECTED DATES WHEN RESULTS WILL BE DECLARED":
                         icExpectedHighSchoolDategrade.Attributes.Add("style", "display:block;");
                         icExpectedHighSchoolDategrade.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icExpectedSecondaryDategrade.Attributes.Add("style", "display:block;");
                         icExpectedSecondaryDategrade.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        icExpectedHigherDategrade.Attributes.Add("style", "display:block;");
-                        icExpectedHigherDategrade.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icExpectedDiplomaDategrade.Attributes.Add("style", "display:block;");
                         icExpectedDiplomaDategrade.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        icExpectedHigherDategrade.Attributes.Add("style", "display:block;");
+                        icExpectedHigherDategrade.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        icExpectedHigherDategradePG.Attributes.Add("style", "display:block;");
+                        icExpectedHigherDategradePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        icExpectedHigherDategradePhd.Attributes.Add("style", "display:block;");
+                        icExpectedHigherDategradePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        icExpectedHigherDategradeOther.Attributes.Add("style", "display:block;");
+                        icExpectedHigherDategradeOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "NAME OF CONTACT WHO CAN VERIFY THIS QUALIFICATION":
                         ichighschoolverify.Attributes.Add("style", "display:block;");
                         ichighschoolverify.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondaryverify.Attributes.Add("style", "display:block;");
                         icSecondaryverify.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherverify.Attributes.Add("style", "display:block;");
-                        ichigherverify.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomaverify.Attributes.Add("style", "display:block;");
                         icdiplomaverify.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherverify.Attributes.Add("style", "display:block;");
+                        ichigherverify.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherverifyPG.Attributes.Add("style", "display:block;");
+                        ichigherverifyPG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherverifyPhd.Attributes.Add("style", "display:block;");
+                        ichigherverifyPhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherverifyOther.Attributes.Add("style", "display:block;");
+                        ichigherverifyOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "RELATIONSHIP WITH THE CONTACT":
                         ichighschoolrelation.Attributes.Add("style", "display:block;");
                         ichighschoolrelation.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icsecondaryschoolrelation.Attributes.Add("style", "display:block;");
                         icsecondaryschoolrelation.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichigherrelation.Attributes.Add("style", "display:block;");
-                        ichigherrelation.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomarelation.Attributes.Add("style", "display:block;");
                         icdiplomarelation.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherrelation.Attributes.Add("style", "display:block;");
+                        ichigherrelation.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherrelationPG.Attributes.Add("style", "display:block;");
+                        ichigherrelationPG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherrelationPhd.Attributes.Add("style", "display:block;");
+                        ichigherrelationPhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichigherrelationOther.Attributes.Add("style", "display:block;");
+                        ichigherrelationOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
                         ichighschoolcontactEmail.Attributes.Add("style", "display:block;");
                         ichighschoolcontactEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icsecondarycontactEmail.Attributes.Add("style", "display:block;");
                         icsecondarycontactEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichighercontactEmail.Attributes.Add("style", "display:block;");
-                        ichighercontactEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomacontactEmail.Attributes.Add("style", "display:block;");
                         icdiplomacontactEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactEmail.Attributes.Add("style", "display:block;");
+                        ichighercontactEmail.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactEmailPG.Attributes.Add("style", "display:block;");
+                        ichighercontactEmailPG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactEmailPhd.Attributes.Add("style", "display:block;");
+                        ichighercontactEmailPhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactEmailOther.Attributes.Add("style", "display:block;");
+                        ichighercontactEmailOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "MOBILE/CELLULAR NUMBER OF CONTACT WHO CAN VERIFY YOUR QUALIFICATION":
                         ichighschoolcontactMobile.Attributes.Add("style", "display:block;");
                         ichighschoolcontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icsecondarycontactMobile.Attributes.Add("style", "display:block;");
                         icsecondarycontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        ichighercontactMobile.Attributes.Add("style", "display:block;");
-                        ichighercontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomacontactMobile.Attributes.Add("style", "display:block;");
                         icdiplomacontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactMobile.Attributes.Add("style", "display:block;");
+                        ichighercontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactMobilePG.Attributes.Add("style", "display:block;");
+                        ichighercontactMobilePG.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactMobilePhd.Attributes.Add("style", "display:block;");
+                        ichighercontactMobilePhd.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        ichighercontactMobileOther.Attributes.Add("style", "display:block;");
+                        ichighercontactMobileOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
                     case "HIGHEST EDUCATION":
                         ichigestEducation.Attributes.Add("style", "display:block;");
@@ -614,82 +770,9 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             HigherEducation = (from pInfo in db.applicanthighereducation
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).ToList();
-
-            //var HigherEducation = (from pInfo in db.applicanthighereducation
-            //                       where pInfo.applicantid == userID && pInfo.universityid == universityID
-            //                       select pInfo).FirstOrDefault();
-            //if (HigherEducation != null)
-            //{
-            //    if (HigherEducation.countryofhighereducation != null)
-            //    {
-            //        ddlHigherCountry.ClearSelection();
-            //        ddlHigherCountry.Items.FindByValue(HigherEducation.countryofhighereducation).Selected = true;
-            //        bindQualification(ddlHigherQualificationType, Convert.ToInt32(HigherEducation.countryofhighereducation));
-            //    }
-            //    if (HigherEducation.coursename != null)
-            //    {
-            //        ddlCourse.ClearSelection();
-            //        ddlCourse.Items.FindByValue(HigherEducation.coursename).Selected = true;
-            //    }
-            //    if (HigherEducation.startdate != null)
-            //    {
-            //        string[] HigherStartDate = HigherEducation.startdate.ToString().Split('-');
-            //        ddlHigherStartDateMonth.ClearSelection();
-            //        ddlHigherStartDateMonth.Items.FindByValue(Convert.ToString(HigherStartDate[0])).Selected = true;
-            //        ddlHigherStartDateYear.ClearSelection();
-            //        ddlHigherStartDateYear.Items.FindByValue(Convert.ToString(HigherStartDate[1])).Selected = true;
-            //    }
-            //    if (HigherEducation.endate != null)
-            //    {
-            //        string[] HigherEndDate = HigherEducation.endate.ToString().Split('-');
-            //        ddlHigherEndDateMonth.ClearSelection();
-            //        ddlHigherEndDateMonth.Items.FindByValue(Convert.ToString(HigherEndDate[0])).Selected = true;
-            //        ddlHigherEndDateYear.ClearSelection();
-            //        ddlHigherEndDateYear.Items.FindByValue(Convert.ToString(HigherEndDate[1])).Selected = true;
-            //    }
-
-            //    txtHigherschoolName.Value = HigherEducation.schoolname;
-
-            //    if (HigherEducation.qualificationtype != null)
-            //    {
-            //        ddlHigherQualificationType.ClearSelection();
-            //        ddlHigherQualificationType.Items.FindByValue(HigherEducation.qualificationtype.ToString()).Selected = true;
-            //    }
-            //    if (HigherEducation.studymodeid != null)
-            //    {
-            //        ddlHigherStudyMode.ClearSelection();
-            //        ddlHigherStudyMode.Items.FindByValue(HigherEducation.studymodeid.ToString()).Selected = true;
-            //    }
-            //    if (HigherEducation.studymediumid != null)
-            //    {
-            //        ddlHigherMedium.ClearSelection();
-            //        ddlHigherMedium.Items.FindByValue(HigherEducation.studymediumid.ToString()).Selected = true;
-            //    }
-            //    if (HigherEducation.gradetypeid != null)
-            //    {
-            //        ddlHigherGrade.ClearSelection();
-            //        ddlHigherGrade.Items.FindByValue(HigherEducation.gradetypeid.ToString()).Selected = true;
-            //    }
+            BindHigher(HigherEducation);
 
 
-            //    if (HigherEducation.finalgradeacheived == 1)
-            //        rblhighergradeachievedYes.Checked = true;
-            //    else if (HigherEducation.finalgradeacheived == 2)
-            //        rblhighergradeachievedYet.Checked = true;
-            //    else
-            //        rblhighergradeachievedNo.Checked = true;
-            //    if (HigherEducation.resultdate != null)
-            //        txtExpectedHigherDategrade.Value = Convert.ToDateTime(HigherEducation.resultdate).ToString("yyyy-MM-dd");
-            //    txtHigherVerificationName.Value = HigherEducation.verificationname;
-            //    if (HigherEducation.relationshipwithverification != null)
-            //    {
-            //        ddlHigherVerificationRelationship.ClearSelection();
-            //        ddlHigherVerificationRelationship.Items.FindByValue(HigherEducation.relationshipwithverification.ToString()).Selected = true;
-            //    }
-
-            //    txtHighercontactEmail.Value = HigherEducation.verificationemail;
-            //    txtHighercontactMobile.Value = HigherEducation.verificationmobile;
-            //}
         }
         catch (Exception ex)
         {
@@ -862,12 +945,13 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         {
             lblgradetype.Text = objCom.GetGrade(Convert.ToInt32(EducationInfo.highschoolgradetypeid));
         }
+
         if (EducationInfo.highschoolgradedeclared == 1)
-            lblgradeachieved.Text = "";
+            lblgradeachieved.Text = "Results Declared";
         else if (EducationInfo.highschoolgradedeclared == 2)
-            lblgradeachieved.Text = "";
+            lblgradeachieved.Text = "Examination not conducted yet";
         else
-            lblgradeachieved.Text = "";
+            lblgradeachieved.Text = "Examination Conducted, but Result not declared";
         if (EducationInfo.highschoolreusltdate != null)
             lblExpectedHighSchoolDategrade.Text = Convert.ToDateTime(EducationInfo.highschoolreusltdate).ToString("yyyy-MM-dd");
         lblhighschoolverify.Text = EducationInfo.highschoolverificationname;
@@ -918,11 +1002,11 @@ public partial class admin_applicanteducation : System.Web.UI.Page
 
 
         if (EducationInfo.secondarygradedeclared == 1)
-            lblSecondarygradeachieved.Text = "";
+            lblSecondarygradeachieved.Text = "Results Declared";
         else if (EducationInfo.secondarygradedeclared == 2)
-            lblSecondarygradeachieved.Text = "";
+            lblSecondarygradeachieved.Text = "Examination not conducted yet";
         else
-            lblSecondarygradeachieved.Text = "";
+            lblSecondarygradeachieved.Text = "Examination Conducted, but Result not declared";
 
 
         lblSecondaryverify.Text = EducationInfo.secondaryverificationname;
@@ -939,11 +1023,11 @@ public partial class admin_applicanteducation : System.Web.UI.Page
     {
         if (EducationInfo.diplomacountry != null)
         {
-            lbldiplomaCountry.Text = objCom.GetGrade(Convert.ToInt32(EducationInfo.diplomagradetypeid));
+            lbldiplomaCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(EducationInfo.diplomagradetypeid));
         }
         if (EducationInfo.diplomastartdate != null)
         {
-            string[] DiplomaStartDate = EducationInfo.diplomastartdate.ToString().Split('-');
+
             lbldiplomastartDate.Text = EducationInfo.diplomastartdate;
         }
         if (EducationInfo.diplomaendate != null)
@@ -971,11 +1055,11 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             lbldiplomagradetype.Text = objCom.GetGrade(Convert.ToInt32(EducationInfo.diplomagradetypeid));
         }
         if (EducationInfo.diplomagradeachieved == 1)
-            lbldiplomagradeachieved.Text = "";
+            lbldiplomagradeachieved.Text = "Results Declared";
         else if (EducationInfo.diplomagradeachieved == 2)
-            lbldiplomagradeachieved.Text = "";
+            lbldiplomagradeachieved.Text = "Examination not conducted yet";
         else
-            lbldiplomagradeachieved.Text = "";
+            lbldiplomagradeachieved.Text = "Examination Conducted, but Result not declared";
 
 
         if (EducationInfo.diplomaresultdate != null)
@@ -988,6 +1072,232 @@ public partial class admin_applicanteducation : System.Web.UI.Page
 
         lbldiplomacontactEmail.Text = EducationInfo.diplomaverificationemail;
         lbldiplomacontactMobile.Text = EducationInfo.diplomaverificationmobile;
+    }
+    private void BindHigher(List<applicanthighereducation> EducationInfo)
+    {
+        for (int k = 0; k < EducationInfo.Count; k++)
+        {
+            if (EducationInfo[k].coursename.ToLower() == "pg")
+            {
+                PG.Visible = true;
+                lblhighercoursePG.Text = EducationInfo[k].coursename;
+                if (EducationInfo[k].countryofhighereducation != null)
+                {
+                    lblhigherCountryPG.Text = objCom.GetCountryDiscription(Convert.ToInt32(EducationInfo[k].countryofhighereducation));
+                }
+                if (EducationInfo[k].startdate != null)
+                {
+                    lblhigherstartDatePG.Text = EducationInfo[k].startdate;
+                }
+                if (EducationInfo[k].endate != null)
+                {
+
+                    lblhigherendDatePG.Text = EducationInfo[k].endate;
+                }
+
+                lblhigherschoolNamePG.Text = EducationInfo[k].schoolname;
+
+                if (EducationInfo[k].qualificationtype != null)
+                {
+                    lblhigherQualificationtypePG.Text = objCom.GetQualificationType(Convert.ToInt32(EducationInfo[k].qualificationtype));
+                }
+                if (EducationInfo[k].studymodeid != null)
+                {
+                    lblhigherstudymodePG.Text = objCom.GetStudyMode(Convert.ToInt32(EducationInfo[k].studymodeid));
+                }
+                if (EducationInfo[k].studymediumid != null)
+                {
+                    lblhigherlanguagePG.Text = objCom.GetStudyMedium(Convert.ToInt32(EducationInfo[k].studymediumid));
+                }
+                if (EducationInfo[k].gradetypeid != null)
+                {
+                    lblhighergradetypePG.Text = objCom.GetGrade(Convert.ToInt32(EducationInfo[k].gradetypeid));
+                }
+                if (EducationInfo[k].finalgradeacheived == 1)
+                    lblhighergradeachievedPG.Text = "Results Declared";
+                else if (EducationInfo[k].finalgradeacheived == 2)
+                    lblhighergradeachievedPG.Text = "Examination not conducted yet";
+                else
+                    lblhighergradeachievedPG.Text = "Examination Conducted, but Result not declared";
+
+
+                if (EducationInfo[k].resultdate != null)
+                    lblExpectedHigherDategradePG.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
+                lblhigherverifyPG.Text = EducationInfo[k].verificationname;
+                if (EducationInfo[k].relationshipwithverification != null)
+                {
+                    lblhigherrelationPG.Text = objCom.GetVerificationRelation(Convert.ToInt32(EducationInfo[k].relationshipwithverification));
+                }
+
+                lblhighercontactEmailPG.Text = EducationInfo[k].verificationemail;
+                lblhighercontactMobilePG.Text = EducationInfo[k].verificationmobile;
+            }
+            else if (EducationInfo[k].coursename.ToLower() == "phd")
+            {
+                Phd.Visible = true;
+                lblhighercoursePhd.Text = EducationInfo[k].coursename;
+                if (EducationInfo[k].countryofhighereducation != null)
+                {
+                    lblhigherCountryPhd.Text = objCom.GetCountryDiscription(Convert.ToInt32(EducationInfo[k].countryofhighereducation));
+                }
+                if (EducationInfo[k].startdate != null)
+                {
+                    lblhigherstartDatePhd.Text = EducationInfo[k].startdate;
+                }
+                if (EducationInfo[k].endate != null)
+                {
+
+                    lblhigherendDatePhd.Text = EducationInfo[k].endate;
+                }
+
+                lblhigherschoolNamePhd.Text = EducationInfo[k].schoolname;
+
+                if (EducationInfo[k].qualificationtype != null)
+                {
+                    lblhigherQualificationtypePhd.Text = objCom.GetQualificationType(Convert.ToInt32(EducationInfo[k].qualificationtype));
+                }
+                if (EducationInfo[k].studymodeid != null)
+                {
+                    lblhigherstudymodePhd.Text = objCom.GetStudyMode(Convert.ToInt32(EducationInfo[k].studymodeid));
+                }
+                if (EducationInfo[k].studymediumid != null)
+                {
+                    lblhigherlanguagePhd.Text = objCom.GetStudyMedium(Convert.ToInt32(EducationInfo[k].studymediumid));
+                }
+                if (EducationInfo[k].gradetypeid != null)
+                {
+                    lblhighergradetypePhd.Text = objCom.GetGrade(Convert.ToInt32(EducationInfo[k].gradetypeid));
+                }
+                if (EducationInfo[k].finalgradeacheived == 1)
+                    lblhighergradeachievedPhd.Text = "Results Declared";
+                else if (EducationInfo[k].finalgradeacheived == 2)
+                    lblhighergradeachievedPhd.Text = "Examination not conducted yet";
+                else
+                    lblhighergradeachievedPhd.Text = "Examination Conducted, but Result not declared";
+
+
+                if (EducationInfo[k].resultdate != null)
+                    lblExpectedHigherDategradePhd.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
+                lblhigherverifyPhd.Text = EducationInfo[k].verificationname;
+                if (EducationInfo[k].relationshipwithverification != null)
+                {
+                    lblhigherrelationPhd.Text = objCom.GetVerificationRelation(Convert.ToInt32(EducationInfo[k].relationshipwithverification));
+                }
+
+                lblhighercontactEmailPhd.Text = EducationInfo[k].verificationemail;
+                lblhighercontactMobilePhd.Text = EducationInfo[k].verificationmobile;
+            }
+            else if (EducationInfo[k].coursename.ToLower() == "ug")
+            {
+                UG.Visible = true;
+                lblhighercourse.Text = EducationInfo[k].coursename;
+                if (EducationInfo[k].countryofhighereducation != null)
+                {
+                    lblhigherCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(EducationInfo[k].countryofhighereducation));
+                }
+                if (EducationInfo[k].startdate != null)
+                {
+                    lblhigherschoolstartDate.Text = EducationInfo[k].startdate;
+                }
+                if (EducationInfo[k].endate != null)
+                {
+
+                    lblhigherendDate.Text = EducationInfo[k].endate;
+                }
+
+                lblhigherschoolName.Text = EducationInfo[k].schoolname;
+
+                if (EducationInfo[k].qualificationtype != null)
+                {
+                    lblhigherQualificationtype.Text = objCom.GetQualificationType(Convert.ToInt32(EducationInfo[k].qualificationtype));
+                }
+                if (EducationInfo[k].studymodeid != null)
+                {
+                    lblhigherstudymode.Text = objCom.GetStudyMode(Convert.ToInt32(EducationInfo[k].studymodeid));
+                }
+                if (EducationInfo[k].studymediumid != null)
+                {
+                    lblhigherlanguage.Text = objCom.GetStudyMedium(Convert.ToInt32(EducationInfo[k].studymediumid));
+                }
+                if (EducationInfo[k].gradetypeid != null)
+                {
+                    lblhighergradetype.Text = objCom.GetGrade(Convert.ToInt32(EducationInfo[k].gradetypeid));
+                }
+                if (EducationInfo[k].finalgradeacheived == 1)
+                    lblhighergradeachieved.Text = "Results Declared";
+                else if (EducationInfo[k].finalgradeacheived == 2)
+                    lblhighergradeachieved.Text = "Examination not conducted yet";
+                else
+                    lblhighergradeachieved.Text = "Examination Conducted, but Result not declared";
+
+
+
+                if (EducationInfo[k].resultdate != null)
+                    lblExpectedHigherDategrade.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
+                lblhigherverify.Text = EducationInfo[k].verificationname;
+                if (EducationInfo[k].relationshipwithverification != null)
+                {
+                    lblhigherschoolrelation.Text = objCom.GetVerificationRelation(Convert.ToInt32(EducationInfo[k].relationshipwithverification));
+                }
+
+                lblhighercontactEmail.Text = EducationInfo[k].verificationemail;
+                lblhighercontactMobile.Text = EducationInfo[k].verificationmobile;
+            }
+            else
+            {
+                OtherHigherCourse.Visible = true;
+                lblhighercourseOther.Text = EducationInfo[k].coursename;
+                if (EducationInfo[k].countryofhighereducation != null)
+                {
+                    lblhigherCountryOther.Text = objCom.GetCountryDiscription(Convert.ToInt32(EducationInfo[k].countryofhighereducation));
+                }
+                if (EducationInfo[k].startdate != null)
+                {
+                    lblhigherstartDateOther.Text = EducationInfo[k].startdate;
+                }
+                if (EducationInfo[k].endate != null)
+                {
+
+                    lblhigherendDateOther.Text = EducationInfo[k].endate;
+                }
+
+                lblhigherschoolNameOther.Text = EducationInfo[k].schoolname;
+
+                if (EducationInfo[k].qualificationtype != null)
+                {
+                    lblhigherQualificationtypeOther.Text = objCom.GetQualificationType(Convert.ToInt32(EducationInfo[k].qualificationtype));
+                }
+                if (EducationInfo[k].studymodeid != null)
+                {
+                    lblhigherstudymodeOther.Text = objCom.GetStudyMode(Convert.ToInt32(EducationInfo[k].studymodeid));
+                }
+                if (EducationInfo[k].studymediumid != null)
+                {
+                    lblhigherlanguageOther.Text = objCom.GetStudyMedium(Convert.ToInt32(EducationInfo[k].studymediumid));
+                }
+                if (EducationInfo[k].gradetypeid != null)
+                {
+                    lblhighergradetypeOther.Text = objCom.GetGrade(Convert.ToInt32(EducationInfo[k].gradetypeid));
+                }
+                if (EducationInfo[k].finalgradeacheived == 1)
+                    lblhighergradeachievedOther.Text = "Results Declared";
+                else if (EducationInfo[k].finalgradeacheived == 2)
+                    lblhighergradeachievedOther.Text = "Examination not conducted yet";
+                else
+                    lblhighergradeachievedOther.Text = "Examination Conducted, but Result not declared";
+
+                if (EducationInfo[k].resultdate != null)
+                    lblExpectedHigherDategradeOther.Text = Convert.ToDateTime(EducationInfo[k].resultdate).ToString("yyyy-MM-dd");
+                lblhigherverify.Text = EducationInfo[k].verificationname;
+                if (EducationInfo[k].relationshipwithverification != null)
+                {
+                    lblhigherrelationOther.Text = objCom.GetVerificationRelation(Convert.ToInt32(EducationInfo[k].relationshipwithverification));
+                }
+
+                lblhighercontactEmailOther.Text = EducationInfo[k].verificationemail;
+                lblhighercontactMobileOther.Text = EducationInfo[k].verificationmobile;
+            }
+        }
     }
 
 

@@ -8,13 +8,17 @@ using System.Web.UI.WebControls;
 public partial class admin_applicantworkexperince : System.Web.UI.Page
 {
     int formId = 0;
-    Common objCom = new Common();
+    protected Common objCom = new Common();
     int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+    protected List<applicantemployerdetails> EmployersDetail = new List<applicantemployerdetails>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
-   string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+
+    protected string employmentInfoToolTips = "", employerwebsiteToolTips = "", employerToolTips = "", employercityToolTips = "", employercountryToolTips = "", positionToolTips = "", startdateToolTips = "", enddateToolTips = "", BriefDescriptionToolTips = "", reportingmangerToolTips = "", employmentverificationToolTips = "", relationshipToolTips = "", emailToolTips = "", linkedinToolTips = "";
+    protected string employmentInfo = "", employerwebsite = "", employer = "", employercity = "", employercountry = "", position = "", startdate = "", enddate = "", BriefDescription = "", reportingmanger = "", employmentverification = "", relationship = "", email = "", linkedin = "";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -40,11 +44,9 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
         {
             if (CustomControls.Count > 0)
                 objCom.SetCustomDataAdmin(formId, userID, CustomControls, mainDiv);
-
+            EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
             SetToolTips();
             SetControlsUniversitywise();
-            PopulateEmployerInfo();
-
 
         }
     }
@@ -68,68 +70,52 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
                               universitywiseToolTips = (z == null ? String.Empty : z.tooltips),
                               tooltips = (x == null ? String.Empty : x.tooltips)
                           }).ToList();
-
-
             for (int k = 0; k < fields.Count; k++)
             {
                 switch (fields[k].primaryfiledname)
                 {
                     case "DO YOU WISH TO RECORD ANY WORK EXPERIENCE THAT MAY BE RELEVANT TO THE COURSE YOU ARE APPLYING FOR?":
-                        icemploymentInfo.Attributes.Add("style", "display:block;");
-                        icemploymentInfo.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        employmentInfoToolTips = setTooltips(fields[k]);
                         break;
                     case "WEBSITE":
-                        icemployerwebsite.Attributes.Add("style", "display:block;");
-                        icemployerwebsite.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        employerwebsiteToolTips = setTooltips(fields[k]);
                         break;
                     case "NAME OF ORGANIZATION":
-                        icemployer.Attributes.Add("style", "display:block;");
-                        icemployer.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        employerToolTips = setTooltips(fields[k]);
                         break;
 
                     case "CITY":
-                        icemployercity.Attributes.Add("style", "display:block;");
-                        icemployercity.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        employercityToolTips = setTooltips(fields[k]);
                         break;
                     case "COUNTRY":
-                        icemployercountry.Attributes.Add("style", "display:block;");
-                        icemployercountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        employercountryToolTips = setTooltips(fields[k]);
                         break;
                     case "POSITION/ROLE IN":
-                        icposition.Attributes.Add("style", "display:block;");
-                        icposition.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        positionToolTips = setTooltips(fields[k]);
                         break;
                     case "START DATE":
-                        icstartdate.Attributes.Add("style", "display:block;");
-                        icstartdate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        startdateToolTips = setTooltips(fields[k]);
                         break;
                     case "END DATE":
-                        icenddate.Attributes.Add("style", "display:block;");
-                        icenddate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        enddateToolTips = setTooltips(fields[k]);
                         break;
                     case "BRIEF DESCRIPTION OF WHAT YOU DID":
-                        icemploymentInfo.Attributes.Add("style", "display:block;");
-                        icemploymentInfo.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        BriefDescriptionToolTips = setTooltips(fields[k]);
                         break;
                     case "NAME OF YOUR REPORTING MANAGER":
-                        icreportingmanger.Attributes.Add("style", "display:block;");
-                        icreportingmanger.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        reportingmanger = setTooltips(fields[k]);
                         break;
                     case "NAME OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
-                        icemploymentverification.Attributes.Add("style", "display:block;");
-                        icemploymentverification.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        employmentverificationToolTips = setTooltips(fields[k]);
                         break;
                     case "RELATIONSHIP WITH THE CONTACT":
-                        icrelationship.Attributes.Add("style", "display:block;");
-                        icrelationship.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        relationshipToolTips = setTooltips(fields[k]);
                         break;
                     case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
-                        icemail.Attributes.Add("style", "display:block;");
-                        icemail.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        emailToolTips = setTooltips(fields[k]);
                         break;
                     case "LINKEDIN PROFILE LINK OF THE CONTACT":
-                        iclinkedin.Attributes.Add("style", "display:block;");
-                        iclinkedin.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        linkedinToolTips = setTooltips(fields[k]);
                         break;
                     default:
                         break;
@@ -180,65 +166,51 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
                 switch (fields[k].primaryfiledname)
                 {
                     case "DO YOU WISH TO RECORD ANY WORK EXPERIENCE THAT MAY BE RELEVANT TO THE COURSE YOU ARE APPLYING FOR?":
-                        employmentInfo.Attributes.Add("style", "display:block;");
-                        labelemployment.InnerHtml = setInnerHtml(fields[k]);
+                        employmentInfo = setInnerHtml(fields[k]);
                         break;
                     case "WEBSITE":
-                        employerwebsite.Attributes.Add("style", "display:block;");
-                        labelemployerwebsite.InnerHtml = setInnerHtml(fields[k]);
+                        employerwebsite = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF ORGANIZATION":
-                        employer.Attributes.Add("style", "display:block;");
-                        labelemployer.InnerHtml = setInnerHtml(fields[k]);
+                        employer = setInnerHtml(fields[k]);
                         break;
 
                     case "CITY":
-                        employercity.Attributes.Add("style", "display:block;");
-                        labelemployercity.InnerHtml = setInnerHtml(fields[k]);
+                        employercity = setInnerHtml(fields[k]);
                         break;
                     case "COUNTRY":
-                        employercountry.Attributes.Add("style", "display:block;");
-                        labelemployercountry.InnerHtml = setInnerHtml(fields[k]);
+                        employercountry = setInnerHtml(fields[k]);
                         break;
                     case "POSITION/ROLE IN":
-                        position.Attributes.Add("style", "display:block;");
-                        labelposition.InnerHtml = setInnerHtml(fields[k]);
+                        position = setInnerHtml(fields[k]);
                         break;
                     case "START DATE":
-                        startdate.Attributes.Add("style", "display:block;");
-                        labelstartdate.InnerHtml = setInnerHtml(fields[k]);
+                        startdate = setInnerHtml(fields[k]);
                         break;
                     case "END DATE":
-                        endate.Attributes.Add("style", "display:block;");
-                        labelendate.InnerHtml = setInnerHtml(fields[k]);
+                        enddate = setInnerHtml(fields[k]);
                         break;
                     case "BRIEF DESCRIPTION OF WHAT YOU DID":
-                        briefDescription.Attributes.Add("style", "display:block;");
-                        labelbriefDescription.InnerHtml = setInnerHtml(fields[k]);
+                        BriefDescription = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF YOUR REPORTING MANAGER":
-                        reportingmanger.Attributes.Add("style", "display:block;");
-                        labelreportingmanger.InnerHtml = setInnerHtml(fields[k]);
+                        reportingmanger = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
-                        employmentverification.Attributes.Add("style", "display:block;");
-                        labelemploymentverification.InnerHtml = setInnerHtml(fields[k]);
+                        employmentverification = setInnerHtml(fields[k]);
                         break;
                     case "RELATIONSHIP WITH THE CONTACT":
-                        relationship.Attributes.Add("style", "display:block;");
-                        labelrelationship.InnerHtml = setInnerHtml(fields[k]);
+                        relationship = setInnerHtml(fields[k]);
                         break;
                     case "EMAIL ID OF CONTACT WHO CAN VERIFY YOUR EMPLOYMENT":
-                        email.Attributes.Add("style", "display:block;");
-                        labelemail.InnerHtml = setInnerHtml(fields[k]);
+                        email = setInnerHtml(fields[k]);
                         break;
                     case "LINKEDIN PROFILE LINK OF THE CONTACT":
-                        linkedin.Attributes.Add("style", "display:block;");
-                        labellinkedin.InnerHtml = setInnerHtml(fields[k]);
+                        linkedin = setInnerHtml(fields[k]);
                         break;
-
                     default:
                         break;
+
                 }
             }
         }
@@ -247,51 +219,5 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void PopulateEmployerInfo()
-    {
-        try
-        {
-            var employerInfo = (from pInfo in db.applicantemployerdetails
-                                where pInfo.applicantid == userID && pInfo.universityid == universityID
-                                select pInfo).FirstOrDefault();
-            if (employerInfo != null)
-            {
-                if (employerInfo.wishtoaddemployer == 1)
-                    lblemploymentInfo.Text = "";
-                else
-                    lblemploymentInfo.Text = "";
-                lblemployer.Text = employerInfo.organization;
-                lblemployerwebsite.Text = employerInfo.website;
-                lblemployercity.Text = employerInfo.city;
-                if (employerInfo.country != null)
-                {
-                    lblemployercountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(employerInfo.country));
-
-                }
-                lblposition.Text = employerInfo.designation;
-                lblstartdate.Text = Convert.ToDateTime(employerInfo.durationfrom).ToString("yyyy-MM-dd");
-                lblendate.Text = Convert.ToDateTime(employerInfo.durationto).ToString("yyyy-MM-dd");
-                lblbriefDescription.Text = employerInfo.briefdescription;
-                lblreportingmanger.Text = employerInfo.nameofreportingmanger;
-                lblemploymentverification.Text = employerInfo.contactpersonwithdetails;
-                if (employerInfo.relationshipwithcontact != null)
-                {
-                    lblrelationship.Text = objCom.GetRealtionship(Convert.ToInt32(employerInfo.relationshipwithcontact));
-                }
-                lblemail.Text = employerInfo.emailid;
-                lbllinkedin.Text = employerInfo.linkedinidofcontact;
-
-            }
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-
-
-
-
 
 }
