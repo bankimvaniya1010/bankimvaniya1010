@@ -13,6 +13,7 @@ public sealed class GlobalVariables
     }
 
     public static bool isDeclarationDoneByApplicant;
+    public static bool isProfileDetailsCompletedByApplicant;
 
     public static int universityMaxAge;
     public static int universityMinAge;

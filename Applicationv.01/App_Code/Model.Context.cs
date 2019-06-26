@@ -42,7 +42,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantdocumentmaster> applicantdocumentmaster { get; set; }
     public virtual DbSet<applicantformmaster> applicantformmaster { get; set; }
     public virtual DbSet<applicantfundingmaster> applicantfundingmaster { get; set; }
-    public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
     public virtual DbSet<applicantreferencecheck> applicantreferencecheck { get; set; }
     public virtual DbSet<applicantscores> applicantscores { get; set; }
     public virtual DbSet<applicantsubjectwisegrade> applicantsubjectwisegrade { get; set; }
@@ -113,16 +112,18 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<applicantresidencehistory> applicantresidencehistory { get; set; }
-    public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
-    public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
     public virtual DbSet<applicanthighereducation> applicanthighereducation { get; set; }
-    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     public virtual DbSet<clarificationquestionsmaster> clarificationquestionsmaster { get; set; }
-    public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
     public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
     public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
+    public virtual DbSet<admincomments> admincomments { get; set; }
+    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
+    public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
+    public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
+    public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
+    public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

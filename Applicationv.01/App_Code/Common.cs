@@ -1065,6 +1065,34 @@ public class Common
         }
     }
 
+    public void SetStudentDetailsCompletedStatus(int applicantId, int universityID)
+    {
+        try
+        {
+            var isPersonalDetailsComplete = db.applicantdetails
+                                              .Where(x => x.applicantid == applicantId && x.universityid == universityID)
+                                              .Select(x => x.iscontactdetailspresent && x.ispersonaldetailspresent && x.issocialprofilepresent && x.isidentificationpresent).FirstOrDefault();
+
+            var isEducationDetailsComplete = db.applicanteducationdetails
+                                               .Where(x => x.applicantid == applicantId && x.universityid == universityID)
+                                               .Select(x => x.iseducationdetailspresent).FirstOrDefault();
+
+            var isLanguageCompetencyComplete = db.applicantlanguagecompetency
+                                                 .Where(x => x.applicantid == applicantId && x.universityid == universityID)
+                                                 .Select(x => x.islanguagecompetencypresent).FirstOrDefault();
+
+            if (isPersonalDetailsComplete && isEducationDetailsComplete && isLanguageCompetencyComplete)
+                GlobalVariables.isProfileDetailsCompletedByApplicant = true;
+            else
+                GlobalVariables.isProfileDetailsCompletedByApplicant = false;
+
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+
     [Serializable]
     public class FieldList
     {

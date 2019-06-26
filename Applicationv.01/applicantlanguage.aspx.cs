@@ -583,6 +583,7 @@ public partial class applicantlanguage : System.Web.UI.Page
             objLanguage.testreportreferenceno = txttestRefno.Value;
             objLanguage.applicantid = userID;
             objLanguage.lastsavedtime = DateTime.Now;
+            objLanguage.islanguagecompetencypresent = true;
             objLanguage.universityid = universityID;
 
             if (mode == "new")
@@ -590,6 +591,9 @@ public partial class applicantlanguage : System.Web.UI.Page
             db.SaveChanges();
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+
+            if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
+                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }

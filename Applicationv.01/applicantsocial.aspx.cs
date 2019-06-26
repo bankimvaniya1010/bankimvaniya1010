@@ -221,6 +221,9 @@ public partial class applicantsocial : System.Web.UI.Page
                 objapplicantDetail.havetwitteraccount = false;
             else
                 objapplicantDetail.havetwitteraccount = true;
+
+            objapplicantDetail.socialprofilesavetime = DateTime.Now;
+            objapplicantDetail.issocialprofilepresent = true;
             objapplicantDetail.applicantid = userID;
             objapplicantDetail.universityid = universityID;
             if (mode == "new")
@@ -228,6 +231,10 @@ public partial class applicantsocial : System.Web.UI.Page
             db.SaveChanges();
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+
+            if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
+                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
+
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }

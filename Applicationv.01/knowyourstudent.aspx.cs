@@ -113,6 +113,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             objapplicantDetail.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;
             objapplicantDetail.alternativeIdentityproofno = txtalternateIdentityNo.Value;
             objapplicantDetail.identificationsavetime = DateTime.Now;
+            objapplicantDetail.isidentificationpresent = true;
             objapplicantDetail.applicantid = userID;
             objapplicantDetail.universityid = universityID;
             if (mode == "new")
@@ -120,6 +121,10 @@ public partial class knowyourstudent : System.Web.UI.Page
             db.SaveChanges();
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+
+            if(!GlobalVariables.isProfileDetailsCompletedByApplicant)
+                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
+
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
 

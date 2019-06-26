@@ -453,6 +453,7 @@ public partial class personaldetails : System.Web.UI.Page
             objapplicantDetail.applicantid = userID;
             objapplicantDetail.universityid = universityID;
             objapplicantDetail.personaldetailsavedtime = DateTime.Now;
+            objapplicantDetail.ispersonaldetailspresent = true;
             if (ddlMarital.SelectedItem.Text == "Married")
             {
                 string spouseDateofBirth = ddlSpouseDOBYear.SelectedValue + "-" + ddlSpouseDOBMonth.SelectedValue + "-" + ddlSpouseDOBDate.SelectedValue;
@@ -473,6 +474,10 @@ public partial class personaldetails : System.Web.UI.Page
             db.SaveChanges();
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+
+            if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
+                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
+
             lblMessage.Text = "Your Personal Details have been saved";
             lblMessage.Visible = true;
         }
