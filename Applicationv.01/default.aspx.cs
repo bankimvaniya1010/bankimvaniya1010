@@ -10,19 +10,9 @@ public partial class _Default : System.Web.UI.Page
     Logger log = new Logger();
     List<int> QuestionList = new List<int>();
     private GTEEntities db = new GTEEntities();
-    private Common objCommon = new Common();
     int UserID = 0, applicantID = 0;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string progressStatus = "";
-
-    protected void Page_PreInit(object sender, EventArgs e)
-    {
-        if (GlobalVariables.isDeclarationDoneByApplicant)
-            this.MasterPageFile = "~/student.master";
-        else
-            this.MasterPageFile = "~/prescreening.master";
-    }
-
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))

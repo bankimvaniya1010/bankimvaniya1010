@@ -427,7 +427,6 @@
           <Property Name="universityid" Type="int" />
           <Property Name="profile" Type="int" />
           <Property Name="question" Type="int" />
-          <Property Name="video" Type="int" />
           <Property Name="documents" Type="int" />
           <Property Name="declarationdone" Type="bit" />
         </EntityType>
@@ -3743,7 +3742,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universityid" Type="Int32" />
           <Property Name="profile" Type="Int32" />
           <Property Name="question" Type="Int32" />
-          <Property Name="video" Type="Int32" />
           <Property Name="documents" Type="Int32" />
           <Property Name="declarationdone" Type="Boolean" />
         </EntityType>
@@ -5004,7 +5002,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="applicantprogressbar">
                 <ScalarProperty Name="declarationdone" ColumnName="declarationdone" />
                 <ScalarProperty Name="documents" ColumnName="documents" />
-                <ScalarProperty Name="video" ColumnName="video" />
                 <ScalarProperty Name="question" ColumnName="question" />
                 <ScalarProperty Name="profile" ColumnName="profile" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />

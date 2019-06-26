@@ -1053,9 +1053,9 @@ public class Common
             if (applicantProgressInfo != null)
             {
                 if (applicantProgressInfo.declarationdone.HasValue && applicantProgressInfo.declarationdone.Value)
-                    GlobalVariables.isDeclarationDoneByApplicant = applicantProgressInfo.declarationdone.Value;
+                    GlobalVariables.isDeclarationDoneByApplicant = true;
                 else
-                    GlobalVariables.isDeclarationDoneByApplicant = applicantProgressInfo.declarationdone.Value;
+                    GlobalVariables.isDeclarationDoneByApplicant = false;
             }
                 
         }
