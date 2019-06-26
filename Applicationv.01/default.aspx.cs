@@ -23,7 +23,7 @@ public partial class _Default : System.Web.UI.Page
         Session["Applicant"] = UserID;
         if (!IsPostBack)
         {
-            SetprogressStatus(); BindRadiobuttonlist();
+            /*SetprogressStatus();*/ BindRadiobuttonlist();
             //if (Session["SecondaryLang"] == null)
             //    Session["SecondaryLang"] = "ar";
         }
@@ -43,27 +43,27 @@ public partial class _Default : System.Web.UI.Page
         rblLanguage.DataValueField = "languagecode";
         rblLanguage.DataBind();
     }
-    private void SetprogressStatus()
-    {
-        try
-        {
-            var ap = db.applicantprogressbar.Where(b => b.applicantid == applicantID).First();
-            if (ap != null)
-            {
-                if (ap.documents == 1)
-                    document.Attributes["class"] = "progress-bar bg-success";
-                if (ap.profile == 1)
-                    profile.Attributes["class"] = "progress-bar bg-success";
-                if (ap.video == 1)
-                    Video.Attributes["class"] = "progress-bar bg-success";
-                if (ap.question == 1)
-                    question.Attributes["class"] = "progress-bar bg-success";
-            }
-        }
-        catch (Exception ex)
-        {
-            log.WriteLog(ex.ToString());
+    //private void SetprogressStatus()
+    //{
+    //    try
+    //    {
+    //        var ap = db.applicantprogressbar.Where(b => b.applicantid == applicantID).First();
+    //        if (ap != null)
+    //        {
+    //            if (ap.documents == 1)
+    //                document.Attributes["class"] = "progress-bar bg-success";
+    //            if (ap.profile == 1)
+    //                profile.Attributes["class"] = "progress-bar bg-success";
+    //            if (ap.video == 1)
+    //                Video.Attributes["class"] = "progress-bar bg-success";
+    //            if (ap.question == 1)
+    //                question.Attributes["class"] = "progress-bar bg-success";
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        log.WriteLog(ex.ToString());
 
-        }
-    }
+    //    }
+    //}
 }

@@ -427,7 +427,6 @@
           <Property Name="universityid" Type="int" />
           <Property Name="profile" Type="int" />
           <Property Name="question" Type="int" />
-          <Property Name="video" Type="int" />
           <Property Name="documents" Type="int" />
           <Property Name="declarationdone" Type="bit" />
         </EntityType>
@@ -2094,8 +2093,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="clarificationquestion_university_mapping" EntitySet="clarificationquestion_university_mapping" />
           </AssociationSet>
           <EntitySet Name="tutorialmaster" EntityType="GTEModel.tutorialmaster" />
-          <EntitySet Name="applicantprogressbar" EntityType="GTEModel.applicantprogressbar" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="GTEModel.preliminaryapplicantanswers" />
+          <EntitySet Name="applicantprogressbar" EntityType="GTEModel.applicantprogressbar" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -3724,19 +3723,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="status" Type="Int32" />
           <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <EntityType Name="applicantprogressbar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="profile" Type="Int32" />
-          <Property Name="question" Type="Int32" />
-          <Property Name="video" Type="Int32" />
-          <Property Name="documents" Type="Int32" />
-          <Property Name="declarationdone" Type="Boolean" />
-        </EntityType>
         <EntityType Name="preliminaryapplicantanswers">
           <Key>
             <PropertyRef Name="preliminaryapplicantanswersid" />
@@ -3746,6 +3732,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="preliminaryid" Type="Int32" />
           <Property Name="answer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="answersubmittedtime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="applicantprogressbar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="profile" Type="Int32" />
+          <Property Name="question" Type="Int32" />
+          <Property Name="documents" Type="Int32" />
+          <Property Name="declarationdone" Type="Boolean" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4988,20 +4986,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="applicantprogressbar">
-            <EntityTypeMapping TypeName="GTEModel.applicantprogressbar">
-              <MappingFragment StoreEntitySet="applicantprogressbar">
-                <ScalarProperty Name="declarationdone" ColumnName="declarationdone" />
-                <ScalarProperty Name="documents" ColumnName="documents" />
-                <ScalarProperty Name="video" ColumnName="video" />
-                <ScalarProperty Name="question" ColumnName="question" />
-                <ScalarProperty Name="profile" ColumnName="profile" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="preliminaryapplicantanswers">
             <EntityTypeMapping TypeName="GTEModel.preliminaryapplicantanswers">
               <MappingFragment StoreEntitySet="preliminaryapplicantanswers">
@@ -5010,6 +4994,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="preliminaryid" ColumnName="preliminaryid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="preliminaryapplicantanswersid" ColumnName="preliminaryapplicantanswersid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantprogressbar">
+            <EntityTypeMapping TypeName="GTEModel.applicantprogressbar">
+              <MappingFragment StoreEntitySet="applicantprogressbar">
+                <ScalarProperty Name="declarationdone" ColumnName="declarationdone" />
+                <ScalarProperty Name="documents" ColumnName="documents" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="profile" ColumnName="profile" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

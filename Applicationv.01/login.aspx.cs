@@ -11,6 +11,7 @@ public partial class login : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -43,6 +44,7 @@ public partial class login : System.Web.UI.Page
                 pnl_warning.Visible = false;                
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.studentid;
+                objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
 
                 //switch (chkUser.role)
                 //{

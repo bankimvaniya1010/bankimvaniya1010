@@ -10,14 +10,14 @@
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
         <h1 class="h2">Dashboard</h1>
-    <div class="card">
+    <%--<div class="card">
         <div class="progress" style="height: 20px">
             <div id="profile" runat="server" class="progress-bar bg-danger " role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Profile</div>
             <div id="question" runat="server" class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Question</div>
             <div id="Video" runat="server" class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Video</div>
             <div id="document" runat="server" class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">Documents</div>
         </div>
-    </div>
+    </div>--%>
 
 
     <div class="row">

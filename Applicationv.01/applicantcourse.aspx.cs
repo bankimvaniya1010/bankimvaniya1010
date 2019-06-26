@@ -15,11 +15,14 @@ public partial class applicantcourse : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     private static GTEEntities dbCon = new GTEEntities();
     int universityID, userID = 0;
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
+        if (!GlobalVariables.isDeclarationDoneByApplicant)
+            Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
             second.Attributes.Add("style", "display:none;");

@@ -22,6 +22,9 @@ public partial class clarificationquestion : System.Web.UI.Page
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
 
+        if (!GlobalVariables.isDeclarationDoneByApplicant)
+            Response.Redirect(webURL + "default.aspx", true);
+
         if (!IsPostBack)
         {
             var questionsList = db.clarificationquestionsmaster.ToList();

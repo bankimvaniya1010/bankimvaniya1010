@@ -1045,6 +1045,26 @@ public class Common
         return fields.ToList<dynamic>();
     }
 
+    public void IsDeclarationDoneByApplicant(int applicantId, int universityID)
+    {
+        try
+        {
+            var applicantProgressInfo = db.applicantprogressbar.Where(x => x.applicantid == applicantId && x.universityid == universityID).FirstOrDefault();
+            if (applicantProgressInfo != null)
+            {
+                if (applicantProgressInfo.declarationdone.HasValue && applicantProgressInfo.declarationdone.Value)
+                    GlobalVariables.isDeclarationDoneByApplicant = true;
+                else
+                    GlobalVariables.isDeclarationDoneByApplicant = false;
+            }
+                
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+
     [Serializable]
     public class FieldList
     {

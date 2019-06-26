@@ -22,6 +22,8 @@ public partial class preliminary : System.Web.UI.Page
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if (GlobalVariables.isDeclarationDoneByApplicant)
+            Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
             VideoList = db.tutorialmaster.Where(x => x.status == 1 && x.universityid== UniversityID).ToList();
