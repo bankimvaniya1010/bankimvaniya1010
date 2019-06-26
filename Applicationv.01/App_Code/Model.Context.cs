@@ -117,13 +117,13 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     public virtual DbSet<clarificationquestionsmaster> clarificationquestionsmaster { get; set; }
     public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
-    public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
     public virtual DbSet<admincomments> admincomments { get; set; }
     public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
     public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
     public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
+    public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

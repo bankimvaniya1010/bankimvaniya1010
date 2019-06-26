@@ -12,4 +12,12 @@
     right: -16px;
     top: 4px;
 }
+.pdf-doc-wrpr {padding: 20px 15px 0;}
+.pdf-container {margin: 0 -15px;}
+.pdf-wrpr {width: 100px;float: left;margin: 0 0 20px 15px;text-align: center;}
+.pdf-dcrp {height: 43px;overflow: hidden;margin-top: 2px;}
+.video-container {padding: 20px 15px 0;}
+.video-container img{margin-bottom: 20px;}
+#video-modal .modal-header{padding: 12px 15px 0;}
+.pdf-wrpr .fa{font-size: 30px;color: red;}
 

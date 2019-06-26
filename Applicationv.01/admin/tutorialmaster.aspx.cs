@@ -73,7 +73,7 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
                     ddlUniversity.ClearSelection();
                     ddlUniversity.Items.FindByValue(tutorailData.universityid.ToString()).Selected = true;
                 }
-                txtDescription.Value = tutorailData.description;
+                txtDescription.Value = tutorailData.title;
                 if (tutorailData.type == "video")
                 {
                     txtVideourl.Value = tutorailData.videourl;
@@ -82,7 +82,7 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
                 {
 
                     hidDocumentPath.Value = tutorailData.documentpath;
-                    uploadedFile.NavigateUrl = Server.MapPath("~") + "/Docs/" + tutorailData.documentpath;
+                    uploadedFile.NavigateUrl = webURL + "/Docs/" + tutorailData.documentpath;
                     uploadedFile.Text = "View File";
                 }
                 if (tutorailData.type != null)
@@ -117,7 +117,7 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
             }
             
             objtutorialmaster.type = ddlType.SelectedValue;
-            objtutorialmaster.description = txtDescription.Value;           
+            objtutorialmaster.title = txtDescription.Value;           
             objtutorialmaster.status = 1;
             if (!ddlType.SelectedValue.ToString().Equals("video", StringComparison.OrdinalIgnoreCase) && (FileUpload.HasFile || !string.IsNullOrEmpty(hidDocumentPath.Value)))
             {
@@ -136,7 +136,9 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
             }
             else
             {
-                objtutorialmaster.videourl = txtVideourl.Value;
+                var value = txtVideourl.Value;
+                var videoURL = value.Substring(value.LastIndexOf("=")+1);
+                objtutorialmaster.videourl = videoURL;
                 objtutorialmaster.documentpath = "";
             }
             objtutorialmaster.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);

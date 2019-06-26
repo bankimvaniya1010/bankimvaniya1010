@@ -30,7 +30,7 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
                                 {
                                     id = q.id,
                                     videourl = q.videourl,
-                                    description = q.description,
+                                    title = q.title,
                                     status = q.status,
                                     type = q.type,
                                     UniversityName= um.university_name

@@ -140,71 +140,7 @@
                                 <!-- Account menu -->
                                 <div class="sidebar-heading">Account</div>
                                 <ul class="sidebar-menu">
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#account_menu">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                            Account
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu sm-indent collapse" id="account_menu">
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="login.aspx">
-                                                    <span class="sidebar-menu-text">Login</span>
-                                                </a>
-                                            </li>
 
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="forgetpassword.aspx">
-                                                    <span class="sidebar-menu-text">Forgot Password</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="personaldetails.aspx">
-                                                    <span class="sidebar-menu-text">Edit Account</span>
-                                                </a>
-                                            </li>
-                                            <%--   <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="basicprofile.aspx">
-                                                    <span class="sidebar-menu-text">Edit Account</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="educationinfo.aspx">
-                                                    <span class="sidebar-menu-text">Education Details</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="languageproficiency.aspx">
-                                                    <span class="sidebar-menu-text">Language Proficiency</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="backlog.aspx">
-                                                    <span class="sidebar-menu-text">Backlog</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="employerinfo.aspx">
-                                                    <span class="sidebar-menu-text">Employer's Information</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="sponsor.aspx">
-                                                    <span class="sidebar-menu-text">Sponsor's Detail</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="financial.aspx">
-                                                    <span class="sidebar-menu-text">Financial History</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="selfassesment.aspx">
-                                                    <span class="sidebar-menu-text">Self Assesment</span>
-                                                </a>
-                                            </li>--%>
-                                        </ul>
-                                    </li>
                                     <li class="sidebar-menu-item" id="preliminary_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -214,7 +150,17 @@
                                         <ul class="sidebar-submenu sm-indent collapse" id="preliminary">
                                             <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="preliminary.aspx">
-                                                    <span class="sidebar-menu-text">Questions</span>
+                                                    <span class="sidebar-menu-text">Tutorial</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
+                                                    <span class="sidebar-menu-text">Ouick Test</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button" href="applicantdeclaration.aspx">
+                                                    <span class="sidebar-menu-text">Declaration</span>
                                                 </a>
                                             </li>
 

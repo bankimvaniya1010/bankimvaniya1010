@@ -53,8 +53,7 @@
 
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                    <div class="form-row">
-                                        <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+                                    <div class="form-row">                                      
                                         <asp:Button ID="btnSave" runat="server" Text="Accept Declaration and Submit" CssClass="btn btn-success" OnClick="btnSave_Click" />
                                     </div>
                                 </div>
