@@ -279,11 +279,6 @@
                                                     <span class="sidebar-menu-text">Employer's Information</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item">
-                                                <a class="sidebar-menu-button" href="clarificationquestion.aspx">
-                                                    <span class="sidebar-menu-text">Clarification Question</span>
-                                                </a>
-                                            </li>
                                          <%-- <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="sponsor.aspx">
                                                     <span class="sidebar-menu-text">Sponsor's Detail</span>
@@ -304,6 +299,21 @@
                                                     <span class="sidebar-menu-text">Questions</span>
                                                 </a>
                                             </li>--%>
+                                        </ul>
+                                    </li>
+
+                                    <li class="sidebar-menu-item" id="clarification_question_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#clarification_question">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            Clarification Question
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="clarification_question">
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button" href="clarificationquestion.aspx">
+                                                    <span class="sidebar-menu-text">Clarification Question</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="upload_document_list">
@@ -672,8 +682,10 @@
     <script>
         $(document).ready(function () {
             var declarationCompleted = ("<%=GlobalVariables.isDeclarationDoneByApplicant%>".toLowerCase() == "true");
+            var studentDetailsCompleted = ("<%=GlobalVariables.isProfileDetailsCompletedByApplicant%>".toLowerCase() == "true");
             if (!declarationCompleted) {
                 $("#personal_menu_list").hide();
+                $("#clarification_question_list").hide();
                 $("#upload_document_list").hide();
                 $("#Application_list").hide();
                 $("#Gte_list").hide();
@@ -684,13 +696,18 @@
             }
             else {
                 $("#personal_menu_list").show();
+                $("#clarification_question_list").show();
                 $("#upload_document_list").show();
-                $("#Application_list").show();
                 $("#Gte_list").show();
                 $("#message_menu_list").show();
                 $("#student_list").show();
                 $("#components_list").show();
                 $("#preliminary_list").hide();
+
+                if (!studentDetailsCompleted)
+                    $("#Application_list").hide();
+                else
+                    $("#Application_list").show();
             }
         });
     </script>

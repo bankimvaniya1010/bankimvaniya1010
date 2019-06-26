@@ -45,6 +45,7 @@ public partial class login : System.Web.UI.Page
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.studentid;
                 objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
+                objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
 
                 //switch (chkUser.role)
                 //{

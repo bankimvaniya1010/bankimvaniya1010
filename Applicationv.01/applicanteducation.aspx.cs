@@ -1130,6 +1130,7 @@ public partial class applicanteducation : System.Web.UI.Page
             objEdu.diplomaverificationmobile = txtDiplomacontactMobile.Value;
 
             objEdu.lastsavetime = DateTime.Now;
+            objEdu.iseducationdetailspresent = true;
             /// Diploma End-----
             /// 
             if (rblhigherYes.Checked)
@@ -1265,6 +1266,8 @@ public partial class applicanteducation : System.Web.UI.Page
                 objCom.SendMail(objEducation.verificationemail, sb.ToString(), "Education Detail check for" + applicantName);
             }
 
+            if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
+                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
             lblMessage.Text = "Your Education Details have been saved";
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);

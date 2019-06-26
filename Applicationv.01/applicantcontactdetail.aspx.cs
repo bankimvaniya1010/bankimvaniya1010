@@ -320,6 +320,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 objapplicantDetail.nomineeverificationkey = Guid.NewGuid().ToString();
             }
             objapplicantDetail.contactdetailsavetime = DateTime.Now;
+            objapplicantDetail.iscontactdetailspresent = true;
             objapplicantDetail.universityid = universityID;
             objapplicantDetail.applicantid = userID;
             if (mode == "new")
@@ -342,6 +343,9 @@ public partial class applicantcontactdetail : System.Web.UI.Page
 
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+
+            if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
+                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
             lblMessage.Text = "Your Contact Details have been saved";
             lblMessage.Visible = true;
         }
