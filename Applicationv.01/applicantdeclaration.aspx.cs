@@ -26,17 +26,23 @@ public partial class applicantdeclaration : System.Web.UI.Page
     {
         try
         {
-            var applicantProgressInfo = db.applicantprogressbar.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
-            if (applicantProgressInfo != null)
+            var mode = "update";
+            var applicantprogressbar = db.applicantprogressbar.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+            if (applicantprogressbar == null)
             {
-                applicantProgressInfo.declarationdone = true;
-                db.applicantprogressbar.Add(applicantProgressInfo);
-                db.SaveChanges();
-                GlobalVariables.isDeclarationDoneByApplicant = true;
-                Response.Redirect(webURL + "default.aspx", true);
+                mode = "new";
+                applicantprogressbar = new applicantprogressbar();
+                applicantprogressbar.universityid = UniversityID;
+                applicantprogressbar.applicantid = UserID;
             }
-            else
-                Response.Redirect(webURL + "preliminary.aspx", true);
+
+            applicantprogressbar.declarationdone = true;
+            if (mode == "new")
+                db.applicantprogressbar.Add(applicantprogressbar);
+            db.SaveChanges();
+
+            GlobalVariables.isDeclarationDoneByApplicant = true;
+            Response.Redirect(webURL + "default.aspx", true);
         }
         catch (Exception ex)
         {

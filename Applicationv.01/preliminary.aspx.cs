@@ -9,8 +9,10 @@ using System.Web.UI.WebControls;
 
 public partial class preliminary : System.Web.UI.Page
 {
-    public static int QuestionsCount = 0;
-    protected List<tutorialmaster> VideoList = new List<tutorialmaster>();
+    public static int videoCount = 0;
+    public static int otherDocCount = 0;
+
+    protected List<tutorialmaster> allDocuments = new List<tutorialmaster>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
     Logger objLog = new Logger();
@@ -26,177 +28,10 @@ public partial class preliminary : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
-            VideoList = db.tutorialmaster.Where(x => x.status == 1 && x.universityid== UniversityID).ToList();
-            if(VideoList.Count==0)
-                VideoList = db.tutorialmaster.Where(x => x.status == 1).ToList();
-            video.Visible = true;
-            questions.Visible = false;
-            //results.Visible = false;
+            allDocuments = db.tutorialmaster.Where(x => x.status == 1 && x.universityid == UniversityID).ToList();
+
+            videoCount = allDocuments.Where(c => c.type == "video").ToList().Count;
+            otherDocCount = allDocuments.Where(c => c.type != "video").ToList().Count;
         }
-    }
-   
-
-    public List<T> Randomize<T>(List<T> list)
-    {
-        List<T> randomizedList = new List<T>();
-        Random rnd = new Random();
-        while (list.Count > 0)
-        {
-            int index = rnd.Next(0, list.Count); //pick a random item from the master list
-            randomizedList.Add(list[index]); //place it at the end of the randomized list
-            list.RemoveAt(index);
-        }
-        return randomizedList;
-    }
-    private void GetQuestion()
-    {
-        try
-        {
-          var  QuestionsList = (from um in db.university_master
-                             join pqm in db.preliminary_questionmaster on um.universityid equals pqm.universityid
-                             into combined
-                             from x in combined.DefaultIfEmpty()
-                             where x.universityid == UniversityID
-                             select new
-                             {
-                                 preliminaryid = x.preliminaryid,
-                                 question = x.question,
-                                 answer1 = x.answer1,
-                                 answer2 = x.answer2,
-                                 answer3 = x.answer3,
-                                 answer4 = x.answer4,
-                             }).ToList();
-            if (QuestionsList.Count == 0)
-            {
-                QuestionsList = (from  pqm in db.preliminary_questionmaster 
-                                 select new
-                                 {
-                                     preliminaryid = pqm.preliminaryid,
-                                     question = pqm.question,
-                                     answer1 = pqm.answer1,
-                                     answer2 = pqm.answer2,
-                                     answer3 = pqm.answer3,
-                                     answer4 = pqm.answer4,
-                                 }).ToList();
-            }
-            QuestionsCount = QuestionsList.Count;
-            QuestionsList = Randomize(QuestionsList);
-            QuestionsList = QuestionsList.Skip(0).Take(5).ToList();
-            Session["Questions"] = QuestionsList;
-            questionList.DataSource = QuestionsList;
-            questionList.DataBind();
-        }
-        catch (Exception ex)
-        { objLog.WriteLog(ex.ToString()); }
-    }
-
-    protected void btnAnswer_Click(object sender, EventArgs e)
-    {
-        GetQuestion();
-        video.Visible = false;
-       
-        questions.Visible = true;
-        //results.Visible = false;
-    }
-
-    protected void btnsubmit_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            Hashtable answer = new Hashtable();
-            foreach (DataListItem item in questionList.Items)
-            {
-
-                string SelectedValue = "";
-                Label questionID = (Label)item.FindControl("lblno");
-                //  Label lblquestion = (Label)item.FindControl("lblquestion");
-                Label lblQuestion = (Label)item.FindControl("lblQuestion");
-                //Label Label1 = e.Item.FindControl("lblPrimary") as Label;
-                RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
-                RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
-                RadioButton rdAnswer3 = (RadioButton)item.FindControl("rdoans3");
-                RadioButton rdAnswer4 = (RadioButton)item.FindControl("rdoans4");
-                RadioButton rdStrongDisAgree = (RadioButton)item.FindControl("rdoans5");
-
-                if (rdAnswer1.Checked)
-                {
-                    SelectedValue = "answer1";
-                }
-                if (rdAnswer2.Checked)
-                {
-                    SelectedValue = "answer2";
-                }
-                if (rdAnswer3.Checked)
-                {
-                    SelectedValue = "answer3";
-                }
-                if (rdAnswer4.Checked)
-                {
-                    SelectedValue = "answer4";
-                }
-
-
-                answer.Add(questionID.Text, SelectedValue);
-            }
-            string messgae = Save(answer);
-            Response.Redirect(webURL + "applicantdeclaration.aspx", true);
-        }
-        catch (Exception ex)
-        { objLog.WriteLog(ex.ToString()); }
-    }
-
-    private string Save(Hashtable UserValues)
-    {
-        string message = string.Empty;
-        try
-        {
-
-            ICollection key = UserValues.Keys;
-            preliminaryapplicantanswers objAnswer = new preliminaryapplicantanswers();
-            foreach (var val in key)
-            {
-                int answerID = Convert.ToInt32(val);
-                objAnswer.answer = UserValues[val].ToString();
-                objAnswer.applicantid = UserID;
-                objAnswer.preliminaryid = answerID;
-                objAnswer.answersubmittedtime = DateTime.Now;
-                db.preliminaryapplicantanswers.Add(objAnswer);
-                db.SaveChanges();
-            }
-        }
-        catch (Exception ex)
-        { objLog.WriteLog(ex.ToString()); }
-        return message;
-    }
-
-    private int Result(Hashtable UserValues)
-    {
-        int correctAns = 0;
-        try
-        {
-            var QuestionsList = (List<preliminary_questionmaster>)Session["Questions"];
-            ICollection key = UserValues.Keys;
-
-            foreach (var val in key)
-            {
-                int answerID = Convert.ToInt32(val);
-                string Answer = UserValues[val].ToString();
-                for (int k = 0; k < QuestionsList.Count; k++)
-                {
-                    if (QuestionsList[k].preliminaryid == answerID)
-                    {
-                        if (QuestionsList[k].correctanswer == Answer)
-                        {
-                            correctAns = correctAns + 1;
-                            break;
-                        }
-                    }
-                }
-
-            }
-        }
-        catch (Exception ex)
-        { objLog.WriteLog(ex.ToString()); }
-        return correctAns;
-    }
+    } 
 }

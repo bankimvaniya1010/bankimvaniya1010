@@ -134,7 +134,6 @@
         <EntityTypeShape EntityType="GTEModel.clarificationquestionsmaster" Width="1.5" PointX="17.25" PointY="2.375" />
         <AssociationConnector Association="GTEModel.FK_clarificationmaster_clarificationquestion_mapping" />
         <EntityTypeShape EntityType="GTEModel.preliminaryapplicantanswers" Width="1.5" PointX="14.375" PointY="27.75" />
-        <EntityTypeShape EntityType="GTEModel.applicantprogressbar" Width="1.5" PointX="29.375" PointY="13.75" />
         <EntityTypeShape EntityType="GTEModel.admincomments" Width="1.5" PointX="20" PointY="1.25" />
         <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="23.25" PointY="28.5" />
         <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="29.25" PointY="17.5" />
@@ -145,6 +144,7 @@
         <AssociationConnector Association="GTEModel.fk_university_master_admincomments" />
         <EntityTypeShape EntityType="GTEModel.applicantemployerdetails" Width="1.5" PointX="29.375" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.tutorialmaster" Width="1.5" PointX="17.375" PointY="16.75" />
+        <EntityTypeShape EntityType="GTEModel.applicantprogressbar" Width="1.5" PointX="29.375" PointY="6.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

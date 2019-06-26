@@ -448,7 +448,6 @@ public partial class applicantprogressbar
     public Nullable<int> universityid { get; set; }
     public Nullable<int> profile { get; set; }
     public Nullable<int> question { get; set; }
-    public Nullable<int> documents { get; set; }
     public Nullable<bool> declarationdone { get; set; }
 }
 

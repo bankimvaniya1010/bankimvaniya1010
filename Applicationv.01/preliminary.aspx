@@ -8,117 +8,67 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Preliminary Step</li>
         </ol>
-        <h1 class="h2">Test Your Knowledge (Step 2/3)</h1>
-
+        <h1 class="h2">TUTORIAL (Step 1/3)</h1>
     </div>
-    <div class="page ">
 
+    <div class="page ">
         <div class="row" style="margin-left:50px;">
             <div class="col-md-8">
 
-                <div class="card">
-
-                    <div class="card-body">
-                        After viewing the below videos, Please proceed for Answer
-                         <asp:Button ID="btnAnswer" runat="server" CssClass="btn btn-success" Text="Ready To Answer" OnClick="btnAnswer_Click" />
-                    </div>
-
-                </div>
-                <div class="card" id="questions" runat="server">
-                    <asp:DataList ID="questionList" runat="server">
-                        <ItemTemplate>
-                            <asp:Panel ID="options" runat="server">
-                                <div class="card-header">
-                                    <div style="display: none;">
-                                        <asp:Label ID="lblno" runat="server" Text='<%# Eval("preliminaryid") %>'></asp:Label>
-                                    </div>
-                                    <div class="media align-items-center">
-
-                                        <div class="media-left">
-                                            <h4 class="mb-0"><strong># 
-                                               <asp:Label ID="lblSrNo" runat="server" Text='<%# Container.ItemIndex + 1 %>'></asp:Label></strong></h4>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="card-title">
-                                                <asp:Label ID="lblQuestion" runat="server" Text='<%# Eval("question") %>'></asp:Label>?
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <%-- <div class="form-group">
-
-                                            <input id="customCheck01" type="checkbox" class="custom-control-input">
-                                            <label for="customCheck01" class="custom-control-label">
-                                                <asp:Label ID="lblquestion" runat="server" Text='<%# Eval("answerdescription") %>'></asp:Label></label>
-
-                                        </div>--%>
-
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("Answer1") %>' />
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("Answer2") %>' />
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("Answer3") %>' />
-                                    </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("Answer4") %>' />
-                                    </div>
-
-                                </div>
-                            </asp:Panel>
-                        </ItemTemplate>
-                    </asp:DataList>
-                    <div class="card-footer" id="button" runat="server">
-
-                        <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
-
-                        <%-- <a href="#" class="btn btn-white">Skip</a>
-                        <a href="#" class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a>--%>
-                    </div>
-                </div>
-                <div class="card" id="results" runat="server">
-                    <div class="card-header">
-                        <h4 class="card-title">Result</h4>
-                    </div>
-                    <div class="card-body media align-items-center">
-                        <div class="media-body">
-                            <h4 class="mb-0"><%=Score %></h4>
-                            <span class="text-muted-light"><%=Results %></span>
+                <%
+                    if (otherDocCount > 0)
+                    {
+                    %>
+                <div class="card pdf-doc-wrpr" id="document" runat="server">
+                    <h5> Read The Following Documents:</h5>
+                    <div class="pdf-container clearfix">
+                        <%for (int v = 0; v < allDocuments.Count; v++)
+                            {
+                            string docType = allDocuments[v].type;
+                            if (docType != "video")
+                            {
+                            %>
+                            <div class="pdf-wrpr">
+                                <a href="Docs/<%=allDocuments[v].documentpath %>" target="_blank"><i class="fa-file-pdf fa"></i></a>
+                                <div class="pdf-dcrp"><%=allDocuments[v].title %></div>
+                            </div>                            
+                        <%} } %>
                         </div>
-
+                </div>                  <%} %> 
+                
+                <%
+                    if (videoCount > 0)
+                    {
+                    %>
+                <div class="card video-container" id="video" runat="server">
+                     <h5>Watch The Following Videos:</h5>
+                       <div class="row">
+                      <%for (int v = 0; v < allDocuments.Count; v++)
+                          {
+                              if (allDocuments[v].type == "video")
+                              {
+                              %>
+                            <div class="col-md-4 col-6">
+                                <img class="img-fluid video-img mx-auto d-block" src="http://i3.ytimg.com/vi/<%=allDocuments[v].videourl %>/0.jpg" onclick="openLink('<%=allDocuments[v].videourl %>')"/>                               
+                            </div>
+                        <%}
+                            } %>
                     </div>
-                </div>
-
-                <div class="card" id="video" runat="server">
-                    <%for (int v = 0; v < VideoList.Count; v++)
-                        { %>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="<%=VideoList[v].videourl %>" allowfullscreen=""></iframe>
-                    </div>
+                </div>            <%} %>  
+                
+                <div class="card" id="declaration" runat="server">
                     <div class="card-body">
-                        <%=VideoList[v].description %>
+                        <label  style="font-size:small;">I have Read and fully Understood the information contained in the  document and video above</label>
+                        <div class="media align-items-center">  
+                            <div class="form-row" style="align-content:center">
+                                <a href="preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
+                            </div>
+                        </div>
                     </div>
-                    <%} %>
                 </div>
-
             </div>
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="secured.pdf" target="_blank" class="btn btn-primary btn-block flex-column">
-                            <i class="material-icons">get_app</i> Download  Inforamtion 1
-                        </a>
-                    </div>
-                    <div class="card-body">
-                        <a href="wikipedia.pdf" target="_blank" class="btn btn-primary btn-block flex-column">
-                            <i class="material-icons">get_app</i> Download  Inforamtion 2
-                        </a>
-                    </div>
-                </div>
 
+            <div class="col-md-4">               
                 <div class="card">
                     <div class="card-body">
                         <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
@@ -141,22 +91,15 @@
         </div>
     </div>
     <script>
-        function validateForm() {
-            var questionCount = <%=preliminary.QuestionsCount%>;
-            for (var i = 0; i < questionCount; i++) {
-                var rdoans1 = $("#ContentPlaceHolder1_questionList_rdoans1_" + i);
-                var rdoans2 = $("#ContentPlaceHolder1_questionList_rdoans2_" + i);
-                var rdoans3 = $("#ContentPlaceHolder1_questionList_rdoans3_" + i);
-                var rdoans4 = $("#ContentPlaceHolder1_questionList_rdoans4_" + i);
-
-                if (!(rdoans1.is(':checked') || rdoans2.is(':checked') || rdoans3.is(':checked') || rdoans4.is(':checked'))) {
-                    alert("Please select one option for question no: " + (i + 1));
-                    return false;
-                }
-            }
-            return true;
-
+        
+        function openLink(url) {
+            $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/' + url + '" allowfullscreen></iframe></div></div></div></div></div>');
+            $('#video-modal').modal('show');
+             $('#video-modal').on('hidden.bs.modal', function () {
+                 $('#video-modal').remove();
+        });
         }
+        
     </script>
 
 </asp:Content>
