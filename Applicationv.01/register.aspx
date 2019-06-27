@@ -47,9 +47,31 @@
 
 
                         <div class="form-group">
-                            <label class="form-label" for="name">Name:</label>
+                            <label class="form-label" for="name">First Name:</label>
                             <div class="input-group input-group-merge">
-                                <input id="name" type="text" runat="server" class="form-control form-control-prepended" placeholder="Your first and last name">
+                                <input id="name" type="text" runat="server" class="form-control form-control-prepended" placeholder="first name">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <span class="far fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="form-label" for="mname">Middle Name:</label>
+                            <div class="input-group input-group-merge">
+                                <input id="mname" type="text" runat="server" class="form-control form-control-prepended" placeholder="Middle name">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <span class="far fa-user"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <label class="form-label" for="lname">Last Name:</label>
+                            <div class="input-group input-group-merge">
+                                <input id="lname" type="text" runat="server" class="form-control form-control-prepended" placeholder="last name">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-user"></span>
