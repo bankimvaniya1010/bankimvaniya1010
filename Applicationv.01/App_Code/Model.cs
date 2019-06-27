@@ -381,6 +381,7 @@ public partial class applicantfundingmaster
     public Nullable<int> transportchoice { get; set; }
     public Nullable<int> trips { get; set; }
     public Nullable<int> entertainment { get; set; }
+    public Nullable<int> credittransfer { get; set; }
 }
 
 public partial class applicanthighereducation

@@ -70,31 +70,40 @@ public partial class applicantvisa : System.Web.UI.Page
             if (VisaInfo != null)
             {
                 if (VisaInfo.hasvisa == 1)
+                {
                     rbtnYes.Checked = true;
-                else if(VisaInfo.hasvisa == 2)
+                    if (VisaInfo.applicantvisatype != null)
+                    {
+                        ddlVisa.ClearSelection();
+                        ddlVisa.Items.FindByValue(VisaInfo.applicantvisatype).Selected = true;
+                    }
+                    if (VisaInfo.validityfrom != null)
+                        txtValidityFrom.Value = Convert.ToDateTime(VisaInfo.validityfrom).ToString("yyyy-MM-dd");
+                    if (VisaInfo.validityto != null)
+                        txtValidityTo.Value = Convert.ToDateTime(VisaInfo.validityto).ToString("yyyy-MM-dd");
+                    txtVisano.Value = VisaInfo.visano;
+                    if (VisaInfo.firstvisit != null)
+                        txtFirstVisit.Value = Convert.ToDateTime(VisaInfo.firstvisit).ToString("yyyy-MM-dd");
+                }
+
+
+                else if (VisaInfo.hasvisa == 2)
+                {
                     rbtnNo.Checked = true;
-                if (VisaInfo.applicantvisatype != null)
-                {
-                    ddlVisa.ClearSelection();
-                    ddlVisa.Items.FindByValue(VisaInfo.applicantvisatype).Selected = true;
+                    if (VisaInfo.visaapplied == 1)
+                        VisaApplicationYes.Checked = true;
+                    else if (VisaInfo.visaapplied == 2)
+                    {
+                        VisaApplicationNo.Checked = true;
+                        txtCity.Value = VisaInfo.city;
+                        if (VisaInfo.country != null)
+                        {
+                            ddlCountry.ClearSelection();
+                            ddlCountry.Items.FindByValue(VisaInfo.country).Selected = true;
+                        }
+                    }
                 }
-                if (VisaInfo.validityfrom != null)
-                    txtValidityFrom.Value = Convert.ToDateTime(VisaInfo.validityfrom).ToString("yyyy-MM-dd");
-                if (VisaInfo.validityto != null)
-                    txtValidityTo.Value = Convert.ToDateTime(VisaInfo.validityto).ToString("yyyy-MM-dd");
-                txtVisano.Value = VisaInfo.visano;
-                if (VisaInfo.firstvisit != null)
-                    txtFirstVisit.Value = Convert.ToDateTime(VisaInfo.firstvisit).ToString("yyyy-MM-dd");
-                txtCity.Value = VisaInfo.city;
-                if (VisaInfo.visaapplied == 1)
-                    VisaApplicationYes.Checked = true;
-                else if(VisaInfo.visaapplied == 2)
-                    VisaApplicationNo.Checked = true;
-                if (VisaInfo.country != null)
-                {
-                    ddlCountry.ClearSelection();
-                    ddlCountry.Items.FindByValue(VisaInfo.country).Selected = true;
-                }
+
                 if (VisaInfo.havelivedearlier == 1)
                     rblLivedBeforeYes.Checked = true;
                 else if (VisaInfo.havelivedearlier == 2)
@@ -141,25 +150,37 @@ public partial class applicantvisa : System.Web.UI.Page
                     objVisa.applicantvisatype = ddlVisa.SelectedValue;
                 }
                 objVisa.validityfrom = Convert.ToDateTime(txtValidityFrom.Value);
-                objVisa.validityto = Convert.ToDateTime(txtValidityTo.Value);                
+                objVisa.validityto = Convert.ToDateTime(txtValidityTo.Value);
                 objVisa.visano = txtVisano.Value;
+                objVisa.firstvisit = Convert.ToDateTime(txtFirstVisit.Value);
+               
             }
-            else if (rbtnNo.Checked == true)
-                objVisa.hasvisa = 2;
-
-            if (VisaApplicationNo.Checked)
+            else if (rbtnNo.Checked == true)                
             {
-                objVisa.visaapplied = 2;
-                objVisa.city = txtCity.Value;
-                if (ddlCountry.SelectedValue != "")
+                objVisa.hasvisa = 2;
+                objVisa.applicantvisatype = "";
+                objVisa.validityfrom = null;
+                objVisa.validityto = null;
+                objVisa.firstvisit = null;
+
+                if (VisaApplicationNo.Checked)
                 {
-                    objVisa.country = ddlCountry.SelectedValue;
+                    objVisa.visaapplied = 2;
+                    objVisa.city = txtCity.Value;
+                    if (ddlCountry.SelectedValue != "")
+                    {
+                        objVisa.country = ddlCountry.SelectedValue;
+                    }
                 }
-            }
-            else if (VisaApplicationYes.Checked)
-                objVisa.visaapplied = 1;
-           
-            objVisa.firstvisit = Convert.ToDateTime(txtFirstVisit.Value);                
+                else if (VisaApplicationYes.Checked)
+                {
+                    objVisa.visaapplied = 1;
+                    objVisa.city = "";
+                    objVisa.country = "";
+                }
+                                 
+                    
+            }                    
                 
             if (rblLivedBeforeYes.Checked)
                 objVisa.havelivedearlier = 1;
