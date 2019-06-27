@@ -44,7 +44,7 @@
                            
                             <asp:TemplateField HeaderText="Description" SortExpression="answer1">                                                            
                                 <ItemTemplate>
-                                    <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("description") %>'></asp:Label>
+                                    <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("title") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>                            
                             <asp:TemplateField HeaderText="type" SortExpression="type">                                                            
