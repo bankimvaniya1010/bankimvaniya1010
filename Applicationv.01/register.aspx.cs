@@ -61,6 +61,8 @@ public partial class register : System.Web.UI.Page
                 objapplicant.email = email.Value.Trim();
                 objapplicant.firstname = name.Value.Trim();
                 objapplicant.universityid = Utility.GetUniversityId();
+                objapplicant.middlename = mname.Value.Trim();
+                objapplicant.lastname = lname.Value.Trim();
                 db.applicantdetails.Add(objapplicant);
                 db.SaveChanges();
                 SaveCourses(id);
