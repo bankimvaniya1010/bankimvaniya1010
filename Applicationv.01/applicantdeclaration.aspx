@@ -50,11 +50,12 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                    <div class="form-row">                                      
-                                        <asp:Button ID="btnSave" runat="server" Text="Accept Declaration and Submit" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                                    <div class="form-row">                                         
+                                        <a href="preliminary.aspx" class="btn btn-success" style="margin-right:90px;">Cancel</a> 
+                                        <asp:Button ID="btnSave" runat="server" Text="Accept Declaration and Submit" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
                                     </div>
                                 </div>
                             </div>
@@ -79,4 +80,14 @@
             </div>
         </div>
     </div>
+    <script>
+        var questionGiven = '<%=questionGiven%>';
+        
+        function validate() {
+            if (questionGiven == 0) {
+                alert("Please first complete Quick Test");
+            }
+            return !(questionGiven == 0);
+        }
+    </script>
 </asp:Content>

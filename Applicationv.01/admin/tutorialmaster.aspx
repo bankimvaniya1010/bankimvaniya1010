@@ -116,16 +116,18 @@
            return true;
        }
        function validateForm() {
+           var urlValue = $("#<%=txtVideourl.ClientID%>").val();
+           var validateurl = urlValue.includes("=");
            var flag = false;
            if ($("#<%=ddlUniversity.ClientID%>").val() == "0")
                alert("Please Select University");
            else if ($("#<%=ddlType.ClientID%>").val() == "0")
                alert("Please Select File Type");
-           else if ($("#<%=ddlType.ClientID%>").val() == "video" && $("#<%=txtVideourl.ClientID%>").val() == "")
-               alert("Please Enter Valid Vedio Url");
+           else if ($("#<%=ddlType.ClientID%>").val() == "video" && $("#<%=txtVideourl.ClientID%>").val() == "" || validateurl)
+               alert("Please Enter Valid video Url");
            else if ($("#<%=ddlType.ClientID%>").val() != "video" && !validateUploadedFile()) { }
            else if ($("#<%=txtDescription.ClientID%>").val() == "")
-               alert("Please Enter Description");
+               alert("Please Enter Title");
            else
                flag = true;
            return flag;
