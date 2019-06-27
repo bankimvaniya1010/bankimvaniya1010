@@ -216,15 +216,17 @@
                 $("#validityFrom").show();
                 $("#validityTo").show();
                 $("#visano").show();
+                $("#visaappliedCountry").hide(); 
+                $("#firstvisit").show();
                 
             }
             else {
                 $("#visa").hide();
                 $("#validityFrom").hide();
                 $("#validityTo").hide();
-                $("#visano").hide();               
-                $("#visacity").hide();
-                $("#visacountry").hide();
+                $("#visano").hide();
+                $("#visaappliedCountry").show();
+                $("#firstvisit").hide();
                
             }
 
@@ -236,7 +238,9 @@
                     $("#visa").show();
                     $("#validityFrom").show();
                     $("#validityTo").show();
-                    $("#visano").show();                    
+                    $("#visano").show();   
+                    $("#firstvisit").show();
+                    $("#visaappliedCountry").hide();
                 }
                 else {
                     $("#visa").hide();
@@ -244,7 +248,9 @@
                     $("#validityTo").hide();
                     $("#visano").hide();                  
                     $("#visacity").hide();
-                    $("#visacountry").hide();                   
+                    $("#visacountry").hide(); 
+                    $("#firstvisit").hide();
+                    $("#visaappliedCountry").show();
                 }                
             });
         });
@@ -256,7 +262,7 @@
                 }
                 else {
                     $("#visacity").hide();
-                 $("#visacountry").hide();
+                    $("#visacountry").hide();                   
                 }                
             });
          });
@@ -298,10 +304,17 @@
             var flag = false;
             var innerConditions = false;
             var isValidDate;
+            if ($("#<%=txtFirstVisit.ClientID%>").val() != "") {
+                var from = new Date($("#<%=txtValidityFrom.ClientID%>").val());
+                var to = new Date($("#<%=txtValidityTo.ClientID%>").val());
+                var visitDate = new Date($("#<%=txtFirstVisit.ClientID%>").val());
+                isValidDate = (visitDate >= from && visitDate <= to);
+            }
 
             if (!$("#<%=rbtnYes.ClientID%>").is(':checked') && !$("#<%=rbtnNo.ClientID%>").is(':checked'))
                 alert("Please Select  Do you currently have a visa ");
-            else if ($("#<%=rbtnYes.ClientID%>").is(':checked')) {
+            else if ($("#<%=rbtnYes.ClientID%>").is(':checked'))
+            {
                 if ($("#<%=ddlVisa.ClientID%>").val() == "0")
                     alert("Please Select Visa Type");
                 else if ($("#<%=txtValidityFrom.ClientID%>").val() == "")
@@ -310,31 +323,28 @@
                     alert("Please enter Date Of Validity From");
                 else if ($("#<%=txtVisano.ClientID%>").val() == "")
                     alert("Please enter Visa Number");
+                else if ($("#<%=txtFirstVisit.ClientID%>").val() == "" && !isValidDate)
+                    alert("Please Select Date of first Visit");                          
+                else
+                    innerConditions = true;
+            }
+            else if ($("#<%=rbtnNo.ClientID%>").is(':checked'))
+            {
+                if ($("#<%=rbtnNo.ClientID%>").is(':checked') && !$("#<%=VisaApplicationYes.ClientID%>").is(':checked') && !$("#<%=VisaApplicationNo.ClientID%>").is(':checked'))
+                    alert("Please Select Where You Would Be Making Your Visa Application");
+                else if ($("#<%=VisaApplicationNo.ClientID%>").is(':checked') && $("#<%=txtCity.ClientID%>").val() == "")
+                    alert("Please enter via city");
+                else if ($("#<%=VisaApplicationNo.ClientID%>").is(':checked') && $("#<%=ddlCountry.ClientID%>").val() == "0")
+                    alert("Please Select Country");        
                 else
                     innerConditions = true;
             }
             else
                 innerConditions = true;
-
-            if (innerConditions && $("#<%=txtFirstVisit.ClientID%>").val() != "") {
-                var from = new Date($("#<%=txtValidityFrom.ClientID%>").val());
-                var to = new Date($("#<%=txtValidityTo.ClientID%>").val());
-                var visitDate = new Date($("#<%=txtFirstVisit.ClientID%>").val());
-                isValidDate = (visitDate >= from && visitDate <= to);
-            }
-
+            
             if (innerConditions) {
-                if (!$("#<%=VisaApplicationYes.ClientID%>").is(':checked') && !$("#<%=VisaApplicationNo.ClientID%>").is(':checked'))
-                    alert("Please Select Where You Would Be Making Your Visa Application");
-                else if ($("#<%=VisaApplicationNo.ClientID%>").is(':checked') && $("#<%=txtCity.ClientID%>").val() == "")
-                    alert("Please enter via city");
-                else if ($("#<%=VisaApplicationNo.ClientID%>").is(':checked') && $("#<%=ddlCountry.ClientID%>").val() == "0")
-                    alert("Please Select Country");
-                else if ($("#<%=txtFirstVisit.ClientID%>").val() == "")
-                    alert("Please Select Date of first Visit");
-                else if (!isValidDate)
-                    alert("Please Select Valid Date");
-                else if (!$("#<%=rblLivedBeforeYes.ClientID%>").is(':checked') && !$("#<%=rblLivedBeforeNo.ClientID%>").is(':checked'))
+
+                if (!$("#<%=rblLivedBeforeYes.ClientID%>").is(':checked') && !$("#<%=rblLivedBeforeNo.ClientID%>").is(':checked'))
                     alert(" Please Select Have you ever, lived, worked, studied in Country of Application before");
                 else if (!$("#<%=rblParentYes.ClientID%>").is(':checked') && !$("#<%=rblParentNo.ClientID%>").is(':checked'))
                     alert("Please Select  Do your parents/step parents/spouse/partner/children/step-children live, study, work in Country of Application");

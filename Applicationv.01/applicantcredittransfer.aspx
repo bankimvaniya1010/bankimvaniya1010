@@ -18,7 +18,7 @@
                     <div class="card" style="width: 650px;">
 
                         <div class="list-group list-group-fit">
-                            <div class="list-group-item">
+                            <div class="list-group-item" id="credittransfer">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                     <div class="form-row">
                                         <label id="label-email" for="email" class="col-md-3 col-form-label form-label">Do you plan to undertake a credit transfer  </label>
@@ -36,7 +36,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success"  />
+                                        <asp:Button ID="btn_credit" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_credit_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                         </div>
                                     </div>
@@ -59,5 +59,17 @@
 
         </div>
     </div>
+    <script>
+       function validateForm() {
+            var flag = false;
+             if (!$("#<%=rblCreditYes.ClientID%>").is(':checked') && !$("#<%=rblCreditNo.ClientID%>").is(':checked'))
+                    alert("Please Select Do you plan to undertake a credit transfer");
+            else
+                flag = true;           
+            return flag;
+        }
+       
+       
+    </script>
     
 </asp:Content>

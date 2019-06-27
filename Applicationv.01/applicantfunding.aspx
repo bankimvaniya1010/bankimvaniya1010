@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="familymember" runat="server">
+                            <div class="list-group-item" id="familymember">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                                     <div class="form-row">
                                         <label id="label-phone" for="phone" class="col-md-3 col-form-label form-label">No of Family members  </label>
@@ -291,6 +291,15 @@
             
             return flag;
         }
+         $(function() {
+            $("#<%=ddlstudy.ClientID%>").change(function() {
+                if ($(this).val() == "2")
+                    $("#familymember").show();               
+                else
+                    $("#familymember").hide(); 
+                     $("#<%=ddlFamilyMember.ClientID%>").val("0");
+            });
+        });
         $(document).ready(function () {
             if ($("#<%=ddlstudy.ClientID%>").val() == "2")
                 $("#familymember").show();

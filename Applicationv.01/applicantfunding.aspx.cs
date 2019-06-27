@@ -237,6 +237,7 @@ public partial class applicantfunding : System.Web.UI.Page
             if (ddlstudy.SelectedValue != "")
             {
                 objapplicantfunding.studyoption = Convert.ToInt32(ddlstudy.SelectedValue);
+                objapplicantfunding.familymember = null;
             }
             if (ddlstudy.SelectedValue == "2")
             {

@@ -376,6 +376,7 @@
           <Property Name="transportchoice" Type="int" />
           <Property Name="trips" Type="int" />
           <Property Name="entertainment" Type="int" />
+          <Property Name="credittransfer" Type="int" />
         </EntityType>
         <EntityType Name="applicanthighereducation">
           <Key>
@@ -707,7 +708,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="facility_name" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="facility_campus_mapping">
@@ -2375,6 +2376,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="transportchoice" Type="Int32" />
           <Property Name="trips" Type="Int32" />
           <Property Name="entertainment" Type="Int32" />
+          <Property Name="credittransfer" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantreferencecheck">
           <Key>
@@ -4104,6 +4106,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantfundingmaster">
             <EntityTypeMapping TypeName="GTEModel.applicantfundingmaster">
               <MappingFragment StoreEntitySet="applicantfundingmaster">
+                <ScalarProperty Name="credittransfer" ColumnName="credittransfer" />
                 <ScalarProperty Name="entertainment" ColumnName="entertainment" />
                 <ScalarProperty Name="trips" ColumnName="trips" />
                 <ScalarProperty Name="transportchoice" ColumnName="transportchoice" />
