@@ -124,7 +124,7 @@
            else if ($("#<%=ddlType.ClientID%>").val() == "0")
                alert("Please Select File Type");
            else if ($("#<%=ddlType.ClientID%>").val() == "video" && $("#<%=txtVideourl.ClientID%>").val() == "" || validateurl)
-               alert("Please Enter Valid Vedio Url");
+               alert("Please Enter Valid video Url");
            else if ($("#<%=ddlType.ClientID%>").val() != "video" && !validateUploadedFile()) { }
            else if ($("#<%=txtDescription.ClientID%>").val() == "")
                alert("Please Enter Title");
