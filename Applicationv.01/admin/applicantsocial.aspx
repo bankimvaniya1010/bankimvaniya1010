@@ -71,7 +71,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
                             <div class="col-md-6">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
 

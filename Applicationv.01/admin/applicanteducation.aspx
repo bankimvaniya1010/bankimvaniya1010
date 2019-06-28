@@ -297,6 +297,9 @@
                                 </div>
 
                             </div>
+                             <div class="col-md-4">
+                                <input id="txthighschoolgrade" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -563,6 +566,9 @@
                                     </div>
 
                                 </div>
+                                  <div class="col-md-4">
+                                    <input id="txtSecondaryGrade" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -590,13 +596,13 @@
                     </div>
 
                     <div id="UG" runat="server" visible="false">
-                        <div class="list-group-item" id="highercourse">
+                        <div class="list-group-item" id="highercourse" style="display: none" runat="server">
 
-                            <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-highercourse" >
                                 <div class="form-row">
                                     <label id="labelhighercourse" runat="server" for="highercourse" class="col-md-3 col-form-label form-label">Higher Course</label>
                                     <div class="col-md-4">
-                                          <asp:Label ID="lblhighercourse" runat="server"></asp:Label>
+                                        <asp:Label ID="lblhighercourse" runat="server"></asp:Label>
                                         <span class="helpicon"><i id="ichighercourse" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                     </div>
                                     <div class="col-md-4">
@@ -705,7 +711,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" id="highergradetype" runat="server">
+                        <div class="list-group-item" id="highergradetype" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
                                 <div class="form-row">
                                     <label id="labelhighergradetype" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
@@ -805,7 +811,7 @@
                         </div>
                     </div>
                     <div id="PG" runat="server" visible="false">
-                        <div class="list-group-item" id="highercoursePG">
+                        <div class="list-group-item" id="highercoursePG" runat="server" style="display: none">
 
                             <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
                                 <div class="form-row">
@@ -830,7 +836,7 @@
                                         <span class="helpicon"><i id="iclabelhigherCountryPG" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                     </div>
                                     <div class="col-md-4">
-                                        <input id="txtlabelhigherCountryPG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                        <input id="txthigherCountryPG" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                     </div>
                                 </div>
                             </div>
@@ -920,7 +926,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" id="highergradetypePG" runat="server">
+                        <div class="list-group-item" id="highergradetypePG" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
                                 <div class="form-row">
                                     <label id="labelhighergradetypePG" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
@@ -1020,7 +1026,7 @@
                         </div>
                     </div>
                     <div id="Phd" runat="server" visible="false">
-                        <div class="list-group-item" id="highercoursePhd">
+                        <div class="list-group-item" id="highercoursePhd" runat="server" style="display: none">
 
                             <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
                                 <div class="form-row">
@@ -1045,7 +1051,7 @@
                                         <span class="helpicon"><i id="iclabelhigherCountryPhd" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                     </div>
                                     <div class="col-md-4">
-                                        <input id="txtlabelhigherCountryPhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                        <input id="txthigherCountryPhd" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                     </div>
                                 </div>
                             </div>
@@ -1135,7 +1141,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" id="highergradetypePhd" runat="server">
+                        <div class="list-group-item" id="highergradetypePhd" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
                                 <div class="form-row">
                                     <label id="labelhighergradetypePhd" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
@@ -1235,7 +1241,7 @@
                         </div>
                     </div>
                     <div id="OtherHigherCourse" runat="server" visible="false">
-                        <div class="list-group-item" id="highercourseOther">
+                        <div class="list-group-item" id="highercourseOther" style="display: none" runat="server">
 
                             <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
                                 <div class="form-row">
@@ -1260,7 +1266,7 @@
                                         <span class="helpicon"><i id="iclabelhigherCountryOther" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                                     </div>
                                     <div class="col-md-4">
-                                        <input id="txtlabelhigherCountryOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                        <input id="txthigherCountryOther" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                     </div>
                                 </div>
                             </div>
@@ -1350,7 +1356,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" id="highergradetypeOther" runat="server">
+                        <div class="list-group-item" id="highergradetypeOther" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-highergradetype">
                                 <div class="form-row">
                                     <label id="labelhighergradetypeOther" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
@@ -1497,6 +1503,9 @@
                                     </div>
 
                                 </div>
+                                <div class="col-md-4">
+                                        <input id="txtHigherGrade" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                    </div>
                             </div>
                         </div>
 
@@ -1763,6 +1772,9 @@
                                 </div>
 
                             </div>
+                             <div class="col-md-4">
+                                <input id="txtDiplomaGrade" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1776,7 +1788,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
                             <div class="col-md-4">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                 <asp:Label ID="lblSaveTime" runat="server"></asp:Label>

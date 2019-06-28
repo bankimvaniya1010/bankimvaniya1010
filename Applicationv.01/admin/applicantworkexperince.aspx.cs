@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     protected List<applicantemployerdetails> EmployersDetail = new List<applicantemployerdetails>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+    protected List<admincomments> Comments = new List<admincomments>();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
@@ -25,6 +27,7 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        userID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -36,18 +39,18 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            userID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
+        EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
+        SetToolTips();
+        SetControlsUniversitywise();
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomDataAdmin(formId, userID, CustomControls, mainDiv);
-            EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
-            SetToolTips();
-            SetControlsUniversitywise();
-
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
         }
     }
     private void SetToolTips()
@@ -220,4 +223,27 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
         }
     }
 
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        string value = hdnValue.Value;
+        string[] inputs = value.Split('|');
+        Hashtable adminInputs = new Hashtable();
+        try
+        {
+            for (int k = 0; k < inputs.Length - 1; k++)
+            {
+                string values = inputs[k].ToString();
+                adminInputs.Add(values.Split(':')[0], values.Split(':')[1]);
+            }
+            if (CustomControls.Count > 0)
+                objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
+
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 }

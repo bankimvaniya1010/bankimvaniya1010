@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,13 +15,14 @@ public partial class admin_applicantsocial : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
-     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        userID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -32,17 +34,18 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            userID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
+                objCom.SetCustomData(formId, ApplicantID, CustomControls, mainDiv);
             SetToolTips();
             PopulatePersonalInfo();
             SetControlsUniversitywise();
+            SetAdminComments();
         }
     }
     private void SetToolTips()
@@ -105,7 +108,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
         try
         {
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               where pInfo.applicantid == ApplicantID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
@@ -132,7 +135,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return obj.primaryfiledname ;
+        return obj.primaryfiledname;
     }
     private void SetControlsUniversitywise()
     {
@@ -185,12 +188,51 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    protected void btn_login_Click(object sender, EventArgs e)
+    private String setComments(dynamic obj)
     {
+        return obj.comments;
+    }
+    private void SetAdminComments()
+    {
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
+        for (int k = 0; k < Comments.Count; k++)
+        {
+            switch (Comments[k].fieldname)
+            {
+                case "Link to your LinkedIn profile":
+                    txtLinkedinComments.Value = setComments(Comments[k]);
+                    break;
+                case "Link to your Facebook profile":
+                    txtFacebookComments.Value = setComments(Comments[k]);
+                    break;
+                case "Link to your twitter handle":
+                    txtTwitterComments.Value = setComments(Comments[k]);
+                    break;
+               
+                default:
+                    break;
+
+            }
+
+        }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Hashtable adminInputs = new Hashtable();
         try
         {
+            if (linkedin.Style.Value != "display: none")
+                adminInputs.Add("Link to your LinkedIn profile", txtLinkedinComments.Value.Trim());
+             if (facebook.Style.Value != "display: none")
+                adminInputs.Add("Link to your Facebook profile", txtFacebookComments.Value.Trim());
+             if (twitter.Style.Value != "display: none")
+                adminInputs.Add("Link to your twitter handle", txtTwitterComments.Value.Trim());
 
+            if (CustomControls.Count > 0)
+                objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
         }
         catch (Exception ex)
         {

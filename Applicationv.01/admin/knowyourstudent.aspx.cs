@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
-   
+
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -22,6 +23,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        userID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -33,15 +35,15 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            userID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomDataAdmin(formId, userID, CustomControls, mainDiv);
-
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
+            SetAdminComments();
             SetToolTips();
             PopulateKYSDetails();
             SetControlsUniversitywise();
@@ -54,7 +56,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
         try
         {
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               where pInfo.applicantid == ApplicantID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
@@ -93,11 +95,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
         }
     }
 
-
-
-
-
-    private void SetToolTips()
+        private void SetToolTips()
     {
 
 
@@ -266,5 +264,96 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private String setComments(dynamic obj)
+    {
+        return obj.comments;
+    }
+    private void SetAdminComments()
+    {
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
+        for (int k = 0; k < Comments.Count; k++)
+        {
+            switch (Comments[k].fieldname)
+            {
+                case "Passport Number":
+                    txtPassportNo.Value = setComments(Comments[k]);
+                    break;
+                case "Date of Issue":
+                    txtDateOfissue.Value = setComments(Comments[k]);
+                    break;
+                case "Expiry Date":
+                    txtExpiryDate.Value = setComments(Comments[k]);
+                    break;
+                case "COUNTRY OF ISSUE":
+                    txtcountryIssue.Value = setComments(Comments[k]);
+                    break;
+                case "CITY OF ISSUE":
+                    txtissueplace.Value = setComments(Comments[k]);
+                    break;
+                case "Select Identity Proof Type":
+                    txtalternateIdentitytype.Value = setComments(Comments[k]);
+                    break;
+                case "Identity Proof Number":
+                    txtalternateIdentityNo.Value = setComments(Comments[k]);
+                    break;
+                case "Select DOB Proof Type":
+                    txtalternatedobIdentitytype.Value = setComments(Comments[k]);
+                    break;
+                case "DOB proof Number":
+                    txtalternatedobIdentityNo.Value = setComments(Comments[k]);
+                    break;
+                case "Select Residence Proof Type":
+                    txtalternateresidenceIdentitytype.Value = setComments(Comments[k]);
+                    break;
+                case "Residence Proof Number":
+                    txtalternateresidenceIdentityNo.Value = setComments(Comments[k]);
+                    break;
+               
 
+                default:
+                    break;
+
+            }
+
+        }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Hashtable adminInputs = new Hashtable();
+        try
+        {
+            if (passportno.Style.Value != "display: none")
+                adminInputs.Add("Passport Number", txtPassportNo.Value.Trim());
+             if (dateofissue.Style.Value != "display: none")
+                adminInputs.Add("Date of Issue", txtDateOfissue.Value.Trim());
+             if (expirydate.Style.Value != "display: none")
+                adminInputs.Add("Expiry Date", txtExpiryDate.Value.Trim());
+             if (countryIssue.Style.Value != "display: none")
+                adminInputs.Add("COUNTRY OF ISSUE", txtcountryIssue.Value.Trim());
+             if (issueplace.Style.Value != "display: none")
+                adminInputs.Add("CITY OF ISSUE", txtissueplace.Value.Trim());
+             if (alternateIdentitytype.Style.Value != "display: none")
+                adminInputs.Add("Select Identity Proof Type", txtalternateIdentitytype.Value.Trim());
+             if (alternateIdentityNo.Style.Value != "display: none")
+                adminInputs.Add("Identity Proof Number", txtalternateIdentityNo.Value.Trim());
+             if (alternatedobIdentitytype.Style.Value != "display: none")
+                adminInputs.Add("Select DOB Proof Type", txtalternatedobIdentitytype.Value.Trim());
+             if (alternatedobIdentityNo.Style.Value != "display: none")
+                adminInputs.Add("DOB proof Number", txtalternatedobIdentityNo.Value.Trim());
+             if (alternateresidenceIdentitytype.Style.Value != "display: none")
+                adminInputs.Add("Select Residence Proof Type", txtalternateresidenceIdentitytype.Value.Trim());
+             if (alternateresidenceIdentityNo.Style.Value != "display: none")
+                adminInputs.Add("Residence Proof Number", txtalternateresidenceIdentityNo.Value.Trim());
+
+            if (CustomControls.Count > 0)
+                objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
+
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 }
