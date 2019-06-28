@@ -29,7 +29,7 @@
                             <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
-                                <i id="icPassport" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                              <span>  <i id="icPassport" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -188,7 +188,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
                             <div class="col-md-6">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                 <asp:Label ID="lblSaveTime" runat="server"></asp:Label>

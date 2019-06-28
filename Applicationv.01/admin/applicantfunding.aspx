@@ -77,7 +77,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                         <div class="form-row">
                             <label id="label-skypeDesc" for="skypeDesc" class="col-md-3 col-form-label form-label">
-                                Select how you plan to manage meals
+                                Select the kind of accommodation you plan to have
                             </label>
                            <div class="col-md-4">
                                 <asp:Label ID="lblmanagemeal" runat="server"></asp:Label>
@@ -251,7 +251,7 @@
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
-                            <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success"  />
+                            <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click"  />
                             <div class="col-md-6">
                             </div>
                         </div>

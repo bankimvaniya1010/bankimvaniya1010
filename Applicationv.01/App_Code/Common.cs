@@ -1044,7 +1044,70 @@ public class Common
                       }).ToList();
         return fields.ToList<dynamic>();
     }
+    public void SaveAdminComments(int applicantId, int universityID, int formID, int adminID, Hashtable adminInputs)
+    {
+        var fieldName = "";
+        var Comments = "";
+        ICollection key = adminInputs.Keys;
+        foreach (var val in key)
+        {
+            fieldName = Convert.ToString(val);
+            Comments = adminInputs[val].ToString();
 
+            var mode = "new";
+            var adminComments = (from cInfo in db.admincomments
+                                 where cInfo.applicantid == applicantId && cInfo.universityid == universityID
+                                 && cInfo.formid == formID && cInfo.fieldname == fieldName
+                                 select cInfo).FirstOrDefault();
+            admincomments objComments = new admincomments();
+            if (adminComments != null)
+            {
+                mode = "update";
+                objComments = adminComments;
+            }
+            objComments.formid = formID;
+            objComments.adminid = adminID;
+            objComments.applicantid = applicantId;
+            objComments.universityid = universityID;
+            objComments.fieldname = fieldName;
+            objComments.comments = Comments;
+            if (mode == "new")
+                db.admincomments.Add(objComments);
+            db.SaveChanges();
+        }
+
+    }
+    public Hashtable ReadCustomfieldAdmininput(int applicatID, int formID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv, Hashtable adminInputs)
+    {
+        try
+        {
+            for (int k = 0; k < CustomControls.Count; k++)
+            {
+                int customFieldId = CustomControls[k].customfieldid;
+                string OptionID = "txt" + customFieldId;
+                TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
+                adminInputs.Add(CustomControls[k].labeldescription, txtDynamic.Text);
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return adminInputs;
+    }
+    public List<admincomments> GetAdminComments(int formID, int universityID, int ApplicantID)
+    {
+        List<admincomments> Comments = new List<admincomments>();
+        try
+        {
+            Comments = db.admincomments.Where(x => x.formid == formID && x.universityid == universityID && x.applicantid == ApplicantID).ToList();
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Comments;
+    }
     public void IsDeclarationDoneByApplicant(int applicantId, int universityID)
     {
         try

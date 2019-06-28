@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -22,6 +23,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        userID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -33,15 +35,16 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            userID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomDataAdmin(formId, userID, CustomControls, mainDiv);
-
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
+            SetAdminComments();
             PopulatePersonalInfo();
             SetToolTips();
             SetControlsUniversitywise();
@@ -52,7 +55,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
         try
         {
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               where pInfo.applicantid == ApplicantID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
@@ -257,7 +260,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
-                               where ufm.universityid == universityID && ufm.formid == formId
+                          where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname
@@ -266,7 +269,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             if (fields.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
-                           where pfm.formid == formId
+                          where pfm.formid == formId
                           select new
                           {
                               primaryfiledname = pfm.primaryfiledname
@@ -294,7 +297,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         break;
                     case "SKYPE ID":
                         skypeDesc.Attributes.Add("style", "display:block;");
-                        labelskype.InnerHtml = setInnerHtml(fields[k]);
+                        labelskypeDesc.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
                         whatsapp.Attributes.Add("style", "display:block;");
@@ -340,6 +343,116 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         break;
                 }
             }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+    private String setComments(dynamic obj)
+    {
+        return obj.comments;
+    }
+    private void SetAdminComments()
+    {
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, userID);
+        for (int k = 0; k < Comments.Count; k++)
+        {
+            switch (Comments[k].fieldname)
+            {
+                case "Email":
+                    txtEmail.Value = setComments(Comments[k]);
+                    break;
+                case "Mobile/Cellular Number":
+                    txtMobile.Value = setComments(Comments[k]);
+                    break;
+                case "Home phone":
+                    txtHomePhone.Value = setComments(Comments[k]);
+                    break;
+                case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    txtSkype.Value = setComments(Comments[k]);
+                    break;
+                case "Skype ID":
+                    txtSkypeDescription.Value = setComments(Comments[k]);
+                    break;
+                case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    txtWhatsapp.Value = setComments(Comments[k]);
+                    break;
+                case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    txtWhastappHave.Value = setComments(Comments[k]);
+                    break;
+                case "Whatsapp Number":
+                    txtWhatsappDescription.Value = setComments(Comments[k]);
+                    break;
+                case "Postal Address":
+                    txtPostalAddress.Value = setComments(Comments[k]);
+                    break;
+                case "Is your Postal Address same as your current residential address":
+                    txtAddress.Value = setComments(Comments[k]);
+                    break;
+                case "Current Residential  Address":
+                    txtResidential.Value = setComments(Comments[k]);
+                    break;
+                case "GUARDIAN Full Name":
+                    txtGuardianname.Value = setComments(Comments[k]);
+                    break;
+                case "Relationship with GUARDIAN":
+                    txtNomineeRelation.Value = setComments(Comments[k]);
+                    break;
+                case "Email of GUARDIAN":
+                    txtNomineeEmail.Value = setComments(Comments[k]);
+                    break;
+                case "Mobile/Cellular Number of GUARDIAN":
+                    txtNomiineeMobile.Value = setComments(Comments[k]);
+                    break;
+
+                default:
+                    break;
+
+            }
+
+        }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Hashtable adminInputs = new Hashtable();
+        try
+        {
+            if (email.Style.Value != "display: none")
+                adminInputs.Add("Email", txtEmail.Value.Trim());
+            else if (mobile.Style.Value != "display: none")
+                adminInputs.Add("Mobile/Cellular Number", txtMobile.Value.Trim());
+            else if (phone.Style.Value != "display: none")
+                adminInputs.Add("Home phone", txtHomePhone.Value.Trim());
+            else if (skype.Style.Value != "display: none")
+                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA SKYPE", txtSkype.Value.Trim());
+            else if (skypeDesc.Style.Value != "display: none")
+                adminInputs.Add("Skype ID", txtSkypeDescription.Value.Trim());
+            else if (whatsapp.Style.Value != "display: none")
+                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP", txtWhatsapp.Value.Trim());
+            else if (whatsappHave.Style.Value != "display: none")
+                adminInputs.Add("IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO", txtWhastappHave.Value.Trim());
+            else if (whatsappDesc.Style.Value != "display: none")
+                adminInputs.Add("Whatsapp Number", txtWhatsappDescription.Value.Trim());
+            else if (postal.Style.Value != "display: none")
+                adminInputs.Add("Postal Address", txtPostalAddress.Value.Trim());
+            else if (address.Style.Value != "display: none")
+                adminInputs.Add("Is your Postal Address same as your current residential address", txtAddress.Value.Trim());
+            else if (residential.Style.Value != "display: none")
+                adminInputs.Add("Current Residential  Address", txtResidential.Value.Trim());
+            else if (guardianname.Style.Value != "display: none")
+                adminInputs.Add("GUARDIAN Full Name", txtGuardianname.Value.Trim());
+            else if (guardianrelation.Style.Value != "display: none")
+                adminInputs.Add("Relationship with GUARDIAN", txtNomineeRelation.Value.Trim());
+            else if (guardianemail.Style.Value != "display: none")
+                adminInputs.Add("Email of GUARDIAN", txtNomineeEmail.Value.Trim());
+            else if (guardianmobile.Style.Value != "display: none")
+                adminInputs.Add("Mobile/Cellular Number of GUARDIAN", txtNomiineeMobile.Value.Trim());
+            if (CustomControls.Count > 0)
+                objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
+
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
         }
         catch (Exception ex)
         {

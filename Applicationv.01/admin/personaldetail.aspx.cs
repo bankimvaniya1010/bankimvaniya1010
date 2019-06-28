@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,6 +24,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        userID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -34,32 +36,28 @@ public partial class admin_personaldetail : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            userID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomDataAdmin(formId, userID, CustomControls, mainDiv);
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
             SetToolTips();
             PopulatePersonalInfo();
             SetControlsUniversitywise();
-
+            SetAdminComments();
 
         }
     }
-
-
-
-
 
     private void PopulatePersonalInfo()
     {
         try
         {
             var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               where pInfo.applicantid == ApplicantID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             if (profileInfo != null)
             {
@@ -216,9 +214,6 @@ public partial class admin_personaldetail : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
-
-
     private void SetToolTips()
     {
 
@@ -321,14 +316,14 @@ public partial class admin_personaldetail : System.Web.UI.Page
     }
     private String setInnerHtml(dynamic obj)
     {
-        return  obj.primaryfiledname;
+        return obj.primaryfiledname;
     }
     private void SetControlsUniversitywise()
     {
         try
         {
 
-           
+
 
             var fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
@@ -419,7 +414,152 @@ public partial class admin_personaldetail : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private String setComments(dynamic obj)
+    {
+        return obj.comments;
+    }
+    private void SetAdminComments()
+    {
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
+        for (int k = 0; k < Comments.Count; k++)
+        {
+            switch (Comments[k].fieldname)
+            {
+                case "Title":
+                    txtTitle.Value = setComments(Comments[k]);
+                    break;
+                case "First Name":
+                    txtFirstName.Value = setComments(Comments[k]);
+                    break;
+                case "Last Name":
+                    txtLastName.Value = setComments(Comments[k]);
+                    break;
+                case "Preferred Name":
+                    txtPrefferedName.Value = setComments(Comments[k]);
+                    break;
+                case "Other middle names":
+                    txtMiddleName.Value = setComments(Comments[k]);
+                    break;
+                case "Date of birth":
+                    txtDOB.Value = setComments(Comments[k]);
+                    break;
+                case "Gender":
+                    txtGender.Value = setComments(Comments[k]);
+                    break;
+                case "Nationality and citizenship":
+                    txtNationality.Value = setComments(Comments[k]);
+                    break;
+                case "Do you ever use a Chinese Commercial Code Number for your names":
+                    txtChineseCode.Value = setComments(Comments[k]);
+                    break;
+                case "Chinese Commercial Code Number":
+                    txtChineseCodeNo.Value = setComments(Comments[k]);
+                    break;
+                case "In English, provide your patronymic name":
+                    txtDualNationlity.Value = setComments(Comments[k]);
+                    break;
+                case "Nationality and citizenship(Second)":
+                    txtOtherNation.Value = setComments(Comments[k]);
+                    break;
+                case "Country of birth":
+                    txtBirthCountry.Value = setComments(Comments[k]);
+                    break;
+                case "Marital Status":
+                    txtMarital.Value = setComments(Comments[k]);
+                    break;
+                case "Spouse Name":
+                    txtSpousename.Value = setComments(Comments[k]);
+                    break;
+                case "Nationality of Spouse":
+                    txtSpouseNationality.Value = setComments(Comments[k]);
+                    break;
+                case "Spouse Date of birth":
+                    txtSpouseDOB.Value = setComments(Comments[k]);
+                    break;
+                case "Date of Marriage":
+                    txtMarrigeDate.Value = setComments(Comments[k]);
+                    break;
+                case "Do you have any disability, impairment, or a long term condition":
+                    txtDisability.Value = setComments(Comments[k]);
+                    break;
+                case "Disability Description":
+                    txtDisabilityDescription.Value = setComments(Comments[k]);
+                    break;
+                case "Are you reffered by Agent":
+                    txtAgent.Value = setComments(Comments[k]);
+                    break;
+                case "Agent Name":
+                    txtAgentList.Value = setComments(Comments[k]);
+                    break;
+               
+                default:
+                    break;
 
+            }
 
+        }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Hashtable adminInputs = new Hashtable();
+        try
+        {
+            if (title.Style.Value != "display: none")
+                adminInputs.Add("Title", txtTitle.Value.Trim());
+            else if (firstname.Style.Value != "display: none")
+                adminInputs.Add("First Name", txtFirstName.Value.Trim());
+            else if (lastname.Style.Value != "display: none")
+                adminInputs.Add("Last Name", txtLastName.Value.Trim());
+            else if (preferedname.Style.Value != "display: none")
+                adminInputs.Add("Preferred Name", txtPrefferedName.Value.Trim());
+            else if (middlename.Style.Value != "display: none")
+                adminInputs.Add("Other middle names", txtMiddleName.Value.Trim());
+            else if (dob.Style.Value != "display: none")
+                adminInputs.Add("Date of birth", txtDOB.Value.Trim());
+            else if (gender.Style.Value != "display: none")
+                adminInputs.Add("Gender", txtGender.Value.Trim());
+            else if (nationality.Style.Value != "display: none")
+                adminInputs.Add("Nationality and citizenship", txtNationality.Value.Trim());
+            else if (chineseCode.Style.Value != "display: none")
+                adminInputs.Add("Do you ever use a Chinese Commercial Code Number for your names", txtChineseCode.Value.Trim());
+            else if (textChineseCodeDiv.Style.Value != "display: none")
+                adminInputs.Add("Chinese Commercial Code Number", txtFirstName.Value.Trim());
+            else if (russianName.Style.Value != "display: none")
+                adminInputs.Add("In English, provide your patronymic name", txtRussiaName.Value.Trim());
+            else if (dualNationality.Style.Value != "display: none")
+                adminInputs.Add("Do you have dual Citizenship", txtDualNationlity.Value.Trim());
+            else if (secondNation.Style.Value != "display: none")
+                adminInputs.Add("Nationality and citizenship(Second)", txtOtherNation.Value.Trim());
+            else if (birthcountry.Style.Value != "display: none")
+                adminInputs.Add("Country of birth", txtBirthCountry.Value.Trim());
+            else if (marital.Style.Value != "display: none")
+                adminInputs.Add("Marital Status", txtMarital.Value.Trim());
+            else if (statusMarried.Style.Value != "display: none")
+                adminInputs.Add("Spouse Name", txtSpousename.Value.Trim());
+            else if (SpouseNationality.Style.Value != "display: none")
+                adminInputs.Add("Nationality of Spouse", txtSpouseNationality.Value.Trim());
+            else if (SpouseDOB.Style.Value != "display: none")
+                adminInputs.Add("Spouse Date of birth", txtSpouseDOB.Value.Trim());
+            else if (MarriageDate.Style.Value != "display: none")
+                adminInputs.Add("Date of Marriage", txtMarrigeDate.Value.Trim());
+            else if (disability.Style.Value != "display: none")
+                adminInputs.Add("Do you have any disability, impairment, or a long term condition", txtDisability.Value.Trim());
+            else if (disabilitydesc.Style.Value != "display: none")
+                adminInputs.Add("Disability Description", txtDisabilityDescription.Value.Trim());
+            else if (agent.Style.Value != "display: none")
+                adminInputs.Add("Are you reffered by Agent", txtAgent.Value.Trim());
+            else if (agentList.Style.Value != "display: none")
+                adminInputs.Add("Agent Name", txtAgentList.Value.Trim());
+            if (CustomControls.Count > 0)
+                objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
+
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 
 }

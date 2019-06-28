@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,13 +17,12 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        userID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -34,27 +34,25 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             Response.Redirect(webURL + "admin/default.aspx", true);
         }
         else
-            userID = Convert.ToInt32(Request.QueryString["userid"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomDataAdmin(formId, userID, CustomControls, mainDiv);
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
             SetControlsUniversitywise();
             SetToolTips();
-
+            SetAdminComments();
             PopulateLanguageDetails();
 
         }
     }
-
     private String setInnerHtml(dynamic obj)
     {
         return obj.primaryfiledname;
     }
-
     private void SetControlsUniversitywise()
     {
         try
@@ -327,13 +325,12 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
     {
         return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
-
     private void PopulateLanguageDetails()
     {
         try
         {
             var LanguageInfo = (from pInfo in db.applicantlanguagecompetency
-                                where pInfo.applicantid == userID && pInfo.universityid == universityID
+                                where pInfo.applicantid == ApplicantID && pInfo.universityid == universityID
                                 select pInfo).FirstOrDefault();
             if (LanguageInfo != null)
             {
@@ -399,6 +396,159 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private String setComments(dynamic obj)
+    {
+        return obj.comments;
+    }
+    private void SetAdminComments()
+    {
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
+        for (int k = 0; k < Comments.Count; k++)
+        {
+            switch (Comments[k].fieldname)
+            {
+                case "What language do you speak at home":
+                    txthomelanguage.Value = setComments(Comments[k]);
+                    break;
+                case "Have you studied an English Language Intensive Course for students from non-English speaking backgrounds":
+                    txtEnglishBackground.Value = setComments(Comments[k]);
+                    break;
+                case "Country of English Language Intensive Course":
+                    txtLanguage.Value = setComments(Comments[k]);
+                    break;
+                case "Year of Completion/Expected":
+                    txtYearCompletion.Value = setComments(Comments[k]);
+                    break;
+                case "Name of College or University":
+                    txtNameCollege.Value = setComments(Comments[k]);
+                    break;
+                case "Mode of study":
+                    txtstudymode.Value = setComments(Comments[k]);
+                    break;
+                case "Qualification Type":
+                    txtQualificationType.Value = setComments(Comments[k]);
+                    break;
+                case "Qualification Name":
+                    txtQualificationName.Value = setComments(Comments[k]);
+                    break;
+                case "Grade Type":
+                    txtgradetype.Value = setComments(Comments[k]);
+                    break;
+                case "Final Grade Achieved":
+                    txtgradeachieved.Value = setComments(Comments[k]);
+                    break;
+                case "Expected dates when results will be declared":
+                    txtExpectedDategrade.Value = setComments(Comments[k]);
+                    break;
+                case "Have you sat any one of the following English Language competency tests":
+                    txtEnglishTest.Value = setComments(Comments[k]);
+                    break;
+                case "Test Name":
+                    txttestName.Value = setComments(Comments[k]);
+                    break;
+                case "Centre No":
+                    txtCentreNo.Value = setComments(Comments[k]);
+                    break;
+                case "Candidate No":
+                    txtCandidateNo.Value = setComments(Comments[k]);
+                    break;
+                case "Candidate ID":
+                    txtCandidateID.Value = setComments(Comments[k]);
+                    break;
+                case "Test Date":
+                    txtLanguageTestDate.Value = setComments(Comments[k]);
+                    break;
+                case "Overall Score":
+                    txtLanguageScore.Value = setComments(Comments[k]);
+                    break;
+                case "Speaking Score":
+                    txtSpeakingScore.Value = setComments(Comments[k]);
+                    break;
+                case "Listening Score":
+                    txtListeningScore.Value = setComments(Comments[k]);
+                    break;
+                case "Reading Score":
+                    txtReadingScore.Value = setComments(Comments[k]);
+                    break;
+                case "Writing Score":
+                    txtWritingScore.Value = setComments(Comments[k]);
+                    break;
+                case "CEFR Level":
+                    txtCEFR.Value = setComments(Comments[k]);
+                    break;
+                case "Test Report Reference No":
+                    txttestRefno.Value = setComments(Comments[k]);
+                    break;
+                default:
+                    break;
 
+            }
 
+        }
+    }
+
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        Hashtable adminInputs = new Hashtable();
+        try
+        {
+            if (homelanguage.Style.Value != "display: none")
+                adminInputs.Add("What language do you speak at home", txthomelanguage.Value.Trim());
+            else if (EnglishBackground.Style.Value != "display: none")
+                adminInputs.Add("Have you studied an English Language Intensive Course for students from non-English speaking backgrounds", txtEnglishBackground.Value.Trim());
+            else if (Language.Style.Value != "display: none")
+                adminInputs.Add("Country of English Language Intensive Course", txtLanguage.Value.Trim());
+            else if (YearCompletion.Style.Value != "display: none")
+                adminInputs.Add("Year of Completion/Expected", txtYearCompletion.Value.Trim());
+            else if (NameCollege.Style.Value != "display: none")
+                adminInputs.Add("Name of College or University", txtNameCollege.Value.Trim());
+            else if (studymode.Style.Value != "display: none")
+                adminInputs.Add("Mode of study", txtstudymode.Value.Trim());
+            else if (QualificationType.Style.Value != "display: none")
+                adminInputs.Add("Qualification Type", txtQualificationType.Value.Trim());
+            else if (QualificationName.Style.Value != "display: none")
+                adminInputs.Add("Qualification Name", txtQualificationName.Value.Trim());
+            else if (gradetype.Style.Value != "display: none")
+                adminInputs.Add("Grade Type", txtgradetype.Value.Trim());
+            else if (gradeachieved.Style.Value != "display: none")
+                adminInputs.Add("Final Grade Achieved", txtgradeachieved.Value.Trim());
+            else if (ExpectedDategrade.Style.Value != "display: none")
+                adminInputs.Add("Expected dates when results will be declared", txtExpectedDategrade.Value.Trim());
+            else if (EnglishTest.Style.Value != "display: none")
+                adminInputs.Add("Have you sat any one of the following English Language competency tests", txtEnglishTest.Value.Trim());
+            else if (testName.Style.Value != "display: none")
+                adminInputs.Add("Test Name", txttestName.Value.Trim());
+            else if (CentreNo.Style.Value != "display: none")
+                adminInputs.Add("Centre No", txtCentreNo.Value.Trim());
+            else if (CandidateNo.Style.Value != "display: none")
+                adminInputs.Add("Candidate No", txtCandidateNo.Value.Trim());
+            else if (CandidateID.Style.Value != "display: none")
+                adminInputs.Add("Candidate ID", txtCandidateID.Value.Trim());
+            else if (LanguageTestDate.Style.Value != "display: none")
+                adminInputs.Add("Test Date", txtLanguageTestDate.Value.Trim());
+            else if (LanguageScore.Style.Value != "display: none")
+                adminInputs.Add("Overall Score", txtLanguageScore.Value.Trim());
+            else if (SpeakingScore.Style.Value != "display: none")
+                adminInputs.Add("Speaking Score", txtSpeakingScore.Value.Trim());
+            else if (ListeningScore.Style.Value != "display: none")
+                adminInputs.Add("Listening Score", txtListeningScore.Value.Trim());
+            else if (ReadingScore.Style.Value != "display: none")
+                adminInputs.Add("Reading Score", txtReadingScore.Value.Trim());
+            else if (WritingScore.Style.Value != "display: none")
+                adminInputs.Add("Writing Score", txtWritingScore.Value.Trim());
+            else if (CEFR.Style.Value != "display: none")
+                adminInputs.Add("CEFR Level", txtCEFR.Value.Trim());
+            else if (testRefno.Style.Value != "display: none")
+                adminInputs.Add("Test Report Reference No", txttestRefno.Value.Trim());
+
+            if (CustomControls.Count > 0)
+                objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
+
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 }
