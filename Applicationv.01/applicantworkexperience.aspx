@@ -162,7 +162,7 @@
                                             <div class="form-row">
                                                 <label id="labelstartdate" runat="server" for="startdate" class="col-md-3 col-form-label form-label">Start Date</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today"><span class="helpicon"><i id="icstartdate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icstartdate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -172,7 +172,7 @@
                                             <div class="form-row">
                                                 <label id="labelendate" runat="server" for="endate" class="col-md-3 col-form-label form-label">End Date</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtEndate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="today"><span class="helpicon"><i id="icenddate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtEndate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icenddate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -350,12 +350,12 @@
 
         $('#ContentPlaceHolder1_txtStartDate').flatpickr({
 
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d', defaultDate: ""
         });
 
         $('#ContentPlaceHolder1_txtEndate').flatpickr({
 
-            dateFormat: 'Y-m-d'
+            dateFormat: 'Y-m-d', defaultDate: ""
         });
         function ConfirmOnDelete(item) {
             if (confirm("Are you sure to delete: " + item + "?") == true)
@@ -385,6 +385,8 @@
                 $("#<%=employment.ClientID%>").hide();
                 $("#<%=hdnemployer.ClientID%>").val("");
                 $("#<%=fieldContainer.ClientID%>").hide();
+                $("#<%=lblSaveTime.ClientID%>").hide();
+                 $("#<%=lblMessage.ClientID%>").hide();
             }
         }
       

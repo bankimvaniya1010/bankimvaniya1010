@@ -196,6 +196,8 @@
             $('#btnSignUp').click(function () {
                 var summary = "";
                 summary += isvalidname();
+                summary += isvalidmname();
+                summary += isvalidlname();
                 summary += isvaliduser();
                 summary += isvalidemail();
                 summary += isvalidpassword();
@@ -215,7 +217,24 @@
         })
         function isvalidname() {
             if ($("#name").val() == "") {
-                return ("Please enter name" + "\n");
+                return ("Please enter first name" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+         function isvalidmname() {
+            if ($("#mname").val() == "") {
+                return ("Please enter last name" + "\n");
+            }
+            else {
+                return "";
+            }
+        }
+
+         function isvalidlname() {
+            if ($("#lname").val() == "") {
+                return ("Please enter last name" + "\n");
             }
             else {
                 return "";
