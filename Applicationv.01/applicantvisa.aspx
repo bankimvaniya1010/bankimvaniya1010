@@ -218,6 +218,8 @@
                 $("#visano").show();
                 $("#visaappliedCountry").hide(); 
                 $("#firstvisit").show();
+                $("#visacity").hide();
+                $("#visacountry").hide();
                 
             }
             else {
@@ -241,14 +243,14 @@
                     $("#visano").show();   
                     $("#firstvisit").show();
                     $("#visaappliedCountry").hide();
+                    $("#visacity").hide();
+                    $("#visacountry").hide();
                 }
                 else {
                     $("#visa").hide();
                     $("#validityFrom").hide();
                     $("#validityTo").hide();
-                    $("#visano").hide();                  
-                    $("#visacity").hide();
-                    $("#visacountry").hide(); 
+                    $("#visano").hide();                    
                     $("#firstvisit").hide();
                     $("#visaappliedCountry").show();
                 }                

@@ -108,14 +108,23 @@ public partial class applicantsocial : System.Web.UI.Page
             if (profileInfo != null)
             {
                 txtFacebook.Value = profileInfo.facebookprofle;
-                if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false))
+                if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false) || (profileInfo.havefacebookaccount != true))
+                {
                     ChkFacebook.Checked = true;
+                    txtFacebook.Attributes.Add("disabled", "disabled");
+                }
                 txtLinkedin.Value = profileInfo.linkedprofile;
-                if ((profileInfo.havelinkedinaccount == null) || (profileInfo.havelinkedinaccount == false))
+                if ((profileInfo.havelinkedinaccount != null) || (profileInfo.havelinkedinaccount == false) || (profileInfo.havelinkedinaccount != true))
+                {
                     chkLinkeIn.Checked = true;
+                    txtLinkedin.Attributes.Add("disabled", "disabled");
+                }               
                 txtTwitter.Value = profileInfo.twiterprofile;
-                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
+                if ((profileInfo.havetwitteraccount != null) || (profileInfo.havetwitteraccount == false) || (profileInfo.havetwitteraccount != true))
+                {
                     chkTwitter.Checked = true;
+                    txtTwitter.Attributes.Add("disabled", "disabled");
+                }
             }
             lblSaveTime.Text = " Record was last saved at " + profileInfo.socialprofilesavetime.ToString();
         }

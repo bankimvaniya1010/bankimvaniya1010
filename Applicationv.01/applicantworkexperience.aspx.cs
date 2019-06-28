@@ -259,31 +259,34 @@ public partial class applicantworkexperience : System.Web.UI.Page
                                 select pInfo).FirstOrDefault();
             if (employerInfo != null)
             {
-                if (employerInfo.wishtoaddemployer == 1)
+                if (employerInfo.wishtoaddemployer == 1) {
                     rblEmploymentYes.Checked = true;
+                    txtEmployer.Value = employerInfo.organization;
+                    txtemployerwebsite.Value = employerInfo.website;
+                    txtCity.Value = employerInfo.city;
+                    if (employerInfo.country != null)
+                    {
+                        ddlCountry.ClearSelection();
+                        ddlCountry.Items.FindByValue(employerInfo.country.ToString()).Selected = true;
+                    }
+                    txtPosition.Value = employerInfo.designation;
+                    txtStartDate.Value = Convert.ToDateTime(employerInfo.durationfrom).ToString("yyyy-MM-dd");
+                    txtEndate.Value = Convert.ToDateTime(employerInfo.durationto).ToString("yyyy-MM-dd");
+                    txtbriefDescription.Value = employerInfo.briefdescription;
+                    txtreportingmanger.Value = employerInfo.nameofreportingmanger;
+                    txtemploymentverification.Value = employerInfo.contactpersonwithdetails;
+                    if (employerInfo.relationshipwithcontact != null)
+                    {
+                        ddlRelationship.ClearSelection();
+                        ddlRelationship.Items.FindByValue(employerInfo.relationshipwithcontact.ToString()).Selected = true;
+                    }
+                    txtEmail.Value = employerInfo.emailid;
+                    txtlinkedin.Value = employerInfo.linkedinidofcontact;
+
+                }
+
                 else
                     rblEmploymentNo.Checked = false;
-                txtEmployer.Value = employerInfo.organization;
-                txtemployerwebsite.Value = employerInfo.website;
-                txtCity.Value = employerInfo.city;
-                if (employerInfo.country != null)
-                {
-                    ddlCountry.ClearSelection();
-                    ddlCountry.Items.FindByValue(employerInfo.country.ToString()).Selected = true;
-                }
-                txtPosition.Value = employerInfo.designation;
-                txtStartDate.Value = Convert.ToDateTime(employerInfo.durationfrom).ToString("yyyy-MM-dd");
-                txtEndate.Value = Convert.ToDateTime(employerInfo.durationto).ToString("yyyy-MM-dd");
-                txtbriefDescription.Value = employerInfo.briefdescription;
-                txtreportingmanger.Value = employerInfo.nameofreportingmanger;
-                txtemploymentverification.Value = employerInfo.contactpersonwithdetails;
-                if (employerInfo.relationshipwithcontact != null)
-                {
-                    ddlRelationship.ClearSelection();
-                    ddlRelationship.Items.FindByValue(employerInfo.relationshipwithcontact.ToString()).Selected = true;
-                }
-                txtEmail.Value = employerInfo.emailid;
-                txtlinkedin.Value = employerInfo.linkedinidofcontact;
                 lblSaveTime.Text = " Record was last saved at " + employerInfo.lastsavedtime.ToString();
             }
         }
@@ -359,7 +362,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 objCom.SendMail(objEmployer.emailid, sb.ToString(), "Nomination Detail check for" + applicantName);
             }
 
-            lblMessage.Text = "Your Contact Details have been saved";
+            lblMessage.Text = "Your Work Experience Details have been saved";
             lblMessage.Visible = true;
             BindEmploymentDetails();
 
