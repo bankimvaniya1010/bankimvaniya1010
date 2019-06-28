@@ -224,9 +224,9 @@ public partial class admin_applicantsocial : System.Web.UI.Page
         {
             if (linkedin.Style.Value != "display: none")
                 adminInputs.Add("Link to your LinkedIn profile", txtLinkedinComments.Value.Trim());
-            else if (facebook.Style.Value != "display: none")
+             if (facebook.Style.Value != "display: none")
                 adminInputs.Add("Link to your Facebook profile", txtFacebookComments.Value.Trim());
-            else if (twitter.Style.Value != "display: none")
+             if (twitter.Style.Value != "display: none")
                 adminInputs.Add("Link to your twitter handle", txtTwitterComments.Value.Trim());
 
             if (CustomControls.Count > 0)

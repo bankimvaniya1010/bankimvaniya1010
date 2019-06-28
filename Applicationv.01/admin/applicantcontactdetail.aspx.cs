@@ -421,33 +421,33 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
         {
             if (email.Style.Value != "display: none")
                 adminInputs.Add("Email", txtEmail.Value.Trim());
-            else if (mobile.Style.Value != "display: none")
+             if (mobile.Style.Value != "display: none")
                 adminInputs.Add("Mobile/Cellular Number", txtMobile.Value.Trim());
-            else if (phone.Style.Value != "display: none")
+             if (phone.Style.Value != "display: none")
                 adminInputs.Add("Home phone", txtHomePhone.Value.Trim());
-            else if (skype.Style.Value != "display: none")
+             if (skype.Style.Value != "display: none")
                 adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA SKYPE", txtSkype.Value.Trim());
-            else if (skypeDesc.Style.Value != "display: none")
+             if (skypeDesc.Style.Value != "display: none")
                 adminInputs.Add("Skype ID", txtSkypeDescription.Value.Trim());
-            else if (whatsapp.Style.Value != "display: none")
+             if (whatsapp.Style.Value != "display: none")
                 adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP", txtWhatsapp.Value.Trim());
-            else if (whatsappHave.Style.Value != "display: none")
+             if (whatsappHave.Style.Value != "display: none")
                 adminInputs.Add("IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO", txtWhastappHave.Value.Trim());
-            else if (whatsappDesc.Style.Value != "display: none")
+             if (whatsappDesc.Style.Value != "display: none")
                 adminInputs.Add("Whatsapp Number", txtWhatsappDescription.Value.Trim());
-            else if (postal.Style.Value != "display: none")
+             if (postal.Style.Value != "display: none")
                 adminInputs.Add("Postal Address", txtPostalAddress.Value.Trim());
-            else if (address.Style.Value != "display: none")
+             if (address.Style.Value != "display: none")
                 adminInputs.Add("Is your Postal Address same as your current residential address", txtAddress.Value.Trim());
-            else if (residential.Style.Value != "display: none")
+             if (residential.Style.Value != "display: none")
                 adminInputs.Add("Current Residential  Address", txtResidential.Value.Trim());
-            else if (guardianname.Style.Value != "display: none")
+             if (guardianname.Style.Value != "display: none")
                 adminInputs.Add("GUARDIAN Full Name", txtGuardianname.Value.Trim());
-            else if (guardianrelation.Style.Value != "display: none")
+             if (guardianrelation.Style.Value != "display: none")
                 adminInputs.Add("Relationship with GUARDIAN", txtNomineeRelation.Value.Trim());
-            else if (guardianemail.Style.Value != "display: none")
+             if (guardianemail.Style.Value != "display: none")
                 adminInputs.Add("Email of GUARDIAN", txtNomineeEmail.Value.Trim());
-            else if (guardianmobile.Style.Value != "display: none")
+             if (guardianmobile.Style.Value != "display: none")
                 adminInputs.Add("Mobile/Cellular Number of GUARDIAN", txtNomiineeMobile.Value.Trim());
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);

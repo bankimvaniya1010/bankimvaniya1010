@@ -494,51 +494,51 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
         {
             if (homelanguage.Style.Value != "display: none")
                 adminInputs.Add("What language do you speak at home", txthomelanguage.Value.Trim());
-            else if (EnglishBackground.Style.Value != "display: none")
+             if (EnglishBackground.Style.Value != "display: none")
                 adminInputs.Add("Have you studied an English Language Intensive Course for students from non-English speaking backgrounds", txtEnglishBackground.Value.Trim());
-            else if (Language.Style.Value != "display: none")
+             if (Language.Style.Value != "display: none")
                 adminInputs.Add("Country of English Language Intensive Course", txtLanguage.Value.Trim());
-            else if (YearCompletion.Style.Value != "display: none")
+             if (YearCompletion.Style.Value != "display: none")
                 adminInputs.Add("Year of Completion/Expected", txtYearCompletion.Value.Trim());
-            else if (NameCollege.Style.Value != "display: none")
+             if (NameCollege.Style.Value != "display: none")
                 adminInputs.Add("Name of College or University", txtNameCollege.Value.Trim());
-            else if (studymode.Style.Value != "display: none")
+             if (studymode.Style.Value != "display: none")
                 adminInputs.Add("Mode of study", txtstudymode.Value.Trim());
-            else if (QualificationType.Style.Value != "display: none")
+             if (QualificationType.Style.Value != "display: none")
                 adminInputs.Add("Qualification Type", txtQualificationType.Value.Trim());
-            else if (QualificationName.Style.Value != "display: none")
+             if (QualificationName.Style.Value != "display: none")
                 adminInputs.Add("Qualification Name", txtQualificationName.Value.Trim());
-            else if (gradetype.Style.Value != "display: none")
+             if (gradetype.Style.Value != "display: none")
                 adminInputs.Add("Grade Type", txtgradetype.Value.Trim());
-            else if (gradeachieved.Style.Value != "display: none")
+             if (gradeachieved.Style.Value != "display: none")
                 adminInputs.Add("Final Grade Achieved", txtgradeachieved.Value.Trim());
-            else if (ExpectedDategrade.Style.Value != "display: none")
+             if (ExpectedDategrade.Style.Value != "display: none")
                 adminInputs.Add("Expected dates when results will be declared", txtExpectedDategrade.Value.Trim());
-            else if (EnglishTest.Style.Value != "display: none")
+             if (EnglishTest.Style.Value != "display: none")
                 adminInputs.Add("Have you sat any one of the following English Language competency tests", txtEnglishTest.Value.Trim());
-            else if (testName.Style.Value != "display: none")
+             if (testName.Style.Value != "display: none")
                 adminInputs.Add("Test Name", txttestName.Value.Trim());
-            else if (CentreNo.Style.Value != "display: none")
+             if (CentreNo.Style.Value != "display: none")
                 adminInputs.Add("Centre No", txtCentreNo.Value.Trim());
-            else if (CandidateNo.Style.Value != "display: none")
+             if (CandidateNo.Style.Value != "display: none")
                 adminInputs.Add("Candidate No", txtCandidateNo.Value.Trim());
-            else if (CandidateID.Style.Value != "display: none")
+             if (CandidateID.Style.Value != "display: none")
                 adminInputs.Add("Candidate ID", txtCandidateID.Value.Trim());
-            else if (LanguageTestDate.Style.Value != "display: none")
+             if (LanguageTestDate.Style.Value != "display: none")
                 adminInputs.Add("Test Date", txtLanguageTestDate.Value.Trim());
-            else if (LanguageScore.Style.Value != "display: none")
+             if (LanguageScore.Style.Value != "display: none")
                 adminInputs.Add("Overall Score", txtLanguageScore.Value.Trim());
-            else if (SpeakingScore.Style.Value != "display: none")
+             if (SpeakingScore.Style.Value != "display: none")
                 adminInputs.Add("Speaking Score", txtSpeakingScore.Value.Trim());
-            else if (ListeningScore.Style.Value != "display: none")
+             if (ListeningScore.Style.Value != "display: none")
                 adminInputs.Add("Listening Score", txtListeningScore.Value.Trim());
-            else if (ReadingScore.Style.Value != "display: none")
+             if (ReadingScore.Style.Value != "display: none")
                 adminInputs.Add("Reading Score", txtReadingScore.Value.Trim());
-            else if (WritingScore.Style.Value != "display: none")
+             if (WritingScore.Style.Value != "display: none")
                 adminInputs.Add("Writing Score", txtWritingScore.Value.Trim());
-            else if (CEFR.Style.Value != "display: none")
+             if (CEFR.Style.Value != "display: none")
                 adminInputs.Add("CEFR Level", txtCEFR.Value.Trim());
-            else if (testRefno.Style.Value != "display: none")
+             if (testRefno.Style.Value != "display: none")
                 adminInputs.Add("Test Report Reference No", txttestRefno.Value.Trim());
 
             if (CustomControls.Count > 0)

@@ -1636,33 +1636,33 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 adminInputs.Add("Have you completed high school", txthighschool.Value.Trim());
                 if (highschoolCountry.Style.Value != "display: none")
                     adminInputs.Add("Country of High School Education", txthighschoolCountry.Value.Trim());
-                else if (highschoolstartDate.Style.Value != "display: none")
+                 if (highschoolstartDate.Style.Value != "display: none")
                     adminInputs.Add("High School Start Date", txthighschoolstartDate.Value.Trim());
-                else if (highschoolendDate.Style.Value != "display: none")
+                 if (highschoolendDate.Style.Value != "display: none")
                     adminInputs.Add("High School End Date", txthighschoolendDate.Value.Trim());
-                else if (highschoolName.Style.Value != "display: none")
+                 if (highschoolName.Style.Value != "display: none")
                     adminInputs.Add("Name of School(HighSchool)", txthighschoolName.Value.Trim());
-                else if (highschoolQualificationtype.Style.Value != "display: none")
+                 if (highschoolQualificationtype.Style.Value != "display: none")
                     adminInputs.Add("Qualification Type(HighSchool)", txthighschoolQualificationtype.Value.Trim());
-                else if (highschoolstudymode.Style.Value != "display: none")
+                 if (highschoolstudymode.Style.Value != "display: none")
                     adminInputs.Add("Mode of study(HighSchool)", txthighschoolstudymode.Value.Trim());
-                else if (highschoollanguage.Style.Value != "display: none")
+                 if (highschoollanguage.Style.Value != "display: none")
                     adminInputs.Add("Language (Medium) of Study(HighSchool)", txthighschoollanguage.Value.Trim());
-                else if (gradetype.Style.Value != "display: none")
+                 if (gradetype.Style.Value != "display: none")
                     adminInputs.Add("Grade Type(HighSchool)", txtgradetype.Value.Trim());
-                else if (highschoolgradeachieved.Style.Value != "display: none")
+                 if (highschoolgradeachieved.Style.Value != "display: none")
                     adminInputs.Add("Final Grade Achieved(HighSchool)", txthighschoolgradeachieved.Value.Trim());
-                else if (ExpectedHighSchoolDategrade.Style.Value != "display: none")
+                 if (ExpectedHighSchoolDategrade.Style.Value != "display: none")
                     adminInputs.Add("Expected dates when results will be declared(HighSchool)", txtExpectedHighSchoolDategrade.Value.Trim());
-                else if (highschoolverify.Style.Value != "display: none")
+                 if (highschoolverify.Style.Value != "display: none")
                     adminInputs.Add("Name of Contact who can verify this qualification(HighSchool)", txthighschoolverify.Value.Trim());
-                else if (highschoolrelation.Style.Value != "display: none")
+                 if (highschoolrelation.Style.Value != "display: none")
                     adminInputs.Add("Relationship with the Contact(HighSchool)", txthighschoolrelation.Value.Trim());
-                else if (highschoolcontactEmail.Style.Value != "display: none")
+                 if (highschoolcontactEmail.Style.Value != "display: none")
                     adminInputs.Add("Email ID of Contact who can verify your qualification(HighSchool)", txthighschoolcontactEmail.Value.Trim());
-                else if (highschoolcontactMobile.Style.Value != "display: none")
+                 if (highschoolcontactMobile.Style.Value != "display: none")
                     adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(HighSchool)", txthighschoolcontactMobile.Value.Trim());
-                else if (highshoolgrade.Style.Value != "display: none")
+                 if (highshoolgrade.Style.Value != "display: none")
                     adminInputs.Add("High School Grade", txthighschoolgrade.Value.Trim());
 
             }
@@ -1678,33 +1678,33 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 adminInputs.Add("Have you completed Senior Secondary school? (Year 12)", txtSecondary.Value.Trim());
                 if (SecondaryCountry.Style.Value != "display: none")
                     adminInputs.Add("Country of Secondary Education", txtSecondaryCountry.Value.Trim());
-                else if (SecondarystartDate.Style.Value != "display: none")
+                 if (SecondarystartDate.Style.Value != "display: none")
                     adminInputs.Add("Secondary Start Date", txtSecondarystartDate.Value.Trim());
-                else if (SecondaryendDate.Style.Value != "display: none")
+                 if (SecondaryendDate.Style.Value != "display: none")
                     adminInputs.Add("Secondary End Date", txtSecondaryendDate.Value.Trim());
-                else if (SecondaryschoolName.Style.Value != "display: none")
+                 if (SecondaryschoolName.Style.Value != "display: none")
                     adminInputs.Add("Name of School(Secondary)", txtSecondaryschoolName.Value.Trim());
-                else if (SecondaryQualificationtype.Style.Value != "display: none")
+                 if (SecondaryQualificationtype.Style.Value != "display: none")
                     adminInputs.Add("Qualification Type(Secondary)", txtSecondaryQualificationtype.Value.Trim());
-                else if (Secondarystudymode.Style.Value != "display: none")
+                 if (Secondarystudymode.Style.Value != "display: none")
                     adminInputs.Add("Mode of study(Secondary)", txtSecondarystudymode.Value.Trim());
-                else if (Secondarylanguage.Style.Value != "display: none")
+                 if (Secondarylanguage.Style.Value != "display: none")
                     adminInputs.Add("Language (Medium) of Study(Secondary)", txtSecondarylanguage.Value.Trim());
-                else if (Secondarygradetype.Style.Value != "display: none")
+                 if (Secondarygradetype.Style.Value != "display: none")
                     adminInputs.Add("Grade Type(Secondary)", txtSecondarygradetype.Value.Trim());
-                else if (Secondarygradeachieved.Style.Value != "display: none")
+                 if (Secondarygradeachieved.Style.Value != "display: none")
                     adminInputs.Add("Final Grade Achieved(Secondary)", txtSecondarygradeachieved.Value.Trim());
-                else if (ExpectedSecondaryDategrade.Style.Value != "display: none")
+                 if (ExpectedSecondaryDategrade.Style.Value != "display: none")
                     adminInputs.Add("Expected dates when results will be declared(Secondary)", txtExpectedSecondaryDategrade.Value.Trim());
-                else if (Secondaryverify.Style.Value != "display: none")
+                 if (Secondaryverify.Style.Value != "display: none")
                     adminInputs.Add("Name of Contact who can verify this qualification(Secondary)", txtSecondaryverify.Value.Trim());
-                else if (secondaryschoolrelation.Style.Value != "display: none")
+                 if (secondaryschoolrelation.Style.Value != "display: none")
                     adminInputs.Add("Relationship with the Contact(Secondary)", txtsecondaryschoolrelation.Value.Trim());
-                else if (secondarycontactEmail.Style.Value != "display: none")
+                 if (secondarycontactEmail.Style.Value != "display: none")
                     adminInputs.Add("Email ID of Contact who can verify your qualification(Secondary)", txtsecondarycontactEmail.Value.Trim());
-                else if (secondarycontactMobile.Style.Value != "display: none")
+                 if (secondarycontactMobile.Style.Value != "display: none")
                     adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Secondary)", txtsecondarycontactMobile.Value.Trim());
-                else if (highshoolgrade.Style.Value != "display: none")
+                 if (highshoolgrade.Style.Value != "display: none")
                     adminInputs.Add("Secondary Grade", txtSecondaryGrade.Value.Trim());
             }
             else
@@ -1718,33 +1718,33 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 adminInputs.Add("Have you completed any Diploma or Certificate Programs", txtdiploma.Value.Trim());
                 if (diplomaCountry.Style.Value != "display: none")
                     adminInputs.Add("Country of Diploma or Certificate Programs", txtdiplomaCountry.Value.Trim());
-                else if (diplomastartDate.Style.Value != "display: none")
+                 if (diplomastartDate.Style.Value != "display: none")
                     adminInputs.Add("Diploma Start Date", txtdiplomastartDate.Value.Trim());
-                else if (diplomaendDate.Style.Value != "display: none")
+                 if (diplomaendDate.Style.Value != "display: none")
                     adminInputs.Add("Diploma End Date", txtdiplomaendDate.Value.Trim());
-                else if (diplomaschoolName.Style.Value != "display: none")
+                 if (diplomaschoolName.Style.Value != "display: none")
                     adminInputs.Add("Name of School(Diploma)", txtdiplomaschoolName.Value.Trim());
-                else if (diplomaQualificationtype.Style.Value != "display: none")
+                 if (diplomaQualificationtype.Style.Value != "display: none")
                     adminInputs.Add("Qualification Type(Diploma)", txtdiplomaQualificationtype.Value.Trim());
-                else if (diplomastudymode.Style.Value != "display: none")
+                 if (diplomastudymode.Style.Value != "display: none")
                     adminInputs.Add("Mode of study(Diploma)", txtdiplomastudymode.Value.Trim());
-                else if (diplomalanguage.Style.Value != "display: none")
+                 if (diplomalanguage.Style.Value != "display: none")
                     adminInputs.Add("Language (Medium) of Study(Diploma)", txtdiplomalanguage.Value.Trim());
-                else if (diplomagradetype.Style.Value != "display: none")
+                 if (diplomagradetype.Style.Value != "display: none")
                     adminInputs.Add("Grade Type(Diploma)", txtdiplomagradetype.Value.Trim());
-                else if (diplomagradeachieved.Style.Value != "display: none")
+                 if (diplomagradeachieved.Style.Value != "display: none")
                     adminInputs.Add("Final Grade Achieved(Diploma)", txtdiplomagradeachieved.Value.Trim());
-                else if (ExpectedDiplomaDategrade.Style.Value != "display: none")
+                 if (ExpectedDiplomaDategrade.Style.Value != "display: none")
                     adminInputs.Add("Expected dates when results will be declared(Diploma)", txtExpectedDiplomaDategrade.Value.Trim());
-                else if (diplomaverify.Style.Value != "display: none")
+                 if (diplomaverify.Style.Value != "display: none")
                     adminInputs.Add("Name of Contact who can verify this qualification(Diploma)", txtdiplomaverify.Value.Trim());
-                else if (diplomarelation.Style.Value != "display: none")
+                 if (diplomarelation.Style.Value != "display: none")
                     adminInputs.Add("Relationship with the Contact(Diploma)", txtdiplomarelation.Value.Trim());
-                else if (diplomacontactEmail.Style.Value != "display: none")
+                 if (diplomacontactEmail.Style.Value != "display: none")
                     adminInputs.Add("Email ID of Contact who can verify your qualification(Diploma)", txtdiplomacontactEmail.Value.Trim());
-                else if (diplomacontactMobile.Style.Value != "display: none")
+                 if (diplomacontactMobile.Style.Value != "display: none")
                     adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Diploma)", txtdiplomacontactMobile.Value.Trim());
-                else if (highshoolgrade.Style.Value != "display: none")
+                 if (highshoolgrade.Style.Value != "display: none")
                     adminInputs.Add("Diploma Grade", txtDiplomaGrade.Value.Trim());
             }
             else
@@ -1761,132 +1761,132 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 {
                     if (highercourse.Style.Value != "display: none")
                         adminInputs.Add("Higher Course(UG)", txthighercourse.Value.Trim());
-                    else if (higherCountry.Style.Value != "display: none")
+                     if (higherCountry.Style.Value != "display: none")
                         adminInputs.Add("Country of Higher Education(UG)", txthigherCountry.Value.Trim());
-                    else if (higherstartDate.Style.Value != "display: none")
+                     if (higherstartDate.Style.Value != "display: none")
                         adminInputs.Add("Higher Start Date(UG)", txthigherstartDate.Value.Trim());
-                    else if (higherendDate.Style.Value != "display: none")
+                     if (higherendDate.Style.Value != "display: none")
                         adminInputs.Add("Higher End Date(UG)", txthigherendDate.Value.Trim());
-                    else if (higherschoolName.Style.Value != "display: none")
+                     if (higherschoolName.Style.Value != "display: none")
                         adminInputs.Add("Name of School(UG)", txthigherschoolName.Value.Trim());
-                    else if (higherQualificationtype.Style.Value != "display: none")
+                     if (higherQualificationtype.Style.Value != "display: none")
                         adminInputs.Add("Qualification Type(UG)", txthigherQualificationtype.Value.Trim());
-                    else if (higherstudymode.Style.Value != "display: none")
+                     if (higherstudymode.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(UG)", txthigherstudymode.Value.Trim());
-                    else if (higherlanguage.Style.Value != "display: none")
+                     if (higherlanguage.Style.Value != "display: none")
                         adminInputs.Add("Language (Medium) of Study(UG)", txthigherlanguage.Value.Trim());
-                    else if (highergradetype.Style.Value != "display: none")
+                     if (highergradetype.Style.Value != "display: none")
                         adminInputs.Add("Grade Type(UG)", txthighergradetype.Value.Trim());
-                    else if (highergradeachieved.Style.Value != "display: none")
+                     if (highergradeachieved.Style.Value != "display: none")
                         adminInputs.Add("Final Grade Achieved(UG)", txthighergradeachieved.Value.Trim());
-                    else if (ExpectedHigherDategrade.Style.Value != "display: none")
+                     if (ExpectedHigherDategrade.Style.Value != "display: none")
                         adminInputs.Add("Expected dates when results will be declared(UG)", txtExpectedHigherDategrade.Value.Trim());
-                    else if (higherverify.Style.Value != "display: none")
+                     if (higherverify.Style.Value != "display: none")
                         adminInputs.Add("Name of Contact who can verify this qualification(UG)", txthigherverify.Value.Trim());
-                    else if (higherrelation.Style.Value != "display: none")
+                     if (higherrelation.Style.Value != "display: none")
                         adminInputs.Add("Relationship with the Contact(UG)", txthigherrelation.Value.Trim());
-                    else if (highercontactEmail.Style.Value != "display: none")
+                     if (highercontactEmail.Style.Value != "display: none")
                         adminInputs.Add("Email ID of Contact who can verify your qualification(UG)", txthighercontactEmail.Value.Trim());
-                    else if (highercontactMobile.Style.Value != "display: none")
+                     if (highercontactMobile.Style.Value != "display: none")
                         adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(UG)", txthighercontactMobile.Value.Trim());
                 }
                 else if (PG.Visible == true)
                 {
                     if (highercoursePG.Style.Value != "display: none")
                         adminInputs.Add("Higher Course(PG)", txthighercoursePG.Value.Trim());
-                    else if (higherCountryPG.Style.Value != "display: none")
+                     if (higherCountryPG.Style.Value != "display: none")
                         adminInputs.Add("Country of Higher Education(PG)", txthigherCountryPG.Value.Trim());
-                    else if (higherstartDatePG.Style.Value != "display: none")
+                     if (higherstartDatePG.Style.Value != "display: none")
                         adminInputs.Add("Higher Start Date(PG)", txthigherstartDatePG.Value.Trim());
-                    else if (higherendDatePG.Style.Value != "display: none")
+                     if (higherendDatePG.Style.Value != "display: none")
                         adminInputs.Add("Higher End Date(PG)", txthigherendDatePG.Value.Trim());
-                    else if (higherschoolNamePG.Style.Value != "display: none")
+                     if (higherschoolNamePG.Style.Value != "display: none")
                         adminInputs.Add("Name of School(PG)", txthigherschoolNamePG.Value.Trim());
-                    else if (higherQualificationtypePG.Style.Value != "display: none")
+                     if (higherQualificationtypePG.Style.Value != "display: none")
                         adminInputs.Add("Qualification Type(PG)", txthigherQualificationtypePG.Value.Trim());
-                    else if (higherstudymodePG.Style.Value != "display: none")
+                     if (higherstudymodePG.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(PG)", txthigherstudymodePG.Value.Trim());
-                    else if (higherlanguagePG.Style.Value != "display: none")
+                     if (higherlanguagePG.Style.Value != "display: none")
                         adminInputs.Add("Language (Medium) of Study(PG)", txthigherlanguagePG.Value.Trim());
-                    else if (highergradetypePG.Style.Value != "display: none")
+                     if (highergradetypePG.Style.Value != "display: none")
                         adminInputs.Add("Grade Type(PG)", txthighergradetypePG.Value.Trim());
-                    else if (highergradeachievedPG.Style.Value != "display: none")
+                     if (highergradeachievedPG.Style.Value != "display: none")
                         adminInputs.Add("Final Grade Achieved(PG)", txthighergradeachievedPG.Value.Trim());
-                    else if (ExpectedHigherDategradePG.Style.Value != "display: none")
+                     if (ExpectedHigherDategradePG.Style.Value != "display: none")
                         adminInputs.Add("Expected dates when results will be declared(PG)", txtExpectedHigherDategradePG.Value.Trim());
-                    else if (higherverifyPG.Style.Value != "display: none")
+                     if (higherverifyPG.Style.Value != "display: none")
                         adminInputs.Add("Name of Contact who can verify this qualification(PG)", txthigherverifyPG.Value.Trim());
-                    else if (higherrelationPG.Style.Value != "display: none")
+                     if (higherrelationPG.Style.Value != "display: none")
                         adminInputs.Add("Relationship with the Contact(PG)", txthigherrelationPG.Value.Trim());
-                    else if (highercontactEmailPG.Style.Value != "display: none")
+                     if (highercontactEmailPG.Style.Value != "display: none")
                         adminInputs.Add("Email ID of Contact who can verify your qualification(PG)", txthighercontactEmailPG.Value.Trim());
-                    else if (highercontactMobilePG.Style.Value != "display: none")
+                     if (highercontactMobilePG.Style.Value != "display: none")
                         adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(PG)", txthighercontactMobilePG.Value.Trim());
                 }
                 else if (Phd.Visible == true)
                 {
                     if (highercoursePhd.Style.Value != "display: none")
                         adminInputs.Add("Higher Course(Phd)", txthighercoursePhd.Value.Trim());
-                    else if (higherCountryPhd.Style.Value != "display: none")
+                     if (higherCountryPhd.Style.Value != "display: none")
                         adminInputs.Add("Country of Higher Education(Phd)", txthigherCountryPhd.Value.Trim());
-                    else if (higherstartDatePhd.Style.Value != "display: none")
+                     if (higherstartDatePhd.Style.Value != "display: none")
                         adminInputs.Add("Higher Start Date(Phd)", txthigherstartDatePhd.Value.Trim());
-                    else if (higherendDatePhd.Style.Value != "display: none")
+                     if (higherendDatePhd.Style.Value != "display: none")
                         adminInputs.Add("Higher End Date(Phd)", txthigherendDatePhd.Value.Trim());
-                    else if (higherschoolNamePhd.Style.Value != "display: none")
+                     if (higherschoolNamePhd.Style.Value != "display: none")
                         adminInputs.Add("Name of School(Phd)", txthigherschoolNamePhd.Value.Trim());
-                    else if (higherQualificationtypePhd.Style.Value != "display: none")
+                     if (higherQualificationtypePhd.Style.Value != "display: none")
                         adminInputs.Add("Qualification Type(Phd)", txthigherQualificationtypePhd.Value.Trim());
-                    else if (higherstudymodePhd.Style.Value != "display: none")
+                     if (higherstudymodePhd.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(Phd)", txthigherstudymodePhd.Value.Trim());
-                    else if(higherlanguagePhd.Style.Value != "display: none")
+                     if(higherlanguagePhd.Style.Value != "display: none")
                         adminInputs.Add("Language (Medium) of Study(Phd)", txthigherlanguagePhd.Value.Trim());
-                    else if (highergradetypePhd.Style.Value != "display: none")
+                     if (highergradetypePhd.Style.Value != "display: none")
                         adminInputs.Add("Grade Type(Phd)", txthighergradetypePhd.Value.Trim());
-                    else if (highergradeachievedPhd.Style.Value != "display: none")
+                     if (highergradeachievedPhd.Style.Value != "display: none")
                         adminInputs.Add("Final Grade Achieved(Phd)", txthighergradeachievedPhd.Value.Trim());
-                    else if (ExpectedHigherDategradePhd.Style.Value != "display: none")
+                     if (ExpectedHigherDategradePhd.Style.Value != "display: none")
                         adminInputs.Add("Expected dates when results will be declared(Phd)", txtExpectedHigherDategradePhd.Value.Trim());
-                    else if (higherverifyPhd.Style.Value != "display: none")
+                     if (higherverifyPhd.Style.Value != "display: none")
                         adminInputs.Add("Name of Contact who can verify this qualification(Phd)", txthigherverifyPhd.Value.Trim());
-                    else if (higherrelationPhd.Style.Value != "display: none")
+                     if (higherrelationPhd.Style.Value != "display: none")
                         adminInputs.Add("Relationship with the Contact(Phd)", txthigherrelationPhd.Value.Trim());
-                    else if (highercontactEmailPhd.Style.Value != "display: none")
+                     if (highercontactEmailPhd.Style.Value != "display: none")
                         adminInputs.Add("Email ID of Contact who can verify your qualification(Phd)", txthighercontactEmailPhd.Value.Trim());
-                    else if (highercontactMobilePhd.Style.Value != "display: none")
+                     if (highercontactMobilePhd.Style.Value != "display: none")
                         adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Phd)", txthighercontactMobilePhd.Value.Trim());
                 }
                 else
                 {
                     if (highercourseOther.Style.Value != "display: none")
                         adminInputs.Add("Higher Course(Other)", txthighercourseOther.Value.Trim());
-                    else if (higherCountryOther.Style.Value != "display: none")
+                     if (higherCountryOther.Style.Value != "display: none")
                         adminInputs.Add("Country of Higher Education(Other)", txthigherCountryOther.Value.Trim());
-                    else if (higherstartDateOther.Style.Value != "display: none")
+                     if (higherstartDateOther.Style.Value != "display: none")
                         adminInputs.Add("Higher Start Date(Other)", txthigherstartDateOther.Value.Trim());
-                    else if (higherendDateOther.Style.Value != "display: none")
+                     if (higherendDateOther.Style.Value != "display: none")
                         adminInputs.Add("Higher End Date(Other)", txthigherendDateOther.Value.Trim());
-                    else if (higherschoolNameOther.Style.Value != "display: none")
+                     if (higherschoolNameOther.Style.Value != "display: none")
                         adminInputs.Add("Name of School(Other)", txthigherschoolNameOther.Value.Trim());
-                    else if (higherQualificationtypeOther.Style.Value != "display: none")
+                     if (higherQualificationtypeOther.Style.Value != "display: none")
                         adminInputs.Add("Qualification Type(Other)", txthigherQualificationtypeOther.Value.Trim());
-                    else if (higherstudymodeOther.Style.Value != "display: none")
+                     if (higherstudymodeOther.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(Other)", txthigherstudymodeOther.Value.Trim());
-                    else if (higherlanguageOther.Style.Value != "display: none")
+                     if (higherlanguageOther.Style.Value != "display: none")
                         adminInputs.Add("Language (Medium) of Study(Other)", txthigherlanguageOther.Value.Trim());
-                    else if (highergradetypeOther.Style.Value != "display: none")
+                     if (highergradetypeOther.Style.Value != "display: none")
                         adminInputs.Add("Grade Type(Other)", txthighergradetypeOther.Value.Trim());
-                    else if (highergradeachievedOther.Style.Value != "display: none")
+                     if (highergradeachievedOther.Style.Value != "display: none")
                         adminInputs.Add("Final Grade Achieved(Other)", txthighergradeachievedOther.Value.Trim());
-                    else if (ExpectedHigherDategradeOther.Style.Value != "display: none")
+                     if (ExpectedHigherDategradeOther.Style.Value != "display: none")
                         adminInputs.Add("Expected dates when results will be declared(Other)", txtExpectedHigherDategradeOther.Value.Trim());
-                    else if (higherverifyOther.Style.Value != "display: none")
+                     if (higherverifyOther.Style.Value != "display: none")
                         adminInputs.Add("Name of Contact who can verify this qualification(Other)", txthigherverifyOther.Value.Trim());
-                    else if (higherrelationOther.Style.Value != "display: none")
+                     if (higherrelationOther.Style.Value != "display: none")
                         adminInputs.Add("Relationship with the Contact(Other)", txthigherrelationOther.Value.Trim());
-                    else if (highercontactEmailOther.Style.Value != "display: none")
+                     if (highercontactEmailOther.Style.Value != "display: none")
                         adminInputs.Add("Email ID of Contact who can verify your qualification(Other)", txthighercontactEmailOther.Value.Trim());
-                    else if (highercontactMobileOther.Style.Value != "display: none")
+                     if (highercontactMobileOther.Style.Value != "display: none")
                         adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Other)", txthighercontactMobileOther.Value.Trim());
 
                 }

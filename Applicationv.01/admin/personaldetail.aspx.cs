@@ -507,49 +507,49 @@ public partial class admin_personaldetail : System.Web.UI.Page
         {
             if (title.Style.Value != "display: none")
                 adminInputs.Add("Title", txtTitle.Value.Trim());
-            else if (firstname.Style.Value != "display: none")
+             if (firstname.Style.Value != "display: none")
                 adminInputs.Add("First Name", txtFirstName.Value.Trim());
-            else if (lastname.Style.Value != "display: none")
+             if (lastname.Style.Value != "display: none")
                 adminInputs.Add("Last Name", txtLastName.Value.Trim());
-            else if (preferedname.Style.Value != "display: none")
+             if (preferedname.Style.Value != "display: none")
                 adminInputs.Add("Preferred Name", txtPrefferedName.Value.Trim());
-            else if (middlename.Style.Value != "display: none")
+             if (middlename.Style.Value != "display: none")
                 adminInputs.Add("Other middle names", txtMiddleName.Value.Trim());
-            else if (dob.Style.Value != "display: none")
+             if (dob.Style.Value != "display: none")
                 adminInputs.Add("Date of birth", txtDOB.Value.Trim());
-            else if (gender.Style.Value != "display: none")
+             if (gender.Style.Value != "display: none")
                 adminInputs.Add("Gender", txtGender.Value.Trim());
-            else if (nationality.Style.Value != "display: none")
+             if (nationality.Style.Value != "display: none")
                 adminInputs.Add("Nationality and citizenship", txtNationality.Value.Trim());
-            else if (chineseCode.Style.Value != "display: none")
+             if (chineseCode.Style.Value != "display: none")
                 adminInputs.Add("Do you ever use a Chinese Commercial Code Number for your names", txtChineseCode.Value.Trim());
-            else if (textChineseCodeDiv.Style.Value != "display: none")
+             if (textChineseCodeDiv.Style.Value != "display: none")
                 adminInputs.Add("Chinese Commercial Code Number", txtFirstName.Value.Trim());
-            else if (russianName.Style.Value != "display: none")
+             if (russianName.Style.Value != "display: none")
                 adminInputs.Add("In English, provide your patronymic name", txtRussiaName.Value.Trim());
-            else if (dualNationality.Style.Value != "display: none")
+             if (dualNationality.Style.Value != "display: none")
                 adminInputs.Add("Do you have dual Citizenship", txtDualNationlity.Value.Trim());
-            else if (secondNation.Style.Value != "display: none")
+             if (secondNation.Style.Value != "display: none")
                 adminInputs.Add("Nationality and citizenship(Second)", txtOtherNation.Value.Trim());
-            else if (birthcountry.Style.Value != "display: none")
+             if (birthcountry.Style.Value != "display: none")
                 adminInputs.Add("Country of birth", txtBirthCountry.Value.Trim());
-            else if (marital.Style.Value != "display: none")
+             if (marital.Style.Value != "display: none")
                 adminInputs.Add("Marital Status", txtMarital.Value.Trim());
-            else if (statusMarried.Style.Value != "display: none")
+             if (statusMarried.Style.Value != "display: none")
                 adminInputs.Add("Spouse Name", txtSpousename.Value.Trim());
-            else if (SpouseNationality.Style.Value != "display: none")
+             if (SpouseNationality.Style.Value != "display: none")
                 adminInputs.Add("Nationality of Spouse", txtSpouseNationality.Value.Trim());
-            else if (SpouseDOB.Style.Value != "display: none")
+             if (SpouseDOB.Style.Value != "display: none")
                 adminInputs.Add("Spouse Date of birth", txtSpouseDOB.Value.Trim());
-            else if (MarriageDate.Style.Value != "display: none")
+             if (MarriageDate.Style.Value != "display: none")
                 adminInputs.Add("Date of Marriage", txtMarrigeDate.Value.Trim());
-            else if (disability.Style.Value != "display: none")
+             if (disability.Style.Value != "display: none")
                 adminInputs.Add("Do you have any disability, impairment, or a long term condition", txtDisability.Value.Trim());
-            else if (disabilitydesc.Style.Value != "display: none")
+             if (disabilitydesc.Style.Value != "display: none")
                 adminInputs.Add("Disability Description", txtDisabilityDescription.Value.Trim());
-            else if (agent.Style.Value != "display: none")
+             if (agent.Style.Value != "display: none")
                 adminInputs.Add("Are you reffered by Agent", txtAgent.Value.Trim());
-            else if (agentList.Style.Value != "display: none")
+             if (agentList.Style.Value != "display: none")
                 adminInputs.Add("Agent Name", txtAgentList.Value.Trim());
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);

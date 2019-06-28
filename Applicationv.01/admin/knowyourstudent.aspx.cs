@@ -325,25 +325,25 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
         {
             if (passportno.Style.Value != "display: none")
                 adminInputs.Add("Passport Number", txtPassportNo.Value.Trim());
-            else if (dateofissue.Style.Value != "display: none")
+             if (dateofissue.Style.Value != "display: none")
                 adminInputs.Add("Date of Issue", txtDateOfissue.Value.Trim());
-            else if (expirydate.Style.Value != "display: none")
+             if (expirydate.Style.Value != "display: none")
                 adminInputs.Add("Expiry Date", txtExpiryDate.Value.Trim());
-            else if (countryIssue.Style.Value != "display: none")
+             if (countryIssue.Style.Value != "display: none")
                 adminInputs.Add("COUNTRY OF ISSUE", txtcountryIssue.Value.Trim());
-            else if (issueplace.Style.Value != "display: none")
+             if (issueplace.Style.Value != "display: none")
                 adminInputs.Add("CITY OF ISSUE", txtissueplace.Value.Trim());
-            else if (alternateIdentitytype.Style.Value != "display: none")
+             if (alternateIdentitytype.Style.Value != "display: none")
                 adminInputs.Add("Select Identity Proof Type", txtalternateIdentitytype.Value.Trim());
-            else if (alternateIdentityNo.Style.Value != "display: none")
+             if (alternateIdentityNo.Style.Value != "display: none")
                 adminInputs.Add("Identity Proof Number", txtalternateIdentityNo.Value.Trim());
-            else if (alternatedobIdentitytype.Style.Value != "display: none")
+             if (alternatedobIdentitytype.Style.Value != "display: none")
                 adminInputs.Add("Select DOB Proof Type", txtalternatedobIdentitytype.Value.Trim());
-            else if (alternatedobIdentityNo.Style.Value != "display: none")
+             if (alternatedobIdentityNo.Style.Value != "display: none")
                 adminInputs.Add("DOB proof Number", txtalternatedobIdentityNo.Value.Trim());
-            else if (alternateresidenceIdentitytype.Style.Value != "display: none")
+             if (alternateresidenceIdentitytype.Style.Value != "display: none")
                 adminInputs.Add("Select Residence Proof Type", txtalternateresidenceIdentitytype.Value.Trim());
-            else if (alternateresidenceIdentityNo.Style.Value != "display: none")
+             if (alternateresidenceIdentityNo.Style.Value != "display: none")
                 adminInputs.Add("Residence Proof Number", txtalternateresidenceIdentityNo.Value.Trim());
 
             if (CustomControls.Count > 0)
