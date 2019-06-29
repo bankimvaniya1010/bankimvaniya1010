@@ -157,7 +157,8 @@ public partial class admin_applicantvisa : System.Web.UI.Page
                     break;
 
             }
-
+            if (CustomControls.Count > 0)
+                objCom.SetCustomDataAdminComments(formId, ApplicantID, CustomControls, mainDiv, Comments);
         }
     }
     protected void btnSave_Click(object sender, EventArgs e)

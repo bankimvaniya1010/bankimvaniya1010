@@ -130,7 +130,8 @@ public partial class admin_applicantfunding : System.Web.UI.Page
                     break;
 
             }
-
+            if (CustomControls.Count > 0)
+                objCom.SetCustomDataAdminComments(formId, ApplicantID, CustomControls, mainDiv, Comments);
         }
     }
     protected void btn_fundingdetails_Click(object sender, EventArgs e)

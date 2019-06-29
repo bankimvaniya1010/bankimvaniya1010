@@ -483,7 +483,10 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             if (postal.Style.Value != "display: none")
                 adminInputs.Add("Postal Address", txtPostalAddress.Value.Trim());
             if (address.Style.Value != "display: none")
+            {
                 adminInputs.Add("Is your Postal Address same as your current residential address", txtAddress.Value.Trim());
+                adminInputs.Add("HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?", txtCurrentAddress.Value.Trim());
+            }
             if (residential.Style.Value != "display: none")
                 adminInputs.Add("Current Residential  Address", txtResidential.Value.Trim());
             if (guardianname.Style.Value != "display: none")
@@ -496,8 +499,8 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                 adminInputs.Add("Mobile/Cellular Number of GUARDIAN", txtNomiineeMobile.Value.Trim());
             if (addressHistory.Style.Value != "display: none")
                 adminInputs.Add("PREVIOUS ADDRESS HISTORY DETAILS", txtAddressHistory.Value.Trim());
-            if (addressHistory.Style.Value != "display: none")
-                adminInputs.Add("HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?", txtCurrentAddress.Value.Trim());
+
+
 
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
