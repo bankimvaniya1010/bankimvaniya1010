@@ -90,24 +90,20 @@ public partial class knowyourstudent : System.Web.UI.Page
             if (ddlCountryofIssue.SelectedValue != "")
             {
                 objapplicantDetail.passportissuecountry = ddlCountryofIssue.SelectedValue;
-
             }
             objapplicantDetail.passportissuecity = txtissueplaceCity.Value;
             if (ddlalternateIdentitytype.SelectedValue != "")
             {
                 objapplicantDetail.alternativeIdentityproofId = Convert.ToInt32(ddlalternateIdentitytype.SelectedValue);
-
             }
             if (ddlalternatedobIdentitytype.SelectedValue != "")
             {
                 objapplicantDetail.alternativeproofdobId = Convert.ToInt32(ddlalternatedobIdentitytype.SelectedValue);
-
             }
 
             if (ddlalternateresidenceIdentitytype.SelectedValue != "")
             {
                 objapplicantDetail.alternativeresidenceproofId = Convert.ToInt32(ddlalternateresidenceIdentitytype.SelectedValue);
-
             }
             objapplicantDetail.alternativeproofdobno = txtalternatedobIdentityNo.Value;
             objapplicantDetail.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;

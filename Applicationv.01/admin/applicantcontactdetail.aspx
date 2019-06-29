@@ -164,6 +164,16 @@
                                 <input id="txtAddress" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
+                        <div class="form-row">
+                            <label id="labelCurrentAddress" runat="server" for="currentAddressSelection" class="col-md-3 col-form-label form-label">Have you been living in the current address for Less than 1 year?</label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
+                                <span class="helpicon"><i id="icCurrentAddress" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="txtCurrentAddress" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item" id="residential" runat="server" style="display: none">
@@ -180,15 +190,48 @@
                         </div>
                     </div>
                 </div>
-                <div id="guardian" runat="server" visible="false">
-                    <div class="form-row" style="margin-left: 25px">
-                        <label id="gurdianmessgae" runat="server" for="gurdian" class="col-md-9 col-form-label form-label">You age today is #Year# Years and #Month# Months. Please provide the name & details of your authorized Guardian</label>
+                <div class="list-group-item" id="addressHistory" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-prevaddress">
+                        <asp:HiddenField ID="hidAddressHistory" runat="server" Value="0" />
+                        <asp:HiddenField ID="hidAddressStartDate" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddressEndDate" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddress1" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddress2" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddress3" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddressCity" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddressState" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddressPostalCode" runat="server" Value="" />
+                        <asp:HiddenField ID="hidAddressCountry" runat="server" Value="" />
+                        <div class="form-row">
+                            <label id="lblPrevAddress" runat="server" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblPrevAddStartDate" runat="server"></asp:Label>
+                                <asp:Label ID="lblPrevAddEndDate" runat="server"></asp:Label>
+                                <asp:Label ID="lblprevAddress1" runat="server"></asp:Label>
+                                <asp:Label ID="lblprevAddress2" runat="server"></asp:Label>
+                                <asp:Label ID="lblprevAddress3" runat="server"></asp:Label>
+                                <asp:Label ID="lblprevAddressCity" runat="server"></asp:Label>
+                                <asp:Label ID="lblprevAddressState" runat="server"></asp:Label>
+                                <asp:Label ID="lblprevAddressPostalCode" runat="server"></asp:Label>
+                                <asp:Label ID="lblPrevAddressCountry" runat="server"></asp:Label>
+
+                                <span class="helpicon"><i id="iAddressHistory" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="txtAddressHistory" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
+                        <div id="container"></div>
 
                     </div>
+                </div>
+                <div id="guardian" runat="server" visible="false">
+                   
                     <div class="list-group-item" id="guardianname" runat="server" style="display: none">
+                       
                         <div class="form-group m-0" role="group" aria-labelledby="label-nomineename">
                             <div class="form-row">
-                                <label id="labelguardianname" runat="server" for="nomineename" class="col-md-3 col-form-label form-label">GUARDIAN Full Name</label>
+                               <i class="fa fa-check" aria-hidden="true" runat="server" id="isVerifed"></i>  <label id="labelguardianname" runat="server" for="nomineename" class="col-md-3 col-form-label form-label">GUARDIAN Full Name</label>
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNominneName" runat="server"></asp:Label>
                                     <span class="helpicon"><i id="icNomineeName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
@@ -240,7 +283,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div></div>
                 </div>
                 <div id="mainDiv" runat="server"></div>
                 <div class="list-group-item" id="employerwebsite">
