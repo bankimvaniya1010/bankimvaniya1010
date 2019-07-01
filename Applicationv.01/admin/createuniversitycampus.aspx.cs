@@ -76,6 +76,31 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
                     db.SaveChanges();
                 }
 
+                string[] facilitiesList = hidFacilities.Value.Split(';');
+                string[] facilitiesCostList = hidFacilityCost.Value.Split(';');
+                string[] facilitiesPriceList = hidFacilityPrice.Value.Split(';');
+                string[] facilitiesLocationList = hidFacilityLocation.Value.Split(';');
+                string[] facilitiesDistanceList = hidFacilityDistance.Value.Split(';');
+
+                int facilitiesCount = facilitiesList.Length;
+                for (int i = 0; i < facilitiesCount - 1; i++)
+                {
+                    facility_campus_mapping mapping = new facility_campus_mapping();
+
+                    mapping.campusId = universityCampusObj.campusid;
+                    mapping.facilityId = Convert.ToInt32(facilitiesList[i]);
+                    mapping.IsFree = facilitiesCostList[i] == "free";
+                    if (!mapping.IsFree)
+                        mapping.cost = Convert.ToInt32(facilitiesPriceList[i]);
+
+                    mapping.facility_site = facilitiesLocationList[i];
+                    if (mapping.facility_site == "offsite")
+                        mapping.distance = facilitiesDistanceList[i];
+
+                    db.facility_campus_mapping.Add(mapping);
+                    db.SaveChanges();
+                }
+
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
             }
             else
@@ -104,6 +129,15 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
     {
         GTEEntities db1 = new GTEEntities();
         var temp = db1.countriesmaster.Select(x => new { countryID = x.id, countryName = x.country_name }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetAllFacilities()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.facilitiesmaster.Select(x => new { x.id , x.facility_name }).ToList();
         return JsonConvert.SerializeObject(temp);
     }
 }
