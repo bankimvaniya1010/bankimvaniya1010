@@ -316,6 +316,8 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
             }
 
         }
+        if (CustomControls.Count > 0)
+            objCom.SetCustomDataAdminComments(formId, ApplicantID, CustomControls, mainDiv, Comments);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

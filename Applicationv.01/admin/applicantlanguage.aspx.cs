@@ -483,7 +483,8 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                     break;
 
             }
-
+            if (CustomControls.Count > 0)
+                objCom.SetCustomDataAdminComments(formId, ApplicantID, CustomControls, mainDiv, Comments);
         }
     }
 

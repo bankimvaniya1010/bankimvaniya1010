@@ -120,6 +120,43 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         lblPostalAddress.Text += "," + objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.residentialcountry));
                     }
                 }
+                if (profileInfo.haspreviousresidence.HasValue && profileInfo.haspreviousresidence.Value)
+                {
+                    lblCurrentAddress.Text = "Yes";
+
+                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+
+                    lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
+                    lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
+                    lblprevAddress1.Text = lstOfResidences[0].residenceaddress1;
+                    lblprevAddress2.Text = lstOfResidences[0].residenceaddress2;
+                    lblprevAddress3.Text = lstOfResidences[0].residenceaddress3;
+                    lblprevAddressCity.Text = lstOfResidences[0].residentialcity;
+                    lblprevAddressState.Text = lstOfResidences[0].residentialstate;
+                    lblprevAddressPostalCode.Text = lstOfResidences[0].residencepostcode;
+                    if (lstOfResidences[0].residentialcountry != null)
+                    {
+
+                        lblPrevAddressCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(lstOfResidences[0].residentialcountry));
+                    }
+
+                    addressHistory.Style.Remove("display");
+
+                    for (int i = 1; i < lstOfResidences.Count; i++)
+                    {
+                        hidAddress1.Value += lstOfResidences[i].residenceaddress1 + ";";
+                        hidAddress2.Value += lstOfResidences[i].residenceaddress2 + ";";
+                        hidAddress3.Value += lstOfResidences[i].residenceaddress3 + ";";
+                        hidAddressCity.Value += lstOfResidences[i].residentialcity + ";";
+                        hidAddressStartDate.Value += Convert.ToDateTime(lstOfResidences[i].residencestartdate).ToString("yyyy-MM-dd") + ";";
+                        hidAddressEndDate.Value += Convert.ToDateTime(lstOfResidences[i].residenceenddate).ToString("yyyy-MM-dd") + ";";
+                        hidAddressState.Value += lstOfResidences[i].residentialstate + ";";
+                        hidAddressPostalCode.Value += lstOfResidences[i].residencepostcode + ";";
+                        hidAddressCountry.Value += objCom.GetCountryDiscription(Convert.ToInt32(lstOfResidences[i].residentialcountry)) + ";";
+                    }
+                }
+                else if (!profileInfo.haspreviousresidence.Value)
+                    lblCurrentAddress.Text = "No";
                 lblNominneName.Text = profileInfo.nomineefullname;
                 lblNomineeEmail.Text = profileInfo.nomineeemail;
                 lblNomineeMobile.Text = profileInfo.nomineemobile;
@@ -127,12 +164,15 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                 DateTime zeroTime = new DateTime(1, 1, 1);
                 DateTime Dob = Convert.ToDateTime(profileInfo.dateofbirth);
                 Age objAge = new Age(Dob, DateTime.Now);
-
+                if (profileInfo.isnomineeverified == true)
+                    isVerifed.Visible = true;
+                else
+                    isVerifed.Visible = false;
                 if (objAge.Years < 18)
                 {
-                    gurdianmessgae.Visible = false;
+
                     guardian.Visible = true;
-                    gurdianmessgae.InnerText = gurdianmessgae.InnerText.Replace("#Year#", objAge.Years.ToString()).Replace("#Month#", objAge.Months.ToString());
+                    // gurdianmessgae.InnerText = gurdianmessgae.InnerText.Replace("#Year#", objAge.Years.ToString()).Replace("#Month#", objAge.Months.ToString());
                 }
                 else
                     guardian.Visible = false;
@@ -144,8 +184,6 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
-
     private void SetToolTips()
     {
 
@@ -405,6 +443,12 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                 case "Mobile/Cellular Number of GUARDIAN":
                     txtNomiineeMobile.Value = setComments(Comments[k]);
                     break;
+                case "PREVIOUS ADDRESS HISTORY DETAILS":
+                    txtAddressHistory.Value = setComments(Comments[k]);
+                    break;
+                case "HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?":
+                    txtCurrentAddress.Value = setComments(Comments[k]);
+                    break;
 
                 default:
                     break;
@@ -412,8 +456,9 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             }
 
         }
+        if (CustomControls.Count > 0)
+            objCom.SetCustomDataAdminComments(formId, ApplicantID, CustomControls, mainDiv, Comments);
     }
-
     protected void btnSave_Click(object sender, EventArgs e)
     {
         Hashtable adminInputs = new Hashtable();
@@ -421,34 +466,42 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
         {
             if (email.Style.Value != "display: none")
                 adminInputs.Add("Email", txtEmail.Value.Trim());
-             if (mobile.Style.Value != "display: none")
+            if (mobile.Style.Value != "display: none")
                 adminInputs.Add("Mobile/Cellular Number", txtMobile.Value.Trim());
-             if (phone.Style.Value != "display: none")
+            if (phone.Style.Value != "display: none")
                 adminInputs.Add("Home phone", txtHomePhone.Value.Trim());
-             if (skype.Style.Value != "display: none")
+            if (skype.Style.Value != "display: none")
                 adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA SKYPE", txtSkype.Value.Trim());
-             if (skypeDesc.Style.Value != "display: none")
+            if (skypeDesc.Style.Value != "display: none")
                 adminInputs.Add("Skype ID", txtSkypeDescription.Value.Trim());
-             if (whatsapp.Style.Value != "display: none")
+            if (whatsapp.Style.Value != "display: none")
                 adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP", txtWhatsapp.Value.Trim());
-             if (whatsappHave.Style.Value != "display: none")
+            if (whatsappHave.Style.Value != "display: none")
                 adminInputs.Add("IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO", txtWhastappHave.Value.Trim());
-             if (whatsappDesc.Style.Value != "display: none")
+            if (whatsappDesc.Style.Value != "display: none")
                 adminInputs.Add("Whatsapp Number", txtWhatsappDescription.Value.Trim());
-             if (postal.Style.Value != "display: none")
+            if (postal.Style.Value != "display: none")
                 adminInputs.Add("Postal Address", txtPostalAddress.Value.Trim());
-             if (address.Style.Value != "display: none")
+            if (address.Style.Value != "display: none")
+            {
                 adminInputs.Add("Is your Postal Address same as your current residential address", txtAddress.Value.Trim());
-             if (residential.Style.Value != "display: none")
+                adminInputs.Add("HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?", txtCurrentAddress.Value.Trim());
+            }
+            if (residential.Style.Value != "display: none")
                 adminInputs.Add("Current Residential  Address", txtResidential.Value.Trim());
-             if (guardianname.Style.Value != "display: none")
+            if (guardianname.Style.Value != "display: none")
                 adminInputs.Add("GUARDIAN Full Name", txtGuardianname.Value.Trim());
-             if (guardianrelation.Style.Value != "display: none")
+            if (guardianrelation.Style.Value != "display: none")
                 adminInputs.Add("Relationship with GUARDIAN", txtNomineeRelation.Value.Trim());
-             if (guardianemail.Style.Value != "display: none")
+            if (guardianemail.Style.Value != "display: none")
                 adminInputs.Add("Email of GUARDIAN", txtNomineeEmail.Value.Trim());
-             if (guardianmobile.Style.Value != "display: none")
+            if (guardianmobile.Style.Value != "display: none")
                 adminInputs.Add("Mobile/Cellular Number of GUARDIAN", txtNomiineeMobile.Value.Trim());
+            if (addressHistory.Style.Value != "display: none")
+                adminInputs.Add("PREVIOUS ADDRESS HISTORY DETAILS", txtAddressHistory.Value.Trim());
+
+
+
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 

@@ -94,7 +94,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                 String Nationality = "";
                 if (profileInfo.nationality != null)
                 {
-                    Nationality = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality2));
+                    Nationality = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality));
                     lblNationality.Text = Nationality;
                 }
                 if (profileInfo.nationality != null)
@@ -113,9 +113,9 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         if (profileInfo.hasdualcitizenship.HasValue)
                             lblDualNationality.Text = "NO";
                     }
-                    lblNationality.Text = "";
+
                     if (Nationality.ToUpper() == GlobalVariables.GetChinaCountryName)
-                        //{
+                    {
                         if (profileInfo.haschinesecodenumber.HasValue && profileInfo.haschinesecodenumber.Value)
                         {
                             lblchineseCode.Text = "Yes";
@@ -129,86 +129,91 @@ public partial class admin_personaldetail : System.Web.UI.Page
                             chineseCode.Style.Remove("display");
                             textChineseCodeDiv.Style.Remove("display");
                         }
-                }
-                else if (Nationality.ToUpper() == GlobalVariables.GetRussiaCountryName)
-                {
-                    if (!string.IsNullOrEmpty(profileInfo.patronymicname))
+                    }
+                    else if (Nationality.ToUpper() == GlobalVariables.GetRussiaCountryName)
                     {
-                        lblrussianName.Text = profileInfo.patronymicname;
-                        russianName.Visible = true;
-                        russianName.Style.Remove("display");
+                        if (!string.IsNullOrEmpty(profileInfo.patronymicname))
+                        {
+                            lblrussianName.Text = profileInfo.patronymicname;
+                            russianName.Visible = true;
+                            russianName.Style.Remove("display");
+                        }
                     }
                 }
-            }
 
-            if (profileInfo.nationality2.HasValue && profileInfo.nationality2.Value > 0)
-            {
-                lblDualNationality.Text = "Yes";
-                lblOtherNation.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality2));
-                secondNation.Visible = true;
-                dualNationality.Style.Remove("display");
-                secondNation.Style.Remove("display");
-            }
-            {
-                lblDualNationality.Text = "No";
-            }
-            if (profileInfo.countryofbirth != null)
-            {
-                lblBirthCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.countryofbirth));
-            }
-            if (profileInfo.maritalstatus != null)
-            {
-                lblMarital.Text = objCom.GetMaritalStatus(Convert.ToInt32(profileInfo.maritalstatus));
-            }
-            if (profileInfo.isdisable == 1)
-            {
-                lblDisability.Text = "Yes";
-                if (profileInfo.disabilitydescription != null)
-                    lbldisabilitydesc.Text = objCom.GetDisability(Convert.ToInt32(profileInfo.disabilitydescription));
-            }
-            else
-            {
-                lblDisability.Text = "No";
-                lbldisabilitydesc.Text = "";
-                disabilitydesc.Visible = false;
-            }
-            if (profileInfo.isstudentreferbyagent == 1)
-            {
-                lblAgent.Text = "Yes";
-                if (profileInfo.agentid != null)
+                if (profileInfo.nationality2.HasValue && profileInfo.nationality2.Value > 0)
                 {
-                    lblAgentList.Text = objCom.GetAgentName(Convert.ToInt32(profileInfo.agentid));
+                    lblDualNationality.Text = "Yes";
+                    lblOtherNation.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality2));
+                    secondNation.Visible = true;
+                    dualNationality.Style.Remove("display");
+                    secondNation.Style.Remove("display");
                 }
-            }
-            else
-            {
-                lblAgent.Text = "No";
-                lblAgentList.Text = "";
-                agentList.Visible = false;
-            }
-
-
-
-            if (profileInfo.ismarried.HasValue && profileInfo.ismarried.Value)
-            {
-                statusMarried.Visible = true;
-                statusMarried.Style.Remove("display");
-                labelspouseName.Text = profileInfo.spousename;
-                if (profileInfo.spousenationality != null)
-                    lblNationality.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.spousenationality));
-                if (profileInfo.spousedob != null)
+                else
                 {
-                    labelSpouseDOB.Text = Convert.ToDateTime(profileInfo.spousedob).ToString("yyyy-MM-dd");
+                    lblDualNationality.Text = "No";
                 }
-                if (profileInfo.marriagedate != null)
+                if (profileInfo.countryofbirth != null)
                 {
-                    labelMarriagedate.Text = Convert.ToDateTime(profileInfo.marriagedate).ToString("yyyy-MM-dd");
+                    lblBirthCountry.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.countryofbirth));
                 }
+                if (profileInfo.maritalstatus != null)
+                {
+                    lblMarital.Text = objCom.GetMaritalStatus(Convert.ToInt32(profileInfo.maritalstatus));
+                }
+                if (profileInfo.isdisable == 1)
+                {
+                    lblDisability.Text = "Yes";
+                    if (profileInfo.disabilitydescription != null)
+                        lbldisabilitydesc.Text = objCom.GetDisability(Convert.ToInt32(profileInfo.disabilitydescription));
+                }
+                else
+                {
+                    lblDisability.Text = "No";
+                    lbldisabilitydesc.Text = "";
+                    disabilitydesc.Visible = false;
+                }
+                if (profileInfo.isstudentreferbyagent == 1)
+                {
+                    lblAgent.Text = "Yes";
+                    if (profileInfo.agentid != null)
+                    {
+                        lblAgentList.Text = objCom.GetAgentName(Convert.ToInt32(profileInfo.agentid));
+                    }
+                }
+                else
+                {
+                    lblAgent.Text = "No";
+                    lblAgentList.Text = "";
+                    agentList.Visible = false;
+                }
+
+
+
+                if (profileInfo.ismarried.HasValue && profileInfo.ismarried.Value)
+                {
+                    statusMarried.Visible = true;
+                    statusMarried.Style.Remove("display");
+                    labelspouseName.Text = profileInfo.spousename;
+                    if (profileInfo.spousenationality != null)
+                        lblSpouseNationality.Text = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.spousenationality));
+                    if (profileInfo.spousedob != null)
+                    {
+                        labelSpouseDOB.Text = Convert.ToDateTime(profileInfo.spousedob).ToString("yyyy-MM-dd");
+                    }
+                    if (profileInfo.marriagedate != null)
+                    {
+                        labelMarriagedate.Text = Convert.ToDateTime(profileInfo.marriagedate).ToString("yyyy-MM-dd");
+                    }
+                    SpouseNationality.Style.Remove("display");
+                    SpouseDOB.Style.Remove("display");
+                    MarriageDate.Style.Remove("display");
+                }
+
+
             }
-
-
-
         }
+
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
@@ -491,15 +496,16 @@ public partial class admin_personaldetail : System.Web.UI.Page
                 case "Agent Name":
                     txtAgentList.Value = setComments(Comments[k]);
                     break;
-               
+
                 default:
                     break;
 
             }
 
         }
+        if (CustomControls.Count > 0)
+            objCom.SetCustomDataAdminComments(formId, ApplicantID, CustomControls, mainDiv, Comments);
     }
-
     protected void btnSave_Click(object sender, EventArgs e)
     {
         Hashtable adminInputs = new Hashtable();
@@ -507,49 +513,49 @@ public partial class admin_personaldetail : System.Web.UI.Page
         {
             if (title.Style.Value != "display: none")
                 adminInputs.Add("Title", txtTitle.Value.Trim());
-             if (firstname.Style.Value != "display: none")
+            if (firstname.Style.Value != "display: none")
                 adminInputs.Add("First Name", txtFirstName.Value.Trim());
-             if (lastname.Style.Value != "display: none")
+            if (lastname.Style.Value != "display: none")
                 adminInputs.Add("Last Name", txtLastName.Value.Trim());
-             if (preferedname.Style.Value != "display: none")
+            if (preferedname.Style.Value != "display: none")
                 adminInputs.Add("Preferred Name", txtPrefferedName.Value.Trim());
-             if (middlename.Style.Value != "display: none")
+            if (middlename.Style.Value != "display: none")
                 adminInputs.Add("Other middle names", txtMiddleName.Value.Trim());
-             if (dob.Style.Value != "display: none")
+            if (dob.Style.Value != "display: none")
                 adminInputs.Add("Date of birth", txtDOB.Value.Trim());
-             if (gender.Style.Value != "display: none")
+            if (gender.Style.Value != "display: none")
                 adminInputs.Add("Gender", txtGender.Value.Trim());
-             if (nationality.Style.Value != "display: none")
+            if (nationality.Style.Value != "display: none")
                 adminInputs.Add("Nationality and citizenship", txtNationality.Value.Trim());
-             if (chineseCode.Style.Value != "display: none")
+            if (chineseCode.Style.Value != "display: none")
                 adminInputs.Add("Do you ever use a Chinese Commercial Code Number for your names", txtChineseCode.Value.Trim());
-             if (textChineseCodeDiv.Style.Value != "display: none")
+            if (textChineseCodeDiv.Style.Value != "display: none")
                 adminInputs.Add("Chinese Commercial Code Number", txtFirstName.Value.Trim());
-             if (russianName.Style.Value != "display: none")
+            if (russianName.Style.Value != "display: none")
                 adminInputs.Add("In English, provide your patronymic name", txtRussiaName.Value.Trim());
-             if (dualNationality.Style.Value != "display: none")
+            if (dualNationality.Style.Value != "display: none")
                 adminInputs.Add("Do you have dual Citizenship", txtDualNationlity.Value.Trim());
-             if (secondNation.Style.Value != "display: none")
+            if (secondNation.Style.Value != "display: none")
                 adminInputs.Add("Nationality and citizenship(Second)", txtOtherNation.Value.Trim());
-             if (birthcountry.Style.Value != "display: none")
+            if (birthcountry.Style.Value != "display: none")
                 adminInputs.Add("Country of birth", txtBirthCountry.Value.Trim());
-             if (marital.Style.Value != "display: none")
+            if (marital.Style.Value != "display: none")
                 adminInputs.Add("Marital Status", txtMarital.Value.Trim());
-             if (statusMarried.Style.Value != "display: none")
+            if (statusMarried.Style.Value != "display: none")
                 adminInputs.Add("Spouse Name", txtSpousename.Value.Trim());
-             if (SpouseNationality.Style.Value != "display: none")
+            if (SpouseNationality.Style.Value != "display: none")
                 adminInputs.Add("Nationality of Spouse", txtSpouseNationality.Value.Trim());
-             if (SpouseDOB.Style.Value != "display: none")
+            if (SpouseDOB.Style.Value != "display: none")
                 adminInputs.Add("Spouse Date of birth", txtSpouseDOB.Value.Trim());
-             if (MarriageDate.Style.Value != "display: none")
+            if (MarriageDate.Style.Value != "display: none")
                 adminInputs.Add("Date of Marriage", txtMarrigeDate.Value.Trim());
-             if (disability.Style.Value != "display: none")
+            if (disability.Style.Value != "display: none")
                 adminInputs.Add("Do you have any disability, impairment, or a long term condition", txtDisability.Value.Trim());
-             if (disabilitydesc.Style.Value != "display: none")
+            if (disabilitydesc.Style.Value != "display: none")
                 adminInputs.Add("Disability Description", txtDisabilityDescription.Value.Trim());
-             if (agent.Style.Value != "display: none")
+            if (agent.Style.Value != "display: none")
                 adminInputs.Add("Are you reffered by Agent", txtAgent.Value.Trim());
-             if (agentList.Style.Value != "display: none")
+            if (agentList.Style.Value != "display: none")
                 adminInputs.Add("Agent Name", txtAgentList.Value.Trim());
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);

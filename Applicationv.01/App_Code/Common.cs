@@ -1155,7 +1155,34 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
-
+    public void SetCustomDataAdminComments(int formID, int applicatiID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv, List<admincomments> Comments)
+    {
+        try
+        {
+            
+            for (int k = 0; k < Comments.Count; k++)
+            {
+                string customFieldName = Comments[k].fieldname;
+                for (int j = 0; j < CustomControls.Count; j++)
+                {
+                    string FieldName = CustomControls[j].labeldescription;
+                    int customControlFieldId = (int)CustomControls[j].customfieldid;
+                    if (customFieldName == FieldName)
+                    {
+                        string OptionID = "txt" + customControlFieldId;
+                        TextBox lblDynamic = (TextBox)mainDiv.FindControl(OptionID);
+                        lblDynamic.Text = Comments[k].comments;
+                        break;
+                    }
+                }
+                // objCom.SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formId);
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
     [Serializable]
     public class FieldList
     {

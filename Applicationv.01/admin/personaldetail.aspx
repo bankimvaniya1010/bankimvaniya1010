@@ -253,7 +253,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group-item" id="SpouseNationality" runat="server" role="group" aria-labelledby="label-NationalitySpouse">
+                <div class="list-group-item" id="SpouseNationality" runat="server" role="group" aria-labelledby="label-NationalitySpouse" style="display: none">
                     <div class="form-row">
                         <label id="lblSpouseNatinality" runat="server" for="NationalitySpouse" class="col-md-3 col-form-label form-label">Nationality of Spouse</label>
                         <div class="col-md-4">
@@ -267,7 +267,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group-item" id="SpouseDOB" runat="server" role="group" aria-labelledby="label-spousedob">
+                <div class="list-group-item" id="SpouseDOB" runat="server" role="group" aria-labelledby="label-spousedob" style="display: none">
                     <div class="form-row">
                         <label id="lblSpouseDOB" runat="server" for="spousedob" class="col-md-3 col-form-label form-label">Spouse Date of birth</label>
                         <div class="col-md-4">
@@ -275,12 +275,12 @@
                             <span class="helpicon"><i id="icSpouseDob" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
                         </div>
                         <div class="col-md-4">
-                            <input id="txtSpouseDOB" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                            <input id="txtSpouseDOB" runat="server" type="text" class="form-control" placeholder="Admin Comments" >
                         </div>
                     </div>
                 </div>
 
-                <div class="list-group-item" role="group" id="MarriageDate" runat="server" aria-labelledby="label-marriagedate">
+                <div class="list-group-item" role="group" id="MarriageDate" runat="server" aria-labelledby="label-marriagedate" style="display: none">
                     <div class="form-row">
                         <label id="lblMarriageDate" runat="server" for="marriagedate" class="col-md-3 col-form-label form-label">Date of Marriage</label>
                         <div class="col-md-4">
