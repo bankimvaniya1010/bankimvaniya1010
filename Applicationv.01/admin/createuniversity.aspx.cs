@@ -67,6 +67,8 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.getting_around = txtUniGettingAround.Value.Trim();
                 universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
                 universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
+                universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
+                universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
 
                 db.university_master.Add(universityObj);
                 db.SaveChanges();

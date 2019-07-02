@@ -82,6 +82,8 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     hidCityField.Value = Convert.ToString(existingUninversity.cityid);
                     ddlCity.SelectedIndex = Convert.ToInt32(existingUninversity.cityid);
                     ddlCountry.SelectedIndex = existingUninversity.countryid;
+                    txtUniAcceptedMaxAge.Value = Convert.ToString(existingUninversity.acceptedmaxage);
+                    txtUniAcceptedMinAge.Value = Convert.ToString(existingUninversity.acceptedminage);
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University does not exists')", true);
@@ -146,6 +148,8 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.getting_around = txtUniGettingAround.Value.Trim();
             universityObj.latitude = Convert.ToDecimal(txtUniLatitude.Value.Trim());
             universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
+            universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
+            universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
 
             db.SaveChanges();            
             Response.Redirect("~/admin/universitymaster.aspx");
