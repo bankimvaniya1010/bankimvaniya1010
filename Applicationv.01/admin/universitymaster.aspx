@@ -13,7 +13,7 @@
 
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                   <asp:GridView ID="universityGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="true" CellPadding="3"
+                   <asp:GridView ID="universityGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="univerityID"

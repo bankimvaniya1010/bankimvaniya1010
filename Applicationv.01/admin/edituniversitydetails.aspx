@@ -250,6 +250,31 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="uniAcceptedMaxAge" class="col-sm-3 col-form-label form-label">University Accepted Maximum age</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input id="txtUniAcceptedMaxAge" type="number" runat="server" class="form-control" placeholder="Maximum Age" />
+                                </div>
+                                <label class="col-form-label form-label">years</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="uniAcceptedMinAge" class="col-sm-3 col-form-label form-label">University Accepted Minimum age</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <input id="txtUniAcceptedMinAge" type="number" runat="server" class="form-control" placeholder="Minimum Age" />
+                                </div>
+                                <span>
+                                    <label class="col-form-label form-label">years</label></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -319,6 +344,8 @@
             var txtUniAirport = $('#<%=txtUniAirport.ClientID%>').val();
             var railDistanceUnit = $('#<%=railDistanceUnit.ClientID%>').val();
             var airDistanceUnit = $('#<%=airDistanceUnit.ClientID%>').val();
+            var txtUniAcceptedMaxAge = $('#<%=txtUniAcceptedMaxAge.ClientID%>').val();
+            var txtUniAcceptedMinAge = $('#<%=txtUniAcceptedMinAge.ClientID%>').val();
 
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -408,6 +435,18 @@
             }
             else if (txtUniGettingAround == '') {
                 alert("Please enter University Getting Around");
+                return false;
+            }
+            else if (txtUniAcceptedMaxAge == '' || parseInt(txtUniAcceptedMaxAge) <= 0) {
+                alert("Please enter valid university accepted maximum age");
+                return false;
+            }
+            else if (txtUniAcceptedMinAge == '' || parseInt(txtUniAcceptedMinAge) <= 0) {
+                alert("Please enter valid university accepted minimum age");
+                return false;
+            }
+            else if (parseInt(txtUniAcceptedMinAge) > parseInt(txtUniAcceptedMaxAge)) {
+                alert("Minimum age greater than maximum age. Please enter valid university accepted age range.");
                 return false;
             }
                 
