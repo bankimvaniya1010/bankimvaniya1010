@@ -437,12 +437,12 @@
                 alert("Please enter University Getting Around");
                 return false;
             }
-            else if (txtUniAcceptedMaxAge == '' && parseInt(txtUniAcceptedMaxAge) > 0) {
-                alert("Please enter University aceepted maximum age");
+            else if (txtUniAcceptedMaxAge == '' || parseInt(txtUniAcceptedMaxAge) <= 0) {
+                alert("Please enter valid university accepted maximum age");
                 return false;
             }
-            else if (txtUniAcceptedMinAge == '' && parseInt(txtUniAcceptedMinAge) > 0) {
-                alert("Please enter University accepted minimum age");
+            else if (txtUniAcceptedMinAge == '' || parseInt(txtUniAcceptedMinAge) <= 0) {
+                alert("Please enter valid university accepted minimum age");
                 return false;
             }
             else if (parseInt(txtUniAcceptedMinAge) > parseInt(txtUniAcceptedMaxAge)) {
