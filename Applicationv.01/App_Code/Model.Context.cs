@@ -124,6 +124,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
     public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
+    public virtual DbSet<supervisorcomments> supervisorcomments { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

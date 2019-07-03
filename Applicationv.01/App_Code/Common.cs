@@ -930,6 +930,67 @@ public class Common
         }
 
     }
+    public void AddCustomControlForSupervisor(List<customfieldmaster> ControlsList, HtmlGenericControl mainDiv)
+    {
+        try
+        {
+            for (int k = 0; k < ControlsList.Count; k++)
+            {
+
+                System.Web.UI.HtmlControls.HtmlGenericControl lstDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                lstDiv.Attributes["class"] = "list-group-item";
+                mainDiv.Controls.Add(lstDiv);
+
+                lstDiv.Attributes["controltype"] = ControlsList[k].type.ToString();
+
+                System.Web.UI.HtmlControls.HtmlGenericControl formgroupDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                formgroupDiv.Attributes["class"] = "form-group m-0";
+                formgroupDiv.Attributes["role"] = "group";
+                formgroupDiv.Attributes["aria - labelledby"] = ControlsList[k].labeldescription;
+                lstDiv.Controls.Add(formgroupDiv);
+                System.Web.UI.HtmlControls.HtmlGenericControl divFormRow = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                divFormRow.Attributes["class"] = "form-row";
+                formgroupDiv.Controls.Add(divFormRow);
+
+
+                System.Web.UI.HtmlControls.HtmlGenericControl label1 = new System.Web.UI.HtmlControls.HtmlGenericControl("Label");
+                label1.ID = "label" + ControlsList[k].labeldescription;
+                label1.Attributes["class"] = "col-md-3 col-form-label form-label";
+                label1.Attributes["for"] = ControlsList[k].labeldescription;
+                label1.InnerHtml = ControlsList[k].labeldescription;
+                divFormRow.Controls.Add(label1);
+                System.Web.UI.HtmlControls.HtmlGenericControl mycontrol = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                mycontrol.Attributes["class"] = "col-md-4";
+                divFormRow.Controls.Add(mycontrol);
+                System.Web.UI.HtmlControls.HtmlGenericControl adminControl = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                adminControl.Attributes["class"] = "col-md-4";
+                divFormRow.Controls.Add(adminControl);
+
+                if (ControlsList[k].type.ToLower() == "textbox")
+                {
+                    Label lblinput = new Label();
+                    lblinput.ID = "lbl" + ControlsList[k].customfieldid;
+
+                    //  lblinput.Attributes["class"] = "form-control";
+                    // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
+                    mycontrol.Controls.Add(lblinput);
+
+                    Label lblinputComments = new Label();
+                    lblinputComments.ID = "lblComments" + ControlsList[k].customfieldid;
+
+                   // lblinputComments.Attributes["class"] = "form-control";
+                    // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
+                    adminControl.Controls.Add(lblinputComments);
+                }
+            }
+
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+
+    }
     public void SaveCustomValue(int applicatID, int CustomFieldId, string Userinput, int formid)
     {
         customfieldvalue objCustom = new customfieldvalue();
@@ -1108,6 +1169,56 @@ public class Common
         }
         return Comments;
     }
+    public void SaveSupervisorComments(int applicantId, int universityID,int formID, int SupervisorID,string Comments, int supervisorAction)
+    {
+        try
+        {
+            var mode = "new";
+            var supervisorComments = (from cInfo in db.supervisorcomments
+                                 where cInfo.applicantid == applicantId && cInfo.universityid == universityID
+                                 && cInfo.formid == formID 
+                                 select cInfo).FirstOrDefault();
+            supervisorcomments objComments = new supervisorcomments();
+            if (supervisorComments != null)
+            {
+                mode = "update";
+                objComments = supervisorComments;
+            }
+            objComments.formid = formID;
+            objComments.supervisorid = SupervisorID;
+            objComments.applicantid = applicantId;
+            objComments.universityid = universityID;
+            objComments.supervisoraction = supervisorAction;
+            objComments.comments = Comments;
+            if (mode == "new")
+                db.supervisorcomments.Add(objComments);
+            db.SaveChanges();
+
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+    public List<supervisorcomments> GetSupervisorComments(int applicantId, int universityID, int formID)
+    {
+        List<supervisorcomments> lstComments = new List<supervisorcomments>();
+        try
+        {
+           
+            lstComments = (from cInfo in db.supervisorcomments
+                                      where cInfo.applicantid == applicantId && cInfo.universityid == universityID
+                                      && cInfo.formid == formID
+                                      select cInfo).ToList();
+           
+
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return lstComments;
+    }
     public void IsDeclarationDoneByApplicant(int applicantId, int universityID)
     {
         try
@@ -1171,6 +1282,34 @@ public class Common
                     {
                         string OptionID = "txt" + customControlFieldId;
                         TextBox lblDynamic = (TextBox)mainDiv.FindControl(OptionID);
+                        lblDynamic.Text = Comments[k].comments;
+                        break;
+                    }
+                }
+                // objCom.SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formId);
+            }
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+    public void SetCustomDataCommentForSupervisor(int formID, int applicatiID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv, List<admincomments> Comments)
+    {
+        try
+        {
+
+            for (int k = 0; k < Comments.Count; k++)
+            {
+                string customFieldName = Comments[k].fieldname;
+                for (int j = 0; j < CustomControls.Count; j++)
+                {
+                    string FieldName = CustomControls[j].labeldescription;
+                    int customControlFieldId = (int)CustomControls[j].customfieldid;
+                    if (customFieldName == FieldName)
+                    {
+                        string OptionID = "lblComments" + customControlFieldId;
+                        Label lblDynamic = (Label)mainDiv.FindControl(OptionID);
                         lblDynamic.Text = Comments[k].comments;
                         break;
                     }

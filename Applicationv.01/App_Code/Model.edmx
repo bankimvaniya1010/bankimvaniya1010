@@ -23,7 +23,7 @@
           <Property Name="adminid" Type="int" Nullable="false" />
           <Property Name="fieldname" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="comments" Type="varchar" MaxLength="200" />
-          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="admintooltips">
           <Key>
@@ -1000,6 +1000,19 @@
           <Property Name="subjectid" Type="int" Nullable="false" />
           <Property Name="countryid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="supervisorcomments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="supervisorid" Type="int" Nullable="false" />
+          <Property Name="formid" Type="int" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="applicantid" Type="int" Nullable="false" />
+          <Property Name="supervisoraction" Type="int" Nullable="false" />
+          <Property Name="comments" Type="varchar" MaxLength="200" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="timezonemaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -1557,6 +1570,54 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_supervisorcomments_adminusers">
+          <End Role="adminusers" Type="Self.adminusers" Multiplicity="1" />
+          <End Role="supervisorcomments" Type="Self.supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adminusers">
+              <PropertyRef Name="adminid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="supervisorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supervisorcomments_formmaster">
+          <End Role="formmaster" Type="Self.formmaster" Multiplicity="1" />
+          <End Role="supervisorcomments" Type="Self.supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supervisorcomments_students">
+          <End Role="students" Type="Self.students" Multiplicity="1" />
+          <End Role="supervisorcomments" Type="Self.supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supervisorcomments_university_master">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="supervisorcomments" Type="Self.supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tooltips_formmaster">
           <End Role="formmaster" Type="Self.formmaster" Multiplicity="1" />
           <End Role="tooltipmaster" Type="Self.tooltipmaster" Multiplicity="*" />
@@ -1743,6 +1804,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="studyoptionmaster" EntityType="Self.studyoptionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectmaster" EntityType="Self.subjectmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectwisecountrymapping" EntityType="Self.subjectwisecountrymapping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="supervisorcomments" EntityType="Self.supervisorcomments" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="timezonemaster" EntityType="Self.timezonemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
@@ -1894,6 +1956,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_subjectmaster_subjectwisecountrymapping" Association="Self.FK_subjectmaster_subjectwisecountrymapping">
             <End Role="subjectmaster" EntitySet="subjectmaster" />
             <End Role="subjectwisecountrymapping" EntitySet="subjectwisecountrymapping" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_adminusers" Association="Self.fk_supervisorcomments_adminusers">
+            <End Role="adminusers" EntitySet="adminusers" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_formmaster" Association="Self.fk_supervisorcomments_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_students" Association="Self.fk_supervisorcomments_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_university_master" Association="Self.fk_supervisorcomments_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
           </AssociationSet>
           <AssociationSet Name="FK_tooltips_formmaster" Association="Self.FK_tooltips_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
@@ -2196,6 +2274,23 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicantemployerdetails" EntityType="GTEModel.applicantemployerdetails" />
           <EntitySet Name="tutorialmaster" EntityType="GTEModel.tutorialmaster" />
           <EntitySet Name="applicantprogressbar" EntityType="GTEModel.applicantprogressbar" />
+          <EntitySet Name="supervisorcomments" EntityType="GTEModel.supervisorcomments" />
+          <AssociationSet Name="fk_supervisorcomments_adminusers" Association="GTEModel.fk_supervisorcomments_adminusers">
+            <End Role="adminusers" EntitySet="adminusers" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_formmaster" Association="GTEModel.fk_supervisorcomments_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_students" Association="GTEModel.fk_supervisorcomments_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_university_master" Association="GTEModel.fk_supervisorcomments_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -2245,6 +2340,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="creationdate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="rolemaster" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="adminusers" ToRole="rolemaster" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_adminusers_admincomments" FromRole="adminusers" ToRole="admincomments" />
+          <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_adminusers" FromRole="adminusers" ToRole="supervisorcomments" />
         </EntityType>
         <EntityType Name="agentmaster">
           <Key>
@@ -2684,6 +2780,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="tooltipmaster" Relationship="GTEModel.FK_tooltips_formmaster" FromRole="formmaster" ToRole="tooltipmaster" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_formmaster" FromRole="formmaster" ToRole="universitywisetooltipmaster" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_frommaster_admincomments" FromRole="formmaster" ToRole="admincomments" />
+          <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_formmaster" FromRole="formmaster" ToRole="supervisorcomments" />
         </EntityType>
         <EntityType Name="grademaster">
           <Key>
@@ -2884,6 +2981,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
           <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_applicantdetails_admincomments" FromRole="students" ToRole="admincomments" />
+          <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="students" ToRole="supervisorcomments" />
         </EntityType>
         <EntityType Name="studylevelmaster">
           <Key>
@@ -3023,6 +3121,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
           <NavigationProperty Name="clarificationquestion_university_mapping" Relationship="GTEModel.FK_university_clarificationquestion_mapping" FromRole="university_master" ToRole="clarificationquestion_university_mapping" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_university_master_admincomments" FromRole="university_master" ToRole="admincomments" />
+          <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_university_master" FromRole="university_master" ToRole="supervisorcomments" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -3921,6 +4020,71 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="question" Type="Int32" />
           <Property Name="declarationdone" Type="Boolean" />
         </EntityType>
+        <EntityType Name="supervisorcomments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="supervisorid" Type="Int32" Nullable="false" />
+          <Property Name="formid" Type="Int32" Nullable="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="applicantid" Type="Int32" Nullable="false" />
+          <Property Name="supervisoraction" Type="Int32" Nullable="false" />
+          <Property Name="comments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="adminusers" Relationship="GTEModel.fk_supervisorcomments_adminusers" FromRole="supervisorcomments" ToRole="adminusers" />
+          <NavigationProperty Name="formmaster" Relationship="GTEModel.fk_supervisorcomments_formmaster" FromRole="supervisorcomments" ToRole="formmaster" />
+          <NavigationProperty Name="students" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="supervisorcomments" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_supervisorcomments_university_master" FromRole="supervisorcomments" ToRole="university_master" />
+        </EntityType>
+        <Association Name="fk_supervisorcomments_adminusers">
+          <End Type="GTEModel.adminusers" Role="adminusers" Multiplicity="1" />
+          <End Type="GTEModel.supervisorcomments" Role="supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="adminusers">
+              <PropertyRef Name="adminid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="supervisorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supervisorcomments_formmaster">
+          <End Type="GTEModel.formmaster" Role="formmaster" Multiplicity="1" />
+          <End Type="GTEModel.supervisorcomments" Role="supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supervisorcomments_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.supervisorcomments" Role="supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supervisorcomments_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.supervisorcomments" Role="supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5202,6 +5366,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="profile" ColumnName="profile" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supervisorcomments">
+            <EntityTypeMapping TypeName="GTEModel.supervisorcomments">
+              <MappingFragment StoreEntitySet="supervisorcomments">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="comments" ColumnName="comments" />
+                <ScalarProperty Name="supervisoraction" ColumnName="supervisoraction" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="supervisorid" ColumnName="supervisorid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
