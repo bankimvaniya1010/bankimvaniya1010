@@ -145,6 +145,11 @@
         <EntityTypeShape EntityType="GTEModel.applicantemployerdetails" Width="1.5" PointX="29.375" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.tutorialmaster" Width="1.5" PointX="17.375" PointY="16.75" />
         <EntityTypeShape EntityType="GTEModel.applicantprogressbar" Width="1.5" PointX="29.375" PointY="6.75" />
+        <EntityTypeShape EntityType="GTEModel.supervisorcomments" Width="1.5" PointX="15.75" PointY="0.75" />
+        <AssociationConnector Association="GTEModel.fk_supervisorcomments_adminusers" />
+        <AssociationConnector Association="GTEModel.fk_supervisorcomments_formmaster" />
+        <AssociationConnector Association="GTEModel.fk_supervisorcomments_students" />
+        <AssociationConnector Association="GTEModel.fk_supervisorcomments_university_master" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
