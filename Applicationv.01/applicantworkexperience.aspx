@@ -272,6 +272,7 @@
     <script>
 
         function validateForm() {
+            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
             var flag = false;
             if (!$("#<%=employmentInfo.ClientID%>").is(':hidden') && !($("#<%=rblEmploymentYes.ClientID%>").is(':checked') || $("#<%=rblEmploymentNo.ClientID%>").is(':checked'))) {
                 alert("Please Select Option to record any work experience");
@@ -299,8 +300,8 @@
                     alert("Please Enter Name of Contact who can verify your employment");
                 else if (!$("#<%=relationship.ClientID%>").is(':hidden') && $("#<%=ddlRelationship.ClientID%>").val() === "0")
                     alert("Please Select Relationship With Contact");
-                else if (!$("#<%=email.ClientID%>").is(':hidden') && $("#<%=txtEmail.ClientID%>").val() == "")
-                    alert("Please Enter Email ID of Contact");
+                else if (!$("#<%=email.ClientID%>").is(':hidden') && ($("#<%=txtEmail.ClientID%>").val() == ""  || !(emailRegex.test($("#<%=txtEmail.ClientID%>").val()))))
+                    alert("Please Enter Valid Email ID of Contact");
                 else if (!$("#<%=linkedin.ClientID%>").is(':hidden') && $("#<%=txtlinkedin.ClientID%>").val() == "")
                     alert("Please Enter LinkedIn Profile Link of the contact");
                 else
@@ -364,9 +365,6 @@
                 return false;
         }
         function toggleDisplay() {
-            if ($("#<%=employment.ClientID%>").is(':hidden'))
-                $("#<%=employment.ClientID%>").show();
-            else {
                 $("#<%=rblEmploymentYes.ClientID%>").prop("checked", false);
                 $("#<%=rblEmploymentNo.ClientID%>").prop("checked", false);
                 $("#<%=txtEmployer.ClientID%>").val("");
@@ -386,8 +384,10 @@
                 $("#<%=hdnemployer.ClientID%>").val("");
                 $("#<%=fieldContainer.ClientID%>").hide();
                 $("#<%=lblSaveTime.ClientID%>").hide();
-                 $("#<%=lblMessage.ClientID%>").hide();
-            }
+                $("#<%=lblMessage.ClientID%>").hide();
+
+            if ($("#<%=employment.ClientID%>").is(':hidden'))
+                $("#<%=employment.ClientID%>").show();
         }
       
     </script>
