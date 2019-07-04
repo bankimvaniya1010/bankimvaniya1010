@@ -300,7 +300,7 @@
                     alert("Please Enter Name of Contact who can verify your employment");
                 else if (!$("#<%=relationship.ClientID%>").is(':hidden') && $("#<%=ddlRelationship.ClientID%>").val() === "0")
                     alert("Please Select Relationship With Contact");
-                else if (!$("#<%=email.ClientID%>").is(':hidden') && $("#<%=txtEmail.ClientID%>").val() == ""  || !(emailRegex.test($("#<%=txtEmail.ClientID%>").val())))
+                else if (!$("#<%=email.ClientID%>").is(':hidden') && ($("#<%=txtEmail.ClientID%>").val() == ""  || !(emailRegex.test($("#<%=txtEmail.ClientID%>").val()))))
                     alert("Please Enter Valid Email ID of Contact");
                 else if (!$("#<%=linkedin.ClientID%>").is(':hidden') && $("#<%=txtlinkedin.ClientID%>").val() == "")
                     alert("Please Enter LinkedIn Profile Link of the contact");
