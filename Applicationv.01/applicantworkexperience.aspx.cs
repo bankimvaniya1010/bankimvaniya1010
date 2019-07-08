@@ -345,9 +345,29 @@ public partial class applicantworkexperience : System.Web.UI.Page
             else
             {
                 noExperience.haveworkexperience = false;
+                objEmployer.wishtoaddemployer = null;
+                objEmployer.organization = "";
+                objEmployer.designation = "";
+                objEmployer.website = "";
+                objEmployer.city = "";
+                objEmployer.country = null;
+                objEmployer.briefdescription = "";
+                objEmployer.nameofreportingmanger = "";
+                objEmployer.contactpersonwithdetails ="";
+                objEmployer.relationshipwithcontact = null;
+                objEmployer.emailid = "";
+                objEmployer.linkedinidofcontact ="";
+                objEmployer.durationfrom = null;
+                objEmployer.durationto = null;
+                objEmployer.applicantid = null ;
+                objEmployer.employerverificationkey = "";
+                objEmployer.isemployerdetailverified = null;
+                objEmployer.lastsavedtime = null;
+                objEmployer.universityid = null;
+
             }
             db.SaveChanges();
-
+           
             if (rblEmploymentYes.Checked)
             {
                 string url = webURL + "verifyemployment.aspx?key=" + objEmployer.employerverificationkey;
@@ -359,15 +379,14 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
                 sb.Append("Thank You <br/>");
                 sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Nomination Detail check for" + applicantName);
+                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Nomination Detail check for " + applicantName);
             }
 
             lblMessage.Text = "Your Work Experience Details have been saved";
             lblMessage.Visible = true;
             BindEmploymentDetails();
-
-
-
+            employment.Attributes.Add("style", "display:none;");
+            
         }
         catch (Exception ex)
         {
@@ -380,7 +399,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var empDetails = (from eInfo in db.applicantemployerdetails
-                              where eInfo.applicantid == userID && eInfo.universityid == universityID
+                              where eInfo.applicantid == userID && eInfo.universityid == universityID 
                               select eInfo).ToList();
             grdEmployment.DataSource = empDetails;
             grdEmployment.DataBind();
