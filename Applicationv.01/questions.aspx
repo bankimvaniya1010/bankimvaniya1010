@@ -108,7 +108,15 @@
         <div class="footer">
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
 
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#questions').addClass('active');
+        });
+    </script>
 
 </asp:Content>
 

@@ -689,6 +689,11 @@
 
             dateFormat: 'Y-m-d',defaultDate:""
         });
-
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#personal_menu_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantcontactdetail').addClass('active');
+        });
     </script>
 </asp:Content>

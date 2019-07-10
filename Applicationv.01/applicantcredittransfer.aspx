@@ -68,7 +68,12 @@
                 flag = true;           
             return flag;
         }
-       
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Application_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantcredittransfer').addClass('active');
+        });
        
     </script>
     
