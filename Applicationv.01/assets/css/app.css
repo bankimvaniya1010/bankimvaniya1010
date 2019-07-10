@@ -23,3 +23,6 @@
 #btnAddCountry,#btnAddFacility{width: 114px;position: absolute;right: 26%;bottom: 0;z-index: 1;}
 #container,#facilityContainer{position: relative;}
 #facilityContainer{min-height: 41px;}
+[dir=ltr] .user-dropdown h3{color: #fff;padding-right: 5px;font-size: 17px;}
+[dir=ltr] .user-dropdown:after{border-top-color: #fff; margin-top: 8px;}
+[dir=ltr] .app-settings-button--right{display: none;}

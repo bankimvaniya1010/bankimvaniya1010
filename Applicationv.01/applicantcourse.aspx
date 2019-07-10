@@ -750,6 +750,11 @@
             dateFormat: 'Y-m-d',defaultDate:""
         });       
   
-
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Application_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantcourse').addClass('active');
+        });
     </script>
 </asp:Content>

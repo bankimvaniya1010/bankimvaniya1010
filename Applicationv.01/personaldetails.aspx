@@ -622,9 +622,17 @@
                     $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
                 } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
             });
-        });
-
-
+          });
+          
+              
+              
+          
+          $(document).ready(function () {
+              $('.sidebar-menu-item').removeClass('open');
+              $('#personal_menu_list').addClass('open');
+              $('.sidebar-menu-item').removeClass('active');
+              $('#personaldetails').addClass('active');
+          });
 
     </script>
 

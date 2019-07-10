@@ -389,7 +389,12 @@
             if ($("#<%=employment.ClientID%>").is(':hidden'))
                 $("#<%=employment.ClientID%>").show();
         }
-      
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#personal_menu_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantworkexperience').addClass('active');
+        });
     </script>
     <style type="text/css">
         .currRow {

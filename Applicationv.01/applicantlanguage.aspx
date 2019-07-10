@@ -517,7 +517,11 @@
         $('#ContentPlaceHolder1_txtExpectedDategrade').flatpickr({
             dateFormat: 'Y-m-d', defaultDate: ""
         });
-
-
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#personal_menu_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantlanguage').addClass('active');
+        });
     </script>
 </asp:Content>

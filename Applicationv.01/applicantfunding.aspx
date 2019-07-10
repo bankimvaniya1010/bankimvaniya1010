@@ -380,6 +380,12 @@
             if (total > 100)
                 alert("Please check contribution percentage once again as total exceeds 100");
         }
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Application_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantfunding').addClass('active');
+        });
     </script>
 </asp:Content>
 

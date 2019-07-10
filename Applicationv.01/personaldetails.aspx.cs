@@ -199,10 +199,10 @@ public partial class personaldetails : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var agent = db.adminusers.Where(x => x.roleid == 1).ToList();
+            var agent = db.agentmaster.ToList();
             ddlAgent.DataSource = agent;
-            ddlAgent.DataTextField = "name";
-            ddlAgent.DataValueField = "adminid";
+            ddlAgent.DataTextField = "agentname";
+            ddlAgent.DataValueField = "agentid";
             ddlAgent.DataBind();
             ddlAgent.Items.Insert(0, lst);
         }

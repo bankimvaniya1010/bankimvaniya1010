@@ -186,7 +186,14 @@
             </div>
         </div>
     </div>
-
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#upload_document_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#uploaddocuments').addClass('active');
+        });
+    </script>
 </asp:Content>
 
 
