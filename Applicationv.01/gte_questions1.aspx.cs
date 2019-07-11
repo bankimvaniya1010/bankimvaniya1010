@@ -32,7 +32,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
-                lblCompleted.Text = "All questions have been answered in this section.";
+                lblCompleted.Text = "All questions have been answered in this part.";
             }
             else
             {
@@ -227,7 +227,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
-                lblCompleted.Text = "Thank you for answering all GTE questions in this section.";
+                lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
             }
         }
         catch (Exception ex)
