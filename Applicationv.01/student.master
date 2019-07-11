@@ -326,8 +326,13 @@
                                                     <span class="sidebar-menu-text">Questions</span>
                                                 </a>
                                             </li>
-
-
+                                        </ul>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="GtePart1">
+                                            <li class="sidebar-menu-item">
+                                                <a class="sidebar-menu-button" href="gte_questions1.aspx">
+                                                    <span class="sidebar-menu-text">Part 1</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="message_menu_list">

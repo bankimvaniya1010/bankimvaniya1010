@@ -150,6 +150,12 @@
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_formmaster" />
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_students" />
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_university_master" />
+        <EntityTypeShape EntityType="GTEModel.gte_answer_master" Width="1.5" PointX="31.625" PointY="10" />
+        <EntityTypeShape EntityType="GTEModel.gte_questions_applicant_response" Width="1.5" PointX="33.875" PointY="10" />
+        <EntityTypeShape EntityType="GTEModel.gte_questions_master" Width="1.5" PointX="29.375" PointY="10.25" />
+        <AssociationConnector Association="GTEModel.FK_answer_gteQuestion" />
+        <AssociationConnector Association="GTEModel.FK_resposne_answer" />
+        <AssociationConnector Association="GTEModel.FK_response_question" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
