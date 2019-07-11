@@ -85,19 +85,16 @@ public partial class gte_questions2 : System.Web.UI.Page
 
     private void bindDataList()
     {
-        int randomNumber = 0;
         try
         {
             var allQuestions = (List<gte_question_master_part2>)Session["allQuestions"];
 
             allQuestions = Randomize(allQuestions);
-            if (allQuestions.Count > 6)
-                randomNumber = new Random().Next(1, 6);
-            else
-                randomNumber = allQuestions.Count;
+            QuestionsCount = 5;
+            if (allQuestions.Count < 5)
+                QuestionsCount = allQuestions.Count;
 
-            QuestionsCount = randomNumber;
-            questionList.DataSource = allQuestions.Take(randomNumber);
+            questionList.DataSource = allQuestions.Take(QuestionsCount);
             questionList.DataBind();
 
             Session["allQuestions"] = allQuestions;
