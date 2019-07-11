@@ -128,6 +128,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_answer_master> gte_answer_master { get; set; }
     public virtual DbSet<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
     public virtual DbSet<gte_questions_master> gte_questions_master { get; set; }
+    public virtual DbSet<gte_question_master_part2> gte_question_master_part2 { get; set; }
+    public virtual DbSet<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
