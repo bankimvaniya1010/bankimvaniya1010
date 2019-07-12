@@ -46,7 +46,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
-            var obj = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { Name = x.firstname + x.middlename + x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
+            var obj = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { Name = x.firstname + " " + x.middlename + " " +x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
 
             if (obj != null && !string.IsNullOrEmpty(obj.Name) && obj.dob != null)
             {

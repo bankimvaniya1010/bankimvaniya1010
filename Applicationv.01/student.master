@@ -90,12 +90,6 @@
                                          <asp:Label ID="lblusername" runat="server"></asp:Label>
                                     </h3>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="student-account-edit.html">
-                                        <i class="material-icons">edit</i> Edit Account
-                                    </a>
-                                    <a class="dropdown-item" href="student-profile.html">
-                                        <i class="material-icons">person</i> Public Profile
-                                    </a>
                                     <a class="dropdown-item" href="login.aspx">
                                         <i class="material-icons">lock</i> Logout
                                     </a>
@@ -222,11 +216,11 @@
                                                     <span class="sidebar-menu-text">Review & Verify</span>
                                                 </a>
                                             </li>
-                                              <li class="sidebar-menu-item" id="employerinfo">
+                                             <%-- <li class="sidebar-menu-item" id="employerinfo">
                                                 <a class="sidebar-menu-button" href="employerinfo.aspx">
                                                     <span class="sidebar-menu-text">Employer's Information</span>
                                                 </a>
-                                            </li>
+                                            </li>--%>
                                          <%-- <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="sponsor.aspx">
                                                     <span class="sidebar-menu-text">Sponsor's Detail</span>

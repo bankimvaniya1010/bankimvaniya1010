@@ -113,6 +113,13 @@
             return true;
 
         }
+
+         $(document).ready(function () {
+              $('.sidebar-menu-item').removeClass('open');
+              $('#preliminary_list').addClass('open');
+              $('.sidebar-menu-item').removeClass('active');
+              $('#preliminaryquestion').addClass('active');
+          });
     </script>
 
 </asp:Content>

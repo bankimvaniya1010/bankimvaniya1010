@@ -24,17 +24,19 @@ public partial class applicantreview : System.Web.UI.Page
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
-        var objUser = (students)Session["LoginInfo"];
-        userID = objUser.studentid;
-       
+            Response.Redirect("Login.aspx", true);
+        else if (GlobalVariables.isProfileDetailsCompletedByApplicant)
+        {
+            var objUser = (students)Session["LoginInfo"];
+            userID = objUser.studentid;
+
             objApplicant = (from pInfo in db.applicantdetails
                             where pInfo.applicantid == userID && pInfo.universityid == universityID
                             select pInfo).ToList();
             string Institutename = "";
             if (objApplicant[0].universityid != null)
             {
-               // int universityID = Convert.ToInt32(objApplicant[0].universityid);
+                // int universityID = Convert.ToInt32(objApplicant[0].universityid);
                 var institute = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
                 if (institute != null)
                     Institutename = institute.university_name;
@@ -72,7 +74,7 @@ public partial class applicantreview : System.Web.UI.Page
                       where pInfo.applicantid == userID && pInfo.universityid == universityID
                       select pInfo).ToList();
         }
-    
-
+        Response.Redirect("personaldetails.aspx?formid=1", true);
+    }
    
 }

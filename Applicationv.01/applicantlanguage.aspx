@@ -380,7 +380,7 @@
                         alert("Please Select Grade Type");
                         flag1 = false;
                     }
-                   <%-- else if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') && !$("#<%=gradeachieved.ClientID%>").is(':hidden') && !$("#<%=rblYes.ClientID%>").is(':checked') || !$("#<%=rblYetToConduct.ClientID%>").is(':checked') || !$("#<%=rblNot.ClientID%>").is(':checked')) {
+                    else if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') && !$("#<%=gradeachieved.ClientID%>").is(':hidden') && (!$("#<%=rblYes.ClientID%>").is(':checked') || !$("#<%=rblYetToConduct.ClientID%>").is(':checked') || !$("#<%=rblNot.ClientID%>").is(':checked'))) {
                         alert("Please Select Final Grade Achieved");
                         flag1 = false;
                     }
@@ -388,7 +388,7 @@
                     else if ($("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked') && !$("#<%=ExpectedDategrade.ClientID%>").is(':hidden') && $("#<%=ExpectedDategrade.ClientID%>").val() == "") {
                         alert("Please Enter Expected Date When Result Will Be Declared");
                         flag1 = false;
-                    }--%>
+                    }
                     
                 }
 
@@ -453,7 +453,6 @@
                     else
                         flag = true;
                 }
-                flag = true;
             }
 
            if (flag == true)
@@ -502,7 +501,7 @@
             else                 
                 $("#<%=ExpectedDategrade.ClientID%>").hide();
 
-            //
+            
             if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(":checked")) {
                 $("#<%=BackgroundfieldContainer.ClientID%>").show();
                 $("#<%=gradeachieved.ClientID%>").show();

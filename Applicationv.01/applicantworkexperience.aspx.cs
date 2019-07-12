@@ -25,7 +25,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         userID = objUser.studentid;
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !GlobalVariables.isDeclarationDoneByApplicant)
         {
-            Response.Redirect(webURL + "default.aspx", true);
+            Response.Redirect("default.aspx", true);
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
@@ -255,7 +255,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var employerInfo = (from pInfo in db.applicantemployerdetails
-                                where pInfo.applicantid == userID && pInfo.employerid == employerId && pInfo.universityid == universityID
+                                where pInfo.employerid == employerId
                                 select pInfo).FirstOrDefault();
             if (employerInfo != null)
             {
@@ -312,7 +312,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 mode = "update";
                 int eID = Convert.ToInt32(employerid);
                 var employerInfo = (from pInfo in db.applicantemployerdetails
-                                    where pInfo.employerid == eID && pInfo.universityid == universityID
+                                    where pInfo.employerid == eID
                                     select pInfo).FirstOrDefault();
                 objEmployer = employerInfo;
             }
@@ -345,25 +345,9 @@ public partial class applicantworkexperience : System.Web.UI.Page
             else
             {
                 noExperience.haveworkexperience = false;
-                objEmployer.wishtoaddemployer = null;
-                objEmployer.organization = "";
-                objEmployer.designation = "";
-                objEmployer.website = "";
-                objEmployer.city = "";
-                objEmployer.country = null;
-                objEmployer.briefdescription = "";
-                objEmployer.nameofreportingmanger = "";
-                objEmployer.contactpersonwithdetails ="";
-                objEmployer.relationshipwithcontact = null;
-                objEmployer.emailid = "";
-                objEmployer.linkedinidofcontact ="";
-                objEmployer.durationfrom = null;
-                objEmployer.durationto = null;
-                objEmployer.applicantid = null ;
-                objEmployer.employerverificationkey = "";
-                objEmployer.isemployerdetailverified = null;
-                objEmployer.lastsavedtime = null;
-                objEmployer.universityid = null;
+                var record = db.applicantemployerdetails.Where(c => c.applicantid == userID && c.universityid == universityID).ToList();
+                for (var i = 0; i < record.Count; i++)
+                    db.applicantemployerdetails.Remove(db.applicantemployerdetails.Find(record[i].employerid));
 
             }
             db.SaveChanges();
@@ -383,7 +367,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             }
 
             lblMessage.Text = "Your Work Experience Details have been saved";
-            lblMessage.Visible = true;
+  //          lblMessage.Visible = true;
             BindEmploymentDetails();
             employment.Attributes.Add("style", "display:none;");
             
@@ -399,7 +383,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         try
         {
             var empDetails = (from eInfo in db.applicantemployerdetails
-                              where eInfo.applicantid == userID && eInfo.universityid == universityID 
+                              where eInfo.applicantid == userID && eInfo.universityid == universityID && eInfo.wishtoaddemployer == 1
                               select eInfo).ToList();
             grdEmployment.DataSource = empDetails;
             grdEmployment.DataBind();

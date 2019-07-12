@@ -139,7 +139,25 @@
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
-        $("#<%=chkLinkeIn.ClientID%>").change(function () {
+
+            if ($("#<%=chkLinkeIn.ClientID%>").is(":checked"))
+                $("#<%=txtLinkedin.ClientID%>").attr("disabled", "disabled");
+            else
+                $("#<%=txtLinkedin.ClientID%>").removeAttr("disabled");
+        
+            if ($("#<%=ChkFacebook.ClientID%>").is(":checked"))
+                $("#<%=txtFacebook.ClientID%>").attr("disabled", "disabled");
+            else
+                $("#<%=txtFacebook.ClientID%>").removeAttr("disabled");
+        
+            if ($("#<%=chkTwitter.ClientID%>").is(":checked"))
+                $("#<%=txtTwitter.ClientID%>").attr("disabled", "disabled");
+            else
+                $("#<%=txtTwitter.ClientID%>").removeAttr("disabled");
+        
+        });
+
+         $("#<%=chkLinkeIn.ClientID%>").change(function () {
             if ($(this).is(":checked")) {
                 $("#<%=txtLinkedin.ClientID%>").val("");
                 $("#<%=txtLinkedin.ClientID%>").attr("disabled", "disabled");
@@ -165,7 +183,7 @@
             else
                 $("#<%=txtTwitter.ClientID%>").removeAttr("disabled");
         });
-        });
+
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#personal_menu_list').addClass('open');
