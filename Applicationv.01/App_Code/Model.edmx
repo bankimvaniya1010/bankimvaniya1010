@@ -785,6 +785,16 @@
           <Property Name="gte_risk_score" Type="int" Nullable="false" />
           <Property Name="gte_question_id" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="gte_progressbar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicant_id" Type="int" Nullable="false" />
+          <Property Name="is_gte_tutorial_completed" Type="bit" />
+          <Property Name="is_gte_question_completed" Type="bit" />
+          <Property Name="is_gte_declaration_completed" Type="bit" />
+        </EntityType>
         <EntityType Name="gte_question_master_part2">
           <Key>
             <PropertyRef Name="id" />
@@ -820,6 +830,18 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="question" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gte_tutorialmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="documentpath" Type="varchar" MaxLength="200" />
+          <Property Name="videourl" Type="varchar" MaxLength="100" />
+          <Property Name="title" Type="varchar" MaxLength="1000" />
+          <Property Name="status" Type="int" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="inferencemaster">
           <Key>
@@ -1874,10 +1896,12 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="formmaster" EntityType="Self.formmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="grademaster" EntityType="Self.grademaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_answer_master" EntityType="Self.gte_answer_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_progressbar" EntityType="Self.gte_progressbar" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_question_master_part2" EntityType="Self.gte_question_master_part2" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_question_part2_applicant_response" EntityType="Self.gte_question_part2_applicant_response" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_questions_applicant_response" EntityType="Self.gte_questions_applicant_response" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_questions_master" EntityType="Self.gte_questions_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_tutorialmaster" EntityType="Self.gte_tutorialmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
@@ -2427,6 +2451,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
             <End Role="gte_question_part2_applicant_response" EntitySet="gte_question_part2_applicant_response" />
           </AssociationSet>
+          <EntitySet Name="gte_tutorialmaster" EntityType="GTEModel.gte_tutorialmaster" />
+          <EntitySet Name="gte_progressbar" EntityType="GTEModel.gte_progressbar" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -4323,6 +4349,28 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="gte_tutorialmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="documentpath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="gte_progressbar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="is_gte_tutorial_completed" Type="Boolean" />
+          <Property Name="is_gte_question_completed" Type="Boolean" />
+          <Property Name="is_gte_declaration_completed" Type="Boolean" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5668,6 +5716,30 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="gte_question_part2_applicant_response">
                 <ScalarProperty Name="question_id" ColumnName="question_id" />
                 <ScalarProperty Name="applicant_response" ColumnName="applicant_response" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_tutorialmaster">
+            <EntityTypeMapping TypeName="GTEModel.gte_tutorialmaster">
+              <MappingFragment StoreEntitySet="gte_tutorialmaster">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="videourl" ColumnName="videourl" />
+                <ScalarProperty Name="documentpath" ColumnName="documentpath" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_progressbar">
+            <EntityTypeMapping TypeName="GTEModel.gte_progressbar">
+              <MappingFragment StoreEntitySet="gte_progressbar">
+                <ScalarProperty Name="is_gte_declaration_completed" ColumnName="is_gte_declaration_completed" />
+                <ScalarProperty Name="is_gte_question_completed" ColumnName="is_gte_question_completed" />
+                <ScalarProperty Name="is_gte_tutorial_completed" ColumnName="is_gte_tutorial_completed" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
