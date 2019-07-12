@@ -875,6 +875,15 @@ public partial class GTE_documentverification
     public string remarks { get; set; }
 }
 
+public partial class gte_progressbar
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public Nullable<bool> is_gte_tutorial_completed { get; set; }
+    public Nullable<bool> is_gte_question_completed { get; set; }
+    public Nullable<bool> is_gte_declaration_completed { get; set; }
+}
+
 public partial class gte_question_master_part2
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -931,6 +940,17 @@ public partial class gte_questions_master
     public virtual ICollection<gte_answer_master> gte_answer_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
+}
+
+public partial class gte_tutorialmaster
+{
+    public int id { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
+    public string videourl { get; set; }
+    public string title { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
 }
 
 public partial class inferencemaster
