@@ -25,7 +25,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlTitle" CssClass="form-control" runat="server">
                                             </asp:DropDownList> <span class="helpicon"><i id="icTitle" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
-                                            <input style="display: none" id="txtTitle" runat="server" type="text" placeholder="Title" value="" class="form-control"> <span class="helpicon"><i id="icOtherTitle" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input style="display: none" id="txtTitle" runat="server" type="text" placeholder="Title" value="" class="form-control"> <span class="helpicon"><i id="icOtherTitle" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                             <input id="txtFirstName" runat="server" type="text" placeholder="First name as it appears in your passport
 
 "
-                                                value="" class="form-control" required=""> <span class="helpicon"><i id="icfirstname" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                value="" class="form-control" required=""> <span class="helpicon"><i id="icfirstname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             
                                         </div>
                                     </div>
@@ -53,7 +53,7 @@
                                             <input id="txtLastName" runat="server" type="text" class="form-control" placeholder="Last name as it appears in your passport
 
 "
-                                                required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                           
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                         <div class="col-md-6">
                                             <input id="txtPreferedName" runat="server" type="text" class="form-control" placeholder="What name do you want us to use when we are communicating with you?
 
-"> <span class="helpicon"><i id="icPreferredname" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+"> <span class="helpicon"><i id="icPreferredname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                             <input id="txtMiddleName" runat="server" type="text" placeholder="As they appear in your passport
 
 "
-                                                value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                     <asp:CheckBox ID="passportMiddleName" runat="server" />Passport middle name same as above
@@ -109,7 +109,7 @@
                                         <div class="col-md-6">
                                             <input type="radio" id="rbtnMale" runat="server" name="gender" required>Male</input>
                                             <input type="radio" id="rbtnFemale" runat="server" name="gender" required>Female</input>
-                                             <span class="helpicon"><i id="icGender" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                             <span class="helpicon"><i id="icGender" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlNationality" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
-                                             <span class="helpicon"><i id="icNationality" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                             <span class="helpicon"><i id="icNationality" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -312,7 +312,7 @@
                                         <asp:Button ID="btn_login" OnClientClick="return validateForm();" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
-                                            <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
+                                            <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -596,7 +596,7 @@
 
             // to handle Tool tips
             var i = 0;
-             $('.fa-question-circle').tipso({
+             $('.fa-info-circle').tipso({
 				position: 'right',
 				background: 'rgba(0,0,0,0.8)',
 				useTitle: false,

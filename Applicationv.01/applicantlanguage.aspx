@@ -128,6 +128,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                 </div>
                                 <div class="list-group-item" id="gradeachieved" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-gradeachieved">
                                         <div class="form-row">
@@ -152,8 +153,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
+                           
 
                             <div class="list-group-item" id="EnglishTest" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-EnglishTest">
@@ -314,7 +314,7 @@
                                         <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
-                                            <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
+                                            <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -484,14 +484,50 @@
                 useTitle: false,
             });
 
+            
+           
+            if ($("#<%=rblEnglishBackgroundNot.ClientID%>").is(":checked")) {
+                $("#<%=BackgroundfieldContainer.ClientID%>").show();
+                $("#<%=ExpectedDategrade.ClientID%>").show();
+            }
+            else {
+                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+                $("#<%=ExpectedDategrade.ClientID%>").hide();
+            }
+            //
+            if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(":checked")) {
+                $("#<%=BackgroundfieldContainer.ClientID%>").show();
+                $("#<%=gradeachieved.ClientID%>").show();
+            }
+            else {
+                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+                $("#<%=gradeachieved.ClientID%>").hide();
+            }
         });
 
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$EnglishBackground']").click(function () {
-                if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(":checked") || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(":checked"))
-                    $("#<%=BackgroundfieldContainer.ClientID%>").show();
-                else
-                    $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+               if ($("#<%=rblEnglishBackgroundNot.ClientID%>").is(":checked")) {
+                $("#<%=BackgroundfieldContainer.ClientID%>").show();
+                $("#<%=ExpectedDategrade.ClientID%>").show();
+            }
+            else {
+                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+                $("#<%=ExpectedDategrade.ClientID%>").hide();
+            }
+            });
+        });
+
+         $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$EnglishBackground']").click(function () {
+               if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(":checked")) {
+                $("#<%=BackgroundfieldContainer.ClientID%>").show();
+                $("#<%=gradeachieved.ClientID%>").show();
+            }
+            else {
+                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+                $("#<%=gradeachieved.ClientID%>").hide();
+            }
             });
         });
 
