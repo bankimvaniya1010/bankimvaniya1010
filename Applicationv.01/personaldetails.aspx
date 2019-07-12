@@ -364,7 +364,7 @@
             var maxAge = <%=GlobalVariables.universityMaxAge%>;
             var minAge = <%=GlobalVariables.universityMinAge%>;
 
-            if (age < minAge && age > maxAge) {
+            if (age < minAge || age > maxAge) {
                 alert("Age should be between " + minAge + " & " + maxAge + " years");
                 return false;
             }
