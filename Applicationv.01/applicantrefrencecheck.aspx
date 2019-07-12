@@ -25,7 +25,7 @@
                                         <label id="labelname" runat="server" for="email" class="col-md-3 col-form-label form-label">Name *</label>
                                         <div class="col-md-6">
                                             <input id="txtName" runat="server" type="text" placeholder="Name" value="" required="" class="form-control">
-                                            <span class="helpicon"><i id="icName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                         <label id="labelMobile" runat="server" for="Mobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number *</label>
                                         <div class="col-md-6">
                                             <input id="txtMobile" runat="server" type="tel" placeholder="Mobile/Cellular Number" required="" value="" class="form-control">
-                                            <span class="helpicon"><i id="icMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                         <label id="labelEmail" runat="server" for="phone" class="col-md-3 col-form-label form-label">Email</label>
                                         <div class="col-md-6">
                                             <input id="txtEmail" runat="server" type="text" class="form-control" placeholder="Email">
-                                            <span class="helpicon"><i id="icEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@
 
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,

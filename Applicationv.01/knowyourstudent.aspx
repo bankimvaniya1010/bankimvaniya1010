@@ -88,7 +88,7 @@
                                     <div class="form-row">
                                         <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Identity Proof Number</label>
                                         <div class="col-md-6">
-                                            <input id="txtalternateIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtalternateIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                         <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Select DOB Proof Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternatedobIdentitytype" runat="server" CssClass="form-control">
-                                            </asp:DropDownList><span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList><span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="form-row">
                                         <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">DOB proof Number</label>
                                         <div class="col-md-6">
-                                            <input id="txtalternatedobIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtalternatedobIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                                         <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Select Residence Proof Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternateresidenceIdentitytype" runat="server" CssClass="form-control">
-                                            </asp:DropDownList><span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList><span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                     <div class="form-row">
                                         <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo" class="col-md-3 col-form-label form-label">Residence Proof Number</label>
                                         <div class="col-md-6">
-                                            <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Residence Proof Number"><span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Residence Proof Number"><span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
