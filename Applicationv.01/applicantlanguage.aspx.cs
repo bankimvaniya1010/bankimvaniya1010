@@ -460,7 +460,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                     rblEnglishBackgroundYes.Checked = true;
                 else if (LanguageInfo.isenglishintesive == 2)
                     rblEnglishBackgroundNo.Checked = true;
-                else
+                else if (LanguageInfo.isenglishintesive == 3)
                     rblEnglishBackgroundNot.Checked = true;
 
                 txtTestName.Value = LanguageInfo.testname;
@@ -595,7 +595,7 @@ public partial class applicantlanguage : System.Web.UI.Page
             if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
                 objCom.SetStudentDetailsCompletedStatus(userID, universityID);
             lblMessage.Text = "Your Contact Details have been saved";
-            lblMessage.Visible = true;
+  //          lblMessage.Visible = true;
         }
         catch (Exception ex)
         {

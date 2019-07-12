@@ -75,7 +75,7 @@ public partial class applicantvisa : System.Web.UI.Page
                     if (VisaInfo.applicantvisatype != null)
                     {
                         ddlVisa.ClearSelection();
-                        ddlVisa.Items.FindByValue(VisaInfo.applicantvisatype).Selected = true;
+                        ddlVisa.Items.FindByValue(VisaInfo.applicantvisatype.ToString()).Selected = true;
                     }
                     if (VisaInfo.validityfrom != null)
                         txtValidityFrom.Value = Convert.ToDateTime(VisaInfo.validityfrom).ToString("yyyy-MM-dd");
@@ -162,6 +162,7 @@ public partial class applicantvisa : System.Web.UI.Page
                 objVisa.validityfrom = null;
                 objVisa.validityto = null;
                 objVisa.firstvisit = null;
+                objVisa.visano = "";
 
                 if (VisaApplicationNo.Checked)
                 {

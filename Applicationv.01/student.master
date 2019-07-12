@@ -350,7 +350,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <div class="sidebar-heading">Student</div>
+                                <div class="sidebar-heading" style="display:none">Student</div>
                                 <ul class="sidebar-menu sm-active-button-bg" id="student_list">
                                     <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button" href="student-browse-courses.html">
@@ -434,7 +434,7 @@
                                     </li>
                                 </ul>
                                 <!-- Components menu -->
-                                <div class="sidebar-heading">Components</div>
+                                <div class="sidebar-heading" style="display:none">Components</div>
                                 <ul class="sidebar-menu" id="components_list">
                                     <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#components_menu">
@@ -647,9 +647,9 @@
                 $("#clarification_question_list").show();
                 $("#upload_document_list").show();
                 $("#Gte_list").show();
-                $("#message_menu_list").show();
-                $("#student_list").show();
-                $("#components_list").show();
+                $("#message_menu_list").hide();
+                $("#student_list").hide();
+                $("#components_list").hide();
                 $("#preliminary_list").hide();
 
                 if (!studentDetailsCompleted)

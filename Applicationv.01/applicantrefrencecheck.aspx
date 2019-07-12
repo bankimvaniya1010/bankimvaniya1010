@@ -59,7 +59,7 @@
                                         <asp:Button ID="btnReference" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnReference_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
-                                            <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
+                                            <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
