@@ -143,7 +143,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicanteducation.aspx" class="btn btn-success" style="margin-right: 10px;">Education Details</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btnidentification" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnidentification_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
@@ -175,9 +175,9 @@
         </div>
     </div>
     <script>
-
+            
         $('#ContentPlaceHolder1_txtdateofissue').flatpickr({
-
+       
             dateFormat: 'Y-m-d', defaultDate: ""
         });
         $('#ContentPlaceHolder1_txtexpirydate').flatpickr({

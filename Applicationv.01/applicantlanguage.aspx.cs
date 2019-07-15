@@ -427,18 +427,30 @@ public partial class applicantlanguage : System.Web.UI.Page
     private void PopulateLanguageDetails()
     {
         try
-        {
+        
+{
             var LanguageInfo = (from pInfo in db.applicantlanguagecompetency
                                 where pInfo.applicantid == userID && pInfo.universityid == universityID
                                 select pInfo).FirstOrDefault();
             if (LanguageInfo != null)
             {
                 txthomelanguage.Value = LanguageInfo.homelanuage;
+
+                if (LanguageInfo.isenglishintesive == 1)
+                    rblEnglishBackgroundYes.Checked = true;
+                else if (LanguageInfo.isenglishintesive == 2)
+                    rblEnglishBackgroundNot.Checked = true;
+                else if (LanguageInfo.isenglishintesive == 3)
+                    rblEnglishBackgroundNo.Checked = true;                
                 if (LanguageInfo.countryofcourse != null)
                 {
                     ddlLanguage.ClearSelection();
                     ddlLanguage.Items.FindByValue(LanguageInfo.countryofcourse).Selected = true;
                 }
+                if(LanguageInfo.expectedgraderesult != null)
+                    txtExpectedDategrade.Value = Convert.ToDateTime(LanguageInfo.expectedgraderesult).ToString("yyyy-MM-dd");
+
+                txtNameCollege.Value = LanguageInfo.instituename;
                 if (LanguageInfo.studymode != null)
                 {
                     ddlStudyMode.ClearSelection();
@@ -449,34 +461,32 @@ public partial class applicantlanguage : System.Web.UI.Page
                     ddlGrade.ClearSelection();
                     ddlGrade.Items.FindByValue(LanguageInfo.gradetype.ToString()).Selected = true;
                 }
-                txtExpectedDategrade.Value = Convert.ToDateTime(LanguageInfo.expectedgraderesult).ToString("yyyy-MM-dd");
                 if (LanguageInfo.qualificationtype != null)
                 {
                     ddlQualificationType.ClearSelection();
                     ddlQualificationType.Items.FindByValue(LanguageInfo.qualificationtype.ToString()).Selected = true;
                 }
-
-                if (LanguageInfo.isenglishintesive == 1)
-                    rblEnglishBackgroundYes.Checked = true;
-                else if (LanguageInfo.isenglishintesive == 2)
-                    rblEnglishBackgroundNo.Checked = true;
-                else if (LanguageInfo.isenglishintesive == 3)
-                    rblEnglishBackgroundNot.Checked = true;
-
-                txtTestName.Value = LanguageInfo.testname;
-                txtCentreNo.Value = LanguageInfo.centerno;
-                txtCandidateNo.Value = LanguageInfo.candidateno;
-                txtCandidateID.Value = LanguageInfo.candidateid;
+                if (LanguageInfo.isfinalgradeachieved == 1)
+                    rblYes.Checked = true;
+                else if (LanguageInfo.isfinalgradeachieved == 2)
+                    rblYetToConduct.Checked = true;
+                else if (LanguageInfo.isfinalgradeachieved == 3)
+                    rblNot.Checked = true;
                 if (LanguageInfo.yearofcompletion != null)
-                    txtYearCompletion.Value = Convert.ToDateTime(LanguageInfo.yearofcompletion).ToString("yyyy-MM-dd");
-                txtNameCollege.Value = LanguageInfo.instituename;
-                txtQualificationName.Value = LanguageInfo.qualificationname;
+                    txtYearCompletion.Value = Convert.ToDateTime(LanguageInfo.yearofcompletion).ToString("yyyy-MM-dd");             
+                                                          
                 if (LanguageInfo.giveenglishtest == 1)
                     rblLanguageielts.Checked = true;
                 else if (LanguageInfo.giveenglishtest == 2)
                     rblLanguagepearsons.Checked = true;
-                else
+                else if(LanguageInfo.giveenglishtest == 3)
                     rblLanguagtofel.Checked = true;
+
+                txtTestName.Value = LanguageInfo.testname;
+                txtCentreNo.Value = LanguageInfo.centerno;
+                txtCandidateNo.Value = LanguageInfo.candidateno;
+                txtCandidateID.Value = LanguageInfo.candidateid;                
+                txtQualificationName.Value = LanguageInfo.qualificationname;               
                 if (LanguageInfo.examdate != null)
                     txtLanguageTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
                 txtLanguageScore.Value = LanguageInfo.overallscore;
@@ -499,7 +509,7 @@ public partial class applicantlanguage : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btnlanguagecompetency_Click(object sender, EventArgs e)
     {
         try
         {

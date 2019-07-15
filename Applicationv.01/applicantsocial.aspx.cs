@@ -200,7 +200,7 @@ public partial class applicantsocial : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btnsocial_Click(object sender, EventArgs e)
     {
         try
         {
