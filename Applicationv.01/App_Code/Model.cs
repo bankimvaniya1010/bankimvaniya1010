@@ -951,6 +951,7 @@ public partial class gte_tutorialmaster
     public string title { get; set; }
     public Nullable<int> status { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class inferencemaster
