@@ -1231,7 +1231,8 @@ public class Common
                 else
                     GlobalVariables.isDeclarationDoneByApplicant = false;
             }
-                
+            else
+                GlobalVariables.isDeclarationDoneByApplicant = false;
         }
         catch (Exception ex)
         {

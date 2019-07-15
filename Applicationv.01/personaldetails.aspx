@@ -24,7 +24,7 @@
                                         <label runat="server" id="labeltitle" for="title" class="col-md-3 col-form-label form-label">* Title</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlTitle" CssClass="form-control" runat="server">
-                                            </asp:DropDownList> <span class="helpicon"><i id="icTitle" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList> <span class="helpicon"><i id="icTitle" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             <input style="display: none" id="txtTitle" runat="server" type="text" placeholder="Title" value="" class="form-control"> <span class="helpicon"><i id="icOtherTitle" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -55,7 +55,7 @@
 "
                                                 required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                           
-                                        </div>
+                                    </div>
                                     </div>
                                     <asp:CheckBox ID="passportLastName" runat="server" />Passport last name same as above
                                 </div>
@@ -97,7 +97,7 @@
                                             <asp:DropDownList ID="ddlMonth" CssClass="form-control" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" AutoPostBack="true" runat="server">
                                                 <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
                                             </asp:DropDownList>                                            
-                                            <asp:DropDownList ID="ddlDay" CssClass="form-control" runat="server"></asp:DropDownList> <span class="helpicon"><i id="icDoB" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:DropDownList ID="ddlDay" CssClass="form-control" runat="server"></asp:DropDownList> <span class="helpicon"><i id="icDoB" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -182,7 +182,7 @@
                                         <label id="labelbirthcountry" runat="server" for="birthcountry" class="col-md-3 col-form-label form-label">Country of birth</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlBirthCountry" runat="server" CssClass="form-control">
-                                            </asp:DropDownList> <span class="helpicon"><i id="icBirthCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList> <span class="helpicon"><i id="icBirthCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                                         </div>
                                     </div>
@@ -194,7 +194,7 @@
                                         <label id="labelMarital" runat="server" for="Marital" class="col-md-3 col-form-label form-label">Marital Status</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlMarital" runat="server" CssClass="form-control"> 
-                                            </asp:DropDownList> <span class="helpicon"><i id="icMarital" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList> <span class="helpicon"><i id="icMarital" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -252,7 +252,7 @@
                                         <label id="labeldisability" runat="server" for="disability" class="col-md-3 col-form-label form-label">Do you have any disability, impairment, or a long term condition</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblDisabilityYes" runat="server" CssClass="form-control" GroupName="disability" Text="Yes" />
-                                            <asp:RadioButton ID="rblDisabilityNo" runat="server" CssClass="form-control" GroupName="disability" Text="No" /> <span class="helpicon"><i id="icdisability" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:RadioButton ID="rblDisabilityNo" runat="server" CssClass="form-control" GroupName="disability" Text="No" /> <span class="helpicon"><i id="icdisability" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +263,7 @@
                                     <div class="form-row">
                                         <label id="labeldisabilitydesc" runat="server" for="disabilitydesc" class="col-md-3 col-form-label form-label">Disability Description</label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlDisability" runat="server" CssClass="form-control"></asp:DropDownList><span class="helpicon"><i id="icdisabilitydescription" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:DropDownList ID="ddlDisability" runat="server" CssClass="form-control"></asp:DropDownList><span class="helpicon"><i id="icdisabilitydescription" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -274,7 +274,7 @@
                                         <label id="labelagent" runat="server" for="agent" class="col-md-3 col-form-label form-label">Are you reffered by Agent</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblAgentYes" runat="server" CssClass="form-control" GroupName="agent" Text="Yes" />
-                                            <asp:RadioButton ID="rblAgentNo" runat="server" CssClass="form-control" GroupName="agent" Text="No" /><span class="helpicon"><i id="icAgent" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:RadioButton ID="rblAgentNo" runat="server" CssClass="form-control" GroupName="agent" Text="No" /><span class="helpicon"><i id="icAgent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -284,7 +284,7 @@
                                     <div class="form-row">
                                         <label id="labelagentList" runat="server" for="agentList" class="col-md-3 col-form-label form-label">Agent Name</label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlAgent" runat="server" CssClass="form-control"></asp:DropDownList><span class="helpicon"><i id="icAgentList" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:DropDownList ID="ddlAgent" runat="server" CssClass="form-control"></asp:DropDownList><span class="helpicon"><i id="icAgentList" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -294,7 +294,7 @@
                                     <div class="form-row">
                                         <label id="labeladdnewagent" runat="server" for="addnewagent" class="col-md-3 col-form-label form-label">If didn't find agent name in the list then add his email ID to sent registeration link</label>
                                         <div class="col-md-6">
-                                            <asp:TextBox ID="txtAgentname" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icNewAgent" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:TextBox ID="txtAgentname" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icNewAgent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             &nbsp;
                                               <div class="col-md-6">
                                                   <asp:Button ID="btnNewAgent" runat="server" Text="Ask to Register" CssClass="btn btn-success" OnClick="btnNewAgent_Click" />

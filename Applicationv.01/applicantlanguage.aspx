@@ -29,7 +29,7 @@
                                         <label id="labelhomelanguage" runat="server" for="homelanguage" class="col-md-3 col-form-label form-label">What language do you speak at home</label>
                                         <div class="col-md-6">
                                             <input id="txthomelanguage" runat="server" type="text" placeholder="What language do you speak at home" value="" class="form-control">
-                                            <span class="helpicon"><i id="ichomelanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichomelanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                             <asp:RadioButton ID="rblEnglishBackgroundYes" runat="server" GroupName="EnglishBackground" Text="Yes" />
                                             <asp:RadioButton ID="rblEnglishBackgroundNot" runat="server" GroupName="EnglishBackground" Text="No  - I am currently still studying for my English Language Course" />
                                             <asp:RadioButton ID="rblEnglishBackgroundNo" runat="server" GroupName="EnglishBackground" Text="No - I have not studied an English Language Intensive Course for people from non-English speaking backgrounds" />
-                                            <span class="helpicon"><i id="icEnglishBackground" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icEnglishBackground" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +57,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlLanguage" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
-                                                <span class="helpicon"><i id="icLanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icLanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +68,7 @@
                                             <label id="labelYearCompletion" runat="server" for="YearCompletion" class="col-md-3 col-form-label form-label">Year of Completion/Expected </label>
                                             <div class="col-md-6">
                                                 <input id="txtYearCompletion" runat="server" type="text" class="form-control" placeholder="Completion Year" data-toggle="flatpickr" value="">
-                                                <span class="helpicon"><i id="icYearCompletion" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icYearCompletion" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                                             <label id="labelNameCollege" runat="server" for="NameCollege" class="col-md-3 col-form-label form-label">Name of College or University</label>
                                             <div class="col-md-6">
                                                 <input id="txtNameCollege" runat="server" type="text" placeholder="Name of College or University" value="" class="form-control">
-                                                <span class="helpicon"><i id="icNameCollege" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icNameCollege" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                             <label id="labelstudymode" runat="server" for="studymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icstudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icstudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@
                                             <label id="labelQualificationType" runat="server" for="QualificationType" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlQualificationType" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icQualificationType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icQualificationType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                             <label id="labelQualificationName" runat="server" for="QualificationName" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                             <div class="col-md-6">
                                                 <input id="txtQualificationName" runat="server" type="text" placeholder="Qualification Name" value="" class="form-control">
-                                                <span class="helpicon"><i id="icQualificationName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icQualificationName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                                             <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlGrade" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                                                 <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
                                                 <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
                                                 <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
-                                                <span class="helpicon"><i id="icgradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -148,7 +148,7 @@
                                             <label id="labelExpectedDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
                                                 <input id="txtExpectedDategrade" runat="server" type="text" class="form-control" placeholder="Expected Date" data-toggle="flatpickr" value="">
-                                                <span class="helpicon"><i id="icExpectedDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icExpectedDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -163,7 +163,7 @@
                                             <asp:RadioButton ID="rblLanguageielts" runat="server" GroupName="EnglishTest" Text="IELTS" />
                                             <asp:RadioButton ID="rblLanguagepearsons" runat="server" GroupName="EnglishTest" Text="Pearsons" />
                                             <asp:RadioButton ID="rblLanguagtofel" runat="server" GroupName="EnglishTest" Text="TOEFL" />
-                                            <span class="helpicon"><i id="icEnglishTest" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icEnglishTest" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                                             <label id="labeltestName" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Name </label>
                                             <div class="col-md-6">
                                                 <input id="txtTestName" runat="server" type="text" placeholder="Test Name" value="" class="form-control">
-                                                <span class="helpicon"><i id="ictestName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ictestName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@
                                             <label id="labelCentreNo" runat="server" for="testName" class="col-md-3 col-form-label form-label">Centre No </label>
                                             <div class="col-md-6">
                                                 <input id="txtCentreNo" runat="server" type="text" placeholder="Centre No" value="" class="form-control">
-                                                <span class="helpicon"><i id="icCentreNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icCentreNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -199,7 +199,7 @@
                                             <label id="labelCandidateNo" runat="server" for="CandidateNo" class="col-md-3 col-form-label form-label">Candidate No </label>
                                             <div class="col-md-6">
                                                 <input id="txtCandidateNo" runat="server" type="text" placeholder="Candidate No" value="" class="form-control">
-                                                <span class="helpicon"><i id="icCandidateNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icCandidateNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -210,7 +210,7 @@
                                             <label id="labelCandidateID" runat="server" for="CandidateID" class="col-md-3 col-form-label form-label">Candidate ID </label>
                                             <div class="col-md-6">
                                                 <input id="txtCandidateID" runat="server" type="text" placeholder="Candidate ID" value="" class="form-control">
-                                                <span class="helpicon"><i id="icCandidateID" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icCandidateID" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@
                                             <label id="labelLanguageTestDate" runat="server" for="LanguageTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
                                             <div class="col-md-6">
                                                 <input id="txtLanguageTestDate" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="">
-                                                <span class="helpicon"><i id="icLanguageTestDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icLanguageTestDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +232,7 @@
                                             <label id="labelLanguageScore" runat="server" for="LanguageScore" class="col-md-3 col-form-label form-label">Overall Score </label>
                                             <div class="col-md-6">
                                                 <input id="txtLanguageScore" runat="server" type="text" placeholder="OverAll Score" value="" class="form-control">
-                                                <span class="helpicon"><i id="icLanguageScore" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icLanguageScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -243,7 +243,7 @@
                                             <label id="labelSpeakingScore" runat="server" for="SpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score </label>
                                             <div class="col-md-6">
                                                 <input id="txtSpeaking" runat="server" type="text" placeholder="Speaking Score" value="" class="form-control">
-                                                <span class="helpicon"><i id="icSpeakingScore" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSpeakingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -254,7 +254,7 @@
                                             <label id="labelListeningScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Listening Score </label>
                                             <div class="col-md-6">
                                                 <input id="txtListening" runat="server" type="text" placeholder="Listening Score " value="" class="form-control">
-                                                <span class="helpicon"><i id="icListeningScore" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icListeningScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -265,7 +265,7 @@
                                             <label id="labelReadingScore" runat="server" for="ReadingScore" class="col-md-3 col-form-label form-label">Reading Score </label>
                                             <div class="col-md-6">
                                                 <input id="txtReading" runat="server" type="text" placeholder="Reading Score" value="" class="form-control">
-                                                <span class="helpicon"><i id="icReadingScore" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icReadingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@
                                             <label id="labelWritingScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Writing Score </label>
                                             <div class="col-md-6">
                                                 <input id="txtWriting" runat="server" type="text" placeholder="Writing Score " value="" class="form-control">
-                                                <span class="helpicon"><i id="icWritingScore" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icWritingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -290,7 +290,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlCEFR" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
-                                            <span class="helpicon"><i id="icCEFR" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icCEFR" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -301,7 +301,7 @@
                                         <label id="labeltestRefno" runat="server" for="testRefno" class="col-md-3 col-form-label form-label">Test Report Reference No </label>
                                         <div class="col-md-6">
                                             <input id="txttestRefno" runat="server" type="text" placeholder="Writing Score " value="" class="form-control">
-                                            <span class="helpicon"><i id="ictestRefno" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ictestRefno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -311,7 +311,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicantworkexperience.aspx" class="btn btn-success" style="margin-right: 10px;">Work Experience</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
@@ -346,7 +346,7 @@
 
             else {
                 var flag1 = true;
-                if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked')) {
+                if (!$("#<%=EnglishBackground.ClientID%>").is(':hidden') && $("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked')) {
                     if (!$("#<%=Language.ClientID%>").is(':hidden') && $("#<%=ddlLanguage.ClientID%>").val() === "0") {
                         alert("Please Select Country");
                         flag1 = false;
@@ -380,7 +380,16 @@
                         alert("Please Select Grade Type");
                         flag1 = false;
                     }
+                    else if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') && !$("#<%=gradeachieved.ClientID%>").is(':hidden') && (!$("#<%=rblYes.ClientID%>").is(':checked') || !$("#<%=rblYetToConduct.ClientID%>").is(':checked') || !$("#<%=rblNot.ClientID%>").is(':checked'))) {
+                        alert("Please Select Final Grade Achieved");
+                        flag1 = false;
+                    }
 
+                    else if ($("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked') && !$("#<%=ExpectedDategrade.ClientID%>").is(':hidden') && $("#<%=ExpectedDategrade.ClientID%>").val() == "") {
+                        alert("Please Enter Expected Date When Result Will Be Declared");
+                        flag1 = false;
+                    }
+                    
                 }
 
                 if (flag1) {
@@ -444,7 +453,6 @@
                     else
                         flag = true;
                 }
-                flag = true;
             }
 
            if (flag == true)
@@ -478,7 +486,7 @@
 
 
         $(document).ready(function () {
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
@@ -490,11 +498,10 @@
                 $("#<%=BackgroundfieldContainer.ClientID%>").show();
                 $("#<%=ExpectedDategrade.ClientID%>").show();
             }
-            else {
-                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+            else                 
                 $("#<%=ExpectedDategrade.ClientID%>").hide();
-            }
-            //
+
+            
             if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(":checked")) {
                 $("#<%=BackgroundfieldContainer.ClientID%>").show();
                 $("#<%=gradeachieved.ClientID%>").show();
@@ -503,6 +510,12 @@
                 $("#<%=BackgroundfieldContainer.ClientID%>").hide();
                 $("#<%=gradeachieved.ClientID%>").hide();
             }
+
+             if ($("#<%=rblEnglishBackgroundNo.ClientID%>").is(":checked")) {
+                    $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+                    $("#<%=ExpectedDategrade.ClientID%>").hide();
+                    $("#<%=gradeachieved.ClientID%>").hide();
+                 }
         });
 
         $(function () {
@@ -511,10 +524,9 @@
                 $("#<%=BackgroundfieldContainer.ClientID%>").show();
                 $("#<%=ExpectedDategrade.ClientID%>").show();
             }
-            else {
-                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+            else                
                 $("#<%=ExpectedDategrade.ClientID%>").hide();
-            }
+            
             });
         });
 
@@ -524,10 +536,19 @@
                 $("#<%=BackgroundfieldContainer.ClientID%>").show();
                 $("#<%=gradeachieved.ClientID%>").show();
             }
-            else {
-                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+            else              
                 $("#<%=gradeachieved.ClientID%>").hide();
-            }
+            
+            });
+        });
+
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$EnglishBackground']").click(function () {
+                if ($("#<%=rblEnglishBackgroundNo.ClientID%>").is(":checked")) {
+                    $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+                    $("#<%=ExpectedDategrade.ClientID%>").hide();
+                    $("#<%=gradeachieved.ClientID%>").hide();
+                }
             });
         });
 

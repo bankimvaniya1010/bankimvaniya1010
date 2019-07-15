@@ -5,7 +5,7 @@
     <script>
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
@@ -30,7 +30,7 @@
                             <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">Link to your LinkedIn profile</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtLinkedinComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -44,7 +44,7 @@
                             <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">Link to your Facebook profile </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblFacebook" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtFacebookComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -58,7 +58,7 @@
                             <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">Link to your twitter handle </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblTwitter" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtTwitterComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">

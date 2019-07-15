@@ -5,7 +5,7 @@
     <script>
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
@@ -29,7 +29,7 @@
                             <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
-                              <span>  <i id="icPassport" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                              <span>  <i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -44,7 +44,7 @@
                             <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Date of Issue </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtDateOfissue" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -59,7 +59,7 @@
                             <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">Expiry Date </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtExpiryDate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -73,7 +73,7 @@
                             <label id="labelcountryIssue" runat="server" for="countryIssue" class="col-md-3 col-form-label form-label">COUNTRY OF ISSUE </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icCountryofIssue" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icCountryofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                             </div>
                             <div class="col-md-4">
@@ -88,7 +88,7 @@
                             <label id="labelissueplace" runat="server" for="issueplace" class="col-md-3 col-form-label form-label">CITY OF ISSUE </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblissueplace" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icCityofIssue" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icCityofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtissueplace" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -102,7 +102,7 @@
                             <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-3 col-form-label form-label">Select Identity Proof Type</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icIdentityProofType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icIdentityProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtalternateIdentitytype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -116,7 +116,7 @@
                             <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Identity Proof Number</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtalternateIdentityNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -132,7 +132,7 @@
                             <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Select DOB Proof Type </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtalternatedobIdentitytype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -146,7 +146,7 @@
                             <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">DOB proof Number</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtalternatedobIdentityNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -161,7 +161,7 @@
                             <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Select Residence Proof Type </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtalternateresidenceIdentitytype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -175,7 +175,7 @@
                             <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo" class="col-md-3 col-form-label form-label">Residence Proof Number</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">

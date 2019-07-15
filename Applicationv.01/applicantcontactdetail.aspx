@@ -24,7 +24,7 @@
                                     <div class="form-row">
                                         <label id="labelemail" runat="server" for="email" class="col-md-3 col-form-label form-label">Email *</label>
                                         <div class="col-md-6">
-                                            <input id="txtEmail" runat="server" type="text" placeholder="email" value="" required="" class="form-control"><span class="helpicon"><i id="icEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtEmail" runat="server" type="text" placeholder="email" value="" required="" class="form-control"><span class="helpicon"><i id="icEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                     <div class="form-row">
                                         <label id="labelMobile" runat="server" for="Mobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number *</label>
                                         <div class="col-md-6">
-                                            <input id="txtMobile" runat="server" type="text" placeholder="Mobile/Cellular Number" value="" class="form-control"><span class="helpicon"><i id="icMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtMobile" runat="server" type="text" placeholder="Mobile/Cellular Number" value="" class="form-control"><span class="helpicon"><i id="icMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -44,7 +44,7 @@
                                     <div class="form-row">
                                         <label id="labelphone" runat="server" for="phone" class="col-md-3 col-form-label form-label">Home phone</label>
                                         <div class="col-md-6">
-                                            <input id="txtHomePhone" runat="server" type="text" class="form-control" placeholder="Home phone"><span class="helpicon"><i id="icHomePhone" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtHomePhone" runat="server" type="text" class="form-control" placeholder="Home phone"><span class="helpicon"><i id="icHomePhone" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         <label id="labelskype" runat="server" for="skype" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblSkypeYes" runat="server" CssClass="form-control" GroupName="skype" Text="Yes" />
-                                            <asp:RadioButton ID="rblSkypeNo" runat="server" CssClass="form-control" GroupName="skype" Text="No" /><span class="helpicon"><i id="icSkype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:RadioButton ID="rblSkypeNo" runat="server" CssClass="form-control" GroupName="skype" Text="No" /><span class="helpicon"><i id="icSkype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
                                     <div class="form-row">
                                         <label id="labelskypeDesc" runat="server" for="skypeDesc" class="col-md-3 col-form-label form-label">Skype ID</label>
                                         <div class="col-md-6">
-                                            <asp:TextBox ID="txtSkype" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icSkypeDesc" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:TextBox ID="txtSkype" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icSkypeDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
                                         <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblwhatsappYes" runat="server" CssClass="form-control" GroupName="whatsapp" Text="Yes" />
-                                            <asp:RadioButton ID="rblwhatsappNo" runat="server" CssClass="form-control" GroupName="whatsapp" Text="No" /><span class="helpicon"><i id="icWhatsapp" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:RadioButton ID="rblwhatsappNo" runat="server" CssClass="form-control" GroupName="whatsapp" Text="No" /><span class="helpicon"><i id="icWhatsapp" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                         <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-3 col-form-label form-label">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblWhatsupsameYes" runat="server" CssClass="form-control" GroupName="whatsappSame" Text="Yes" />
-                                            <asp:RadioButton ID="rblWhatsupsameNo" runat="server" CssClass="form-control" GroupName="whatsappSame" Text="No" /><span class="helpicon"><i id="icWhatsapphave" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:RadioButton ID="rblWhatsupsameNo" runat="server" CssClass="form-control" GroupName="whatsappSame" Text="No" /><span class="helpicon"><i id="icWhatsapphave" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +99,7 @@
                                     <div class="form-row">
                                         <label id="labelwhatsappDesc" runat="server" for="whatsappDesc" class="col-md-3 col-form-label form-label">Whatsapp Number</label>
                                         <div class="col-md-6">
-                                            <asp:TextBox ID="txtWhatsappNo" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icWhatsappDesc" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:TextBox ID="txtWhatsappNo" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icWhatsappDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                                     <div class="form-row">
                                         <label id="labelpostal" runat="server" for="postal" class="col-md-3 col-form-label form-label">Postal Address</label>
                                         <div class="col-md-6">
-                                            <input id="txtAddressLine1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"> <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtAddressLine1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"> <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             <input id="txtAddressLine2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
                                             <input id="txtAddressLine3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control">
                                             <input id="txtCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
@@ -127,7 +127,7 @@
                                         <label id="labeladdress" runat="server" for="address" class="col-md-3 col-form-label form-label">Is your Postal Address same as your current residential address</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblAddressYes" runat="server" CssClass="form-control" GroupName="address" Text="Yes" />
-                                            <asp:RadioButton ID="rblAddressNo" runat="server" CssClass="form-control" GroupName="address" Text="No" /><span class="helpicon"><i id="icAddress" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <asp:RadioButton ID="rblAddressNo" runat="server" CssClass="form-control" GroupName="address" Text="No" /><span class="helpicon"><i id="icAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                     <div class="form-row">
@@ -145,7 +145,7 @@
                                         <label id="labelResidential" runat="server" for="title" class="col-md-3 col-form-label form-label">Current Residential  Address</label>
                                         <div class="col-md-6">
 
-                                            <input id="txtResidentialAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"><span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtResidentialAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"><span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             <input id="txtResidentialAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
                                             <input id="txtResidentialAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control">
                                             <input id="txtResidentialCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
@@ -199,7 +199,7 @@
                                         <div class="form-row">
                                             <label id="labelguardianname" runat="server" for="nomineename" class="col-md-3 col-form-label form-label">GUARDIAN Full Name</label>
                                             <div class="col-md-6">
-                                                <input id="txtNomineeName" runat="server" type="text" placeholder="Nominee Full Name" value="" class="form-control"><span class="helpicon"><i id="icNomineeName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <input id="txtNomineeName" runat="server" type="text" placeholder="Nominee Full Name" value="" class="form-control"><span class="helpicon"><i id="icNomineeName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -209,7 +209,7 @@
                                         <div class="form-row">
                                             <label id="labelrelation" runat="server" for="relationnominee" class="col-md-3 col-form-label form-label">Relationship with GUARDIAN</label>
                                             <div class="col-md-6">
-                                                <input id="txtRelationNominee" runat="server" type="text" placeholder="Relationship with Nominee" value="" class="form-control"><span class="helpicon"><i id="icNomineeRealation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <input id="txtRelationNominee" runat="server" type="text" placeholder="Relationship with Nominee" value="" class="form-control"><span class="helpicon"><i id="icNomineeRealation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -219,7 +219,7 @@
                                         <div class="form-row">
                                             <label id="labelguardianemail" runat="server" for="emailnominee" class="col-md-3 col-form-label form-label">Email of GUARDIAN</label>
                                             <div class="col-md-6">
-                                                <input id="txtEmailNominee" runat="server" type="text" class="form-control" placeholder="Email of Nominee"><span class="helpicon"><i id="icNomineeEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <input id="txtEmailNominee" runat="server" type="text" class="form-control" placeholder="Email of Nominee"><span class="helpicon"><i id="icNomineeEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -229,7 +229,7 @@
                                         <div class="form-row">
                                             <label id="labelguardianmobile" runat="server" for="mobilenominee" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of GUARDIAN</label>
                                             <div class="col-md-6">
-                                                <input id="txtMobileNominee" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number of Nominee"><span class="helpicon"><i id="icNomineeMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <input id="txtMobileNominee" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number of Nominee"><span class="helpicon"><i id="icNomineeMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -541,7 +541,7 @@
 
         $(document).ready(function () {
 
-           $('.fa-question-circle').tipso({
+           $('.fa-info-circle').tipso({
 				position: 'right',
 				background: 'rgba(0,0,0,0.8)',
 				useTitle: false,

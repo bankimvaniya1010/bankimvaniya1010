@@ -5,7 +5,7 @@
     <script>
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
@@ -29,7 +29,7 @@
                             <label id="labelemail" runat="server" for="email" class="col-md-3 col-form-label form-label">Email *</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblEmail" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtEmail" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -43,7 +43,7 @@
                             <label id="labelMobile" runat="server" for="Mobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number *</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblMobile" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtMobile" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -57,7 +57,7 @@
                             <label id="labelphone" runat="server" for="phone" class="col-md-3 col-form-label form-label">Home phone</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblHomePhone" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icHomePhone" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icHomePhone" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtHomePhone" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -71,7 +71,7 @@
                             <label id="labelskype" runat="server" for="skype" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblSkype" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icSkype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icSkype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtSkype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -86,7 +86,7 @@
                             <label id="labelskypeDesc" runat="server" for="skypeDesc" class="col-md-3 col-form-label form-label">Skype ID</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblSkypeDescription" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icSkypeDesc" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icSkypeDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtSkypeDescription" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -100,7 +100,7 @@
                             <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblWhatsapp" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icWhatsapp" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icWhatsapp" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                             </div>
                             <div class="col-md-4">
@@ -115,7 +115,7 @@
                             <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-3 col-form-label form-label">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblWhatsapphave" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icWhatsapphave" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icWhatsapphave" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtWhastappHave" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -129,7 +129,7 @@
                             <label id="labelwhatsappDesc" runat="server" for="whatsappDesc" class="col-md-3 col-form-label form-label">Whatsapp Number</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblWhastappDesription" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icWhatsappDesc" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icWhatsappDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                             </div>
                             <div class="col-md-4">
@@ -144,7 +144,7 @@
                             <label id="labelpostal" runat="server" for="postal" class="col-md-3 col-form-label form-label">Postal Address</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblPostalAddress" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtPostalAddress" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -158,7 +158,7 @@
                             <label id="labeladdress" runat="server" for="address" class="col-md-3 col-form-label form-label">Is your Postal Address same as your current residential address</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblAddress" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icAddress" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtAddress" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -168,7 +168,7 @@
                             <label id="labelCurrentAddress" runat="server" for="currentAddressSelection" class="col-md-3 col-form-label form-label">Have you been living in the current address for Less than 1 year?</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icCurrentAddress" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icCurrentAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtCurrentAddress" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -182,7 +182,7 @@
                             <label id="labelResidential" runat="server" for="title" class="col-md-3 col-form-label form-label">Current Residential  Address</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblResidential" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtResidential" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -215,7 +215,7 @@
                                 <asp:Label ID="lblprevAddressPostalCode" runat="server"></asp:Label>
                                 <asp:Label ID="lblPrevAddressCountry" runat="server"></asp:Label>
 
-                                <span class="helpicon"><i id="iAddressHistory" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="iAddressHistory" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtAddressHistory" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -234,7 +234,7 @@
                                <i class="fa fa-check" aria-hidden="true" runat="server" id="isVerifed"></i>  <label id="labelguardianname" runat="server" for="nomineename" class="col-md-3 col-form-label form-label">GUARDIAN Full Name</label>
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNominneName" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icNomineeName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    <span class="helpicon"><i id="icNomineeName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
                                 <div class="col-md-4">
                                     <input id="txtGuardianname" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -248,7 +248,7 @@
                                 <label id="labelrelation" runat="server" for="relationnominee" class="col-md-3 col-form-label form-label">Relationship with GUARDIAN</label>
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNomineeRealtion" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icNomineeRealation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    <span class="helpicon"><i id="icNomineeRealation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
                                 <div class="col-md-4">
                                     <input id="txtNomineeRelation" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -262,7 +262,7 @@
                                 <label id="labelguardianemail" runat="server" for="emailnominee" class="col-md-3 col-form-label form-label">Email of GUARDIAN</label>
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNomineeEmail" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icNomineeEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    <span class="helpicon"><i id="icNomineeEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
                                 <div class="col-md-4">
                                     <input id="txtNomineeEmail" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -276,7 +276,7 @@
                                 <label id="labelguardianmobile" runat="server" for="mobilenominee" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of GUARDIAN</label>
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNomineeMobile" runat="server"></asp:Label>
-                                    <span class="helpicon"><i id="icNomineeMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                    <span class="helpicon"><i id="icNomineeMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
                                 <div class="col-md-4">
                                     <input id="txtNomiineeMobile" runat="server" type="text" class="form-control" placeholder="Admin Comments">
