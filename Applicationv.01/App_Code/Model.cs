@@ -864,6 +864,34 @@ public partial class gte_answer_master
     public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
 }
 
+public partial class gte_clarification_applicantresponse
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int clarification_question_id { get; set; }
+    public string applicant_response { get; set; }
+
+    public virtual gte_clarification_questionmaster gte_clarification_questionmaster { get; set; }
+}
+
+public partial class gte_clarification_questionmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_clarification_questionmaster()
+    {
+        this.gte_clarification_applicantresponse = new HashSet<gte_clarification_applicantresponse>();
+    }
+
+    public int id { get; set; }
+    public int gte_master1_id { get; set; }
+    public string clarification_question { get; set; }
+    public Nullable<bool> display_condition { get; set; }
+
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+}
+
 public partial class GTE_documentverification
 {
     public int documentid { get; set; }
@@ -890,6 +918,7 @@ public partial class gte_question_master_part2
     public gte_question_master_part2()
     {
         this.gte_question_part2_applicant_response = new HashSet<gte_question_part2_applicant_response>();
+        this.gte_clarification_questionmaster = new HashSet<gte_clarification_questionmaster>();
     }
 
     public int id { get; set; }
@@ -901,6 +930,8 @@ public partial class gte_question_master_part2
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
 }
 
 public partial class gte_question_part2_applicant_response

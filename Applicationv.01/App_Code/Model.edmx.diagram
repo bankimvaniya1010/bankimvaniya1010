@@ -161,6 +161,10 @@
         <AssociationConnector Association="GTEModel.FK_response_gteQuestionPart2" />
         <EntityTypeShape EntityType="GTEModel.gte_tutorialmaster" Width="1.5" PointX="14.375" PointY="30.75" />
         <EntityTypeShape EntityType="GTEModel.gte_progressbar" Width="1.5" PointX="16.375" PointY="30.75" />
+        <EntityTypeShape EntityType="GTEModel.gte_clarification_questionmaster" Width="1.5" PointX="31.625" PointY="17.5" />
+        <AssociationConnector Association="GTEModel.FK_clarification_gte_master_part2" />
+        <EntityTypeShape EntityType="GTEModel.gte_clarification_applicantresponse" Width="1.5" PointX="33.875" PointY="17.625" />
+        <AssociationConnector Association="GTEModel.FK_response_clarification_questionmaster" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
