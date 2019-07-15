@@ -296,7 +296,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btn_Save_Click(object sender, EventArgs e)
     {
         try
         {
@@ -363,7 +363,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
                 sb.Append("Thank You <br/>");
                 sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Nomination Detail check for " + applicantName);
+                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Employment detail check for " + applicantName);
             }
 
             lblMessage.Text = "Your Work Experience Details have been saved";

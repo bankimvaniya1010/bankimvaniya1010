@@ -225,7 +225,7 @@
         }
          function isvalidmname() {
             if ($("#mname").val() == "") {
-                return ("Please enter last name" + "\n");
+                return ("Please enter middle name" + "\n");
             }
             else {
                 return "";

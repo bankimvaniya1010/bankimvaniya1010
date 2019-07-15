@@ -51,7 +51,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             if (obj != null && !string.IsNullOrEmpty(obj.Name) && obj.dob != null)
             {
                 StudentName = obj.Name;
-                StudentDOB = obj.dob.ToString();
+                StudentDOB = obj.dob.Value.ToShortDateString().ToString();
                 if (obj.verifiedDetails.HasValue)
                     verifiedPassportDetails = obj.verifiedDetails.Value;
             }

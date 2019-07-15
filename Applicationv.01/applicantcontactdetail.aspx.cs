@@ -177,7 +177,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btn_Save_Click(object sender, EventArgs e)
     {
         try
         {
@@ -310,6 +310,17 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                 db.applicantresidencehistory.AddRange(lstresidenceHistory);
                 db.SaveChanges();
             }
+            else if (rblCurrentAddNo.Checked)
+                objapplicantDetail.haspreviousresidence = false;
+            if (rblCurrentAddNo.Checked && mode == "update")
+            {
+                var existinglst = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                if (existinglst != null)
+                {
+                    db.applicantresidencehistory.RemoveRange(existinglst);
+                    db.SaveChanges();
+                }
+            }
             objapplicantDetail.nomineefullname = txtNomineeName.Value;
             objapplicantDetail.nomineeemail = txtEmailNominee.Value;
             objapplicantDetail.nomineemobile = txtMobileNominee.Value;
@@ -326,6 +337,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            hidAddressHistory.Value = "0";
 
             if (objapplicantDetail.nomineeemail != null)
             {
