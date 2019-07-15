@@ -70,7 +70,7 @@ public partial class knowyourstudent : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btnidentification_Click(object sender, EventArgs e)
     {
         try
         {
@@ -141,8 +141,10 @@ public partial class knowyourstudent : System.Web.UI.Page
             if (profileInfo != null)
             {
                 txtPassportNo.Value = profileInfo.passportno;
-                txtdateofissue.Value = Convert.ToDateTime(profileInfo.passportissuedate).ToString("yyyy-MM-dd");
-                txtexpirydate.Value = Convert.ToDateTime(profileInfo.passportexpirydate).ToString("yyyy-MM-dd");
+                if(profileInfo.passportissuedate != null)
+                    txtdateofissue.Value = Convert.ToDateTime(profileInfo.passportissuedate).ToString("yyyy-MM-dd");
+                if(profileInfo.passportexpirydate != null)
+                    txtexpirydate.Value = Convert.ToDateTime(profileInfo.passportexpirydate).ToString("yyyy-MM-dd");
                 txtissueplaceCity.Value = profileInfo.passportissuecity;
                 if (profileInfo.alternativeproofdobId != null)
                 {

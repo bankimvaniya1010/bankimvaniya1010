@@ -86,10 +86,8 @@
 
                             <!-- User dropdown -->
                             <li class="nav-item dropdown ml-1 ml-md-3">
-                                <a class="nav-link dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">                                     
-                                    <h3>
-                                         <asp:Label ID="lblusername" runat="server"></asp:Label>
-                                    </h3>
+                                <a class="nav-link dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">                                    
+                                    <h3> <asp:Label ID="lblusername" runat="server"></asp:Label> </h3></a>  
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="login.aspx">
                                         <i class="material-icons">lock</i> Logout
@@ -152,7 +150,7 @@
                                             </li>
                                             <li class="sidebar-menu-item" id="preliminaryquestion">
                                                 <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
-                                                    <span class="sidebar-menu-text">Ouick Test</span>
+                                                    <span class="sidebar-menu-text">Quick Test</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantdeclaration">

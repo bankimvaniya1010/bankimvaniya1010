@@ -380,7 +380,7 @@
                 $("#<%=ddlRelationship.ClientID%>").val("0");
                 $("#<%=txtEmail.ClientID%>").val("");
                 $("#<%=txtlinkedin.ClientID%>").val("");
-                $("#<%=employment.ClientID%>").hide();
+               // $("#<%=employment.ClientID%>").hide();
                 $("#<%=hdnemployer.ClientID%>").val("");
                 $("#<%=fieldContainer.ClientID%>").hide();
                 $("#<%=lblSaveTime.ClientID%>").hide();
@@ -388,6 +388,8 @@
 
             if ($("#<%=employment.ClientID%>").is(':hidden'))
                 $("#<%=employment.ClientID%>").show();
+            else
+                 $("#<%=employment.ClientID%>").hide();
         }
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');

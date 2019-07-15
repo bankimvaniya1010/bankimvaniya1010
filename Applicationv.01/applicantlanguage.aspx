@@ -311,7 +311,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicantworkexperience.aspx" class="btn btn-success" style="margin-right: 10px;">Work Experience</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()"/>
+                                        <asp:Button ID="btnlanguagecompetency" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnlanguagecompetency_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
@@ -346,7 +346,8 @@
 
             else {
                 var flag1 = true;
-                if (!$("#<%=EnglishBackground.ClientID%>").is(':hidden') && $("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked')) {
+                if (!$("#<%=EnglishBackground.ClientID%>").is(':hidden') && ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked')))
+                {
                     if (!$("#<%=Language.ClientID%>").is(':hidden') && $("#<%=ddlLanguage.ClientID%>").val() === "0") {
                         alert("Please Select Country");
                         flag1 = false;
@@ -380,16 +381,16 @@
                         alert("Please Select Grade Type");
                         flag1 = false;
                     }
-                    else if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') && !$("#<%=gradeachieved.ClientID%>").is(':hidden') && (!$("#<%=rblYes.ClientID%>").is(':checked') || !$("#<%=rblYetToConduct.ClientID%>").is(':checked') || !$("#<%=rblNot.ClientID%>").is(':checked'))) {
+                    else if ($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') && !$("#<%=gradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblYes.ClientID%>").is(':checked') || $("#<%=rblYetToConduct.ClientID%>").is(':checked') || $("#<%=rblNot.ClientID%>").is(':checked'))) {
                         alert("Please Select Final Grade Achieved");
                         flag1 = false;
                     }
 
-                    else if ($("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked') && !$("#<%=ExpectedDategrade.ClientID%>").is(':hidden') && $("#<%=ExpectedDategrade.ClientID%>").val() == "") {
+                    else if ($("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked') && !$("#<%=ExpectedDategrade.ClientID%>").is(':hidden') && $("#<%=txtExpectedDategrade.ClientID%>").val() == "") {
                         alert("Please Enter Expected Date When Result Will Be Declared");
                         flag1 = false;
                     }
-                    
+                     
                 }
 
                 if (flag1) {
@@ -440,21 +441,18 @@
                                 flag2 = false;
                             }
                         }
-
+                        if (flag2) {
+                            if (!$("#<%=CEFR.ClientID%>").is(':hidden') && $("#<%=ddlCEFR.ClientID%>").val() === "0")
+                                alert("Please Select CEFR Test");
+                            else if (!$("#<%=testRefno.ClientID%>").is(':hidden') && $("#<%=txttestRefno.ClientID%>").val() == "")
+                                alert("Please Enter Test Refference Number");
+                            else
+                                flag = true;
+                        }
                     }
-                    if (flag2) {
-                        if (!$("#<%=CEFR.ClientID%>").is(':hidden') && $("#<%=ddlCEFR.ClientID%>").val() === "0")
-                            alert("Please Select CEFR Test");
-
-                        else if (!$("#<%=testRefno.ClientID%>").is(':hidden') && $("#<%=txttestRefno.ClientID%>").val() == "")
-                            alert("Please Enter Test Refference Number");
-                    }
-
-                    else
-                        flag = true;
-                }
+                 }
             }
-
+           
            if (flag == true)
                 flag = customcontrolValidation();
             return flag;
@@ -506,16 +504,20 @@
                 $("#<%=BackgroundfieldContainer.ClientID%>").show();
                 $("#<%=gradeachieved.ClientID%>").show();
             }
-            else {
-                $("#<%=BackgroundfieldContainer.ClientID%>").hide();
+            else 
                 $("#<%=gradeachieved.ClientID%>").hide();
-            }
+            
 
              if ($("#<%=rblEnglishBackgroundNo.ClientID%>").is(":checked")) {
                     $("#<%=BackgroundfieldContainer.ClientID%>").hide();
                     $("#<%=ExpectedDategrade.ClientID%>").hide();
                     $("#<%=gradeachieved.ClientID%>").hide();
-                 }
+            }
+
+            if ($("#<%=rblLanguageielts.ClientID%>").is(":checked") || $("#<%=rblLanguagepearsons.ClientID%>").is(":checked") || $("#<%=rblLanguagtofel.ClientID%>").is(":checked"))
+                $("#<%=TestfieldContainer.ClientID%>").show();
+            else
+                $("#<%=TestfieldContainer.ClientID%>").hide();
         });
 
         $(function () {
