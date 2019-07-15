@@ -347,7 +347,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
                 objCom.SetStudentDetailsCompletedStatus(userID, universityID);
             lblMessage.Text = "Your Contact Details have been saved";
-            lblMessage.Visible = true;
+//            lblMessage.Visible = true;
         }
         catch (Exception ex)
         {

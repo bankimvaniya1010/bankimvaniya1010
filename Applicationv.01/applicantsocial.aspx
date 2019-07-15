@@ -31,7 +31,7 @@
                                         <div class="col-md-6">
                                             <input id="txtLinkedin" runat="server" type="text" class="form-control" placeholder="Link to your LinkedIn profile ">
                                             <asp:CheckBox ID="chkLinkeIn" runat="server" Text="Does Not Have LinkedIn Account" />
-                                            <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                         <div class="col-md-6">
                                             <input id="txtFacebook" runat="server" type="text" class="form-control" placeholder="Link to your Facebook profile ">
                                             <asp:CheckBox ID="ChkFacebook" runat="server" Text="Does Not Have Facebook Account" />
-                                            <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         <div class="col-md-6">
                                             <input id="txtTwitter" runat="server" type="text" class="form-control" placeholder="Link to your twitter handle ">
                                             <asp:CheckBox ID="chkTwitter" runat="server" Text="Does Not Have Twitter Account" />
-                                            <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                         <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
-                                            <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
+                                            <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -134,38 +134,56 @@
 
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
-            $("#<%=chkLinkeIn.ClientID%>").change(function () {
-                if ($(this).is(":checked")) {
-                    $("#<%=txtLinkedin.ClientID%>").val("");
-                    $("#<%=txtLinkedin.ClientID%>").attr("disabled", "disabled");
-                }
-                else
-                    $("#<%=txtLinkedin.ClientID%>").removeAttr("disabled");
-            });
 
-            $("#<%=ChkFacebook.ClientID%>").change(function () {
-                if ($(this).is(":checked")) {
-                    $("#<%=txtFacebook.ClientID%>").val("");
-                    $("#<%=txtFacebook.ClientID%>").attr("disabled", "disabled");
-                }
-                else
-                    $("#<%=txtFacebook.ClientID%>").removeAttr("disabled");
-            });
-
-            $("#<%=chkTwitter.ClientID%>").change(function () {
-                if ($(this).is(":checked")) {
-                    $("#<%=txtTwitter.ClientID%>").val("");
-                    $("#<%=txtTwitter.ClientID%>").attr("disabled", "disabled");
-                }
-                else
-                    $("#<%=txtTwitter.ClientID%>").removeAttr("disabled");
-            });
+            if ($("#<%=chkLinkeIn.ClientID%>").is(":checked"))
+                $("#<%=txtLinkedin.ClientID%>").attr("disabled", "disabled");
+            else
+                $("#<%=txtLinkedin.ClientID%>").removeAttr("disabled");
+        
+            if ($("#<%=ChkFacebook.ClientID%>").is(":checked"))
+                $("#<%=txtFacebook.ClientID%>").attr("disabled", "disabled");
+            else
+                $("#<%=txtFacebook.ClientID%>").removeAttr("disabled");
+        
+            if ($("#<%=chkTwitter.ClientID%>").is(":checked"))
+                $("#<%=txtTwitter.ClientID%>").attr("disabled", "disabled");
+            else
+                $("#<%=txtTwitter.ClientID%>").removeAttr("disabled");
+        
         });
+
+         $("#<%=chkLinkeIn.ClientID%>").change(function () {
+            if ($(this).is(":checked")) {
+                $("#<%=txtLinkedin.ClientID%>").val("");
+                $("#<%=txtLinkedin.ClientID%>").attr("disabled", "disabled");
+            }
+            else
+                $("#<%=txtLinkedin.ClientID%>").removeAttr("disabled");
+        });
+
+        $("#<%=ChkFacebook.ClientID%>").change(function () {
+            if ($(this).is(":checked")) {
+                $("#<%=txtFacebook.ClientID%>").val("");
+                $("#<%=txtFacebook.ClientID%>").attr("disabled", "disabled");
+            }
+            else
+                $("#<%=txtFacebook.ClientID%>").removeAttr("disabled");
+        });
+
+        $("#<%=chkTwitter.ClientID%>").change(function () {
+            if ($(this).is(":checked")) {
+                $("#<%=txtTwitter.ClientID%>").val("");
+                $("#<%=txtTwitter.ClientID%>").attr("disabled", "disabled");
+            }
+            else
+                $("#<%=txtTwitter.ClientID%>").removeAttr("disabled");
+        });
+
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#personal_menu_list').addClass('open');

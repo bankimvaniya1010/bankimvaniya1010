@@ -5,7 +5,7 @@
     <script>
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
@@ -99,7 +99,7 @@
 
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].name %></span>
-                                        <span class="helpicon"><i id="<%="icName" + k %>" class="fa fa-question-circle" data-tipso="<%=NameTooltips %>" style='<%= NameTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
+                                        <span class="helpicon"><i id="<%="icName" + k %>" class="fa fa-info-circle" data-tipso="<%=NameTooltips %>" style='<%= NameTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
                                     <div class="col-md-4">
                                         <input id="<%="txtName" + k %>" type="text" placeholder="Name" value="" class="form-control">
@@ -114,7 +114,7 @@
 
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].mobile %></span>
-                                        <span class="helpicon"><i id="<%="icMobile" + k %>" class="fa fa-question-circle" data-tipso="<%=MobileTooltips %>" style='<%= MobileTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
+                                        <span class="helpicon"><i id="<%="icMobile" + k %>" class="fa fa-info-circle" data-tipso="<%=MobileTooltips %>" style='<%= MobileTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
                                     <div class="col-md-4">
                                         <input id="<%="txtmobile" + k %>" type="text" placeholder="Name" value="" class="form-control">
@@ -129,7 +129,7 @@
 
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].email %></span>
-                                        <span class="helpicon"><i id="<%="icEmail" + k %>" class="fa fa-question-circle" data-tipso="<%=EmailTooltips %>" style='<%= EmailTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
+                                        <span class="helpicon"><i id="<%="icEmail" + k %>" class="fa fa-info-circle" data-tipso="<%=EmailTooltips %>" style='<%= EmailTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
                                     <div class="col-md-4">
                                         <input id="<%="txtEmail" + k %>" type="text" placeholder="Name" value="" class="form-control">

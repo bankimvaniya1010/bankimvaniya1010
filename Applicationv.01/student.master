@@ -35,6 +35,7 @@
     <link type="text/css" href="assets/css/app.css" rel="stylesheet">
     <link type="text/css" href="assets/css/app.rtl.css" rel="stylesheet">
     <link type="text/css" href="assets/css/intlTelInput.css" rel="stylesheet">
+    <script src="//code.jivosite.com/widget.js" jv-id="<%=System.Configuration.ConfigurationManager.AppSettings["JivoChatID"].ToString() %>" async></script>
 </head>
 
 <body class=" layout-fluid">
@@ -90,12 +91,6 @@
                                          <asp:Label ID="lblusername" runat="server"></asp:Label>
                                     </h3>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="student-account-edit.html">
-                                        <i class="material-icons">edit</i> Edit Account
-                                    </a>
-                                    <a class="dropdown-item" href="student-profile.html">
-                                        <i class="material-icons">person</i> Public Profile
-                                    </a>
                                     <a class="dropdown-item" href="login.aspx">
                                         <i class="material-icons">lock</i> Logout
                                     </a>
@@ -222,11 +217,11 @@
                                                     <span class="sidebar-menu-text">Review & Verify</span>
                                                 </a>
                                             </li>
-                                              <li class="sidebar-menu-item" id="employerinfo">
+                                             <%-- <li class="sidebar-menu-item" id="employerinfo">
                                                 <a class="sidebar-menu-button" href="employerinfo.aspx">
                                                     <span class="sidebar-menu-text">Employer's Information</span>
                                                 </a>
-                                            </li>
+                                            </li>--%>
                                          <%-- <li class="sidebar-menu-item">
                                                 <a class="sidebar-menu-button" href="sponsor.aspx">
                                                     <span class="sidebar-menu-text">Sponsor's Detail</span>
@@ -353,7 +348,7 @@
                                         </ul>
                                     </li>
                                 </ul>
-                                <div class="sidebar-heading">Student</div>
+                                <div class="sidebar-heading" style="display:none">Student</div>
                                 <ul class="sidebar-menu sm-active-button-bg" id="student_list">
                                     <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button" href="student-browse-courses.html">
@@ -437,7 +432,7 @@
                                     </li>
                                 </ul>
                                 <!-- Components menu -->
-                                <div class="sidebar-heading">Components</div>
+                                <div class="sidebar-heading" style="display:none">Components</div>
                                 <ul class="sidebar-menu" id="components_list">
                                     <li class="sidebar-menu-item">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#components_menu">
@@ -650,9 +645,9 @@
                 $("#clarification_question_list").show();
                 $("#upload_document_list").show();
                 $("#Gte_list").show();
-                $("#message_menu_list").show();
-                $("#student_list").show();
-                $("#components_list").show();
+                $("#message_menu_list").hide();
+                $("#student_list").hide();
+                $("#components_list").hide();
                 $("#preliminary_list").hide();
 
                 if (!studentDetailsCompleted)

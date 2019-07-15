@@ -95,7 +95,7 @@
                                             <div class="col-md-6">
                                                 <asp:RadioButton ID="rblEmploymentYes" runat="server" GroupName="Employment" Text="Yes" />
                                                 <asp:RadioButton ID="rblEmploymentNo" runat="server" GroupName="Employment" Text="No" />
-                                                <span class="helpicon"><i id="icemploymentInfo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icemploymentInfo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +108,7 @@
                                                 <label id="labelemployer" runat="server" for="employer" class="col-md-3 col-form-label form-label">Name of Organization </label>
                                                 <div class="col-md-6">
                                                     <input id="txtEmployer" runat="server" type="text" class="form-control" placeholder="Name of Organization ">
-                                                    <span class="helpicon"><i id="icemployer" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <span class="helpicon"><i id="icemployer" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                                 <div class="col-md-6">
                                                     <input id="txtemployerwebsite" runat="server" type="text" class="form-control" placeholder="Website" />
                                                     <asp:CheckBox ID="chkWebsite" runat="server" Text="Does Not Have Website" />
-                                                    <span class="helpicon"><i id="icemployerwebsite" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <span class="helpicon"><i id="icemployerwebsite" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                             <div class="form-row">
                                                 <label id="labelemployercity" runat="server" for="employercity" class="col-md-3 col-form-label form-label">City</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtCity" runat="server" type="text" class="form-control" placeholder="City "><span class="helpicon"><i id="icemployercity" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtCity" runat="server" type="text" class="form-control" placeholder="City "><span class="helpicon"><i id="icemployercity" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +141,7 @@
                                                 <label id="labelemployercountry" runat="server" for="employercountry" class="col-md-3 col-form-label form-label">Country</label>
                                                 <div class="col-md-6">
                                                     <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control">
-                                                    </asp:DropDownList><span class="helpicon"><i id="icemployercountry" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    </asp:DropDownList><span class="helpicon"><i id="icemployercountry" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -151,7 +151,7 @@
                                             <div class="form-row">
                                                 <label id="labelposition" runat="server" for="position" class="col-md-3 col-form-label form-label">Position/Role in</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtPosition" runat="server" type="text" class="form-control" placeholder="Designation/Position"><span class="helpicon"><i id="icposition" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtPosition" runat="server" type="text" class="form-control" placeholder="Designation/Position"><span class="helpicon"><i id="icposition" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,7 +162,7 @@
                                             <div class="form-row">
                                                 <label id="labelstartdate" runat="server" for="startdate" class="col-md-3 col-form-label form-label">Start Date</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icstartdate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icstartdate" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -172,7 +172,7 @@
                                             <div class="form-row">
                                                 <label id="labelendate" runat="server" for="endate" class="col-md-3 col-form-label form-label">End Date</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtEndate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icenddate" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtEndate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icenddate" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,7 +182,7 @@
                                             <div class="form-row">
                                                 <label id="labelbriefDescription" runat="server" for="briefDescription" class="col-md-3 col-form-label form-label">Brief Description of what you did</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtbriefDescription" runat="server" type="text" class="form-control" placeholder="Brief Description of what you did"><span class="helpicon"><i id="icbriefDescription" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtbriefDescription" runat="server" type="text" class="form-control" placeholder="Brief Description of what you did"><span class="helpicon"><i id="icbriefDescription" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,7 +192,7 @@
                                             <div class="form-row">
                                                 <label id="labelreportingmanger" runat="server" for="reportingmanger" class="col-md-3 col-form-label form-label">Name of your reporting Manager</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtreportingmanger" runat="server" type="text" class="form-control" placeholder="Name of your reporting Manager"><span class="helpicon"><i id="icreportingmanger" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtreportingmanger" runat="server" type="text" class="form-control" placeholder="Name of your reporting Manager"><span class="helpicon"><i id="icreportingmanger" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -202,7 +202,7 @@
                                             <div class="form-row">
                                                 <label id="labelemploymentverification" runat="server" for="employmentverification" class="col-md-3 col-form-label form-label">Name of Contact who can verify your employment </label>
                                                 <div class="col-md-6">
-                                                    <input id="txtemploymentverification" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify your employment "><span class="helpicon"><i id="icemploymentverification" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtemploymentverification" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify your employment "><span class="helpicon"><i id="icemploymentverification" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -213,7 +213,7 @@
                                                 <label id="labelrelationship" runat="server" for="relationship" class="col-md-3 col-form-label form-label">Relationship with the Contact  </label>
                                                 <div class="col-md-6">
                                                     <asp:DropDownList ID="ddlRelationship" runat="server" CssClass="form-control">
-                                                    </asp:DropDownList><span class="helpicon"><i id="icrelationship" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    </asp:DropDownList><span class="helpicon"><i id="icrelationship" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -223,7 +223,7 @@
                                             <div class="form-row">
                                                 <label id="labelemail" runat="server" for="email" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
                                                 <div class="col-md-6">
-                                                    <input id="txtEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment"><span class="helpicon"><i id="icemail" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment"><span class="helpicon"><i id="icemail" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -233,7 +233,7 @@
                                             <div class="form-row">
                                                 <label id="labellinkedin" runat="server" for="linkedin" class="col-md-3 col-form-label form-label">LinkedIn Profile Link of the contact  </label>
                                                 <div class="col-md-6">
-                                                    <input id="txtlinkedin" runat="server" type="text" class="form-control" placeholder="LinkedIn Profile Link of the contact"><span class="helpicon"><i id="iclinkedin" runat="server" class="fa fa-question-circle" style="display: none"></i></span>
+                                                    <input id="txtlinkedin" runat="server" type="text" class="form-control" placeholder="LinkedIn Profile Link of the contact"><span class="helpicon"><i id="iclinkedin" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -247,7 +247,7 @@
                                             <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
                                             <div class="col-md-6">
                                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
-                                                <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
+                                                <asp:Label ID="lblSaveTime" runat="server"  Visible="false"></asp:Label>
                                             </div>
                                         </div>
                                     </div>
@@ -315,7 +315,7 @@
 
         $(document).ready(function () {
           
-              $('.fa-question-circle').tipso({
+              $('.fa-info-circle').tipso({
 				position: 'right',
 				background: 'rgba(0,0,0,0.8)',
 				useTitle: false,
