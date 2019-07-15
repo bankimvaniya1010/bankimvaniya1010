@@ -251,17 +251,18 @@ public partial class personaldetails : System.Web.UI.Page
                     rbtnFemale.Checked = true;
                 if (profileInfo.nationality != null)
                 {
-                    string appendText = "";
+                    string appendText = "_False";
+                    var addDualCitizenshipText = db.countriesmaster.Where(x => x.id == profileInfo.nationality.Value).Select(x => x.dual_citizenship_allowed).FirstOrDefault();
+                    if (addDualCitizenshipText)
+                        appendText = "_True";
                     if (profileInfo.hasdualcitizenship.HasValue && profileInfo.hasdualcitizenship.Value)
                     {
-                        appendText = "_True";
                         rblNationalityYes.Checked = true;
                         dualNationality.Visible = true;
                         dualNationality.Style.Remove("display");
                     }
                     else
                     {
-                        appendText = "_False";
                         if(profileInfo.hasdualcitizenship.HasValue)
                             rblNationalityNo.Checked = false;
                     }
