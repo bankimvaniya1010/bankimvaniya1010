@@ -23,7 +23,7 @@ public partial class admin_gtetutorialmaster : System.Web.UI.Page
     {
         try
         {
-            var QuestionList = (from q in db.gte_tutorialmaster
+            var TutorialList = (from q in db.gte_tutorialmaster
                                 join um in db.university_master
                                 on q.universityid equals um.universityid
 
@@ -36,9 +36,9 @@ public partial class admin_gtetutorialmaster : System.Web.UI.Page
                                     type = q.type,
                                     UniversityName = um.university_name
                                 }).ToList();
-            if (QuestionList != null)
+            if (TutorialList != null)
             {
-                QuestiontGridView.DataSource = QuestionList;
+                QuestiontGridView.DataSource = TutorialList;
                 QuestiontGridView.DataBind();
             }
 
