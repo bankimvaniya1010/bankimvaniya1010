@@ -22,7 +22,7 @@
                             <asp:Panel ID="options" runat="server">
                                 <div class="card-header">
                                     <div style="display: none;">
-                                        <asp:Label ID="lblno" runat="server" Text='<%# Eval("preliminaryid") %>'></asp:Label>
+                                        <asp:Label ID="lblno" runat="server" Text='<%# Eval("gte_preliminaryid") %>'></asp:Label>
                                     </div>
                                     <div class="media align-items-center">
 
@@ -47,16 +47,16 @@
                                         </div>--%>
 
                                     <div class="form-group">
-                                        <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("Answer1") %>' />
+                                        <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("answer1") %>' />
                                     </div>
                                     <div class="form-group">
-                                        <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("Answer2") %>' />
+                                        <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("answer2") %>' />
                                     </div>
                                     <div class="form-group">
-                                        <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("Answer3") %>' />
+                                        <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("answer3") %>' />
                                     </div>
                                     <div class="form-group">
-                                        <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("Answer4") %>' />
+                                        <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("answer4") %>' />
                                     </div>
 
                                 </div>

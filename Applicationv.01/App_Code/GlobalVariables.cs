@@ -12,11 +12,15 @@ public sealed class GlobalVariables
         //
     }
 
+    public static bool isGteDeclarationDoneByApplicant;
     public static bool isDeclarationDoneByApplicant;
     public static bool isProfileDetailsCompletedByApplicant;
 
     public static int universityMaxAge;
     public static int universityMinAge;
+
+    public static bool isGteSubscribed;
+    public static bool isDeclarationCompleted;
 
     public static int GetHighSchoolSecondaryAllowedGap
     {

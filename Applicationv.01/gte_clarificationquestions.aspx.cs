@@ -10,7 +10,6 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     int UserID = 0;
     public static int QuestionsCount = 0;
     private GTEEntities db = new GTEEntities();
-    Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
@@ -20,17 +19,21 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         UserID = objUser.studentid;
-
-        // TODO: Uncomment else if block after adding gteQuestionAnswered Flag in gte_question part 2.
+        if (!GlobalVariables.isGteDeclarationDoneByApplicant)
+            Response.Redirect(webURL + "default.aspx", true);
 
         if (!IsPostBack)
         {
-            var gteQuestionsAnswered = db.gte_progressbar.Where(x => x.applicant_id == UserID).Select(x => x.is_gte_question_completed).FirstOrDefault();
-            if (!gteQuestionsAnswered.Value) // Condition for checking gte Questions flag
-                displayLabel("GTE Question Part 2 not completed. Please answer all GTE Questions before completing this section.");
+            var gteQuestionPart2Count = db.gte_question_master_part2.Count();
+            var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+
+            if (applicant_response == null)
+                Response.Redirect("default.aspx", true);
+
+            if (applicant_response.Count != gteQuestionPart2Count) // Condition for checking gte Questions Part 2 completed
+                displayLabel("GTE Question Part 2 not completed. Please answer all GTE Questions part 2 before attempting this section.");
             else
             {
-                var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
 
                 foreach (var item in applicant_response)

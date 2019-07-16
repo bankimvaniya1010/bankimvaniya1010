@@ -166,6 +166,9 @@
         <AssociationConnector Association="GTEModel.FK_clarification_gte_master_part2" />
         <EntityTypeShape EntityType="GTEModel.gte_clarification_applicantresponse" Width="1.5" PointX="33.875" PointY="17.625" />
         <AssociationConnector Association="GTEModel.FK_response_clarification_questionmaster" />
+        <EntityTypeShape EntityType="GTEModel.gte_preliminaryapplicantanswers" Width="1.5" PointX="31.375" PointY="0.75" />
+        <AssociationConnector Association="GTEModel.FK_response_clarification_questionmaster" />
+        <AssociationConnector Association="GTEModel.FK_clarification_gte_master_part2" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

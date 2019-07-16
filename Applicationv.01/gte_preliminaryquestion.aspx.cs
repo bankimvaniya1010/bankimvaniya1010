@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,7 +28,6 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         }
     }
 
-
     public List<T> Randomize<T>(List<T> list)
     {
         List<T> randomizedList = new List<T>();
@@ -44,36 +44,9 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     {
         try
         {
-            var QuestionsList = (from um in db.university_master
-                                 join pqm in db.preliminary_questionmaster on um.universityid equals pqm.universityid
-                                 into combined
-                                 from x in combined.DefaultIfEmpty()
-                                 where x.universityid == UniversityID
-                                 select new
-                                 {
-                                     preliminaryid = x.preliminaryid,
-                                     question = x.question,
-                                     answer1 = x.answer1,
-                                     answer2 = x.answer2,
-                                     answer3 = x.answer3,
-                                     answer4 = x.answer4,
-                                 }).ToList();
-            if (QuestionsList.Count == 0)
-            {
-                QuestionsList = (from pqm in db.preliminary_questionmaster
-                                 select new
-                                 {
-                                     preliminaryid = pqm.preliminaryid,
-                                     question = pqm.question,
-                                     answer1 = pqm.answer1,
-                                     answer2 = pqm.answer2,
-                                     answer3 = pqm.answer3,
-                                     answer4 = pqm.answer4,
-                                 }).ToList();
-            }
+            var QuestionsList = db.gte_preliminary_questionmaster.ToList();
             QuestionsCount = QuestionsList.Count;
             QuestionsList = Randomize(QuestionsList);
-            QuestionsList = QuestionsList.Skip(0).Take(5).ToList();
             Session["Questions"] = QuestionsList;
             questionList.DataSource = QuestionsList;
             questionList.DataBind();
@@ -82,11 +55,36 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         { objLog.WriteLog(ex.ToString()); }
     }
 
-
     protected void btnsubmit_Click(object sender, EventArgs e)
     {
         try
         {
+            Hashtable answer = new Hashtable();
+            foreach (DataListItem item in questionList.Items)
+            {
+                string SelectedValue = "";
+                Label questionID = (Label)item.FindControl("lblno");
+                //  Label lblquestion = (Label)item.FindControl("lblquestion");
+                Label lblQuestion = (Label)item.FindControl("lblQuestion");
+                //Label Label1 = e.Item.FindControl("lblPrimary") as Label;
+                RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
+                RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
+                RadioButton rdAnswer3 = (RadioButton)item.FindControl("rdoans3");
+                RadioButton rdAnswer4 = (RadioButton)item.FindControl("rdoans4");
+                RadioButton rdStrongDisAgree = (RadioButton)item.FindControl("rdoans5");
+
+                if (rdAnswer1.Checked)
+                    SelectedValue = "answer1";
+                if (rdAnswer2.Checked)
+                    SelectedValue = "answer2";
+                if (rdAnswer3.Checked)
+                    SelectedValue = "answer3";
+                if (rdAnswer4.Checked)
+                    SelectedValue = "answer4";
+
+                answer.Add(questionID.Text, SelectedValue);
+            }
+
             var mode = "update";
             var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
             if (gteProgressBar == null)
@@ -101,7 +99,29 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 db.gte_progressbar.Add(gteProgressBar);
             db.SaveChanges();
 
+            Save(answer);
             Response.Redirect(webURL + "gte_declaration.aspx", true);
+        }
+        catch (Exception ex)
+        { objLog.WriteLog(ex.ToString()); }
+    }
+
+    private void Save(Hashtable UserValues)
+    {
+        try
+        {
+            ICollection key = UserValues.Keys;
+            gte_preliminaryapplicantanswers objAnswer = new gte_preliminaryapplicantanswers();
+            foreach (var val in key)
+            {
+                int answerID = Convert.ToInt32(val);
+                objAnswer.answer = UserValues[val].ToString();
+                objAnswer.applicantid = UserID;
+                objAnswer.gte_preliminary_question_id = answerID;
+                objAnswer.answersubmittedtime = DateTime.Now;
+                db.gte_preliminaryapplicantanswers.Add(objAnswer);
+                db.SaveChanges();
+            }
         }
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }

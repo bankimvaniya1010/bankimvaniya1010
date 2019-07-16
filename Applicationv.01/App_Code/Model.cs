@@ -887,9 +887,9 @@ public partial class gte_clarification_questionmaster
     public string clarification_question { get; set; }
     public Nullable<bool> display_condition { get; set; }
 
-    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
 }
 
 public partial class GTE_documentverification
@@ -913,6 +913,15 @@ public partial class gte_preliminary_questionmaster
     public string answer4 { get; set; }
     public string correctanswer { get; set; }
     public Nullable<int> status { get; set; }
+}
+
+public partial class gte_preliminaryapplicantanswers
+{
+    public long id { get; set; }
+    public int applicantid { get; set; }
+    public int gte_preliminary_question_id { get; set; }
+    public string answer { get; set; }
+    public System.DateTime answersubmittedtime { get; set; }
 }
 
 public partial class gte_progressbar

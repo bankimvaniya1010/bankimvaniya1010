@@ -73,7 +73,7 @@
             for (var i = 0; i < questionCount; i++) {
                 var txtBox = $("#ContentPlaceHolder1_clarificationList_txtResponse_" + i);
 
-                if (!(txtBox.val() == "")) {
+                if (txtBox.val() == "") {
                     alert("Please select one option for question no: " + (i + 1));
                     return false;
                 }

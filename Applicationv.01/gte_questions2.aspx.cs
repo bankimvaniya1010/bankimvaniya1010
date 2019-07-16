@@ -149,7 +149,6 @@ public partial class gte_questions2 : System.Web.UI.Page
             }
             else
             {
-                // TODO: Need to add gte questions completed flag in gte_progressbar
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
