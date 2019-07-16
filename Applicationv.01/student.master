@@ -639,7 +639,7 @@
                 $("#personal_menu_list").show();
                 $("#clarification_question_list").show();
                 $("#upload_document_list").show();
-                $("#Gte_list").show();
+                $("#Gte_list").hide();
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
                 $("#components_list").hide();
