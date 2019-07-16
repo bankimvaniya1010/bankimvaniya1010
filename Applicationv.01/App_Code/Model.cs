@@ -903,10 +903,22 @@ public partial class GTE_documentverification
     public string remarks { get; set; }
 }
 
+public partial class gte_preliminary_questionmaster
+{
+    public int gte_preliminaryid { get; set; }
+    public string question { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string answer3 { get; set; }
+    public string answer4 { get; set; }
+    public string correctanswer { get; set; }
+    public Nullable<int> status { get; set; }
+}
+
 public partial class gte_progressbar
 {
     public int id { get; set; }
-    public int applicant_id { get; set; }
+    public int applicantid { get; set; }
     public Nullable<bool> is_gte_tutorial_completed { get; set; }
     public Nullable<bool> is_gte_question_completed { get; set; }
     public Nullable<bool> is_gte_declaration_completed { get; set; }
@@ -982,6 +994,7 @@ public partial class gte_tutorialmaster
     public string title { get; set; }
     public Nullable<int> status { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class inferencemaster
