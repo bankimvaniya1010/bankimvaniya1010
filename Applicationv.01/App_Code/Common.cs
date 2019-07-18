@@ -1239,6 +1239,26 @@ public class Common
         }
     }
 
+    public void IsGteDeclarationDoneByApplicant(int applicantId)
+    {
+        try
+        {
+            var applicantGteProgressInfo = db.gte_progressbar.Where(x => x.applicantid == applicantId).FirstOrDefault();
+            if (applicantGteProgressInfo != null)
+            {
+                if (applicantGteProgressInfo.is_gte_declaration_completed.HasValue && applicantGteProgressInfo.is_gte_declaration_completed.Value)
+                    GlobalVariables.isGteDeclarationDoneByApplicant = true;
+                else
+                    GlobalVariables.isGteDeclarationDoneByApplicant = false;
+            }
+
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+    }
+
     public void SetStudentDetailsCompletedStatus(int applicantId, int universityID)
     {
         try

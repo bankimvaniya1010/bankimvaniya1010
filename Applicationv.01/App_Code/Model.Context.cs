@@ -133,6 +133,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_tutorialmaster> gte_tutorialmaster { get; set; }
     public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
     public virtual DbSet<gte_progressbar> gte_progressbar { get; set; }
+    public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+    public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
+    public virtual DbSet<gte_preliminaryapplicantanswers> gte_preliminaryapplicantanswers { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
