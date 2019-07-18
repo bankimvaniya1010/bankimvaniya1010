@@ -61,7 +61,7 @@
                         <label  style="font-size:small;">I have Read and fully Understood the information contained in the  document and video above</label>
                         <div class="media align-items-center">  
                             <div class="form-row" style="align-content:center">
-                                <a href="preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
+                                <a href="gte_preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,13 @@
                  $('#video-modal').remove();
         });
         }
-        
+
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtetutorial').addClass('active');
+        });
     </script>
 
 </asp:Content>

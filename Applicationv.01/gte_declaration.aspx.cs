@@ -26,7 +26,7 @@ public partial class gte_declaration : System.Web.UI.Page
         {
             gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
             if (gteProgressBar != null)
-                questionsCompleted = gteProgressBar.is_gte_question_completed;
+                questionsCompleted = gteProgressBar.is_gte_question_completed.Value;
         }
     }
 
@@ -49,7 +49,7 @@ public partial class gte_declaration : System.Web.UI.Page
             db.SaveChanges();
 
             GlobalVariables.isGteDeclarationDoneByApplicant = true;
-            Response.Redirect(webURL + "default.aspx", true);
+            Response.Redirect(webURL + "gte_questions1.aspx", true);
         }
         catch (Exception ex)
         {

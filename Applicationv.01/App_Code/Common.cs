@@ -1251,7 +1251,7 @@ public class Common
                 else
                     GlobalVariables.isGteDeclarationDoneByApplicant = false;
             }
-
+            
         }
         catch (Exception ex)
         {

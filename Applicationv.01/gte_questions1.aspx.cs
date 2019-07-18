@@ -36,12 +36,17 @@ public partial class gte_questions1 : System.Web.UI.Page
             }
             else
             {
-                var applicantdetails = db.applicantdetails.Where(x => x.universityid == UniversityID && x.applicantid == UserID).FirstOrDefault();
+                var applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
 
-                ViewState["nationality"] = objCommon.GetCountryDiscription(applicantdetails.nationality.Value);
+                if(applicantdetails.nationality.HasValue)
+                    ViewState["nationality"] = objCommon.GetCountryDiscription(applicantdetails.nationality.Value);
                 var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
-                ViewState["eduInstitution"] = institutionDetails.university_name;
-                ViewState["eduCity"] = institutionDetails.cityName;
+
+                if (institutionDetails != null) {
+                    ViewState["eduInstitution"] = institutionDetails.university_name;
+                    ViewState["eduCity"] = institutionDetails.cityName;
+
+                }
 
                 if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 1)
                 {
@@ -214,6 +219,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 db.SaveChanges();
                 allAnswers.RemoveAll(x => x.gte_question_id == questionId);
                 allQuestions.RemoveAll(x => x.id == questionId);
+                
             }
 
             if (allQuestions.Count > 0)

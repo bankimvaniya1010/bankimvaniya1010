@@ -81,13 +81,19 @@
         </div>
     </div>
     <script>
-        <%--var questionGiven = '<%=questionGiven%>';
-        
+        var questionsCompleted = '<%=questionsCompleted%>'.toLowerCase();
         function validate() {
-            if (questionGiven == 0) {
+            if (questionsCompleted == false) {
                 alert("Please first complete Quick Test");
             }
-            return !(questionGiven == 0);
-        }--%>
+            return !(questionsCompleted == false);
+        }
+
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtedeclaration').addClass('active');
+        });
     </script>
 </asp:Content>
