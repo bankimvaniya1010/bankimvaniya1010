@@ -100,6 +100,13 @@
             }
             return true;
         }
+
+         $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtepart1').addClass('active');
+        });
     </script>
 
 </asp:Content>
