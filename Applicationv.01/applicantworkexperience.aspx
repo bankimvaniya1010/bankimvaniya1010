@@ -292,6 +292,8 @@
                     alert("Please Select Start Date");
                 else if (!$("#<%=endate.ClientID%>").is(':hidden') && $("#<%=txtEndate.ClientID%>").val() == "")
                     alert("Please Select End Date");
+                 else if ($("#<%=txtStartDate.ClientID%>").val() != "" && $("#<%=txtEndate.ClientID%>").val() != "" && $("#<%=txtStartDate.ClientID%>").val() > $("#<%=txtEndate.ClientID%>").val())
+                    alert("Please Enter Valid end date");
                 else if (!$("#<%=briefDescription.ClientID%>").is(':hidden') && $("#<%=txtbriefDescription.ClientID%>").val() == "")
                     alert("Please Enter Discription Of What You Did");
                 else if (!$("#<%=reportingmanger.ClientID%>").is(':hidden') && $("#<%=txtreportingmanger.ClientID%>").val() == "")

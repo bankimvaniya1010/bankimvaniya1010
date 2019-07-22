@@ -193,6 +193,8 @@
                 alert("Please Enter Date Of Issue");
             else if (!$("#<%=expirydate.ClientID%>").is(':hidden') && $("#<%=txtexpirydate.ClientID%>").val() == "")
                 alert("Please Select Expiry Date");
+            else if ($("#<%=txtdateofissue.ClientID%>").val() != "" && $("#<%=txtexpirydate.ClientID%>").val() != "" && $("#<%=txtexpirydate.ClientID%>").val() < $("#<%=txtdateofissue.ClientID%>").val())
+                alert("Please enter Valid Expiry Date");
             else if (!$("#<%=countryIssue.ClientID%>").is(':hidden') && $("#<%=ddlCountryofIssue.ClientID%>").val() === "0")
                 alert("Please Select Country");
             else if (!$("#<%=issueplace.ClientID%>").is(':hidden') && $("#<%=txtissueplaceCity.ClientID%>").val() == "")
