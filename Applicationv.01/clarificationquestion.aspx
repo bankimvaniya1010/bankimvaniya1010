@@ -58,14 +58,15 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" Visible="false"/>                                          
                                         <div class="col-md-6">
+                                             <asp:Label ID="LabelMessage" runat="server" text=""></asp:Label>      
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                           
 
                         </div>
                     </div>

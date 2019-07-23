@@ -317,7 +317,7 @@ public partial class personaldetails : System.Web.UI.Page
                 }
                 if (profileInfo.isdisable == 1)
                     rblDisabilityYes.Checked = true;
-                else
+                else if(profileInfo.isdisable == 2)
                     rblDisabilityNo.Checked = true;
                 if (profileInfo.disabilitydescription != null)
                 {
@@ -326,7 +326,7 @@ public partial class personaldetails : System.Web.UI.Page
                 }
                 if (profileInfo.isstudentreferbyagent == 1)
                     rblAgentYes.Checked = true;
-                else
+                else if (profileInfo.isstudentreferbyagent == 0)
                     rblAgentNo.Checked = true;
                 if (profileInfo.agentid != null)
                 {

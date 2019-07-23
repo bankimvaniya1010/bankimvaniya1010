@@ -21,7 +21,7 @@ public partial class clarificationquestion : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-
+        var showButton = false;
         if (!GlobalVariables.isDeclarationDoneByApplicant)
             Response.Redirect(webURL + "default.aspx", true);
 
@@ -35,7 +35,7 @@ public partial class clarificationquestion : System.Web.UI.Page
             Age currentAge = null;
 
             if (questionsList != null)
-            {
+             {
                 foreach (var item in questionsList)
                 {
                     if (item.questiontype == "10_12_gap")
@@ -45,10 +45,11 @@ public partial class clarificationquestion : System.Web.UI.Page
                             if (applicantEduDetail.ishighschooldone.Value == 1 && applicantEduDetail.issecondarydone.Value == 1)
                                 monthGap1012 = monthDiff(Convert.ToDateTime(applicantEduDetail.highschoolendate), Convert.ToDateTime(applicantEduDetail.secondaryendate));
                         }
-                        if (monthGap1012 > GlobalVariables.GetHighSchoolSecondaryAllowedGap)
+                        if (monthGap1012 != 0 && monthGap1012 > GlobalVariables.GetHighSchoolSecondaryAllowedGap)
                         {
                             secondaryHighSchoolGap.Style.Remove("display");
                             txtSecondHighGapReason.Value = applicantEduDetail.highschoolsecondaryschoolgapreason;
+                            showButton = true;
                         }
                     }
                     else if (item.questiontype == "12_highereducation_gap")
@@ -58,10 +59,11 @@ public partial class clarificationquestion : System.Web.UI.Page
                             if (applicantHighEduDetail.startdate != null && applicantEduDetail.issecondarydone.Value == 1)
                                 higheredumonthGap12 = monthDiff(Convert.ToDateTime(applicantEduDetail.secondaryendate), Convert.ToDateTime(applicantHighEduDetail.startdate));
                         }
-                        if(higheredumonthGap12 > GlobalVariables.GetHigherEduSecondarySchoolAllowedGap)
+                        if (higheredumonthGap12 !=0 && higheredumonthGap12 > GlobalVariables.GetHigherEduSecondarySchoolAllowedGap)
                         {
                             highereduSecondarySchoolGap.Style.Remove("display");
                             txtHigherSecondaryGap.Value = applicantHighEduDetail.secondaryschoolhighereducationgapreason;
+                            showButton = true;
                         }
                     }
 
@@ -72,13 +74,18 @@ public partial class clarificationquestion : System.Web.UI.Page
                             if (applicantDetail.dateofbirth.HasValue && applicantDetail.dateofbirth.Value != null)
                                 currentAge = new Age(applicantDetail.dateofbirth.Value);
                         }
-                        if (currentAge.Years > GlobalVariables.GetAgeMotivationLimit)
+                        if (currentAge != null && currentAge.Years > GlobalVariables.GetAgeMotivationLimit)
                         {
                             motivationReason.Style.Remove("display");
                             txtMotivationReason.Value = applicantDetail.motivationreason;
+                            showButton = true;
                         }
                     }
                 }
+                if (showButton) 
+                    btn_login.Visible = true;                                    
+                else
+                    LabelMessage.Text = "No Clarification Question.";
             }
         }
     }
