@@ -443,6 +443,9 @@ public partial class applicantlanguagecompetency
     public string testreportreferenceno { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
     public bool islanguagecompetencypresent { get; set; }
+    public Nullable<int> testcentercountrty { get; set; }
+    public string registrationNo { get; set; }
+    public string testtakerId { get; set; }
 }
 
 public partial class applicantprogressbar
@@ -1270,6 +1273,7 @@ public partial class university_master
     public string getting_around { get; set; }
     public int acceptedmaxage { get; set; }
     public int acceptedminage { get; set; }
+    public bool full_service { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
