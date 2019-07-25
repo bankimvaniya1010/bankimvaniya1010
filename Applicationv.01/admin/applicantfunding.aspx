@@ -5,7 +5,7 @@
     <script>
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
@@ -36,7 +36,7 @@
                             <label id="label-Mobile" for="Mobile" class="col-md-3 col-form-label form-label">Would you study-n-live alone or would your family members come along </label>
                            <div class="col-md-4">
                                 <asp:Label ID="lblstudy" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icstudy" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icstudy" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtstudy" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -50,7 +50,7 @@
                             <label id="label-phone" for="phone" class="col-md-3 col-form-label form-label">No of Family members  </label>
                            <div class="col-md-4">
                                 <asp:Label ID="lblfamilymember" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icfamilymember" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icfamilymember" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtfamilymember" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -64,7 +64,7 @@
                             <label id="label-skype" for="skype" class="col-md-3 col-form-label form-label">Select the kind of accommodation you plan to have </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblaccommodation" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icaccommodation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icaccommodation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtaccommodation" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -81,7 +81,7 @@
                             </label>
                            <div class="col-md-4">
                                 <asp:Label ID="lblmanagemeal" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icmanagemeal" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icmanagemeal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtmanagemeal" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -95,7 +95,7 @@
                             <label id="label-whatsapp" for="whatsapp" class="col-md-3 col-form-label form-label">Select your preferred choice of transport in the city  </label>
                            <div class="col-md-4">
                                 <asp:Label ID="lbltransportchoice" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="ictransportchoice" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="ictransportchoice" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txttransportchoice" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -109,7 +109,7 @@
                             <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-3 col-form-label form-label">No of Trips you plan to take to your home country in a year</label>
                            <div class="col-md-4">
                                 <asp:Label ID="lblTrips" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icTrips" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icTrips" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtTrips" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -126,7 +126,7 @@
                             </label>
                           <div class="col-md-4">
                                 <asp:Label ID="lblentertainment" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icentertainment" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icentertainment" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtentertainment" runat="server" type="text" class="form-control" placeholder="Admin Comments">

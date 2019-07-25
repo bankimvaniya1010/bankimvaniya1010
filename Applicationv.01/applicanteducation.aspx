@@ -27,7 +27,7 @@
                                             <asp:RadioButton ID="rblHighYes" CssClass="form-control" runat="server" GroupName="highschool" Text="Yes" />
                                             <asp:RadioButton ID="rblHighNo" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I am currently studying for my high school qualification " />
                                             <asp:RadioButton ID="rblHighNot" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I do not have a high school qualification " />
-                                            <span class="helpicon"><i id="ichighschool" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschool" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCountryHighSchool_SelectedIndexChanged">
                                             </asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlHighSchoolStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolstartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolstartDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlHighSchoolEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolendDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                         <label id="labelhighschoolName" runat="server" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
                                         <div class="col-md-6">
                                             <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Name of School">
-                                            <span class="helpicon"><i id="ichighschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                         <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
-                                            </asp:DropDownList><span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList><span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -96,7 +96,7 @@
                                         <label id="labelhighschoolstudymode" runat="server" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolstudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolstudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                                         <label id="labelhighschoollanguage" runat="server" for="highschoollanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighschoolMedium" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoollanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoollanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                                         <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolGrade" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@
                                             <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
                                             <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
                                             <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
-                                            <span class="helpicon"><i id="ichighschoolgradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +142,7 @@
                                         <label id="labelExpectedHighSchoolDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
                                             <input id="txtExpectedHighSchoolResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
-                                            <span class="helpicon"><i id="icExpectedHighSchoolDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icExpectedHighSchoolDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                                         <div class="col-md-6">
 
                                             <input id="txtHighSchoolVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
-                                            <span class="helpicon"><i id="ichighschoolverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolverify" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +165,7 @@
                                         <label id="labelhighschoolrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolrelation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@
                                         <label id="labelhighschoolcontactEmail" runat="server" for="highschoolcontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                         <div class="col-md-6">
                                             <input id="txtHighSchoolcontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
-                                            <span class="helpicon"><i id="ichighschoolcontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolcontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -187,7 +187,7 @@
                                         <label id="labelhighschoolcontactMobile" runat="server" for="highschoolcontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification</label>
                                         <div class="col-md-6">
                                             <input id="txtHighSchoolcontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
-                                            <span class="helpicon"><i id="ichighschoolcontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichighschoolcontactMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +198,7 @@
                                         <label id="labelhigestEducation" runat="server" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
                                         <div class="col-md-6">
                                             <input id="txtHigestEducation" runat="server" type="text" placeholder="Highest Education" value="" class="form-control">
-                                            <span class="helpicon"><i id="ichigestEducation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichigestEducation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -270,7 +270,7 @@
                                                 <asp:RadioButton ID="rblSecondaryYes" CssClass="form-control" runat="server" GroupName="Secondary" Text="Yes" />
                                                 <asp:RadioButton ID="rblSecondaryNo" CssClass="form-control" runat="server" GroupName="Secondary" Text="No  - I am currently still studying for my Senior Secondary " />
                                                 <asp:RadioButton ID="rblSecondaryNot" CssClass="form-control" runat="server" GroupName="Secondary" Text="No - I do not have a Senior Secondary qualification" />
-                                                <span class="helpicon"><i id="icSecondary" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondary" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -282,7 +282,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryCountry" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSecondaryCountry_SelectedIndexChanged">
                                                 </asp:DropDownList>
-                                                <span class="helpicon"><i id="icSecondaryCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondaryCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                                             </div>
                                         </div>
@@ -295,7 +295,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlSecondaryStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icSecondarystartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondarystartDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -307,7 +307,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlSecondaryEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icSecondaryendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondaryendDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -319,7 +319,7 @@
                                             <div class="col-md-6">
                                                 <input id="txtSecondarySchoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
-"><span class="helpicon"><i id="icSecondaryschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+"><span class="helpicon"><i id="icSecondaryschoolName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -331,7 +331,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryQualificationType" CssClass="form-control" runat="server">
                                                 </asp:DropDownList>
-                                                <span class="helpicon"><i id="icSecondaryQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondaryQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -342,7 +342,7 @@
                                             <label id="labelSecondarystudymode" runat="server" for="Secondarystudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icSecondarystudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondarystudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -353,7 +353,7 @@
                                             <label id="labelSecondarylanguage" runat="server" for="Secondarylanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryMedium" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icSecondarylanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondarylanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -364,7 +364,7 @@
                                             <label id="labelSecondarygradetype" runat="server" for="Secondarygradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryGrade" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icSecondarygradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondarygradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -377,7 +377,7 @@
                                                 <asp:RadioButton CssClass="form-control" ID="rblSecondarygradeachievedYes" runat="server" GroupName="Secondarygradeachieved" Text="Results Declared" />
                                                 <asp:RadioButton CssClass="form-control" ID="SecondarygradeachievedYet" runat="server" GroupName="Secondarygradeachieved" Text=" Examination not conducted yet" />
                                                 <asp:RadioButton CssClass="form-control" ID="SecondarygradeachievedNo" runat="server" GroupName="Secondarygradeachieved" Text="Examination Conducted, but Result not declared" />
-                                                <span class="helpicon"><i id="icSecondarygradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondarygradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -388,7 +388,7 @@
                                             <label id="labelExpectedSecondaryDategrade" runat="server" for="ExpectedSecondaryDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
                                                 <input id="txtExpectedSecondaryResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
-                                                <span class="helpicon"><i id="icExpectedSecondaryDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icExpectedSecondaryDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -399,7 +399,7 @@
                                             <label id="labelSecondaryverify" runat="server" for="Secondaryverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondaryVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
-                                                <span class="helpicon"><i id="icSecondaryverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icSecondaryverify" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -410,7 +410,7 @@
                                             <label id="labelsecondaryschoolrelation" runat="server" for="secondaryschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="icsecondaryschoolrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icsecondaryschoolrelation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -421,7 +421,7 @@
                                             <label id="labelsecondarycontactEmail" runat="server" for="secondarycontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondarycontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
-                                                <span class="helpicon"><i id="icsecondarycontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icsecondarycontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -432,7 +432,7 @@
                                             <label id="labelsecondarycontactMobile" runat="server" for="secondarycontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number of Contact who can verify your qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtSecondarycontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile no of Contact who can verify">
-                                                <span class="helpicon"><i id="icsecondarycontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icsecondarycontactMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -507,7 +507,7 @@
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherYes" runat="server" GroupName="higher" Text="Yes" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text=" I am currently studying for my higher qualification" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text="No- I do not have a higher qualification " />
-                                                <span class="helpicon"><i id="ichigher" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigher" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -524,7 +524,7 @@
                                                     <asp:ListItem Value="Phd">PhD</asp:ListItem>
                                                     <asp:ListItem Value="Other">Other</asp:ListItem>
                                                 </asp:DropDownList>
-                                                <span class="helpicon"><i id="ichighercourse" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichighercourse" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -536,7 +536,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherCountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlHigherCountry_SelectedIndexChanged">
                                                 </asp:DropDownList>
-                                                <span class="helpicon"><i id="ichigherCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigherCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -548,7 +548,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlHigherStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                                <span class="helpicon"><i id="ichigherstartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigherstartDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -560,7 +560,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlHigherEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                                <span class="helpicon"><i id="ichigherendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigherendDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -572,7 +572,7 @@
                                             <div class="col-md-6">
                                                 <input id="txtHigherschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
-"><span class="helpicon"><i id="ichigherschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+"><span class="helpicon"><i id="ichigherschoolName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -584,7 +584,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherQualificationType" CssClass="form-control" runat="server">
                                                 </asp:DropDownList>
-                                                <span class="helpicon"><i id="ichigherQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigherQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -596,7 +596,7 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
-                                            <span class="helpicon"><i id="ichigherstudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="ichigherstudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -606,7 +606,7 @@
                                             <label id="labelhigherlanguage" runat="server" for="higherlanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherMedium" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="ichigherlanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigherlanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -617,7 +617,7 @@
                                             <label id="labelhighergradetype" runat="server" for="highergradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherGrade" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="ichighergradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichighergradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -630,7 +630,7 @@
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYes" runat="server" GroupName="highergradeachieved" Text="Results Declared" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedYet" runat="server" GroupName="highergradeachieved" Text=" Examination not conducted yet" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhighergradeachievedNo" runat="server" GroupName="highergradeachieved" Text="Examination Conducted, but Result not declared" />
-                                                <span class="helpicon"><i id="ichighergradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichighergradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -641,7 +641,7 @@
                                             <label id="labelExpectedHigherDategrade" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
                                                 <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
-                                                <span class="helpicon"><i id="icExpectedHigherDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="icExpectedHigherDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -652,7 +652,7 @@
                                             <label id="labelhigherverify" runat="server" for="higherverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtHigherVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
-                                                <span class="helpicon"><i id="ichigherverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigherverify" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -663,7 +663,7 @@
                                             <label id="labelhigherrelation" runat="server" for="highschoolrelation" class="col-md-3 col-form-label form-label">Relationship with the Contact </label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
-                                                <span class="helpicon"><i id="ichigherrelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichigherrelation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -674,7 +674,7 @@
                                             <label id="labelhighercontactEmail" runat="server" for="highercontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your qualification  </label>
                                             <div class="col-md-6">
                                                 <input id="txtHighercontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
-                                                <span class="helpicon"><i id="ichighercontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichighercontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -685,7 +685,7 @@
                                             <label id="labelhighercontactMobile" runat="server" for="highercontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
                                             <div class="col-md-6">
                                                 <input id="txtHighercontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
-                                                <span class="helpicon"><i id="ichighercontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <span class="helpicon"><i id="ichighercontactMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -818,7 +818,7 @@
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaYes" runat="server" GroupName="diploma" Text="Yes" />
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaNo" runat="server" GroupName="diploma" Text="I am currently studying for my Diploma/Certificate" />
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaNot" runat="server" GroupName="diploma" Text="No - I do not have a Diploma/Certificate qualification" />
-                                            <span class="helpicon"><i id="icdiploma" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiploma" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -830,7 +830,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaCountry" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlDiplomaCountry_SelectedIndexChanged">
                                             </asp:DropDownList>
-                                            <span class="helpicon"><i id="icdiplomaCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomaCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -842,7 +842,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlDiplomaStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <span class="helpicon"><i id="icdiplomastartDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomastartDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -854,7 +854,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlDiplomaEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <span class="helpicon"><i id="icdiplomaendDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomaendDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -866,7 +866,7 @@
                                         <div class="col-md-6">
                                             <input id="txtDiplomaschoolName" runat="server" type="text" class="form-control" placeholder="Name of School
 
-"><span class="helpicon"><i id="icdiplomaschoolName" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+"><span class="helpicon"><i id="icdiplomaschoolName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -879,7 +879,7 @@
                                             <asp:DropDownList ID="ddlDiplomaQualificationType" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
 
-                                            <span class="helpicon"><i id="icdiplomaQualificationtype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomaQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -890,7 +890,7 @@
                                         <label id="labeldiplomastudymode" runat="server" for="diplomastudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="icdiplomastudymode" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomastudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -901,7 +901,7 @@
                                         <label id="labeldiplomalanguage" runat="server" for="diplomalanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaMedium" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="icdiplomalanguage" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomalanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -912,7 +912,7 @@
                                         <label id="labeldiplomagradetype" runat="server" for="diplomagradetype" class="col-md-3 col-form-label form-label">Grade Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaGrade" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="icdiplomagradetype" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomagradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -925,7 +925,7 @@
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYes" runat="server" GroupName="DiplomaGrade" Text="Results Declared" />
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeYet" runat="server" GroupName="DiplomaGrade" Text=" Examination not conducted yet" />
                                             <asp:RadioButton CssClass="form-control" ID="rblDiplomaGradeNot" runat="server" GroupName="DiplomaGrade" Text="Examination Conducted, but Result not declared" />
-                                            <span class="helpicon"><i id="icdiplomagradeachieved" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomagradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -936,7 +936,7 @@
                                         <label id="labelExpectedDiplomaDategrade" runat="server" for="ExpectedDiplomaDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
                                             <input id="txtExpectedDiplomaResult" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
-                                            <span class="helpicon"><i id="icExpectedDiplomaDategrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icExpectedDiplomaDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -947,7 +947,7 @@
                                         <label id="labeldiplomaverify" runat="server" for="diplomaverify" class="col-md-3 col-form-label form-label">Name of Contact who can verify this qualification </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomaVerificationName" runat="server" type="text" class="form-control" placeholder="Name of Contact who can verify this qualification">
-                                            <span class="helpicon"><i id="icdiplomaverify" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomaverify" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -959,7 +959,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaVerificationRelationship" runat="server" CssClass="form-control"></asp:DropDownList>
 
-                                            <span class="helpicon"><i id="icdiplomarelation" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomarelation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -970,7 +970,7 @@
                                         <label id="labeldiplomacontactEmail" runat="server" for="diplomacontactEmail" class="col-md-3 col-form-label form-label">Email ID of Contact who can verify your employment  </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomacontactEmail" runat="server" type="text" class="form-control" placeholder="Email ID of Contact who can verify your employment">
-                                            <span class="helpicon"><i id="icdiplomacontactEmail" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomacontactEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -981,7 +981,7 @@
                                         <label id="labeldiplomacontactMobile" runat="server" for="diplomacontactMobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number who can verify this qualification </label>
                                         <div class="col-md-6">
                                             <input id="txtDiplomacontactMobile" runat="server" type="text" class="form-control" placeholder="Mobile/Cellular Number who can verify this qualification ">
-                                            <span class="helpicon"><i id="icdiplomacontactMobile" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icdiplomacontactMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -1049,7 +1049,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicantlanguage.aspx" class="btn btn-success" style="margin-right: 10px;">English Language Competency</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -1081,7 +1081,7 @@
     </div>
     <script>
         $(document).ready(function () {
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,

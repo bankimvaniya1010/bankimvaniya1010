@@ -89,5 +89,12 @@
             }
             return !(questionGiven == 0);
         }
+
+         $(document).ready(function () {
+              $('.sidebar-menu-item').removeClass('open');
+              $('#preliminary_list').addClass('open');
+              $('.sidebar-menu-item').removeClass('active');
+              $('#applicantdeclaration').addClass('active');
+          });
     </script>
 </asp:Content>

@@ -351,7 +351,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             if (details.giveenglishtest != null && details.giveenglishtest.Value == 1)
                 giveenglishTest = "IELTS";
             else if (details.giveenglishtest != null && details.giveenglishtest.Value == 2)
-                giveenglishTest = "Pearsons";
+                giveenglishTest = "PTE";
             else if (details.giveenglishtest != null && details.giveenglishtest.Value == 3)
                 giveenglishTest = "TOEFL";
 
@@ -902,7 +902,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 maritalStatus = db.maritalstatusmaster.Where(x => x.id == details.maritalstatus).Select(x => x.description).FirstOrDefault();
             if (details.spousenationality.HasValue)
                 spouseNationality = db.countriesmaster.Where(x => x.id == details.spousenationality).Select(x => x.country_name).FirstOrDefault();
-            if (details.isdisable.Value == 1)
+            if (details.isdisable.HasValue && details.isdisable.Value == 1)
                 disabilityDesc = db.disabilitymaster.Where(x => x.id == Convert.ToInt32(details.disabilitydescription)).Select(x => x.description).FirstOrDefault();
             if (details.isstudentreferbyagent.HasValue && details.isstudentreferbyagent.Value == 1 && details.agentid.HasValue)
                 agentName = db.agentmaster.Where(x => x.agentid == details.agentid).Select(x => x.agentname).FirstOrDefault();
@@ -916,7 +916,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             worksheet.Cells[2, 7] = details.ispassportfirstname.HasValue && details.ispassportfirstname.Value ? "Yes" : "No";
             worksheet.Cells[2, 8] = details.ispassportmiddlename.HasValue && details.ispassportmiddlename.Value ? "Yes" : "No";
             worksheet.Cells[2, 9] = details.ispassportlastname.HasValue && details.ispassportlastname.Value ? "Yes" : "No";
-            worksheet.Cells[2, 10] = details.dateofbirth.Value.ToString("dd/MM/yyyy");
+            worksheet.Cells[2, 10] = details.dateofbirth.HasValue ? details.dateofbirth.Value.ToString("dd/MM/yyyy"):"N/A";
             worksheet.Cells[2, 11] = details.gender != null && details.gender.Value == 1 ? "Male" : "Female";
             worksheet.Cells[2, 12] = nationality;
             worksheet.Cells[2, 13] = details.haschinesecodenumber.HasValue ? "Yes" : "No";

@@ -984,7 +984,7 @@ public partial class applicanteducation : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btn_Save_Click(object sender, EventArgs e)
     {
         try
         {

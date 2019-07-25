@@ -102,7 +102,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<trips> trips { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
@@ -136,6 +135,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
     public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
     public virtual DbSet<gte_preliminaryapplicantanswers> gte_preliminaryapplicantanswers { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

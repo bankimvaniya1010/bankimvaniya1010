@@ -420,14 +420,17 @@
           <Property Name="qualificationtype" Type="int" />
           <Property Name="qualificationname" Type="varchar" MaxLength="50" />
           <Property Name="gradetype" Type="varchar" MaxLength="45" />
+          <Property Name="isfinalgradeachieved" Type="int" />
+          <Property Name="expectedgraderesult" Type="datetime" Precision="0" />
           <Property Name="giveenglishtest" Type="int" />
           <Property Name="testname" Type="varchar" MaxLength="45" />
           <Property Name="centerno" Type="varchar" MaxLength="45" />
-          <Property Name="isfinalgradeachieved" Type="int" />
-          <Property Name="expectedgraderesult" Type="datetime" Precision="0" />
           <Property Name="candidateno" Type="varchar" MaxLength="45" />
           <Property Name="candidateid" Type="varchar" MaxLength="45" />
           <Property Name="examdate" Type="datetime" Precision="0" />
+          <Property Name="testcentercountrty" Type="int" />
+          <Property Name="testtakerId" Type="varchar" MaxLength="20" />
+          <Property Name="registrationNo" Type="varchar" MaxLength="20" />
           <Property Name="overallscore" Type="varchar" MaxLength="10" />
           <Property Name="speakingscore" Type="varchar" MaxLength="10" />
           <Property Name="listeningscore" Type="varchar" MaxLength="10" />
@@ -1220,6 +1223,7 @@
           <Property Name="getting_around" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="acceptedmaxage" Type="int" Nullable="false" />
           <Property Name="acceptedminage" Type="int" Nullable="false" />
+          <Property Name="full_service" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -3374,6 +3378,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="clarificationquestion_university_mapping" Relationship="GTEModel.FK_university_clarificationquestion_mapping" FromRole="university_master" ToRole="clarificationquestion_university_mapping" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_university_master_admincomments" FromRole="university_master" ToRole="admincomments" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_university_master" FromRole="university_master" ToRole="supervisorcomments" />
+          <Property Name="full_service" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -4172,6 +4177,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="testreportreferenceno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="lastsavedtime" Type="DateTime" />
           <Property Name="islanguagecompetencypresent" Type="Boolean" Nullable="false" />
+          <Property Name="testcentercountrty" Type="Int32" />
+          <Property Name="registrationNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="testtakerId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_adminusers_admincomments">
           <End Type="GTEModel.adminusers" Role="adminusers" Multiplicity="1" />
@@ -5357,6 +5365,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="full_service" ColumnName="full_service" />
                 <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
                 <ScalarProperty Name="acceptedmaxage" ColumnName="acceptedmaxage" />
                 <ScalarProperty Name="getting_around" ColumnName="getting_around" />
@@ -5730,6 +5739,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantlanguagecompetency">
             <EntityTypeMapping TypeName="GTEModel.applicantlanguagecompetency">
               <MappingFragment StoreEntitySet="applicantlanguagecompetency">
+                <ScalarProperty Name="testtakerId" ColumnName="testtakerId" />
+                <ScalarProperty Name="registrationNo" ColumnName="registrationNo" />
+                <ScalarProperty Name="testcentercountrty" ColumnName="testcentercountrty" />
                 <ScalarProperty Name="islanguagecompetencypresent" ColumnName="islanguagecompetencypresent" />
                 <ScalarProperty Name="lastsavedtime" ColumnName="lastsavedtime" />
                 <ScalarProperty Name="testreportreferenceno" ColumnName="testreportreferenceno" />

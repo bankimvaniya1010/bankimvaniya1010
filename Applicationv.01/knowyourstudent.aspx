@@ -21,7 +21,7 @@
                                     <div class="form-row">
                                         <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
                                         <div class="col-md-6">
-                                            <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Passport Number"><span class="helpicon"><i id="icPassport" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Passport Number"><span class="helpicon"><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                     <div class="form-row">
                                         <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Date of Issue </label>
                                         <div class="col-md-6">
-                                            <input id="txtdateofissue" runat="server" type="text" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtdateofissue" runat="server" type="text" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <div class="form-row">
                                         <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">Expiry Date </label>
                                         <div class="col-md-6">
-                                            <input id="txtexpirydate" runat="server" type="text" class="form-control" placeholder="Expiry Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtexpirydate" runat="server" type="text" class="form-control" placeholder="Expiry Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlCountryofIssue" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
-                                            <span class="helpicon"><i id="icCountryofIssue" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icCountryofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                                         </div>
                                     </div>
@@ -67,7 +67,7 @@
                                         <label id="labelissueplace" runat="server" for="issueplace" class="col-md-3 col-form-label form-label">CITY OF ISSUE </label>
                                         <div class="col-md-6">
                                             <input id="txtissueplaceCity" runat="server" type="text" class="form-control" placeholder="City of Issue" />
-                                            <span class="helpicon"><i id="icCityofIssue" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <span class="helpicon"><i id="icCityofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +78,7 @@
                                         <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-3 col-form-label form-label">Select Identity Proof Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternateIdentitytype" CssClass="form-control" runat="server">
-                                            </asp:DropDownList><span class="helpicon"><i id="icIdentityProofType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList><span class="helpicon"><i id="icIdentityProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +88,7 @@
                                     <div class="form-row">
                                         <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Identity Proof Number</label>
                                         <div class="col-md-6">
-                                            <input id="txtalternateIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtalternateIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -101,7 +101,7 @@
                                         <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Select DOB Proof Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternatedobIdentitytype" runat="server" CssClass="form-control">
-                                            </asp:DropDownList><span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList><span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -111,7 +111,7 @@
                                     <div class="form-row">
                                         <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">DOB proof Number</label>
                                         <div class="col-md-6">
-                                            <input id="txtalternatedobIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtalternatedobIdentityNo" runat="server" type="text" class="form-control" placeholder="Identity Number"><span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +123,7 @@
                                         <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Select Residence Proof Type </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlalternateresidenceIdentitytype" runat="server" CssClass="form-control">
-                                            </asp:DropDownList><span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            </asp:DropDownList><span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -133,7 +133,7 @@
                                     <div class="form-row">
                                         <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo" class="col-md-3 col-form-label form-label">Residence Proof Number</label>
                                         <div class="col-md-6">
-                                            <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Residence Proof Number"><span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                            <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Residence Proof Number"><span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -143,10 +143,10 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicanteducation.aspx" class="btn btn-success" style="margin-right: 10px;">Education Details</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btnidentification" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnidentification_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
-                                            <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
+                                            <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
@@ -175,9 +175,9 @@
         </div>
     </div>
     <script>
-
+            
         $('#ContentPlaceHolder1_txtdateofissue').flatpickr({
-
+       
             dateFormat: 'Y-m-d', defaultDate: ""
         });
         $('#ContentPlaceHolder1_txtexpirydate').flatpickr({
@@ -193,6 +193,8 @@
                 alert("Please Enter Date Of Issue");
             else if (!$("#<%=expirydate.ClientID%>").is(':hidden') && $("#<%=txtexpirydate.ClientID%>").val() == "")
                 alert("Please Select Expiry Date");
+            else if ($("#<%=txtdateofissue.ClientID%>").val() != "" && $("#<%=txtexpirydate.ClientID%>").val() != "" && $("#<%=txtexpirydate.ClientID%>").val() < $("#<%=txtdateofissue.ClientID%>").val())
+                alert("Please enter Valid Expiry Date");
             else if (!$("#<%=countryIssue.ClientID%>").is(':hidden') && $("#<%=ddlCountryofIssue.ClientID%>").val() === "0")
                 alert("Please Select Country");
             else if (!$("#<%=issueplace.ClientID%>").is(':hidden') && $("#<%=txtissueplaceCity.ClientID%>").val() == "")
@@ -238,7 +240,7 @@
         }
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
