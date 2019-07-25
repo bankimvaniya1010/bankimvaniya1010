@@ -12,7 +12,7 @@ public sealed class GlobalVariables
         //
     }
 
-    public static bool isGteDeclarationDoneByApplicant;
+    public static bool isGteDeclarationDoneByApplicant = false;
     public static bool isDeclarationDoneByApplicant;
     public static bool isProfileDetailsCompletedByApplicant;
 

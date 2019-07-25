@@ -81,12 +81,14 @@
         </div>
     </div>
     <script>
-        var questionsCompleted = '<%=questionsCompleted%>'.toLowerCase();
+        var questionsCompleted = '<%=questionsCompleted%>';
         function validate() {
-            if (questionsCompleted == false) {
+           
+            if (questionsCompleted == "False") {
                 alert("Please first complete Quick Test");
             }
-            return !(questionsCompleted == false);
+            
+            return !(questionsCompleted == "False");
         }
 
         $(document).ready(function () {
