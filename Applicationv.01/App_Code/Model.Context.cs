@@ -102,7 +102,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<trips> trips { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
@@ -125,6 +124,18 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
     public virtual DbSet<applicantprogressbar> applicantprogressbar { get; set; }
     public virtual DbSet<supervisorcomments> supervisorcomments { get; set; }
+    public virtual DbSet<gte_answer_master> gte_answer_master { get; set; }
+    public virtual DbSet<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
+    public virtual DbSet<gte_questions_master> gte_questions_master { get; set; }
+    public virtual DbSet<gte_question_master_part2> gte_question_master_part2 { get; set; }
+    public virtual DbSet<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
+    public virtual DbSet<gte_tutorialmaster> gte_tutorialmaster { get; set; }
+    public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
+    public virtual DbSet<gte_progressbar> gte_progressbar { get; set; }
+    public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+    public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
+    public virtual DbSet<gte_preliminaryapplicantanswers> gte_preliminaryapplicantanswers { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

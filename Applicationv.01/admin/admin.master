@@ -173,6 +173,13 @@
                                             <a class="dropdown-item" href="adduniversitygrouping.aspx">Grouping</a>
                                         </div>
                                     </li>
+                                     <li class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">GTE</a>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="gtetutorialmaster.aspx">GTE Tutorial</a> 
+                                             <a class="dropdown-item" href="gtepreliminaryquestionmaster.aspx">GTE Preliminary Question</a> 
+                                        </div>
+                                    </li>
                                 </ul>
                             </div>
 

@@ -848,6 +848,53 @@ public partial class grademaster
     public string description { get; set; }
 }
 
+public partial class gte_answer_master
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_answer_master()
+    {
+        this.gte_questions_applicant_response = new HashSet<gte_questions_applicant_response>();
+    }
+
+    public int id { get; set; }
+    public string answer { get; set; }
+    public int gte_score { get; set; }
+    public int gte_risk_score { get; set; }
+    public int gte_question_id { get; set; }
+
+    public virtual gte_questions_master gte_questions_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
+}
+
+public partial class gte_clarification_applicantresponse
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int clarification_question_id { get; set; }
+    public string applicant_response { get; set; }
+
+    public virtual gte_clarification_questionmaster gte_clarification_questionmaster { get; set; }
+}
+
+public partial class gte_clarification_questionmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_clarification_questionmaster()
+    {
+        this.gte_clarification_applicantresponse = new HashSet<gte_clarification_applicantresponse>();
+    }
+
+    public int id { get; set; }
+    public int gte_master1_id { get; set; }
+    public string clarification_question { get; set; }
+    public Nullable<bool> display_condition { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
+}
+
 public partial class GTE_documentverification
 {
     public int documentid { get; set; }
@@ -857,6 +904,109 @@ public partial class GTE_documentverification
     public Nullable<int> agentid { get; set; }
     public Nullable<System.DateTime> lastupdatedate { get; set; }
     public string remarks { get; set; }
+}
+
+public partial class gte_preliminary_questionmaster
+{
+    public int gte_preliminaryid { get; set; }
+    public string question { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string answer3 { get; set; }
+    public string answer4 { get; set; }
+    public string correctanswer { get; set; }
+    public Nullable<int> status { get; set; }
+}
+
+public partial class gte_preliminaryapplicantanswers
+{
+    public long id { get; set; }
+    public int applicantid { get; set; }
+    public int gte_preliminary_question_id { get; set; }
+    public string answer { get; set; }
+    public System.DateTime answersubmittedtime { get; set; }
+}
+
+public partial class gte_progressbar
+{
+    public int id { get; set; }
+    public int applicantid { get; set; }
+    public Nullable<bool> is_gte_tutorial_completed { get; set; }
+    public Nullable<bool> is_gte_question_completed { get; set; }
+    public Nullable<bool> is_gte_declaration_completed { get; set; }
+}
+
+public partial class gte_question_master_part2
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_question_master_part2()
+    {
+        this.gte_question_part2_applicant_response = new HashSet<gte_question_part2_applicant_response>();
+        this.gte_clarification_questionmaster = new HashSet<gte_clarification_questionmaster>();
+    }
+
+    public int id { get; set; }
+    public string question { get; set; }
+    public int true_gte_score { get; set; }
+    public int true_risk_score { get; set; }
+    public int false_gte_score { get; set; }
+    public int false_risk_score { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
+}
+
+public partial class gte_question_part2_applicant_response
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public Nullable<bool> applicant_response { get; set; }
+    public int question_id { get; set; }
+
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
+}
+
+public partial class gte_questions_applicant_response
+{
+    public int id { get; set; }
+    public int gte_question_id { get; set; }
+    public int gte_answer_id { get; set; }
+    public int applicant_id { get; set; }
+
+    public virtual gte_answer_master gte_answer_master { get; set; }
+    public virtual gte_questions_master gte_questions_master { get; set; }
+}
+
+public partial class gte_questions_master
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_questions_master()
+    {
+        this.gte_answer_master = new HashSet<gte_answer_master>();
+        this.gte_questions_applicant_response = new HashSet<gte_questions_applicant_response>();
+    }
+
+    public int id { get; set; }
+    public string question { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_answer_master> gte_answer_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
+}
+
+public partial class gte_tutorialmaster
+{
+    public int id { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
+    public string videourl { get; set; }
+    public string title { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class inferencemaster
