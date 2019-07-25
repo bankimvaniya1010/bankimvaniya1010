@@ -351,7 +351,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             if (details.giveenglishtest != null && details.giveenglishtest.Value == 1)
                 giveenglishTest = "IELTS";
             else if (details.giveenglishtest != null && details.giveenglishtest.Value == 2)
-                giveenglishTest = "Pearsons";
+                giveenglishTest = "PTE";
             else if (details.giveenglishtest != null && details.giveenglishtest.Value == 3)
                 giveenglishTest = "TOEFL";
 
