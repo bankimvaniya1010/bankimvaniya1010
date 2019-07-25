@@ -103,7 +103,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="cost" runat="server">
+                            <div class="list-group-item" id="cost" runat="server" style ="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
 
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" runat="server">
+                            <div class="list-group-item" runat="server" style ="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-address">
                                     <div class="form-row">
                                         <label id="labelfunding" for="address" class="col-md-9 col-form-label form-label">
@@ -175,7 +175,7 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" id="funding" runat="server">
+                            <div class="list-group-item" id="funding" runat="server" style ="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
 

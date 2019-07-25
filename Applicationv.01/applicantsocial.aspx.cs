@@ -108,19 +108,19 @@ public partial class applicantsocial : System.Web.UI.Page
             if (profileInfo != null)
             {
                 txtFacebook.Value = profileInfo.facebookprofle;
-                if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false) || (profileInfo.havefacebookaccount != true))
+                if (profileInfo.havefacebookaccount ?? false)
                 {
                     ChkFacebook.Checked = true;
                     txtFacebook.Attributes.Add("disabled", "disabled");
                 }
                 txtLinkedin.Value = profileInfo.linkedprofile;
-                if ((profileInfo.havelinkedinaccount != null) || (profileInfo.havelinkedinaccount == false) || (profileInfo.havelinkedinaccount != true))
+                if (profileInfo.havelinkedinaccount ?? false)
                 {
                     chkLinkeIn.Checked = true;
                     txtLinkedin.Attributes.Add("disabled", "disabled");
                 }               
                 txtTwitter.Value = profileInfo.twiterprofile;
-                if ((profileInfo.havetwitteraccount != null) || (profileInfo.havetwitteraccount == false) || (profileInfo.havetwitteraccount != true))
+                if (profileInfo.havetwitteraccount ?? false)
                 {
                     chkTwitter.Checked = true;
                     txtTwitter.Attributes.Add("disabled", "disabled");
@@ -200,7 +200,7 @@ public partial class applicantsocial : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btnsocial_Click(object sender, EventArgs e)
     {
         try
         {
@@ -216,20 +216,33 @@ public partial class applicantsocial : System.Web.UI.Page
                 objapplicantDetail = profileInfo;
             }
             objapplicantDetail.facebookprofle = txtFacebook.Value;
-            if (ChkFacebook.Checked)
-                objapplicantDetail.havefacebookaccount = false;
-            else
+            if (ChkFacebook.Checked) {
                 objapplicantDetail.havefacebookaccount = true;
+                objapplicantDetail.facebookprofle = "";
+            }
+                
+            else
+                objapplicantDetail.havefacebookaccount = false;
+
             objapplicantDetail.linkedprofile = txtLinkedin.Value;
             if (chkLinkeIn.Checked)
-                objapplicantDetail.havelinkedinaccount = false;
-            else
+            {
                 objapplicantDetail.havelinkedinaccount = true;
+                objapplicantDetail.linkedprofile = "";
+            }
+                
+            else
+                objapplicantDetail.havelinkedinaccount = false;
+
             objapplicantDetail.twiterprofile = txtTwitter.Value;
             if (chkTwitter.Checked)
-                objapplicantDetail.havetwitteraccount = false;
-            else
+            {
                 objapplicantDetail.havetwitteraccount = true;
+                objapplicantDetail.twiterprofile = "";
+            }
+                
+            else
+                objapplicantDetail.havetwitteraccount = false;
 
             objapplicantDetail.socialprofilesavetime = DateTime.Now;
             objapplicantDetail.issocialprofilepresent = true;
@@ -245,7 +258,7 @@ public partial class applicantsocial : System.Web.UI.Page
                 objCom.SetStudentDetailsCompletedStatus(userID, universityID);
 
             lblMessage.Text = "Your Contact Details have been saved";
-            lblMessage.Visible = true;
+ //           lblMessage.Visible = true;
         }
         catch (Exception ex)
         {

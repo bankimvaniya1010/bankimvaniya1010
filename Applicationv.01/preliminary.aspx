@@ -99,6 +99,12 @@
                  $('#video-modal').remove();
         });
         }
+          $(document).ready(function () {
+              $('.sidebar-menu-item').removeClass('open');
+              $('#preliminary_list').addClass('open');
+              $('.sidebar-menu-item').removeClass('active');
+              $('#preliminarys').addClass('active');
+          });
         
     </script>
 

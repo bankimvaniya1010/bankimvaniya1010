@@ -59,7 +59,7 @@
                                                     <asp:ListItem Value="Phd" Text="Phd"></asp:ListItem>
                                                     <asp:ListItem Value="diploma" Text="Diploma"></asp:ListItem>
                                                     <asp:ListItem Value="Other" Text="Other"></asp:ListItem>
-                                                </asp:DropDownList><span class="helpicon"><i id="icQualification" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                </asp:DropDownList><span class="helpicon"><i id="icQualification" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
                                         <div class="form-row">
                                             <label id="labelSubject" runat="server" for="Subject" class="col-md-3 col-form-label form-label">Subject</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlsubjects" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icSubject" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <asp:DropDownList ID="ddlsubjects" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icSubject" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +79,7 @@
                                         <div class="form-row">
                                             <label id="labelothers" runat="server" for="Others" class="col-md-3 col-form-label form-label">Other Subject</label>
                                             <div class="col-md-6">
-                                                <input id="txtOther" runat="server" type="text" placeholder="Subject" value="" class="form-control" /><span class="helpicon"><i id="icOtherSubject" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <input id="txtOther" runat="server" type="text" placeholder="Subject" value="" class="form-control" /><span class="helpicon"><i id="icOtherSubject" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                         <div class="form-row">
                                             <label id="labelgradeType" runat="server" for="phone" class="col-md-3 col-form-label form-label">Grade Type</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlGradeType" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icGradeType" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <asp:DropDownList ID="ddlGradeType" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icGradeType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@
                                         <div class="form-row">
                                             <label id="labelGrade" runat="server" for="grade" class="col-md-3 col-form-label form-label">Grade</label>
                                             <div class="col-md-6">
-                                                <input id="txtGrade" runat="server" type="text" placeholder="Grade" value="" class="form-control" /><span class="helpicon"><i id="icGrade" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                                <input id="txtGrade" runat="server" type="text" placeholder="Grade" value="" class="form-control" /><span class="helpicon"><i id="icGrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -169,7 +169,7 @@
                 }
 
             });
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,

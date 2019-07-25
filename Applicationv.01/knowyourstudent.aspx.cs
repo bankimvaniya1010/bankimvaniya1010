@@ -46,12 +46,12 @@ public partial class knowyourstudent : System.Web.UI.Page
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
-            var obj = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { Name = x.firstname + x.middlename + x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
+            var obj = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { Name = x.firstname + " " + x.middlename + " " +x.lastname, dob = x.dateofbirth, verifiedDetails = x.verifiedpassportnamedob }).FirstOrDefault();
 
             if (obj != null && !string.IsNullOrEmpty(obj.Name) && obj.dob != null)
             {
                 StudentName = obj.Name;
-                StudentDOB = obj.dob.ToString();
+                StudentDOB = obj.dob.Value.ToShortDateString().ToString();
                 if (obj.verifiedDetails.HasValue)
                     verifiedPassportDetails = obj.verifiedDetails.Value;
             }
@@ -70,7 +70,7 @@ public partial class knowyourstudent : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btnidentification_Click(object sender, EventArgs e)
     {
         try
         {
@@ -122,7 +122,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                 objCom.SetStudentDetailsCompletedStatus(userID, universityID);
 
             lblMessage.Text = "Your Contact Details have been saved";
-            lblMessage.Visible = true;
+ //           lblMessage.Visible = true;
 
         }
         catch (Exception ex)
@@ -141,8 +141,10 @@ public partial class knowyourstudent : System.Web.UI.Page
             if (profileInfo != null)
             {
                 txtPassportNo.Value = profileInfo.passportno;
-                txtdateofissue.Value = Convert.ToDateTime(profileInfo.passportissuedate).ToString("yyyy-MM-dd");
-                txtexpirydate.Value = Convert.ToDateTime(profileInfo.passportexpirydate).ToString("yyyy-MM-dd");
+                if(profileInfo.passportissuedate != null)
+                    txtdateofissue.Value = Convert.ToDateTime(profileInfo.passportissuedate).ToString("yyyy-MM-dd");
+                if(profileInfo.passportexpirydate != null)
+                    txtexpirydate.Value = Convert.ToDateTime(profileInfo.passportexpirydate).ToString("yyyy-MM-dd");
                 txtissueplaceCity.Value = profileInfo.passportissuecity;
                 if (profileInfo.alternativeproofdobId != null)
                 {

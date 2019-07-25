@@ -5,7 +5,7 @@
     <script>
         $(document).ready(function () {
 
-            $('.fa-question-circle').tipso({
+            $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
@@ -32,7 +32,7 @@
                             </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblHaveVisa" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icHaveVisa" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icHaveVisa" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtHaveVisa" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -47,7 +47,7 @@
                             <label id="label-visa" for="visa" class="col-md-3 col-form-label form-label">Which Visa Do You Hold</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisa" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icvisa" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icvisa" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtVisa" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -61,7 +61,7 @@
                             <label id="label-validityFrom" for="EnglishCourse" class="col-md-3 col-form-label form-label">Validity From </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblvalidityFrom" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icvalidityFrom" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icvalidityFrom" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtvalidityFrom" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -75,7 +75,7 @@
                             <label id="label-validityTo" for="EnglishCourse" class="col-md-3 col-form-label form-label">Validity To </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblvalidityTo" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icvalidityTo" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icvalidityTo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtvalidityTo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -90,7 +90,7 @@
                             <label id="label-visano" for="visano" class="col-md-3 col-form-label form-label">Visa No</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisano" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="i4" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="i4" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtvisano" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -107,7 +107,7 @@
                             </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisaapplied" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icvisaappliedCountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icvisaappliedCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtvisaappliedCountry" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -124,7 +124,7 @@
                             </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisacity" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icvisacity" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icvisacity" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtvisacity" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -138,7 +138,7 @@
                             <label id="label-highschoolCountry" for="highschoolCountry" class="col-md-3 col-form-label form-label">Visa Application Country</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisacountry" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icvisacountry" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icvisacountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtvisacountry" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -152,7 +152,7 @@
                             <label id="label-firstvisit" for="firstvisit" class="col-md-3 col-form-label form-label">Date of first Visit to Country of Application </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblfirstvisit" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icfirstvisit" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icfirstvisit" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtfirstvisit" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -169,7 +169,7 @@
                             </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblPreviuosstay" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icPreviuosstay" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icPreviuosstay" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtPreviuosstay" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -186,7 +186,7 @@
                             </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblparent" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icparent" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icparent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtparent" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -202,7 +202,7 @@
                             </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblDeniedVisa" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icDeniedVisa" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icDeniedVisa" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtDeniedVisa" runat="server" type="text" class="form-control" placeholder="Admin Comments">
@@ -219,7 +219,7 @@
                             </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblparentdeny" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icparentdeny" runat="server" class="fa fa-question-circle" style="display: none;"></i></span>
+                                <span class="helpicon"><i id="icparentdeny" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
                                 <input id="txtparentdeny" runat="server" type="text" class="form-control" placeholder="Admin Comments">
