@@ -167,6 +167,28 @@
         <AssociationConnector Association="GTEModel.FK_childsuniversityid_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
+        <EntityTypeShape EntityType="GTEModel.contact_us" Width="1.5" PointX="20.5" PointY="34.625" />
+        <EntityTypeShape EntityType="GTEModel.counsellor" Width="1.5" PointX="19.5" PointY="30.75" />
+        <EntityTypeShape EntityType="GTEModel.experince_master" Width="1.5" PointX="14.5" PointY="34.25" />
+        <EntityTypeShape EntityType="GTEModel.experince_subsection" Width="1.5" PointX="16.75" PointY="39.875" />
+        <EntityTypeShape EntityType="GTEModel.gte_videouploadmaster" Width="1.5" PointX="31.375" PointY="3.75" />
+        <EntityTypeShape EntityType="GTEModel.menu_master" Width="1.5" PointX="7.5" PointY="42.25" />
+        <EntityTypeShape EntityType="GTEModel.studylivemaster" Width="1.5" PointX="17.5" PointY="35.375" />
+        <EntityTypeShape EntityType="GTEModel.studylivesubsection" Width="1.5" PointX="19.75" PointY="39" />
+        <EntityTypeShape EntityType="GTEModel.team_master" Width="1.5" PointX="25.5" PointY="31.625" />
+        <AssociationConnector Association="GTEModel.fk_contactus_country" />
+        <AssociationConnector Association="GTEModel.fk_contactus_university" />
+        <AssociationConnector Association="GTEModel.fk_counseller_university" />
+        <AssociationConnector Association="GTEModel.fk_counsellor_country" />
+        <AssociationConnector Association="GTEModel.fk_experince_country" />
+        <AssociationConnector Association="GTEModel.fk_studylive_country" />
+        <AssociationConnector Association="GTEModel.fk_team_countries" />
+        <AssociationConnector Association="GTEModel.fk_experience_experince_subsection" />
+        <AssociationConnector Association="GTEModel.fk_experince_university" />
+        <AssociationConnector Association="GTEModel.fk_university_menu" />
+        <AssociationConnector Association="GTEModel.fk_studylive_university" />
+        <AssociationConnector Association="GTEModel.fk_studylivesubsection_studylivemaster" />
+        <AssociationConnector Association="GTEModel.fk_team_university" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

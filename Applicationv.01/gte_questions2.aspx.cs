@@ -152,7 +152,16 @@ public partial class gte_questions2 : System.Web.UI.Page
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
-                lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
+                var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
+                var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+                foreach (var item in applicant_response)
+                    clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
+
+                if (clarification_questionsList.Count == 0)
+                    lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
+                else
+                    Response.Redirect(webURL + "gte_clarificationquestions.aspx");
+
             }
         }
         catch (Exception ex)

@@ -80,5 +80,12 @@
             }
             return true;
         }
+
+          $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gteclarification').addClass('active');
+        });
     </script>
 </asp:Content>

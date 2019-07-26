@@ -35,10 +35,14 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             else
             {
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
+                //var answeredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID).ToList();
+
+                //if (answeredQuestion.Count == clarification_questionsList.Count)
+                //    displayLabel("All questions have been answered in this part");
 
                 foreach (var item in applicant_response)
                     clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
-
+                
                 if (clarification_questionsList.Count == 0)
                     displayLabel("Completed");
                 else

@@ -102,6 +102,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<trips> trips { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
     public virtual DbSet<universitywisefieldmapping> universitywisefieldmapping { get; set; }
@@ -135,7 +136,15 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
     public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
     public virtual DbSet<gte_preliminaryapplicantanswers> gte_preliminaryapplicantanswers { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
+    public virtual DbSet<contact_us> contact_us { get; set; }
+    public virtual DbSet<counsellor> counsellor { get; set; }
+    public virtual DbSet<experince_master> experince_master { get; set; }
+    public virtual DbSet<experince_subsection> experince_subsection { get; set; }
+    public virtual DbSet<gte_videouploadmaster> gte_videouploadmaster { get; set; }
+    public virtual DbSet<menu_master> menu_master { get; set; }
+    public virtual DbSet<studylivemaster> studylivemaster { get; set; }
+    public virtual DbSet<studylivesubsection> studylivesubsection { get; set; }
+    public virtual DbSet<team_master> team_master { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
