@@ -260,6 +260,7 @@ public partial class applicantdetails
     public Nullable<int> isstudentreferbyagent { get; set; }
     public string motivationreason { get; set; }
     public Nullable<bool> haveworkexperience { get; set; }
+    public string totalyearofexperience { get; set; }
 }
 
 public partial class applicantdocumentmaster
@@ -621,10 +622,42 @@ public partial class clarificationquestionsmaster
     public virtual ICollection<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
 }
 
+public partial class contact_us
+{
+    public int id { get; set; }
+    public int universityid { get; set; }
+    public string toptitle { get; set; }
+    public string topdescription { get; set; }
+    public string bottomtitle { get; set; }
+    public string bottomdescription { get; set; }
+    public int countryid { get; set; }
+    public string language { get; set; }
+    public string backgroundimage { get; set; }
+    public string havequestion { get; set; }
+
+    public virtual countriesmaster countriesmaster { get; set; }
+    public virtual university_master university_master { get; set; }
+}
+
 public partial class controlmaster
 {
     public int id { get; set; }
     public string controltype { get; set; }
+}
+
+public partial class counsellor
+{
+    public int counsellorid { get; set; }
+    public string toptitle { get; set; }
+    public string description { get; set; }
+    public int universityid { get; set; }
+    public int countryid { get; set; }
+    public string language { get; set; }
+    public System.DateTime created_at { get; set; }
+    public string backgroundimage { get; set; }
+
+    public virtual university_master university_master { get; set; }
+    public virtual countriesmaster countriesmaster { get; set; }
 }
 
 public partial class countriesmaster
@@ -634,6 +667,11 @@ public partial class countriesmaster
     {
         this.citymaster = new HashSet<citymaster>();
         this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
+        this.contact_us = new HashSet<contact_us>();
+        this.counsellor = new HashSet<counsellor>();
+        this.experince_master = new HashSet<experince_master>();
+        this.studylivemaster = new HashSet<studylivemaster>();
+        this.team_master = new HashSet<team_master>();
     }
 
     public int id { get; set; }
@@ -645,6 +683,16 @@ public partial class countriesmaster
     public virtual ICollection<citymaster> citymaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<contact_us> contact_us { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<counsellor> counsellor { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<experince_master> experince_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<studylivemaster> studylivemaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<team_master> team_master { get; set; }
 }
 
 public partial class coursemaster
@@ -744,6 +792,48 @@ public partial class entertainment
 {
     public int id { get; set; }
     public string description { get; set; }
+}
+
+public partial class experince_master
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public experince_master()
+    {
+        this.experince_subsection = new HashSet<experince_subsection>();
+    }
+
+    public int experinceid { get; set; }
+    public string experincebackgroundimage { get; set; }
+    public string experincetoptitle { get; set; }
+    public string experincetopdescription { get; set; }
+    public string experincevideo { get; set; }
+    public string experincemiddletitle { get; set; }
+    public string experincemiddledescription { get; set; }
+    public string experincebottomtitle { get; set; }
+    public string experincebottomdescription { get; set; }
+    public int universityid { get; set; }
+    public int countryid { get; set; }
+    public string language { get; set; }
+    public System.DateTime created_at { get; set; }
+
+    public virtual countriesmaster countriesmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<experince_subsection> experince_subsection { get; set; }
+    public virtual university_master university_master { get; set; }
+}
+
+public partial class experince_subsection
+{
+    public int experince_subsectionid { get; set; }
+    public int experinceid { get; set; }
+    public string image { get; set; }
+    public string name { get; set; }
+    public string short_description { get; set; }
+    public string description { get; set; }
+    public string image_large { get; set; }
+    public System.DateTime create_at { get; set; }
+
+    public virtual experince_master experince_master { get; set; }
 }
 
 public partial class facilitiesmaster
@@ -1009,6 +1099,14 @@ public partial class gte_tutorialmaster
     public Nullable<int> universityid { get; set; }
 }
 
+public partial class gte_videouploadmaster
+{
+    public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string videourl { get; set; }
+}
+
 public partial class inferencemaster
 {
     public int inferenceid { get; set; }
@@ -1049,6 +1147,18 @@ public partial class master_name
 {
     public int masterid { get; set; }
     public string mastername { get; set; }
+}
+
+public partial class menu_master
+{
+    public int menuid { get; set; }
+    public string name { get; set; }
+    public string url { get; set; }
+    public int universityid { get; set; }
+    public System.DateTime created_at { get; set; }
+    public string language { get; set; }
+
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class preliminary_questionmaster
@@ -1262,6 +1372,45 @@ public partial class studylevelmaster
     public virtual ICollection<students> students { get; set; }
 }
 
+public partial class studylivemaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public studylivemaster()
+    {
+        this.studylivesubsection = new HashSet<studylivesubsection>();
+    }
+
+    public int studylivemasterid { get; set; }
+    public string toptitle { get; set; }
+    public string topdescription { get; set; }
+    public int countryid { get; set; }
+    public string language { get; set; }
+    public string footertitle { get; set; }
+    public string footerdescription { get; set; }
+    public int universityid { get; set; }
+    public System.DateTime created_at { get; set; }
+    public string backgroundimage { get; set; }
+    public string pdffilepath { get; set; }
+
+    public virtual countriesmaster countriesmaster { get; set; }
+    public virtual university_master university_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<studylivesubsection> studylivesubsection { get; set; }
+}
+
+public partial class studylivesubsection
+{
+    public int studylivesubsectionid { get; set; }
+    public int studylivemasterid { get; set; }
+    public string toptitle { get; set; }
+    public string shortdescription { get; set; }
+    public string longdescription { get; set; }
+    public string backgroundimage { get; set; }
+    public System.DateTime created_at { get; set; }
+
+    public virtual studylivemaster studylivemaster { get; set; }
+}
+
 public partial class studymodemaster
 {
     public int id { get; set; }
@@ -1313,6 +1462,23 @@ public partial class supervisorcomments
     public virtual adminusers adminusers { get; set; }
     public virtual formmaster formmaster { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
+}
+
+public partial class team_master
+{
+    public int team_id { get; set; }
+    public string teamname { get; set; }
+    public string designation { get; set; }
+    public string department { get; set; }
+    public string description { get; set; }
+    public string image { get; set; }
+    public int university { get; set; }
+    public int countryid { get; set; }
+    public string lang { get; set; }
+    public System.DateTime created_at { get; set; }
+
+    public virtual countriesmaster countriesmaster { get; set; }
     public virtual university_master university_master { get; set; }
 }
 
@@ -1398,6 +1564,12 @@ public partial class university_master
         this.clarificationquestion_university_mapping = new HashSet<clarificationquestion_university_mapping>();
         this.admincomments = new HashSet<admincomments>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
+        this.contact_us = new HashSet<contact_us>();
+        this.counsellor = new HashSet<counsellor>();
+        this.experince_master = new HashSet<experince_master>();
+        this.menu_master = new HashSet<menu_master>();
+        this.studylivemaster = new HashSet<studylivemaster>();
+        this.team_master = new HashSet<team_master>();
     }
 
     public int universityid { get; set; }
@@ -1450,6 +1622,18 @@ public partial class university_master
     public virtual ICollection<admincomments> admincomments { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<contact_us> contact_us { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<counsellor> counsellor { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<experince_master> experince_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<menu_master> menu_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<studylivemaster> studylivemaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<team_master> team_master { get; set; }
 }
 
 public partial class universitycampus

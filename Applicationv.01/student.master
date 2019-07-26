@@ -339,6 +339,16 @@
                                                     <span class="sidebar-menu-text">GTE Question Part 2</span>
                                                 </a>
                                             </li>
+                                            <li class="sidebar-menu-item" id="gteclarification">
+                                                <a class="sidebar-menu-button" href="gte_clarificationquestions.aspx">
+                                                    <span class="sidebar-menu-text">GTE Clarification Question</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtevideoquestion">
+                                                <a class="sidebar-menu-button" href="gte_videoquestion.aspx">
+                                                    <span class="sidebar-menu-text">GTE Video Question</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="message_menu_list">
@@ -638,7 +648,7 @@
     <script src="assets/js/prism.js"></script>
     <!-- Init -->
     <script src="assets/js/countdown.js"></script>
-    <script>        
+    <script>
         $(document).ready(function () {
             var declarationCompleted = ("<%=GlobalVariables.isDeclarationDoneByApplicant%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=GlobalVariables.isProfileDetailsCompletedByApplicant%>".toLowerCase() == "true");
@@ -657,7 +667,7 @@
                 $("#personal_menu_list").show();
                 $("#clarification_question_list").show();
                 $("#upload_document_list").show();
-                $("#Gte_list").hide();
+                $("#Gte_list").show();
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
                 $("#components_list").hide();
@@ -668,6 +678,14 @@
                 else
                     $("#Application_list").show();
             }
+                        
+            var questioncompleted = '<%=questioncompleted%>';
+            var isclarificationquestionset = '<%=isclarificationquestionset%>'
+            if (questioncompleted == 0 || isclarificationquestionset == 0)
+                $("#gteclarification").hide();
+            else
+                $("#gteclarification").show();
+
         });
     </script>
 </body>

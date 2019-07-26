@@ -247,6 +247,7 @@
           <Property Name="isstudentreferbyagent" Type="int" />
           <Property Name="motivationreason" Type="varchar" MaxLength="50" />
           <Property Name="haveworkexperience" Type="bit" />
+          <Property Name="totalyearofexperience" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -600,12 +601,40 @@
           <Property Name="question" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="questiontype" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="contact_us">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="toptitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="topdescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="bottomtitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="bottomdescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="language" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="backgroundimage" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="havequestion" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="controlmaster">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="controltype" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="counsellor">
+          <Key>
+            <PropertyRef Name="counsellorid" />
+          </Key>
+          <Property Name="counsellorid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="toptitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="language" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="backgroundimage" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="countriesmaster">
           <Key>
@@ -706,6 +735,37 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="experince_master">
+          <Key>
+            <PropertyRef Name="experinceid" />
+          </Key>
+          <Property Name="experinceid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="experincebackgroundimage" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="experincetoptitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="experincetopdescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="experincevideo" Type="varchar" MaxLength="45" />
+          <Property Name="experincemiddletitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="experincemiddledescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="experincebottomtitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="experincebottomdescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="language" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="experince_subsection">
+          <Key>
+            <PropertyRef Name="experince_subsectionid" />
+          </Key>
+          <Property Name="experince_subsectionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="experinceid" Type="int" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="short_description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="description" Type="longtext" Nullable="false" />
+          <Property Name="image_large" Type="varchar" MaxLength="45" />
+          <Property Name="create_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="facilitiesmaster">
           <Key>
@@ -888,6 +948,15 @@
           <Property Name="status" Type="int" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
+        <EntityType Name="gte_videouploadmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="videourl" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="inferencemaster">
           <Key>
             <PropertyRef Name="inferenceid" />
@@ -935,6 +1004,17 @@
           </Key>
           <Property Name="masterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="mastername" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="menu_master">
+          <Key>
+            <PropertyRef Name="menuid" />
+          </Key>
+          <Property Name="menuid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="language" Type="char" MaxLength="2" Nullable="false" />
         </EntityType>
         <EntityType Name="preliminary_questionmaster">
           <Key>
@@ -1083,6 +1163,34 @@
           <Property Name="studylevelid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="studylevel" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="studylivemaster">
+          <Key>
+            <PropertyRef Name="studylivemasterid" />
+          </Key>
+          <Property Name="studylivemasterid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="toptitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="topdescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="language" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="footertitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="footerdescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="backgroundimage" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="pdffilepath" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="studylivesubsection">
+          <Key>
+            <PropertyRef Name="studylivesubsectionid" />
+          </Key>
+          <Property Name="studylivesubsectionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studylivemasterid" Type="int" Nullable="false" />
+          <Property Name="toptitle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="shortdescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="longdescription" Type="longtext" Nullable="false" />
+          <Property Name="backgroundimage" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1124,6 +1232,21 @@
           <Property Name="applicantid" Type="int" Nullable="false" />
           <Property Name="supervisoraction" Type="int" Nullable="false" />
           <Property Name="comments" Type="varchar" MaxLength="200" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="team_master">
+          <Key>
+            <PropertyRef Name="team_id" />
+          </Key>
+          <Property Name="team_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="teamname" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="designation" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="department" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="university" Type="int" Nullable="false" />
+          <Property Name="countryid" Type="int" Nullable="false" />
+          <Property Name="lang" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="timezonemaster">
@@ -1492,6 +1615,54 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_contactus_country">
+          <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="1" />
+          <End Role="contact_us" Type="Self.contact_us" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contact_us">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_contactus_university">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="contact_us" Type="Self.contact_us" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="contact_us">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_counseller_university">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="counsellor" Type="Self.counsellor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="counsellor">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_counsellor_country">
+          <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="1" />
+          <End Role="counsellor" Type="Self.counsellor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="counsellor">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_coursetypemaster_university_master">
           <End Role="university_master" Type="Self.university_master" Multiplicity="0..1" />
           <End Role="coursetypemaster" Type="Self.coursetypemaster" Multiplicity="*" />
@@ -1561,6 +1732,42 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="customfieldvalue">
               <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_experience_experince_subsection">
+          <End Role="experince_master" Type="Self.experince_master" Multiplicity="1" />
+          <End Role="experince_subsection" Type="Self.experince_subsection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experince_master">
+              <PropertyRef Name="experinceid" />
+            </Principal>
+            <Dependent Role="experince_subsection">
+              <PropertyRef Name="experinceid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_experince_country">
+          <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="1" />
+          <End Role="experince_master" Type="Self.experince_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="experince_master">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_experince_university">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="experince_master" Type="Self.experince_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="experince_master">
+              <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1744,6 +1951,42 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_studylive_country">
+          <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="1" />
+          <End Role="studylivemaster" Type="Self.studylivemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="studylivemaster">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_studylive_university">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="studylivemaster" Type="Self.studylivemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="studylivemaster">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_studylivesubsection_studylivemaster">
+          <End Role="studylivemaster" Type="Self.studylivemaster" Multiplicity="1" />
+          <End Role="studylivesubsection" Type="Self.studylivesubsection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studylivemaster">
+              <PropertyRef Name="studylivemasterid" />
+            </Principal>
+            <Dependent Role="studylivesubsection">
+              <PropertyRef Name="studylivemasterid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_subjectmaster_subjectwisecountrymapping">
           <End Role="subjectmaster" Type="Self.subjectmaster" Multiplicity="1" />
           <End Role="subjectwisecountrymapping" Type="Self.subjectwisecountrymapping" Multiplicity="*" />
@@ -1804,6 +2047,30 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_team_countries">
+          <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="1" />
+          <End Role="team_master" Type="Self.team_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="team_master">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_team_university">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="team_master" Type="Self.team_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="team_master">
+              <PropertyRef Name="university" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tooltips_formmaster">
           <End Role="formmaster" Type="Self.formmaster" Multiplicity="1" />
           <End Role="tooltipmaster" Type="Self.tooltipmaster" Multiplicity="*" />
@@ -1848,6 +2115,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
               <PropertyRef Name="universityid" />
             </Principal>
             <Dependent Role="admincomments">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_university_menu">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="menu_master" Type="Self.menu_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="menu_master">
               <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
@@ -1945,7 +2224,9 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="clarificationquestion_university_mapping" EntityType="Self.clarificationquestion_university_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="clarificationquestionsmaster" EntityType="Self.clarificationquestionsmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="contact_us" EntityType="Self.contact_us" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="controlmaster" EntityType="Self.controlmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="counsellor" EntityType="Self.counsellor" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countriesmaster" EntityType="Self.countriesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
@@ -1957,6 +2238,8 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationverificationcontactmaster" EntityType="Self.educationverificationcontactmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="entertainment" EntityType="Self.entertainment" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="experince_master" EntityType="Self.experince_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="experince_subsection" EntityType="Self.experince_subsection" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="facilitiesmaster" EntityType="Self.facilitiesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="facility_campus_mapping" EntityType="Self.facility_campus_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="familymember" EntityType="Self.familymember" Schema="GTE" store:Type="Tables" />
@@ -1976,12 +2259,14 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="gte_questions_applicant_response" EntityType="Self.gte_questions_applicant_response" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_questions_master" EntityType="Self.gte_questions_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_tutorialmaster" EntityType="Self.gte_tutorialmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_videouploadmaster" EntityType="Self.gte_videouploadmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="managemeal" EntityType="Self.managemeal" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="maritalstatusmaster" EntityType="Self.maritalstatusmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="master_name" EntityType="Self.master_name" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="menu_master" EntityType="Self.menu_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminaryapplicantanswers" EntityType="Self.preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="primaryfieldmaster" EntityType="Self.primaryfieldmaster" Schema="GTE" store:Type="Tables" />
@@ -1997,11 +2282,14 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="studentcoursemapping" EntityType="Self.studentcoursemapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="students" EntityType="Self.students" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studylevelmaster" EntityType="Self.studylevelmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="studylivemaster" EntityType="Self.studylivemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="studylivesubsection" EntityType="Self.studylivesubsection" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studymodemaster" EntityType="Self.studymodemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studyoptionmaster" EntityType="Self.studyoptionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectmaster" EntityType="Self.subjectmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="subjectwisecountrymapping" EntityType="Self.subjectwisecountrymapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="supervisorcomments" EntityType="Self.supervisorcomments" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="team_master" EntityType="Self.team_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="timezonemaster" EntityType="Self.timezonemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="titlemaster" EntityType="Self.titlemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="tooltipmaster" EntityType="Self.tooltipmaster" Schema="GTE" store:Type="Tables" />
@@ -2090,6 +2378,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="clarificationquestionsmaster" EntitySet="clarificationquestionsmaster" />
             <End Role="clarificationquestion_university_mapping" EntitySet="clarificationquestion_university_mapping" />
           </AssociationSet>
+          <AssociationSet Name="fk_contactus_country" Association="Self.fk_contactus_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="contact_us" EntitySet="contact_us" />
+          </AssociationSet>
+          <AssociationSet Name="fk_contactus_university" Association="Self.fk_contactus_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="contact_us" EntitySet="contact_us" />
+          </AssociationSet>
+          <AssociationSet Name="fk_counseller_university" Association="Self.fk_counseller_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="counsellor" EntitySet="counsellor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_counsellor_country" Association="Self.fk_counsellor_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="counsellor" EntitySet="counsellor" />
+          </AssociationSet>
           <AssociationSet Name="FK_coursetypemaster_university_master" Association="Self.FK_coursetypemaster_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="coursetypemaster" EntitySet="coursetypemaster" />
@@ -2113,6 +2417,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_customfieldvalue_students" Association="Self.FK_customfieldvalue_students">
             <End Role="students" EntitySet="students" />
             <End Role="customfieldvalue" EntitySet="customfieldvalue" />
+          </AssociationSet>
+          <AssociationSet Name="fk_experience_experince_subsection" Association="Self.fk_experience_experince_subsection">
+            <End Role="experince_master" EntitySet="experince_master" />
+            <End Role="experince_subsection" EntitySet="experince_subsection" />
+          </AssociationSet>
+          <AssociationSet Name="fk_experince_country" Association="Self.fk_experince_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="experince_master" EntitySet="experince_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_experince_university" Association="Self.fk_experince_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="experince_master" EntitySet="experince_master" />
           </AssociationSet>
           <AssociationSet Name="fk_frommaster_admincomments" Association="Self.fk_frommaster_admincomments">
             <End Role="formmaster" EntitySet="formmaster" />
@@ -2174,6 +2490,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="studylevelmaster" EntitySet="studylevelmaster" />
             <End Role="students" EntitySet="students" />
           </AssociationSet>
+          <AssociationSet Name="fk_studylive_country" Association="Self.fk_studylive_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="studylivemaster" EntitySet="studylivemaster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_studylive_university" Association="Self.fk_studylive_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="studylivemaster" EntitySet="studylivemaster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_studylivesubsection_studylivemaster" Association="Self.fk_studylivesubsection_studylivemaster">
+            <End Role="studylivemaster" EntitySet="studylivemaster" />
+            <End Role="studylivesubsection" EntitySet="studylivesubsection" />
+          </AssociationSet>
           <AssociationSet Name="FK_subjectmaster_subjectwisecountrymapping" Association="Self.FK_subjectmaster_subjectwisecountrymapping">
             <End Role="subjectmaster" EntitySet="subjectmaster" />
             <End Role="subjectwisecountrymapping" EntitySet="subjectwisecountrymapping" />
@@ -2194,6 +2522,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="supervisorcomments" EntitySet="supervisorcomments" />
           </AssociationSet>
+          <AssociationSet Name="fk_team_countries" Association="Self.fk_team_countries">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="team_master" EntitySet="team_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_team_university" Association="Self.fk_team_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="team_master" EntitySet="team_master" />
+          </AssociationSet>
           <AssociationSet Name="FK_tooltips_formmaster" Association="Self.FK_tooltips_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
             <End Role="tooltipmaster" EntitySet="tooltipmaster" />
@@ -2209,6 +2545,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="fk_university_master_admincomments" Association="Self.fk_university_master_admincomments">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="admincomments" EntitySet="admincomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_university_menu" Association="Self.fk_university_menu">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="menu_master" EntitySet="menu_master" />
           </AssociationSet>
           <AssociationSet Name="FK_universityMaster_cityMaster" Association="Self.FK_universityMaster_cityMaster">
             <End Role="citymaster" EntitySet="citymaster" />
@@ -2547,6 +2887,67 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
             <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
           </AssociationSet>
+          <EntitySet Name="contact_us" EntityType="GTEModel.contact_us" />
+          <EntitySet Name="counsellor" EntityType="GTEModel.counsellor" />
+          <EntitySet Name="experince_master" EntityType="GTEModel.experince_master" />
+          <EntitySet Name="experince_subsection" EntityType="GTEModel.experince_subsection" />
+          <EntitySet Name="gte_videouploadmaster" EntityType="GTEModel.gte_videouploadmaster" />
+          <EntitySet Name="menu_master" EntityType="GTEModel.menu_master" />
+          <EntitySet Name="studylivemaster" EntityType="GTEModel.studylivemaster" />
+          <EntitySet Name="studylivesubsection" EntityType="GTEModel.studylivesubsection" />
+          <EntitySet Name="team_master" EntityType="GTEModel.team_master" />
+          <AssociationSet Name="fk_contactus_country" Association="GTEModel.fk_contactus_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="contact_us" EntitySet="contact_us" />
+          </AssociationSet>
+          <AssociationSet Name="fk_contactus_university" Association="GTEModel.fk_contactus_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="contact_us" EntitySet="contact_us" />
+          </AssociationSet>
+          <AssociationSet Name="fk_counseller_university" Association="GTEModel.fk_counseller_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="counsellor" EntitySet="counsellor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_counsellor_country" Association="GTEModel.fk_counsellor_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="counsellor" EntitySet="counsellor" />
+          </AssociationSet>
+          <AssociationSet Name="fk_experince_country" Association="GTEModel.fk_experince_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="experince_master" EntitySet="experince_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_studylive_country" Association="GTEModel.fk_studylive_country">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="studylivemaster" EntitySet="studylivemaster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_team_countries" Association="GTEModel.fk_team_countries">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="team_master" EntitySet="team_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_experience_experince_subsection" Association="GTEModel.fk_experience_experince_subsection">
+            <End Role="experince_master" EntitySet="experince_master" />
+            <End Role="experince_subsection" EntitySet="experince_subsection" />
+          </AssociationSet>
+          <AssociationSet Name="fk_experince_university" Association="GTEModel.fk_experince_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="experince_master" EntitySet="experince_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_university_menu" Association="GTEModel.fk_university_menu">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="menu_master" EntitySet="menu_master" />
+          </AssociationSet>
+          <AssociationSet Name="fk_studylive_university" Association="GTEModel.fk_studylive_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="studylivemaster" EntitySet="studylivemaster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_studylivesubsection_studylivemaster" Association="GTEModel.fk_studylivesubsection_studylivemaster">
+            <End Role="studylivemaster" EntitySet="studylivemaster" />
+            <End Role="studylivesubsection" EntitySet="studylivesubsection" />
+          </AssociationSet>
+          <AssociationSet Name="fk_team_university" Association="GTEModel.fk_team_university">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="team_master" EntitySet="team_master" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -2865,6 +3266,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="dual_citizenship_allowed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
           <NavigationProperty Name="qualificationcountriesmapping" Relationship="GTEModel.FK_qualificationcountriesmapping_countriesmaster" FromRole="countriesmaster" ToRole="qualificationcountriesmapping" />
+          <NavigationProperty Name="contact_us" Relationship="GTEModel.fk_contactus_country" FromRole="countriesmaster" ToRole="contact_us" />
+          <NavigationProperty Name="counsellor" Relationship="GTEModel.fk_counsellor_country" FromRole="countriesmaster" ToRole="counsellor" />
+          <NavigationProperty Name="experince_master" Relationship="GTEModel.fk_experince_country" FromRole="countriesmaster" ToRole="experince_master" />
+          <NavigationProperty Name="studylivemaster" Relationship="GTEModel.fk_studylive_country" FromRole="countriesmaster" ToRole="studylivemaster" />
+          <NavigationProperty Name="team_master" Relationship="GTEModel.fk_team_countries" FromRole="countriesmaster" ToRole="team_master" />
         </EntityType>
         <EntityType Name="coursemaster">
           <Key>
@@ -3379,6 +3785,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_university_master_admincomments" FromRole="university_master" ToRole="admincomments" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_university_master" FromRole="university_master" ToRole="supervisorcomments" />
           <Property Name="full_service" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="contact_us" Relationship="GTEModel.fk_contactus_university" FromRole="university_master" ToRole="contact_us" />
+          <NavigationProperty Name="counsellor" Relationship="GTEModel.fk_counseller_university" FromRole="university_master" ToRole="counsellor" />
+          <NavigationProperty Name="experince_master" Relationship="GTEModel.fk_experince_university" FromRole="university_master" ToRole="experince_master" />
+          <NavigationProperty Name="menu_master" Relationship="GTEModel.fk_university_menu" FromRole="university_master" ToRole="menu_master" />
+          <NavigationProperty Name="studylivemaster" Relationship="GTEModel.fk_studylive_university" FromRole="university_master" ToRole="studylivemaster" />
+          <NavigationProperty Name="team_master" Relationship="GTEModel.fk_team_university" FromRole="university_master" ToRole="team_master" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -4079,6 +4491,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="isstudentreferbyagent" Type="Int32" />
           <Property Name="motivationreason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="haveworkexperience" Type="Boolean" />
+          <Property Name="totalyearofexperience" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -4536,6 +4949,299 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="gte_clarification_questionmaster">
               <PropertyRef Name="gte_master1_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="contact_us">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="toptitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="topdescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="bottomtitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bottomdescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="backgroundimage" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="havequestion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.fk_contactus_country" FromRole="contact_us" ToRole="countriesmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_contactus_university" FromRole="contact_us" ToRole="university_master" />
+        </EntityType>
+        <EntityType Name="counsellor">
+          <Key>
+            <PropertyRef Name="counsellorid" />
+          </Key>
+          <Property Name="counsellorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="toptitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="backgroundimage" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_counseller_university" FromRole="counsellor" ToRole="university_master" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.fk_counsellor_country" FromRole="counsellor" ToRole="countriesmaster" />
+        </EntityType>
+        <EntityType Name="experince_master">
+          <Key>
+            <PropertyRef Name="experinceid" />
+          </Key>
+          <Property Name="experinceid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="experincebackgroundimage" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="experincetoptitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="experincetopdescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="experincevideo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="experincemiddletitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="experincemiddledescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="experincebottomtitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="experincebottomdescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.fk_experince_country" FromRole="experince_master" ToRole="countriesmaster" />
+          <NavigationProperty Name="experince_subsection" Relationship="GTEModel.fk_experience_experince_subsection" FromRole="experince_master" ToRole="experince_subsection" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_experince_university" FromRole="experince_master" ToRole="university_master" />
+        </EntityType>
+        <EntityType Name="experince_subsection">
+          <Key>
+            <PropertyRef Name="experince_subsectionid" />
+          </Key>
+          <Property Name="experince_subsectionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="experinceid" Type="Int32" Nullable="false" />
+          <Property Name="image" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="short_description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="image_large" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="create_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="experince_master" Relationship="GTEModel.fk_experience_experince_subsection" FromRole="experince_subsection" ToRole="experince_master" />
+        </EntityType>
+        <EntityType Name="gte_videouploadmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="menu_master">
+          <Key>
+            <PropertyRef Name="menuid" />
+          </Key>
+          <Property Name="menuid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_university_menu" FromRole="menu_master" ToRole="university_master" />
+        </EntityType>
+        <EntityType Name="studylivemaster">
+          <Key>
+            <PropertyRef Name="studylivemasterid" />
+          </Key>
+          <Property Name="studylivemasterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="toptitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="topdescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="footertitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="footerdescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="backgroundimage" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pdffilepath" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.fk_studylive_country" FromRole="studylivemaster" ToRole="countriesmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_studylive_university" FromRole="studylivemaster" ToRole="university_master" />
+          <NavigationProperty Name="studylivesubsection" Relationship="GTEModel.fk_studylivesubsection_studylivemaster" FromRole="studylivemaster" ToRole="studylivesubsection" />
+        </EntityType>
+        <EntityType Name="studylivesubsection">
+          <Key>
+            <PropertyRef Name="studylivesubsectionid" />
+          </Key>
+          <Property Name="studylivesubsectionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studylivemasterid" Type="Int32" Nullable="false" />
+          <Property Name="toptitle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="shortdescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="longdescription" Type="String" Nullable="false" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="backgroundimage" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="studylivemaster" Relationship="GTEModel.fk_studylivesubsection_studylivemaster" FromRole="studylivesubsection" ToRole="studylivemaster" />
+        </EntityType>
+        <EntityType Name="team_master">
+          <Key>
+            <PropertyRef Name="team_id" />
+          </Key>
+          <Property Name="team_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="teamname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="designation" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="department" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="university" Type="Int32" Nullable="false" />
+          <Property Name="countryid" Type="Int32" Nullable="false" />
+          <Property Name="lang" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.fk_team_countries" FromRole="team_master" ToRole="countriesmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_team_university" FromRole="team_master" ToRole="university_master" />
+        </EntityType>
+        <Association Name="fk_contactus_country">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
+          <End Type="GTEModel.contact_us" Role="contact_us" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="contact_us">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_contactus_university">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.contact_us" Role="contact_us" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="contact_us">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_counseller_university">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.counsellor" Role="counsellor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="counsellor">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_counsellor_country">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
+          <End Type="GTEModel.counsellor" Role="counsellor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="counsellor">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_experince_country">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
+          <End Type="GTEModel.experince_master" Role="experince_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="experince_master">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_studylive_country">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
+          <End Type="GTEModel.studylivemaster" Role="studylivemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="studylivemaster">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_team_countries">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="1" />
+          <End Type="GTEModel.team_master" Role="team_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="team_master">
+              <PropertyRef Name="countryid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_experience_experince_subsection">
+          <End Type="GTEModel.experince_master" Role="experince_master" Multiplicity="1" />
+          <End Type="GTEModel.experince_subsection" Role="experince_subsection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="experince_master">
+              <PropertyRef Name="experinceid" />
+            </Principal>
+            <Dependent Role="experince_subsection">
+              <PropertyRef Name="experinceid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_experince_university">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.experince_master" Role="experince_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="experince_master">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_university_menu">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.menu_master" Role="menu_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="menu_master">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_studylive_university">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.studylivemaster" Role="studylivemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="studylivemaster">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_studylivesubsection_studylivemaster">
+          <End Type="GTEModel.studylivemaster" Role="studylivemaster" Multiplicity="1" />
+          <End Type="GTEModel.studylivesubsection" Role="studylivesubsection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studylivemaster">
+              <PropertyRef Name="studylivemasterid" />
+            </Principal>
+            <Dependent Role="studylivesubsection">
+              <PropertyRef Name="studylivemasterid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_team_university">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.team_master" Role="team_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="team_master">
+              <PropertyRef Name="university" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5578,6 +6284,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
+                <ScalarProperty Name="totalyearofexperience" ColumnName="totalyearofexperience" />
                 <ScalarProperty Name="haveworkexperience" ColumnName="haveworkexperience" />
                 <ScalarProperty Name="motivationreason" ColumnName="motivationreason" />
                 <ScalarProperty Name="isstudentreferbyagent" ColumnName="isstudentreferbyagent" />
@@ -5960,6 +6667,137 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="gte_preliminary_question_id" ColumnName="gte_preliminary_question_id" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="contact_us">
+            <EntityTypeMapping TypeName="GTEModel.contact_us">
+              <MappingFragment StoreEntitySet="contact_us">
+                <ScalarProperty Name="havequestion" ColumnName="havequestion" />
+                <ScalarProperty Name="backgroundimage" ColumnName="backgroundimage" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="bottomdescription" ColumnName="bottomdescription" />
+                <ScalarProperty Name="bottomtitle" ColumnName="bottomtitle" />
+                <ScalarProperty Name="topdescription" ColumnName="topdescription" />
+                <ScalarProperty Name="toptitle" ColumnName="toptitle" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="counsellor">
+            <EntityTypeMapping TypeName="GTEModel.counsellor">
+              <MappingFragment StoreEntitySet="counsellor">
+                <ScalarProperty Name="backgroundimage" ColumnName="backgroundimage" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="toptitle" ColumnName="toptitle" />
+                <ScalarProperty Name="counsellorid" ColumnName="counsellorid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="experince_master">
+            <EntityTypeMapping TypeName="GTEModel.experince_master">
+              <MappingFragment StoreEntitySet="experince_master">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="experincebottomdescription" ColumnName="experincebottomdescription" />
+                <ScalarProperty Name="experincebottomtitle" ColumnName="experincebottomtitle" />
+                <ScalarProperty Name="experincemiddledescription" ColumnName="experincemiddledescription" />
+                <ScalarProperty Name="experincemiddletitle" ColumnName="experincemiddletitle" />
+                <ScalarProperty Name="experincevideo" ColumnName="experincevideo" />
+                <ScalarProperty Name="experincetopdescription" ColumnName="experincetopdescription" />
+                <ScalarProperty Name="experincetoptitle" ColumnName="experincetoptitle" />
+                <ScalarProperty Name="experincebackgroundimage" ColumnName="experincebackgroundimage" />
+                <ScalarProperty Name="experinceid" ColumnName="experinceid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="experince_subsection">
+            <EntityTypeMapping TypeName="GTEModel.experince_subsection">
+              <MappingFragment StoreEntitySet="experince_subsection">
+                <ScalarProperty Name="create_at" ColumnName="create_at" />
+                <ScalarProperty Name="image_large" ColumnName="image_large" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="experinceid" ColumnName="experinceid" />
+                <ScalarProperty Name="experince_subsectionid" ColumnName="experince_subsectionid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_videouploadmaster">
+            <EntityTypeMapping TypeName="GTEModel.gte_videouploadmaster">
+              <MappingFragment StoreEntitySet="gte_videouploadmaster">
+                <ScalarProperty Name="videourl" ColumnName="videourl" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu_master">
+            <EntityTypeMapping TypeName="GTEModel.menu_master">
+              <MappingFragment StoreEntitySet="menu_master">
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="menuid" ColumnName="menuid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studylivemaster">
+            <EntityTypeMapping TypeName="GTEModel.studylivemaster">
+              <MappingFragment StoreEntitySet="studylivemaster">
+                <ScalarProperty Name="pdffilepath" ColumnName="pdffilepath" />
+                <ScalarProperty Name="backgroundimage" ColumnName="backgroundimage" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="footerdescription" ColumnName="footerdescription" />
+                <ScalarProperty Name="footertitle" ColumnName="footertitle" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="topdescription" ColumnName="topdescription" />
+                <ScalarProperty Name="toptitle" ColumnName="toptitle" />
+                <ScalarProperty Name="studylivemasterid" ColumnName="studylivemasterid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="studylivesubsection">
+            <EntityTypeMapping TypeName="GTEModel.studylivesubsection">
+              <MappingFragment StoreEntitySet="studylivesubsection">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="backgroundimage" ColumnName="backgroundimage" />
+                <ScalarProperty Name="longdescription" ColumnName="longdescription" />
+                <ScalarProperty Name="shortdescription" ColumnName="shortdescription" />
+                <ScalarProperty Name="toptitle" ColumnName="toptitle" />
+                <ScalarProperty Name="studylivemasterid" ColumnName="studylivemasterid" />
+                <ScalarProperty Name="studylivesubsectionid" ColumnName="studylivesubsectionid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="team_master">
+            <EntityTypeMapping TypeName="GTEModel.team_master">
+              <MappingFragment StoreEntitySet="team_master">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="lang" ColumnName="lang" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="university" ColumnName="university" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="designation" ColumnName="designation" />
+                <ScalarProperty Name="teamname" ColumnName="teamname" />
+                <ScalarProperty Name="team_id" ColumnName="team_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
