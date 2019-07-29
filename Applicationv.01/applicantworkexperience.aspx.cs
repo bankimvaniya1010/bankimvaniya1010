@@ -122,6 +122,10 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         iclinkedin.Attributes.Add("style", "display:block;");
                         iclinkedin.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
+                    case "How many years of work experience Do You Wish To Record":
+                        icyearsOfexp.Attributes.Add("style", "display:block;");
+                        icyearsOfexp.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
                     default:
                         break;
 
@@ -239,6 +243,10 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         linkedin.Attributes.Add("style", "display:block;");
                         labellinkedin.InnerHtml = setInnerHtml(fields[k]);
                         break;
+                    case "How many years of work experience Do You Wish To Record":
+                        yearsOfexp.Attributes.Add("style", "display:block;");
+                        labelyearsOfexp.InnerHtml = setInnerHtml(fields[k]);
+                        break;
 
                     default:
                         break;
@@ -254,13 +262,18 @@ public partial class applicantworkexperience : System.Web.UI.Page
     {
         try
         {
+            var experienceInfo = (from ad in db.applicantdetails
+                                where ad.applicantid == userID && ad.universityid == universityID
+                                select ad).FirstOrDefault();
+            
             var employerInfo = (from pInfo in db.applicantemployerdetails
                                 where pInfo.employerid == employerId
                                 select pInfo).FirstOrDefault();
             if (employerInfo != null)
             {
                 if (employerInfo.wishtoaddemployer == 1) {
-                    rblEmploymentYes.Checked = true;
+                    rblEmploymentYes.Checked = true;   
+                    txtyearsOfexp.Value = experienceInfo.totalyearofexperience;
                     txtEmployer.Value = employerInfo.organization;
                     txtemployerwebsite.Value = employerInfo.website;
                     txtCity.Value = employerInfo.city;
@@ -296,7 +309,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    protected void btn_Save_Click(object sender, EventArgs e)
     {
         try
         {
@@ -320,6 +333,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             if (rblEmploymentYes.Checked)
             {
                 noExperience.haveworkexperience = true;
+                noExperience.totalyearofexperience = txtyearsOfexp.Value;
                 objEmployer.wishtoaddemployer = 1;
                 objEmployer.organization = txtEmployer.Value;
                 objEmployer.designation = txtPosition.Value;
@@ -345,6 +359,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             else
             {
                 noExperience.haveworkexperience = false;
+                noExperience.totalyearofexperience = "";
                 var record = db.applicantemployerdetails.Where(c => c.applicantid == userID && c.universityid == universityID).ToList();
                 for (var i = 0; i < record.Count; i++)
                     db.applicantemployerdetails.Remove(db.applicantemployerdetails.Find(record[i].employerid));
@@ -363,7 +378,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
                 sb.Append("Thank You <br/>");
                 sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Nomination Detail check for " + applicantName);
+                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Employment detail check for " + applicantName);
             }
 
             lblMessage.Text = "Your Work Experience Details have been saved";

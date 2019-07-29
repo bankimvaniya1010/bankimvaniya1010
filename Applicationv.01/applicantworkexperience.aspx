@@ -102,6 +102,17 @@
                                 </div>
 
                                 <div id="fieldContainer" runat="server">
+                                    <div class="list-group-item" id="yearsOfexp" runat="server" style="display: none;">
+                                        <div class="form-group m-0" role="group" aria-labelledby="label-yearsOfexp">
+                                            <div class="form-row">
+                                                <label id="labelyearsOfexp" runat="server" for="yearsOfexp" class="col-md-3 col-form-label form-label">Name of Organization </label>
+                                                <div class="col-md-6">
+                                                    <input id="txtyearsOfexp" runat="server" type="text" class="form-control" placeholder="How many years of work experience Do You Wish To Record">
+                                                    <span class="helpicon"><i id="icyearsOfexp" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="list-group-item" id="employer" runat="server" style="display: none;">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-employer">
                                             <div class="form-row">
@@ -244,7 +255,7 @@
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                         <div class="form-row">
                                             <a href="applicantsocial.aspx" class="btn btn-success" style="margin-right: 10px;">Social</a>
-                                            <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
+                                            <asp:Button ID="btn_Save" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_Save_Click" OnClientClick="return validateForm()" />
                                             <div class="col-md-6">
                                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                                 <asp:Label ID="lblSaveTime" runat="server"  Visible="false"></asp:Label>
@@ -278,7 +289,9 @@
                 alert("Please Select Option to record any work experience");
             }
             else if ($("#<%=rblEmploymentYes.ClientID%>").is(":checked")) {
-                if (!$("#<%=employer.ClientID%>").is(':hidden') && $("#<%=txtEmployer.ClientID%>").val() == "")
+                if (!$("#<%=yearsOfexp.ClientID%>").is(':hidden') && $("#<%=txtyearsOfexp.ClientID%>").val() == "")
+                    alert("Please enter years of work experience");
+                else if (!$("#<%=employer.ClientID%>").is(':hidden') && $("#<%=txtEmployer.ClientID%>").val() == "")
                     alert("Please enter organization name");
                 else if (!$("#<%=employerwebsite.ClientID%>").is(':hidden') && $("#<%=txtemployerwebsite.ClientID%>").val() == "" && !$("#<%=chkWebsite.ClientID%>").is(":checked"))
                     alert("Please Mention Website");
@@ -292,6 +305,8 @@
                     alert("Please Select Start Date");
                 else if (!$("#<%=endate.ClientID%>").is(':hidden') && $("#<%=txtEndate.ClientID%>").val() == "")
                     alert("Please Select End Date");
+                 else if ($("#<%=txtStartDate.ClientID%>").val() != "" && $("#<%=txtEndate.ClientID%>").val() != "" && $("#<%=txtStartDate.ClientID%>").val() > $("#<%=txtEndate.ClientID%>").val())
+                    alert("Please Enter Valid end date");
                 else if (!$("#<%=briefDescription.ClientID%>").is(':hidden') && $("#<%=txtbriefDescription.ClientID%>").val() == "")
                     alert("Please Enter Discription Of What You Did");
                 else if (!$("#<%=reportingmanger.ClientID%>").is(':hidden') && $("#<%=txtreportingmanger.ClientID%>").val() == "")
@@ -380,7 +395,7 @@
                 $("#<%=ddlRelationship.ClientID%>").val("0");
                 $("#<%=txtEmail.ClientID%>").val("");
                 $("#<%=txtlinkedin.ClientID%>").val("");
-                $("#<%=employment.ClientID%>").hide();
+               // $("#<%=employment.ClientID%>").hide();
                 $("#<%=hdnemployer.ClientID%>").val("");
                 $("#<%=fieldContainer.ClientID%>").hide();
                 $("#<%=lblSaveTime.ClientID%>").hide();
@@ -388,6 +403,8 @@
 
             if ($("#<%=employment.ClientID%>").is(':hidden'))
                 $("#<%=employment.ClientID%>").show();
+            else
+                 $("#<%=employment.ClientID%>").hide();
         }
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');

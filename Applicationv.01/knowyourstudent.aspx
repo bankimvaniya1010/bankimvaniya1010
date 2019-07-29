@@ -143,7 +143,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="applicanteducation.aspx" class="btn btn-success" style="margin-right: 10px;">Education Details</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btnidentification" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnidentification_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
@@ -175,9 +175,9 @@
         </div>
     </div>
     <script>
-
+            
         $('#ContentPlaceHolder1_txtdateofissue').flatpickr({
-
+       
             dateFormat: 'Y-m-d', defaultDate: ""
         });
         $('#ContentPlaceHolder1_txtexpirydate').flatpickr({
@@ -193,6 +193,8 @@
                 alert("Please Enter Date Of Issue");
             else if (!$("#<%=expirydate.ClientID%>").is(':hidden') && $("#<%=txtexpirydate.ClientID%>").val() == "")
                 alert("Please Select Expiry Date");
+            else if ($("#<%=txtdateofissue.ClientID%>").val() != "" && $("#<%=txtexpirydate.ClientID%>").val() != "" && $("#<%=txtexpirydate.ClientID%>").val() < $("#<%=txtdateofissue.ClientID%>").val())
+                alert("Please enter Valid Expiry Date");
             else if (!$("#<%=countryIssue.ClientID%>").is(':hidden') && $("#<%=ddlCountryofIssue.ClientID%>").val() === "0")
                 alert("Please Select Country");
             else if (!$("#<%=issueplace.ClientID%>").is(':hidden') && $("#<%=txtissueplaceCity.ClientID%>").val() == "")

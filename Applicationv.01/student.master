@@ -86,10 +86,8 @@
 
                             <!-- User dropdown -->
                             <li class="nav-item dropdown ml-1 ml-md-3">
-                                <a class="nav-link dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">                                     
-                                    <h3>
-                                         <asp:Label ID="lblusername" runat="server"></asp:Label>
-                                    </h3>
+                                <a class="nav-link dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">                                    
+                                    <h3> <asp:Label ID="lblusername" runat="server"></asp:Label> </h3></a>  
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="login.aspx">
                                         <i class="material-icons">lock</i> Logout
@@ -152,7 +150,7 @@
                                             </li>
                                             <li class="sidebar-menu-item" id="preliminaryquestion">
                                                 <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
-                                                    <span class="sidebar-menu-text">Ouick Test</span>
+                                                    <span class="sidebar-menu-text">Quick Test</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantdeclaration">
@@ -316,14 +314,39 @@
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="Gte">
-                                            <li class="sidebar-menu-item" id="questions">
-                                                <a class="sidebar-menu-button" href="questions.aspx">
-                                                    <span class="sidebar-menu-text">Questions</span>
+                                            <li class="sidebar-menu-item" id="gtetutorial">
+                                                <a class="sidebar-menu-button" href="gte_tutorial.aspx">
+                                                    <span class="sidebar-menu-text">GTE Tutorial</span>
+                                                </a>
+                                            </li>                                            
+                                            <li class="sidebar-menu-item" id="gtequicktest">
+                                                <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx">
+                                                    <span class="sidebar-menu-text"> Quick Test</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item">
+                                            <li class="sidebar-menu-item" id="gtedeclaration">
+                                                <a class="sidebar-menu-button" href="gte_declaration.aspx">
+                                                    <span class="sidebar-menu-text">GTE Declaration</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtepart1">
                                                 <a class="sidebar-menu-button" href="gte_questions1.aspx">
-                                                    <span class="sidebar-menu-text">Part 1</span>
+                                                    <span class="sidebar-menu-text">GTE Question Part 1</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtepart2">
+                                                <a class="sidebar-menu-button" href="gte_questions2.aspx">
+                                                    <span class="sidebar-menu-text">GTE Question Part 2</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gteclarification">
+                                                <a class="sidebar-menu-button" href="gte_clarificationquestions.aspx">
+                                                    <span class="sidebar-menu-text">GTE Clarification Question</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtevideoquestion">
+                                                <a class="sidebar-menu-button" href="gte_videoquestion.aspx">
+                                                    <span class="sidebar-menu-text">GTE Video Question</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -625,7 +648,7 @@
     <script src="assets/js/prism.js"></script>
     <!-- Init -->
     <script src="assets/js/countdown.js"></script>
-    <script>        
+    <script>
         $(document).ready(function () {
             var declarationCompleted = ("<%=GlobalVariables.isDeclarationDoneByApplicant%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=GlobalVariables.isProfileDetailsCompletedByApplicant%>".toLowerCase() == "true");
@@ -655,6 +678,14 @@
                 else
                     $("#Application_list").show();
             }
+                        
+            var questioncompleted = '<%=questioncompleted%>';
+            var isclarificationquestionset = '<%=isclarificationquestionset%>'
+            if (questioncompleted == 0 || isclarificationquestionset == 0)
+                $("#gteclarification").hide();
+            else
+                $("#gteclarification").show();
+
         });
     </script>
 </body>

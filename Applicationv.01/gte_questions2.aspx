@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_questions1.aspx.cs" Inherits="gte_questions1"  MasterPageFile="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_questions2.aspx.cs" Inherits="gte_questions2" MasterPageFile="~/student.master"%>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">GTE Questions</li>
         </ol>
-        <h1 class="h2">GTE Questions - Part 1</h1>
+        <h1 class="h2">GTE Questions - Part 2</h1>
 
     </div>
     <div class="page ">
@@ -23,12 +23,6 @@
                                 <div class="card-header">
                                     <div style="display: none;">
                                         <asp:Label ID="lblno" runat="server" Text='<%# Eval("id") %>'></asp:Label>
-                                        <asp:Label ID="lblAnswerID_0" runat="server" Text='<%# Eval("answerId0") %>'></asp:Label>
-                                        <asp:Label ID="lblAnswerID_1" runat="server" Text='<%# Eval("answerId1") %>'></asp:Label>
-                                        <asp:Label ID="lblAnswerID_2" runat="server" Text='<%# Eval("answerId2") %>'></asp:Label>
-                                        <asp:Label ID="lblAnswerID_3" runat="server" Text='<%# Eval("answerId3") %>'></asp:Label>
-                                        <asp:Label ID="lblAnswerID_4" runat="server" Text='<%# Eval("answerId4") %>'></asp:Label>
-                                        <asp:Label ID="lblAnswerID_5" runat="server" Text='<%# Eval("answerId5") %>'></asp:Label>
                                     </div>
                                     <div class="media align-items-center">
 
@@ -42,24 +36,11 @@
                                 <div class="card-body">
 
                                     <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("option0") %>' />
+                                        <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text="True" />
                                     </div>
                                     <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("option1") %>' />
+                                        <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text="False" />
                                     </div>
-                                    <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("option2") %>' />
-                                    </div>
-                                    <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("option3") %>' />
-                                    </div>
-                                    <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans5" runat="server" GroupName="A" Text='<%# Eval("option4") %>' />
-                                    </div>
-                                    <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans6" runat="server" GroupName="A" Text='<%# Eval("option5") %>' />
-                                    </div>
-
                                 </div>
                             </asp:Panel>
                         </ItemTemplate>
@@ -87,16 +68,15 @@
     </div>
     <script>
         function validateForm() {
-            var rdoans1 = $("#ContentPlaceHolder1_questionList_rdoans1_0");
-            var rdoans2 = $("#ContentPlaceHolder1_questionList_rdoans2_0");
-            var rdoans3 = $("#ContentPlaceHolder1_questionList_rdoans3_0");
-            var rdoans4 = $("#ContentPlaceHolder1_questionList_rdoans4_0");
-            var rdoans5 = $("#ContentPlaceHolder1_questionList_rdoans5_0");
-            var rdoans6 = $("#ContentPlaceHolder1_questionList_rdoans6_0");
+            var questionCount = <%=gte_questions2.QuestionsCount%>;
+            for (var i = 0; i < questionCount; i++) {
+                var rdoans1 = $("#ContentPlaceHolder1_questionList_rdoans1_" + i);
+                var rdoans2 = $("#ContentPlaceHolder1_questionList_rdoans2_" + i);
 
-            if (!(rdoans1.is(':checked') || rdoans2.is(':checked') || rdoans3.is(':checked') || rdoans4.is(':checked') || rdoans5.is(':checked') || rdoans6.is(':checked'))) {
-                alert("Please select one option for question");
-                return false;
+                if (!(rdoans1.is(':checked') || rdoans2.is(':checked'))) {
+                    alert("Please select one option for question no: " + (i + 1));
+                    return false;
+                }
             }
             return true;
         }
@@ -105,7 +85,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gtepart1').addClass('active');
+            $('#gtepart2').addClass('active');
         });
     </script>
 

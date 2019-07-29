@@ -43,9 +43,9 @@
     <script type="text/javascript">
         function validateForm() {
 
-            var universityValue = $('#<%=txtFacilityName.ClientID%>').val();
+            var facilityName = $('#<%=txtFacilityName.ClientID%>').val();
 
-            if (universityValue == 0 || isNaN(parseInt(universityValue))) {
+            if (!facilityName) {
                 alert("Please enter facility");
                 return false;
             }

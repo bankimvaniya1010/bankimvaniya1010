@@ -26,7 +26,6 @@
 [dir=ltr] .user-dropdown h3{color: #fff;padding-right: 5px;font-size: 17px;}
 [dir=ltr] .user-dropdown:after{border-top-color: #fff; margin-top: 8px;}
 [dir=ltr] .app-settings-button--right{display: none;}
+.helpicon .tipso_style{border:0;}
 .option {position: relative;padding-left: 25px;}
 .option input {position: absolute;left: 0;top: 4px;}
-[dir=ltr] .app-settings-button--right{display: none;}
-.helpicon .tipso_style{border:0;}

@@ -240,7 +240,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
                                         <a href="knowyourstudent.aspx" class="btn btn-success" style="margin-right: 10px;">Identification Details</a>
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible ="false"></asp:Label>
@@ -552,6 +552,35 @@
             else
                 $("#<%=skypeDesc.ClientID%>").hide();
 
+            if(!$("#<%=address.ClientID%>").is(':hidden') && $("#<%=rblCurrentAddNo.ClientID%>").is(':checked'))
+                $("#<%=addressHistory.ClientID%>").hide();
+            if (!$("#<%=address.ClientID%>").is(':hidden') && $("#<%=rblCurrentAddYes.ClientID%>").is(':checked')) {
+                $("#<%=addressHistory.ClientID%>").show();
+
+                var startDateArray = $("#<%=hidAddressStartDate.ClientID %>").val().split(';');
+                var endDateArray = $("#<%=hidAddressEndDate.ClientID %>").val().split(';');
+                var address1Array = $("#<%=hidAddress1.ClientID %>").val().split(';');
+                var address2Array = $("#<%=hidAddress2.ClientID %>").val().split(';');
+                var address3Array = $("#<%=hidAddress3.ClientID %>").val().split(';');
+                var cityArray = $("#<%=hidAddressCity.ClientID %>").val().split(';');
+                var stateArray = $("#<%=hidAddressState.ClientID %>").val().split(';');
+                var postalCodeArray = $("#<%=hidAddressPostalCode.ClientID %>").val().split(';');
+                var countryArray = $("#<%=hidAddressCountry.ClientID %>").val().split(';');
+
+                var count = countryArray.length - 1;
+                for (var i = 0; i < count; i++) {
+                    createResidenceElement();
+                    $("#prevAddress1_" + (i + 1)).val(address1Array[i]);
+                    $("#prevAddress2_" + (i + 1)).val(address2Array[i]);
+                    $("#prevAddress3_" + (i + 1)).val(address3Array[i]);
+                    $("#prevAddressCity_" + (i + 1)).val(cityArray[i]);
+                    $("#prevAddressState_" + (i + 1)).val(stateArray[i]);
+                    $("#prevAddressPostalCode_" + (i + 1)).val(postalCodeArray[i]);
+                    $("#txtPrevAddStartDate_" + (i + 1)).val(startDateArray[i]);
+                    $("#txtPrevAddEndDate_" + (i + 1)).val(endDateArray[i]);
+                    $("#ddlPrevAddressCountry_" + (i + 1)).prop('selectedIndex', countryArray[i]);
+                }
+            }
 
             if (!$("#<%=whatsapp.ClientID%>").is(':hidden') && $("#<%=rblwhatsappYes.ClientID%>").is(':checked')) {                
                 $("#<%=whatsappHave.ClientID%>").show();               
@@ -588,35 +617,23 @@
                 $("#<%=hidAddressCity.ClientID%>").val('');
                 $("#<%=hidAddressPostalCode.ClientID%>").val('');
                 $("#<%=hidAddressCountry.ClientID%>").val('');
+
+                $("#<%=addressHistory.ClientID%>").hide();
+
+                $("#<%=txtPrevAddStartDate.ClientID%>").val('');
+                $("#<%=txtPrevAddEndDate.ClientID%>").val('');
+                $("#<%=prevAddress1.ClientID%>").val('');
+                $("#<%=prevAddress2.ClientID%>").val('');
+                $("#<%=prevAddress3.ClientID%>").val('');
+                $("#<%=prevAddressState.ClientID%>").val('');
+                $("#<%=prevAddressCity.ClientID%>").val('');
+                $("#<%=prevAddressPostalCode.ClientID%>").val('');
+                $("#<%=ddlPrevAddressCountry.ClientID%>").prop('selectedIndex', 0);
             });
 
             $("#addPrevAddressDiv").click(function () {
                 createResidenceElement();
             });
-
-            var startDateArray = $("#<%=hidAddressStartDate.ClientID %>").val().split(';');
-            var endDateArray = $("#<%=hidAddressEndDate.ClientID %>").val().split(';');
-            var address1Array = $("#<%=hidAddress1.ClientID %>").val().split(';');
-            var address2Array = $("#<%=hidAddress2.ClientID %>").val().split(';');
-            var address3Array = $("#<%=hidAddress3.ClientID %>").val().split(';');
-            var cityArray = $("#<%=hidAddressCity.ClientID %>").val().split(';');
-            var stateArray = $("#<%=hidAddressState.ClientID %>").val().split(';');
-            var postalCodeArray = $("#<%=hidAddressPostalCode.ClientID %>").val().split(';');
-            var countryArray = $("#<%=hidAddressCountry.ClientID %>").val().split(';');
-
-            var count = countryArray.length - 1;
-            for (var i = 0; i < count; i++) {
-                createResidenceElement();
-                $("#prevAddress1_" + (i + 1)).val(address1Array[i]);
-                $("#prevAddress2_" + (i + 1)).val(address2Array[i]);
-                $("#prevAddress3_" + (i + 1)).val(address3Array[i]);
-                $("#prevAddressCity_" + (i + 1)).val(cityArray[i]);
-                $("#prevAddressState_" + (i + 1)).val(stateArray[i]);
-                $("#prevAddressPostalCode_" + (i + 1)).val(postalCodeArray[i]);
-                $("#txtPrevAddStartDate_" + (i + 1)).val(startDateArray[i]);
-                $("#txtPrevAddEndDate_" + (i + 1)).val(endDateArray[i]);
-                $("#ddlPrevAddressCountry_" + (i + 1)).prop('selectedIndex', countryArray[i]);
-            }
 
             if (!$("#<%=mobile.ClientID%>").is(':hidden')) {
                 var input = document.querySelector("#<%=txtMobile.ClientID%>");
@@ -638,9 +655,11 @@
             }
             if (!$("#<%=guardianmobile.ClientID%>").is(':hidden')) {
                 var input = document.querySelector("#<%=txtMobileNominee.ClientID%>");
-                window.intlTelInput(input, {
-                    utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
-                });
+                if (input != null) {
+                    window.intlTelInput(input, {
+                        utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
+                    });
+                }
             }
         });
 

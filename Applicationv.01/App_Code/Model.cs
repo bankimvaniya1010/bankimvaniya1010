@@ -25,7 +25,7 @@ public partial class admincomments
     public int adminid { get; set; }
     public string fieldname { get; set; }
     public string comments { get; set; }
-    public System.DateTime created_at { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
 
     public virtual adminusers adminusers { get; set; }
     public virtual students students { get; set; }
@@ -78,9 +78,9 @@ public partial class adminusers
     public int status { get; set; }
     public System.DateTime creationdate { get; set; }
 
-    public virtual rolemaster rolemaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
+    public virtual rolemaster rolemaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
 }
@@ -260,6 +260,7 @@ public partial class applicantdetails
     public Nullable<int> isstudentreferbyagent { get; set; }
     public string motivationreason { get; set; }
     public Nullable<bool> haveworkexperience { get; set; }
+    public string totalyearofexperience { get; set; }
 }
 
 public partial class applicantdocumentmaster
@@ -426,14 +427,17 @@ public partial class applicantlanguagecompetency
     public Nullable<int> qualificationtype { get; set; }
     public string qualificationname { get; set; }
     public string gradetype { get; set; }
+    public Nullable<int> isfinalgradeachieved { get; set; }
+    public Nullable<System.DateTime> expectedgraderesult { get; set; }
     public Nullable<int> giveenglishtest { get; set; }
     public string testname { get; set; }
     public string centerno { get; set; }
-    public Nullable<int> isfinalgradeachieved { get; set; }
-    public Nullable<System.DateTime> expectedgraderesult { get; set; }
     public string candidateno { get; set; }
     public string candidateid { get; set; }
     public Nullable<System.DateTime> examdate { get; set; }
+    public Nullable<int> testcentercountrty { get; set; }
+    public string testtakerId { get; set; }
+    public string registrationNo { get; set; }
     public string overallscore { get; set; }
     public string speakingscore { get; set; }
     public string listeningscore { get; set; }
@@ -571,8 +575,8 @@ public partial class citymaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public citymaster()
     {
-        this.university_master = new HashSet<university_master>();
         this.universitycampus_city_mapping = new HashSet<universitycampus_city_mapping>();
+        this.university_master = new HashSet<university_master>();
     }
 
     public int city_id { get; set; }
@@ -586,9 +590,9 @@ public partial class citymaster
 
     public virtual countriesmaster countriesmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<university_master> university_master { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<university_master> university_master { get; set; }
 }
 
 public partial class clarificationquestion_university_mapping
@@ -598,8 +602,8 @@ public partial class clarificationquestion_university_mapping
     public int clarificationquestionid { get; set; }
     public int clarificationquestionanswer { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual clarificationquestionsmaster clarificationquestionsmaster { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class clarificationquestionsmaster
@@ -631,6 +635,7 @@ public partial class countriesmaster
     {
         this.citymaster = new HashSet<citymaster>();
         this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
+        this.team_master = new HashSet<team_master>();
     }
 
     public int id { get; set; }
@@ -642,6 +647,8 @@ public partial class countriesmaster
     public virtual ICollection<citymaster> citymaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<team_master> team_master { get; set; }
 }
 
 public partial class coursemaster
@@ -811,18 +818,20 @@ public partial class formmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public formmaster()
     {
+        this.admincomments = new HashSet<admincomments>();
         this.admintooltips = new HashSet<admintooltips>();
         this.adminuniversitywisetooltips = new HashSet<adminuniversitywisetooltips>();
         this.customfieldmaster = new HashSet<customfieldmaster>();
+        this.supervisorcomments = new HashSet<supervisorcomments>();
         this.tooltipmaster = new HashSet<tooltipmaster>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
-        this.admincomments = new HashSet<admincomments>();
-        this.supervisorcomments = new HashSet<supervisorcomments>();
     }
 
     public int formid { get; set; }
     public string formname { get; set; }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<admincomments> admincomments { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admintooltips> admintooltips { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -830,13 +839,11 @@ public partial class formmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldmaster> customfieldmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<admincomments> admincomments { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
 }
 
 public partial class grademaster
@@ -864,15 +871,94 @@ public partial class gte_answer_master
     public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
 }
 
-public partial class GTE_documentverification
+public partial class gte_clarification_applicantresponse
 {
-    public int documentid { get; set; }
-    public Nullable<int> applicantid { get; set; }
-    public string documentname { get; set; }
-    public Nullable<int> documentvalidationId { get; set; }
-    public Nullable<int> agentid { get; set; }
-    public Nullable<System.DateTime> lastupdatedate { get; set; }
-    public string remarks { get; set; }
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int clarification_question_id { get; set; }
+    public string applicant_response { get; set; }
+
+    public virtual gte_clarification_questionmaster gte_clarification_questionmaster { get; set; }
+}
+
+public partial class gte_clarification_questionmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_clarification_questionmaster()
+    {
+        this.gte_clarification_applicantresponse = new HashSet<gte_clarification_applicantresponse>();
+    }
+
+    public int id { get; set; }
+    public int gte_master1_id { get; set; }
+    public string clarification_question { get; set; }
+    public Nullable<bool> display_condition { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
+}
+
+public partial class gte_preliminary_questionmaster
+{
+    public int gte_preliminaryid { get; set; }
+    public string question { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string answer3 { get; set; }
+    public string answer4 { get; set; }
+    public string correctanswer { get; set; }
+    public Nullable<int> status { get; set; }
+}
+
+public partial class gte_preliminaryapplicantanswers
+{
+    public long id { get; set; }
+    public int applicantid { get; set; }
+    public int gte_preliminary_question_id { get; set; }
+    public string answer { get; set; }
+    public System.DateTime answersubmittedtime { get; set; }
+}
+
+public partial class gte_progressbar
+{
+    public int id { get; set; }
+    public int applicantid { get; set; }
+    public Nullable<bool> is_gte_tutorial_completed { get; set; }
+    public Nullable<bool> is_gte_question_completed { get; set; }
+    public Nullable<bool> is_gte_declaration_completed { get; set; }
+}
+
+public partial class gte_question_master_part2
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_question_master_part2()
+    {
+        this.gte_clarification_questionmaster = new HashSet<gte_clarification_questionmaster>();
+        this.gte_question_part2_applicant_response = new HashSet<gte_question_part2_applicant_response>();
+    }
+
+    public int id { get; set; }
+    public string question { get; set; }
+    public int true_gte_score { get; set; }
+    public int true_risk_score { get; set; }
+    public int false_gte_score { get; set; }
+    public int false_risk_score { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
+}
+
+public partial class gte_question_part2_applicant_response
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public Nullable<bool> applicant_response { get; set; }
+    public int question_id { get; set; }
+
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
 }
 
 public partial class gte_questions_applicant_response
@@ -902,6 +988,26 @@ public partial class gte_questions_master
     public virtual ICollection<gte_answer_master> gte_answer_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
+}
+
+public partial class gte_tutorialmaster
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
+    public string videourl { get; set; }
+    public string title { get; set; }
+    public Nullable<int> status { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+}
+
+public partial class gte_videouploadmaster
+{
+    public int id { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string videourl { get; set; }
 }
 
 public partial class inferencemaster
@@ -944,6 +1050,18 @@ public partial class master_name
 {
     public int masterid { get; set; }
     public string mastername { get; set; }
+}
+
+public partial class menu_master
+{
+    public int menuid { get; set; }
+    public string name { get; set; }
+    public string url { get; set; }
+    public int universityid { get; set; }
+    public System.DateTime created_at { get; set; }
+    public string language { get; set; }
+
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class preliminary_questionmaster
@@ -1113,9 +1231,9 @@ public partial class students
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public students()
     {
+        this.admincomments = new HashSet<admincomments>();
         this.customfieldvalue = new HashSet<customfieldvalue>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
-        this.admincomments = new HashSet<admincomments>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
     }
 
@@ -1132,12 +1250,12 @@ public partial class students
     public bool isverified { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<admincomments> admincomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<studentcoursemapping> studentcoursemapping { get; set; }
     public virtual studylevelmaster studylevelmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<admincomments> admincomments { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
 }
@@ -1211,6 +1329,23 @@ public partial class supervisorcomments
     public virtual university_master university_master { get; set; }
 }
 
+public partial class team_master
+{
+    public int team_id { get; set; }
+    public string teamname { get; set; }
+    public string designation { get; set; }
+    public string department { get; set; }
+    public string description { get; set; }
+    public string image { get; set; }
+    public int university { get; set; }
+    public int countryid { get; set; }
+    public string lang { get; set; }
+    public System.DateTime created_at { get; set; }
+
+    public virtual countriesmaster countriesmaster { get; set; }
+    public virtual university_master university_master { get; set; }
+}
+
 public partial class timezonemaster
 {
     public int ID { get; set; }
@@ -1281,18 +1416,20 @@ public partial class university_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public university_master()
     {
+        this.admincomments = new HashSet<admincomments>();
         this.adminuniversitywisetooltips = new HashSet<adminuniversitywisetooltips>();
         this.applicantvisadetails = new HashSet<applicantvisadetails>();
+        this.clarificationquestion_university_mapping = new HashSet<clarificationquestion_university_mapping>();
         this.coursetypemaster = new HashSet<coursetypemaster>();
         this.credentialmaster = new HashSet<credentialmaster>();
         this.customfieldmaster = new HashSet<customfieldmaster>();
+        this.menu_master = new HashSet<menu_master>();
+        this.supervisorcomments = new HashSet<supervisorcomments>();
+        this.team_master = new HashSet<team_master>();
         this.universitycampus = new HashSet<universitycampus>();
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
-        this.clarificationquestion_university_mapping = new HashSet<clarificationquestion_university_mapping>();
-        this.admincomments = new HashSet<admincomments>();
-        this.supervisorcomments = new HashSet<supervisorcomments>();
     }
 
     public int universityid { get; set; }
@@ -1318,18 +1455,29 @@ public partial class university_master
     public string getting_around { get; set; }
     public int acceptedmaxage { get; set; }
     public int acceptedminage { get; set; }
+    public bool full_service { get; set; }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<admincomments> admincomments { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<adminuniversitywisetooltips> adminuniversitywisetooltips { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual citymaster citymaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<coursetypemaster> coursetypemaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<credentialmaster> credentialmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldmaster> customfieldmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<menu_master> menu_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<team_master> team_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus> universitycampus { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -1338,12 +1486,6 @@ public partial class university_master
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<admincomments> admincomments { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
 }
 
 public partial class universitycampus
