@@ -55,7 +55,10 @@
                             } %>
                     </div>
                 </div>            <%} %>  
-                
+                  <%
+                    if (videoCount > 0 || otherDocCount > 0)
+                    {
+                    %>
                 <div class="card" id="declaration" runat="server">
                     <div class="card-body">
                         <label  style="font-size:small;">I have Read and fully Understood the information contained in the  document and video above</label>
@@ -66,6 +69,20 @@
                         </div>
                     </div>
                 </div>
+                   <%} %>
+                 <% else {  %>
+                  <div class="list-group-item" id="employerwebsite">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                                    <div class="form-row">
+                                                            
+                                        <div class="col-md-6">
+                                            <asp:Label ID="LabelMessage" runat="server" text="No Tutorial available"></asp:Label>      
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>   
+                    <%} %>
             </div>
 
             <div class="col-md-4">               

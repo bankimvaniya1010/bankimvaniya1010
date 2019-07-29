@@ -16,6 +16,7 @@ public partial class preliminary : System.Web.UI.Page
     protected string Score, Results = "";
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    applicantprogressbar applicantprogressbar = new applicantprogressbar();
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
@@ -25,7 +26,15 @@ public partial class preliminary : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
-            GetQuestion();  
+            GetQuestion();
+            applicantprogressbar = db.applicantprogressbar.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+            if (applicantprogressbar != null) {
+                if (applicantprogressbar.question == 1)
+                {                   
+                    LabelMessage.Text = "All questions have been answered in this part.";
+                    questions.Visible = false;
+                }
+            }            
         }
     }
    
