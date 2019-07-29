@@ -19,9 +19,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         UserID = objUser.studentid;
-        if (!GlobalVariables.isGteDeclarationDoneByApplicant)
-            Response.Redirect(webURL + "default.aspx", true);
-
+      
         if (!IsPostBack)
         {
             var gteQuestionPart2Count = db.gte_question_master_part2.Count();
@@ -35,14 +33,14 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             else
             {
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
-                //var answeredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID).ToList();
-
-                //if (answeredQuestion.Count == clarification_questionsList.Count)
-                //    displayLabel("All questions have been answered in this part");
-
+                var clarificationansweredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID).ToList();
+               
                 foreach (var item in applicant_response)
                     clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
-                
+
+                if (clarificationansweredQuestion.Count == clarification_questionsList.Count)
+                    displayLabel("All questions have been answered in this part");
+
                 if (clarification_questionsList.Count == 0)
                     displayLabel("Completed");
                 else

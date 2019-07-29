@@ -114,7 +114,7 @@ public partial class clarificationquestion : System.Web.UI.Page
         if (applicantDetail != null && txtMotivationReason != null)
             applicantDetail.motivationreason = txtMotivationReason.Value;
 
-        if(applicantEduDetail != null || applicantEduDetail != null || applicantHighEduDetail != null)
+        if(applicantEduDetail != null || applicantDetail != null || applicantHighEduDetail != null)
             db.SaveChanges();
     }
 }

@@ -56,18 +56,35 @@
                     </div>
                 </div>            <%} %>  
                 
-                <div class="card" id="declaration" runat="server">
-                    <div class="card-body">
-                        <label  style="font-size:small;">I have Read and fully Understood the information contained in the  document and video above</label>
-                        <div class="media align-items-center">  
-                            <div class="form-row" style="align-content:center">
-                                <a href="gte_preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
+                
+                <%
+                    if (videoCount > 0 || otherDocCount > 0)
+                    {
+                    %>
+                    <div class="card" id="declaration" runat="server">
+                        <div class="card-body">
+                            <label  style="font-size:small;">I have Read and fully Understood the information contained in the  document and video above</label>
+                            <div class="media align-items-center">  
+                                <div class="form-row" style="align-content:center">
+                                    <a href="gte_preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                 <%} %> 
+                        
+                 <% else {  %>
+                        <div class="list-group-item" id="employerwebsite">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                                <div class="form-row">                                                            
+                                    <div class="col-md-6">
+                                        <asp:Label ID="LabelMessage" runat="server" text="No Tutorial available"></asp:Label>                                                  
+                                    </div>
+                                </div>
+                            </div>
+                         </div>   
+                    <%} %>                
             </div>
-
             <div class="col-md-4">               
                 <div class="card">
                     <div class="card-body">
