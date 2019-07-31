@@ -24,7 +24,8 @@ public partial class preliminary : System.Web.UI.Page
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        if (GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationDoneByApplicant = (bool)Session["DeclarationDoneByApplicant"];
+        if (isDeclarationDoneByApplicant)
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {

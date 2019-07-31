@@ -308,7 +308,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <a href="applicantcontactdetail.aspx" class="btn btn-success" style="margin-right: 10px;">Contact Details</a>
+                                        <a href="applicantcontactdetail.aspx?formid=2" class="btn btn-success" style="margin-right: 10px;">Contact Details</a>
                                         <asp:Button ID="btn_login" OnClientClick="return validateForm();" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>

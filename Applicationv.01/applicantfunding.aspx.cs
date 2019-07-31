@@ -22,7 +22,8 @@ public partial class applicantfunding : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !isDeclarationCompleted)
         {
             Response.Redirect(webURL + "default.aspx", true);
         }

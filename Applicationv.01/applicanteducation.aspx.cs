@@ -28,7 +28,8 @@ public partial class applicanteducation : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !isDeclarationCompleted)
         {
             Response.Redirect(webURL + "default.aspx", true);
         }
@@ -1266,8 +1267,9 @@ public partial class applicanteducation : System.Web.UI.Page
                 objCom.SendMail(objEducation.verificationemail, sb.ToString(), "Education Detail check for" + applicantName);
             }
 
-            if (!GlobalVariables.isProfileDetailsCompletedByApplicant)
-                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
+            var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
+            if (!isProfileDetailsCompletedByApplicant)
+                Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
             lblMessage.Text = "Your Education Details have been saved";
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);

@@ -20,7 +20,8 @@ public partial class uploadvideo : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         ApplicantID = Convert.ToInt32(Session["Applicant"].ToString());
-        if (!GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
+        if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
 
         if (!IsPostBack)

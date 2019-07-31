@@ -41,12 +41,33 @@ public partial class login : System.Web.UI.Page
             }
             else
             {
+                bool isDeclarationDoneByApplicant = false;
+                bool isGteDeclarationDoneByApplicant;
+                bool isProfileDetailsCompletedByApplicant;
+
+                bool isFullService;
+                bool isDeclarationCompleted;
+
                 pnl_warning.Visible = false;                
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.studentid;
-                objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
-                objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid);
-                objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid);
+                isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+
+                if (isFullService)
+                {
+                    isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
+                    isDeclarationCompleted = isDeclarationDoneByApplicant && isGteDeclarationDoneByApplicant;
+                }
+                else
+                    isDeclarationCompleted = isGteDeclarationDoneByApplicant;
+
+                Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
+                Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
+                Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
+                Session["FullService"] = isFullService;
+                Session["DeclarationCompleted"] = isDeclarationCompleted;
 
                 //switch (chkUser.role)
                 //{

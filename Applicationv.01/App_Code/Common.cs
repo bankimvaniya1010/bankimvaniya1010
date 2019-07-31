@@ -1219,7 +1219,7 @@ public class Common
         }
         return lstComments;
     }
-    public void IsDeclarationDoneByApplicant(int applicantId, int universityID)
+    public bool IsDeclarationDoneByApplicant(int applicantId, int universityID)
     {
         try
         {
@@ -1227,20 +1227,19 @@ public class Common
             if (applicantProgressInfo != null)
             {
                 if (applicantProgressInfo.declarationdone.HasValue && applicantProgressInfo.declarationdone.Value)
-                    GlobalVariables.isDeclarationDoneByApplicant = true;
+                    return true;
                 else
-                    GlobalVariables.isDeclarationDoneByApplicant = false;
+                    return false;
             }
-            else
-                GlobalVariables.isDeclarationDoneByApplicant = false;
         }
         catch (Exception ex)
         {
             log.WriteLog(ex.ToString());
         }
+        return false;
     }
 
-    public void IsGteDeclarationDoneByApplicant(int applicantId)
+    public bool IsGteDeclarationDoneByApplicant(int applicantId)
     {
         try
         {
@@ -1248,19 +1247,19 @@ public class Common
             if (applicantGteProgressInfo != null)
             {
                 if (applicantGteProgressInfo.is_gte_declaration_completed.HasValue && applicantGteProgressInfo.is_gte_declaration_completed.Value)
-                    GlobalVariables.isGteDeclarationDoneByApplicant = true;
+                    return true;
                 else
-                    GlobalVariables.isGteDeclarationDoneByApplicant = false;
+                    return false;
             }
-            
         }
         catch (Exception ex)
         {
             log.WriteLog(ex.ToString());
         }
+        return false;
     }
 
-    public void SetStudentDetailsCompletedStatus(int applicantId, int universityID)
+    public bool SetStudentDetailsCompletedStatus(int applicantId, int universityID)
     {
         try
         {
@@ -1277,15 +1276,16 @@ public class Common
                                                  .Select(x => x.islanguagecompetencypresent).FirstOrDefault();
 
             if (isPersonalDetailsComplete && isEducationDetailsComplete && isLanguageCompetencyComplete)
-                GlobalVariables.isProfileDetailsCompletedByApplicant = true;
+                return true;
             else
-                GlobalVariables.isProfileDetailsCompletedByApplicant = false;
+                return false;
 
         }
         catch (Exception ex)
         {
             log.WriteLog(ex.ToString());
         }
+        return false;
     }
     public void SetCustomDataAdminComments(int formID, int applicatiID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv, List<admincomments> Comments)
     {
