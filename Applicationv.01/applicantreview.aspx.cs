@@ -22,10 +22,11 @@ public partial class applicantreview : System.Web.UI.Page
     protected Common objComm = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
+        var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
             Response.Redirect("Login.aspx", true);
-        else if (GlobalVariables.isProfileDetailsCompletedByApplicant)
+        else if (isProfileDetailsCompletedByApplicant)
         {
             var objUser = (students)Session["LoginInfo"];
             userID = objUser.studentid;

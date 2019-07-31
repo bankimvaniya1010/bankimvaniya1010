@@ -21,7 +21,8 @@ public partial class applicantcourse : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if (!GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
+        if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {

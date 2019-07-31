@@ -35,7 +35,8 @@ public partial class knowyourstudent : System.Web.UI.Page
 
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !isDeclarationCompleted)
         {
             Response.Redirect(webURL + "default.aspx", true);
         }
@@ -118,8 +119,9 @@ public partial class knowyourstudent : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
 
-            if(!GlobalVariables.isProfileDetailsCompletedByApplicant)
-                objCom.SetStudentDetailsCompletedStatus(userID, universityID);
+            var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
+            if (!isProfileDetailsCompletedByApplicant)
+                Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
 
             lblMessage.Text = "Your Contact Details have been saved";
  //           lblMessage.Visible = true;

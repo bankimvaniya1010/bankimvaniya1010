@@ -23,7 +23,8 @@ public partial class uploaddocuments : System.Web.UI.Page
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        if (!GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
+        if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
 
         if (!IsPostBack)

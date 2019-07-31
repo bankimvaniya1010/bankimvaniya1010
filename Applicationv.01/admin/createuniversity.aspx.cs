@@ -69,6 +69,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.longitude = Convert.ToDecimal(txtUniLongitude.Value.Trim());
                 universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
                 universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
+                universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
 
                 db.university_master.Add(universityObj);
                 db.SaveChanges();

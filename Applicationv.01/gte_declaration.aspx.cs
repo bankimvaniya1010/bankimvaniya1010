@@ -20,7 +20,8 @@ public partial class gte_declaration : System.Web.UI.Page
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        if (GlobalVariables.isGteDeclarationDoneByApplicant)
+        var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
+        if (isGteDeclarationDoneByApplicant)
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
@@ -48,7 +49,16 @@ public partial class gte_declaration : System.Web.UI.Page
                 db.gte_progressbar.Add(gteProgressBar);
             db.SaveChanges();
 
-            GlobalVariables.isGteDeclarationDoneByApplicant = true;
+            var isFullService = (bool)Session["FullService"];
+            if (isFullService)
+            {
+                var declarationCompleted = (bool)Session["DeclarationDoneByApplicant"];
+                Session["DeclarationCompleted"] = true && declarationCompleted;
+            }
+            else
+                Session["DeclarationCompleted"] = true;
+
+            Session["GteDeclarationDoneByApplicant"] = true;
             Response.Redirect(webURL + "gte_questions1.aspx", true);
         }
         catch (Exception ex)

@@ -20,7 +20,8 @@ public partial class applicantdeclaration : System.Web.UI.Page
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        if (GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationDoneByApplicant = (bool)Session["DeclarationDoneByApplicant"];
+        if (isDeclarationDoneByApplicant)
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
@@ -49,7 +50,10 @@ public partial class applicantdeclaration : System.Web.UI.Page
                 db.applicantprogressbar.Add(applicantprogressbar);
             db.SaveChanges();
 
-            GlobalVariables.isDeclarationDoneByApplicant = true;
+            var gteDeclarationCompleted = (bool)Session["GteDeclarationDoneByApplicant"];
+            Session["DeclarationCompleted"] = true && gteDeclarationCompleted;
+            Session["DeclarationDoneByApplicant"] = true;
+
             Response.Redirect(webURL + "default.aspx", true);
         }
         catch (Exception ex)

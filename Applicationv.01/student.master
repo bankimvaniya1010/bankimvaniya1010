@@ -308,12 +308,19 @@
                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="Gte_list">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Gte">
+                                        <a class="sidebar-menu-button" data-toggle="collapse"  href="#Gte">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                            GTE Questions
+                                            GTE
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="Gte">
+                                            <li class="sidebar-menu-item" id="gte_screening_menu">
+                                                <a class="sidebar-menu-button custom-collapsed collapsed" href="#gte_screening">
+                                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                                    Screening
+                                                    <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                                </a>
+                                                <ul class="sidebar-menu sm-indent collapse" id="gte_screening">
                                             <li class="sidebar-menu-item" id="gtetutorial">
                                                 <a class="sidebar-menu-button" href="gte_tutorial.aspx">
                                                     <span class="sidebar-menu-text">GTE Tutorial</span>
@@ -329,25 +336,36 @@
                                                     <span class="sidebar-menu-text">GTE Declaration</span>
                                                 </a>
                                             </li>
-                                            <li class="sidebar-menu-item" id="gtepart1">
-                                                <a class="sidebar-menu-button" href="gte_questions1.aspx">
-                                                    <span class="sidebar-menu-text">GTE Question Part 1</span>
-                                                </a>
+                                                </ul>
                                             </li>
-                                            <li class="sidebar-menu-item" id="gtepart2">
-                                                <a class="sidebar-menu-button" href="gte_questions2.aspx">
-                                                    <span class="sidebar-menu-text">GTE Question Part 2</span>
+                                            <li class="sidebar-menu-item" id="gte_questions_menu">
+                                                <a class="sidebar-menu-button custom-collapsed collapsed" href="#gte_question">
+                                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                                    Questions
+	                                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                                 </a>
-                                            </li>
-                                            <li class="sidebar-menu-item" id="gteclarification">
-                                                <a class="sidebar-menu-button" href="gte_clarificationquestions.aspx">
-                                                    <span class="sidebar-menu-text">GTE Clarification Question</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item" id="gtevideoquestion">
-                                                <a class="sidebar-menu-button" href="gte_videoquestion.aspx">
-                                                    <span class="sidebar-menu-text">GTE Video Question</span>
-                                                </a>
+                                                <ul class="sidebar-menu sm-indent collapse" id="gte_question">
+                                                    <li class="sidebar-menu-item" id="gtepart1">
+                                                        <a class="sidebar-menu-button" href="gte_questions1.aspx">
+                                                            <span class="sidebar-menu-text">GTE Question Part 1</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="sidebar-menu-item" id="gtepart2">
+                                                        <a class="sidebar-menu-button" href="gte_questions2.aspx">
+                                                            <span class="sidebar-menu-text">GTE Question Part 2</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="sidebar-menu-item" id="gteclarification">
+                                                        <a class="sidebar-menu-button" href="gte_clarificationquestions.aspx">
+                                                            <span class="sidebar-menu-text">GTE Clarification Question</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="sidebar-menu-item" id="gtevideoquestion">
+                                                        <a class="sidebar-menu-button" href="gte_videoquestion.aspx">
+                                                            <span class="sidebar-menu-text">GTE Video Question</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
@@ -650,28 +668,37 @@
     <script src="assets/js/countdown.js"></script>
     <script>
         $(document).ready(function () {
-            var declarationCompleted = ("<%=GlobalVariables.isDeclarationDoneByApplicant%>".toLowerCase() == "true");
-            var studentDetailsCompleted = ("<%=GlobalVariables.isProfileDetailsCompletedByApplicant%>".toLowerCase() == "true");
+            var fullService = ("<%=Session["FullService"]%>".toLowerCase() == "true");
+            var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
+            var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
             if (!declarationCompleted) {
                 $("#personal_menu_list").hide();
                 $("#clarification_question_list").hide();
+                $("#gte_questions_menu").hide();
                 $("#upload_document_list").hide();
                 $("#Application_list").hide();
-                $("#Gte_list").hide();
+                $("#gte_screening_menu").show();
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
                 $("#components_list").hide();
+                if (fullService)
                 $("#preliminary_list").show();
+                else
+                    $("#preliminary_list").hide();
             }
             else {
                 $("#personal_menu_list").show();
                 $("#clarification_question_list").show();
+                $("#gte_questions_menu").show();
                 $("#upload_document_list").show();
-                $("#Gte_list").show();
+                $("#gte_screening_menu").hide();
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
                 $("#components_list").hide();
                 $("#preliminary_list").hide();
+
+                if (!fullService)
+                    $("#clarification_question_list").hide();
 
                 //if (!studentDetailsCompleted)
                 //    $("#Application_list").hide();
@@ -685,6 +712,20 @@
                 $("#gteclarification").hide();
             else
                 $("#gteclarification").show();
+
+            $('.custom-collapsed').click(function (e) {
+                e.preventDefault();
+                if ($(this).hasClass('collapsed')) {
+                    $(this).removeClass('collapsed');
+                    $(this).parent('li').addClass('open');
+                    $(this).next('ul').addClass('show');
+                }
+                else {
+                    $(this).addClass('collapsed');
+                    $(this).parent('li').removeClass('open');
+                    $(this).next('ul').removeClass('show');
+                }
+            })
 
         });
     </script>

@@ -20,7 +20,8 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        if (GlobalVariables.isGteDeclarationDoneByApplicant)
+        var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
+        if (isGteDeclarationDoneByApplicant)
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {

@@ -23,7 +23,8 @@ public partial class applicantworkexperience : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !isDeclarationCompleted)
         {
             Response.Redirect("default.aspx", true);
         }

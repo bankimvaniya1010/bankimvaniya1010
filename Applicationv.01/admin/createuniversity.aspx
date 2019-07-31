@@ -275,6 +275,21 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="uniSubscribeGte" class="col-sm-3 col-form-label form-label">Subscribe Gte Service</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select id="subscription" name="gtesubscription" runat="server" class="form-control">
+                                        <option value="" selected="selected" disabled="disabled">Please Select</option>
+                                        <option value="0">GTE Service</option>
+                                        <option value="1">Full Servive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -347,6 +362,7 @@
             var airDistanceUnit = $('#<%=airDistanceUnit.ClientID%>').val();
             var txtUniAcceptedMaxAge = $('#<%=txtUniAcceptedMaxAge.ClientID%>').val();
             var txtUniAcceptedMinAge = $('#<%=txtUniAcceptedMinAge.ClientID%>').val();
+            var subscriptionSelection = $('#<%=subscription.ClientID%>').val();
 
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -448,6 +464,10 @@
             }
             else if (parseInt(txtUniAcceptedMinAge) > parseInt(txtUniAcceptedMaxAge)) {
                 alert("Minimum age greater than maximum age. Please enter valid university accepted age range.");
+                return false;
+            }
+            else if (isNaN(parseInt(subscriptionSelection))) {
+                alert("Please select service subscription for university.");
                 return false;
             }
 

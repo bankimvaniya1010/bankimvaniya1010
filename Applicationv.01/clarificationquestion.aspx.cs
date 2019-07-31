@@ -22,7 +22,8 @@ public partial class clarificationquestion : System.Web.UI.Page
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         var showButton = false;
-        if (!GlobalVariables.isDeclarationDoneByApplicant)
+        var isDeclarationDoneByApplicant = (bool)Session["DeclarationDoneByApplicant"];
+        if (!isDeclarationDoneByApplicant)
             Response.Redirect(webURL + "default.aspx", true);
 
         if (!IsPostBack)
