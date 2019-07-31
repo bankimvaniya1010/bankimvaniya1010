@@ -673,10 +673,10 @@
                 $("#components_list").hide();
                 $("#preliminary_list").hide();
 
-                if (!studentDetailsCompleted)
-                    $("#Application_list").hide();
-                else
-                    $("#Application_list").show();
+                //if (!studentDetailsCompleted)
+                //    $("#Application_list").hide();
+                //else
+                //    $("#Application_list").show();
             }
                         
             var questioncompleted = '<%=questioncompleted%>';

@@ -16,7 +16,7 @@
         <div class="row" style="margin-left:50px;">
             <div class="col-md-8">
               
-                <div class="card" id="questions" runat="server">
+                <div class="card" id="questions" runat="server" visible ="true">
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
@@ -71,7 +71,15 @@
                         <a href="#" class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a>--%>
                     </div>
                 </div>
-
+                <div class="list-group-item" id="messagediv">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                        <div class="form-row">                                                            
+                            <div class="col-md-6">
+                                <asp:Label ID="LabelMessage" runat="server" Text=""></asp:Label>                                            
+                            </div>
+                        </div>
+                    </div>
+                </div>  
              </div>
                 <div class="col-md-4">  
                 <div class="card">
