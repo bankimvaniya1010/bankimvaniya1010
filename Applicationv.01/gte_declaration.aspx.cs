@@ -59,7 +59,7 @@ public partial class gte_declaration : System.Web.UI.Page
                 Session["DeclarationCompleted"] = true;
 
             Session["GteDeclarationDoneByApplicant"] = true;
-            Response.Redirect(webURL + "gte_questions1.aspx", true);
+            Response.Redirect(webURL + "gte_studentdetails.aspx", true);
         }
         catch (Exception ex)
         {

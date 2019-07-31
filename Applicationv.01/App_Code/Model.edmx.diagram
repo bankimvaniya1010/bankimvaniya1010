@@ -172,6 +172,9 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
+        <EntityTypeShape EntityType="GTEModel.gte_applicantdetails" Width="1.5" PointX="30.375" PointY="3.75" />
+        <EntityTypeShape EntityType="GTEModel.tuitionAndlivingcostmaster" Width="1.5" PointX="30.375" PointY="10.75" />
+        <EntityTypeShape EntityType="GTEModel.workexperienceyearsmaster" Width="1.5" PointX="30.375" PointY="13.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

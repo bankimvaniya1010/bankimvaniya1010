@@ -34,12 +34,32 @@ public partial class applicantworkexperience : System.Web.UI.Page
         {
             objCom.BindCountries(ddlCountry);
             SetToolTips();
+            Bindworkexperienceyears();
             BindRelationship();
             // PopulateEmployerInfo(1);
             BindEmploymentDetails();
             SetControlsUniversitywise();
         }
     }
+
+    private void Bindworkexperienceyears()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var workexperienceyears = db.workexperienceyearsmaster.ToList();
+            ddlworkexperience.DataSource = workexperienceyears;
+            ddlworkexperience.DataTextField = "description";
+            ddlworkexperience.DataValueField = "workexperienceyearsid";
+            ddlworkexperience.DataBind();
+            ddlworkexperience.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
     private void SetToolTips()
     {
 
@@ -273,8 +293,12 @@ public partial class applicantworkexperience : System.Web.UI.Page
             if (employerInfo != null)
             {
                 if (employerInfo.wishtoaddemployer == 1) {
-                    rblEmploymentYes.Checked = true;   
-                    txtyearsOfexp.Value = experienceInfo.totalyearofexperience;
+                    rblEmploymentYes.Checked = true;
+                    if (experienceInfo.totalyearofexperience != null)
+                    {
+                        ddlworkexperience.ClearSelection();
+                        ddlworkexperience.Items.FindByValue(experienceInfo.totalyearofexperience.ToString()).Selected = true;
+                    }
                     txtEmployer.Value = employerInfo.organization;
                     txtemployerwebsite.Value = employerInfo.website;
                     txtCity.Value = employerInfo.city;
@@ -334,7 +358,8 @@ public partial class applicantworkexperience : System.Web.UI.Page
             if (rblEmploymentYes.Checked)
             {
                 noExperience.haveworkexperience = true;
-                noExperience.totalyearofexperience = txtyearsOfexp.Value;
+                if (ddlworkexperience.SelectedValue != null)
+                    noExperience.totalyearofexperience = ddlworkexperience.SelectedValue;
                 objEmployer.wishtoaddemployer = 1;
                 objEmployer.organization = txtEmployer.Value;
                 objEmployer.designation = txtPosition.Value;

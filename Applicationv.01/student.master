@@ -338,13 +338,18 @@
                                             </li>
                                                 </ul>
                                             </li>
-                                            <li class="sidebar-menu-item" id="gte_questions_menu">
+                                            <l i class="sidebar-menu-item" id="gte_questions_menu">
                                                 <a class="sidebar-menu-button custom-collapsed collapsed" href="#gte_question">
                                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                                     Questions
 	                                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                                 </a>
                                                 <ul class="sidebar-menu sm-indent collapse" id="gte_question">
+                                                    <li class="sidebar-menu-item" id="gtestudentdetail">
+                                                        <a class="sidebar-menu-button" href="gte_studentdetails.aspx">
+                                                            <span class="sidebar-menu-text">GTE Student Detail</span>
+                                                        </a>
+                                                    </li>
                                                     <li class="sidebar-menu-item" id="gtepart1">
                                                         <a class="sidebar-menu-button" href="gte_questions1.aspx">
                                                             <span class="sidebar-menu-text">GTE Question Part 1</span>
@@ -366,7 +371,7 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </li>
+                                            </l>
                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="message_menu_list">

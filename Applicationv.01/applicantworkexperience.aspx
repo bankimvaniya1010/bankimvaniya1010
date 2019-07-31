@@ -105,9 +105,10 @@
                                     <div class="list-group-item" id="yearsOfexp" runat="server" style="display: none;">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-yearsOfexp">
                                             <div class="form-row">
-                                                <label id="labelyearsOfexp" runat="server" for="yearsOfexp" class="col-md-3 col-form-label form-label">Name of Organization </label>
+                                                <label id="labelyearsOfexp" runat="server" for="yearsOfexp" class="col-md-3 col-form-label form-label">How many years of work experience Do You Wish To Record </label>
                                                 <div class="col-md-6">
-                                                    <input id="txtyearsOfexp" runat="server" type="text" class="form-control" placeholder="How many years of work experience Do You Wish To Record">
+                                                    <asp:DropDownList ID="ddlworkexperience" CssClass="form-control" runat="server">
+                                                    </asp:DropDownList>
                                                     <span class="helpicon"><i id="icyearsOfexp" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
@@ -289,8 +290,8 @@
                 alert("Please Select Option to record any work experience");
             }
             else if ($("#<%=rblEmploymentYes.ClientID%>").is(":checked")) {
-                if (!$("#<%=yearsOfexp.ClientID%>").is(':hidden') && $("#<%=txtyearsOfexp.ClientID%>").val() == "")
-                    alert("Please enter years of work experience");
+                if (!$("#<%=yearsOfexp.ClientID%>").is(':hidden') && $("#<%=ddlworkexperience.ClientID%>").val() == "0")
+                    alert("Please Select years of work experience");
                 else if (!$("#<%=employer.ClientID%>").is(':hidden') && $("#<%=txtEmployer.ClientID%>").val() == "")
                     alert("Please enter organization name");
                 else if (!$("#<%=employerwebsite.ClientID%>").is(':hidden') && $("#<%=txtemployerwebsite.ClientID%>").val() == "" && !$("#<%=chkWebsite.ClientID%>").is(":checked"))
