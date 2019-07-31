@@ -656,6 +656,7 @@ public partial class coursemaster
     public int courseid { get; set; }
     public string coursename { get; set; }
     public Nullable<int> majordisciplineId { get; set; }
+    public string levelofcode { get; set; }
 }
 
 public partial class coursetypemaster
@@ -871,6 +872,33 @@ public partial class gte_answer_master
     public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
 }
 
+public partial class gte_applicantdetails
+{
+    public int gte_applicantdetailsid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<System.DateTime> dateofbirth { get; set; }
+    public Nullable<int> nationality { get; set; }
+    public Nullable<int> countryofbirth { get; set; }
+    public Nullable<int> maritalstatus { get; set; }
+    public Nullable<System.DateTime> dateofmarriage { get; set; }
+    public Nullable<int> nationalityofspouse { get; set; }
+    public string highestqualificationname { get; set; }
+    public string highestqualifiactionachieved { get; set; }
+    public Nullable<int> highestqualificationfield { get; set; }
+    public string highestqualificationdate { get; set; }
+    public Nullable<int> highestqualificationcountry { get; set; }
+    public string levelofcourse { get; set; }
+    public Nullable<int> fieldofstudyapplied { get; set; }
+    public string coursename { get; set; }
+    public Nullable<System.DateTime> commencementdate { get; set; }
+    public Nullable<int> workexperience { get; set; }
+    public Nullable<int> residencecountry { get; set; }
+    public Nullable<int> tuitionandlivingcost { get; set; }
+    public Nullable<int> nameofuniversityappliedfor { get; set; }
+    public Nullable<int> cityofeducationInstitution { get; set; }
+}
+
 public partial class gte_clarification_applicantresponse
 {
     public int id { get; set; }
@@ -944,6 +972,7 @@ public partial class gte_question_master_part2
     public int true_risk_score { get; set; }
     public int false_gte_score { get; set; }
     public int false_risk_score { get; set; }
+    public string tag { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
@@ -983,6 +1012,7 @@ public partial class gte_questions_master
 
     public int id { get; set; }
     public string question { get; set; }
+    public string tag { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_answer_master> gte_answer_master { get; set; }
@@ -1383,6 +1413,12 @@ public partial class trips
     public string description { get; set; }
 }
 
+public partial class tuitionAndlivingcostmaster
+{
+    public int id { get; set; }
+    public string description { get; set; }
+}
+
 public partial class tutorialmaster
 {
     public int id { get; set; }
@@ -1503,6 +1539,7 @@ public partial class universitycampus
     public string description { get; set; }
     public string research { get; set; }
     public string faculty_description { get; set; }
+    public int cityid { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
@@ -1573,5 +1610,11 @@ public partial class universitywisetooltipmaster
 public partial class visatype
 {
     public int id { get; set; }
+    public string description { get; set; }
+}
+
+public partial class workexperienceyearsmaster
+{
+    public int workexperienceyearsid { get; set; }
     public string description { get; set; }
 }
