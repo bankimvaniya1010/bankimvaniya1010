@@ -106,8 +106,13 @@ public partial class gte_studentdetails : System.Web.UI.Page
             objgte_applicantdetails.coursename = txtnameofcourse.Value;
             objgte_applicantdetails.commencementdate = Convert.ToDateTime(txtcommencementdate.Value);
 
-            if (ddlworkexperience.SelectedValue != "")
+            if (ddlworkexperience.SelectedValue != "" && Convert.ToInt32(ddlworkexperience.SelectedValue) == 1)
+                objgte_applicantdetails.workexperience = 0;
+
+            if (ddlworkexperience.SelectedValue != "" && Convert.ToInt32(ddlworkexperience.SelectedValue) != 1)
                 objgte_applicantdetails.workexperience = Convert.ToInt32(ddlworkexperience.SelectedValue);
+
+            
 
             if (ddlcountryresidence.SelectedValue != "")
                 objgte_applicantdetails.residencecountry = Convert.ToInt32(ddlcountryresidence.SelectedValue);
@@ -205,10 +210,15 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 }
                 txtnameofcourse.Value = studentInfo.coursename;
                 txtcommencementdate.Value = Convert.ToDateTime(studentInfo.commencementdate).ToString("yyyy-MM-dd");
-                if (studentInfo.workexperience != null)
+                if (studentInfo.workexperience != null && studentInfo.workexperience != 0)
                 {
                     ddlworkexperience.ClearSelection();
                     ddlworkexperience.Items.FindByValue(studentInfo.workexperience.ToString()).Selected = true;
+                }
+                if (studentInfo.workexperience != null && studentInfo.workexperience == 0)
+                {
+                    ddlworkexperience.ClearSelection();
+                    ddlworkexperience.Items.FindByValue(1.ToString()).Selected = true;
                 }
                 if (studentInfo.residencecountry != null)
                 {

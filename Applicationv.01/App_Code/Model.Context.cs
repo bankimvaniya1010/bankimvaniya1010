@@ -99,7 +99,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<managemeal> managemeal { get; set; }
     public virtual DbSet<maritalstatusmaster> maritalstatusmaster { get; set; }
     public virtual DbSet<master_name> master_name { get; set; }
-    public virtual DbSet<menu_master> menu_master { get; set; }
     public virtual DbSet<preliminary_questionmaster> preliminary_questionmaster { get; set; }
     public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
     public virtual DbSet<primaryfieldmaster> primaryfieldmaster { get; set; }
@@ -120,7 +119,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<subjectmaster> subjectmaster { get; set; }
     public virtual DbSet<subjectwisecountrymapping> subjectwisecountrymapping { get; set; }
     public virtual DbSet<supervisorcomments> supervisorcomments { get; set; }
-    public virtual DbSet<team_master> team_master { get; set; }
     public virtual DbSet<timezonemaster> timezonemaster { get; set; }
     public virtual DbSet<titlemaster> titlemaster { get; set; }
     public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
@@ -128,7 +126,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<trips> trips { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
-    public virtual DbSet<university_campusmapping> university_campusmapping { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
@@ -141,6 +138,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_applicantdetails> gte_applicantdetails { get; set; }
     public virtual DbSet<tuitionAndlivingcostmaster> tuitionAndlivingcostmaster { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
+    public virtual DbSet<gte_applicantdocument> gte_applicantdocument { get; set; }
+    public virtual DbSet<gte_sop> gte_sop { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
