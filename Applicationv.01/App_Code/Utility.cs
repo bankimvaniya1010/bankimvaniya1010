@@ -27,4 +27,9 @@ public static class Utility
     {
         return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     }
+
+    public static string GetWebUrl()
+    {
+        return System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    }
 }

@@ -902,7 +902,7 @@ public partial class gte_applicantdocument
     public Nullable<int> universityid { get; set; }
     public Nullable<int> applicantid { get; set; }
     public string documentpath { get; set; }
-    public string documentname { get; set; }
+    public Nullable<int> documentid { get; set; }
 
     public virtual students students { get; set; }
 }
@@ -976,11 +976,11 @@ public partial class gte_question_master_part2
 
     public int id { get; set; }
     public string question { get; set; }
+    public string tag { get; set; }
     public int true_gte_score { get; set; }
     public int true_risk_score { get; set; }
     public int false_gte_score { get; set; }
     public int false_risk_score { get; set; }
-    public string tag { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
@@ -1028,14 +1028,36 @@ public partial class gte_questions_master
     public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
 }
 
-public partial class gte_sop
+public partial class gte_statementofpurpose
 {
     public int id { get; set; }
     public string statement { get; set; }
     public Nullable<bool> condition_applicable { get; set; }
-    public int question_id { get; set; }
+    public string question_id { get; set; }
     public string question_section { get; set; }
     public string value { get; set; }
+    public int paragraph { get; set; }
+}
+
+public partial class gte_student_sop
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int universityid { get; set; }
+    public string gte_sop_para1 { get; set; }
+    public string gte_sop_para2 { get; set; }
+    public string gte_sop_para3 { get; set; }
+    public string gte_sop_para4 { get; set; }
+    public string gte_sop_para5 { get; set; }
+    public string applicant_generated_sop_para1 { get; set; }
+    public string applicant_generated_sop_para2 { get; set; }
+    public string applicant_generated_sop_para3 { get; set; }
+    public string applicant_generated_sop_para4 { get; set; }
+    public string applicant_generated_sop_para5 { get; set; }
+    public bool is_sop_submitted_by_applicant { get; set; }
+    public System.DateTime created_at { get; set; }
+    public System.DateTime deleted_at { get; set; }
+    public System.DateTime edited_at { get; set; }
 }
 
 public partial class gte_tutorialmaster
@@ -1269,9 +1291,9 @@ public partial class students
     {
         this.admincomments = new HashSet<admincomments>();
         this.customfieldvalue = new HashSet<customfieldvalue>();
+        this.gte_applicantdocument = new HashSet<gte_applicantdocument>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
-        this.gte_applicantdocument = new HashSet<gte_applicantdocument>();
     }
 
     public int studentid { get; set; }
@@ -1291,12 +1313,12 @@ public partial class students
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_applicantdocument> gte_applicantdocument { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<studentcoursemapping> studentcoursemapping { get; set; }
     public virtual studylevelmaster studylevelmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<gte_applicantdocument> gte_applicantdocument { get; set; }
 }
 
 public partial class studylevelmaster

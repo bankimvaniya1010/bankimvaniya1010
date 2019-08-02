@@ -59,6 +59,7 @@
                                     <asp:DropDownList ID="ddlControlType" CssClass="form-control" runat="server">
                                         <asp:ListItem Value="" Text="Please Select"></asp:ListItem>
                                         <asp:ListItem Value="textbox" Text="Textbox"></asp:ListItem>
+                                        <asp:ListItem Value="file" Text="File"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
 

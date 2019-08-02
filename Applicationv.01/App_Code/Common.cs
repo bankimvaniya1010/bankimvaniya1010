@@ -857,9 +857,18 @@ public class Common
                     txtcustombox.Attributes["class"] = "form-control";
                     // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
                     mycontrol.Controls.Add(txtcustombox);
+                }
+                else if (ControlsList[k].type.ToLower() == "file")
+                {
+                    FileUpload fileUploadcustombox = new FileUpload();
+                    fileUploadcustombox.ID = "file" + ControlsList[k].customfieldid;
 
+                    HyperLink hyperLinkcustombox = new HyperLink();
+                    hyperLinkcustombox.ID = "hyperlink" + ControlsList[k].customfieldid;
 
-
+                   
+                    mycontrol.Controls.Add(fileUploadcustombox);
+                    mycontrol.Controls.Add(hyperLinkcustombox);
                 }
             }
         }
@@ -1029,10 +1038,23 @@ public class Common
                     int customControlFieldId = (int)CustomControls[j].customfieldid;
                     if (customValueFieldId == customControlFieldId)
                     {
-                        string OptionID = "txt" + customValueFieldId;
-                        TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
-                        txtDynamic.Text = CustomControlsValue[k].value;
-                        break;
+                        if (CustomControls[k].type.ToLower() == "textbox")
+                        {
+                            string OptionID = "txt" + customValueFieldId;
+                            TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
+                            txtDynamic.Text = CustomControlsValue[k].value;
+                            break;
+                        }
+                        else if (CustomControls[k].type.ToLower() == "file")
+                        {
+                            string hyperlinkOptionID = "hyperlink" + customValueFieldId;
+                            HyperLink hyperlinkDynamic = (HyperLink)mainDiv.FindControl(hyperlinkOptionID);
+                            hyperlinkDynamic.Target = "_blank";
+                            hyperlinkDynamic.NavigateUrl = Utility.GetWebUrl() + "/Docs/GTEApplicantDocument/" + CustomControlsValue[k].value;
+                            hyperlinkDynamic.Text = "View File";
+                            break;
+                        }
+
                     }
                 }
                 // objCom.SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formId);
@@ -1077,9 +1099,29 @@ public class Common
             for (int k = 0; k < CustomControls.Count; k++)
             {
                 int customFieldId = CustomControls[k].customfieldid;
-                string OptionID = "txt" + customFieldId;
-                TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
-                SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formID);
+
+                if (CustomControls[k].type.ToLower() == "textbox") {
+                    string OptionID = "txt" + customFieldId;
+                    TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
+                    SaveCustomValue(applicatID, customFieldId, txtDynamic.Text, formID);
+                }
+                else if(CustomControls[k].type.ToLower() == "file")
+                {
+                    string fileOptionID = "file" + customFieldId;
+                    FileUpload fileUploadDynamic = (FileUpload)mainDiv.FindControl(fileOptionID);
+                    if (fileUploadDynamic.HasFile) {
+                        string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GTEApplicantDocument";
+                        DirectoryInfo di = new DirectoryInfo(dirPath);
+                        if (!di.Exists)
+                            di.Create();
+
+                        string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(fileUploadDynamic.PostedFile.FileName));
+                        string filePath = string.Concat(dirPath, "/", fileName);
+                        fileUploadDynamic.PostedFile.SaveAs(filePath);
+                        SaveCustomValue(applicatID, customFieldId, fileName, formID);
+                    }                    
+                }
+                
             }
         }
         catch (Exception ex)
