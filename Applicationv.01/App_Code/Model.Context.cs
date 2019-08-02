@@ -82,6 +82,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<formmaster> formmaster { get; set; }
     public virtual DbSet<grademaster> grademaster { get; set; }
     public virtual DbSet<gte_answer_master> gte_answer_master { get; set; }
+    public virtual DbSet<gte_applicantdetails> gte_applicantdetails { get; set; }
+    public virtual DbSet<gte_applicantdocument> gte_applicantdocument { get; set; }
     public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
     public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
     public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
@@ -91,6 +93,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
     public virtual DbSet<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
     public virtual DbSet<gte_questions_master> gte_questions_master { get; set; }
+    public virtual DbSet<gte_statementofpurpose> gte_statementofpurpose { get; set; }
+    public virtual DbSet<gte_student_sop> gte_student_sop { get; set; }
     public virtual DbSet<gte_tutorialmaster> gte_tutorialmaster { get; set; }
     public virtual DbSet<gte_videouploadmaster> gte_videouploadmaster { get; set; }
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
@@ -124,6 +128,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<tooltipmaster> tooltipmaster { get; set; }
     public virtual DbSet<transportchoice> transportchoice { get; set; }
     public virtual DbSet<trips> trips { get; set; }
+    public virtual DbSet<tuitionAndlivingcostmaster> tuitionAndlivingcostmaster { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
@@ -135,11 +140,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisemastermapping> universitywisemastermapping { get; set; }
     public virtual DbSet<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
-    public virtual DbSet<gte_applicantdetails> gte_applicantdetails { get; set; }
-    public virtual DbSet<tuitionAndlivingcostmaster> tuitionAndlivingcostmaster { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
-    public virtual DbSet<gte_applicantdocument> gte_applicantdocument { get; set; }
-    public virtual DbSet<gte_sop> gte_sop { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

@@ -5,15 +5,20 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 public partial class gte_documentupload : System.Web.UI.Page
 {
     Logger objLog = new Logger();
+    Common objCom = new Common();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0, universityID, formId = 0;
+    protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
+
+    List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
+    public dynamic fields;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    List<gte_applicantdocument> lstgte_applicantdocument = new List<gte_applicantdocument>();
+    string webURL = Utility.GetWebUrl();   
 
     gte_applicantdocument objgte_applicantdocument = new gte_applicantdocument();
     protected void Page_Load(object sender, EventArgs e)
@@ -27,44 +32,39 @@ public partial class gte_documentupload : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
+        SetControlsUniversitywise();
+        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        if (CustomControls.Count > 0)
+            objCom.AddCustomControl(CustomControls, mainDiv);       
         if (!IsPostBack)
         {
-            SetControlsUniversitywise();
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, UserID, CustomControls, mainDiv);
             populatedocument();
         }
     }
-
-    private void uploadGTEDocs(FileUpload fileUpload, string documentname)
-    {
-        try {
+      
+    private void SaveValue(int fieldId, string fileName)
+    {        
+        try
+        {
             var mode = "new";
-            var documentData = (from dInfo in db.gte_applicantdocument
-                                where dInfo.universityid == universityID && dInfo.applicantid == UserID && dInfo.documentname == documentname
-                                select dInfo).FirstOrDefault();
-
-            if (documentData != null)
-            {
+            var docDatas = (from gte_doc in db.gte_applicantdocument
+                            where gte_doc.applicantid == UserID && gte_doc.universityid ==universityID && gte_doc.documentid == fieldId
+                            select gte_doc).FirstOrDefault();
+          
+            if (docDatas != null) {
                 mode = "update";
-                objgte_applicantdocument = documentData;
+                objgte_applicantdocument = docDatas;
             }
 
-            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GTEApplicantDocument";
-            DirectoryInfo di = new DirectoryInfo(dirPath);
-            if (!di.Exists)
-                di.Create();
-
-            string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(fileUpload.PostedFile.FileName));
-            string filePath = string.Concat(dirPath, "/", fileName);
-            fileUpload.PostedFile.SaveAs(filePath);
-
-            objgte_applicantdocument.documentname = documentname;
             objgte_applicantdocument.documentpath = fileName;
-            objgte_applicantdocument.applicantid = UserID;
+            objgte_applicantdocument.documentid = fieldId;
             objgte_applicantdocument.universityid = universityID;
+            objgte_applicantdocument.applicantid = UserID;
             if (mode == "new")
                 db.gte_applicantdocument.Add(objgte_applicantdocument);
             db.SaveChanges();
-
         }
         catch (Exception ex)
         {
@@ -72,80 +72,128 @@ public partial class gte_documentupload : System.Web.UI.Page
         }
 
     }
-    
+
     protected void uploadbtn_Click(object sender, EventArgs e)
     {
         try
-        {
-            if (passportidupload.HasFile)
-                uploadGTEDocs(passportidupload, "Passport");
-            if(acadamicdocupload.HasFile)
-                uploadGTEDocs(acadamicdocupload, "Academic Documents");
-            if(experiencedocumentupload.HasFile)
-                uploadGTEDocs(experiencedocumentupload, "professional experience");
-            if (evidenceofenglishlangupload.HasFile)
-                uploadGTEDocs(evidenceofenglishlangupload, "Evidence of English Language");
-            if (parentapprovalupload.HasFile)
-                uploadGTEDocs(parentapprovalupload, "Parent / Guardian approval");
+        {            
+            for (int k = 0; k < fields.Count; k++)
+            {
+                int fieldId = fields[k].fieldid;                
+                string fileOptionID = "filenonstatic" + fields[k].fieldid;
+                FileUpload fileUploadDynamic = (FileUpload)mainDiv.FindControl(fileOptionID);
+                if (fileUploadDynamic.HasFile) {
+                    string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GTEApplicantDocument";
+                    DirectoryInfo di = new DirectoryInfo(dirPath);
+                    if (!di.Exists)
+                        di.Create();
+
+                    string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(fileUploadDynamic.PostedFile.FileName));
+                    string filePath = string.Concat(dirPath, "/", fileName);
+                    fileUploadDynamic.PostedFile.SaveAs(filePath);
+                    SaveValue(fieldId, fileName);
+                }
+               
+            }
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(UserID, formId, CustomControls, mainDiv);
+            populatedocument();
+            if (CustomControls.Count > 0)
+                objCom.SetCustomData(formId, UserID, CustomControls, mainDiv);
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
     }
-
-  
-    private void populatedocument() {
+    
+    private void populatedocument()
+    {
         try
         {
             var docData = (from tInfo in db.gte_applicantdocument
                            where tInfo.universityid == universityID && tInfo.applicantid == UserID
                            select tInfo).ToList();
-            foreach (var item in docData) {
-                if (item.documentname == "Passport")
-                {
 
-                    hidpassportDocumentPath.Value = item.documentpath;
-                    passportuploadedFile.NavigateUrl = webURL + "/Docs/GTEApplicantDocument/" + item.documentpath;
-                    passportuploadedFile.Text = "View File";
-                }
-                else if (item.documentname == "Academic Documents")
+            try
+            {
+                for (int k = 0; k < fields.Count; k++)
                 {
-                    hidacadamicDocumentPath.Value = item.documentpath;
-                    acadamicuploadedFile.NavigateUrl = webURL + "/Docs/GTEApplicantDocument/" + item.documentpath;
-                    acadamicuploadedFile.Text = "View File";
-                }
-                else if (item.documentname == "professional experience")
-                {
-                    hidExperiencedocPath.Value = item.documentpath;
-                    experienceuploadedFile.NavigateUrl = webURL + "/Docs/GTEApplicantDocument/" + item.documentpath;
-                    experienceuploadedFile.Text = "View File";
-                }
-                else if (item.documentname == "Evidence of English Language")
-                {
-                    hidevidencedocPath.Value = item.documentpath;
-                    evdidenceUploadedFile.NavigateUrl = webURL + "/Docs/GTEApplicantDocument/" + item.documentpath;
-                    evdidenceUploadedFile.Text = "View File";
-                }
-                else if (item.documentname == "Parent / Guardian approval") {
-                    hidparentapprovalpath.Value = item.documentpath;
-                    parentapprovaluploadedFile.NavigateUrl = webURL + "/Docs/GTEApplicantDocument/" + item.documentpath;
-                    parentapprovaluploadedFile.Text = "View File";
+                    var docList = docData.Where(c => c.documentid == fields[k].fieldid).Select(c=>c.documentpath).ToList().SingleOrDefault();
+                    int customValueFieldId = (int)fields[k].fieldid;
+                    if (docList != null && docList.Length > 0)
+                    {
+                        string hyperlinkOptionID = "hyperlinknonstatic" + customValueFieldId;
+                        HyperLink hyperlinkDynamic = (HyperLink)mainDiv.FindControl(hyperlinkOptionID);
+                        hyperlinkDynamic.Target = "_blank";
+                        hyperlinkDynamic.NavigateUrl = Utility.GetWebUrl() + "/Docs/GTEApplicantDocument/" + docList.ToString();
+                        hyperlinkDynamic.Text = "View File";
+                    }
                 }
             }
-
+            catch (Exception ex)
+            {
+                objLog.WriteLog(ex.ToString());
+            }
         }
-        catch (Exception ex) {
+        catch (Exception ex)
+        {
             objLog.WriteLog(ex.ToString());
         }
-    
-
-
-    }
+    }     
 
     private String setInnerHtml(dynamic obj)
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ")";
+    }
+
+    private void CreateFileUploadControl()
+    {
+        try
+        {
+            for (int k = 0; k < fields.Count; k++)
+            {
+
+                System.Web.UI.HtmlControls.HtmlGenericControl lstDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                lstDiv.Attributes["class"] = "list-group-item";
+                mainDiv.Controls.Add(lstDiv);
+
+                System.Web.UI.HtmlControls.HtmlGenericControl formgroupDiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                formgroupDiv.Attributes["class"] = "form-group m-0";
+                formgroupDiv.Attributes["role"] = "group";
+                formgroupDiv.Attributes["aria - labelledby"] = fields[k].fieldid.ToString();
+                lstDiv.Controls.Add(formgroupDiv);
+                System.Web.UI.HtmlControls.HtmlGenericControl divFormRow = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                divFormRow.Attributes["class"] = "form-row";
+                formgroupDiv.Controls.Add(divFormRow);
+
+
+                System.Web.UI.HtmlControls.HtmlGenericControl label1 = new System.Web.UI.HtmlControls.HtmlGenericControl("Label");
+                label1.ID = "label" + fields[k].fieldid.ToString();
+                label1.Attributes["class"] = "col-md-3 col-form-label form-label";
+                label1.Attributes["for"] = fields[k].fieldid.ToString();
+                label1.InnerHtml = fields[k].primaryfiledname;
+                divFormRow.Controls.Add(label1);
+                System.Web.UI.HtmlControls.HtmlGenericControl mycontrol = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                mycontrol.Attributes["class"] = "col-md-6";
+                divFormRow.Controls.Add(mycontrol);
+
+                FileUpload fileUploadcustombox = new FileUpload();
+                fileUploadcustombox.ID = "filenonstatic" + fields[k].fieldid.ToString();
+
+                HyperLink hyperLinkcustombox = new HyperLink();
+                hyperLinkcustombox.ID = "hyperlinknonstatic" + fields[k].fieldid.ToString();
+
+                // fileUploadcustombox.Attributes["class"] = "form-control";
+                mycontrol.Controls.Add(fileUploadcustombox);
+                mycontrol.Controls.Add(hyperLinkcustombox);
+            }
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+
     }
 
     private void SetControlsUniversitywise()
@@ -154,13 +202,14 @@ public partial class gte_documentupload : System.Web.UI.Page
         {
             string SecondaryLanguage = Utility.GetSecondaryLanguage();
 
-            var fields = (from pfm in db.primaryfieldmaster
+            fields = (from pfm in db.primaryfieldmaster
                           join ufm in db.universitywisefieldmapping on pfm.primaryfieldid equals ufm.primaryfieldid
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
                           from x in tmp.Where(c => c.secondaryfieldnamelanguage == SecondaryLanguage).DefaultIfEmpty()
                           where ufm.universityid == universityID && ufm.formid == formId
                           select new
                           {
+                              fieldid = pfm.primaryfieldid,
                               primaryfiledname = pfm.primaryfiledname,
                               fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
                               secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
@@ -168,7 +217,7 @@ public partial class gte_documentupload : System.Web.UI.Page
                               secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
 
-            if (fields.Count == 0)
+            if (fields.Count == 0 && CustomControls.Count == 0)
             {
                 fields = (from pfm in db.primaryfieldmaster
                           join afm in db.applicantformmaster on pfm.primaryfieldid equals afm.primaryfieldid into tmp
@@ -176,6 +225,7 @@ public partial class gte_documentupload : System.Web.UI.Page
                           where pfm.formid == formId
                           select new
                           {
+                              fieldid = pfm.primaryfieldid,
                               primaryfiledname = pfm.primaryfiledname,
                               fieldnameinstructions = (x == null ? String.Empty : x.fieldnameinstructions),
                               secondaryfieldnameinstructions = (x == null ? String.Empty : x.secondaryfieldnameinstructions),
@@ -183,36 +233,7 @@ public partial class gte_documentupload : System.Web.UI.Page
                               secondaryfielddnamevalue = (x == null ? String.Empty : x.secondaryfielddnamevalue)
                           }).ToList();
             }
-
-
-            for (int k = 0; k < fields.Count; k++)
-            {
-                switch (fields[k].primaryfiledname)
-                {
-                    case "Certified Copy of Passport (Bio Pages)":
-                        passportid.Attributes.Add("style", "display:block;");
-                        lblpassportid.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "Academic Documents – Certificates and Transcripts (certified and translated into English)":
-                        acadamicdoc.Attributes.Add("style", "display:block;");
-                        lblacadamicdoc.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "Relevant professional experience, if any (CV, employment references or equivalent )":
-                        experiencedocument.Attributes.Add("style", "display:block;");
-                        lblexperiencedocument.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "Evidence of English Language (IELTS, PTE, TOEFL or equivalent)":
-                        evidenceofenglishlanguage.Attributes.Add("style", "display:block;");
-                        lblevidenceofenglishlang.InnerHtml = setInnerHtml(fields[k]);
-                       break;
-                    case "Parent / Guardian approval":
-                        parentapproval.Attributes.Add("style", "display:block;");
-                        lblparentapproval.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            CreateFileUploadControl();
         }
         catch (Exception ex)
         {
