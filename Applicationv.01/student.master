@@ -338,7 +338,7 @@
                                             </li>
                                                 </ul>
                                             </li>
-                                            <l i class="sidebar-menu-item" id="gte_questions_menu">
+                                            <li class="sidebar-menu-item" id="gte_questions_menu">
                                                 <a class="sidebar-menu-button custom-collapsed collapsed" href="#gte_question">
                                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                                     Questions
@@ -375,8 +375,13 @@
                                                             <span class="sidebar-menu-text">GTE Upload Document</span>
                                                         </a>
                                                     </li>
+                                                    <li class="sidebar-menu-item" id="gtestudent_sop">
+                                                        <a class="sidebar-menu-button" href="gte_sop.aspx">
+                                                            <span class="sidebar-menu-text">GTE Statement of Purpose</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
-                                            </l>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="message_menu_list">
