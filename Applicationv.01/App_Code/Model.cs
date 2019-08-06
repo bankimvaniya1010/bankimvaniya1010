@@ -1056,8 +1056,8 @@ public partial class gte_student_sop
     public string applicant_generated_sop_para5 { get; set; }
     public bool is_sop_submitted_by_applicant { get; set; }
     public System.DateTime created_at { get; set; }
-    public System.DateTime deleted_at { get; set; }
-    public System.DateTime edited_at { get; set; }
+    public Nullable<System.DateTime> deleted_at { get; set; }
+    public Nullable<System.DateTime> edited_at { get; set; }
 }
 
 public partial class gte_tutorialmaster

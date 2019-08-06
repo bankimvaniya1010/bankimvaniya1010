@@ -948,8 +948,8 @@
           <Property Name="applicant_generated_sop_para5" Type="varchar" MaxLength="4000" Nullable="false" />
           <Property Name="is_sop_submitted_by_applicant" Type="bit" Nullable="false" />
           <Property Name="created_at" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="deleted_at" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="edited_at" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="deleted_at" Type="datetime" Precision="0" />
+          <Property Name="edited_at" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="gte_tutorialmaster">
           <Key>
@@ -2397,7 +2397,6 @@
           <EntitySet Name="gte_questions_applicant_response" EntityType="GTEModel.gte_questions_applicant_response" />
           <EntitySet Name="gte_questions_master" EntityType="GTEModel.gte_questions_master" />
           <EntitySet Name="gte_statementofpurpose" EntityType="GTEModel.gte_statementofpurpose" />
-          <EntitySet Name="gte_student_sop" EntityType="GTEModel.gte_student_sop" />
           <EntitySet Name="gte_tutorialmaster" EntityType="GTEModel.gte_tutorialmaster" />
           <EntitySet Name="gte_videouploadmaster" EntityType="GTEModel.gte_videouploadmaster" />
           <EntitySet Name="inferencemaster" EntityType="GTEModel.inferencemaster" />
@@ -2644,6 +2643,7 @@
             <End Role="universitycampus" EntitySet="universitycampus" />
             <End Role="universitycampus_city_mapping" EntitySet="universitycampus_city_mapping" />
           </AssociationSet>
+          <EntitySet Name="gte_student_sop" EntityType="GTEModel.gte_student_sop" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -3619,28 +3619,6 @@
           <Property Name="question_section" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="paragraph" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="gte_student_sop">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicant_id" Type="Int32" Nullable="false" />
-          <Property Name="universityid" Type="Int32" Nullable="false" />
-          <Property Name="gte_sop_para1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="gte_sop_para2" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="gte_sop_para3" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="gte_sop_para4" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="gte_sop_para5" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="applicant_generated_sop_para1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="applicant_generated_sop_para2" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="applicant_generated_sop_para3" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="applicant_generated_sop_para4" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="applicant_generated_sop_para5" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="is_sop_submitted_by_applicant" Type="Boolean" Nullable="false" />
-          <Property Name="created_at" Type="DateTime" Nullable="false" />
-          <Property Name="deleted_at" Type="DateTime" Nullable="false" />
-          <Property Name="edited_at" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="gte_tutorialmaster">
           <Key>
@@ -4729,6 +4707,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="gte_student_sop">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="gte_sop_para1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="gte_sop_para2" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="gte_sop_para3" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="gte_sop_para4" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="gte_sop_para5" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="applicant_generated_sop_para1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="applicant_generated_sop_para2" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="applicant_generated_sop_para3" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="applicant_generated_sop_para4" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="applicant_generated_sop_para5" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="is_sop_submitted_by_applicant" Type="Boolean" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" />
+          <Property Name="deleted_at" Type="DateTime" />
+          <Property Name="edited_at" Type="DateTime" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5730,29 +5730,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="gte_student_sop">
-            <EntityTypeMapping TypeName="GTEModel.gte_student_sop">
-              <MappingFragment StoreEntitySet="gte_student_sop">
-                <ScalarProperty Name="edited_at" ColumnName="edited_at" />
-                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
-                <ScalarProperty Name="created_at" ColumnName="created_at" />
-                <ScalarProperty Name="is_sop_submitted_by_applicant" ColumnName="is_sop_submitted_by_applicant" />
-                <ScalarProperty Name="applicant_generated_sop_para5" ColumnName="applicant_generated_sop_para5" />
-                <ScalarProperty Name="applicant_generated_sop_para4" ColumnName="applicant_generated_sop_para4" />
-                <ScalarProperty Name="applicant_generated_sop_para3" ColumnName="applicant_generated_sop_para3" />
-                <ScalarProperty Name="applicant_generated_sop_para2" ColumnName="applicant_generated_sop_para2" />
-                <ScalarProperty Name="applicant_generated_sop_para1" ColumnName="applicant_generated_sop_para1" />
-                <ScalarProperty Name="gte_sop_para5" ColumnName="gte_sop_para5" />
-                <ScalarProperty Name="gte_sop_para4" ColumnName="gte_sop_para4" />
-                <ScalarProperty Name="gte_sop_para3" ColumnName="gte_sop_para3" />
-                <ScalarProperty Name="gte_sop_para2" ColumnName="gte_sop_para2" />
-                <ScalarProperty Name="gte_sop_para1" ColumnName="gte_sop_para1" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="gte_tutorialmaster">
             <EntityTypeMapping TypeName="GTEModel.gte_tutorialmaster">
               <MappingFragment StoreEntitySet="gte_tutorialmaster">
@@ -6234,6 +6211,29 @@
               <MappingFragment StoreEntitySet="workexperienceyearsmaster">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="workexperienceyearsid" ColumnName="workexperienceyearsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_student_sop">
+            <EntityTypeMapping TypeName="GTEModel.gte_student_sop">
+              <MappingFragment StoreEntitySet="gte_student_sop">
+                <ScalarProperty Name="edited_at" ColumnName="edited_at" />
+                <ScalarProperty Name="deleted_at" ColumnName="deleted_at" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="is_sop_submitted_by_applicant" ColumnName="is_sop_submitted_by_applicant" />
+                <ScalarProperty Name="applicant_generated_sop_para5" ColumnName="applicant_generated_sop_para5" />
+                <ScalarProperty Name="applicant_generated_sop_para4" ColumnName="applicant_generated_sop_para4" />
+                <ScalarProperty Name="applicant_generated_sop_para3" ColumnName="applicant_generated_sop_para3" />
+                <ScalarProperty Name="applicant_generated_sop_para2" ColumnName="applicant_generated_sop_para2" />
+                <ScalarProperty Name="applicant_generated_sop_para1" ColumnName="applicant_generated_sop_para1" />
+                <ScalarProperty Name="gte_sop_para5" ColumnName="gte_sop_para5" />
+                <ScalarProperty Name="gte_sop_para4" ColumnName="gte_sop_para4" />
+                <ScalarProperty Name="gte_sop_para3" ColumnName="gte_sop_para3" />
+                <ScalarProperty Name="gte_sop_para2" ColumnName="gte_sop_para2" />
+                <ScalarProperty Name="gte_sop_para1" ColumnName="gte_sop_para1" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
