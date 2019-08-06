@@ -27,6 +27,7 @@ public partial class gte_videoquestion : System.Web.UI.Page
         userID = objUser.studentid;
         if (!IsPostBack)
         {
+            populateVideo();
             var applicantdetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
             if (applicantdetails != null)
             {
@@ -55,7 +56,7 @@ public partial class gte_videoquestion : System.Web.UI.Page
                 mode = "update";
                 objgte_videouploadmaster = data;
             }
-            if (FileUpload.HasFile)
+            if (FileUpload.Value != "")
             {
                 string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GteUploadedVideo";
                 string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(FileUpload.PostedFile.FileName));
@@ -77,6 +78,20 @@ public partial class gte_videoquestion : System.Web.UI.Page
         catch (Exception ex)
         {
             objLog.WriteLog(ex.StackTrace.ToString());
+        }
+    }
+
+    private void populateVideo()
+    {
+        var data = (from vInfo in db.gte_videouploadmaster
+                    where vInfo.universityid == universityID && vInfo.applicantid == userID
+                    select vInfo).FirstOrDefault();
+        if (data != null)
+        {
+
+            hidDocumentPath.Value = data.videourl;
+            uploadedFile.NavigateUrl = webURL + "/Docs/GteUploadedVideo/" + data.videourl;
+            uploadedFile.Text = "View File";
         }
     }
 }

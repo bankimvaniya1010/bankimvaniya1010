@@ -34,9 +34,11 @@
                              <div class="list-group-item" id="uploadbtn">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                      <asp:FileUpload ID="FileUpload" runat="server" /> 
-                                       <%-- <input type="file" onchange="setFileInfo()" runat="server" name="FileUpload" id="FileUpload"/>--%>
+                                     
+                                          <input type="file" runat="server" name="FileUpload" id="FileUpload"/>
                                         <asp:Label ID="lblupload" runat="server" />
+                                         <input type="hidden" id="hidDocumentPath" runat="server" />
+                                         <asp:HyperLink runat="server" ID="uploadedFile" Target="_blank"></asp:HyperLink>
                                         <div class="col-md-6">
                                         </div>
                                          <div class="media-left">                                  
@@ -64,40 +66,68 @@
         </div>
     </div>
     <script>
-         var myVideos = [];
-        window.URL = window.URL || window.webkitURL;
-        //document.getElementById('ContentPlaceHolder1_FileUpload').onchange = setFileInfo;
+              
+        function checkFileType() {
+            var fileName = $("#ContentPlaceHolder1_FileUpload")[0].files[0].name;
+            var extension = fileName.substr(fileName.lastIndexOf(".") + 1);
+            return (extension == "mp4" || extension == "3gp" || extension == "webm" || extension == "wmv" || extension == "flv" || extension == "ogv");
+        }
 
-        //function setFileInfo() {
-        //    alert("hello");
-        //var files = this.files;
-        //myVideos = files[0];
-        //console.log('myVideos: '+myVideos['File']);
-        //var video = document.createElement('video');
-        //video.preload = 'metadata';
+        function checkFileSize() {
+            var fileSize = $("#ContentPlaceHolder1_FileUpload")[0].files[0].size;
+            var fileSizeInMB = (fileSize / 1024) / 1024;
+            return (fileSizeInMB < 20);
+        }
 
-        //video.onloadedmetadata = function() {
-        //window.URL.revokeObjectURL(video.src);
-        //myVideos.duration = video.duration;
-        //    myVideos.size = myVideos.size / (1024 * 1024);
-        //    console.log(myVideos);
-        //}
+        function checkDuration() {
+            while (!videoDurationReceived) {
 
-        //video.src = URL.createObjectURL(files[0]);;
-        //}
+            }
+            return (videoDuration < 75);
+        }
+
+        var videoDurationReceived = false, videoDuration = 0;
         function validateUploadedFile() {
             var flag = false;
-            var filePath = $("#<%=FileUpload.ClientID%>").val();
-            if (filePath == "") 
-               alert("Please Select a video ");                          
-            //else if (myVideos.size < 20 || myVideos.duration < 75 )
-            //    alert("Please upload a Video less than 20mb And 75Sec");
+            if ($("#ContentPlaceHolder1_FileUpload")[0].files.length == 0) {
+                alert("Please Select a video"); 
+            }
+            else if (!checkFileType()) {
+                alert("Please upload a valid video")
+            }
+            else if (!checkFileSize()) {
+                alert("Video Size should be less than 20MB")
+            }
+            else if (!checkDuration()) {
+                alert("Video duration should be less than 75 Seconds")
+            }
             else
                 flag = true;
-             return flag;
-        }    
+
+            return flag;
+        }
+
+        function getFileInfo() {
+            videoDurationReceived = false;
+            var video = document.createElement('video');
+            video.preload = 'metadata';
+            var URL = window.URL || window.webkitURL;
+
+            video.onloadedmetadata = function () {
+                URL.revokeObjectURL(video.src);
+                videoDuration = video.duration;
+                videoDurationReceived = true;
+            }
+
+            video.src = URL.createObjectURL($("#ContentPlaceHolder1_FileUpload")[0].files[0]);
+        }
       
         $(document).ready(function () {
+
+            $('#ContentPlaceHolder1_FileUpload').bind('change', function () {
+                if (checkFileType())
+                    getFileInfo();
+            });
 
             $('.fa-info-circle').tipso({
                 position: 'right',
