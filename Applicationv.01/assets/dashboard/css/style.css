@@ -1,0 +1,47 @@
+body{font-family: 'Open Sans', sans-serif;font-size: 14px;background:#fff;}
+header{padding: 10px 0;}
+.au-hedr .hd{background:#000;padding: 2px 5px;color: #fff;font-weight: 800;margin:6px 0 10px;}
+.au-hedr .txt{font-size: 25px;}
+.inst-detls .txt{font-size: 11px;text-align: right;text-transform: uppercase;line-height: 1.2;}
+.inst-detls .val{font-size: 12px;text-align: center;padding: 4px;width: 100%;background: rgba(0, 0, 0, 0.25);}
+.nots-ttl{padding: 8px 5px;background: rgba(0, 0, 0, 0.05);margin: 10px 0 5px;}
+.chart__label-x{text-align: center;}
+.chart--horizontal .bar__container.max .bar {background-color: #00b050;}
+.chart--horizontal .bar__container.min .bar {background-color: #ff0000;}
+.ovr-rate{border: 1px solid #dfdfdf;padding: 15px;}
+.ovr-rate .hd{font-size: 20px;margin: 0 0 10px;}
+.recommndtn{border:1px solid #dfdfdf;}
+.recommndtn .hd{background: #000;color: #fff;padding: 2px 5px;}
+.recommndtn .txt{font-size: 12px;min-height: 50px;}
+.recommndtn.remrk .txt{min-height: 163px;}
+.recommndtn + .recommndtn{margin-top: 5px;}
+.student-dtls .hd{margin: 0 0 10px;}
+.student-dtls .pic{background:rgba(0, 0, 0, 0.05);width: 100%;font-size: 12px;max-width: 168px;min-height: 168px;margin:auto;}
+.student-dtls .nm{margin: 5px 0 0;}
+.rating{border:1px solid #dfdfdf;padding: 10px;margin-bottom: 8px;}
+.rating .ttl{margin-bottom: 5px;}
+.std-ddtwrp{padding: 0 0 15px;}
+.rating .chart__container:not(.labels-above-bars) .chart__axis-y{width: 70px;}
+.rating .chart__axis-x{padding-left: 0px;}
+.rating .chart__box{border:0;}
+.rating .chart__label-x:after{background:#000;bottom: 78%;}
+.rating .chart__label-x {text-align: right;max-width: 33.33%;padding-right: 15px;}
+.descptn-wrp{margin: 15px 0 0;border:1px solid #000;}
+.descptn-wrp .ttl{background:#000;color: #fff;padding: 2px 5px;font-size: 18px;font-weight: 800;}
+.descptn-wrp .ttl span{font-size: 12px;font-weight: 400;}
+.descptn-wrp .txt{padding: 5px;text-align: center;}
+.descptn-wrp textarea{width: 100%;resize: none;border: 0;border-top: 1px solid #000;padding: 5px 10px;background-color: transparent;}
+.descptn-wrp textarea:focus{outline: none;}
+.reviw-wrp{border:1px solid #000;margin-bottom: 10px;}
+.reviw-wrp .hd{background: #000;color: #fff;padding: 2px 5px;text-align: center;}
+.reviw-wrp .revw-sectn{min-height: 100px;}
+.chart__label-y:before{display: none;}
+.font-bold,.label-y__name,.rating .ttl{font-weight: bold;}
+.pb30{padding-bottom: 30px;}
+.grey-bg{background-color: #f2f2f2;}
+@media screen and (min-width: 1024px){
+	.rating .chart__box {width: calc(100% - 70px);}
+
+}
+
+

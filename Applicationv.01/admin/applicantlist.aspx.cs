@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using IronPdf;
 using Microsoft.Office.Interop.Excel;
 
 public partial class admin_applicantlist : System.Web.UI.Page
@@ -149,6 +151,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
             {
                 downloadApplicantDetails(ID);
             }
+            if (Comamandname.Equals("GTE"))
+            {
+                downloadGTEReport(ID);
+            }
             //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
         }
@@ -158,6 +164,66 @@ public partial class admin_applicantlist : System.Web.UI.Page
         }
     }
 
+    private void downloadGTEReport(int applicantID)
+    {
+        var Renderer = new IronPdf.HtmlToPdf();
+        Renderer.PrintOptions.PrintHtmlBackgrounds = true;
+        //Choose screen or print CSS media
+        
+        //Renderer.PrintOptions.SetCustomPaperSizeInInches(12.5, 20);
+        Renderer.PrintOptions.PrintHtmlBackgrounds = true;
+        Renderer.PrintOptions.PaperOrientation = PdfPrintOptions.PdfPaperOrientation.Portrait;
+        //Renderer.PrintOptions.Title = "My PDF Document Name";
+        Renderer.PrintOptions.EnableJavaScript = true;
+        Renderer.PrintOptions.RenderDelay = 50; //ms
+        Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Screen;
+        //Uri uri = new Uri(webURL + "assets/dashboard/css/bootstrap.min.css");
+        //Renderer.PrintOptions.CustomCssUrl.AbsoluteUri = uri.AbsoluteUri.ToString();
+        Renderer.PrintOptions.DPI = 300;
+        Renderer.PrintOptions.FitToPaperWidth = true;
+        Renderer.PrintOptions.JpegQuality = 80;
+        Renderer.PrintOptions.GrayScale = false;
+        Renderer.PrintOptions.InputEncoding = Encoding.UTF8;
+        Renderer.PrintOptions.Zoom = 100;
+      
+        Renderer.PrintOptions.CreatePdfFormsFromHtml = true;
+        //Renderer.PrintOptions.MarginTop = 40;  //millimeters
+        //Renderer.PrintOptions.MarginLeft = 20;  //millimeters
+        //Renderer.PrintOptions.MarginRight = 20;  //millimeters
+        //Renderer.PrintOptions.MarginBottom = 40;  //millimeters
+        //Renderer.PrintOptions.FirstPageNumber = 1; //use 2 if a coverpage  will be appended
+        var PDF = Renderer.RenderUrlAsPdf(webURL + "gtereport.aspx?ID=" + applicantID);
+        string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+        string filePath = string.Concat(dirPath, "\\", Guid.NewGuid() + ".pdf");
+        DirectoryInfo di = new DirectoryInfo(dirPath);
+        if (!di.Exists)
+            di.Create();
+     
+        PDF.SaveAs(filePath);
+        System.Diagnostics.Process.Start(filePath);
+        PdfDocument Pdf = PdfDocument.FromFile(filePath, "Hcom@301");
+        //Edit file metadata
+        Pdf.MetaData.Author = "The Application Center";
+        Pdf.MetaData.Keywords = "SEO, Friendly";
+        Pdf.MetaData.ModifiedDate = DateTime.Now;
+        Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Screen;
+        //Edit file security settings
+        //The following code makes a PDF read only and will disallow copy & paste and printing
+        Pdf.SecuritySettings.RemovePasswordsAndEncryption();
+       // Pdf.SecuritySettings.MakePdfDocumentReadOnly("secret-key");
+        Pdf.SecuritySettings.AllowUserAnnotations = false;
+        Pdf.SecuritySettings.AllowUserCopyPasteContent = false;
+        Pdf.SecuritySettings.AllowUserFormData = false;
+        Pdf.SecuritySettings.AllowUserPrinting = PdfDocument.PdfSecuritySettings.PdfPrintSecrity.NoPrint;
+        // chnage or set the document ecrpytion password
+        string SecuredDirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"]+ "\\secured";
+        string SecuredFilePath = string.Concat(SecuredDirPath, "\\", applicantID + ".pdf");
+         di = new DirectoryInfo(SecuredDirPath);
+        if (!di.Exists)
+            di.Create();
+        Pdf.SaveAs(SecuredFilePath);
+
+    }
     private void downloadApplicantDetails(int applicantID)
     {
         universityName = db.university_master.Where(x => x.universityid == universityID).Select(x => x.university_name).FirstOrDefault();
@@ -173,8 +239,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
             return;
         }
 
-        Workbook xlWorkBook = xlApp.Workbooks.Add(Type.Missing);    
-        
+        Workbook xlWorkBook = xlApp.Workbooks.Add(Type.Missing);
+
         Worksheet socialWorksheet = (Worksheet)xlApp.Worksheets.Add();
         socialWorksheet.Name = "Social Details";
         FillSocialDetailSheet(applicantdetails, socialWorksheet);
@@ -182,9 +248,9 @@ public partial class admin_applicantlist : System.Web.UI.Page
         Worksheet workExperienceWorksheet = (Worksheet)xlApp.Worksheets.Add();
         workExperienceWorksheet.Name = "Work Experience Details";
         FillWorkExperienceDetailSheet(applicantemployerdetails, workExperienceWorksheet);
-        
+
         Worksheet languageWorksheet = (Worksheet)xlApp.Worksheets.Add();
-        languageWorksheet.Name = "Language Competency Details";      
+        languageWorksheet.Name = "Language Competency Details";
         FillLanguageCompetencyDetailSheet(applicantlanguagecompetency, languageWorksheet);
 
         Worksheet educationWorksheet = (Worksheet)xlApp.Worksheets.Add();
@@ -213,7 +279,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         FileInfo file = new FileInfo(filePath);
         if (file.Exists)
         {
-            string Outgoingfile = "applicant("+applicantdetails.applicantid + ")-data.xlsx";
+            string Outgoingfile = "applicant(" + applicantdetails.applicantid + ")-data.xlsx";
             Response.Clear();
             Response.ClearContent();
             Response.ClearHeaders();
@@ -326,7 +392,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Cells[1, 23] = "Writing Score";
         worksheet.Cells[1, 24] = "CERF Level";
         worksheet.Cells[1, 25] = "Test Reference Number";
-        if (details != null) {
+        if (details != null)
+        {
             if (details.countryofcourse != null)
             {
                 int intcountryofcourse = Convert.ToInt32(details.countryofcourse);
@@ -460,7 +527,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
 
                 rowNumber++;
             }
-        }            
+        }
     }
 
     private void FillEducationDetailSheet(applicanteducationdetails details, Worksheet worksheet)
@@ -709,7 +776,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             }
         }
     }
-     
+
     private void FillContactDetailSheet(applicantdetails details, Worksheet worksheet)
     {
         List<applicantresidencehistory> residentHistory = null;
@@ -789,21 +856,21 @@ public partial class admin_applicantlist : System.Web.UI.Page
 
             worksheet.Cells[2, 1] = details.applicantid;
             worksheet.Cells[2, 2] = universityName;
-            worksheet.Cells[2, 3] = string.IsNullOrEmpty(details.email)? "N/A": details.email;
-            worksheet.Cells[2, 4] = string.IsNullOrEmpty(details.mobileno)?"N/A": details.mobileno;
-            worksheet.Cells[2, 5] = string.IsNullOrEmpty(details.homephone)?"N/A": details.homephone;
+            worksheet.Cells[2, 3] = string.IsNullOrEmpty(details.email) ? "N/A" : details.email;
+            worksheet.Cells[2, 4] = string.IsNullOrEmpty(details.mobileno) ? "N/A" : details.mobileno;
+            worksheet.Cells[2, 5] = string.IsNullOrEmpty(details.homephone) ? "N/A" : details.homephone;
             worksheet.Cells[2, 6] = details.haveskypeid.HasValue && details.haveskypeid.Value == 1 ? "Yes" : "NO";
-            worksheet.Cells[2, 7] = string.IsNullOrEmpty(details.skypeid)?"N/A": details.skypeid;
+            worksheet.Cells[2, 7] = string.IsNullOrEmpty(details.skypeid) ? "N/A" : details.skypeid;
             worksheet.Cells[2, 8] = details.havewhatsup.HasValue && details.havewhatsup.Value == 1 ? "Yes" : "No";
             worksheet.Cells[2, 9] = details.isdifferentwhatsapp.HasValue && details.isdifferentwhatsapp == 1 ? "Yes" : "No";
-            worksheet.Cells[2, 10] = string.IsNullOrEmpty(details.whatsappno)?"N/A": details.whatsappno;
-            worksheet.Cells[2, 11] = string.IsNullOrEmpty(details.postaladdrees1)?"N/A": details.postaladdrees1;
-            worksheet.Cells[2, 12] = string.IsNullOrEmpty(details.postaladdrees2)?"N/A": details.postaladdrees2;
-            worksheet.Cells[2, 13] = string.IsNullOrEmpty(details.postaladdrees3)?"N/A": details.postaladdrees3;
-            worksheet.Cells[2, 14] = string.IsNullOrEmpty(details.postalcity)?"N/A": details.postalcity;
-            worksheet.Cells[2, 15] = string.IsNullOrEmpty(details.postalstate)?"N/A": details.postalstate;
+            worksheet.Cells[2, 10] = string.IsNullOrEmpty(details.whatsappno) ? "N/A" : details.whatsappno;
+            worksheet.Cells[2, 11] = string.IsNullOrEmpty(details.postaladdrees1) ? "N/A" : details.postaladdrees1;
+            worksheet.Cells[2, 12] = string.IsNullOrEmpty(details.postaladdrees2) ? "N/A" : details.postaladdrees2;
+            worksheet.Cells[2, 13] = string.IsNullOrEmpty(details.postaladdrees3) ? "N/A" : details.postaladdrees3;
+            worksheet.Cells[2, 14] = string.IsNullOrEmpty(details.postalcity) ? "N/A" : details.postalcity;
+            worksheet.Cells[2, 15] = string.IsNullOrEmpty(details.postalstate) ? "N/A" : details.postalstate;
             worksheet.Cells[2, 16] = postalCountry;
-            worksheet.Cells[2, 17] = string.IsNullOrEmpty(details.postalpostcode)?"N/A": details.postalpostcode;
+            worksheet.Cells[2, 17] = string.IsNullOrEmpty(details.postalpostcode) ? "N/A" : details.postalpostcode;
             worksheet.Cells[2, 18] = details.issameaspostal.HasValue && details.issameaspostal.Value == 1 ? "Yes" : "No";
             worksheet.Cells[2, 19] = string.IsNullOrEmpty(details.residentialaddress1) ? "N/A" : details.residentialaddress1;
             worksheet.Cells[2, 20] = string.IsNullOrEmpty(details.residentialaddress2) ? "N/A" : details.residentialaddress2;
@@ -827,11 +894,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Activate();
 
         worksheet.Cells[1, 1] = "Applicant ID";
-        worksheet.Cells[1, 2] = "University Name";        
+        worksheet.Cells[1, 2] = "University Name";
         worksheet.Cells[1, 3] = "Have LinkedIn Profile";
-        worksheet.Cells[1, 4] = "LinkedIn Profile";        
+        worksheet.Cells[1, 4] = "LinkedIn Profile";
         worksheet.Cells[1, 5] = "Have Facebook Profile";
-        worksheet.Cells[1, 6] = "Facebook Profile";        
+        worksheet.Cells[1, 6] = "Facebook Profile";
         worksheet.Cells[1, 7] = "Have Twitter Profile";
         worksheet.Cells[1, 8] = "Twitter Profile";
         if (details != null)
@@ -858,7 +925,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string spouseNationality = string.Empty;
         string disabilityDesc = "N/A";
         string agentName = "N/A";
-        
+
         worksheet.Name = "Personal Details";
         worksheet.Activate();
 
@@ -916,7 +983,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             worksheet.Cells[2, 7] = details.ispassportfirstname.HasValue && details.ispassportfirstname.Value ? "Yes" : "No";
             worksheet.Cells[2, 8] = details.ispassportmiddlename.HasValue && details.ispassportmiddlename.Value ? "Yes" : "No";
             worksheet.Cells[2, 9] = details.ispassportlastname.HasValue && details.ispassportlastname.Value ? "Yes" : "No";
-            worksheet.Cells[2, 10] = details.dateofbirth.HasValue ? details.dateofbirth.Value.ToString("dd/MM/yyyy"):"N/A";
+            worksheet.Cells[2, 10] = details.dateofbirth.HasValue ? details.dateofbirth.Value.ToString("dd/MM/yyyy") : "N/A";
             worksheet.Cells[2, 11] = details.gender != null && details.gender.Value == 1 ? "Male" : "Female";
             worksheet.Cells[2, 12] = nationality;
             worksheet.Cells[2, 13] = details.haschinesecodenumber.HasValue ? "Yes" : "No";

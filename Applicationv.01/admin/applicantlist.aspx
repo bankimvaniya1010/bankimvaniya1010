@@ -54,6 +54,7 @@
                                     <asp:LinkButton ID="lnkVisa" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Visa" Text="View Visa"></asp:LinkButton>|
                                   <asp:LinkButton ID="LnkFunding" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Funding" Text="View Funding"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnlDownloadDetails" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Download" Text="Download Applicant Details"></asp:LinkButton>
+                                     <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="GTE" Text="Download GTE Reports"></asp:LinkButton>
                                     <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
                                     --%>
