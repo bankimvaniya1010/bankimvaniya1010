@@ -564,6 +564,118 @@
           <Property Name="course" Type="int" />
           <Property Name="commencementdate" Type="datetime" Precision="0" />
         </EntityType>
+        <EntityType Name="australiavisadetailmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="termsandcondition" Type="bit" />
+          <Property Name="noofpeopleincluded" Type="varchar" MaxLength="50" />
+          <Property Name="applyingfor" Type="int" />
+          <Property Name="familyname" Type="varchar" MaxLength="50" />
+          <Property Name="givenname" Type="varchar" MaxLength="50" />
+          <Property Name="knownbyanothername" Type="int" />
+          <Property Name="anotherfamilyname" Type="varchar" MaxLength="50" />
+          <Property Name="anothergivenname" Type="varchar" MaxLength="50" />
+          <Property Name="ownlanguagename1" Type="varchar" MaxLength="50" />
+          <Property Name="ownlanguagename2" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="int" />
+          <Property Name="dateofbirth" Type="datetime" Precision="0" />
+          <Property Name="cityofbirth" Type="varchar" MaxLength="50" />
+          <Property Name="countryofbirth" Type="int" />
+          <Property Name="maritalstatus" Type="int" />
+          <Property Name="countryofcitizenship" Type="int" />
+          <Property Name="holdothercitizenship" Type="int" />
+          <Property Name="anothercountryofcitizenship" Type="int" />
+          <Property Name="havepassport" Type="int" />
+          <Property Name="passportno" Type="varchar" MaxLength="50" />
+          <Property Name="countryofpassport" Type="int" />
+          <Property Name="dateofissue" Type="datetime" Precision="0" />
+          <Property Name="dateofexpiry" Type="datetime" Precision="0" />
+          <Property Name="placeofissue" Type="varchar" MaxLength="50" />
+          <Property Name="applicableidentificationno" Type="varchar" MaxLength="50" />
+          <Property Name="anotherIdentitytype1" Type="varchar" MaxLength="50" />
+          <Property Name="anotherIdentityNo1" Type="varchar" MaxLength="50" />
+          <Property Name="anotherIdentitytype2" Type="varchar" MaxLength="50" />
+          <Property Name="anotherIdentityNo2" Type="varchar" MaxLength="50" />
+          <Property Name="residencecountry" Type="int" />
+          <Property Name="residenceaddressLine1" Type="varchar" MaxLength="50" />
+          <Property Name="residenceaddressLine2" Type="varchar" MaxLength="50" />
+          <Property Name="residenceaddresspostalcode" Type="varchar" MaxLength="50" />
+          <Property Name="officehoursContactNoOutsideaustralia" Type="varchar" MaxLength="11" />
+          <Property Name="afterhoursContactNoOutsideaustralia" Type="varchar" MaxLength="11" />
+          <Property Name="australiaresidentialaddline1" Type="varchar" MaxLength="50" />
+          <Property Name="australiaresidentialaddline2" Type="varchar" MaxLength="50" />
+          <Property Name="australiaresidentialpostalcode" Type="varchar" MaxLength="50" />
+          <Property Name="officehrContactNoInAustralia" Type="varchar" MaxLength="11" />
+          <Property Name="afterhrContactNoInAustralia" Type="varchar" MaxLength="11" />
+          <Property Name="correspondenceaddressline1" Type="varchar" MaxLength="50" />
+          <Property Name="correspondenceaddressline2" Type="varchar" MaxLength="50" />
+          <Property Name="correspondenceaddresspoastalcode" Type="varchar" MaxLength="50" />
+          <Property Name="agreetocommunicate" Type="int" />
+          <Property Name="faxno" Type="varchar" MaxLength="50" />
+          <Property Name="emailaddress" Type="varchar" MaxLength="50" />
+          <Property Name="applicationentrolledinschool" Type="int" />
+          <Property Name="subjectofcourtorder" Type="int" />
+          <Property Name="appliesforAustalianvisa" Type="int" />
+          <Property Name="currentlyholdaustralianvisa" Type="int" />
+          <Property Name="awaitingforaustralianvisa" Type="int" />
+          <Property Name="nameonvisa" Type="varchar" MaxLength="50" />
+          <Property Name="typeofvisa" Type="varchar" MaxLength="50" />
+          <Property Name="placeofissuevisa" Type="varchar" MaxLength="50" />
+          <Property Name="dateissuevisa" Type="datetime" Precision="0" />
+          <Property Name="applicationrefusedorgranted" Type="int" />
+          <Property Name="grantedvisalabelno" Type="varchar" MaxLength="50" />
+          <Property Name="visagrantnumber" Type="varchar" MaxLength="50" />
+          <Property Name="nameonvisa1" Type="varchar" MaxLength="50" />
+          <Property Name="typeofvisa1" Type="varchar" MaxLength="50" />
+          <Property Name="placeofissuevisa1" Type="varchar" MaxLength="50" />
+          <Property Name="dateissuevisa1" Type="datetime" Precision="0" />
+          <Property Name="applicationrefusedorgranted1" Type="int" />
+          <Property Name="grantedvisalabelno1" Type="varchar" MaxLength="50" />
+          <Property Name="visagrantnumber1" Type="varchar" MaxLength="50" />
+          <Property Name="applyingfortype" Type="int" />
+          <Property Name="partC" Type="int" />
+          <Property Name="ifFamilyunitcompletedformpartC" Type="int" />
+          <Property Name="studymorethanthreemonthpartC" Type="int" />
+          <Property Name="studentnamepartC" Type="varchar" MaxLength="50" />
+          <Property Name="assessmentdategrantedpartC" Type="datetime" Precision="0" />
+          <Property Name="relationshiptostudentpartC" Type="varchar" MaxLength="50" />
+          <Property Name="studentdobpartC" Type="datetime" Precision="0" />
+          <Property Name="citizenshipofstudentpartC" Type="varchar" MaxLength="50" />
+          <Property Name="studentaddresspartC" Type="varchar" MaxLength="50" />
+          <Property Name="studentaddpostalcodepartC" Type="varchar" MaxLength="50" />
+          <Property Name="typeofstudentvisaheldpartC" Type="varchar" MaxLength="50" />
+          <Property Name="assessmentlevelpartC" Type="varchar" MaxLength="50" />
+          <Property Name="assessmentgrantdatepartC" Type="datetime" Precision="0" />
+          <Property Name="assessmentexpirydatepartC" Type="datetime" Precision="0" />
+          <Property Name="isstudentjoiningdeclarepartC" Type="int" />
+          <Property Name="isstudentjoiningsatisfiedconditionpartC" Type="int" />
+          <Property Name="suficientfundpartC" Type="int" />
+        </EntityType>
+        <EntityType Name="australiavisaFamilydetailmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="familyInfoID" Type="int" Nullable="false" />
+          <Property Name="applicantid" Type="int" Nullable="false" />
+          <Property Name="universityid" Type="int" Nullable="false" />
+          <Property Name="aboutfamilyname" Type="varchar" MaxLength="50" />
+          <Property Name="aboutfamilygivenname" Type="varchar" MaxLength="50" />
+          <Property Name="relationshiptoyou" Type="varchar" MaxLength="50" />
+          <Property Name="citizenship" Type="varchar" MaxLength="50" />
+          <Property Name="dobfamilymember" Type="datetime" Precision="0" />
+          <Property Name="isfamilymemberhavepassport" Type="int" />
+          <Property Name="passportno" Type="varchar" MaxLength="50" />
+          <Property Name="countryofpassport" Type="int" />
+          <Property Name="passportdateofissue" Type="datetime" Precision="0" />
+          <Property Name="passportdateofexpiry" Type="datetime" Precision="0" />
+          <Property Name="passportplaceofissue" Type="varchar" MaxLength="50" />
+          <Property Name="studyinAustralia" Type="int" />
+        </EntityType>
         <EntityType Name="cefrlevelmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -916,6 +1028,24 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="question" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="tag" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gte_report_admin_comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="student_sop_id" Type="int" Nullable="false" />
+          <Property Name="applicant_id" Type="int" Nullable="false" />
+          <Property Name="university_id" Type="int" Nullable="false" />
+          <Property Name="para1_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="para2_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="para3_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="para4_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="para5_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="student_video_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="student_document_comments" Type="varchar" MaxLength="1000" />
+          <Property Name="student_recommended" Type="varchar" MaxLength="100" />
+          <Property Name="final_recommendation" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="gte_statementofpurpose">
           <Key>
@@ -1749,6 +1879,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_reportFeedBack_studentSop">
+          <End Role="gte_student_sop" Type="Self.gte_student_sop" Multiplicity="1" />
+          <End Role="gte_report_admin_comment" Type="Self.gte_report_admin_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gte_student_sop">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="gte_report_admin_comment">
+              <PropertyRef Name="student_sop_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_response_clarification_questionmaster">
           <End Role="gte_clarification_questionmaster" Type="Self.gte_clarification_questionmaster" Multiplicity="1" />
           <End Role="gte_clarification_applicantresponse" Type="Self.gte_clarification_applicantresponse" Multiplicity="*" />
@@ -2030,6 +2172,8 @@
           <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicationmaster" EntityType="Self.applicationmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="australiavisadetailmaster" EntityType="Self.australiavisadetailmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="australiavisaFamilydetailmaster" EntityType="Self.australiavisaFamilydetailmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="cefrlevelmaster" EntityType="Self.cefrlevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="clarificationquestion_university_mapping" EntityType="Self.clarificationquestion_university_mapping" Schema="GTE" store:Type="Tables" />
@@ -2066,6 +2210,7 @@
           <EntitySet Name="gte_question_part2_applicant_response" EntityType="Self.gte_question_part2_applicant_response" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_questions_applicant_response" EntityType="Self.gte_questions_applicant_response" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_questions_master" EntityType="Self.gte_questions_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_report_admin_comment" EntityType="Self.gte_report_admin_comment" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_statementofpurpose" EntityType="Self.gte_statementofpurpose" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_student_sop" EntityType="Self.gte_student_sop" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_tutorialmaster" EntityType="Self.gte_tutorialmaster" Schema="GTE" store:Type="Tables" />
@@ -2233,6 +2378,10 @@
           <AssociationSet Name="FK_qualificationmaster_qualificationcountrymapping" Association="Self.FK_qualificationmaster_qualificationcountrymapping">
             <End Role="qualificationmaster" EntitySet="qualificationmaster" />
             <End Role="qualificationcountriesmapping" EntitySet="qualificationcountriesmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reportFeedBack_studentSop" Association="Self.FK_reportFeedBack_studentSop">
+            <End Role="gte_student_sop" EntitySet="gte_student_sop" />
+            <End Role="gte_report_admin_comment" EntitySet="gte_report_admin_comment" />
           </AssociationSet>
           <AssociationSet Name="FK_response_clarification_questionmaster" Association="Self.FK_response_clarification_questionmaster">
             <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
@@ -2644,6 +2793,13 @@
             <End Role="universitycampus_city_mapping" EntitySet="universitycampus_city_mapping" />
           </AssociationSet>
           <EntitySet Name="gte_student_sop" EntityType="GTEModel.gte_student_sop" />
+          <EntitySet Name="australiavisadetailmaster" EntityType="GTEModel.australiavisadetailmaster" />
+          <EntitySet Name="australiavisaFamilydetailmaster" EntityType="GTEModel.australiavisaFamilydetailmaster" />
+          <EntitySet Name="gte_report_admin_comment" EntityType="GTEModel.gte_report_admin_comment" />
+          <AssociationSet Name="FK_reportFeedBack_studentSop" Association="GTEModel.FK_reportFeedBack_studentSop">
+            <End Role="gte_student_sop" EntitySet="gte_student_sop" />
+            <End Role="gte_report_admin_comment" EntitySet="gte_report_admin_comment" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -4728,7 +4884,151 @@
           <Property Name="created_at" Type="DateTime" Nullable="false" />
           <Property Name="deleted_at" Type="DateTime" />
           <Property Name="edited_at" Type="DateTime" />
+          <NavigationProperty Name="gte_report_admin_comment" Relationship="GTEModel.FK_reportFeedBack_studentSop" FromRole="gte_student_sop" ToRole="gte_report_admin_comment" />
         </EntityType>
+        <EntityType Name="australiavisadetailmaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="termsandcondition" Type="Boolean" />
+          <Property Name="noofpeopleincluded" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="applyingfor" Type="Int32" />
+          <Property Name="familyname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="givenname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="knownbyanothername" Type="Int32" />
+          <Property Name="anotherfamilyname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="anothergivenname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ownlanguagename1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ownlanguagename2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="dateofbirth" Type="DateTime" />
+          <Property Name="cityofbirth" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryofbirth" Type="Int32" />
+          <Property Name="maritalstatus" Type="Int32" />
+          <Property Name="countryofcitizenship" Type="Int32" />
+          <Property Name="holdothercitizenship" Type="Int32" />
+          <Property Name="anothercountryofcitizenship" Type="Int32" />
+          <Property Name="havepassport" Type="Int32" />
+          <Property Name="passportno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryofpassport" Type="Int32" />
+          <Property Name="dateofissue" Type="DateTime" />
+          <Property Name="dateofexpiry" Type="DateTime" />
+          <Property Name="placeofissue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="applicableidentificationno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="anotherIdentitytype1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="anotherIdentityNo1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="anotherIdentitytype2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="anotherIdentityNo2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residencecountry" Type="Int32" />
+          <Property Name="residenceaddressLine1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residenceaddressLine2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="residenceaddresspostalcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="officehoursContactNoOutsideaustralia" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="afterhoursContactNoOutsideaustralia" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="australiaresidentialaddline1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="australiaresidentialaddline2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="australiaresidentialpostalcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="officehrContactNoInAustralia" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="afterhrContactNoInAustralia" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="correspondenceaddressline1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correspondenceaddressline2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correspondenceaddresspoastalcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agreetocommunicate" Type="Int32" />
+          <Property Name="faxno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="emailaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="applicationentrolledinschool" Type="Int32" />
+          <Property Name="subjectofcourtorder" Type="Int32" />
+          <Property Name="appliesforAustalianvisa" Type="Int32" />
+          <Property Name="currentlyholdaustralianvisa" Type="Int32" />
+          <Property Name="awaitingforaustralianvisa" Type="Int32" />
+          <Property Name="nameonvisa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="typeofvisa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="placeofissuevisa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateissuevisa" Type="DateTime" />
+          <Property Name="applicationrefusedorgranted" Type="Int32" />
+          <Property Name="grantedvisalabelno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="visagrantnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nameonvisa1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="typeofvisa1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="placeofissuevisa1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateissuevisa1" Type="DateTime" />
+          <Property Name="applicationrefusedorgranted1" Type="Int32" />
+          <Property Name="grantedvisalabelno1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="visagrantnumber1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="applyingfortype" Type="Int32" />
+          <Property Name="partC" Type="Int32" />
+          <Property Name="ifFamilyunitcompletedformpartC" Type="Int32" />
+          <Property Name="studymorethanthreemonthpartC" Type="Int32" />
+          <Property Name="studentnamepartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assessmentdategrantedpartC" Type="DateTime" />
+          <Property Name="relationshiptostudentpartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studentdobpartC" Type="DateTime" />
+          <Property Name="citizenshipofstudentpartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studentaddresspartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studentaddpostalcodepartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="typeofstudentvisaheldpartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assessmentlevelpartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assessmentgrantdatepartC" Type="DateTime" />
+          <Property Name="assessmentexpirydatepartC" Type="DateTime" />
+          <Property Name="isstudentjoiningdeclarepartC" Type="Int32" />
+          <Property Name="isstudentjoiningsatisfiedconditionpartC" Type="Int32" />
+          <Property Name="suficientfundpartC" Type="Int32" />
+        </EntityType>
+        <EntityType Name="australiavisaFamilydetailmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="familyInfoID" Type="Int32" Nullable="false" />
+          <Property Name="applicantid" Type="Int32" Nullable="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="aboutfamilyname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="aboutfamilygivenname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="relationshiptoyou" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="citizenship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dobfamilymember" Type="DateTime" />
+          <Property Name="isfamilymemberhavepassport" Type="Int32" />
+          <Property Name="passportno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="countryofpassport" Type="Int32" />
+          <Property Name="passportdateofissue" Type="DateTime" />
+          <Property Name="passportdateofexpiry" Type="DateTime" />
+          <Property Name="passportplaceofissue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="studyinAustralia" Type="Int32" />
+        </EntityType>
+        <EntityType Name="gte_report_admin_comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="student_sop_id" Type="Int32" Nullable="false" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="para1_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="para2_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="para3_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="para4_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="para5_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="student_video_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="student_document_comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="student_recommended" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="final_recommendation" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="gte_student_sop" Relationship="GTEModel.FK_reportFeedBack_studentSop" FromRole="gte_report_admin_comment" ToRole="gte_student_sop" />
+        </EntityType>
+        <Association Name="FK_reportFeedBack_studentSop">
+          <End Type="GTEModel.gte_student_sop" Role="gte_student_sop" Multiplicity="1" />
+          <End Type="GTEModel.gte_report_admin_comment" Role="gte_report_admin_comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gte_student_sop">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="gte_report_admin_comment">
+              <PropertyRef Name="student_sop_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6233,6 +6533,139 @@
                 <ScalarProperty Name="gte_sop_para1" ColumnName="gte_sop_para1" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="australiavisadetailmaster">
+            <EntityTypeMapping TypeName="GTEModel.australiavisadetailmaster">
+              <MappingFragment StoreEntitySet="australiavisadetailmaster">
+                <ScalarProperty Name="suficientfundpartC" ColumnName="suficientfundpartC" />
+                <ScalarProperty Name="isstudentjoiningsatisfiedconditionpartC" ColumnName="isstudentjoiningsatisfiedconditionpartC" />
+                <ScalarProperty Name="isstudentjoiningdeclarepartC" ColumnName="isstudentjoiningdeclarepartC" />
+                <ScalarProperty Name="assessmentexpirydatepartC" ColumnName="assessmentexpirydatepartC" />
+                <ScalarProperty Name="assessmentgrantdatepartC" ColumnName="assessmentgrantdatepartC" />
+                <ScalarProperty Name="assessmentlevelpartC" ColumnName="assessmentlevelpartC" />
+                <ScalarProperty Name="typeofstudentvisaheldpartC" ColumnName="typeofstudentvisaheldpartC" />
+                <ScalarProperty Name="studentaddpostalcodepartC" ColumnName="studentaddpostalcodepartC" />
+                <ScalarProperty Name="studentaddresspartC" ColumnName="studentaddresspartC" />
+                <ScalarProperty Name="citizenshipofstudentpartC" ColumnName="citizenshipofstudentpartC" />
+                <ScalarProperty Name="studentdobpartC" ColumnName="studentdobpartC" />
+                <ScalarProperty Name="relationshiptostudentpartC" ColumnName="relationshiptostudentpartC" />
+                <ScalarProperty Name="assessmentdategrantedpartC" ColumnName="assessmentdategrantedpartC" />
+                <ScalarProperty Name="studentnamepartC" ColumnName="studentnamepartC" />
+                <ScalarProperty Name="studymorethanthreemonthpartC" ColumnName="studymorethanthreemonthpartC" />
+                <ScalarProperty Name="ifFamilyunitcompletedformpartC" ColumnName="ifFamilyunitcompletedformpartC" />
+                <ScalarProperty Name="partC" ColumnName="partC" />
+                <ScalarProperty Name="applyingfortype" ColumnName="applyingfortype" />
+                <ScalarProperty Name="visagrantnumber1" ColumnName="visagrantnumber1" />
+                <ScalarProperty Name="grantedvisalabelno1" ColumnName="grantedvisalabelno1" />
+                <ScalarProperty Name="applicationrefusedorgranted1" ColumnName="applicationrefusedorgranted1" />
+                <ScalarProperty Name="dateissuevisa1" ColumnName="dateissuevisa1" />
+                <ScalarProperty Name="placeofissuevisa1" ColumnName="placeofissuevisa1" />
+                <ScalarProperty Name="typeofvisa1" ColumnName="typeofvisa1" />
+                <ScalarProperty Name="nameonvisa1" ColumnName="nameonvisa1" />
+                <ScalarProperty Name="visagrantnumber" ColumnName="visagrantnumber" />
+                <ScalarProperty Name="grantedvisalabelno" ColumnName="grantedvisalabelno" />
+                <ScalarProperty Name="applicationrefusedorgranted" ColumnName="applicationrefusedorgranted" />
+                <ScalarProperty Name="dateissuevisa" ColumnName="dateissuevisa" />
+                <ScalarProperty Name="placeofissuevisa" ColumnName="placeofissuevisa" />
+                <ScalarProperty Name="typeofvisa" ColumnName="typeofvisa" />
+                <ScalarProperty Name="nameonvisa" ColumnName="nameonvisa" />
+                <ScalarProperty Name="awaitingforaustralianvisa" ColumnName="awaitingforaustralianvisa" />
+                <ScalarProperty Name="currentlyholdaustralianvisa" ColumnName="currentlyholdaustralianvisa" />
+                <ScalarProperty Name="appliesforAustalianvisa" ColumnName="appliesforAustalianvisa" />
+                <ScalarProperty Name="subjectofcourtorder" ColumnName="subjectofcourtorder" />
+                <ScalarProperty Name="applicationentrolledinschool" ColumnName="applicationentrolledinschool" />
+                <ScalarProperty Name="emailaddress" ColumnName="emailaddress" />
+                <ScalarProperty Name="faxno" ColumnName="faxno" />
+                <ScalarProperty Name="agreetocommunicate" ColumnName="agreetocommunicate" />
+                <ScalarProperty Name="correspondenceaddresspoastalcode" ColumnName="correspondenceaddresspoastalcode" />
+                <ScalarProperty Name="correspondenceaddressline2" ColumnName="correspondenceaddressline2" />
+                <ScalarProperty Name="correspondenceaddressline1" ColumnName="correspondenceaddressline1" />
+                <ScalarProperty Name="afterhrContactNoInAustralia" ColumnName="afterhrContactNoInAustralia" />
+                <ScalarProperty Name="officehrContactNoInAustralia" ColumnName="officehrContactNoInAustralia" />
+                <ScalarProperty Name="australiaresidentialpostalcode" ColumnName="australiaresidentialpostalcode" />
+                <ScalarProperty Name="australiaresidentialaddline2" ColumnName="australiaresidentialaddline2" />
+                <ScalarProperty Name="australiaresidentialaddline1" ColumnName="australiaresidentialaddline1" />
+                <ScalarProperty Name="afterhoursContactNoOutsideaustralia" ColumnName="afterhoursContactNoOutsideaustralia" />
+                <ScalarProperty Name="officehoursContactNoOutsideaustralia" ColumnName="officehoursContactNoOutsideaustralia" />
+                <ScalarProperty Name="residenceaddresspostalcode" ColumnName="residenceaddresspostalcode" />
+                <ScalarProperty Name="residenceaddressLine2" ColumnName="residenceaddressLine2" />
+                <ScalarProperty Name="residenceaddressLine1" ColumnName="residenceaddressLine1" />
+                <ScalarProperty Name="residencecountry" ColumnName="residencecountry" />
+                <ScalarProperty Name="anotherIdentityNo2" ColumnName="anotherIdentityNo2" />
+                <ScalarProperty Name="anotherIdentitytype2" ColumnName="anotherIdentitytype2" />
+                <ScalarProperty Name="anotherIdentityNo1" ColumnName="anotherIdentityNo1" />
+                <ScalarProperty Name="anotherIdentitytype1" ColumnName="anotherIdentitytype1" />
+                <ScalarProperty Name="applicableidentificationno" ColumnName="applicableidentificationno" />
+                <ScalarProperty Name="placeofissue" ColumnName="placeofissue" />
+                <ScalarProperty Name="dateofexpiry" ColumnName="dateofexpiry" />
+                <ScalarProperty Name="dateofissue" ColumnName="dateofissue" />
+                <ScalarProperty Name="countryofpassport" ColumnName="countryofpassport" />
+                <ScalarProperty Name="passportno" ColumnName="passportno" />
+                <ScalarProperty Name="havepassport" ColumnName="havepassport" />
+                <ScalarProperty Name="anothercountryofcitizenship" ColumnName="anothercountryofcitizenship" />
+                <ScalarProperty Name="holdothercitizenship" ColumnName="holdothercitizenship" />
+                <ScalarProperty Name="countryofcitizenship" ColumnName="countryofcitizenship" />
+                <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
+                <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
+                <ScalarProperty Name="cityofbirth" ColumnName="cityofbirth" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="ownlanguagename2" ColumnName="ownlanguagename2" />
+                <ScalarProperty Name="ownlanguagename1" ColumnName="ownlanguagename1" />
+                <ScalarProperty Name="anothergivenname" ColumnName="anothergivenname" />
+                <ScalarProperty Name="anotherfamilyname" ColumnName="anotherfamilyname" />
+                <ScalarProperty Name="knownbyanothername" ColumnName="knownbyanothername" />
+                <ScalarProperty Name="givenname" ColumnName="givenname" />
+                <ScalarProperty Name="familyname" ColumnName="familyname" />
+                <ScalarProperty Name="applyingfor" ColumnName="applyingfor" />
+                <ScalarProperty Name="noofpeopleincluded" ColumnName="noofpeopleincluded" />
+                <ScalarProperty Name="termsandcondition" ColumnName="termsandcondition" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="australiavisaFamilydetailmaster">
+            <EntityTypeMapping TypeName="GTEModel.australiavisaFamilydetailmaster">
+              <MappingFragment StoreEntitySet="australiavisaFamilydetailmaster">
+                <ScalarProperty Name="studyinAustralia" ColumnName="studyinAustralia" />
+                <ScalarProperty Name="passportplaceofissue" ColumnName="passportplaceofissue" />
+                <ScalarProperty Name="passportdateofexpiry" ColumnName="passportdateofexpiry" />
+                <ScalarProperty Name="passportdateofissue" ColumnName="passportdateofissue" />
+                <ScalarProperty Name="countryofpassport" ColumnName="countryofpassport" />
+                <ScalarProperty Name="passportno" ColumnName="passportno" />
+                <ScalarProperty Name="isfamilymemberhavepassport" ColumnName="isfamilymemberhavepassport" />
+                <ScalarProperty Name="dobfamilymember" ColumnName="dobfamilymember" />
+                <ScalarProperty Name="citizenship" ColumnName="citizenship" />
+                <ScalarProperty Name="relationshiptoyou" ColumnName="relationshiptoyou" />
+                <ScalarProperty Name="aboutfamilygivenname" ColumnName="aboutfamilygivenname" />
+                <ScalarProperty Name="aboutfamilyname" ColumnName="aboutfamilyname" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="familyInfoID" ColumnName="familyInfoID" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_report_admin_comment">
+            <EntityTypeMapping TypeName="GTEModel.gte_report_admin_comment">
+              <MappingFragment StoreEntitySet="gte_report_admin_comment">
+                <ScalarProperty Name="final_recommendation" ColumnName="final_recommendation" />
+                <ScalarProperty Name="student_recommended" ColumnName="student_recommended" />
+                <ScalarProperty Name="student_document_comments" ColumnName="student_document_comments" />
+                <ScalarProperty Name="student_video_comments" ColumnName="student_video_comments" />
+                <ScalarProperty Name="para5_comments" ColumnName="para5_comments" />
+                <ScalarProperty Name="para4_comments" ColumnName="para4_comments" />
+                <ScalarProperty Name="para3_comments" ColumnName="para3_comments" />
+                <ScalarProperty Name="para2_comments" ColumnName="para2_comments" />
+                <ScalarProperty Name="para1_comments" ColumnName="para1_comments" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="student_sop_id" ColumnName="student_sop_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -173,6 +173,10 @@
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
         <EntityTypeShape EntityType="GTEModel.gte_student_sop" Width="1.5" PointX="21.875" PointY="24.75" />
+        <EntityTypeShape EntityType="GTEModel.australiavisadetailmaster" Width="1.5" PointX="20.375" PointY="30.75" />
+        <EntityTypeShape EntityType="GTEModel.australiavisaFamilydetailmaster" Width="1.5" PointX="30.375" PointY="25.75" />
+        <EntityTypeShape EntityType="GTEModel.gte_report_admin_comment" Width="1.5" PointX="24.125" PointY="30.125" />
+        <AssociationConnector Association="GTEModel.FK_reportFeedBack_studentSop" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

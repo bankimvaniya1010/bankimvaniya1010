@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gtereport.aspx.cs" Inherits="gtereport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gtereport.aspx.cs" Inherits="admin_gtereport" %>
 
 <%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 
@@ -7,148 +7,167 @@
 <head>
     <title></title>
     <style>
-        
         @media print {
- 
-/* Inhaltsbreite setzen, Floats und Margins aufheben */
-/* Achtung: Die Klassen und IDs variieren von Theme zu Theme. Hier also eigene Klassen setzen */
-#content, #page {
-width: 100%; 
-margin: 0; 
-float: none;
-}
-    
-/** Seitenränder einstellen */       
-@page { margin: 2cm }
 
-/* Font auf 16px/13pt setzen, Background auf Weiß und Schrift auf Schwarz setzen.*/
-/* Das spart Tinte */
-body {
-font: 13pt Georgia, "Times New Roman", Times, serif;
-line-height: 1.3;
-background: #fff !important;
-color: #000;
-}
+            /* Inhaltsbreite setzen, Floats und Margins aufheben */
+            /* Achtung: Die Klassen und IDs variieren von Theme zu Theme. Hier also eigene Klassen setzen */
+            #content, #page {
+                width: 100%;
+                margin: 0;
+                float: none;
+            }
 
-h1 {
-font-size: 24pt;
-}
+            /** Seitenränder einstellen */
+            @page {
+                margin: 2cm
+            }
 
-h2, h3, h4 {
-font-size: 14pt;
-margin-top: 25px;
-}    
- 
-/* Alle Seitenumbrüche definieren */
-a {
-    page-break-inside:avoid
-}
-blockquote {
-    page-break-inside: avoid;
-}
-h1, h2, h3, h4, h5, h6 { page-break-after:avoid; 
-     page-break-inside:avoid }
-img { page-break-inside:avoid; 
-     page-break-after:avoid; }
-table, pre { page-break-inside:avoid }
-ul, ol, dl  { page-break-before:avoid }
-    
-/* Linkfarbe und Linkverhalten darstellen */
-a:link, a:visited, a {
-background: transparent;
-color: #520;
-font-weight: bold;
-text-decoration: underline;
-text-align: left;
-}
+            /* Font auf 16px/13pt setzen, Background auf Weiß und Schrift auf Schwarz setzen.*/
+            /* Das spart Tinte */
+            body {
+                font: 13pt Georgia, "Times New Roman", Times, serif;
+                line-height: 1.3;
+                background: #fff !important;
+                color: #000;
+            }
 
-a {
-    page-break-inside:avoid
-}
+            h1 {
+                font-size: 24pt;
+            }
 
-a[href^=http]:after {
-      content:" <" attr(href) "> ";
-}
+            h2, h3, h4 {
+                font-size: 14pt;
+                margin-top: 25px;
+            }
 
-$a:after > img {
-   content: "";
-}
+            /* Alle Seitenumbrüche definieren */
+            a {
+                page-break-inside: avoid
+            }
 
-article a[href^="#"]:after {
-   content: "";
-}
+            blockquote {
+                page-break-inside: avoid;
+            }
 
-a:not(:local-link):after {
-   content:" <" attr(href) "> ";
-}
-    
-/**
+            h1, h2, h3, h4, h5, h6 {
+                page-break-after: avoid;
+                page-break-inside: avoid
+            }
+
+            img {
+                page-break-inside: avoid;
+                page-break-after: avoid;
+            }
+
+            table, pre {
+                page-break-inside: avoid
+            }
+
+            ul, ol, dl {
+                page-break-before: avoid
+            }
+
+            /* Linkfarbe und Linkverhalten darstellen */
+            a:link, a:visited, a {
+                background: transparent;
+                color: #520;
+                font-weight: bold;
+                text-decoration: underline;
+                text-align: left;
+            }
+
+            a {
+                page-break-inside: avoid
+            }
+
+                a[href^=http]:after {
+                    content: " <" attr(href) "> ";
+                }
+
+            $a:after > img {
+                content: "";
+            }
+
+            article a[href^="#"]:after {
+                content: "";
+            }
+
+            a:not(:local-link):after {
+                content: " <" attr(href) "> ";
+            }
+
+            /**
  * Eingebundene Videos verschwinden lassen und den Whitespace der iframes auf null reduzieren.
  */
-.entry iframe, ins {
-    display: none;
-    width: 0 !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    line-height: 0pt !important;
-    white-space: nowrap;
-}
-.embed-youtube, .embed-responsive {
-  position: absolute;
-  height: 0;
-  overflow: hidden;
-}
-    
-/* Unnötige Elemente ausblenden für den Druck */
+            .entry iframe, ins {
+                display: none;
+                width: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+                line-height: 0pt !important;
+                white-space: nowrap;
+            }
 
-#header-widgets, nav, aside.mashsb-container, 
-.sidebar, .mashshare-top, .mashshare-bottom, 
-.content-ads, .make-comment, .author-bio, 
-.heading, .related-posts, #decomments-form-add-comment, 
-#breadcrumbs, #footer, .post-byline, .meta-single, 
-.site-title img, .post-tags, .readability 
-{
-display: none;
-}
-    
-/* Benutzerdefinierte Nachrichten vor und nach dem Inhalt einfügen */
-.entry:after {
-content: "\ Alle Rechte vorbehalten. (c) 2014 - 2016 TechBrain - techbrain.de";
-color: #999 !important;
-font-size: 1em;
-padding-top: 30px;
-}
-#header:before {
-content: "\ Vielen herzlichen Dank für das Ausdrucken unseres Artikels. Wir hoffen, dass auch andere Artikel von uns Ihr Interesse wecken können.";
-color: #777 !important;
-font-size: 1em;
-padding-top: 30px;
-text-align: center !important;    
-}
+            .embed-youtube, .embed-responsive {
+                position: absolute;
+                height: 0;
+                overflow: hidden;
+            }
 
-/* Wichtige Elemente definieren */    
-p, address, li, dt, dd, blockquote {
-font-size: 100%
-}
+            /* Unnötige Elemente ausblenden für den Druck */
 
-/* Zeichensatz fuer Code Beispiele */
-code, pre { font-family: "Courier New", Courier, mono}
+            #header-widgets, nav, aside.mashsb-container,
+            .sidebar, .mashshare-top, .mashshare-bottom,
+            .content-ads, .make-comment, .author-bio,
+            .heading, .related-posts, #decomments-form-add-comment,
+            #breadcrumbs, #footer, .post-byline, .meta-single,
+            .site-title img, .post-tags, .readability {
+                display: none;
+            }
 
-ul, ol {
-list-style: square; margin-left: 18pt;
-margin-bottom: 20pt;    
-}
+            /* Benutzerdefinierte Nachrichten vor und nach dem Inhalt einfügen */
+            .entry:after {
+                content: "\ Alle Rechte vorbehalten. (c) 2014 - 2016 TechBrain - techbrain.de";
+                color: #999 !important;
+                font-size: 1em;
+                padding-top: 30px;
+            }
 
-li {
-line-height: 1.6em;
-}    
-    
-}</style>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" /> >
-    <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>" >
+            #header:before {
+                content: "\ Vielen herzlichen Dank für das Ausdrucken unseres Artikels. Wir hoffen, dass auch andere Artikel von uns Ihr Interesse wecken können.";
+                color: #777 !important;
+                font-size: 1em;
+                padding-top: 30px;
+                text-align: center !important;
+            }
+
+            /* Wichtige Elemente definieren */
+            p, address, li, dt, dd, blockquote {
+                font-size: 100%
+            }
+
+            /* Zeichensatz fuer Code Beispiele */
+            code, pre {
+                font-family: "Courier New", Courier, mono
+            }
+
+            ul, ol {
+                list-style: square;
+                margin-left: 18pt;
+                margin-bottom: 20pt;
+            }
+
+            li {
+                line-height: 1.6em;
+            }
+        }
+    </style>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>">
 </head>
 <body>
+    <form runat="server">
     <div>
         <table cellspacing="0" cellpadding="0" width="100%" class="report-table">
             <tr>
@@ -157,7 +176,7 @@ line-height: 1.6em;
                         <tr>
                             <td class="width25">
                                 <a href="#" class="d-inline-block">
-                                    <img src="assets/dashboard/img/gte-logo.jpg" class="img-fluid">
+                                    <img src="/assets/dashboard/img/gte-logo.jpg" class="img-fluid">
                                 </a>
                             </td>
                             <td class="width50 au-hedr">
@@ -166,7 +185,7 @@ line-height: 1.6em;
                             </td>
                             <td class="width25">
                                 <a href="#" class="d-inline-block">
-                                    <img src="assets/dashboard/img/aiwt-logo.jpg" class="img-fluid">
+                                    <img src="/assets/dashboard/img/aiwt-logo.jpg" class="img-fluid">
                                 </a>
                             </td>
                         </tr>
@@ -177,42 +196,42 @@ line-height: 1.6em;
                 <td>
                     <table cellpadding="0" cellspacing="0" class="table">
                         <tr>
-                            <td class="width25 inst-detls">
+                            <td class="width25">
                                 <table cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td class="width33 txt">Institution ID</td>
                                         <td class="width66">
-                                            <div class="val"><%=_institutionID %></div>
+                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_institutionID %></div>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
-                            <td class="width25 inst-detls">
+                            <td class="width25">
                                 <table cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td class="width33 txt">REPORT TYPE</td>
                                         <td class="width66">
-                                            <div class="val"><%=_reportType %></div>
+                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_reportType %></div>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
-                            <td class="width25 inst-detls">
+                            <td class="width25">
                                 <table cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td class="width33 txt">REPORT DATE</td>
                                         <td class="width66">
-                                            <div class="val"><%=_reportDate %></div>
+                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_reportDate %></div>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
-                            <td class="width25 inst-detls">
+                            <td class="width25">
                                 <table cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td class="width33 txt">REPORT NUMBER</td>
                                         <td class="width66">
-                                            <div class="val"><%=_reportNo %></div>
+                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_reportNo %></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -248,10 +267,16 @@ line-height: 1.6em;
                             <td class="width25">
                                 <div class="recommndtn">
                                     <div class="text-center text-uppercase hd font-bold">Final Recommendation</div>
-                                    <div class="txt text-center d-flex align-items-center justify-content-center"><%=_isRecommended %></div>
+                                    <div class="txt text-center d-flex align-items-center justify-content-center">
+                                        <div class="txt" runat="server" id="studentRecommendedPDF"> <%=_studentRecommended %> </div>
+                                        <textarea runat="server" id="studentRecommended"></textarea>
+                                    </div>
                                 </div>
                                 <div class="recommndtn remrk">
-                                    <div class="txt text-center d-flex align-items-center justify-content-center"><%=_finalRecommendation %></div>
+                                    <div class="txt text-center d-flex align-items-center justify-content-center">
+                                        <div class="txt" runat="server" id="recommendationRemarkPDF"> <%=_recommendationRemark %> </div>
+                                        <textarea runat="server" id="recommendationRemark" placeholder="Recommendation Remark"></textarea>
+                                    </div>
                                 </div>
                             </td>
                             <td class="width25">
@@ -421,17 +446,21 @@ line-height: 1.6em;
                                 <div class="descptn-wrp">
                                     <div class="ttl text-left">Genuine Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
-                                       <%=_genuineStudentAssesment %>               </div>
+                                        <%=_genuineStudentAssesment %>
+                                    </div>
                                     <div>
-                                        <textarea placeholder="comments"></textarea>
+                                        <div class="text-left" style="border-top: 1px solid #000;" runat="server" id="paragraphComment1PDF"><%=_paragraphComment1 %></div>
+                                        <textarea runat="server" id="para1Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
                                 <div class="descptn-wrp">
                                     <div class="ttl text-left">Situation in Home Country: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
-                                       <%=_situationStudentAssesment %>       </div>
+                                        <%=_situationStudentAssesment %>
+                                    </div>
                                     <div>
-                                        <textarea placeholder="comments"></textarea>
+                                        <div class="text-left" style="border-top: 1px solid #000;" runat="server" id="paragraphComment2PDF"><%=_paragraphComment2 %></div>
+                                        <textarea runat="server" id="para2Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
                             </td>
@@ -445,7 +474,7 @@ line-height: 1.6em;
                         <tr>
                             <td class="width25">
                                 <a href="#" class="d-inline-block">
-                                    <img src="assets/dashboard/img/gte-logo.jpg" class="img-fluid">
+                                    <img src="/assets/dashboard/img/gte-logo.jpg" class="img-fluid">
                                 </a>
                             </td>
                             <td class="width50 au-hedr">
@@ -454,7 +483,7 @@ line-height: 1.6em;
                             </td>
                             <td class="width25">
                                 <a href="#" class="d-inline-block">
-                                    <img src="assets/dashboard/img/aiwt-logo.jpg" class="img-fluid">
+                                    <img src="/assets/dashboard/img/aiwt-logo.jpg" class="img-fluid">
                                 </a>
                             </td>
                         </tr>
@@ -469,17 +498,31 @@ line-height: 1.6em;
                                 <div class="descptn-wrp">
                                     <div class="ttl text-left">Potential Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
-                                         <%=_potentialStudentAssesment %>          </div>
+                                        <%=_potentialStudentAssesment %>
+                                    </div>
                                     <div>
-                                        <textarea placeholder="comments"></textarea>
+                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;" id="paragraphComment3PDF"><%=_paragraphComment3 %></div>
+                                        <textarea runat="server" id="para3Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
                                 <div class="descptn-wrp">
-                                    <div class="ttl text-left">Situation in Home Country: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
+                                    <div class="ttl text-left">Genuine Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
-                                       <%=_potentialStudentAssesment %>              </div>
+                                        <%=_paragraph4 %>
+                                    </div>
                                     <div>
-                                        <textarea placeholder="comments"></textarea>
+                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;" id="paragraphComment4PDF"><%=_paragraphComment4 %></div>
+                                        <textarea runat="server" id="para4Comments" placeholder="Comments"></textarea>
+                                    </div>
+                                </div>
+                                <div class="descptn-wrp">
+                                    <div class="ttl text-left">Genuine Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
+                                    <div class="txt text-left">
+                                        <%=_paragraph5 %>
+                                    </div>
+                                    <div>
+                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;" id="paragraphComment5PDF"><%=_paragraphComment5 %></div>
+                                        <textarea runat="server" id="para5Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
                             </td>
@@ -494,13 +537,15 @@ line-height: 1.6em;
                             <td class="width50">
                                 <div class="reviw-wrp">
                                     <div class="hd">STUDENT VIDEO REVIEW </div>
-                                    <div class="revw-sectn"> <%=_studentVideoReview %>  </div>
+                                    <div class="revw-sectn" runat="server" id="studentVideoReviewPDF"> <%=_studentVideoReview %> </div>
+                                    <textarea class="revw-sectn" runat="server" id="studentVideoReview"></textarea>
                                 </div>
                             </td>
                             <td class="width50">
                                 <div class="reviw-wrp">
                                     <div class="hd">STUDENT DOCUMENTS VALIDATIONS</div>
-                                    <div class="revw-sectn"> <%=_studentDocumentsValidations %>  </div>
+                                    <div class="revw-sectn" runat="server" id="studentDocumentsValidationsPDF"> <%=_studentDocumentsValidations %> </div>
+                                    <textarea class="revw-sectn" runat="server" id="studentDocumentsValidations"></textarea>
                                 </div>
                             </td>
                         </tr>
@@ -509,8 +554,8 @@ line-height: 1.6em;
             </tr>
         </table>
     </div>
+        <asp:Button ID="btn_Save" runat="server" Text="Save Changes" CssClass="btn btn-success" Style="position: relative;margin-left: 10px;margin-bottom: 20px;" OnClick="btn_Save_Click" />
+    </form>
 
-
-   
 </body>
 </html>

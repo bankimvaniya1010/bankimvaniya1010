@@ -141,6 +141,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
     public virtual DbSet<gte_student_sop> gte_student_sop { get; set; }
+    public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
+    public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
+    public virtual DbSet<gte_report_admin_comment> gte_report_admin_comment { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

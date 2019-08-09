@@ -564,6 +564,116 @@ public partial class applicationmaster
     public Nullable<System.DateTime> commencementdate { get; set; }
 }
 
+public partial class australiavisadetailmaster
+{
+    public int ID { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<bool> termsandcondition { get; set; }
+    public string noofpeopleincluded { get; set; }
+    public Nullable<int> applyingfor { get; set; }
+    public string familyname { get; set; }
+    public string givenname { get; set; }
+    public Nullable<int> knownbyanothername { get; set; }
+    public string anotherfamilyname { get; set; }
+    public string anothergivenname { get; set; }
+    public string ownlanguagename1 { get; set; }
+    public string ownlanguagename2 { get; set; }
+    public Nullable<int> gender { get; set; }
+    public Nullable<System.DateTime> dateofbirth { get; set; }
+    public string cityofbirth { get; set; }
+    public Nullable<int> countryofbirth { get; set; }
+    public Nullable<int> maritalstatus { get; set; }
+    public Nullable<int> countryofcitizenship { get; set; }
+    public Nullable<int> holdothercitizenship { get; set; }
+    public Nullable<int> anothercountryofcitizenship { get; set; }
+    public Nullable<int> havepassport { get; set; }
+    public string passportno { get; set; }
+    public Nullable<int> countryofpassport { get; set; }
+    public Nullable<System.DateTime> dateofissue { get; set; }
+    public Nullable<System.DateTime> dateofexpiry { get; set; }
+    public string placeofissue { get; set; }
+    public string applicableidentificationno { get; set; }
+    public string anotherIdentitytype1 { get; set; }
+    public string anotherIdentityNo1 { get; set; }
+    public string anotherIdentitytype2 { get; set; }
+    public string anotherIdentityNo2 { get; set; }
+    public Nullable<int> residencecountry { get; set; }
+    public string residenceaddressLine1 { get; set; }
+    public string residenceaddressLine2 { get; set; }
+    public string residenceaddresspostalcode { get; set; }
+    public string officehoursContactNoOutsideaustralia { get; set; }
+    public string afterhoursContactNoOutsideaustralia { get; set; }
+    public string australiaresidentialaddline1 { get; set; }
+    public string australiaresidentialaddline2 { get; set; }
+    public string australiaresidentialpostalcode { get; set; }
+    public string officehrContactNoInAustralia { get; set; }
+    public string afterhrContactNoInAustralia { get; set; }
+    public string correspondenceaddressline1 { get; set; }
+    public string correspondenceaddressline2 { get; set; }
+    public string correspondenceaddresspoastalcode { get; set; }
+    public Nullable<int> agreetocommunicate { get; set; }
+    public string faxno { get; set; }
+    public string emailaddress { get; set; }
+    public Nullable<int> applicationentrolledinschool { get; set; }
+    public Nullable<int> subjectofcourtorder { get; set; }
+    public Nullable<int> appliesforAustalianvisa { get; set; }
+    public Nullable<int> currentlyholdaustralianvisa { get; set; }
+    public Nullable<int> awaitingforaustralianvisa { get; set; }
+    public string nameonvisa { get; set; }
+    public string typeofvisa { get; set; }
+    public string placeofissuevisa { get; set; }
+    public Nullable<System.DateTime> dateissuevisa { get; set; }
+    public Nullable<int> applicationrefusedorgranted { get; set; }
+    public string grantedvisalabelno { get; set; }
+    public string visagrantnumber { get; set; }
+    public string nameonvisa1 { get; set; }
+    public string typeofvisa1 { get; set; }
+    public string placeofissuevisa1 { get; set; }
+    public Nullable<System.DateTime> dateissuevisa1 { get; set; }
+    public Nullable<int> applicationrefusedorgranted1 { get; set; }
+    public string grantedvisalabelno1 { get; set; }
+    public string visagrantnumber1 { get; set; }
+    public Nullable<int> applyingfortype { get; set; }
+    public Nullable<int> partC { get; set; }
+    public Nullable<int> ifFamilyunitcompletedformpartC { get; set; }
+    public Nullable<int> studymorethanthreemonthpartC { get; set; }
+    public string studentnamepartC { get; set; }
+    public Nullable<System.DateTime> assessmentdategrantedpartC { get; set; }
+    public string relationshiptostudentpartC { get; set; }
+    public Nullable<System.DateTime> studentdobpartC { get; set; }
+    public string citizenshipofstudentpartC { get; set; }
+    public string studentaddresspartC { get; set; }
+    public string studentaddpostalcodepartC { get; set; }
+    public string typeofstudentvisaheldpartC { get; set; }
+    public string assessmentlevelpartC { get; set; }
+    public Nullable<System.DateTime> assessmentgrantdatepartC { get; set; }
+    public Nullable<System.DateTime> assessmentexpirydatepartC { get; set; }
+    public Nullable<int> isstudentjoiningdeclarepartC { get; set; }
+    public Nullable<int> isstudentjoiningsatisfiedconditionpartC { get; set; }
+    public Nullable<int> suficientfundpartC { get; set; }
+}
+
+public partial class australiavisaFamilydetailmaster
+{
+    public int id { get; set; }
+    public int familyInfoID { get; set; }
+    public int applicantid { get; set; }
+    public int universityid { get; set; }
+    public string aboutfamilyname { get; set; }
+    public string aboutfamilygivenname { get; set; }
+    public string relationshiptoyou { get; set; }
+    public string citizenship { get; set; }
+    public Nullable<System.DateTime> dobfamilymember { get; set; }
+    public Nullable<int> isfamilymemberhavepassport { get; set; }
+    public string passportno { get; set; }
+    public Nullable<int> countryofpassport { get; set; }
+    public Nullable<System.DateTime> passportdateofissue { get; set; }
+    public Nullable<System.DateTime> passportdateofexpiry { get; set; }
+    public string passportplaceofissue { get; set; }
+    public Nullable<int> studyinAustralia { get; set; }
+}
+
 public partial class cefrlevelmaster
 {
     public int id { get; set; }
@@ -1028,6 +1138,25 @@ public partial class gte_questions_master
     public virtual ICollection<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
 }
 
+public partial class gte_report_admin_comment
+{
+    public int id { get; set; }
+    public int student_sop_id { get; set; }
+    public int applicant_id { get; set; }
+    public int university_id { get; set; }
+    public string para1_comments { get; set; }
+    public string para2_comments { get; set; }
+    public string para3_comments { get; set; }
+    public string para4_comments { get; set; }
+    public string para5_comments { get; set; }
+    public string student_video_comments { get; set; }
+    public string student_document_comments { get; set; }
+    public string student_recommended { get; set; }
+    public string final_recommendation { get; set; }
+
+    public virtual gte_student_sop gte_student_sop { get; set; }
+}
+
 public partial class gte_statementofpurpose
 {
     public int id { get; set; }
@@ -1041,6 +1170,12 @@ public partial class gte_statementofpurpose
 
 public partial class gte_student_sop
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public gte_student_sop()
+    {
+        this.gte_report_admin_comment = new HashSet<gte_report_admin_comment>();
+    }
+
     public int id { get; set; }
     public int applicant_id { get; set; }
     public int universityid { get; set; }
@@ -1058,6 +1193,9 @@ public partial class gte_student_sop
     public System.DateTime created_at { get; set; }
     public Nullable<System.DateTime> deleted_at { get; set; }
     public Nullable<System.DateTime> edited_at { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_report_admin_comment> gte_report_admin_comment { get; set; }
 }
 
 public partial class gte_tutorialmaster
