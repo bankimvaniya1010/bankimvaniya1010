@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 using System.Web.UI.DataVisualization.Charting;
 using System.Data;
 using System.Drawing;
-using IronPdf;
 
 public partial class admin_gtereport : System.Web.UI.Page
 {
@@ -82,15 +81,15 @@ public partial class admin_gtereport : System.Web.UI.Page
             }
 
             var section2_max_score_by_tag = db.gte_answer_master
-                                          .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score, x.gte_questions_master.tag })
-                                          .GroupBy(x => x.gte_question_id)
-                                          .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), x.FirstOrDefault().tag })
-                                          .GroupBy(x => x.tag)
-                                          .Select(x => new { gte_max_by_tag = x.Sum(y => y.max_gte_score_per_question), risk_max_by_tag = x.Sum(y => y.max_risk_score_per_question), tag = x.Key })
-                                          .OrderBy(x => x.tag).ToList();
+                                              .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score, x.gte_questions_master.tag })
+                                              .GroupBy(x => x.gte_question_id)
+                                              .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), x.FirstOrDefault().tag })
+                                              .GroupBy(x => x.tag)
+                                              .Select(x => new { gte_max_by_tag = x.Sum(y => y.max_gte_score_per_question), risk_max_by_tag = x.Sum(y => y.max_risk_score_per_question), tag = x.Key })
+                                              .OrderBy(x => x.tag).ToList();
 
             var applicant_section2_score = db.gte_questions_applicant_response
-                                             .Where(x => x.applicant_id == ApplicantID && x.gte_question_id == x.gte_questions_master.id && x.gte_answer_id == x.gte_answer_master.id)
+                                             .Where(x => x.applicant_id == ApplicantID)
                                              .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score, x.gte_questions_master.tag })
                                              .Distinct()
                                              .GroupBy(x => x.tag)
@@ -113,7 +112,6 @@ public partial class admin_gtereport : System.Web.UI.Page
                         section2_max_score_by_tag[i].tag
                     });
                 }
-
             }
 
             var section3_max_score_by_tag = db.gte_question_master_part2
@@ -151,6 +149,45 @@ public partial class admin_gtereport : System.Web.UI.Page
                 }
             }
 
+            var overall_section2_max_score = db.gte_answer_master
+                                               .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score })
+                                               .GroupBy(x => x.gte_question_id)
+                                               .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), questionId = x.Key });
+
+            var overall_applicant_section2_score = db.gte_questions_applicant_response
+                                                     .Where(x => x.applicant_id == ApplicantID)
+                                                     .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score })
+                                                     .Distinct();
+
+            var overall_section3_max_score = db.gte_question_master_part2
+                                               .Select(x => new
+                                               {
+                                                   max_gte_score_per_question = x.true_gte_score > x.false_gte_score ? x.true_gte_score : x.false_gte_score,
+                                                   max_risk_score_per_question = x.true_risk_score > x.false_risk_score ? x.true_risk_score : x.false_risk_score,
+                                                   questionId = x.id
+                                               });
+
+            var overall_applicant_section3_score = db.gte_question_part2_applicant_response
+                                                     .Where(x => x.applicant_id == ApplicantID)
+                                                     .Select(x => new
+                                                     {
+                                                         questionId = x.gte_question_master_part2.id,
+                                                         gte_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_gte_score : x.gte_question_master_part2.false_gte_score,
+                                                         risk_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_risk_score : x.gte_question_master_part2.false_risk_score
+                                                     });
+
+            decimal overall_max_gte_score = overall_section2_max_score.Sum(x => x.max_gte_score_per_question) + overall_section3_max_score.Sum(x => x.max_gte_score_per_question);
+            decimal overall_max_risk_score = overall_section2_max_score.Sum(x => x.max_risk_score_per_question) + overall_section3_max_score.Sum(x => x.max_risk_score_per_question);
+            decimal overall_applicant_gte_score = overall_applicant_section2_score.Sum(x => x.gte_score) + overall_applicant_section3_score.Sum(x => x.gte_score_per_question);
+            decimal overall_applicant_risk_score = overall_applicant_section2_score.Sum(x => x.gte_risk_score) + overall_applicant_section3_score.Sum(x => x.risk_score_per_question);
+
+            reportObj.Add(new
+            {
+                gte_percentage = Math.Round((overall_applicant_gte_score / overall_max_gte_score) * 100),
+                risk_percentage = Math.Round((overall_applicant_risk_score / overall_max_risk_score) * 100),
+                tag = "Overall"
+            });
+
             DataTable table = new DataTable();
             table.Columns.Add("Title");
             table.Columns.Add("Value");
@@ -183,19 +220,20 @@ public partial class admin_gtereport : System.Web.UI.Page
                     populateGraph(Potential, table);
                 else if (tag == "Value of the course to the students future future")
                     populateGraph(courseValue, table);
+                else if (tag == "Overall")
+                    populateGraph(OverAll, table);
 
                 table.Clear();
             }
 
             populateCommentsAndReviews();
-            populateOverAllGraph();
         }
     }
 
     private void populateGraph(Chart chart, DataTable values)
     {
         DataTable ChartData = values;
-
+        Font chartFont = new Font(chart.Series[0].Font.FontFamily, 12, FontStyle.Bold);
         //storing total rows count to loop on each Record  
         string[] XPointMember = new string[ChartData.Rows.Count];
         int[] YPointMember = new int[ChartData.Rows.Count];
@@ -210,15 +248,28 @@ public partial class admin_gtereport : System.Web.UI.Page
         //binding chart control  
         chart.Series[0].Points.DataBindXY(XPointMember, YPointMember);
 
-        //Setting width of line  
-        chart.Series[0].BorderWidth = 3;
-        chart.Series[0]["PixelPointWidth"] = "20";
+        //Setting width of line
+        if (chart.ID == "OverAll")
+        {
+            chart.Series[0].BorderWidth = 4;
+            chart.Series[0]["PixelPointWidth"] = "30";
+            chart.ChartAreas[chart.ChartAreas[0].Name].AxisY.Interval = 10;
+        }
+        else
+        {
+            chart.Series[0].BorderWidth = 3;
+            chart.Series[0]["PixelPointWidth"] = "20";
+        }
         //setting Chart type   
         chart.Series[0].ChartType = SeriesChartType.Bar;
         // Chart1.Series[0].ChartType = SeriesChartType.StackedBar;  
         chart.Series[0].IsValueShownAsLabel = true;
+        chart.Series[0].Font = chartFont;
+
         //Hide or show chart back GridLines  
 
+        chart.ChartAreas[chart.ChartAreas[0].Name].AxisX.LabelStyle.Font = chartFont;
+        chart.ChartAreas[chart.ChartAreas[0].Name].AxisY.LabelStyle.Font = chartFont;
         chart.ChartAreas[chart.ChartAreas[0].Name].AxisY.Maximum = 100;
         chart.ChartAreas[chart.ChartAreas[0].Name].AxisY.Minimum = 0;
         chart.ChartAreas[chart.ChartAreas[0].Name].AxisX.MajorGrid.Enabled = false;
@@ -231,50 +282,6 @@ public partial class admin_gtereport : System.Web.UI.Page
             if (i == 1)
                 chart.Series[0].Points[i].Color = Color.Green;
         }
-    }
-
-    private void populateOverAllGraph()
-    {
-        DataTable ChartData = new DataTable();
-
-        //storing total rows count to loop on each Record  
-        string[] XPointMember = new string[ChartData.Rows.Count];
-        int[] YPointMember = new int[ChartData.Rows.Count];
-
-        for (int count = 0; count < ChartData.Rows.Count; count++)
-        {
-            //storing Values for X axis  
-            XPointMember[count] = ChartData.Rows[count]["Title"].ToString();
-            //storing values for Y Axis  
-            YPointMember[count] = Convert.ToInt32(ChartData.Rows[count]["Value"]);
-        }
-        //binding chart control  
-        OverAll.Series[0].Points.DataBindXY(XPointMember, YPointMember);
-
-        //Setting width of line  
-        OverAll.Series[0].BorderWidth = 3;
-        OverAll.Series[0]["PixelPointWidth"] = "20";
-        //setting Chart type   
-        OverAll.Series[0].ChartType = SeriesChartType.Bar;
-        // Chart1.Series[0].ChartType = SeriesChartType.StackedBar;  
-        OverAll.Series[0].IsValueShownAsLabel = true;
-        //Hide or show chart back GridLines  
-
-
-        OverAll.ChartAreas["ChartAreaOverAll"].AxisX.MajorGrid.Enabled = false;
-        OverAll.ChartAreas["ChartAreaOverAll"].AxisY.MajorGrid.Enabled = true;
-        OverAll.ChartAreas["ChartAreaOverAll"].AxisY.MajorGrid.LineDashStyle = ChartDashStyle.Dash;
-        for (int i = 0; i < ChartData.Rows.Count; i++) //xValues.Lenght = 4 in this case where you have 4 Data number
-        {
-            if (i == 0) // Don't forget xValues[0] is Data4 in your case
-                OverAll.Series[0].Points[i].Color = Color.Red;
-            if (i == 1)
-                OverAll.Series[0].Points[i].Color = Color.Green;
-
-        }
-
-        //Enabled 3D  
-        //OverAll.ChartAreas["ChartAreaOverAll"].Area3DStyle.Enable3D = true;
     }
 
     private void populateCommentsAndReviews()
