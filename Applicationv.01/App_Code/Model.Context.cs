@@ -130,7 +130,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<tuitionAndlivingcostmaster> tuitionAndlivingcostmaster { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
@@ -141,9 +140,10 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
     public virtual DbSet<gte_student_sop> gte_student_sop { get; set; }
-    public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
     public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
     public virtual DbSet<gte_report_admin_comment> gte_report_admin_comment { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
+    public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

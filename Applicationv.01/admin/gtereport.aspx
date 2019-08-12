@@ -242,14 +242,18 @@
             </tr>
             <tr>
                 <td>
-                    <div class="col nots-ttl text-center">NOTES &amp; DISCLAIMERS</div>
+                    <div class="nots-ttl">
+                        <div class="col text-center">NOTES &amp; DISCLAIMERS</div>
+                        <br/>
+                        <%=_notesDisclaimer %>
+                    </div>
                 </td>
             </tr>
             <tr>
                 <td class="std-ddtwrp">
                     <table class="table" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td class="width50">
+                            <td class="width50" style="width:40%;">
                                 <div class="ovr-rate">
                                     <div class="hd text-center font-bold">OVERALL RATINGS</div>
                                     <asp:Chart ID="OverAll" runat="server">
@@ -285,7 +289,7 @@
                                     <div class="pic d-flex align-items-center justify-content-center">
                                         <div class="text-uppercase">Student Photo</div>
                                     </div>
-                                    <div class="nm"><%=_studentName %></div>
+                                    <div class="nm" style="text-align:center"><%=_studentName %></div>
                                 </div>
                             </td>
                         </tr>
@@ -363,10 +367,6 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <table cellspacing="0" cellspacing="0" class="table">
                         <tr>
                             <td class="width25">
@@ -468,8 +468,9 @@
                     </table>
                 </td>
             </tr>
-             <tr>
+            <tr>
                 <td>
+                    <div style='page-break-after: always;'>&nbsp;</div>
                     <table cellpadding="0" cellspacing="0" class="table">
                         <tr>
                             <td class="width25">
@@ -488,11 +489,7 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-             <tr>
-                <td>
-                    <table class="table" cellpadding="0" cellspacing="0">
+                    <table cellpadding="0" cellspacing="0" class="table">
                         <tr>
                             <td>
                                 <div class="descptn-wrp">
@@ -528,10 +525,6 @@
                             </td>
                         </tr>
                     </table>
-                </td>
-            </tr>
-            <tr>
-                <td>
                     <table cellpadding="0" cellspacing="0" class="table">
                         <tr>
                             <td class="width50">

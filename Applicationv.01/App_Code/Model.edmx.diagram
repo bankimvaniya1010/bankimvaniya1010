@@ -112,7 +112,6 @@
         <EntityTypeShape EntityType="GTEModel.tuitionAndlivingcostmaster" Width="1.5" PointX="29.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.tutorialmaster" Width="1.5" PointX="29.75" PointY="3.75" />
         <EntityTypeShape EntityType="GTEModel.typemaster" Width="1.5" PointX="29.75" PointY="7.75" />
-        <EntityTypeShape EntityType="GTEModel.university_master" Width="1.5" PointX="5.25" PointY="23.75" />
         <EntityTypeShape EntityType="GTEModel.universitycampus" Width="1.5" PointX="7.5" PointY="44.875" />
         <EntityTypeShape EntityType="GTEModel.universitycampus_city_mapping" Width="1.5" PointX="9.75" PointY="36.125" />
         <EntityTypeShape EntityType="GTEModel.universitygrouping" Width="1.5" PointX="7.5" PointY="52.125" />
@@ -125,25 +124,17 @@
         <AssociationConnector Association="GTEModel.fk_adminusers_admincomments" />
         <AssociationConnector Association="GTEModel.fk_applicantdetails_admincomments" />
         <AssociationConnector Association="GTEModel.fk_frommaster_admincomments" />
-        <AssociationConnector Association="GTEModel.fk_university_master_admincomments" />
         <AssociationConnector Association="GTEModel.fk_admintooltips_formmaster" />
         <AssociationConnector Association="GTEModel.fk_admintooltips_primaryfieldmaster" />
         <AssociationConnector Association="GTEModel.fk_adminuniversitywisetooltips_formmaster" />
         <AssociationConnector Association="GTEModel.fk_adminuniversitywisetooltips_primaryfieldmaster" />
-        <AssociationConnector Association="GTEModel.fk_adminuniversitywisetooltips_university_master" />
         <AssociationConnector Association="GTEModel.FK_adminusers_rolemaster" />
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_adminusers" />
-        <AssociationConnector Association="GTEModel.FK_applicantvisadetails_university_master" />
         <AssociationConnector Association="GTEModel.FK_cityMaster_countriesMaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_citymaster" />
-        <AssociationConnector Association="GTEModel.FK_universityMaster_cityMaster" />
         <AssociationConnector Association="GTEModel.FK_clarificationmaster_clarificationquestion_mapping" />
-        <AssociationConnector Association="GTEModel.FK_university_clarificationquestion_mapping" />
         <AssociationConnector Association="GTEModel.FK_qualificationcountriesmapping_countriesmaster" />
-        <AssociationConnector Association="GTEModel.FK_coursetypemaster_university_master" />
-        <AssociationConnector Association="GTEModel.FK_credential_university" />
         <AssociationConnector Association="GTEModel.FK_customfieldmaster_formmaster" />
-        <AssociationConnector Association="GTEModel.FK_customfieldmaster_university_master" />
         <AssociationConnector Association="GTEModel.FK_customfieldvalue_customfieldmaster" />
         <AssociationConnector Association="GTEModel.FK_customfieldvalue_students" />
         <AssociationConnector Association="GTEModel.FK_mapping_facilitiesMaster" />
@@ -166,17 +157,26 @@
         <AssociationConnector Association="GTEModel.FK_students_studylevelmaster" />
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_students" />
         <AssociationConnector Association="GTEModel.FK_subjectmaster_subjectwisecountrymapping" />
+        <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
+        <EntityTypeShape EntityType="GTEModel.gte_student_sop" Width="1.5" PointX="21.875" PointY="24.75" />
+        <EntityTypeShape EntityType="GTEModel.australiavisaFamilydetailmaster" Width="1.5" PointX="30.375" PointY="25.75" />
+        <EntityTypeShape EntityType="GTEModel.gte_report_admin_comment" Width="1.5" PointX="24.125" PointY="30.125" />
+        <AssociationConnector Association="GTEModel.FK_reportFeedBack_studentSop" />
+        <EntityTypeShape EntityType="GTEModel.university_master" Width="1.5" PointX="5.25" PointY="23.625" />
+        <AssociationConnector Association="GTEModel.fk_university_master_admincomments" />
+        <AssociationConnector Association="GTEModel.fk_adminuniversitywisetooltips_university_master" />
+        <AssociationConnector Association="GTEModel.FK_applicantvisadetails_university_master" />
+        <AssociationConnector Association="GTEModel.FK_universityMaster_cityMaster" />
+        <AssociationConnector Association="GTEModel.FK_university_clarificationquestion_mapping" />
+        <AssociationConnector Association="GTEModel.FK_coursetypemaster_university_master" />
+        <AssociationConnector Association="GTEModel.FK_credential_university" />
+        <AssociationConnector Association="GTEModel.FK_customfieldmaster_university_master" />
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_university_master" />
         <AssociationConnector Association="GTEModel.FK_campus_universityMaster" />
         <AssociationConnector Association="GTEModel.FK_childsuniversityid_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
-        <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
-        <EntityTypeShape EntityType="GTEModel.gte_student_sop" Width="1.5" PointX="21.875" PointY="24.75" />
         <EntityTypeShape EntityType="GTEModel.australiavisadetailmaster" Width="1.5" PointX="20.375" PointY="30.75" />
-        <EntityTypeShape EntityType="GTEModel.australiavisaFamilydetailmaster" Width="1.5" PointX="30.375" PointY="25.75" />
-        <EntityTypeShape EntityType="GTEModel.gte_report_admin_comment" Width="1.5" PointX="24.125" PointY="30.125" />
-        <AssociationConnector Association="GTEModel.FK_reportFeedBack_studentSop" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

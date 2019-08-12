@@ -290,6 +290,17 @@
                     </div>
 
                     <div class="form-group row">
+                         <label for="uniNotesDisclaimer" class="col-sm-3 col-form-label form-label">Notes and Disclaimer for university</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <textarea id="txtNotesDisclaimer" runat="server"  class="form-control" placeholder="Notes and Disclaimer" ></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -363,6 +374,7 @@
             var txtUniAcceptedMaxAge = $('#<%=txtUniAcceptedMaxAge.ClientID%>').val();
             var txtUniAcceptedMinAge = $('#<%=txtUniAcceptedMinAge.ClientID%>').val();
             var subscriptionSelection = $('#<%=subscription.ClientID%>').val();
+            var txtNotesDisclaimer = $('#<%=txtNotesDisclaimer.ClientID%>').val();
 
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -470,7 +482,11 @@
                 alert("Please select service subscription for university.");
                 return false;
             }
-
+            else if (txtNotesDisclaimer == '') {
+                alert("Please enter University Notes and disclaimer");
+                return false;
+            }
+            
             return true;
 
         }

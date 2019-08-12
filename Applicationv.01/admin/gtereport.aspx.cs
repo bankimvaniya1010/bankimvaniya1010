@@ -30,6 +30,7 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _paragraphComment5 = "";
     protected string _studentRecommended = "";
     protected string _recommendationRemark = "";
+    protected string _notesDisclaimer = "";
 
     protected int roleID = 0, ApplicantID = 0, universityID = 0;
     string _universityName;
@@ -64,6 +65,7 @@ public partial class admin_gtereport : System.Web.UI.Page
             _institutionID = universityID.ToString();
             _reportType = "AU - GS &amp; GTE (TYPE 1)";
             _reportDate = currentDate.ToString("dd-MMM-y");
+            _notesDisclaimer = db.university_master.Where(x => x.universityid == universityID).Select(x => x.notes_disclaimer).FirstOrDefault();
             _reportNo = "ECU - " + currentDate.Year + currentDate.ToString("MM") + currentDate.ToString("dd") + currentDate.Hour + currentDate.Minute + ApplicantID;
 
             var gte_student_sop = db.gte_student_sop
@@ -251,6 +253,7 @@ public partial class admin_gtereport : System.Web.UI.Page
         //Setting width of line
         if (chart.ID == "OverAll")
         {
+            chart.Width = 450;
             chart.Series[0].BorderWidth = 4;
             chart.Series[0]["PixelPointWidth"] = "30";
             chart.ChartAreas[chart.ChartAreas[0].Name].AxisY.Interval = 10;
