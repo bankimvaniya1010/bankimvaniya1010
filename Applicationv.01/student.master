@@ -321,22 +321,28 @@
                                                     <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                                 </a>
                                                 <ul class="sidebar-menu sm-indent collapse" id="gte_screening">
-                                            <li class="sidebar-menu-item" id="gtetutorial">
-                                                <a class="sidebar-menu-button" href="gte_tutorial.aspx">
-                                                    <span class="sidebar-menu-text">GTE Tutorial</span>
-                                                </a>
-                                            </li>                                            
-                                            <li class="sidebar-menu-item" id="gtequicktest">
-                                                <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx">
-                                                    <span class="sidebar-menu-text"> Quick Test</span>
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item" id="gtedeclaration">
-                                                <a class="sidebar-menu-button" href="gte_declaration.aspx">
-                                                    <span class="sidebar-menu-text">GTE Declaration</span>
-                                                </a>
-                                            </li>
+                                                    <li class="sidebar-menu-item" id="gtetutorial">
+                                                        <a class="sidebar-menu-button" href="gte_tutorial.aspx">
+                                                            <span class="sidebar-menu-text">GTE Tutorial</span>
+                                                        </a>
+                                                    </li>                                            
+                                                    <li class="sidebar-menu-item" id="gtequicktest">
+                                                        <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx">
+                                                            <span class="sidebar-menu-text"> Quick Test</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="sidebar-menu-item" id="gtedeclaration">
+                                                        <a class="sidebar-menu-button" href="gte_declaration.aspx">
+                                                            <span class="sidebar-menu-text">GTE Declaration</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="gtestudentdetail">
+                                                <a class="sidebar-menu-button" href="gte_studentdetails.aspx">
+                                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                                    GTE Student Detail
+                                                </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="gte_questions_menu">
                                                 <a class="sidebar-menu-button custom-collapsed collapsed" href="#gte_question">
@@ -345,11 +351,6 @@
 	                                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                                 </a>
                                                 <ul class="sidebar-menu sm-indent collapse" id="gte_question">
-                                                    <li class="sidebar-menu-item" id="gtestudentdetail">
-                                                        <a class="sidebar-menu-button" href="gte_studentdetails.aspx">
-                                                            <span class="sidebar-menu-text">GTE Student Detail</span>
-                                                        </a>
-                                                    </li>
                                                     <li class="sidebar-menu-item" id="gtepart1">
                                                         <a class="sidebar-menu-button" href="gte_questions1.aspx">
                                                             <span class="sidebar-menu-text">GTE Question Part 1</span>
@@ -697,7 +698,7 @@
                 $("#student_list").hide();
                 $("#components_list").hide();
                 if (fullService)
-                $("#preliminary_list").show();
+                    $("#preliminary_list").show();
                 else
                     $("#preliminary_list").hide();
             }

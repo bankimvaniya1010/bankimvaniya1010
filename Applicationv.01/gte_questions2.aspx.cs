@@ -35,20 +35,37 @@ public partial class gte_questions2 : System.Web.UI.Page
             }
             else
             {
-                var applicantdetails = db.applicantdetails.Where(x => x.universityid == UniversityID && x.applicantid == UserID).FirstOrDefault();
+                dynamic applicantdetails;
+                var isFullService = (bool)Session["FullService"];
 
-                if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 1)
+                if (isFullService)
                 {
-                    if (applicantdetails.postalcountry.HasValue)
-                        ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry.Value);
-                }
-                else if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 2)
-                {
-                    if (applicantdetails.residentialcountry.HasValue)
-                        ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry.Value);
+                    applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+
+                    var isProfileDetailsCompleted = (bool)Session["ProfileDetailsCompletedByApplicant"];
+                    if (!isProfileDetailsCompleted)
+                        Response.Redirect("default.aspx", true);
+                    else
+                    {
+                        if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 1)
+                        {
+                            if (applicantdetails.postalcountry.HasValue)
+                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry.Value);
+                        }
+                        else if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 2)
+                        {
+                            if (applicantdetails.residentialcountry.HasValue)
+                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry.Value);
+                        }
+                        else
+                            ViewState["homeCountry"] = string.Empty;
+                    }
                 }
                 else
-                    ViewState["homeCountry"] = string.Empty;
+                {
+                    applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+                    ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
+                }                
 
                 foreach (var response in answeredQuestion)
                     allQuestions.RemoveAll(x => x.id == response.question_id);
