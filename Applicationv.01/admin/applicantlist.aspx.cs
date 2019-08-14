@@ -202,7 +202,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             di.Create();
      
         PDF.SaveAs(filePath);
-        System.Diagnostics.Process.Start(filePath);
+        //System.Diagnostics.Process.Start(filePath);
         PdfDocument Pdf = PdfDocument.FromFile(filePath, "Hcom@301");
         //Edit file metadata
         Pdf.MetaData.Author = "The Application Center";
