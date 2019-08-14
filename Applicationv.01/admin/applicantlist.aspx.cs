@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Web;
 using System.Web.UI;
@@ -151,10 +152,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
             {
                 downloadApplicantDetails(ID);
             }
+            if (Comamandname.Equals("FeedBackGTE"))
+                Response.Redirect(webURL + "admin/gtereport.aspx?ID=" + ID, true);
             if (Comamandname.Equals("GTE"))
-            {
                 downloadGTEReport(ID);
-            }
+
             //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
         }
@@ -167,7 +169,6 @@ public partial class admin_applicantlist : System.Web.UI.Page
     private void downloadGTEReport(int applicantID)
     {
         var Renderer = new IronPdf.HtmlToPdf();
-        Renderer.PrintOptions.PrintHtmlBackgrounds = true;
         //Choose screen or print CSS media
         
         //Renderer.PrintOptions.SetCustomPaperSizeInInches(12.5, 20);
@@ -176,7 +177,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
         //Renderer.PrintOptions.Title = "My PDF Document Name";
         Renderer.PrintOptions.EnableJavaScript = true;
         Renderer.PrintOptions.RenderDelay = 50; //ms
-        Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Screen;
+        Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Print;
+        Renderer.PrintOptions.PaperSize = PdfPrintOptions.PdfPaperSize.A3Extra;
         //Uri uri = new Uri(webURL + "assets/dashboard/css/bootstrap.min.css");
         //Renderer.PrintOptions.CustomCssUrl.AbsoluteUri = uri.AbsoluteUri.ToString();
         Renderer.PrintOptions.DPI = 300;
@@ -192,7 +194,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         //Renderer.PrintOptions.MarginRight = 20;  //millimeters
         //Renderer.PrintOptions.MarginBottom = 40;  //millimeters
         //Renderer.PrintOptions.FirstPageNumber = 1; //use 2 if a coverpage  will be appended
-        var PDF = Renderer.RenderUrlAsPdf(webURL + "gtereport.aspx?ID=" + applicantID);
+        var PDF = Renderer.RenderUrlAsPdf(webURL + "admin/gtereport.aspx?ID=" + applicantID + "&downloadPdf=1");
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string filePath = string.Concat(dirPath, "\\", Guid.NewGuid() + ".pdf");
         DirectoryInfo di = new DirectoryInfo(dirPath);
@@ -1008,5 +1010,27 @@ public partial class admin_applicantlist : System.Web.UI.Page
     {
         gvApplicant.PageIndex = e.NewPageIndex;
         BindApplicant();
+    }
+
+    protected void gvApplicant_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            LinkButton lnkDownloadGteReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadGteReport");
+            LinkButton lnkGteReportFeedBack = (LinkButton)e.Row.Cells[2].FindControl("lnkGteReportFeedBack");
+            if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
+            {
+                int applicant_id = Convert.ToInt32(e.Row.Cells[0].Text);
+
+                var displayLinkButton = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
+                                          .Select(x => x.is_sop_submitted_by_applicant).FirstOrDefault();
+
+                if (!displayLinkButton)
+                {
+                    lnkDownloadGteReport.Style.Add("display", "none");
+                    lnkGteReportFeedBack.Style.Add("display", "none");
+                }
+            }
+        }
     }
 }

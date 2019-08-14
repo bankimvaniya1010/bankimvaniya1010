@@ -36,30 +36,46 @@ public partial class gte_questions1 : System.Web.UI.Page
             }
             else
             {
-                var applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+                dynamic applicantdetails;
+                var isFullService = (bool)Session["FullService"];
 
-                if(applicantdetails.nationality.HasValue)
-                    ViewState["nationality"] = objCommon.GetCountryDiscription(applicantdetails.nationality.Value);
+                if (isFullService)
+                {
+                    applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+                    var isProfileDetailsCompleted = (bool)Session["ProfileDetailsCompletedByApplicant"];
+                    if (!isProfileDetailsCompleted)
+                        Response.Redirect("default.aspx", true);
+                }
+                else
+                    applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+
+                if (applicantdetails.nationality > 0)
+                    ViewState["nationality"] = objCommon.GetCountryDiscription(applicantdetails.nationality);
                 var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
 
                 if (institutionDetails != null) {
                     ViewState["eduInstitution"] = institutionDetails.university_name;
                     ViewState["eduCity"] = institutionDetails.cityName;
-
                 }
 
-                if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 1)
+                if (isFullService)
                 {
-                    if (applicantdetails.postalcountry.HasValue)
-                        ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry.Value);
-                }
-                else if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 2)
-                {
-                    if (applicantdetails.residentialcountry.HasValue)
-                        ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry.Value);
+                    if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 1)
+                    {
+                        if (applicantdetails.postalcountry.HasValue)
+                            ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry.Value);
+                    }
+                    else if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 2)
+                    {
+                        if (applicantdetails.residentialcountry.HasValue)
+                            ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry.Value);
+                    }
+                    else
+                        ViewState["homeCountry"] = string.Empty;
                 }
                 else
-                    ViewState["homeCountry"] = string.Empty;
+                    ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
+
                 SetQuestionList(answeredQuestion);
             }
         }

@@ -31,7 +31,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnRowCommand="gvApplicant_RowCommand" OnPageIndexChanging="gvApplicant_PageIndexChanging">
+                        CellSpacing="2" OnRowCommand="gvApplicant_RowCommand" OnPageIndexChanging="gvApplicant_PageIndexChanging" OnRowDataBound="gvApplicant_RowDataBound">
 
                         <Columns>
                             <asp:BoundField DataField="applicantid" HeaderText="ID" InsertVisible="False"
@@ -53,8 +53,9 @@
                                     <asp:LinkButton ID="lnkSocial" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Social" Text="View Social"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkVisa" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Visa" Text="View Visa"></asp:LinkButton>|
                                   <asp:LinkButton ID="LnkFunding" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Funding" Text="View Funding"></asp:LinkButton>|
-                                    <asp:LinkButton ID="lnlDownloadDetails" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Download" Text="Download Applicant Details"></asp:LinkButton>
-                                     <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="GTE" Text="Download GTE Reports"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnlDownloadDetails" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Download" Text="Download Applicant Details"></asp:LinkButton>|
+                                     <asp:LinkButton ID="lnkGteReportFeedBack" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="FeedBackGTE" Text="GTE Report FeedBack"></asp:LinkButton>|
+                                    <asp:LinkButton ID="lnkDownloadGteReport" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="GTE" Text="Download GTE Report"></asp:LinkButton>
                                     <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
                                     --%>

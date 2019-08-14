@@ -93,6 +93,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                             break;
                         }
                     }
+                    txtNotesDisclaimer.Value = existingUninversity.notes_disclaimer;
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University does not exists')", true);
@@ -160,6 +161,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
             universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
             universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
+            universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
 
             db.SaveChanges();            
             Response.Redirect("~/admin/universitymaster.aspx");
