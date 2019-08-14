@@ -151,7 +151,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         hidAddressCountry.Value += lstOfResidences[i].residentialcountry + ";";
                     }
                 }
-                else if(!profileInfo.haspreviousresidence.Value)
+                else if(profileInfo.haspreviousresidence.HasValue && !profileInfo.haspreviousresidence.Value)
                     rblCurrentAddNo.Checked = true;
 
                 txtNomineeName.Value = profileInfo.nomineefullname;
@@ -326,7 +326,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             objapplicantDetail.nomineeemail = txtEmailNominee.Value;
             objapplicantDetail.nomineemobile = txtMobileNominee.Value;
             objapplicantDetail.relationshipwithnominee = txtRelationNominee.Value;
-            if (objapplicantDetail.nomineeemail != null)
+            if (objapplicantDetail.nomineeemail != null && !string.IsNullOrEmpty(objapplicantDetail.nomineeemail))
             {
                 objapplicantDetail.isnomineeverified = false;
                 objapplicantDetail.nomineeverificationkey = Guid.NewGuid().ToString();
@@ -340,7 +340,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             db.SaveChanges();
             hidAddressHistory.Value = "0";
 
-            if (objapplicantDetail.nomineeemail != null)
+            if (objapplicantDetail.nomineeemail != null && !string.IsNullOrEmpty(objapplicantDetail.nomineeemail))
             {
                 string url = webURL + "verifynominee.aspx?key=" + objapplicantDetail.nomineeverificationkey;
                 StringBuilder sb = new StringBuilder();
