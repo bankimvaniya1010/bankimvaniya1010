@@ -42,29 +42,31 @@ public partial class gte_questions2 : System.Web.UI.Page
                 {
                     applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
 
-                    var isProfileDetailsCompleted = (bool)Session["ProfileDetailsCompletedByApplicant"];
-                    if (!isProfileDetailsCompleted)
-                        Response.Redirect("default.aspx", true);
-                    else
+                    if (applicantdetails != null)
                     {
-                        if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 1)
+                        if (applicantdetails.issameaspostal == 1)
                         {
-                            if (applicantdetails.postalcountry.HasValue)
-                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry.Value);
+                            if (applicantdetails.postalcountry > 0)
+                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry);
                         }
-                        else if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 2)
+                        else if (applicantdetails.issameaspostal == 2)
                         {
-                            if (applicantdetails.residentialcountry.HasValue)
-                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry.Value);
+                            if (applicantdetails.residentialcountry)
+                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry);
                         }
                         else
                             ViewState["homeCountry"] = string.Empty;
                     }
+                    else
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
                 }
                 else
                 {
                     applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
-                    ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
+                    if (applicantdetails != null)
+                        ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
+                    else
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
                 }                
 
                 foreach (var response in answeredQuestion)

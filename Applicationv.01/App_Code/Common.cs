@@ -1329,6 +1329,23 @@ public class Common
         }
         return false;
     }
+    public bool SetGteStudentDetailsCompletedStatus(int applicantId, int universityID)
+    {
+        try
+        {
+            var applicantDetails = db.gte_applicantdetails.Where(x => x.applicantid.Value == applicantId && x.universityid == universityID).FirstOrDefault();
+
+            if (applicantDetails.applicantid.HasValue)
+                return true;
+            else
+                return false;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return false;
+    }
     public void SetCustomDataAdminComments(int formID, int applicatiID, List<customfieldmaster> CustomControls, HtmlGenericControl mainDiv, List<admincomments> Comments)
     {
         try

@@ -52,16 +52,19 @@ public partial class login : System.Web.UI.Page
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.studentid;
                 isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid);
-                isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
                 isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 
                 if (isFullService)
                 {
                     isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
                     isDeclarationCompleted = isDeclarationDoneByApplicant && isGteDeclarationDoneByApplicant;
+                    isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
                 }
                 else
+                {
                     isDeclarationCompleted = isGteDeclarationDoneByApplicant;
+                    isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                }
 
                 Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
                 Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;

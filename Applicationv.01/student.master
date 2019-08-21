@@ -713,13 +713,20 @@
                 $("#components_list").hide();
                 $("#preliminary_list").hide();
 
-                if (!fullService)
+                if (!fullService) {
                     $("#clarification_question_list").hide();
+                    $("#personal_menu_list").hide();
+                }
+                else
+                    $("#gtestudentdetail").hide();
 
-                //if (!studentDetailsCompleted)
-                //    $("#Application_list").hide();
+                if (!studentDetailsCompleted) {
+                    $("#gte_questions_menu").hide();
+                    //$("#Application_list").hide();
+                }
                 //else
                 //    $("#Application_list").show();
+
             }
                         
             var questioncompleted = '<%=questioncompleted%>';

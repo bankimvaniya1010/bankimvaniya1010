@@ -40,43 +40,45 @@ public partial class gte_questions1 : System.Web.UI.Page
                 var isFullService = (bool)Session["FullService"];
 
                 if (isFullService)
-                {
                     applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
-                    var isProfileDetailsCompleted = (bool)Session["ProfileDetailsCompletedByApplicant"];
-                    if (!isProfileDetailsCompleted)
-                        Response.Redirect("default.aspx", true);
-                }
                 else
                     applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
 
-                if (applicantdetails.nationality > 0)
-                    ViewState["nationality"] = objCommon.GetCountryDiscription(applicantdetails.nationality);
-                var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
-
-                if (institutionDetails != null) {
-                    ViewState["eduInstitution"] = institutionDetails.university_name;
-                    ViewState["eduCity"] = institutionDetails.cityName;
-                }
-
-                if (isFullService)
+                if(applicantdetails != null)
                 {
-                    if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 1)
+                    if (applicantdetails.nationality > 0)
+                        ViewState["nationality"] = objCommon.GetCountryDiscription(applicantdetails.nationality);
+                    var institutionDetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, cityName = x.citymaster.name }).FirstOrDefault();
+
+                    if (institutionDetails != null)
                     {
-                        if (applicantdetails.postalcountry.HasValue)
-                            ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry.Value);
+                        ViewState["eduInstitution"] = institutionDetails.university_name;
+                        ViewState["eduCity"] = institutionDetails.cityName;
                     }
-                    else if (applicantdetails.issameaspostal.HasValue && applicantdetails.issameaspostal.Value == 2)
+
+                    if (isFullService)
                     {
-                        if (applicantdetails.residentialcountry.HasValue)
-                            ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry.Value);
+                        if (applicantdetails.issameaspostal == 1)
+                        {
+                            if (applicantdetails.postalcountry > 0)
+                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.postalcountry);
+                        }
+                        else if (applicantdetails.issameaspostal == 2)
+                        {
+                            if (applicantdetails.residentialcountry > 0)
+                                ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residentialcountry);
+                        }
+                        else
+                            ViewState["homeCountry"] = string.Empty;
                     }
                     else
-                        ViewState["homeCountry"] = string.Empty;
+                        ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
+
+                    SetQuestionList(answeredQuestion);
                 }
                 else
-                    ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
 
-                SetQuestionList(answeredQuestion);
             }
         }
     }

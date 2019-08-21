@@ -253,7 +253,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (rblCurrentAddYes.Checked)
             {
                 var existinglst = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
-                if(existinglst != null)
+                if(existinglst != null && existinglst.Count > 0)
                 {
                     db.applicantresidencehistory.RemoveRange(existinglst);
                     db.SaveChanges();
@@ -316,7 +316,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             if (rblCurrentAddNo.Checked && mode == "update")
             {
                 var existinglst = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
-                if (existinglst != null)
+                if (existinglst != null && existinglst.Count > 0)
                 {
                     db.applicantresidencehistory.RemoveRange(existinglst);
                     db.SaveChanges();
