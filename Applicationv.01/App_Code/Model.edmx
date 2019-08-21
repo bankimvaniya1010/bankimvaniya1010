@@ -714,7 +714,6 @@
           <Property Name="englishlangtestDate" Type="datetime" Precision="0" />
           <Property Name="englishlangtestcetificateno" Type="varchar" MaxLength="50" />
           <Property Name="studiedmorethan5yrinothercountry" Type="int" />
-          <Property Name="36037038" Type="varchar" MaxLength="50" />
           <Property Name="employmenthistoryFromDate" Type="datetime" Precision="0" />
           <Property Name="employmenthistoryToDate" Type="datetime" Precision="0" />
           <Property Name="employerInfoL0" Type="varchar" MaxLength="50" />
@@ -731,6 +730,22 @@
           <Property Name="employeroccupation1" Type="varchar" MaxLength="11" />
           <Property Name="salarylevel1" Type="varchar" MaxLength="11" />
           <Property Name="leavingdocAttch1" Type="int" />
+          <Property Name="currentlyemployed" Type="int" />
+          <Property Name="ifnoThenOption" Type="int" />
+          <Property Name="otherdescription1" Type="varchar" MaxLength="50" />
+          <Property Name="otherdescription2" Type="varchar" MaxLength="50" />
+          <Property Name="position" Type="varchar" MaxLength="50" />
+          <Property Name="employername" Type="varchar" MaxLength="50" />
+          <Property Name="employeraddress" Type="varchar" MaxLength="50" />
+          <Property Name="employercontactno" Type="varchar" MaxLength="50" />
+          <Property Name="evidenceofemployement" Type="int" />
+          <Property Name="currentlystudentinaustralia" Type="int" />
+          <Property Name="joboffered" Type="int" />
+          <Property Name="kindofemployementseeking" Type="varchar" MaxLength="50" />
+          <Property Name="jobofferedname" Type="varchar" MaxLength="50" />
+          <Property Name="jobofferedaddress" Type="varchar" MaxLength="50" />
+          <Property Name="jobofferedcontactno" Type="varchar" MaxLength="50" />
+          <Property Name="titleofpositionofferef" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativename" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativerelationship" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativeDob" Type="datetime" Precision="0" />
@@ -753,6 +768,7 @@
           <Property Name="applyinaustraliaassecschool" Type="int" />
           <Property Name="issufficientfund" Type="int" />
           <Property Name="declarationDate42" Type="datetime" Precision="0" />
+          <Property Name="declarationSign42" Type="varchar" MaxLength="50" />
           <Property Name="ifFamilyunitcompletedformpartC" Type="int" />
           <Property Name="studymorethanthreemonthpartC" Type="int" />
           <Property Name="studentnamepartC" Type="varchar" MaxLength="50" />
@@ -768,6 +784,160 @@
           <Property Name="isstudentjoiningdeclarepartC" Type="int" />
           <Property Name="isstudentjoiningsatisfiedconditionpartC" Type="int" />
           <Property Name="suficientfundpartC" Type="int" />
+          <Property Name="partD" Type="int" />
+          <Property Name="livedoutsidecountryc" Type="int" />
+          <Property Name="familymembername" Type="varchar" MaxLength="50" />
+          <Property Name="familyresidencecountry" Type="int" />
+          <Property Name="familyresidenceFromdate" Type="datetime" Precision="0" />
+          <Property Name="familyresidenceTodate" Type="datetime" Precision="0" />
+          <Property Name="familymembername1" Type="varchar" MaxLength="50" />
+          <Property Name="familyresidencecountry1" Type="int" />
+          <Property Name="familyresidenceFromdate1" Type="datetime" Precision="0" />
+          <Property Name="familyresidenceTodate1" Type="datetime" Precision="0" />
+          <Property Name="familymembername2" Type="varchar" MaxLength="50" />
+          <Property Name="familyresidencecountry2" Type="int" />
+          <Property Name="familyresidenceFromdate2" Type="datetime" Precision="0" />
+          <Property Name="familyresidenceTodate2" Type="datetime" Precision="0" />
+          <Property Name="haveworkforaustralianhospital" Type="int" />
+          <Property Name="descriptionofhospitalwork" Type="varchar" MaxLength="100" />
+          <Property Name="haveworkforaustralianpreschool" Type="int" />
+          <Property Name="descriptionofpreschoolwork" Type="varchar" MaxLength="100" />
+          <Property Name="haveanyhealthissue" Type="int" />
+          <Property Name="detailofhealthissue" Type="varchar" MaxLength="50" />
+          <Property Name="requireassistancewithmobility" Type="int" />
+          <Property Name="descriptionofmobility" Type="varchar" MaxLength="50" />
+          <Property Name="haevmedicalprocedures" Type="int" />
+          <Property Name="proceduresdescription" Type="varchar" MaxLength="50" />
+          <Property Name="havemedicalfollowup" Type="int" />
+          <Property Name="medicalfollowupdescription" Type="varchar" MaxLength="50" />
+          <Property Name="haveconvictedofcrime" Type="int" />
+          <Property Name="havechargeoffence" Type="int" />
+          <Property Name="havecriminaloffence" Type="int" />
+          <Property Name="haveremovedfromcountry" Type="int" />
+          <Property Name="havetoavoidbeingremoved" Type="int" />
+          <Property Name="havebeenexcluded" Type="int" />
+          <Property Name="havehumanrightscrime" Type="int" />
+          <Property Name="haverisktonationalsecurity" Type="int" />
+          <Property Name="haveoutstandingdebets" Type="int" />
+          <Property Name="haveconvictedoffence" Type="int" />
+          <Property Name="haveservedinmilitaryforce" Type="int" />
+          <Property Name="descripofcharacterdeclaration" Type="varchar" MaxLength="200" />
+          <Property Name="under18age" Type="int" />
+          <Property Name="parentsituation" Type="int" />
+          <Property Name="holdorappliedVisa" Type="int" />
+          <Property Name="parentfamilynamePartD" Type="varchar" MaxLength="50" />
+          <Property Name="parentgivennamePartD" Type="varchar" MaxLength="50" />
+          <Property Name="parentDateofBirthpartD" Type="datetime" Precision="0" />
+          <Property Name="parentaddresspartD" Type="varchar" MaxLength="50" />
+          <Property Name="parentvisastatusPartD" Type="int" />
+          <Property Name="parentvisalabelno" Type="varchar" MaxLength="50" />
+          <Property Name="parentvisadigitno" Type="varchar" MaxLength="50" />
+          <Property Name="parentvisaperiodofstay" Type="varchar" MaxLength="50" />
+          <Property Name="parentvisaexpirydate" Type="datetime" Precision="0" />
+          <Property Name="parentvisaappliedgovtofficename" Type="varchar" MaxLength="50" />
+          <Property Name="havearrangementwithrelative" Type="int" />
+          <Property Name="familyNameofrelative" Type="varchar" MaxLength="50" />
+          <Property Name="givenNameofrelative" Type="varchar" MaxLength="50" />
+          <Property Name="dateOfBirthofrelative" Type="datetime" Precision="0" />
+          <Property Name="addressofRelative" Type="varchar" MaxLength="50" />
+          <Property Name="relationshipofrelative" Type="varchar" MaxLength="50" />
+          <Property Name="relativeresideasstatus" Type="int" />
+          <Property Name="permitedtostayfor" Type="varchar" MaxLength="50" />
+          <Property Name="permitedtostayDate" Type="datetime" Precision="0" />
+          <Property Name="guardianvisasatus" Type="int" />
+          <Property Name="guardianvisano" Type="varchar" MaxLength="50" />
+          <Property Name="guardianvisaperiodofstay" Type="varchar" MaxLength="50" />
+          <Property Name="guardianvisaperiodofstayDate" Type="datetime" Precision="0" />
+          <Property Name="govermentoffName" Type="varchar" MaxLength="50" />
+          <Property Name="periodofstayofguardian" Type="varchar" MaxLength="50" />
+          <Property Name="havewelfarearrangements" Type="int" />
+          <Property Name="parentsignature" Type="varchar" MaxLength="50" />
+          <Property Name="parentsignatureDate" Type="datetime" Precision="0" />
+          <Property Name="parentFullname" Type="varchar" MaxLength="50" />
+          <Property Name="parentRelationshipwithstudent" Type="varchar" MaxLength="50" />
+          <Property Name="parentsignature1" Type="varchar" MaxLength="50" />
+          <Property Name="parentsignatureDate1" Type="datetime" Precision="0" />
+          <Property Name="parentFullname1" Type="varchar" MaxLength="50" />
+          <Property Name="parentRelationshipwithstudent1" Type="varchar" MaxLength="50" />
+          <Property Name="havesolelegalrights" Type="int" />
+          <Property Name="personname" Type="varchar" MaxLength="50" />
+          <Property Name="personaddress" Type="varchar" MaxLength="50" />
+          <Property Name="personcontactno" Type="varchar" MaxLength="50" />
+          <Property Name="personrelationship" Type="varchar" MaxLength="50" />
+          <Property Name="personnatureoflegalrights" Type="varchar" MaxLength="50" />
+          <Property Name="parentsignatur67" Type="varchar" MaxLength="50" />
+          <Property Name="signDate" Type="datetime" Precision="0" />
+          <Property Name="fullname67" Type="varchar" MaxLength="50" />
+          <Property Name="relationship67" Type="varchar" MaxLength="50" />
+          <Property Name="parentsignatur671" Type="varchar" MaxLength="50" />
+          <Property Name="signDate1" Type="datetime" Precision="0" />
+          <Property Name="fullname671" Type="varchar" MaxLength="50" />
+          <Property Name="relationship671" Type="varchar" MaxLength="50" />
+          <Property Name="havereceiveassistance" Type="int" />
+          <Property Name="title" Type="int" />
+          <Property Name="assistedpersonfamilyname" Type="varchar" MaxLength="50" />
+          <Property Name="assistedpersongivenname" Type="varchar" MaxLength="50" />
+          <Property Name="assistedpersonaddress" Type="varchar" MaxLength="50" />
+          <Property Name="assistedpersonofficeno" Type="varchar" MaxLength="50" />
+          <Property Name="assistedpersonmobileno" Type="varchar" MaxLength="50" />
+          <Property Name="isregisteredwithMARA" Type="int" />
+          <Property Name="haveeducationagent" Type="int" />
+          <Property Name="businessname" Type="varchar" MaxLength="50" />
+          <Property Name="registrationno" Type="varchar" MaxLength="50" />
+          <Property Name="educationagentaddress" Type="varchar" MaxLength="50" />
+          <Property Name="educationagentemail" Type="varchar" MaxLength="50" />
+          <Property Name="educationagentofficeno" Type="varchar" MaxLength="50" />
+          <Property Name="educationagentphoneno" Type="varchar" MaxLength="50" />
+          <Property Name="educationagentfaxno" Type="varchar" MaxLength="50" />
+          <Property Name="haveagentinaustralia" Type="int" />
+          <Property Name="havepaytoassistance" Type="int" />
+          <Property Name="howmuchyoupay" Type="varchar" MaxLength="50" />
+          <Property Name="giftgiven" Type="varchar" MaxLength="50" />
+          <Property Name="valueofgift" Type="varchar" MaxLength="50" />
+          <Property Name="havewrittencommunications" Type="int" />
+          <Property Name="haveauthorisedperson" Type="int" />
+          <Property Name="authorisedpersontitle" Type="int" />
+          <Property Name="authorisedpersofamilynname" Type="varchar" MaxLength="50" />
+          <Property Name="authorisedpersongivenname" Type="varchar" MaxLength="50" />
+          <Property Name="authorisedpersonaddress" Type="varchar" MaxLength="50" />
+          <Property Name="authorisedpersonofficeno" Type="varchar" MaxLength="50" />
+          <Property Name="authorisedpersonmobileno" Type="varchar" MaxLength="50" />
+          <Property Name="haveagreetocommunicate" Type="int" />
+          <Property Name="Faxnumber" Type="varchar" MaxLength="50" />
+          <Property Name="authorizedpersonEmailaddress" Type="varchar" MaxLength="50" />
+          <Property Name="signatureauthorizedperson" Type="varchar" MaxLength="50" />
+          <Property Name="dateofsign" Type="varchar" MaxLength="50" />
+          <Property Name="migratioagentNo" Type="varchar" MaxLength="50" />
+          <Property Name="offshoreagentId" Type="varchar" MaxLength="50" />
+          <Property Name="agenttitle" Type="int" />
+          <Property Name="agentfamilyname" Type="varchar" MaxLength="50" />
+          <Property Name="agentgivenname" Type="varchar" MaxLength="50" />
+          <Property Name="agentcompanyname" Type="varchar" MaxLength="50" />
+          <Property Name="agenntaddress" Type="varchar" MaxLength="50" />
+          <Property Name="agentofficeno" Type="varchar" MaxLength="50" />
+          <Property Name="agentmobileno" Type="varchar" MaxLength="50" />
+          <Property Name="agentagreetocommunicate" Type="int" />
+          <Property Name="agentfaxno" Type="varchar" MaxLength="50" />
+          <Property Name="agentemailaddress" Type="varchar" MaxLength="50" />
+          <Property Name="agentsignature" Type="varchar" MaxLength="50" />
+          <Property Name="agentsigndate" Type="varchar" MaxLength="50" />
+          <Property Name="paymentmethod" Type="int" />
+          <Property Name="paymentby" Type="int" />
+          <Property Name="amountinaustraliandollars" Type="varchar" MaxLength="50" />
+          <Property Name="creditcardno" Type="varchar" MaxLength="50" />
+          <Property Name="creditcardexpirydate" Type="datetime" Precision="0" />
+          <Property Name="cardholdarname" Type="varchar" MaxLength="50" />
+          <Property Name="contactnumber" Type="varchar" MaxLength="50" />
+          <Property Name="addressofcardholder" Type="varchar" MaxLength="50" />
+          <Property Name="signatureofcardholder" Type="varchar" MaxLength="50" />
+          <Property Name="declarationsignature" Type="varchar" MaxLength="50" />
+          <Property Name="declarationdate" Type="datetime" Precision="0" />
+          <Property Name="declarationsignature1" Type="varchar" MaxLength="50" />
+          <Property Name="declarationdate1" Type="datetime" Precision="0" />
+          <Property Name="declarationsignature2" Type="varchar" MaxLength="50" />
+          <Property Name="declarationdate2" Type="datetime" Precision="0" />
+          <Property Name="declarationsignature3" Type="varchar" MaxLength="50" />
+          <Property Name="declarationdate3" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="australiavisaFamilydetailmaster">
           <Key>
@@ -1552,6 +1722,7 @@
           <Property Name="acceptedminage" Type="int" Nullable="false" />
           <Property Name="full_service" Type="bit" Nullable="false" />
           <Property Name="notes_disclaimer" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="logo" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -4897,6 +5068,7 @@
           <NavigationProperty Name="universitygrouping" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
+          <Property Name="logo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_university_master_admincomments">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
@@ -5204,7 +5376,6 @@
           <Property Name="englishlangtestDate" Type="DateTime" />
           <Property Name="englishlangtestcetificateno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="studiedmorethan5yrinothercountry" Type="Int32" />
-          <Property Name="C36037038" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="employmenthistoryFromDate" Type="DateTime" />
           <Property Name="employmenthistoryToDate" Type="DateTime" />
           <Property Name="employerInfoL0" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -5221,6 +5392,22 @@
           <Property Name="employeroccupation1" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="salarylevel1" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="leavingdocAttch1" Type="Int32" />
+          <Property Name="currentlyemployed" Type="Int32" />
+          <Property Name="ifnoThenOption" Type="Int32" />
+          <Property Name="otherdescription1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="otherdescription2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="position" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employeraddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employercontactno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="evidenceofemployement" Type="Int32" />
+          <Property Name="currentlystudentinaustralia" Type="Int32" />
+          <Property Name="joboffered" Type="Int32" />
+          <Property Name="kindofemployementseeking" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jobofferedname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jobofferedaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="jobofferedcontactno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="titleofpositionofferef" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="immediaterelativename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="immediaterelativerelationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="immediaterelativeDob" Type="DateTime" />
@@ -5243,6 +5430,7 @@
           <Property Name="applyinaustraliaassecschool" Type="Int32" />
           <Property Name="issufficientfund" Type="Int32" />
           <Property Name="declarationDate42" Type="DateTime" />
+          <Property Name="declarationSign42" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ifFamilyunitcompletedformpartC" Type="Int32" />
           <Property Name="studymorethanthreemonthpartC" Type="Int32" />
           <Property Name="studentnamepartC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -5258,6 +5446,160 @@
           <Property Name="isstudentjoiningdeclarepartC" Type="Int32" />
           <Property Name="isstudentjoiningsatisfiedconditionpartC" Type="Int32" />
           <Property Name="suficientfundpartC" Type="Int32" />
+          <Property Name="partD" Type="Int32" />
+          <Property Name="livedoutsidecountryc" Type="Int32" />
+          <Property Name="familymembername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="familyresidencecountry" Type="Int32" />
+          <Property Name="familyresidenceFromdate" Type="DateTime" />
+          <Property Name="familyresidenceTodate" Type="DateTime" />
+          <Property Name="familymembername1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="familyresidencecountry1" Type="Int32" />
+          <Property Name="familyresidenceFromdate1" Type="DateTime" />
+          <Property Name="familyresidenceTodate1" Type="DateTime" />
+          <Property Name="familymembername2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="familyresidencecountry2" Type="Int32" />
+          <Property Name="familyresidenceFromdate2" Type="DateTime" />
+          <Property Name="familyresidenceTodate2" Type="DateTime" />
+          <Property Name="haveworkforaustralianhospital" Type="Int32" />
+          <Property Name="descriptionofhospitalwork" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="haveworkforaustralianpreschool" Type="Int32" />
+          <Property Name="descriptionofpreschoolwork" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="haveanyhealthissue" Type="Int32" />
+          <Property Name="detailofhealthissue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="requireassistancewithmobility" Type="Int32" />
+          <Property Name="descriptionofmobility" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haevmedicalprocedures" Type="Int32" />
+          <Property Name="proceduresdescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="havemedicalfollowup" Type="Int32" />
+          <Property Name="medicalfollowupdescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haveconvictedofcrime" Type="Int32" />
+          <Property Name="havechargeoffence" Type="Int32" />
+          <Property Name="havecriminaloffence" Type="Int32" />
+          <Property Name="haveremovedfromcountry" Type="Int32" />
+          <Property Name="havetoavoidbeingremoved" Type="Int32" />
+          <Property Name="havebeenexcluded" Type="Int32" />
+          <Property Name="havehumanrightscrime" Type="Int32" />
+          <Property Name="haverisktonationalsecurity" Type="Int32" />
+          <Property Name="haveoutstandingdebets" Type="Int32" />
+          <Property Name="haveconvictedoffence" Type="Int32" />
+          <Property Name="haveservedinmilitaryforce" Type="Int32" />
+          <Property Name="descripofcharacterdeclaration" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="under18age" Type="Int32" />
+          <Property Name="parentsituation" Type="Int32" />
+          <Property Name="holdorappliedVisa" Type="Int32" />
+          <Property Name="parentfamilynamePartD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentgivennamePartD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentDateofBirthpartD" Type="DateTime" />
+          <Property Name="parentaddresspartD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentvisastatusPartD" Type="Int32" />
+          <Property Name="parentvisalabelno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentvisadigitno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentvisaperiodofstay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentvisaexpirydate" Type="DateTime" />
+          <Property Name="parentvisaappliedgovtofficename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="havearrangementwithrelative" Type="Int32" />
+          <Property Name="familyNameofrelative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="givenNameofrelative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfBirthofrelative" Type="DateTime" />
+          <Property Name="addressofRelative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="relationshipofrelative" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="relativeresideasstatus" Type="Int32" />
+          <Property Name="permitedtostayfor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="permitedtostayDate" Type="DateTime" />
+          <Property Name="guardianvisasatus" Type="Int32" />
+          <Property Name="guardianvisano" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="guardianvisaperiodofstay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="guardianvisaperiodofstayDate" Type="DateTime" />
+          <Property Name="govermentoffName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="periodofstayofguardian" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="havewelfarearrangements" Type="Int32" />
+          <Property Name="parentsignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentsignatureDate" Type="DateTime" />
+          <Property Name="parentFullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentRelationshipwithstudent" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentsignature1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentsignatureDate1" Type="DateTime" />
+          <Property Name="parentFullname1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentRelationshipwithstudent1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="havesolelegalrights" Type="Int32" />
+          <Property Name="personname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="personaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="personcontactno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="personrelationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="personnatureoflegalrights" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentsignatur67" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="signDate" Type="DateTime" />
+          <Property Name="fullname67" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="relationship67" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentsignatur671" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="signDate1" Type="DateTime" />
+          <Property Name="fullname671" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="relationship671" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="havereceiveassistance" Type="Int32" />
+          <Property Name="title" Type="Int32" />
+          <Property Name="assistedpersonfamilyname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assistedpersongivenname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assistedpersonaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assistedpersonofficeno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="assistedpersonmobileno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isregisteredwithMARA" Type="Int32" />
+          <Property Name="haveeducationagent" Type="Int32" />
+          <Property Name="businessname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="registrationno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="educationagentaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="educationagentemail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="educationagentofficeno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="educationagentphoneno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="educationagentfaxno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haveagentinaustralia" Type="Int32" />
+          <Property Name="havepaytoassistance" Type="Int32" />
+          <Property Name="howmuchyoupay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="giftgiven" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="valueofgift" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="havewrittencommunications" Type="Int32" />
+          <Property Name="haveauthorisedperson" Type="Int32" />
+          <Property Name="authorisedpersontitle" Type="Int32" />
+          <Property Name="authorisedpersofamilynname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authorisedpersongivenname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authorisedpersonaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authorisedpersonofficeno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authorisedpersonmobileno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="haveagreetocommunicate" Type="Int32" />
+          <Property Name="Faxnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="authorizedpersonEmailaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="signatureauthorizedperson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateofsign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="migratioagentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="offshoreagentId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agenttitle" Type="Int32" />
+          <Property Name="agentfamilyname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentgivenname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentcompanyname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agenntaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentofficeno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentmobileno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentagreetocommunicate" Type="Int32" />
+          <Property Name="agentfaxno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentemailaddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentsignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="agentsigndate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="paymentmethod" Type="Int32" />
+          <Property Name="paymentby" Type="Int32" />
+          <Property Name="amountinaustraliandollars" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="creditcardno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="creditcardexpirydate" Type="DateTime" />
+          <Property Name="cardholdarname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="contactnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addressofcardholder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="signatureofcardholder" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="declarationsignature" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="declarationdate" Type="DateTime" />
+          <Property Name="declarationsignature1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="declarationdate1" Type="DateTime" />
+          <Property Name="declarationsignature2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="declarationdate2" Type="DateTime" />
+          <Property Name="declarationsignature3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="declarationdate3" Type="DateTime" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6781,6 +7123,7 @@
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="notes_disclaimer" ColumnName="notes_disclaimer" />
                 <ScalarProperty Name="full_service" ColumnName="full_service" />
                 <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
@@ -6812,6 +7155,160 @@
           <EntitySetMapping Name="australiavisadetailmaster">
             <EntityTypeMapping TypeName="GTEModel.australiavisadetailmaster">
               <MappingFragment StoreEntitySet="australiavisadetailmaster">
+                <ScalarProperty Name="declarationdate3" ColumnName="declarationdate3" />
+                <ScalarProperty Name="declarationsignature3" ColumnName="declarationsignature3" />
+                <ScalarProperty Name="declarationdate2" ColumnName="declarationdate2" />
+                <ScalarProperty Name="declarationsignature2" ColumnName="declarationsignature2" />
+                <ScalarProperty Name="declarationdate1" ColumnName="declarationdate1" />
+                <ScalarProperty Name="declarationsignature1" ColumnName="declarationsignature1" />
+                <ScalarProperty Name="declarationdate" ColumnName="declarationdate" />
+                <ScalarProperty Name="declarationsignature" ColumnName="declarationsignature" />
+                <ScalarProperty Name="signatureofcardholder" ColumnName="signatureofcardholder" />
+                <ScalarProperty Name="addressofcardholder" ColumnName="addressofcardholder" />
+                <ScalarProperty Name="contactnumber" ColumnName="contactnumber" />
+                <ScalarProperty Name="cardholdarname" ColumnName="cardholdarname" />
+                <ScalarProperty Name="creditcardexpirydate" ColumnName="creditcardexpirydate" />
+                <ScalarProperty Name="creditcardno" ColumnName="creditcardno" />
+                <ScalarProperty Name="amountinaustraliandollars" ColumnName="amountinaustraliandollars" />
+                <ScalarProperty Name="paymentby" ColumnName="paymentby" />
+                <ScalarProperty Name="paymentmethod" ColumnName="paymentmethod" />
+                <ScalarProperty Name="agentsigndate" ColumnName="agentsigndate" />
+                <ScalarProperty Name="agentsignature" ColumnName="agentsignature" />
+                <ScalarProperty Name="agentemailaddress" ColumnName="agentemailaddress" />
+                <ScalarProperty Name="agentfaxno" ColumnName="agentfaxno" />
+                <ScalarProperty Name="agentagreetocommunicate" ColumnName="agentagreetocommunicate" />
+                <ScalarProperty Name="agentmobileno" ColumnName="agentmobileno" />
+                <ScalarProperty Name="agentofficeno" ColumnName="agentofficeno" />
+                <ScalarProperty Name="agenntaddress" ColumnName="agenntaddress" />
+                <ScalarProperty Name="agentcompanyname" ColumnName="agentcompanyname" />
+                <ScalarProperty Name="agentgivenname" ColumnName="agentgivenname" />
+                <ScalarProperty Name="agentfamilyname" ColumnName="agentfamilyname" />
+                <ScalarProperty Name="agenttitle" ColumnName="agenttitle" />
+                <ScalarProperty Name="offshoreagentId" ColumnName="offshoreagentId" />
+                <ScalarProperty Name="migratioagentNo" ColumnName="migratioagentNo" />
+                <ScalarProperty Name="dateofsign" ColumnName="dateofsign" />
+                <ScalarProperty Name="signatureauthorizedperson" ColumnName="signatureauthorizedperson" />
+                <ScalarProperty Name="authorizedpersonEmailaddress" ColumnName="authorizedpersonEmailaddress" />
+                <ScalarProperty Name="Faxnumber" ColumnName="Faxnumber" />
+                <ScalarProperty Name="haveagreetocommunicate" ColumnName="haveagreetocommunicate" />
+                <ScalarProperty Name="authorisedpersonmobileno" ColumnName="authorisedpersonmobileno" />
+                <ScalarProperty Name="authorisedpersonofficeno" ColumnName="authorisedpersonofficeno" />
+                <ScalarProperty Name="authorisedpersonaddress" ColumnName="authorisedpersonaddress" />
+                <ScalarProperty Name="authorisedpersongivenname" ColumnName="authorisedpersongivenname" />
+                <ScalarProperty Name="authorisedpersofamilynname" ColumnName="authorisedpersofamilynname" />
+                <ScalarProperty Name="authorisedpersontitle" ColumnName="authorisedpersontitle" />
+                <ScalarProperty Name="haveauthorisedperson" ColumnName="haveauthorisedperson" />
+                <ScalarProperty Name="havewrittencommunications" ColumnName="havewrittencommunications" />
+                <ScalarProperty Name="valueofgift" ColumnName="valueofgift" />
+                <ScalarProperty Name="giftgiven" ColumnName="giftgiven" />
+                <ScalarProperty Name="howmuchyoupay" ColumnName="howmuchyoupay" />
+                <ScalarProperty Name="havepaytoassistance" ColumnName="havepaytoassistance" />
+                <ScalarProperty Name="haveagentinaustralia" ColumnName="haveagentinaustralia" />
+                <ScalarProperty Name="educationagentfaxno" ColumnName="educationagentfaxno" />
+                <ScalarProperty Name="educationagentphoneno" ColumnName="educationagentphoneno" />
+                <ScalarProperty Name="educationagentofficeno" ColumnName="educationagentofficeno" />
+                <ScalarProperty Name="educationagentemail" ColumnName="educationagentemail" />
+                <ScalarProperty Name="educationagentaddress" ColumnName="educationagentaddress" />
+                <ScalarProperty Name="registrationno" ColumnName="registrationno" />
+                <ScalarProperty Name="businessname" ColumnName="businessname" />
+                <ScalarProperty Name="haveeducationagent" ColumnName="haveeducationagent" />
+                <ScalarProperty Name="isregisteredwithMARA" ColumnName="isregisteredwithMARA" />
+                <ScalarProperty Name="assistedpersonmobileno" ColumnName="assistedpersonmobileno" />
+                <ScalarProperty Name="assistedpersonofficeno" ColumnName="assistedpersonofficeno" />
+                <ScalarProperty Name="assistedpersonaddress" ColumnName="assistedpersonaddress" />
+                <ScalarProperty Name="assistedpersongivenname" ColumnName="assistedpersongivenname" />
+                <ScalarProperty Name="assistedpersonfamilyname" ColumnName="assistedpersonfamilyname" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="havereceiveassistance" ColumnName="havereceiveassistance" />
+                <ScalarProperty Name="relationship671" ColumnName="relationship671" />
+                <ScalarProperty Name="fullname671" ColumnName="fullname671" />
+                <ScalarProperty Name="signDate1" ColumnName="signDate1" />
+                <ScalarProperty Name="parentsignatur671" ColumnName="parentsignatur671" />
+                <ScalarProperty Name="relationship67" ColumnName="relationship67" />
+                <ScalarProperty Name="fullname67" ColumnName="fullname67" />
+                <ScalarProperty Name="signDate" ColumnName="signDate" />
+                <ScalarProperty Name="parentsignatur67" ColumnName="parentsignatur67" />
+                <ScalarProperty Name="personnatureoflegalrights" ColumnName="personnatureoflegalrights" />
+                <ScalarProperty Name="personrelationship" ColumnName="personrelationship" />
+                <ScalarProperty Name="personcontactno" ColumnName="personcontactno" />
+                <ScalarProperty Name="personaddress" ColumnName="personaddress" />
+                <ScalarProperty Name="personname" ColumnName="personname" />
+                <ScalarProperty Name="havesolelegalrights" ColumnName="havesolelegalrights" />
+                <ScalarProperty Name="parentRelationshipwithstudent1" ColumnName="parentRelationshipwithstudent1" />
+                <ScalarProperty Name="parentFullname1" ColumnName="parentFullname1" />
+                <ScalarProperty Name="parentsignatureDate1" ColumnName="parentsignatureDate1" />
+                <ScalarProperty Name="parentsignature1" ColumnName="parentsignature1" />
+                <ScalarProperty Name="parentRelationshipwithstudent" ColumnName="parentRelationshipwithstudent" />
+                <ScalarProperty Name="parentFullname" ColumnName="parentFullname" />
+                <ScalarProperty Name="parentsignatureDate" ColumnName="parentsignatureDate" />
+                <ScalarProperty Name="parentsignature" ColumnName="parentsignature" />
+                <ScalarProperty Name="havewelfarearrangements" ColumnName="havewelfarearrangements" />
+                <ScalarProperty Name="periodofstayofguardian" ColumnName="periodofstayofguardian" />
+                <ScalarProperty Name="govermentoffName" ColumnName="govermentoffName" />
+                <ScalarProperty Name="guardianvisaperiodofstayDate" ColumnName="guardianvisaperiodofstayDate" />
+                <ScalarProperty Name="guardianvisaperiodofstay" ColumnName="guardianvisaperiodofstay" />
+                <ScalarProperty Name="guardianvisano" ColumnName="guardianvisano" />
+                <ScalarProperty Name="guardianvisasatus" ColumnName="guardianvisasatus" />
+                <ScalarProperty Name="permitedtostayDate" ColumnName="permitedtostayDate" />
+                <ScalarProperty Name="permitedtostayfor" ColumnName="permitedtostayfor" />
+                <ScalarProperty Name="relativeresideasstatus" ColumnName="relativeresideasstatus" />
+                <ScalarProperty Name="relationshipofrelative" ColumnName="relationshipofrelative" />
+                <ScalarProperty Name="addressofRelative" ColumnName="addressofRelative" />
+                <ScalarProperty Name="dateOfBirthofrelative" ColumnName="dateOfBirthofrelative" />
+                <ScalarProperty Name="givenNameofrelative" ColumnName="givenNameofrelative" />
+                <ScalarProperty Name="familyNameofrelative" ColumnName="familyNameofrelative" />
+                <ScalarProperty Name="havearrangementwithrelative" ColumnName="havearrangementwithrelative" />
+                <ScalarProperty Name="parentvisaappliedgovtofficename" ColumnName="parentvisaappliedgovtofficename" />
+                <ScalarProperty Name="parentvisaexpirydate" ColumnName="parentvisaexpirydate" />
+                <ScalarProperty Name="parentvisaperiodofstay" ColumnName="parentvisaperiodofstay" />
+                <ScalarProperty Name="parentvisadigitno" ColumnName="parentvisadigitno" />
+                <ScalarProperty Name="parentvisalabelno" ColumnName="parentvisalabelno" />
+                <ScalarProperty Name="parentvisastatusPartD" ColumnName="parentvisastatusPartD" />
+                <ScalarProperty Name="parentaddresspartD" ColumnName="parentaddresspartD" />
+                <ScalarProperty Name="parentDateofBirthpartD" ColumnName="parentDateofBirthpartD" />
+                <ScalarProperty Name="parentgivennamePartD" ColumnName="parentgivennamePartD" />
+                <ScalarProperty Name="parentfamilynamePartD" ColumnName="parentfamilynamePartD" />
+                <ScalarProperty Name="holdorappliedVisa" ColumnName="holdorappliedVisa" />
+                <ScalarProperty Name="parentsituation" ColumnName="parentsituation" />
+                <ScalarProperty Name="under18age" ColumnName="under18age" />
+                <ScalarProperty Name="descripofcharacterdeclaration" ColumnName="descripofcharacterdeclaration" />
+                <ScalarProperty Name="haveservedinmilitaryforce" ColumnName="haveservedinmilitaryforce" />
+                <ScalarProperty Name="haveconvictedoffence" ColumnName="haveconvictedoffence" />
+                <ScalarProperty Name="haveoutstandingdebets" ColumnName="haveoutstandingdebets" />
+                <ScalarProperty Name="haverisktonationalsecurity" ColumnName="haverisktonationalsecurity" />
+                <ScalarProperty Name="havehumanrightscrime" ColumnName="havehumanrightscrime" />
+                <ScalarProperty Name="havebeenexcluded" ColumnName="havebeenexcluded" />
+                <ScalarProperty Name="havetoavoidbeingremoved" ColumnName="havetoavoidbeingremoved" />
+                <ScalarProperty Name="haveremovedfromcountry" ColumnName="haveremovedfromcountry" />
+                <ScalarProperty Name="havecriminaloffence" ColumnName="havecriminaloffence" />
+                <ScalarProperty Name="havechargeoffence" ColumnName="havechargeoffence" />
+                <ScalarProperty Name="haveconvictedofcrime" ColumnName="haveconvictedofcrime" />
+                <ScalarProperty Name="medicalfollowupdescription" ColumnName="medicalfollowupdescription" />
+                <ScalarProperty Name="havemedicalfollowup" ColumnName="havemedicalfollowup" />
+                <ScalarProperty Name="proceduresdescription" ColumnName="proceduresdescription" />
+                <ScalarProperty Name="haevmedicalprocedures" ColumnName="haevmedicalprocedures" />
+                <ScalarProperty Name="descriptionofmobility" ColumnName="descriptionofmobility" />
+                <ScalarProperty Name="requireassistancewithmobility" ColumnName="requireassistancewithmobility" />
+                <ScalarProperty Name="detailofhealthissue" ColumnName="detailofhealthissue" />
+                <ScalarProperty Name="haveanyhealthissue" ColumnName="haveanyhealthissue" />
+                <ScalarProperty Name="descriptionofpreschoolwork" ColumnName="descriptionofpreschoolwork" />
+                <ScalarProperty Name="haveworkforaustralianpreschool" ColumnName="haveworkforaustralianpreschool" />
+                <ScalarProperty Name="descriptionofhospitalwork" ColumnName="descriptionofhospitalwork" />
+                <ScalarProperty Name="haveworkforaustralianhospital" ColumnName="haveworkforaustralianhospital" />
+                <ScalarProperty Name="familyresidenceTodate2" ColumnName="familyresidenceTodate2" />
+                <ScalarProperty Name="familyresidenceFromdate2" ColumnName="familyresidenceFromdate2" />
+                <ScalarProperty Name="familyresidencecountry2" ColumnName="familyresidencecountry2" />
+                <ScalarProperty Name="familymembername2" ColumnName="familymembername2" />
+                <ScalarProperty Name="familyresidenceTodate1" ColumnName="familyresidenceTodate1" />
+                <ScalarProperty Name="familyresidenceFromdate1" ColumnName="familyresidenceFromdate1" />
+                <ScalarProperty Name="familyresidencecountry1" ColumnName="familyresidencecountry1" />
+                <ScalarProperty Name="familymembername1" ColumnName="familymembername1" />
+                <ScalarProperty Name="familyresidenceTodate" ColumnName="familyresidenceTodate" />
+                <ScalarProperty Name="familyresidenceFromdate" ColumnName="familyresidenceFromdate" />
+                <ScalarProperty Name="familyresidencecountry" ColumnName="familyresidencecountry" />
+                <ScalarProperty Name="familymembername" ColumnName="familymembername" />
+                <ScalarProperty Name="livedoutsidecountryc" ColumnName="livedoutsidecountryc" />
+                <ScalarProperty Name="partD" ColumnName="partD" />
                 <ScalarProperty Name="suficientfundpartC" ColumnName="suficientfundpartC" />
                 <ScalarProperty Name="isstudentjoiningsatisfiedconditionpartC" ColumnName="isstudentjoiningsatisfiedconditionpartC" />
                 <ScalarProperty Name="isstudentjoiningdeclarepartC" ColumnName="isstudentjoiningdeclarepartC" />
@@ -6827,6 +7324,7 @@
                 <ScalarProperty Name="studentnamepartC" ColumnName="studentnamepartC" />
                 <ScalarProperty Name="studymorethanthreemonthpartC" ColumnName="studymorethanthreemonthpartC" />
                 <ScalarProperty Name="ifFamilyunitcompletedformpartC" ColumnName="ifFamilyunitcompletedformpartC" />
+                <ScalarProperty Name="declarationSign42" ColumnName="declarationSign42" />
                 <ScalarProperty Name="declarationDate42" ColumnName="declarationDate42" />
                 <ScalarProperty Name="issufficientfund" ColumnName="issufficientfund" />
                 <ScalarProperty Name="applyinaustraliaassecschool" ColumnName="applyinaustraliaassecschool" />
@@ -6849,6 +7347,22 @@
                 <ScalarProperty Name="immediaterelativeDob" ColumnName="immediaterelativeDob" />
                 <ScalarProperty Name="immediaterelativerelationship" ColumnName="immediaterelativerelationship" />
                 <ScalarProperty Name="immediaterelativename" ColumnName="immediaterelativename" />
+                <ScalarProperty Name="titleofpositionofferef" ColumnName="titleofpositionofferef" />
+                <ScalarProperty Name="jobofferedcontactno" ColumnName="jobofferedcontactno" />
+                <ScalarProperty Name="jobofferedaddress" ColumnName="jobofferedaddress" />
+                <ScalarProperty Name="jobofferedname" ColumnName="jobofferedname" />
+                <ScalarProperty Name="kindofemployementseeking" ColumnName="kindofemployementseeking" />
+                <ScalarProperty Name="joboffered" ColumnName="joboffered" />
+                <ScalarProperty Name="currentlystudentinaustralia" ColumnName="currentlystudentinaustralia" />
+                <ScalarProperty Name="evidenceofemployement" ColumnName="evidenceofemployement" />
+                <ScalarProperty Name="employercontactno" ColumnName="employercontactno" />
+                <ScalarProperty Name="employeraddress" ColumnName="employeraddress" />
+                <ScalarProperty Name="employername" ColumnName="employername" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="otherdescription2" ColumnName="otherdescription2" />
+                <ScalarProperty Name="otherdescription1" ColumnName="otherdescription1" />
+                <ScalarProperty Name="ifnoThenOption" ColumnName="ifnoThenOption" />
+                <ScalarProperty Name="currentlyemployed" ColumnName="currentlyemployed" />
                 <ScalarProperty Name="leavingdocAttch1" ColumnName="leavingdocAttch1" />
                 <ScalarProperty Name="salarylevel1" ColumnName="salarylevel1" />
                 <ScalarProperty Name="employeroccupation1" ColumnName="employeroccupation1" />
@@ -6865,7 +7379,6 @@
                 <ScalarProperty Name="employerInfoL0" ColumnName="employerInfoL0" />
                 <ScalarProperty Name="employmenthistoryToDate" ColumnName="employmenthistoryToDate" />
                 <ScalarProperty Name="employmenthistoryFromDate" ColumnName="employmenthistoryFromDate" />
-                <ScalarProperty Name="C36037038" ColumnName="36037038" />
                 <ScalarProperty Name="studiedmorethan5yrinothercountry" ColumnName="studiedmorethan5yrinothercountry" />
                 <ScalarProperty Name="englishlangtestcetificateno" ColumnName="englishlangtestcetificateno" />
                 <ScalarProperty Name="englishlangtestDate" ColumnName="englishlangtestDate" />

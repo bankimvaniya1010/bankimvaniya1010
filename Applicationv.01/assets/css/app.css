@@ -29,3 +29,104 @@
 .helpicon .tipso_style{border:0;}
 .option {position: relative;padding-left: 25px;}
 .option input {position: absolute;left: 0;top: 4px;}
+
+
+.visaApp-head .container {
+    border-bottom: 1px solid #000;
+    padding-bottom: 15px;
+}
+
+.visahd-txt {
+    font-family: 'Roboto', sans-serif;
+}
+
+.contrl-lbl {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;position: relative;
+}
+
+.frm-lblttl {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    font-style: italic;
+    padding: 20px 0 10px;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.visa-formwrp {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.mart-stustwrp .form-check-inline {
+    width: 29%;
+    margin-bottom: 4px;
+}
+
+.step-txt {
+    font-size: 22px;
+    font-weight: 600;
+    font-style: italic;
+    font-family: 'Roboto', sans-serif;
+    margin: 15px 0;
+}
+
+.collpse-div {
+    margin-top: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-group label {
+    font-family: 'Roboto', sans-serif;
+    display: block;
+}
+
+.comm-txt {
+    margin-bottom: 5px;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+}
+
+.tel-wrp label {
+    font-size: 10px;
+    margin-bottom: 2px;
+}
+
+.fil-upload label {
+    width: 100%;
+    border: 1px solid #ced4da;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.partA-wrp {
+    position: relative;
+    padding-right: 220px;
+}
+
+.photograph-wrp {
+    position: absolute;
+    right: 0;
+    max-width: 150px;
+}
+
+.mdk-drawer-layout__content .card .row {
+    padding-left: 40px;
+}
+
+.visa-formwrp label {
+    position: relative;
+}
+
+.ques-lbl {
+    position: absolute;
+    left: -20px;
+}
+
+
+
+.mdk-drawer-layout__content .card{padding-right: 15px;} 

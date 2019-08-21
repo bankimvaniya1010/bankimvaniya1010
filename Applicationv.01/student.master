@@ -291,8 +291,8 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantvisa">
-                                                <a class="sidebar-menu-button" href="applicantvisa.aspx?formid=10">
-                                                    <span class="sidebar-menu-text">Visa</span>
+                                                <a class="sidebar-menu-button" href="australiavisainstruction.aspx">
+                                                    <span class="sidebar-menu-text">Visa Application</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantfunding">

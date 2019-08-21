@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e224318253d04e139cb71a2f9b7b377f" Name="Diagram1" ZoomLevel="34">
+      <Diagram DiagramId="e224318253d04e139cb71a2f9b7b377f" Name="Diagram1" ZoomLevel="10">
         <AssociationConnector Association="GTEModel.FK_campus_facilityMaster" />
         <EntityTypeShape EntityType="GTEModel.relationshipwithcontact" Width="1.5" PointX="25.375" PointY="21.75" />
         <EntityTypeShape EntityType="GTEModel.accommodationplan" Width="1.5" PointX="7.75" PointY="3.75" />
