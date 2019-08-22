@@ -463,7 +463,7 @@
 									</div>
 									<div class="form-group">
 										<label>Issuing authority/Place of issue as shown in passport</label>
-										<textarea class="form-control" rows="3" runat="server" id="txtfamilypassportplaceofissue1">></textarea>
+										<textarea class="form-control" rows="3" runat="server" id="txtfamilypassportplaceofissue1"></textarea>
 									</div>
 									<div class="form-group">
 										<label>Does this person intend to study in Australia for more than 3 months?</label>
@@ -692,7 +692,7 @@
 					<!-- ques 24 end -->
 					<!-- ques 25 start -->
 					<div>
-						<div class="comm-txt"><b class="ques-lbl">25)</b>Are any of your dependants who are under 18 years of age, and who are included in this application, the subject of a court order giving you:			<ul>
+						<div class="comm-txt"><b class="ques-lbl">25)</b> Are any of your dependants who are under 18 years of age, and who are included in this application, the subject of a court order giving you:			<ul>
 							<li>the sole legal right to determine where they will live; or</li>
 							<li>the right to remove them from their country of usual residence?</li>
 						</ul>				
@@ -718,7 +718,7 @@
 					<!-- ques 26 start -->
 					<div>
 						<div class="form-group" runat="server">
-							<label><b class="ques-lbl">26)</b>Have you or any other person included in this application previously applied for any type of Australian visa?</label>
+							<label><b class="ques-lbl">26)</b> Have you or any other person included in this application previously applied for any type of Australian visa?</label>
 							<div class="form-check-inline">
 							  <label class="form-check-label">
 							    <input type="radio" class="form-check-input" name="visa" runat="server" id="previouslyappliedvisaNo">No
@@ -1112,6 +1112,7 @@
      });
      function validateForm()
      {
+        var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
         var flag = false;
         if ($("#<%=txtnoOfPeople.ClientID%>").val() == "")
             alert("Please Enter People included in application");
@@ -1189,8 +1190,8 @@
             alert("Please select Do you Agree to the department communicating with you by fax ,e-mail or other electronic means? of field 21");
         else if ($("#<%=agreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=faxno.ClientID%>").val() == "")
             alert("Please enter Fax number of field 21");
-        else if ($("#<%=agreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=emailaddress.ClientID%>").val() == "")
-            alert("Please enter E-mail Address of field 21");
+        else if (($("#<%=agreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=emailaddress.ClientID%>").val() == "") || !(emailRegex.test($("#<%=emailaddress.ClientID%>").val())))
+            alert("Please enter valid E-mail Address of field 21");
         //22 validation
         else if ($("#<%=txtaboutfamilyname.ClientID%>").val() == "")
             alert("Please enter First name of field 22");

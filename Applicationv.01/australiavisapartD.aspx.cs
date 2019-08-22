@@ -965,7 +965,7 @@ public partial class australiavisapartD : System.Web.UI.Page
                 txtdeclarationdate2.Value = Convert.ToDateTime(visaInfo.declarationdate2).ToString("yyyy-MM-dd");
             txtdeclarationsignature3.Value = visaInfo.declarationsignature;
             if (visaInfo.declarationdate3 != null)
-                txtdeclarationdate.Value = Convert.ToDateTime(visaInfo.declarationdate3).ToString("yyyy-MM-dd");
+                txtdeclarationdate3.Value = Convert.ToDateTime(visaInfo.declarationdate3).ToString("yyyy-MM-dd");
         }
         catch (Exception ex) {
             objLog.WriteLog(ex.ToString());
