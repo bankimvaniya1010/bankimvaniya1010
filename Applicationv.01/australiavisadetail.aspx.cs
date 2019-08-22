@@ -40,7 +40,7 @@ public partial class australiavisadetail : System.Web.UI.Page
     protected void btnvisadetails_Click(object sender, EventArgs e)
     {
         try
-        {
+        {           
             IEnumerable<australiavisaFamilydetailmaster> lst = db.australiavisaFamilydetailmaster.Where(x => x.universityid == universityID && x.applicantid == userID).ToList();
             db.australiavisaFamilydetailmaster.RemoveRange(lst);
             db.SaveChanges();
@@ -48,7 +48,7 @@ public partial class australiavisadetail : System.Web.UI.Page
                               where vInfo.applicantid == userID && vInfo.universityid == universityID
                               select vInfo).FirstOrDefault();
             australiavisaFamilydetailmaster objFamilyvisadetail = new australiavisaFamilydetailmaster();
-
+            
             if (txtaboutfamilyname.Value != "")
             {
                 objFamilyvisadetail.familyInfoID = 1;
@@ -58,7 +58,16 @@ public partial class australiavisadetail : System.Web.UI.Page
                 objFamilyvisadetail.citizenship = txtcitizen.Value;
                 objFamilyvisadetail.dobfamilymember = Convert.ToDateTime(txtfamilymemberdob.Value);
                 if (familyhavepassportNo.Checked)
+                {
                     objFamilyvisadetail.isfamilymemberhavepassport = 0;
+                    objFamilyvisadetail.passportno = "";
+                    objFamilyvisadetail.countryofpassport = null;
+                    objFamilyvisadetail.passportdateofissue = null;
+                    objFamilyvisadetail.passportdateofexpiry = null;
+                    objFamilyvisadetail.passportplaceofissue = "";
+                    objFamilyvisadetail.studyinAustralia = null;
+                }
+                    
                 else if (familyhavepassportYes.Checked)
                 {
                     objFamilyvisadetail.isfamilymemberhavepassport = 1;
@@ -90,7 +99,16 @@ public partial class australiavisadetail : System.Web.UI.Page
                 if (txtfamilymemberdob1.Value != "")
                     objFamilyvisadetail.dobfamilymember = Convert.ToDateTime(txtfamilymemberdob1.Value);
                 if (familyhavepassportNo1.Checked)
+                {
                     objFamilyvisadetail.isfamilymemberhavepassport = 0;
+                    objFamilyvisadetail.isfamilymemberhavepassport = 0;
+                    objFamilyvisadetail.passportno = "";
+                    objFamilyvisadetail.countryofpassport = null;
+                    objFamilyvisadetail.passportdateofissue = null;
+                    objFamilyvisadetail.passportdateofexpiry = null;
+                    objFamilyvisadetail.passportplaceofissue = "";
+                    objFamilyvisadetail.studyinAustralia = null;
+                }
                 else if (familyhavepassportYes1.Checked)
                 {
                     objFamilyvisadetail.isfamilymemberhavepassport = 1;
@@ -123,11 +141,20 @@ public partial class australiavisadetail : System.Web.UI.Page
                 if (txtfamilymemberdob2.Value != "")
                     objFamilyvisadetail.dobfamilymember = Convert.ToDateTime(txtfamilymemberdob2.Value);
                 if (familyhavepassportNo2.Checked)
+                {
                     objFamilyvisadetail.isfamilymemberhavepassport = 0;
+                    objFamilyvisadetail.isfamilymemberhavepassport = 0;
+                    objFamilyvisadetail.passportno = "";
+                    objFamilyvisadetail.countryofpassport = null;
+                    objFamilyvisadetail.passportdateofissue = null;
+                    objFamilyvisadetail.passportdateofexpiry = null;
+                    objFamilyvisadetail.passportplaceofissue = "";
+                    objFamilyvisadetail.studyinAustralia = null;
+                }
                 else if (familyhavepassportYes2.Checked)
                 {
                     objFamilyvisadetail.isfamilymemberhavepassport = 1;
-                    objFamilyvisadetail.passportno = txtfamilypassportno1.Value;
+                    objFamilyvisadetail.passportno = txtfamilypassportno2.Value;
                     if (ddlfamilypassportcountry2.SelectedValue != "")
                         objFamilyvisadetail.countryofpassport = Convert.ToInt32(ddlfamilypassportcountry2.SelectedValue);
                     if (txtfamilypassportdoi2.Value != "")
@@ -145,7 +172,7 @@ public partial class australiavisadetail : System.Web.UI.Page
                 db.australiavisaFamilydetailmaster.Add(objFamilyvisadetail);
                 db.SaveChanges();
             }
-
+           
             var mode = "new";
             //vidaDetails
             var visaInfo = (from vInfo in db.australiavisadetailmaster
@@ -533,7 +560,7 @@ public partial class australiavisadetail : System.Web.UI.Page
                         Response.Redirect(webURL + "australiavisapartB.aspx", true);
                 }
                     
-            }
+        }
         }
         catch (Exception ex)
         {
@@ -543,105 +570,115 @@ public partial class australiavisadetail : System.Web.UI.Page
 
     protected void populateVisaDetails() {
         try {
-            var familyInfo = (from vInfo in db.australiavisaFamilydetailmaster
-                              where vInfo.applicantid == userID && vInfo.universityid == universityID
-                              select vInfo).FirstOrDefault();
-            if (familyInfo != null)
+            var list= (from vInfo in db.australiavisaFamilydetailmaster
+                       where vInfo.applicantid == userID && vInfo.universityid == universityID
+                       select vInfo).ToList();            
+            if (list != null)
             {
-                if (familyInfo.familyInfoID == 1)
-                {
-                    txtaboutfamilyname.Value = familyInfo.aboutfamilyname;
-                    txtanoutfamilyGivenname1.Value = familyInfo.aboutfamilygivenname;
-                    txtrelationship.Value = familyInfo.relationshiptoyou;
-                    txtcitizen.Value = familyInfo.citizenship;
-                    if (familyInfo.dobfamilymember != null)
-                        txtfamilymemberdob.Value = Convert.ToDateTime(familyInfo.dobfamilymember).ToString("yyyy-MM-dd");
-                    if (familyInfo.isfamilymemberhavepassport == 0)
-                        familyhavepassportNo.Checked = true;
-                    else if (familyInfo.isfamilymemberhavepassport == 1)
+                foreach (var item in list) {
+                    if (item.familyInfoID == 1)
                     {
-                        familyhavepassportYes.Checked = true;
-                        txtfamilypassportno.Value = familyInfo.passportno;
-                        if (familyInfo.countryofpassport != null)
+                        var familyInfo = (from vInfo in db.australiavisaFamilydetailmaster
+                                          where vInfo.applicantid == userID && vInfo.universityid == universityID&& vInfo.familyInfoID == 1
+                                          select vInfo).FirstOrDefault();
+                        txtaboutfamilyname.Value = familyInfo.aboutfamilyname;
+                        txtanoutfamilyGivenname1.Value = familyInfo.aboutfamilygivenname;
+                        txtrelationship.Value = familyInfo.relationshiptoyou;
+                        txtcitizen.Value = familyInfo.citizenship;
+                        if (familyInfo.dobfamilymember != null)
+                            txtfamilymemberdob.Value = Convert.ToDateTime(familyInfo.dobfamilymember).ToString("yyyy-MM-dd");
+                        if (familyInfo.isfamilymemberhavepassport == 0)
+                            familyhavepassportNo.Checked = true;
+                        else if (familyInfo.isfamilymemberhavepassport == 1)
                         {
-                            ddlfamilypassportcountry.ClearSelection();
-                            ddlfamilypassportcountry.Items.FindByValue(familyInfo.countryofpassport.ToString()).Selected = true;
+                            familyhavepassportYes.Checked = true;
+                            txtfamilypassportno.Value = familyInfo.passportno;
+                            if (familyInfo.countryofpassport != null)
+                            {
+                                ddlfamilypassportcountry.ClearSelection();
+                                ddlfamilypassportcountry.Items.FindByValue(familyInfo.countryofpassport.ToString()).Selected = true;
+                            }
+                            if (familyInfo.passportdateofissue != null)
+                                txtfamilypassportdoi.Value = Convert.ToDateTime(familyInfo.passportdateofissue).ToString("yyyy-MM-dd");
+                            if (familyInfo.passportdateofexpiry != null)
+                                txtfamilypassportdoe.Value = Convert.ToDateTime(familyInfo.passportdateofexpiry).ToString("yyyy-MM-dd");
+                            txtfamilypassportplaceofissue.Value = familyInfo.passportplaceofissue;
+                            if (familyInfo.studyinAustralia == 0)
+                                studyinaustraliaNo.Checked = true;
+                            else if (familyInfo.studyinAustralia == 1)
+                                studyinaustraliaYes.Checked = true;
+
                         }
-                        if (familyInfo.passportdateofissue != null)
-                            txtfamilypassportdoi.Value = Convert.ToDateTime(familyInfo.passportdateofissue).ToString("yyyy-MM-dd");
-                        if (familyInfo.passportdateofexpiry != null)
-                            txtfamilypassportdoe.Value = Convert.ToDateTime(familyInfo.passportdateofexpiry).ToString("yyyy-MM-dd");
-                        txtfamilypassportplaceofissue.Value = familyInfo.passportplaceofissue;
-                        if (familyInfo.studyinAustralia == 0)
-                            studyinaustraliaNo.Checked = true;
-                        else if (familyInfo.studyinAustralia == 1)
-                            studyinaustraliaYes.Checked = true;
-
                     }
-
-                }
-                if (familyInfo.familyInfoID == 2)
-                {
-                    txtaboutfamilyname1.Value = familyInfo.aboutfamilyname;
-                    txtanoutfamilyGivenname11.Value = familyInfo.aboutfamilygivenname;
-                    txtrelationship1.Value = familyInfo.relationshiptoyou;
-                    txtcitizen1.Value = familyInfo.citizenship;
-                    if (familyInfo.dobfamilymember != null)
-                        txtfamilymemberdob1.Value = Convert.ToDateTime(familyInfo.dobfamilymember).ToString("yyyy-MM-dd");
-                    if (familyInfo.isfamilymemberhavepassport == 0)
-                        familyhavepassportNo1.Checked = true;
-                    else if (familyInfo.isfamilymemberhavepassport == 1)
+                    else if (item.familyInfoID == 2)
                     {
-                        familyhavepassportYes1.Checked = true;
-                        txtfamilypassportno1.Value = familyInfo.passportno;
-                        if (familyInfo.countryofpassport != null)
+                        var familyInfo = (from vInfo in db.australiavisaFamilydetailmaster
+                                          where vInfo.applicantid == userID && vInfo.universityid == universityID && vInfo.familyInfoID == 2
+                                          select vInfo).FirstOrDefault();
+                        txtaboutfamilyname1.Value = familyInfo.aboutfamilyname;
+                        txtanoutfamilyGivenname11.Value = familyInfo.aboutfamilygivenname;
+                        txtrelationship1.Value = familyInfo.relationshiptoyou;
+                        txtcitizen1.Value = familyInfo.citizenship;
+                        if (familyInfo.dobfamilymember != null)
+                            txtfamilymemberdob1.Value = Convert.ToDateTime(familyInfo.dobfamilymember).ToString("yyyy-MM-dd");
+                        if (familyInfo.isfamilymemberhavepassport == 0)
+                            familyhavepassportNo1.Checked = true;
+                        else if (familyInfo.isfamilymemberhavepassport == 1)
                         {
-                            ddlfamilypassportcountry1.ClearSelection();
-                            ddlfamilypassportcountry1.Items.FindByValue(familyInfo.countryofpassport.ToString()).Selected = true;
+                            familyhavepassportYes1.Checked = true;
+                            txtfamilypassportno1.Value = familyInfo.passportno;
+                            if (familyInfo.countryofpassport != null)
+                            {
+                                ddlfamilypassportcountry1.ClearSelection();
+                                ddlfamilypassportcountry1.Items.FindByValue(familyInfo.countryofpassport.ToString()).Selected = true;
+                            }
+                            if (familyInfo.passportdateofissue != null)
+                                txtfamilypassportdoi1.Value = Convert.ToDateTime(familyInfo.passportdateofissue).ToString("yyyy-MM-dd");
+                            if (familyInfo.passportdateofexpiry != null)
+                                txtfamilypassportdoe1.Value = Convert.ToDateTime(familyInfo.passportdateofexpiry).ToString("yyyy-MM-dd");
+                            txtfamilypassportplaceofissue1.Value = familyInfo.passportplaceofissue;
+                            if (familyInfo.studyinAustralia == 0)
+                                studyinaustralia1No.Checked = true;
+                            else if (familyInfo.studyinAustralia == 1)
+                                studyinaustralia1Yes.Checked = true;
+
                         }
-                        if (familyInfo.passportdateofissue != null)
-                            txtfamilypassportdoi1.Value = Convert.ToDateTime(familyInfo.passportdateofissue).ToString("yyyy-MM-dd");
-                        if (familyInfo.passportdateofexpiry != null)
-                            txtfamilypassportdoe1.Value = Convert.ToDateTime(familyInfo.passportdateofexpiry).ToString("yyyy-MM-dd");
-                        txtfamilypassportplaceofissue1.Value = familyInfo.passportplaceofissue;
-                        if (familyInfo.studyinAustralia == 0)
-                            studyinaustralia1No.Checked = true;
-                        else if (familyInfo.studyinAustralia == 1)
-                            studyinaustralia1Yes.Checked = true;
-
                     }
-                }
-
-                if (familyInfo.familyInfoID == 3)
-                {
-                    txtaboutfamilyname2.Value = familyInfo.aboutfamilyname;
-                    txtanoutfamilyGivenname21.Value = familyInfo.aboutfamilygivenname;
-                    txtrelationship2.Value = familyInfo.relationshiptoyou;
-                    txtcitizen2.Value = familyInfo.citizenship;
-                    if (familyInfo.dobfamilymember != null)
-                        txtfamilymemberdob2.Value = Convert.ToDateTime(familyInfo.dobfamilymember).ToString("yyyy-MM-dd");
-                    if (familyInfo.isfamilymemberhavepassport == 0)
-                        familyhavepassportNo2.Checked = true;
-                    else if (familyInfo.isfamilymemberhavepassport == 1)
+                    else if (item.familyInfoID == 3)
                     {
-                        familyhavepassportYes2.Checked = true;
-                        txtfamilypassportno2.Value = familyInfo.passportno;
-                        if (familyInfo.countryofpassport != null)
+                        var familyInfo = (from vInfo in db.australiavisaFamilydetailmaster
+                                          where vInfo.applicantid == userID && vInfo.universityid == universityID && vInfo.familyInfoID == 3
+                                          select vInfo).FirstOrDefault();
+                        txtaboutfamilyname2.Value = familyInfo.aboutfamilyname;
+                        txtanoutfamilyGivenname21.Value = familyInfo.aboutfamilygivenname;
+                        txtrelationship2.Value = familyInfo.relationshiptoyou;
+                        txtcitizen2.Value = familyInfo.citizenship;
+                        if (familyInfo.dobfamilymember != null)
+                            txtfamilymemberdob2.Value = Convert.ToDateTime(familyInfo.dobfamilymember).ToString("yyyy-MM-dd");
+                        if (familyInfo.isfamilymemberhavepassport == 0)
+                            familyhavepassportNo2.Checked = true;
+                        else if (familyInfo.isfamilymemberhavepassport == 1)
                         {
-                            ddlfamilypassportcountry2.ClearSelection();
-                            ddlfamilypassportcountry2.Items.FindByValue(familyInfo.countryofpassport.ToString()).Selected = true;
+                            familyhavepassportYes2.Checked = true;
+                            txtfamilypassportno2.Value = familyInfo.passportno;
+                            if (familyInfo.countryofpassport != null)
+                            {
+                                ddlfamilypassportcountry2.ClearSelection();
+                                ddlfamilypassportcountry2.Items.FindByValue(familyInfo.countryofpassport.ToString()).Selected = true;
+                            }
+                            if (familyInfo.passportdateofissue != null)
+                                txtfamilypassportdoi2.Value = Convert.ToDateTime(familyInfo.passportdateofissue).ToString("yyyy-MM-dd");
+                            if (familyInfo.passportdateofexpiry != null)
+                                txtfamilypassportdoe2.Value = Convert.ToDateTime(familyInfo.passportdateofexpiry).ToString("yyyy-MM-dd");
+                            txtfamilypassportplaceofissue2.Value = familyInfo.passportplaceofissue;
+                            if (familyInfo.studyinAustralia == 0)
+                                studyinaustraliaNo2.Checked = true;
+                            else if (familyInfo.studyinAustralia == 1)
+                                studyinaustraliaYes2.Checked = true;
                         }
-                        if (familyInfo.passportdateofissue != null)
-                            txtfamilypassportdoi2.Value = Convert.ToDateTime(familyInfo.passportdateofissue).ToString("yyyy-MM-dd");
-                        if (familyInfo.passportdateofexpiry != null)
-                            txtfamilypassportdoe2.Value = Convert.ToDateTime(familyInfo.passportdateofexpiry).ToString("yyyy-MM-dd");
-                        txtfamilypassportplaceofissue2.Value = familyInfo.passportplaceofissue;
-                        if (familyInfo.studyinAustralia == 0)
-                            studyinaustraliaNo2.Checked = true;
-                        else if (familyInfo.studyinAustralia == 1)
-                            studyinaustraliaYes2.Checked = true;
                     }
-                }
+                }              
+                
             }
 
             var visaInfo = (from vInfo in db.australiavisadetailmaster
