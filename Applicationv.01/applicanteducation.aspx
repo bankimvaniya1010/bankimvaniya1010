@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="applicanteducation.aspx.cs" Inherits="applicanteducation" MasterPageFile="~/student.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="applicanteducation.aspx.cs" Inherits="applicanteducation" MasterPageFile="~/student.master" EnableEventValidation="false" %>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -37,7 +37,7 @@
                                     <div class="form-row">
                                         <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School Education</label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCountryHighSchool_SelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server" AutoPostBack="false">
                                             </asp:DropDownList>
                                             <span class="helpicon"><i id="ichighschoolCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
@@ -85,7 +85,9 @@
                                         <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
-                                            </asp:DropDownList><span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                                  <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
+                                            </asp:DropDownList>
+                                            <span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -280,7 +282,7 @@
                                         <div class="form-row">
                                             <label id="labelSecondaryCountry" runat="server" for="SecondaryCountry" class="col-md-3 col-form-label form-label">Country of Secondary Education</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlSecondaryCountry" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSecondaryCountry_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlSecondaryCountry" CssClass="form-control" AutoPostBack="false" runat="server">
                                                 </asp:DropDownList>
                                                 <span class="helpicon"><i id="icSecondaryCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
@@ -330,6 +332,7 @@
                                             <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryQualificationType" CssClass="form-control" runat="server">
+                                                     <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
                                                 </asp:DropDownList>
                                                 <span class="helpicon"><i id="icSecondaryQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
@@ -534,7 +537,7 @@
                                         <div class="form-row">
                                             <label id="labelhigherCountry" runat="server" for="higherCountry" class="col-md-3 col-form-label form-label">Country of Higher Education</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlHigherCountry" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlHigherCountry_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlHigherCountry" AutoPostBack="false" CssClass="form-control" runat="server">
                                                 </asp:DropDownList>
                                                 <span class="helpicon"><i id="ichigherCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
@@ -583,6 +586,7 @@
                                             <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherQualificationType" CssClass="form-control" runat="server">
+                                                     <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
                                                 </asp:DropDownList>
                                                 <span class="helpicon"><i id="ichigherQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
@@ -828,7 +832,7 @@
                                     <div class="form-row">
                                         <label id="labeldiplomaCountry" runat="server" for="diplomaCountry" class="col-md-3 col-form-label form-label">Country of Diploma or Certificate Programs</label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlDiplomaCountry" AutoPostBack="true" runat="server" CssClass="form-control" OnSelectedIndexChanged="ddlDiplomaCountry_SelectedIndexChanged">
+                                            <asp:DropDownList ID="ddlDiplomaCountry" AutoPostBack="false" runat="server" CssClass="form-control">
                                             </asp:DropDownList>
                                             <span class="helpicon"><i id="icdiplomaCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
@@ -877,6 +881,7 @@
                                         <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaQualificationType" CssClass="form-control" runat="server">
+                                                 <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
                                             </asp:DropDownList>
 
                                             <span class="helpicon"><i id="icdiplomaQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -1630,6 +1635,98 @@
             $('#personal_menu_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicanteducation').addClass('active');
+        });
+         $(document).ready(function () {
+            //countryofhighschooledu
+            $("#<%=ddlCountryHighSchool.ClientID%>").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "applicanteducation.aspx/GetQualificationDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { countryId: $("#<%=ddlCountryHighSchool.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlHighSchoolQualificationType.ClientID%>").length >= 1) {
+                                $("#<%=ddlHighSchoolQualificationType.ClientID%>").empty();
+                                $("#<%=ddlHighSchoolQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddlHighSchoolQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
+                            }
+                        }
+                    }
+                });
+             });
+             //country of secondary school edu  ddlSecondaryQualificationType
+             $("#<%=ddlSecondaryCountry.ClientID%>").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "applicanteducation.aspx/GetQualificationDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { countryId: $("#<%=ddlSecondaryCountry.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlSecondaryQualificationType.ClientID%>").length >= 1) {
+                                $("#<%=ddlSecondaryQualificationType.ClientID%>").empty();
+                                $("#<%=ddlSecondaryQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddlSecondaryQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
+                            }
+                        }
+                    }
+                });
+             });
+
+             //country of higher edu   
+             $("#<%=ddlHigherCountry.ClientID%>").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "applicanteducation.aspx/GetQualificationDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { countryId: $("#<%=ddlHigherCountry.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlHigherQualificationType.ClientID%>").length >= 1) {
+                                $("#<%=ddlHigherQualificationType.ClientID%>").empty();
+                                $("#<%=ddlHigherQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddlHigherQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
+                            }
+                        }
+                    }
+                });
+             });
+             //country of diploma
+             $("#<%=ddlDiplomaCountry.ClientID%>").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "applicanteducation.aspx/GetQualificationDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { countryId: $("#<%=ddlDiplomaCountry.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlDiplomaQualificationType.ClientID%>").length >= 1) {
+                                $("#<%=ddlDiplomaQualificationType.ClientID%>").empty();
+                                $("#<%=ddlDiplomaQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddlDiplomaQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
+                            }
+                        }
+                    }
+                });
+             });
+
         });
     </script>
 

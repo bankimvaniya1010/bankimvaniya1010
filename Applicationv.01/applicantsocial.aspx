@@ -30,7 +30,7 @@
                                         <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">Link to your LinkedIn profile</label>
                                         <div class="col-md-6">
                                             <input id="txtLinkedin" runat="server" type="text" class="form-control" placeholder="Link to your LinkedIn profile ">
-                                            <asp:CheckBox ID="chkLinkeIn" runat="server" Text="Does Not Have LinkedIn Account" />
+                                            <asp:CheckBox ID="chkLinkeIn" runat="server" Text="Does Not Have LinkedIn Account" class="form-label"/>
                                             <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -42,7 +42,7 @@
                                         <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">Link to your Facebook profile </label>
                                         <div class="col-md-6">
                                             <input id="txtFacebook" runat="server" type="text" class="form-control" placeholder="Link to your Facebook profile ">
-                                            <asp:CheckBox ID="ChkFacebook" runat="server" Text="Does Not Have Facebook Account" />
+                                            <asp:CheckBox ID="ChkFacebook" runat="server" Text="Does Not Have Facebook Account" class="form-label"/>
                                             <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -54,7 +54,7 @@
                                         <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">Link to your twitter handle </label>
                                         <div class="col-md-6">
                                             <input id="txtTwitter" runat="server" type="text" class="form-control" placeholder="Link to your twitter handle ">
-                                            <asp:CheckBox ID="chkTwitter" runat="server" Text="Does Not Have Twitter Account" />
+                                            <asp:CheckBox ID="chkTwitter" runat="server" Text="Does Not Have Twitter Account" class="form-label" />
                                             <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
