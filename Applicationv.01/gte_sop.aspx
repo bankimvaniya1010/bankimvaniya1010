@@ -17,7 +17,7 @@
         <div class="row" style="margin-left: 50px;">
             <div class="col-md-8">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara1" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px"></asp:TextBox>
+                    <asp:TextBox ID="txtPara1" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
                 </div>
             </div>
         </div>
@@ -25,16 +25,7 @@
         <div class="row" style="margin-left: 50px;">
             <div class="col-md-8">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara2" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px"></asp:TextBox>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row" style="margin-left: 50px;">
-            <div class="col-md-8">
-                <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara3" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px"></asp:TextBox>                    
+                    <asp:TextBox ID="txtPara2" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
                 </div>
             </div>
             
@@ -43,7 +34,7 @@
         <div class="row" style="margin-left: 50px;">
             <div class="col-md-8">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara4" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px"></asp:TextBox>
+                    <asp:TextBox ID="txtPara3" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>                    
                 </div>
             </div>
             
@@ -52,7 +43,16 @@
         <div class="row" style="margin-left: 50px;">
             <div class="col-md-8">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara5" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px"></asp:TextBox>
+                    <asp:TextBox ID="txtPara4" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row" style="margin-left: 50px;">
+            <div class="col-md-8">
+                <div class="card" runat="server">
+                    <asp:TextBox ID="txtPara5" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
                 </div>
             </div>
             

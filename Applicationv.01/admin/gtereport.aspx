@@ -449,7 +449,7 @@
                                         <%=_genuineStudentAssesment %>
                                     </div>
                                     <div>
-                                        <div class="text-left" style="border-top: 1px solid #000;display:none" runat="server" id="paragraphComment1PDF"><%=_paragraphComment1 %></div>
+                                        <div class="text-left" style="border-top: 1px solid #000;" runat="server" id="paragraphComment1PDF"><%=_paragraphComment1 %></div>
                                         <textarea runat="server" id="para1Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
@@ -459,7 +459,7 @@
                                         <%=_situationStudentAssesment %>
                                     </div>
                                     <div>
-                                        <div class="text-left" style="border-top: 1px solid #000;display:none" runat="server" id="paragraphComment2PDF"><%=_paragraphComment2 %></div>
+                                        <div class="text-left" style="border-top: 1px solid #000;" runat="server" id="paragraphComment2PDF"><%=_paragraphComment2 %></div>
                                         <textarea runat="server" id="para2Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
@@ -498,7 +498,7 @@
                                         <%=_potentialStudentAssesment %>
                                     </div>
                                     <div>
-                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;display:none" id="paragraphComment3PDF"><%=_paragraphComment3 %></div>
+                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;" id="paragraphComment3PDF"><%=_paragraphComment3 %></div>
                                         <textarea runat="server" id="para3Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
@@ -508,7 +508,7 @@
                                         <%=_paragraph4 %>
                                     </div>
                                     <div>
-                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;display:none" id="paragraphComment4PDF"><%=_paragraphComment4 %></div>
+                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;" id="paragraphComment4PDF"><%=_paragraphComment4 %></div>
                                         <textarea runat="server" id="para4Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
@@ -518,7 +518,7 @@
                                         <%=_paragraph5 %>
                                     </div>
                                     <div>
-                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;display:none" id="paragraphComment5PDF"><%=_paragraphComment5 %></div>
+                                        <div class="text-left" runat="server" style="border-top: 1px solid #000;" id="paragraphComment5PDF"><%=_paragraphComment5 %></div>
                                         <textarea runat="server" id="para5Comments" placeholder="Comments"></textarea>
                                     </div>
                                 </div>
@@ -530,14 +530,14 @@
                             <td class="width50">
                                 <div class="reviw-wrp">
                                     <div class="hd">STUDENT VIDEO REVIEW </div>
-                                    <div class="revw-sectn" runat="server" style="display:none" id="studentVideoReviewPDF"> <%=_studentVideoReview %> </div>
+                                    <div class="revw-sectn" runat="server" id="studentVideoReviewPDF"> <%=_studentVideoReview %> </div>
                                     <textarea class="revw-sectn" runat="server" id="studentVideoReview"></textarea>
                                 </div>
                             </td>
                             <td class="width50">
                                 <div class="reviw-wrp">
                                     <div class="hd">STUDENT DOCUMENTS VALIDATIONS</div>
-                                    <div class="revw-sectn" runat="server" style="display:none" id="studentDocumentsValidationsPDF"> <%=_studentDocumentsValidations %> </div>
+                                    <div class="revw-sectn" runat="server" id="studentDocumentsValidationsPDF"> <%=_studentDocumentsValidations %> </div>
                                     <textarea class="revw-sectn" runat="server" id="studentDocumentsValidations"></textarea>
                                 </div>
                             </td>
