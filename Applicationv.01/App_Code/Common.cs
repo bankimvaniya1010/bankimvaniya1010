@@ -1335,7 +1335,7 @@ public class Common
         {
             var applicantDetails = db.gte_applicantdetails.Where(x => x.applicantid.Value == applicantId && x.universityid == universityID).FirstOrDefault();
 
-            if (applicantDetails.applicantid.HasValue)
+            if (applicantDetails != null)
                 return true;
             else
                 return false;

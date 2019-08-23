@@ -202,6 +202,12 @@ public partial class admin_applicantlist : System.Web.UI.Page
             di.Create();
      
         PDF.SaveAs(filePath);
+
+        Response.ContentType = "application/pdf";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=GTE_Report.pdf");
+        Response.TransmitFile(filePath);
+        Response.End();
+
         //System.Diagnostics.Process.Start(filePath);
         PdfDocument Pdf = PdfDocument.FromFile(filePath, "Hcom@301");
         //Edit file metadata

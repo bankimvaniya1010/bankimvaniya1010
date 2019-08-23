@@ -38,7 +38,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                 foreach (var item in applicant_response)
                     clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
 
-                if (clarificationansweredQuestion.Count == clarification_questionsList.Count)
+                if (clarificationansweredQuestion.Count >= clarification_questionsList.Count)
                     displayLabel("All questions have been answered in this part");
 
                 if (clarification_questionsList.Count == 0)
