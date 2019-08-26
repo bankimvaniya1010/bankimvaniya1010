@@ -22,7 +22,7 @@ public partial class gte_sop : System.Web.UI.Page
         var objUser = (students)Session["LoginInfo"];
         UserID = objUser.studentid;
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-        applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+
         if (!IsPostBack)
         {
             var sop_details = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
@@ -56,11 +56,62 @@ public partial class gte_sop : System.Web.UI.Page
             }
             else
             {
+                var isFullService = (bool)Session["FullService"];
+                if (isFullService)
+                {
+                    applicantdetails = new gte_applicantdetails();
+                    var details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                    var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                    if (details != null && educationDetails != null)
+                    {
+                        applicantdetails.nationality = details.nationality.Value;
+                        applicantdetails.residencecountry = details.issameaspostal.Value == 1 ? details.postalcountry : details.residentialcountry;
+                        applicantdetails.countryofbirth = details.countryofbirth;
+                        applicantdetails.dateofbirth = details.dateofbirth;
+                        applicantdetails.universityid = universityID;
+                        applicantdetails.workexperience = !String.IsNullOrEmpty(details.totalyearofexperience) ? Convert.ToInt32(details.totalyearofexperience) : 0;
+
+                        if (educationDetails.ishighereducation == 1) // Applicant has entered most recent higher education
+                        {
+                            var higherEducationDetail = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                            applicantdetails.highestqualificationcountry = Convert.ToInt32(higherEducationDetail.countryofhighereducation);
+                            applicantdetails.highestqualificationname = higherEducationDetail.coursename;
+                            applicantdetails.highestqualificationdate = higherEducationDetail.endate;
+                        }
+                        else if (educationDetails.ishighereducation.Value > 1 && educationDetails.isdiplomadone.Value == 1) // Diploma is highest completed qualification
+                        {
+                            applicantdetails.highestqualificationcountry = educationDetails.diplomacountry;
+                            applicantdetails.highestqualificationname = "Diploma";
+                            applicantdetails.highestqualificationdate = educationDetails.diplomaendate;
+                        }
+                        else if (educationDetails.ishighereducation > 1 && educationDetails.issecondarydone.Value == 1) // Secondary is highest completed qualification
+                        {
+                            applicantdetails.highestqualificationcountry = educationDetails.secondarycountry;
+                            applicantdetails.highestqualificationname = "Secondary Education";
+                            applicantdetails.highestqualificationdate = educationDetails.secondaryendate;
+                        }
+                        else if ((educationDetails.issecondarydone.Value > 1 || educationDetails.isdiplomadone.Value > 1) && educationDetails.ishighschooldone.Value == 1) // High School is highest completed qualification
+                        {
+                            applicantdetails.highestqualificationcountry = educationDetails.highschoolcountry;
+                            applicantdetails.highestqualificationname = "High School Education";
+                            applicantdetails.highestqualificationdate = educationDetails.highschoolendate;
+                        }
+
+                        // Set to empty values to avoid errors, below details are missing from applicant details information.
+                        applicantdetails.cityofeducationInstitution = 1;
+                        applicantdetails.levelofcourse = String.Empty;
+                        applicantdetails.coursename = String.Empty;
+                        applicantdetails.fieldofstudyapplied = 1;
+                    }
+                }
+                else
+                    applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+
+                if (applicantdetails == null)
+                    Response.Redirect("default.aspx", true);
+
                 try
                 {
-                    if (applicantdetails == null)
-                        Response.Redirect("default.aspx", true);
-
                     btnSave.Style.Add("display", "none");
                     btnsubmit.Style.Remove("display");
                     btnEdit.Style.Remove("display");

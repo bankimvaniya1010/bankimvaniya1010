@@ -227,7 +227,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="universityname">
+                            <div class="list-group-item" id="universityname" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-universityname">
                                     <div class="form-row">
                                         <label id="lbluniversityname" runat="server" for="universityname" class="col-md-3 col-form-label form-label">Name of University Apply for  </label>
@@ -244,8 +244,10 @@
                                     <div class="form-row">
                                         <label id="lbleduinstitutioncity" runat="server" for="eduinstitutioncity" class="col-md-3 col-form-label form-label">Name of City of Educational Institution  </label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddleduinstitutioncity" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
+                                            <select id="ddleduinstitutioncity" name="ddleduinstitutioncity" runat="server" class="form-control">
+                                                <option value="" selected="selected" disabled="disabled">Please Select City</option>
+                                            </select>
+                                            <asp:HiddenField ID="hidCityField" runat="server" />
                                             <span class="helpicon"><i id="iceduinstitutioncity" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -337,7 +339,7 @@
                 alert("Please Select My Annual Tuition Fee and living costs is expected to be ");
             else if ($("#<%=ddluniversityname.ClientID%>").val() == "0")
                 alert("Please Select Name of University Apply for ");
-            else if ($("#<%=ddleduinstitutioncity.ClientID%>").val() == "0")
+            else if ($("#<%=ddleduinstitutioncity.ClientID%>").val() == null || isNaN(parseInt($('#ContentPlaceHolder1_hidCityField').val())))
                 alert("Please Select Name of City of Educational Institution");         
             else
                 flag = true;
@@ -361,7 +363,35 @@
                     $("#<%=fieldcontainer.ClientID%>").hide();                   
                 }
             });
+
+            $("#<%=ddluniversityname.ClientID%>").change(function () {
+                var universityID = $("#<%=ddluniversityname.ClientID%>").val()
+                if (universityID > 0) {
+                    $.ajax({
+                        type: "GET",
+                        url: "gte_studentdetails.aspx/GetUniversityCities",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: { universityId: universityID },
+                        success: function (response) {
+                            if (response.d) {
+                                var result = JSON.parse(response.d);
+                                if ($("#<%=ddleduinstitutioncity.ClientID%>").length >= 1) {
+                                    $("#<%=ddleduinstitutioncity.ClientID%>").empty();
+                                    $("#<%=ddleduinstitutioncity.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val("0").html("Please Select City"));
+                                }
+                                for (var i = 0; i < result.length; i++)
+                                    $("#<%=ddleduinstitutioncity.ClientID%>").append($("<option></option>").val(result[i].city_id).html(result[i].cityName));
+                            }
+                        }
+                    });
+                }
+            });
             
+            $("#<%=ddleduinstitutioncity.ClientID%>").change(function () {
+                $("#<%=hidCityField.ClientID%>").val($("#<%=ddleduinstitutioncity.ClientID%>").val());
+            });
+
             if (maritalStatus == "Married") 
                 $("#<%=fieldcontainer.ClientID%>").show();
             else
