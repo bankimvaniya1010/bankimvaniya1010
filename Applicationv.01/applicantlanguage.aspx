@@ -20,7 +20,7 @@
             <div class="row m-0">
                 <div class="col-lg container-fluid page__container">
 
-                    <div class="card" style="width: 650px;">
+                    <div class="card faq-lftcard" style="width: 650px;">
                         <div class="list-group list-group-fit">
 
                             <div class="list-group-item" id="homelanguage" runat="server" style="display: none">
@@ -40,9 +40,9 @@
                                     <div class="form-row">
                                         <label id="labelEnglishBackground" runat="server" for="EnglishBackground" class="col-md-3 col-form-label form-label">Have you studied an English Language Intensive Course for students from non-English speaking backgrounds</label>
                                         <div class="col-md-6">
-                                            <asp:RadioButton ID="rblEnglishBackgroundYes" runat="server" GroupName="EnglishBackground" Text="Yes" />
-                                            <asp:RadioButton ID="rblEnglishBackgroundNot" runat="server" GroupName="EnglishBackground" Text="No  - I am currently still studying for my English Language Course" />
-                                            <asp:RadioButton ID="rblEnglishBackgroundNo" runat="server" GroupName="EnglishBackground" Text="No - I have not studied an English Language Intensive Course for people from non-English speaking backgrounds" />
+                                            <asp:RadioButton ID="rblEnglishBackgroundYes" runat="server" GroupName="EnglishBackground" Text="Yes" /> <br />
+                                           <div class="clearfix big-rdtxtwrp"> <asp:RadioButton ID="rblEnglishBackgroundNot" runat="server" GroupName="EnglishBackground"  Text="No  - I am currently still studying for my English Language Course" /></div>
+                                            <div class="clearfix big-rdtxtwrp"><asp:RadioButton ID="rblEnglishBackgroundNo" runat="server" GroupName="EnglishBackground" Text="No - I have not studied an English Language Intensive Course for people from non-English speaking backgrounds" /></div>
                                             <span class="helpicon"><i id="icEnglishBackground" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -542,6 +542,25 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+
                 </div>
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>

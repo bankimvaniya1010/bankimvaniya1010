@@ -97,6 +97,24 @@
                         <label id="lblInstruct6" runat="server" style="font-size:small;">6. Else you would required to take the test again post going through the tutorial again.</label><br />
                         <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>

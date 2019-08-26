@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Validation;
@@ -6,6 +7,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -16,7 +19,7 @@ public partial class applicanteducation : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-
+    protected List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
@@ -40,6 +43,7 @@ public partial class applicanteducation : System.Web.UI.Page
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlCountryHighSchool);
@@ -90,6 +94,24 @@ public partial class applicanteducation : System.Web.UI.Page
             SetControlsUniversitywise();
         }
     }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetQualificationDropdown(int countryId)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = (from qm in db1.qualificationmaster
+                    join qcm in db1.qualificationcountriesmapping on qm.qualificationid equals qcm.qualificationid
+                    where qcm.countryid == countryId
+                    select new
+                    {
+                        qualificationid = qm.qualificationid,
+                        qualificationname = qm.qualificationname,
+                    }).ToList();       
+        return JsonConvert.SerializeObject(temp);
+    }
+
+
     private String setInnerHtml(dynamic obj)
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
@@ -638,9 +660,9 @@ public partial class applicanteducation : System.Web.UI.Page
                     rblHighNot.Checked = true;
                 if (EducationInfo.highschoolcountry != null)
                 {
-                    ddlCountryHighSchool.ClearSelection();
-                    ddlCountryHighSchool.Items.FindByValue(Convert.ToString(EducationInfo.highschoolcountry)).Selected = true;
                     bindQualification(ddlHighSchoolQualificationType, Convert.ToInt32(EducationInfo.highschoolcountry));
+                    ddlCountryHighSchool.Items.FindByValue(Convert.ToString(EducationInfo.highschoolcountry)).Selected = true;
+                    
                 }
 
                 if (EducationInfo.highschoolstartdate != null)
@@ -718,9 +740,9 @@ public partial class applicanteducation : System.Web.UI.Page
                     rblSecondaryNot.Checked = true;
                 if (EducationInfo.secondarycountry != null)
                 {
-                    ddlSecondaryCountry.ClearSelection();
-                    ddlSecondaryCountry.Items.FindByValue(Convert.ToString(EducationInfo.secondarycountry)).Selected = true;
                     bindQualification(ddlSecondaryQualificationType, Convert.ToInt32(EducationInfo.secondarycountry));
+                    ddlSecondaryCountry.Items.FindByValue(Convert.ToString(EducationInfo.secondarycountry)).Selected = true;
+                    
                 }
                 if (EducationInfo.secondaryresultdate != null)
                     txtExpectedSecondaryResult.Value = Convert.ToDateTime(EducationInfo.secondaryresultdate).ToString("yyyy-MM-dd");
@@ -794,9 +816,9 @@ public partial class applicanteducation : System.Web.UI.Page
                     rbldiplomaNot.Checked = true;
                 if (EducationInfo.diplomacountry != null)
                 {
-                    ddlDiplomaCountry.ClearSelection();
-                    ddlDiplomaCountry.Items.FindByValue(Convert.ToString(EducationInfo.diplomacountry)).Selected = true;
                     bindQualification(ddlDiplomaQualificationType, Convert.ToInt32(EducationInfo.diplomacountry));
+                    ddlDiplomaCountry.Items.FindByValue(Convert.ToString(EducationInfo.diplomacountry)).Selected = true;
+                   
                 }
                 if (EducationInfo.diplomastartdate != null)
                 {
@@ -861,7 +883,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     rblhigherYes.Checked = true;
                 else if (EducationInfo.ishighereducation == 2)
                     rblhigherNot.Checked = true;
-                else
+                else if(EducationInfo.ishighereducation == 3)
                     rblhigherNo.Checked = true;
                 if (EducationInfo.lastsavetime != null)
                     lblSaveTime.Text = " Record was last saved at " + EducationInfo.lastsavetime.ToString();
@@ -874,9 +896,9 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 if (HigherEducation.countryofhighereducation != null)
                 {
-                    ddlHigherCountry.ClearSelection();
-                    ddlHigherCountry.Items.FindByValue(HigherEducation.countryofhighereducation).Selected = true;
                     bindQualification(ddlHigherQualificationType, Convert.ToInt32(HigherEducation.countryofhighereducation));
+                    ddlHigherCountry.Items.FindByValue(HigherEducation.countryofhighereducation).Selected = true;
+                    
                 }
                 if (HigherEducation.coursename != null)
                 {
@@ -1136,9 +1158,9 @@ public partial class applicanteducation : System.Web.UI.Page
             /// 
             if (rblhigherYes.Checked)
                 objEdu.ishighereducation = 1;
-            else if (rblhigherNo.Checked)
+            else if (rblhigherNot.Checked)
                 objEdu.ishighereducation = 2;
-            else
+            else if(rblhigherNo.Checked)
                 objEdu.ishighereducation = 3;
             objEdu.universityid = universityID;
 
@@ -1210,7 +1232,7 @@ public partial class applicanteducation : System.Web.UI.Page
 
             }
             db.SaveChanges();
-
+            EducationDetails();
             if (rblHighYes.Checked)
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.highschoolverificationkey +"&type=highschool";
@@ -1374,24 +1396,6 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
-    }
-
-    protected void ddlCountryHighSchool_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-        bindQualification(ddlHighSchoolQualificationType, Convert.ToInt32(ddlCountryHighSchool.SelectedItem.Value));
-    }
-    protected void ddlSecondaryCountry_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        bindQualification(ddlSecondaryQualificationType, Convert.ToInt32(ddlCountryHighSchool.SelectedItem.Value));
-    }
-    protected void ddlHigherCountry_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        bindQualification(ddlHigherQualificationType, Convert.ToInt32(ddlCountryHighSchool.SelectedItem.Value));
-    }
-    protected void ddlDiplomaCountry_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        bindQualification(ddlDiplomaQualificationType, Convert.ToInt32(ddlCountryHighSchool.SelectedItem.Value));
     }
 
     private void bind10grade()

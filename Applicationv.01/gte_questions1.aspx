@@ -13,10 +13,10 @@
     </div>
     <div class="page ">
 
-        <div class="row" style="margin-left:50px;">
-            <div class="col-md-8">
+        <div class="row" style="margin-left:0;margin-right:0;">
+            <div class="col-md-12">
               
-                <div class="card" id="questions" runat="server">
+                <div class="card faq-lftcard" id="questions" runat="server">
                     <div style="font-size:medium;text-align:center">
                         Question <%=ViewState["AnsweredQuestionCount"] %> / <%=ViewState["QuestionsCount"] %>
                     </div>
@@ -73,6 +73,24 @@
 
                     </div>
                 </div>
+                <div class="card faq-qwrp" id="Div1" runat="server">
+                            <div class="card-body">
+                            <%  if (allfaqQuestion.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allfaqQuestion.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> * <%=allfaqQuestion[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
                 <div class="row" id="completedDiv" runat="server" style="display: none;">
                     <div class="col-md-8">
                         <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>

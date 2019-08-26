@@ -19,7 +19,7 @@
         <div class="row" style="margin-left:50px;">
             <div class="col-md-8">
               
-                <div class="card" id="clarity" runat="server">
+                <div class="card faq-lftcard" id="clarity" runat="server">
                     <asp:DataList ID="clarificationList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
@@ -56,6 +56,24 @@
                         <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
+                <div class="card faq-qwrp" id="questions" runat="server">
+                    <div class="card-body">
+                    <%  if (allQuestions.Count > 0)
+                        { %>
+                    <div id="question" runat="server">
+                            <h5>FAQ's</h5>
+                            <div class="">
+                            <%for (int q = 0; q < allQuestions.Count; q++)
+                                {%>  <div>                                                             
+                                        <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                    </div>                                                  
+                            <%} %>
+                        </div>
+                    </div>      
+                        <%} %>  
+                                     
+                    </div>
+                </div>
              </div>
             
         </div>
@@ -68,6 +86,7 @@
     </div>
 
     <script>
+
         function validateForm() {
             var questionCount = <%=gte_clarificationquestions.QuestionsCount%>;
             for (var i = 0; i < questionCount; i++) {

@@ -14,7 +14,7 @@ public partial class gte_sop : System.Web.UI.Page
     Common objCommon = new Common();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     gte_applicantdetails applicantdetails;
-
+    protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)
@@ -25,6 +25,8 @@ public partial class gte_sop : System.Web.UI.Page
 
         if (!IsPostBack)
         {
+            allQuestions = objCommon.FaqQuestionList();
+
             var sop_details = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
 
             if (sop_details != null)

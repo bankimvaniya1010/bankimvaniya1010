@@ -12,7 +12,8 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-
+    Common objCom = new Common();
+    protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)
@@ -22,6 +23,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
       
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             var gteQuestionPart2Count = db.gte_question_master_part2.Count();
             var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
 

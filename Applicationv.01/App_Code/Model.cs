@@ -1177,6 +1177,13 @@ public partial class familymember
     public string description { get; set; }
 }
 
+public partial class faq
+{
+    public int id { get; set; }
+    public string question { get; set; }
+    public string answer { get; set; }
+}
+
 public partial class fieldvalidationmaster
 {
     public int fieldvalidationid { get; set; }
@@ -1729,6 +1736,8 @@ public partial class students
     public System.DateTime creationdate { get; set; }
     public string verificationkey { get; set; }
     public bool isverified { get; set; }
+    public int otp { get; set; }
+    public Nullable<bool> ispasswordset { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
