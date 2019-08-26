@@ -27,7 +27,8 @@ public partial class gte_questions2 : System.Web.UI.Page
             allfaqQuestion = objCommon.FaqQuestionList();
             var answeredQuestion = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
             var allQuestions = db.gte_question_master_part2.ToList();
-
+            ViewState["QuestionsCount"] = allQuestions.Count;
+            ViewState["AnsweredQuestionCount"] = answeredQuestion.Count;
             if (answeredQuestion.Count == allQuestions.Count)
             {
                 completedDiv.Visible = true;
@@ -59,17 +60,19 @@ public partial class gte_questions2 : System.Web.UI.Page
                         else
                             ViewState["homeCountry"] = string.Empty;
                     }
-                    else
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
                 }
                 else
                 {
                     applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
                     if (applicantdetails != null)
                         ViewState["homeCountry"] = objCommon.GetCountryDiscription(applicantdetails.residencecountry);
-                    else
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
-                }                
+                }
+
+                if (applicantdetails == null)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
+                    Response.Redirect("default.aspx", true);
+                }
 
                 foreach (var response in answeredQuestion)
                     allQuestions.RemoveAll(x => x.id == response.question_id);
@@ -118,6 +121,13 @@ public partial class gte_questions2 : System.Web.UI.Page
             questionList.DataSource = allQuestions.Take(QuestionsCount);
             questionList.DataBind();
 
+            int answeredQuestionCount = Convert.ToInt32(ViewState["AnsweredQuestionCount"]) + 1;
+            if (QuestionsCount % 5 == 0)
+                ViewState["Display"] = answeredQuestionCount.ToString() + " - " + (answeredQuestionCount + 4).ToString();
+            else
+                ViewState["Display"] = answeredQuestionCount.ToString() + " - " + (answeredQuestionCount + QuestionsCount - 1).ToString();
+            
+            ViewState["AnsweredQuestionCount"] = Convert.ToInt32(ViewState["AnsweredQuestionCount"]) + QuestionsCount;
             Session["allQuestions"] = allQuestions;
         }
         catch (Exception ex)

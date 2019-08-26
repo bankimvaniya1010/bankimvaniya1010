@@ -9,7 +9,6 @@ public partial class gte_questions1 : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
     int UserID = 0;
-    public static int QuestionsCount = 0;
     Logger objLog = new Logger();
     Common objCommon = new Common();
     protected List<faq> allfaqQuestion = new List<faq>();
@@ -27,6 +26,8 @@ public partial class gte_questions1 : System.Web.UI.Page
             allfaqQuestion = objCommon.FaqQuestionList();
             var answeredQuestion = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID).ToList();
             var allQuestions = db.gte_questions_master.ToList();
+            ViewState["QuestionsCount"] = allQuestions.Count;
+            ViewState["AnsweredQuestionCount"] = answeredQuestion.Count;
             Session["allQuestions"] = allQuestions;
 
             if (answeredQuestion.Count == allQuestions.Count)
@@ -79,8 +80,10 @@ public partial class gte_questions1 : System.Web.UI.Page
                     SetQuestionList(answeredQuestion);
                 }
                 else
+                {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
-
+                    Response.Redirect("default.aspx", true);
+                }
             }
         }
     }
@@ -298,6 +301,7 @@ public partial class gte_questions1 : System.Web.UI.Page
             questionList.DataSource = new[] { sourceObj };
             questionList.DataBind();
 
+            ViewState["AnsweredQuestionCount"] = Convert.ToInt32(ViewState["AnsweredQuestionCount"]) + 1;
             Session["allQuestions"] = allQuestions;
         }
         catch (Exception ex)

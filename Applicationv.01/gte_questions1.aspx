@@ -17,6 +17,9 @@
             <div class="col-md-12">
               
                 <div class="card faq-lftcard" id="questions" runat="server">
+                    <div style="font-size:medium;text-align:center">
+                        Question <%=ViewState["AnsweredQuestionCount"] %> / <%=ViewState["QuestionsCount"] %>
+                    </div>
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
