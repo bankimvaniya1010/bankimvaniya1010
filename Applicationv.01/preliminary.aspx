@@ -106,7 +106,7 @@
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div>                                                             
-                                                <label onclick="openlink('<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>
@@ -126,13 +126,6 @@
         </div>
     </div>
     <script>
-        function openlink(url) {
-            $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="">Ans:' +url+ '</div></div></div></div></div>'  );
-            $('#video-modal').modal('show');
-             $('#video-modal').on('hidden.bs.modal', function () {
-                 $('#video-modal').remove();
-            });
-        }
         
         function openLink(url) {
             $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/' + url + '" allowfullscreen></iframe></div></div></div></div></div>');

@@ -143,3 +143,5 @@
 
 #ContentPlaceHolder1_highschool .form-control{height: auto;}
 #ContentPlaceHolder1_highschool .form-control label{display: inline;}
+
+.faq-modal-header{position: inherit;right: 10px;top: 10px;}

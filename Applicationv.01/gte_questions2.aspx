@@ -65,7 +65,7 @@
                                     <div class="">
                                     <%for (int q = 0; q < allfaqQuestion.Count; q++)
                                         {%>  <div>                                                             
-                                                <label onclick="openLink('<%=allfaqQuestion[q].answer%>')"> * <%=allfaqQuestion[q].question%> </label>                                                             
+                                                <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> * <%=allfaqQuestion[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>
