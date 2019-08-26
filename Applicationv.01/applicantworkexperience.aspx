@@ -131,7 +131,7 @@
                                                 <label id="labelemployerwebsite" runat="server" for="employerwebsite" class="col-md-3 col-form-label form-label">Website of the Organization</label>
                                                 <div class="col-md-6">
                                                     <input id="txtemployerwebsite" runat="server" type="text" class="form-control" placeholder="Website" />
-                                                    <asp:CheckBox ID="chkWebsite" runat="server" Text="Does Not Have Website" />
+                                                    <asp:CheckBox ID="chkWebsite" runat="server" Text="Does Not Have Website" class="form-label"/>
                                                     <span class="helpicon"><i id="icemployerwebsite" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>

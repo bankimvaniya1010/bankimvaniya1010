@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="personaldetails.aspx.cs" Inherits="personaldetails" MasterPageFile="~/student.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="personaldetails.aspx.cs" Inherits="personaldetails" MasterPageFile="~/student.master" EnableEventValidation="false" %>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -42,7 +42,7 @@
                                             
                                         </div>
                                     </div>
-                                    <asp:CheckBox ID="passportFirstName" runat="server" />Passport first name same as above
+                                    <asp:CheckBox ID="passportFirstName" runat="server" /><span class="form-label">Passport first name same as above</span>
                                 </div>
                             </div>
                             <div class="list-group-item" id="lastname" runat="server" style="display: none">
@@ -57,7 +57,7 @@
                                           
                                     </div>
                                     </div>
-                                    <asp:CheckBox ID="passportLastName" runat="server" />Passport last name same as above
+                                    <asp:CheckBox ID="passportLastName" runat="server" /><span class="form-label">Passport last name same as above</span>
                                 </div>
                             </div>
                             <div class="list-group-item" id="preferedname" runat="server" style="display: none">
@@ -83,7 +83,7 @@
                                                 value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
-                                    <asp:CheckBox ID="passportMiddleName" runat="server" />Passport middle name same as above
+                                    <asp:CheckBox ID="passportMiddleName" runat="server" /><span class="form-label">Passport middle name same as above</span>
                                 </div>
                             </div>
                             <div class="list-group-item" id="dob" runat="server" style="display: none">
@@ -91,10 +91,10 @@
                                     <div class="form-row">
                                         <label id="labeldob" runat="server" for="dob" class="col-md-3 col-form-label form-label">Date of birth *</label>
                                         <div class="col-md-6"> 
-                                            <asp:DropDownList ID="ddlYear" CssClass="form-control" OnSelectedIndexChanged="ddlYear_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                            <asp:DropDownList ID="ddlYear" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
                                             </asp:DropDownList>
-                                            <asp:DropDownList ID="ddlMonth" CssClass="form-control" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" AutoPostBack="true" runat="server">
+                                            <asp:DropDownList ID="ddlMonth" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
                                             </asp:DropDownList>                                            
                                             <asp:DropDownList ID="ddlDay" CssClass="form-control" runat="server"></asp:DropDownList> <span class="helpicon"><i id="icDoB" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -220,13 +220,14 @@
                                         <div class="form-row">
                                             <label id="lblSpouseDOB" runat="server" for="spousedob" class="col-md-3 col-form-label form-label">Spouse Date of birth</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlSpouseDOBYear" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSpouseDOBYear_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlSpouseDOBYear" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
                                                 </asp:DropDownList>
-                                                <asp:DropDownList ID="ddlSpouseDOBMonth" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSpouseDOBMonth_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlSpouseDOBMonth" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
                                                 </asp:DropDownList>
                                                 <asp:DropDownList ID="ddlSpouseDOBDate" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                 <asp:HiddenField ID="hidSpouseDOBDateField" runat="server" />
                                             </div>
                                         </div>
                                     </div>
@@ -234,13 +235,14 @@
                                         <div class="form-row">
                                             <label id="lblMarriageDate" runat="server" for="marriagedate" class="col-md-3 col-form-label form-label">Date of Marriage</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlMarriageYear" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlMarriageYear_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlMarriageYear" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
                                                 </asp:DropDownList>
-                                                <asp:DropDownList ID="ddlMarriageMonth" CssClass="form-control" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlMarriageMonth_SelectedIndexChanged">
+                                                <asp:DropDownList ID="ddlMarriageMonth" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
                                                 </asp:DropDownList>
                                                 <asp:DropDownList ID="ddlMarriageDate" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                  <asp:HiddenField ID="hidMarriageDateField" runat="server" />
                                             </div>
                                         </div>
                                     </div>
@@ -346,7 +348,48 @@
     </div>
       <script type="text/javascript">
 
-        function getAge(DOB) {
+          function getDaysInMonth(month, year)
+          {  
+                 return new Date(year, month, 0).getDate();
+          };
+          //DOB
+         $("#<%=ddlMonth.ClientID%>").change(function() {         
+            $("#<%=ddlDay.ClientID%>").empty();
+            var daysInSelectedMonth = getDaysInMonth($("#<%=ddlMonth.ClientID%>").val(), $("#<%=ddlYear.ClientID%>").val());             
+            $("#<%=ddlDay.ClientID%>").append($("<option></option>").attr("value", "0").text("Select Day"));
+            for (var i = 1; i <= daysInSelectedMonth; i++) {    
+                $("#<%=ddlDay.ClientID%>").append($("<option></option>").attr("value", i).text(i));
+            }
+            
+          });
+          //spouse DOB
+          $("#<%=ddlSpouseDOBMonth.ClientID%>").change(function() {         
+              $("#<%=ddlSpouseDOBDate.ClientID%>").empty();
+              var daysInSelectedMonth = getDaysInMonth($("#<%=ddlSpouseDOBMonth.ClientID%>").val(), $("#<%=ddlSpouseDOBYear.ClientID%>").val());             
+              $("#<%=ddlSpouseDOBDate.ClientID%>").append($("<option></option>").attr("value", "0").text("Select Day"));
+                for (var i = 1; i <= daysInSelectedMonth; i++) {
+                    $("#<%=ddlSpouseDOBDate.ClientID%>").append($("<option></option>").attr("value", i).text(i));
+                }            
+          });
+           $("#<%=ddlSpouseDOBDate.ClientID%>").change(function () {
+                $("#<%=hidSpouseDOBDateField.ClientID%>").val($("#<%=ddlSpouseDOBDate.ClientID%>").val());
+            });
+
+          // Marriage DOB
+          $("#<%=ddlMarriageMonth.ClientID%>").change(function() {         
+                $("#<%=ddlMarriageDate.ClientID%>").empty();
+                var daysInSelectedMonth = getDaysInMonth($("#<%=ddlMarriageMonth.ClientID%>").val(), $("#<%=ddlMarriageYear.ClientID%>").val());             
+                $("#<%=ddlMarriageDate.ClientID%>").append($("<option></option>").attr("value", "0").text("Select Day"));
+                for (var i = 1; i <= daysInSelectedMonth; i++) {
+                    $("#<%=ddlMarriageDate.ClientID%>").append($("<option></option>").attr("value", i).text(i));
+                }
+            
+          });
+           $("#<%=ddlMarriageDate.ClientID%>").change(function () {
+                $("#<%=hidMarriageDateField.ClientID%>").val($("#<%=ddlMarriageDate.ClientID%>").val());
+            });
+
+            function getAge(DOB) {
             var today = new Date();
             var birthDate = new Date(DOB);
             var age = today.getFullYear() - birthDate.getFullYear();
@@ -380,9 +423,9 @@
                 alert("Please enter spouse name");
             else if ($("#<%=ddlSpouseNationality.ClientID%>").val() === "0")
                 alert("Please enter nationality of Spouse");
-            else if (($("#<%=ddlSpouseDOBDate.ClientID%>").val() == "0") || ($("#<%=ddlSpouseDOBMonth.ClientID%>").val() == "0") || ($("#<%=ddlSpouseDOBYear.ClientID%>").val() == "0"))
+            else if (($("#<%=hidSpouseDOBDateField.ClientID%>").val() == "") || ($("#<%=ddlSpouseDOBMonth.ClientID%>").val() == "0") || ($("#<%=ddlSpouseDOBYear.ClientID%>").val() == "0"))
                 alert("Please valid date of birth of spouse");
-            else if (($("#<%=ddlMarriageDate.ClientID%>").val() == "0") || ($("#<%=ddlMarriageMonth.ClientID%>").val() == "0") || ($("#<%=ddlMarriageYear.ClientID%>").val() == "0"))
+            else if (($("#<%=hidMarriageDateField.ClientID%>").val() == "") || ($("#<%=ddlMarriageMonth.ClientID%>").val() == "0") || ($("#<%=ddlMarriageYear.ClientID%>").val() == "0"))
                 alert("Please valid date of marriage");
             else if (personDOB >= marriageDate)
                 alert("Please enter marriage date after date of birth");

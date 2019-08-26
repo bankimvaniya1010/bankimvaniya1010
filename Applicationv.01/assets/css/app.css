@@ -82,7 +82,7 @@
 
 .form-group label {
     font-family: 'Roboto', sans-serif;
-    display: block;
+    
 }
 
 .comm-txt {
@@ -127,6 +127,13 @@
     left: -20px;
 }
 
+.list-group-item input[type="radio"], .list-group-item input[type="checkbox"]{margin-right: 3px;}
+.list-group-item input[type="radio"] + input[type="radio"],
+.list-group-item input[type="checkbox"] + input[type="checkbox"]{margin-left: 10px;}
+
+.list-group-item input[type="checkbox"]{color: rgba(56,59,61,.5);}
 
 
 .mdk-drawer-layout__content .card{padding-right: 15px;} 
+.big-rdtxtwrp input[type="radio"]{float: left;margin-top: 4px;}
+.big-rdtxtwrp label{float: left;width: 90%;}

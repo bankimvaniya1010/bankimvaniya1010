@@ -250,7 +250,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                                            </div>                                                  
                 <div id="page-nav" class="col-lg-auto page-nav">
 
                     <div>
@@ -408,7 +408,7 @@
         function validateForm() {
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
             var flag = false;
-            if (!$("#<%=email.ClientID%>").is(':hidden') && $("#<%=txtEmail.ClientID%>").val() == "" || !(emailRegex.test($("#<%=txtEmail.ClientID%>").val())))
+            if (!$("#<%=email.ClientID%>").is(':hidden') && ($("#<%=txtEmail.ClientID%>").val() == "" || !(emailRegex.test($("#<%=txtEmail.ClientID%>").val()))))
                 alert("Please enter Valid e-mail address");
             else if (!$("#<%=mobile.ClientID%>").is(':hidden') && $("#<%=txtMobile.ClientID%>").val() == "")
                 alert("Please enter mobile no");

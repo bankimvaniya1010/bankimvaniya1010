@@ -53,14 +53,14 @@ public partial class personaldetails : System.Web.UI.Page
             BindTitle();
             FillMonth(ddlMonth);
             FillYears(ddlYear);
-            FillDays(ddlDay, ddlYear, ddlMonth);
+           // FillDays(ddlDay, ddlYear, ddlMonth);
             BindDisability();
             FillMonth(ddlMarriageMonth);
             FillYears(ddlMarriageYear);
-            FillDays(ddlMarriageDate, ddlMarriageYear, ddlMarriageMonth);
+           // FillDays(ddlMarriageDate, ddlMarriageYear, ddlMarriageMonth);
             FillMonth(ddlSpouseDOBMonth);
             FillYears(ddlSpouseDOBYear);
-            FillDays(ddlSpouseDOBDate, ddlSpouseDOBYear, ddlSpouseDOBMonth);
+           // FillDays(ddlSpouseDOBDate, ddlSpouseDOBYear, ddlSpouseDOBMonth);
             PopulatePersonalInfo();
             SetToolTips();
             SetControlsUniversitywise();
@@ -134,14 +134,7 @@ public partial class personaldetails : System.Web.UI.Page
         }
         // ddlDay.Items.FindByValue(System.DateTime.Now.Day.ToString()).Selected = true;// Set current date as selected
     }
-    protected void ddlYear_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        FillDays(ddlDay, ddlYear, ddlMonth);
-    }
-    protected void ddlMonth_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        FillDays(ddlDay, ddlYear, ddlMonth);
-    }
+
 
     private void BindMaritalstatus()
     {
@@ -236,12 +229,11 @@ public partial class personaldetails : System.Web.UI.Page
                     DateTime dob = Convert.ToDateTime(profileInfo.dateofbirth);
                     FillMonth(ddlMonth);
                     FillYears(ddlYear);
-
-                    ddlMonth.ClearSelection();
-                    ddlDay.ClearSelection();
+                    
+                    ddlMonth.ClearSelection();                    
                     ddlYear.ClearSelection();
                     ddlMonth.Items.FindByValue(dob.Month.ToString()).Selected = true;
-                    ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;
+                    ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;                    
                     FillDays(ddlDay, ddlYear, ddlMonth);
                     ddlDay.Items.FindByValue(dob.Day.ToString()).Selected = true;
 
@@ -264,12 +256,12 @@ public partial class personaldetails : System.Web.UI.Page
                     }
                     else
                     {
-                        if(profileInfo.hasdualcitizenship.HasValue)
+                        if (profileInfo.hasdualcitizenship.HasValue)
                             rblNationalityNo.Checked = false;
                     }
                     ddlNationality.ClearSelection();
                     ddlNationality.Items.FindByValue(profileInfo.nationality.ToString() + appendText).Selected = true;
-                    
+
                     if (ddlNationality.SelectedItem.Text.ToUpper() == GlobalVariables.GetChinaCountryName)
                     {
                         if (profileInfo.haschinesecodenumber.HasValue && profileInfo.haschinesecodenumber.Value)
@@ -318,7 +310,7 @@ public partial class personaldetails : System.Web.UI.Page
                 }
                 if (profileInfo.isdisable == 1)
                     rblDisabilityYes.Checked = true;
-                else if(profileInfo.isdisable == 2)
+                else if (profileInfo.isdisable == 2)
                     rblDisabilityNo.Checked = true;
                 if (profileInfo.disabilitydescription != null)
                 {
@@ -357,8 +349,7 @@ public partial class personaldetails : System.Web.UI.Page
                         FillMonth(ddlSpouseDOBMonth);
                         FillYears(ddlSpouseDOBYear);
 
-                        ddlSpouseDOBMonth.ClearSelection();
-                        ddlSpouseDOBDate.ClearSelection();
+                        ddlSpouseDOBMonth.ClearSelection();                        
                         ddlSpouseDOBYear.ClearSelection();
                         ddlSpouseDOBMonth.Items.FindByValue(spousedob.Month.ToString()).Selected = true;
                         ddlSpouseDOBYear.Items.FindByValue(spousedob.Year.ToString()).Selected = true;
@@ -371,8 +362,7 @@ public partial class personaldetails : System.Web.UI.Page
                         FillMonth(ddlMarriageMonth);
                         FillYears(ddlMarriageYear);
 
-                        ddlMarriageMonth.ClearSelection();
-                        ddlMarriageDate.ClearSelection();
+                        ddlMarriageMonth.ClearSelection();                       
                         ddlMarriageYear.ClearSelection();
                         ddlMarriageMonth.Items.FindByValue(marriagedate.Month.ToString()).Selected = true;
                         ddlMarriageYear.Items.FindByValue(marriagedate.Year.ToString()).Selected = true;
@@ -458,8 +448,8 @@ public partial class personaldetails : System.Web.UI.Page
             objapplicantDetail.ispersonaldetailspresent = true;
             if (ddlMarital.SelectedItem.Text == "Married")
             {
-                string spouseDateofBirth = ddlSpouseDOBYear.SelectedValue + "-" + ddlSpouseDOBMonth.SelectedValue + "-" + ddlSpouseDOBDate.SelectedValue;
-                string marriageDate = ddlMarriageYear.SelectedValue + "-" + ddlMarriageMonth.SelectedValue + "-" + ddlMarriageDate.SelectedValue;
+                string spouseDateofBirth = ddlSpouseDOBYear.SelectedValue + "-" + ddlSpouseDOBMonth.SelectedValue + "-" + hidSpouseDOBDateField.Value;
+                string marriageDate = ddlMarriageYear.SelectedValue + "-" + ddlMarriageMonth.SelectedValue + "-" + hidMarriageDateField.Value;
 
                 objapplicantDetail.ismarried = true;
                 objapplicantDetail.spousedob = Convert.ToDateTime(spouseDateofBirth);
@@ -467,13 +457,14 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.spousename = txtSpouseName.Value.Trim();
                 objapplicantDetail.spousenationality = Convert.ToInt32(ddlSpouseNationality.SelectedValue);
             }
-            
+
             objapplicantDetail.ispassportfirstname = passportFirstName.Checked;
             objapplicantDetail.ispassportlastname = passportLastName.Checked;
             objapplicantDetail.ispassportmiddlename = passportMiddleName.Checked;
             if (mode == "new")
                 db.applicantdetails.Add(objapplicantDetail);
             db.SaveChanges();
+            PopulatePersonalInfo();
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
 
@@ -482,7 +473,8 @@ public partial class personaldetails : System.Web.UI.Page
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
 
             lblMessage.Text = "Your Personal Details have been saved";
-//            lblMessage.Visible = true;
+            //            lblMessage.Visible = true;
+            
         }
         catch (Exception ex)
         {
@@ -718,24 +710,6 @@ public partial class personaldetails : System.Web.UI.Page
         sb.Append("Thank You Backend Team The Application Center,<br/>");
         objCom.SendMail(txtAgentname.Text, sb.ToString(), "Agent Registration Link");
     }
-
-    protected void ddlSpouseDOBYear_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        FillDays(ddlSpouseDOBDate, ddlSpouseDOBYear, ddlSpouseDOBMonth);
-    }
-
-    protected void ddlSpouseDOBMonth_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        FillDays(ddlSpouseDOBDate, ddlSpouseDOBYear, ddlSpouseDOBMonth);
-    }
-
-    protected void ddlMarriageYear_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        FillDays(ddlMarriageDate, ddlMarriageYear, ddlMarriageMonth);
-    }
-
-    protected void ddlMarriageMonth_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        FillDays(ddlMarriageDate, ddlMarriageYear, ddlMarriageMonth);
-    }
 }
+
+  

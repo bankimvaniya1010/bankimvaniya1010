@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -46,8 +48,111 @@ public partial class applicantcourse : System.Web.UI.Page
             BindUniversities(ddlCollege5);
             BindCourseType(ddlcoursetype5);
             PopulateAppllicationInfo();
+
+            //BindCity(ddlCity1);
+            //BindCampus(ddlCampus1);
+            //BindCountry(ddlCountry1);
+            //BindMajor(ddlMajor1);
+            //BindMode(ddlmode1);
+            //BindCourses(ddlCourse1);
+
         }
     }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetCityDropdown()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from cm in db1.citymaster
+                    join um in db1.university_master on cm.city_id equals um.cityid
+                    where um.universityid == universityID1
+                    select new
+                    {
+                        description = cm.description,
+                        city_id = cm.city_id
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetCampusDropdown()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from uc in db1.universitycampus
+                    where uc.universityid == universityID1
+                    select new
+                    {
+                        campusname = uc.campusname,
+                        campusid = uc.campusid
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetCountryDropdown()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from cm in db1.countriesmaster
+                    join um in db1.university_master on cm.id equals um.countryid
+                    where um.universityid == universityID1
+                    select new
+                    {
+                        country_name = cm.country_name,
+                        id = cm.id
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetMajorDropdown()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from md in db1.majordiscipline_master
+                    where md.universityid == universityID1
+                    select new
+                    {
+                        description = md.description,
+                        id = md.id
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetModeDropdown()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from sd in db1.studymodemaster
+                    where sd.universityid == universityID1
+                    select new
+                    {
+                        description = sd.description,
+                        id = sd.id
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetCourseDropdown()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from cm in db1.coursemaster
+                    join md in db1.majordiscipline_master on cm.majordisciplineId equals md.id
+                    where md.universityid == universityID1
+                    select new
+                    {
+                        coursename = cm.coursename,
+                        courseid = cm.courseid
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }    
+
 
     private void BindCourseType(DropDownList ddl)
     {
@@ -265,14 +370,14 @@ public partial class applicantcourse : System.Web.UI.Page
         }
     }
 
-    protected void ddlCollege1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCity(ddlCity1);
-        BindCampus(ddlCampus1);
-        BindCountry(ddlCountry1);
-        BindMajor(ddlMajor1);
-        BindMode(ddlmode1);
-    }
+    //protected void ddlCollege1_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    BindCity(ddlCity1);
+    //    BindCampus(ddlCampus1);
+    //    BindCountry(ddlCountry1);
+    //    BindMajor(ddlMajor1);
+    //    BindMode(ddlmode1);
+    //}
     protected void ddlCollege2_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindCity(ddlCity2);
@@ -311,10 +416,10 @@ public partial class applicantcourse : System.Web.UI.Page
     }
 
 
-    protected void ddlMajor1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCourses(ddlCourse1);
-    }
+    //protected void ddlMajor1_SelectedIndexChanged(object sender, EventArgs e)
+    //{
+    //    BindCourses(ddlCourse1);
+    //}
     protected void ddlMajor2_SelectedIndexChanged(object sender, EventArgs e)
     {
         BindCourses(ddlCourse2);
@@ -357,31 +462,26 @@ public partial class applicantcourse : System.Web.UI.Page
                     if (courseInfo.campus != null)
                     {
                         BindCampus(ddlCampus1);
-                        ddlCampus1.ClearSelection();
                         ddlCampus1.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
                     }
                     if (courseInfo.city != null)
                     {
                         BindCity(ddlCity1);
-                        ddlCity1.ClearSelection();
                         ddlCity1.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
                     }
                     if (courseInfo.country != null)
                     {
                         BindCountry(ddlCountry1);
-                        ddlCountry1.ClearSelection();
                         ddlCountry1.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
                     }
                     if (courseInfo.modeofstudy != null)
                     {
                         BindMode(ddlmode1);
-                        ddlmode1.ClearSelection();
                         ddlmode1.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
                     }
                     if (courseInfo.majorofdiscipline != null)
                     {
                         BindMajor(ddlMajor1);
-                        ddlMajor1.ClearSelection();
                         ddlMajor1.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
                     }
                     if (courseInfo.coursetype != null)
@@ -393,7 +493,6 @@ public partial class applicantcourse : System.Web.UI.Page
                     if (courseInfo.course != null)
                     {
                         BindCourses(ddlCourse1);
-                        ddlCourse1.ClearSelection();
                         ddlCourse1.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
                     }
                     txtCommencementdate1.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
@@ -679,16 +778,16 @@ public partial class applicantcourse : System.Web.UI.Page
     {
         try
         {                  
-                SaveApplicantPreference(1, ddlCollege1.SelectedValue, Convert.ToInt32(ddlCampus1.SelectedValue) , Convert.ToInt32(ddlCity1.SelectedValue), Convert.ToInt32(ddlCountry1.SelectedValue), Convert.ToInt32(ddlmode1.SelectedValue), Convert.ToInt32(ddlMajor1.SelectedValue), Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(ddlCourse1.SelectedValue), Convert.ToDateTime(txtCommencementdate1.Value));
+            SaveApplicantPreference(1, ddlCollege1.SelectedValue, Convert.ToInt32(hidCampusField1.Value) , Convert.ToInt32(hidCityField1.Value), Convert.ToInt32(hidCountryField1.Value), Convert.ToInt32(hidModeField1.Value), Convert.ToInt32(HidMajorField1.Value), Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(hidCourseField1.Value), Convert.ToDateTime(txtCommencementdate1.Value));
             if (Convert.ToInt16(ddlCollege2.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(2, ddlCollege2.SelectedValue, Convert.ToInt32(ddlCampus2.SelectedValue), Convert.ToInt32(ddlCity2.SelectedValue), Convert.ToInt32(ddlCountry2.SelectedValue), Convert.ToInt32(ddlMode2.SelectedValue), Convert.ToInt32(ddlMajor2.SelectedValue), Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(ddlCourse2.SelectedValue), Convert.ToDateTime(txtCommencementdate2.Value));
+                SaveApplicantPreference(2, ddlCollege2.SelectedValue, Convert.ToInt32(hidCampusField2.Value), Convert.ToInt32(hidCityField2.Value), Convert.ToInt32(hidCountryField2.Value), Convert.ToInt32(hidModeField2.Value), Convert.ToInt32(hidMajorField2.Value), Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(hidCourseField2.Value), Convert.ToDateTime(txtCommencementdate2.Value));
             if (Convert.ToInt16(ddlCollege3.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(3, ddlCollege3.SelectedValue, Convert.ToInt32(ddlCampus3.SelectedValue), Convert.ToInt32(ddlCity3.SelectedValue), Convert.ToInt32(ddlCountry3.SelectedValue), Convert.ToInt32(ddlMode3.SelectedValue), Convert.ToInt32(ddlMajor3.SelectedValue), Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(ddlCourse3.SelectedValue), Convert.ToDateTime(txtCommencementdate3.Value));
+                SaveApplicantPreference(3, ddlCollege3.SelectedValue, Convert.ToInt32(hidCampusField3.Value), Convert.ToInt32(hidCityField3.Value), Convert.ToInt32(hidCountryField3.Value), Convert.ToInt32(hidModeField3.Value), Convert.ToInt32(hidMajorField3.Value), Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(hidCourseField3.Value), Convert.ToDateTime(txtCommencementdate3.Value));
             if (Convert.ToInt16(ddlCollege4.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(4, ddlCollege4.SelectedValue, Convert.ToInt32(ddlCampus4.SelectedValue), Convert.ToInt32(ddlCity4.SelectedValue), Convert.ToInt32(ddlCountry4.SelectedValue), Convert.ToInt32(ddlMode4.SelectedValue), Convert.ToInt32(ddlMajor4.SelectedValue), Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(ddlCourse4.SelectedValue), Convert.ToDateTime(txtCommencementdate4.Value));
+                SaveApplicantPreference(4, ddlCollege4.SelectedValue, Convert.ToInt32(hidCampusField4.Value), Convert.ToInt32(hidCityField4.Value), Convert.ToInt32(hidCountryField4.Value), Convert.ToInt32(hidModeField4.Value), Convert.ToInt32(hidMajorField4.Value), Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(hidCourseField4.Value), Convert.ToDateTime(txtCommencementdate4.Value));
             if (Convert.ToInt16(ddlCollege5.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(5, ddlCollege5.SelectedValue, Convert.ToInt32(ddlCampus5.SelectedValue), Convert.ToInt32(ddlCity5.SelectedValue), Convert.ToInt32(ddlCountry5.SelectedValue), Convert.ToInt32(ddlMode5.SelectedValue), Convert.ToInt32(ddlMajor5.SelectedValue), Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(ddlCourse5.SelectedValue), Convert.ToDateTime(txtCommencementdate5.Value));
-           
+                SaveApplicantPreference(5, ddlCollege5.SelectedValue, Convert.ToInt32(hidCampusField5.Value), Convert.ToInt32(hidCityField5.Value), Convert.ToInt32(hidCountryField5.Value), Convert.ToInt32(hidModeField5.Value), Convert.ToInt32(hidMajorField5.Value), Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(hidCourseField5.Value), Convert.ToDateTime(txtCommencementdate5.Value));
+            PopulateAppllicationInfo();
         }
         catch (Exception ex)
         {
