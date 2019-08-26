@@ -16,7 +16,7 @@
             <div class="row m-0">
                 <div class="col-lg container-fluid page__container">
 
-                    <div class="card" style="width: 650px;">
+                    <div class="card faq-lftcard" style="width: 650px;">
 
                         <div class="list-group list-group-fit">
                             <div class="list-group-item" id="Name" runat="server" style="display: none;">
@@ -66,10 +66,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                               <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+
                     <div class="list-group-item" id="highergrade">
                         <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 
-                            <div class="form-row">
+                            <div class="">
                                 <div class="col-md-9">
                                     <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                         <asp:GridView ID="grdRefernce" DataKeyNames="id" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowDeleting="grdtrefernce_RowDeleting" OnDataBound="grdRefernce_DataBound" OnRowCommand="grdRefernce_RowCommand" OnRowEditing="grdRefernce_RowEditing">
@@ -105,6 +124,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>
@@ -118,7 +138,8 @@
         <div class="footer">
         </div>
     </div>
-    <script>
+    <script>       
+       
         function ConfirmOnDelete(item) {
             if (confirm("Are you sure to delete: " + item + "?") == true)
                 return true;

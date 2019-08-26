@@ -9,7 +9,8 @@ public partial class gte_tutorial : System.Web.UI.Page
 {
     public static int videoCount = 0;
     public static int otherDocCount = 0;
-
+    Common objCom = new Common();
+    protected List<faq> allQuestions = new List<faq>();
     protected List<gte_tutorialmaster> allDocuments = new List<gte_tutorialmaster>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
@@ -27,6 +28,7 @@ public partial class gte_tutorial : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             allDocuments = db.gte_tutorialmaster.Where(x => x.status == 1).ToList();
 
             videoCount = allDocuments.Where(c => c.type == "video").ToList().Count;

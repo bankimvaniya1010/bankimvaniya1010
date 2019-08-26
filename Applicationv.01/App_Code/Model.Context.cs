@@ -144,6 +144,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_report_admin_comment> gte_report_admin_comment { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
+    public virtual DbSet<faq> faq { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

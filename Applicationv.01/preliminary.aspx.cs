@@ -11,7 +11,8 @@ public partial class preliminary : System.Web.UI.Page
 {
     public static int videoCount = 0;
     public static int otherDocCount = 0;
-
+    Common objCom = new Common();
+    protected List<faq> allQuestions = new List<faq>();
     protected List<tutorialmaster> allDocuments = new List<tutorialmaster>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
@@ -29,6 +30,7 @@ public partial class preliminary : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             allDocuments = db.tutorialmaster.Where(x => x.status == 1 && x.universityid == UniversityID).ToList();
 
             videoCount = allDocuments.Where(c => c.type == "video").ToList().Count;

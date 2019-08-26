@@ -16,7 +16,7 @@
         <div class="container page__container p-0">
             <div class="row m-0">
                 <div class="col-lg container-fluid page__container">
-                    <div class="card" style="width: 650px;">
+                    <div class="card faq-lftcard" style="width: 650px;">
 
                        <div class="list-group list-group-fit">
                              <!-- Part C Start -->
@@ -196,6 +196,24 @@
         </div>
 
     </div>
+        <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
                 </div>
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>
@@ -208,7 +226,6 @@
 
 
     <script>
-
         function validateform() {
             var flag = false;
              //PARTC

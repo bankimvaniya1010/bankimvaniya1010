@@ -14,6 +14,7 @@ public partial class australiavisapartD : System.Web.UI.Page
     int userID = 0, ApplicantID = 0, universityID;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();    
     australiavisadetailmaster objaustraliavisadetail = new australiavisadetailmaster();
+    protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -23,6 +24,7 @@ public partial class australiavisapartD : System.Web.UI.Page
         userID = objUser.studentid;
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             objCom.BindCountries(ddlfamilyresidencecountry);
             objCom.BindCountries(ddlfamilyresidencecountry1);
             objCom.BindCountries(ddlfamilyresidencecountry2);

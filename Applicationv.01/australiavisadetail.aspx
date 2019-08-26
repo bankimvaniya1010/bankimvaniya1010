@@ -15,15 +15,16 @@
         <div class="container page__container p-0">
             <div class="row m-0">
                 <div class="col-lg container-fluid page__container">
-                    <div class="card" style="width: 650px;">
+                    <div class="">
 
                        <div class="list-group list-group-fit">
 
 
 	
 
-	    <section class="visa-formwrp" id="partA">
-		<div class="">
+	    <section class="" id="partA">
+		 <div class="card faq-lftcard" style="width: 650px;">
+            
 			<div class="row" id="noOfPeople" runat="server">
 				<div class="col-12">
 					<label class="contrl-lbl" runat="server" id="lblnoOfPeople"><b class="ques-lbl">1)</b>How many people are included in this application?</label>
@@ -862,7 +863,27 @@
                 </div>
                 </div>
         </div>
-	                </section>
+          
+         <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                    <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+            
+	   </section>
                                        
        
 
@@ -891,7 +912,7 @@
         </div>      
     </div>
  <script>
-        
+
     $('#ContentPlaceHolder1_txtdateofissue').flatpickr({
         dateFormat: 'Y-m-d', defaultDate: ""
     });

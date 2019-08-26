@@ -11,6 +11,7 @@ public partial class applicantfunding : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected List<faq> allQuestions = new List<faq>();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
@@ -31,6 +32,7 @@ public partial class applicantfunding : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             BindStydyOption();
             BindFamilyMember();
             BindAccommodationPlan();

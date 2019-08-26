@@ -788,6 +788,19 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
+    public List<faq> FaqQuestionList()
+    {
+        List<faq> faqList = new List<faq>();
+        try
+        {
+            faqList = db.faq.ToList();
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return faqList;
+    }
     public List<customfieldmaster> CustomControlist(int formID, int universityID)
     {
         List<customfieldmaster> ControlsList = new List<customfieldmaster>();

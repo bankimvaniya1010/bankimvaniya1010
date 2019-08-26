@@ -13,46 +13,46 @@
     </div>
 
     <div class="page ">
-
-        <div class="row" style="margin-left: 50px;">
-            <div class="col-md-8">
+        <div class="card faq-lftcard">
+        <div class="row" style="margin-left: 0;margin-right:0;padding-left:0;">
+            <div class="col-md-12">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara1" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
+                    <asp:TextBox ID="txtPara1" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                 </div>
             </div>
         </div>
 
-        <div class="row" style="margin-left: 50px;">
-            <div class="col-md-8">
+        <div class="row" style="margin-left: 0;margin-right:0;padding-left:0;">
+            <div class="col-md-12">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara2" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="row" style="margin-left: 50px;">
-            <div class="col-md-8">
-                <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara3" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>                    
+                    <asp:TextBox ID="txtPara2" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                 </div>
             </div>
             
         </div>
 
-        <div class="row" style="margin-left: 50px;">
-            <div class="col-md-8">
+        <div class="row" style="margin-left: 0;margin-right:0;padding-left:0;">
+            <div class="col-md-12">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara4" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
+                    <asp:TextBox ID="txtPara3" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>                    
                 </div>
             </div>
             
         </div>
 
-        <div class="row" style="margin-left: 50px;">
-            <div class="col-md-8">
+        <div class="row" style="margin-left: 0;margin-right:0;padding-left:0;">
+            <div class="col-md-12">
                 <div class="card" runat="server">
-                    <asp:TextBox ID="txtPara5" runat="server" ReadOnly="true" TextMode="MultiLine" Width="600px" Height="300px" Font-Size="Medium"></asp:TextBox>
+                    <asp:TextBox ID="txtPara4" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="row" style="margin-left: 0;margin-right:0;padding-left:0;">
+            <div class="col-md-12">
+                <div class="card" runat="server">
+                    <asp:TextBox ID="txtPara5" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                 </div>
             </div>
             
@@ -71,10 +71,31 @@
             </div>
 
         </div>
+            </div>
+        <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
     </div>
 
-    <script>
+            
 
+
+    <script>
         $(document).ready(function () {
 
             $("#<%=btnEdit.ClientID%>").click(function () {

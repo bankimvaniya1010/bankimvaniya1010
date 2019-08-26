@@ -12,6 +12,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     gte_applicantdetails objgte_applicantdetails = new gte_applicantdetails();
 
@@ -27,6 +28,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         userID = objUser.studentid;
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             objCom.BindCountries(ddlcountryofdob);
             objCom.BindCountries(ddlnationality);
             objCom.BindCountries(ddlspousenationality);

@@ -10,6 +10,8 @@ public partial class applicantcredittransfer : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int userID = 0, ApplicantID = 0, universityID;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    Common objCom = new Common();
+    protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -24,6 +26,7 @@ public partial class applicantcredittransfer : System.Web.UI.Page
         if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack) {
+            allQuestions = objCom.FaqQuestionList();
             PopulateCreditDetails();
         }
     }

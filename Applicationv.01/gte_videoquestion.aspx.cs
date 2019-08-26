@@ -14,6 +14,7 @@ public partial class gte_videoquestion : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected List<faq> allQuestions = new List<faq>();
     gte_videouploadmaster objgte_videouploadmaster = new gte_videouploadmaster();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
@@ -31,6 +32,7 @@ public partial class gte_videoquestion : System.Web.UI.Page
             var applicantdetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
             if (applicantdetails != null)
             {
+                allQuestions = objCom.FaqQuestionList();
                 if (applicantdetails.postalcity != null)
                     city = applicantdetails.postalcity;
                 if (applicantdetails.universityid.HasValue)

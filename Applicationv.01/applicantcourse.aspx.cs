@@ -14,6 +14,7 @@ public partial class applicantcourse : System.Web.UI.Page
 {
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected List<faq> allQuestions = new List<faq>();
     private GTEEntities db = new GTEEntities();
     private static GTEEntities dbCon = new GTEEntities();
     int universityID, userID = 0;
@@ -28,6 +29,7 @@ public partial class applicantcourse : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             second.Attributes.Add("style", "display:none;");
             third.Attributes.Add("style", "display:none;");
             four.Attributes.Add("style", "display:none;");

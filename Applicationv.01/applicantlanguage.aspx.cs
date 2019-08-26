@@ -13,6 +13,7 @@ public partial class applicantlanguage : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected List<faq> allQuestions = new List<faq>();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
@@ -36,6 +37,7 @@ public partial class applicantlanguage : System.Web.UI.Page
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlLanguage);

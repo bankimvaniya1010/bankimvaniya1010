@@ -12,6 +12,7 @@ public partial class gte_questions1 : System.Web.UI.Page
     public static int QuestionsCount = 0;
     Logger objLog = new Logger();
     Common objCommon = new Common();
+    protected List<faq> allfaqQuestion = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
 
@@ -23,6 +24,7 @@ public partial class gte_questions1 : System.Web.UI.Page
 
         if (!IsPostBack)
         {
+            allfaqQuestion = objCommon.FaqQuestionList();
             var answeredQuestion = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID).ToList();
             var allQuestions = db.gte_questions_master.ToList();
             Session["allQuestions"] = allQuestions;
