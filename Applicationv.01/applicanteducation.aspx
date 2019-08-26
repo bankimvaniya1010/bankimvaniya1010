@@ -16,7 +16,7 @@
             <div class="row m-0">
                 <div class="col-lg container-fluid page__container">
 
-                    <div class="card" style="width: 650px;">
+                    <div class="card faq-lftcard" style="width: 650px;">
                         <div class="list-group list-group-fit">
                             <!----High School Start------>
                             <div class="list-group-item" id="highschool" runat="server" style="display: none">
@@ -1065,6 +1065,25 @@
 
                         </div>
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="openLink('<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>                                                             
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+
                 </div>
                 <div id="page-nav" class="col-lg-auto page-nav">
 
@@ -1085,6 +1104,13 @@
         </div>
     </div>
     <script>
+         function openLink(url) {
+            $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="">Ans:' +url+ '</div></div></div></div></div>'  );
+            $('#video-modal').modal('show');
+             $('#video-modal').on('hidden.bs.modal', function () {
+                 $('#video-modal').remove();
+            });
+        }
         $(document).ready(function () {
             $('.fa-info-circle').tipso({
                 position: 'right',

@@ -13,6 +13,8 @@ public partial class preliminary : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
     Logger objLog = new Logger();
+    Common objCom = new Common();
+    protected List<faq> allQuestions = new List<faq>();
     protected string Score, Results = "";
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -28,6 +30,7 @@ public partial class preliminary : System.Web.UI.Page
         if (!IsPostBack)
         {
             GetQuestion();
+            allQuestions = objCom.FaqQuestionList();
             applicantprogressbar = db.applicantprogressbar.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
             if (applicantprogressbar != null) {
                 if (applicantprogressbar.question == 1)

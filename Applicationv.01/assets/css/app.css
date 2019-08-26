@@ -137,3 +137,9 @@
 .mdk-drawer-layout__content .card{padding-right: 15px;} 
 .big-rdtxtwrp input[type="radio"]{float: left;margin-top: 4px;}
 .big-rdtxtwrp label{float: left;width: 90%;}
+
+.faq-lftcard{width: 540px !important;float: left;}
+.faq-qwrp .card-body{padding: 15px;}
+
+#ContentPlaceHolder1_highschool .form-control{height: auto;}
+#ContentPlaceHolder1_highschool .form-control label{display: inline;}

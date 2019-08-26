@@ -11,6 +11,7 @@ public partial class australiavisapartB : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected List<faq> allQuestions = new List<faq>();
     int userID = 0, ApplicantID = 0, universityID;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
@@ -22,6 +23,8 @@ public partial class australiavisapartB : System.Web.UI.Page
         userID = objUser.studentid;
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
+
             populatepartBInfo();
         }
     }

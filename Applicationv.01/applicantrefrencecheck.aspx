@@ -16,7 +16,7 @@
             <div class="row m-0">
                 <div class="col-lg container-fluid page__container">
 
-                    <div class="card" style="width: 650px;">
+                    <div class="card faq-lftcard" style="width: 650px;">
 
                         <div class="list-group list-group-fit">
                             <div class="list-group-item" id="Name" runat="server" style="display: none;">
@@ -66,10 +66,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="openLink('<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>                                                             
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+
                     <div class="list-group-item" id="highergrade">
                         <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 
-                            <div class="form-row">
+                            <div class="">
                                 <div class="col-md-9">
                                     <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                         <asp:GridView ID="grdRefernce" DataKeyNames="id" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowDeleting="grdtrefernce_RowDeleting" OnDataBound="grdRefernce_DataBound" OnRowCommand="grdRefernce_RowCommand" OnRowEditing="grdRefernce_RowEditing">
@@ -105,6 +124,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>
@@ -119,6 +139,15 @@
         </div>
     </div>
     <script>
+        
+        function openLink(url) {
+            $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="">Ans:' +url+ '</div></div></div></div></div>'  );
+            $('#video-modal').modal('show');
+             $('#video-modal').on('hidden.bs.modal', function () {
+                 $('#video-modal').remove();
+            });
+        }
+
         function ConfirmOnDelete(item) {
             if (confirm("Are you sure to delete: " + item + "?") == true)
                 return true;

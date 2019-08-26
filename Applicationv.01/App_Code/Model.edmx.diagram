@@ -177,6 +177,7 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
         <EntityTypeShape EntityType="GTEModel.australiavisadetailmaster" Width="1.5" PointX="20.375" PointY="30.75" />
+        <EntityTypeShape EntityType="GTEModel.faq" Width="1.5" PointX="0.75" PointY="30.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

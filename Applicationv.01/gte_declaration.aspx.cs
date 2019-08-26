@@ -11,6 +11,8 @@ public partial class gte_declaration : System.Web.UI.Page
     public bool? questionsCompleted = false;
     int UserID = 0;
     Logger objLog = new Logger();
+    Common objCom = new Common();
+    protected List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     gte_progressbar gteProgressBar = new gte_progressbar();
@@ -25,6 +27,7 @@ public partial class gte_declaration : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
+            allQuestions= objCom.FaqQuestionList();
             gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
             if (gteProgressBar != null)
                 questionsCompleted = gteProgressBar.is_gte_question_completed.Value;

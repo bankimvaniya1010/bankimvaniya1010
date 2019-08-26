@@ -1131,6 +1131,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="faq">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question" Type="varchar" MaxLength="100" />
+          <Property Name="answer" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="fieldvalidationmaster">
           <Key>
             <PropertyRef Name="fieldvalidationid" />
@@ -1564,8 +1572,8 @@
             <PropertyRef Name="studentid" />
           </Key>
           <Property Name="studentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="45" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="enrollmentyear" Type="int" Nullable="false" />
@@ -1574,6 +1582,8 @@
           <Property Name="creationdate" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="verificationkey" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="isverified" Type="bit" Nullable="false" />
+          <Property Name="otp" Type="int" Nullable="false" />
+          <Property Name="ispasswordset" Type="bit" />
         </EntityType>
         <EntityType Name="studylevelmaster">
           <Key>
@@ -2479,6 +2489,7 @@
           <EntitySet Name="facilitiesmaster" EntityType="Self.facilitiesmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="facility_campus_mapping" EntityType="Self.facility_campus_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="familymember" EntityType="Self.familymember" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="faq" EntityType="Self.faq" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="fieldvalidationmaster" EntityType="Self.fieldvalidationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formfieldmapping" EntityType="Self.formfieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="formfieldmaster" EntityType="Self.formfieldmaster" Schema="GTE" store:Type="Tables" />
@@ -3086,6 +3097,7 @@
             <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
           </AssociationSet>
           <EntitySet Name="australiavisadetailmaster" EntityType="GTEModel.australiavisadetailmaster" />
+          <EntitySet Name="faq" EntityType="GTEModel.faq" />
           </EntityContainer>
         <EntityType Name="accommodationplan">
           <Key>
@@ -4288,6 +4300,8 @@
           <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
           <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="students" ToRole="supervisorcomments" />
+          <Property Name="otp" Type="Int32" Nullable="false" />
+          <Property Name="ispasswordset" Type="Boolean" />
         </EntityType>
         <EntityType Name="studylevelmaster">
           <Key>
@@ -5601,6 +5615,14 @@
           <Property Name="declarationsignature3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="declarationdate3" Type="DateTime" />
         </EntityType>
+        <EntityType Name="faq">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="answer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6820,6 +6842,8 @@
           <EntitySetMapping Name="students">
             <EntityTypeMapping TypeName="GTEModel.students">
               <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="ispasswordset" ColumnName="ispasswordset" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
                 <ScalarProperty Name="isverified" ColumnName="isverified" />
                 <ScalarProperty Name="verificationkey" ColumnName="verificationkey" />
                 <ScalarProperty Name="creationdate" ColumnName="creationdate" />
@@ -7525,6 +7549,15 @@
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faq">
+            <EntityTypeMapping TypeName="GTEModel.faq">
+              <MappingFragment StoreEntitySet="faq">
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

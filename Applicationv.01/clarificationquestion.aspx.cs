@@ -12,6 +12,7 @@ public partial class clarificationquestion : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -28,6 +29,7 @@ public partial class clarificationquestion : System.Web.UI.Page
 
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             var questionsList = db.clarificationquestionsmaster.ToList();
             var applicantDetail = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
             var applicantEduDetail = db.applicanteducationdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();

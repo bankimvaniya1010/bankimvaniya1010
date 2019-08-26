@@ -11,6 +11,8 @@ public partial class applicantdeclaration : System.Web.UI.Page
     public int? questionGiven = 0;
     int UserID = 0;
     Logger objLog = new Logger();
+    Common objCom = new Common();
+    protected List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     applicantprogressbar applicantprogressbar = new applicantprogressbar();
@@ -25,6 +27,7 @@ public partial class applicantdeclaration : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             applicantprogressbar = db.applicantprogressbar.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
             if (applicantprogressbar != null)
                 questionGiven = applicantprogressbar.question;
