@@ -8,8 +8,8 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using IronPdf;
 using Microsoft.Office.Interop.Excel;
+using NReco.PdfGenerator;
 
 public partial class admin_applicantlist : System.Web.UI.Page
 {
@@ -168,69 +168,20 @@ public partial class admin_applicantlist : System.Web.UI.Page
 
     private void downloadGTEReport(int applicantID)
     {
-        var Renderer = new IronPdf.HtmlToPdf();
-        //Choose screen or print CSS media
-        
-        //Renderer.PrintOptions.SetCustomPaperSizeInInches(12.5, 20);
-        Renderer.PrintOptions.PrintHtmlBackgrounds = true;
-        Renderer.PrintOptions.PaperOrientation = PdfPrintOptions.PdfPaperOrientation.Portrait;
-        //Renderer.PrintOptions.Title = "My PDF Document Name";
-        Renderer.PrintOptions.EnableJavaScript = true;
-        Renderer.PrintOptions.RenderDelay = 50; //ms
-        Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Print;
-        Renderer.PrintOptions.PaperSize = PdfPrintOptions.PdfPaperSize.A3Extra;
-        //Uri uri = new Uri(webURL + "assets/dashboard/css/bootstrap.min.css");
-        //Renderer.PrintOptions.CustomCssUrl.AbsoluteUri = uri.AbsoluteUri.ToString();
-        Renderer.PrintOptions.DPI = 300;
-        Renderer.PrintOptions.FitToPaperWidth = true;
-        Renderer.PrintOptions.JpegQuality = 80;
-        Renderer.PrintOptions.GrayScale = false;
-        Renderer.PrintOptions.InputEncoding = Encoding.UTF8;
-        Renderer.PrintOptions.Zoom = 100;
-      
-        Renderer.PrintOptions.CreatePdfFormsFromHtml = true;
-        //Renderer.PrintOptions.MarginTop = 40;  //millimeters
-        //Renderer.PrintOptions.MarginLeft = 20;  //millimeters
-        //Renderer.PrintOptions.MarginRight = 20;  //millimeters
-        //Renderer.PrintOptions.MarginBottom = 40;  //millimeters
-        //Renderer.PrintOptions.FirstPageNumber = 1; //use 2 if a coverpage  will be appended
-        var PDF = Renderer.RenderUrlAsPdf(webURL + "admin/gtereport.aspx?ID=" + applicantID + "&downloadPdf=1");
+        var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+        htmlToPdf.Orientation = PageOrientation.Portrait;
+        htmlToPdf.Size = PageSize.A3;
+        htmlToPdf.Grayscale = false;
+        htmlToPdf.PageWidth = 200f;
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
-        string filePath = string.Concat(dirPath, "\\", Guid.NewGuid() + ".pdf");
-        DirectoryInfo di = new DirectoryInfo(dirPath);
-        if (!di.Exists)
-            di.Create();
-     
-        PDF.SaveAs(filePath);
+        string fileName = Guid.NewGuid() + ".pdf";
+        string filePath = string.Concat(dirPath, "\\", fileName);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?ID=" + applicantID + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
-        Response.AppendHeader("Content-Disposition", "attachment; filename=GTE_Report.pdf");
+        Response.AppendHeader("Content-Disposition", "attachment; filename=GTE_Report_" + fileName);
         Response.TransmitFile(filePath);
         Response.End();
-
-        //System.Diagnostics.Process.Start(filePath);
-        PdfDocument Pdf = PdfDocument.FromFile(filePath, "Hcom@301");
-        //Edit file metadata
-        Pdf.MetaData.Author = "The Application Center";
-        Pdf.MetaData.Keywords = "SEO, Friendly";
-        Pdf.MetaData.ModifiedDate = DateTime.Now;
-        Renderer.PrintOptions.CssMediaType = PdfPrintOptions.PdfCssMediaType.Screen;
-        //Edit file security settings
-        //The following code makes a PDF read only and will disallow copy & paste and printing
-        Pdf.SecuritySettings.RemovePasswordsAndEncryption();
-       // Pdf.SecuritySettings.MakePdfDocumentReadOnly("secret-key");
-        Pdf.SecuritySettings.AllowUserAnnotations = false;
-        Pdf.SecuritySettings.AllowUserCopyPasteContent = false;
-        Pdf.SecuritySettings.AllowUserFormData = false;
-        Pdf.SecuritySettings.AllowUserPrinting = PdfDocument.PdfSecuritySettings.PdfPrintSecrity.NoPrint;
-        // chnage or set the document ecrpytion password
-        string SecuredDirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"]+ "\\secured";
-        string SecuredFilePath = string.Concat(SecuredDirPath, "\\", applicantID + ".pdf");
-         di = new DirectoryInfo(SecuredDirPath);
-        if (!di.Exists)
-            di.Create();
-        Pdf.SaveAs(SecuredFilePath);
-
     }
     private void downloadApplicantDetails(int applicantID)
     {

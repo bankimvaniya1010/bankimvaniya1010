@@ -21,8 +21,8 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _potentialStudentAssesment = "I am an <Indian> national, born in <Country of birth> aged <21 years> currently residing in <India>. Keen to study in Australia a <Answer to Q12 Section 1> Level course in the field of <Answer Q13 Section 1> titled <Answer to Q14 Section 1> at <Answer to Q19 Section 1>>, located at <Answer to Q20 Section 1>. The highest educational qualification I have achieved is <Name_of_Highest_education>, which equates to <10+2> study level. I completed this education <xx years, yy months> ago from <Country of highest educational qualification>. There have been no gaps in my education. There have been gaps in my education. The reason for which are <Answer to CQ1 Section 3>. I do not have any work experience. My total work experience so far is <Work Experience>. There have been breaks in my work experience, <Answer to CQ2 Section 3>. My English language competencies are, <Answer to Q17 Section 2>";
     protected string _paragraph4 = "I am an <Indian> national, born in <Country of birth> aged <21 years> currently residing in <India>. Keen to study in Australia a <Answer to Q12 Section 1> Level course in the field of <Answer Q13 Section 1> titled <Answer to Q14 Section 1> at <Answer to Q19 Section 1>>, located at <Answer to Q20 Section 1>. The highest educational qualification I have achieved is <Name_of_Highest_education>, which equates to <10+2> study level. I completed this education <xx years, yy months> ago from <Country of highest educational qualification>. There have been no gaps in my education. There have been gaps in my education. The reason for which are <Answer to CQ1 Section 3>. I do not have any work experience. My total work experience so far is <Work Experience>. There have been breaks in my work experience, <Answer to CQ2 Section 3>. My English language competencies are, <Answer to Q17 Section 2>";
     protected string _paragraph5 = "I am an <Indian> national, born in <Country of birth> aged <21 years> currently residing in <India>. Keen to study in Australia a <Answer to Q12 Section 1> Level course in the field of <Answer Q13 Section 1> titled <Answer to Q14 Section 1> at <Answer to Q19 Section 1>>, located at <Answer to Q20 Section 1>. The highest educational qualification I have achieved is <Name_of_Highest_education>, which equates to <10+2> study level. I completed this education <xx years, yy months> ago from <Country of highest educational qualification>. There have been no gaps in my education. There have been gaps in my education. The reason for which are <Answer to CQ1 Section 3>. I do not have any work experience. My total work experience so far is <Work Experience>. There have been breaks in my work experience, <Answer to CQ2 Section 3>. My English language competencies are, <Answer to Q17 Section 2>";
-    protected string _studentVideoReview = "Video is perfect";
-    protected string _studentDocumentsValidations = "Documents are validated";
+    protected string _studentVideoReview = "";
+    protected string _studentDocumentsValidations = "";
     protected string _paragraphComment1 = "";
     protected string _paragraphComment2 = "";
     protected string _paragraphComment3 = "";
@@ -294,7 +294,7 @@ public partial class admin_gtereport : System.Web.UI.Page
         {
             int student_sop_id = Convert.ToInt32(ViewState["student_sop_id"]);
             var gteAdminCommentObj = db.gte_report_admin_comment.Where(x => x.applicant_id == ApplicantID && x.university_id == universityID && x.student_sop_id == student_sop_id).FirstOrDefault();
-            if (gteAdminCommentObj != null && downloadPdf == 0)
+            if (downloadPdf == 0)
             {
                 studentRecommendedPDF.Style.Add("display", "none");
                 recommendationRemarkPDF.Style.Add("display", "none");
@@ -306,15 +306,18 @@ public partial class admin_gtereport : System.Web.UI.Page
                 studentVideoReviewPDF.Style.Add("display", "none");
                 studentDocumentsValidationsPDF.Style.Add("display", "none");
 
-                para1Comments.Value = gteAdminCommentObj.para1_comments;
-                para2Comments.Value = gteAdminCommentObj.para2_comments;
-                para3Comments.Value = gteAdminCommentObj.para3_comments;
-                para4Comments.Value = gteAdminCommentObj.para4_comments;
-                para5Comments.Value = gteAdminCommentObj.para5_comments;
-                studentVideoReview.Value = gteAdminCommentObj.student_video_comments;
-                studentDocumentsValidations.Value = gteAdminCommentObj.student_document_comments;
-                studentRecommended.Value = gteAdminCommentObj.student_recommended;
-                recommendationRemark.Value = gteAdminCommentObj.final_recommendation;
+                if (gteAdminCommentObj != null)
+                {
+                    para1Comments.Value = gteAdminCommentObj.para1_comments;
+                    para2Comments.Value = gteAdminCommentObj.para2_comments;
+                    para3Comments.Value = gteAdminCommentObj.para3_comments;
+                    para4Comments.Value = gteAdminCommentObj.para4_comments;
+                    para5Comments.Value = gteAdminCommentObj.para5_comments;
+                    studentVideoReview.Value = gteAdminCommentObj.student_video_comments;
+                    studentDocumentsValidations.Value = gteAdminCommentObj.student_document_comments;
+                    studentRecommended.Value = gteAdminCommentObj.student_recommended;
+                    recommendationRemark.Value = gteAdminCommentObj.final_recommendation;
+                }
             }
             else if (gteAdminCommentObj != null && downloadPdf == 1)
             {
