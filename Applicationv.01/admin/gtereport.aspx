@@ -531,14 +531,14 @@
                                 <div class="reviw-wrp">
                                     <div class="hd">STUDENT VIDEO REVIEW </div>
                                     <div class="revw-sectn" runat="server" id="studentVideoReviewPDF"> <%=_studentVideoReview %> </div>
-                                    <textarea class="revw-sectn" runat="server" id="studentVideoReview" placeholder="Video is perfect"></textarea>
+                                    <textarea class="revw-sectn" runat="server" id="studentVideoReview" placeholder="Video Reviews"></textarea>
                                 </div>
                             </td>
                             <td class="width50">
                                 <div class="reviw-wrp">
                                     <div class="hd">STUDENT DOCUMENTS VALIDATIONS</div>
                                     <div class="revw-sectn" runat="server" id="studentDocumentsValidationsPDF"> <%=_studentDocumentsValidations %> </div>
-                                    <textarea class="revw-sectn" runat="server" id="studentDocumentsValidations" placeholder="Documents are validated"></textarea>
+                                    <textarea class="revw-sectn" runat="server" id="studentDocumentsValidations" placeholder="Documents Reviews"></textarea>
                                 </div>
                             </td>
                         </tr>
