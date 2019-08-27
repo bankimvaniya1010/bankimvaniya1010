@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="password">Your password:</label>
+                                <label class="form-label" for="password">Your password/OTP:</label>
                                 <div class="input-group input-group-merge">
                                     <asp:TextBox ID="txt_pass" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter password" TextMode="Password"></asp:TextBox>
 

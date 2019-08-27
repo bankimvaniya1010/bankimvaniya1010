@@ -43,13 +43,16 @@
 
 
 
-
+                         <div class="form-group" runat="server" visible="false" id="lblerror" >
+                            <label class="form-label badge-danger" for="course" >User is already registered with entered email address</label>
+                            
+                        </div>
 
 
                         <div class="form-group">
-                            <label class="form-label" for="name">First Name:</label>
+                            <label class="form-label" for="name">Name:</label>
                             <div class="input-group input-group-merge">
-                                <input id="name" type="text" runat="server" class="form-control form-control-prepended" placeholder="first name">
+                                <input id="name" type="text" runat="server" class="form-control form-control-prepended" placeholder="name">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-user"></span>
@@ -57,7 +60,7 @@
                                 </div>
                             </div>
                         </div>
-                         <div class="form-group">
+                       <%--  <div class="form-group">
                             <label class="form-label" for="mname">Middle Name:</label>
                             <div class="input-group input-group-merge">
                                 <input id="mname" type="text" runat="server" class="form-control form-control-prepended" placeholder="Middle name">
@@ -89,7 +92,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--%>
                         <div class="form-group">
                             <label class="form-label" for="email">Email address:</label>
                             <div class="input-group input-group-merge">
@@ -101,7 +104,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <%--<div class="form-group">
                             <label class="form-label" for="password">Password:</label>
                             <div class="input-group input-group-merge">
                                 <input id="password" type="password" runat="server" class="form-control form-control-prepended" placeholder="Choose a password">
@@ -143,7 +146,7 @@
 
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" >
                             <label class="form-label" for="course">Course:</label>
                             <div class="input-group input-group-merge">
                                 <div class="col-md-9">
@@ -151,9 +154,9 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div>--%>
                         <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" />
-
+                         
                         <div class="form-group text-center mb-0">
                             <div class="custom-control custom-checkbox">
                                 <input id="terms" type="checkbox" class="custom-control-input" checked required="">
@@ -196,15 +199,15 @@
             $('#btnSignUp').click(function () {
                 var summary = "";
                 summary += isvalidname();
-                summary += isvalidmname();
-                summary += isvalidlname();
-                summary += isvaliduser();
+                //summary += isvalidmname();
+                //summary += isvalidlname();
+                //summary += isvaliduser();
                 summary += isvalidemail();
-                summary += isvalidpassword();
-                summary += isvalidconfirmpass();
-                summary += isvalidenrollmentyear();
-                summary += isvalidStudyLevel();
-                summary += isvalidCourse();
+                //summary += isvalidpassword();
+                //summary += isvalidconfirmpass();
+                //summary += isvalidenrollmentyear();
+                //summary += isvalidStudyLevel();
+                //summary += isvalidCourse();
                 summary += isvalidterms();
                 if (summary != "") {
                     alert(summary);
@@ -217,7 +220,7 @@
         })
         function isvalidname() {
             if ($("#name").val() == "") {
-                return ("Please enter first name" + "\n");
+                return ("Please enter name" + "\n");
             }
             else {
                 return "";

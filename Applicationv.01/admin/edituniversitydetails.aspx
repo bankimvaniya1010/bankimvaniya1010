@@ -17,8 +17,8 @@
                 <div class="tab-pane active" id="first">
 
                     <div class="form-group row">
-                         <label for="uniName" class="col-sm-3 col-form-label form-label">University Name</label>
-                            <div class="col-sm-8">
+                        <label for="uniName" class="col-sm-3 col-form-label form-label">University Name</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniName" type="text" runat="server" class="form-control" placeholder="University Name" />
@@ -28,8 +28,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniAffiliation" class="col-sm-3 col-form-label form-label">University Affiliation</label>
-                            <div class="col-sm-8">
+                        <label for="uniAffiliation" class="col-sm-3 col-form-label form-label">University Affiliation</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniAffiliation" type="text" runat="server" class="form-control" placeholder="University Affiliation" />
@@ -39,8 +39,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniType" class="col-sm-3 col-form-label form-label">University Type</label>
-                            <div class="col-sm-8">
+                        <label for="uniType" class="col-sm-3 col-form-label form-label">University Type</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniType" type="text" runat="server" class="form-control" placeholder="University Type" />
@@ -50,8 +50,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniYearEstablish" class="col-sm-3 col-form-label form-label">University Year Established</label>
-                            <div class="col-sm-8">
+                        <label for="uniYearEstablish" class="col-sm-3 col-form-label form-label">University Year Established</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtYearEstablish" type="text" runat="server" maxlength="4" class="form-control" placeholder="University Year Established" />
@@ -61,8 +61,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniSDescription" class="col-sm-3 col-form-label form-label">University Short Description</label>
-                            <div class="col-sm-8">
+                        <label for="uniSDescription" class="col-sm-3 col-form-label form-label">University Short Description</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniSDescription" type="text" runat="server" class="form-control" placeholder="University Short Description" />
@@ -72,8 +72,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniLDescription" class="col-sm-3 col-form-label form-label">University Long Description</label>
-                            <div class="col-sm-8">
+                        <label for="uniLDescription" class="col-sm-3 col-form-label form-label">University Long Description</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniLDescription" type="text" runat="server" class="form-control" placeholder="University Long Description" />
@@ -83,8 +83,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniEmail" class="col-sm-3 col-form-label form-label">University Email IDe</label>
-                            <div class="col-sm-8">
+                        <label for="uniEmail" class="col-sm-3 col-form-label form-label">University Email IDe</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtEmail" type="email" runat="server" class="form-control" placeholder="University Email ID" />
@@ -94,8 +94,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniWebsite" class="col-sm-3 col-form-label form-label">University Website</label>
-                            <div class="col-sm-8">
+                        <label for="uniWebsite" class="col-sm-3 col-form-label form-label">University Website</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniWebsite" type="text" runat="server" class="form-control" placeholder="University Website" />
@@ -105,8 +105,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniContactPerson" class="col-sm-3 col-form-label form-label">University Contact Person</label>
-                            <div class="col-sm-8">
+                        <label for="uniContactPerson" class="col-sm-3 col-form-label form-label">University Contact Person</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniContactPerson" type="text" runat="server" class="form-control" placeholder="University Contact Person" />
@@ -116,8 +116,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniMobile" class="col-sm-3 col-form-label form-label">University Mobile Number</label>
-                            <div class="col-sm-8">
+                        <label for="uniMobile" class="col-sm-3 col-form-label form-label">University Mobile Number</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtMobile" type="text" runat="server" class="form-control" placeholder="University Mobile Number" />
@@ -127,8 +127,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniAddress" class="col-sm-3 col-form-label form-label">University Address</label>
-                            <div class="col-sm-8">
+                        <label for="uniAddress" class="col-sm-3 col-form-label form-label">University Address</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniAddress" type="text" runat="server" class="form-control" placeholder="University Address" />
@@ -138,8 +138,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniCountry" class="col-sm-3 col-form-label form-label">University Country</label>
-                            <div class="col-sm-8">
+                        <label for="uniCountry" class="col-sm-3 col-form-label form-label">University Country</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <asp:DropDownList ID="ddlCountry" runat="server" class="form-control"></asp:DropDownList>
@@ -149,8 +149,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniCity" class="col-sm-3 col-form-label form-label">University City</label>
-                            <div class="col-sm-8">
+                        <label for="uniCity" class="col-sm-3 col-form-label form-label">University City</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <select id="ddlCity" name="ddlCity" runat="server" class="form-control">
@@ -163,8 +163,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniLatitude" class="col-sm-3 col-form-label form-label">Location Latitude</label>
-                            <div class="col-sm-8">
+                        <label for="uniLatitude" class="col-sm-3 col-form-label form-label">Location Latitude</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniLatitude" type="text" runat="server" class="form-control" placeholder="Location Latitude" />
@@ -174,8 +174,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniLongitude" class="col-sm-3 col-form-label form-label">Location Longitude</label>
-                            <div class="col-sm-8">
+                        <label for="uniLongitude" class="col-sm-3 col-form-label form-label">Location Longitude</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniLongitude" type="text" runat="server" class="form-control" placeholder="Location Longitude" />
@@ -185,8 +185,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniTimeZone" class="col-sm-3 col-form-label form-label">Location Time Zone</label>
-                            <div class="col-sm-8">
+                        <label for="uniTimeZone" class="col-sm-3 col-form-label form-label">Location Time Zone</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <asp:DropDownList ID="ddlTimeZone" name="ddlTimeZone" runat="server" class="form-control"></asp:DropDownList>
@@ -196,8 +196,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniAirport" class="col-sm-3 col-form-label form-label">Closest Airport to University</label>
-                            <div class="col-sm-8">
+                        <label for="uniAirport" class="col-sm-3 col-form-label form-label">Closest Airport to University</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniAirport" type="text" runat="server" class="form-control" placeholder="Closest Airport to University" />
@@ -207,8 +207,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniAirportDistance" class="col-sm-3 col-form-label form-label">Distance from closest airport</label>
-                            <div class="col-sm-8">
+                        <label for="uniAirportDistance" class="col-sm-3 col-form-label form-label">Distance from closest airport</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniAirportDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest airport" />
@@ -223,8 +223,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniRailDistance" class="col-sm-3 col-form-label form-label">Distance from closest Railway Station</label>
-                            <div class="col-sm-8">
+                        <label for="uniRailDistance" class="col-sm-3 col-form-label form-label">Distance from closest Railway Station</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniRailDistance" type="text" runat="server" class="form-control" placeholder="Distance from closest Railway Station" />
@@ -239,8 +239,8 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniGettingAround" class="col-sm-3 col-form-label form-label">Getting Around</label>
-                            <div class="col-sm-8">
+                        <label for="uniGettingAround" class="col-sm-3 col-form-label form-label">Getting Around</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtUniGettingAround" type="text" runat="server" class="form-control" placeholder="Getting Around" />
@@ -290,16 +290,29 @@
                     </div>
 
                     <div class="form-group row">
-                         <label for="uniNotesDisclaimer" class="col-sm-3 col-form-label form-label">Notes and Disclaimer for university</label>
-                            <div class="col-sm-8">
+                        <label for="uniNotesDisclaimer" class="col-sm-3 col-form-label form-label">Notes and Disclaimer for university</label>
+                        <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <textarea id="txtNotesDisclaimer" runat="server"  class="form-control" placeholder="Notes and Disclaimer" ></textarea>
+                                    <textarea id="txtNotesDisclaimer" runat="server" class="form-control" placeholder="Notes and Disclaimer"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="logo" class="col-sm-3 col-form-label form-label">Logo</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:FileUpload ID="logo" runat="server" CssClass="custom-file-input" />
 
+                                    <label for="logo" class="custom-file-label">Choose file</label>
+                                   <img src="<%=imagepath %>" alt="logo" />
+                                        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -378,7 +391,7 @@
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
-            
+
             if (txtUniName == '') {
                 alert("Please enter University Name");
                 return false;
@@ -485,7 +498,7 @@
                 alert("Please enter University Notes and disclaimer");
                 return false;
             }
-                
+
             return true;
         }
     </script>

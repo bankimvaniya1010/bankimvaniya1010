@@ -1415,6 +1415,11 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
+    public int RandomNumber(int min, int max)
+    {
+        Random random = new Random();
+        return random.Next(min, max);
+    }
     [Serializable]
     public class FieldList
     {

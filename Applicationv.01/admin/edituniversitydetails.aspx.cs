@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
@@ -15,7 +16,8 @@ public partial class edituniversitydetails : System.Web.UI.Page
     Common objCommon = new Common();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-
+    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
+    protected string imagepath = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["Role"] == null || (Session["UserID"] == null))
@@ -94,6 +96,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                         }
                     }
                     txtNotesDisclaimer.Value = existingUninversity.notes_disclaimer;
+                    imagepath =  webURL + "/Docs/" + existingUninversity.universityid + "/" + existingUninversity.logo;
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University does not exists')", true);
@@ -162,8 +165,20 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
             universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
             universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
-
-            db.SaveChanges();            
+            if (logo.HasFile)  //fileupload control contains a file  
+            {
+                docPath = docPath + "/" + universityObj.universityid + "/";
+                if (!Directory.Exists(docPath))
+                    Directory.CreateDirectory(docPath);
+                string extension = Path.GetExtension(logo.PostedFile.FileName);
+                string filename = universityObj.university_name.Replace(" ", "-") + extension;
+                if (File.Exists(docPath + filename))
+                    File.Delete(docPath + filename);
+                logo.SaveAs(docPath + filename);
+                universityObj.logo = filename;
+                db.SaveChanges();
+            }
+            db.SaveChanges();
             Response.Redirect("~/admin/universitymaster.aspx");
         }
         catch (Exception ex)
