@@ -41,7 +41,7 @@ public partial class updatepassword : System.Web.UI.Page
             }
             else
             {
-                lblErrorMessage.Text = "Please enter valid Exsisting Password.";
+                lblErrorMessage.Text = "Please enter valid existing Password.";
                 lblErrorMessage.Visible = true;
             }
 
