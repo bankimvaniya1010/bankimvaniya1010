@@ -171,10 +171,13 @@
                                 { %>
                             <label class="form-label">Proof of English Language Test</label>
                             <%} %>
-                            <%if ((appLangDetails.Count > 0) && (appEmpDetails[0].wishtoaddemployer == 1))
-                                { %>
+                            <%if (appEmpDetails.Count > 0)
+                                    {
+                                        if ((appLangDetails.Count > 0) && (appEmpDetails[0].wishtoaddemployer == 1))
+                                        { %>
                             <label class="form-label">Proof of Work Experience </label>
-                            <%} %>
+                            <%}
+                                    } %>
                         </div>
                     </div>
                     <div class="container page__container">
@@ -189,7 +192,7 @@
     <script>
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#upload_document_list').addClass('open');
+            $('#personal_menu_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#uploaddocuments').addClass('active');
         });
