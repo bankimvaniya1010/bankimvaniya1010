@@ -114,5 +114,13 @@
             });
 
         });
+     
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_list').addClass('open');
+            $('#gte_questions_menu').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtestudent_sop').addClass('active');
+        });
     </script>
 </asp:Content>

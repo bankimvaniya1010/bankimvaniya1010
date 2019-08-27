@@ -135,27 +135,53 @@
                                 <!-- Account menu -->
                                 <div class="sidebar-heading">Account</div>
                                 <ul class="sidebar-menu">
+                                      <li class="sidebar-menu-item" id="messageboard">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                           Message Board
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
 
+                                    </li>
+                                    <li class="sidebar-menu-item" id="profile_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#profile">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                           Profile
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="profile">
+                                            <li class="sidebar-menu-item" id="changepassword">
+                                                <a class="sidebar-menu-button" href="updatepassword.aspx">
+                                                    <span class="sidebar-menu-text">Change Password</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="updatepreferences">
+                                                <a class="sidebar-menu-button">
+                                                    <span class="sidebar-menu-text">Update Preferences </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <li class="sidebar-menu-item" id="preliminary_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                            Preliminary Screening
+                                          Before you start 
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="preliminary">
                                             <li class="sidebar-menu-item" id="preliminarys">
                                                 <a class="sidebar-menu-button" href="preliminary.aspx">
-                                                    <span class="sidebar-menu-text">Tutorial</span>
+                                                    <span class="sidebar-menu-text">Tutorial & Instructions </span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="preliminaryquestion">
                                                 <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
-                                                    <span class="sidebar-menu-text">Quick Test</span>
+                                                    <span class="sidebar-menu-text">Test your Knowledge</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantdeclaration">
                                                 <a class="sidebar-menu-button" href="applicantdeclaration.aspx">
-                                                    <span class="sidebar-menu-text">Declaration</span>
+                                                    <span class="sidebar-menu-text">Declarations</span>
                                                 </a>
                                             </li>
 
@@ -165,7 +191,7 @@
                                     <li class="sidebar-menu-item" id="personal_menu_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#personal_menu">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                            Student Details
+                                            Student Information
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="personal_menu">
@@ -182,17 +208,17 @@
                                             </li>
                                             <li class="sidebar-menu-item" id="knowyourstudent">
                                                 <a class="sidebar-menu-button" href="knowyourstudent.aspx?formid=3">
-                                                    <span class="sidebar-menu-text">Identification Details</span>
+                                                    <span class="sidebar-menu-text">Identification</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicanteducation">
                                                 <a class="sidebar-menu-button" href="applicanteducation.aspx?formid=4">
-                                                    <span class="sidebar-menu-text">Education Details</span>
+                                                    <span class="sidebar-menu-text">Education Qualifications</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantlanguage">
                                                 <a class="sidebar-menu-button" href="applicantlanguage.aspx?formid=5">
-                                                    <span class="sidebar-menu-text">English Language Competency</span>
+                                                    <span class="sidebar-menu-text">English Competency</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantworkexperience">
@@ -200,19 +226,29 @@
                                                     <span class="sidebar-menu-text">Work Experience</span>
                                                 </a>
                                             </li>
-                                             <li class="sidebar-menu-item" id="applicantrefrencecheck">
-                                                <a class="sidebar-menu-button" href="applicantrefrencecheck.aspx?formid=6">
-                                                    <span class="sidebar-menu-text">Reference Check</span>
-                                                </a>
-                                            </li>
                                             <li class="sidebar-menu-item" id="applicantsocial">
                                                 <a class="sidebar-menu-button" href="applicantsocial.aspx?formid=8">
                                                     <span class="sidebar-menu-text">Social Profile</span>
                                                 </a>
                                             </li>
+                                             <li class="sidebar-menu-item" id="applicantrefrencecheck">
+                                                <a class="sidebar-menu-button" href="applicantrefrencecheck.aspx?formid=6">
+                                                    <span class="sidebar-menu-text">Reference Check</span>
+                                                </a>
+                                            </li>                                            
                                             <li class="sidebar-menu-item" id="applicantreview">
                                                 <a class="sidebar-menu-button" href="applicantreview.aspx">
-                                                    <span class="sidebar-menu-text">Review & Verify</span>
+                                                    <span class="sidebar-menu-text">Review & Submit</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="clarificationquestion">
+                                                <a class="sidebar-menu-button" href="clarificationquestion.aspx">
+                                                    <span class="sidebar-menu-text">Clarification Question</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="uploaddocuments">
+                                                <a class="sidebar-menu-button" href="uploaddocuments.aspx">
+                                                    <span class="sidebar-menu-text"> Documents Upload</span>
                                                 </a>
                                             </li>
                                              <%-- <li class="sidebar-menu-item" id="employerinfo">
@@ -242,8 +278,14 @@
                                             </li>--%>
                                         </ul>
                                     </li>
-
-                                    <li class="sidebar-menu-item" id="clarification_question_list">
+                                     <li class="sidebar-menu-item" id="studentapplication_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                                Student Application
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                    </li>
+                                    <%--<li class="sidebar-menu-item" id="clarification_question_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#clarification_question">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                             Clarification Question
@@ -256,8 +298,8 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li class="sidebar-menu-item" id="upload_document_list">
+                                    </li>--%>
+<%--                                    <li class="sidebar-menu-item" id="upload_document_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#upload_document">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                             Upload Documents
@@ -277,8 +319,8 @@
 
 
                                         </ul>
-                                    </li>
-                                    <li class="sidebar-menu-item" id="Application_list">
+                                    </li>--%>
+<%--                                    <li class="sidebar-menu-item" id="Application_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Application">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                             Application
@@ -306,84 +348,140 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>--%>
                                     <li class="sidebar-menu-item" id="Gte_list">
                                         <a class="sidebar-menu-button" data-toggle="collapse"  href="#Gte">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                            GTE
+                                            GTE Assessment 
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-                                        <ul class="sidebar-submenu sm-indent collapse" id="Gte">
-                                            <li class="sidebar-menu-item" id="gte_screening_menu">
-                                                <a class="sidebar-menu-button custom-collapsed collapsed" href="#gte_screening">
-                                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                                    Screening
-                                                    <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                                </a>
-                                                <ul class="sidebar-menu sm-indent collapse" id="gte_screening">
-                                                    <li class="sidebar-menu-item" id="gtetutorial">
-                                                        <a class="sidebar-menu-button" href="gte_tutorial.aspx">
-                                                            <span class="sidebar-menu-text">GTE Tutorial</span>
-                                                        </a>
-                                                    </li>                                            
-                                                    <li class="sidebar-menu-item" id="gtequicktest">
-                                                        <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx">
-                                                            <span class="sidebar-menu-text"> Quick Test</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="sidebar-menu-item" id="gtedeclaration">
-                                                        <a class="sidebar-menu-button" href="gte_declaration.aspx">
-                                                            <span class="sidebar-menu-text">GTE Declaration</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li class="sidebar-menu-item" id="gtestudentdetail">
-                                                <a class="sidebar-menu-button" href="gte_studentdetails.aspx">
-                                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                                    GTE Student Detail
-                                                </a>
-                                            </li>
-                                            <li class="sidebar-menu-item" id="gte_questions_menu">
-                                                <a class="sidebar-menu-button custom-collapsed collapsed" href="#gte_question">
-                                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                                    Questions
-	                                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                                </a>
-                                                <ul class="sidebar-menu sm-indent collapse" id="gte_question">
-                                                    <li class="sidebar-menu-item" id="gtepart1">
+                                        <ul class="sidebar-submenu sm-indent collapse" id="Gte">                                           
+                                                <li class="sidebar-menu-item" id="gtetutorial">
+                                                    <a class="sidebar-menu-button" href="gte_tutorial.aspx">
+                                                        <span class="sidebar-menu-text">Tutorial</span>
+                                                    </a>
+                                                </li>                                            
+                                                <li class="sidebar-menu-item" id="gtequicktest">
+                                                    <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx">
+                                                        <span class="sidebar-menu-text">Test your Knowledge</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item" id="gtedeclaration">
+                                                    <a class="sidebar-menu-button" href="gte_declaration.aspx">
+                                                        <span class="sidebar-menu-text">Declaration</span>
+                                                    </a>
+                                                </li>
+                                                    <li class="sidebar-menu-item" id="gtestudentdetail">
+                                                    <a class="sidebar-menu-button" href="gte_studentdetails.aspx">
+                                                        <span class="sidebar-menu-text">Personal Details</span>
+                                                    </a>
+                                                </li>  
+                                                <li class="sidebar-menu-item" id="gtepart1">
                                                         <a class="sidebar-menu-button" href="gte_questions1.aspx">
-                                                            <span class="sidebar-menu-text">GTE Question Part 1</span>
+                                                            <span class="sidebar-menu-text">Stage -1 Assessment </span>
                                                         </a>
-                                                    </li>
-                                                    <li class="sidebar-menu-item" id="gtepart2">
-                                                        <a class="sidebar-menu-button" href="gte_questions2.aspx">
-                                                            <span class="sidebar-menu-text">GTE Question Part 2</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="sidebar-menu-item" id="gteclarification">
-                                                        <a class="sidebar-menu-button" href="gte_clarificationquestions.aspx">
-                                                            <span class="sidebar-menu-text">GTE Clarification Question</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="sidebar-menu-item" id="gtevideoquestion">
-                                                        <a class="sidebar-menu-button" href="gte_videoquestion.aspx">
-                                                            <span class="sidebar-menu-text">GTE Video Question</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="sidebar-menu-item" id="gtedocmentupload">
-                                                        <a class="sidebar-menu-button" href="gte_documentupload.aspx?formid=15">
-                                                            <span class="sidebar-menu-text">GTE Upload Document</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="sidebar-menu-item" id="gtestudent_sop">
-                                                        <a class="sidebar-menu-button" href="gte_sop.aspx">
-                                                            <span class="sidebar-menu-text">GTE Statement of Purpose</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                                </li>
+                                                <li class="sidebar-menu-item" id="gtepart2">
+                                                    <a class="sidebar-menu-button" href="gte_questions2.aspx">
+                                                        <span class="sidebar-menu-text">Stage -2 Assessment</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item" id="gteclarification">
+                                                    <a class="sidebar-menu-button" href="gte_clarificationquestions.aspx">
+                                                        <span class="sidebar-menu-text">Clarification Question</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item" id="gtevideoquestion">
+                                                    <a class="sidebar-menu-button" href="gte_videoquestion.aspx">
+                                                        <span class="sidebar-menu-text">Video Upload</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item" id="gtestudent_sop">
+                                                    <a class="sidebar-menu-button" href="gte_sop.aspx">
+                                                        <span class="sidebar-menu-text">Statement of Purpose</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item" id="gtedocmentupload">
+                                                    <a class="sidebar-menu-button" href="gte_documentupload.aspx?formid=15">
+                                                        <span class="sidebar-menu-text">Documents Upload</span>
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="admissionsOffer_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#admissionsOffer">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            Admissions Offer
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="admissionsOffer">
+                                            <li class="sidebar-menu-item" id="viewoffer">
+                                                <a class="sidebar-menu-button">
+                                                    <span class="sidebar-menu-text">View Offer</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="acceptoffer">
+                                                <a class="sidebar-menu-button">
+                                                    <span class="sidebar-menu-text">Accept Offer</span>
+                                                </a>
                                             </li>
                                         </ul>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="visaapplication_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#visaapplication">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            Visa Application
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="visaapplication">
+                                            <li class="sidebar-menu-item" id="applicantvisa">
+                                                <a class="sidebar-menu-button" href="australiavisadetail.aspx">
+                                                    <span class="sidebar-menu-text">Australian Visa Form</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="verifyandsubmit">
+                                                <a class="sidebar-menu-button">
+                                                    <span class="sidebar-menu-text">Verify and submit  </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="visadocumentupload">
+                                                <a class="sidebar-menu-button">
+                                                    <span class="sidebar-menu-text">Documents upload  </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li class="sidebar-menu-item" id="feepayment_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                           Fee Payments 
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+
+                                    </li>
+                                    <li class="sidebar-menu-item" id="viewCOE_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                           View CoE
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+
+                                    </li>
+                                    <li class="sidebar-menu-item" id="predeparture_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                          Pre-Departure Info
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="supportservice">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                           Support Services
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+
                                     </li>
                                     <li class="sidebar-menu-item" id="message_menu_list">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#messages_menu">
@@ -694,46 +792,76 @@
             var fullService = ("<%=Session["FullService"]%>".toLowerCase() == "true");
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
-            if (!declarationCompleted) {
-                $("#personal_menu_list").hide();
-                $("#clarification_question_list").hide();
-                $("#gte_questions_menu").hide();
-                $("#upload_document_list").hide();
-                $("#Application_list").hide();
-                $("#gte_screening_menu").show();
+
+            if (!declarationCompleted) { 
+                $("#gtepart1").hide();
+                $("#gtepart2").hide();
+                $("#gtevideoquestion").hide();
+                $("#gtestudent_sop").hide();
+                $("#gtedocmentupload").hide();
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
                 $("#components_list").hide();
-                if (fullService)
-                    $("#preliminary_list").show();
-                else
+                $("#profile_list").hide();                
+                $("#messageboard").hide();                
+                $("#admissionsOffer_list").hide();
+                $("#visaapplication_list").hide();
+                $("#feepayment_list").hide();
+                $("#viewCOE_list").hide();
+                $("#predeparture_list").hide();
+                $("#personal_menu_list").hide();
+                $("#studentapplication_list").hide();
+                $("#supportservice").hide();
+                if (!fullService) {
+                    $("#gtestudentdetail").show();
                     $("#preliminary_list").hide();
+                    $("#personal_menu_list").hide();
+                    $("#studentapplication_list").hide();
+                }
+                else {
+                    $("#gtestudentdetail").hide();
+                    $("#preliminary_list").show();
+                }               
             }
             else {
-                $("#personal_menu_list").show();
-                $("#clarification_question_list").show();
-                $("#gte_questions_menu").show();
-                $("#upload_document_list").show();
-                $("#gte_screening_menu").hide();
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
-                $("#components_list").hide();
-                $("#preliminary_list").hide();
-
+                $("#components_list").hide(); 
+                $("#profile_list").show();                
+                $("#messageboard").show();
+                $("#admissionsOffer_list").show();
+                $("#visaapplication_list").show();
+                $("#feepayment_list").show();
+                $("#viewCOE_list").show();
+                $("#predeparture_list").show();
+                $("#supportservice").show();
+                $("#gtepart1").show();
+                $("#gtepart2").show();
+                $("#gtevideoquestion").show();
+                $("#gtestudent_sop").show();
+                $("#gtedocmentupload").show();
                 if (!fullService) {
-                    $("#clarification_question_list").hide();
+                    $("#gtestudentdetail").show();
+                    $("#preliminary_list").hide();
                     $("#personal_menu_list").hide();
+                    $("#studentapplication_list").hide();                                      
                 }
-                else
+                else {
                     $("#gtestudentdetail").hide();
+                    $("#preliminary_list").show();
+                    $("#personal_menu_list").show();   
+                    $("#studentapplication_list").show();
+               
+                }
 
                 if (!studentDetailsCompleted) {
-                    $("#gte_questions_menu").hide();
-                    //$("#Application_list").hide();
+                    $("#gtepart1").hide();
+                    $("#gtepart2").hide();
+                    $("#gtevideoquestion").hide();
+                    $("#gtestudent_sop").hide();
+                    $("#gtedocmentupload").hide();
                 }
-                //else
-                //    $("#Application_list").show();
-
+               
             }
                         
             var questioncompleted = '<%=questioncompleted%>';

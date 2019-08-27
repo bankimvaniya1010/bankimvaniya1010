@@ -111,6 +111,11 @@
             
             return !(questionsCompleted == "False");
         }
-       
+       $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtedeclaration').addClass('active');
+        });
     </script>
 </asp:Content>
