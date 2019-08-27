@@ -34,15 +34,15 @@ public partial class updatepassword : System.Web.UI.Page
             {
                 var password = objCom.EncodePasswordToMD5(txtconfirmpassword.Value.Trim());
                 existingUser.password = password;
-                db.SaveChanges();
-                txtexsistingpassword.Value = "";
+                db.SaveChanges();                
                 lblMessage.Text = "Your Password has been changed!";
                 lblMessage.Visible = true;
                
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please check your Exsisting Password.')", true);
+                lblErrorMessage.Text = "Please enter valid Exsisting Password.";
+                lblErrorMessage.Visible = true;
             }
 
         }

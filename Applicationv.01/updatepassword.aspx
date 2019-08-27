@@ -31,7 +31,7 @@
                                     <div class="form-row">
                                         <label id="lblexsistingpassword" runat="server" for="exsistingpassword" class="col-md-3 col-form-label form-label">Enter Exsisting password</label>
                                         <div class="col-md-6">
-                                            <input id="txtexsistingpassword" runat="server" type="text" class="form-control">                                            
+                                            <input id="txtexsistingpassword" runat="server" type="password" class="form-control">                                            
                                         </div>
                                     </div>
                                 </div>
@@ -63,6 +63,7 @@
                                         <asp:Button ID="btnupdatepassword" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btnupdatepassword_Click"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
+                                            <asp:Label ID="lblErrorMessage" runat="server" Visible="false"></asp:Label>
                                         </div>
                                     </div>
                                 </div>
