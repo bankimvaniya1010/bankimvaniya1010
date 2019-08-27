@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 public partial class login : System.Web.UI.Page
 {
+    string active = "";
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -14,7 +15,7 @@ public partial class login : System.Web.UI.Page
     int universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        active = Request.QueryString["active"];
         //var University = db.university_master.FirstOrDefault();
         //string UniversityURL = University.website.Split('.')[0];
         //webURL = webURL.Replace("edu", UniversityURL);
@@ -25,72 +26,86 @@ public partial class login : System.Web.UI.Page
     {
         try
         {
-            string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
-            var chkUser = (from usr in db.students
-                           where (usr.username.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
+            var chkUser = db.students.FirstOrDefault();
+            int otp = 0;
+            if (txt_pass.Text != "" && active == "1")
+            {
+                otp = Convert.ToInt32(txt_pass.Text);
+                chkUser = (from usr in db.students
+                           where (usr.email.Equals(txtUser.Text.Trim()) && usr.otp == otp)
                            select usr).FirstOrDefault();
-            if (chkUser == null)
-            {
-                lbl_warning.Text = "Please enter valid user name and password.";
-                pnl_warning.Visible = true;
-            }
-            else if (!chkUser.isverified)
-            {
-                lbl_warning.Text = "Please activate your account to login.";
-                pnl_warning.Visible = true;
+                if (chkUser != null)
+                    Response.Redirect(webURL + "resetpassword.aspx", true);
             }
             else
             {
-                bool isDeclarationDoneByApplicant = false;
-                bool isGteDeclarationDoneByApplicant;
-                bool isProfileDetailsCompletedByApplicant;
-
-                bool isFullService;
-                bool isDeclarationCompleted;
-
-                pnl_warning.Visible = false;                
-                Session["LoginInfo"] = chkUser;
-                Session["UserID"] = chkUser.studentid;
-                isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid);
-                isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
-
-                if (isFullService)
+                string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
+                 chkUser = (from usr in db.students
+                               where (usr.email.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
+                               select usr).FirstOrDefault();
+                if (chkUser == null)
                 {
-                    isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
-                    isDeclarationCompleted = isDeclarationDoneByApplicant && isGteDeclarationDoneByApplicant;
-                    isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                    lbl_warning.Text = "Please enter valid user name and password.";
+                    pnl_warning.Visible = true;
+                }
+                else if (!chkUser.isverified)
+                {
+                    lbl_warning.Text = "Please activate your account to login.";
+                    pnl_warning.Visible = true;
                 }
                 else
                 {
-                    isDeclarationCompleted = isGteDeclarationDoneByApplicant;
-                    isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                    bool isDeclarationDoneByApplicant = false;
+                    bool isGteDeclarationDoneByApplicant;
+                    bool isProfileDetailsCompletedByApplicant;
+
+                    bool isFullService;
+                    bool isDeclarationCompleted;
+
+                    pnl_warning.Visible = false;
+                    Session["LoginInfo"] = chkUser;
+                    Session["UserID"] = chkUser.studentid;
+                    isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid);
+                    isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+
+                    if (isFullService)
+                    {
+                        isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
+                        isDeclarationCompleted = isDeclarationDoneByApplicant && isGteDeclarationDoneByApplicant;
+                        isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                    }
+                    else
+                    {
+                        isDeclarationCompleted = isGteDeclarationDoneByApplicant;
+                        isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(chkUser.studentid, universityID);
+                    }
+
+                    Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
+                    Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
+                    Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
+                    Session["FullService"] = isFullService;
+                    Session["DeclarationCompleted"] = isDeclarationCompleted;
+
+                    //switch (chkUser.role)
+                    //{
+                    //    case 1:
+                    //        Response.Redirect(webURL + "admin/default.aspx");
+                    //        break;
+                    //    case 2:
+                    //        Response.Redirect(webURL + "agentdashboard.aspx");
+                    //        break;
+                    //    case 3:
+                    Response.Redirect(webURL + "default.aspx", true);
+                    //            break;
+                    //        case 4:
+                    //            Response.Redirect(webURL + "universitydashboard.aspx");
+                    //            break;
+                    //        default:
+                    //            Response.Redirect(webURL + "login.aspx");
+                    //            break;
+                    //    }                
+
                 }
-
-                Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
-                Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
-                Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
-                Session["FullService"] = isFullService;
-                Session["DeclarationCompleted"] = isDeclarationCompleted;
-
-                //switch (chkUser.role)
-                //{
-                //    case 1:
-                //        Response.Redirect(webURL + "admin/default.aspx");
-                //        break;
-                //    case 2:
-                //        Response.Redirect(webURL + "agentdashboard.aspx");
-                //        break;
-                //    case 3:
-                Response.Redirect(webURL + "default.aspx",true);
-                //            break;
-                //        case 4:
-                //            Response.Redirect(webURL + "universitydashboard.aspx");
-                //            break;
-                //        default:
-                //            Response.Redirect(webURL + "login.aspx");
-                //            break;
-                //    }                
-
             }
         }
 

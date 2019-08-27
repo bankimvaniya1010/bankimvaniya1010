@@ -156,6 +156,23 @@ public partial class applicant_education
     public string othercourse_name { get; set; }
 }
 
+public partial class applicantcampaign
+{
+    public int campaignid { get; set; }
+    public int applicantid { get; set; }
+    public Nullable<bool> email1sent { get; set; }
+    public Nullable<bool> email2sent { get; set; }
+    public Nullable<bool> email3sent { get; set; }
+    public Nullable<bool> email4sent { get; set; }
+    public Nullable<bool> email5sent { get; set; }
+    public Nullable<bool> email6sent { get; set; }
+    public Nullable<bool> email7sent { get; set; }
+    public Nullable<bool> email8sent { get; set; }
+    public Nullable<bool> email9sent { get; set; }
+
+    public virtual students students { get; set; }
+}
+
 public partial class applicantdatavalidation
 {
     public long id { get; set; }
@@ -261,6 +278,8 @@ public partial class applicantdetails
     public string motivationreason { get; set; }
     public Nullable<bool> haveworkexperience { get; set; }
     public string totalyearofexperience { get; set; }
+    public string studentsegment { get; set; }
+    public Nullable<int> studentstatus { get; set; }
 }
 
 public partial class applicantdocumentmaster
@@ -1091,9 +1110,9 @@ public partial class customfieldmaster
     public System.DateTime created_at { get; set; }
 
     public virtual formmaster formmaster { get; set; }
+    public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
-    public virtual university_master university_master { get; set; }
 }
 
 public partial class customfieldvalue
@@ -1719,6 +1738,7 @@ public partial class students
     public students()
     {
         this.admincomments = new HashSet<admincomments>();
+        this.applicantcampaign = new HashSet<applicantcampaign>();
         this.customfieldvalue = new HashSet<customfieldvalue>();
         this.gte_applicantdocument = new HashSet<gte_applicantdocument>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
@@ -1741,6 +1761,8 @@ public partial class students
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantcampaign> applicantcampaign { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -1976,9 +1998,9 @@ public partial class universitycampus
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
+    public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
-    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitycampus_city_mapping

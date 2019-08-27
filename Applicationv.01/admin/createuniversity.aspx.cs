@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Web.Script.Services;
 using Newtonsoft.Json;
+using System.IO;
 
 public partial class admin_createuniversity : System.Web.UI.Page
 {
@@ -15,7 +16,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
     Common objCommon = new Common();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-
+    string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["Role"] == null || (Session["UserID"] == null))
@@ -43,8 +44,8 @@ public partial class admin_createuniversity : System.Web.UI.Page
         try
         {
             var existingUniversity = (from universities in db.university_master
-                                where universities.university_name.Equals(txtUniName.Value.Trim())
-                                select universities.university_name).FirstOrDefault();
+                                      where universities.university_name.Equals(txtUniName.Value.Trim())
+                                      select universities.university_name).FirstOrDefault();
             if (string.IsNullOrEmpty(existingUniversity))
             {
                 universityObj.university_name = txtUniName.Value.Trim();
@@ -71,9 +72,21 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
                 universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
                 universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
-
+                universityObj.logo = "";
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
+                if (logo.HasFile)  //fileupload control contains a file  
+                {
+                    docPath = docPath + "/" + universityObj.universityid + "/";
+                    if (!Directory.Exists(docPath))
+                        Directory.CreateDirectory(docPath);
+                    string extension = Path.GetExtension(logo.PostedFile.FileName);
+                    string filename = universityObj.university_name.Replace(" ", "-") + extension;
+                    logo.SaveAs(docPath + filename);
+                    universityObj.logo = filename;
+                    db.SaveChanges();
+                }
+               
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
             }
             else

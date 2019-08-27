@@ -39,6 +39,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<answeroptionssecondary> answeroptionssecondary { get; set; }
     public virtual DbSet<applcantdetailfieldvalidationmaster> applcantdetailfieldvalidationmaster { get; set; }
     public virtual DbSet<applicant_education> applicant_education { get; set; }
+    public virtual DbSet<applicantcampaign> applicantcampaign { get; set; }
     public virtual DbSet<applicantdatavalidation> applicantdatavalidation { get; set; }
     public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<applicantdocumentmaster> applicantdocumentmaster { get; set; }
@@ -57,6 +58,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual DbSet<applicationmaster> applicationmaster { get; set; }
+    public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
+    public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
     public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
     public virtual DbSet<citymaster> citymaster { get; set; }
     public virtual DbSet<clarificationquestion_university_mapping> clarificationquestion_university_mapping { get; set; }
@@ -76,6 +79,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<facilitiesmaster> facilitiesmaster { get; set; }
     public virtual DbSet<facility_campus_mapping> facility_campus_mapping { get; set; }
     public virtual DbSet<familymember> familymember { get; set; }
+    public virtual DbSet<faq> faq { get; set; }
     public virtual DbSet<fieldvalidationmaster> fieldvalidationmaster { get; set; }
     public virtual DbSet<formfieldmapping> formfieldmapping { get; set; }
     public virtual DbSet<formfieldmaster> formfieldmaster { get; set; }
@@ -93,7 +97,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
     public virtual DbSet<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
     public virtual DbSet<gte_questions_master> gte_questions_master { get; set; }
+    public virtual DbSet<gte_report_admin_comment> gte_report_admin_comment { get; set; }
     public virtual DbSet<gte_statementofpurpose> gte_statementofpurpose { get; set; }
+    public virtual DbSet<gte_student_sop> gte_student_sop { get; set; }
     public virtual DbSet<gte_tutorialmaster> gte_tutorialmaster { get; set; }
     public virtual DbSet<gte_videouploadmaster> gte_videouploadmaster { get; set; }
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
@@ -130,6 +136,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<tuitionAndlivingcostmaster> tuitionAndlivingcostmaster { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
     public virtual DbSet<typemaster> typemaster { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
@@ -139,12 +146,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
-    public virtual DbSet<gte_student_sop> gte_student_sop { get; set; }
-    public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
-    public virtual DbSet<gte_report_admin_comment> gte_report_admin_comment { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
-    public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
-    public virtual DbSet<faq> faq { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
