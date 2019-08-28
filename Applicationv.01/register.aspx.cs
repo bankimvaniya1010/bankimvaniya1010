@@ -67,7 +67,12 @@ public partial class register : System.Web.UI.Page
                 objapplicant.applicantid = id;
                 // objapplicant = Convert.ToInt32(ddlUniversity.SelectedValue);
                 objapplicant.email = email.Value.Trim();
-                objapplicant.firstname = name.Value.Trim();
+
+                string[] nameArr = name.Value.Split(' ');
+                objapplicant.firstname = nameArr[0];
+                if(!String.IsNullOrEmpty(nameArr[1]))
+                    objapplicant.lastname = nameArr[1];
+
                 universityID = Utility.GetUniversityId();
                 objapplicant.universityid = universityID;
                 //objapplicant.middlename = mname.Value.Trim();
