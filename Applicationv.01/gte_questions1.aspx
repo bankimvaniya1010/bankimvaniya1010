@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_questions1.aspx.cs" Inherits="gte_questions1"  MasterPageFile="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_questions1.aspx.cs" Inherits="gte_questions1" MasterPageFile="~/student.master" %>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -13,12 +13,15 @@
     </div>
     <div class="page ">
 
-        <div class="row" style="margin-left:0;margin-right:0;">
+        <div class="row" style="margin-left: 0; margin-right: 0;">
             <div class="col-md-12">
-              
+
                 <div class="card faq-lftcard" id="questions" runat="server">
-                    <div style="font-size:medium;text-align:center">
+                    <div style="font-size: medium; text-align: center">
                         Question <%=ViewState["AnsweredQuestionCount"] %> / <%=ViewState["QuestionsCount"] %>
+                        <br/>
+                        <label id="minutes">00</label>:<label id="seconds">00</label>
+                        <asp:HiddenField ID="hidTime" runat="server" />
                     </div>
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
@@ -122,7 +125,28 @@
             return true;
         }
 
-         $(document).ready(function () {
+        var minutesLabel = document.getElementById("minutes");
+        var secondsLabel = document.getElementById("seconds");
+        var totalSeconds = 0;
+        setInterval(setTime, 1000);
+
+        function setTime() {
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds % 60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+            $("#<%=hidTime.ClientID%>").val(totalSeconds);
+        }
+
+        function pad(val) {
+            var valString = val + "";
+            if (valString.length < 2) {
+                return "0" + valString;
+            } else {
+                return valString;
+            }
+        }
+
+        $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');

@@ -164,82 +164,59 @@ public partial class gte_questions1 : System.Web.UI.Page
             {
                 Label question = (Label)item.FindControl("lblno");
                 questionId = Convert.ToInt32(question.Text);
+                int response_time = Convert.ToInt32(hidTime.Value);
 
-                RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
-                RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
-                RadioButton rdAnswer3 = (RadioButton)item.FindControl("rdoans3");
-                RadioButton rdAnswer4 = (RadioButton)item.FindControl("rdoans4");
-                RadioButton rdAnswer5 = (RadioButton)item.FindControl("rdoans5");
-                RadioButton rdAnswer6 = (RadioButton)item.FindControl("rdoans6");
+                bool responseInsertedForQuestion = db.gte_questions_applicant_response.Any(x => x.applicant_id == UserID && x.university_id == UniversityID && x.gte_question_id == questionId);
+                if (!responseInsertedForQuestion)
+                {
+                    RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
+                    RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
+                    RadioButton rdAnswer3 = (RadioButton)item.FindControl("rdoans3");
+                    RadioButton rdAnswer4 = (RadioButton)item.FindControl("rdoans4");
+                    RadioButton rdAnswer5 = (RadioButton)item.FindControl("rdoans5");
+                    RadioButton rdAnswer6 = (RadioButton)item.FindControl("rdoans6");
+                    gte_questions_applicant_response answer = new gte_questions_applicant_response();
 
-                if (rdAnswer1.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_0");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
+                    if (rdAnswer1.Checked)
                     {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer2.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_1");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
+                        Label lblAnswer = (Label)item.FindControl("lblAnswerID_0");
+                        answer.gte_answer_id = Convert.ToInt32(lblAnswer.Text);
+                    }
+                    else if (rdAnswer2.Checked)
                     {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer3.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_2");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
+                        Label lblAnswer = (Label)item.FindControl("lblAnswerID_1");
+                        answer.gte_answer_id = Convert.ToInt32(lblAnswer.Text);
+                    }
+                    else if (rdAnswer3.Checked)
                     {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer4.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_3");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
+                        Label lblAnswer = (Label)item.FindControl("lblAnswerID_2");
+                        answer.gte_answer_id = Convert.ToInt32(lblAnswer.Text);
+                    }
+                    else if (rdAnswer4.Checked)
                     {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer5.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_4");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
+                        Label lblAnswer = (Label)item.FindControl("lblAnswerID_3");
+                        answer.gte_answer_id = Convert.ToInt32(lblAnswer.Text);
+                    }
+                    else if (rdAnswer5.Checked)
                     {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer6.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_5");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
+                        Label lblAnswer = (Label)item.FindControl("lblAnswerID_4");
+                        answer.gte_answer_id = Convert.ToInt32(lblAnswer.Text);
+                    }
+                    else if (rdAnswer6.Checked)
                     {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
+                        Label lblAnswer = (Label)item.FindControl("lblAnswerID_5");
+                        answer.gte_answer_id = Convert.ToInt32(lblAnswer.Text);
+                    }
 
-                db.SaveChanges();
+                    answer.applicant_id = UserID;
+                    answer.gte_question_id = questionId;
+                    answer.applicant_response_time = response_time;
+                    answer.university_id = UniversityID;
+
+                    db.gte_questions_applicant_response.Add(answer);
+                    db.SaveChanges();
+                }
+                    
                 allAnswers.RemoveAll(x => x.gte_question_id == questionId);
                 allQuestions.RemoveAll(x => x.id == questionId);
                 

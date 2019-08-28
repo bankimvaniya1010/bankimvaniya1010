@@ -1256,6 +1256,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicant_id" Type="int" Nullable="false" />
+          <Property Name="university_id" Type="int" Nullable="false" />
           <Property Name="clarification_question_id" Type="int" Nullable="false" />
           <Property Name="applicant_response" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
@@ -1319,6 +1320,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicant_id" Type="int" Nullable="false" />
+          <Property Name="university_id" Type="int" Nullable="false" />
           <Property Name="applicant_response" Type="bit" />
           <Property Name="question_id" Type="int" Nullable="false" />
         </EntityType>
@@ -1330,6 +1332,8 @@
           <Property Name="gte_question_id" Type="int" Nullable="false" />
           <Property Name="gte_answer_id" Type="int" Nullable="false" />
           <Property Name="applicant_id" Type="int" Nullable="false" />
+          <Property Name="university_id" Type="int" Nullable="false" />
+          <Property Name="applicant_response_time" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="gte_questions_master">
           <Key>
@@ -2872,14 +2876,11 @@
           <EntitySet Name="gte_answer_master" EntityType="GTEModel.gte_answer_master" />
           <EntitySet Name="gte_applicantdetails" EntityType="GTEModel.gte_applicantdetails" />
           <EntitySet Name="gte_applicantdocument" EntityType="GTEModel.gte_applicantdocument" />
-          <EntitySet Name="gte_clarification_applicantresponse" EntityType="GTEModel.gte_clarification_applicantresponse" />
           <EntitySet Name="gte_clarification_questionmaster" EntityType="GTEModel.gte_clarification_questionmaster" />
           <EntitySet Name="gte_preliminary_questionmaster" EntityType="GTEModel.gte_preliminary_questionmaster" />
           <EntitySet Name="gte_preliminaryapplicantanswers" EntityType="GTEModel.gte_preliminaryapplicantanswers" />
           <EntitySet Name="gte_progressbar" EntityType="GTEModel.gte_progressbar" />
           <EntitySet Name="gte_question_master_part2" EntityType="GTEModel.gte_question_master_part2" />
-          <EntitySet Name="gte_question_part2_applicant_response" EntityType="GTEModel.gte_question_part2_applicant_response" />
-          <EntitySet Name="gte_questions_applicant_response" EntityType="GTEModel.gte_questions_applicant_response" />
           <EntitySet Name="gte_questions_master" EntityType="GTEModel.gte_questions_master" />
           <EntitySet Name="gte_report_admin_comment" EntityType="GTEModel.gte_report_admin_comment" />
           <EntitySet Name="gte_statementofpurpose" EntityType="GTEModel.gte_statementofpurpose" />
@@ -3054,29 +3055,13 @@
             <End Role="gte_questions_master" EntitySet="gte_questions_master" />
             <End Role="gte_answer_master" EntitySet="gte_answer_master" />
           </AssociationSet>
-          <AssociationSet Name="FK_resposne_answer" Association="GTEModel.FK_resposne_answer">
-            <End Role="gte_answer_master" EntitySet="gte_answer_master" />
-            <End Role="gte_questions_applicant_response" EntitySet="gte_questions_applicant_response" />
-          </AssociationSet>
           <AssociationSet Name="FK__students" Association="GTEModel.FK__students">
             <End Role="students" EntitySet="students" />
             <End Role="gte_applicantdocument" EntitySet="gte_applicantdocument" />
           </AssociationSet>
-          <AssociationSet Name="FK_response_clarification_questionmaster" Association="GTEModel.FK_response_clarification_questionmaster">
-            <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
-            <End Role="gte_clarification_applicantresponse" EntitySet="gte_clarification_applicantresponse" />
-          </AssociationSet>
           <AssociationSet Name="FK_clarification_gte_master_part2" Association="GTEModel.FK_clarification_gte_master_part2">
             <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
             <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_response_gteQuestionPart2" Association="GTEModel.FK_response_gteQuestionPart2">
-            <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
-            <End Role="gte_question_part2_applicant_response" EntitySet="gte_question_part2_applicant_response" />
-          </AssociationSet>
-          <AssociationSet Name="FK_response_question" Association="GTEModel.FK_response_question">
-            <End Role="gte_questions_master" EntitySet="gte_questions_master" />
-            <End Role="gte_questions_applicant_response" EntitySet="gte_questions_applicant_response" />
           </AssociationSet>
           <AssociationSet Name="FK_reportFeedBack_studentSop" Association="GTEModel.FK_reportFeedBack_studentSop">
             <End Role="gte_student_sop" EntitySet="gte_student_sop" />
@@ -3137,6 +3122,25 @@
           <AssociationSet Name="FK_mapping_universitycampus" Association="GTEModel.FK_mapping_universitycampus">
             <End Role="universitycampus" EntitySet="universitycampus" />
             <End Role="universitycampus_city_mapping" EntitySet="universitycampus_city_mapping" />
+          </AssociationSet>
+          <EntitySet Name="gte_clarification_applicantresponse" EntityType="GTEModel.gte_clarification_applicantresponse" />
+          <EntitySet Name="gte_question_part2_applicant_response" EntityType="GTEModel.gte_question_part2_applicant_response" />
+          <EntitySet Name="gte_questions_applicant_response" EntityType="GTEModel.gte_questions_applicant_response" />
+          <AssociationSet Name="FK_resposne_answer" Association="GTEModel.FK_resposne_answer">
+            <End Role="gte_answer_master" EntitySet="gte_answer_master" />
+            <End Role="gte_questions_applicant_response" EntitySet="gte_questions_applicant_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_response_clarification_questionmaster" Association="GTEModel.FK_response_clarification_questionmaster">
+            <End Role="gte_clarification_questionmaster" EntitySet="gte_clarification_questionmaster" />
+            <End Role="gte_clarification_applicantresponse" EntitySet="gte_clarification_applicantresponse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_response_gteQuestionPart2" Association="GTEModel.FK_response_gteQuestionPart2">
+            <End Role="gte_question_master_part2" EntitySet="gte_question_master_part2" />
+            <End Role="gte_question_part2_applicant_response" EntitySet="gte_question_part2_applicant_response" />
+          </AssociationSet>
+          <AssociationSet Name="FK_response_question" Association="GTEModel.FK_response_question">
+            <End Role="gte_questions_master" EntitySet="gte_questions_master" />
+            <End Role="gte_questions_applicant_response" EntitySet="gte_questions_applicant_response" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="accommodationplan">
@@ -4426,16 +4430,6 @@
           <Property Name="documentid" Type="Int32" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK__students" FromRole="gte_applicantdocument" ToRole="students" />
         </EntityType>
-        <EntityType Name="gte_clarification_applicantresponse">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicant_id" Type="Int32" Nullable="false" />
-          <Property Name="clarification_question_id" Type="Int32" Nullable="false" />
-          <Property Name="applicant_response" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="gte_clarification_questionmaster" Relationship="GTEModel.FK_response_clarification_questionmaster" FromRole="gte_clarification_applicantresponse" ToRole="gte_clarification_questionmaster" />
-        </EntityType>
         <EntityType Name="gte_clarification_questionmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -4444,8 +4438,8 @@
           <Property Name="gte_master1_id" Type="Int32" Nullable="false" />
           <Property Name="clarification_question" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="display_condition" Type="Boolean" />
-          <NavigationProperty Name="gte_clarification_applicantresponse" Relationship="GTEModel.FK_response_clarification_questionmaster" FromRole="gte_clarification_questionmaster" ToRole="gte_clarification_applicantresponse" />
           <NavigationProperty Name="gte_question_master_part2" Relationship="GTEModel.FK_clarification_gte_master_part2" FromRole="gte_clarification_questionmaster" ToRole="gte_question_master_part2" />
+          <NavigationProperty Name="gte_clarification_applicantresponse" Relationship="GTEModel.FK_response_clarification_questionmaster" FromRole="gte_clarification_questionmaster" ToRole="gte_clarification_applicantresponse" />
         </EntityType>
         <EntityType Name="gte_preliminary_questionmaster">
           <Key>
@@ -4493,27 +4487,6 @@
           <Property Name="false_risk_score" Type="Int32" Nullable="false" />
           <NavigationProperty Name="gte_clarification_questionmaster" Relationship="GTEModel.FK_clarification_gte_master_part2" FromRole="gte_question_master_part2" ToRole="gte_clarification_questionmaster" />
           <NavigationProperty Name="gte_question_part2_applicant_response" Relationship="GTEModel.FK_response_gteQuestionPart2" FromRole="gte_question_master_part2" ToRole="gte_question_part2_applicant_response" />
-        </EntityType>
-        <EntityType Name="gte_question_part2_applicant_response">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicant_id" Type="Int32" Nullable="false" />
-          <Property Name="applicant_response" Type="Boolean" />
-          <Property Name="question_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="gte_question_master_part2" Relationship="GTEModel.FK_response_gteQuestionPart2" FromRole="gte_question_part2_applicant_response" ToRole="gte_question_master_part2" />
-        </EntityType>
-        <EntityType Name="gte_questions_applicant_response">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="gte_question_id" Type="Int32" Nullable="false" />
-          <Property Name="gte_answer_id" Type="Int32" Nullable="false" />
-          <Property Name="applicant_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="gte_answer_master" Relationship="GTEModel.FK_resposne_answer" FromRole="gte_questions_applicant_response" ToRole="gte_answer_master" />
-          <NavigationProperty Name="gte_questions_master" Relationship="GTEModel.FK_response_question" FromRole="gte_questions_applicant_response" ToRole="gte_questions_master" />
         </EntityType>
         <EntityType Name="gte_questions_master">
           <Key>
@@ -5443,18 +5416,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_resposne_answer">
-          <End Type="GTEModel.gte_answer_master" Role="gte_answer_master" Multiplicity="1" />
-          <End Type="GTEModel.gte_questions_applicant_response" Role="gte_questions_applicant_response" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="gte_answer_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="gte_questions_applicant_response">
-              <PropertyRef Name="gte_answer_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__students">
           <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
           <End Type="GTEModel.gte_applicantdocument" Role="gte_applicantdocument" Multiplicity="*" />
@@ -5467,18 +5428,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_response_clarification_questionmaster">
-          <End Type="GTEModel.gte_clarification_questionmaster" Role="gte_clarification_questionmaster" Multiplicity="1" />
-          <End Type="GTEModel.gte_clarification_applicantresponse" Role="gte_clarification_applicantresponse" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="gte_clarification_questionmaster">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="gte_clarification_applicantresponse">
-              <PropertyRef Name="clarification_question_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_clarification_gte_master_part2">
           <End Type="GTEModel.gte_question_master_part2" Role="gte_question_master_part2" Multiplicity="1" />
           <End Type="GTEModel.gte_clarification_questionmaster" Role="gte_clarification_questionmaster" Multiplicity="*" />
@@ -5488,30 +5437,6 @@
             </Principal>
             <Dependent Role="gte_clarification_questionmaster">
               <PropertyRef Name="gte_master1_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_response_gteQuestionPart2">
-          <End Type="GTEModel.gte_question_master_part2" Role="gte_question_master_part2" Multiplicity="1" />
-          <End Type="GTEModel.gte_question_part2_applicant_response" Role="gte_question_part2_applicant_response" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="gte_question_master_part2">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="gte_question_part2_applicant_response">
-              <PropertyRef Name="question_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_response_question">
-          <End Type="GTEModel.gte_questions_master" Role="gte_questions_master" Multiplicity="1" />
-          <End Type="GTEModel.gte_questions_applicant_response" Role="gte_questions_applicant_response" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="gte_questions_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="gte_questions_applicant_response">
-              <PropertyRef Name="gte_question_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5692,6 +5617,89 @@
             </Principal>
             <Dependent Role="universitycampus_city_mapping">
               <PropertyRef Name="campusid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="gte_clarification_applicantresponse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="clarification_question_id" Type="Int32" Nullable="false" />
+          <Property Name="applicant_response" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="gte_clarification_questionmaster" Relationship="GTEModel.FK_response_clarification_questionmaster" FromRole="gte_clarification_applicantresponse" ToRole="gte_clarification_questionmaster" />
+        </EntityType>
+        <EntityType Name="gte_question_part2_applicant_response">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="applicant_response" Type="Boolean" />
+          <Property Name="question_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="gte_question_master_part2" Relationship="GTEModel.FK_response_gteQuestionPart2" FromRole="gte_question_part2_applicant_response" ToRole="gte_question_master_part2" />
+        </EntityType>
+        <EntityType Name="gte_questions_applicant_response">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gte_question_id" Type="Int32" Nullable="false" />
+          <Property Name="gte_answer_id" Type="Int32" Nullable="false" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="applicant_response_time" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="gte_answer_master" Relationship="GTEModel.FK_resposne_answer" FromRole="gte_questions_applicant_response" ToRole="gte_answer_master" />
+          <NavigationProperty Name="gte_questions_master" Relationship="GTEModel.FK_response_question" FromRole="gte_questions_applicant_response" ToRole="gte_questions_master" />
+        </EntityType>
+        <Association Name="FK_resposne_answer">
+          <End Type="GTEModel.gte_answer_master" Role="gte_answer_master" Multiplicity="1" />
+          <End Type="GTEModel.gte_questions_applicant_response" Role="gte_questions_applicant_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gte_answer_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="gte_questions_applicant_response">
+              <PropertyRef Name="gte_answer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_response_clarification_questionmaster">
+          <End Type="GTEModel.gte_clarification_questionmaster" Role="gte_clarification_questionmaster" Multiplicity="1" />
+          <End Type="GTEModel.gte_clarification_applicantresponse" Role="gte_clarification_applicantresponse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gte_clarification_questionmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="gte_clarification_applicantresponse">
+              <PropertyRef Name="clarification_question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_response_gteQuestionPart2">
+          <End Type="GTEModel.gte_question_master_part2" Role="gte_question_master_part2" Multiplicity="1" />
+          <End Type="GTEModel.gte_question_part2_applicant_response" Role="gte_question_part2_applicant_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gte_question_master_part2">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="gte_question_part2_applicant_response">
+              <PropertyRef Name="question_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_response_question">
+          <End Type="GTEModel.gte_questions_master" Role="gte_questions_master" Multiplicity="1" />
+          <End Type="GTEModel.gte_questions_applicant_response" Role="gte_questions_applicant_response" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gte_questions_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="gte_questions_applicant_response">
+              <PropertyRef Name="gte_question_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7011,16 +7019,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="gte_clarification_applicantresponse">
-            <EntityTypeMapping TypeName="GTEModel.gte_clarification_applicantresponse">
-              <MappingFragment StoreEntitySet="gte_clarification_applicantresponse">
-                <ScalarProperty Name="applicant_response" ColumnName="applicant_response" />
-                <ScalarProperty Name="clarification_question_id" ColumnName="clarification_question_id" />
-                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="gte_clarification_questionmaster">
             <EntityTypeMapping TypeName="GTEModel.gte_clarification_questionmaster">
               <MappingFragment StoreEntitySet="gte_clarification_questionmaster">
@@ -7076,26 +7074,6 @@
                 <ScalarProperty Name="true_gte_score" ColumnName="true_gte_score" />
                 <ScalarProperty Name="tag" ColumnName="tag" />
                 <ScalarProperty Name="question" ColumnName="question" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="gte_question_part2_applicant_response">
-            <EntityTypeMapping TypeName="GTEModel.gte_question_part2_applicant_response">
-              <MappingFragment StoreEntitySet="gte_question_part2_applicant_response">
-                <ScalarProperty Name="question_id" ColumnName="question_id" />
-                <ScalarProperty Name="applicant_response" ColumnName="applicant_response" />
-                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="gte_questions_applicant_response">
-            <EntityTypeMapping TypeName="GTEModel.gte_questions_applicant_response">
-              <MappingFragment StoreEntitySet="gte_questions_applicant_response">
-                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
-                <ScalarProperty Name="gte_answer_id" ColumnName="gte_answer_id" />
-                <ScalarProperty Name="gte_question_id" ColumnName="gte_question_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7649,6 +7627,40 @@
               <MappingFragment StoreEntitySet="workexperienceyearsmaster">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="workexperienceyearsid" ColumnName="workexperienceyearsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_clarification_applicantresponse">
+            <EntityTypeMapping TypeName="GTEModel.gte_clarification_applicantresponse">
+              <MappingFragment StoreEntitySet="gte_clarification_applicantresponse">
+                <ScalarProperty Name="applicant_response" ColumnName="applicant_response" />
+                <ScalarProperty Name="clarification_question_id" ColumnName="clarification_question_id" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_question_part2_applicant_response">
+            <EntityTypeMapping TypeName="GTEModel.gte_question_part2_applicant_response">
+              <MappingFragment StoreEntitySet="gte_question_part2_applicant_response">
+                <ScalarProperty Name="question_id" ColumnName="question_id" />
+                <ScalarProperty Name="applicant_response" ColumnName="applicant_response" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_questions_applicant_response">
+            <EntityTypeMapping TypeName="GTEModel.gte_questions_applicant_response">
+              <MappingFragment StoreEntitySet="gte_questions_applicant_response">
+                <ScalarProperty Name="applicant_response_time" ColumnName="applicant_response_time" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="gte_answer_id" ColumnName="gte_answer_id" />
+                <ScalarProperty Name="gte_question_id" ColumnName="gte_question_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

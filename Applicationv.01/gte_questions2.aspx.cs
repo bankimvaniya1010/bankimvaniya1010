@@ -145,31 +145,38 @@ public partial class gte_questions2 : System.Web.UI.Page
                 Label question = (Label)item.FindControl("lblno");
                 questionId = Convert.ToInt32(question.Text);
 
-                RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
-                RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
-
-                if (rdAnswer1.Checked)
+                bool responseInsertedForQuestion = db.gte_question_part2_applicant_response.Any(x => x.applicant_id == UserID && x.university_id == UniversityID && x.question_id == questionId);
+                if (!responseInsertedForQuestion)
                 {
-                    gte_question_part2_applicant_response answer = new gte_question_part2_applicant_response()
+                    RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
+                    RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
+
+                    if (rdAnswer1.Checked)
                     {
-                        applicant_id = UserID,
-                        question_id = questionId,
-                        applicant_response = true
-                    };
-                    db.gte_question_part2_applicant_response.Add(answer);
-                }
-                else if (rdAnswer2.Checked)
-                {
-                    gte_question_part2_applicant_response answer = new gte_question_part2_applicant_response()
+                        gte_question_part2_applicant_response answer = new gte_question_part2_applicant_response()
+                        {
+                            applicant_id = UserID,
+                            question_id = questionId,
+                            applicant_response = true,
+                            university_id = UniversityID
+                        };
+                        db.gte_question_part2_applicant_response.Add(answer);
+                    }
+                    else if (rdAnswer2.Checked)
                     {
-                        applicant_id = UserID,
-                        question_id = questionId,
-                        applicant_response = false
-                    };
-                    db.gte_question_part2_applicant_response.Add(answer);
+                        gte_question_part2_applicant_response answer = new gte_question_part2_applicant_response()
+                        {
+                            applicant_id = UserID,
+                            question_id = questionId,
+                            applicant_response = false,
+                            university_id = UniversityID
+                        };
+                        db.gte_question_part2_applicant_response.Add(answer);
+                    }
+
+                    db.SaveChanges();
                 }
 
-                db.SaveChanges();
                 allQuestions.RemoveAll(x => x.id == questionId);
             }
 
