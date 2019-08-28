@@ -22,7 +22,7 @@ public partial class gte_questions1 : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (totalResponseTime == 0)
-            totalResponseTime = Convert.ToInt32(ViewState["answeredResponseTime"]);
+            totalResponseTime = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).Sum(x => x.applicant_response_time);
 
         if (!IsPostBack)
         {
@@ -32,10 +32,7 @@ public partial class gte_questions1 : System.Web.UI.Page
             ViewState["QuestionsCount"] = allQuestions.Count;
             ViewState["AnsweredQuestionCount"] = answeredQuestion.Count;
             if(answeredQuestion.Count > 0)
-            {
                 totalResponseTime = answeredQuestion.Sum(x => x.applicant_response_time);
-                ViewState["answeredResponseTime"] = totalResponseTime;
-            }
             Session["allQuestions"] = allQuestions;
 
             if (answeredQuestion.Count == allQuestions.Count)
@@ -209,7 +206,6 @@ public partial class gte_questions1 : System.Web.UI.Page
                     db.SaveChanges();
 
                     totalResponseTime = totalResponseTime + response_time;
-                    ViewState["answeredResponseTime"] = totalResponseTime;
                 }
                     
                 allAnswers.RemoveAll(x => x.gte_question_id == questionId);
