@@ -38,7 +38,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/password.html"));
                 html = html.Replace("@UniversityName", university.university_name);
-                html = html.Replace("@universityLogo", webURL + "/Docs/" + login + "/" + university.logo);
+                html = html.Replace("@universityLogo", webURL + "/Docs/" + Utility.GetUniversityId() + "/" + university.logo);
                 html = html.Replace("@Name", login.name == "" ? "Hello" : login.name);
                 html = html.Replace("@Email", login.email);
                 html = html.Replace("@OTP", password);
