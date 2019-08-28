@@ -26,7 +26,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
         {
             allQuestions = objCom.FaqQuestionList();
             var gteQuestionPart2Count = db.gte_question_master_part2.Count();
-            var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+            var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
 
             if (applicant_response == null)
                 Response.Redirect("default.aspx", true);

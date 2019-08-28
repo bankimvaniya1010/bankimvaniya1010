@@ -25,7 +25,7 @@ public partial class gte_questions2 : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            var answeredQuestion = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+            var answeredQuestion = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
             var allQuestions = db.gte_question_master_part2.ToList();
             ViewState["QuestionsCount"] = allQuestions.Count;
             ViewState["AnsweredQuestionCount"] = answeredQuestion.Count;
