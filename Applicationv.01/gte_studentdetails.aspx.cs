@@ -148,6 +148,10 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (mode == "new")
                 db.gte_applicantdetails.Add(objgte_applicantdetails);
             db.SaveChanges();
+
+            var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
+            if (!isProfileDetailsCompletedByApplicant)
+                Session["ProfileDetailsCompletedByApplicant"] = objCom.SetGteStudentDetailsCompletedStatus(userID, universityID);
         }
         catch (Exception ex)
         {

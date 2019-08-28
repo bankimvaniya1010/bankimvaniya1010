@@ -14,20 +14,25 @@ public partial class gte_questions1 : System.Web.UI.Page
     protected List<faq> allfaqQuestion = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    public static int totalResponseTime = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
+        if (totalResponseTime == 0)
+            totalResponseTime = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).Sum(x => x.applicant_response_time);
 
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            var answeredQuestion = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+            var answeredQuestion = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
             var allQuestions = db.gte_questions_master.ToList();
             ViewState["QuestionsCount"] = allQuestions.Count;
             ViewState["AnsweredQuestionCount"] = answeredQuestion.Count;
+            if(answeredQuestion.Count > 0)
+                totalResponseTime = answeredQuestion.Sum(x => x.applicant_response_time);
             Session["allQuestions"] = allQuestions;
 
             if (answeredQuestion.Count == allQuestions.Count)
@@ -164,82 +169,45 @@ public partial class gte_questions1 : System.Web.UI.Page
             {
                 Label question = (Label)item.FindControl("lblno");
                 questionId = Convert.ToInt32(question.Text);
+                int response_time = Convert.ToInt32(hidTime.Value);
 
-                RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
-                RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
-                RadioButton rdAnswer3 = (RadioButton)item.FindControl("rdoans3");
-                RadioButton rdAnswer4 = (RadioButton)item.FindControl("rdoans4");
-                RadioButton rdAnswer5 = (RadioButton)item.FindControl("rdoans5");
-                RadioButton rdAnswer6 = (RadioButton)item.FindControl("rdoans6");
+                bool responseInsertedForQuestion = db.gte_questions_applicant_response.Any(x => x.applicant_id == UserID && x.university_id == UniversityID && x.gte_question_id == questionId);
+                if (!responseInsertedForQuestion)
+                {
+                    RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
+                    RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
+                    RadioButton rdAnswer3 = (RadioButton)item.FindControl("rdoans3");
+                    RadioButton rdAnswer4 = (RadioButton)item.FindControl("rdoans4");
+                    RadioButton rdAnswer5 = (RadioButton)item.FindControl("rdoans5");
+                    RadioButton rdAnswer6 = (RadioButton)item.FindControl("rdoans6");
+                    gte_questions_applicant_response answer = new gte_questions_applicant_response();
+                    Label lblAnswer = null;
 
-                if (rdAnswer1.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_0");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
-                    {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer2.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_1");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
-                    {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer3.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_2");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
-                    {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer4.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_3");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
-                    {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer5.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_4");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
-                    {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
-                else if (rdAnswer6.Checked)
-                {
-                    Label lblAnswer = (Label)item.FindControl("lblAnswerID_5");
-                    gte_questions_applicant_response answer = new gte_questions_applicant_response()
-                    {
-                        applicant_id = UserID,
-                        gte_question_id = questionId,
-                        gte_answer_id = Convert.ToInt32(lblAnswer.Text)
-                    };
-                    db.gte_questions_applicant_response.Add(answer);
-                }
+                    if (rdAnswer1.Checked)
+                        lblAnswer = (Label)item.FindControl("lblAnswerID_0");
+                    else if (rdAnswer2.Checked)
+                        lblAnswer = (Label)item.FindControl("lblAnswerID_1");
+                    else if (rdAnswer3.Checked)
+                        lblAnswer = (Label)item.FindControl("lblAnswerID_2");
+                    else if (rdAnswer4.Checked)
+                        lblAnswer = (Label)item.FindControl("lblAnswerID_3");
+                    else if (rdAnswer5.Checked)
+                        lblAnswer = (Label)item.FindControl("lblAnswerID_4");
+                    else if (rdAnswer6.Checked)
+                        lblAnswer = (Label)item.FindControl("lblAnswerID_5");
 
-                db.SaveChanges();
+                    answer.gte_answer_id = Convert.ToInt32(lblAnswer.Text);
+                    answer.applicant_id = UserID;
+                    answer.gte_question_id = questionId;
+                    answer.applicant_response_time = response_time;
+                    answer.university_id = UniversityID;
+
+                    db.gte_questions_applicant_response.Add(answer);
+                    db.SaveChanges();
+
+                    totalResponseTime = totalResponseTime + response_time;
+                }
+                    
                 allAnswers.RemoveAll(x => x.gte_question_id == questionId);
                 allQuestions.RemoveAll(x => x.id == questionId);
                 

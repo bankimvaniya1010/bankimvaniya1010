@@ -1331,6 +1331,7 @@ public partial class gte_clarification_applicantresponse
 {
     public int id { get; set; }
     public int applicant_id { get; set; }
+    public int university_id { get; set; }
     public int clarification_question_id { get; set; }
     public string applicant_response { get; set; }
 
@@ -1350,9 +1351,9 @@ public partial class gte_clarification_questionmaster
     public string clarification_question { get; set; }
     public Nullable<bool> display_condition { get; set; }
 
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
-    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
 }
 
 public partial class gte_preliminary_questionmaster
@@ -1412,6 +1413,7 @@ public partial class gte_question_part2_applicant_response
 {
     public int id { get; set; }
     public int applicant_id { get; set; }
+    public int university_id { get; set; }
     public Nullable<bool> applicant_response { get; set; }
     public int question_id { get; set; }
 
@@ -1424,6 +1426,8 @@ public partial class gte_questions_applicant_response
     public int gte_question_id { get; set; }
     public int gte_answer_id { get; set; }
     public int applicant_id { get; set; }
+    public int university_id { get; set; }
+    public int applicant_response_time { get; set; }
 
     public virtual gte_answer_master gte_answer_master { get; set; }
     public virtual gte_questions_master gte_questions_master { get; set; }

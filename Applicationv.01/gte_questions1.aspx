@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_questions1.aspx.cs" Inherits="gte_questions1"  MasterPageFile="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_questions1.aspx.cs" Inherits="gte_questions1" MasterPageFile="~/student.master" %>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -13,12 +13,15 @@
     </div>
     <div class="page ">
 
-        <div class="row" style="margin-left:0;margin-right:0;">
+        <div class="row" style="margin-left: 0; margin-right: 0;">
             <div class="col-md-12">
-              
+
                 <div class="card faq-lftcard" id="questions" runat="server">
-                    <div style="font-size:medium;text-align:center">
+                    <div style="font-size: medium; text-align: center">
                         Question <%=ViewState["AnsweredQuestionCount"] %> / <%=ViewState["QuestionsCount"] %>
+                        <br/>
+                        <label id="minutes"></label><label id="seconds"></label>
+                        <asp:HiddenField ID="hidTime" runat="server" />
                     </div>
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
@@ -122,11 +125,34 @@
             return true;
         }
 
-         $(document).ready(function () {
+        $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepart1').addClass('active');
+
+            var minutesLabel = document.getElementById("minutes");
+            var secondsLabel = document.getElementById("seconds");
+            var totalSeconds = <%=gte_questions1.totalResponseTime%>;
+            setInterval(setTime, 1000);
+
+            function setTime() {
+                ++totalSeconds;
+                var questionTime = totalSeconds - <%=gte_questions1.totalResponseTime%>;
+                secondsLabel.innerHTML = ":" + pad(totalSeconds % 60);
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
+                $("#<%=hidTime.ClientID%>").val(questionTime);
+            }
+
+            function pad(val) {
+                var valString = val + "";
+                if (valString.length < 2) {
+                    return "0" + valString;
+                } else {
+                    return valString;
+                }
+            }
+
         });
     </script>
 

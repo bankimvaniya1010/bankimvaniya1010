@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e224318253d04e139cb71a2f9b7b377f" Name="Diagram1" ZoomLevel="10">
+      <Diagram DiagramId="e224318253d04e139cb71a2f9b7b377f" Name="Diagram1" ZoomLevel="33">
         <AssociationConnector Association="GTEModel.FK_campus_facilityMaster" />
         <EntityTypeShape EntityType="GTEModel.relationshipwithcontact" Width="1.5" PointX="25.375" PointY="21.75" />
         <EntityTypeShape EntityType="GTEModel.accommodationplan" Width="1.5" PointX="7.75" PointY="0.75" />
@@ -70,14 +70,11 @@
         <EntityTypeShape EntityType="GTEModel.gte_answer_master" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="GTEModel.gte_applicantdetails" Width="1.5" PointX="27.75" PointY="13.75" />
         <EntityTypeShape EntityType="GTEModel.gte_applicantdocument" Width="1.5" PointX="10.5" PointY="14.125" />
-        <EntityTypeShape EntityType="GTEModel.gte_clarification_applicantresponse" Width="1.5" PointX="15.25" PointY="3.875" />
         <EntityTypeShape EntityType="GTEModel.gte_clarification_questionmaster" Width="1.5" PointX="13" PointY="3.75" />
         <EntityTypeShape EntityType="GTEModel.gte_preliminary_questionmaster" Width="1.5" PointX="27.75" PointY="20.75" />
         <EntityTypeShape EntityType="GTEModel.gte_preliminaryapplicantanswers" Width="1.5" PointX="27.75" PointY="24.75" />
         <EntityTypeShape EntityType="GTEModel.gte_progressbar" Width="1.5" PointX="27.75" PointY="27.75" />
         <EntityTypeShape EntityType="GTEModel.gte_question_master_part2" Width="1.5" PointX="10.75" PointY="2.125" />
-        <EntityTypeShape EntityType="GTEModel.gte_question_part2_applicant_response" Width="1.5" PointX="13" PointY="1.125" />
-        <EntityTypeShape EntityType="GTEModel.gte_questions_applicant_response" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="GTEModel.gte_questions_master" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="GTEModel.gte_report_admin_comment" Width="1.5" PointX="18" PointY="7.375" />
         <EntityTypeShape EntityType="GTEModel.gte_statementofpurpose" Width="1.5" PointX="29.75" PointY="0.75" />
@@ -159,12 +156,8 @@
         <AssociationConnector Association="GTEModel.FK_tooltips_formmaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_formmaster" />
         <AssociationConnector Association="GTEModel.FK_answer_gteQuestion" />
-        <AssociationConnector Association="GTEModel.FK_resposne_answer" />
         <AssociationConnector Association="GTEModel.FK__students" />
-        <AssociationConnector Association="GTEModel.FK_response_clarification_questionmaster" />
         <AssociationConnector Association="GTEModel.FK_clarification_gte_master_part2" />
-        <AssociationConnector Association="GTEModel.FK_response_gteQuestionPart2" />
-        <AssociationConnector Association="GTEModel.FK_response_question" />
         <AssociationConnector Association="GTEModel.FK_reportFeedBack_studentSop" />
         <AssociationConnector Association="GTEModel.FK_tooltips_primaryfieldmaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_primaryfieldmaster" />
@@ -180,6 +173,13 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
+        <EntityTypeShape EntityType="GTEModel.gte_clarification_applicantresponse" Width="1.5" PointX="15.25" PointY="4.5" />
+        <EntityTypeShape EntityType="GTEModel.gte_question_part2_applicant_response" Width="1.5" PointX="13" PointY="0.75" />
+        <EntityTypeShape EntityType="GTEModel.gte_questions_applicant_response" Width="1.5" PointX="5.25" PointY="1.75" />
+        <AssociationConnector Association="GTEModel.FK_resposne_answer" />
+        <AssociationConnector Association="GTEModel.FK_response_clarification_questionmaster" />
+        <AssociationConnector Association="GTEModel.FK_response_gteQuestionPart2" />
+        <AssociationConnector Association="GTEModel.FK_response_question" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

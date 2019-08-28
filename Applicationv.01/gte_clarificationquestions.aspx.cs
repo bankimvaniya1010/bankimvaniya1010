@@ -13,6 +13,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     Common objCom = new Common();
+    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,7 +26,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
         {
             allQuestions = objCom.FaqQuestionList();
             var gteQuestionPart2Count = db.gte_question_master_part2.Count();
-            var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+            var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
 
             if (applicant_response == null)
                 Response.Redirect("default.aspx", true);
@@ -65,16 +66,21 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                 Label labelId = (Label)item.FindControl("lblno");
                 questionId = Convert.ToInt32(labelId.Text);
 
-                TextBox response = (TextBox)item.FindControl("txtResponse");
-                gte_clarification_applicantresponse answer = new gte_clarification_applicantresponse()
+                bool responseInsertedForQuestion = db.gte_clarification_applicantresponse.Any(x => x.applicant_id == UserID && x.university_id == UniversityID && x.clarification_question_id == questionId);
+                if (!responseInsertedForQuestion)
                 {
-                    applicant_id = UserID,
-                    clarification_question_id = questionId,
-                    applicant_response = response.Text
-                };
+                    TextBox response = (TextBox)item.FindControl("txtResponse");
+                    gte_clarification_applicantresponse answer = new gte_clarification_applicantresponse()
+                    {
+                        applicant_id = UserID,
+                        clarification_question_id = questionId,
+                        applicant_response = response.Text,
+                        university_id = UniversityID
+                    };
 
-                db.gte_clarification_applicantresponse.Add(answer);
-                db.SaveChanges();
+                    db.gte_clarification_applicantresponse.Add(answer);
+                    db.SaveChanges();
+                }
             }
 
             displayLabel("Thank you for answering all clarification questions.");
