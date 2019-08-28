@@ -70,8 +70,8 @@ public partial class register : System.Web.UI.Page
 
                 string[] nameArr = name.Value.Split(' ');
                 objapplicant.firstname = nameArr[0];
-                if(!String.IsNullOrEmpty(nameArr[1]))
-                    objapplicant.lastname = nameArr[1];
+                if(nameArr.Length > 1)
+                    objapplicant.lastname = name.Value.Substring(nameArr[0].Length + 1);
 
                 universityID = Utility.GetUniversityId();
                 objapplicant.universityid = universityID;
