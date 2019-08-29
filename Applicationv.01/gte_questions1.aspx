@@ -112,7 +112,7 @@
         function validateForm() {
             var rdoans1 = $("#ContentPlaceHolder1_questionList_rdoans1_0");
             var rdoans2 = $("#ContentPlaceHolder1_questionList_rdoans2_0");
-            var rdoans3 = $("#ContentPlaceHolder1_questionList_ rdoans3_0");
+            var rdoans3 = $("#ContentPlaceHolder1_questionList_rdoans3_0");
             var rdoans4 = $("#ContentPlaceHolder1_questionList_rdoans4_0");
             var rdoans5 = $("#ContentPlaceHolder1_questionList_rdoans5_0");
             var rdoans6 = $("#ContentPlaceHolder1_questionList_rdoans6_0");
@@ -129,6 +129,27 @@
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepart1').addClass('active');
+
+            var minutesLabel = document.getElementById("minutes");	
+            var secondsLabel = document.getElementById("seconds");	
+            var totalSeconds = <%=gte_questions1.totalResponseTime%>;	
+            setInterval(setTime, 1000);	
+             function setTime() {	
+                ++totalSeconds;	
+                var questionTime = totalSeconds - <%=gte_questions1.totalResponseTime%>;	
+                secondsLabel.innerHTML = ":" + pad(totalSeconds % 60);	
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));	
+                $("#<%=hidTime.ClientID%>").val(questionTime);	
+            }	
+             function pad(val) {	
+                var valString = val + "";	
+                if (valString.length < 2) {	
+                    return "0" + valString;	
+                } else {	
+                    return valString;	
+                }	
+            }	
+
         });
     </script>
 

@@ -5,8 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
 
 public partial class admin : System.Web.UI.MasterPage
 {
@@ -46,13 +44,6 @@ public partial class admin : System.Web.UI.MasterPage
         string universityName = db.university_master.Where(x => x.universityid == universityID).Select(x => x.university_name).FirstOrDefault();
         lbluniversityName.Text = universityName;
 
-    }
-
-    [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
-    public static void SetSecondaryLanguage(string lang)
-    {
-        HttpContext.Current.Session["SecondaryLang"] = lang;
     }
 
     private void Bindseclanguagelist()

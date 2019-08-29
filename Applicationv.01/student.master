@@ -895,11 +895,11 @@
             $("#<%=ddlseclanguage.ClientID%>").change(function () {
             var selectedvalue = $("#<%=ddlseclanguage.ClientID%>").val();
                 $.ajax({
-                    type: "GET",
-                    url: "student.master.aspx/SetSecondaryLanguage",
+                    type: "POST",
+                    url: "default.aspx/SetSecondaryLanguage",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: { lang: selectedvalue },
+                    data: "{ 'tempP': '"+selectedvalue+"' }",
                 });
             });
 

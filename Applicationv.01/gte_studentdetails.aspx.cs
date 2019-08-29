@@ -85,7 +85,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (ddlmaritalstatus.SelectedValue != "")
                 objgte_applicantdetails.maritalstatus = Convert.ToInt32(ddlmaritalstatus.SelectedValue);
 
-            if (ddlmaritalstatus.SelectedValue == "Married")
+            if (ddlmaritalstatus.SelectedValue.Equals("Married", StringComparison.OrdinalIgnoreCase))
             {
                 objgte_applicantdetails.dateofmarriage = Convert.ToDateTime(txtmarriagedob.Value);
                 if (ddlspousenationality.SelectedValue != "")
