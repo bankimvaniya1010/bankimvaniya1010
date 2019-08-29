@@ -191,7 +191,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
-                var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+                var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
                 foreach (var item in applicant_response)
                     clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
 
