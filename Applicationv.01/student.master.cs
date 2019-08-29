@@ -38,11 +38,24 @@ public partial class admin : System.Web.UI.MasterPage
             isclarificationquestionset = 1;
 
         if (!IsPostBack) {
-            
+            Bindseclanguagelist();
         }
         lblusername.Text = name;
+        string universityName = db.university_master.Where(x => x.universityid == universityID).Select(x => x.university_name).FirstOrDefault();
+        lbluniversityName.Text = universityName;
 
     }
 
-  
+    private void Bindseclanguagelist()
+    {
+        ListItem lst = new ListItem("Please select", "0");
+        var slm = db.secondarylanguagemaster.ToList();
+        ddlseclanguage.DataSource = slm;
+        ddlseclanguage.DataTextField = "secondarylanguagename";
+        ddlseclanguage.DataValueField = "languagecode";
+        ddlseclanguage.DataBind();
+        ddlseclanguage.Items.Insert(0, lst);
+    }
+
+
 }

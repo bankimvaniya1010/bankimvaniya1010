@@ -12,7 +12,7 @@ public partial class gte_questions2 : System.Web.UI.Page
     public static int QuestionsCount = 0;
     Logger objLog = new Logger();
     Common objCommon = new Common();
-    protected List<faq> allfaqQuestion = new List<faq>();
+    protected static List<faq> allfaqQuestion = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
 

@@ -891,7 +891,7 @@ public partial class australiavisadetailmaster
     public string fullname671 { get; set; }
     public string relationship671 { get; set; }
     public Nullable<int> havereceiveassistance { get; set; }
-    public Nullable<int> title { get; set; }
+    public string title { get; set; }
     public string assistedpersonfamilyname { get; set; }
     public string assistedpersongivenname { get; set; }
     public string assistedpersonaddress { get; set; }
@@ -913,7 +913,7 @@ public partial class australiavisadetailmaster
     public string valueofgift { get; set; }
     public Nullable<int> havewrittencommunications { get; set; }
     public Nullable<int> haveauthorisedperson { get; set; }
-    public Nullable<int> authorisedpersontitle { get; set; }
+    public string authorisedpersontitle { get; set; }
     public string authorisedpersofamilynname { get; set; }
     public string authorisedpersongivenname { get; set; }
     public string authorisedpersonaddress { get; set; }
@@ -923,10 +923,10 @@ public partial class australiavisadetailmaster
     public string Faxnumber { get; set; }
     public string authorizedpersonEmailaddress { get; set; }
     public string signatureauthorizedperson { get; set; }
-    public string dateofsign { get; set; }
+    public Nullable<System.DateTime> dateofsign { get; set; }
     public string migratioagentNo { get; set; }
     public string offshoreagentId { get; set; }
-    public Nullable<int> agenttitle { get; set; }
+    public string agenttitle { get; set; }
     public string agentfamilyname { get; set; }
     public string agentgivenname { get; set; }
     public string agentcompanyname { get; set; }
@@ -937,7 +937,7 @@ public partial class australiavisadetailmaster
     public string agentfaxno { get; set; }
     public string agentemailaddress { get; set; }
     public string agentsignature { get; set; }
-    public string agentsigndate { get; set; }
+    public Nullable<System.DateTime> agentsigndate { get; set; }
     public Nullable<int> paymentmethod { get; set; }
     public Nullable<int> paymentby { get; set; }
     public string amountinaustraliandollars { get; set; }
@@ -1310,6 +1310,7 @@ public partial class gte_applicantdetails
     public string coursename { get; set; }
     public Nullable<System.DateTime> commencementdate { get; set; }
     public Nullable<int> workexperience { get; set; }
+    public Nullable<int> typeofworkexperience { get; set; }
     public Nullable<int> residencecountry { get; set; }
     public Nullable<int> tuitionandlivingcost { get; set; }
     public Nullable<int> nameofuniversityappliedfor { get; set; }
@@ -1351,9 +1352,9 @@ public partial class gte_clarification_questionmaster
     public string clarification_question { get; set; }
     public Nullable<bool> display_condition { get; set; }
 
-    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+    public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
 }
 
 public partial class gte_preliminary_questionmaster
@@ -1908,6 +1909,12 @@ public partial class typemaster
     public Nullable<int> typeid { get; set; }
     public string value { get; set; }
     public Nullable<int> formfieldid { get; set; }
+}
+
+public partial class typeofworkexperiencemaster
+{
+    public int workexperiencetypesid { get; set; }
+    public string description { get; set; }
 }
 
 public partial class university_master

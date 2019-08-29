@@ -12,7 +12,7 @@ public partial class applicantdeclaration : System.Web.UI.Page
     int UserID = 0;
     Logger objLog = new Logger();
     Common objCom = new Common();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     applicantprogressbar applicantprogressbar = new applicantprogressbar();

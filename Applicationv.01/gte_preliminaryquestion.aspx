@@ -78,12 +78,13 @@
                     <div class="card-body">
                         <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
                         <label id="lblInstruct1" runat="server" style="font-size:small;">1. Completing this section is mandatory.</label><br />
-                        <label id="lblInstruct2" runat="server" style="font-size:small;">2. Read the attached documents and watch the videos carefully.</label><br />
-                        <label id="lblInstruct3" runat="server" style="font-size:small;">3. Please accept the declaration that you have successfully reviewed and understood the information.</label><br />
-                        <label id="lblInstruct4" runat="server" style="font-size:small;">4. Take a quick test to check your knowledge.</label><br />
-                        <label id="lblInstruct5" runat="server" style="font-size:small;">5. To go to the next section you need to successfully answer the test question and achieve >65% grade.</label><br />
-                        <label id="lblInstruct6" runat="server" style="font-size:small;">6. Else you would required to take the test again post going through the tutorial again.</label><br />
-                        <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
+                        <label id="lblInstruct2" runat="server" style="font-size:small;">2. Please Read the attached documents carefully and watch the recommended videos.</label><br />
+                        
+                        <label id="lblInstruct4" runat="server" style="font-size:small;">3. Take a quick test to check the knowledge you have gained after reading
+                                                                                            the suggested documents and watching the videos.
+                                                                                            Please note that you can proceed to the next section only if you achieve a
+                                                                                            65% above.</label><br />
+                        <label id="lblInstruct7" runat="server" style="font-size:small;">4. Lastly, please accept the declarations given below.</label><br />
                     </div>
                 </div>
                     <div class="card faq-qwrp" id="Div1" runat="server">

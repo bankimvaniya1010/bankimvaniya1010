@@ -14,7 +14,7 @@ public partial class gte_sop : System.Web.UI.Page
     Common objCommon = new Common();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     gte_applicantdetails applicantdetails;
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)

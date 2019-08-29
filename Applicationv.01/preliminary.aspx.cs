@@ -12,7 +12,7 @@ public partial class preliminary : System.Web.UI.Page
     public static int videoCount = 0;
     public static int otherDocCount = 0;
     Common objCom = new Common();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     protected List<tutorialmaster> allDocuments = new List<tutorialmaster>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;

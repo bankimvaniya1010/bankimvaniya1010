@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a href="student-dashboard.html">Home</a></li>
             <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        <h1 class="h2">Dashboard</h1>
+        <h1 class="h2">WELCOME TO THE APPLICATION CENTER</h1>
     <%--<div class="card">
         <div class="progress" style="height: 20px">
             <div id="profile" runat="server" class="progress-bar bg-danger " role="progressbar" style="width: 25%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">Profile</div>
@@ -53,24 +53,7 @@
         </div>
         <div class="col-lg-5">
 
-            <div class="card">
-                <div class="card-header d-flex align-items-center">
-                    <div class="h2 mb-0 mr-3 text-primary"></div>
-                    <div class="flex">
-                        <h4 class="card-title">Settings</h4>
-                    </div>
-
-                </div>
-                <div class="card-body">
-                    Select Secondary Language 
-                </div>
-                <div class="card-body">
-                    <asp:RadioButtonList ID="rblLanguage" AutoPostBack="true" runat="server" OnSelectedIndexChanged="SetSecondaryLanguage">
-                       
-                    </asp:RadioButtonList>
-                </div>
-            </div>
-
+          
 
 
 

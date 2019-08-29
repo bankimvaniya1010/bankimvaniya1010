@@ -15,6 +15,7 @@
 
                     <div class="card faq-lftcard" style="width: 650px;">
                         <div class="list-group list-group-fit">
+                            <h5>Personal Particulars</h5>
                              <div class="list-group-item" id="dob">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dob">
                                     <div class="form-row">
@@ -28,7 +29,7 @@
                             <div class="list-group-item" id="nationality">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-nationality">
                                     <div class="form-row">
-                                        <label id="lblnationality" runat="server" for="nationality" class="col-md-3 col-form-label form-label">Nationality</label>
+                                        <label id="lblnationality" runat="server" for="nationality" class="col-md-3 col-form-label form-label">Country of Citizenship</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlnationality" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -45,6 +46,18 @@
                                             <asp:DropDownList ID="ddlcountryofdob" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
                                             <span class="helpicon"><i id="iccountryofdob" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="list-group-item" id="countryresidence">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-countryresidence">
+                                    <div class="form-row">
+                                        <label id="lblcountryresidence" runat="server" for="countryresidence" class="col-md-3 col-form-label form-label">Current Country of Residence  </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlcountryresidence" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                            <span class="helpicon"><i id="iccountryresidence" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -86,6 +99,7 @@
                                 </div>
                             </div>
                         </div>
+                                <h5>Prior Qualifications</h5>
                              <div class="list-group-item" id="highestqualification" >
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highestqualification">
                                     <div class="form-row">
@@ -100,7 +114,7 @@
                              <div class="list-group-item" id="highestqualificationAchieved" >
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highestqualificationAchieved">
                                     <div class="form-row">
-                                        <label id="lblhighestqualificationAchieved" runat="server" for="highestqualificationAchieved" class="col-md-3 col-form-label form-label">Highest Qualification Achieved  </label>
+                                        <label id="lblhighestqualificationAchieved" runat="server" for="highestqualificationAchieved" class="col-md-3 col-form-label form-label">LEVEL OF HIGHEST QUALIFICATION ACHIEVED  </label>
                                         <div class="col-md-6">
                                            <asp:DropDownList ID="ddlhighestqualificationAchieved" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -112,7 +126,7 @@
                              <div class="list-group-item" id="highestqualificationfield">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highestqualificationfield">
                                     <div class="form-row">
-                                        <label id="lblhighestqualificationfield" runat="server" for="highestqualificationfield" class="col-md-3 col-form-label form-label">Field of study of Highest Education </label>
+                                        <label id="lblhighestqualificationfield" runat="server" for="highestqualificationfield" class="col-md-3 col-form-label form-label">FIELD OF STUDY OF HIGHEST QUALIFICATION</label>
                                         <div class="col-md-6">
                                              <asp:DropDownList ID="ddlhighestqualificationfield" CssClass="form-control" runat="server">
                                             </asp:DropDownList>                                            
@@ -124,7 +138,7 @@
                             <div class="list-group-item" id="highestqualificationdate">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highestqualificationdate">
                                     <div class="form-row">
-                                        <label id="lblhighestqualificationdate" runat="server" for="highschoolendDate" class="col-md-3 col-form-label form-label">Year & Month of highest Qualification</label>
+                                        <label id="lblhighestqualificationdate" runat="server" for="highschoolendDate" class="col-md-3 col-form-label form-label">YEAR & MONTH THE HIGHEST QUALIFICATION WAS COMPLETED</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlhighestqualificationmonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                             <asp:DropDownList ID="ddlhighestqualificationYear" CssClass="form-control" runat="server"></asp:DropDownList>
@@ -145,6 +159,43 @@
                                     </div>
                                 </div>
                             </div>
+                             <div class="list-group-item" id="workexperience">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-workexperience">
+                                    <div class="form-row">
+                                        <label id="lblworkexperience" runat="server" for="workexperience" class="col-md-3 col-form-label form-label">WORK EXPERIENCE (NUMBER OF YEARS) </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlworkexperience" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                            <span class="helpicon"><i id="icworkexperience" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="list-group-item" id="typeofworkexperience">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-typeofworkexperience">
+                                    <div class="form-row">
+                                        <label id="lbltypeofworkexperience" runat="server" for="typeofworkexperience" class="col-md-3 col-form-label form-label">TYPE OF WORK EXPERIENCE. </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddltypeofworkexperience" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                            <span class="helpicon"><i id="i1ctypeofworkexperience" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <h5>Course You Are Applying For</h5>
+                            <div class="list-group-item" id="universityname" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-universityname">
+                                    <div class="form-row">
+                                        <label id="lbluniversityname" runat="server" for="universityname" class="col-md-3 col-form-label form-label">NAME OF UNIVERSITY YOU ARE APPLYING TO  </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddluniversityname" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                            <span class="helpicon"><i id="icuniversityname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="list-group-item" id="courseapplied">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-courseapplied">
                                     <div class="form-row">
@@ -160,7 +211,7 @@
                             <div class="list-group-item" id="fieldofstudy">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-fieldofstudy">
                                     <div class="form-row">
-                                        <label id="lblfieldofstudy" runat="server" for="fieldofstudey" class="col-md-3 col-form-label form-label">Field of study Applying to </label>
+                                        <label id="lblfieldofstudy" runat="server" for="fieldofstudey" class="col-md-3 col-form-label form-label">FIELD OF STUDY YOU ARE APPLYING TO </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlfieldofstudy" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -191,58 +242,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="workexperience">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-workexperience">
-                                    <div class="form-row">
-                                        <label id="lblworkexperience" runat="server" for="workexperience" class="col-md-3 col-form-label form-label">Work experience (no of years) </label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlworkexperience" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
-                                            <span class="helpicon"><i id="icworkexperience" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item" id="countryresidence">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-countryresidence">
-                                    <div class="form-row">
-                                        <label id="lblcountryresidence" runat="server" for="countryresidence" class="col-md-3 col-form-label form-label">Current Country of Residence  </label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlcountryresidence" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
-                                            <span class="helpicon"><i id="iccountryresidence" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item" id="annualfee">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-annualfee">
-                                    <div class="form-row">
-                                        <label id="lblannualfee" runat="server" for="annualfee" class="col-md-3 col-form-label form-label">My Annual Tuition Fee and living costs is expected to be </label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlannualfee" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
-                                            <span class="helpicon"><i id="icannualfee" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item" id="universityname" runat="server">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-universityname">
-                                    <div class="form-row">
-                                        <label id="lbluniversityname" runat="server" for="universityname" class="col-md-3 col-form-label form-label">Name of University Apply for  </label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddluniversityname" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
-                                            <span class="helpicon"><i id="icuniversityname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="list-group-item" id="eduinstitutioncity">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-eduinstitutioncity">
                                     <div class="form-row">
-                                        <label id="lbleduinstitutioncity" runat="server" for="eduinstitutioncity" class="col-md-3 col-form-label form-label">Name of City of Educational Institution  </label>
+                                        <label id="lbleduinstitutioncity" runat="server" for="eduinstitutioncity" class="col-md-3 col-form-label form-label">CITY WHERE CHOSEN UNIVERSITY IS LOCATED</label>
                                         <div class="col-md-6">
                                             <select id="ddleduinstitutioncity" name="ddleduinstitutioncity" runat="server" class="form-control">
                                                 <option value="" selected="selected" disabled="disabled">Please Select City</option>
@@ -253,14 +256,29 @@
                                     </div>
                                 </div>
                             </div>
+                           
+                            <div class="list-group-item" id="annualfee">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-annualfee">
+                                    <div class="form-row">
+                                        <label id="lblannualfee" runat="server" for="annualfee" class="col-md-3 col-form-label form-label">ESTIMATED ANNUAL TUITION FEE AND LIVING COSTS </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlannualfee" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                            <span class="helpicon"><i id="icannualfee" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
 
                             <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item" id="gteapplicantdetail">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-gteapplicantdetail">
                                     <div class="form-row">                                       
                                         
-                                        <asp:Button ID="btngteapplicantdetail" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btngteapplicantdetail_Click" style="margin-right: 271px;" />
-                                        <a href="gte_questions1.aspx" class="btn btn-success">Next</a>
+                                        <asp:Button ID="btngteapplicantdetail" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btngteapplicantdetail_Click" style="margin-right: 271px;" />                                        
+                                       
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
@@ -306,7 +324,7 @@
 
     <script>
         $('#ContentPlaceHolder1_txtdob').flatpickr({       
-            dateFormat: 'Y-m-d', defaultDate: ""
+            dateFormat: 'd-m-Y', defaultDate: ""
         });
               
         $('#ContentPlaceHolder1_txtmarriagedob').flatpickr({
@@ -356,7 +374,7 @@
                 alert("Please Select My Annual Tuition Fee and living costs is expected to be ");
             else if ($("#<%=ddluniversityname.ClientID%>").val() == "0")
                 alert("Please Select Name of University Apply for ");
-            else if ($("#<%=ddleduinstitutioncity.ClientID%>").val() == null || isNaN(parseInt($('#ContentPlaceHolder1_hidCityField').val())))
+            else if ($("#<%=ddleduinstitutioncity.ClientID%>").val() == null && isNaN(parseInt($('#ContentPlaceHolder1_hidCityField').val())))
                 alert("Please Select Name of City of Educational Institution");         
             else
                 flag = true;

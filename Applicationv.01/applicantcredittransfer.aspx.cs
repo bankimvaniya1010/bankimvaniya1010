@@ -11,7 +11,7 @@ public partial class applicantcredittransfer : System.Web.UI.Page
     int userID = 0, ApplicantID = 0, universityID;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     Common objCom = new Common();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
 

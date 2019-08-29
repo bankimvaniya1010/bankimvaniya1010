@@ -13,11 +13,11 @@
     </div>
     <div class="page ">
 
-        <div class="row" style="margin-left: 0; margin-right: 0;">
-            <div class="col-md-12">
-
-                <div class="card faq-lftcard" id="questions" runat="server">
-                    <div style="font-size: medium; text-align: center">
+        <div class="row justify-content-end" style="margin-left:0;margin-right:0;">
+           <!-- <div class="col-md-12 d-flex justify-content-end"> -->
+              
+                <div class="card faq-lftcard col-md-8" id="questions" runat="server">
+                    <div style="font-size:medium;text-align:center">
                         Question <%=ViewState["AnsweredQuestionCount"] %> / <%=ViewState["QuestionsCount"] %>
                         <br/>
                         <label id="minutes"></label><label id="seconds"></label>
@@ -76,8 +76,13 @@
 
                     </div>
                 </div>
-                <div class="card faq-qwrp" id="Div1" runat="server">
-                            <div class="card-body">
+                <div class="col-md-8" id="completedDiv" runat="server" style="display: none;">
+                    <div class="">
+                        <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
+                    </div>
+                </div>
+                <div class="card faq-qwrp col-md-4" id="Div1" runat="server" style="background:transparent;">
+                            <div class="card-body" style="flex:none;background:#fff;">
                             <%  if (allfaqQuestion.Count > 0)
                                 { %>
                             <div id="question" runat="server">
@@ -94,13 +99,7 @@
                                      
                             </div>
                         </div>
-                <div class="row" id="completedDiv" runat="server" style="display: none;">
-                    <div class="col-md-8">
-                        <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
-                    </div>
-                </div>
-             </div>
-            
+                
         </div>
 
         <div class="container page__container">
@@ -125,33 +124,31 @@
             return true;
         }
 
-        $(document).ready(function () {
+         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepart1').addClass('active');
 
-            var minutesLabel = document.getElementById("minutes");
-            var secondsLabel = document.getElementById("seconds");
-            var totalSeconds = <%=gte_questions1.totalResponseTime%>;
-            setInterval(setTime, 1000);
-
-            function setTime() {
-                ++totalSeconds;
-                var questionTime = totalSeconds - <%=gte_questions1.totalResponseTime%>;
-                secondsLabel.innerHTML = ":" + pad(totalSeconds % 60);
-                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));
-                $("#<%=hidTime.ClientID%>").val(questionTime);
-            }
-
-            function pad(val) {
-                var valString = val + "";
-                if (valString.length < 2) {
-                    return "0" + valString;
-                } else {
-                    return valString;
-                }
-            }
+            var minutesLabel = document.getElementById("minutes");	
+            var secondsLabel = document.getElementById("seconds");	
+            var totalSeconds = <%=gte_questions1.totalResponseTime%>;	
+            setInterval(setTime, 1000);	
+             function setTime() {	
+                ++totalSeconds;	
+                var questionTime = totalSeconds - <%=gte_questions1.totalResponseTime%>;	
+                secondsLabel.innerHTML = ":" + pad(totalSeconds % 60);	
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));	
+                $("#<%=hidTime.ClientID%>").val(questionTime);	
+            }	
+             function pad(val) {	
+                var valString = val + "";	
+                if (valString.length < 2) {	
+                    return "0" + valString;	
+                } else {	
+                    return valString;	
+                }	
+            }	
 
         });
     </script>

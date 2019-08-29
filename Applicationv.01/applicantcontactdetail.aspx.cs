@@ -13,7 +13,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     int userID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     Logger objLog = new Logger();
 
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();

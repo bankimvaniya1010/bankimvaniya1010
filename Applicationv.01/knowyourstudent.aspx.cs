@@ -17,7 +17,7 @@ public partial class knowyourstudent : System.Web.UI.Page
     Logger objLog = new Logger();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     private static string studentName;
     private static string studentdob;
     public static bool verifiedPassportDetails = false;

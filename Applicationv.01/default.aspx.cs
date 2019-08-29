@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
+using System.Web.Services;
+using System.Web.Script.Services;
 public partial class _Default : System.Web.UI.Page
 {
     Logger log = new Logger();
@@ -23,26 +25,19 @@ public partial class _Default : System.Web.UI.Page
         Session["Applicant"] = UserID;
         if (!IsPostBack)
         {
-            /*SetprogressStatus();*/ BindRadiobuttonlist();
+            /*SetprogressStatus();*/ 
             //if (Session["SecondaryLang"] == null)
             //    Session["SecondaryLang"] = "ar";
         }
     }
-
-    protected void SetSecondaryLanguage(object sender, EventArgs e)
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string SetSecondaryLanguage(String tempP)
     {
-        Session["SecondaryLang"] = rblLanguage.SelectedValue;
-
+        HttpContext.Current.Session["SecondaryLang"] = tempP;
+        return "";
     }
 
-    private void BindRadiobuttonlist()
-    {
-        var slm = db.secondarylanguagemaster.ToList();
-        rblLanguage.DataSource = slm;
-        rblLanguage.DataTextField = "secondarylanguagename";
-        rblLanguage.DataValueField = "languagecode";
-        rblLanguage.DataBind();
-    }
     //private void SetprogressStatus()
     //{
     //    try

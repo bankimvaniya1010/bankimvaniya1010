@@ -70,7 +70,7 @@
                 </div>
                 <div class="card navbar-shadow">
                     <div class="card-header text-center">
-                        <h4 class="card-title">Login</h4>
+                        <h4 class="card-title">Student Login</h4>
                         <p class="card-subtitle">Access your account</p>
                     </div>
                     <div class="card-body">
@@ -85,7 +85,7 @@
                             </div>
                         </asp:Panel>
                             <div class="form-group">
-                                <label class="form-label" >User Name:</label>
+                                <label class="form-label" >Enter your Username:</label>
                                 <div class="input-group input-group-merge">
                                     <asp:TextBox ID="txtUser" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter username"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter user name" ControlToValidate="txtUser" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
@@ -100,9 +100,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="password">Your password/OTP:</label>
+                                <label class="form-label" for="password">PASSWORD/OTP:</label>
                                 <div class="input-group input-group-merge">
-                                    <asp:TextBox ID="txt_pass" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter password" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="txt_pass" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
 
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -121,7 +121,7 @@
                         </form>
                     </div>
                     <div class="card-footer text-center text-black-50">
-                    Not yet a student? <a href="register.aspx">Sign Up</a>
+                    Not yet registered? <a href="register.aspx">Sign Up</a>
                 </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     gte_applicantdetails objgte_applicantdetails = new gte_applicantdetails();
     bool isuniversityGroupHead;
@@ -41,6 +41,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             objCom.BindCountries(ddlhighestqualificationcountry);
             BindMaritalstatus();
             Bindworkexperienceyears();
+            Bindtypeofworkexperienceyears();
             FillMonth(ddlhighestqualificationmonth);
             FillYears(ddlhighestqualificationYear);
             BindstudyField(ddlhighestqualificationfield);
@@ -84,7 +85,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (ddlmaritalstatus.SelectedValue != "")
                 objgte_applicantdetails.maritalstatus = Convert.ToInt32(ddlmaritalstatus.SelectedValue);
 
-            if (Convert.ToInt32(ddlmaritalstatus.SelectedValue) == 1)
+            if (ddlmaritalstatus.SelectedValue.Equals("Married", StringComparison.OrdinalIgnoreCase))
             {
                 objgte_applicantdetails.dateofmarriage = Convert.ToDateTime(txtmarriagedob.Value);
                 if (ddlspousenationality.SelectedValue != "")
@@ -124,7 +125,9 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (ddlworkexperience.SelectedValue != "" && Convert.ToInt32(ddlworkexperience.SelectedValue) != 1)
                 objgte_applicantdetails.workexperience = Convert.ToInt32(ddlworkexperience.SelectedValue);
 
-            
+            if (ddltypeofworkexperience.SelectedValue != "")
+                objgte_applicantdetails.typeofworkexperience = Convert.ToInt32(ddltypeofworkexperience.SelectedValue);
+
 
             if (ddlcountryresidence.SelectedValue != "")
                 objgte_applicantdetails.residencecountry = Convert.ToInt32(ddlcountryresidence.SelectedValue);
@@ -152,6 +155,8 @@ public partial class gte_studentdetails : System.Web.UI.Page
             var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
             if (!isProfileDetailsCompletedByApplicant)
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetGteStudentDetailsCompletedStatus(userID, universityID);
+            Response.Redirect("gte_questions1.aspx", true);
+
         }
         catch (Exception ex)
         {
@@ -167,7 +172,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                                select pInfo).FirstOrDefault();
             if (studentInfo != null) {
                 if(studentInfo.dateofbirth != null)
-                    txtdob.Value = Convert.ToDateTime(studentInfo.dateofbirth).ToString("yyyy-MM-dd");
+                    txtdob.Value = Convert.ToDateTime(studentInfo.dateofbirth).ToString("dd-MM-yyyy");
                 if (studentInfo.nationality != null)
                 {
                     ddlnationality.ClearSelection();
@@ -240,6 +245,11 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 {
                     ddlworkexperience.ClearSelection();
                     ddlworkexperience.Items.FindByValue(1.ToString()).Selected = true;
+                }
+                if (studentInfo.typeofworkexperience != null)
+                {
+                    ddltypeofworkexperience.ClearSelection();
+                    ddltypeofworkexperience.Items.FindByValue(studentInfo.typeofworkexperience.ToString()).Selected = true;
                 }
                 if (studentInfo.residencecountry != null)
                 {
@@ -339,6 +349,23 @@ public partial class gte_studentdetails : System.Web.UI.Page
             ddleduinstitutioncity.DataValueField = "city_id";
             ddleduinstitutioncity.DataBind();
             ddleduinstitutioncity.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+    private void Bindtypeofworkexperienceyears()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var workexperiencetype = db.typeofworkexperiencemaster.ToList();
+            ddltypeofworkexperience.DataSource = workexperiencetype;
+            ddltypeofworkexperience.DataTextField = "description";
+            ddltypeofworkexperience.DataValueField = "workexperiencetypesid";
+            ddltypeofworkexperience.DataBind();
+            ddltypeofworkexperience.Items.Insert(0, lst);
         }
         catch (Exception ex)
         {

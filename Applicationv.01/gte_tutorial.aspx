@@ -20,7 +20,7 @@
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
-                    <h5> Read The Following Documents:</h5>
+                    <h5> Something For You To Read</h5>
                     <div class="pdf-container clearfix">
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
@@ -41,14 +41,14 @@
                     {
                     %>
                 <div class="card video-container" id="video" runat="server">
-                     <h5>Watch The Following Videos:</h5>
+                     <h5>Watch these Videos</h5>
                        <div class="row">
                       <%for (int v = 0; v < allDocuments.Count; v++)
                           {
                               if (allDocuments[v].type == "video")
                               {
                               %>
-                            <div class="col-md-4 col-6">
+                            <div class="col-md-5 col-6">
                                 <img class="img-fluid video-img mx-auto d-block" src="http://i3.ytimg.com/vi/<%=allDocuments[v].videourl %>/0.jpg" onclick="openLink('<%=allDocuments[v].videourl %>')"/>                               
                             </div>
                         <%}
@@ -63,10 +63,12 @@
                     %>
                     <div class="card" id="declaration" runat="server">
                         <div class="card-body">
-                            <label  style="font-size:small;">I have Read and fully Understood the information contained in the  document and video above</label>
+                            <asp:CheckBox ID="checkCondition" runat="server" Text="I have read the given documents, watched the given videos and do fully understand the information contained in them." class=" col-form-label form-label" />
+                            
                             <div class="media align-items-center">  
                                 <div class="form-row" style="align-content:center">
-                                    <a href="gte_preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
+                                    <asp:Button ID="btnnext" runat="server" Text="Next Step" CssClass="btn btn-success" OnClick="btnnext_Click" />
+                                    <%--<a href="gte_preliminaryquestion.aspx" class="btn btn-success" id="btnnext" runat="server">Next</a>                                      --%>
                                 </div>
                             </div>
                         </div>
@@ -89,14 +91,16 @@
                 <div class="card">
                     <div class="card-body">
                         <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
+                        
                         <label id="lblInstruct1" runat="server" style="font-size:small;">1. Completing this section is mandatory.</label><br />
-                        <label id="lblInstruct2" runat="server" style="font-size:small;">2. Read the attached documents and watch the videos carefully.</label><br />
-                        <label id="lblInstruct3" runat="server" style="font-size:small;">3. Please accept the declaration that you have successfully reviewed and understood the information.</label><br />
-                        <label id="lblInstruct4" runat="server" style="font-size:small;">4. Take a quick test to check your knowledge.</label><br />
-                        <label id="lblInstruct5" runat="server" style="font-size:small;">5. To go to the next section you need to successfully answer the test question and achieve >65% grade.</label><br />
-                        <label id="lblInstruct6" runat="server" style="font-size:small;">6. Else you would required to take the test again post going through the tutorial again.</label><br />
-                        <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
-                    </div>                     
+                        <label id="lblInstruct2" runat="server" style="font-size:small;">2. Please Read the attached documents carefully and watch the recommended videos.</label><br />
+                        
+                        <label id="lblInstruct4" runat="server" style="font-size:small;">3. Take a quick test to check the knowledge you have gained after reading
+                                                                                            the suggested documents and watching the videos.
+                                                                                            Please note that you can proceed to the next section only if you achieve a
+                                                                                            65% above.</label><br />
+                        <label id="lblInstruct7" runat="server" style="font-size:small;">4. Lastly, please accept the declarations given below.</label><br />
+                     </div>                     
                 </div>
                 <div id="faq" class="card faq-qwrp">
                            <div class="card faq-qwrp" id="Div1" runat="server">
@@ -137,11 +141,19 @@
         }
 
         $(document).ready(function () {
+            $("#<%=btnnext.ClientID%>").attr("disabled", "disabled");
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtetutorial').addClass('active');
         });
+        $("#<%=checkCondition.ClientID%>").change(function ()
+     {
+         if ($(this).is(":checked"))
+             $("#<%=btnnext.ClientID%>").removeAttr("disabled");                
+         else
+             $("#<%=btnnext.ClientID%>").attr("disabled", "disabled");
+     });
     </script>
 
 </asp:Content>
