@@ -1,2856 +1,2755 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="visaprefill.aspx.cs" Inherits="visaprefill" %>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" />
+    <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>">
     <style type="text/css">
-        <!--
-        span.cls_003 {
-            font-family: Arial,serif;
-            font-size: 9.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
+        .form-table .txt {
+            font-size: 13px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
         }
 
-        div.cls_003 {
-            font-family: Arial,serif;
-            font-size: 9.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_005 {
-            font-family: Arial,serif;
-            font-size: 16.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_005 {
-            font-family: Arial,serif;
-            font-size: 16.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_004 {
-            font-family: Arial,serif;
-            font-size: 28.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_004 {
-            font-family: Arial,serif;
-            font-size: 28.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_002 {
-            font-family: Arial,serif;
-            font-size: 12.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_002 {
-            font-family: Arial,serif;
-            font-size: 12.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_006 {
-            font-family: Garamond,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_006 {
-            font-family: Garamond,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_007 {
-            font-family: Garamond,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_007 {
-            font-family: Garamond,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_008 {
-            font-family: Garamond,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        div.cls_008 {
-            font-family: Garamond,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        span.cls_009 {
-            font-family: Arial,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none;
-        }
-
-        div.cls_009 {
-            font-family: Arial,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_010 {
-            font-family: Arial,serif;
-            font-size: 6.0px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_010 {
-            font-family: Arial,serif;
-            font-size: 6.0px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_011 {
-            font-family: Garamond,serif;
-            font-size: 6.0px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_011 {
-            font-family: Garamond,serif;
-            font-size: 6.0px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_012 {
-            font-family: Garamond,serif;
-            font-size: 8.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_012 {
-            font-family: Garamond,serif;
-            font-size: 8.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_013 {
-            font-family: Garamond,serif;
-            font-size: 8.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_013 {
-            font-family: Garamond,serif;
-            font-size: 8.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_015 {
-            font-family: Garamond,serif;
-            font-size: 12.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        div.cls_015 {
-            font-family: Garamond,serif;
-            font-size: 12.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        span.cls_016 {
-            font-family: Arial,serif;
-            font-size: 14.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_016 {
-            font-family: Arial,serif;
-            font-size: 14.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_014 {
-            font-family: Arial,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_014 {
-            font-family: Arial,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_017 {
-            font-family: Arial,serif;
-            font-size: 12.1px;
-            color: rgb(0,0,0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_017 {
-            font-family: Arial,serif;
-            font-size: 12.1px;
-            color: rgb(0,0,0);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_018 {
-            font-family: Garamond,serif;
-            font-size: 16.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        div.cls_018 {
-            font-family: Garamond,serif;
-            font-size: 16.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        span.cls_021 {
-            font-family: Arial,serif;
-            font-size: 11.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_021 {
-            font-family: Arial,serif;
-            font-size: 11.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_019 {
-            font-family: Garamond,serif;
-            font-size: 16.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        div.cls_019 {
-            font-family: Garamond,serif;
-            font-size: 16.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: italic;
-            text-decoration: none
-        }
-
-        span.cls_020 {
-            font-family: Arial,serif;
-            font-size: 11.1px;
-            color: rgb(114,114,114);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_020 {
-            font-family: Arial,serif;
-            font-size: 11.1px;
-            color: rgb(114,114,114);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_022 {
-            font-family: Arial,serif;
-            font-size: 9.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_022 {
-            font-family: Arial,serif;
-            font-size: 9.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_023 {
-            font-family: Arial,serif;
-            font-size: 10.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_023 {
-            font-family: Arial,serif;
-            font-size: 10.1px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_024 {
-            font-family: Arial,serif;
-            font-size: 9.5px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_024 {
-            font-family: Arial,serif;
-            font-size: 9.5px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_025 {
-            font-family: Arial,serif;
-            font-size: 12.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_025 {
-            font-family: Arial,serif;
-            font-size: 12.1px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_026 {
-            font-family: Arial,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_026 {
-            font-family: Arial,serif;
-            font-size: 9.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_027 {
-            font-family: Arial,serif;
-            font-size: 6.0px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_027 {
-            font-family: Arial,serif;
-            font-size: 6.0px;
-            color: rgb(43,42,41);
-            font-weight: bold;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        span.cls_028 {
-            font-family: Arial,serif;
-            font-size: 8.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.cls_028 {
-            font-family: Arial,serif;
-            font-size: 8.6px;
-            color: rgb(43,42,41);
-            font-weight: normal;
-            font-style: normal;
-            text-decoration: none
-        }
-
-        div.input {
-            border: 1px solid black;
-        }
-
-        #Checkbox7 {
-            height: 20px;
+        .form-table p {
+            margin: 0;
         }
     </style>
-    <script type="text/javascript" src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/wz_jsgraphics.js"></script>
 </head>
 <body>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 0px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background01.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 525.04px; top: 34.13px" class="cls_003"><span class="cls_003">Form</span></div>
-        <div style="position: absolute; left: 230.81px; top: 46.73px" class="cls_005"><span class="cls_005">Application for a student visa</span></div>
-        <div style="position: absolute; left: 506.59px; top: 44.33px" class="cls_004"><span class="cls_004">157A</span></div>
-        <div style="position: absolute; left: 32.00px; top: 123.53px" class="cls_002"><span class="cls_002">Applying online</span></div>
-        <div style="position: absolute; left: 308.00px; top: 123.53px" class="cls_002"><span class="cls_002">Changing education provider</span></div>
-        <div style="position: absolute; left: 32.00px; top: 141.03px" class="cls_006"><span class="cls_006">The Department of Immigration and Multicultural Affairs (the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 141.03px" class="cls_006"><span class="cls_006">If you hold a student visa and wish to change education</span></div>
-        <div style="position: absolute; left: 32.00px; top: 152.03px" class="cls_006"><span class="cls_006">department) offers a number of convenient internet services</span></div>
-        <div style="position: absolute; left: 308.00px; top: 152.03px" class="cls_006"><span class="cls_006">provider, you may need to seek the department’s permission</span></div>
-        <div style="position: absolute; left: 32.00px; top: 163.03px" class="cls_006"><span class="cls_006">for student visa applicants. To find out whether you are eligible</span></div>
-        <div style="position: absolute; left: 308.00px; top: 163.03px" class="cls_006"><span class="cls_006">first. You must seek permission if your visa is subject to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 174.03px" class="cls_006"><span class="cls_006">to apply online for a student visa, refer to the department’s</span></div>
-        <div style="position: absolute; left: 308.00px; top: 174.03px" class="cls_006"><span class="cls_006">condition 8206 and you wish to change education provider</span></div>
-        <div style="position: absolute; left: 32.00px; top: 185.03px" class="cls_006"><span class="cls_006">website </span><a href="http://www.immi.gov.au/e_visa/students.htm">www.immi.gov.au/e_visa/students.htm</a> </span></div>
-        <div style="position: absolute; left: 308.00px; top: 185.03px" class="cls_006"><span class="cls_006">either:</span></div>
-        <div style="position: absolute; left: 32.00px; top: 200.03px" class="cls_006"><span class="cls_006">If you wish to enter Australia or extend your stay as a student</span></div>
-        <div style="position: absolute; left: 308.00px; top: 198.03px" class="cls_006"><span class="cls_006">• while studying any preliminary courses; or</span></div>
-        <div style="position: absolute; left: 32.00px; top: 211.03px" class="cls_006"><span class="cls_006">and you are not eligible to apply online, complete this form in</span></div>
-        <div style="position: absolute; left: 308.00px; top: 211.03px" class="cls_006"><span class="cls_006">• during the first 12 months of your principal course.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 222.03px" class="cls_006"><span class="cls_006">ENGLISH using BLOCK LETTERS.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 226.03px" class="cls_006"><span class="cls_006">If you wish to change education provider but continue studying</span></div>
-        <div style="position: absolute; left: 32.00px; top: 237.03px" class="cls_006"><span class="cls_006">To complete this form you must first read these notes and</span></div>
-        <div style="position: absolute; left: 308.00px; top: 237.03px" class="cls_006"><span class="cls_006">the same type of course, you must apply on form 157C</span></div>
-        <div style="position: absolute; left: 32.00px; top: 248.04px" class="cls_006"><span class="cls_006">information form 1160i </span><span class="cls_008">Applying for a student visa</span><span class="cls_006">. Detailed</span></div>
-        <div style="position: absolute; left: 308.00px; top: 248.03px" class="cls_008"><span class="cls_008">Application for a student visa with permission to change</span></div>
-        <div style="position: absolute; left: 32.00px; top: 259.04px" class="cls_006"><span class="cls_006">information is also available on the department’s website</span></div>
-        <div style="position: absolute; left: 308.00px; top: 259.03px" class="cls_008"><span class="cls_008">education provider</span><span class="cls_006">.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 270.04px" class="cls_007"><span class="cls_007"></span><a href="http://www.immi.gov.au/study/">www.immi.gov.au/study/</a> </div>
-        <div style="position: absolute; left: 308.00px; top: 274.03px" class="cls_006"><span class="cls_006">If you wish to change both your provider and the type of course</span></div>
-        <div style="position: absolute; left: 308.00px; top: 285.03px" class="cls_006"><span class="cls_006">you are studying, you must apply for a new student visa using</span></div>
-        <div style="position: absolute; left: 32.00px; top: 293.53px" class="cls_002"><span class="cls_002">Who can use this form?</span></div>
-        <div style="position: absolute; left: 308.00px; top: 296.03px" class="cls_006"><span class="cls_006">this form (form 157A).</span></div>
-        <div style="position: absolute; left: 32.00px; top: 311.03px" class="cls_006"><span class="cls_006">You should use this form if you wish to apply for a student visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 311.03px" class="cls_006"><span class="cls_006">In either case, you must demonstrate that exceptional reasons</span></div>
-        <div style="position: absolute; left: 32.00px; top: 322.03px" class="cls_006"><span class="cls_006">and be assessed against one of the following subclasses:</span></div>
-        <div style="position: absolute; left: 308.00px; top: 322.03px" class="cls_006"><span class="cls_006">exist to justify your change in enrolment.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 335.03px" class="cls_006"><span class="cls_006">• Independent ELICOS visa (subclass 570);</span></div>
-        <div style="position: absolute; left: 32.00px; top: 348.03px" class="cls_006"><span class="cls_006">• Schools visa (subclass 571);</span></div>
-        <div style="position: absolute; left: 308.00px; top: 345.53px" class="cls_002"><span class="cls_002">Changing course type (education sector)</span></div>
-        <div style="position: absolute; left: 32.00px; top: 361.03px" class="cls_006"><span class="cls_006">• Vocational Education and Training visa (subclass 572);</span></div>
-        <div style="position: absolute; left: 308.00px; top: 363.03px" class="cls_006"><span class="cls_006">Your student visa is linked to the type of course you are</span></div>
-        <div style="position: absolute; left: 32.00px; top: 374.03px" class="cls_006"><span class="cls_006">• Higher Education visa (subclass 573);</span></div>
-        <div style="position: absolute; left: 308.00px; top: 374.03px" class="cls_006"><span class="cls_006">studying. Each student visa subclass covers specific types of</span></div>
-        <div style="position: absolute; left: 32.00px; top: 387.03px" class="cls_006"><span class="cls_006">• Postgraduate Research visa (subclass 574);</span></div>
-        <div style="position: absolute; left: 308.00px; top: 385.03px" class="cls_006"><span class="cls_006">course only. If you wish to change your principal course at any</span></div>
-        <div style="position: absolute; left: 308.00px; top: 396.03px" class="cls_006"><span class="cls_006">time to a course in a different education sector, you must first</span></div>
-        <div style="position: absolute; left: 32.00px; top: 400.03px" class="cls_006"><span class="cls_006">• Non-Award visa (subclass 575);</span></div>
-        <div style="position: absolute; left: 308.00px; top: 407.03px" class="cls_006"><span class="cls_006">apply for a new student visa using this form (form 157A).</span></div>
-        <div style="position: absolute; left: 32.00px; top: 413.03px" class="cls_006"><span class="cls_006">• AusAID or Defence visa (subclass 576).</span></div>
-        <div style="position: absolute; left: 308.00px; top: 422.03px" class="cls_006"><span class="cls_006">For information on course types and their relationship to the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 428.03px" class="cls_006"><span class="cls_006">Each subclass is linked to the type of course you intend to</span></div>
-        <div style="position: absolute; left: 308.00px; top: 433.03px" class="cls_006"><span class="cls_006">different student visa subclasses, refer to the department’s</span></div>
-        <div style="position: absolute; left: 32.00px; top: 439.03px" class="cls_006"><span class="cls_006">undertake in Australia as your main course of study.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 444.03px" class="cls_006"><span class="cls_006">website </span><a href="http://www.immi.gov.au/study/">www.immi.gov.au/study/</a> </span></div>
-        <div style="position: absolute; left: 32.00px; top: 454.03px" class="cls_006"><span class="cls_006">You are not able to use this form to apply for a Student Guardian</span></div>
-        <div style="position: absolute; left: 32.00px; top: 465.03px" class="cls_006"><span class="cls_006">visa (subclass 580). Form 157G </span><span class="cls_008">Application for a Student</span></div>
-        <div style="position: absolute; left: 308.00px; top: 467.53px" class="cls_002"><span class="cls_002">Applying for a student visa</span></div>
-        <div style="position: absolute; left: 32.00px; top: 476.03px" class="cls_008"><span class="cls_008">Guardian visa</span><span class="cls_006"> is the only valid form for a Student Guardian</span></div>
-        <div style="position: absolute; left: 32.00px; top: 487.03px" class="cls_006"><span class="cls_006">visa application.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 485.03px" class="cls_006"><span class="cls_006">To help you lodge your application and communicate with the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 496.03px" class="cls_006"><span class="cls_006">department while your application is being processed you</span></div>
-        <div style="position: absolute; left: 32.00px; top: 502.03px" class="cls_006"><span class="cls_006">If you are applying for a visa that can be granted in Australia</span></div>
-        <div style="position: absolute; left: 308.00px; top: 507.03px" class="cls_006"><span class="cls_006">should read information form 1025i </span><span class="cls_008">Making and processing</span></div>
-        <div style="position: absolute; left: 32.00px; top: 513.03px" class="cls_006"><span class="cls_006">and you are making this application in Australia, this form also</span></div>
-        <div style="position: absolute; left: 308.00px; top: 518.03px" class="cls_008"><span class="cls_008">visa applications</span><span class="cls_006">, which is available from your nearest</span></div>
-        <div style="position: absolute; left: 32.00px; top: 524.03px" class="cls_006"><span class="cls_006">serves as an application form for any class of bridging visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 529.03px" class="cls_006"><span class="cls_006">Australian Government office or the department’s website.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 535.03px" class="cls_006"><span class="cls_006">(classes A, C or E) for which you may be eligible to apply - see</span></div>
-        <div style="position: absolute; left: 32.00px; top: 546.03px" class="cls_006"><span class="cls_006">the information form 1024i </span><span class="cls_008">Bridging visas</span><span class="cls_006">, which is available</span></div>
-        <div style="position: absolute; left: 308.00px; top: 544.03px" class="cls_006"><span class="cls_006">All student visa applicants must satisfy the criteria for grant of</span></div>
-        <div style="position: absolute; left: 32.00px; top: 557.03px" class="cls_006"><span class="cls_006">on the department’s website </span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> </span></div>
-        <div style="position: absolute; left: 308.00px; top: 555.03px" class="cls_006"><span class="cls_006">one of the student visa subclasses. These criteria include (but</span></div>
-        <div style="position: absolute; left: 308.00px; top: 566.04px" class="cls_006"><span class="cls_006">are not limited to) financial ability, English language proficiency,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 572.03px" class="cls_006"><span class="cls_006">Please refer to information form 1160i </span><span class="cls_008">Applying for a student</span></div>
-        <div style="position: absolute; left: 308.00px; top: 577.04px" class="cls_006"><span class="cls_006">intention to comply with visa conditions and other relevant</span></div>
-        <div style="position: absolute; left: 32.00px; top: 583.03px" class="cls_008"><span class="cls_008">visa</span><span class="cls_006"> for further information about Australia’s student visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 588.04px" class="cls_006"><span class="cls_006">matters. Information on these criteria and the conditions that</span></div>
-        <div style="position: absolute; left: 32.00px; top: 594.03px" class="cls_006"><span class="cls_006">program.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 599.04px" class="cls_006"><span class="cls_006">may be attached to your visa can be found in the information</span></div>
-        <div style="position: absolute; left: 308.00px; top: 610.04px" class="cls_006"><span class="cls_006">form 1160i </span><span class="cls_008">Applying for a student visa</span><span class="cls_006"> and on the department’s</span></div>
-        <div style="position: absolute; left: 32.00px; top: 617.53px" class="cls_002"><span class="cls_002">Working while studying</span></div>
-        <div style="position: absolute; left: 308.00px; top: 621.04px" class="cls_006"><span class="cls_006">website.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 635.03px" class="cls_006"><span class="cls_006">If you already hold a student visa and now want permission to</span></div>
-        <div style="position: absolute; left: 308.00px; top: 636.04px" class="cls_007"><span class="cls_007">Note</span><span class="cls_006">: If you are required to provide the results of an English</span></div>
-        <div style="position: absolute; left: 32.00px; top: 646.03px" class="cls_006"><span class="cls_006">work, you and your family members can apply online</span></div>
-        <div style="position: absolute; left: 308.00px; top: 647.04px" class="cls_006"><span class="cls_006">language test, </span><span class="cls_007">you must sit the test before you lodge your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 657.03px" class="cls_007"><span class="cls_007"></span><a href="http://www.immi.gov.au/e_visa/students.htm">www.immi.gov.au/e_visa/students.htm</a> </div>
-        <div style="position: absolute; left: 308.00px; top: 658.04px" class="cls_007"><span class="cls_007">visa application</span><span class="cls_006">. If you sit a test after you have lodged your</span></div>
-        <div style="position: absolute; left: 308.00px; top: 669.04px" class="cls_006"><span class="cls_006">application, the results of this test cannot be taken into account.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 672.03px" class="cls_006"><span class="cls_006">To be eligible for permission to work while studying in Australia,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 683.03px" class="cls_006"><span class="cls_006">you must first have commenced your course. More information</span></div>
-        <div style="position: absolute; left: 308.00px; top: 684.04px" class="cls_006"><span class="cls_006">If you wish to study in Australia, your application will be assessed</span></div>
-        <div style="position: absolute; left: 32.00px; top: 694.04px" class="cls_006"><span class="cls_006">about permission to work while studying is available on the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 695.04px" class="cls_006"><span class="cls_006">against one of 5 assessment levels for each visa subclass. Before</span></div>
-        <div style="position: absolute; left: 32.00px; top: 705.04px" class="cls_006"><span class="cls_006">department’s website </span><a href="http://www.immi.gov.au/study/working/">www.immi.gov.au/study/working/</a> </span></div>
-        <div style="position: absolute; left: 308.00px; top: 706.04px" class="cls_006"><span class="cls_006">completing this form, you must refer to information form</span></div>
-        <div style="position: absolute; left: 308.00px; top: 717.04px" class="cls_006"><span class="cls_006">1219i </span><span class="cls_008">Overseas Student Program - Assessment Levels</span><span class="cls_006"> for</span></div>
-        <div style="position: absolute; left: 308.00px; top: 728.04px" class="cls_006"><span class="cls_006">information on which Assessment Level applies to you.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 739.04px" class="cls_006"><span class="cls_006">Information on assessment levels can be found on the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 750.04px" class="cls_006"><span class="cls_006">department’s website.</span></div>
-        <div style="position: absolute; left: 459.55px; top: 768.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 499.13px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 1</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 852px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background02.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 32.00px; top: 32.03px" class="cls_006"><span class="cls_006">In certain circumstances you may be requested to complete a</span></div>
-        <div style="position: absolute; left: 308.00px; top: 32.04px" class="cls_006"><span class="cls_006">commenced your course of study. If you are in Australia and</span></div>
-        <div style="position: absolute; left: 32.00px; top: 43.03px" class="cls_006"><span class="cls_006">supplementary information form. You will be advised by the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 43.04px" class="cls_006"><span class="cls_006">your family members intend to apply to join you after you have</span></div>
-        <div style="position: absolute; left: 32.00px; top: 54.03px" class="cls_006"><span class="cls_006">visa processing office if this is necessary.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 54.04px" class="cls_006"><span class="cls_006">commenced your course, you will need to complete form 919</span></div>
-        <div style="position: absolute; left: 308.00px; top: 65.04px" class="cls_008"><span class="cls_008">Nomination of student dependant(s)</span><span class="cls_006">. You must send this form</span></div>
-        <div style="position: absolute; left: 32.00px; top: 69.03px" class="cls_006"><span class="cls_006">Your application may be decided solely on the basis of</span></div>
-        <div style="position: absolute; left: 308.00px; top: 76.04px" class="cls_006"><span class="cls_006">and other necessary documentary evidence to your family</span></div>
-        <div style="position: absolute; left: 32.00px; top: 80.03px" class="cls_006"><span class="cls_006">information provided in this application. Failure to answer a</span></div>
-        <div style="position: absolute; left: 308.00px; top: 87.04px" class="cls_006"><span class="cls_006">members for them to lodge at the relevant Australian</span></div>
-        <div style="position: absolute; left: 32.00px; top: 91.03px" class="cls_006"><span class="cls_006">question may result in your application being refused if the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 98.04px" class="cls_006"><span class="cls_006">Government office.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 102.03px" class="cls_006"><span class="cls_006">decision-maker cannot be satisfied that you meet all of the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 113.03px" class="cls_006"><span class="cls_006">criteria for grant of the visa. The provision of information to the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 113.04px" class="cls_007"><span class="cls_007">Note</span><span class="cls_006">: If you are processed at Assessment Level 3, 4 or 5 and</span></div>
-        <div style="position: absolute; left: 32.00px; top: 124.03px" class="cls_006"><span class="cls_006">department that is incorrect may result in cancellation of your</span></div>
-        <div style="position: absolute; left: 308.00px; top: 124.04px" class="cls_006"><span class="cls_006">intend to undertake a course of 12 months or less in duration,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 135.03px" class="cls_006"><span class="cls_006">visa if it is granted. If you need more space to answer any</span></div>
-        <div style="position: absolute; left: 308.00px; top: 135.04px" class="cls_006"><span class="cls_006">members of the family unit </span><span class="cls_007">are not</span><span class="cls_006"> permitted to accompany</span></div>
-        <div style="position: absolute; left: 32.00px; top: 146.03px" class="cls_006"><span class="cls_006">question, write the details on a separate sheet, sign it and attach</span></div>
-        <div style="position: absolute; left: 308.00px; top: 146.04px" class="cls_006"><span class="cls_006">you to Australia on a student visa.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 157.03px" class="cls_006"><span class="cls_006">it to the application form.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 161.04px" class="cls_007"><span class="cls_007">All members of your family unit must be declared on</span></div>
-        <div style="position: absolute; left: 32.00px; top: 172.03px" class="cls_006"><span class="cls_006">You must provide all of the documentation necessary to support</span></div>
-        <div style="position: absolute; left: 308.00px; top: 172.04px" class="cls_007"><span class="cls_007">your application form</span><span class="cls_006">, whether or not they intend to travel</span></div>
-        <div style="position: absolute; left: 32.00px; top: 183.03px" class="cls_006"><span class="cls_006">your application (originals or certified or notarised copies) and</span></div>
-        <div style="position: absolute; left: 308.00px; top: 183.04px" class="cls_006"><span class="cls_006">to Australia with you. A member who is not declared will not be</span></div>
-        <div style="position: absolute; left: 32.00px; top: 194.04px" class="cls_006"><span class="cls_006">you must declare that you have done so. Failure to do so may</span></div>
-        <div style="position: absolute; left: 308.00px; top: 194.04px" class="cls_006"><span class="cls_006">eligible for entry to Australia as a family unit member, unless</span></div>
-        <div style="position: absolute; left: 32.00px; top: 205.04px" class="cls_006"><span class="cls_006">result in your application being refused. The documentation</span></div>
-        <div style="position: absolute; left: 308.00px; top: 205.04px" class="cls_006"><span class="cls_006">they were not your spouse or child at the time you lodged your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 216.04px" class="cls_006"><span class="cls_006">required may vary depending on your Assessment Level and</span></div>
-        <div style="position: absolute; left: 308.00px; top: 216.04px" class="cls_006"><span class="cls_006">application but have since become so.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 227.04px" class="cls_006"><span class="cls_006">the subclass appropriate to your course of study. Information</span></div>
-        <div style="position: absolute; left: 308.00px; top: 231.04px" class="cls_006"><span class="cls_006">A school-age family unit member joining you in Australia is</span></div>
-        <div style="position: absolute; left: 32.00px; top: 238.04px" class="cls_006"><span class="cls_006">on documentation required is available on the department’s</span></div>
-        <div style="position: absolute; left: 308.00px; top: 242.04px" class="cls_006"><span class="cls_006">expected to attend school in Australia. You must provide</span></div>
-        <div style="position: absolute; left: 32.00px; top: 249.04px" class="cls_006"><span class="cls_006">website. A decision on your application will be made on the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 253.04px" class="cls_006"><span class="cls_006">evidence of enrolment for them if you wish them to be granted</span></div>
-        <div style="position: absolute; left: 32.00px; top: 260.04px" class="cls_006"><span class="cls_006">basis of all the information you provide, your circumstances</span></div>
-        <div style="position: absolute; left: 308.00px; top: 264.04px" class="cls_006"><span class="cls_006">a student visa as a family unit member. You are responsible for</span></div>
-        <div style="position: absolute; left: 32.00px; top: 271.04px" class="cls_006"><span class="cls_006">and the legal requirements that apply. If your circumstances</span></div>
-        <div style="position: absolute; left: 308.00px; top: 275.04px" class="cls_006"><span class="cls_006">their education costs in accordance with the charging policy of</span></div>
-        <div style="position: absolute; left: 32.00px; top: 282.04px" class="cls_006"><span class="cls_006">change in any way after you make your application you must</span></div>
-        <div style="position: absolute; left: 308.00px; top: 286.04px" class="cls_006"><span class="cls_006">the relevant Australian state or territory.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 293.04px" class="cls_006"><span class="cls_006">inform the department immediately. Failure to do so can lead</span></div>
-        <div style="position: absolute; left: 308.00px; top: 301.04px" class="cls_006"><span class="cls_006">Your spouse will have a condition placed on their visa that limits</span></div>
-        <div style="position: absolute; left: 32.00px; top: 304.04px" class="cls_006"><span class="cls_006">to cancellation of your visa (if it is granted).</span></div>
-        <div style="position: absolute; left: 308.00px; top: 312.04px" class="cls_006"><span class="cls_006">their period of study in Australia to a maximum of 3 months.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 319.04px" class="cls_007"><span class="cls_007">Applicants who provide false or misleading information</span></div>
-        <div style="position: absolute; left: 308.00px; top: 323.04px" class="cls_006"><span class="cls_006">If they wish to undertake study beyond this period they must</span></div>
-        <div style="position: absolute; left: 32.00px; top: 330.04px" class="cls_007"><span class="cls_007">may either have their applications refused, or their visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 334.04px" class="cls_006"><span class="cls_006">apply for a student visa in their own right.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 341.04px" class="cls_007"><span class="cls_007">permitting them to remain in Australia cancelled.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 349.04px" class="cls_006"><span class="cls_006">If you are an AusAID or Defence-sponsored student, members</span></div>
-        <div style="position: absolute; left: 32.00px; top: 356.04px" class="cls_006"><span class="cls_006">If you:</span></div>
-        <div style="position: absolute; left: 308.00px; top: 360.04px" class="cls_006"><span class="cls_006">of your family unit must provide evidence of support by the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 369.03px" class="cls_006"><span class="cls_006">• are applying in Australia;</span></div>
-        <div style="position: absolute; left: 308.00px; top: 371.04px" class="cls_006"><span class="cls_006">relevant Minister for them to be granted a visa as your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 382.03px" class="cls_006"><span class="cls_006">• do not already hold a student visa; and</span></div>
-        <div style="position: absolute; left: 308.00px; top: 382.04px" class="cls_006"><span class="cls_006">dependant.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 395.03px" class="cls_006"><span class="cls_006">• you are in Assessment Level 2, 3, 4 or 5</span></div>
-        <div style="position: absolute; left: 32.00px; top: 410.03px" class="cls_006"><span class="cls_006">you must provide exceptional reasons for the grant of your visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 405.53px" class="cls_002"><span class="cls_002">‘No further stay’ conditions</span></div>
-        <div style="position: absolute; left: 32.00px; top: 421.03px" class="cls_006"><span class="cls_006">in Australia.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 423.03px" class="cls_006"><span class="cls_006">Your visa will be subject to a number of visa conditions.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 434.03px" class="cls_006"><span class="cls_006">Information on these conditions can be found in the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 444.53px" class="cls_002"><span class="cls_002">Photographs</span></div>
-        <div style="position: absolute; left: 308.00px; top: 445.03px" class="cls_006"><span class="cls_006">information form 1160i</span><span class="cls_008"> Applying for a student visa</span><span class="cls_006"> and on the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 456.03px" class="cls_006"><span class="cls_006">department’s website.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 462.03px" class="cls_007"><span class="cls_007">Applying outside Australia</span><span class="cls_008"> - </span><span class="cls_006">enclose 4 recent passport-sized</span></div>
-        <div style="position: absolute; left: 32.00px; top: 473.03px" class="cls_006"><span class="cls_006">photographs of yourself and all family members included in this</span></div>
-        <div style="position: absolute; left: 308.00px; top: 471.03px" class="cls_006"><span class="cls_006">In certain circumstances, your visa may be subject to the ‘no</span></div>
-        <div style="position: absolute; left: 32.00px; top: 484.03px" class="cls_006"><span class="cls_006">application.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 482.03px" class="cls_006"><span class="cls_006">further stay’ condition 8534 or 8535.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 499.03px" class="cls_007"><span class="cls_007">Applying in Australia</span><span class="cls_008"> - </span><span class="cls_006">enclose one recent passport-sized</span></div>
-        <div style="position: absolute; left: 308.00px; top: 497.03px" class="cls_007"><span class="cls_007">Condition 8534</span></div>
-        <div style="position: absolute; left: 32.00px; top: 510.03px" class="cls_006"><span class="cls_006">photograph of yourself and all family members included in this</span></div>
-        <div style="position: absolute; left: 308.00px; top: 512.03px" class="cls_006"><span class="cls_006">If you are an Assessment Level 3, 4 or 5 student whose overall</span></div>
-        <div style="position: absolute; left: 32.00px; top: 521.03px" class="cls_006"><span class="cls_006">application.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 523.03px" class="cls_006"><span class="cls_006">intended period of study is 10 months or less, you will usually</span></div>
-        <div style="position: absolute; left: 308.00px; top: 534.03px" class="cls_006"><span class="cls_006">be subject to this ‘no further stay’ condition. This means that</span></div>
-        <div style="position: absolute; left: 32.00px; top: 544.53px" class="cls_002"><span class="cls_002">Health requirements</span></div>
-        <div style="position: absolute; left: 308.00px; top: 545.03px" class="cls_006"><span class="cls_006">after entering Australia, you may not be granted any other visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 556.03px" class="cls_006"><span class="cls_006">while you remain in Australia, other than a further student visa</span></div>
-        <div style="position: absolute; left: 32.00px; top: 562.03px" class="cls_006"><span class="cls_006">All applicants must meet Australia’s health requirements. You</span></div>
-        <div style="position: absolute; left: 308.00px; top: 566.53px" class="cls_006"><span class="cls_006">with permission to work or a Graduate - Skilled visa</span><span class="cls_011"><sup>1</sup></span><span class="cls_006">. If you are</span></div>
-        <div style="position: absolute; left: 32.00px; top: 573.03px" class="cls_006"><span class="cls_006">and any family members included in this application may be</span></div>
-        <div style="position: absolute; left: 308.00px; top: 578.03px" class="cls_006"><span class="cls_006">an Assessment Level 3 student you may be exempt from the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 584.03px" class="cls_006"><span class="cls_006">required to undergo a chest x-ray and medical examination.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 589.03px" class="cls_006"><span class="cls_006">mandatory imposition of the ‘no further stay’ if you can show</span></div>
-        <div style="position: absolute; left: 32.00px; top: 595.03px" class="cls_006"><span class="cls_006">Refer to form 1163i </span><span class="cls_008">Health requirement for temporary entry</span></div>
-        <div style="position: absolute; left: 308.00px; top: 600.03px" class="cls_006"><span class="cls_006">an additional A$12,000 and funds to cover living and school</span></div>
-        <div style="position: absolute; left: 32.00px; top: 606.03px" class="cls_008"><span class="cls_008">to Australia</span><span class="cls_006"> for further details.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 611.03px" class="cls_006"><span class="cls_006">costs for a 12-month period in addition to the period of your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 621.03px" class="cls_006"><span class="cls_006">If applying outside Australia under Assessment Level 3, 4 or 5,</span></div>
-        <div style="position: absolute; left: 308.00px; top: 622.03px" class="cls_006"><span class="cls_006">intended study in Australia.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 632.03px" class="cls_006"><span class="cls_006">you should not undertake your medical or x-ray examinations</span></div>
-        <div style="position: absolute; left: 308.00px; top: 637.03px" class="cls_006"><span class="cls_006">A ‘no further stay’ condition may also be imposed on your visa,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 643.03px" class="cls_006"><span class="cls_006">until advised to do so by the Australian Government office</span></div>
-        <div style="position: absolute; left: 308.00px; top: 648.03px" class="cls_006"><span class="cls_006">irrespective of your Assessment Level or period of study, if the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 654.03px" class="cls_006"><span class="cls_006">processing your visa application.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 659.03px" class="cls_006"><span class="cls_006">decision maker considers this appropriate.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 674.03px" class="cls_007"><span class="cls_007">Condition 8535</span></div>
-        <div style="position: absolute; left: 32.00px; top: 677.53px" class="cls_002"><span class="cls_002">Members of your family unit</span></div>
-        <div style="position: absolute; left: 308.00px; top: 689.03px" class="cls_006"><span class="cls_006">If you are sponsored by the Australian Government or the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 695.03px" class="cls_006"><span class="cls_006">The term ‘members of the family unit’ covers your spouse</span></div>
-        <div style="position: absolute; left: 308.00px; top: 700.03px" class="cls_006"><span class="cls_006">government of your home country, you may be subject to this</span></div>
-        <div style="position: absolute; left: 32.00px; top: 706.03px" class="cls_006"><span class="cls_006">(including a de facto spouse) and dependent children of you</span></div>
-        <div style="position: absolute; left: 308.00px; top: 711.03px" class="cls_006"><span class="cls_006">‘no further stay’ condition. This means that after entering</span></div>
-        <div style="position: absolute; left: 32.00px; top: 717.03px" class="cls_006"><span class="cls_006">or your spouse, who are unmarried and have not turned</span></div>
-        <div style="position: absolute; left: 308.00px; top: 722.03px" class="cls_006"><span class="cls_006">Australia, you will not be entitled to be granted any other visa</span></div>
-        <div style="position: absolute; left: 32.00px; top: 728.03px" class="cls_006"><span class="cls_006">18 years of age. School-age dependants are unmarried</span></div>
-        <div style="position: absolute; left: 308.00px; top: 733.03px" class="cls_006"><span class="cls_006">while you remain in Australia apart from a further student visa</span></div>
-        <div style="position: absolute; left: 32.00px; top: 739.03px" class="cls_006"><span class="cls_006">dependent children of you or your spouse who have turned 5,</span></div>
-        <div style="position: absolute; left: 308.00px; top: 744.03px" class="cls_006"><span class="cls_006">with permission to work or a further student visa with the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 750.03px" class="cls_006"><span class="cls_006">but have not yet turned 18.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 754.53px" class="cls_006"><span class="cls_006">consent of your sponsor</span><span class="cls_011"><sup>1</sup></span><span class="cls_006">.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 765.03px" class="cls_006"><span class="cls_006">Members of your family unit may apply for visas that will allow</span></div>
-        <div style="position: absolute; left: 32.00px; top: 776.04px" class="cls_006"><span class="cls_006">them to join you in Australia. They may apply for visas at the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 780.33px" class="cls_011"><span class="cls_011">1</span><span class="cls_012"><sup> </sup></span><span class="cls_013">Or to engage Australia’s protection obligation under the 1951 UN</span></div>
-        <div style="position: absolute; left: 32.00px; top: 787.04px" class="cls_006"><span class="cls_006">same time as you, or after you have arrived in Australia and</span></div>
-        <div style="position: absolute; left: 308.00px; top: 794.33px" class="cls_013"><span class="cls_013">convention relating to the status of refugees.</span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 2</span></div>
-        <div style="position: absolute; left: 245.94px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 1704px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background03.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 32.00px; top: 31.53px" class="cls_002"><span class="cls_002">Visa application charge</span></div>
-        <div style="position: absolute; left: 308.00px; top: 31.53px" class="cls_002"><span class="cls_002">Authorisation of a migration agent to act on your behalf</span></div>
-        <div style="position: absolute; left: 32.00px; top: 49.03px" class="cls_006"><span class="cls_006">Your completed application form, together with the correct visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 49.03px" class="cls_006"><span class="cls_006">If you have a migration agent acting on your behalf in relation</span></div>
-        <div style="position: absolute; left: 32.00px; top: 60.03px" class="cls_006"><span class="cls_006">application charge, can be lodged at the nearest Australian</span></div>
-        <div style="position: absolute; left: 308.00px; top: 60.03px" class="cls_006"><span class="cls_006">to your application for a student visa, you need to complete</span></div>
-        <div style="position: absolute; left: 32.00px; top: 71.04px" class="cls_006"><span class="cls_006">Government office if applying outside Australia, or at the nearest</span></div>
-        <div style="position: absolute; left: 308.00px; top: 71.03px" class="cls_006"><span class="cls_006">Question 73 </span><span class="cls_008">Options for receiving written communications</span></div>
-        <div style="position: absolute; left: 32.00px; top: 82.04px" class="cls_006"><span class="cls_006">office of the department if applying in Australia. You can check</span></div>
-        <div style="position: absolute; left: 308.00px; top: 82.03px" class="cls_006"><span class="cls_006">and Question 78 </span><span class="cls_008">Agent details</span><span class="cls_006">. The migration agent will need</span></div>
-        <div style="position: absolute; left: 32.00px; top: 93.04px" class="cls_006"><span class="cls_006">the visa application charge with your nearest office of the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 93.03px" class="cls_006"><span class="cls_006">to sign at Question 80 </span><span class="cls_008">Agent consent</span><span class="cls_006">.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 104.04px" class="cls_006"><span class="cls_006">department, or from form 990i </span><span class="cls_008">Charges,</span><span class="cls_006"> which is available in</span></div>
-        <div style="position: absolute; left: 308.00px; top: 108.03px" class="cls_006"><span class="cls_006">Appointing a migration agent to act on your behalf includes</span></div>
-        <div style="position: absolute; left: 32.00px; top: 115.04px" class="cls_006"><span class="cls_006">the Forms section of the department’s website</span></div>
-        <div style="position: absolute; left: 308.00px; top: 119.03px" class="cls_006"><span class="cls_006">authorising the department to:</span></div>
-        <div style="position: absolute; left: 32.00px; top: 126.04px" class="cls_007"><span class="cls_007"></span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> </div>
-        <div style="position: absolute; left: 308.00px; top: 134.03px" class="cls_006"><span class="cls_006">• discuss your student visa application with the migration agent</span></div>
-        <div style="position: absolute; left: 32.00px; top: 141.04px" class="cls_006"><span class="cls_006">Payment must accompany your application and is generally not</span></div>
-        <div style="position: absolute; left: 318.00px; top: 145.03px" class="cls_006"><span class="cls_006">and seek further information from them; and</span></div>
-        <div style="position: absolute; left: 32.00px; top: 152.04px" class="cls_006"><span class="cls_006">refunded if the application is unsuccessful. If you have paid</span></div>
-        <div style="position: absolute; left: 308.00px; top: 160.03px" class="cls_006"><span class="cls_006">• send your migration agent written communications about</span></div>
-        <div style="position: absolute; left: 32.00px; top: 163.04px" class="cls_006"><span class="cls_006">enrolment or tuition fees, it is your responsibility to get a refund</span></div>
-        <div style="position: absolute; left: 318.00px; top: 171.03px" class="cls_006"><span class="cls_006">your student visa application that would otherwise have been</span></div>
-        <div style="position: absolute; left: 32.00px; top: 174.04px" class="cls_006"><span class="cls_006">of these fees.</span></div>
-        <div style="position: absolute; left: 318.00px; top: 182.03px" class="cls_006"><span class="cls_006">sent to you.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 189.04px" class="cls_006"><span class="cls_006">To make a payment in Australia, please pay by credit card, debit</span></div>
-        <div style="position: absolute; left: 308.00px; top: 197.03px" class="cls_007"><span class="cls_007">Note</span><span class="cls_006">: Your migration agent will be your authorised recipient</span></div>
-        <div style="position: absolute; left: 32.00px; top: 200.04px" class="cls_006"><span class="cls_006">card or by bank cheque or money order made payable to the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 208.03px" class="cls_006"><span class="cls_006">for written communication under section 494D of the Act and,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 211.04px" class="cls_006"><span class="cls_006">Department of Immigration and Multicultural Affairs. </span><span class="cls_007">Please</span></div>
-        <div style="position: absolute; left: 308.00px; top: 219.03px" class="cls_006"><span class="cls_006">in accordance with that same provision, you will be taken to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 222.04px" class="cls_007"><span class="cls_007">do not pay by cash or personal cheque</span><span class="cls_006">.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 230.03px" class="cls_006"><span class="cls_006">have received any documents sent to them.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 237.04px" class="cls_006"><span class="cls_006">For clients outside Australia, before you make a payment, please</span></div>
-        <div style="position: absolute; left: 308.00px; top: 245.03px" class="cls_006"><span class="cls_006">If you change your migration agent or end his/her appointment,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 248.04px" class="cls_006"><span class="cls_006">contact the Australian Government office to find out what</span></div>
-        <div style="position: absolute; left: 308.00px; top: 256.03px" class="cls_006"><span class="cls_006">after you have lodged this application, you must promptly</span></div>
-        <div style="position: absolute; left: 32.00px; top: 259.04px" class="cls_006"><span class="cls_006">methods of payment can be accepted at that office.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 267.03px" class="cls_006"><span class="cls_006">advise the department in writing, preferably by using form 956</span></div>
-        <div style="position: absolute; left: 308.00px; top: 278.04px" class="cls_008"><span class="cls_008">Appointment of a migration agent</span><span class="cls_006">, which is available on the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 282.53px" class="cls_002"><span class="cls_002">Authorisation of a person to only receive written</span></div>
-        <div style="position: absolute; left: 308.00px; top: 289.04px" class="cls_006"><span class="cls_006">department’s website </span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> </span><span class="cls_006"> or from</span></div>
-        <div style="position: absolute; left: 32.00px; top: 296.53px" class="cls_002"><span class="cls_002">communications</span></div>
-        <div style="position: absolute; left: 308.00px; top: 300.04px" class="cls_006"><span class="cls_006">your migration agent.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 314.03px" class="cls_006"><span class="cls_006">You may authorise another person to only receive all written</span></div>
-        <div style="position: absolute; left: 308.00px; top: 315.03px" class="cls_006"><span class="cls_006">The department will communicate with your migration agent</span></div>
-        <div style="position: absolute; left: 32.00px; top: 325.03px" class="cls_006"><span class="cls_006">communications about your application for a student visa with</span></div>
-        <div style="position: absolute; left: 308.00px; top: 326.04px" class="cls_006"><span class="cls_006">about your application, including your personal information</span></div>
-        <div style="position: absolute; left: 32.00px; top: 336.03px" class="cls_006"><span class="cls_006">the department. That person will be known as your authorised</span></div>
-        <div style="position: absolute; left: 308.00px; top: 337.04px" class="cls_006"><span class="cls_006">such as health, police checks, financial viability and personal</span></div>
-        <div style="position: absolute; left: 32.00px; top: 347.03px" class="cls_006"><span class="cls_006">recipient. To do this, you will need to complete Question 73</span></div>
-        <div style="position: absolute; left: 308.00px; top: 348.04px" class="cls_006"><span class="cls_006">relationships. If your agent authorises it at Question 79 this</span></div>
-        <div style="position: absolute; left: 32.00px; top: 358.03px" class="cls_008"><span class="cls_008">Options for receiving written communications</span><span class="cls_006"> and</span></div>
-        <div style="position: absolute; left: 308.00px; top: 359.04px" class="cls_006"><span class="cls_006">communication may take place by e-mail or fax.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 369.03px" class="cls_006"><span class="cls_006">Question 75</span><span class="cls_007"> </span><span class="cls_008">Authorised recipient details</span><span class="cls_006"> in this form. The</span></div>
-        <div style="position: absolute; left: 308.00px; top: 374.04px" class="cls_006"><span class="cls_006">The department will send to your migration agent only</span></div>
-        <div style="position: absolute; left: 32.00px; top: 380.03px" class="cls_006"><span class="cls_006">authorised recipient will need to sign at Question 77</span><span class="cls_007"> </span><span class="cls_008">Authorised</span></div>
-        <div style="position: absolute; left: 308.00px; top: 385.04px" class="cls_006"><span class="cls_006">information which you are entitled to receive. For example, if</span></div>
-        <div style="position: absolute; left: 32.00px; top: 391.03px" class="cls_008"><span class="cls_008">recipient consent</span><span class="cls_006">. You can only appoint one authorised</span></div>
-        <div style="position: absolute; left: 308.00px; top: 396.04px" class="cls_006"><span class="cls_006">you are a visa applicant and have a sponsor, your agent will not</span></div>
-        <div style="position: absolute; left: 32.00px; top: 402.03px" class="cls_006"><span class="cls_006">recipient at any time. The department will communicate with</span></div>
-        <div style="position: absolute; left: 308.00px; top: 407.04px" class="cls_006"><span class="cls_006">receive personal information about your sponsor, unless your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 413.03px" class="cls_006"><span class="cls_006">the most recently appointed authorised recipient.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 418.04px" class="cls_006"><span class="cls_006">sponsor has also appointed the same migration agent.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 428.03px" class="cls_006"><span class="cls_006">The department is required under section 494D of the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 433.04px" class="cls_006"><span class="cls_006">In some situations, departmental staff will need to speak with</span></div>
-        <div style="position: absolute; left: 32.00px; top: 439.03px" class="cls_008"><span class="cls_008">Migration Act 1958</span><span class="cls_006"> (the Act) to send your authorised recipient</span></div>
-        <div style="position: absolute; left: 308.00px; top: 444.04px" class="cls_006"><span class="cls_006">you directly rather than with your migration agent. For example,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 450.03px" class="cls_006"><span class="cls_006">any written communications relating to your application that</span></div>
-        <div style="position: absolute; left: 308.00px; top: 455.04px" class="cls_006"><span class="cls_006">if you are applying for a visa the department may interview you.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 461.03px" class="cls_006"><span class="cls_006">would otherwise have been sent to you (but a copy of that</span></div>
-        <div style="position: absolute; left: 308.00px; top: 466.04px" class="cls_006"><span class="cls_006">In some situations, the department will also send documents</span></div>
-        <div style="position: absolute; left: 32.00px; top: 472.03px" class="cls_006"><span class="cls_006">communication may also be sent to you). If your authorised</span></div>
-        <div style="position: absolute; left: 308.00px; top: 477.04px" class="cls_006"><span class="cls_006">to you directly (for example, your passport) instead of to your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 483.03px" class="cls_006"><span class="cls_006">recipient agrees to it at Question 76, this communication may</span></div>
-        <div style="position: absolute; left: 308.00px; top: 488.04px" class="cls_006"><span class="cls_006">migration agent, but it will inform your migration agent that it</span></div>
-        <div style="position: absolute; left: 32.00px; top: 494.03px" class="cls_006"><span class="cls_006">take place by fax or e-mail.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 499.04px" class="cls_006"><span class="cls_006">has done so.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 509.03px" class="cls_006"><span class="cls_006">The department will send your authorised recipient only</span></div>
-        <div style="position: absolute; left: 308.00px; top: 514.04px" class="cls_006"><span class="cls_006">If you have appointed a migration agent to act for you, you are</span></div>
-        <div style="position: absolute; left: 32.00px; top: 520.03px" class="cls_006"><span class="cls_006">information which you are entitled to receive. For example, if</span></div>
-        <div style="position: absolute; left: 308.00px; top: 525.04px" class="cls_006"><span class="cls_006">still responsible for the accuracy of information and supporting</span></div>
-        <div style="position: absolute; left: 32.00px; top: 531.03px" class="cls_006"><span class="cls_006">you are a visa applicant and have a sponsor, your authorised</span></div>
-        <div style="position: absolute; left: 308.00px; top: 536.04px" class="cls_006"><span class="cls_006">documentation that you give to your migration agent to forward</span></div>
-        <div style="position: absolute; left: 32.00px; top: 542.03px" class="cls_006"><span class="cls_006">recipient will not receive personal information about your</span></div>
-        <div style="position: absolute; left: 308.00px; top: 547.04px" class="cls_006"><span class="cls_006">to the department.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 553.03px" class="cls_006"><span class="cls_006">sponsor, unless your sponsor also appointed the same</span></div>
-        <div style="position: absolute; left: 32.00px; top: 564.03px" class="cls_006"><span class="cls_006">authorised recipient.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 562.04px" class="cls_006"><span class="cls_006">When you provide the details of your migration agent, please</span></div>
-        <div style="position: absolute; left: 308.00px; top: 573.04px" class="cls_006"><span class="cls_006">make sure you include their 7-digit:</span></div>
-        <div style="position: absolute; left: 32.00px; top: 579.03px" class="cls_006"><span class="cls_006">If you decide to change your nominated authorised recipient,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 590.03px" class="cls_006"><span class="cls_006">after you have lodged this application, you must promptly</span></div>
-        <div style="position: absolute; left: 308.00px; top: 588.03px" class="cls_006"><span class="cls_006">• migration agent registration number (if they are a registered</span></div>
-        <div style="position: absolute; left: 32.00px; top: 601.04px" class="cls_006"><span class="cls_006">advise the department in writing. You may use form 1231</span></div>
-        <div style="position: absolute; left: 318.00px; top: 599.03px" class="cls_006"><span class="cls_006">migration agent); or</span></div>
-        <div style="position: absolute; left: 32.00px; top: 612.04px" class="cls_008"><span class="cls_008">Appointment of authorised recipient</span><span class="cls_006"> for this purpose, which is</span></div>
-        <div style="position: absolute; left: 308.00px; top: 614.03px" class="cls_006"><span class="cls_006">• offshore agent ID number (if they have been allocated one</span></div>
-        <div style="position: absolute; left: 32.00px; top: 623.04px" class="cls_006"><span class="cls_006">available from the department’s website</span></div>
-        <div style="position: absolute; left: 318.00px; top: 625.03px" class="cls_006"><span class="cls_006">by the department).</span></div>
-        <div style="position: absolute; left: 32.00px; top: 634.04px" class="cls_007"><span class="cls_007"></span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> <span class="cls_006">or from any office of the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 640.03px" class="cls_007"><span class="cls_007">Note</span><span class="cls_006">: Migration agents who operate overseas do not need to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 645.04px" class="cls_006"><span class="cls_006">department or Australian mission.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 651.03px" class="cls_006"><span class="cls_006">be registered. However, they may have been allocated an ID</span></div>
-        <div style="position: absolute; left: 308.00px; top: 662.03px" class="cls_006"><span class="cls_006">number by the department.</span></div>
-        <div style="position: absolute; left: 459.55px; top: 792.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 499.13px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 3</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 2556px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background04.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 32.00px; top: 31.53px" class="cls_002"><span class="cls_002">Using a migration agent</span></div>
-        <div style="position: absolute; left: 308.00px; top: 31.53px" class="cls_002"><span class="cls_002">Notification of giving immigration assistance</span></div>
-        <div style="position: absolute; left: 32.00px; top: 49.03px" class="cls_006"><span class="cls_006">You are not required to use a migration agent. However, if you</span></div>
-        <div style="position: absolute; left: 308.00px; top: 49.03px" class="cls_006"><span class="cls_006">Under section 312A of the Act, a registered agent has a duty to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 60.03px" class="cls_006"><span class="cls_006">use a migration agent, the department encourages you to use</span></div>
-        <div style="position: absolute; left: 308.00px; top: 60.03px" class="cls_006"><span class="cls_006">notify the department when lodging an application on behalf</span></div>
-        <div style="position: absolute; left: 32.00px; top: 71.04px" class="cls_006"><span class="cls_006">a registered migration agent. Registered migration agents are</span></div>
-        <div style="position: absolute; left: 308.00px; top: 71.03px" class="cls_006"><span class="cls_006">of a client, or within 28 days of commencing to act on behalf of</span></div>
-        <div style="position: absolute; left: 32.00px; top: 82.04px" class="cls_006"><span class="cls_006">bound by the Migration Agents Code of Conduct, which requires</span></div>
-        <div style="position: absolute; left: 308.00px; top: 82.03px" class="cls_006"><span class="cls_006">a visa applicant. This notification can be done by completing,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 93.04px" class="cls_006"><span class="cls_006">them to act in the lawful best interests of their clients and act</span></div>
-        <div style="position: absolute; left: 308.00px; top: 93.03px" class="cls_006"><span class="cls_006">and your agent signing, the relevant sections of this application</span></div>
-        <div style="position: absolute; left: 32.00px; top: 104.04px" class="cls_006"><span class="cls_006">professionally.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 104.03px" class="cls_006"><span class="cls_006">form.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 119.04px" class="cls_006"><span class="cls_006">A list of registered migration agents is available from the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 130.04px" class="cls_006"><span class="cls_006">Migration Agents Registration Authority (MARA) website</span></div>
-        <div style="position: absolute; left: 308.00px; top: 127.53px" class="cls_002"><span class="cls_002">Residential address</span></div>
-        <div style="position: absolute; left: 32.00px; top: 141.04px" class="cls_006"><span class="cls_006"></span><a href="http://www.themara.com.au/">www.themara.com.au</a> </div>
-        <div style="position: absolute; left: 308.00px; top: 145.03px" class="cls_006"><span class="cls_006">You must tell the department where you intend to live while</span></div>
-        <div style="position: absolute; left: 32.00px; top: 156.04px" class="cls_006"><span class="cls_006">You can contact the MARA at:</span></div>
-        <div style="position: absolute; left: 308.00px; top: 156.03px" class="cls_006"><span class="cls_006">your application is being dealt with. Failure to give a residential</span></div>
-        <div style="position: absolute; left: 308.00px; top: 167.03px" class="cls_006"><span class="cls_006">address will result in your application being invalid. A post office</span></div>
-        <div style="position: absolute; left: 32.00px; top: 171.04px" class="cls_006"><span class="cls_006">E-mail:</span></div>
-        <div style="position: absolute; left: 88.00px; top: 171.04px" class="cls_006"><span class="cls_006">themara@themara.com.au</span></div>
-        <div style="position: absolute; left: 308.00px; top: 178.03px" class="cls_006"><span class="cls_006">box address will not be accepted as your residential address.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 186.04px" class="cls_006"><span class="cls_006">PO Box Q1551</span></div>
-        <div style="position: absolute; left: 32.00px; top: 197.04px" class="cls_006"><span class="cls_006">QVB  NSW  1230</span></div>
-        <div style="position: absolute; left: 308.00px; top: 201.53px" class="cls_002"><span class="cls_002">Consent to communicate electronically</span></div>
-        <div style="position: absolute; left: 32.00px; top: 208.04px" class="cls_006"><span class="cls_006">AUSTRALIA</span></div>
-        <div style="position: absolute; left: 308.00px; top: 219.03px" class="cls_006"><span class="cls_006">The department may use a range of means to communicate</span></div>
-        <div style="position: absolute; left: 32.00px; top: 223.04px" class="cls_006"><span class="cls_006">Telephone:</span></div>
-        <div style="position: absolute; left: 88.00px; top: 223.04px" class="cls_006"><span class="cls_006">61 2 9299 5446</span></div>
-        <div style="position: absolute; left: 308.00px; top: 230.03px" class="cls_006"><span class="cls_006">with you. However, electronic means such as fax or e-mail will</span></div>
-        <div style="position: absolute; left: 32.00px; top: 238.04px" class="cls_006"><span class="cls_006">Fax:</span></div>
-        <div style="position: absolute; left: 88.00px; top: 238.04px" class="cls_006"><span class="cls_006">61 2 9299 8448</span></div>
-        <div style="position: absolute; left: 308.00px; top: 241.03px" class="cls_006"><span class="cls_006">only be used if you indicate your agreement to receiving</span></div>
-        <div style="position: absolute; left: 32.00px; top: 253.04px" class="cls_006"><span class="cls_006">The MARA investigates complaints against registered migration</span></div>
-        <div style="position: absolute; left: 308.00px; top: 252.03px" class="cls_006"><span class="cls_006">communication in this way.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 264.04px" class="cls_006"><span class="cls_006">agents and may take disciplinary action against them. If you</span></div>
-        <div style="position: absolute; left: 308.00px; top: 267.03px" class="cls_006"><span class="cls_006">To process your application the department may need to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 275.04px" class="cls_006"><span class="cls_006">have a concern about a registered migration agent, you should</span></div>
-        <div style="position: absolute; left: 308.00px; top: 278.03px" class="cls_006"><span class="cls_006">communicate with you about sensitive information, for example,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 286.04px" class="cls_006"><span class="cls_006">contact the MARA. A copy of the complaint form is available</span></div>
-        <div style="position: absolute; left: 308.00px; top: 289.03px" class="cls_006"><span class="cls_006">health, police checks, financial viability and personal</span></div>
-        <div style="position: absolute; left: 32.00px; top: 297.04px" class="cls_006"><span class="cls_006">from the MARA website.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 300.03px" class="cls_006"><span class="cls_006">relationships. Electronic communications, unless adequately</span></div>
-        <div style="position: absolute; left: 308.00px; top: 311.04px" class="cls_006"><span class="cls_006">encrypted, are not secure and may be viewed by others or</span></div>
-        <div style="position: absolute; left: 32.00px; top: 320.53px" class="cls_002"><span class="cls_002">Restrictions on giving immigration assistance</span></div>
-        <div style="position: absolute; left: 308.00px; top: 322.04px" class="cls_006"><span class="cls_006">interfered with. If you agree to the department communicating</span></div>
-        <div style="position: absolute; left: 308.00px; top: 333.04px" class="cls_006"><span class="cls_006">with you by electronic means, the details you provide will only</span></div>
-        <div style="position: absolute; left: 32.00px; top: 338.03px" class="cls_006"><span class="cls_006">In Australia, anyone (including a lawyer) who uses knowledge</span></div>
-        <div style="position: absolute; left: 308.00px; top: 344.04px" class="cls_006"><span class="cls_006">be used by the department for the purpose for which you have</span></div>
-        <div style="position: absolute; left: 32.00px; top: 349.03px" class="cls_006"><span class="cls_006">of migration procedure to offer immigration assistance to a visa</span></div>
-        <div style="position: absolute; left: 308.00px; top: 355.04px" class="cls_006"><span class="cls_006">provided them, unless there is a legal obligation or necessity to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 360.03px" class="cls_006"><span class="cls_006">or cancellation review applicant, sponsor or nominator, must</span></div>
-        <div style="position: absolute; left: 308.00px; top: 366.04px" class="cls_006"><span class="cls_006">use them for another purpose, or you have consented to use</span></div>
-        <div style="position: absolute; left: 32.00px; top: 371.03px" class="cls_006"><span class="cls_006">be registered, unless exempted from registration requirements</span></div>
-        <div style="position: absolute; left: 308.00px; top: 377.04px" class="cls_006"><span class="cls_006">for another purpose. They will not be added to any mailing list.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 382.04px" class="cls_006"><span class="cls_006">by law. There are serious criminal penalties under Part 3 of the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 393.04px" class="cls_006"><span class="cls_006">Act for breaching the law, including possible imprisonment if</span></div>
-        <div style="position: absolute; left: 308.00px; top: 392.04px" class="cls_006"><span class="cls_006">The Australian Government accepts no responsibility for the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 404.04px" class="cls_006"><span class="cls_006">the unregistered person asks for, or receives, a fee or reward</span></div>
-        <div style="position: absolute; left: 308.00px; top: 403.04px" class="cls_006"><span class="cls_006">security or integrity of any information sent to the department</span></div>
-        <div style="position: absolute; left: 32.00px; top: 415.04px" class="cls_006"><span class="cls_006">for their services.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 414.04px" class="cls_006"><span class="cls_006">over the internet or by other electronic means.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 429.04px" class="cls_006"><span class="cls_006">If you authorise another person to receive documents on your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 438.53px" class="cls_002"><span class="cls_002">Using an agent exempted from registration</span></div>
-        <div style="position: absolute; left: 308.00px; top: 440.04px" class="cls_006"><span class="cls_006">behalf and they wish to be contacted electronically, their</span></div>
-        <div style="position: absolute; left: 308.00px; top: 451.04px" class="cls_006"><span class="cls_006">signature is required on the form to indicate their consent to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 456.03px" class="cls_006"><span class="cls_006">Certain people, such as officials, parliamentarians, diplomats,</span></div>
-        <div style="position: absolute; left: 308.00px; top: 462.04px" class="cls_006"><span class="cls_006">this form of communication.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 467.03px" class="cls_006"><span class="cls_006">close family members (that is, only your spouse, child, adopted</span></div>
-        <div style="position: absolute; left: 32.00px; top: 478.03px" class="cls_006"><span class="cls_006">child, parent, brother or sister), sponsors and nominators, are</span></div>
-        <div style="position: absolute; left: 32.00px; top: 489.04px" class="cls_006"><span class="cls_006">able to provide you with immigration assistance as long as they</span></div>
-        <div style="position: absolute; left: 308.00px; top: 485.53px" class="cls_002"><span class="cls_002">About the information you give to the department</span></div>
-        <div style="position: absolute; left: 32.00px; top: 500.04px" class="cls_006"><span class="cls_006">do not ask or receive a fee or reward. If you wish to appoint an</span></div>
-        <div style="position: absolute; left: 308.00px; top: 503.03px" class="cls_006"><span class="cls_006">The department is authorised to collect information provided</span></div>
-        <div style="position: absolute; left: 32.00px; top: 511.04px" class="cls_006"><span class="cls_006">‘exempted agent’, you must complete form 956 </span><span class="cls_008">Appointment</span></div>
-        <div style="position: absolute; left: 308.00px; top: 514.03px" class="cls_006"><span class="cls_006">on this form under Part 2 of the </span><span class="cls_008">Migration Act 1958</span><span class="cls_006">. The</span></div>
-        <div style="position: absolute; left: 32.00px; top: 522.04px" class="cls_008"><span class="cls_008">of a migration agent</span><span class="cls_006">, which is available from the department’s</span></div>
-        <div style="position: absolute; left: 308.00px; top: 525.03px" class="cls_006"><span class="cls_006">information collected will be used for assessing your eligibility</span></div>
-        <div style="position: absolute; left: 32.00px; top: 533.04px" class="cls_006"><span class="cls_006">website </span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> </span><span class="cls_006"> and attach it to this</span></div>
-        <div style="position: absolute; left: 308.00px; top: 536.03px" class="cls_006"><span class="cls_006">for a student visa to travel to and enter and/or remain in</span></div>
-        <div style="position: absolute; left: 32.00px; top: 544.04px" class="cls_006"><span class="cls_006">application form.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 547.03px" class="cls_006"><span class="cls_006">Australia, to monitor the conduct of migration agents, and for</span></div>
-        <div style="position: absolute; left: 308.00px; top: 558.03px" class="cls_006"><span class="cls_006">other purposes relating to the administration of the Migration</span></div>
-        <div style="position: absolute; left: 32.00px; top: 567.53px" class="cls_002"><span class="cls_002">Applications for multiple visas</span></div>
-        <div style="position: absolute; left: 308.00px; top: 569.03px" class="cls_006"><span class="cls_006">Act.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 585.03px" class="cls_006"><span class="cls_006">If you are a dependant applicant (for example, the spouse of a</span></div>
-        <div style="position: absolute; left: 308.00px; top: 584.03px" class="cls_006"><span class="cls_006">The information collected might also be disclosed to agencies</span></div>
-        <div style="position: absolute; left: 32.00px; top: 596.03px" class="cls_006"><span class="cls_006">primary applicant) and you wish to appoint a different migration</span></div>
-        <div style="position: absolute; left: 308.00px; top: 595.03px" class="cls_006"><span class="cls_006">who are authorised to receive information relating to adoption,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 607.03px" class="cls_006"><span class="cls_006">agent to the primary applicant, you must fill out a separate</span></div>
-        <div style="position: absolute; left: 308.00px; top: 606.03px" class="cls_006"><span class="cls_006">border control, business skills, citizenship, education, health</span></div>
-        <div style="position: absolute; left: 32.00px; top: 618.03px" class="cls_006"><span class="cls_006">form 956 </span><span class="cls_008">Appointment of a migration agent</span><span class="cls_006">, which is available</span></div>
-        <div style="position: absolute; left: 308.00px; top: 617.04px" class="cls_006"><span class="cls_006">assessment, health insurance, health services, law enforcement,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 629.03px" class="cls_006"><span class="cls_006">from the department’s website </span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> </span></div>
-        <div style="position: absolute; left: 308.00px; top: 628.04px" class="cls_006"><span class="cls_006">payment of pensions and benefits, taxation, review of decisions</span></div>
-        <div style="position: absolute; left: 32.00px; top: 640.03px" class="cls_006"><span class="cls_006">or advise the department in writing. Otherwise, the migration</span></div>
-        <div style="position: absolute; left: 308.00px; top: 639.04px" class="cls_006"><span class="cls_006">and registration of migration agents. It will also be disclosed to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 651.03px" class="cls_006"><span class="cls_006">agent appointed by the principal applicant will have the</span></div>
-        <div style="position: absolute; left: 308.00px; top: 650.04px" class="cls_006"><span class="cls_006">any agency of the Australian Government, or of a state or</span></div>
-        <div style="position: absolute; left: 32.00px; top: 662.03px" class="cls_006"><span class="cls_006">authority to act for all persons included in the application.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 661.04px" class="cls_006"><span class="cls_006">territory, that is responsible for or otherwise concerned with</span></div>
-        <div style="position: absolute; left: 308.00px; top: 672.04px" class="cls_006"><span class="cls_006">the regulation of education providers.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 687.04px" class="cls_006"><span class="cls_006">Relevant information about you will be disclosed to federal,</span></div>
-        <div style="position: absolute; left: 308.00px; top: 698.04px" class="cls_006"><span class="cls_006">state and territory police to assist in your location and possible</span></div>
-        <div style="position: absolute; left: 308.00px; top: 709.04px" class="cls_006"><span class="cls_006">detention in the event that you become an unlawful non-citizen.</span></div>
-        <div style="position: absolute; left: 308.00px; top: 720.04px" class="cls_006"><span class="cls_006">You will become an unlawful non-citizen if your visa ceases (for</span></div>
-        <div style="position: absolute; left: 308.00px; top: 731.04px" class="cls_006"><span class="cls_006">example, by cancellation for breach of visa condition) or expires</span></div>
-        <div style="position: absolute; left: 308.00px; top: 742.04px" class="cls_006"><span class="cls_006">and you do not hold another visa authorising you to remain in</span></div>
-        <div style="position: absolute; left: 308.00px; top: 753.04px" class="cls_006"><span class="cls_006">Australia.</span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 4</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 3408px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background05.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 32.00px; top: 32.03px" class="cls_006"><span class="cls_006">The information on this form, including the results of any tests</span></div>
-        <div style="position: absolute; left: 32.00px; top: 43.03px" class="cls_006"><span class="cls_006">for Human Immunodeficiency Virus (HIV), will be used to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 54.03px" class="cls_006"><span class="cls_006">assess your health for an Australian visa. A positive HIV </span><span class="cls_007">or other</span></div>
-        <div style="position: absolute; left: 32.00px; top: 65.03px" class="cls_006"><span class="cls_006">test result will not necessarily lead to a visa being denied. Your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 76.03px" class="cls_006"><span class="cls_006">result(s) may be disclosed to the relevant Australian</span></div>
-        <div style="position: absolute; left: 32.00px; top: 87.03px" class="cls_006"><span class="cls_006">Government state and territory health agencies.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 102.03px" class="cls_006"><span class="cls_006">In addition, the relevant registered education provider(s) may</span></div>
-        <div style="position: absolute; left: 32.00px; top: 113.03px" class="cls_006"><span class="cls_006">be told whether or not your visa has been granted. The</span></div>
-        <div style="position: absolute; left: 32.00px; top: 124.03px" class="cls_006"><span class="cls_006">collection, access, storage, use and disclosure by the department</span></div>
-        <div style="position: absolute; left: 32.00px; top: 135.03px" class="cls_006"><span class="cls_006">of the information you provide in this form is governed by the</span></div>
-        <div style="position: absolute; left: 32.00px; top: 146.03px" class="cls_008"><span class="cls_008">Privacy Act 1988</span><span class="cls_006"> and, in particular, by the 11 Information</span></div>
-        <div style="position: absolute; left: 32.00px; top: 157.03px" class="cls_006"><span class="cls_006">Privacy Principles. The information form 993i </span><span class="cls_008">Safeguarding</span></div>
-        <div style="position: absolute; left: 32.00px; top: 168.03px" class="cls_008"><span class="cls_008">your personal information </span><span class="cls_006">gives details of agencies to which</span></div>
-        <div style="position: absolute; left: 32.00px; top: 179.04px" class="cls_006"><span class="cls_006">your personal information might be disclosed. This form is</span></div>
-        <div style="position: absolute; left: 32.00px; top: 190.04px" class="cls_006"><span class="cls_006">available from the department’s website</span></div>
-        <div style="position: absolute; left: 32.00px; top: 201.04px" class="cls_007"><span class="cls_007"></span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> <span class="cls_006">or from any departmental office</span></div>
-        <div style="position: absolute; left: 32.00px; top: 212.04px" class="cls_006"><span class="cls_006">or Australian mission overseas.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 227.04px" class="cls_006"><span class="cls_006">The department has authority under the </span><span class="cls_008">Migration Act 1958</span><span class="cls_006"> to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 238.04px" class="cls_006"><span class="cls_006">collect a range of personal identifiers from non-citizens,</span></div>
-        <div style="position: absolute; left: 32.00px; top: 249.04px" class="cls_006"><span class="cls_006">including visa applicants, in certain circumstances. For more</span></div>
-        <div style="position: absolute; left: 32.00px; top: 260.04px" class="cls_006"><span class="cls_006">detailed information you should read information form 1243i</span></div>
-        <div style="position: absolute; left: 32.00px; top: 271.04px" class="cls_008"><span class="cls_008">Your personal identifying information</span><span class="cls_006">. This form is available</span></div>
-        <div style="position: absolute; left: 32.00px; top: 282.04px" class="cls_006"><span class="cls_006">from the department’s website </span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> </span></div>
-        <div style="position: absolute; left: 32.00px; top: 293.04px" class="cls_006"><span class="cls_006">or from any departmental office or Australian mission overseas.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 308.04px" class="cls_006"><span class="cls_006">The </span><span class="cls_008">Freedom of Information Act 1982</span><span class="cls_006"> (FOI Act) also relates to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 319.04px" class="cls_006"><span class="cls_006">your personal information. Under the FOI Act you can apply for</span></div>
-        <div style="position: absolute; left: 32.00px; top: 330.04px" class="cls_006"><span class="cls_006">access to documents containing your personal information. You</span></div>
-        <div style="position: absolute; left: 32.00px; top: 341.04px" class="cls_006"><span class="cls_006">or someone authorised by you to access information on your</span></div>
-        <div style="position: absolute; left: 32.00px; top: 352.04px" class="cls_006"><span class="cls_006">behalf can apply to do this at any departmental office in</span></div>
-        <div style="position: absolute; left: 32.00px; top: 363.04px" class="cls_006"><span class="cls_006">Australia. There is no fee for accessing your own information.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 374.04px" class="cls_006"><span class="cls_006">If you are overseas, you must also provide the Australian mission</span></div>
-        <div style="position: absolute; left: 32.00px; top: 385.04px" class="cls_006"><span class="cls_006">with an address in Australia to which copies of personal records</span></div>
-        <div style="position: absolute; left: 32.00px; top: 396.04px" class="cls_006"><span class="cls_006">can be sent. More information on how to make a request under</span></div>
-        <div style="position: absolute; left: 32.00px; top: 407.04px" class="cls_006"><span class="cls_006">the FOI Act is given on form 424A </span><span class="cls_008">Request for access to</span></div>
-        <div style="position: absolute; left: 32.00px; top: 418.04px" class="cls_008"><span class="cls_008">documents under the Freedom of Information Act 1982 </span><span class="cls_006">which</span></div>
-        <div style="position: absolute; left: 32.00px; top: 429.04px" class="cls_006"><span class="cls_006">is available from the department’s website</span></div>
-        <div style="position: absolute; left: 32.00px; top: 440.04px" class="cls_007"><span class="cls_007"></span><a href="http://www.immi.gov.au/allforms/">www.immi.gov.au/allforms/</a> <span class="cls_006">or from any departmental office</span></div>
-        <div style="position: absolute; left: 32.00px; top: 451.04px" class="cls_006"><span class="cls_006">or Australian mission overseas.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 474.53px" class="cls_002"><span class="cls_002">Review rights</span></div>
-        <div style="position: absolute; left: 32.00px; top: 492.03px" class="cls_006"><span class="cls_006">If you apply for a student visa in Australia and you are refused</span></div>
-        <div style="position: absolute; left: 32.00px; top: 503.03px" class="cls_006"><span class="cls_006">the visa, you may apply for a review of the decision. You will be</span></div>
-        <div style="position: absolute; left: 32.00px; top: 514.03px" class="cls_006"><span class="cls_006">notified of your review rights in writing and the time limits for</span></div>
-        <div style="position: absolute; left: 32.00px; top: 525.03px" class="cls_006"><span class="cls_006">lodging such an appeal.</span></div>
-        <div style="position: absolute; left: 32.00px; top: 540.03px" class="cls_006"><span class="cls_006">There are no review rights for decisions to refuse a student visa</span></div>
-        <div style="position: absolute; left: 32.00px; top: 551.03px" class="cls_006"><span class="cls_006">where the application is made outside Australia.</span></div>
-        <div style="position: absolute; left: 60.28px; top: 713.79px" class="cls_015"><span class="cls_015">Home page</span><span class="cls_016">  <a href="http://www.immi.gov.au/">www.immi.gov.au</a> </span></div>
-        <div style="position: absolute; left: 120.00px; top: 736.70px" class="cls_009"><span class="cls_009">Telephone</span><span class="cls_014"> 131 881 </span><span class="cls_009">during business hours</span></div>
-        <div style="position: absolute; left: 74.18px; top: 734.00px" class="cls_015"><span class="cls_015">General</span></div>
-        <div style="position: absolute; left: 55.55px; top: 746.00px" class="cls_015"><span class="cls_015">enquiry line</span><span class="cls_009">  in Australia to speak to an operator (recorded</span></div>
-        <div style="position: absolute; left: 120.00px; top: 759.70px" class="cls_009"><span class="cls_009">information available outside these hours).</span></div>
-        <div style="position: absolute; left: 120.00px; top: 771.20px" class="cls_009"><span class="cls_009">If you are outside Australia, please contact</span></div>
-        <div style="position: absolute; left: 120.00px; top: 782.70px" class="cls_009"><span class="cls_009">your nearest Australian mission.</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 499.13px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 5</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 4260px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background06.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 191.20px; top: 184.00px" class="cls_017"><span class="cls_017">This page is intentionally blank</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 5112px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background07.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 525.04px; top: 34.13px" class="cls_003"><span class="cls_003">Form</span></div>
-        <div style="position: absolute; left: 230.81px; top: 46.73px" class="cls_005"><span class="cls_005">Application for a student visa</span></div>
-        <div style="position: absolute; left: 506.59px; top: 44.33px" class="cls_004"><span class="cls_004">157A</span></div>
-        <div style="position: absolute; left: 44.00px; top: 118.73px" class="cls_018"><span class="cls_018">Part A - To be completed by</span></div>
-        <div style="position: absolute; left: 494.40px; top: 131.73px" class="cls_021"><span class="cls_021">PHOTOGRAPH</span></div>
-        <div style="position: absolute; left: 44.00px; top: 136.73px" class="cls_018"><span class="cls_018">all applicants</span></div>
-        <div style="position: absolute; left: 484.00px; top: 157.23px" class="cls_009"><span class="cls_009">Please attach required</span></div>
-        <div style="position: absolute; left: 44.00px; top: 162.73px" class="cls_019"><span class="cls_019">Application details</span></div>
-        <div style="position: absolute; left: 484.00px; top: 169.23px" class="cls_009"><span class="cls_009">photographs of yourself</span></div>
-        <div style="position: absolute; left: 484.00px; top: 185.23px" class="cls_009"><span class="cls_009">AND</span></div>
-        <div style="position: absolute; left: 27.36px; top: 194.53px" class="cls_020"><span class="cls_020">1</span></div>
-        <div style="position: absolute; left: 44.00px; top: 196.03px" class="cls_009"><span class="cls_009">How many people are included in this application?</span>&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=noofpeopleincluded %></span></div>
-        <div style="position: absolute; left: 484.00px; top: 201.23px" class="cls_009"><span class="cls_009">all members of your</span></div>
-        <div style="position: absolute; left: 484.00px; top: 213.23px" class="cls_009"><span class="cls_009">family unit included in</span></div>
-        <div style="position: absolute; left: 27.36px; top: 222.53px" class="cls_020"><span class="cls_020">2</span></div>
-        <div style="position: absolute; left: 44.00px; top: 224.03px" class="cls_009"><span class="cls_009">Are you applying</span></div>
-        <div style="position: absolute; left: 484.00px; top: 225.23px" class="cls_009"><span class="cls_009">this application</span></div>
-        <div style="position: absolute; left: 46.91px; top: 240.03px" class="cls_009"><span class="cls_009">for yourself as a student?</span></div>
-        <div style="position: absolute; left: 160.00px; top: 240.03px" class="cls_009">
-            <span class="cls_009">
-                <input type="checkbox" id="chkyourself" runat="server">
-                Complete Parts A, B and D</span>
-        </div>
-        <div style="position: absolute; left: 53.57px; top: 256.03px" class="cls_009"><span class="cls_009">for yourself and family?</span></div>
-        <div style="position: absolute; left: 160.00px; top: 256.03px" class="cls_009">
-            <span class="cls_009">
-                <input type="checkbox" id="chkwithfamily" runat="server">Complete Parts A, B and D</span>
-        </div>
-        <div style="position: absolute; left: 72.76px; top: 272.03px" class="cls_009"><span class="cls_009">as a member of a</span></div>
-        <div style="position: absolute; left: 160.00px; top: 280.03px" class="cls_009">
-            <span class="cls_009">
-                <input type="checkbox" id="chkfamily" runat="server">Complete Parts A, C and D</span>
-        </div>
-        <div style="position: absolute; left: 60.65px; top: 284.03px" class="cls_009"><span class="cls_009">student’s family unit?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 310.73px" class="cls_019"><span class="cls_019">Your personal details</span></div>
-        <div style="position: absolute; left: 27.36px; top: 338.53px" class="cls_020"><span class="cls_020">3</span></div>
-        <div style="position: absolute; left: 44.00px; top: 340.03px" class="cls_009"><span class="cls_009">Your full name in English</span></div>
-        <div style="position: absolute; left: 308.72px; top: 338.53px" class="cls_020"><span class="cls_020">10</span></div>
-        <div style="position: absolute; left: 328.00px; top: 340.03px" class="cls_009"><span class="cls_009">Your present country of citizenship</span>&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=countryofcitizenship %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 360.03px" class="cls_009"><span class="cls_009">Family name</span>&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=familyname %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 380.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=givenname %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 382.53px" class="cls_020"><span class="cls_020">11</span></div>
-        <div style="position: absolute; left: 328.00px; top: 384.03px" class="cls_009"><span class="cls_009">Do you hold any other citizenship?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 400.03px" class="cls_009">
-            <span class="cls_009">No</span>
-            <input type="checkbox" id="chkAnotherCitizenNo" runat="server">
-        </div>
-        <div style="position: absolute; left: 328.00px; top: 416.03px" class="cls_009">
-            <span class="cls_009">Yes</span>
-            <input type="checkbox" id="chkAnotherCitizenYes" runat="server">
-        </div>
-        <div style="position: absolute; left: 368.00px; top: 416.03px" class="cls_009"><span class="cls_009">Which countries?</span>&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=anothercountryofcitizenship %></span></div>
-        <div style="position: absolute; left: 27.36px; top: 422.53px" class="cls_020"><span class="cls_020">4</span></div>
-        <div style="position: absolute; left: 44.00px; top: 424.03px" class="cls_009"><span class="cls_009">Name in your own language or script (if applicable)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 440.03px" class="cls_009">&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=ownlanguagename1 %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 450.03px" class="cls_009">&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=ownlanguagename2 %></span></div>
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 0 0 40px; background-color: #ffffff;">
+        <tr>
+            <td style="width: 100%;">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;">
+                    <tr>
+                        <td>
+                            <img src="/assets/dashboard/img/pdf-head.jpg" class="img-fluid">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;">
+                    <tr>
+                        <td style="vertical-align: top; width: 50%; padding: 0 15px;">
+                            <h3 class="visaInfo-ttl">Applying online</h3>
+                            <p class="visaInfo-descp">The Department of Immigration and Multicultural Affairs (the department) offers a number of convenient  services for student visa applicants. To find out whether you are eligible to apply online for a student visa, refer to the department’s website www.immi.gov.au/e_visa/students.htm</p>
+                            <p class="visaInfo-descp">
+                                If you wish to enter Australia or extend your stay as a student and you are not eligible to apply online, complete this form in
+							ENGLISH using BLOCK LETTERS.
+                            </p>
+                            <p class="visaInfo-descp">
+                                To complete this form you must first read these notes and information form 1160i Applying for a student visa. Detailed
+							information is also available on the department’s website
+							www.immi.gov.au/study/
+                            </p>
+                            <h3 class="visaInfo-ttl">Who can use this form?</h3>
+                            <p class="visaInfo-descp">
+                                You should use this form if you wish to apply for a student visa
+								and be assessed against one of the following subclasses:
+									<ul>
+                                        <li>Independent ELICOS visa (subclass 570);</li>
+                                        <li>Schools visa (subclass 571);</li>
+                                        <li>Vocational Education and Training visa (subclass 572);</li>
+                                        <li>Higher Education visa (subclass 573);</li>
+                                        <li>Postgraduate Research visa (subclass 574);</li>
+                                        <li>Non-Award visa (subclass 575);</li>
+                                        <li>AusAID or Defence visa (subclass 576).</li>
+                                    </ul>
+                                Each subclass is linked to the type of course you intend to
+								undertake in Australia as your main course of study.
+                            </p>
+                            <p class="visaInfo-descp">Each subclass is linked to the type of course you intend to undertake in Australia as your main course of study.</p>
+                            <p class="visaInfo-descp">
+                                You are not able to use this form to apply for a Student Guardian visa (subclass 580). Form 157G <i>Application for a Student
+							Guardian visa</i> is the only valid form for a Student Guardian visa application.
+                            </p>
+                            <p class="visaInfo-descp">
+                                If you are applying for a visa that can be granted in Australia and you are making this application in Australia, this form also
+							serves as an application form for any class of bridging visa
+							(classes A, C or E) for which you may be eligible to apply – see
+							the information form 1024i <i>Bridging visas</i>, which is available
+							on the department’s website <b>www.immi.gov.au/allforms/</b>
+                            </p>
+                            <p class="visaInfo-descp">
+                                Please refer to information form 1160i <i>Applying for a student visa</i> for further information about Australia’s student visa
+							program.
+                            </p>
+                            <h3 class="visaInfo-ttl">Working while studying</h3>
+                            <p class="visaInfo-descp">If you already hold a student visa and now want permission to work, you and your family members can apply online <b>www.immi.gov.au/e_visa/students.htm</b></p>
+                            <p class="visaInfo-descp">
+                                To be eligible for permission to work while studying in Australia, you must first have commenced your course. More information
+								about permission to work while studying is available on the
+								department’s website <b>www.immi.gov.au/study/working/</b>
+                            </p>
+                        </td>
+                        <td style="vertical-align: top; width: 50%; padding: 0 15px;">
+                            <h3 class="visaInfo-ttl">Changing education provider</h3>
+                            <p class="visaInfo-descp">
+                                If you hold a student visa and wish to change education provider, you may need to seek the department’s permission first. You must seek permission if your visa is subject to condition 8206 and you wish to change education provider either:
+								<ul>
+                                    <li>while studying any preliminary courses; or</li>
+                                    <li>during the first 12 months of your principal course.</li>
+                                </ul>
+                                If you wish to change education provider but continue studying the same type of course, you must apply on form 157C <i>Application for a student visa with permission to change education provider.</i>
+                            </p>
+                            <p class="visaInfo-descp">If you wish to change both your provider and the type of course you are studying, you must apply for a new student visa using this form (form 157A).</p>
+                            <p class="visaInfo-descp">In either case, you must demonstrate that exceptional reasons exist to justify your change in enrolment.</p>
+                            <h3 class="visaInfo-ttl">Changing course type (education sector)</h3>
+                            <p class="visaInfo-descp">Your student visa is linked to the type of course you are studying. Each student visa subclass covers specific types of course only. If you wish to change your principal course at any time to a course in a different education sector, you must first apply for a new student visa using this form (form 157A).</p>
+                            <p class="visaInfo-descp">For information on course types and their relationship to the different student visa subclasses, refer to the department’s website <b>www.immi.gov.au/study/</b></p>
+                            <h3 class="visaInfo-ttl">Applying for a student visa</h3>
+                            <p class="visaInfo-descp">To help you lodge your application and communicate with the department while your application is being processed you should read information form 1025i <i>Making and processing visa applications</i>, which is available from your nearest Australian Government office or the department’s website</p>
+                            <p class="visaInfo-descp">All student visa applicants must satisfy the criteria for grant of one of the student visa subclasses. These criteria include (but are not limited to) financial ability, English language proficiency, intention to comply with visa conditions and other relevant matters. Information on these criteria and the conditions that may be attached to your visa can be found in the information form 1160i <i>Applying for a student visa</i> and on the department’s website.</p>
+                            <p class="visaInfo-descp"><b>Note:</b> If you are required to provide the results of an English language test, <b>you must sit the test before you lodge your visa application</b>. If you sit a test after you have lodged your application, the results of this test cannot be taken into account.</p>
+                            <p class="visaInfo-descp">If you wish to study in Australia, your application will be assessed against one of 5 assessment levels for each visa subclass. Before completing this form, you must refer to information form 1219i <i>Overseas Student Program – Assessment Levels</i> for information on which Assessment Level applies to you. Information on assessment levels can be found on the department’s website.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top; width: 50%; padding: 0 15px;">
+                            <p class="visaInfo-descp">In certain circumstances you may be requested to complete a supplementary information form. You will be advised by the visa processing office if this is necessary.</p>
+                            <p class="visaInfo-descp">
+                                Your application may be decided solely on the basis of information provided in this application. Failure to answer a
+							question may result in your application being refused if the decision-maker cannot be satisfied that you meet all of the
+							criteria for grant of the visa. The provision of information to the department that is incorrect may result in cancellation of your visa if it is granted. If you need more space to answer any question, write the details on a separate sheet, sign it and attach it to the application form.
+                            </p>
+                            <p class="visaInfo-descp">You must provide all of the documentation necessary to support your application (originals or certified or notarised copies) and you must declare that you have done so. Failure to do so may result in your application being refused. The documentation required may vary depending on your Assessment Level and the subclass appropriate to your course of study. Information on documentation required is available on the department’s website. A decision on your application will be made on the basis of all the information you provide, your circumstances and the legal requirements that apply. If your circumstances change in any way after you make your application you must inform the department immediately. Failure to do so can lead to cancellation of your visa (if it is granted).</p>
+                            <p class="visaInfo-descp">
+                                <b>Applicants who provide false or misleading information may either have their applications refused, or their visa permitting them to remain in Australia cancelled.</b>
+                                <br>
+                                If you:
+								<ul>
+                                    <li>are applying in Australia;</li>
+                                    <li>do not already hold a student visa; and</li>
+                                    <li>you are in Assessment Level 2, 3, 4 or 5</li>
+                                </ul>
+                                you must provide exceptional reasons for the grant of your visa
+								in Australia.
+                            </p>
+                            <h3 class="visaInfo-ttl">Photographs</h3>
+                            <p class="visaInfo-descp"><b>Applying outside Australia – </b>enclose 4 recent passport-sized photographs of yourself and all family members included in this application.</p>
+                            <p class="visaInfo-descp"><b>Applying in Australia – </b>enclose one recent passport-sized photograph of yourself and all family members included in this application.</p>
+                            <h3 class="visaInfo-ttl">Health requirements</h3>
+                            <p class="visaInfo-descp">All applicants must meet Australia’s health requirements. You and any family members included in this application may be required to undergo a chest x-ray and medical examination. Refer to form 1163i <i>Health requirement for temporary entry to Australia </i>for further details</p>
+                            <p class="visaInfo-descp">If applying outside Australia under Assessment Level 3, 4 or 5, you should not undertake your medical or x-ray examinations until advised to do so by the Australian Government office processing your visa application.</p>
+                            <h3 class="visaInfo-ttl">Members of your family unit</h3>
+                            <p class="visaInfo-descp">The term ‘members of the family unit’ covers your spouse (including a de facto spouse) and dependent children of you or your spouse, who are unmarried and have not turned 18 years of age. School-age dependants are unmarried dependent children of you or your spouse who have turned 5, but have not yet turned 18.</p>
+                            <p class="visaInfo-descp">Members of your family unit may apply for visas that will allow them to join you in Australia. They may apply for visas at the same time as you, or after you have arrived in Australia and</p>
+                        </td>
+                        <td style="vertical-align: top; width: 50%; padding: 0 15px;">
+                            <p class="visaInfo-descp">commenced your course of study. If you are in Australia and your family members intend to apply to join you after you have commenced your course, you will need to complete form 919 <i>Nomination of student dependant(s)</i>. You must send this form and other necessary documentary evidence to your family members for them to lodge at the relevant Australian Government office.</p>
+                            <p class="visaInfo-descp"><b>Note:</b> If you are processed at Assessment Level 3, 4 or 5 and intend to undertake a course of 12 months or less in duration, members of the family unit are not permitted to accompany you to Australia on a student visa.</p>
+                            <p class="visaInfo-descp"><b>All members of your family unit must be declared on your application form</b>, whether or not they intend to travel to Australia with you. A member who is not declared will not be eligible for entry to Australia as a family unit member, unless they were not your spouse or child at the time you lodged your application but have since become so.</p>
+                            <p class="visaInfo-descp">A school-age family unit member joining you in Australia is expected to attend school in Australia. You must provide evidence of enrolment for them if you wish them to be granted a student visa as a family unit member. You are responsible for their education costs in accordance with the charging policy of the relevant Australian state or territory.</p>
+                            <p class="visaInfo-descp">Your spouse will have a condition placed on their visa that limits their period of study in Australia to a maximum of 3 months. If they wish to undertake study beyond this period they must apply for a student visa in their own right.</p>
+                            <p class="visaInfo-descp">If you are an AusAID or Defence-sponsored student, members  of your family unit must provide evidence of support by the relevant Minister for them to be granted a visa as your dependant.</p>
+                            <h3 class="visaInfo-ttl">‘No further stay’ conditions</h3>
+                            <p class="visaInfo-descp">Your visa will be subject to a number of visa conditions. Information on these conditions can be found in the information form 1160i <i>Applying for a student visa</i> and on the department’s website.</p>
+                            <p class="visaInfo-descp">In certain circumstances, your visa may be subject to the ‘no further stay’ condition 8534 or 8535.</p>
+                            <h3 class="visaInfo-ttl">Condition 8534</h3>
+                            <p class="visaInfo-descp">If you are an Assessment Level 3, 4 or 5 student whose overall intended period of study is 10 months or less, you will usually be subject to this ‘no further stay’ condition. This means that after entering Australia, you may not be granted any other visa while you remain in Australia, other than a further student visa with permission to work or a Graduate – Skilled visa 1 . If you are an Assessment Level 3 student you may be exempt from the mandatory imposition of the ‘no further stay’ if you can show an additional A$12,000 and funds to cover living and school costs for a 12-month period in addition to the period of your intended study in Australia.</p>
+                            <p class="visaInfo-descp">A ‘no further stay’ condition may also be imposed on your visa, irrespective of your Assessment Level or period of study, if the decision maker considers this appropriate.</p>
+                            <h3 class="visaInfo-ttl">Condition 8535</h3>
+                            <p class="visaInfo-descp">If you are sponsored by the Australian Government or the government of your home country, you may be subject to this ‘no further stay’ condition. This means that after entering Australia, you will not be entitled to be granted any other visa while you remain in Australia apart from a further student visa with permission to work or a further student visa with the consent of your sponsor<sup>1</sup> .</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h3 class="visaInfo-ttl">Visa application charge</h3>
+                            <p class="visaInfo-descp">Your completed application form, together with the correct visa application charge, can be lodged at the nearest Australian Government office if applying outside Australia, or at the nearest office of the department if applying in Australia. You can check the visa application charge with your nearest office of the department, or from form 990i Charges, which is available in the Forms section of the department’s website <b>www.immi.gov.au/allforms/</b></p>
+                            <p class="visaInfo-descp">Payment must accompany your application and is generally not refunded if the application is unsuccessful. If you have paid enrolment or tuition fees, it is your responsibility to get a refund of these fees.</p>
+                            <p class="visaInfo-descp">To make a payment in Australia, please pay by credit card, debit card or by bank cheque or money order made payable to the Department of Immigration and Multicultural Affairs. <b>Please do not pay by cash or personal cheque.</b></p>
+                            <p class="visaInfo-descp">For clients outside Australia, before you make a payment, please contact the Australian Government office to find out what methods of payment can be accepted at that office.</p>
+                            <h3 class="visaInfo-ttl">Authorisation of a person to only receive written communications</h3>
+                            <p class="visaInfo-descp">You may authorise another person to only receive all written communications about your application for a student visa with the department. That person will be known as your authorised recipient. To do this, you will need to complete Question 73 <i>Options for receiving written communications</i> and Question 75 <i>Authorised recipient details</i> in this form. The authorised recipient will need to sign at Question 77 Authorised recipient consent. You can only appoint one authorised recipient at any time. The department will communicate with the most recently appointed authorised recipient.</p>
+                            <p class="visaInfo-descp">The department is required under section 494D of the <i>Migration Act 1958</i> (the Act) to send your authorised recipient any written communications relating to your application that would otherwise have been sent to you (but a copy of that communication may also be sent to you). If your authorised recipient agrees to it at Question 76, this communication may take place by fax or e-mail.</p>
+                            <p class="visaInfo-descp">The department will send your authorised recipient only information which you are entitled to receive. For example, if you are a visa applicant and have a sponsor, your authorised recipient will not receive personal information about your sponsor, unless your sponsor also appointed the same authorised recipient.</p>
+                            <p class="visaInfo-descp">If you decide to change your nominated authorised recipient, after you have lodged this application, you must promptly advise the department in writing. You may use form 1231 Appointment of authorised recipient for this purpose, which is available from the department’s website <b>www.immi.gov.au/allforms/</b> or from any office of the department or Australian mission.</p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h3 class="visaInfo-ttl">Authorisation of a migration agent to act on your behalf</h3>
+                            <p class="visaInfo-descp">If you have a migration agent acting on your behalf in relation to your application for a student visa, you need to complete Question 73 <i>Options for receiving written communications </i>and Question 78 <i>Agent details</i>. The migration agent will need to sign at Question 80 <i>Agent consent</i>.</p>
+                            <p class="visaInfo-descp">Appointing a migration agent to act on your behalf includes authorising the department to:</p>
+                            <ul>
+                                <li>discuss your student visa application with the migration agent and seek further information from them; and</li>
+                                <li>send your migration agent written communications about your student visa application that would otherwise have been 
+								sent to you.</li>
+                            </ul>
+                            <p class="visaInfo-descp"><b>Note:</b> Your migration agent will be your authorised recipient for written communication under section 494D of the Act and, in accordance with that same provision, you will be taken to have received any documents sent to them.</p>
+                            <p class="visaInfo-descp">If you change your migration agent or end his/her appointment, after you have lodged this application, you must promptly advise the department in writing, preferably by using form 956 <i>Appointment of a migration agent</i>, which is available on the department’s website <b>www.immi.gov.au/allforms/</b> or from your migration agent.</p>
+                            <p class="visaInfo-descp">The department will communicate with your migration agent about your application, including your personal information such as health, police checks, financial viability and personal relationships. If your agent authorises it at Question 79 this communication may take place by e-mail or fax.</p>
+                            <p class="visaInfo-descp">The department will send to your migration agent only information which you are entitled to receive. For example, if you are a visa applicant and have a sponsor, your agent will not receive personal information about your sponsor, unless your sponsor has also appointed the same migration agent.</p>
+                            <p class="visaInfo-descp">In some situations, departmental staff will need to speak with you directly rather than with your migration agent. For example, if you are applying for a visa the department may interview you. In some situations, the department will also send documents to you directly (for example, your passport) instead of to your migration agent, but it will inform your migration agent that it has done so.</p>
+                            <p class="visaInfo-descp">If you have appointed a migration agent to act for you, you are still responsible for the accuracy of information and supporting documentation that you give to your migration agent to forward to the department.</p>
+                            <p class="visaInfo-descp">
+                                When you provide the details of your migration agent, please make sure you include their 7-digit:
+							<ul>
+                                <li>migration agent registration number (if they are a registered migration agent); or</li>
+                                <li>offshore agent ID number (if they have been allocated one by the department).</li>
+                            </ul>
+                            </p>
+                            <p class="visaInfo-descp"><b>Note:</b> Migration agents who operate overseas do not need to be registered. However, they may have been allocated an ID number by the department.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <p class="visaInfo-ttl">Using a migration agent</p>
+                            <p class="visaInfo-descp">You are not required to use a migration agent. However, if you use a migration agent, the department encourages you to use a registered migration agent. Registered migration agents are bound by the Migration Agents Code of Conduct, which requires them to act in the lawful best interests of their clients and act professionally.</p>
+                            <p class="visaInfo-descp">A list of registered migration agents is available from the Migration Agents Registration Authority (MARA) website www.themara.com.au</p>
+                            <p class="visaInfo-descp">
+                                You can contact the MARA at:
+                                <pre>
+E-mail:  themara@themara.com.au
 
-        <div style="position: absolute; left: 308.72px; top: 458.53px" class="cls_020"><span class="cls_020">12</span></div>
-        <div style="position: absolute; left: 328.00px; top: 460.03px" class="cls_009"><span class="cls_009">Do you have a passport?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 476.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkPassposrtNo" runat="server"></div>
-        <div style="position: absolute; left: 27.36px; top: 482.53px" class="cls_020"><span class="cls_020">5</span></div>
-        <div style="position: absolute; left: 44.00px; top: 484.03px" class="cls_009"><span class="cls_009">Have you been known by any other names?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 492.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkPassposrtYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 492.03px" class="cls_009"><span class="cls_009">Details from your passport</span></div>
-        <div style="position: absolute; left: 44.00px; top: 496.03px" class="cls_009"><span class="cls_009">(including name at birth, previous married names, aliases)</span></div>
-        <div style="position: absolute; left: 368.00px; top: 508.03px" class="cls_009"><span class="cls_009">Passport number</span>&nbsp;&nbsp;<span style="border: 1px solid black; width: 25px;"><%=passportno %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 512.03px" class="cls_009">
-            <span class="cls_009">No
-            <input type="checkbox" id="chkAnotherNameNo" runat="server"></span>
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 528.03px" class="cls_009">
-            <span class="cls_009">Yes
-            <input type="checkbox" id="chkAnotherNameYes" runat="server"></span>
-        </div>
-        <div style="position: absolute; left: 84.00px; top: 528.03px" class="cls_009"><span class="cls_009">Give details and provide supporting evidence eg. birth</span></div>
-        <div style="position: absolute; left: 84.00px; top: 540.03px" class="cls_009"><span class="cls_009">certificate/marriage certificate</span></div>
-        <div style="position: absolute; left: 368.00px; top: 540.03px" class="cls_009"><span class="cls_009">Country of passport</span><span style="border: 1px solid black; width: 25px;"><%=countryofpassport %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 556.03px" class="cls_009"><span class="cls_009">Family name</span><span style="border: 1px solid black; width: 25px;"><%=anotherfamilyname %></span></div>
-        <div style="position: absolute; left: 447.72px; top: 574.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 469.78px; top: 574.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 504.34px; top: 574.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 576.03px" class="cls_009"><span class="cls_009">Given names</span><span style="border: 1px solid black; width: 25px;"><%=anothergivenname %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 584.03px" class="cls_009"><span class="cls_009">Date of issue</span><span style="border: 1px solid black;"> <%= dateofissue.Day + "/" + dateofissue.Month  + "/" + dateofissue.Year.ToString() %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 604.03px" class="cls_009"><span class="cls_009">Date of expiry</span><span style="border: 1px solid black;"> <%= dateofexpiry.Day + "/" + dateofexpiry.Month  + "/" + dateofexpiry.Year.ToString() %></span></div>
-        <div style="position: absolute; left: 27.36px; top: 618.53px" class="cls_020"><span class="cls_020">6</span></div>
-        <div style="position: absolute; left: 44.00px; top: 620.03px" class="cls_009"><span class="cls_009">Sex</span></div>
-        <div style="position: absolute; left: 75.65px; top: 620.03px" class="cls_009">
-            <span class="cls_009">Male
-            </span>
-            <input type="checkbox" id="chkMale" runat="server">
-        </div>
-        <div style="position: absolute; left: 123.57px; top: 620.03px" class="cls_009">
-            <span class="cls_009">Female
-            </span>
-            <input type="checkbox" id="chkFemale" runat="server">
-        </div>
-        <div style="position: absolute; left: 368.00px; top: 620.03px" class="cls_009"><span class="cls_009">Issuing authority/Place of issue as shown in your passport</span><span style="border: 1px solid black; width: 25px;"><%=placeofissue %></span></div>
-        <div style="position: absolute; left: 103.72px; top: 642.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 642.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 642.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 27.36px; top: 650.53px" class="cls_020"><span class="cls_020">7</span></div>
-        <div style="position: absolute; left: 44.00px; top: 652.03px" class="cls_009"><span class="cls_009">Date of birth</span><span style="border: 1px solid black;"> <%= dateofbirth.Day + "/" + dateofbirth.Month  + "/" + dateofbirth.Year.ToString() %></span></div>
-        <div style="position: absolute; left: 27.36px; top: 678.53px" class="cls_020"><span class="cls_020">8</span></div>
-        <div style="position: absolute; left: 44.00px; top: 680.03px" class="cls_009"><span class="cls_009">Place of birth</span></div>
-        <div style="position: absolute; left: 308.72px; top: 678.53px" class="cls_020"><span class="cls_020">13</span></div>
-        <div style="position: absolute; left: 328.00px; top: 680.03px" class="cls_009"><span class="cls_009">Where applicable, give your identification number</span><span style="border: 1px solid black;"> <%= applicableidentificationno %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 700.03px" class="cls_009"><span class="cls_009">Town/city</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= cityofbirth %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 720.03px" class="cls_009"><span class="cls_009">Country</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= countryofbirth %></span></div>
-        <div style="position: absolute; left: 475.55px; top: 724.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 27.36px; top: 746.53px" class="cls_020"><span class="cls_020">9</span></div>
-        <div style="position: absolute; left: 44.00px; top: 748.03px" class="cls_009"><span class="cls_009">Marital status</span></div>
-        <div style="position: absolute; left: 66.16px; top: 764.03px" class="cls_009"><span class="cls_009">Married</span><input type="checkbox" id="chkMarried" runat="server"></div>
-        <div style="position: absolute; left: 145.87px; top: 764.03px" class="cls_009"><span class="cls_009">Separated</span><input type="checkbox" id="chkSeparated" runat="server"></div>
-        <div style="position: absolute; left: 237.26px; top: 764.03px" class="cls_009"><span class="cls_009">Widowed</span><input type="checkbox" id="chkWidowed" runat="server"></div>
-        <div style="position: absolute; left: 62.80px; top: 780.03px" class="cls_009"><span class="cls_009">Engaged</span><input type="checkbox" id="chkEngaged" runat="server"></div>
-        <div style="position: absolute; left: 150.84px; top: 780.03px" class="cls_009"><span class="cls_009">Divorced</span><input type="checkbox" id="chkDivorced" runat="server"></div>
-        <div style="position: absolute; left: 220.55px; top: 780.03px" class="cls_009"><span class="cls_009">Never married</span><input type="checkbox" id="chkNever" runat="server"></div>
-        <div style="position: absolute; left: 64.05px; top: 796.03px" class="cls_009"><span class="cls_009">De facto</span><input type="checkbox" id="chkDefacto" runat="server"></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 499.13px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 7</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 5964px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background08.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 328.00px; top: 14.73px" class="cls_019"><span class="cls_019">About your family</span></div>
-        <div style="position: absolute; left: 24.72px; top: 22.53px" class="cls_020"><span class="cls_020">14</span></div>
-        <div style="position: absolute; left: 44.00px; top: 24.03px" class="cls_009"><span class="cls_009">If you have any other identity numbers required by your</span></div>
-        <div style="position: absolute; left: 44.00px; top: 36.03px" class="cls_009"><span class="cls_009">government, give details:</span></div>
-        <div style="position: absolute; left: 308.72px; top: 42.53px" class="cls_020"><span class="cls_020">22</span></div>
-        <div style="position: absolute; left: 328.00px; top: 44.03px" class="cls_009"><span class="cls_009">Give details of all members of your family unit whether or not they intend</span></div>
-        <div style="position: absolute; left: 71.81px; top: 52.03px" class="cls_009"><span class="cls_009">Type of number</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= anotherIdentitytype1 %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 56.03px" class="cls_009"><span class="cls_009">to accompany you to Australia.</span></div>
-        <div style="position: absolute; left: 81.29px; top: 68.03px" class="cls_009"><span class="cls_009">Your number</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= anotherIdentityNo1 %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 72.03px" class="cls_009"><span class="cls_009">Members of the family unit are your spouse (including a de facto spouse)</span></div>
-        <div style="position: absolute; left: 328.00px; top: 84.03px" class="cls_009"><span class="cls_009">and any unmarried dependent children of you or your spouse who have</span></div>
-        <div style="position: absolute; left: 71.81px; top: 88.03px" class="cls_009"><span class="cls_009">Type of number</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= anotherIdentitytype2 %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 96.03px" class="cls_009"><span class="cls_009">not yet turned 18 years of age.</span></div>
-        <div style="position: absolute; left: 81.29px; top: 104.03px" class="cls_009"><span class="cls_009">Your number</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= anotherIdentityNo2 %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 124.03px" class="cls_009"><span class="cls_009">1.  Family name</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= aboutfamilyname1 %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 130.53px" class="cls_020"><span class="cls_020">15</span></div>
-        <div style="position: absolute; left: 44.00px; top: 132.03px" class="cls_009"><span class="cls_009">Your country of usual residence</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= residencecountry %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 144.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= aboutfamilygivenname1 %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 174.53px" class="cls_020"><span class="cls_020">16</span></div>
-        <div style="position: absolute; left: 44.00px; top: 176.03px" class="cls_009"><span class="cls_009">Your residential address in your home country</span></div>
-        <div style="position: absolute; left: 328.00px; top: 176.03px" class="cls_009"><span class="cls_009">Relationship</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= relationshiptoyou1 %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 188.03px" class="cls_014"><span class="cls_014">Note</span><span class="cls_009">: A post office box address is not acceptable as a residential</span></div>
-        <div style="position: absolute; left: 328.00px; top: 185.53px" class="cls_009"><span class="cls_009">to you</span></div>
-        <div style="position: absolute; left: 44.00px; top: 200.03px" class="cls_009"><span class="cls_009">address. Failure to give a residential address will result in your</span></div>
-        <div style="position: absolute; left: 328.00px; top: 200.03px" class="cls_009"><span class="cls_009">Citizenship(s)</span>&nbsp;&nbsp;<span style="border: 1px solid black;"> <%= citizenship1 %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 212.03px" class="cls_009"><span class="cls_009">application being invalid.</span></div>
+PO Box Q1551
+QVB NSW 1230
+AUSTRALIA
 
-        <div style="position: absolute; left: 44.00px; top: 225.03px" class="cls_009"><span style="border: 1px solid black;"><%=residenceaddressLine1 + " " +residenceaddressLine2 %></span></div>
-        <div style="position: absolute; left: 399.72px; top: 218.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 421.78px; top: 218.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 456.34px; top: 218.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 228.03px" class="cls_009"><span class="cls_009">Date of birth</span><span style="border: 1px solid black;"> <%= dobfamilymember1.Day + "/" +dobfamilymember1.Month + "/" +dobfamilymember1.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 248.03px" class="cls_009"><span class="cls_009">Is this person included in this application?</span></div>
-        <div style="position: absolute; left: 192.00px; top: 264.73px" class="cls_010"><span class="cls_010">POSTAL CODE</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=residenceaddresspostalcode %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 264.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkfamily1No" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 280.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkfamily1Yes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 280.03px" class="cls_009"><span class="cls_009">Details from passport</span></div>
-        <div style="position: absolute; left: 24.72px; top: 286.53px" class="cls_020"><span class="cls_020">17</span></div>
-        <div style="position: absolute; left: 44.00px; top: 288.03px" class="cls_009"><span class="cls_009">Your telephone numbers outside Australia</span></div>
-        <div style="position: absolute; left: 102.68px; top: 301.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 151.28px; top: 301.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 222.50px; top: 301.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 368.00px; top: 296.03px" class="cls_009"><span class="cls_009">Passport number</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=familypassportno1 %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 312.03px" class="cls_009"><span class="cls_009">Office hours</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=officehoursContactNoOutsideaustralia %></span></div>
-        <div style="position: absolute; left: 100.00px; top: 315.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 138.77px; top: 315.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 144.00px; top: 315.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 182.77px; top: 315.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 368.00px; top: 328.03px" class="cls_009"><span class="cls_009">Country of passport</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=familycountryofpassport1 %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 332.03px" class="cls_009"><span class="cls_009">After hours</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=afterhoursContactNoOutsideaustralia %></span></div>
-        <div style="position: absolute; left: 100.00px; top: 335.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 138.77px; top: 335.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 144.00px; top: 335.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 182.77px; top: 335.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 24.72px; top: 358.53px" class="cls_020"><span class="cls_020">18</span></div>
-        <div style="position: absolute; left: 44.00px; top: 360.03px" class="cls_009"><span class="cls_009">Your residential address in Australia (if known)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 380.03px" class="cls_009"><span style="border: 1px solid black;"><%=australiaresidentialaddline1 + " " +australiaresidentialaddline2 %></span></div>
-        <div style="position: absolute; left: 439.72px; top: 362.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 461.78px; top: 362.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 496.34px; top: 362.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 368.00px; top: 372.03px" class="cls_009"><span class="cls_009">Date of issue</span><span style="border: 1px solid black;"> <%= passportdateofissue1.Day + "/" +passportdateofissue1.Month + "/" +passportdateofissue1.Year  %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 392.03px" class="cls_009"><span class="cls_009">Date of expiry</span><span style="border: 1px solid black;"> <%= passportdateofexpiry1.Day + "/" +passportdateofexpiry1.Month + "/" +passportdateofexpiry1.Year  %></span></div>
-        <div style="position: absolute; left: 192.00px; top: 411.53px" class="cls_010"><span class="cls_010">POSTCODE</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=australiaresidentialpostalcode  %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 412.03px" class="cls_009"><span class="cls_009">Issuing authority/Place of issue as shown in passport</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=passportplaceofissue1 %></div>
-        <div style="position: absolute; left: 24.72px; top: 434.53px" class="cls_020"><span class="cls_020">19</span></div>
-        <div style="position: absolute; left: 44.00px; top: 436.03px" class="cls_009"><span class="cls_009">Your telephone numbers in Australia (if known)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 452.03px" class="cls_009"><span class="cls_009">Office hours</span></div>
-        <div style="position: absolute; left: 100.00px; top: 455.53px" class="cls_010"><span class="cls_010">(AREA CODE</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=officehrContactNoInAustralia  %></span></div>
-        <div style="position: absolute; left: 168.53px; top: 455.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 368.00px; top: 464.03px" class="cls_009"><span class="cls_009">Does this person intend to study in</span></div>
-        <div style="position: absolute; left: 496.00px; top: 464.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkFamilyStudy1No" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 464.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkFamilyStudy1Yes" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 472.03px" class="cls_009"><span class="cls_009">After hours</span></div>
-        <div style="position: absolute; left: 100.00px; top: 475.53px" class="cls_010"><span class="cls_010">(AREA CODE</span>&nbsp;&nbsp;<span style="border: 1px solid black;"><%=afterhrContactNoInAustralia  %></span></div>
-        <div style="position: absolute; left: 168.53px; top: 475.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 368.00px; top: 476.03px" class="cls_009"><span class="cls_009">Australia for more than 3 months?</span></div>
-        <div style="position: absolute; left: 24.72px; top: 498.53px" class="cls_020"><span class="cls_020">20</span></div>
-        <div style="position: absolute; left: 44.00px; top: 500.03px" class="cls_009"><span class="cls_009">Address for correspondence</span></div>
-        <div style="position: absolute; left: 44.00px; top: 520.03px" class="cls_009"><span style="border: 1px solid black;"><%=correspondenceaddressline1 + " " +correspondenceaddressline2 %></span></div>
-        <div style="position: absolute; left: 192.00px; top: 551.53px" class="cls_010"><span class="cls_010">POSTCODE</span>&nbsp;<span style="border: 1px solid black;"><%=correspondenceaddresspoastalcode  %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 574.53px" class="cls_020"><span class="cls_020">21</span></div>
-        <div style="position: absolute; left: 44.00px; top: 576.03px" class="cls_009"><span class="cls_009">Do you agree to the department communicating with you by fax, e-mail</span></div>
-        <div style="position: absolute; left: 44.00px; top: 588.03px" class="cls_009"><span class="cls_009">or other electronic means?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 608.03px" class="cls_009">
-            <span class="cls_009">No</span>
-            <input type="checkbox" id="chkagreetocommunicateNo" runat="server">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 624.03px" class="cls_009">
-            <span class="cls_009">Yes</span>
-            <input type="checkbox" id="chkagreetocommunicateYes" runat="server">
-        </div>
-        <div style="position: absolute; left: 84.00px; top: 624.03px" class="cls_009"><span class="cls_009">Give details</span></div>
-        <div style="position: absolute; left: 102.68px; top: 641.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 151.28px; top: 641.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 222.50px; top: 641.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 44.00px; top: 652.03px" class="cls_009"><span class="cls_009">Fax number</span>&nbsp;<span style="border: 1px solid black;"><%=faxno  %></span></div>
-        <div style="position: absolute; left: 100.00px; top: 655.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 138.77px; top: 655.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 144.00px; top: 655.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 182.77px; top: 655.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 672.03px" class="cls_009"><span class="cls_009">E-mail address</span>&nbsp;<span style="border: 1px solid black;"><%=emailaddress  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 688.03px" class="cls_009"><span class="cls_009">Note: If this visa application is refused, you will be notified by mail</span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 8</span></div>
-        <div style="position: absolute; left: 245.94px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 6816px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background09.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 328.00px; top: 14.73px" class="cls_019"><span class="cls_019">Dependants under 18 years of age</span></div>
-        <div style="position: absolute; left: 44.00px; top: 28.03px" class="cls_009"><span class="cls_009">2.  Family name</span>&nbsp;<span style="border: 1px solid black;"><%=aboutfamilyname2  %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 42.53px" class="cls_020"><span class="cls_020">23</span></div>
-        <div style="position: absolute; left: 328.00px; top: 44.03px" class="cls_009"><span class="cls_009">Have any school age dependants (that is, those who have turned 5 but</span></div>
-        <div style="position: absolute; left: 44.00px; top: 48.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%=aboutfamilygivenname2  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 56.03px" class="cls_009"><span class="cls_009">who have not yet turned 18 years of age) included in this application</span></div>
-        <div style="position: absolute; left: 328.00px; top: 68.03px" class="cls_009"><span class="cls_009">been enrolled in a school in Australia?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 80.03px" class="cls_009"><span class="cls_009">Relationship</span>&nbsp;<span style="border: 1px solid black;"><%=relationshiptoyou2  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 84.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkEnrollNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 89.53px" class="cls_009"><span class="cls_009">to you</span></div>
-        <div style="position: absolute; left: 328.00px; top: 100.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkEnrolYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 100.03px" class="cls_009"><span class="cls_009">You </span><span class="cls_014">must</span><span class="cls_009"> provide evidence (eg. enrolment advice,</span></div>
-        <div style="position: absolute; left: 44.00px; top: 104.03px" class="cls_009"><span class="cls_009">Citizenship(s)</span>&nbsp;<span style="border: 1px solid black;"><%=citizenship2  %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 112.03px" class="cls_009"><span class="cls_009">offer letter)</span></div>
-        <div style="position: absolute; left: 115.72px; top: 122.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 137.78px; top: 122.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 172.34px; top: 122.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 132.03px" class="cls_009"><span class="cls_009">Date of birth</span><span style="border: 1px solid black;"> <%= dobfamilymember2.Day + "/" +dobfamilymember2.Month + "/" +dobfamilymember2.Year  %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 134.53px" class="cls_020"><span class="cls_020">24</span></div>
-        <div style="position: absolute; left: 328.00px; top: 136.03px" class="cls_009"><span class="cls_009">Do you have the sole legal right to determine where any dependants</span></div>
-        <div style="position: absolute; left: 328.00px; top: 148.03px" class="cls_009"><span class="cls_009">under 18 years of age who are included in this application will live or to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 152.03px" class="cls_009"><span class="cls_009">Is this person included in this application?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 160.03px" class="cls_009"><span class="cls_009">remove each such dependant from their country of usual residence?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 168.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkfamily2No" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 177.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkSoleRightNo" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 177.03px" class="cls_009"><span class="cls_009">Give details below</span></div>
-        <div style="position: absolute; left: 44.00px; top: 184.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkfamily2Yes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 184.03px" class="cls_009"><span class="cls_009">Details from passport</span></div>
-        <div style="position: absolute; left: 328.00px; top: 193.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkSoleRightYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 193.03px" class="cls_009"><span class="cls_009">Go to Question 25</span></div>
-        <div style="position: absolute; left: 84.00px; top: 200.03px" class="cls_009"><span class="cls_009">Passport number</span>&nbsp;<span style="border: 1px solid black;"><%=familypassportno2  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 217.03px" class="cls_009"><span class="cls_009">Give details of ALL other people not included in this application who have</span></div>
-        <div style="position: absolute; left: 328.00px; top: 229.03px" class="cls_009"><span class="cls_009">custody, access or guardianship rights in relation to the dependant(s).</span></div>
-        <div style="position: absolute; left: 84.00px; top: 232.03px" class="cls_009"><span class="cls_009">Country of passport</span>&nbsp;<span style="border: 1px solid black;"><%=familycountryofpassport2  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 245.03px" class="cls_009"><span class="cls_009">Attach a statutory declaration from each of these people giving permission</span></div>
-        <div style="position: absolute; left: 328.00px; top: 257.03px" class="cls_009"><span class="cls_009">for the dependant to accompany you to Australia.</span></div>
-        <div style="position: absolute; left: 155.72px; top: 266.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 177.78px; top: 266.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 212.34px; top: 266.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 84.00px; top: 276.03px" class="cls_009"><span class="cls_009">Date of issue</span><span style="border: 1px solid black;"> <%= passportdateofissue2.Day + "/" +passportdateofissue2.Month + "/" +passportdateofissue2.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 285.03px" class="cls_009"><span class="cls_009">Family name</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansfamilyname  %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 296.03px" class="cls_009"><span class="cls_009">Date of expiry</span><span style="border: 1px solid black;"> <%= passportdateofissue2.Day + "/" +passportdateofissue2.Month + "/" +passportdateofissue2.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 305.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansgivenname  %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 316.03px" class="cls_009"><span class="cls_009">Issuing authority/Place of issue as shown in passport</span></div>
-        <div style="position: absolute; left: 84.00px; top: 325.03px" class="cls_009"><span style="border: 1px solid black;"><%= passportplaceofissue2  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 325.03px" class="cls_009"><span class="cls_009">Residential</span></div>
-        <div style="position: absolute; left: 328.00px; top: 337.03px" class="cls_009"><span class="cls_009">address</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansresidentialaddress  %></span></div>
-        <div style="position: absolute; left: 476.00px; top: 361.73px" class="cls_010"><span class="cls_010">POSTAL CODE</span>&nbsp;<span style="border: 1px solid black;"><%=guardianspostalcode  %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 368.03px" class="cls_009"><span class="cls_009">Does this person intend to study in</span></div>
-        <div style="position: absolute; left: 212.00px; top: 368.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkFamilyStudy2No" runat="server"></div>
-        <div style="position: absolute; left: 256.00px; top: 368.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkFamilyStudy2Yes" runat="server"></div>
-        <div style="position: absolute; left: 386.68px; top: 374.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 435.28px; top: 374.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 506.50px; top: 374.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 84.00px; top: 380.03px" class="cls_009"><span class="cls_009">Australia for more than 3 months?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 385.03px" class="cls_009"><span class="cls_009">Telephone</span></div>
-        <div style="position: absolute; left: 384.00px; top: 388.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%=guardianscontactnumber  %></span></div>
-        <div style="position: absolute; left: 422.77px; top: 388.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 428.00px; top: 388.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 466.77px; top: 388.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 328.00px; top: 405.03px" class="cls_009"><span class="cls_009">Relationship</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansrealtionwithstudent  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 408.03px" class="cls_009"><span class="cls_009">3.  Family name</span>&nbsp;<span style="border: 1px solid black;"><%= passportplaceofissue3  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 414.53px" class="cls_009"><span class="cls_009">to dependant</span></div>
-        <div style="position: absolute; left: 44.00px; top: 428.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%= passportplaceofissue3  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 429.03px" class="cls_009"><span class="cls_009">Nature of</span></div>
-        <div style="position: absolute; left: 328.00px; top: 438.53px" class="cls_009"><span class="cls_009">legal right</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansnatureoflegalrights  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 453.03px" class="cls_009"><span class="cls_009">Statutory declaration attached?</span></div>
-        <div style="position: absolute; left: 496.00px; top: 453.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkstatutory1No" runat="server"></div>
-        <div style="position: absolute; left: 539.99px; top: 453.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkstatutory1Yes" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 460.03px" class="cls_009"><span class="cls_009">Relationship</span>&nbsp;<span style="border: 1px solid black;"><%= passportplaceofissue3  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 469.53px" class="cls_009"><span class="cls_009">to you</span></div>
-        <div style="position: absolute; left: 44.00px; top: 484.03px" class="cls_009"><span class="cls_009">Citizenship(s)</span>&nbsp;<span style="border: 1px solid black;"><%= passportplaceofissue3  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 485.03px" class="cls_009"><span class="cls_009">Family name</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansfamilyname1  %></span></div>
-        <div style="position: absolute; left: 115.72px; top: 502.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 137.78px; top: 502.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 172.34px; top: 502.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 505.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansgivenname1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 512.03px" class="cls_009"><span class="cls_009">Date of birth</span><span style="border: 1px solid black;"> <%= dobfamilymember3.Day + "/" +dobfamilymember3.Month + "/" +dobfamilymember3.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 525.03px" class="cls_009"><span class="cls_009">Residential</span></div>
-        <div style="position: absolute; left: 44.00px; top: 532.03px" class="cls_009"><span class="cls_009">Is this person included in this application?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 537.03px" class="cls_009"><span class="cls_009">address</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansresidentialaddress1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 548.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkfamily3No" runat="server"></div>
-        <div style="position: absolute; left: 476.00px; top: 561.73px" class="cls_010"><span class="cls_010">POSTAL CODE</span>&nbsp;<span style="border: 1px solid black;"><%=guardianspostalcode1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 564.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkfamily3Yes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 564.03px" class="cls_009"><span class="cls_009">Details from passport</span></div>
-        <div style="position: absolute; left: 386.68px; top: 574.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 435.28px; top: 574.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 506.50px; top: 574.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 84.00px; top: 580.03px" class="cls_009"><span class="cls_009">Passport number</span>&nbsp;<span style="border: 1px solid black;"><%= familypassportno3  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 585.03px" class="cls_009"><span class="cls_009">Telephone</span></div>
-        <div style="position: absolute; left: 384.00px; top: 588.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%=guardianscontactnumber1  %></span></div>
-        <div style="position: absolute; left: 422.77px; top: 588.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 428.00px; top: 588.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 466.77px; top: 588.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 328.00px; top: 605.03px" class="cls_009"><span class="cls_009">Relationship</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansrealtionwithstudent1  %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 612.03px" class="cls_009"><span class="cls_009">Country of passport</span>&nbsp;<span style="border: 1px solid black;"><%= familycountryofpassport3  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 614.53px" class="cls_009"><span class="cls_009">to dependant</span></div>
-        <div style="position: absolute; left: 328.00px; top: 629.03px" class="cls_009"><span class="cls_009">Nature of</span></div>
-        <div style="position: absolute; left: 328.00px; top: 638.53px" class="cls_009"><span class="cls_009">legal right</span>&nbsp;<span style="border: 1px solid black;"><%=guardiansnatureoflegalrights1  %></span></div>
-        <div style="position: absolute; left: 155.72px; top: 646.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 177.78px; top: 646.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 212.34px; top: 646.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 653.03px" class="cls_009"><span class="cls_009">Statutory declaration attached?</span></div>
-        <div style="position: absolute; left: 496.00px; top: 653.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkstatutory2No" runat="server"></div>
-        <div style="position: absolute; left: 539.99px; top: 653.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkstatutory2Yes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 656.03px" class="cls_009"><span class="cls_009">Date of issue</span><span style="border: 1px solid black;"> <%= passportdateofissue3.Day + "/" +passportdateofissue3.Month + "/" +passportdateofissue3.Year  %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 676.03px" class="cls_009"><span class="cls_009">Date of expiry</span><span style="border: 1px solid black;"> <%= passportdateofissue3.Day + "/" +passportdateofissue3.Month + "/" +passportdateofissue3.Year  %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 683.53px" class="cls_020"><span class="cls_020">25</span></div>
-        <div style="position: absolute; left: 328.00px; top: 685.03px" class="cls_009"><span class="cls_009">Are any of your dependants who are under 18 years of age, and who</span></div>
-        <div style="position: absolute; left: 84.00px; top: 696.03px" class="cls_009"><span class="cls_009">Issuing authority/Place of issue as shown in passport</span></div>
-        <div style="position: absolute; left: 84.00px; top: 710.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= passportplaceofissue3  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 697.03px" class="cls_009"><span class="cls_009">are included in this application, the subject of a court order giving you:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 709.03px" class="cls_009"><span class="cls_009">• the sole legal right to determine where they will live; or</span></div>
-        <div style="position: absolute; left: 328.00px; top: 721.03px" class="cls_009"><span class="cls_009">• the right to remove them from their country of usual residence?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 741.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkcourtorderNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 748.03px" class="cls_009"><span class="cls_009">Does this person intend to study in   No</span><input type="checkbox" id="chkFamilyStudy3No" runat="server"></div>
-        <div style="position: absolute; left: 256.00px; top: 748.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkFamilyStudy3Yes" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 757.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkcourtorderYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 757.03px" class="cls_009"><span class="cls_009">Attach a certified copy of the court order(s)</span></div>
-        <div style="position: absolute; left: 84.00px; top: 760.03px" class="cls_009"><span class="cls_009">Australia for more than 3 months?</span></div>
-        <div style="position: absolute; left: 475.55px; top: 776.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 499.13px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 9</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 7668px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background10.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 328.00px; top: 14.73px" class="cls_018"><span class="cls_018">Part B - To be completed by</span></div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_019"><span class="cls_019">Previous visa applications</span></div>
-        <div style="position: absolute; left: 328.00px; top: 32.73px" class="cls_018"><span class="cls_018">the student</span></div>
-        <div style="position: absolute; left: 44.00px; top: 44.03px" class="cls_014"><span class="cls_014">Warning</span><span class="cls_009"> — In general, a person can only hold one visa at a time. If you</span></div>
-        <div style="position: absolute; left: 44.00px; top: 56.03px" class="cls_009"><span class="cls_009">are granted a visa while you already have another, the first visa will cease</span></div>
-        <div style="position: absolute; left: 44.00px; top: 68.03px" class="cls_009"><span class="cls_009">automatically when the new visa is granted.</span></div>
-        <div style="position: absolute; left: 308.72px; top: 66.53px" class="cls_020"><span class="cls_020">28</span></div>
-        <div style="position: absolute; left: 328.00px; top: 68.03px" class="cls_009"><span class="cls_009">Are you applying in Australia?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 88.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkapplyingNo" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 88.03px" class="cls_009"><span class="cls_009">Go to Question 30</span></div>
-        <div style="position: absolute; left: 24.72px; top: 90.53px" class="cls_020"><span class="cls_020">26</span></div>
-        <div style="position: absolute; left: 44.00px; top: 92.03px" class="cls_009"><span class="cls_009">Have you or any other person included</span></div>
-        <div style="position: absolute; left: 44.00px; top: 104.03px" class="cls_009"><span class="cls_009">in this application previously applied</span></div>
-        <div style="position: absolute; left: 328.00px; top: 104.03px; right: 222px;" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkapplyingYes" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 116.03px" class="cls_009"><span class="cls_009">for any type of Australian visa?</span></div>
-        <div style="position: absolute; left: 212.00px; top: 116.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkappliesNo" runat="server"></div>
-        <div style="position: absolute; left: 256.00px; top: 116.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkappliesYes" runat="server"></div>
-        <div style="position: absolute; left: 308.72px; top: 130.53px" class="cls_020"><span class="cls_020">29</span></div>
-        <div style="position: absolute; left: 328.00px; top: 132.03px" class="cls_009"><span class="cls_009">Do you currently hold a student visa?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 140.03px" class="cls_009"><span class="cls_009">Do you currently hold a visa?</span></div>
-        <div style="position: absolute; left: 212.00px; top: 140.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkHoldNo" runat="server"></div>
-        <div style="position: absolute; left: 255.99px; top: 140.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkHoldYes" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 152.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkcurrentlyholdNo" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 152.03px" class="cls_009"><span class="cls_009">If you are in Assessment Level 2, 3, 4 or 5 you will be</span></div>
-        <div style="position: absolute; left: 44.00px; top: 164.03px" class="cls_009"><span class="cls_009">Are you currently awaiting a decision</span></div>
-        <div style="position: absolute; left: 368.00px; top: 164.03px" class="cls_009"><span class="cls_009">required at Question 43 to provide exceptional reasons why</span></div>
-        <div style="position: absolute; left: 44.00px; top: 176.03px" class="cls_009"><span class="cls_009">on another visa application?</span></div>
-        <div style="position: absolute; left: 212.00px; top: 176.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkAwaitingNo" runat="server"></div>
-        <div style="position: absolute; left: 256.00px; top: 176.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkAwaitingYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 176.03px" class="cls_009"><span class="cls_009">you should be granted a student visa in Australia.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 192.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkcurrentlyholdYes" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 204.03px" class="cls_009"><span class="cls_009">If you answered </span><span class="cls_014">‘Yes’</span><span class="cls_009"> to any of the above</span></div>
-        <div style="position: absolute; left: 44.00px; top: 216.03px" class="cls_009"><span class="cls_009">questions, give details below</span></div>
-        <div style="position: absolute; left: 328.00px; top: 220.03px" class="cls_009"><span class="cls_009">Provide details of your highest qualification obtained outside Australia,</span></div>
-        <div style="position: absolute; left: 308.72px; top: 218.53px" class="cls_020"><span class="cls_020">30</span></div>
-        <div style="position: absolute; left: 328.00px; top: 232.03px" class="cls_009"><span class="cls_009">as well as all other studies and training obtained outside Australia.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 236.03px" class="cls_009"><span class="cls_009">Name</span>&nbsp;<span style="border: 1px solid black;"><%= nameonvisa  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 248.03px" class="cls_009"><span class="cls_009">You </span><span class="cls_014">must</span><span class="cls_009"> provide </span><span class="cls_014">evidence</span><span class="cls_009"> of your study and training, including</span></div>
-        <div style="position: absolute; left: 44.00px; top: 256.03px" class="cls_009"><span class="cls_009">Type of visa</span>&nbsp;<span style="border: 1px solid black;"><%= typeofvisa  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 260.03px" class="cls_009"><span class="cls_009">academic records, if you are:</span></div>
-        <div style="position: absolute; left: 44.00px; top: 276.03px" class="cls_009"><span class="cls_009">Place of issue</span>&nbsp;<span style="border: 1px solid black;"><%= placeofissuevisa  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 274.03px" class="cls_006"><span class="cls_006">•</span><span class="cls_009"> in Assessment Level 3, 4 or 5; or</span></div>
-        <div style="position: absolute; left: 328.00px; top: 288.03px" class="cls_006"><span class="cls_006">•</span><span class="cls_009"> in Assessment Level 2 seeking to undertake studies in the</span></div>
-        <div style="position: absolute; left: 103.72px; top: 294.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 294.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 294.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 340.00px; top: 300.03px" class="cls_009"><span class="cls_009">postgraduate research sector.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 304.03px" class="cls_009"><span class="cls_009">Date of issue</span>&nbsp;<span style="border: 1px solid black;"><%= dateissuevisa.Day + "/" + dateissuevisa.Month + "/" +dateissuevisa.Year %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 316.03px" class="cls_009"><span class="cls_009">All other applicants may be requested to provide evidence where</span></div>
-        <div style="position: absolute; left: 44.00px; top: 324.03px" class="cls_009"><span class="cls_009">Application</span></div>
-        <div style="position: absolute; left: 96.00px; top: 324.03px" class="cls_009"><span class="cls_009">Refused</span><input type="checkbox" id="chkvisa1refused" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 328.03px" class="cls_009"><span class="cls_009">considered necessary.</span></div>
-        <div style="position: absolute; left: 96.00px; top: 340.03px" class="cls_009"><span class="cls_009">Granted</span><input type="checkbox" id="chkvisa1granted" runat="server"></div>
-        <div style="position: absolute; left: 152.00px; top: 340.03px" class="cls_009"><span class="cls_009">Visa label number</span></div>
-        <div style="position: absolute; left: 328.00px; top: 344.03px" class="cls_009"><span class="cls_009">In certain limited circumstances, you may be requested to provide copies</span></div>
-        <div style="position: absolute; left: 328.00px; top: 356.03px" class="cls_009"><span class="cls_009">of any published works written by you.</span></div>
-        <div style="position: absolute; left: 101.01px; top: 360.50px" class="cls_022"><span class="cls_022">V</span>&nbsp;<span style="border: 1px solid black;"><%= grantedvisalabelno  %></span></div>
-        <div style="position: absolute; left: 158.50px; top: 360.50px" class="cls_022"><span class="cls_022">&lt;</span>&nbsp;<span style="border: 1px solid black;"><%= visagrantnumber  %></span></div>
-        <div style="position: absolute; left: 96.00px; top: 376.03px" class="cls_009"><span class="cls_009">If granted a visa without a label, provide the 13-digit visa</span></div>
-        <div style="position: absolute; left: 328.00px; top: 380.03px" class="cls_009"><span class="cls_009">Highest qualification</span>&nbsp;<span style="border: 1px solid black;"><%= highestqualification  %></span></div>
-        <div style="position: absolute; left: 96.00px; top: 388.03px" class="cls_009"><span class="cls_009">grant number (as shown on the letter notifying you of</span></div>
-        <div style="position: absolute; left: 96.00px; top: 400.03px" class="cls_009"><span class="cls_009">visa grant).</span></div>
-        <div style="position: absolute; left: 328.00px; top: 412.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 328.00px; top: 420.03px" class="cls_009"><span style="border: 1px solid black;"><%= nameofeducationprovider1  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 430.03px" class="cls_009"><span style="border: 1px solid black;"><%= nameofeducationprovider2  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 448.03px" class="cls_009"><span class="cls_009">Name</span>&nbsp;<span style="border: 1px solid black;"><%= nameonvisa1  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 460.03px" class="cls_009"><span class="cls_009">Address of education provider or training body</span></div>
-        <div style="position: absolute; left: 328.00px; top: 480.03px" class="cls_009"><span style="border: 1px solid black;"><%= addressofeducationprovider  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 468.03px" class="cls_009"><span class="cls_009">Type of visa</span>&nbsp;<span style="border: 1px solid black;"><%= typeofvisa1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 488.03px" class="cls_009"><span class="cls_009">Place of issue</span>&nbsp;<span style="border: 1px solid black;"><%= placeofissuevisa1  %></span></div>
-        <div style="position: absolute; left: 103.72px; top: 506.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 506.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 506.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 476.00px; top: 511.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span><span style="border: 1px solid black;"><%= educationproviderpostalcode  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 516.03px" class="cls_009"><span class="cls_009">Date of issue</span>&nbsp;<span style="border: 1px solid black;"><%= dateissuevisa1.Day + "/" + dateissuevisa1.Month + "/" +dateissuevisa1.Year %></span></div>
-        <div style="position: absolute; left: 419.72px; top: 526.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 441.78px; top: 526.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 476.34px; top: 526.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 536.03px" class="cls_009"><span class="cls_009">Application</span></div>
-        <div style="position: absolute; left: 96.00px; top: 536.03px" class="cls_009"><span class="cls_009">Refused</span><input type="checkbox" id="chkvisa2refused" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 536.03px" class="cls_009"><span class="cls_009">Commencement date</span><span style="border: 1px solid black;"><%= commencementdate.Day + "/" +commencementdate.Month + "/" +commencementdate.Year   %></span></div>
-        <div style="position: absolute; left: 96.00px; top: 552.03px" class="cls_009"><span class="cls_009">Granted</span><input type="checkbox" id="chkvisa2granted" runat="server"></div>
-        <div style="position: absolute; left: 152.00px; top: 552.03px" class="cls_009"><span class="cls_009">Visa label number</span></div>
-        <div style="position: absolute; left: 328.00px; top: 556.03px" class="cls_009"><span class="cls_009">Finish date</span><span style="border: 1px solid black;"><%= finishdate.Day + "/" +finishdate.Month + "/" +finishdate.Year   %></span></div>
-        <div style="position: absolute; left: 101.01px; top: 572.50px" class="cls_022"><span class="cls_022">V</span>&nbsp;<span style="border: 1px solid black;"><%= visagrantnumber1  %></span></div>
-        <div style="position: absolute; left: 158.50px; top: 572.50px" class="cls_022"><span class="cls_022">&lt;</span>&nbsp;<span style="border: 1px solid black;"><%= grantedvisalabelno1  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 580.03px" class="cls_009"><span class="cls_009">Documentation attached?</span></div>
-        <div style="position: absolute; left: 496.00px; top: 580.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkeducationdocumentattachedNo" runat="server"></div>
-        <div style="position: absolute; left: 539.99px; top: 580.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkeducationdocumentattachedYes" runat="server"></div>
-        <div style="position: absolute; left: 96.00px; top: 588.03px" class="cls_009"><span class="cls_009">If granted a visa without a label, provide the 13-digit visa</span></div>
-        <div style="position: absolute; left: 96.00px; top: 600.03px" class="cls_009"><span class="cls_009">grant number (as shown on the letter notifying you of</span></div>
-        <div style="position: absolute; left: 96.00px; top: 612.03px" class="cls_009"><span class="cls_009">visa grant).</span></div>
-        <div style="position: absolute; left: 24.72px; top: 654.53px" class="cls_020"><span class="cls_020">27</span></div>
-        <div style="position: absolute; left: 44.00px; top: 656.03px" class="cls_009"><span class="cls_009">If you are applying:</span></div>
-        <div style="position: absolute; left: 51.48px; top: 676.03px" class="cls_009"><span class="cls_009">as a member of the family unit of a student</span></div>
-        <div style="position: absolute; left: 220.00px; top: 676.03px" class="cls_009"><span class="cls_009">Go to Part C</span><input type="checkbox" id="chkPartC" runat="server"></div>
-        <div style="position: absolute; left: 136.15px; top: 696.03px" class="cls_009"><span class="cls_009">in all other cases</span></div>
-        <div style="position: absolute; left: 220.00px; top: 696.03px" class="cls_009"><span class="cls_009">Go to Part B</span><input type="checkbox" id="chkPartB" runat="server"></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 10</span></div>
-        <div style="position: absolute; left: 245.94px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 8520px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background11.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 32.03px" class="cls_009"><span class="cls_009">Other course undertaken outside Australia</span></div>
-        <div style="position: absolute; left: 44.00px; top: 42.03px" class="cls_009"><span style="border: 1px solid black;"><%= otherundertakcoursename1  %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 32.03px" class="cls_009"><span class="cls_009">Previous course in Australia</span><span style="border: 1px solid black;"><%= previouslycoursename1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 64.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 368.00px; top: 64.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 368.00px; top: 70.03px" class="cls_009"><span style="border: 1px solid black;"><%= previouslycourseeducationproviderName1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 70.03px" class="cls_009"><span style="border: 1px solid black;"><%= othernameofeducationprovider1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 80.03px" class="cls_009"><span style="border: 1px solid black;"><%= othernameofeducationprovider2  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 112.03px" class="cls_009"><span class="cls_009">Address of education provider or training body</span></div>
-        <div style="position: absolute; left: 44.00px; top: 126.03px" class="cls_009"><span style="border: 1px solid black;"><%= otheraddressofeducationprovider1  %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 112.03px" class="cls_009"><span class="cls_009">Period of study</span></div>
-        <div style="position: absolute; left: 397.78px; top: 126.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 432.34px; top: 126.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 477.78px; top: 126.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 512.34px; top: 126.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 368.00px; top: 136.03px" class="cls_009"><span class="cls_009">From</span>&nbsp;<span style="border: 1px solid black;"><%= previouslycourseDateFrom1.Month + "/" +previouslycourseDateFrom1.Year  %></span></div>
-        <div style="position: absolute; left: 460.84px; top: 136.03px" class="cls_009"><span class="cls_009">to</span>&nbsp;<span style="border: 1px solid black;"><%= previouslycourseDateTo1.Month + "/" +previouslycourseDateTo1.Year  %></span></div>
-        <div style="position: absolute; left: 192.00px; top: 163.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span>&nbsp;<span style="border: 1px solid black;"><%= othereduproviderpostalcode1  %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 164.03px" class="cls_009"><span class="cls_009">Previous course in Australia</span></div>
-        <div style="position: absolute; left: 135.72px; top: 178.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 157.78px; top: 178.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 192.34px; top: 178.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 188.03px" class="cls_009"><span class="cls_009">Commencement date</span>&nbsp;<span style="border: 1px solid black;"><%= othercommencementdate1.Day + "/" +othercommencementdate1.Month + "/" +othercommencementdate1.Year %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 196.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 44.00px; top: 208.03px" class="cls_009"><span class="cls_009">Finish date</span>&nbsp;<span style="border: 1px solid black;"><%= otherfinishdate1.Day + "/" +otherfinishdate1.Month + "/" +otherfinishdate1.Year  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 232.03px" class="cls_009"><span class="cls_009">Documentation attached?</span></div>
-        <div style="position: absolute; left: 212.00px; top: 232.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkotherdocumentattached1No" runat="server"></div>
-        <div style="position: absolute; left: 255.99px; top: 232.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkotherdocumentattached1Yes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 244.03px" class="cls_009"><span class="cls_009">Period of study</span></div>
-        <div style="position: absolute; left: 397.78px; top: 258.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 432.34px; top: 258.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 477.78px; top: 258.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 512.34px; top: 258.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 260.03px" class="cls_009"><span class="cls_009">Other course undertaken outside Australia</span></div>
-        <div style="position: absolute; left: 44.00px; top: 268.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= otherundertakcoursename2  %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 268.03px" class="cls_009"><span class="cls_009">From</span></div>
-        <div style="position: absolute; left: 460.84px; top: 268.03px" class="cls_009"><span class="cls_009">to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 292.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 44.00px; top: 310.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= othernameofeducationprovider21  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 320.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= othernameofeducationprovider22  %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 294.53px" class="cls_020"><span class="cls_020">32</span></div>
-        <div style="position: absolute; left: 328.00px; top: 296.03px" class="cls_009"><span class="cls_009">Give details of your intended courses of study in Australia.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 312.03px" class="cls_009"><span class="cls_009">You must provide evidence of enrolment. Unless you are seeking to study</span></div>
-        <div style="position: absolute; left: 328.00px; top: 324.03px" class="cls_009"><span class="cls_009">in Australia as a secondary school exchange student or as a student</span></div>
-        <div style="position: absolute; left: 328.00px; top: 336.03px" class="cls_009"><span class="cls_009">sponsored by AusAID or the Australian Department of Defence, you </span><span class="cls_014">must</span></div>
-        <div style="position: absolute; left: 44.00px; top: 340.03px" class="cls_009"><span class="cls_009">Address of education provider or training body</span></div>
-        <div style="position: absolute; left: 44.00px; top: 350.03px" class="cls_009"><span class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= otheraddressofeducationprovider2  %></span></span></div>
-        <div style="position: absolute; left: 328.00px; top: 348.03px" class="cls_009"><span class="cls_009">attach:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 364.03px" class="cls_009"><span class="cls_009">•</span><span class="cls_014"> if applying in Australia, or outside Australia as an Assessment</span></div>
-        <div style="position: absolute; left: 338.00px; top: 376.03px" class="cls_014"><span class="cls_014">Level 1 or 2 student</span><span class="cls_009">, the electronic confirmation of enrolment</span></div>
-        <div style="position: absolute; left: 192.00px; top: 391.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span>&nbsp;<span style="border: 1px solid black;"><%= othereduproviderpostalcode2  %></span></div>
-        <div style="position: absolute; left: 338.00px; top: 388.03px" class="cls_009"><span class="cls_009">certificate from your education provider. If you propose to study more</span></div>
-        <div style="position: absolute; left: 338.00px; top: 400.04px" class="cls_009"><span class="cls_009">than one course you must provide either an electronic confirmation</span></div>
-        <div style="position: absolute; left: 135.72px; top: 406.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 157.78px; top: 406.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 192.34px; top: 406.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 338.00px; top: 412.04px" class="cls_009"><span class="cls_009">of enrolment certificate, or an original ‘offer of a place in a course’</span></div>
-        <div style="position: absolute; left: 44.00px; top: 416.03px" class="cls_009"><span class="cls_009">Commencement date</span>&nbsp;<span style="border: 1px solid black;"><%= othercommencementdate2.Day + "/" +othercommencementdate2.Month + "/" +othercommencementdate2.Year  %></span></div>
-        <div style="position: absolute; left: 338.00px; top: 424.04px" class="cls_009"><span class="cls_009">letter from your education provider for each additional course; or</span></div>
-        <div style="position: absolute; left: 44.00px; top: 436.03px" class="cls_009"><span class="cls_009">Finish date</span>&nbsp;<span style="border: 1px solid black;"><%= otherfinishdate2.Day + "/" +otherfinishdate2.Month + "/" +otherfinishdate2.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 440.04px" class="cls_009"><span class="cls_009">•</span><span class="cls_014"> if applying outside Australia as an Assessment Level 3 or 4</span></div>
-        <div style="position: absolute; left: 338.00px; top: 452.04px" class="cls_014"><span class="cls_014">student</span><span class="cls_009">, the original ‘offer of a place in a course’ letter from your</span></div>
-        <div style="position: absolute; left: 44.00px; top: 460.03px" class="cls_009"><span class="cls_009">Documentation attached?</span></div>
-        <div style="position: absolute; left: 212.00px; top: 460.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkotherdocumentattached2No" runat="server"></div>
-        <div style="position: absolute; left: 255.99px; top: 460.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkotherdocumentattached2Yes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 464.04px" class="cls_009"><span class="cls_009">education provider. If you are assessed as a genuine student, the</span></div>
-        <div style="position: absolute; left: 338.00px; top: 476.04px" class="cls_009"><span class="cls_009">Australian Government office will provide you with a letter of</span></div>
-        <div style="position: absolute; left: 24.72px; top: 486.53px" class="cls_020"><span class="cls_020">31</span></div>
-        <div style="position: absolute; left: 44.00px; top: 488.03px" class="cls_009"><span class="cls_009">Have you previously studied in Australia?</span></div>
-        <div style="position: absolute; left: 338.00px; top: 488.04px" class="cls_009"><span class="cls_009">genuineness. Only at this stage should you pay any tuition fees and</span></div>
-        <div style="position: absolute; left: 338.00px; top: 500.04px" class="cls_009"><span class="cls_009">obtain an electronic Confirmation of Enrolment.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 508.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkispreviouslyNo" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 516.04px" class="cls_009"><span class="cls_009">If you are seeking to study as an exchange student, you must attach to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 524.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkispreviouslyYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 524.03px" class="cls_009"><span class="cls_009">Give details below</span></div>
-        <div style="position: absolute; left: 328.00px; top: 528.04px" class="cls_009"><span class="cls_009">this application the Acceptance Advice Secondary Exchange Student</span></div>
-        <div style="position: absolute; left: 84.00px; top: 540.03px" class="cls_009"><span class="cls_009">You </span><span class="cls_014">must</span><span class="cls_009"> provide evidence of your studies and training,</span></div>
-        <div style="position: absolute; left: 328.00px; top: 540.04px" class="cls_009"><span class="cls_009">(AASES) form as evidence of enrolment.</span></div>
-        <div style="position: absolute; left: 84.00px; top: 552.03px" class="cls_009"><span class="cls_009">including academic records</span></div>
-        <div style="position: absolute; left: 328.00px; top: 556.04px" class="cls_009"><span class="cls_009">If you wish to study in Australia as a student sponsored by AusAID or the</span></div>
-        <div style="position: absolute; left: 328.00px; top: 568.04px" class="cls_009"><span class="cls_009">Australian Department of Defence, you must attach evidence of</span></div>
-        <div style="position: absolute; left: 84.00px; top: 576.03px" class="cls_009"><span class="cls_009">Previous course in Australia</span>&nbsp;<span style="border: 1px solid black;"><%= previouslycoursename   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 580.04px" class="cls_009"><span class="cls_009">sponsorship from AusAID or the Department of Defence.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 604.04px" class="cls_009"><span class="cls_009">Intended course</span>&nbsp;<span style="border: 1px solid black;"><%= intendcoursename   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 608.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 328.00px; top: 646.03px" class="cls_009"><span style="border: 1px solid black;"><%= intendedprovidername   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 620.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= previouslycourseeducationproviderName   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 636.04px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 84.00px; top: 656.03px" class="cls_009"><span class="cls_009">Period of study</span></div>
-        <div style="position: absolute; left: 113.78px; top: 670.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 148.34px; top: 670.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 193.78px; top: 670.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 228.34px; top: 670.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 84.00px; top: 680.03px" class="cls_009"><span class="cls_009">From</span>&nbsp;<span style="border: 1px solid black;"><%= previouslycourseDateFrom.Month + "/" +previouslycourseDateFrom.Year  %></span></div>
-        <div style="position: absolute; left: 176.84px; top: 680.03px" class="cls_009"><span class="cls_009">to</span>&nbsp;<span style="border: 1px solid black;"><%= previouslycourseDateTo.Month + "/" +previouslycourseDateTo.Year  %></span></div>
-        <div style="position: absolute; left: 419.72px; top: 686.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 441.78px; top: 686.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 476.34px; top: 686.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 696.04px" class="cls_009"><span class="cls_009">Commencement date</span>&nbsp;<span style="border: 1px solid black;"><%= intendedcommencementdate.Day + "/" +intendedcommencementdate.Month + "/" +intendedcommencementdate.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 716.03px" class="cls_009"><span class="cls_009">Finish date</span>&nbsp;<span style="border: 1px solid black;"><%= intendedfinishdate.Day + "/" +intendedfinishdate.Month + "/" +intendedfinishdate.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 736.03px" class="cls_009"><span class="cls_009">Have you enrolled?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 752.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveenrolmentNo" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 752.03px" class="cls_009"><span class="cls_009">Attach letter of ‘offer of a place in a course’</span></div>
-        <div style="position: absolute; left: 328.00px; top: 768.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveenrolmentYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 768.03px" class="cls_009"><span class="cls_009">Is evidence of enrolment attached?</span></div>
-        <div style="position: absolute; left: 496.00px; top: 768.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveenrolmentevidenceNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 768.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveenrolmentevidenceYes" runat="server"></div>
-        <div style="position: absolute; left: 475.56px; top: 796.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 496.25px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 11</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 9372px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background12.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 308.72px; top: 22.53px" class="cls_020"><span class="cls_020">35</span></div>
-        <div style="position: absolute; left: 328.00px; top: 24.03px" class="cls_009"><span class="cls_009">Have you studied for at least 5 years (in the English language) in one or</span></div>
-        <div style="position: absolute; left: 44.00px; top: 32.03px" class="cls_009"><span class="cls_009">Intended course</span>&nbsp;<span style="border: 1px solid black;"><%= intendcoursename1   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 36.03px" class="cls_009"><span class="cls_009">more of the following countries:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 50.03px" class="cls_009"><span class="cls_009">• Australia;</span></div>
-        <div style="position: absolute; left: 428.00px; top: 50.03px" class="cls_009"><span class="cls_009">• the Republic of Ireland;</span></div>
-        <div style="position: absolute; left: 44.00px; top: 64.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 44.00px; top: 72.03px" class="cls_009"><span style="border: 1px solid black;"><%= intendedprovidername1   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 64.03px" class="cls_009"><span class="cls_009">• Canada;</span></div>
-        <div style="position: absolute; left: 428.00px; top: 64.03px" class="cls_009"><span class="cls_009">• the United Kingdom; or</span></div>
-        <div style="position: absolute; left: 328.00px; top: 78.03px" class="cls_009"><span class="cls_009">• New Zealand;</span></div>
-        <div style="position: absolute; left: 428.00px; top: 78.03px" class="cls_009"><span class="cls_009">• the United States of America?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 92.03px" class="cls_009"><span class="cls_009">• South Africa;</span></div>
-        <div style="position: absolute; left: 135.72px; top: 114.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 157.78px; top: 114.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 192.33px; top: 114.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 112.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkstudiedmorethan5yrinothercountryNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 124.03px" class="cls_009"><span class="cls_009">Commencement date</span>&nbsp;<span style="border: 1px solid black;"><%= intendedcommencementdate1.Day + "/" +intendedcommencementdate1.Month + "/" +intendedcommencementdate1.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 128.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkstudiedmorethan5yrinothercountryYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 128.03px" class="cls_009"><span class="cls_009">Attach evidence</span></div>
-        <div style="position: absolute; left: 44.00px; top: 144.03px" class="cls_009"><span class="cls_009">Finish date</span>&nbsp;<span style="border: 1px solid black;"><%= intendedfinishdate1.Day + "/" +intendedfinishdate1.Month + "/" +intendedfinishdate1.Year  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 164.03px" class="cls_009"><span class="cls_009">Have you enrolled?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 162.73px" class="cls_019"><span class="cls_019">Your employment details</span></div>
-        <div style="position: absolute; left: 44.00px; top: 180.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveenrolment1No" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 180.03px" class="cls_009"><span class="cls_009">Attach letter of ‘offer of a place in a course’</span></div>
-        <div style="position: absolute; left: 308.72px; top: 190.53px" class="cls_020"><span class="cls_020">36</span></div>
-        <div style="position: absolute; left: 328.00px; top: 192.03px" class="cls_009"><span class="cls_009">Give details of your employment history since leaving</span></div>
-        <div style="position: absolute; left: 44.00px; top: 196.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveenrolment1Yes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 196.03px" class="cls_009"><span class="cls_009">Is evidence of enrolment attached?</span></div>
-        <div style="position: absolute; left: 212.00px; top: 196.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveenrolmentevidence1No" runat="server"></div>
-        <div style="position: absolute; left: 256.00px; top: 196.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveenrolmentevidence1Yes" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 204.03px" class="cls_009"><span class="cls_009">school/college/university.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 224.03px" class="cls_009"><span class="cls_009">Intended course</span><span style="border: 1px solid black;"><%= intendcoursename2   %></span></div>
-        <div style="position: absolute; left: 397.78px; top: 230.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 432.33px; top: 230.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 477.78px; top: 230.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 512.33px; top: 230.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 240.03px" class="cls_009"><span class="cls_009">Period:</span></div>
-        <div style="position: absolute; left: 370.76px; top: 240.03px" class="cls_009"><span class="cls_009">From</span>&nbsp;<span style="border: 1px solid black;"><%= employmenthistoryFromDate.Month + "/" +employmenthistoryFromDate.Year  %></span></div>
-        <div style="position: absolute; left: 460.83px; top: 240.03px" class="cls_009"><span class="cls_009">to</span>&nbsp;<span style="border: 1px solid black;"><%= employmenthistoryToDate.Month + "/" +employmenthistoryToDate.Year  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 256.03px" class="cls_009"><span class="cls_009">Name of education provider or training body</span></div>
-        <div style="position: absolute; left: 44.00px; top: 270.03px" class="cls_009"><span style="border: 1px solid black;"><%= intendedprovidername1   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 256.03px" class="cls_009"><span class="cls_009">Name and Address of Employer</span></div>
-        <div style="position: absolute; left: 328.00px; top: 270.03px" class="cls_009"><span style="border: 1px solid black;"><%= employerInfoL0   %></span></div>
-        <div style="position: absolute; left: 135.72px; top: 306.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 157.78px; top: 306.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 192.33px; top: 306.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 476.00px; top: 307.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span><span style="border: 1px solid black;"><%= employerInfoL1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 316.03px" class="cls_009"><span class="cls_009">Commencement date</span>&nbsp;<span style="border: 1px solid black;"><%= intendedcommencementdate.Day + "/" +intendedcommencementdate.Month + "/" +intendedcommencementdate.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 324.03px" class="cls_009"><span class="cls_009">Type of business</span>&nbsp;<span style="border: 1px solid black;"><%= typeofbusiness  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 336.03px" class="cls_009"><span class="cls_009">Finish date</span>&nbsp;<span style="border: 1px solid black;"><%= intendedcommencementdate.Day + "/" +intendedcommencementdate.Month + "/" +intendedcommencementdate.Year  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 344.03px" class="cls_009"><span class="cls_009">Occupation</span>&nbsp;<span style="border: 1px solid black;"><%= salarylevel  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 356.03px" class="cls_009"><span class="cls_009">Have you enrolled?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 364.03px" class="cls_009"><span class="cls_009">Salary level</span>&nbsp;<span style="border: 1px solid black;"><%= employeroccupation  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 372.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveenrolment2No" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 372.03px" class="cls_009"><span class="cls_009">Attach letter of ‘offer of a place in a course’</span></div>
-        <div style="position: absolute; left: 328.00px; top: 384.03px" class="cls_009"><span class="cls_009">Documentation attached?</span></div>
-        <div style="position: absolute; left: 496.00px; top: 384.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkleavingdocAttchNo" runat="server"></div>
-        <div style="position: absolute; left: 539.98px; top: 384.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkleavingdocAttchYes" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 388.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveenrolment2Yes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 388.03px" class="cls_009"><span class="cls_009">Is evidence of enrolment attached?</span></div>
-        <div style="position: absolute; left: 212.00px; top: 388.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveenrolmentevidence2No" runat="server"></div>
-        <div style="position: absolute; left: 256.00px; top: 388.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveenrolmentevidence2Yes" runat="server"></div>
-        <div style="position: absolute; left: 397.78px; top: 410.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 432.33px; top: 410.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 477.78px; top: 410.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 512.33px; top: 410.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 420.03px" class="cls_009"><span class="cls_009">Period:</span></div>
-        <div style="position: absolute; left: 370.76px; top: 420.03px" class="cls_009"><span class="cls_009">From</span>&nbsp;<span style="border: 1px solid black;"><%= employmenthistoryFromDate1.Month + "/" +employmenthistoryFromDate1.Year  %></span></div>
-        <div style="position: absolute; left: 460.83px; top: 420.03px" class="cls_009"><span class="cls_009">to</span>&nbsp;<span style="border: 1px solid black;"><%= employmenthistoryToDate1.Month + "/" +employmenthistoryToDate1.Year  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 418.73px" class="cls_019"><span class="cls_019">Your English language details</span></div>
-        <div style="position: absolute; left: 328.00px; top: 436.03px" class="cls_009"><span class="cls_009">Name and address of employer</span></div>
-        <div style="position: absolute; left: 328.00px; top: 446.03px" class="cls_009"><span style="border: 1px solid black;"><%= employerInfoL2   %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 446.53px" class="cls_020"><span class="cls_020">33</span></div>
-        <div style="position: absolute; left: 44.00px; top: 448.03px" class="cls_009"><span class="cls_009">Are you an applicant in Assessment Level 1 or 2?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 468.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkapplicantassesmentlevelNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 484.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkapplicantassesmentlevelYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 484.03px" class="cls_009"><span class="cls_009">Go to Question 36</span></div>
-        <div style="position: absolute; left: 476.00px; top: 487.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span><span style="border: 1px solid black;"><%= employerInfoL3  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 504.03px" class="cls_009"><span class="cls_009">Type of business</span><span style="border: 1px solid black;"><%= typeofbusiness1  %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 510.53px" class="cls_020"><span class="cls_020">34</span></div>
-        <div style="position: absolute; left: 44.00px; top: 512.03px" class="cls_009"><span class="cls_009">Have you undertaken an English language proficiency test within the last</span></div>
-        <div style="position: absolute; left: 44.00px; top: 524.03px" class="cls_009"><span class="cls_009">24 months?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 524.03px" class="cls_009"><span class="cls_009">Occupation</span><span style="border: 1px solid black;"><%= employeroccupation1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 540.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkenglishlangtestNo" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 544.03px" class="cls_009"><span class="cls_009">Salary level</span><span style="border: 1px solid black;"><%= salarylevel1  %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 556.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkenglishlangtestYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 556.03px" class="cls_009"><span class="cls_009">Name of test</span>&nbsp;<span style="border: 1px solid black;"><%= englishlangtestname  %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 564.03px" class="cls_009"><span class="cls_009">Documentation attached?</span></div>
-        <div style="position: absolute; left: 496.00px; top: 564.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkleavingdocAttch1No" runat="server"></div>
-        <div style="position: absolute; left: 539.98px; top: 564.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkleavingdocAttch1Yes" runat="server"></div>
-        <div style="position: absolute; left: 203.72px; top: 590.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 225.78px; top: 590.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 260.33px; top: 590.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 84.00px; top: 600.03px" class="cls_009"><span class="cls_009">Date of test</span>&nbsp;<span style="border: 1px solid black;"><%= englishlangtestDate.Day + "/" +englishlangtestDate.Month + "/" +englishlangtestDate.Year  %></span></div>
-        <div style="position: absolute; left: 83.99px; top: 616.03px" class="cls_009"><span class="cls_009">Test certificate number</span>&nbsp;<span style="border: 1px solid black;"><%= englishlangtestcetificateno   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 652.03px" class="cls_014"><span class="cls_014">Note</span><span class="cls_009">: You </span><span class="cls_014">must</span><span class="cls_009"> attach a certificate showing that you have</span></div>
-        <div style="position: absolute; left: 84.00px; top: 664.03px" class="cls_009"><span class="cls_009">completed an English language proficiency test.</span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 12</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 10224px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background13.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 328.00px; top: 14.73px" class="cls_019"><span class="cls_019">Other address details</span></div>
-        <div style="position: absolute; left: 24.72px; top: 22.53px" class="cls_020"><span class="cls_020">37</span></div>
-        <div style="position: absolute; left: 44.00px; top: 24.03px" class="cls_009"><span class="cls_009">Are you currently employed?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 44.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkcurrentlyemployedNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 44.03px" class="cls_009"><span class="cls_009">Are you</span></div>
-        <div style="position: absolute; left: 128.72px; top: 44.03px" class="cls_009"><span class="cls_009">a student</span><input type="checkbox" id="chkStudent" runat="server"></div>
-        <div style="position: absolute; left: 308.72px; top: 42.53px" class="cls_020"><span class="cls_020">39</span></div>
-        <div style="position: absolute; left: 328.00px; top: 44.03px" class="cls_009"><span class="cls_009">Give details of any immediate relatives in Australia (ie. parent, spouse,</span></div>
-        <div style="position: absolute; left: 328.00px; top: 56.03px" class="cls_009"><span class="cls_009">child, brother or sister)</span></div>
-        <div style="position: absolute; left: 119.24px; top: 60.03px" class="cls_009"><span class="cls_009">unemployed</span><input type="checkbox" id="chkunemployed" runat="server"></div>
-        <div style="position: absolute; left: 142.77px; top: 76.03px" class="cls_009"><span class="cls_009">other</span><input type="checkbox" id="chkOther" runat="server"></div>
-        <div style="position: absolute; left: 188.00px; top: 76.03px" class="cls_009"><span class="cls_009">Please describe</span></div>
-        <div style="position: absolute; left: 83.00px; top: 96.03px" class="cls_009"><span style="border: 1px solid black;"><%= otherdescription1   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 84.03px" class="cls_009"><span class="cls_009">Name</span><span style="border: 1px solid black;"><%= immediaterelativename   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 100.03px" class="cls_009"><span class="cls_009">Relationship</span><span style="border: 1px solid black;"><%= immediaterelativerelationship   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 112.03px" class="cls_009"><span class="cls_009">Why do you wish to undertake the course of study you have</span></div>
-        <div style="position: absolute; left: 328.00px; top: 109.53px" class="cls_009"><span class="cls_009">to you</span></div>
-        <div style="position: absolute; left: 387.72px; top: 122.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 122.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 122.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 84.00px; top: 124.03px" class="cls_009"><span class="cls_009">nominated? If insufficient space, attach additional details.</span></div>
-        <div style="position: absolute; left: 84.00px; top: 140.03px" class="cls_009"><span style="border: 1px solid black;"><%= otherdescription2   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 132.03px" class="cls_009"><span class="cls_009">Date of birth</span><span style="border: 1px solid black;"><%= immediaterelativeDob.Day + "/" + immediaterelativeDob.Month + "/" + immediaterelativeDob.Year    %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 148.03px" class="cls_009"><span class="cls_009">Address</span></div>
-        <div style="position: absolute; left: 328.00px; top: 160.03px" class="cls_009"><span style="border: 1px solid black;"><%= immediaterelativeaddress   %></span></div>
-        <div style="position: absolute; left: 476.00px; top: 199.53px" class="cls_010"><span class="cls_010">POSTCODE</span><span style="border: 1px solid black;"><%= immediaterelativepostalcode   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 212.03px" class="cls_009"><span class="cls_009">Immigration status in Australia (eg. temporary or permanent resident,</span></div>
-        <div style="position: absolute; left: 100.00px; top: 220.03px" class="cls_009"><span class="cls_009">Now go to Question 39</span></div>
-        <div style="position: absolute; left: 328.00px; top: 224.03px" class="cls_009"><span class="cls_009">Australian citizen)</span></div>
-        <div style="position: absolute; left: 328.00px; top: 234.03px" class="cls_009"><span style="border: 1px solid black;"><%= immediaterelativeimmigrationstatus   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 248.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkcurrentlyemployedYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 248.03px" class="cls_009"><span class="cls_009">Your position</span><span style="border: 1px solid black;"><%= position   %></span></div>
-        <div style="position: absolute; left: 387.72px; top: 258.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 258.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 258.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 268.03px" class="cls_009"><span class="cls_009">Date of arrival</span><span style="border: 1px solid black;"><%= immediaterelativeDateofarrival.Day + "/" + immediaterelativeDateofarrival.Month + "/" + immediaterelativeDateofarrival.Year    %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 280.03px" class="cls_009"><span class="cls_009">Name, address and telephone number of your employer</span></div>
-        <div style="position: absolute; left: 84.00px; top: 295.03px" class="cls_009"><span style="border: 1px solid black;"><%= employername   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 310.03px" class="cls_009"><span style="border: 1px solid black;"><%= employeraddress   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 300.03px" class="cls_009"><span class="cls_009">Name</span><span style="border: 1px solid black;"><%= immediaterelativename1   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 316.03px" class="cls_009"><span class="cls_009">Relationship</span><span style="border: 1px solid black;"><%= immediaterelativerelationship1   %></span></div>
-        <div style="position: absolute; left: 192.00px; top: 331.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span></div>
-        <div style="position: absolute; left: 328.00px; top: 325.53px" class="cls_009"><span class="cls_009">to you</span></div>
-        <div style="position: absolute; left: 387.72px; top: 338.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 338.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 338.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 90.68px; top: 345.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 139.28px; top: 345.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 218.50px; top: 345.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 328.00px; top: 348.03px" class="cls_009"><span class="cls_009">Date of birth</span><span style="border: 1px solid black;"><%= immediaterelativeDob1.Day + "/" + immediaterelativeDob1.Month + "/" + immediaterelativeDob1.Year    %></span></div>
-        <div style="position: absolute; left: 88.00px; top: 359.53px" class="cls_010"><span class="cls_010">(</span><span style="border: 1px solid black;"><%= employercontactno   %></span></div>
-        <div style="position: absolute; left: 126.77px; top: 359.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 132.00px; top: 359.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 170.77px; top: 359.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 328.00px; top: 364.03px" class="cls_009"><span class="cls_009">Address</span></div>
-        <div style="position: absolute; left: 328.00px; top: 380.03px" class="cls_009"><span style="border: 1px solid black;"><%= immediaterelativeaddress1   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 372.03px" class="cls_009"><span class="cls_009">Have you attached evidence of your employment details?</span></div>
-        <div style="position: absolute; left: 92.00px; top: 388.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkevidenceofemployementNo" runat="server"></div>
-        <div style="position: absolute; left: 136.00px; top: 388.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkevidenceofemployementYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 404.03px" class="cls_009"><span class="cls_009">Are you currently a student in Australia?</span></div>
-        <div style="position: absolute; left: 476.00px; top: 415.53px" class="cls_010"><span class="cls_010">POSTCODE</span><span style="border: 1px solid black;"><%= immediaterelativepostalcode1   %></span></div>
-        <div style="position: absolute; left: 92.00px; top: 420.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkcurrentlystudentinaustraliaNo" runat="server"></div>
-        <div style="position: absolute; left: 136.00px; top: 420.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkcurrentlystudentinaustraliaYes" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 428.03px" class="cls_009"><span class="cls_009">Immigration status in Australia (eg. temporary or permanent resident,</span></div>
-        <div style="position: absolute; left: 328.00px; top: 440.03px" class="cls_009"><span class="cls_009">Australian citizen)</span></div>
-        <div style="position: absolute; left: 328.00px; top: 450.03px" class="cls_009"><span style="border: 1px solid black;"><%= immediaterelativeimmigrationstatus1   %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 446.53px" class="cls_020"><span class="cls_020">38</span></div>
-        <div style="position: absolute; left: 44.00px; top: 448.03px" class="cls_009"><span class="cls_009">Have you been offered a job for when you return home at the completion</span></div>
-        <div style="position: absolute; left: 44.00px; top: 460.03px" class="cls_009"><span class="cls_009">of your course?</span></div>
-        <div style="position: absolute; left: 387.72px; top: 474.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 474.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 474.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 476.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkjobofferedNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 476.03px" class="cls_009"><span class="cls_009">What kind of employment will you be seeking on your</span></div>
-        <div style="position: absolute; left: 328.00px; top: 484.03px" class="cls_009"><span class="cls_009">Date of arrival</span><span style="border: 1px solid black;"><%= immediaterelativedateofarrival1.Day + "/" + immediaterelativedateofarrival1.Month + "/" + immediaterelativedateofarrival1.Year    %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 488.03px" class="cls_009"><span class="cls_009">return to your home country?</span></div>
-        <div style="position: absolute; left: 84.00px; top: 500.03px" class="cls_009"><span style="border: 1px solid black;"><%= kindofemployementseeking   %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 510.53px" class="cls_020"><span class="cls_020">40</span></div>
-        <div style="position: absolute; left: 328.00px; top: 512.03px" class="cls_009"><span class="cls_009">Give details of your closest relative in your home country who is neither</span></div>
-        <div style="position: absolute; left: 328.00px; top: 524.03px" class="cls_009"><span class="cls_009">accompanying nor joining you in Australia</span></div>
-        <div style="position: absolute; left: 328.00px; top: 544.03px" class="cls_009"><span class="cls_009">Name</span><span style="border: 1px solid black;"><%= closestrelativename   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 560.03px" class="cls_009"><span class="cls_009">Relationship</span><span style="border: 1px solid black;"><%= closestrelativerelationship   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 569.53px" class="cls_009"><span class="cls_009">to you</span></div>
-        <div style="position: absolute; left: 44.00px; top: 576.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkjobofferedYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 576.03px" class="cls_009"><span class="cls_009">Name, address and telephone number of your employer</span></div>
-        <div style="position: absolute; left: 84.00px; top: 590.03px" class="cls_009"><span style="border: 1px solid black;"><%= jobofferedname   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 605.03px" class="cls_009"><span style="border: 1px solid black;"><%= jobofferedaddress   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 588.03px" class="cls_009"><span class="cls_009">Address</span></div>
-        <div style="position: absolute; left: 328.00px; top: 600.03px" class="cls_009"><span style="border: 1px solid black;"><%= closestrelativeaddress   %></span></div>
-        <div style="position: absolute; left: 476.00px; top: 639.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span><span style="border: 1px solid black;"><%= closestrelativepostalcode   %></span></div>
-        <div style="position: absolute; left: 192.00px; top: 643.53px" class="cls_010"><span class="cls_010">POSTAL CODE</span></div>
-        <div style="position: absolute; left: 386.68px; top: 657.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 435.28px; top: 657.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 506.50px; top: 657.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 90.68px; top: 661.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 139.28px; top: 661.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 210.50px; top: 661.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 328.00px; top: 668.03px" class="cls_009"><span class="cls_009">Telephone</span></div>
-        <div style="position: absolute; left: 384.00px; top: 671.53px" class="cls_010"><span class="cls_010">(</span><span style="border: 1px solid black;"><%= closestrelativecontactnumber   %></span></div>
-        <div style="position: absolute; left: 422.77px; top: 671.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 428.00px; top: 671.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 466.77px; top: 671.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 88.00px; top: 675.53px" class="cls_010"><span class="cls_010">(</span><span style="border: 1px solid black;"><%= jobofferedcontactno   %></span></div>
-        <div style="position: absolute; left: 126.77px; top: 675.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 132.00px; top: 675.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 170.77px; top: 675.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 84.00px; top: 692.03px" class="cls_009"><span class="cls_009">Title of position offered</span><span style="border: 1px solid black;"><%= titleofpositionofferef   %></span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 496.25px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 13</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 11076px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background14.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_019"><span class="cls_019">Financial details</span></div>
-        <div style="position: absolute; left: 328.00px; top: 14.73px" class="cls_019"><span class="cls_019">Additional information</span></div>
-        <div style="position: absolute; left: 24.72px; top: 42.53px" class="cls_020"><span class="cls_020">41</span></div>
-        <div style="position: absolute; left: 44.00px; top: 44.03px" class="cls_009"><span class="cls_009">Are you applying to study in Australia as a secondary school exchange</span></div>
-        <div style="position: absolute; left: 308.72px; top: 42.53px" class="cls_020"><span class="cls_020">43</span></div>
-        <div style="position: absolute; left: 328.00px; top: 44.03px" class="cls_009"><span class="cls_009">If there is any other information or documentation you would like taken</span></div>
-        <div style="position: absolute; left: 44.00px; top: 56.03px" class="cls_009"><span class="cls_009">student?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 56.03px" class="cls_009"><span class="cls_009">into consideration in assessing your application attach it to the application.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 72.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkapplyinaustraliaassecschoolNo" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 72.03px" class="cls_009"><span class="cls_009">Remember that a decision may be based solely on the information you</span></div>
-        <div style="position: absolute; left: 328.00px; top: 84.03px" class="cls_009"><span class="cls_009">provide in this application.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 88.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkapplyinaustraliaassecschoolYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 88.03px" class="cls_009"><span class="cls_009">Go to Question 43</span></div>
-        <div style="position: absolute; left: 328.00px; top: 100.03px" class="cls_014"><span class="cls_014">Note</span><span class="cls_009">: If you are in Australia as the holder of a student subclass 570-576</span></div>
-        <div style="position: absolute; left: 328.00px; top: 112.03px" class="cls_009"><span class="cls_009">visa and you wish to change your principal course within the first</span></div>
-        <div style="position: absolute; left: 24.72px; top: 114.53px" class="cls_020"><span class="cls_020">42</span></div>
-        <div style="position: absolute; left: 44.00px; top: 116.03px" class="cls_009"><span class="cls_009">Do you have access to sufficient funds to support you and your family</span></div>
-        <div style="position: absolute; left: 328.00px; top: 124.03px" class="cls_009"><span class="cls_009">12 months of that course, and your new principal course will be in a</span></div>
-        <div style="position: absolute; left: 44.00px; top: 128.03px" class="cls_009"><span class="cls_009">unit members for the TOTAL period of your stay in Australia (including</span></div>
-        <div style="position: absolute; left: 328.00px; top: 136.03px" class="cls_009"><span class="cls_009">new education sector, then as part of this application you must provide</span></div>
-        <div style="position: absolute; left: 44.00px; top: 140.03px" class="cls_009"><span class="cls_009">proposed course fees for you and any school-age family members, living</span></div>
-        <div style="position: absolute; left: 328.00px; top: 148.03px" class="cls_009"><span class="cls_009">exceptional circumstances to justify the change of course.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 152.03px" class="cls_009"><span class="cls_009">costs and travel costs, regardless of whether your dependants intend to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 164.04px" class="cls_009"><span class="cls_009">accompany you to Australia)?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 164.03px" class="cls_009"><span class="cls_009">If you are applying in Australia as an Assessment Level 2-5 applicant</span></div>
-        <div style="position: absolute; left: 328.00px; top: 176.03px" class="cls_009"><span class="cls_009">and do not hold a student visa, you must provide exceptional reasons to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 184.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkissufficientfundNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 184.03px" class="cls_009"><span class="cls_009">Go to Question 43</span></div>
-        <div style="position: absolute; left: 328.00px; top: 188.04px" class="cls_009"><span class="cls_009">justify the grant of your visa.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 200.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkissufficientfundYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 200.03px" class="cls_009"><span class="cls_009">Please complete the declaration below</span></div>
-        <div style="position: absolute; left: 342.00px; top: 216.03px" class="cls_009"><span class="cls_009">Now go to Part D</span></div>
-        <div style="position: absolute; left: 92.00px; top: 224.03px" class="cls_009"><span class="cls_009">If you are under 18 years of age, this declaration must</span></div>
-        <div style="position: absolute; left: 92.00px; top: 236.03px" class="cls_009"><span class="cls_009">be signed on your behalf by your parents or a person(s)</span></div>
-        <div style="position: absolute; left: 92.00px; top: 248.03px" class="cls_009"><span class="cls_009">who has legal custody of you.</span></div>
-        <div style="position: absolute; left: 92.00px; top: 264.03px" class="cls_009"><span class="cls_009">If you are in Assessment Level 2-5, you </span><span class="cls_014">must</span><span class="cls_009"> provide</span></div>
-        <div style="position: absolute; left: 92.00px; top: 276.03px" class="cls_009"><span class="cls_009">documentary </span><span class="cls_014">evidence</span><span class="cls_009"> that you have sufficient funds</span></div>
-        <div style="position: absolute; left: 92.00px; top: 288.03px" class="cls_009"><span class="cls_009">(unless you are a secondary school exchange student).</span></div>
-        <div style="position: absolute; left: 92.00px; top: 300.03px" class="cls_009"><span class="cls_009">It is important that you refer to the department’s website</span></div>
-        <div style="position: absolute; left: 92.00px; top: 312.04px" class="cls_014"><span class="cls_014"></span><a href="http://www.immi.gov.au/study/">www.immi.gov.au/study/</a> <span class="cls_009">for details regarding the</span></div>
-        <div style="position: absolute; left: 92.00px; top: 324.04px" class="cls_009"><span class="cls_009">level of funds you are required to demonstrate, acceptable</span></div>
-        <div style="position: absolute; left: 92.00px; top: 336.04px" class="cls_009"><span class="cls_009">sources of funds and of the length of time funds must</span></div>
-        <div style="position: absolute; left: 92.00px; top: 348.04px" class="cls_009"><span class="cls_009">have been held.</span></div>
-        <div style="position: absolute; left: 92.00px; top: 364.03px" class="cls_009"><span class="cls_009">I declare that I have access to sufficient funds to support</span></div>
-        <div style="position: absolute; left: 92.00px; top: 376.03px" class="cls_009"><span class="cls_009">myself and my family unit members (regardless of</span></div>
-        <div style="position: absolute; left: 92.00px; top: 388.03px" class="cls_009"><span class="cls_009">whether they are accompanying me to Australia) for the</span></div>
-        <div style="position: absolute; left: 92.00px; top: 400.03px" class="cls_009"><span class="cls_009">total period of my stay in Australia.</span></div>
-        <div style="position: absolute; left: 92.00px; top: 416.03px" class="cls_014"><span class="cls_014">Your signature</span></div>
-        <div style="position: absolute; left: 127.72px; top: 474.39px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 149.78px; top: 474.39px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 184.34px; top: 474.39px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 92.00px; top: 484.03px" class="cls_009"><span class="cls_009">Date</span><span style="border: 1px solid black;"><%= declarationDate42.Day + "/" + declarationDate42.Month + "/" + declarationDate42.Year    %></span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 14</span></div>
-        <div style="position: absolute; left: 245.94px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 11928px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background15.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_018"><span class="cls_018">Part C - To be completed only if you</span></div>
-        <div style="position: absolute; left: 308.72px; top: 22.53px" class="cls_020"><span class="cls_020">48</span></div>
-        <div style="position: absolute; left: 328.00px; top: 24.03px" class="cls_009"><span class="cls_009">Is the student you are joining:</span></div>
-        <div style="position: absolute; left: 44.00px; top: 32.73px" class="cls_018"><span class="cls_018">are a family unit member joining a</span></div>
-        <div style="position: absolute; left: 328.00px; top: 38.03px" class="cls_009"><span class="cls_009">• the holder of an International Postgraduate Research Scholarship;</span></div>
-        <div style="position: absolute; left: 328.00px; top: 52.03px" class="cls_009"><span class="cls_009">• sponsored by AusAID or the Australian Department of Defence;</span></div>
-        <div style="position: absolute; left: 44.00px; top: 50.73px" class="cls_018"><span class="cls_018">student in Australia</span></div>
-        <div style="position: absolute; left: 328.00px; top: 66.03px" class="cls_009"><span class="cls_009">• fully sponsored by the federal, or a state or territory government of</span></div>
-        <div style="position: absolute; left: 24.72px; top: 78.53px" class="cls_020"><span class="cls_020">44</span></div>
-        <div style="position: absolute; left: 44.00px; top: 80.03px" class="cls_009"><span class="cls_009">Has the student you are joining, who is a member of your family unit,</span></div>
-        <div style="position: absolute; left: 338.00px; top: 78.03px" class="cls_009"><span class="cls_009">Australia;</span></div>
-        <div style="position: absolute; left: 44.00px; top: 92.03px" class="cls_009"><span class="cls_009">completed form 919 Nomination of student dependants?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 92.03px" class="cls_009"><span class="cls_009">• fully sponsored by the government of your home country, or by a state</span></div>
-        <div style="position: absolute; left: 338.00px; top: 104.03px" class="cls_009"><span class="cls_009">or provincial government of your home country;</span></div>
-        <div style="position: absolute; left: 44.00px; top: 112.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkFamilyunitcompletedformpartCNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 112.03px" class="cls_009"><span class="cls_009">If applying outside Australia, you </span><span class="cls_014">must</span><span class="cls_009"> provide a completed</span></div>
-        <div style="position: absolute; left: 328.00px; top: 118.03px" class="cls_009"><span class="cls_009">• fully sponsored by a multilateral organisation eg. the United Nations,</span></div>
-        <div style="position: absolute; left: 84.00px; top: 124.03px" class="cls_009"><span class="cls_009">form 919 with this application</span></div>
-        <div style="position: absolute; left: 338.00px; top: 130.03px" class="cls_009"><span class="cls_009">World Bank?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 144.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkFamilyunitcompletedformpartCYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 144.03px" class="cls_009"><span class="cls_009">Attach the completed form 919 to this application</span></div>
-        <div style="position: absolute; left: 328.00px; top: 148.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkisstudentjoiningsatisfiedconditionpartCNo" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 164.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkisstudentjoiningsatisfiedconditionpartCYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 163.93px" class="cls_023"><span class="cls_023">If the student you are joining is in Assessment Level 2-5</span></div>
-        <div style="position: absolute; left: 24.72px; top: 170.53px" class="cls_020"><span class="cls_020">45</span></div>
-        <div style="position: absolute; left: 44.00px; top: 172.03px" class="cls_009"><span class="cls_009">Do you intend to study in Australia for more than 3 months?</span></div>
-        <div style="position: absolute; left: 368.00px; top: 175.93px" class="cls_023"><span class="cls_023">and was granted their visa after 1 December 2003, there</span></div>
-        <div style="position: absolute; left: 368.00px; top: 187.93px" class="cls_023"><span class="cls_023">are specific financial evidentiary requirements that you</span></div>
-        <div style="position: absolute; left: 44.00px; top: 192.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkstudymorethanthreemonthpartCNo" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 199.93px" class="cls_023"><span class="cls_023">must meet. Please go to the department’s website for</span></div>
-        <div style="position: absolute; left: 44.00px; top: 208.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkstudymorethanthreemonthpartCYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 208.03px" class="cls_009"><span class="cls_009">If you are 5 years up to 18 years of age, please provide</span></div>
-        <div style="position: absolute; left: 368.00px; top: 211.93px" class="cls_023"><span class="cls_023">details on the levels of funds you are required to</span></div>
-        <div style="position: absolute; left: 84.00px; top: 220.03px" class="cls_009"><span class="cls_009">documentary evidence of school enrolment in Australia.</span></div>
-        <div style="position: absolute; left: 368.00px; top: 223.93px" class="cls_023"><span class="cls_023">demonstrate, acceptable sources of funds and the length</span></div>
-        <div style="position: absolute; left: 84.00px; top: 236.03px" class="cls_009"><span class="cls_009">If you are 18 years of age or older and you intend to study</span></div>
-        <div style="position: absolute; left: 368.00px; top: 235.93px" class="cls_023"><span class="cls_023">of time funds must be held.</span></div>
-        <div style="position: absolute; left: 84.00px; top: 248.03px" class="cls_009"><span class="cls_009">in Australia for more than 3 months, you must apply for a</span></div>
-        <div style="position: absolute; left: 384.00px; top: 256.03px" class="cls_009"><span class="cls_009">Now go to Part D</span></div>
-        <div style="position: absolute; left: 84.00px; top: 260.03px" class="cls_009"><span class="cls_009">student visa as a principal applicant, rather than as a family</span></div>
-        <div style="position: absolute; left: 84.00px; top: 272.03px" class="cls_009"><span class="cls_009">unit member.</span></div>
-        <div style="position: absolute; left: 308.72px; top: 282.53px" class="cls_020"><span class="cls_020">49</span></div>
-        <div style="position: absolute; left: 328.00px; top: 284.03px" class="cls_009"><span class="cls_009">Does the student you are joining have sufficient funds to financially</span></div>
-        <div style="position: absolute; left: 328.00px; top: 296.03px" class="cls_009"><span class="cls_009">support themselves, you and any other family members included in this</span></div>
-        <div style="position: absolute; left: 24.72px; top: 298.53px" class="cls_020"><span class="cls_020">46</span></div>
-        <div style="position: absolute; left: 44.00px; top: 300.03px" class="cls_009"><span class="cls_009">Provide details of the student you are joining in Australia</span></div>
-        <div style="position: absolute; left: 328.00px; top: 308.03px" class="cls_009"><span class="cls_009">application, for the remainder of his or her stay in Australia?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 320.03px" class="cls_009"><span class="cls_009">Name</span>&nbsp;<span style="border: 1px solid black;"><%= studentnamepartC   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 328.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chksuficientfundpartCNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 336.03px" class="cls_009"><span class="cls_009">Relationship</span>&nbsp;<span style="border: 1px solid black;"><%= relationshiptostudentpartC   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 345.53px" class="cls_009"><span class="cls_009">to you</span></div>
-        <div style="position: absolute; left: 328.00px; top: 344.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chksuficientfundpartCYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 344.03px" class="cls_009"><span class="cls_009">You </span><span class="cls_014">must</span><span class="cls_009"> attach evidence of this financial support</span></div>
-        <div style="position: absolute; left: 103.72px; top: 358.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 358.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 358.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 368.03px" class="cls_009"><span class="cls_009">Date of birth</span>&nbsp;<span style="border: 1px solid black;"><%= studentdobpartC.Day + "/" + studentdobpartC.Month + "/" + studentdobpartC.Year    %></span></div>
-        <div style="position: absolute; left: 475.56px; top: 372.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 44.00px; top: 388.03px" class="cls_009"><span class="cls_009">Citizenship(s)</span>&nbsp;<span style="border: 1px solid black;"><%= citizenshipofstudentpartC %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 404.03px" class="cls_009"><span class="cls_009">Address</span>&nbsp;<span style="border: 1px solid black;"><%= studentaddresspartC   %></span></div>
-        <div style="position: absolute; left: 192.00px; top: 455.53px" class="cls_010"><span class="cls_010">POSTCODE</span>&nbsp;<span style="border: 1px solid black;"><%= studentaddpostalcodepartC   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 472.03px" class="cls_009"><span class="cls_009">Type of student visa held</span>&nbsp;<span style="border: 1px solid black;"><%= typeofstudentvisaheldpartC   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 488.03px" class="cls_009"><span class="cls_009">What Assessment Level were they</span>&nbsp;<span style="border: 1px solid black;"><%= assessmentlevelpartC   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 497.53px" class="cls_009"><span class="cls_009">assessed against (if known)?</span></div>
-        <div style="position: absolute; left: 103.72px; top: 514.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 514.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 514.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 524.03px" class="cls_009"><span class="cls_009">Date granted</span>&nbsp;<span style="border: 1px solid black;"><%= assessmentgrantdatepartC.Day + "/" + assessmentgrantdatepartC.Month + "/" + assessmentgrantdatepartC.Year    %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 544.03px" class="cls_009"><span class="cls_009">Expiry date</span>&nbsp;<span style="border: 1px solid black;"><%= assessmentexpirydatepartC.Day + "/" + assessmentexpirydatepartC.Month + "/" + assessmentexpirydatepartC.Year    %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 568.03px" class="cls_014"><span class="cls_014">Note</span><span class="cls_009">: You cannot join your family unit member in Australia on a student</span></div>
-        <div style="position: absolute; left: 44.00px; top: 580.03px" class="cls_009"><span class="cls_009">visa if they are in Assessment Levels 3-5 unless the total duration of</span></div>
-        <div style="position: absolute; left: 44.00px; top: 592.03px" class="cls_009"><span class="cls_009">the course(s) they are undertaking in Australia is at least 12 months or</span></div>
-        <div style="position: absolute; left: 44.00px; top: 604.03px" class="cls_009"><span class="cls_009">more.</span></div>
-        <div style="position: absolute; left: 24.72px; top: 625.53px" class="cls_020"><span class="cls_020">47</span></div>
-        <div style="position: absolute; left: 44.00px; top: 627.03px" class="cls_009"><span class="cls_009">Did the student you are joining declare in their initial student visa</span></div>
-        <div style="position: absolute; left: 44.00px; top: 639.03px" class="cls_009"><span class="cls_009">application you and other members of their family unit included in this</span></div>
-        <div style="position: absolute; left: 44.00px; top: 651.03px" class="cls_009"><span class="cls_009">application?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 671.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkisstudentjoiningdeclarepartCNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 687.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkisstudentjoiningdeclarepartCYes" runat="server"></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 496.25px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 15</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 12780px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background16.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_018"><span class="cls_018">Part D - To be completed by all</span></div>
-        <div style="position: absolute; left: 308.72px; top: 22.53px" class="cls_020"><span class="cls_020">53</span></div>
-        <div style="position: absolute; left: 328.00px; top: 24.03px" class="cls_009"><span class="cls_009">Have you, or any member of your family unit included in this application:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 36.03px" class="cls_009"><span class="cls_009">• ever had, or do you currently have, tuberculosis?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 32.73px" class="cls_018"><span class="cls_018">applicants</span></div>
-        <div style="position: absolute; left: 328.00px; top: 48.03px" class="cls_009"><span class="cls_009">• been in close contact with a person who has, or has had, active</span></div>
-        <div style="position: absolute; left: 44.00px; top: 54.73px" class="cls_019"><span class="cls_019">Health declaration</span></div>
-        <div style="position: absolute; left: 338.00px; top: 60.03px" class="cls_009"><span class="cls_009">tuberculosis?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 72.03px" class="cls_009"><span class="cls_009">• ever had a chest x-ray which showed an abnormality?</span></div>
-        <div style="position: absolute; left: 24.72px; top: 82.53px" class="cls_020"><span class="cls_020">50</span></div>
-        <div style="position: absolute; left: 44.00px; top: 84.03px" class="cls_009"><span class="cls_009">In the last 5 years, have you, or has any member of your family unit</span></div>
-        <div style="position: absolute; left: 328.00px; top: 92.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveanyhealthissueNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 96.03px" class="cls_009"><span class="cls_009">included in this application, visited or lived outside your country of usual</span></div>
-        <div style="position: absolute; left: 44.00px; top: 108.03px" class="cls_009"><span class="cls_009">residence for more than 3 consecutive months?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 108.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveanyhealthissueYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 108.03px" class="cls_009"><span class="cls_009">Give full details</span></div>
-        <div style="position: absolute; left: 328.00px; top: 118.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= detailofhealthissue   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 128.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chklivedoutsidecountrycNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 144.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chklivedoutsidecountrycYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 144.03px" class="cls_009"><span class="cls_009">Give details</span></div>
-        <div style="position: absolute; left: 44.00px; top: 176.03px" class="cls_009"><span class="cls_009">Name</span>&nbsp;<span style="border: 1px solid black;"><%= familymembername   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 196.03px" class="cls_009"><span class="cls_009">Countries</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidencecountry   %></span></div>
-        <div style="position: absolute; left: 103.72px; top: 214.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 214.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 214.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 203.72px; top: 214.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 225.78px; top: 214.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 260.34px; top: 214.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 224.03px" class="cls_009"><span class="cls_009">Date</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidenceFromdate.Day + "/" + familyresidenceFromdate.Month + "/" + familyresidenceFromdate.Year    %></span></div>
-        <div style="position: absolute; left: 186.83px; top: 224.03px" class="cls_009"><span class="cls_009">to</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidenceTodate.Day + "/" + familyresidenceTodate.Month + "/" + familyresidenceTodate.Year    %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 234.53px" class="cls_020"><span class="cls_020">54</span></div>
-        <div style="position: absolute; left: 328.00px; top: 236.03px" class="cls_009"><span class="cls_009">Do you require assistance with mobility and/or care?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 256.03px" class="cls_009"><span class="cls_009">Name</span>&nbsp;<span style="border: 1px solid black;"><%= familymembername2   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 256.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkrequireassistancewithmobilityNo" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 272.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkrequireassistancewithmobilityYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 272.03px" class="cls_009"><span class="cls_009">Provide details of the mobility/care concerns that apply to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 276.03px" class="cls_009"><span class="cls_009">Countries</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidencecountry1   %></span></div>
-        <div style="position: absolute; left: 368.00px; top: 284.03px" class="cls_009"><span class="cls_009">you and how they are addressed</span></div>
-        <div style="position: absolute; left: 328.00px; top: 284.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= descriptionofmobility   %></span></div>
-        <div style="position: absolute; left: 103.72px; top: 294.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 294.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 294.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 203.72px; top: 294.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 225.78px; top: 294.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 260.34px; top: 294.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 304.03px" class="cls_009"><span class="cls_009">Date</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidenceFromdate1.Day + "/" + familyresidenceFromdate1.Month + "/" + familyresidenceFromdate1.Year    %></span></div>
-        <div style="position: absolute; left: 186.83px; top: 304.03px" class="cls_009"><span class="cls_009">to</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidenceTodate1.Day + "/" + familyresidenceTodate1.Month + "/" + familyresidenceTodate1.Year    %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 336.03px" class="cls_009"><span class="cls_009">Name</span>&nbsp;<span style="border: 1px solid black;"><%= familymembername2   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 356.03px" class="cls_009"><span class="cls_009">Countries</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidencecountry2   %></span></div>
-        <div style="position: absolute; left: 103.72px; top: 374.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 374.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 374.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 203.72px; top: 374.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 225.78px; top: 374.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 260.34px; top: 374.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 384.03px" class="cls_009"><span class="cls_009">Date</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidenceFromdate2.Day + "/" + familyresidenceFromdate2.Month + "/" + familyresidenceFromdate2.Year    %></span></div>
-        <div style="position: absolute; left: 186.83px; top: 384.03px" class="cls_009"><span class="cls_009">to</span>&nbsp;<span style="border: 1px solid black;"><%= familyresidenceTodate2.Day + "/" + familyresidenceTodate2.Month + "/" + familyresidenceTodate2.Year    %></span></div>
-        <div style="position: absolute; left: 308.72px; top: 406.53px" class="cls_020"><span class="cls_020">55</span></div>
-        <div style="position: absolute; left: 328.00px; top: 408.03px" class="cls_009"><span class="cls_009">Do you intend performing medical procedures (eg. as a practising/trainee</span></div>
-        <div style="position: absolute; left: 24.72px; top: 410.53px" class="cls_020"><span class="cls_020">51</span></div>
-        <div style="position: absolute; left: 44.00px; top: 412.03px" class="cls_009"><span class="cls_009">Do you, or any member of your family unit included in this application,</span></div>
-        <div style="position: absolute; left: 328.00px; top: 420.03px" class="cls_009"><span class="cls_009">doctor, dentist, nurse) during your stay in Australia?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 424.03px" class="cls_009"><span class="cls_009">intend entering an Australian hospital (including nursing homes) for work,</span></div>
-        <div style="position: absolute; left: 44.00px; top: 436.03px" class="cls_009"><span class="cls_009">training, treatment or visiting?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 440.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaevmedicalproceduresNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 456.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveworkforaustralianhospitalNo" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 456.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaevmedicalproceduresYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 456.03px" class="cls_009"><span class="cls_009">Provide details of the medical/dental/nursing procedures</span></div>
-        <div style="position: absolute; left: 368.00px; top: 468.03px" class="cls_009"><span class="cls_009">you may be involved with in Australia</span></div>
-        <div style="position: absolute; left: 328.00px; top: 488.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= proceduresdescription   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 472.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveworkforaustralianhospitalYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 472.03px" class="cls_009"><span class="cls_009">Give full details</span></div>
-        <div style="position: absolute; left: 44.00px; top: 485.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= descriptionofhospitalwork   %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 598.53px" class="cls_020"><span class="cls_020">52</span></div>
-        <div style="position: absolute; left: 44.00px; top: 600.03px" class="cls_009"><span class="cls_009">Do you, or any member of your family unit included in this application,</span></div>
-        <div style="position: absolute; left: 44.00px; top: 612.03px" class="cls_009"><span class="cls_009">intend to work in an Australian preschool-aged child care centre (including</span></div>
-        <div style="position: absolute; left: 44.00px; top: 624.03px" class="cls_009"><span class="cls_009">preschools and creches) as an employee or trainee?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 644.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveworkforaustralianpreschoolNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 660.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveworkforaustralianpreschoolYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 660.03px" class="cls_009"><span class="cls_009">Give full details</span></div>
-        <div style="position: absolute; left: 44.00px; top: 680.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= descriptionofpreschoolwork   %></span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 16</span></div>
-        <div style="position: absolute; left: 245.94px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 13632px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background17.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 328.00px; top: 14.73px" class="cls_019"><span class="cls_019">Character declaration</span></div>
-        <div style="position: absolute; left: 24.72px; top: 22.53px" class="cls_020"><span class="cls_020">56</span></div>
-        <div style="position: absolute; left: 44.00px; top: 24.03px" class="cls_009"><span class="cls_009">During your proposed visit to Australia, do you, or any children included</span></div>
-        <div style="position: absolute; left: 44.00px; top: 36.03px" class="cls_009"><span class="cls_009">in this application, expect to incur medical costs, or require treatment or</span></div>
-        <div style="position: absolute; left: 308.72px; top: 42.53px" class="cls_020"><span class="cls_020">57</span></div>
-        <div style="position: absolute; left: 328.00px; top: 44.03px" class="cls_009"><span class="cls_009">Have you, or any member of your family unit</span></div>
-        <div style="position: absolute; left: 44.00px; top: 48.03px" class="cls_009"><span class="cls_009">medical follow up for:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 56.03px" class="cls_009"><span class="cls_009">included in this application, ever:</span></div>
-        <div style="position: absolute; left: 44.00px; top: 60.03px" class="cls_009"><span class="cls_009">• blood disorder</span></div>
-        <div style="position: absolute; left: 176.00px; top: 60.04px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 186.00px; top: 60.04px" class="cls_009"><span class="cls_009">mental illness</span></div>
-        <div style="position: absolute; left: 44.00px; top: 72.03px" class="cls_009"><span class="cls_009">• cancer</span></div>
-        <div style="position: absolute; left: 176.00px; top: 72.04px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 186.00px; top: 72.04px" class="cls_009"><span class="cls_009">pregnancy</span></div>
-        <div style="position: absolute; left: 328.00px; top: 72.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 72.03px" class="cls_009"><span class="cls_009">been convicted of a crime or offence in any</span></div>
-        <div style="position: absolute; left: 44.00px; top: 84.03px" class="cls_009"><span class="cls_009">• heart disease</span></div>
-        <div style="position: absolute; left: 176.00px; top: 84.04px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 186.00px; top: 84.04px" class="cls_009"><span class="cls_009">respiratory disease that has</span></div>
-        <div style="position: absolute; left: 338.00px; top: 84.03px" class="cls_009"><span class="cls_009">country (including any conviction which is</span></div>
-        <div style="position: absolute; left: 500.00px; top: 92.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveconvictedofcrimeNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 92.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveconvictedofcrimeYes" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 96.04px" class="cls_009"><span class="cls_009">• hepatitis</span></div>
-        <div style="position: absolute; left: 186.00px; top: 96.04px" class="cls_009"><span class="cls_009">required hospital admission</span></div>
-        <div style="position: absolute; left: 338.00px; top: 96.03px" class="cls_009"><span class="cls_009">now removed from official records)?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 108.04px" class="cls_009"><span class="cls_009">• HIV infection, including AIDS</span></div>
-        <div style="position: absolute; left: 176.00px; top: 108.04px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 186.00px; top: 108.04px" class="cls_009"><span class="cls_009">any form of surgery</span></div>
-        <div style="position: absolute; left: 328.00px; top: 112.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 112.03px" class="cls_009"><span class="cls_009">been charged with any offence that is</span></div>
-        <div style="position: absolute; left: 44.00px; top: 120.04px" class="cls_009"><span class="cls_009">• kidney disease, including dialysis</span></div>
-        <div style="position: absolute; left: 176.00px; top: 120.04px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 186.00px; top: 120.04px" class="cls_009"><span class="cls_009">any other health concerns?</span></div>
-        <div style="position: absolute; left: 500.00px; top: 120.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavechargeoffenceNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 120.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavechargeoffenceYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 124.03px" class="cls_009"><span class="cls_009">currently awaiting legal action?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 132.04px" class="cls_009"><span class="cls_009">• liver disease</span></div>
-        <div style="position: absolute; left: 328.00px; top: 140.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 140.03px" class="cls_009"><span class="cls_009">been acquitted of any criminal offence or</span></div>
-        <div style="position: absolute; left: 44.00px; top: 152.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavemedicalfollowupNo" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 152.03px" class="cls_009"><span class="cls_009">other offence on the grounds of mental</span></div>
-        <div style="position: absolute; left: 500.00px; top: 160.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavecriminaloffenceNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 160.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavecriminaloffenceYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 164.03px" class="cls_009"><span class="cls_009">illness, insanity or unsoundness of mind?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 168.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavemedicalfollowupYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 168.03px" class="cls_009"><span class="cls_009">Give details</span></div>
-        <div style="position: absolute; left: 44.00px; top: 188.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= medicalfollowupdescription   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 180.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 180.03px" class="cls_009"><span class="cls_009">been removed or deported from any</span></div>
-        <div style="position: absolute; left: 500.00px; top: 188.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveremovedfromcountryNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 188.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveremovedfromcountryYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 192.03px" class="cls_009"><span class="cls_009">country (including Australia)?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 208.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 208.03px" class="cls_009"><span class="cls_009">left any country to avoid being removed or</span></div>
-        <div style="position: absolute; left: 500.00px; top: 216.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavetoavoidbeingremovedNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 216.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavetoavoidbeingremovedYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 220.03px" class="cls_009"><span class="cls_009">deported?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 236.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 236.03px" class="cls_009"><span class="cls_009">been excluded from or asked to leave any</span></div>
-        <div style="position: absolute; left: 500.00px; top: 244.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavebeenexcludedNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 244.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavebeenexcludedYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 248.03px" class="cls_009"><span class="cls_009">country (including Australia)?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 264.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 264.03px" class="cls_009"><span class="cls_009">committed, or been involved in the</span></div>
-        <div style="position: absolute; left: 338.00px; top: 276.03px" class="cls_009"><span class="cls_009">commission of war crimes or crimes</span></div>
-        <div style="position: absolute; left: 500.00px; top: 284.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavehumanrightscrimeNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 284.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavehumanrightscrimeYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 288.03px" class="cls_009"><span class="cls_009">against humanity or human rights?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 304.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 304.03px" class="cls_009"><span class="cls_009">been involved in any activities that would</span></div>
-        <div style="position: absolute; left: 338.00px; top: 316.03px" class="cls_009"><span class="cls_009">represent a risk to Australian national</span></div>
-        <div style="position: absolute; left: 500.00px; top: 324.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaverisktonationalsecurityNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 324.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaverisktonationalsecurityYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 328.03px" class="cls_009"><span class="cls_009">security?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 344.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 344.03px" class="cls_009"><span class="cls_009">had any outstanding debts to the Australian</span></div>
-        <div style="position: absolute; left: 338.00px; top: 356.03px" class="cls_009"><span class="cls_009">Government or any public authority in</span></div>
-        <div style="position: absolute; left: 500.00px; top: 364.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveoutstandingdebetsNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 364.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveoutstandingdebetsYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 368.04px" class="cls_009"><span class="cls_009">Australia?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 384.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 384.03px" class="cls_009"><span class="cls_009">been involved in any activity, or been</span></div>
-        <div style="position: absolute; left: 44.00px; top: 388.03px" class="cls_009"><span class="cls_009">You are strongly advised to carry certification of your vaccination status,</span></div>
-        <div style="position: absolute; left: 338.00px; top: 396.03px" class="cls_009"><span class="cls_009">convicted of any offence, relating to the</span></div>
-        <div style="position: absolute; left: 44.00px; top: 400.03px" class="cls_009"><span class="cls_009">especially for children attending Australian child care centres (including</span></div>
-        <div style="position: absolute; left: 338.00px; top: 408.04px" class="cls_009"><span class="cls_009">illegal movement of people to any country</span></div>
-        <div style="position: absolute; left: 44.00px; top: 412.03px" class="cls_009"><span class="cls_009">preschools and creches) and schools. Vaccination against polio, tetanus,</span></div>
-        <div style="position: absolute; left: 500.00px; top: 416.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveconvictedoffenceNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 416.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveconvictedoffenceYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 420.04px" class="cls_009"><span class="cls_009">(including Australia)?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 424.03px" class="cls_009"><span class="cls_009">measles, mumps, rubella, diphtheria, pertussis (whooping cough),</span></div>
-        <div style="position: absolute; left: 44.00px; top: 436.03px" class="cls_009"><span class="cls_009">Haemophilus influenzae hypo B (Hib), and Hepatitis B is recommended</span></div>
-        <div style="position: absolute; left: 328.00px; top: 436.04px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 338.00px; top: 436.04px" class="cls_009"><span class="cls_009">served in a military force or state</span></div>
-        <div style="position: absolute; left: 44.00px; top: 448.04px" class="cls_009"><span class="cls_009">for children, with certification sought at time of child care centre (including</span></div>
-        <div style="position: absolute; left: 338.00px; top: 448.04px" class="cls_009"><span class="cls_009">sponsored/private militia, undergone any</span></div>
-        <div style="position: absolute; left: 44.00px; top: 460.04px" class="cls_009"><span class="cls_009">preschool and creche) and school enrolment. Vaccination against rubella</span></div>
-        <div style="position: absolute; left: 338.00px; top: 460.04px" class="cls_009"><span class="cls_009">military/paramilitary training, or been</span></div>
-        <div style="position: absolute; left: 44.00px; top: 472.04px" class="cls_009"><span class="cls_009">is also recommended for women of child bearing age.</span></div>
-        <div style="position: absolute; left: 338.00px; top: 472.04px" class="cls_009"><span class="cls_009">trained in weapons/explosives use</span></div>
-        <div style="position: absolute; left: 500.00px; top: 480.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveservedinmilitaryforceNo" runat="server"></div>
-        <div style="position: absolute; left: 540.00px; top: 480.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveservedinmilitaryforceYes" runat="server"></div>
-        <div style="position: absolute; left: 338.00px; top: 484.04px" class="cls_009"><span class="cls_009">(however described)?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 508.03px" class="cls_009"><span class="cls_009">If you answered </span><span class="cls_014">‘Yes’</span><span class="cls_009"> to any of the above questions, you must state</span></div>
-        <div style="position: absolute; left: 328.00px; top: 520.03px" class="cls_009"><span class="cls_009">who it applies to and give ALL relevant details. If the matter relates to</span></div>
-        <div style="position: absolute; left: 328.00px; top: 532.03px" class="cls_009"><span class="cls_009">a criminal conviction, please give the nature of the offence, full details</span></div>
-        <div style="position: absolute; left: 328.00px; top: 544.03px" class="cls_009"><span class="cls_009">of sentence and dates of any period of imprisonment or other detention.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 560.03px" class="cls_009"><span class="cls_009">If insufficient space, attach an additional statement.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 580.03px" class="cls_009"><span style="border: 1px solid black;"><%= descripofcharacterdeclaration   %></span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 496.25px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 17</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 14484px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background18.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_019"><span class="cls_019">Accommodation/welfare arrangements</span></div>
-        <div style="position: absolute; left: 328.00px; top: 24.03px" class="cls_009"><span class="cls_009">As the parent or a person who has legal custody of a student applicant</span></div>
-        <div style="position: absolute; left: 308.72px; top: 22.53px" class="cls_020"><span class="cls_020">60</span></div>
-        <div style="position: absolute; left: 328.00px; top: 36.03px" class="cls_009"><span class="cls_009">under 18 years of age, do you hold or have you applied for a visa</span></div>
-        <div style="position: absolute; left: 44.00px; top: 32.73px" class="cls_019"><span class="cls_019">for students under 18 years of age</span></div>
-        <div style="position: absolute; left: 328.00px; top: 48.03px" class="cls_009"><span class="cls_009">(eg. Student Guardian visa - subclass 580) to accompany your child</span></div>
-        <div style="position: absolute; left: 328.00px; top: 60.03px" class="cls_009"><span class="cls_009">during their stay in Australia?</span></div>
-        <div style="position: absolute; left: 24.72px; top: 62.53px" class="cls_020"><span class="cls_020">58</span></div>
-        <div style="position: absolute; left: 44.00px; top: 64.03px" class="cls_009"><span class="cls_009">Are you under 18 years of age?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 80.03px" class="cls_014"><span class="cls_014">Note</span><span class="cls_009">: Depending on your Assessment Level, you may need to meet a</span></div>
-        <div style="position: absolute; left: 328.00px; top: 80.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkholdorappliedVisaNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 92.03px" class="cls_009"><span class="cls_009">minimum age or education standard requirement. Refer to information</span></div>
-        <div style="position: absolute; left: 328.00px; top: 96.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkholdorappliedVisaYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 96.03px" class="cls_009"><span class="cls_009">Please give your details below, then go to Question 65</span></div>
-        <div style="position: absolute; left: 44.00px; top: 104.03px" class="cls_009"><span class="cls_009">form 1219i Overseas Student Program - Assessment Levels and the</span></div>
-        <div style="position: absolute; left: 44.00px; top: 116.03px" class="cls_009"><span class="cls_009">department’s website for more details.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 124.03px" class="cls_009"><span class="cls_009">Family name</span>&nbsp;<span style="border: 1px solid black;"><%= parentfamilynamePartD   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 136.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkunder18ageNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 136.04px" class="cls_009"><span class="cls_009">Go to Question 68</span></div>
-        <div style="position: absolute; left: 328.00px; top: 144.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%= parentgivennamePartD   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 152.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkunder18ageYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 152.03px" class="cls_009"><span class="cls_009">Questions 59 (and either question 60, 61, 63 or 64) and the</span></div>
-        <div style="position: absolute; left: 84.00px; top: 164.03px" class="cls_009"><span class="cls_009">declaration at 65 must be completed on your behalf by your</span></div>
-        <div style="position: absolute; left: 84.00px; top: 176.03px" class="cls_009"><span class="cls_009">parents or a person(s) who has legal custody of you, as you</span></div>
-        <div style="position: absolute; left: 387.72px; top: 178.38px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 178.38px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 178.38px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 84.00px; top: 188.03px" class="cls_009"><span class="cls_009">are under 18 years of age. If your parents or a person(s) who</span></div>
-        <div style="position: absolute; left: 328.00px; top: 188.03px" class="cls_009"><span class="cls_009">Date of birth</span>&nbsp;<span style="border: 1px solid black;"><%= parentDateofBirthpartD.Day + "/" +parentDateofBirthpartD.Month + "/" + parentDateofBirthpartD.Year    %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 200.04px" class="cls_009"><span class="cls_009">has legal custody of you have not made adequate</span></div>
-        <div style="position: absolute; left: 328.00px; top: 208.03px" class="cls_009"><span class="cls_009">Your intended address in Australia</span><span style="border: 1px solid black;"><%= parentaddresspartD   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 212.04px" class="cls_009"><span class="cls_009">arrangements for your accommodation, support and general</span></div>
-        <div style="position: absolute; left: 84.00px; top: 224.04px" class="cls_009"><span class="cls_009">welfare while in Australia, a student visa cannot be granted.</span></div>
-        <div style="position: absolute; left: 84.00px; top: 236.04px" class="cls_009"><span class="cls_009">Evidence of their relationship to you must be provided.</span></div>
-        <div style="position: absolute; left: 476.00px; top: 259.53px" class="cls_010"><span class="cls_010">POSTCODE</span></div>
-        <div style="position: absolute; left: 24.72px; top: 258.39px" class="cls_020"><span class="cls_020">59</span></div>
-        <div style="position: absolute; left: 44.00px; top: 260.04px" class="cls_009"><span class="cls_009">This question, and other questions as indicated, </span><span class="cls_014">must be completed</span></div>
-        <div style="position: absolute; left: 44.00px; top: 272.04px" class="cls_014"><span class="cls_014">by the parents, or person(s) who has legal custody of the</span></div>
-        <div style="position: absolute; left: 328.00px; top: 272.03px" class="cls_009"><span class="cls_009">Application:</span></div>
-        <div style="position: absolute; left: 44.00px; top: 284.04px" class="cls_014"><span class="cls_014">applicant under 18 years of age</span><span class="cls_009">.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 288.03px" class="cls_009"><span class="cls_009">Granted</span><input type="checkbox" id="chkparentvisastatusPartDYes" runat="server"></div>
-        <div style="position: absolute; left: 396.00px; top: 288.03px" class="cls_009"><span class="cls_009">Visa label number</span></div>
-        <div style="position: absolute; left: 44.00px; top: 300.04px" class="cls_009"><span class="cls_009">Which statement best explains your situation?</span></div>
-        <div style="position: absolute; left: 397.39px; top: 304.50px" class="cls_022"><span class="cls_022">V</span></div>
-        <div style="position: absolute; left: 446.89px; top: 304.50px" class="cls_022"><span class="cls_022">&lt;</span>&nbsp;<span style="border: 1px solid black;"><%= parentvisalabelno   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 320.04px" class="cls_009"><span class="cls_009">I am a parent or person who has legal</span></div>
-        <div style="position: absolute; left: 396.00px; top: 320.03px" class="cls_009"><span class="cls_009">If granted a visa without a label, provide the 13-digit</span></div>
-        <div style="position: absolute; left: 44.00px; top: 332.04px" class="cls_009"><span class="cls_009">custody of the student applicant and I am</span></div>
-        <div style="position: absolute; left: 396.00px; top: 332.03px" class="cls_009"><span class="cls_009">visa grant number (as shown on the letter notifying</span></div>
-        <div style="position: absolute; left: 396.00px; top: 342.03px" class="cls_009"><span style="border: 1px solid black;"><%= parentvisadigitno   %></span></div>
-        <div style="position: absolute; left: 224.00px; top: 340.04px" class="cls_009"><span class="cls_009"><input type="checkbox" id="chkparentsituationNo" runat="server">Go to Question 60</span></div>
-        <div style="position: absolute; left: 44.00px; top: 344.04px" class="cls_009"><span class="cls_009">going to accompany the child to Australia.</span></div>
-        <div style="position: absolute; left: 396.00px; top: 344.03px" class="cls_009"><span class="cls_009">you of visa grant).</span></div>
-        <div style="position: absolute; left: 44.00px; top: 368.03px" class="cls_009"><span class="cls_009">I am a parent or person who has legal</span></div>
-        <div style="position: absolute; left: 396.00px; top: 376.03px" class="cls_009"><span class="cls_009">Period of stay</span>&nbsp;<span style="border: 1px solid black;"><%= parentvisaperiodofstay   %></span></div>
-        <div style="position: absolute; left: 486.46px; top: 376.03px" class="cls_009"><span class="cls_009">Expiry date </span><span class="cls_010">(DAY/MONTH/YEAR)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 380.03px" class="cls_009"><span class="cls_009">custody of the student applicant and have</span></div>
-        <div style="position: absolute; left: 44.00px; top: 392.03px" class="cls_009"><span class="cls_009">made arrangements for the child to stay</span></div>
-        <div style="position: absolute; left: 449.54px; top: 395.53px" class="cls_010"><span class="cls_010">MONTHS</span>&nbsp;<span style="border: 1px solid black;"><%= parentvisaexpirydate.Day + "/" +parentvisaexpirydate.Month + "/" + parentvisaexpirydate.Year    %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 404.03px" class="cls_009"><span class="cls_009">in Australia with a relative* who is 21 years</span></div>
-        <div style="position: absolute; left: 224.00px; top: 404.03px" class="cls_009"><span class="cls_009"><input type="checkbox" id="chkparentsituationYes" runat="server">Go to Question 61</span></div>
-        <div style="position: absolute; left: 328.00px; top: 412.03px" class="cls_009"><span class="cls_009">Not yet</span></div>
-        <div style="position: absolute; left: 396.00px; top: 412.03px" class="cls_009"><span class="cls_009">Australian Government office where application</span></div>
-        <div style="position: absolute; left: 396.00px; top: 445.03px" class="cls_009"><span style="border: 1px solid black;"><%= parentvisaappliedgovtofficename   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 416.04px" class="cls_009"><span class="cls_009">of age or older.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 424.03px" class="cls_009"><span class="cls_009">decided</span><input type="checkbox" id="chkparentvisastatusPartDNo" runat="server"></div>
-        <div style="position: absolute; left: 396.00px; top: 424.03px" class="cls_009"><span class="cls_009">lodged</span></div>
-        <div style="position: absolute; left: 44.00px; top: 436.03px" class="cls_009"><span class="cls_009">* A relative is defined under the Migration Regulations as a spouse,</span></div>
-        <div style="position: absolute; left: 44.00px; top: 448.03px" class="cls_009"><span class="cls_009">child, adopted child, parent, brother, sister, step-child, step-parent,</span></div>
-        <div style="position: absolute; left: 44.00px; top: 460.03px" class="cls_009"><span class="cls_009">step-brother, step-sister, grandparent, grandchild, aunt, uncle, niece</span></div>
-        <div style="position: absolute; left: 344.00px; top: 460.03px" class="cls_009"><span class="cls_009">Now go to Question 65</span></div>
-        <div style="position: absolute; left: 44.00px; top: 472.03px" class="cls_009"><span class="cls_009">or nephew, or a step-grandparent, step-grandchild, step-aunt,</span></div>
-        <div style="position: absolute; left: 44.00px; top: 484.03px" class="cls_009"><span class="cls_009">step-uncle, step-niece or step-nephew.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 488.03px" class="cls_009"><span class="cls_009">As the parents or a person(s) who has legal custody of a student applicant</span></div>
-        <div style="position: absolute; left: 308.72px; top: 486.53px" class="cls_020"><span class="cls_020">61</span></div>
-        <div style="position: absolute; left: 328.00px; top: 500.03px" class="cls_009"><span class="cls_009">under 18 years of age, have you made arrangements with a relative who</span></div>
-        <div style="position: absolute; left: 44.00px; top: 508.03px" class="cls_009"><span class="cls_009">The student applicant will not be</span></div>
-        <div style="position: absolute; left: 328.00px; top: 512.03px" class="cls_009"><span class="cls_009">is at least 21 years of age and of good character with whom your child</span></div>
-        <div style="position: absolute; left: 44.00px; top: 520.03px" class="cls_009"><span class="cls_009">accompanied by either a parent or a</span></div>
-        <div style="position: absolute; left: 328.00px; top: 524.03px" class="cls_009"><span class="cls_009">will stay in Australia?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 532.04px" class="cls_009"><span class="cls_009">person who has legal custody, and will</span></div>
-        <div style="position: absolute; left: 44.00px; top: 544.04px" class="cls_009"><span class="cls_009">not stay in Australia with a relative who</span></div>
-        <div style="position: absolute; left: 224.00px; top: 544.04px" class="cls_009"><span class="cls_009"><input type="checkbox" id="chparentsituationNot" runat="server">Go to Question 64</span></div>
-        <div style="position: absolute; left: 328.00px; top: 544.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavearrangementwithrelativeNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 556.04px" class="cls_009"><span class="cls_009">is 21 years of age or older.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 560.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavearrangementwithrelativeYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 560.03px" class="cls_009"><span class="cls_009">Please give details of the relative</span></div>
-        <div style="position: absolute; left: 328.00px; top: 580.03px" class="cls_009"><span class="cls_009">Family name</span>&nbsp;<span style="border: 1px solid black;"><%= familyNameofrelative   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 600.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%= givenNameofrelative   %></span></div>
-        <div style="position: absolute; left: 387.72px; top: 634.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 634.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 634.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 644.03px" class="cls_009"><span class="cls_009">Date of birth</span>&nbsp;<span style="border: 1px solid black;"><%= dateOfBirthofrelative.Day + "/" +dateOfBirthofrelative.Month + "/" + dateOfBirthofrelative.Year    %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 664.03px" class="cls_009"><span class="cls_009">Address of relative in Australia</span><span style="border: 1px solid black;"><%= addressofRelative   %></span></div>
-        <div style="position: absolute; left: 476.00px; top: 715.53px" class="cls_010"><span class="cls_010">POSTCODE</span></div>
-        <div style="position: absolute; left: 328.00px; top: 732.03px" class="cls_009"><span class="cls_009">Relationship of relative to the child</span><span style="border: 1px solid black;"><%= relationshipofrelative   %></span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 18</span></div>
-        <div style="position: absolute; left: 245.94px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 15336px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background19.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 24.72px; top: 22.53px" class="cls_020"><span class="cls_020">62</span></div>
-        <div style="position: absolute; left: 44.00px; top: 24.03px" class="cls_009"><span class="cls_009">Will your relative reside in Australia as:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 24.03px" class="cls_009"><span class="cls_009">I am satisfied with the reception, care and support arrangements</span></div>
-        <div style="position: absolute; left: 308.72px; top: 22.53px" class="cls_020"><span class="cls_020">65</span></div>
-        <div style="position: absolute; left: 328.00px; top: 36.03px" class="cls_009"><span class="cls_009">that have been made in Australia for my dependent child under</span></div>
-        <div style="position: absolute; left: 44.00px; top: 44.03px" class="cls_009"><span class="cls_009">an Australian citizen</span></div>
-        <div style="position: absolute; left: 328.00px; top: 48.03px" class="cls_009"><span class="cls_009">18 years of age.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 56.03px" class="cls_009"><span class="cls_009">or permanent resident</span><input type="checkbox" id="chkrelativeresideasstatusPerm" runat="server"></div>
-        <div style="position: absolute; left: 328.00px; top: 64.03px" class="cls_014"><span class="cls_014">Note: Both parents must sign this declaration.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 72.03px" class="cls_009"><span class="cls_009">a Temporary resident</span><input type="checkbox" id="chkrelativeresideasstatusTemp" runat="server"></div>
-        <div style="position: absolute; left: 144.00px; top: 72.03px" class="cls_009"><span class="cls_009">How long are they permitted to stay in</span></div>
-        <div style="position: absolute; left: 144.00px; top: 84.03px" class="cls_009"><span class="cls_009">Australia?</span></div>
-                <div style="position: absolute; left: 144.00px; top: 98.03px" class="cls_009"><span style="border: 1px solid black;"><%= permitedtostayfor   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 84.03px" class="cls_014"><span class="cls_014">Signature of</span>&nbsp;<span style="border: 1px solid black;"><%= permitedtostayfor   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 96.03px" class="cls_014"><span class="cls_014">parent/person</span></div>
-        <div style="position: absolute; left: 328.00px; top: 108.03px" class="cls_014"><span class="cls_014">who has legal</span></div>
-        <div style="position: absolute; left: 203.72px; top: 118.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 225.78px; top: 118.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 260.34px; top: 118.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 328.00px; top: 120.03px" class="cls_014"><span class="cls_014">custody</span></div>
-        <div style="position: absolute; left: 144.00px; top: 128.03px" class="cls_009"><span class="cls_009">OR until</span>&nbsp;<span style="border: 1px solid black;"><%= permitedtostayDate.Day + "/" +permitedtostayDate.Month + "/" + permitedtostayDate.Year    %></span></div>
-        <div style="position: absolute; left: 395.72px; top: 130.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 417.78px; top: 130.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 452.34px; top: 130.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 367.13px; top: 141.54px" class="cls_009"><span class="cls_009">Date</span>&nbsp;<span style="border: 1px solid black;"><%= parentsignatureDate.Day + "/" +parentsignatureDate.Month + "/" + parentsignatureDate.Year    %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 148.03px" class="cls_009"><span class="cls_009">You </span><span class="cls_014">must</span><span class="cls_009"> attach evidence:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 160.03px" class="cls_009"><span class="cls_009">Full name (print in English)</span>&nbsp;<span style="border: 1px solid black;"><%= parentFullname   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 164.03px" class="cls_009"><span class="cls_009">• that your relative is of good character eg. police clearance; and</span></div>
-        <div style="position: absolute; left: 44.00px; top: 180.03px" class="cls_009"><span class="cls_009">• of your relative’s residence status in Australia.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 192.03px" class="cls_009"><span class="cls_009">Relationship to student applicant</span>&nbsp;<span style="border: 1px solid black;"><%= parentRelationshipwithstudent   %></span></div>
-        <div style="position: absolute; left: 24.72px; top: 206.53px" class="cls_020"><span class="cls_020">63</span></div>
-        <div style="position: absolute; left: 44.00px; top: 208.03px" class="cls_009"><span class="cls_009">Give details of your relative’s Student Guardian visa application?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 228.03px" class="cls_009"><span class="cls_009">Granted</span><input type="checkbox" id="chkguardianvisasatusGranted" runat="server"></div>
-        <div style="position: absolute; left: 112.00px; top: 228.03px" class="cls_009"><span class="cls_009">Visa label number</span></div>
-        <div style="position: absolute; left: 328.00px; top: 232.03px" class="cls_014"><span class="cls_014">Signature of</span></div>
-        <div style="position: absolute; left: 113.39px; top: 244.50px" class="cls_022"><span class="cls_022">V</span></div>
-        <div style="position: absolute; left: 162.89px; top: 244.50px" class="cls_022"><span class="cls_022">&lt;</span><span style="border: 1px solid black;"><%= guardianvisano   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 244.03px" class="cls_014"><span class="cls_014">parent/person</span>&nbsp;<span style="border: 1px solid black;"><%= parentsignature1   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 256.03px" class="cls_014"><span class="cls_014">who has legal</span></div>
-        <div style="position: absolute; left: 112.00px; top: 260.03px" class="cls_009"><span class="cls_009">Period of stay</span><span style="border: 1px solid black;"><%= guardianvisaperiodofstay   %></span></div>
-        <div style="position: absolute; left: 202.46px; top: 260.03px" class="cls_009"><span class="cls_009">Expiry date </span><span class="cls_010">(DAY/MONTH/YEAR)</span></div>
-        <div style="position: absolute; left: 328.00px; top: 268.03px" class="cls_014"><span class="cls_014">custody</span></div>
-        <div style="position: absolute; left: 164.00px; top: 279.53px" class="cls_010"><span class="cls_010">MONTHS</span>&nbsp;<span style="border: 1px solid black;"><%= guardianvisaperiodofstayDate.Day + "/" +guardianvisaperiodofstayDate.Month + "/" + guardianvisaperiodofstayDate.Year    %></span></div>
-        <div style="position: absolute; left: 395.72px; top: 278.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 417.78px; top: 278.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 452.34px; top: 278.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 367.13px; top: 289.53px" class="cls_009"><span class="cls_009">Date</span>&nbsp;<span style="border: 1px solid black;"><%= parentsignatureDate1.Day + "/" +parentsignatureDate1.Month + "/" + parentsignatureDate1.Year    %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 296.03px" class="cls_009"><span class="cls_009">Not yet</span></div>
-        <div style="position: absolute; left: 112.00px; top: 296.03px" class="cls_009"><span class="cls_009">Australian Government office where application</span></div>
-        <div style="position: absolute; left: 44.00px; top: 308.03px" class="cls_009"><span class="cls_009">decided</span><input type="checkbox" id="chkguardianvisasatusNot" runat="server"></div>
-        <div style="position: absolute; left: 112.00px; top: 308.03px" class="cls_009"><span class="cls_009">lodged</span></div>
-        <div style="position: absolute; left: 112.00px; top: 325.03px" class="cls_009"><span style="border: 1px solid black;"><%= govermentoffName   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 308.03px" class="cls_009"><span class="cls_009">Full name (print in English)</span>&nbsp;<span style="border: 1px solid black;"><%= parentFullname1   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 340.03px" class="cls_009"><span class="cls_009">Relationship to student applicant</span>&nbsp;<span style="border: 1px solid black;"><%= parentRelationshipwithstudent1   %></span></div>
-        <div style="position: absolute; left: 112.00px; top: 344.03px" class="cls_009"><span class="cls_009">Period of stay sought</span>&nbsp;<span style="border: 1px solid black;"><%= periodofstayofguardian   %></span></div>
-        <div style="position: absolute; left: 260.00px; top: 347.53px" class="cls_010"><span class="cls_010">MONTHS</span></div>
-        <div style="position: absolute; left: 60.00px; top: 368.03px" class="cls_009"><span class="cls_009">Now go to Question 65</span></div>
-        <div style="position: absolute; left: 475.55px; top: 384.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 24.72px; top: 391.53px" class="cls_020"><span class="cls_020">64</span></div>
-        <div style="position: absolute; left: 44.00px; top: 393.03px" class="cls_009"><span class="cls_009">As the parents or a person(s) who has legal custody of a student applicant</span></div>
-        <div style="position: absolute; left: 44.00px; top: 405.03px" class="cls_009"><span class="cls_009">under 18 years of age, who is neither being accompanied by you nor</span></div>
-        <div style="position: absolute; left: 44.00px; top: 417.03px" class="cls_009"><span class="cls_009">staying with a relative who is at least 21 years of age, have you obtained</span></div>
-        <div style="position: absolute; left: 44.00px; top: 429.03px" class="cls_009"><span class="cls_009">a written statement from your child’s education provider(s) that</span></div>
-        <div style="position: absolute; left: 44.00px; top: 441.03px" class="cls_009"><span class="cls_009">accommodation, support and general welfare arrangements for your child</span></div>
-        <div style="position: absolute; left: 44.00px; top: 453.03px" class="cls_009"><span class="cls_009">are appropriate?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 469.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavewelfarearrangementsNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 485.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavewelfarearrangementsYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 485.03px" class="cls_009"><span class="cls_009">Please attach the original signed undertaking from the</span></div>
-        <div style="position: absolute; left: 84.00px; top: 497.03px" class="cls_009"><span class="cls_009">education provider</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 496.26px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 19</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 16188px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background20.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_019"><span class="cls_019">Custody arrangements for students</span></div>
-        <div style="position: absolute; left: 44.00px; top: 32.73px" class="cls_019"><span class="cls_019">under 18 years of age</span></div>
-        <div style="position: absolute; left: 24.72px; top: 61.53px" class="cls_020"><span class="cls_020">66</span></div>
-        <div style="position: absolute; left: 44.00px; top: 63.03px" class="cls_009"><span class="cls_009">Do you have the </span><span class="cls_014">sole legal right</span><span class="cls_009"> to determine where the applicant will</span></div>
-        <div style="position: absolute; left: 308.72px; top: 62.53px" class="cls_020"><span class="cls_020">67</span></div>
-        <div style="position: absolute; left: 328.00px; top: 64.03px" class="cls_014"><span class="cls_014">Declaration by the parent(s) or person(s) with legal custody</span></div>
-        <div style="position: absolute; left: 44.00px; top: 75.03px" class="cls_009"><span class="cls_009">live or to remove the applicant from their country of usual residence?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 76.03px" class="cls_014"><span class="cls_014">of a student visa applicant under 18 years of age</span></div>
-        <div style="position: absolute; left: 328.00px; top: 88.03px" class="cls_009"><span class="cls_009">I am not aware of any reason why the visa applicant should not travel to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 91.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavesolelegalrightsNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 91.03px" class="cls_009"><span class="cls_009">Provide details of ALL other people who have custody,</span></div>
-        <div style="position: absolute; left: 328.00px; top: 100.03px" class="cls_009"><span class="cls_009">Australia (the custody/access/guardianship rights of another person are</span></div>
-        <div style="position: absolute; left: 84.00px; top: 103.03px" class="cls_009"><span class="cls_009">access or guardianship rights in relation to the applicant</span></div>
-        <div style="position: absolute; left: 328.00px; top: 112.03px" class="cls_009"><span class="cls_009">not affected).</span></div>
-        <div style="position: absolute; left: 84.00px; top: 119.03px" class="cls_009"><span class="cls_009">If there is more than one person, please attach details.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 128.03px" class="cls_014"><span class="cls_014">Signature of</span></div>
-        <div style="position: absolute; left: 84.00px; top: 136.03px" class="cls_009"><span class="cls_009">Name</span>&nbsp;<span style="border: 1px solid black;"><%= personname   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 140.03px" class="cls_014"><span class="cls_014">parent/person</span>&nbsp;<span style="border: 1px solid black;"><%= parentsignatur67   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 152.03px" class="cls_014"><span class="cls_014">who has legal</span></div>
-        <div style="position: absolute; left: 328.00px; top: 164.03px" class="cls_014"><span class="cls_014">custody</span></div>
-        <div style="position: absolute; left: 84.00px; top: 168.03px" class="cls_009"><span class="cls_009">Residential address</span>&nbsp;<span style="border: 1px solid black;"><%= personaddress   %></span></div>
-        <div style="position: absolute; left: 395.72px; top: 174.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 417.78px; top: 174.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 452.34px; top: 174.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 364.00px; top: 184.03px" class="cls_009"><span class="cls_009">Date</span>&nbsp;<span style="border: 1px solid black;"><%= signDate.Day + "/" +signDate.Month + "/" + signDate.Year    %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 204.03px" class="cls_009"><span class="cls_009">Full name (print in English)</span>&nbsp;<span style="border: 1px solid black;"><%= fullname67   %></span></div>
-        <div style="position: absolute; left: 207.00px; top: 220.73px" class="cls_010"><span class="cls_010">POSTAL CODE</span></div>
-        <div style="position: absolute; left: 84.00px; top: 232.03px" class="cls_009"><span class="cls_009">Telephone number</span></div>
-        <div style="position: absolute; left: 328.00px; top: 236.03px" class="cls_009"><span class="cls_009">Relationship to student applicant</span>&nbsp;<span style="border: 1px solid black;"><%= relationship67   %></span></div>
-        <div style="position: absolute; left: 90.68px; top: 245.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 139.28px; top: 245.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 210.50px; top: 245.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 88.00px; top: 259.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= personcontactno   %></span></div>
-        <div style="position: absolute; left: 126.77px; top: 259.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 132.00px; top: 259.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 170.77px; top: 259.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 84.00px; top: 272.03px" class="cls_009"><span class="cls_009">Relationship to student visa applicant</span>&nbsp;<span style="border: 1px solid black;"><%= personrelationship   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 280.03px" class="cls_014"><span class="cls_014">Signature of</span></div>
-        <div style="position: absolute; left: 328.00px; top: 292.03px" class="cls_014"><span class="cls_014">parent/person</span>&nbsp;<span style="border: 1px solid black;"><%= parentsignatur671   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 304.03px" class="cls_009"><span class="cls_009">Nature of legal right</span>&nbsp;<span style="border: 1px solid black;"><%= personnatureoflegalrights   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 304.03px" class="cls_014"><span class="cls_014">who has legal</span></div>
-        <div style="position: absolute; left: 328.00px; top: 316.03px" class="cls_014"><span class="cls_014">custody</span></div>
-        <div style="position: absolute; left: 395.72px; top: 326.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 417.78px; top: 326.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 452.34px; top: 326.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 364.00px; top: 336.03px" class="cls_009"><span class="cls_009">Date</span>&nbsp;<span style="border: 1px solid black;"><%= signDate1.Day + "/" +signDate1.Month + "/" + signDate1.Year    %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 340.03px" class="cls_009"><span class="cls_009">You must sign the declaration at Question 67.</span></div>
-        <div style="position: absolute; left: 84.00px; top: 356.03px" class="cls_009"><span class="cls_009">All other people who have custody, access or guardianship</span></div>
-        <div style="position: absolute; left: 328.00px; top: 356.03px" class="cls_009"><span class="cls_009">Full name (print in English)</span>&nbsp;<span style="border: 1px solid black;"><%= fullname671   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 368.03px" class="cls_009"><span class="cls_009">rights in relation to the applicant must also sign the</span></div>
-        <div style="position: absolute; left: 84.00px; top: 380.03px" class="cls_009"><span class="cls_009">declaration at Question 67.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 388.03px" class="cls_009"><span class="cls_009">Relationship to student applicant</span>&nbsp;<span style="border: 1px solid black;"><%= relationship671   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 396.03px" class="cls_009"><span class="cls_009">If any of these people are unable to complete the declaration</span></div>
-        <div style="position: absolute; left: 84.00px; top: 408.03px" class="cls_009"><span class="cls_009">at Question 67 for any reason, you must attach a statutory</span></div>
-        <div style="position: absolute; left: 84.00px; top: 420.03px" class="cls_009"><span class="cls_009">declaration from them giving permission for the applicant to</span></div>
-        <div style="position: absolute; left: 328.00px; top: 424.03px" class="cls_009"><span class="cls_009">If more than 2 people have custody, access or guardianship rights in</span></div>
-        <div style="position: absolute; left: 84.00px; top: 432.03px" class="cls_009"><span class="cls_009">travel to Australia as a student.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 436.03px" class="cls_009"><span class="cls_009">relation to the applicant, please attach a statutory declaration from them</span></div>
-        <div style="position: absolute; left: 328.00px; top: 448.03px" class="cls_009"><span class="cls_009">giving permission for the applicant to travel to Australia as a student.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 456.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavesolelegalrightsYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 456.03px" class="cls_009"><span class="cls_009">Complete the declaration at Question 67</span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 20</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">©</span></div>
-        <div style="position: absolute; left: 252.22px; top: 820.73px" class="cls_010"><span class="cls_010">COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 17040px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background21.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_019"><span class="cls_019">Assistance with this form</span></div>
-        <div style="position: absolute; left: 308.72px; top: 22.53px" class="cls_020"><span class="cls_020">72</span></div>
-        <div style="position: absolute; left: 328.00px; top: 24.03px" class="cls_009"><span class="cls_009">Did you pay the person and/or give a gift for this assistance?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 40.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhavepaytoassistanceNo" runat="server"></div>
-        <div style="position: absolute; left: 24.72px; top: 42.53px" class="cls_020"><span class="cls_020">68</span></div>
-        <div style="position: absolute; left: 44.00px; top: 44.03px" class="cls_009"><span class="cls_009">Did you receive assistance in completing this form?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 56.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhavepaytoassistanceYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 56.03px" class="cls_009"><span class="cls_009">How much did you pay?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 60.03px" class="cls_009"><span class="cls_009">No</span></div>
-        <div style="position: absolute; left: 84.00px; top: 60.03px" class="cls_009"><span class="cls_009">Go to Question 73</span></div>
-        <div style="position: absolute; left: 372.04px; top: 72.03px" class="cls_009"><span class="cls_009">A$</span>&nbsp;<span style="border: 1px solid black;"><%= howmuchyoupay   %></span></div>
-        <div style="position: absolute; left: 488.00px; top: 72.03px" class="cls_009"><span class="cls_009">AND/OR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 76.03px" class="cls_009"><span class="cls_009">Yes</span></div>
-        <div style="position: absolute; left: 84.00px; top: 76.03px" class="cls_009"><span class="cls_009">Please give details of the person who assisted you</span></div>
-        <div style="position: absolute; left: 368.00px; top: 88.03px" class="cls_009"><span class="cls_009">What kind of gift did you give? (eg. jewellery)</span></div>
-                <div style="position: absolute; left: 368.00px; top: 100.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= giftgiven   %></span></div>
-        <div style="position: absolute; left: 43.82px; top: 96.03px" class="cls_009"><span class="cls_009">Title:</span></div>
-        <div style="position: absolute; left: 70.85px; top: 96.03px" class="cls_009"><span class="cls_009">Mr</span></div>
-        <div style="position: absolute; left: 103.16px; top: 96.03px" class="cls_009"><span class="cls_009">Mrs</span></div>
-        <div style="position: absolute; left: 140.36px; top: 96.03px" class="cls_009"><span class="cls_009">Miss</span></div>
-        <div style="position: absolute; left: 181.80px; top: 96.03px" class="cls_009"><span class="cls_009">Ms</span></div>
-        <div style="position: absolute; left: 217.54px; top: 96.03px" class="cls_009"><span class="cls_009">Other</span></div>
-        <div style="position: absolute; left: 44.00px; top: 117.35px" class="cls_009"><span class="cls_009">Family name</span></div>
-        <div style="position: absolute; left: 368.00px; top: 120.03px" class="cls_009"><span class="cls_009">Value of gift (approximately)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 137.35px" class="cls_009"><span class="cls_009">Given names</span></div>
-        <div style="position: absolute; left: 372.04px; top: 136.03px" class="cls_009"><span class="cls_009">A$</span>&nbsp;<span style="border: 1px solid black;"><%= valueofgift   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 156.03px" class="cls_009"><span class="cls_009">Address</span></div>
-        <div style="position: absolute; left: 328.00px; top: 166.73px" class="cls_019"><span class="cls_019">Options for receiving written</span></div>
-        <div style="position: absolute; left: 328.00px; top: 184.73px" class="cls_019"><span class="cls_019">communications</span></div>
-        <div style="position: absolute; left: 208.00px; top: 206.73px" class="cls_010"><span class="cls_010">POSTCODE</span></div>
-        <div style="position: absolute; left: 308.72px; top: 214.53px" class="cls_020"><span class="cls_020">73</span></div>
-        <div style="position: absolute; left: 328.00px; top: 216.03px" class="cls_009"><span class="cls_009">All written communications about this application should be sent to:</span></div>
-        <div style="position: absolute; left: 44.00px; top: 224.03px" class="cls_009"><span class="cls_009">Telephone number or daytime contact</span></div>
-        <div style="position: absolute; left: 328.00px; top: 228.03px" class="cls_009"><span class="cls_009">(Tick one box only)</span></div>
-        <div style="position: absolute; left: 103.18px; top: 241.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 151.78px; top: 241.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 211.00px; top: 241.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 374.21px; top: 244.03px" class="cls_009"><span class="cls_009">Myself</span><input type="checkbox" id="chkhavewrittencommunicationsMyself" runat="server"></div>
-        <div style="position: absolute; left: 424.00px; top: 244.03px" class="cls_009"><span class="cls_009">All written communications will be sent to</span></div>
-        <div style="position: absolute; left: 44.00px; top: 252.03px" class="cls_009"><span class="cls_009">Office hours</span></div>
-        <div style="position: absolute; left: 100.50px; top: 255.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 139.27px; top: 255.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 144.50px; top: 255.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 183.27px; top: 255.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 424.00px; top: 256.03px" class="cls_009"><span class="cls_009">the address for communications that you</span></div>
-        <div style="position: absolute; left: 424.00px; top: 268.03px" class="cls_009"><span class="cls_009">have provided in this form.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 272.03px" class="cls_009"><span class="cls_009">Mobile phone</span></div>
-        <div style="position: absolute; left: 424.00px; top: 280.03px" class="cls_009"><span class="cls_009">Go to Question 81</span></div>
-        <div style="position: absolute; left: 328.64px; top: 292.03px" class="cls_009"><span class="cls_009">Australian registered</span></div>
-        <div style="position: absolute; left: 24.72px; top: 298.53px" class="cls_020"><span class="cls_020">69</span></div>
-        <div style="position: absolute; left: 44.00px; top: 300.03px" class="cls_009"><span class="cls_009">Is your agent registered with the Migration Agents Registration</span></div>
-        <div style="position: absolute; left: 344.68px; top: 302.53px" class="cls_009"><span class="cls_009">migration agent</span><input type="checkbox" id="chkhaveauthorisedpersonMigrationagent" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 312.03px" class="cls_009"><span class="cls_009">Authority (MARA)?</span></div>
-        <div style="position: absolute; left: 424.00px; top: 314.03px" class="cls_009"><span class="cls_009">Go to Question 78</span></div>
-        <div style="position: absolute; left: 385.97px; top: 316.03px" class="cls_009"><span class="cls_009">OR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 328.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkisregisteredwithMARANo" runat="server"></div>
-        <div style="position: absolute; left: 346.35px; top: 332.03px" class="cls_009"><span class="cls_009">Offshore agent</span><input type="checkbox" id="chkhaveauthorisedpersonOffshoreagent" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 344.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkisregisteredwithMARAYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 344.03px" class="cls_009"><span class="cls_009">Go to Question 73</span></div>
-        <div style="position: absolute; left: 341.33px; top: 352.03px" class="cls_009"><span class="cls_009">Agent exempted</span><input type="checkbox" id="chkhaveauthorisedpersonAgentExmpted" runat="server"></div>
-        <div style="position: absolute; left: 424.00px; top: 356.03px" class="cls_009"><span class="cls_009">You must complete form 956 Appointment</span></div>
-        <div style="position: absolute; left: 340.57px; top: 362.53px" class="cls_009"><span class="cls_009">from registration</span></div>
-        <div style="position: absolute; left: 24.72px; top: 366.53px" class="cls_020"><span class="cls_020">70</span></div>
-        <div style="position: absolute; left: 44.00px; top: 368.03px" class="cls_009"><span class="cls_009">Is the person an education agent?</span></div>
-        <div style="position: absolute; left: 424.00px; top: 368.03px" class="cls_009"><span class="cls_009">of a migration agent and attach it to this</span></div>
-        <div style="position: absolute; left: 424.00px; top: 380.03px" class="cls_009"><span class="cls_009">application form. Go to Question 81</span></div>
-        <div style="position: absolute; left: 44.00px; top: 384.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveeducationagentNo" runat="server"></div>
-        <div style="position: absolute; left: 360.16px; top: 396.03px" class="cls_009"><span class="cls_009">Authorised</span><input type="checkbox" id="chkhaveauthorisedpersonAuthorised" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 400.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveeducationagentYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 400.03px" class="cls_009"><span class="cls_009">Please give details below</span></div>
-        <div style="position: absolute; left: 424.00px; top: 400.03px" class="cls_009"><span class="cls_009">This is a person authorised to only receive</span></div>
-        <div style="position: absolute; left: 367.20px; top: 406.53px" class="cls_009"><span class="cls_009">recipient</span></div>
-        <div style="position: absolute; left: 424.00px; top: 412.03px" class="cls_009"><span class="cls_009">written communications. All written</span></div>
-        <div style="position: absolute; left: 84.00px; top: 416.03px" class="cls_009"><span class="cls_009">Education Agency Business Name</span></div>
-        <div style="position: absolute; left: 84.00px; top: 426.03px" class="cls_009"> &nbsp;<span style="border: 1px solid black;"><%= businessname   %></span></div>
- 
-        <div style="position: absolute; left: 424.00px; top: 424.03px" class="cls_009"><span class="cls_009">communications that would otherwise</span></div>
-        <div style="position: absolute; left: 424.00px; top: 436.03px" class="cls_009"><span class="cls_009">have been sent to you in relation to this</span></div>
-        <div style="position: absolute; left: 84.00px; top: 448.03px" class="cls_009"><span class="cls_009">Education Agent Registration Number (if known)</span></div>
-        <div style="position: absolute; left: 84.00px; top: 458.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= registrationno   %></span></div>
-        <div style="position: absolute; left: 424.00px; top: 448.03px" class="cls_009"><span class="cls_009">application will be sent to that person.</span></div>
-        <div style="position: absolute; left: 308.72px; top: 470.53px" class="cls_020"><span class="cls_020">74</span></div>
-        <div style="position: absolute; left: 328.00px; top: 472.03px" class="cls_009"><span class="cls_009">Do you want the authorised person to receive health and/or character</span></div>
-        <div style="position: absolute; left: 84.00px; top: 480.03px" class="cls_009"><span class="cls_009">Address (if different from address given in Question 68)</span></div>
-        <div style="position: absolute; left: 84.00px; top: 490.03px" class="cls_009"> &nbsp;<span style="border: 1px solid black;"><%= educationagentaddress   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 484.03px" class="cls_009"><span class="cls_009">information about you, your spouse or your dependants, that may arise,</span></div>
-        <div style="position: absolute; left: 328.00px; top: 496.03px" class="cls_009"><span class="cls_009">or be revealed, in the course of this application (for example, requests</span></div>
-        <div style="position: absolute; left: 328.00px; top: 508.03px" class="cls_009"><span class="cls_009">for medical investigation, other health information about you, or the</span></div>
-        <div style="position: absolute; left: 328.00px; top: 520.03px" class="cls_009"><span class="cls_009">results of criminal history checks)?</span></div>
-        <div style="position: absolute; left: 192.00px; top: 531.53px" class="cls_010"><span class="cls_010">POSTCODE</span></div>
-        <div style="position: absolute; left: 328.00px; top: 536.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveauthorisedpersonNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 544.03px" class="cls_009"><span class="cls_009">E-mail address</span></div>
-                <div style="position: absolute; left: 84.00px; top: 554.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= educationagentemail   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 552.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveauthorisedpersonYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 576.03px" class="cls_009"><span class="cls_009">Telephone number or daytime contact</span></div>
-        <div style="position: absolute; left: 84.00px; top: 592.03px" class="cls_009"><span class="cls_009">Office hours</span></div>
-        <div style="position: absolute; left: 91.18px; top: 605.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 139.78px; top: 605.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 199.00px; top: 605.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 88.50px; top: 619.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= educationagentofficeno   %></span></div>
-        <div style="position: absolute; left: 127.27px; top: 619.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 132.50px; top: 619.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 171.27px; top: 619.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 84.00px; top: 632.03px" class="cls_009"><span class="cls_009">Mobile phone</span></div>
-        <div style="position: absolute; left: 84.00px; top: 642.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= educationagentphoneno   %></span></div>
-        <div style="position: absolute; left: 84.00px; top: 664.03px" class="cls_009"><span class="cls_009">Fax number</span></div>
-        <div style="position: absolute; left: 91.18px; top: 677.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 139.78px; top: 677.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 199.00px; top: 677.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 88.50px; top: 691.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= educationagentfaxno   %></span></div>
-        <div style="position: absolute; left: 127.27px; top: 691.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 132.50px; top: 691.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 171.27px; top: 691.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 24.72px; top: 714.53px" class="cls_020"><span class="cls_020">71</span></div>
-        <div style="position: absolute; left: 44.00px; top: 716.03px" class="cls_009"><span class="cls_009">Is your agent in Australia?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 732.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveagentinaustraliaNo" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 732.03px" class="cls_009"><span class="cls_009">Go to Question 73</span></div>
-        <div style="position: absolute; left: 44.00px; top: 748.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkhaveagentinaustraliaYes" runat="server"></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 496.26px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 21</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 17892px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background22.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.69px; top: 14.73px" class="cls_019"><span class="cls_019">Authorised recipient details</span></div>
-        <div style="position: absolute; left: 328.00px; top: 14.73px" class="cls_019"><span class="cls_019">Agent details</span></div>
-        <div style="position: absolute; left: 44.00px; top: 36.03px" class="cls_014"><span class="cls_014">Note:</span><span class="cls_009"> Do </span><span class="cls_014">NOT</span><span class="cls_009"> complete this section if you are acting as a</span></div>
-        <div style="position: absolute; left: 308.72px; top: 42.53px" class="cls_020"><span class="cls_020">78</span></div>
-        <div style="position: absolute; left: 328.00px; top: 44.03px" class="cls_009"><span class="cls_009">Provide the details requested below about the agent who is</span></div>
-        <div style="position: absolute; left: 44.00px; top: 48.03px" class="cls_009"><span class="cls_009">migration agent, go to Question 78</span></div>
-        <div style="position: absolute; left: 328.00px; top: 56.03px" class="cls_009"><span class="cls_009">authorised to act on your behalf and to receive all written</span></div>
-        <div style="position: absolute; left: 328.00px; top: 68.03px" class="cls_009"><span class="cls_009">communications about this application.</span></div>
-        <div style="position: absolute; left: 24.72px; top: 70.53px" class="cls_020"><span class="cls_020">75</span></div>
-        <div style="position: absolute; left: 44.00px; top: 72.03px" class="cls_009"><span class="cls_009">Provide details of the person who is authorised on your behalf to</span></div>
-        <div style="position: absolute; left: 502.75px; top: 81.73px" class="cls_010"><span class="cls_010">7 DIGITS</span></div>
-        <div style="position: absolute; left: 44.00px; top: 84.03px" class="cls_009"><span class="cls_009">receive all written communications about this application.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 88.03px" class="cls_009"><span class="cls_009">Migration Agent Registration</span></div>
-        <div style="position: absolute; left: 471.00px; top: 92.03px" class="cls_009"><span class="cls_009">:</span>&nbsp;<span style="border: 1px solid black;"><%= migratioagentNo   %></span></div>
-        <div style="position: absolute; left: 503.00px; top: 92.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 519.00px; top: 92.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 535.00px; top: 92.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 551.00px; top: 92.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 328.00px; top: 98.53px" class="cls_009"><span class="cls_009">Number (MARN)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 104.03px" class="cls_009"><span class="cls_009">Title:</span></div>
-        <div style="position: absolute; left: 71.03px; top: 104.03px" class="cls_009"><span class="cls_009">Mr</span></div>
-        <div style="position: absolute; left: 103.34px; top: 104.03px" class="cls_009"><span class="cls_009">Mrs</span></div>
-        <div style="position: absolute; left: 140.54px; top: 104.03px" class="cls_009"><span class="cls_009">Miss</span></div>
-        <div style="position: absolute; left: 181.98px; top: 104.03px" class="cls_009"><span class="cls_009">Ms</span></div>
-        <div style="position: absolute; left: 217.72px; top: 104.03px" class="cls_009"><span class="cls_009">Other</span></div>
-        <div style="position: absolute; left: 328.00px; top: 116.03px" class="cls_009"><span class="cls_009">OR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 124.03px" class="cls_009"><span class="cls_009">Family name</span>&nbsp;<span style="border: 1px solid black;"><%= authorisedpersofamilynname   %></span></div>
-        <div style="position: absolute; left: 502.75px; top: 125.73px" class="cls_010"><span class="cls_010">7 DIGITS</span></div>
-        <div style="position: absolute; left: 328.00px; top: 132.03px" class="cls_009"><span class="cls_009">Offshore Agent ID Number</span></div>
-        <div style="position: absolute; left: 471.00px; top: 136.03px" class="cls_009"><span class="cls_009">:</span>&nbsp;<span style="border: 1px solid black;"><%= offshoreagentId   %></span></div>
-        <div style="position: absolute; left: 503.00px; top: 136.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 519.00px; top: 136.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 535.00px; top: 136.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 551.00px; top: 136.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 44.00px; top: 144.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%= authorisedpersongivenname   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 142.53px" class="cls_009"><span class="cls_009">(if allocated by the department)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 164.03px" class="cls_009"><span class="cls_009">Authorised recipient’s postal address</span></div>
-                <div style="position: absolute; left: 44.00px; top: 180.03px" class="cls_009">&nbsp;<span style="border: 1px solid black;"><%= authorisedpersonaddress   %></span></div>
-        <div style="position: absolute; left: 327.96px; top: 164.13px" class="cls_009"><span class="cls_009">Title:</span></div>
-        <div style="position: absolute; left: 354.85px; top: 164.03px" class="cls_009"><span class="cls_009">Mr</span></div>
-        <div style="position: absolute; left: 387.67px; top: 164.13px" class="cls_009"><span class="cls_009">Mrs</span></div>
-        <div style="position: absolute; left: 424.87px; top: 164.13px" class="cls_009"><span class="cls_009">Miss</span></div>
-        <div style="position: absolute; left: 466.30px; top: 164.13px" class="cls_009"><span class="cls_009">Ms</span></div>
-        <div style="position: absolute; left: 503.27px; top: 164.13px" class="cls_009"><span class="cls_009">Other</span></div>
-        <div style="position: absolute; left: 328.00px; top: 184.03px" class="cls_009"><span class="cls_009">Family name</span>&nbsp;<span style="border: 1px solid black;"><%= agentfamilyname   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 204.03px" class="cls_009"><span class="cls_009">Given names</span>&nbsp;<span style="border: 1px solid black;"><%= agentgivenname   %></span></div>
-        <div style="position: absolute; left: 208.00px; top: 215.73px" class="cls_010"><span class="cls_010">POSTCODE</span></div>
-        <div style="position: absolute; left: 328.00px; top: 224.03px" class="cls_009"><span class="cls_009">Business or</span></div>
-        <div style="position: absolute; left: 44.00px; top: 232.03px" class="cls_009"><span class="cls_009">Telephone number or daytime contact</span></div>
-        <div style="position: absolute; left: 328.00px; top: 234.13px" class="cls_024"><span class="cls_024">company name</span>&nbsp;<span style="border: 1px solid black;"><%= agentcompanyname   %></span></div>
-        <div style="position: absolute; left: 103.18px; top: 249.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 151.78px; top: 249.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 211.00px; top: 249.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 328.00px; top: 252.03px" class="cls_009"><span class="cls_009">Postal address</span>&nbsp;<span style="border: 1px solid black;"><%= agenntaddress   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 260.03px" class="cls_009"><span class="cls_009">Office hours</span></div>
-        <div style="position: absolute; left: 100.50px; top: 263.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= authorisedpersonofficeno   %></span></div>
-        <div style="position: absolute; left: 139.27px; top: 263.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 144.50px; top: 263.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 183.27px; top: 263.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 280.03px" class="cls_009"><span class="cls_009">Mobile phone</span>&nbsp;<span style="border: 1px solid black;"><%= authorisedpersonmobileno   %></span></div>
-        <div style="position: absolute; left: 492.00px; top: 303.73px" class="cls_010"><span class="cls_010">POSTCODE</span></div>
-        <div style="position: absolute; left: 44.69px; top: 310.73px" class="cls_019"><span class="cls_019">Authorised recipient consent</span></div>
-        <div style="position: absolute; left: 328.00px; top: 320.03px" class="cls_009"><span class="cls_009">Telephone number or daytime contact</span></div>
-        <div style="position: absolute; left: 386.68px; top: 337.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 435.28px; top: 337.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 494.50px; top: 337.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 24.72px; top: 338.53px" class="cls_020"><span class="cls_020">76</span></div>
-        <div style="position: absolute; left: 44.00px; top: 340.03px" class="cls_009"><span class="cls_009">As the authorised recipient named on this form, do you agree to the</span></div>
-        <div style="position: absolute; left: 328.00px; top: 348.03px" class="cls_009"><span class="cls_009">Office hours</span></div>
-        <div style="position: absolute; left: 384.50px; top: 351.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= agentofficeno   %></span></div>
-        <div style="position: absolute; left: 423.27px; top: 351.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 428.50px; top: 351.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 467.27px; top: 351.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 352.03px" class="cls_009"><span class="cls_009">department communicating with you by fax, e-mail or other electronic</span></div>
-        <div style="position: absolute; left: 44.00px; top: 364.03px" class="cls_009"><span class="cls_009">means?</span></div>
-        <div style="position: absolute; left: 328.00px; top: 368.03px" class="cls_009"><span class="cls_009">Mobile phone</span>&nbsp;<span style="border: 1px solid black;"><%= agentmobileno   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 380.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkhaveagreetocommunicateNo" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 396.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chhaveagreetocommunicateYes" runat="server"></div>
-        <div style="position: absolute; left: 84.00px; top: 396.03px" class="cls_009"><span class="cls_009">Give details</span></div>
-        <div style="position: absolute; left: 328.00px; top: 398.73px" class="cls_019"><span class="cls_019">Agent consent</span></div>
-        <div style="position: absolute; left: 102.68px; top: 413.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 151.28px; top: 413.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 216.50px; top: 413.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 44.00px; top: 424.03px" class="cls_009"><span class="cls_009">Fax number</span></div>
-        <div style="position: absolute; left: 100.00px; top: 427.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= Faxnumber   %></span></div>
-        <div style="position: absolute; left: 138.77px; top: 427.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 144.00px; top: 427.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 182.77px; top: 427.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 308.72px; top: 426.53px" class="cls_020"><span class="cls_020">79</span></div>
-        <div style="position: absolute; left: 327.96px; top: 428.03px" class="cls_009"><span class="cls_009">As the agent named on this form, do you agree to the department</span></div>
-        <div style="position: absolute; left: 327.96px; top: 440.03px" class="cls_009"><span class="cls_009">communicating with you by fax, e-mail or other electronic means?</span></div>
-        <div style="position: absolute; left: 44.00px; top: 444.03px" class="cls_009"><span class="cls_009">E-mail address</span>&nbsp;<span style="border: 1px solid black;"><%= authorizedpersonEmailaddress   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 456.03px" class="cls_009"><span class="cls_009">No</span><input type="checkbox" id="chkagentagreetocommunicateNo" runat="server"></div>
-        <div style="position: absolute; left: 24.72px; top: 470.53px" class="cls_020"><span class="cls_020">77</span></div>
-        <div style="position: absolute; left: 44.00px; top: 472.03px" class="cls_009"><span class="cls_009">I understand and accept that I am the person appointed by the</span></div>
-        <div style="position: absolute; left: 328.00px; top: 472.03px" class="cls_009"><span class="cls_009">Yes</span><input type="checkbox" id="chkagentagreetocommunicateYes" runat="server"></div>
-        <div style="position: absolute; left: 368.00px; top: 472.03px" class="cls_009"><span class="cls_009">Give details</span></div>
-        <div style="position: absolute; left: 44.00px; top: 484.03px" class="cls_009"><span class="cls_009">applicant to receive all written communications.</span></div>
-        <div style="position: absolute; left: 386.68px; top: 489.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 435.28px; top: 489.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 500.50px; top: 489.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 44.00px; top: 500.03px" class="cls_014"><span class="cls_014">Signature of</span>&nbsp;<span style="border: 1px solid black;"><%= signatureauthorizedperson   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 500.03px" class="cls_009"><span class="cls_009">Fax number</span></div>
-        <div style="position: absolute; left: 384.00px; top: 503.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= agentfaxno   %></span></div>
-        <div style="position: absolute; left: 422.77px; top: 503.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 428.00px; top: 503.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 466.77px; top: 503.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 512.03px" class="cls_014"><span class="cls_014">authorised</span></div>
-        <div style="position: absolute; left: 328.00px; top: 520.03px" class="cls_009"><span class="cls_009">E-mail address</span>&nbsp;<span style="border: 1px solid black;"><%= agentemailaddress   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 524.03px" class="cls_014"><span class="cls_014">recipient</span></div>
-        <div style="position: absolute; left: 103.72px; top: 546.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 125.78px; top: 546.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 160.34px; top: 546.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 308.72px; top: 546.53px" class="cls_020"><span class="cls_020">80</span></div>
-        <div style="position: absolute; left: 328.00px; top: 548.03px" class="cls_009"><span class="cls_009">I understand and accept that I am the person appointed by the applicant</span></div>
-        <div style="position: absolute; left: 76.48px; top: 556.03px" class="cls_009"><span class="cls_009">Date</span><span style="border: 1px solid black;"><%= dateofsign.Day + "/" +dateofsign.Month + "/" +dateofsign.Year   %></span></div>
-        <div style="position: absolute; left: 328.00px; top: 560.03px" class="cls_009"><span class="cls_009">to receive all written communications and act as his/her agent.</span></div>
-        <div style="position: absolute; left: 328.00px; top: 580.03px" class="cls_014"><span class="cls_014">Signature of</span>&nbsp;<span style="border: 1px solid black;"><%= agentsignature   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 584.03px" class="cls_009"><span class="cls_009">Now go to Question 81</span></div>
-        <div style="position: absolute; left: 328.00px; top: 592.03px" class="cls_014"><span class="cls_014">agent</span></div>
-        <div style="position: absolute; left: 387.72px; top: 622.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 622.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 622.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 360.49px; top: 632.03px" class="cls_009"><span class="cls_009">Date</span><span style="border: 1px solid black;"><%= agentsigndate.Day + "/" +agentsigndate.Month + "/" +agentsigndate.Year   %></span></div>
-        <div style="position: absolute; left: 475.55px; top: 660.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 22</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">©</span></div>
-        <div style="position: absolute; left: 252.22px; top: 820.73px" class="cls_010"><span class="cls_010">COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 18744px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background23.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_019"><span class="cls_019">Payment details</span></div>
-        <div style="position: absolute; left: 24.72px; top: 42.53px" class="cls_020"><span class="cls_020">81</span></div>
-        <div style="position: absolute; left: 44.00px; top: 44.03px" class="cls_009"><span class="cls_009">How will you pay your application charge? (If applying in Australia, debit</span></div>
-        <div style="position: absolute; left: 44.00px; top: 56.03px" class="cls_009"><span class="cls_009">card or credit card are the preferred methods of payment.)</span></div>
-        <div style="position: absolute; left: 56.25px; top: 76.03px" class="cls_009"><span class="cls_009">Bank cheque</span><input type="checkbox" id="chkpaymentmethodBankCheque" runat="server"></div>
-        <div style="position: absolute; left: 127.98px; top: 76.03px" class="cls_009"><span class="cls_009">If applying outside Australia, please check with</span></div>
-        <div style="position: absolute; left: 128.00px; top: 88.03px" class="cls_009"><span class="cls_009">the Australian Government office where you</span></div>
-        <div style="position: absolute; left: 128.00px; top: 100.03px" class="cls_009"><span class="cls_009">intend to lodge your application that you may</span></div>
-        <div style="position: absolute; left: 128.00px; top: 112.03px" class="cls_009"><span class="cls_009">pay by cheque.</span></div>
-        <div style="position: absolute; left: 57.77px; top: 128.03px" class="cls_009"><span class="cls_009">Money order</span><input type="checkbox" id="chkpaymentmethodMoneyOrder" runat="server"></div>
-        <div style="position: absolute; left: 65.57px; top: 148.03px" class="cls_009"><span class="cls_009">Debit card</span><input type="checkbox" id="chkpaymentmethodDC" runat="server"></div>
-        <div style="position: absolute; left: 128.02px; top: 148.03px" class="cls_009"><span class="cls_009">This option is available in Australia only. It is</span></div>
-        <div style="position: absolute; left: 128.00px; top: 160.03px" class="cls_009"><span class="cls_009">not available for mailed applications.</span></div>
-        <div style="position: absolute; left: 63.10px; top: 180.03px" class="cls_009"><span class="cls_009">Credit card</span><input type="checkbox" id="chkpaymentmethodCC" runat="server"></div>
-        <div style="position: absolute; left: 128.00px; top: 180.03px" class="cls_009"><span class="cls_009">Give details below.</span></div>
-        <div style="position: absolute; left: 128.00px; top: 192.03px" class="cls_014"><span class="cls_014">Note</span><span class="cls_009">: This option is available where applications</span></div>
-        <div style="position: absolute; left: 128.00px; top: 204.03px" class="cls_009"><span class="cls_009">are made in Australia. If you are making the</span></div>
-        <div style="position: absolute; left: 128.00px; top: 216.03px" class="cls_009"><span class="cls_009">application outside Australia and wish to pay</span></div>
-        <div style="position: absolute; left: 128.00px; top: 228.03px" class="cls_009"><span class="cls_009">by credit card, please check with the Australian</span></div>
-        <div style="position: absolute; left: 128.00px; top: 240.03px" class="cls_009"><span class="cls_009">Government office about the availability of this</span></div>
-        <div style="position: absolute; left: 128.00px; top: 252.03px" class="cls_009"><span class="cls_009">option.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 280.03px" class="cls_009"><span class="cls_009">Payment by (tick one box)</span></div>
-        <div style="position: absolute; left: 196.00px; top: 280.03px" class="cls_009"><span class="cls_009">Australian Dollars</span>&nbsp;<span style="border: 1px solid black;"><%= amountinaustraliandollars   %></span></div>
-        <div style="position: absolute; left: 68.96px; top: 300.03px" class="cls_009"><span class="cls_009">MasterCard</span><input type="checkbox" id="chkpaymentbyMC" runat="server"></div>
-        <div style="position: absolute; left: 158.13px; top: 300.03px" class="cls_009"><span class="cls_009">Visa</span><input type="checkbox" id="chkpaymentVI" runat="server"></div>
-        <div style="position: absolute; left: 76.36px; top: 316.03px" class="cls_009"><span class="cls_009">Bankcard</span><input type="checkbox" id="chkpaymentbyBC" runat="server"></div>
-        <div style="position: absolute; left: 133.19px; top: 316.03px" class="cls_009"><span class="cls_009">Diners Club</span><input type="checkbox" id="chkpaymentbyDC" runat="server"></div>
-        <div style="position: absolute; left: 204.54px; top: 316.03px" class="cls_009"><span class="cls_009">A$</span></div>
-        <div style="position: absolute; left: 47.90px; top: 332.03px" class="cls_009"><span class="cls_009">American Express</span><input type="checkbox" id="chkpaymentbyAM" runat="server"></div>
-        <div style="position: absolute; left: 158.46px; top: 332.03px" class="cls_009"><span class="cls_009">JCB</span><input type="checkbox" id="chkpaymentbyJCB" runat="server"></div>
-        <div style="position: absolute; left: 44.00px; top: 352.03px" class="cls_009"><span class="cls_009">Credit card number</span>&nbsp;<span style="border: 1px solid black;"><%= creditcardno   %></span></div>
-        <div style="position: absolute; left: 101.28px; top: 386.23px" class="cls_010"><span class="cls_010">MONTH</span><span style="border: 1px solid black;"><%= creditcardexpirydate.Month + "/" +creditcardexpirydate.Year   %></span></div>
-        <div style="position: absolute; left: 140.84px; top: 386.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 396.03px" class="cls_009"><span class="cls_009">Expiry date</span></div>
-        <div style="position: absolute; left: 109.00px; top: 396.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 145.00px; top: 396.03px" class="cls_009"><span class="cls_009">:</span></div>
-        <div style="position: absolute; left: 44.00px; top: 412.03px" class="cls_009"><span class="cls_009">Cardholder’s name</span>&nbsp;<span style="border: 1px solid black;"><%= cardholdarname   %></span></div>
-        <div style="position: absolute; left: 102.68px; top: 449.73px" class="cls_010"><span class="cls_010">COUNTRY CODE</span></div>
-        <div style="position: absolute; left: 151.28px; top: 449.73px" class="cls_010"><span class="cls_010">AREA CODE</span></div>
-        <div style="position: absolute; left: 222.50px; top: 449.73px" class="cls_010"><span class="cls_010">NUMBER</span></div>
-        <div style="position: absolute; left: 44.00px; top: 460.03px" class="cls_009"><span class="cls_009">Telephone</span></div>
-        <div style="position: absolute; left: 100.00px; top: 463.53px" class="cls_010"><span class="cls_010">(</span>&nbsp;<span style="border: 1px solid black;"><%= contactnumber   %></span></div>
-        <div style="position: absolute; left: 138.77px; top: 463.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 144.00px; top: 463.53px" class="cls_010"><span class="cls_010">(</span></div>
-        <div style="position: absolute; left: 182.77px; top: 463.53px" class="cls_010"><span class="cls_010">)</span></div>
-        <div style="position: absolute; left: 44.00px; top: 476.03px" class="cls_009"><span class="cls_009">Address</span>&nbsp;<span style="border: 1px solid black;"><%= addressofcardholder   %></span></div>
-        <div style="position: absolute; left: 192.00px; top: 527.53px" class="cls_010"><span class="cls_010">POSTCODE</span></div>
-        <div style="position: absolute; left: 44.00px; top: 548.03px" class="cls_014"><span class="cls_014">Signature of</span></div>
-        <div style="position: absolute; left: 44.00px; top: 560.03px" class="cls_014"><span class="cls_014">cardholder</span>&nbsp;<span style="border: 1px solid black;"><%= signatureofcardholder   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 588.03px" class="cls_009"><span class="cls_009">Credit card information will be used for charge paying purposes only.</span></div>
-        <div style="position: absolute; left: 191.55px; top: 612.03px" class="cls_009"><span class="cls_009">Continued on the next page</span></div>
-        <div style="position: absolute; left: 24.00px; top: 727.53px" class="cls_025"><span class="cls_025">Office use only</span></div>
-        <div style="position: absolute; left: 24.00px; top: 752.03px" class="cls_009"><span class="cls_009">Name of education provider</span></div>
-        <div style="position: absolute; left: 24.00px; top: 792.03px" class="cls_009"><span class="cls_009">Transaction Reference Number</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">© COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-        <div style="position: absolute; left: 496.26px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 23</span></div>
-    </div>
-    <div style="position: absolute; left: 50%; margin-left: -297px; top: 19596px; width: 595px; height: 842px; border-style: outset; overflow: hidden">
-        <div style="position: absolute; left: 0px; top: 0px">
-            <img src="8a2595a2-bd92-11e9-9d71-0cc47a792c0a_id_8a2595a2-bd92-11e9-9d71-0cc47a792c0a_files/background24.jpg" width="595" height="842">
-        </div>
-        <div style="position: absolute; left: 44.00px; top: 14.73px" class="cls_019"><span class="cls_019">Declaration</span></div>
-        <div style="position: absolute; left: 44.00px; top: 44.03px" class="cls_014"><span class="cls_014">Before signing the declaration refer to the department’s website</span></div>
-        <div style="position: absolute; left: 44.00px; top: 56.03px" class="cls_014"><span class="cls_014">to ensure that you have attached all documentation listed for</span></div>
-        <div style="position: absolute; left: 44.00px; top: 68.03px" class="cls_014"><span class="cls_014">your Assessment Level and Education Sector visa subclass.</span></div>
-        <div style="position: absolute; left: 24.72px; top: 86.53px" class="cls_020"><span class="cls_020">82</span></div>
-        <div style="position: absolute; left: 44.00px; top: 88.03px" class="cls_009"><span class="cls_009">The following declaration must be signed and dated by all people over</span></div>
-        <div style="position: absolute; left: 320.00px; top: 88.03px" class="cls_014"><span class="cls_014">Signature</span>&nbsp;<span style="border: 1px solid black;"><%= declarationsignature   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 100.03px" class="cls_009"><span class="cls_009">18 years of age included in this application.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 116.03px" class="cls_009"><span class="cls_009">Both parents or any person who has legal custody must complete the</span></div>
-        <div style="position: absolute; left: 387.72px; top: 118.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 118.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 118.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 128.03px" class="cls_009"><span class="cls_009">declaration on behalf of any children under 18 years of age or any person</span></div>
-        <div style="position: absolute; left: 359.13px; top: 129.53px" class="cls_009"><span class="cls_009">Date</span><span style="border: 1px solid black;"><%= declarationdate.Day + "/" +declarationdate.Month + "/" +declarationdate.Year   %></span></div>
-        <div style="position: absolute; left: 44.00px; top: 140.03px" class="cls_009"><span class="cls_009">who lacks the legal capacity to sign on their own behalf.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 156.03px" class="cls_026"><span class="cls_026">•</span><span class="cls_009"> I certify the information supplied on or with this form is correct.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 172.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 172.03px" class="cls_009"><span class="cls_009">If granted a visa, I acknowledge that I am required to abide by its</span></div>
-        <div style="position: absolute; left: 320.00px; top: 176.03px" class="cls_014"><span class="cls_014">Signature</span>&nbsp;<span style="border: 1px solid black;"><%= declarationsignature   %></span></div>
-        <div style="position: absolute; left: 54.00px; top: 184.03px" class="cls_009"><span class="cls_009">conditions as outlined in the information form 1160i Applying for a</span></div>
-        <div style="position: absolute; left: 54.00px; top: 196.03px" class="cls_009"><span class="cls_009">student visa.</span></div>
-        <div style="position: absolute; left: 387.72px; top: 206.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 206.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 206.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 212.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 212.03px" class="cls_009"><span class="cls_009">I declare that I have made adequate arrangements for health insurance</span></div>
-        <div style="position: absolute; left: 359.13px; top: 217.53px" class="cls_009"><span class="cls_009">Date</span><span style="border: 1px solid black;"><%= declarationdate.Day + "/" +declarationdate.Month + "/" +declarationdate.Year   %></span></div>
-        <div style="position: absolute; left: 54.00px; top: 224.03px" class="cls_009"><span class="cls_009">for the period of my stay in Australia and I acknowledge that I am</span></div>
-        <div style="position: absolute; left: 54.00px; top: 236.03px" class="cls_009"><span class="cls_009">required to maintain these arrangements while in Australia as the</span></div>
-        <div style="position: absolute; left: 54.00px; top: 248.03px" class="cls_009"><span class="cls_009">holder of a student visa.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 264.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 264.03px" class="cls_009"><span class="cls_009">I have attached all documentary evidence as specified on the</span></div>
-        <div style="position: absolute; left: 320.00px; top: 264.03px" class="cls_014"><span class="cls_014">Signature</span>&nbsp;<span style="border: 1px solid black;"><%= declarationsignature   %></span></div>
-        <div style="position: absolute; left: 54.00px; top: 276.03px" class="cls_009"><span class="cls_009">department’s website for my Assessment Level and the visa subclass</span></div>
-        <div style="position: absolute; left: 54.00px; top: 288.03px" class="cls_009"><span class="cls_009">under which I am applying.</span></div>
-        <div style="position: absolute; left: 387.72px; top: 294.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 294.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 294.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 44.00px; top: 304.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 304.03px" class="cls_009"><span class="cls_009">I acknowledge that I understand that if the 8534 visa condition is</span></div>
-        <div style="position: absolute; left: 359.13px; top: 305.53px" class="cls_009"><span class="cls_009">Date</span><span style="border: 1px solid black;"><%= declarationdate.Day + "/" +declarationdate.Month + "/" +declarationdate.Year   %></span></div>
-        <div style="position: absolute; left: 54.00px; top: 316.03px" class="cls_009"><span class="cls_009">imposed on my visa, it will be indicated by the condition code ‘8534’</span></div>
-        <div style="position: absolute; left: 54.00px; top: 328.04px" class="cls_009"><span class="cls_009">and by the short description ‘No Further Stay’. I acknowledge that this</span></div>
-        <div style="position: absolute; left: 54.00px; top: 340.04px" class="cls_009"><span class="cls_009">means that the 8534 condition has been imposed on my visa and</span></div>
-        <div style="position: absolute; left: 54.00px; top: 352.04px" class="cls_009"><span class="cls_009">that I will not, while in Australia, be entitled to the grant of any other</span></div>
-        <div style="position: absolute; left: 320.00px; top: 352.03px" class="cls_014"><span class="cls_014">Signature</span>&nbsp;<span style="border: 1px solid black;"><%= declarationsignature   %></span></div>
-        <div style="position: absolute; left: 54.00px; top: 363.53px" class="cls_009"><span class="cls_009">visa </span><span class="cls_027"><sup>1</sup></span><span class="cls_009">, apart from:</span></div>
-        <div style="position: absolute; left: 54.00px; top: 380.03px" class="cls_009"><span class="cls_009">- a further student visa with permission to work, the application for</span></div>
-        <div style="position: absolute; left: 387.72px; top: 382.23px" class="cls_010"><span class="cls_010">DAY</span></div>
-        <div style="position: absolute; left: 409.78px; top: 382.23px" class="cls_010"><span class="cls_010">MONTH</span></div>
-        <div style="position: absolute; left: 444.34px; top: 382.23px" class="cls_010"><span class="cls_010">YEAR</span></div>
-        <div style="position: absolute; left: 64.00px; top: 392.03px" class="cls_009"><span class="cls_009">which was made on form 157P; or</span></div>
-        <div style="position: absolute; left: 359.13px; top: 393.53px" class="cls_009"><span class="cls_009">Date</span><span style="border: 1px solid black;"><%= declarationdate.Day + "/" +declarationdate.Month + "/" +declarationdate.Year   %></span></div>
-        <div style="position: absolute; left: 54.00px; top: 408.03px" class="cls_009"><span class="cls_009">- a subclass 497 (Graduate-Skilled) visa.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 424.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 424.03px" class="cls_009"><span class="cls_009">I understand that the effect of the 8534 visa condition is that it will</span></div>
-        <div style="position: absolute; left: 54.00px; top: 436.03px" class="cls_009"><span class="cls_009">not be possible for me to apply to remain in Australia beyond the date</span></div>
-        <div style="position: absolute; left: 54.00px; top: 447.53px" class="cls_009"><span class="cls_009">authorised by my visa</span><span class="cls_027"><sup>1</sup></span><span class="cls_009"> and that I will be required to depart Australia</span></div>
-        <div style="position: absolute; left: 54.00px; top: 460.03px" class="cls_009"><span class="cls_009">on or before that date. I agree to having this condition included on</span></div>
-        <div style="position: absolute; left: 54.00px; top: 472.03px" class="cls_009"><span class="cls_009">any visa issued to me as a result of this application if the department</span></div>
-        <div style="position: absolute; left: 54.00px; top: 484.03px" class="cls_009"><span class="cls_009">decides to impose it as a condition of grant of a visa.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 500.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 500.03px" class="cls_009"><span class="cls_009">I acknowledge that I understand that if the 8535 visa condition is</span></div>
-        <div style="position: absolute; left: 54.00px; top: 512.03px" class="cls_009"><span class="cls_009">imposed on my visa, it will be indicated by the condition code ‘8535’</span></div>
-        <div style="position: absolute; left: 54.00px; top: 524.03px" class="cls_009"><span class="cls_009">and by the short description ‘No Further Stay’. I acknowledge that</span></div>
-        <div style="position: absolute; left: 54.00px; top: 536.04px" class="cls_009"><span class="cls_009">this means that the 8535 condition has been imposed on my visa</span></div>
-        <div style="position: absolute; left: 54.00px; top: 548.04px" class="cls_009"><span class="cls_009">and that I will not, while in Australia, be entitled to be granted any</span></div>
-        <div style="position: absolute; left: 54.00px; top: 559.53px" class="cls_009"><span class="cls_009">other visa </span><span class="cls_027"><sup>1</sup></span><span class="cls_009">, apart from:</span></div>
-        <div style="position: absolute; left: 54.00px; top: 576.03px" class="cls_009"><span class="cls_009">- a further student visa with permission to work, the application for</span></div>
-        <div style="position: absolute; left: 63.50px; top: 588.03px" class="cls_009"><span class="cls_009">which was made on form 157P; or</span></div>
-        <div style="position: absolute; left: 54.00px; top: 604.03px" class="cls_009"><span class="cls_009">- a further student visa, with the consent of my sponsor.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 620.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 620.03px" class="cls_009"><span class="cls_009">I understand that the effect of the 8535 visa condition is that it will</span></div>
-        <div style="position: absolute; left: 54.00px; top: 632.03px" class="cls_009"><span class="cls_009">not be possible for me to remain in Australia beyond the date</span></div>
-        <div style="position: absolute; left: 54.00px; top: 643.53px" class="cls_009"><span class="cls_009">authorised by my visa</span><span class="cls_027"><sup>1</sup></span><span class="cls_009">, unless I am applying for a further student visa</span></div>
-        <div style="position: absolute; left: 54.00px; top: 656.03px" class="cls_009"><span class="cls_009">with the consent of my sponsor, and that I will be required to depart</span></div>
-        <div style="position: absolute; left: 54.00px; top: 668.03px" class="cls_009"><span class="cls_009">Australia on or before the authorised date. I agree to having this</span></div>
-        <div style="position: absolute; left: 54.00px; top: 680.03px" class="cls_009"><span class="cls_009">condition included on any visa issued to me as a result of this</span></div>
-        <div style="position: absolute; left: 54.00px; top: 692.03px" class="cls_009"><span class="cls_009">application if the department decides to impose it as a condition of</span></div>
-        <div style="position: absolute; left: 54.00px; top: 704.04px" class="cls_009"><span class="cls_009">grant of a visa.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 720.03px" class="cls_009"><span class="cls_009">•</span></div>
-        <div style="position: absolute; left: 54.00px; top: 720.03px" class="cls_009"><span class="cls_009">I am aware that I must immediately advise the department if I become</span></div>
-        <div style="position: absolute; left: 54.00px; top: 732.03px" class="cls_009"><span class="cls_009">aware that any information provided in this form is incorrect or if there</span></div>
-        <div style="position: absolute; left: 54.00px; top: 744.04px" class="cls_009"><span class="cls_009">is a change in my circumstances that are relevant to this application</span></div>
-        <div style="position: absolute; left: 54.00px; top: 756.04px" class="cls_009"><span class="cls_009">at any time.</span></div>
-        <div style="position: absolute; left: 44.00px; top: 784.03px" class="cls_027"><span class="cls_027"><sup>1</sup></span><span class="cls_009"> </span><span class="cls_028">To engage Australia’s protection obligation under the 1951 UN convention</span></div>
-        <div style="position: absolute; left: 44.00px; top: 795.03px" class="cls_028"><span class="cls_028">relating to the status of refugees.</span></div>
-        <div style="position: absolute; left: 16.00px; top: 820.73px" class="cls_010"><span class="cls_010">157A (Design date 07/06)  - Page 24</span></div>
-        <div style="position: absolute; left: 245.98px; top: 820.73px" class="cls_010"><span class="cls_010">©</span></div>
-        <div style="position: absolute; left: 252.22px; top: 820.73px" class="cls_010"><span class="cls_010">COMMONWEALTH OF AUSTRALIA, 2006</span></div>
-    </div>
+Telephone:  61 2 9299 5446
+Fax:        61 2 9299 8448
 
+</pre>
+                            </p>
+
+                            <h3 class="visaInfo-ttl">Restrictions on giving immigration assistance</h3>
+                            <p class="visaInfo-descp">In Australia, anyone (including a lawyer) who uses knowledge of migration procedure to offer immigration assistance to a visa or cancellation review applicant, sponsor or nominator, must be registered, unless exempted from registration requirements by law. There are serious criminal penalties under Part 3 of the Act for breaching the law, including possible imprisonment if the unregistered person asks for, or receives, a fee or reward for their services.</p>
+                            <h3 class="visaInfo-ttl">Using an agent exempted from registration</h3>
+                            <p class="visaInfo-descp">Certain people, such as officials, parliamentarians, diplomats, close family members (that is, only your spouse, child, adopted child, parent, brother or sister), sponsors and nominators, are able to provide you with immigration assistance as long as they do not ask or receive a fee or reward. If you wish to appoint an ‘exempted agent’, you must complete form 956 <i>Appointment of a migration agent</i>, which is available from the department’s website <b>www.immi.gov.au/allforms/</b> and attach it to this application form.</p>
+                            <h3 class="visaInfo-ttl">Applications for multiple visas</h3>
+                            <p class="visaInfo-descp">If you are a dependant applicant (for example, the spouse of a primary applicant) and you wish to appoint a different migration agent to the primary applicant, you must fill out a separate form 956 <i>Appointment of a migration agent</i>, which is available from the department’s website <b>www.immi.gov.au/allforms/</b> or advise the department in writing. Otherwise, the migration agent appointed by the principal applicant will have the authority to act for all persons included in the application.</p>
+
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h3 class="visaInfo-ttl">Notification of giving immigration assistance</h3>
+                            <p class="visaInfo-descp">Under section 312A of the Act, a registered agent has a duty to notify the department when lodging an application on behalf of a client, or within 28 days of commencing to act on behalf of a visa applicant. This notification can be done by completing, and your agent signing, the relevant sections of this application form.</p>
+                            <h3 class="visaInfo-ttl">Residential address</h3>
+                            <p class="visaInfo-descp">You must tell the department where you intend to live while your application is being dealt with. Failure to give a residential address will result in your application being invalid. A post office box address will not be accepted as your residential address.</p>
+                            <h3 class="visaInfo-ttl">Consent to communicate electronically</h3>
+                            <p class="visaInfo-descp">The department may use a range of means to communicate with you. However, electronic means such as fax or e-mail will only be used if you indicate your agreement to receiving communication in this way.</p>
+                            <p class="visaInfo-descp">To process your application the department may need to communicate with you about sensitive information, for example, health, police checks, financial viability and personal relationships. Electronic communications, unless adequately encrypted, are not secure and may be viewed by others or interfered with. If you agree to the department communicating with you by electronic means, the details you provide will only be used by the department for the purpose for which you have provided them, unless there is a legal obligation or necessity to use them for another purpose, or you have consented to use for another purpose. They will not be added to any mailing list.</p>
+                            <p class="visaInfo-descp">The Australian Government accepts no responsibility for the security or integrity of any information sent to the department over the internet or by other electronic means.</p>
+                            <p class="visaInfo-descp">If you authorise another person to receive documents on your behalf and they wish to be contacted electronically, their signature is required on the form to indicate their consent to this form of communication.</p>
+                            <h3 class="visaInfo-ttl">About the information you give to the department</h3>
+                            <p class="visaInfo-descp">The department is authorised to collect information provided on this form under Part 2 of the Migration Act 1958. The information collected will be used for assessing your eligibility for a student visa to travel to and enter and/or remain in Australia, to monitor the conduct of migration agents, and for other purposes relating to the administration of the Migration Act.</p>
+                            <p class="visaInfo-descp">The information collected might also be disclosed to agencies who are authorised to receive information relating to adoption, border control, business skills, citizenship, education, health assessment, health insurance, health services, law enforcement, payment of pensions and benefits, taxation, review of decisions and registration of migration agents. It will also be disclosed to any agency of the Australian Government, or of a state or territory, that is responsible for or otherwise concerned with the regulation of education providers.</p>
+                            <p class="visaInfo-descp">Relevant information about you will be disclosed to federal, state and territory police to assist in your location and possible detention in the event that you become an unlawful non-citizen. You will become an unlawful non-citizen if your visa ceases (for example, by cancellation for breach of visa condition) or expires and you do not hold another visa authorising you to remain in Australia.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="visaInfo-descp">The information on this form, including the results of any tests for Human Immunodeficiency Virus (HIV), will be used to assess your health for an Australian visa. A positive HIV <b>or other</b> test result will not necessarily lead to a visa being denied. Your result(s) may be disclosed to the relevant Australian Government state and territory health agencies.</p>
+                            <p class="visaInfo-descp">In addition, the relevant registered education provider(s) may be told whether or not your visa has been granted. The collection, access, storage, use and disclosure by the department of the information you provide in this form is governed by the <i>Privacy Act 1988</i> and, in particular, by the 11 Information Privacy Principles. The information form 993i <i>Safeguarding your personal information</i> gives details of agencies to which your personal information might be disclosed. This form is available from the department’s website <b>www.immi.gov.au/allforms/</b> or from any departmental office or Australian mission overseas.</p>
+                            <p class="visaInfo-descp">The department has authority under the <i>Migration Act</i> 1958 to collect a range of personal identifiers from non-citizens, including visa applicants, in certain circumstances. For more detailed information you should read information form 1243i <i>Your personal identifying information</i>. This form is available from the department’s website <b>www.immi.gov.au/allforms/</b> or from any departmental office or Australian mission overseas.</p>
+                            <p class="visaInfo-descp">The <i>Freedom of Information Act</i> 1982 (FOI Act) also relates to your personal information. Under the FOI Act you can apply for access to documents containing your personal information. You or someone authorised by you to access information on your behalf can apply to do this at any departmental office in Australia. There is no fee for accessing your own information. If you are overseas, you must also provide the Australian mission with an address in Australia to which copies of personal records can be sent. More information on how to make a request under the FOI Act is given on form 424A <i>Request for access to documents under the Freedom of Information Act</i> 1982 which is available from the department’s website <b>www.immi.gov.au/allforms/</b> or from any departmental office or  Australian mission overseas.</p>
+                            <h3 class="visaInfo-ttl">Review rights</h3>
+                            <p class="visaInfo-descp">If you apply for a student visa in Australia and you are refused the visa, you may apply for a review of the decision. You will be notified of your review rights in writing and the time limits for lodging such an appeal.</p>
+                            <p class="visaInfo-descp">There are no review rights for decisions to refuse a student visa where the application is made outside Australia.</p>
+                            <table cellpadding="0" cellspacing="0" width="100%" style="border: 1px solid #000; margin-top: 20px;">
+                                <tr>
+                                    <td style="width: 30%; text-align: right; padding: 5px; font-size: 15px;">
+                                        <i>Home page</i>
+                                    </td>
+                                    <td style="width: 70%; padding: 5px 5px 5px 10px; font-size: 16px;">
+                                        <b>www.immi.gov.au</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30%; text-align: right; padding: 5px; font-size: 15px; vertical-align: top;">
+                                        <i>General enquiry line</i>
+                                    </td>
+                                    <td style="width: 70%; padding: 5px 5px 5px 10px; font-size: 13px;">Telephone <b>131 881</b> during business hours in Australia to speak to an operator (recorded
+information available outside these hours). If you are outside Australia, please contact your nearest Australian mission.
+
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 0 0 40px; background-color: #ffffff;">
+        <tr>
+            <td style="width: 100%;">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;">
+                    <tr>
+                        <td style="width: 25%; vertical-align: middle;">
+                            <img src="/assets/dashboard/img/pdf-head.jpg" class="img-fluid">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;" class="form-table">
+                    <!-- Start Form here -->
+                    <tr style="padding-top: 15px;">
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h2 class="part"><i>Part A – To be completed by
+                                <br>
+                                all applicants</i></h2>
+                            <h6 class="part-sub"><i>Application details</i></h6>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <span class="num-ques">1</span>How many people are included in this application?  &nbsp; &nbsp;
+                                <input type="text" name="" id="noofpeopleincluded" runat="server">
+                            </p>
+                            <p class="txt" style="margin-bottom: 2px;">
+                                <span class="num-ques">2</span>
+                                Are you applying
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 155px; text-align: right; padding-right: 7px;">for yourself as a student? </label>
+                                <input type="radio" id="rblyourself" runat="server" name="family" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Complete Parts A, B and D </span>
+                                <br>
+                                <label style="width: 155px; text-align: right; padding-right: 7px;">for yourself and family?</label><input type="radio" id="rblselfwithFamily" name="family" runat="server" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Complete Parts A, B and D</span><br>
+                                <label style="width: 155px; text-align: right; padding-right: 7px;">as a member of a student’s family unit?</label><input type="radio" id="rblyourfamily" name="family" runat="server" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Complete Parts A, C and D</span><br>
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px; text-align: right;">
+                            <img src="/assets/dashboard/img/photo1.jpg">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h6 class="part-sub"><i>Your personal details</i></h6>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">3</b>Your full name in English</p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Family Name</label>
+                                <input type="text" id="familyname" runat="server" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Given Names</label>
+                                <input type="text" id="givenname" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;"></label>
+                                <input type="text" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">4</b> Name in your own language or script (if applicable) </p>
+                            <p class="txt">
+                                <input type="text" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt">
+                                <input type="text" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <b class="num-ques">5</b> Have you been known by any other names? </br>
+				              <em>(including name at birth, previous married names, aliases)</em>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkanothernameyes" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkanothernameno" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Give details and provide supporting evidence eg. birth certificate/marriage certificate</span>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Family Name</label>
+                                <input type="text" id="anotherfamilyname" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Given Names</label>
+                                <input type="text" id="anothergivenname" runat="server" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;"></label>
+                                <input type="text" id="ownlanguagename1" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <b class="num-ques">6</b>
+                                <label style="width: 50px;">Sex</label>
+                                <label style="width: 30px;">Male</label>
+                                <input type="checkbox" id="chkMale" runat="server" name="" style="margin-right: 20px; vertical-align: middle;">
+                                <label style="width: 50px;">Female</label>
+                                <input type="checkbox" id="chkFemale" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <b class="num-ques">7</b>
+                                <label style="width: 80px;">Date of birth</label>
+                                <input type="text" name="" id="dateofbirth" runat="server" style="width: 110px; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">8</b>Place of birth</p>
+                            <p class="txt">
+                                <label style="width: 100px;">Town/city </label>
+                                <input type="text" name="" id="cityofbirth" runat="server" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Country</label>
+                                <input type="text" name="" style="width: 240px;" id="countryofbirth" runat="server">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">9</b>Marital status </p>
+                            <p class="txt">
+                                <label style="width: 60px;">Married</label>
+                                <input type="checkbox" id="chkMarried" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <label style="width: 60px;">Separated</label>
+                                <input type="checkbox" id="chkSeparated" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <label style="width: 90px;">Windowed</label>
+                                <input type="checkbox" id="chkWidowed" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 60px;">Engaged</label>
+                                <input type="checkbox" id="chkEngaged" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <label style="width: 60px;">Divorced</label>
+                                <input type="checkbox" id="chkDivorced" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <label style="width: 90px;">Never Married</label>
+                                <input type="checkbox" id="chkNever" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 60px">De facto</label>
+                                <input type="checkbox" id="chkDefacto" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">10</b> Your present country of citizenship  </p>
+                            <p class="txt">
+                                <input type="text" id="countryofcitizenship" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">11</b> Do you hold any other citizenship  </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkAnotherCitizenNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkAnotherCitizenYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Which countries? </span>
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="anothercountryofcitizenship" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">12</b>Do you have a passport?  </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkPassposrtNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkPassposrtYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Details from your passport </span>
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px;">Passport number </label>
+                                <input type="text" name="" id="passportno" runat="server" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px;">Country of passport </label>
+                                <input type="text" name="" id="countryofpassport" runat="server" style="width: 270px; margin-left: 60px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">
+                                    Date of issue  
+                                </label>
+                                <input type="text" name="" id="dateofissue" runat="server" style="width: 160px; margin-bottom: 5px;" placeholder="Day/ Month / YEAR ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
+                                <input type="text" name="" id="dateofexpiry" runat="server" style="width: 160px;" placeholder="Day/ Month / YEAR ">
+                            </p>
+
+
+                            <p class="txt" style="margin-left: 60px;">Issuing authority/Place of issue as shown in passport</p>
+                            <input type="text" name="" id="placeofissue" runat="server" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;">
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">13</b> Where applicable, give your identification number  </p>
+                            <p class="txt">
+                                <input type="text" id="applicableidentificationno" runat="server" name="" style="width: 330px;">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">14</b>If you have any other identity numbers required by your government, give details: </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Type of number</label>
+                                <input type="text" name="" id="anotherIdentitytype1" runat="server" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Your number </label>
+                                <input type="text" name="" id="anotherIdentityNo1" runat="server" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Type of number</label>
+                                <input type="text" name="" id="anotherIdentitytype2" runat="server" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Your number </label>
+                                <input type="text" name="" id="anotherIdentityNo2" runat="server" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">15</b> Your country of usual residence </p>
+                            <p class="txt">
+                                <input type="text" name="" id="residencecountry" runat="server" style="width: 100%;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">16</b> Your residential address in your home country</p>
+                            <p class="txt"><strong>Note:</strong> A post office box address is not acceptable as a residential address. Failure to give a residential address will result in your Citizenship(s) application being invalid.  </p>
+                            <p class="txt">
+                                <input type="text" id="residenceaddressLine1" runat="server" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="residenceaddressLine2" runat="server" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="residenceaddresspostalcode" runat="server" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">17</b>Your telephone numbers outside Australia </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Office hours  </label>
+                                <input type="text" id="officehoursContactNoOutsideaustralia" runat="server" name="" style="width: 240px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">After hours </label>
+                                <input type="text" id="afterhoursContactNoOutsideaustralia" runat="server" name="" style="width: 240px;" placeholder="(             ) (             )">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">18</b> Your residential address in Australia (if known)</p>
+                            <p class="txt">
+                                <input type="text" id="australiaresidentialaddline1" runat="server" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="australiaresidentialaddline2" runat="server" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="australiaresidentialpostalcode" runat="server" name="" style="width: 340px;" placeholder="POSTCODE ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">19</b>Your telephone numbers outside Australia </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Office hours  </label>
+                                <input type="text" id="officehrContactNoInAustralia" runat="server" name="" style="width: 240px;" placeholder="(AREA CODE              ) ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">After hours </label>
+                                <input type="text" id="afterhrContactNoInAustralia" runat="server" name="" style="width: 240px;" placeholder="( AREA CODE             )">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">20</b> Address for correspondence    </p>
+                            <p class="txt">
+                                <input type="text" id="correspondenceaddressline1" runat="server" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="correspondenceaddressline2" runat="server" name="" style="width: 340px;">
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="correspondenceaddresspoastalcode" runat="server" name="" style="width: 340px;" placeholder="POSTCODE ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">21</b> Do you agree to the department communicating with you by fax, e-mail or other electronic means?  </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkagreetocommunicateNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" name="" id="chkagreetocommunicateYes" runat="server" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Give details</span>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Fax number </label>
+                                <input type="text" id="faxno" runat="server" name="" style="width: 240px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">E-mail address </label>
+                                <input type="text" id="emailaddress" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <strong>Note:</strong> If this visa application is refused, you will be notified by mail 
+                            </p>
+
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>About your family</i></h6>
+                            <p class="txt"><b class="num-ques">22</b>Give details of all members of your family unit whether or not they intend to accompany you to Australia.</p>
+                            <p><em>Members of the family unit are your spouse (including a de facto spouse) and any unmarried dependent children of you or your spouse who have not yet turned 18 years of age.</em> </p>
+                            <p class="txt">
+                                <label style="width: 80px;">Family name </label>
+                                <input type="text" id="aboutfamilyname1" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 80px;">Given names </label>
+                                <input type="text" id="aboutfamilygivenname1" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 80px;"></label>
+                                <input type="text" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 80px;">Relationship to you </label>
+                                <input type="text" id="relationshiptoyou1" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 80px;">Citizenship(s)  </label>
+                                <input type="text" id="citizenship1" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 80px;">Date of Birth </label>
+                                <input type="text" id="dobfamilymember1" runat="server" name="" style="width: 240px;" placeholder="Day/ Month / YEAR ">
+                            </p>
+                            <p class="txt">Is this person included in this application?   </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkfamily1No" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkfamily1Yes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Details from passport </span>
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px;">Passport number </label>
+                                <input type="text" id="familypassportno1" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px;">Country of passport </label>
+                                <input type="text" id="familycountryofpassport1" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">Date of issue</label>
+                                <input type="text" id="passportdateofissue1" runat="server" name="" style="width: 160px;" placeholder="Day/ Month / YEAR ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
+                                <input type="text" id="passportdateofexpiry1" runat="server" name="" style="width: 160px;" placeholder="Day/ Month / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-left: 60px;">
+                                Issuing authority/Place of issue as shown in passport<br>
+                                <input type="text" id="passportplaceofissue1" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                                <input type="text" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+
+                            <p class="txt">
+                                <label style="width: 200px;">Does this person intend to study in Australia for more than 3 months? </label>
+                                <label style="width: 20px; margin-left: 20px;">No</label>
+                                <input type="checkbox" id="chkFamilyStudy1No" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkFamilyStudy1Yes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">2 Family name</label>
+                                <input type="text" id="aboutfamilyname2" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Given names</label>
+                                <input type="text" id="aboutfamilygivenname2" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;"></label>
+                                <input type="text" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Relationship to you</label>
+                                <input type="text" id="relationshiptoyou2" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Citizenship(s)</label>
+                                <input type="text" id="citizenship2" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Date of birth</label>
+                                <input type="text" id="dobfamilymember2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt">Is this person included in this application?</p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkfamily2No" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkfamily2Yes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Details from passport </span>
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="margin-left: 60px;">Passport number </label>
+                                <input type="text" name="" id="familypassportno2" runat="server" style="width: 270px; margin-left: 60px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px;">Country of passport </label>
+                                <input type="text" name="" id="familycountryofpassport2" runat="server" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">Date of issue </label>
+                                <input type="text" name="" id="passportdateofissue2" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
+                                <input type="text" name="" id="passportdateofexpiry2" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-left: 60px;">Issuing authority/Place of issue as shown in passport</p>
+                            <input type="text" name="" id="passportplaceofissue2" runat="server" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;">
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                <label style="width: 200px; margin-top: 20px;">Does this person intend to study in Australia for more than 3 months? </label>
+                                <label style="width: 20px; margin-left: 20px;">No</label>
+                                <input type="checkbox" id="chkFamilyStudy2No" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkFamilyStudy2Yes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">3 Family name</label>
+                                <input type="text" id="aboutfamilyname3" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Given names</label>
+                                <input type="text" id="aboutfamilygivenname3" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;"></label>
+                                <input type="text" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Relationship to you</label>
+                                <input type="text" id="relationshiptoyou3" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Citizenship(s)</label>
+                                <input type="text" id="citizenship3" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Date of birth</label>
+                                <input type="text" id="dobfamilymember3" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt">Is this person included in this application?   </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkfamily3No" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkfamily3Yes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Details from passport </span>
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px;">Passport number </label>
+                                <input type="text" id="familypassportno3" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px;">Country of passport </label>
+                                <input type="text" id="familycountryofpassport3" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">Date of issue </label>
+                                <input type="text" id="passportdateofissue3" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
+                                <input type="text" id="passportdateofexpiry3" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-left: 60px;">Issuing authority/Place of issue as shown in passport</p>
+                            <input type="text" name="" id="passportplaceofissue3" runat="server" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;">
+                            <p class="txt" style="">
+                                <label style="width: 200px; margin-top: 20px;">Does this person intend to study in Australia for more than 3 months? </label>
+                                <label style="width: 20px; margin-left: 20px;">No</label>
+                                <input type="checkbox" id="chkFamilyStudy3No" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkFamilyStudy3Yes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Dependants under 18 year of age</i></h6>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">23</b>Have any school age dependants (that is, those who have turned 5 but who have not yet turned 18 years of age) included in this application been enrolled in a school in Australia?  </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkEnrollNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkEnrolYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">You<strong> must</strong> provide evidence (eg. enrolment advice, offer letter) </span>
+                            </p>
+
+
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">24</b>Do you have the sole legal right to determine where any dependants under 18 years of age who are included in this application will live or to remove each such dependant from their country of usual residence?   </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkSoleRightNo" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Give details below </span>
+                            </p>
+                            <br>
+                                <p class="txt">
+                                    <label style="width: 30px;">Yes</label>
+                                    <input type="checkbox" id="chkSoleRightYes" runat="server" name="" style="vertical-align: middle;">
+                                    <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Go to Question 25 </span>
+                                </p>
+                                <p class="txt">Give details of ALL other people not included in this application who have custody, access or guardianship rights in relation to the dependant(s).</p>
+                                <br>
+                                    <em>Attach a statutory declaration from each of these people giving permission for the dependant to accompany you to Australia. </em></p>
+							<hr style="border-color: #000">
+                                    <p class="txt" style="margin-top: 10px;">
+                                        <label style="width: 80px;">Family name</label>
+                                        <input type="text" id="guardiansfamilyname" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                                    </p>
+                                    <p class="txt">
+                                        <label style="width: 80px;">Given names</label>
+                                        <input type="text" id="guardiansgivenname" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                                    </p>
+
+                                    <p class="txt">
+                                        <label style="width: 80px; margin-top: 10px;">Residential</label>
+                                        <input type="text" id="guardiansresidentialaddress" runat="server" name="" style="width: 240px;">
+                                    </p>
+
+                                    <p class="txt">
+                                        <label style="width: 80px;">address</label>
+                                        <input type="text" name="" style="width: 240px;">
+                                    </p>
+                                    <p class="txt">
+                                        <label style="width: 80px;"></label>
+                                        <input type="text" id="guardianspostalcode" runat="server" name="" placeholder="POSTAL CODE" style="width: 240px; margin-bottom: 5px;">
+                                    </p>
+                                </br>
+                                <p class="txt">
+                                    <label style="width: 80px;">Telephone </label>
+                                    <input type="text" name="" id="guardianscontactnumber" runat="server" style="width: 240px; font-size: 12px; margin-bottom: 5px;" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
+                                </p>
+                                <p class="txt">
+                                    <label style="width: 80px;">Relationship to dependant</label>
+                                    <input type="text" name="" id="guardiansrealtionwithstudent" runat="server" style="width: 240px; margin-bottom: 5px;">
+                                </p>
+                                <p class="txt">
+                                    <label style="width: 80px;">Nature of legal right </label>
+                                    <input type="text" name="" id="guardiansnatureoflegalrights" runat="server" style="width: 240px; margin-bottom: 5px;">
+                                </p>
+                                <p class="txt" style="border-bottom: 1px solid #000; padding-bottom: 10px;">
+                                    <label style="width: 230px;">Statutory declaration attached? </label>
+                                    <label style="width: 20px;">No</label>
+                                    <input type="checkbox" id="chkstatutory1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                    <label style="width: 25px;">Yes</label>
+                                    <input type="checkbox" id="chkstatutory1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                </p>
+                                <p class="txt" style="margin-top: 10px;">
+                                    <label style="width: 80px;">Family name</label>
+                                    <input type="text" id="guardiansfamilyname1" runat="server" name="" style="width: 240px;">
+                                </p>
+                                <p class="txt">
+                                    <label style="width: 80px;">Given names</label>
+                                    <input type="text" id="guardiansgivenname1" runat="server" name="" style="width: 240px;">
+                                </p>
+
+                                <p class="txt" style="margin-top: 10px;">
+                                    <label style="width: 80px; margin-top: 10px;">Residantial </label>
+                                    <input type="text" id="guardiansresidentialaddress1" runat="server" name="" style="width: 240px;">
+                                </p>
+
+                                <p class="txt">
+                                    <label style="width: 80px;">address</label>
+                                    <input type="text" name="" style="width: 240px;">
+                                </p>
+                                <p class="txt">
+                                    <label style="width: 80px;"></label>
+                                    <input type="text" id="guardianspostalcode1" runat="server" name="" placeholder="POSTAL CODE" style="width: 240px; margin-bottom: 5px;">
+                                </p>
+                            </br>
+                            <p class="txt" style="margin-top: 20px;">
+                                <label style="width: 80px;">Telephone </label>
+                                <input type="text" id="guardianscontactnumber1" runat="server" name="" style="width: 240px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 80px;">Relationship to dependant</label>
+                                <input type="text" id="guardiansrealtionwithstudent1" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="width: 80px;">Nature of legal right </label>
+                                <input type="text" id="guardiansnatureoflegalrights1" runat="server" name="" style="width: 240px;">
+                            </p>
+
+                            <p class="txt">
+                                <label style="width: 230px;">Statutory declaration attached? </label>
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkstatutory2No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkstatutory2Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">25</b>Are any of your dependants who are under 18 years of age, and who are included in this application, the subject of a court order giving you:  </p>
+                            <ul style="padding-left: 0px; font-size: 12px;">
+                                <li>the sole legal right to determine where they will live; or </li>
+                                <li>the right to remove them from their country of usual residence? </li>
+                            </ul>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkcourtorderNo" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkcourtorderYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach a certified copy of the court order(s)</span>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h3 class="part-sub"><i>Previous visa applications </i></h3>
+                            <p class="txt"><strong>Warning</strong> — In general, a person can only hold one visa at a time. If you are granted a visa while you already have another, the first visa will cease automatically when the new visa is granted. </p>
+                            <p class="txt" style="">
+                                <label style="width: 200px; margin-top: 20px;">
+                                    <b class="num-ques">26</b>Have you or any other person included  in this application previously applied 
+	 							for any type of Australian visa?
+                                </label>
+                                <label style="width: 20px; margin-left: 20px;">No</label>
+                                <input type="checkbox" id="chkappliesNo" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkappliesYes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="">
+                                <label style="width: 200px; margin-top: 20px;">Do you currently hold a visa?</label>
+                                <label style="width: 20px; margin-left: 20px;">No</label>
+                                <input type="checkbox" id="chkHoldNo" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkHoldYes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="">
+                                <label style="width: 200px; margin-top: 20px;">Are you currently awaiting a decision on another visa application? </label>
+                                <label style="width: 20px; margin-left: 20px;">No</label>
+                                <input type="checkbox" name="" id="chkAwaitingNo" runat="server" style="margin-right: 15px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" name="" id="chkAwaitingYes" runat="server" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt">If you answered <strong>‘Yes’</strong> to any of the above questions, give details below </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Name</label>
+                                <input type="text" id="nameonvisa" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Type of visa </label>
+                                <input type="text" id="typeofvisa" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Place of issue </label>
+                                <input type="text" id="placeofissuevisa" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Date of issue</label>
+                                <input type="text" name="" id="dateissuevisa" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Application </label>
+                                <label style="width: 55px;">Refused </label>
+                                <input type="checkbox" id="chkvisa1refused" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 56px; margin-left: 102px;">Granted </label>
+                                <input type="checkbox" id="chkvisa1granted" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
+                                <span class="txt" style="vertical-align: middle;">Visa label number</span>
+                            </p>
+                            </p>
+
+				              <p class="txt" style="margin-top: 10px;">
+                                  <label style="width: 100px;"></label>
+                                  <input type="text" id="grantedvisalabelno" runat="server" name="" style="width: 240px;" placeholder="V">
+                              </p>
+                            <p class="txt" style="margin-left: 100px; width: 240px;">If granted a visa without a label, provide the 13-digit visa grant number (as shown on the letter notifying you of Highest qualification visa grant). </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;"></label>
+                                <input type="text" id="visagrantnumber" runat="server" name="" style="width: 240px;" placeholder="V">
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Name</label>
+                                <input type="text" id="nameonvisa1" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Type of visa </label>
+                                <input type="text" id="typeofvisa1" runat="server" name="" style="width: 240px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Place of issue </label>
+                                <input type="text" id="placeofissuevisa1" runat="server" name="" style="width: 240px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 100px;">Date of issue</label>
+                                <input type="text" id="dateissuevisa1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Application </label>
+                                <label style="width: 55px;">Refused </label>
+                                <input type="checkbox" id="chkvisa2refused" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 56px; margin-left: 102px;">Granted </label>
+                                <input type="checkbox" id="chkvisa2granted" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
+                                <span class="txt" style="vertical-align: middle;">Visa label number</span>
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;"></label>
+                                <input type="text" id="grantedvisalabelno1" runat="server" name="" style="width: 240px;" placeholder="V">
+                            </p>
+                            <p class="txt" style="margin-left: 100px; width: 240px;">If granted a visa without a label, provide the 13-digit visa grant number (as shown on the letter notifying you of Highest qualification visa grant). </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;"></label>
+                                <input type="text" id="visagrantnumber1" runat="server" name="" style="width: 240px;" placeholder="V">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label><b class="num-ques">27</b>If you are applying:   </label>
+                                <br>
+                                <label style="width: 230px;">as a member of the family unit of a student  </label>
+                                <input type="checkbox" id="chkPartC" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
+                                <span class="txt" style="vertical-align: middle;">Go to Part C </span>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 220px; text-align: right; margin-right: 10px;">in all other cases </label>
+                                <input type="checkbox" id="chkPartB" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
+                                <span class="txt" style="vertical-align: middle;">Go to Part B</span>
+                            </p>
+                        </td>
+
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h3 class="part"><i>Part B – To be completed by the student</i></h3>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">28</b> Are you applying in Australia?  </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkapplyingNo" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Go to Question 30  </span>
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkapplyingYes" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">29</b>Do you currently hold a student visa?   </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkcurrentlyholdNo" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">If you are in Assessment Level 2, 3, 4 or 5 you will be 
+									required at Question 43 to provide exceptional reasons why you should be granted a student visa in Australia.</span>
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkcurrentlyholdYes" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">30</b>Provide details of your highest qualification obtained outside Australia, as well as all other studies and training obtained outside Australia  </p>
+                            <p class="txt" style="margin-top: 10px;">You <strong>must</strong> provide<strong> evidence </strong>of your study and training, including academic records, if you are: </p>
+                            <ul style="padding-left: 15px; font-size: 12px;">
+                                <li>in Assessment Level 3, 4 or 5; or </li>
+                                <li>in Assessment Level 2 seeking to undertake studies in the postgraduate research sector.</li>
+                            </ul>
+                            <p class="txt" style="margin-top: 10px;">All other applicants may be requested to provide evidence where considered necessary. Granted Visa label number </p>
+                            <p class="txt" style="margin-top: 10px; border-bottom: 1px solid #000; padding-bottom: 10px;">In certain limited circumstances, you may be requested to provide copies of any published works written by you. </p>
+                            <p class="txt" style="margin-top: 10px;">Highest qualification  </p>
+                            <p class="txt">
+                                <input type="text" id="highestqualification" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body </p>
+                            <p class="txt">
+                                <input type="text" id="nameofeducationprovider1" runat="server" name="" style="width: 330px;">
+                                <input type="text" id="nameofeducationprovider2" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Address of education provider or training body </p>
+                            <p class="txt">
+                                <input type="text" id="addressofeducationprovider" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" id="educationproviderpostalcode" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Commencement Date</label>
+                                <input type="text" id="commencementdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Finish  Date</label>
+                                <input type="text" id="finishdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt">
+                                <label style="width: 230px;">Documentation attached?  </label>
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkeducationdocumentattachedNo" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkeducationdocumentattachedYes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <p class="txt" style="margin-top: 10px;">Other course undertaken outside Australia</p>
+                            <p class="txt">
+                                <input type="text" id="otherundertakcoursename1" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body </p>
+                            <p class="txt">
+                                <input type="text" id="othernameofeducationprovider1" runat="server" name="" style="width: 330px;">
+                                <input type="text" id="othernameofeducationprovider2" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Address of education provider or training body </p>
+                            <p class="txt">
+                                <input type="text" id="otheraddressofeducationprovider1" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" id="othereduproviderpostalcode1" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Commencement Date</label>
+                                <input type="text" name="" id="othercommencementdate1" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Finish  Date</label>
+                                <input type="text" name="" id="otherfinishdate1" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px; border-bottom: 1px solid #000; padding-bottom: 10px;">
+                                <label style="width: 230px;">Documentation attached?  </label>
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkotherdocumentattached1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkotherdocumentattached1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Other course undertaken outside Australia  </p>
+                            <p class="txt">
+                                <input type="text" id="otherundertakcoursename2" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body</p>
+                            <p class="txt">
+                                <input type="text" id="othernameofeducationprovider21" runat="server" name="" style="width: 330px;">
+                                <input type="text" id="othernameofeducationprovider22" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Address of education provider or training body </p>
+                            <p class="txt">
+                                <input type="text" id="otheraddressofeducationprovider2" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" id="othereduproviderpostalcode2" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Commencement Date</label>
+                                <input type="text" id="othercommencementdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Finish  Date</label>
+                                <input type="text" id="otherfinishdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt">
+                                <label style="width: 230px;">Documentation attached?  </label>
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkotherdocumentattached2No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkotherdocumentattached2Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+                            <p class="txt"><b class="num-ques">31</b> Have you previously studied in Australia?   </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkispreviouslyNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkispreviouslyYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Give details below </span>
+                            </p>
+                            <p class="txt" style="margin-left: 60px; padding-bottom: 10px; border-bottom: 1px solid #000;">You <strong>must</strong> provide evidence of your studies and training, including academic records </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px; margin-top: 10px;">Previous course in Australia  </label>
+                                <input type="text" id="previouslycoursename" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px; margin-top: 10px;">Name of education provider or training body  </label>
+                                <input type="text" id="previouslycourseeducationproviderName" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+                            <p class="txt" style="margin-left: 60px; margin-top: 10px;">Period of study </p>
+                            <p class="txt">
+                                <label style="width: 35px; margin-left: 60px;">From </label>
+                                <input type="text" id="previouslycourseDateFrom" runat="server" name="" style="width: 101px; margin-right: 3px;" placeholder="MONTH / YEAR ">
+                                <label style="width: 17px; margin-left: 0px;">to</label>
+                                <input type="text" id="previouslycourseDateTo" runat="server" name="" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt" style="margin-top: 10px;">Previous course in Australia   </p>
+                            <p class="txt">
+                                <input type="text" id="previouslycoursename1" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body</p>
+                            <p class="txt">
+                                <input type="text" id="previouslycourseeducationproviderName1" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Period of study </p>
+                            <p class="txt" style="padding-bottom: 10px; border-bottom: 1px solid #000;">
+                                <label style="width: 35px; margin-top: 10px;">From</label>
+                                <input type="text" name="" id="previouslycourseDateFrom1" runat="server" style="width: 101px; margin-right: 3px;" placeholder="MONTH / YEAR ">
+                                <label style="width: 17px; margin-left: 0px;">to</label>
+                                <input type="text" name="" id="previouslycourseDateTo1" runat="server" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Previous course in Australia   </p>
+                            <p class="txt">
+                                <input type="text" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body</p>
+                            <p class="txt">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Period of study </p>
+                            <p class="txt">
+                                <label style="width: 35px; margin-top: 10px;">From </label>
+                                <input type="text" name="" style="width: 101px; margin-right: 3px;" placeholder="MONTH / YEAR ">
+                                <label style="width: 17px; margin-left: 0px;">to</label>
+                                <input type="text" name="" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">32</b>Give details of your intended courses of study in Australia </p>
+                            <p class="txt">You must provide evidence of enrolment. Unless you are seeking to study in Australia as a secondary school exchange student or as a student sponsored by AusAID or the Australian Department of Defence, you <strong>must</strong> attach: </p>
+                            <ul style="padding-left: 15px; font-size: 12px;">
+                                <li><strong>if applying in Australia, or outside Australia as an Assessment Level 1 or 2 student,</strong> the electronic confirmation of enrolment certificate from your education provider. If you propose to study more than one course you must provide either an electronic confirmation of enrolment certificate, or an original ‘offer of a place in a course’ letter from your education provider for each additional course; or  </li>
+                                <li><strong>if applying outside Australia as an Assessment Level 3 or 4 student,</strong> the original ‘offer of a place in a course’ letter from your education provider. If you are assessed as a genuine student, the Australian Government office will provide you with a letter of genuineness. Only at this stage should you pay any tuition fees and obtain an electronic Confirmation of Enrolment
+                                </li>
+                            </ul>
+                            <p class="txt" style="margin-top: 10px;">If you are seeking to study as an exchange student, you must attach to this application the Acceptance Advice Secondary Exchange Student (AASES) form as evidence of enrolment.   </p>
+                            <br>
+                            <p class="txt" style="padding-bottom: 10px; border-bottom: 1px solid #000;">If you wish to study in Australia as a student sponsored by AusAID or the Australian Department of Defence, you must attach evidence of sponsorship from AusAID or the Department of Defence. </p>
+                            <p class="txt" style="margin-top: 10px;">Intended course</p>
+                            <p class="txt">
+                                <input type="text" id="intendcoursename" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body  </p>
+                            <p class="txt">
+                                <input type="text" id="intendedprovidername" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Commencement Date</label>
+                                <input type="text" id="intendedcommencementdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Finish  Date</label>
+                                <input type="text" id="intendedfinishdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt"><b class="num-ques">31</b> Have you enrolled?   </p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkhaveenrolmentNo" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course’  </span>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkhaveenrolmentYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Is evidence of enrolment attached?  </span>
+
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkhaveenrolmentevidenceNo" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkhaveenrolmentevidenceYes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <p class="txt" style="margin-top: 10px;">Intended course</p>
+                            <p class="txt">
+                                <input type="text" id="intendcoursename1" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body  </p>
+                            <p class="txt">
+                                <input type="text" id="intendedprovidername1" runat="server" name="" style="width: 330px;">
+                                <input type="text" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Commencement Date</label>
+                                <input type="text" id="intendedcommencementdate1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Finish  Date</label>
+                                <input type="text" id="intendedfinishdate1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt"><b class="num-ques">31</b> Have you enrolled?   </p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkhaveenrolment1No" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course’  </span>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkhaveenrolment1Yes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Is evidence of enrolment attached?  </span>
+
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkhaveenrolmentevidence1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkhaveenrolmentevidence1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt" style="margin-top: 10px;">Intended course</p>
+                            <p class="txt">
+                                <input type="text" id="intendcoursename2" runat="server" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name of education provider or training body  </p>
+                            <p class="txt">
+                                <input type="text" id="intendedprovidername2" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Commencement Date</label>
+                                <input type="text" id="intendedcommencementdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px;">Finish  Date</label>
+                                <input type="text" id="intendedfinishdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt"><b class="num-ques">31</b> Have you enrolled?   </p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkhaveenrolment2No" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course’  </span>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkhaveenrolment2Yes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Is evidence of enrolment attached?  </span>
+                                <br>
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkhaveenrolmentevidence2No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkhaveenrolmentevidence2Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+                            <h4 class="part-sub" style="margin-top: 20px;"><em>Your English language details</em></h4>
+                            <p class="txt"><b class="num-ques">33</b> Are you an applicant in Assessment Level 1 or 2?    </p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkapplicantassesmentlevelNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkapplicantassesmentlevelYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Go to Question 36   </span>
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">34</b> Have you undertaken an English language proficiency test within the last 24 months?   </p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkenglishlangtestNo" runat="server" name="" style="vertical-align: middle;"><br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkenglishlangtestYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Name of test  </span>
+                            </p>
+                            <input type="text" id="englishlangtestname" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 130px; margin-left: 60px;">Date of  test</label>
+                                <input type="text" id="englishlangtestDate" runat="server" name="" style="width: 135px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt">
+                                <label style="margin-left: 60px; margin-top: 10px;">Test certificate number </label>
+                            </p>
+                            <input type="text" id="englishlangtestcetificateno" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            <p class="txt">
+                                <label style="margin-left: 60px; margin-top: 10px;"><strong>Note:</strong> You <strong>must</strong> attach a certificate showing that you have completed an English language proficiency test.   </label>
+                            </p>
+                        </td>
+
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">35</b> Have you studied for at least 5 years (in the English language) in one or more of the following countries: </p>
+                            <ul style="padding-left: 15px; font-size: 14px;">
+                                <li>Australia;</li>
+                                <li>Canada;</li>
+                                <li>New Zealand;</li>
+                                <li>South Africa;</li>
+                                <li>the Republic of Ireland; </li>
+                                <li>the United Kingdom; or </li>
+                                <li>the United States of America? </li>
+                            </ul>
+                            <p class="txt" style="margin-bottom: 20px;">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkstudiedmorethan5yrinothercountryNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkstudiedmorethan5yrinothercountryYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach evidence</span>
+                            </p>
+                            <h4 class="part-sub"><em>Your employment details </em></h4>
+                            <p class="txt" style="padding-bottom: 10px; border-bottom: 1px solid #000;"><span class="num-ques">36</span>Give details of your employment history since leaving school/college/university. </p>
+                            <p class="txt" style="margin-left: 0px; margin-top: 10px;">
+                                Period 
+				               <label style="width: 35px; margin-left: 10px;">From </label>
+                                <input type="text" name="" id="employmenthistoryFromDate" runat="server" style="width: 101px; margin-right: 4px;" placeholder="MONTH / YEAR ">
+                                <label style="width: 15px; margin-left: 0px;">to</label>
+                                <input type="text" name="" id="employmenthistoryToDate" runat="server" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name and address of employer </p>
+                            <p class="txt">
+                                <input type="text" id="employerInfoL0" runat="server" name="" style="width: 330px;">
+                                <input type="text" id="employerInfoL1" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Type of business </label>
+                                <input type="text" id="typeofbusiness" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Occupation  </label>
+                                <input type="text" id="employeroccupation" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Salary level  </label>
+                                <input type="text" id="salarylevel" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px; padding-bottom: 10px; border-bottom: 1px solid #000;">
+                                <label style="width: 230px;">Documentation attached?  </label>
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkleavingdocAttchNo" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkleavingdocAttchYes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="margin-left: 0px; margin-top: 10px;">
+                                Period 
+				               <label style="width: 35px; margin-left: 10px;">From </label>
+                                <input type="text" id="employmenthistoryFromDate1" runat="server" name="" style="width: 101px; margin-right: 4px;" placeholder="MONTH / YEAR ">
+                                <label style="width: 15px; margin-left: 0px;">to</label>
+                                <input type="text" id="employmenthistoryToDate1" runat="server" name="" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Name and address of employer </p>
+                            <p class="txt">
+                                <input type="text" id="employerInfoL2" runat="server" name="" style="width: 330px;">
+                                <input type="text" id="employerInfoL3" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Type of business </label>
+                                <input type="text" id="typeofbusiness1" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Occupation  </label>
+                                <input type="text" id="employeroccupation1" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Salary level  </label>
+                                <input type="text" id="salarylevel1" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 230px;">Documentation attached?  </label>
+                                <label style="width: 20px;">No</label>
+                                <input type="checkbox" id="chkleavingdocAttch1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <label style="width: 25px;">Yes</label>
+                                <input type="checkbox" id="chkleavingdocAttch1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                            </p>
+
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <p class="txt"><span class="num-ques">37</span>Are you currently employed?</p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkcurrentlyemployedNo" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Are you</span>
+                            </p>
+                            <p class="txt" style="margin-bottom: 5px;">
+                                a student
+                                <input type="radio" id="rblStudent" runat="server" name="" style="vertical-align: middle; margin-right: 10px;">
+                                unemployed
+                                <input type="radio" id="rblunemployed" runat="server" name="" style="vertical-align: middle; margin-right: 10px;">
+                                other
+                                <input type="radio" id="rblOther" runat="server" name="" style="vertical-align: middle; margin-right: 10px;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Please describe</span>
+                                <br>
+                                <input type="text" name="" id="otherdescription1" runat="server" style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
+                                <label>Why do you wish to undertake the course of study you have nominated? <i>If insufficient space, attach additional details.</i></label>
+                                <input type="text" id="otherdescription2" runat="server" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;"><i class="fas fa-angle-double-right"></i>Now go to Question 39</p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkcurrentlyemployedYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Your position</span>
+                                <input type="text" id="position" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                                <label>Name, address and telephone number of your employer</label>
+
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="employername" runat="server" name="" style="width: 100%;">
+                                <input type="text" id="employeraddress" runat="server" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;" placeholder="PINCODE">
+                                <input type="text" id="employercontactno" runat="server" name="" style="width: 100%; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                            </p>
+                            <p class="txt" style="margin-bottom: 5px;">
+                                Have you attached evidence of your employment details?<br>
+                                <label style="width: 20px;">No</label>
+                                <input type="radio" id="rblevidenceofemployementNo" runat="server" name="" style="vertical-align: middle;">
+                                <label style="width: 30px; text-align: right;">Yes</label>
+                                <input type="radio" id="rblevidenceofemployementYes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 15px;">
+                                Are you currently a student in Australia?<br>
+                                <label style="width: 20px;">No</label>
+                                <input type="radio" id="rblcurrentlystudentinaustraliaNo" runat="server" name="" style="vertical-align: middle;">
+                                <label style="width: 30px; text-align: right;">Yes</label>
+                                <input type="radio" id="rblcurrentlystudentinaustraliaYes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">38</b> Have you been offered a job for when you return home at the completion of your course?  </p>
+                            <label style="width: 30px;">No</label>
+                            <input type="checkbox" id="chkjobofferedNo" runat="server" name="" style="vertical-align: middle;">
+                            <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">What kind of employment will you be seeking on your return to your home country?  </span>
+                            <input type="text" id="kindofemployementseeking" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;">
+
+                            <label style="width: 30px;">Yes</label>
+                            <input type="checkbox" id="chkjobofferedYes" runat="server" name="" style="vertical-align: middle;">
+                            <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Name, address and telephone number of your employer  </span>
+                            <input type="text" id="jobofferedname" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text" id="jobofferedaddress" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text" id="jobofferedcontactno" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;" placeholder="POSTAL CODE">
+
+                            <input type="text" name="" style="width: 270px; margin-top: 10px; margin-left: 60px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
+
+                            <p class="txt" style="margin-top: 10px; margin-left: 60px;">Title of position offered</p>
+                            <p class="txt">
+                                <input type="text" id="titleofpositionofferef" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            </p>
+                        </td>
+
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h4 class="part-sub"><em><strong>Other address details </strong></em></h4>
+                            <p class="txt" style="padding-bottom: 10px; border-bottom: 1px solid #000;">
+                                <b class="num-ques">39</b>Give details of any immediate relatives in Australia
+ 							<em>(ie. parent, spouse, child, brother or sister)</em>
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Name</label>
+                                <input type="text" id="immediaterelativename" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Relationship to you </label>
+                                <input type="text" id="immediaterelativerelationship" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Date of birth </label>
+                                <input type="text" id="immediaterelativeDob" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">Address  </p>
+                            <p class="txt">
+                                <input type="text" id="immediaterelativeaddress" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" id="immediaterelativepostalcode" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Immigration status in Australia <em>(eg. temporary or permanent resident, Australian citizen)  </em></p>
+                            <input type="text" id="immediaterelativeimmigrationstatus" runat="server" name="" style="width: 325px;" placeholder="">
+                            </p>
+
+				            <p class="txt" style="margin-top: 10px; border-bottom: 1px solid #000; padding-bottom: 10px;">
+                                <label style="width: 120px;">Date of arrival  </label>
+                                <input type="text" id="immediaterelativeDateofarrival" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Name</label>
+                                <input type="text" id="immediaterelativename1" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Relationship to you </label>
+                                <input type="text" id="immediaterelativerelationship1" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Date of birth </label>
+                                <input type="text" id="immediaterelativeDob1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">Address  </p>
+                            <p class="txt">
+                                <input type="text" id="immediaterelativeaddress1" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" id="immediaterelativepostalcode1" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Immigration status in Australia <em>(eg. temporary or permanent resident, Australian citizen)  </em></p>
+                            <input type="text" id="immediaterelativeimmigrationstatus1" runat="server" name="" style="width: 325px;" placeholder="">
+                            </p>
+
+				            <p class="txt" style="margin-top: 10px; border-bottom: 1px solid #000; padding-bottom: 10px;">
+                                <label style="width: 120px;">Date of arrival  </label>
+                                <input type="text" id="immediaterelativedateofarrival1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">40</b>Give details of your closest relative in your home country who is neither accompanying nor joining you in Australia  </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Name</label>
+                                <input type="text" id="closestrelativename" runat="server" name="" style="width: 205px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 120px;">Relationship to you </label>
+                                <input type="text" id="closestrelativerelationship" runat="server" name="" style="width: 205px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Address  </p>
+                            <p class="txt">
+                                <input type="text" id="closestrelativeaddress" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" id="closestrelativepostalcode" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 75px;">Telephone  </label>
+                                <input type="text" id="closestrelativecontactnumber" runat="server" name="" style="width: 250px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
+                            </p>
+                        </td>
+                    </tr>
+
+
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h4 class="part-sub"><em>Financial details</em></h4>
+                            <p class="txt"><b class="num-ques">41</b>Are you applying to study in Australia as a secondary school exchange student?    </p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkapplyinaustraliaassecschoolNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkapplyinaustraliaassecschoolYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Go to Question 43   </span>
+                            </p>
+                            <p class="txt"><b class="num-ques">42</b>Do you have access to sufficient funds to support you and your family unit members for the TOTAL period of your stay in Australia (including proposed course fees for you and any school-age family members, living costs and travel costs, regardless of whether your dependants intend to accompany you to  Australia)? </p>
+                            <br>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkissufficientfundNo" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Go to Question 43   </span>
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkissufficientfundYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Go to Question 43   </span>
+                                <br>
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt" style="margin-left: 60px;">
+                                If you are under 18 years of age, this declaration must be signed on your behalf by your parents or a person(s) who has legal custody of you. 
+                            </p>
+                            <br>
+                            <p class="txt" style="margin-left: 60px;">
+                                If you are in Assessment Level 2–5, you <strong>must</strong> provide documentary <strong>evidence</strong> that you have sufficient funds (unless you are a secondary school exchange student). It is important that you refer to the department’s website <strong>www.immi.gov.au/study/</strong> for details regarding the level of funds you are required to demonstrate, acceptable sources of funds and of the length of time funds must have been held.
+                            </p>
+                            <br>
+                            <p class="txt" style="margin-left: 60px;">
+                                I declare that I have access to sufficient funds to support myself and my family unit members (regardless of whether they are accompanying me to Australia) for the total period of my stay in Australia. 
+                            </p>
+                            <p class="txt" style="margin-left: 60px; margin-top: 10px;">
+                                <h6 style="margin-left: 60px;"><strong>Your signature </strong></h6>
+                            </p>
+                            <input type="text" name="" style="width: 280px; height: 100px; margin-left: 60px;">
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 60px;">Date</label>
+                                <input type="text" id="declarationDate42" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h3 class="part-sub"><em>Additional information</em></h3>
+                            <p class="txt">
+                                <b class="num-ques">43</b>If there is any other information or documentation you would like taken into consideration in assessing your application attach it to the application. 
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Remember that a decision may be based solely on the information you provide in this application. </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <strong>Note:</strong> If you are in Australia as the holder of a student subclass 570–576 visa and you wish to change your principal course within the first 12 months of that course, and your new principal course will be in a new education sector, then as part of this application you must provide exceptional circumstances to justify the change of course. 
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">If you are applying in Australia as an Assessment Level 2–5 applicant and do not hold a student visa, you must provide exceptional reasons to justify the grant of your visa.  </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle;"></i>
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle;"></i>Now go to Part D 
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                            <h5 class="part"><em><strong>Part C – To be completed only if you are a family unit member joining a student in Australia</strong></em> </h5>
+                            <br>
+                            <p class="txt"><b class="num-ques">44</b>Has the student you are joining, who is a member of your family unit, completed form 919 Nomination of student dependants? </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkFamilyunitcompletedformpartCNo" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">If applying outside Australia, you must provide a completed form 919 with this application  </span>
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkFamilyunitcompletedformpartCYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach the completed form 919 to this application    </span>
+                                <br>
+                            </p>
+                            <p class="txt" style="margin-top: 20px;"><b class="num-ques">45</b>Do you intend to study in Australia for more than 3 months?  </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkstudymorethanthreemonthpartCNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkstudymorethanthreemonthpartCYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">If you are 5 years up to 18 years of age, please provide documentary evidence of school enrolment in Australia. 
+                                </span>
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">If you are 18 years of age or older and you intend to study of time funds must be held. in Australia for more than 3 months, you must apply for a student visa as a principal applicant, rather than as a family unit member. </p>
+                            <p class="txt" style="margin-top: 20px;"><b class="num-ques">46</b>Provide details of the student you are joining in Australia  </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Name</label>
+                                <input type="text" id="studentnamepartC" runat="server" name="" style="width: 228px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Relationship to you </label>
+                                <input type="text" id="relationshiptostudentpartC" runat="server" name="" style="width: 228px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Date of Birth</label>
+                                <input type="text" id="studentdobpartC" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Citizenship(s)  </label>
+                                <input type="text" id="citizenshipofstudentpartC" runat="server" name="" style="width: 228px;">
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">Address </p>
+                            <p class="txt">
+                                <input type="text" id="studentaddresspartC" runat="server" name="" style="width: 330px;">
+                                <input type="text" name="" style="width: 330px;">
+                                <input type="text" id="studentaddpostalcodepartC" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 150px;">Type of student visa held  </label>
+                                <input type="text" id="typeofstudentvisaheldpartC" runat="server" name="" style="width: 177px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 150px;">What Assessment Level were they assessed against (if known)? </label>
+                                <input type="text" id="assessmentlevelpartC" runat="server" name="" style="width: 177px;">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Date granted </label>
+                                <input type="text" id="assessmentgrantdatepartC" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 100px;">Expiry date </label>
+                                <input type="text" id="assessmentexpirydatepartC" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <strong>Note:</strong> You cannot join your family unit member in Australia on a student visa if they are in Assessment Levels 3–5 unless the total duration of the course(s) they are undertaking in Australia is at least 12 months or more.
+                            </p>
+
+                            <p class="txt" style="margin-top: 10px;"><b class="num-ques">47</b>Did the student you are joining declare in their initial student visa application you and other members of their family unit included in this application?  </p>
+
+                            <p class="txt" style="margin-top: 10px;">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkisstudentjoiningdeclarepartCNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chkisstudentjoiningdeclarepartCYes" runat="server" name="" style="vertical-align: middle;">
+                            </p>
+                        </td>
+
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt" style="margin-top: 10px;">
+                                <b class="num-ques">48</b>
+                                Is the student you are joining: 
+                            </p>
+                            <ul style="padding-left: 0px; font-size: 12px;">
+                                <li>the holder of an International Postgraduate Research Scholarship;</li>
+                                <li>sponsored by AusAID or the Australian Department of Defence; </li>
+                                <li>fully sponsored by the federal, or a state or territory government of Australia; </li>
+                                <li>fully sponsored by the government of your home country, or by a state or provincial government of your home country; </li>
+                                <li>fully sponsored by a multilateral organisation eg. the United Nations, World Bank? </li>
+                            </ul>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chkisstudentjoiningsatisfiedconditionpartCNo" runat="server" name="" style="vertical-align: middle;">
+
+
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" name="" id="chkisstudentjoiningsatisfiedconditionpartCYes" runat="server" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">If the student you are joining is in Assessment Level 2–5 and was granted their visa after 1 December 2003, there are specific financial evidentiary requirements that you must meet. Please go to the department’s website for details on the levels of funds you are required to demonstrate, acceptable sources of funds and the length of time funds must be held. </span>
+                            </p>
+                            <p class="txt" style="margin-top: 10px;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle;"></i>
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle;"></i>Now go to Part D 
+                            </p>
+                            <p class="txt" style="margin-top: 20px;"><b class="num-ques">49</b>Does the student you are joining have sufficient funds to financially support themselves, you and any other family members included in this application, for the remainder of his or her stay in Australia?  </p>
+                            <p class="txt" style="margin-top: 20px;">
+                                <label style="width: 30px;">No</label>
+                                <input type="checkbox" id="chksuficientfundpartCNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label>
+                                <input type="checkbox" id="chksuficientfundpartCYes" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">You must attach evidence of this financial support </span>
+                            </p>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h2 class="part"><i>Part D – To be completed by all applicants</i></h2>
+                            <h6 class="part-sub"><i>Health declaration</i></h6>
+                            <p class="txt">In the last 5 years, have you, or has any member of your family unit included in this application, visited or lived outside your country of usual residence for more than 3 consecutive months?</p>
+                            <p class="txt">
+                                <b class="num-ques">50</b>
+                                <label style="width: 30px;">No</label><input id="rbllivedoutsidecountrycNo" runat="server" type="radio" name="" style="vertical-align: middle; margin-bottom: 5px;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rbllivedoutsidecountrycYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give Details</span>
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                <label style="width: 80px;">Name</label><input type="text" id="familymembername" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Countries</label><input type="text" id="familyresidencecountry" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Date</label><input type="text" name="" id="familyresidenceFromdate" runat="server" style="width: 110px; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                                <label style="width: 26px; text-align: center;">to</label><input id="familyresidenceTodate" runat="server" type="text" name="" style="width: 110px; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                <label style="width: 80px;">Name</label><input id="familymembername1" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Countries</label><input id="familyresidencecountry1" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Date</label><input type="text" id="familyresidenceFromdate1" runat="server" name="" style="width: 110px; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                                <label style="width: 26px; text-align: center;">to</label><input id="familyresidenceTodate1" runat="server" type="text" name="" style="width: 110px; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                <label style="width: 80px;">Name</label><input id="familymembername2" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Countries</label><input id="familyresidencecountry2" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Date</label><input type="text" id="familyresidenceFromdate2" runat="server" name="" style="width: 110px; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                                <label style="width: 26px; text-align: center;">to</label><input id="familyresidenceTodate2" runat="server" type="text" name="" style="width: 110px; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <br>
+                            <p class="txt">
+                                <span class="num-ques">51</span> Do you, or any member of your family unit included in this application, intend entering an Australian hospital (including nursing homes) for work, training, treatment or visiting?
+                                <br>
+                                <label style="width: 30px;">No</label><input id="rblhaveworkforaustralianhospitalNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblhaveworkforaustralianhospitalYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give full details</span>
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="descriptionofhospitalwork" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+                            <br>
+                            <p class="txt">
+                                <span class="num-ques">52</span> Do you, or any member of your family unit included in this application, intend to work in an Australian preschool-aged child care centre (including preschools and creches) as an employee or trainee?<br>
+                                <label style="width: 30px;">No</label><input type="radio" id="rblhaveworkforaustralianpreschoolNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveworkforaustralianpreschoolYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give full details</span>
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="descriptionofpreschoolwork" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+
+                            <br>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt">
+                                <span class="num-ques">53</span> Have you, or any member of your family unit included in this application:
+								<ul>
+                                    <li>ever had, or do you currently have, tuberculosis?</li>
+                                    <li>been in close contact with a person who has, or has had, active tuberculosis?</li>
+                                    <li>ever had a chest x-ray which showed an abnormality?</li>
+                                </ul>
+                                <label style="width: 30px;">No</label><input id="rblhaveanyhealthissueNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblhaveanyhealthissueYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give full details</span>
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="detailofhealthissue" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+                            <br>
+                            <p class="txt">
+                                <span class="num-ques">54</span> Do you require assistance with mobility and/or care?
+                                <br>
+                                <label style="width: 30px;">No</label><input type="radio" id="rblrequireassistancewithmobilityNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblrequireassistancewithmobilityYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Provide details of the mobility/care concerns that apply to you and how they are addressed </span>
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="descriptionofmobility" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+                            <br>
+                            <p class="txt">
+                                <span class="num-ques">55</span> Do you intend performing medical procedures (eg. as a practising/trainee doctor, dentist, nurse) during your stay in Australia?
+                                <br>
+                                <label style="width: 30px;">No</label><input type="radio" id="rblhaevmedicalproceduresNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaevmedicalproceduresYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Provide details of the medical/dental/nursing procedures you may be involved with in Australia</span>
+                            </p>
+                            <p class="txt">
+                                <input type="text" id="proceduresdescription" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt">
+                                <span class="num-ques">56</span> 56	During your proposed visit to Australia, do you, or any children included in this application, expect to incur medical costs, or require treatment or medical follow up for:
+                            </p>
+                            <h6 class="clearfix" style="font-weight: 400;">
+                                <ul style="width: 50%; float: left; margin: 0;">
+                                    <li>blood disorder</li>
+                                    <li>cancer</li>
+                                    <li>heart disease</li>
+                                    <li>hepatitis</li>
+                                    <li>HIV infection, including AIDS</li>
+                                    <li>kidney disease, including dialysis</li>
+                                    <li>liver disease</li>
+                                </ul>
+                                <ul style="width: 50%; float: left; margin: 0;">
+                                    <li>mental illness</li>
+                                    <li>pregnancy</li>
+                                    <li>respiratory disease that has required hospital admission</li>
+                                    <li>any form of surgery</li>
+                                    <li>any other health concerns?</li>
+                                </ul>
+                            </h6>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input id="rblhavemedicalfollowupNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblhavemedicalfollowupYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give Details</span><br>
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <input type="text" id="medicalfollowupdescription" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+                            <p class="txt">
+                                <i>You are strongly advised to carry certification of your vaccination status, especially for children attending Australian child care centres (including preschools and creches) and schools. Vaccination against polio, tetanus, measles, mumps, rubella, diphtheria, pertussis (whooping cough), Haemophilus influenzae hypo B (Hib), and Hepatitis B is recommended for children, with certification sought at time of child care centre (including preschool and creche) and school enrolment. Vaccination against rubella is also recommended for women of child bearing age.</i>
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Character declaration</i></h6>
+                            <p class="txt">
+                                <span class="num-ques">57</span>
+                                Have you, or any member of your family unit included in this application, ever:
+                            </p>
+                            <ul>
+                                <li style="margin-bottom: 5px;">
+                                    <span>been convicted of a crime or offence in any country (including any conviction which is now removed from official records)?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhaveconvictedofcrimeNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhaveconvictedofcrimeYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>been charged with any offence that is currently awaiting legal action?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhavechargeoffenceNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhavechargeoffenceYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>been acquitted of any criminal offence or other offence on the grounds of mental illness, insanity or unsoundness of mind?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhavecriminaloffenceNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="chkhavecriminaloffenceYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>been removed or deported from any country (including Australia)?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhaveremovedfromcountryNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhaveremovedfromcountryYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>left any country to avoid being removed or deported?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhavetoavoidbeingremovedNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhavetoavoidbeingremovedYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>been excluded from or asked to leave any country (including Australia)?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhavebeenexcludedNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhavebeenexcludedYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>committed, or been involved in the commission of war crimes or crimes against humanity or human rights?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhavehumanrightscrimeNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhavehumanrightscrimeYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>been involved in any activities that would represent a risk to Australian national security?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhaverisktonationalsecurityNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhaverisktonationalsecurityYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>had any outstanding debts to the Australian Government or any public authority in Australia?</span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhaveoutstandingdebetsNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhaveoutstandingdebetsYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>been involved in any activity, or been convicted of any offence, relating to the illegal movement of people to any country (including Australia)? </span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhaveconvictedoffenceNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="chkhaveconvictedoffenceYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                                <li style="margin-bottom: 5px;">
+                                    <span>served in a military force or state sponsored/private militia, undergone any military/paramilitary training, or been trained in weapons/explosives use (however described)? </span>
+                                    <span style="display: inline-block; padding-left: 10px;">
+                                        <label style="width: 20px;">No</label>
+                                        <input type="radio" id="rblhaveservedinmilitaryforceNo" runat="server" name="" style="vertical-align: middle;">
+                                        <label style="width: 30px; text-align: right;">Yes</label>
+                                        <input type="radio" id="rblhaveservedinmilitaryforceYes" runat="server" name="" style="vertical-align: middle;">
+                                    </span>
+                                </li>
+                            </ul>
+                            <p class="txt">
+                                If you answered ‘Yes’ to any of the above questions, you must state who it applies to and give ALL relevant details. If the matter relates to a criminal conviction, please give the nature of the offence, full details of sentence and dates of any period of imprisonment or other detention.
+							<br>
+                                <i>If insufficient space, attach an additional statement.</i><br>
+                                <br>
+                            </p>
+                            <p>
+                                <input type="text" id="descripofcharacterdeclaration" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Accommodation/welfare arrangements for students under 18 years of age</i></h6>
+                            <p class="txt"><span class="num-ques">58</span>Are you under 18 years of age?</p>
+                            <p class="txt" style="margin-bottom: 5px;"><b>Note:</b> Depending on your Assessment Level, you may need to meet a minimum age or education standard requirement. Refer to information form 1219i <i>Overseas Student Program – Assessment Levels</i> and the department’s website for more details.</p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input id="rblunder18ageNo" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 68</span>
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblunder18ageYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: top;">Questions 59 (and either question 60, 61, 63 or 64) and the declaration at 65 must be completed on your behalf by your parents or a person(s) who has legal custody of you, as you are under 18 years of age. If your parents or a person(s) who has legal custody of you have not made adequate arrangements for your accommodation, support and general welfare while in Australia, a student visa cannot be granted. Evidence of their relationship to you must be provided.</span><br>
+                            </p>
+                            <p class="txt" style="margin-bottom: 5px;">
+                                This question, and other questions as indicated, <b>must be completed by the parents, or person(s) who has legal custody of the applicant under 18 years of age.</b>
+                            </p>
+                            <p class="txt" style="margin-bottom: 5px;">Which statement best explains your situation?</p>
+                            <p class="txt">
+                                I am a parent or person who has legal custody of the student applicant and I am going to accompany the child to Australia. &nbsp;&nbsp;
+                                <input type="radio" id="rblparentsituationNo" runat="server" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 60</span>
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                I am a parent or person who has legal custody of the student applicant and have made arrangements for the child to stay in Australia with a relative* who is 21 years of age or older. &nbsp;&nbsp;
+                                <input type="radio" id="rblparentsituationYes" runat="server" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 61</span>
+                            </p>
+                            <br>
+                            <p>* A relative is defined under the Migration Regulations as a spouse, child, adopted child, parent, brother, sister, step-child, step-parent, step-brother, step-sister, grandparent, grandchild, aunt, uncle, niece or nephew, or a step-grandparent, step-grandchild, step-aunt, step-uncle, step-niece or step-nephew.</p>
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                The student applicant will not be accompanied by either a parent or a person who has legal custody, and will not stay in Australia with a relative who is 21 years of age or older. &nbsp;&nbsp;
+                                <input type="radio" id="rblparentsituationNot" runat="server" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 64</span>
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt"><span class="num-ques">60</span> As the parent or a person who has legal custody of a student applicant under 18 years of age, do you hold or have you applied for a visa (eg. Student Guardian visa – subclass 580) to accompany your child during their stay in Australia? </p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label><input type="radio" id="rblholdorappliedVisaNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblholdorappliedVisaYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Please give your details below, then go to Question 65</span>
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                <label style="width: 80px;">Family name </label>
+                                <input type="text" id="parentfamilynamePartD" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Given names</label><input id="parentgivennamePartD" runat="server" type="text" name="" style="width: 250px;"><br>
+                                <label style="width: 80px;"></label>
+                                <input type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Date of birth</label><input type="text" id="parentDateofBirthpartD" runat="server" name="" style="width: 250px; font-size: 10px; margin-bottom: 10px;" placeholder="DAY / MONTH / YEAR"><br>
+                            </p>
+                            <p class="txt">
+                                Your intended address in Australia<br>
+                                <input type="text" id="parentaddresspartD" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                            </p>
+                            <p class="txt">
+                                Application:
+                                <br>
+                                Granted &nbsp;&nbsp;<input type="radio" id="rblparentvisastatusPartDYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Visa label number</span>
+                                <br>
+                                <input type="text" name="" id="parentvisalabelno" runat="server" style="width: 100%;">
+                                If granted a visa without a label, provide the 13-digit visa grant number (as shown on the letter notifying you of visa grant).
+								<input type="text" id="parentvisadigitno" runat="server" name="" style="width: 100%;">
+                            </p>
+                            <p class="txt clearfix" style="margin-bottom: 10px;">
+                                <span style="width: 48%; float: left;">Period of stay<br>
+                                    <input type="text" id="parentvisaperiodofstay" runat="server" name="" style="width: 100%;">
+                                </span>
+                                <span style="width: 48%; float: right;">Expiry date <small style="font-size: 8px;">(DAY/MONTH/YEAR)</small><br>
+                                    <input type="text" id="parentvisaexpirydate" runat="server" name="" style="width: 100%;">
+                                </span>
+                            </p>
+                            <p class="txt" style="margin-bottom: 5px;">
+                                Not yet decided  &nbsp;&nbsp;<input type="radio" id="rblparentvisastatusPartDNo" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Australian Government office where application lodged </span>
+                                <br>
+                                <input type="text" id="parentvisaappliedgovtofficename" runat="server" name="" style="width: 100%;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;"><i class="fas fa-angle-double-right"></i>Now go to Question 65</p>
+                            <p class="txt"><span class="num-ques">61</span> As the parents or a person(s) who has legal custody of a student applicant under 18 years of age, have you made arrangements with a relative who is at least 21 years of age and of good character with whom your child will stay in Australia?</p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input type="radio" id="rblhavearrangementwithrelativeNo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhavearrangementwithrelativeYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Please give details of the relative</span><br>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 80px;">Family name </label>
+                                <input type="text" id="familyNameofrelative" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Given names</label><input id="givenNameofrelative" runat="server" type="text" name="" style="width: 250px;"><br>
+                                <label style="width: 80px;"></label>
+                                <input type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Date of birth</label><input id="dateOfBirthofrelative" runat="server" type="text" name="" style="width: 250px; font-size: 10px; margin-bottom: 10px;" placeholder="DAY / MONTH / YEAR"><br>
+                            </p>
+                            <p class="txt">
+                                Your intended address in Australia<br>
+                                <input type="text" id="addressofRelative" runat="server" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%;"><br>
+                                <input type="text" name="" style="width: 100%; margin-bottom: 5px;"><br>
+                            </p>
+                            <p class="txt">
+                                <label>Relationship of relative to the child</label>
+                                <input type="text" id="relationshipofrelative" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="tx"><span class="num-ques">62</span>Will your relative reside in Australia as:</p>
+
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 131px;">an Australian citizen or permanent resident</label><input type="radio" id="rblrelativeresideasstatusPerm" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblrelativeresideasstatusTemp" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">How long are they permitted to stay in Australia?</span><br>
+                                <input type="text" id="permitedtostayfor" runat="server" name="" style="width: 100%;">
+                                <span style="display: block; text-align: center; line-height: 1.9">OR until</span>
+                                <input type="text" id="permitedtostayDate" runat="server" name="" style="width: 100%; font-size: 10px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt">You <b>must</b> attach evidence:</p>
+                            <ul class="txt">
+                                <li>that your relative is of good character eg. police clearance; and</li>
+                                <li>of your relative’s residence status in Australia.</li>
+                            </ul>
+                            <p class="txt"><span class="num-ques">63</span>Give details of your relative’s Student Guardian visa application?</p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 80px;">Granted</label><input id="rblguardianvisasatusGranted" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <br>
+                                Visa label number
+                                <br>
+                                <input type="text" id="guardianvisano" runat="server" name="" style="width: 100%">
+                                <span class="txt clearfix" style="margin-bottom: 10px; width: 100%; display: block;">
+                                    <span style="width: 48%; float: left;">Period of stay<br>
+                                        <input id="guardianvisaperiodofstay" runat="server" type="text" name="" style="width: 100%;">
+                                    </span>
+                                    <span style="width: 48%; float: right;">Expiry date <small style="font-size: 8px;">(DAY/MONTH/YEAR)</small><br>
+                                        <input id="guardianvisaperiodofstayDate" runat="server" type="text" name="" style="width: 100%;">
+                                    </span>
+                                </span>
+                                <label style="width: 104px;">Not yet decided</label><input id="rblkguardianvisasatusNot" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">
+                                    <br>
+                                    Australian Government office where application lodged</span><br>
+                                <input type="text" id="govermentoffName" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                                <label style="width: 133px;">Period of stay sought </label>
+                                <input type="text" id="periodofstayofguardian" runat="server" name="" style="width: 197px; margin-bottom: 5px;"><br>
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;"><i class="fas fa-angle-double-right"></i>Now go to Question 65</p>
+                            <p class="txt"><span class="num-ques">64</span>As the parents or a person(s) who has legal custody of a student applicant under 18 years of age, who is neither being accompanied by you nor staying with a relative who is at least 21 years of age, have you obtained a written statement from your child’s education provider(s) that accommodation, support and general welfare arrangements for your child are appropriate?</p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input id="rblhavewelfarearrangementsNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblhavewelfarearrangementsYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Please attach the original signed undertaking from the education provider</span><br>
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt" style="margin-bottom: 5px;"><span class="num-ques">65</span><i>I am satisfied with the reception, care and support arrangements that have been made in Australia for my dependent child under 18 years of age.</i></p>
+                            <p class="txt" style="margin-bottom: 10px;"><b>Note: Both parents must sign this declaration</b></p>
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <textarea id="parentsignature" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="parentsignatureDate" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt">
+                                <label>Full name <i>(print in English)</i></label><br>
+                                <input id="parentFullname" runat="server" type="text" name="" style="width: 100%; margin-bottom: 3px;">
+                            </p>
+                            <p class="txt">
+                                <label>Relationship to student applicant</label><br>
+                                <input id="parentRelationshipwithstudent" runat="server" type="text" name="" style="width: 100%; margin-bottom: 10px;">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <textarea id="parentsignature1" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input  id="parentsignatureDate1" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt">
+                                <label>Full name <i>(print in English)</i></label><br>
+                                <input id="parentFullname1" runat="server" type="text" name="" style="width: 100%; margin-bottom: 3px;">
+                            </p>
+                            <p class="txt">
+                                <label>Relationship to student applicant</label><br>
+                                <input id="parentRelationshipwithstudent1" runat="server" type="text" name="" style="width: 100%; margin-bottom: 10px;">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Custody arrangements for students under 18 years of age</i></h6>
+                            <p class="txt" style="margin-bottom: 5px;"><span class="num-ques">66</span>Do you have the <b>sole legal right</b> to determine where the applicant will live or to remove the applicant from their country of usual residence?</p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label><input type="radio" id="rblhavesolelegalrightsNo" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Provide details of ALL other people who have custody, access or guardianship rights in relation to the applicant</span>
+                                <br>
+                                <i style="margin: 8px 0; display: block;">If there is more than one person, please attach details.</i>
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label>Name</label>
+                                <input type="text" id="personname" runat="server" name="" style="width: 100%; margin-bottom: 4px;">
+                                <label>Residential address</label>
+                                <input type="text" id="personaddress" runat="server" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text"  name="" style="width: 100%; margin-bottom: 4px;">
+                                <label>Telephone Number</label>
+                                <input type="text" id="personcontactno" runat="server" name="" style="width: 100%; font-size: 9px; margin-bottom: 4px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label>Relationship to student visa applicant </label>
+                                <input type="text" id="personrelationship" runat="server" name="" style="width: 100%; margin-bottom: 4px;">
+                                <label>Nature of legal right</label>
+                                <input type="text" id="personnatureoflegalrights" runat="server" name="" style="width: 100%;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">Nature of legal right</p>
+                            <p class="txt" style="margin-bottom: 8px;">All other people who have custody, access or guardianship rights in relation to the applicant must also sign the declaration at Question 67.</p>
+                            <p class="txt"><i>If any of these people are unable to complete the declaration at Question 67 for any reason, you must attach a statutory declaration from them giving permission for the applicant to travel to Australia as a student.</i></p>
+                            <hr style="border-color: #000">
+                            <label style="width: 30px;">Yes</label><input type="radio" id="rblhavesolelegalrightsYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Complete the declaration at Question 67</span>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <span class="num-ques">67</span> <b>Declaration by the parent(s) or person(s) with legal custody of a student visa applicant under 18 years of age</b><br>
+                                <i>I am not aware of any reason why the visa applicant should not travel to Australia (the custody/access/guardianship rights of another person are not affected).</i>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <textarea id="parentsignatur67" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="signDate" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt">
+                                <label>Full name <i>(print in English)</i></label><br>
+                                <input id="fullname67" runat="server" type="text" name="" style="width: 100%; margin-bottom: 3px;">
+                            </p>
+                            <p class="txt">
+                                <label>Relationship to student applicant</label><br>
+                                <input id="relationship67" runat="server" type="text" name="" style="width: 100%; margin-bottom: 10px;">
+                            </p>
+                            <hr style="border-color: #000">
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <textarea id="parentsignatur671" runat="server"  rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="signDate1" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt">
+                                <label>Full name <i>(print in English)</i></label><br>
+                                <input id="fullname671" runat="server" type="text" name="" style="width: 100%; margin-bottom: 3px;">
+                            </p>
+                            <p class="txt">
+                                <label>Relationship to student applicant</label><br>
+                                <input id="relationship671" runat="server" type="text" name="" style="width: 100%; margin-bottom: 10px;">
+                            </p>
+                            <p class="txt"><i>If more than 2 people have custody, access or guardianship rights in relation to the applicant, please attach a statutory declaration from them giving permission for the applicant to travel to Australia as a student.</i></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Assistance with this form</i></h6>
+                            <p class="txt"><span class="num-ques">68</span> Did you receive assistance in completing this form?</p>
+                            <p class="txt">
+                                <label style="width: 30px;">No</label><input id="rblhavereceiveassistanceNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Go to Question 73</span><br>
+                                <label style="width: 30px;">Yes</label><input id="rblhavereceiveassistanceYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Please give details of the person who assisted you</span>
+                            </p>
+                            <p class="txt">
+                                Title: Mr
+                                <input  id="rblTitleMr" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                Mrs
+                                <input id="rblTitleMrs" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                Miss
+                                <input id="rblTitleMiss" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                Ms
+                                <input id="rblTitleMs" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                Other
+                                <input id="rblTitleOther" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="width: 80px;">Family name</label><input id="assistedpersonfamilyname" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Given names </label>
+                                <input type="text" name="" id="assistedpersongivenname" runat="server" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label>Address</label>
+                                <input type="text" id="assistedpersonaddress" runat="server" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text"  name="" style="width: 100%;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label>Telephone number or daytime contact</label><br>
+                                <label style="width: 80px;">Office hours </label>
+                                <input type="text" id="assistedpersonofficeno" runat="server" name="" style="width: 250px; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label style="width: 80px;">Mobile phone</label><input id="assistedpersonmobileno" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <span class="num-ques">69</span>Is your agent registered with the Migration Agents Registration Authority (MARA)?
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input type="radio" id="rblisregisteredwithMARANo" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblisregisteredwithMARAYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 73</span><br>
+                            </p>
+                            <p class="txt">
+                                <span class="num-ques">70</span>Is the person an education agent?
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input type="radio" id="rblhaveeducationagentNo" runat="server"  name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveeducationagentYes" runat="server"  name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Please give details below </span>
+                                <br>
+                                <label>Education Agency Business Name</label>
+                                <input type="text" id="businessname" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                                <label>Education Agent Registration Number <i>(if known)</i></label>
+                                <input type="text" id="registrationno" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                                <label>Address <i>(if different from address given in Question 68)</i></label>
+                                <input type="text" id="educationagentaddress" runat="server" name="" style="width: 100%">
+                                <input type="text" name="" style="width: 100%">
+                                <input type="text"  name="" style="width: 100%; margin-bottom: 5px;">
+                                <label>E-mail address</label>
+                                <input type="text" id="educationagentemail" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                                <label>Telephone number or daytime contact </label>
+                                <label>Office hours</label>
+                                <input type="text" id="educationagentofficeno" runat="server" name="" style="width: 100%; font-size: 9px; margin-bottom: 4px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label>Mobile phone</label>
+                                <input type="text" name="" id="educationagentphoneno" runat="server" style="width: 100%; margin-bottom: 5px;">
+                                <label>Fax Number</label>
+                                <input type="text" name="" id="educationagentfaxno" runat="server" style="width: 100%; font-size: 9px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                            </p>
+
+                            <p class="txt"><span class="num-ques">71</span>Is your agent in Australia?</p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input id="rblhaveagentinaustraliaNo" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 73 </span>
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblhaveagentinaustraliaYes" runat="server" type="radio" name="" style="vertical-align: middle;"><br>
+                            </p>
+
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt"><span class="num-ques">72</span>Did you pay the person and/or give a gift for this assistance? </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input id="rblhavepaytoassistanceNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblhavepaytoassistanceYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">How much did you pay?</span><br>
+                                <input type="text" id="howmuchyoupay" runat="server" name="" style="width: 250px;" placeholder="A$">
+                                <span style="width: 80px;">AND / OR</span>
+                                <label style="margin-top: 4px;">What kind of gift did you give? (eg. jewellery)</label>
+                                <input type="text"  id="giftgiven" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                                <label>Value of gift (approximately)</label>
+                                <input type="text"  id="valueofgift" runat="server" name="" style="width: 100%;" placeholder="A$">
+                            </p>
+                            <h6 class="part-sub"><i>Options for receiving written communications</i></h6>
+                            <p class="txt">
+                                <span class="num-ques">73</span>All written communications about this application should be sent to:<i>(Tick one box only)</i>
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label>Myself</label><input type="radio" id="rblhavewrittencommunicationsMyself" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">All written communications will be sent to the address for communications that you have provided in this form. Go to Question 81 </span>
+                                <br>
+                                <label>Australian registered migration agent</label><input id="rblhavewrittencommunicationsMigrationagent" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 78</span><br>
+                                <label>Offshore agent</label><input type="radio" id="rblhavewrittencommunicationsOffshoreagent" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Go to Question 78</span><br>
+                                <label>Agent exempted from registration</label><input type="radio" id="rblhavewrittencommunicationsAgentExmpted" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">You must complete form 956 Appointment <i>of a migration agent </i>and attach it to this application form. Go to Question 81</span><br>
+                                <label>Authorised recipient</label><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"><input type="radio" id="rblhavewrittencommunicationsAuthorised" runat="server" name="" style="vertical-align: middle;"></i> <span class="txt" style="vertical-align: middle;">This is a person authorised to only receive written communications. All written communications that would otherwise have been sent to you in relation to this application will be sent to that person.</span>
+                            </p>
+                            <p class="txt"><span>74</span> Do you want the authorised person to receive health and/or character information about you, your spouse or your dependants, that may arise, or be revealed, in the course of this application (for example, requests for medical investigation, other health information about you, or the results of criminal history checks)?</p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 30px;">No</label><input id="rblhaveauthorisedpersonNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 30px;">Yes</label><input id="rblhaveauthorisedpersonYes" runat="server" type="radio" name="" style="vertical-align: middle;"><br>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Authorised recipient details</i></h6>
+                            <p class="txt" style="margin-bottom: 8px;"><b>Note:</b> Do NOT complete this section if you are acting as a migration agent, go to Question 78</p>
+                            <p class="txt" style="margin-bottom: 5px;"><span class="num-ques">75</span> Provide details of the person who is authorised on your behalf to receive all written communications about this application.</p>
+                            <p class="txt" style="margin-bottom: 5px;">
+                                Title: Mr
+                                <input type="radio" id="rblauthorisedTitleMr" runat="server" name="authorisedTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Mrs
+                                <input type="radio" id="rblauthorisedTitleMrs" runat="server" name="authorisedTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Miss
+                                <input type="radio" id="rblauthorisedTitleMiss" runat="server" name="authorisedTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Ms
+                                <input type="radio" id="rblauthorisedTitleMs" runat="server" name="authorisedTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Other
+                                <input type="radio" id="rblauthorisedTitleOther" runat="server" name="authorisedTitle" style="vertical-align: middle; margin-right: 10px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="width: 80px;">Family name</label><input type="text" id="authorisedpersofamilynname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Given names </label>
+                                <input type="text" name="" id="authorisedpersongivenname" runat="server" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label>Authorised recipient’s postal address</label>
+                                <input type="text" id="authorisedpersonaddress" runat="server" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label>Telephone number or daytime contact</label><br>
+                                <label style="width: 80px;">Office hours </label>
+                                <input type="text" id="authorisedpersonofficeno" runat="server" name="" style="width: 250px; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label style="width: 80px;">Mobile phone</label><input type="text" id="authorisedpersonmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
+                            </p>
+                            <h6 class="part-sub"><i>Authorised recipient consent</i></h6>
+                            <p class="txt"><span class="num-ques">76</span>As the authorised recipient named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means?</p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="width: 30px;">No</label><input type="radio" id="rblhaveagreetocommunicateNo" runat="server" name="" style="vertical-align: middle;"><br>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveagreetocommunicateYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">GGive details</span>
+                                <br>
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 80px;">Fax number</label>
+                                <input type="text" id="Faxnumber" runat="server" name="" style="width: 250px; margin-bottom: 5px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label style="width: 80px;">E-mail address</label>
+                                <input type="text" id="authorizedpersonEmailaddress" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <span class="num-ques">77</span><i>I understand and accept that I am the person appointed by the applicant to receive all written communications.</i>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of authorised recipient</label>
+                                <textarea id="signatureauthorizedperson" runat="server"   rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="dateofsign" runat="server"  type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;"><i class="fas fa-angle-double-right"></i>Now go to Question 81</p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Agent details</i></h6>
+                            <p class="txt" style="margin-bottom: 5px;"><span class="num-ques">78</span> Provide the details requested below about the agent who is authorised to act on your behalf and to receive all written communications about this application.</p>
+                            <p class="txt">
+                                <label style="width: 180px;">Migration Agent Registration Number (MARN)</label>
+                                <input type="text" id="migratioagentNo" runat="server" name="" style="width: 40px;" placeholder="     :    ">
+                                <input type="" name="" style="width: 103px;" placeholder="     :      :     :     :    ">
+                            </p>
+                            <p class="txt">OR</p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="width: 180px;">Offshore Agent ID Number (if allocated by the department) </label>
+                                <input type="text" id="offshoreagentId" runat="server" name="" style="width: 40px;" placeholder="     :    ">
+                                <input type="" name="" style="width: 103px;" placeholder="     :      :     :     :    ">
+                            </p>
+                            <p class="txt" style="margin-bottom: 5px;">
+                                Title: Mr
+                                <input type="radio" id="rblagentTitleMr" runat="server" name="agentTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Mrs
+                                <input type="radio" id="rblagentTitleMrs" runat="server" name="agentTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Miss
+                                <input type="radio" id="rblagentTitleMiss" runat="server" name="agentTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Ms
+                                <input type="radio" id="rblagentTitleMs" runat="server" name="agentTitle" style="vertical-align: middle; margin-right: 10px;">
+                                Other
+                                <input type="radio" id="rblagentTitleOther" runat="server" name="agentTitle" style="vertical-align: middle; margin-right: 10px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 5px;">
+                                <label style="width: 80px;">Family name</label><input type="text" id="agentfamilyname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Given names</label><input type="text" id="agentgivenname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 80px;">Business or company name</label><input id="agentcompanyname" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label>Postal Address</label>
+                                <input type="text" id="agenntaddress" runat="server" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label>Telephone number or daytime contact</label><br>
+                                <label style="width: 80px;">Office hours </label>
+                                <input type="text" id="agentofficeno" runat="server" name="" style="width: 250px; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label style="width: 80px;">Mobile phone</label><input type="text" id="agentmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
+                            </p>
+                            <h6 class="part-sub"><i>Agent consent</i></h6>
+                            <p class="txt"><span class="num-ques">79</span>As the agent named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means? </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label style="width: 30px;">No</label><input id="rblagentagreetocommunicateNo" runat="server" type="radio" name="" style="vertical-align: middle;"><br>
+                                <label style="width: 30px;">Yes</label><input id="rblagentagreetocommunicateYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give details</span>
+                                <br>
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">
+                                <label style="width: 80px;">Fax number</label>
+                                <input type="text" id="agentfaxno" runat="server" name="" style="width: 250px; margin-bottom: 5px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label style="width: 80px;">E-mail address</label>
+                                <input type="text" name="" id="agentemailaddress" runat="server" style="width: 250px; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;"><span class="num-ques">80</span><i>I understand and accept that I am the person appointed by the applicant to receive all written communications and act as his/her agent.</i></p>
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of agent </label>
+                                <textarea id="agentsignature" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="agentsigndate" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Payment details</i></h6>
+                            <p class="txt">
+                                <span class="num-ques">81</span> How will you pay your application charge? <em>(If applying in Australia, debit card or credit card are the preferred methods of payment.) </em>
+                                <br>
+                                <label style="width: 90px;">Bank cheque</label>
+                                <input type="radio" id="rblpaymentmethodBankCheque" runat="server" name="" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">If applying outside Australia, please check with 
+              the Australian Government office where you intend to lodge your application that you may pay by cheque. </span>
+                                <br>
+                                <label style="width: 90px;">Money order</label>
+                                <input type="radio" id="rblpaymentmethodMoneyOrder" runat="server" name="" style="vertical-align: middle;">
+                                <br>
+                                <label style="width: 90px;">Debit card </label>
+                                <input type="radio" name="" id="rblpaymentmethodDC" runat="server" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">This option is available in Australia only. It is 
+              not available for mailed applications. </span>
+                                <br>
+                                <label style="width: 90px;">Credit card </label>
+                                <input type="radio" name="" id="rblpaymentmethodCC" runat="server" style="vertical-align: middle;">
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Give details below.
+                                    <br>
+                                    <strong>Note:</strong> This option is available where applications are made in Australia. If you are making the application outside Australia and wish to pay by credit card, please check with the Australian Government office about the availability of this option. </span>
+                            </p>
+                            <p class="txt">
+                                <span style="border: 1px solid #000; margin-right: 5px; display: inline-block; width: 250px; padding: 5px;">
+                                    <label>Payment by (tick one box)</label><br>
+                                    <label style="text-align: right; width: 125px;">
+                                        Master Card
+                                        <input type="radio" id="rblpaymentbyMC" runat="server" name="" style="float: right; vertical-align: middle; margin-left: 10px;"></label>
+                                    <label style="text-align: right; width: 109px;">
+                                        Visa
+                                        <input type="radio" id="rblpaymentVI" runat="server" name="" style="float: right; vertical-align: middle; margin-left: 10px;"></label>
+                                    <label style="text-align: right; width: 125px;">
+                                        Bankcard
+                                        <input type="radio" id="rblpaymentbyBC" runat="server" name="" style="float: right; vertical-align: middle; margin-left: 10px;"></label>
+                                    <label style="text-align: right; width: 109px;">Diners Club<input type="radio" id="rblpaymentbyDC" runat="server" name="" style="float: right; vertical-align: middle; margin-left: 10px;"></label>
+                                    <label style="text-align: left; width: 125px;">
+                                        American Express
+                                        <input type="radio" id="rblpaymentbyAM" runat="server" name="" style="float: right; vertical-align: middle; margin-left: 7px;"></label>
+                                    <label style="text-align: right; width: 109px;">JCB<input type="radio" id="rblpaymentbyJCB" runat="server" name="" style="float: right; vertical-align: middle; margin-left: 10px;"></label>
+                                </span>
+                                <span style="display: inline-block; border: 1px solid #000; padding: 5px; width: 99px; height: 88px; vertical-align: bottom;">
+                                    <label>Australian Dollars</label><br>
+                                    <input type="text" id="amountinaustraliandollars" runat="server" name="" style="width: 100%;" placeholder="A$">
+                                </span>
+                            </p>
+
+                            <p class="txt" style="margin-bottom: 10px; margin-top: 10px;">
+                                <label style="width: 100%;">Credit Card number</label>
+                                <input type="text" id="creditcardno" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px; margin-top: 10px;">
+                                <label style="width: 100%;">Cardholder's number</label>
+                                <input type="text" id="contactnumber" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px; margin-top: 10px;">
+                                <label style="width: 100%;">Expirydate</label>
+                                <input type="text" id="creditcardexpirydate" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px; margin-top: 10px;">
+                                <label style="width: 100%;">Cardholder's Name</label>
+                                <input type="text" id="cardholdarname" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                            </p>
+                            <p class="txt" style="margin-bottom: 8px;">
+                                <label>Address</label>
+                                <input type="text" id="addressofcardholder" runat="server" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;" placeholder="PINCODE">
+                            </p>
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px; margin-top: 30px;">Signature of Cardholder </label>
+                                <textarea rows="4" id="signatureofcardholder" runat="server" style="width: 236px; margin-bottom: 5px; resize: none;"></textarea>
+                            </p>
+                            <p class="txt" style="margin-bottom: 10px;">Credit card information will be used for charge paying purposes only. </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <h6 class="part-sub"><i>Declaration </i></h6>
+                            <strong>Before signing the declaration refer to the department’s website to ensure that you have attached all documentation listed for your Assessment Level and Education Sector visa subclass. </strong>
+                            <br>
+                            <p class="txt" style="margin-top: 10px;">
+                                <span class="num-ques">82</span> The following declaration must be signed and dated by all people over 
+              18 years of age included in this application.
+                                <br>
+                                <br>
+                                Both parents or any person who has legal custody must complete the declaration on behalf of any children under 18 years of age or any person who lacks the legal capacity to sign on their own behalf.
+                                <br>
+
+                                <ul style="padding-left: 0px; font-size: 12px; margin-top: 20px;">
+                                    <li style="margin-bottom: 5px;"><em>I certify the information supplied on or with this form is correct. </em></li>
+                                    <li style="margin-bottom: 5px;"><em>If granted a visa, I acknowledge that I am required to abide by its conditions as outlined in the information form 1160i Applying for a student visa.</em></li>
+                                    <li style="margin-bottom: 5px;"><em>I declare that I have made adequate arrangements for health insurance for the period of my stay in Australia and I acknowledge that I am required to maintain these arrangements while in Australia as the holder of a student visa.</em> </li>
+                                    <li style="margin-bottom: 5px;"><em>I have attached all documentary evidence as specified on the department’s website for my Assessment Level and the visa subclass under which I am applying. </li>
+                                    <li style="margin-bottom: 5px;"><em>I acknowledge that I understand that if the 8534 visa condition is imposed on my visa, it will be indicated by the condition code ‘8534’ and by the short description ‘No Further Stay’. I acknowledge that this means that the 8534 condition has been imposed on my visa and that I will not, while in Australia, be entitled to the grant of any other visa 1, apart from:<br>
+                                        <ul style="padding-left: 0px; list-style: none;">
+                                            <li>– a further student visa with permission to work, the application for 
+                    which was made on form 157P; or</li>
+                                            <li>– a  subclass 497 (Graduate–Skilled) visa.</li>
+                                    </em>
+                                </ul>
+                                </li>
+              <li style="margin-bottom: 5px;"><em>I understand that the effect of the 8534 visa condition is that it will not be possible for me to apply to remain in Australia beyond the date authorised by my visa1 and that I will be required to depart Australia on or before that date. I agree to having this condition included on any visa issued to me as a result of this application if the department decides to impose it as a condition of grant of a visa. </em></li>
+                                <li>I acknowledge that I understand that if the 8535 visa condition is imposed on my visa, it will be indicated by the condition code ‘8535’ and by the short description ‘No Further Stay’. I acknowledge that this means that the 8535 condition has been imposed on my visa and that I will not, while in Australia, be entitled to be granted any other visa 1, apart from:
+                <ul style="padding-left: 0px; list-style: none;">
+                    <li>– a further student visa with permission to work, the application for 
+                    which was made on form 157P; or</li>
+                    <li>
+                    – a  subclass 497 (Graduate–Skilled) visa.– a further student visa, with the consent of my sponsor.</em>
+                </ul>
+                                </li>
+                                <li style="margin-bottom: 5px; margin-top: 5px;"><em>I understand that the effect of the 8535 visa condition is that it will not be possible for me to remain in Australia beyond the date authorised by my visa1, unless I am applying for a further student visa with the consent of my sponsor, and that I will be required to depart Australia on or before the authorised date. I agree to having this condition included on any visa issued to me as a result of this application if the department decides to impose it as a condition of grant of a visa.</em> </li>
+                                <li style="margin-bottom: 5px;"><em>I am aware that I must immediately advise the department if I become aware that any information provided in this form is incorrect or if there is a change in my circumstances that are relevant to this application at any time.</em> </li>
+                                </ul>
+            <p class="txt" style="border-top: 1px solid #000; padding-top: 10px;">1 To engage Australia’s protection obligation under the 1951 UN convention relating to the status of refugees. </em></p>
+                            </p>
+                        </td>
+                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                            <p class="txt">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px; margin-top: 30px;">Signature </label>
+                                <textarea id="declarationsignature" runat="server" rows="4" style="width: 236px; margin-bottom: 5px; resize: none;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label>
+                                <input type="text" id="declarationdate" runat="server" name="" style="width: 136px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt" style="margin-top: 20px;">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px; margin-top: 30px;">Signature </label>
+                                <textarea rows="4" id="declarationsignature1" runat="server"  style="width: 236px; margin-bottom: 5px; resize: none;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label>
+                                <input type="text" id="declarationdate1" runat="server" name="" style="width: 136px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt" style="margin-top: 20px;">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px; margin-top: 30px;">Signature </label>
+                                <textarea rows="4" id="declarationsignature2" runat="server" style="width: 236px; margin-bottom: 5px; resize: none;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label>
+                                <input type="text" id="declarationdate2" runat="server" name="" style="width: 136px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                            <p class="txt" style="margin-top: 20px;">
+                                <label style="width: 90px; font-weight: 600; vertical-align: top; margin-top: 30px; padding-right: 10px;">Signature </label>
+                                <textarea rows="4" id="declarationsignature3" runat="server" style="width: 236px; margin-bottom: 5px; resize: none;"></textarea>
+                            </p>
+                            <p class="txt">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label>
+                                <input type="text" id="declarationdate3" runat="server" name="" style="width: 136px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                            </p>
+                        </td>
+                    </tr>
+                    <!-- End Form here -->
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
-

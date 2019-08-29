@@ -846,6 +846,7 @@ public partial class australiavisadetailmaster
     public string parentgivennamePartD { get; set; }
     public Nullable<System.DateTime> parentDateofBirthpartD { get; set; }
     public string parentaddresspartD { get; set; }
+    public string parentaddresspostalcodepartD { get; set; }
     public Nullable<int> parentvisastatusPartD { get; set; }
     public string parentvisalabelno { get; set; }
     public string parentvisadigitno { get; set; }
