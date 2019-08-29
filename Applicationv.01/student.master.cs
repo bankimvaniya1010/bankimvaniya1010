@@ -22,7 +22,7 @@ public partial class admin : System.Web.UI.MasterPage
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         string name = db.students.Where(x => x.studentid == UserID).Select(x => x.name).FirstOrDefault();
         var gteQuestionPart2Count = db.gte_question_master_part2.Count();
-        var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID).ToList();
+        var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
 
         if (applicant_response.Count == gteQuestionPart2Count) // Condition for checking gte Questions Part 2 completed
             questioncompleted = 1;

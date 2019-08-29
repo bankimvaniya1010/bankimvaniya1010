@@ -186,7 +186,7 @@ public partial class gte_sop : System.Web.UI.Page
                     if (test[0].question_section == "part 2")
                     {
                         var applicant_response = db.gte_question_part2_applicant_response
-                                                   .Where(x => x.question_id == group.Key && x.applicant_id == UserID)
+                                                   .Where(x => x.question_id == group.Key && x.applicant_id == UserID && x.university_id == universityID)
                                                    .Select(x => x.applicant_response).FirstOrDefault();
                         statementList.Remove(test.Where(x => applicant_response != Convert.ToBoolean(x.value)).FirstOrDefault());
                     }
@@ -209,10 +209,10 @@ public partial class gte_sop : System.Web.UI.Page
                     foreach (int question in item_questions_array)
                     {
                         if (applicant_response == null)
-                            applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question)
+                            applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question && x.university_id == universityID)
                                                    .Select(x => x.applicant_response.Value).FirstOrDefault();
                         else
-                            applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question)
+                            applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question && x.university_id == universityID)
                                                    .Select(x => x.applicant_response.Value).FirstOrDefault() && applicant_response.Value;
                     }
 
@@ -229,7 +229,7 @@ public partial class gte_sop : System.Web.UI.Page
                 {
                     var question_id = Convert.ToInt32(item.question_id); // Code will give error when multiple question ids are passed from DB.
                     var applicant_response = db.gte_questions_applicant_response
-                                               .Where(x => x.gte_question_id == question_id && x.applicant_id == UserID)
+                                               .Where(x => x.gte_question_id == question_id && x.applicant_id == UserID && x.university_id == universityID)
                                                .Select(x => x.gte_answer_id).FirstOrDefault();
 
                     var answer = db.gte_answer_master.Where(x => x.id == applicant_response).Select(x => x.answer).FirstOrDefault();
@@ -241,7 +241,7 @@ public partial class gte_sop : System.Web.UI.Page
                     var question_id = Convert.ToInt32(item.question_id); // Code will give error when multiple question ids are passed from DB.
                     var clarification_question_id = db.gte_clarification_questionmaster.Where(x => x.gte_master1_id == question_id).Select(x => x.id).FirstOrDefault();
                     var response = db.gte_clarification_applicantresponse
-                                     .Where(x => x.clarification_question_id == clarification_question_id && x.applicant_id == UserID)
+                                     .Where(x => x.clarification_question_id == clarification_question_id && x.applicant_id == UserID && x.university_id == universityID)
                                      .Select(x => x.applicant_response).FirstOrDefault();
                     item.statement = item.statement.Replace("#Answer_CQ#", response);
                 }

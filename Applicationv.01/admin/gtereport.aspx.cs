@@ -91,7 +91,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                                               .OrderBy(x => x.tag).ToList();
 
             var applicant_section2_score = db.gte_questions_applicant_response
-                                             .Where(x => x.applicant_id == ApplicantID)
+                                             .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
                                              .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score, x.gte_questions_master.tag })
                                              .Distinct()
                                              .GroupBy(x => x.tag)
@@ -122,7 +122,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                                               .OrderBy(x => x.tag).ToList();
 
             var applicant_section3_score = db.gte_question_part2_applicant_response
-                                             .Where(x => x.applicant_id == ApplicantID)
+                                             .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
                                              .Select(x => new
                                              {
                                                  x.gte_question_master_part2.tag,
@@ -157,7 +157,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                                                .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), questionId = x.Key });
 
             var overall_applicant_section2_score = db.gte_questions_applicant_response
-                                                     .Where(x => x.applicant_id == ApplicantID)
+                                                     .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
                                                      .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score })
                                                      .Distinct();
 
@@ -170,7 +170,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                                                });
 
             var overall_applicant_section3_score = db.gte_question_part2_applicant_response
-                                                     .Where(x => x.applicant_id == ApplicantID)
+                                                     .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
                                                      .Select(x => new
                                                      {
                                                          questionId = x.gte_question_master_part2.id,

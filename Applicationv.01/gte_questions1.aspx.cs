@@ -22,7 +22,8 @@ public partial class gte_questions1 : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx");
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (totalResponseTime == 0)
-            totalResponseTime = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).Sum(x => x.applicant_response_time);
+            totalResponseTime = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID)
+                                  .Select(x => x.applicant_response_time).DefaultIfEmpty(0).Sum();
         allfaqQuestion = objCommon.FaqQuestionList();
         if (!IsPostBack)
         {

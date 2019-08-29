@@ -36,7 +36,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             else
             {
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
-                var clarificationansweredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID).ToList();
+                var clarificationansweredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
                
                 foreach (var item in applicant_response)
                     clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
