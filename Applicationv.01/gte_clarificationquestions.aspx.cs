@@ -14,7 +14,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     Common objCom = new Common();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["LoginInfo"] == null)

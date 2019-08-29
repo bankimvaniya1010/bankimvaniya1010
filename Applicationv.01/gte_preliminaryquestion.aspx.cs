@@ -10,7 +10,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
 {
     public static int QuestionsCount = 0;
     Common objCom = new Common();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
     Logger objLog = new Logger();

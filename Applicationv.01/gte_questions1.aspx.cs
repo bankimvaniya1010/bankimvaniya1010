@@ -11,7 +11,7 @@ public partial class gte_questions1 : System.Web.UI.Page
     int UserID = 0;
     Logger objLog = new Logger();
     Common objCommon = new Common();
-    protected List<faq> allfaqQuestion = new List<faq>();
+    protected static List<faq> allfaqQuestion = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     public static int totalResponseTime = 0;
@@ -23,10 +23,10 @@ public partial class gte_questions1 : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (totalResponseTime == 0)
             totalResponseTime = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).Sum(x => x.applicant_response_time);
-
+        allfaqQuestion = objCommon.FaqQuestionList();
         if (!IsPostBack)
         {
-            allfaqQuestion = objCommon.FaqQuestionList();
+            
             var answeredQuestion = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
             var allQuestions = db.gte_questions_master.ToList();
             ViewState["QuestionsCount"] = allQuestions.Count;

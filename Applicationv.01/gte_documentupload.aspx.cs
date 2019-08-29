@@ -14,7 +14,7 @@ public partial class gte_documentupload : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0, universityID, formId = 0;
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     public dynamic fields;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();

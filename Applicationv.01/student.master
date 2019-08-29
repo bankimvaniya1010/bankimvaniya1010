@@ -70,11 +70,11 @@
                         <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
                             <span class="material-icons">menu</span>
                         </button>
-
+                       
                         <!-- Brand -->
                         <a href="student-dashboard.html" class="navbar-brand">
                             <%-- <img src="assets/images/logo/white.svg" class="mr-2" alt="LearnPlus" />--%>
-                            <span class="d-none d-xs-md-block">The Application Center</span>
+                            <span class="d-none d-xs-md-block"><asp:Label ID="lbluniversityName" runat="server"></asp:Label> - The Application Center</span>
                         </a>
 
 
@@ -82,17 +82,24 @@
                         <div class="flex"></div>
 
 
-                        <ul class="nav navbar-nav flex-nowrap">
+                        <ul class="nav navbar-nav flex-nowrap head-nav">
 
                             <!-- User dropdown -->
-                            <li class="nav-item dropdown ml-1 ml-md-3">
-                                <a class="nav-link dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">                                    
-                                    <h3> <asp:Label ID="lblusername" runat="server"></asp:Label> </h3></a>  
-                                <div class="dropdown-menu dropdown-menu-right">
+                            <li class="nav-item ml-1 ml-md-3">
+                                                                   
+                                    Welcome  &nbsp;<asp:Label ID="lblusername" runat="server"></asp:Label>
+                               <!-- <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item" href="login.aspx">
                                         <i class="material-icons">lock</i> Logout
                                     </a>
-                                </div>
+                                </div> -->
+                            </li>
+                            <li class="nav-item dropdown ml-1 ml-md-3">
+                                <select ID="ddlseclanguage" runat="server">
+                                </select>   
+                            </li>
+                            <li>
+                                <a href="login.aspx">Logout</a>
                             </li>
                             <!-- // END User dropdown -->
 
@@ -821,7 +828,7 @@
                 else {
                     $("#gtestudentdetail").hide();
                     $("#preliminary_list").show();
-                }               
+                } 
             }
             else {
                 $("#message_menu_list").hide();
@@ -885,7 +892,19 @@
                 }
             })
 
+            $("#<%=ddlseclanguage.ClientID%>").change(function () {
+            var selectedvalue = $("#<%=ddlseclanguage.ClientID%>").val();
+                $.ajax({
+                    type: "GET",
+                    url: "student.master.aspx/SetSecondaryLanguage",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { lang: selectedvalue },
+                });
+            });
+
         });
+     
     </script>
 </body>
 

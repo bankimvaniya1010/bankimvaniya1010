@@ -12,7 +12,7 @@ public partial class clarificationquestion : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)

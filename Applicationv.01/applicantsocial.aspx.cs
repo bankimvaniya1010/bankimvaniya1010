@@ -15,7 +15,7 @@ public partial class applicantsocial : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     Logger objLog = new Logger();
-    protected List<faq> allQuestions = new List<faq>();
+    protected  static List<faq> allQuestions = new List<faq>();
     protected int isStudyBefore = 0, isApplyBefore = 0;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 

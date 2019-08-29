@@ -13,7 +13,7 @@ public partial class australiavisapartC : System.Web.UI.Page
     int userID = 0, ApplicantID = 0, universityID;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     australiavisadetailmaster australiavisadetailmaster = new australiavisadetailmaster();
-    protected List<faq> allQuestions = new List<faq>();
+    protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
