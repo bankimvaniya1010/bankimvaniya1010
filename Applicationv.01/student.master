@@ -163,7 +163,7 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="updatepreferences">
-                                                <a class="sidebar-menu-button">
+                                                <a class="sidebar-menu-button"  href="updateprefernces.aspx">
                                                     <span class="sidebar-menu-text">Update Preferences </span>
                                                 </a>
                                             </li>

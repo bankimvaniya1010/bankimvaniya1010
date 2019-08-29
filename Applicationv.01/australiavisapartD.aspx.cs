@@ -14,7 +14,7 @@ public partial class australiavisapartD : System.Web.UI.Page
     int userID = 0, ApplicantID = 0, universityID;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();    
     australiavisadetailmaster objaustraliavisadetail = new australiavisadetailmaster();
-    protected static List<faq> allQuestions = new List<faq>();
+    protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -370,7 +370,7 @@ public partial class australiavisapartD : System.Web.UI.Page
             {
                 objaustraliavisadetail.havereceiveassistance = 1;
                 if (ddltitle.SelectedValue != "")
-                    objaustraliavisadetail.title = ddltitle.SelectedValue;
+                    objaustraliavisadetail.title = ddltitle.SelectedItem.Text;
                 objaustraliavisadetail.assistedpersonfamilyname = txtassistedpersonfamilyname.Value;
                 objaustraliavisadetail.assistedpersongivenname = txtassistedpersongivenname.Value;
                 objaustraliavisadetail.assistedpersonaddress = txtaddress.Value;
@@ -442,7 +442,7 @@ public partial class australiavisapartD : System.Web.UI.Page
                 objaustraliavisadetail.haveauthorisedperson = 1;
             //75
             if (ddltitle1.SelectedValue != "")
-                objaustraliavisadetail.authorisedpersontitle = ddltitle1.SelectedValue;
+                objaustraliavisadetail.authorisedpersontitle = ddltitle1.SelectedItem.Text;
             objaustraliavisadetail.authorisedpersofamilynname = txtauthorisedpersofamilynname.Value;
             objaustraliavisadetail.authorisedpersongivenname = txtauthorisedpersongivenname.Value;
             objaustraliavisadetail.authorisedpersonaddress = txtauthorisedpersonaddress.Value;
@@ -467,7 +467,7 @@ public partial class australiavisapartD : System.Web.UI.Page
             objaustraliavisadetail.migratioagentNo = txtmarnNo.Value;
             objaustraliavisadetail.offshoreagentId = txtoffshoreagentId.Value;
             if (ddltitle3.SelectedValue != "")
-                objaustraliavisadetail.agenttitle = ddltitle3.SelectedValue;
+                objaustraliavisadetail.agenttitle = ddltitle3.SelectedItem.Text;
             objaustraliavisadetail.agentfamilyname = txtagentfamilyname.Value;
             objaustraliavisadetail.agentgivenname = txtagentgivenname.Value;
             objaustraliavisadetail.agentcompanyname = txtagentcompanyname.Value;
@@ -898,9 +898,7 @@ public partial class australiavisapartD : System.Web.UI.Page
             }
             //77
             txtsignatureauthorizedperson.Value = visaInfo.signatureauthorizedperson ;
-            if (visaInfo.dateofsign != null)
-                txtdateofsign.Value = Convert.ToDateTime(visaInfo.dateofsign).ToString("yyyy-MM-dd");
-            
+            txtdateofsign.Value = Convert.ToDateTime(visaInfo.dateofsign).ToString("yyyy-MM-dd");
             //78
             txtmarnNo.Value = visaInfo.migratioagentNo;
             txtoffshoreagentId.Value = visaInfo.offshoreagentId;
@@ -926,9 +924,7 @@ public partial class australiavisapartD : System.Web.UI.Page
 
             //80
             txtagentsignatures.Value = visaInfo.agentsignature;
-            if (visaInfo.agentsigndate != null)
-                txtagentsigndate.Value = Convert.ToDateTime(visaInfo.agentsigndate).ToString("yyyy-MM-dd");
-           
+            txtagentsigndate.Value = Convert.ToDateTime(visaInfo.agentsigndate).ToString("yyyy-MM-dd");
             //81
             if (visaInfo.paymentmethod == 1)
                 rbBankcheque.Checked = true;

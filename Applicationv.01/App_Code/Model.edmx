@@ -847,6 +847,7 @@
           <Property Name="parentgivennamePartD" Type="varchar" MaxLength="50" />
           <Property Name="parentDateofBirthpartD" Type="datetime" Precision="0" />
           <Property Name="parentaddresspartD" Type="varchar" MaxLength="50" />
+          <Property Name="parentaddresspostalcodepartD" Type="varchar" MaxLength="50" />
           <Property Name="parentvisastatusPartD" Type="int" />
           <Property Name="parentvisalabelno" Type="varchar" MaxLength="50" />
           <Property Name="parentvisadigitno" Type="varchar" MaxLength="50" />
@@ -1730,7 +1731,7 @@
           <Key>
             <PropertyRef Name="workexperiencetypesid" />
           </Key>
-          <Property Name="workexperiencetypesid" Type="int" Nullable="false" />
+          <Property Name="workexperiencetypesid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="university_master">
@@ -4009,6 +4010,7 @@
           <Property Name="parentgivennamePartD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="parentDateofBirthpartD" Type="DateTime" />
           <Property Name="parentaddresspartD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="parentaddresspostalcodepartD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="parentvisastatusPartD" Type="Int32" />
           <Property Name="parentvisalabelno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="parentvisadigitno" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -4959,7 +4961,7 @@
           <Key>
             <PropertyRef Name="workexperiencetypesid" />
           </Key>
-          <Property Name="workexperiencetypesid" Type="Int32" Nullable="false" />
+          <Property Name="workexperiencetypesid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="university_master">
@@ -6451,6 +6453,7 @@
                 <ScalarProperty Name="parentvisadigitno" ColumnName="parentvisadigitno" />
                 <ScalarProperty Name="parentvisalabelno" ColumnName="parentvisalabelno" />
                 <ScalarProperty Name="parentvisastatusPartD" ColumnName="parentvisastatusPartD" />
+                <ScalarProperty Name="parentaddresspostalcodepartD" ColumnName="parentaddresspostalcodepartD" />
                 <ScalarProperty Name="parentaddresspartD" ColumnName="parentaddresspartD" />
                 <ScalarProperty Name="parentDateofBirthpartD" ColumnName="parentDateofBirthpartD" />
                 <ScalarProperty Name="parentgivennamePartD" ColumnName="parentgivennamePartD" />
