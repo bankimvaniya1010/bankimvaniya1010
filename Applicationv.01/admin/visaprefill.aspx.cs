@@ -851,7 +851,8 @@ public partial class visaprefill : System.Web.UI.Page
                 aboutfamilygivenname1.Value = FamilyInfo[k].aboutfamilygivenname;
                 relationshiptoyou1.Value = FamilyInfo[k].relationshiptoyou;
                 citizenship1.Value = FamilyInfo[k].citizenship;
-                dobfamilymember1.Value = Convert.ToDateTime(FamilyInfo[k].dobfamilymember).ToString();
+                if (FamilyInfo[k].dobfamilymember != null)
+                    dobfamilymember1.Value = Convert.ToDateTime(FamilyInfo[k].dobfamilymember).ToString("dd/MMM/yyyy");
                 if (FamilyInfo[k].isfamilymemberhavepassport == 1)
                     chkfamily1Yes.Checked = true;
                 else
@@ -859,8 +860,10 @@ public partial class visaprefill : System.Web.UI.Page
                 familypassportno1.Value = FamilyInfo[k].passportno;
                 if (FamilyInfo[k].countryofpassport != null)
                     familycountryofpassport1.Value = objCom.GetCountryDiscription(Convert.ToInt32(FamilyInfo[k].countryofpassport));
-                passportdateofissue1.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofissue).ToString();
-                passportdateofexpiry1.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofexpiry).ToString();
+                if (FamilyInfo[k].passportdateofissue != null)
+                    passportdateofissue1.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofissue).ToString("dd/MMM/yyyy");
+                if (FamilyInfo[k].passportdateofexpiry != null)
+                    passportdateofexpiry1.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofexpiry).ToString("dd/MMM/yyyy");
                 passportplaceofissue1.Value = FamilyInfo[k].passportplaceofissue;
 
                 if (FamilyInfo[k].studyinAustralia == 1)
@@ -875,7 +878,8 @@ public partial class visaprefill : System.Web.UI.Page
                 aboutfamilygivenname2.Value = FamilyInfo[k].aboutfamilygivenname;
                 relationshiptoyou2.Value = FamilyInfo[k].relationshiptoyou;
                 citizenship2.Value = FamilyInfo[k].citizenship;
-                dobfamilymember2.Value = Convert.ToDateTime(FamilyInfo[k].dobfamilymember).ToString();
+                if (FamilyInfo[k].dobfamilymember != null)
+                    dobfamilymember2.Value = Convert.ToDateTime(FamilyInfo[k].dobfamilymember).ToString("dd/MMM/yyyy");
                 if (FamilyInfo[k].isfamilymemberhavepassport == 1)
                     chkfamily2Yes.Checked = true;
                 else
@@ -883,8 +887,10 @@ public partial class visaprefill : System.Web.UI.Page
                 familypassportno2.Value = FamilyInfo[k].passportno;
                 if (FamilyInfo[k].countryofpassport != null)
                     familycountryofpassport2.Value = objCom.GetCountryDiscription(Convert.ToInt32(FamilyInfo[k].countryofpassport));
-                passportdateofissue2.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofissue).ToString();
-                passportdateofexpiry2.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofexpiry).ToString();
+                if (FamilyInfo[k].passportdateofissue != null)
+                    passportdateofissue2.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofissue).ToString("dd/MMM/yyyy");
+                if (FamilyInfo[k].passportdateofexpiry != null)
+                    passportdateofexpiry2.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofexpiry).ToString("dd/MMM/yyyy");
                 passportplaceofissue2.Value = FamilyInfo[k].passportplaceofissue;
 
                 if (FamilyInfo[k].studyinAustralia == 1)
@@ -899,7 +905,8 @@ public partial class visaprefill : System.Web.UI.Page
                 aboutfamilygivenname3.Value = FamilyInfo[k].aboutfamilygivenname;
                 relationshiptoyou3.Value = FamilyInfo[k].relationshiptoyou;
                 citizenship3.Value = FamilyInfo[k].citizenship;
-                dobfamilymember3.Value = Convert.ToDateTime(FamilyInfo[k].dobfamilymember).ToString();
+                if (FamilyInfo[k].dobfamilymember != null)
+                    dobfamilymember3.Value = Convert.ToDateTime(FamilyInfo[k].dobfamilymember).ToString("dd/MMM/yyyy");
                 if (FamilyInfo[k].isfamilymemberhavepassport == 1)
                     chkfamily3Yes.Checked = true;
                 else
@@ -907,8 +914,10 @@ public partial class visaprefill : System.Web.UI.Page
                 familypassportno3.Value = FamilyInfo[k].passportno;
                 if (FamilyInfo[k].countryofpassport != null)
                     familycountryofpassport3.Value = objCom.GetCountryDiscription(Convert.ToInt32(FamilyInfo[k].countryofpassport));
-                passportdateofissue3.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofissue).ToString();
-                passportdateofexpiry3.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofexpiry).ToString();
+                if (FamilyInfo[k].passportdateofissue != null)
+                    passportdateofissue3.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofissue).ToString("dd/MMM/yyyy");
+                if (FamilyInfo[k].passportdateofexpiry != null)
+                    passportdateofexpiry3.Value = Convert.ToDateTime(FamilyInfo[k].passportdateofexpiry).ToString("dd/MMM/yyyy");
                 passportplaceofissue3.Value = FamilyInfo[k].passportplaceofissue;
 
                 if (FamilyInfo[k].studyinAustralia == 1)

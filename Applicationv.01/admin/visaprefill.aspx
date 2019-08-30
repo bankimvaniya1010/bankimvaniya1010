@@ -6,8 +6,7 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+   
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" />
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>">
     <style type="text/css">
@@ -1512,10 +1511,10 @@ information available outside these hours). If you are outside Australia, please
                             <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Name, address and telephone number of your employer  </span>
                             <input type="text" id="jobofferedname" runat="server" name="" style="width: 270px; margin-left: 60px;">
                             <input type="text" id="jobofferedaddress" runat="server" name="" style="width: 270px; margin-left: 60px;">
-                            <input type="text" id="jobofferedcontactno" runat="server" name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text"  name="" style="width: 270px; margin-left: 60px;">
                             <input type="text" name="" style="width: 270px; margin-left: 60px;" placeholder="POSTAL CODE">
 
-                            <input type="text" name="" style="width: 270px; margin-top: 10px; margin-left: 60px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
+                            <input type="text" id="jobofferedcontactno" runat="server" name="" style="width: 270px; margin-top: 10px; margin-left: 60px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
 
                             <p class="txt" style="margin-top: 10px; margin-left: 60px;">Title of position offered</p>
                             <p class="txt">

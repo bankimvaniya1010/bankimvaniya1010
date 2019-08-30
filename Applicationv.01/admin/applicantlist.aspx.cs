@@ -156,7 +156,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 Response.Redirect(webURL + "admin/gtereport.aspx?ID=" + ID, true);
             if (Comamandname.Equals("GTE"))
                 downloadGTEReport(ID);
-
+            if (Comamandname.Equals("VisaForm"))
+                downloadVisaForm(ID);
             //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
         }
@@ -165,7 +166,23 @@ public partial class admin_applicantlist : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+    private void downloadVisaForm(int applicantID)
+    {
+        var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+        htmlToPdf.Orientation = PageOrientation.Portrait;
+        htmlToPdf.Size = PageSize.A3;
+        htmlToPdf.Grayscale = false;
+        htmlToPdf.PageWidth = 200f;
+        string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+        string fileName = Guid.NewGuid() + ".pdf";
+        string filePath = string.Concat(dirPath, "\\", fileName);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/visaprefill.aspx?ID=" + applicantID + "&downloadPdf=1", null, filePath);
 
+        Response.ContentType = "application/pdf";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=Visa_Form_" + fileName);
+        Response.TransmitFile(filePath);
+        Response.End();
+    }
     private void downloadGTEReport(int applicantID)
     {
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
