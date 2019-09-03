@@ -46,16 +46,16 @@
 
                                         </div>--%>
 
-                                    <div class="form-group">
+                                    <div class="form-group option">
                                         <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("answer1") %>' />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group option">
                                         <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("answer2") %>' />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group option">
                                         <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("answer3") %>' />
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group option">
                                         <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("answer4") %>' />
                                     </div>
 

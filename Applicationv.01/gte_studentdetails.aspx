@@ -324,7 +324,7 @@
 
     <script>
         $('#ContentPlaceHolder1_txtdob').flatpickr({       
-            dateFormat: 'd-m-Y', defaultDate: ""
+            dateFormat: 'Y-m-d', defaultDate: "", altInput: true, altFormat: 'd/m/Y'
         });
               
         $('#ContentPlaceHolder1_txtmarriagedob').flatpickr({
