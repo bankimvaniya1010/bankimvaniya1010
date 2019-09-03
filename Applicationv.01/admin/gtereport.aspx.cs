@@ -296,16 +296,7 @@ public partial class admin_gtereport : System.Web.UI.Page
             var gteAdminCommentObj = db.gte_report_admin_comment.Where(x => x.applicant_id == ApplicantID && x.university_id == universityID && x.student_sop_id == student_sop_id).FirstOrDefault();
             if (downloadPdf == 0)
             {
-                studentRecommendedPDF.Style.Add("display", "none");
-                recommendationRemarkPDF.Style.Add("display", "none");
-                paragraphComment1PDF.Style.Add("display", "none");
-                paragraphComment2PDF.Style.Add("display", "none");
-                paragraphComment3PDF.Style.Add("display", "none");
-                paragraphComment4PDF.Style.Add("display", "none");
-                paragraphComment5PDF.Style.Add("display", "none");
-                studentVideoReviewPDF.Style.Add("display", "none");
-                studentDocumentsValidationsPDF.Style.Add("display", "none");
-
+                hidePDFFields();
                 if (gteAdminCommentObj != null)
                 {
                     para1Comments.Value = gteAdminCommentObj.para1_comments;
@@ -319,28 +310,21 @@ public partial class admin_gtereport : System.Web.UI.Page
                     recommendationRemark.Value = gteAdminCommentObj.final_recommendation;
                 }
             }
-            else if (gteAdminCommentObj != null && downloadPdf == 1)
+            else if (downloadPdf == 1)
             {
-                studentRecommended.Style.Add("display", "none");
-                recommendationRemark.Style.Add("display", "none");
-                para1Comments.Style.Add("display", "none");
-                para2Comments.Style.Add("display", "none");
-                para3Comments.Style.Add("display", "none");
-                para4Comments.Style.Add("display", "none");
-                para5Comments.Style.Add("display", "none");
-                studentVideoReview.Style.Add("display", "none");
-                studentDocumentsValidations.Style.Add("display", "none");
-                btn_Save.Style.Add("display", "none");
-
-                _paragraphComment1 = gteAdminCommentObj.para1_comments;
-                _paragraphComment2 = gteAdminCommentObj.para2_comments;
-                _paragraphComment3 = gteAdminCommentObj.para3_comments;
-                _paragraphComment4 = gteAdminCommentObj.para4_comments;
-                _paragraphComment5 = gteAdminCommentObj.para5_comments;
-                _studentVideoReview = gteAdminCommentObj.student_video_comments;
-                _studentDocumentsValidations = gteAdminCommentObj.student_document_comments;
-                _studentRecommended = gteAdminCommentObj.student_recommended;
-                _recommendationRemark = gteAdminCommentObj.final_recommendation;
+                hideFields();
+                if (gteAdminCommentObj != null)
+                {
+                    _paragraphComment1 = gteAdminCommentObj.para1_comments;
+                    _paragraphComment2 = gteAdminCommentObj.para2_comments;
+                    _paragraphComment3 = gteAdminCommentObj.para3_comments;
+                    _paragraphComment4 = gteAdminCommentObj.para4_comments;
+                    _paragraphComment5 = gteAdminCommentObj.para5_comments;
+                    _studentVideoReview = gteAdminCommentObj.student_video_comments;
+                    _studentDocumentsValidations = gteAdminCommentObj.student_document_comments;
+                    _studentRecommended = gteAdminCommentObj.student_recommended;
+                    _recommendationRemark = gteAdminCommentObj.final_recommendation;
+                }
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
@@ -377,5 +361,33 @@ public partial class admin_gtereport : System.Web.UI.Page
         db.SaveChanges();
 
         Response.Redirect("applicantlist.aspx", true);
+    }
+
+    private void hidePDFFields()
+    {
+        studentRecommendedPDF.Style.Add("display", "none");
+        recommendationRemarkPDF.Style.Add("display", "none");
+        paragraphComment1PDF.Style.Add("display", "none");
+        paragraphComment2PDF.Style.Add("display", "none");
+        paragraphComment3PDF.Style.Add("display", "none");
+        paragraphComment4PDF.Style.Add("display", "none");
+        paragraphComment5PDF.Style.Add("display", "none");
+        studentVideoReviewPDF.Style.Add("display", "none");
+        studentDocumentsValidationsPDF.Style.Add("display", "none");
+
+    }
+
+    private void hideFields()
+    {
+        studentRecommended.Style.Add("display", "none");
+        recommendationRemark.Style.Add("display", "none");
+        para1Comments.Style.Add("display", "none");
+        para2Comments.Style.Add("display", "none");
+        para3Comments.Style.Add("display", "none");
+        para4Comments.Style.Add("display", "none");
+        para5Comments.Style.Add("display", "none");
+        studentVideoReview.Style.Add("display", "none");
+        studentDocumentsValidations.Style.Add("display", "none");
+        btn_Save.Style.Add("display", "none");
     }
 }
