@@ -30,10 +30,13 @@
                             <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">Link to your LinkedIn profile</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblLinkedinYes" GroupName="Linkedin" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblLinkedinNo" GroupName="Linkedin" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtLinkedinComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnLinkedn" />
+                                <input id="txtLinkedinComments" runat="server" type="text" class="form-control" placeholder="Admin Comments" style="display: none">
                             </div>
                         </div>
                     </div>
@@ -44,10 +47,15 @@
                             <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">Link to your Facebook profile </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblFacebook" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblFacebookYes" GroupName="Facebook" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblFacebookNo" GroupName="Facebook" Text="No" runat="server" />
+
+
                                 <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtFacebookComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnFaceBook" />
+                                <input id="txtFacebookComments" runat="server" type="text" class="form-control" style="display: none" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -58,10 +66,15 @@
                             <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">Link to your twitter handle </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblTwitter" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblTwitterYes" GroupName="twitter" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblTwitterNo" GroupName="twitter" Text="No" runat="server" />
+
+
                                 <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtTwitterComments" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnTwitter" />
+                                <input id="txtTwitterComments" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -85,4 +98,54 @@
 
 
     </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnLinkedn").click(function () {
+                ManageRemarks('<%=txtLinkedinComments.ClientID%>', 'btnLinkedn');
+            });
+            $("#btnFaceBook").click(function () {
+                ManageRemarks('<%=txtFacebookComments.ClientID%>', 'btnFaceBook');
+            });
+            $("#btnTwitter").click(function () {
+                ManageRemarks('<%=txtTwitterComments.ClientID%>', 'btnTwitter');
+            });
+
+            $("#<%=rblLinkedinNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtLinkedinComments.ClientID%>', 'btnLinkedn');
+            });
+            $("#<%=rblFacebookNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtFacebookComments.ClientID%>', 'btnFaceBook');
+            });
+            $("#<%=rblTwitterNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtTwitterComments.ClientID%>', 'btnTwitter');
+            });
+
+            if ($('#<%=rblLinkedinNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtLinkedinComments.ClientID%>', 'btnLinkedn');
+            if ($('#<%=rblFacebookNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtFacebookComments.ClientID%>', 'btnFaceBook');
+            if ($('#<%=rblTwitterNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtTwitterComments.ClientID%>', 'btnTwitter');
+
+
+
+            function ManageRemarks(cntrol1, control2) {
+                if ($("#" + cntrol1 + "").is(':hidden')) {
+                    $("#" + cntrol1 + "").css('display', 'block');
+                    $("#" + control2 + "").prop('value', 'Hide Comments');
+                    // $("#btnTwitter").html("Hide Comments");
+                }
+                else {
+                    $("#" + cntrol1 + "").css('display', 'none');
+                    // $("#btnTwitter").html("Add Comments")
+                    $("#" + control2 + "").prop('value', 'Add Comments');
+                }
+            }
+            function ManageRemarksIfNoCheked(cntrol, control2) {
+                $("#" + cntrol + "").css('display', 'block');
+                $("#" + control2 + "").prop('value', 'Hide Comments');
+            }
+        });
+    </script>
 </asp:Content>
+

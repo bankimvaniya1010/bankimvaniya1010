@@ -118,40 +118,89 @@ public partial class admin_applicantvisa : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Do you currently have a visa that allows you to study in {insert name of country}":
-                    txtVisa.Value = setComments(Comments[k]);
+                    txtHaveVisa.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblHaveVisaNo.Checked = true;
+                    else
+                        rblHaveVisaYes.Checked = true;
                     break;
                 case "Validity From":
                     txtvalidityFrom.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblvalidityFromNo.Checked = true;
+                    else
+                        rblvalidityFromYes.Checked = true;
                     break;
                 case "Validity To":
                     txtvalidityTo.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblvalidityToNo.Checked = true;
+                    else
+                        rblvalidityToYes.Checked = true;
                     break;
                 case "Visa No":
                     txtvisano.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblvisanoNo.Checked = true;
+                    else
+                        rblvisanoYes.Checked = true;
                     break;
+
                 case "Where would you be making your Visa application":
                     txtvisaappliedCountry.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblvisaappliedCountryNo.Checked = true;
+                    else
+                        rblvisaappliedCountryYes.Checked = true;
                     break;
                 case "City":
                     txtvisacity.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblvisacityNo.Checked = true;
+                    else
+                        rblvisacityYes.Checked = true;
                     break;
                 case "Visa Application Country":
                     txtvisacountry.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblvisacountryNo.Checked = true;
+                    else
+                        rblvisacountryYes.Checked = true;
                     break;
                 case "Date of first Visit to Country of Application":
                     txtfirstvisit.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblfirstvisitNo.Checked = true;
+                    else
+                        rblfirstvisitYes.Checked = true;
                     break;
                 case "Have you ever, lived, worked, studied in Country of Application before":
                     txtPreviuosstay.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblPreviuosstayNo.Checked = true;
+                    else
+                        rblPreviuosstayYes.Checked = true;
                     break;
                 case "Do your parents/step parents/spouse/partner/children/step-children live":
                     txtparent.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblparentNo.Checked = true;
+                    else
+                        rblparentYes.Checked = true;
                     break;
                 case "Have you ever been refused a Visa or Deported by Country of Application":
                     txtDeniedVisa.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblparentdenyNo.Checked = true;
+                    else
+                        rblparentdenyYes.Checked = true;
                     break;
                 case "Have your parents/step parents/spouse/partner/children/step-children ever been refused a visa or deported from":
                     txtparentdeny.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblparentdenyNo.Checked = true;
+                    else
+                        rblparentdenyYes.Checked = true;
                     break;
                 default:
                     break;
@@ -167,19 +216,19 @@ public partial class admin_applicantvisa : System.Web.UI.Page
         try
         {
 
-            adminInputs.Add("Do you currently have a visa that allows you to study in {insert name of country}", txtHaveVisa.Value.Trim());
-            adminInputs.Add("Which Visa Do You Hold", txtVisa.Value.Trim());
-            adminInputs.Add("Validity From", txtvalidityFrom.Value.Trim());
-            adminInputs.Add("Validity To", txtvalidityTo.Value.Trim());
-            adminInputs.Add("Visa No", txtvisano.Value.Trim());
-            adminInputs.Add("Where would you be making your Visa application", txtvisaappliedCountry.Value.Trim());
-            adminInputs.Add("City", txtvisacity.Value.Trim());
-            adminInputs.Add("Visa Application Country", txtvisacountry.Value.Trim());
-            adminInputs.Add("Date of first Visit to Country of Application", txtfirstvisit.Value.Trim());
-            adminInputs.Add("Have you ever, lived, worked, studied in Country of Application before", txtPreviuosstay.Value.Trim());
-            adminInputs.Add("Do your parents/step parents/spouse/partner/children/step-children live, study, work in Country of Application", txtparent.Value.Trim());
-            adminInputs.Add("Have you ever been refused a Visa or Deported by Country of Application", txtDeniedVisa.Value.Trim());
-            adminInputs.Add("Have your parents/step parents/spouse/partner/children/step-children ever been refused a visa or deported from", txtparentdeny.Value.Trim());
+            adminInputs.Add("Do you currently have a visa that allows you to study in {insert name of country}", txtHaveVisa.Value.Trim() + "~" + (rblHaveVisaNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Which Visa Do You Hold", txtVisa.Value.Trim() + "~" + (rblvisaNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Validity From", txtvalidityFrom.Value.Trim() + "~" + (rblvalidityFromNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Validity To", txtvalidityTo.Value.Trim() + "~" + (rblvalidityToNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Visa No", txtvisano.Value.Trim() + "~" + (rblvisanoNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Where would you be making your Visa application", txtvisaappliedCountry.Value.Trim() + "~" + (rblvisaappliedCountryNo.Checked == true ? 0 : 1));
+            adminInputs.Add("City", txtvisacity.Value.Trim() + "~" + (rblvisacityNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Visa Application Country", txtvisacountry.Value.Trim() + "~" + (rblvisacountryNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Date of first Visit to Country of Application", txtfirstvisit.Value.Trim() + "~" + (rblfirstvisitNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Have you ever, lived, worked, studied in Country of Application before", txtPreviuosstay.Value.Trim() + "~" + (rblPreviuosstayNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Do your parents/step parents/spouse/partner/children/step-children live, study, work in Country of Application", txtparent.Value.Trim() + "~" + (rblparentNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Have you ever been refused a Visa or Deported by Country of Application", txtDeniedVisa.Value.Trim() + "~" + (rblDeniedVisaNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Have your parents/step parents/spouse/partner/children/step-children ever been refused a visa or deported from", txtparentdeny.Value.Trim() + "~" + (rblparentdenyNo.Checked == true ? 0 : 1));
 
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);

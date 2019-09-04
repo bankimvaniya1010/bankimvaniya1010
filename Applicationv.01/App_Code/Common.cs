@@ -1186,7 +1186,11 @@ public class Common
             objComments.applicantid = applicantId;
             objComments.universityid = universityID;
             objComments.fieldname = fieldName;
-            objComments.comments = Comments;
+            string[] inputs = Comments.Split('~');
+
+            objComments.comments = inputs[0].ToString();
+            if (inputs.Length > 1)
+                objComments.adminaction = Convert.ToInt32(inputs[1].ToString());
             if (mode == "new")
                 db.admincomments.Add(objComments);
             db.SaveChanges();

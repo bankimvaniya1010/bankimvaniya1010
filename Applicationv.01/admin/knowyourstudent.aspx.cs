@@ -276,36 +276,80 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Passport Number":
+                    if (Comments[k].adminaction == 0)
+                        rblPassportNoNo.Checked = true;
+                    else
+                        rblPassportNoYes.Checked = true;
                     txtPassportNo.Value = setComments(Comments[k]);
                     break;
                 case "Date of Issue":
+                    if (Comments[k].adminaction == 0)
+                        rblDateOfissueNo.Checked = true;
+                    else
+                        rblDateOfissueYes.Checked = true;
                     txtDateOfissue.Value = setComments(Comments[k]);
                     break;
                 case "Expiry Date":
+                    if (Comments[k].adminaction == 0)
+                        rblExpiryDateNo.Checked = true;
+                    else
+                        rblExpiryDateYes.Checked = true;
                     txtExpiryDate.Value = setComments(Comments[k]);
                     break;
                 case "COUNTRY OF ISSUE":
+                    if (Comments[k].adminaction == 0)
+                        rblcountryIssueNo.Checked = true;
+                    else
+                        rblcountryIssueYes.Checked = true;
                     txtcountryIssue.Value = setComments(Comments[k]);
                     break;
                 case "CITY OF ISSUE":
+                    if (Comments[k].adminaction == 0)
+                        rblissueplaceNo.Checked = true;
+                    else
+                        rblissueplaceYes.Checked = true;
                     txtissueplace.Value = setComments(Comments[k]);
                     break;
                 case "Select Identity Proof Type":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateIdentitytypeNo.Checked = true;
+                    else
+                        rblalternateIdentitytypeYes.Checked = true;
                     txtalternateIdentitytype.Value = setComments(Comments[k]);
                     break;
                 case "Identity Proof Number":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateIdentityNoNo.Checked = true;
+                    else
+                        rblalternateIdentityNoYes.Checked = true;
                     txtalternateIdentityNo.Value = setComments(Comments[k]);
                     break;
                 case "Select DOB Proof Type":
+                    if (Comments[k].adminaction == 0)
+                        rblalternatedobIdentitytypeNo.Checked = true;
+                    else
+                        rblalternatedobIdentitytypeYes.Checked = true;
                     txtalternatedobIdentitytype.Value = setComments(Comments[k]);
                     break;
                 case "DOB proof Number":
+                    if (Comments[k].adminaction == 0)
+                        rblalternatedobIdentityNoNo.Checked = true;
+                    else
+                        rblalternatedobIdentityNoYes.Checked = true;
                     txtalternatedobIdentityNo.Value = setComments(Comments[k]);
                     break;
                 case "Select Residence Proof Type":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateresidenceIdentitytypeNo.Checked = true;
+                    else
+                        rblalternateresidenceIdentitytypeYes.Checked = true;
                     txtalternateresidenceIdentitytype.Value = setComments(Comments[k]);
                     break;
                 case "Residence Proof Number":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateresidenceIdentityNoNo.Checked = true;
+                    else
+                        rblalternateresidenceIdentityNoYes.Checked = true;
                     txtalternateresidenceIdentityNo.Value = setComments(Comments[k]);
                     break;
                
@@ -326,27 +370,27 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
         try
         {
             if (passportno.Style.Value != "display: none")
-                adminInputs.Add("Passport Number", txtPassportNo.Value.Trim());
-             if (dateofissue.Style.Value != "display: none")
-                adminInputs.Add("Date of Issue", txtDateOfissue.Value.Trim());
-             if (expirydate.Style.Value != "display: none")
-                adminInputs.Add("Expiry Date", txtExpiryDate.Value.Trim());
-             if (countryIssue.Style.Value != "display: none")
-                adminInputs.Add("COUNTRY OF ISSUE", txtcountryIssue.Value.Trim());
-             if (issueplace.Style.Value != "display: none")
-                adminInputs.Add("CITY OF ISSUE", txtissueplace.Value.Trim());
-             if (alternateIdentitytype.Style.Value != "display: none")
-                adminInputs.Add("Select Identity Proof Type", txtalternateIdentitytype.Value.Trim());
-             if (alternateIdentityNo.Style.Value != "display: none")
-                adminInputs.Add("Identity Proof Number", txtalternateIdentityNo.Value.Trim());
-             if (alternatedobIdentitytype.Style.Value != "display: none")
-                adminInputs.Add("Select DOB Proof Type", txtalternatedobIdentitytype.Value.Trim());
-             if (alternatedobIdentityNo.Style.Value != "display: none")
-                adminInputs.Add("DOB proof Number", txtalternatedobIdentityNo.Value.Trim());
-             if (alternateresidenceIdentitytype.Style.Value != "display: none")
-                adminInputs.Add("Select Residence Proof Type", txtalternateresidenceIdentitytype.Value.Trim());
-             if (alternateresidenceIdentityNo.Style.Value != "display: none")
-                adminInputs.Add("Residence Proof Number", txtalternateresidenceIdentityNo.Value.Trim());
+                adminInputs.Add("Passport Number", txtPassportNo.Value.Trim() + "~" + (rblPassportNoNo.Checked == true ? 0 : 1));
+            if (dateofissue.Style.Value != "display: none")
+                adminInputs.Add("Date of Issue", txtDateOfissue.Value.Trim() + "~" + (rblDateOfissueNo.Checked == true ? 0 : 1));
+            if (expirydate.Style.Value != "display: none")
+                adminInputs.Add("Expiry Date", txtExpiryDate.Value.Trim() + "~" + (rblExpiryDateNo.Checked == true ? 0 : 1));
+            if (countryIssue.Style.Value != "display: none")
+                adminInputs.Add("COUNTRY OF ISSUE", txtcountryIssue.Value.Trim() + "~" + (rblcountryIssueNo.Checked == true ? 0 : 1));
+            if (issueplace.Style.Value != "display: none")
+                adminInputs.Add("CITY OF ISSUE", txtissueplace.Value.Trim() + "~" + (rblissueplaceNo.Checked == true ? 0 : 1));
+            if (alternateIdentitytype.Style.Value != "display: none")
+                adminInputs.Add("Select Identity Proof Type", txtalternateIdentitytype.Value.Trim() + "~" + (rblalternateIdentitytypeNo.Checked == true ? 0 : 1));
+            if (alternateIdentityNo.Style.Value != "display: none")
+                adminInputs.Add("Identity Proof Number", txtalternateIdentityNo.Value.Trim() + "~" + (rblalternateIdentityNoNo.Checked == true ? 0 : 1));
+            if (alternatedobIdentitytype.Style.Value != "display: none")
+                adminInputs.Add("Select DOB Proof Type", txtalternatedobIdentitytype.Value.Trim() + "~" + (rblalternatedobIdentitytypeNo.Checked == true ? 0 : 1));
+            if (alternatedobIdentityNo.Style.Value != "display: none")
+                adminInputs.Add("DOB proof Number", txtalternatedobIdentityNo.Value.Trim() + "~" + (rblalternatedobIdentityNoNo.Checked == true ? 0 : 1));
+            if (alternateresidenceIdentitytype.Style.Value != "display: none")
+                adminInputs.Add("Select Residence Proof Type", txtalternateresidenceIdentitytype.Value.Trim() + "~" + (rblalternateresidenceIdentitytypeNo.Checked == true ? 0 : 1));
+            if (alternateresidenceIdentityNo.Style.Value != "display: none")
+                adminInputs.Add("Residence Proof Number", txtalternateresidenceIdentityNo.Value.Trim() + "~" + (rblalternateresidenceIdentityNoNo.Checked == true ? 0 : 1));
 
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);

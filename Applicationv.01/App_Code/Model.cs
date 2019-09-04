@@ -26,6 +26,7 @@ public partial class admincomments
     public string fieldname { get; set; }
     public string comments { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
+    public Nullable<int> adminaction { get; set; }
 
     public virtual adminusers adminusers { get; set; }
     public virtual students students { get; set; }
@@ -958,6 +959,16 @@ public partial class australiavisadetailmaster
     public Nullable<System.DateTime> declarationdate3 { get; set; }
 }
 
+public partial class australiavisadocumentmaster
+{
+    public int Id { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> documentId { get; set; }
+    public string documenttype { get; set; }
+    public string documentpath { get; set; }
+}
+
 public partial class australiavisaFamilydetailmaster
 {
     public int id { get; set; }
@@ -1352,6 +1363,7 @@ public partial class gte_clarification_questionmaster
     public int gte_master1_id { get; set; }
     public string clarification_question { get; set; }
     public Nullable<bool> display_condition { get; set; }
+    public string action { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }

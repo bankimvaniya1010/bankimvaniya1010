@@ -24,6 +24,7 @@
           <Property Name="fieldname" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="comments" Type="varchar" MaxLength="200" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+          <Property Name="adminaction" Type="int" />
         </EntityType>
         <EntityType Name="admintooltips">
           <Key>
@@ -958,6 +959,17 @@
           <Property Name="declarationsignature3" Type="varchar" MaxLength="50" />
           <Property Name="declarationdate3" Type="datetime" Precision="0" />
         </EntityType>
+        <EntityType Name="australiavisadocumentmaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantid" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="documentId" Type="int" />
+          <Property Name="documenttype" Type="varchar" MaxLength="50" />
+          <Property Name="documentpath" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="australiavisaFamilydetailmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -1270,6 +1282,7 @@
           <Property Name="gte_master1_id" Type="int" Nullable="false" />
           <Property Name="clarification_question" Type="varchar" MaxLength="400" Nullable="false" />
           <Property Name="display_condition" Type="bit" />
+          <Property Name="action" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="gte_preliminary_questionmaster">
           <Key>
@@ -1457,7 +1470,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="master_name">
@@ -2513,6 +2526,7 @@
           <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicationmaster" EntityType="Self.applicationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisadetailmaster" EntityType="Self.australiavisadetailmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="australiavisadocumentmaster" EntityType="Self.australiavisadocumentmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisaFamilydetailmaster" EntityType="Self.australiavisaFamilydetailmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="cefrlevelmaster" EntityType="Self.cefrlevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="GTE" store:Type="Tables" />
@@ -2857,6 +2871,7 @@
           <EntitySet Name="applicantvisadetails" EntityType="GTEModel.applicantvisadetails" />
           <EntitySet Name="applicationmaster" EntityType="GTEModel.applicationmaster" />
           <EntitySet Name="australiavisadetailmaster" EntityType="GTEModel.australiavisadetailmaster" />
+          <EntitySet Name="australiavisadocumentmaster" EntityType="GTEModel.australiavisadocumentmaster" />
           <EntitySet Name="australiavisaFamilydetailmaster" EntityType="GTEModel.australiavisaFamilydetailmaster" />
           <EntitySet Name="cefrlevelmaster" EntityType="GTEModel.cefrlevelmaster" />
           <EntitySet Name="citymaster" EntityType="GTEModel.citymaster" />
@@ -3173,6 +3188,7 @@
           <Property Name="fieldname" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="comments" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adminaction" Type="Int32" />
           <NavigationProperty Name="adminusers" Relationship="GTEModel.fk_adminusers_admincomments" FromRole="admincomments" ToRole="adminusers" />
           <NavigationProperty Name="students" Relationship="GTEModel.fk_applicantdetails_admincomments" FromRole="admincomments" ToRole="students" />
           <NavigationProperty Name="formmaster" Relationship="GTEModel.fk_frommaster_admincomments" FromRole="admincomments" ToRole="formmaster" />
@@ -4121,6 +4137,17 @@
           <Property Name="declarationsignature3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="declarationdate3" Type="DateTime" />
         </EntityType>
+        <EntityType Name="australiavisadocumentmaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="documentId" Type="Int32" />
+          <Property Name="documenttype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="documentpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="australiavisaFamilydetailmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -4462,6 +4489,7 @@
           <Property Name="gte_master1_id" Type="Int32" Nullable="false" />
           <Property Name="clarification_question" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="display_condition" Type="Boolean" />
+          <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="gte_clarification_applicantresponse" Relationship="GTEModel.FK_response_clarification_questionmaster" FromRole="gte_clarification_questionmaster" ToRole="gte_clarification_applicantresponse" />
           <NavigationProperty Name="gte_question_master_part2" Relationship="GTEModel.FK_clarification_gte_master_part2" FromRole="gte_clarification_questionmaster" ToRole="gte_question_master_part2" />
         </EntityType>
@@ -4660,7 +4688,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="master_name">
@@ -5742,6 +5770,7 @@
           <EntitySetMapping Name="admincomments">
             <EntityTypeMapping TypeName="GTEModel.admincomments">
               <MappingFragment StoreEntitySet="admincomments">
+                <ScalarProperty Name="adminaction" ColumnName="adminaction" />
                 <ScalarProperty Name="created_at" ColumnName="created_at" />
                 <ScalarProperty Name="comments" ColumnName="comments" />
                 <ScalarProperty Name="fieldname" ColumnName="fieldname" />
@@ -6718,6 +6747,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="australiavisadocumentmaster">
+            <EntityTypeMapping TypeName="GTEModel.australiavisadocumentmaster">
+              <MappingFragment StoreEntitySet="australiavisadocumentmaster">
+                <ScalarProperty Name="documentpath" ColumnName="documentpath" />
+                <ScalarProperty Name="documenttype" ColumnName="documenttype" />
+                <ScalarProperty Name="documentId" ColumnName="documentId" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="australiavisaFamilydetailmaster">
             <EntityTypeMapping TypeName="GTEModel.australiavisaFamilydetailmaster">
               <MappingFragment StoreEntitySet="australiavisaFamilydetailmaster">
@@ -7055,6 +7096,7 @@
           <EntitySetMapping Name="gte_clarification_questionmaster">
             <EntityTypeMapping TypeName="GTEModel.gte_clarification_questionmaster">
               <MappingFragment StoreEntitySet="gte_clarification_questionmaster">
+                <ScalarProperty Name="action" ColumnName="action" />
                 <ScalarProperty Name="display_condition" ColumnName="display_condition" />
                 <ScalarProperty Name="clarification_question" ColumnName="clarification_question" />
                 <ScalarProperty Name="gte_master1_id" ColumnName="gte_master1_id" />

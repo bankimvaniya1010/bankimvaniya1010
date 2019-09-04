@@ -432,72 +432,164 @@ public partial class admin_personaldetail : System.Web.UI.Page
             {
                 case "Title":
                     txtTitle.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblTitleNo.Checked = true;
+                    else
+                        rblTitleYes.Checked = true;
                     break;
                 case "First Name":
                     txtFirstName.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblFirstNameNo.Checked = true;
+                    else
+                        rblFirstNameYes.Checked = true;
                     break;
                 case "Last Name":
                     txtLastName.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblLastNameNo.Checked = true;
+                    else
+                        rblLastNameYes.Checked = true;
                     break;
                 case "Preferred Name":
                     txtPrefferedName.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblPrefferedNameNo.Checked = true;
+                    else
+                        rblPrefferedNameYes.Checked = true;
                     break;
                 case "Other middle names":
                     txtMiddleName.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblMiddleNameNo.Checked = true;
+                    else
+                        rblMiddleNameYes.Checked = true;
                     break;
                 case "Date of birth":
                     txtDOB.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblDOBNo.Checked = true;
+                    else
+                        rblDOBYes.Checked = true;
                     break;
                 case "Gender":
                     txtGender.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblGenderNo.Checked = true;
+                    else
+                        rblGenderYes.Checked = true;
                     break;
                 case "Nationality and citizenship":
                     txtNationality.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblNationalityNo.Checked = true;
+                    else
+                        rblNationalityYes.Checked = true;
                     break;
                 case "Do you ever use a Chinese Commercial Code Number for your names":
                     txtChineseCode.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblChineseCodeNo.Checked = true;
+                    else
+                        rblChineseCodeYes.Checked = true;
                     break;
                 case "Chinese Commercial Code Number":
                     txtChineseCodeNo.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblChineseCodeNoNo.Checked = true;
+                    else
+                        rblChineseCodeNoYes.Checked = true;
                     break;
                 case "In English, provide your patronymic name":
                     txtRussiaName.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblRussianNameNo.Checked = true;
+                    else
+                        rblRussianNameYes.Checked = true;
                     break;
                 case "Do you have dual Citizenship":
                     txtDualNationlity.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblDualNationalityNo.Checked = true;
+                    else
+                        rblDualNationalityYes.Checked = true;
                     break;
                 case "Nationality and citizenship(Second)":
                     txtOtherNation.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblSecondNationNo.Checked = true;
+                    else
+                        rblSecondNationYes.Checked = true;
                     break;
                 case "Country of birth":
                     txtBirthCountry.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblBirthCountryNo.Checked = true;
+                    else
+                        rblBirthCountryYes.Checked = true;
                     break;
                 case "Marital Status":
                     txtMarital.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblMaritalNo.Checked = true;
+                    else
+                        rblMaritalYes.Checked = true;
                     break;
                 case "Spouse Name":
                     txtSpousename.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblspouseNameNo.Checked = true;
+                    else
+                        rblspouseNameYes.Checked = true;
                     break;
                 case "Nationality of Spouse":
                     txtSpouseNationality.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblSpouseNatinalityNo.Checked = true;
+                    else
+                        rblSpouseNatinalityYes.Checked = true;
                     break;
                 case "Spouse Date of birth":
                     txtSpouseDOB.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblSpouseDobNo.Checked = true;
+                    else
+                        rblSpouseDobYes.Checked = true;
                     break;
                 case "Date of Marriage":
                     txtMarrigeDate.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblMarriagedateNo.Checked = true;
+                    else
+                        rblMarriagedateYes.Checked = true;
                     break;
                 case "Do you have any disability, impairment, or a long term condition":
                     txtDisability.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblDisabilityNo.Checked = true;
+                    else
+                        rblDisabilityYes.Checked = true;
                     break;
                 case "Disability Description":
                     txtDisabilityDescription.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbldisabilitydescNo.Checked = true;
+                    else
+                        rbldisabilitydescYes.Checked = true;
                     break;
                 case "Are you reffered by Agent":
                     txtAgent.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblAgentNo.Checked = true;
+                    else
+                        rblAgentYes.Checked = true;
                     break;
                 case "Agent Name":
                     txtAgentList.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblAgentListNo.Checked = true;
+                    else
+                        rblAgentListYes.Checked = true;
                     break;
 
                 default:
@@ -515,51 +607,51 @@ public partial class admin_personaldetail : System.Web.UI.Page
         try
         {
             if (title.Style.Value != "display: none")
-                adminInputs.Add("Title", txtTitle.Value.Trim());
+                adminInputs.Add("Title", txtTitle.Value.Trim() + "~" + (rblTitleNo.Checked == true ? 0 : 1));
             if (firstname.Style.Value != "display: none")
-                adminInputs.Add("First Name", txtFirstName.Value.Trim());
+                adminInputs.Add("First Name", txtFirstName.Value.Trim() + "~" + (rblFirstNameYes.Checked == true ? 0 : 1));
             if (lastname.Style.Value != "display: none")
-                adminInputs.Add("Last Name", txtLastName.Value.Trim());
+                adminInputs.Add("Last Name", txtLastName.Value.Trim() + "~" + (rblLastNameNo.Checked == true ? 0 : 1));
             if (preferedname.Style.Value != "display: none")
-                adminInputs.Add("Preferred Name", txtPrefferedName.Value.Trim());
+                adminInputs.Add("Preferred Name", txtPrefferedName.Value.Trim() + "~" + (rblPrefferedNameNo.Checked == true ? 0 : 1));
             if (middlename.Style.Value != "display: none")
-                adminInputs.Add("Other middle names", txtMiddleName.Value.Trim());
+                adminInputs.Add("Other middle names", txtMiddleName.Value.Trim() + "~" + (rblMiddleNameNo.Checked == true ? 0 : 1));
             if (dob.Style.Value != "display: none")
-                adminInputs.Add("Date of birth", txtDOB.Value.Trim());
+                adminInputs.Add("Date of birth", txtDOB.Value.Trim() + "~" + (rblDOBNo.Checked == true ? 0 : 1));
             if (gender.Style.Value != "display: none")
-                adminInputs.Add("Gender", txtGender.Value.Trim());
+                adminInputs.Add("Gender", txtGender.Value.Trim() + "~" + (rblGenderNo.Checked == true ? 0 : 1));
             if (nationality.Style.Value != "display: none")
-                adminInputs.Add("Nationality and citizenship", txtNationality.Value.Trim());
+                adminInputs.Add("Nationality and citizenship", txtNationality.Value.Trim() + "~" + (rblNationalityNo.Checked == true ? 0 : 1));
             if (chineseCode.Style.Value != "display: none")
-                adminInputs.Add("Do you ever use a Chinese Commercial Code Number for your names", txtChineseCode.Value.Trim());
+                adminInputs.Add("Do you ever use a Chinese Commercial Code Number for your names", txtChineseCode.Value.Trim() + "~" + (rblChineseCodeNo.Checked == true ? 0 : 1));
             if (textChineseCodeDiv.Style.Value != "display: none")
-                adminInputs.Add("Chinese Commercial Code Number", txtFirstName.Value.Trim());
+                adminInputs.Add("Chinese Commercial Code Number", txtFirstName.Value.Trim() + "~" + (rblChineseCodeNoNo.Checked == true ? 0 : 1));
             if (russianName.Style.Value != "display: none")
-                adminInputs.Add("In English, provide your patronymic name", txtRussiaName.Value.Trim());
+                adminInputs.Add("In English, provide your patronymic name", txtRussiaName.Value.Trim() + "~" + (rblRussianNameNo.Checked == true ? 0 : 1));
             if (dualNationality.Style.Value != "display: none")
-                adminInputs.Add("Do you have dual Citizenship", txtDualNationlity.Value.Trim());
+                adminInputs.Add("Do you have dual Citizenship", txtDualNationlity.Value.Trim() + "~" + (rblDualNationalityNo.Checked == true ? 0 : 1));
             if (secondNation.Style.Value != "display: none")
-                adminInputs.Add("Nationality and citizenship(Second)", txtOtherNation.Value.Trim());
+                adminInputs.Add("Nationality and citizenship(Second)", txtOtherNation.Value.Trim() + "~" + (rblSecondNationNo.Checked == true ? 0 : 1));
             if (birthcountry.Style.Value != "display: none")
-                adminInputs.Add("Country of birth", txtBirthCountry.Value.Trim());
+                adminInputs.Add("Country of birth", txtBirthCountry.Value.Trim() + "~" + (rblBirthCountryNo.Checked == true ? 0 : 1));
             if (marital.Style.Value != "display: none")
-                adminInputs.Add("Marital Status", txtMarital.Value.Trim());
+                adminInputs.Add("Marital Status", txtMarital.Value.Trim() + "~" + (rblMaritalNo.Checked == true ? 0 : 1));
             if (statusMarried.Style.Value != "display: none")
-                adminInputs.Add("Spouse Name", txtSpousename.Value.Trim());
+                adminInputs.Add("Spouse Name", txtSpousename.Value.Trim() + "~" + (rblspouseNameNo.Checked == true ? 0 : 1));
             if (SpouseNationality.Style.Value != "display: none")
-                adminInputs.Add("Nationality of Spouse", txtSpouseNationality.Value.Trim());
+                adminInputs.Add("Nationality of Spouse", txtSpouseNationality.Value.Trim() + "~" + (rblSpouseNatinalityNo.Checked == true ? 0 : 1));
             if (SpouseDOB.Style.Value != "display: none")
-                adminInputs.Add("Spouse Date of birth", txtSpouseDOB.Value.Trim());
+                adminInputs.Add("Spouse Date of birth", txtSpouseDOB.Value.Trim() + "~" + (rblSpouseDobNo.Checked == true ? 0 : 1));
             if (MarriageDate.Style.Value != "display: none")
-                adminInputs.Add("Date of Marriage", txtMarrigeDate.Value.Trim());
+                adminInputs.Add("Date of Marriage", txtMarrigeDate.Value.Trim() + "~" + (rblMarriagedateNo.Checked == true ? 0 : 1));
             if (disability.Style.Value != "display: none")
-                adminInputs.Add("Do you have any disability, impairment, or a long term condition", txtDisability.Value.Trim());
+                adminInputs.Add("Do you have any disability, impairment, or a long term condition", txtDisability.Value.Trim() + "~" + (rblDisabilityNo.Checked == true ? 0 : 1));
             if (disabilitydesc.Style.Value != "display: none")
-                adminInputs.Add("Disability Description", txtDisabilityDescription.Value.Trim());
+                adminInputs.Add("Disability Description", txtDisabilityDescription.Value.Trim() + "~" + (rbldisabilitydescNo.Checked == true ? 0 : 1));
             if (agent.Style.Value != "display: none")
-                adminInputs.Add("Are you reffered by Agent", txtAgent.Value.Trim());
+                adminInputs.Add("Are you reffered by Agent", txtAgent.Value.Trim() + "~" + (rblAgentNo.Checked == true ? 0 : 1));
             if (agentList.Style.Value != "display: none")
-                adminInputs.Add("Agent Name", txtAgentList.Value.Trim());
+                adminInputs.Add("Agent Name", txtAgentList.Value.Trim() + "~" + (rblAgentListNo.Checked == true ? 0 : 1));
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 

@@ -107,24 +107,52 @@ public partial class admin_applicantfunding : System.Web.UI.Page
             {
                 case "Would you study-n-live alone or would your family members come along":
                     txtstudy.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblstudyNo.Checked = true;
+                    else
+                        rblstudyYes.Checked = true;
                     break;
                 case "No of Family members":
                     txtfamilymember.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblfamilymemberNo.Checked = true;
+                    else
+                        rblfamilymemberYes.Checked = true;
                     break;
                 case "Select the kind of accommodation you plan to have":
                     txtaccommodation.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblaccommodationNo.Checked = true;
+                    else
+                        rblaccommodationYes.Checked = true;
                     break;
                 case "Select the kind of accommodation you plan to have(Meal)":
                     txtmanagemeal.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblmanagemealNo.Checked = true;
+                    else
+                        rblmanagemealYes.Checked = true;
                     break;
                 case "Select your preferred choice of transport in the city":
                     txttransportchoice.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbltransportchoiceNo.Checked = true;
+                    else
+                        rbltransportchoiceYes.Checked = true;
                     break;
                 case "No of Trips you plan to take to your home country in a year":
                     txtTrips.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblTripsNo.Checked = true;
+                    else
+                        rblTripsYes.Checked = true;
                     break;
                 case "How often in a week do you typically go out (entertainment)":
                     txtentertainment.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblentertainmentNo.Checked = true;
+                    else
+                        rblentertainmentYes.Checked = true;
                     break;
                 default:
                     break;
@@ -140,14 +168,14 @@ public partial class admin_applicantfunding : System.Web.UI.Page
         try
         {
 
-            adminInputs.Add("Would you study-n-live alone or would your family members come along", txtstudy.Value.Trim());
-            adminInputs.Add("No of Family members", txtfamilymember.Value.Trim());
-            adminInputs.Add("Select the kind of accommodation you plan to have", txtaccommodation.Value.Trim());
-            adminInputs.Add("Select the kind of accommodation you plan to have(Meal)", txtmanagemeal.Value.Trim());
-            adminInputs.Add("Select your preferred choice of transport in the city", txttransportchoice.Value.Trim());
-            adminInputs.Add("No of Trips you plan to take to your home country in a year", txtTrips.Value.Trim());
-            adminInputs.Add("How often in a week do you typically go out (entertainment) ", txtentertainment.Value.Trim());
-           
+            adminInputs.Add("Would you study-n-live alone or would your family members come along", txtstudy.Value.Trim() + "~" + (rblstudyNo.Checked == true ? 0 : 1));
+            adminInputs.Add("No of Family members", txtfamilymember.Value.Trim() + "~" + (rblfamilymemberNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Select the kind of accommodation you plan to have", txtaccommodation.Value.Trim() + "~" + (rblaccommodationNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Select the kind of accommodation you plan to have(Meal)", txtmanagemeal.Value.Trim() + "~" + (rblmanagemealNo.Checked == true ? 0 : 1));
+            adminInputs.Add("Select your preferred choice of transport in the city", txttransportchoice.Value.Trim() + "~" + (rbltransportchoiceNo.Checked == true ? 0 : 1));
+            adminInputs.Add("No of Trips you plan to take to your home country in a year", txtTrips.Value.Trim() + "~" + (rblTripsNo.Checked == true ? 0 : 1));
+            adminInputs.Add("How often in a week do you typically go out (entertainment) ", txtentertainment.Value.Trim() + "~" + (rblentertainmentNo.Checked == true ? 0 : 1));
+
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(userID, formId, CustomControls, mainDiv, adminInputs);
 

@@ -10,59 +10,137 @@
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
-            SetValue();
-        });
-        function SetValue() {
-             <% 
+ <% 
+        for (int n = 0; n < referenccheckList.Count; n++)
+        {%>
+            $("#btnName<%=n%>").click(function () {
+                ManageRemarks('txtName<%=n%>', 'btnName<%=n%>');
+            });
+            $("#rblNameNo<%=n%>").click(function () {
+                ManageRemarks('txtName<%=n%>', 'btnName<%=n%>');
+            });
+            $("#btnEmail<%=n%>").click(function () {
+                ManageRemarks('txtEmail<%=n%>', 'btnEmail<%=n%>');
+            });
+            $("#rblEmailNo<%=n%>").click(function () {
+                ManageRemarks('txtEmail<%=n%>', 'btnEmail<%=n%>');
+            });
+            $("#btnMobile<%=n%>").click(function () {
+                ManageRemarks('txtMobile<%=n%>', 'btnMobile<%=n%>');
+            });
+            $("#rblMobileNo<%=n%>").click(function () {
+                ManageRemarks('txtMobile<%=n%>', 'btnMobile<%=n%>');
+            });
+
+         <%  }
         for (int k = 0; k < Comments.Count; k++)
         {
+
             string fieldName = Comments[k].fieldname;
             string AdminComments = Comments[k].comments;
+            int Adminaction = Convert.ToInt32(Comments[k].adminaction);
             int RefrenceCount = referenccheckList.Count;
             for (int i = 0; i < RefrenceCount; i++)
             {
             %>
-           <% if (fieldName == Name + (i + 1))
-        {%>
+            <% if (fieldName == Name + (i + 1))
+        {%> 
+
 
             $("#txtName<%=i%>").val('<%=AdminComments%>');
-          <%   }
+            <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=Name<%=i%>]')[1].checked = true;
+            ManageRemarksIfNoCheked('txtName<%=i%>','btnName<%=i%>');
+            <% }
+        else
+        { %>
+            $('input:radio[name=Name<%=i%>]')[0].checked = true;
+          <%  }
+        }
         else if (fieldName == Email + (i + 1))
         {%>
 
             $("#txtEmail<%=i%>").val('<%=AdminComments%>');
-          <%   }
-        else if (fieldName == Mobile + (i + 1))
+           <%   if (Adminaction == 0)
         {%>
+            $('input:radio[name=Email<%=i%>]')[1].checked = true;
 
-            $("#txtmobile<%=i%>").val('<%=AdminComments%>');
-          <%   }
+            ManageRemarksIfNoCheked('txtEmail<%=i%>','btnEmail<%=i%>');
+            <% }
+        else
+        { %>
+            $('input:radio[name=Email<%=i%>]')[0].checked = true;
+          <%  }
+        }
+        else if (fieldName == Mobile + (i + 1))
+        {%> 
 
-
+            $("#txtMobile<%=i%>").val('<%=AdminComments%>');
+            <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=Mobile<%=i%>]')[1].checked = true;
+            ManageRemarksIfNoCheked('txtMobile<%=i%>','btnMobile<%=i%>');
+            <% }
+        else
+        { %>
+            $('input:radio[name=Mobile<%=i%>]')[0].checked = true;
+          <%  }
+                }
             }
         }
         %>
-        }
+
+            function ManageRemarks(cntrol1, control2) {
+                if ($("#" + cntrol1 + "").is(':hidden')) {
+                    $("#" + cntrol1 + "").css('display', 'block');
+                    $("#" + control2 + "").prop('value', 'Hide Comments');
+                    // $("#btnTwitter").html("Hide Comments");
+                }
+                else {
+                    $("#" + cntrol1 + "").css('display', 'none');
+                    // $("#btnTwitter").html("Add Comments")
+                    $("#" + control2 + "").prop('value', 'Add Comments');
+                }
+            }
+            function ManageRemarksIfNoCheked(cntrol, control2) {
+                $("#" + cntrol + "").css('display', 'block');
+                $("#" + control2 + "").prop('value', 'Hide Comments');
+            }
+        });
+
         function GetValue() {
 
             var inputValue = "";
+            var inputactionValue = "";
          <% 
         for (int k = 0; k < referenccheckList.Count; k++)
         { %>
 
             <%if (Name != "")
         {%>
-            inputValue = inputValue +"<%=Name + (k + 1)%>" + ":" + $("#txtName<%=k%>").val() + "|";
+            if ($('#rblNameNo<%=k%>').prop('checked') == true)
+                inputactionValue = "0"
+            else
+                inputactionValue = "1"
+            inputValue = inputValue +"<%=Name + (k + 1)%>" + ":" + $("#txtName<%=k%>").val() + "~" + inputactionValue + "|";
 
             <%}%>
                <%if (Email != "")
         {%>
-            inputValue = inputValue +"<%=Email + (k + 1)%>" + ":" + $("#txtEmail<%=k%>").val() + "|";
+            if ($('#rblEmailNo<%=k%>').prop('checked') == true)
+                inputactionValue = "0"
+            else
+                inputactionValue = "1"
+            inputValue = inputValue +"<%=Email + (k + 1)%>" + ":" + $("#txtEmail<%=k%>").val() + "~" + inputactionValue + "|";
 
             <%}%>
                <%if (Mobile != "")
-        {%>
-            inputValue = inputValue +"<%=Mobile + (k + 1)%>" + ":" + $("#txtmobile<%=k%>").val() + "|";
+        {%>  if ($('#rblMobileNo<%=k%>').prop('checked') == true)
+                inputactionValue = "0"
+            else
+                inputactionValue = "1"
+            inputValue = inputValue +"<%=Mobile + (k + 1)%>" + ":" + $("#txtMobile<%=k%>").val() + "~" + inputactionValue + "|";
 
             <%}%>
 
@@ -70,6 +148,8 @@
 
         %>
             $("#<%=hdnValue.ClientID%>").val(inputValue);
+
+
 
         }
     </script>
@@ -99,10 +179,14 @@
 
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].name %></span>
+                                        <input type="radio" id="<%="rblNameYes" + k %>" name="<%="Name" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblNameNo" + k %>" name="<%="Name" + k %>" value="0">
+                                        No
                                         <span class="helpicon"><i id="<%="icName" + k %>" class="fa fa-info-circle" data-tipso="<%=NameTooltips %>" style='<%= NameTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
                                     <div class="col-md-4">
-                                        <input id="<%="txtName" + k %>" type="text" placeholder="Name" value="" class="form-control">
+                                        <input type="button" value="Add Remarks" id="<%="btnName" + k %>" />
+                                        <input id="<%="txtName" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -114,10 +198,15 @@
 
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].mobile %></span>
+                                        <input type="radio" id="<%="rblMobileYes" + k %>" name="<%="Mobile" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblMobileNo" + k %>" name="<%="Mobile" + k %>" value="0">
+                                        No
+
                                         <span class="helpicon"><i id="<%="icMobile" + k %>" class="fa fa-info-circle" data-tipso="<%=MobileTooltips %>" style='<%= MobileTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
                                     <div class="col-md-4">
-                                        <input id="<%="txtmobile" + k %>" type="text" placeholder="Name" value="" class="form-control">
+                                        <input type="button" value="Add Remarks" id="<%="btnMobile" + k %>" />
+                                        <input id="<%="txtMobile" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -129,10 +218,14 @@
 
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].email %></span>
+                                        <input type="radio" id="<%="rblEmailYes" + k %>" name="<%="Email" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblEmailNo" + k %>" name="<%="Email" + k %>" value="0">No
+
                                         <span class="helpicon"><i id="<%="icEmail" + k %>" class="fa fa-info-circle" data-tipso="<%=EmailTooltips %>" style='<%= EmailTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
                                     <div class="col-md-4">
-                                        <input id="<%="txtEmail" + k %>" type="text" placeholder="Name" value="" class="form-control">
+                                        <input type="button" value="Add Remarks" id="<%="btnEmail" + k %>" />
+                                        <input id="<%="txtEmail" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
                                     </div>
                                 </div>
                             </div>

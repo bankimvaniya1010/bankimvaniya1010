@@ -59,6 +59,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual DbSet<applicationmaster> applicationmaster { get; set; }
     public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
+    public virtual DbSet<australiavisadocumentmaster> australiavisadocumentmaster { get; set; }
     public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
     public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
     public virtual DbSet<citymaster> citymaster { get; set; }

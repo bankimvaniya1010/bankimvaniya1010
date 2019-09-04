@@ -200,15 +200,33 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Link to your LinkedIn profile":
-                    txtLinkedinComments.Value = setComments(Comments[k]);
+                    {
+                        txtLinkedinComments.Value = setComments(Comments[k]);
+                        if (Comments[k].adminaction == 0)
+                            rblLinkedinNo.Checked = true;
+                        else
+                            rblLinkedinYes.Checked = true;
+                    }
                     break;
                 case "Link to your Facebook profile":
-                    txtFacebookComments.Value = setComments(Comments[k]);
+                    {
+                        txtFacebookComments.Value = setComments(Comments[k]);
+                        if (Comments[k].adminaction == 0)
+                            rblFacebookNo.Checked = true;
+                        else
+                            rblFacebookYes.Checked = true;
+                    }
                     break;
                 case "Link to your twitter handle":
-                    txtTwitterComments.Value = setComments(Comments[k]);
+                    {
+                        txtTwitterComments.Value = setComments(Comments[k]);
+                        if (Comments[k].adminaction == 0)
+                            rblTwitterNo.Checked = true;
+                        else
+                            rblTwitterYes.Checked = true;
+                    }
                     break;
-               
+
                 default:
                     break;
 
@@ -220,16 +238,19 @@ public partial class admin_applicantsocial : System.Web.UI.Page
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
+
         Hashtable adminInputs = new Hashtable();
         try
         {
             if (linkedin.Style.Value != "display: none")
-                adminInputs.Add("Link to your LinkedIn profile", txtLinkedinComments.Value.Trim());
-             if (facebook.Style.Value != "display: none")
-                adminInputs.Add("Link to your Facebook profile", txtFacebookComments.Value.Trim());
-             if (twitter.Style.Value != "display: none")
-                adminInputs.Add("Link to your twitter handle", txtTwitterComments.Value.Trim());
+            {
 
+                adminInputs.Add("Link to your LinkedIn profile", txtLinkedinComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
+            }
+            if (facebook.Style.Value != "display: none")
+                adminInputs.Add("Link to your Facebook profile", txtFacebookComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
+            if (twitter.Style.Value != "display: none")
+                adminInputs.Add("Link to your twitter handle", txtTwitterComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 

@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="knowyourstudent.aspx.cs" Inherits="admin_knowyourstudent" MasterPageFile="~/admin/admin.master" %>
-
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
     <title></title>
     <script>
@@ -29,10 +28,13 @@
                             <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
-                              <span>  <i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />
+                                <span><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnPassportNo" />
+                                <input id="txtPassportNo" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -44,10 +46,13 @@
                             <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Date of Issue </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblDateOfissueYes" GroupName="DateOfissue" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblDateOfissueNo" GroupName="DateOfissue" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtDateOfissue" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnDateOfissue" />
+                                <input id="txtDateOfissue" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -59,10 +64,13 @@
                             <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">Expiry Date </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblExpiryDateYes" GroupName="ExpiryDate" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblExpiryDateNo" GroupName="ExpiryDate" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtExpiryDate" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnExpiryDate" />
+                                <input id="txtExpiryDate" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -73,11 +81,14 @@
                             <label id="labelcountryIssue" runat="server" for="countryIssue" class="col-md-3 col-form-label form-label">COUNTRY OF ISSUE </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
-                                <span class="helpicon"><i id="icCountryofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblcountryIssueNo" GroupName="countryIssue" Text="No" runat="server" />
+                                <span class="helpicon"><i id="icCountryofIssue" style="display: none" runat="server" class="fa fa-info-circle" ></i></span>
 
                             </div>
                             <div class="col-md-4">
-                                <input id="txtcountryIssue" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btncountryIssue" />
+                                <input id="txtcountryIssue" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -88,10 +99,13 @@
                             <label id="labelissueplace" runat="server" for="issueplace" class="col-md-3 col-form-label form-label">CITY OF ISSUE </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblissueplace" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblissueplaceYes" GroupName="issueplace" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblissueplaceNo" GroupName="issueplace" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icCityofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtissueplace" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnissueplace" />
+                                <input id="txtissueplace" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -102,10 +116,13 @@
                             <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-3 col-form-label form-label">Select Identity Proof Type</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblalternateIdentitytypeYes" GroupName="alternateIdentitytype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateIdentitytypeNo" GroupName="alternateIdentitytype" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icIdentityProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtalternateIdentitytype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnalternateIdentitytype" />
+                                <input id="txtalternateIdentitytype" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -116,10 +133,13 @@
                             <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Identity Proof Number</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblalternateIdentityNoYes" GroupName="alternateIdentityNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateIdentityNoNo" GroupName="alternateIdentityNo" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtalternateIdentityNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnalternateIdentityNo" />
+                                <input id="txtalternateIdentityNo" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -132,10 +152,13 @@
                             <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Select DOB Proof Type </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblalternatedobIdentitytypeYes" GroupName="alternatedobIdentitytype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternatedobIdentitytypeNo" GroupName="alternatedobIdentitytype" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtalternatedobIdentitytype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnalternatedobIdentitytype" />
+                                <input id="txtalternatedobIdentitytype" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -146,10 +169,13 @@
                             <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">DOB proof Number</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblalternatedobIdentityNoYes" GroupName="alternatedobIdentityNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternatedobIdentityNoNo" GroupName="alternatedobIdentityNo" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtalternatedobIdentityNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnalternatedobIdentityNo" />
+                                <input id="txtalternatedobIdentityNo" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -161,10 +187,13 @@
                             <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Select Residence Proof Type </label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblalternateresidenceIdentitytypeYes" GroupName="alternateresidenceIdentitytype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateresidenceIdentitytypeNo" GroupName="alternateresidenceIdentitytype" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtalternateresidenceIdentitytype" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnalternateresidenceIdentitytype" />
+                                <input id="txtalternateresidenceIdentitytype" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -175,10 +204,13 @@
                             <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo" class="col-md-3 col-form-label form-label">Residence Proof Number</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblalternateresidenceIdentityNoYes" GroupName="alternateresidenceIdentityNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateresidenceIdentityNoNo" GroupName="alternateresidenceIdentityNo" Text="No" runat="server" />
                                 <span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
                             <div class="col-md-4">
-                                <input id="txtalternateresidenceIdentityNo" runat="server" type="text" class="form-control" placeholder="Admin Comments">
+                                <input type="button" value="Add Remarks" id="btnalternateresidenceIdentityNo" />
+                                <input id="txtalternateresidenceIdentityNo" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                     </div>
@@ -199,5 +231,124 @@
 
             </div>
         </div>
-    </div>
+    </div><script type="text/javascript">
+        $(document).ready(function () {
+            $("#btnPassportNo").click(function () {
+                ManageRemarks('<%=txtPassportNo.ClientID%>', 'btnPassportNo');
+            });
+            $("#<%=rblPassportNoNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtPassportNo.ClientID%>', 'btnPassportNo');
+            });
+            $("#btnDateOfissue").click(function () {
+                ManageRemarks('<%=txtDateOfissue.ClientID%>', 'btnDateOfissue');
+            });
+            $("#<%=rblDateOfissueNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtDateOfissue.ClientID%>', 'btnDateOfissue');
+            });
+            $("#btnExpiryDate").click(function () {
+                ManageRemarks('<%=txtExpiryDate.ClientID%>', 'btnExpiryDate');
+            });
+            $("#<%=rblExpiryDateNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtExpiryDate.ClientID%>', 'btnExpiryDate');
+            });
+
+            $("#btnissueplace").click(function () {
+                ManageRemarks('<%=txtissueplace.ClientID%>', 'btnissueplace');
+            });
+            $("#<%=rblissueplaceNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtissueplace.ClientID%>', 'btnissueplace');
+            });
+            $("#btncountryIssue").click(function () {
+                ManageRemarks('<%=txtcountryIssue.ClientID%>', 'btncountryIssue');
+            });
+            $("#<%=rblcountryIssueNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtcountryIssue.ClientID%>', 'btncountryIssue');
+            });
+            $("#btnalternateIdentitytype").click(function () {
+                ManageRemarks('<%=txtalternateIdentitytype.ClientID%>', 'btnalternateIdentitytype');
+            });
+            $("#<%=rblalternateIdentitytypeNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtalternateIdentitytype.ClientID%>', 'btnalternateIdentitytype');
+            });
+            $("#btnalternateIdentityNo").click(function () {
+                ManageRemarks('<%=txtalternateIdentityNo.ClientID%>', 'btnalternateIdentityNo');
+            });
+            $("#<%=rblalternateIdentityNoNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtalternateIdentityNo.ClientID%>', 'btnalternateIdentityNo');
+            });
+            $("#btnalternatedobIdentitytype").click(function () {
+                ManageRemarks('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
+            });
+            $("#<%=rblalternatedobIdentitytypeNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
+            });
+             $("#btnalternatedobIdentitytype").click(function () {
+                ManageRemarks('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
+            });
+            $("#<%=rblalternatedobIdentitytypeNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
+            });
+            $("#btnalternatedobIdentityNo").click(function () {
+                ManageRemarks('<%=txtalternatedobIdentityNo.ClientID%>', 'btnalternatedobIdentityNo');
+            });
+            $("#<%=rblalternatedobIdentityNoNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtalternatedobIdentityNo.ClientID%>', 'btnalternatedobIdentityNo');
+            });
+            $("#btnalternateresidenceIdentitytype").click(function () {
+                ManageRemarks('<%=txtalternateresidenceIdentitytype.ClientID%>', 'btnalternateresidenceIdentitytype');
+            });
+            $("#<%=rblalternateresidenceIdentitytypeNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtalternateresidenceIdentitytype.ClientID%>', 'btnalternateresidenceIdentitytype');
+            });
+            $("#btnalternateresidenceIdentityNo").click(function () {
+                ManageRemarks('<%=txtalternateresidenceIdentityNo.ClientID%>', 'btnalternateresidenceIdentityNo');
+            });
+            $("#<%=rblalternateresidenceIdentityNoNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtalternateresidenceIdentityNo.ClientID%>', 'btnalternateresidenceIdentityNo');
+            });
+           
+             if ($('#<%=rblPassportNoNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtPassportNo.ClientID%>', 'btnPassportNo');
+             if ($('#<%=rblDateOfissueNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtDateOfissue.ClientID%>', 'btnDateOfissue');
+             if ($('#<%=rblExpiryDateNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtExpiryDate.ClientID%>', 'btnExpiryDate');
+             if ($('#<%=rblissueplaceNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtissueplace.ClientID%>', 'btnissueplace');
+             if ($('#<%=rblcountryIssueNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtcountryIssue.ClientID%>', 'btncountryIssue');
+             if ($('#<%=rblalternateIdentitytypeNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtalternateIdentitytype.ClientID%>', 'btnalternateIdentitytype');
+             if ($('#<%=rblalternateIdentityNoNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtalternateIdentityNo.ClientID%>', 'btnalternateIdentityNo');
+             if ($('#<%=rblalternatedobIdentitytypeNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
+             if ($('#<%=rblalternatedobIdentitytypeNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
+             if ($('#<%=rblalternatedobIdentityNoNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtalternatedobIdentityNo.ClientID%>', 'btnalternatedobIdentityNo');
+             if ($('#<%=rblalternateresidenceIdentitytypeNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtalternateresidenceIdentitytype.ClientID%>', 'btnalternateresidenceIdentitytype');
+             if ($('#<%=rblalternateresidenceIdentityNoNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtalternateresidenceIdentityNo.ClientID%>', 'btnalternateresidenceIdentityNo');
+           
+              function ManageRemarksIfNoCheked(cntrol, control2) {
+                $("#" + cntrol + "").css('display', 'block');
+                $("#" + control2 + "").prop('value', 'Hide Comments');
+            }
+           
+            function ManageRemarks(control1, control2) {
+                if ($("#" + control1 + "").is(':hidden')) {
+                    $("#" + control1 + "").css('display', 'block');
+                    $("#" + control2 + "").prop('value', 'Hide Comments');
+                    // $("#btnTwitter").html("Hide Comments");
+                }
+                else {
+                    $("#" + control1 + "").css('display', 'none');
+                    // $("#btnTwitter").html("Add Comments")
+                    $("#" + control2 + "").prop('value', 'Add Comments');
+                }
+            }
+
+        });</script>
 </asp:Content>

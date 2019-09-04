@@ -399,54 +399,118 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Email":
+                    if (Comments[k].adminaction == 0)
+                        rblEmailNo.Checked = true;
+                    else
+                        rblEmailYes.Checked = true;
                     txtEmail.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number":
+                    if (Comments[k].adminaction == 0)
+                        rblMobileNo.Checked = true;
+                    else
+                        rblMobileYes.Checked = true;
                     txtMobile.Value = setComments(Comments[k]);
                     break;
                 case "Home phone":
+                    if (Comments[k].adminaction == 0)
+                        rblHomePhoneNo.Checked = true;
+                    else
+                        rblHomePhoneYes.Checked = true;
                     txtHomePhone.Value = setComments(Comments[k]);
                     break;
                 case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    if (Comments[k].adminaction == 0)
+                        rblSkypeNo.Checked = true;
+                    else
+                        rblSkypeYes.Checked = true;
                     txtSkype.Value = setComments(Comments[k]);
                     break;
                 case "Skype ID":
+                    if (Comments[k].adminaction == 0)
+                        rblSkypeDescriptionNo.Checked = true;
+                    else
+                        rblSkypeDescriptionYes.Checked = true;
                     txtSkypeDescription.Value = setComments(Comments[k]);
                     break;
                 case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    if (Comments[k].adminaction == 0)
+                        rblWhatsappNo.Checked = true;
+                    else
+                        rblWhatsappYes.Checked = true;
                     txtWhatsapp.Value = setComments(Comments[k]);
                     break;
                 case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    if (Comments[k].adminaction == 0)
+                        rblWhatsapphaveNo.Checked = true;
+                    else
+                        rblWhatsapphaveYes.Checked = true;
                     txtWhastappHave.Value = setComments(Comments[k]);
                     break;
                 case "Whatsapp Number":
                     txtWhatsappDescription.Value = setComments(Comments[k]);
                     break;
                 case "Postal Address":
+                    if (Comments[k].adminaction == 0)
+                        rblwhatsappDescNo.Checked = true;
+                    else
+                        rblwhatsappDescYes.Checked = true;
                     txtPostalAddress.Value = setComments(Comments[k]);
                     break;
                 case "Is your Postal Address same as your current residential address":
+                    if (Comments[k].adminaction == 0)
+                        rblPostalAddressNo.Checked = true;
+                    else
+                        rblPostalAddressYes.Checked = true;
                     txtAddress.Value = setComments(Comments[k]);
                     break;
                 case "Current Residential  Address":
+                    if (Comments[k].adminaction == 0)
+                        rblResidentialNo.Checked = true;
+                    else
+                        rblResidentialYes.Checked = true;
                     txtResidential.Value = setComments(Comments[k]);
                     break;
                 case "GUARDIAN Full Name":
+                    if (Comments[k].adminaction == 0)
+                        rblNominneNameNo.Checked = true;
+                    else
+                        rblNominneNameYes.Checked = true;
                     txtGuardianname.Value = setComments(Comments[k]);
                     break;
                 case "Relationship with GUARDIAN":
+                    if (Comments[k].adminaction == 0)
+                        rblNomineeRelationNo.Checked = true;
+                    else
+                        rblNomineeRelationYes.Checked = true;
                     txtNomineeRelation.Value = setComments(Comments[k]);
                     break;
                 case "Email of GUARDIAN":
+                    if (Comments[k].adminaction == 0)
+                        rblNomineeEmailNo.Checked = true;
+                    else
+                        rblNomineeEmailYes.Checked = true;
                     txtNomineeEmail.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of GUARDIAN":
+                    if (Comments[k].adminaction == 0)
+                        rblNomineeMobileNo.Checked = true;
+                    else
+                        rblNomineeMobileYes.Checked = true;
                     txtNomiineeMobile.Value = setComments(Comments[k]);
                     break;
                 case "PREVIOUS ADDRESS HISTORY DETAILS":
+                    if (Comments[k].adminaction == 0)
+                        rblAddressHistoryNo.Checked = true;
+                    else
+                        rblAddressHistoryYes.Checked = true;
                     txtAddressHistory.Value = setComments(Comments[k]);
                     break;
                 case "HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?":
+                    if (Comments[k].adminaction == 0)
+                        rblCurrentAddressNo.Checked = true;
+                    else
+                        rblCurrentAddressYes.Checked = true;
                     txtCurrentAddress.Value = setComments(Comments[k]);
                     break;
 
@@ -465,40 +529,40 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
         try
         {
             if (email.Style.Value != "display: none")
-                adminInputs.Add("Email", txtEmail.Value.Trim());
+                adminInputs.Add("Email", txtEmail.Value.Trim() + "~" + (rblEmailNo.Checked == true ? 0 : 1));
             if (mobile.Style.Value != "display: none")
-                adminInputs.Add("Mobile/Cellular Number", txtMobile.Value.Trim());
+                adminInputs.Add("Mobile/Cellular Number", txtMobile.Value.Trim() + "~" + (rblMobileNo.Checked == true ? 0 : 1));
             if (phone.Style.Value != "display: none")
-                adminInputs.Add("Home phone", txtHomePhone.Value.Trim());
+                adminInputs.Add("Home phone", txtHomePhone.Value.Trim() + "~" + (rblHomePhoneNo.Checked == true ? 0 : 1));
             if (skype.Style.Value != "display: none")
-                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA SKYPE", txtSkype.Value.Trim());
+                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA SKYPE", txtSkype.Value.Trim() + "~" + (rblSkypeNo.Checked == true ? 0 : 1));
             if (skypeDesc.Style.Value != "display: none")
-                adminInputs.Add("Skype ID", txtSkypeDescription.Value.Trim());
+                adminInputs.Add("Skype ID", txtSkypeDescription.Value.Trim() + "~" + (rblSkypeDescriptionNo.Checked == true ? 0 : 1));
             if (whatsapp.Style.Value != "display: none")
-                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP", txtWhatsapp.Value.Trim());
+                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP", txtWhatsapp.Value.Trim() + "~" + (rblWhatsappNo.Checked == true ? 0 : 1));
             if (whatsappHave.Style.Value != "display: none")
-                adminInputs.Add("IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO", txtWhastappHave.Value.Trim());
+                adminInputs.Add("IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO", txtWhastappHave.Value.Trim() + "~" + (rblWhatsapphaveNo.Checked == true ? 0 : 1));
             if (whatsappDesc.Style.Value != "display: none")
-                adminInputs.Add("Whatsapp Number", txtWhatsappDescription.Value.Trim());
+                adminInputs.Add("Whatsapp Number", txtWhatsappDescription.Value.Trim() + "~" + (rblwhatsappDescNo.Checked == true ? 0 : 1));
             if (postal.Style.Value != "display: none")
-                adminInputs.Add("Postal Address", txtPostalAddress.Value.Trim());
+                adminInputs.Add("Postal Address", txtPostalAddress.Value.Trim() + "~" + (rblPostalAddressNo.Checked == true ? 0 : 1));
             if (address.Style.Value != "display: none")
             {
-                adminInputs.Add("Is your Postal Address same as your current residential address", txtAddress.Value.Trim());
-                adminInputs.Add("HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?", txtCurrentAddress.Value.Trim());
+                adminInputs.Add("Is your Postal Address same as your current residential address", txtAddress.Value.Trim() + "~" + (rblAddressNo.Checked == true ? 0 : 1));
+                adminInputs.Add("HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?", txtCurrentAddress.Value.Trim() + "~" + (rblCurrentAddressNo.Checked == true ? 0 : 1));
             }
             if (residential.Style.Value != "display: none")
-                adminInputs.Add("Current Residential  Address", txtResidential.Value.Trim());
+                adminInputs.Add("Current Residential  Address", txtResidential.Value.Trim() + "~" + (rblResidentialNo.Checked == true ? 0 : 1));
             if (guardianname.Style.Value != "display: none")
-                adminInputs.Add("GUARDIAN Full Name", txtGuardianname.Value.Trim());
+                adminInputs.Add("GUARDIAN Full Name", txtGuardianname.Value.Trim() + "~" + (rblNominneNameNo.Checked == true ? 0 : 1));
             if (guardianrelation.Style.Value != "display: none")
-                adminInputs.Add("Relationship with GUARDIAN", txtNomineeRelation.Value.Trim());
+                adminInputs.Add("Relationship with GUARDIAN", txtNomineeRelation.Value.Trim() + "~" + (rblNomineeRelationNo.Checked == true ? 0 : 1));
             if (guardianemail.Style.Value != "display: none")
-                adminInputs.Add("Email of GUARDIAN", txtNomineeEmail.Value.Trim());
+                adminInputs.Add("Email of GUARDIAN", txtNomineeEmail.Value.Trim() + "~" + (rblNomineeEmailNo.Checked == true ? 0 : 1));
             if (guardianmobile.Style.Value != "display: none")
-                adminInputs.Add("Mobile/Cellular Number of GUARDIAN", txtNomiineeMobile.Value.Trim());
+                adminInputs.Add("Mobile/Cellular Number of GUARDIAN", txtNomiineeMobile.Value.Trim() + "~" + (rblNomineeMobileNo.Checked == true ? 0 : 1));
             if (addressHistory.Style.Value != "display: none")
-                adminInputs.Add("PREVIOUS ADDRESS HISTORY DETAILS", txtAddressHistory.Value.Trim());
+                adminInputs.Add("PREVIOUS ADDRESS HISTORY DETAILS", txtAddressHistory.Value.Trim() + "~" + (rblAddressHistoryNo.Checked == true ? 0 : 1));
 
 
 
