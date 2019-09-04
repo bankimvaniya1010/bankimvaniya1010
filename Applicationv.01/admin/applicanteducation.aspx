@@ -1379,7 +1379,7 @@
                                     <div class="col-md-4">
                                         <asp:Label ID="lblhighergradeachievedPhd" runat="server"></asp:Label>
                                         <asp:RadioButton ID="rblhighergradeachievedPhdYes" GroupName="highergradeachievedPhd" Text="Yes" runat="server" />
-                                        <asp:RadioButton ID="rblhighergradeachievedPhdNo" GroupName="Title" Text="highergradeachievedPhd" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradeachievedPhdNo" GroupName="highergradeachievedPhd" Text="No" runat="server" />
                                         <span class="helpicon"><i id="ichighergradeachievedPhd" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                     </div>
                                     <div class="col-md-4">

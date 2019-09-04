@@ -189,36 +189,80 @@ public partial class admin_supervisorknowyourstudent : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Passport Number":
+                    if (Comments[k].adminaction == 0)
+                        rblPassportNoNo.Checked = true;
+                    else
+                        rblPassportNoYes.Checked = true;
                     labelpassportnoComments.Text = setComments(Comments[k]);
                     break;
                 case "Date of Issue":
+                    if (Comments[k].adminaction == 0)
+                        rblDateOfissueNo.Checked = true;
+                    else
+                        rblDateOfissueYes.Checked = true;
                     lblDateOfissueComments.Text = setComments(Comments[k]);
                     break;
                 case "Expiry Date":
+                    if (Comments[k].adminaction == 0)
+                        rblExpiryDateNo.Checked = true;
+                    else
+                        rblExpiryDateYes.Checked = true;
                     lblExpiryDateComments.Text = setComments(Comments[k]);
                     break;
                 case "COUNTRY OF ISSUE":
+                    if (Comments[k].adminaction == 0)
+                        rblcountryIssueNo.Checked = true;
+                    else
+                        rblcountryIssueYes.Checked = true;
                     lblcountryIssueComments.Text = setComments(Comments[k]);
                     break;
                 case "CITY OF ISSUE":
+                    if (Comments[k].adminaction == 0)
+                        rblissueplaceNo.Checked = true;
+                    else
+                        rblissueplaceYes.Checked = true;
                     lblissueplaceComments.Text = setComments(Comments[k]);
                     break;
                 case "Select Identity Proof Type":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateIdentitytypeNo.Checked = true;
+                    else
+                        rblalternateIdentitytypeYes.Checked = true;
                     lblalternateIdentitytypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Identity Proof Number":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateIdentityNoNo.Checked = true;
+                    else
+                        rblalternateIdentityNoYes.Checked = true;
                     lblalternateIdentityNoComments.Text = setComments(Comments[k]);
                     break;
                 case "Select DOB Proof Type":
+                    if (Comments[k].adminaction == 0)
+                        rblalternatedobIdentitytypeNo.Checked = true;
+                    else
+                        rblalternatedobIdentitytypeYes.Checked = true;
                     lblalternatedobIdentitytypeComments.Text = setComments(Comments[k]);
                     break;
                 case "DOB proof Number":
+                    if (Comments[k].adminaction == 0)
+                        rblalternatedobIdentityNoNo.Checked = true;
+                    else
+                        rblalternatedobIdentityNoYes.Checked = true;
                     lblalternatedobIdentityNoComments.Text = setComments(Comments[k]);
                     break;
                 case "Select Residence Proof Type":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateresidenceIdentitytypeNo.Checked = true;
+                    else
+                        rblalternateresidenceIdentitytypeYes.Checked = true;
                     lblalternateresidenceIdentitytypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Residence Proof Number":
+                    if (Comments[k].adminaction == 0)
+                        rblalternateresidenceIdentityNoNo.Checked = true;
+                    else
+                        rblalternateresidenceIdentityNoYes.Checked = true;
                     lblalternateresidenceIdentityNoComments.Text = setComments(Comments[k]);
                     break;
 

@@ -328,72 +328,164 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Title":
+                    if (Comments[k].adminaction == 0)
+                        rblTitleNo.Checked = true;
+                    else
+                        rblTitleYes.Checked = true;
                     lblTitleComments.Text = setComments(Comments[k]);
                     break;
                 case "First Name":
+                    if (Comments[k].adminaction == 0)
+                        rblFirstNameNo.Checked = true;
+                    else
+                        rblFirstNameYes.Checked = true;
                     lblFirstNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Last Name":
+                    if (Comments[k].adminaction == 0)
+                        rblLastNameNo.Checked = true;
+                    else
+                        rblLastNameYes.Checked = true;
                     lblLastNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Preferred Name":
+                    if (Comments[k].adminaction == 0)
+                        rblPrefferedNameNo.Checked = true;
+                    else
+                        rblPrefferedNameYes.Checked = true;
                     lblPrefferedNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Other middle names":
+                    if (Comments[k].adminaction == 0)
+                        rblMiddleNameNo.Checked = true;
+                    else
+                        rblMiddleNameYes.Checked = true;
                     lblMiddleNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Date of birth":
+                    if (Comments[k].adminaction == 0)
+                        rblDOBNo.Checked = true;
+                    else
+                        rblDOBYes.Checked = true;
                     lblDOBComments.Text = setComments(Comments[k]);
                     break;
                 case "Gender":
+                    if (Comments[k].adminaction == 0)
+                        rblGenderNo.Checked = true;
+                    else
+                        rblGenderYes.Checked = true;
                     lblGenderComments.Text = setComments(Comments[k]);
                     break;
                 case "Nationality and citizenship":
+                    if (Comments[k].adminaction == 0)
+                        rblNationalityNo.Checked = true;
+                    else
+                        rblNationalityYes.Checked = true;
                     lblNationalityComments.Text = setComments(Comments[k]);
                     break;
                 case "Do you ever use a Chinese Commercial Code Number for your names":
+                    if (Comments[k].adminaction == 0)
+                        rblChineseCodeNo.Checked = true;
+                    else
+                        rblChineseCodeYes.Checked = true;
                     lblchineseCodeComments.Text = setComments(Comments[k]);
                     break;
                 case "Chinese Commercial Code Number":
+                    if (Comments[k].adminaction == 0)
+                        rblChineseCodeNoNo.Checked = true;
+                    else
+                        rblChineseCodeNoYes.Checked = true;
                     lblChineseCodeNoComments.Text = setComments(Comments[k]);
                     break;
                 case "In English, provide your patronymic name":
+                    if (Comments[k].adminaction == 0)
+                        rblRussianNameNo.Checked = true;
+                    else
+                        rblRussianNameYes.Checked = true;
                     lblrussianNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Do you have dual Citizenship":
+                    if (Comments[k].adminaction == 0)
+                        rblDualNationalityNo.Checked = true;
+                    else
+                        rblDualNationalityYes.Checked = true;
                     lblDualNationalityComments.Text = setComments(Comments[k]);
                     break;
                 case "Nationality and citizenship(Second)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondNationNo.Checked = true;
+                    else
+                        rblSecondNationYes.Checked = true;
                     lblOtherNationComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of birth":
+                    if (Comments[k].adminaction == 0)
+                        rblBirthCountryNo.Checked = true;
+                    else
+                        rblBirthCountryYes.Checked = true;
                     lblBirthCountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Marital Status":
+                    if (Comments[k].adminaction == 0)
+                        rblMaritalNo.Checked = true;
+                    else
+                        rblMaritalYes.Checked = true;
                     lblMaritalComments.Text = setComments(Comments[k]);
                     break;
                 case "Spouse Name":
+                    if (Comments[k].adminaction == 0)
+                        rblspouseNameNo.Checked = true;
+                    else
+                        rblspouseNameYes.Checked = true;
                     labelspouseNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Nationality of Spouse":
+                    if (Comments[k].adminaction == 0)
+                        rblSpouseNatinalityNo.Checked = true;
+                    else
+                        rblSpouseNatinalityYes.Checked = true;
                     lblSpouseNationalityComments.Text = setComments(Comments[k]);
                     break;
                 case "Spouse Date of birth":
+                    if (Comments[k].adminaction == 0)
+                        rblSpouseDobNo.Checked = true;
+                    else
+                        rblSpouseDobYes.Checked = true;
                     labelSpouseDOBComments.Text = setComments(Comments[k]);
                     break;
                 case "Date of Marriage":
+                    if (Comments[k].adminaction == 0)
+                        rblMarriagedateNo.Checked = true;
+                    else
+                        rblMarriagedateYes.Checked = true;
                     labelMarriagedateComments.Text = setComments(Comments[k]);
                     break;
                 case "Do you have any disability, impairment, or a long term condition":
+                    if (Comments[k].adminaction == 0)
+                        rblDisabilityNo.Checked = true;
+                    else
+                        rblDisabilityYes.Checked = true;
                     lblDisabilityComments.Text = setComments(Comments[k]);
                     break;
                 case "Disability Description":
+                    if (Comments[k].adminaction == 0)
+                        rbldisabilitydescNo.Checked = true;
+                    else
+                        rbldisabilitydescYes.Checked = true;
                     lbldisabilitydescComments.Text = setComments(Comments[k]);
                     break;
                 case "Are you reffered by Agent":
+                    if (Comments[k].adminaction == 0)
+                        rblAgentNo.Checked = true;
+                    else
+                        rblAgentYes.Checked = true;
                     lblAgentComments.Text = setComments(Comments[k]);
                     break;
                 case "Agent Name":
+                    if (Comments[k].adminaction == 0)
+                        rblAgentListNo.Checked = true;
+                    else
+                        rblAgentListYes.Checked = true;
                     lblAgentListComments.Text = setComments(Comments[k]);
                     break;
 

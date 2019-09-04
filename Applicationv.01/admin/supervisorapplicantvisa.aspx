@@ -26,7 +26,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblHaveVisa" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblHaveVisaYes" GroupName="HaveVisa" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblHaveVisaNo" GroupName="HaveVisa" Text="No" runat="server" />
                                 <asp:Label ID="lblHaveVisaComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -40,7 +41,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisa" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblvisaYes" GroupName="visa" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblvisaNo" GroupName="visa" Text="No" runat="server" />
                                 <asp:Label ID="lblvisaComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -53,7 +55,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblvalidityFrom" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"><asp:RadioButton ID="rblvalidityFromYes" GroupName="validityFrom" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblvalidityFromNo" GroupName="validityFrom" Text="No" runat="server" />
                                 <asp:Label ID="lblvalidityFromComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -66,7 +69,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblvalidityTo" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4">  <asp:RadioButton ID="rblvalidityToYes" GroupName="validityTo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblvalidityToNo" GroupName="validityTo" Text="No" runat="server" />
                                 <asp:Label ID="lblvalidityToComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -80,7 +84,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisano" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4">  <asp:RadioButton ID="rblvisanoYes" GroupName="visano" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblvisanoNo" GroupName="visano" Text="No" runat="server" />
                                 <asp:Label ID="lblvisanoComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -96,7 +101,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisaapplied" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4">  <asp:RadioButton ID="rblvisaappliedCountryYes" GroupName="visaappliedCountry" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblvisaappliedCountryNo" GroupName="visaappliedCountry" Text="No" runat="server" />
                                 <asp:Label ID="lblvisaappliedComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -112,7 +118,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisacity" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblvisacityYes" GroupName="visacity" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblvisacityNo" GroupName="visacity" Text="No" runat="server" />
                                 <asp:Label ID="lblvisacityComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -125,7 +132,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblvisacountry" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblvisacountryYes" GroupName="visacountry" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblvisacountryNo" GroupName="visacountry" Text="No" runat="server" />
                                 <asp:Label ID="lblvisacountryComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -138,7 +146,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblfirstvisit" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblfirstvisitYes" GroupName="firstvisit" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblfirstvisitNo" GroupName="firstvisit" Text="No" runat="server" />
                                 <asp:Label ID="lblfirstvisitComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -154,7 +163,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblPreviuosstay" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"><asp:RadioButton ID="rblPreviuosstayYes" GroupName="Previuosstay" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblPreviuosstayNo" GroupName="Previuosstay" Text="No" runat="server" />
                                 <asp:Label ID="lblPreviuosstayComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -170,7 +180,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblparent" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4">  <asp:RadioButton ID="rblparentYes" GroupName="parent" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblparentNo" GroupName="parent" Text="No" runat="server" />
                                 <asp:Label ID="lblparentComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -185,7 +196,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblDeniedVisa" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4">  <asp:RadioButton ID="rblDeniedVisaYes" GroupName="DeniedVisa" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblDeniedVisaNo" GroupName="DeniedVisa" Text="No" runat="server" />
                                 <asp:Label ID="lblDeniedVisaComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -201,7 +213,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblparentdeny" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblparentdenyYes" GroupName="parentdeny" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblparentdenyNo" GroupName="parentdeny" Text="No" runat="server" />
                                 <asp:Label ID="lblparentdenyComments" runat="server"></asp:Label>
                             </div>
                         </div>

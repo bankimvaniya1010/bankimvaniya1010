@@ -966,336 +966,783 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Have you completed high school":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolNo.Checked = true;
+                    else
+                        rblhighschoolYes.Checked = true;
                     lblhighschoolComments.Text = setComments(Comments[k]);
                     break;
                 case "Highest Education":
+                    if (Comments[k].adminaction == 0)
+                        rblhigestEducationNo.Checked = true;
+                    else
+                        rblhigestEducationYes.Checked = true;
                     lblhigestEducationComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of High School Education":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolCountryNo.Checked = true;
+                    else
+                        rblhighschoolCountryYes.Checked = true;
                     lblhighschoolCountryComments.Text = setComments(Comments[k]);
                     break;
                 case "High School Start Date":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolstartDateNo.Checked = true;
+                    else
+                        rblhighschoolstartDateYes.Checked = true;
                     lblhighschoolstartDateComments.Text = setComments(Comments[k]);
                     break;
                 case "High School End Date":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolendDateNo.Checked = true;
+                    else
+                        rblhighschoolendDateYes.Checked = true;
                     lblhighschoolendDateComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of School(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolNameNo.Checked = true;
+                    else
+                        rblhighschoolNameYes.Checked = true;
                     lblhighschoolNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Qualification Type(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolQualificationtypeNo.Checked = true;
+                    else
+                        rblhighschoolQualificationtypeYes.Checked = true;
                     lblhighschoolQualificationtypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Mode of study(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolstudymodeNo.Checked = true;
+                    else
+                        rblhighschoolstudymodeYes.Checked = true;
                     lblhighschoolstudymodeComments.Text = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(HighSchool)":
-                    lblhighschoollanguageComments.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolstudymodeNo.Checked = true;
+                    else
+                        rblhighschoolstudymodeYes.Checked = true;
+                    lblhighschoolstudymodeComments.Text = setComments(Comments[k]);
                     break;
                 case "Grade Type(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblgradetypeNo.Checked = true;
+                    else
+                        rblgradetypeYes.Checked = true;
                     lblgradetypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolgradeachievedNo.Checked = true;
+                    else
+                        rblhighschoolgradeachievedYes.Checked = true;
                     lblgradeachievedComments.Text = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHighSchoolDategradeNo.Checked = true;
+                    else
+                        rblExpectedHighSchoolDategradeYes.Checked = true;
                     lblExpectedHighSchoolDategradeComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolverifyNo.Checked = true;
+                    else
+                        rblhighschoolverifyYes.Checked = true;
                     lblhighschoolverifyComments.Text = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolrelationNo.Checked = true;
+                    else
+                        rblhighschoolrelationYes.Checked = true;
                     lblhighschoolrelationComments.Text = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolcontactEmailNo.Checked = true;
+                    else
+                        rblhighschoolcontactEmailYes.Checked = true;
                     lblhighschoolcontactEmailComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolcontactMobileNo.Checked = true;
+                    else
+                        rblhighschoolcontactMobileYes.Checked = true;
                     lblhighschoolcontactMobileComments.Text = setComments(Comments[k]);
                     break;
                 case "High School Grade":
+                    if (Comments[k].adminaction == 0)
+                        rblhighshoolgradeNo.Checked = true;
+                    else
+                        rblhighshoolgradeYes.Checked = true;
                     lblhighshoolgradeComments.Text = setComments(Comments[k]);
                     break;
                 case "Have you completed Senior Secondary school? (Year 12)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryNo.Checked = true;
+                    else
+                        rblSecondaryYes.Checked = true;
                     lblSecondaryComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of Secondary Education":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryCountryNo.Checked = true;
+                    else
+                        rblSecondaryCountryYes.Checked = true;
                     lblSecondaryCountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Secondary Start Date":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarystartDateNo.Checked = true;
+                    else
+                        rblSecondarystartDateYes.Checked = true;
                     lblSecondarystartDateComments.Text = setComments(Comments[k]);
                     break;
                 case "Secondary End Date":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryendDateNo.Checked = true;
+                    else
+                        rblSecondaryendDateYes.Checked = true;
                     lblSecondaryendDateComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of School(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryschoolNameNo.Checked = true;
+                    else
+                        rblSecondaryschoolNameYes.Checked = true;
                     lblSecondaryschoolNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryQualificationtypeNo.Checked = true;
+                    else
+                        rblSecondaryQualificationtypeYes.Checked = true;
                     lblSecondaryQualificationtypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Mode of study(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarystudymodeNo.Checked = true;
+                    else
+                        rblSecondarystudymodeYes.Checked = true;
                     lblSecondarystudymodeComments.Text = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarylanguageNo.Checked = true;
+                    else
+                        rblSecondarylanguageYes.Checked = true;
                     lblSecondarylanguageComments.Text = setComments(Comments[k]);
                     break;
                 case "Grade Type(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarygradetypeNo.Checked = true;
+                    else
+                        rblSecondarygradetypeYes.Checked = true;
                     lblSecondarygradetypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarygradeachievedNo.Checked = true;
+                    else
+                        rblSecondarygradeachievedYes.Checked = true;
                     lblSecondarygradeachievedComments.Text = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedSecondaryDategradeNo.Checked = true;
+                    else
+                        rblExpectedSecondaryDategradeYes.Checked = true;
                     lblExpectedSecondaryDategradeComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryverifyNo.Checked = true;
+                    else
+                        rblSecondaryverifyYes.Checked = true;
                     lblSecondaryverifyComments.Text = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondaryschoolrelationNo.Checked = true;
+                    else
+                        rblsecondaryschoolrelationYes.Checked = true;
                     lblsecondaryschoolrelationComments.Text = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondarycontactEmailNo.Checked = true;
+                    else
+                        rblsecondarycontactEmailYes.Checked = true;
                     lblsecondarycontactEmailComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondarycontactMobileNo.Checked = true;
+                    else
+                        rblsecondarycontactMobileYes.Checked = true;
                     lblsecondarycontactMobileComments.Text = setComments(Comments[k]);
                     break;
                 case "Secondary Grade":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondarygradeNo.Checked = true;
+                    else
+                        rblsecondarygradeYes.Checked = true;
                     lblsecondarygradeComments.Text = setComments(Comments[k]);
                     break;
                 case "Have you completed any Diploma or Certificate Programs":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaNo.Checked = true;
+                    else
+                        rbldiplomaYes.Checked = true;
                     lbldiplomaComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of Diploma or Certificate Programs":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaCountryNo.Checked = true;
+                    else
+                        rbldiplomaCountryYes.Checked = true;
                     lbldiplomaCountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Diploma Start Date":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomastartDateNo.Checked = true;
+                    else
+                        rbldiplomastartDateYes.Checked = true;
                     lbldiplomastartDateComments.Text = setComments(Comments[k]);
                     break;
                 case "Diploma End Date":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaendDateNo.Checked = true;
+                    else
+                        rbldiplomaendDateYes.Checked = true;
                     lbldiplomaendDateComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of School(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaschoolNameNo.Checked = true;
+                    else
+                        rbldiplomaschoolNameYes.Checked = true;
                     lbldiplomaschoolNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaQualificationtypeNo.Checked = true;
+                    else
+                        rbldiplomaQualificationtypeYes.Checked = true;
                     lbldiplomaQualificationtypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Mode of study(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomastudymodeNo.Checked = true;
+                    else
+                        rbldiplomastudymodeYes.Checked = true;
                     lbldiplomastudymodeComments.Text = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomalanguageNo.Checked = true;
+                    else
+                        rbldiplomalanguageYes.Checked = true;
                     lbldiplomalanguageComments.Text = setComments(Comments[k]);
                     break;
                 case "Grade Type(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomagradetypeNo.Checked = true;
+                    else
+                        rbldiplomagradetypeYes.Checked = true;
                     lbldiplomagradetypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomagradeachievedNo.Checked = true;
+                    else
+                        rbldiplomagradeachievedYes.Checked = true;
                     lbldiplomagradeachievedComments.Text = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedDiplomaDategradeNo.Checked = true;
+                    else
+                        rblExpectedDiplomaDategradeYes.Checked = true;
                     lblExpectedDiplomaDategradeComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaverifyNo.Checked = true;
+                    else
+                        rbldiplomaverifyYes.Checked = true;
                     lbldiplomaverifyComments.Text = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomarelationNo.Checked = true;
+                    else
+                        rbldiplomarelationYes.Checked = true;
                     lbldiplomarelationComments.Text = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomacontactEmailNo.Checked = true;
+                    else
+                        rbldiplomacontactEmailYes.Checked = true;
                     lbldiplomacontactEmailComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomacontactMobileNo.Checked = true;
+                    else
+                        rbldiplomacontactMobileYes.Checked = true;
                     lbldiplomacontactMobileComments.Text = setComments(Comments[k]);
                     break;
                 case "Diploma Grade":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomagradeNo.Checked = true;
+                    else
+                        rbldiplomagradeYes.Checked = true;
                     lbldiplomagradeComments.Text = setComments(Comments[k]);
                     break;
                 case "Have you completed any Higher (Under Graduate, Masters or PhD) degree":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherNo.Checked = true;
+                    else
+                        rblhigherYes.Checked = true;
                     lblhigherComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Course(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercourseNo.Checked = true;
+                    else
+                        rblhighercourseYes.Checked = true;
                     lblhighercourseComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryNo.Checked = true;
+                    else
+                        rblhigherCountryYes.Checked = true;
                     lblhigherCountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDateNo.Checked = true;
+                    else
+                        rblhigherstartDateYes.Checked = true;
                     lblhigherschoolstartDateComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher End Date(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDateNo.Checked = true;
+                    else
+                        rblhigherendDateYes.Checked = true;
                     lblhigherendDateComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of School(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNameNo.Checked = true;
+                    else
+                        rblhigherschoolNameYes.Checked = true;
                     lblhigherschoolNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Qualification Type(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypeNo.Checked = true;
+                    else
+                        rblhigherQualificationtypeYes.Checked = true;
                     lblhigherQualificationtypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Mode of study(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodeNo.Checked = true;
+                    else
+                        rblhigherstudymodeYes.Checked = true;
                     lblhigherstudymodeComments.Text = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguageNo.Checked = true;
+                    else
+                        rblhigherlanguageYes.Checked = true;
                     lblhigherlanguageComments.Text = setComments(Comments[k]);
                     break;
                 case "Grade Type(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypeNo.Checked = true;
+                    else
+                        rblhighergradetypeYes.Checked = true;
                     lblhighergradetypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedNo.Checked = true;
+                    else
+                        rblhighergradeachievedYes.Checked = true;
                     lblhighergradeachievedComments.Text = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradeNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradeYes.Checked = true;
                     lblExpectedHigherDategradeComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyNo.Checked = true;
+                    else
+                        rblhigherverifyYes.Checked = true;
                     lblhigherverifyComments.Text = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationNo.Checked = true;
+                    else
+                        rblhigherrelationYes.Checked = true;
                     lblhigherschoolrelationComments.Text = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailNo.Checked = true;
+                    else
+                        rblhighercontactEmailYes.Checked = true;
                     lblhighercontactEmailComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobileNo.Checked = true;
+                    else
+                        rblhighercontactMobileYes.Checked = true;
                     lblhighercontactMobileComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Course(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercoursePGNo.Checked = true;
+                    else
+                        rblhighercoursePGYes.Checked = true;
                     lblhighercoursePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryPGNo.Checked = true;
+                    else
+                        rblhigherCountryPGYes.Checked = true;
                     lblhigherCountryPGComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDatePGNo.Checked = true;
+                    else
+                        rblhigherstartDatePGYes.Checked = true;
                     lblhigherstartDatePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher End Date(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDatePGNo.Checked = true;
+                    else
+                        rblhigherendDatePGYes.Checked = true;
                     lblhigherendDatePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of School(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNamePGNo.Checked = true;
+                    else
+                        rblhigherschoolNamePGYes.Checked = true;
                     lblhigherschoolNamePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Qualification Type(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypePGNo.Checked = true;
+                    else
+                        rblhigherQualificationtypePGYes.Checked = true;
                     lblhigherQualificationtypePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Mode of study(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodePGNo.Checked = true;
+                    else
+                        rblhigherstudymodePGYes.Checked = true;
                     lblhigherstudymodePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguagePGNo.Checked = true;
+                    else
+                        rblhigherlanguagePGYes.Checked = true;
                     lblhigherlanguagePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Grade Type(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypePGNo.Checked = true;
+                    else
+                        rblhighergradetypePGYes.Checked = true;
                     lblhighergradetypePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedPGNo.Checked = true;
+                    else
+                        rblhighergradeachievedPGYes.Checked = true;
                     lblhighergradeachievedPGComments.Text = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradePGNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradePGYes.Checked = true;
                     lblExpectedHigherDategradePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(PG)":
                     lblhigherverifyPGComments.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyPGNo.Checked = true;
+                    else
+                        rblhigherverifyPGYes.Checked = true;
                     break;
                 case "Relationship with the Contact(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationPGNo.Checked = true;
+                    else
+                        rblhigherrelationPGYes.Checked = true;
                     lblhigherrelationPGComments.Text = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailPGNo.Checked = true;
+                    else
+                        rblhighercontactEmailPGYes.Checked = true;
                     lblhighercontactEmailPGComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobilePGNo.Checked = true;
+                    else
+                        rblhighercontactMobilePGYes.Checked = true;
                     lblhighercontactMobilePGComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Course(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercoursePhdNo.Checked = true;
+                    else
+                        rblhighercoursePhdYes.Checked = true;
                     lblhighercoursePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryPhdNo.Checked = true;
+                    else
+                        rblhigherCountryPhdYes.Checked = true;
                     lblhigherCountryPhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDatePhdNo.Checked = true;
+                    else
+                        rblhigherstartDatePhdYes.Checked = true;
                     lblhigherstartDatePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher End Date(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDatePhdNo.Checked = true;
+                    else
+                        rblhigherendDatePhdYes.Checked = true;
                     lblhigherendDatePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of School(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNamePhdNo.Checked = true;
+                    else
+                        rblhigherschoolNamePhdYes.Checked = true;
                     lblhigherschoolNamePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypePhdNo.Checked = true;
+                    else
+                        rblhigherQualificationtypePhdYes.Checked = true;
                     lblhigherQualificationtypePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Mode of study(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodePhdNo.Checked = true;
+                    else
+                        rblhigherstudymodePhdYes.Checked = true;
                     lblhigherstudymodePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguagePhdNo.Checked = true;
+                    else
+                        rblhigherlanguagePhdYes.Checked = true;
                     lblhigherlanguagePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Grade Type(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypePhdNo.Checked = true;
+                    else
+                        rblhighergradetypePhdYes.Checked = true;
                     lblhighergradetypePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedPhdNo.Checked = true;
+                    else
+                        rblhighergradeachievedPhdYes.Checked = true;
                     lblhighergradeachievedPhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradePhdNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradePhdYes.Checked = true;
                     lblExpectedHigherDategradePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyPhdNo.Checked = true;
+                    else
+                        rblhigherverifyPhdYes.Checked = true;
                     lblhigherverifyPhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationPhdNo.Checked = true;
+                    else
+                        rblhigherrelationPhdYes.Checked = true;
                     lblhigherrelationPhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailPhdNo.Checked = true;
+                    else
+                        rblhighercontactEmailPhdYes.Checked = true;
                     lblhighercontactEmailPhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobilePhdNo.Checked = true;
+                    else
+                        rblhighercontactMobilePhdYes.Checked = true;
                     lblhighercontactMobilePhdComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Course(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblOtherHigherCourseNo.Checked = true;
+                    else
+                        rblOtherHigherCourseYes.Checked = true;
                     lblhighercourseOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryOtherNo.Checked = true;
+                    else
+                        rblhigherCountryOtherYes.Checked = true;
                     lblhigherCountryOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDateOtherNo.Checked = true;
+                    else
+                        rblhigherstartDateOtherYes.Checked = true;
                     lblhigherstartDateOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher End Date(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDateOtherNo.Checked = true;
+                    else
+                        rblhigherendDateOtherYes.Checked = true;
                     lblhigherendDateOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of School(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNameOtherNo.Checked = true;
+                    else
+                        rblhigherschoolNameOtherYes.Checked = true;
                     lblhigherschoolNameOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypeOtherNo.Checked = true;
+                    else
+                        rblhigherQualificationtypeOtherYes.Checked = true;
                     lblhigherQualificationtypeOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Mode of study(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodeOtherNo.Checked = true;
+                    else
+                        rblhigherstudymodeOtherYes.Checked = true;
                     lblhigherstudymodeOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguageOtherNo.Checked = true;
+                    else
+                        rblhigherlanguageOtherYes.Checked = true;
                     lblhigherlanguageOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Grade Type(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypeOtherNo.Checked = true;
+                    else
+                        rblhighergradetypeOtherYes.Checked = true;
                     lblhighergradetypeOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedOtherNo.Checked = true;
+                    else
+                        rblhighergradeachievedOtherYes.Checked = true;
                     lblhighergradeachievedOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradeOtherNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradeOtherYes.Checked = true;
                     lblExpectedHigherDategradeOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyOtherNo.Checked = true;
+                    else
+                        rblhigherverifyOtherYes.Checked = true;
                     lblhigherverifyOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationOtherNo.Checked = true;
+                    else
+                        rblhigherrelationOtherYes.Checked = true;
                     lblhigherrelationOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailOtherNo.Checked = true;
+                    else
+                        rblhighercontactEmailOtherYes.Checked = true;
+
                     lblhighercontactEmailOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobileOtherNo.Checked = true;
+                    else
+                        rblhighercontactMobileOtherYes.Checked = true;
+
                     lblhighercontactMobileOtherComments.Text = setComments(Comments[k]);
                     break;
                 case "Higher Grade":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeNO.Checked = true;
+                    else
+                        rblhighergradeYes.Checked = true;
+
                     lblhighergradeComments.Text = setComments(Comments[k]);
                     break;
                 default:

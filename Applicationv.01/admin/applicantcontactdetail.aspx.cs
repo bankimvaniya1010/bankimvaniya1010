@@ -449,19 +449,23 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                     break;
                 case "Whatsapp Number":
                     txtWhatsappDescription.Value = setComments(Comments[k]);
-                    break;
-                case "Postal Address":
                     if (Comments[k].adminaction == 0)
                         rblwhatsappDescNo.Checked = true;
                     else
                         rblwhatsappDescYes.Checked = true;
-                    txtPostalAddress.Value = setComments(Comments[k]);
                     break;
-                case "Is your Postal Address same as your current residential address":
+                case "Postal Address":
                     if (Comments[k].adminaction == 0)
                         rblPostalAddressNo.Checked = true;
                     else
                         rblPostalAddressYes.Checked = true;
+                    txtPostalAddress.Value = setComments(Comments[k]);
+                    break;
+                case "Is your Postal Address same as your current residential address":
+                    if (Comments[k].adminaction == 0)
+                        rblAddressNo.Checked = true;
+                    else
+                        rblAddressYes.Checked = true;
                     txtAddress.Value = setComments(Comments[k]);
                     break;
                 case "Current Residential  Address":

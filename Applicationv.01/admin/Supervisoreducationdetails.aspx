@@ -22,6 +22,8 @@
                                 <asp:Label ID="lblhighschool" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolYes" GroupName="highschool" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolNo" GroupName="highschool" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -35,6 +37,8 @@
                                 <asp:Label ID="lblhighschoolCountry" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolCountryYes" GroupName="highschoolCountry" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolCountryNo" GroupName="highschoolCountry" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolCountryComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -48,6 +52,8 @@
                                 <asp:Label ID="lblhighschoolstartDate" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolstartDateYes" GroupName="highschoolstartDate" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolstartDateNo" GroupName="highschoolstartDate" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolstartDateComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -61,6 +67,8 @@
                                 <asp:Label ID="lblhighschoolendDate" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolendDateYes" GroupName="highschoolendDate" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolendDateNo" GroupName="highschoolendDate" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolendDateComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -74,6 +82,8 @@
                                 <asp:Label ID="lblhighschoolName" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolNameYes" GroupName="highschoolName" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolNameNo" GroupName="highschoolName" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolNameComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -87,6 +97,8 @@
                                 <asp:Label ID="lblhighschoolQualificationtype" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolQualificationtypeYes" GroupName="highschoolQualificationtype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolQualificationtypeNo" GroupName="highschoolQualificationtype" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolQualificationtypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -100,6 +112,8 @@
                                 <asp:Label ID="lblhighschoolstudymode" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolstudymodeYes" GroupName="highschoolstudymode" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolstudymodeNo" GroupName="highschoolstudymode" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolstudymodeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -113,6 +127,8 @@
                                 <asp:Label ID="lblhighschoollanguage" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoollanguageYes" GroupName="highschoollanguage" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoollanguageNo" GroupName="highschoollanguage" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoollanguageComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -126,6 +142,8 @@
                                 <asp:Label ID="lblgradetype" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblgradetypeYes" GroupName="gradetype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblgradetypeNo" GroupName="gradetype" Text="No" runat="server" />
                                 <asp:Label ID="lblgradetypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -139,6 +157,8 @@
                                 <asp:Label ID="lblgradeachieved" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolgradeachievedYes" GroupName="highschoolgradeachieved" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolgradeachievedNo" GroupName="highschoolgradeachieved" Text="No" runat="server" />
                                 <asp:Label ID="lblgradeachievedComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -152,6 +172,9 @@
                                 <asp:Label ID="lblExpectedHighSchoolDategrade" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblExpectedHighSchoolDategradeYes" GroupName="ExpectedHighSchoolDategrade" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblExpectedHighSchoolDategradeNo" GroupName="ExpectedHighSchoolDategrade" Text="No" runat="server" />
+
                                 <asp:Label ID="lblExpectedHighSchoolDategradeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -166,6 +189,8 @@
                                 <asp:Label ID="lblhighschoolverify" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolverifyYes" GroupName="highschoolverify" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolverifyNo" GroupName="highschoolverify" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolverifyComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -179,6 +204,8 @@
                                 <asp:Label ID="lblhighschoolrelation" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolrelationYes" GroupName="highschoolrelation" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolrelationNo" GroupName="highschoolrelation" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolrelationComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -192,6 +219,8 @@
                                 <asp:Label ID="lblhighschoolcontactEmail" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolcontactEmailYes" GroupName="highschoolcontactEmail" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolcontactEmailNo" GroupName="highschoolcontactEmail" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolcontactEmailComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -205,6 +234,8 @@
                                 <asp:Label ID="lblhighschoolcontactMobile" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighschoolcontactMobileYes" GroupName="highschoolcontactMobile" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighschoolcontactMobileNo" GroupName="highschoolcontactMobile" Text="No" runat="server" />
                                 <asp:Label ID="lblhighschoolcontactMobileComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -218,6 +249,8 @@
                                 <asp:Label ID="lblhigestEducation" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhigestEducationYes" GroupName="higestEducation" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhigestEducationNo" GroupName="higestEducation" Text="No" runat="server" />
                                 <asp:Label ID="lblhigestEducationComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -273,6 +306,8 @@
 
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblhighshoolgradeYes" GroupName="highshoolgrade" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblhighshoolgradeNo" GroupName="highshoolgrade" Text="No" runat="server" />
                                 <asp:Label ID="lblhighshoolgradeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -291,6 +326,8 @@
                                     <asp:Label ID="lblSecondary" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondaryYes" GroupName="Secondary" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondaryNo" GroupName="Secondary" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondaryComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -304,6 +341,8 @@
                                     <asp:Label ID="lblSecondaryCountry" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondaryCountryYes" GroupName="SecondaryCountry" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondaryCountryNo" GroupName="SecondaryCountry" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondaryCountryComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -317,6 +356,8 @@
                                     <asp:Label ID="lblSecondarystartDate" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondarystartDateYes" GroupName="SecondarystartDate" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondarystartDateNo" GroupName="SecondarystartDate" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondarystartDateComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -330,6 +371,8 @@
                                     <asp:Label ID="lblSecondaryendDate" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondaryendDateYes" GroupName="SecondaryendDate" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondaryendDateNo" GroupName="SecondaryendDate" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondaryendDateComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -343,6 +386,8 @@
                                     <asp:Label ID="lblSecondaryschoolName" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondaryschoolNameYes" GroupName="SecondaryschoolName" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondaryschoolNameNo" GroupName="SecondaryschoolName" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondaryschoolNameComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -356,6 +401,8 @@
                                     <asp:Label ID="lblSecondaryQualificationtype" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondaryQualificationtypeYes" GroupName="SecondaryQualificationtype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondaryQualificationtypeNo" GroupName="SecondaryQualificationtype" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondaryQualificationtypeComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -369,6 +416,8 @@
                                     <asp:Label ID="lblSecondarystudymode" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondarystudymodeYes" GroupName="Secondarystudymode" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondarystudymodeNo" GroupName="Secondarystudymode" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondarystudymodeComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -382,6 +431,8 @@
                                     <asp:Label ID="lblSecondarylanguage" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondarylanguageYes" GroupName="Secondarylanguage" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondarylanguageNo" GroupName="Secondarylanguage" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondarylanguageComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -395,6 +446,8 @@
                                     <asp:Label ID="lblSecondarygradetype" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondarygradetypeYes" GroupName="Secondarygradetype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondarygradetypeNo" GroupName="Secondarygradetype" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondarygradetypeComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -408,6 +461,8 @@
                                     <asp:Label ID="lblSecondarygradeachieved" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondarygradeachievedYes" GroupName="Secondarygradeachieved" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondarygradeachievedNo" GroupName="Secondarygradeachieved" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondarygradeachievedComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -421,6 +476,8 @@
                                     <asp:Label ID="lblExpectedSecondaryDategrade" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblExpectedSecondaryDategradeYes" GroupName="ExpectedSecondaryDategrade" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblExpectedSecondaryDategradeNo" GroupName="ExpectedSecondaryDategrade" Text="No" runat="server" />
                                     <asp:Label ID="lblExpectedSecondaryDategradeComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -434,6 +491,8 @@
                                     <asp:Label ID="lblSecondaryverify" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblSecondaryverifyYes" GroupName="Secondaryverify" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSecondaryverifyNo" GroupName="Secondaryverify" Text="No" runat="server" />
                                     <asp:Label ID="lblSecondaryverifyComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -447,6 +506,8 @@
                                     <asp:Label ID="lblsecondaryschoolrelation" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblsecondaryschoolrelationYes" GroupName="secondaryschoolrelation" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblsecondaryschoolrelationNo" GroupName="secondaryschoolrelation" Text="No" runat="server" />
                                     <asp:Label ID="lblsecondaryschoolrelationComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -460,6 +521,8 @@
                                     <asp:Label ID="lblsecondarycontactEmail" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblsecondarycontactEmailYes" GroupName="secondarycontactEmail" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblsecondarycontactEmailNo" GroupName="secondarycontactEmail" Text="No" runat="server" />
                                     <asp:Label ID="lblsecondarycontactEmailComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -473,6 +536,8 @@
                                     <asp:Label ID="lblsecondarycontactMobile" runat="server"></asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblsecondarycontactMobileYes" GroupName="secondarycontactMobile" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblsecondarycontactMobileNo" GroupName="secondarycontactMobile" Text="No" runat="server" />
                                     <asp:Label ID="lblsecondarycontactMobileComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -526,6 +591,8 @@
 
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblsecondarygradeYes" GroupName="secondarygrade" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblsecondarygradeNo" GroupName="secondarygrade" Text="No" runat="server" />
                                     <asp:Label ID="lblsecondarygradeComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -547,6 +614,8 @@
                                     <asp:Label ID="lblhigher" runat="server"> </asp:Label>
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblhigherYes" GroupName="higher" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblhigherNo" GroupName="higher" Text="No" runat="server" />
                                     <asp:Label ID="lblhigherComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -563,6 +632,8 @@
                                         <asp:Label ID="lblhighercourse" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercourseYes" GroupName="highercourse" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercourseNo" GroupName="highercourse" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercourseComments" runat="server"></asp:Label>
                                     </div>
 
@@ -577,6 +648,8 @@
                                         <asp:Label ID="lblhigherCountry" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherCountryYes" GroupName="higherCountry" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherCountryNo" GroupName="higherCountry" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherCountryComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -590,6 +663,8 @@
                                         <asp:Label ID="lblhigherschoolstartDate" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstartDateYes" GroupName="higherstartDate" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstartDateNo" GroupName="higherstartDate" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherschoolstartDateComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -603,6 +678,8 @@
                                         <asp:Label ID="lblhigherendDate" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherendDateYes" GroupName="higherendDate" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherendDateNo" GroupName="higherendDate" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherendDateComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -616,6 +693,8 @@
                                         <asp:Label ID="lblhigherschoolName" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherschoolNameYes" GroupName="higherschoolName" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherschoolNameNo" GroupName="higherschoolName" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherschoolNameComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -629,6 +708,8 @@
                                         <asp:Label ID="lblhigherQualificationtype" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherQualificationtypeYes" GroupName="higherQualificationtype" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherQualificationtypeNo" GroupName="higherQualificationtype" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherQualificationtypeComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -642,6 +723,8 @@
                                         <asp:Label ID="lblhigherstudymode" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstudymodeYes" GroupName="higherstudymode" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstudymodeNo" GroupName="higherstudymode" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherstudymodeComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -655,6 +738,8 @@
                                         <asp:Label ID="lblhigherlanguage" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherlanguageYes" GroupName="higherlanguage" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherlanguageNo" GroupName="higherlanguage" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherlanguageComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -668,6 +753,8 @@
                                         <asp:Label ID="lblhighergradetype" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradetypeYes" GroupName="highergradetype" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradetypeNo" GroupName="highergradetype" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradetypeComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -681,6 +768,8 @@
                                         <asp:Label ID="lblhighergradeachieved" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradeachievedYes" GroupName="highergradeachieved" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradeachievedNo" GroupName="highergradeachieved" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradeachievedComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -694,6 +783,9 @@
                                         <asp:Label ID="lblExpectedHigherDategrade" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblExpectedHigherDategradeYes" GroupName="ExpectedHigherDategrade" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblExpectedHigherDategradeNo" GroupName="ExpectedHigherDategrade" Text="No" runat="server" />
+
                                         <asp:Label ID="lblExpectedHigherDategradeComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -707,6 +799,8 @@
                                         <asp:Label ID="lblhigherverify" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherverifyYes" GroupName="higherverify" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherverifyNo" GroupName="higherverify" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherverifyComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -720,6 +814,8 @@
                                         <asp:Label ID="lblhigherschoolrelation" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherrelationYes" GroupName="higherrelation" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherrelationNo" GroupName="higherrelation" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherschoolrelationComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -733,6 +829,8 @@
                                         <asp:Label ID="lblhighercontactEmail" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactEmailYes" GroupName="highercontactEmail" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactEmailNo" GroupName="highercontactEmail" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactEmailComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -746,6 +844,8 @@
                                         <asp:Label ID="lblhighercontactMobile" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactMobileYes" GroupName="highercontactMobile" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactMobileNo" GroupName="highercontactMobile" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactMobileComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -762,6 +862,8 @@
                                         <asp:Label ID="lblhighercoursePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercoursePGYes" GroupName="highercoursePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercoursePGNo" GroupName="highercoursePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercoursePGComments" runat="server"></asp:Label>
                                     </div>
 
@@ -776,6 +878,8 @@
                                         <asp:Label ID="lblhigherCountryPG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherCountryPGYes" GroupName="higherCountryPG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherCountryPGNo" GroupName="higherCountryPG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherCountryPGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -789,6 +893,8 @@
                                         <asp:Label ID="lblhigherstartDatePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstartDatePGYes" GroupName="higherstartDatePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstartDatePGNo" GroupName="higherstartDatePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherstartDatePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -802,6 +908,8 @@
                                         <asp:Label ID="lblhigherendDatePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherendDatePGYes" GroupName="higherendDatePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherendDatePGNo" GroupName="higherendDatePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherendDatePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -815,6 +923,8 @@
                                         <asp:Label ID="lblhigherschoolNamePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherschoolNamePGYes" GroupName="higherschoolNamePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherschoolNamePGNo" GroupName="higherschoolNamePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherschoolNamePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -828,6 +938,9 @@
                                         <asp:Label ID="lblhigherQualificationtypePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherQualificationtypePGYes" GroupName="higherQualificationtypePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherQualificationtypePGNo" GroupName="higherQualificationtypePG" Text="No" runat="server" />
+
                                         <asp:Label ID="lblhigherQualificationtypePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -841,6 +954,8 @@
                                         <asp:Label ID="lblhigherstudymodePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstudymodePGYes" GroupName="higherstudymodePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstudymodePGNo" GroupName="higherstudymodePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherstudymodePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -854,6 +969,8 @@
                                         <asp:Label ID="lblhigherlanguagePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherlanguagePGYes" GroupName="higherlanguagePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherlanguagePGNo" GroupName="higherlanguagePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherlanguagePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -867,6 +984,8 @@
                                         <asp:Label ID="lblhighergradetypePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradetypePGYes" GroupName="highergradetypePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradetypePGNo" GroupName="highergradetypePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradetypePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -880,6 +999,8 @@
                                         <asp:Label ID="lblhighergradeachievedPG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradeachievedPGYes" GroupName="highergradeachievedPG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradeachievedPGNo" GroupName="highergradeachievedPG" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradeachievedPGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -893,6 +1014,8 @@
                                         <asp:Label ID="lblExpectedHigherDategradePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblExpectedHigherDategradePGYes" GroupName="ExpectedHigherDategradePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblExpectedHigherDategradePGNo" GroupName="ExpectedHigherDategradePG" Text="No" runat="server" />
                                         <asp:Label ID="lblExpectedHigherDategradePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -906,6 +1029,8 @@
                                         <asp:Label ID="lblhigherverifyPG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherverifyPGYes" GroupName="higherverifyPG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherverifyPGNo" GroupName="higherverifyPG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherverifyPGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -919,6 +1044,8 @@
                                         <asp:Label ID="lblhigherrelationPG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherrelationPGYes" GroupName="higherrelationPG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherrelationPGNo" GroupName="higherrelationPG" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherrelationPGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -932,6 +1059,8 @@
                                         <asp:Label ID="lblhighercontactEmailPG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactEmailPGYes" GroupName="highercontactEmailPG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactEmailPGNo" GroupName="highercontactEmailPG" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactEmailPGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -945,6 +1074,8 @@
                                         <asp:Label ID="lblhighercontactMobilePG" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactMobilePGYes" GroupName="highercontactMobilePG" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactMobilePGNo" GroupName="highercontactMobilePG" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactMobilePGComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -961,6 +1092,8 @@
                                         <asp:Label ID="lblhighercoursePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercoursePhdYes" GroupName="highercoursePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercoursePhdNo" GroupName="highercoursePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercoursePhdComments" runat="server"></asp:Label>
                                     </div>
 
@@ -975,6 +1108,8 @@
                                         <asp:Label ID="lblhigherCountryPhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherCountryPhdYes" GroupName="higherCountryPhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherCountryPhdNo" GroupName="higherCountryPhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherCountryPhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -988,6 +1123,8 @@
                                         <asp:Label ID="lblhigherstartDatePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstartDatePhdYes" GroupName="higherstartDatePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstartDatePhdNo" GroupName="higherstartDatePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherstartDatePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1001,6 +1138,8 @@
                                         <asp:Label ID="lblhigherendDatePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherendDatePhdYes" GroupName="higherendDatePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherendDatePhdNo" GroupName="higherendDatePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherendDatePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1014,6 +1153,8 @@
                                         <asp:Label ID="lblhigherschoolNamePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherschoolNamePhdYes" GroupName="higherschoolNamePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherschoolNamePhdNo" GroupName="higherschoolNamePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherschoolNamePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1027,6 +1168,8 @@
                                         <asp:Label ID="lblhigherQualificationtypePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherQualificationtypePhdYes" GroupName="higherQualificationtypePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherQualificationtypePhdNo" GroupName="higherQualificationtypePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherQualificationtypePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1040,6 +1183,8 @@
                                         <asp:Label ID="lblhigherstudymodePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstudymodePhdYes" GroupName="higherstudymodePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstudymodePhdNo" GroupName="higherstudymodePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherstudymodePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1053,6 +1198,8 @@
                                         <asp:Label ID="lblhigherlanguagePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherlanguagePhdYes" GroupName="higherlanguagePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherlanguagePhdNo" GroupName="higherlanguagePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherlanguagePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1066,6 +1213,8 @@
                                         <asp:Label ID="lblhighergradetypePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradetypePhdYes" GroupName="highergradetypePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradetypePhdNo" GroupName="highergradetypePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradetypePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1079,6 +1228,8 @@
                                         <asp:Label ID="lblhighergradeachievedPhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradeachievedPhdYes" GroupName="highergradeachievedPhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradeachievedPhdNo" GroupName="highergradeachievedPhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradeachievedPhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1092,6 +1243,8 @@
                                         <asp:Label ID="lblExpectedHigherDategradePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblExpectedHigherDategradePhdYes" GroupName="ExpectedHigherDategradePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblExpectedHigherDategradePhdNo" GroupName="ExpectedHigherDategradePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblExpectedHigherDategradePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1105,6 +1258,8 @@
                                         <asp:Label ID="lblhigherverifyPhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherverifyPhdYes" GroupName="higherverifyPhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherverifyPhdNo" GroupName="higherverifyPhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherverifyPhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1118,6 +1273,8 @@
                                         <asp:Label ID="lblhigherrelationPhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherrelationPhdYes" GroupName="higherrelationPhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherrelationPhdNo" GroupName="higherrelationPhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherrelationPhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1131,6 +1288,8 @@
                                         <asp:Label ID="lblhighercontactEmailPhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactEmailPhdYes" GroupName="highercontactEmailPhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactEmailPhdNo" GroupName="highercontactEmailPhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactEmailPhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1144,6 +1303,8 @@
                                         <asp:Label ID="lblhighercontactMobilePhd" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactMobilePhdYes" GroupName="highercontactMobilePhd" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactMobilePhdNo" GroupName="highercontactMobilePhd" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactMobilePhdComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1160,6 +1321,8 @@
                                         <asp:Label ID="lblhighercourseOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblOtherHigherCourseYes" GroupName="OtherHigherCourse" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblOtherHigherCourseNo" GroupName="OtherHigherCourse" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercourseOtherComments" runat="server"></asp:Label>
                                     </div>
 
@@ -1174,6 +1337,8 @@
                                         <asp:Label ID="lblhigherCountryOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherCountryOtherYes" GroupName="higherCountryOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherCountryOtherNo" GroupName="higherCountryOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherCountryOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1187,6 +1352,8 @@
                                         <asp:Label ID="lblhigherstartDateOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstartDateOtherYes" GroupName="higherstartDateOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstartDateOtherNo" GroupName="higherstartDateOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherstartDateOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1200,6 +1367,8 @@
                                         <asp:Label ID="lblhigherendDateOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherendDateOtherYes" GroupName="higherendDateOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherendDateOtherNo" GroupName="higherendDateOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherendDateOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1213,6 +1382,8 @@
                                         <asp:Label ID="lblhigherschoolNameOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherschoolNameOtherYes" GroupName="higherschoolNameOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherschoolNameOtherNo" GroupName="higherschoolNameOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherschoolNameOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1226,6 +1397,8 @@
                                         <asp:Label ID="lblhigherQualificationtypeOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherQualificationtypeOtherYes" GroupName="higherQualificationtypeOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherQualificationtypeOtherNo" GroupName="higherQualificationtypeOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherQualificationtypeOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1239,6 +1412,8 @@
                                         <asp:Label ID="lblhigherstudymodeOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherstudymodeOtherYes" GroupName="higherstudymodeOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherstudymodeOtherNo" GroupName="higherstudymodeOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherstudymodeOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1252,6 +1427,8 @@
                                         <asp:Label ID="lblhigherlanguageOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherlanguageOtherYes" GroupName="higherlanguageOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherlanguageOtherNo" GroupName="higherlanguageOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherlanguageOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1265,6 +1442,8 @@
                                         <asp:Label ID="lblhighergradetypeOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradetypeOtherYes" GroupName="highergradetypeOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradetypeOtherNo" GroupName="highergradetypeOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradetypeOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1278,6 +1457,8 @@
                                         <asp:Label ID="lblhighergradeachievedOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighergradeachievedOtherYes" GroupName="highergradeachievedOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighergradeachievedOtherNo" GroupName="highergradeachievedOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhighergradeachievedOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1291,6 +1472,8 @@
                                         <asp:Label ID="lblExpectedHigherDategradeOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblExpectedHigherDategradeOtherYes" GroupName="ExpectedHigherDategradeOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblExpectedHigherDategradeOtherNo" GroupName="ExpectedHigherDategradeOther" Text="No" runat="server" />
                                         <asp:Label ID="lblExpectedHigherDategradeOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1304,6 +1487,8 @@
                                         <asp:Label ID="lblhigherverifyOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherverifyOtherYes" GroupName="higherverifyOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherverifyOtherNo" GroupName="higherverifyOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherverifyOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1317,6 +1502,8 @@
                                         <asp:Label ID="lblhigherrelationOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhigherrelationOtherYes" GroupName="higherrelationOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhigherrelationOtherNo" GroupName="higherrelationOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhigherrelationOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1330,6 +1517,8 @@
                                         <asp:Label ID="lblhighercontactEmailOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactEmailOtherYes" GroupName="highercontactEmailOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactEmailOtherNo" GroupName="highercontactEmailOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactEmailOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1343,6 +1532,8 @@
                                         <asp:Label ID="lblhighercontactMobileOther" runat="server"></asp:Label>
                                     </div>
                                     <div class="col-md-4">
+                                        <asp:RadioButton ID="rblhighercontactMobileOtherYes" GroupName="highercontactMobileOther" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblhighercontactMobileOtherNo" GroupName="highercontactMobileOther" Text="No" runat="server" />
                                         <asp:Label ID="lblhighercontactMobileOtherComments" runat="server"></asp:Label>
                                     </div>
                                 </div>
@@ -1398,6 +1589,8 @@
 
                                 </div>
                                 <div class="col-md-4">
+                                    <asp:RadioButton ID="rblhighergradeYes" GroupName="highergrade" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblhighergradeNO" GroupName="highergrade" Text="No" runat="server" />
                                     <asp:Label ID="lblhighergradeComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -1417,6 +1610,8 @@
                                 <asp:Label ID="lbldiploma" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomaYes" GroupName="diploma" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomaNo" GroupName="diploma" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomaComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1430,6 +1625,8 @@
                                 <asp:Label ID="lbldiplomaCountry" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomaCountryYes" GroupName="diplomaCountry" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomaCountryNo" GroupName="diplomaCountry" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomaCountryComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1443,6 +1640,8 @@
                                 <asp:Label ID="lbldiplomastartDate" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomastartDateYes" GroupName="diplomastartDate" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomastartDateNo" GroupName="diplomastartDate" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomastartDateComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1456,6 +1655,8 @@
                                 <asp:Label ID="lbldiplomaendDate" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomaendDateYes" GroupName="diplomaendDate" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomaendDateNo" GroupName="diplomaendDate" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomaendDateComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1469,6 +1670,8 @@
                                 <asp:Label ID="lbldiplomaschoolName" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomaschoolNameYes" GroupName="diplomaschoolName" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomaschoolNameNo" GroupName="diplomaschoolName" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomaschoolNameComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1482,6 +1685,8 @@
                                 <asp:Label ID="lbldiplomaQualificationtype" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomaQualificationtypeYes" GroupName="diplomaQualificationtype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomaQualificationtypeNo" GroupName="diplomaQualificationtype" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomaQualificationtypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1495,6 +1700,8 @@
                                 <asp:Label ID="lbldiplomastudymode" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomastudymodeYes" GroupName="diplomastudymode" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomastudymodeNo" GroupName="diplomastudymode" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomastudymodeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1508,6 +1715,8 @@
                                 <asp:Label ID="lbldiplomalanguage" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomalanguageYes" GroupName="diplomalanguage" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomalanguageNo" GroupName="diplomalanguage" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomalanguageComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1521,6 +1730,8 @@
                                 <asp:Label ID="lbldiplomagradetype" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomagradetypeYes" GroupName="diplomagradetype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomagradetypeNo" GroupName="diplomagradetype" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomagradetypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1534,6 +1745,8 @@
                                 <asp:Label ID="lbldiplomagradeachieved" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomagradeachievedYes" GroupName="diplomagradeachieved" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomagradeachievedNo" GroupName="diplomagradeachieved" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomagradeachievedComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1547,6 +1760,8 @@
                                 <asp:Label ID="lblExpectedDiplomaDategrade" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblExpectedDiplomaDategradeYes" GroupName="ExpectedDiplomaDategrade" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblExpectedDiplomaDategradeNo" GroupName="ExpectedDiplomaDategrade" Text="No" runat="server" />
                                 <asp:Label ID="lblExpectedDiplomaDategradeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1560,6 +1775,8 @@
                                 <asp:Label ID="lbldiplomaverify" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomaverifyYes" GroupName="diplomaverify" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomaverifyNo" GroupName="diplomaverify" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomaverifyComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1573,6 +1790,8 @@
                                 <asp:Label ID="lbldiplomarelation" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomarelationYes" GroupName="diplomarelation" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomarelationNo" GroupName="diplomarelation" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomarelationComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1586,6 +1805,8 @@
                                 <asp:Label ID="lbldiplomacontactEmail" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomacontactEmailYes" GroupName="diplomacontactEmail" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomacontactEmailNo" GroupName="diplomacontactEmail" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomacontactEmailComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1599,6 +1820,8 @@
                                 <asp:Label ID="lbldiplomacontactMobile" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomacontactMobileYes" GroupName="diplomacontactMobile" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomacontactMobileNo" GroupName="diplomacontactMobile" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomacontactMobileComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -1653,17 +1876,21 @@
 
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rbldiplomagradeYes" GroupName="diplomagrade" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbldiplomagradeNo" GroupName="diplomagrade" Text="No" runat="server" />
                                 <asp:Label ID="lbldiplomagradeComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
-                </div>  <div id="mainDiv" runat="server"></div>
-                 <div class="list-group-item">
+                </div>
+                <div id="mainDiv" runat="server"></div>
+                <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
                         <div class="form-row">
                             <label for="agentList" class="col-md-3 col-form-label form-label">Superviosr Action</label>
                             <div class="col-md-4">
-                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction"> Approved
+                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction">
+                                Approved
                                 <input type="radio" id="rbDenied" runat="server" name="supervisorAction">Further Review
                             </div>
                             <div class="col-md-4">
@@ -1676,7 +1903,7 @@
 
 
                 <!----Diploma END------>
-              
+
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">

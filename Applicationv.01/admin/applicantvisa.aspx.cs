@@ -117,12 +117,19 @@ public partial class admin_applicantvisa : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "Do you currently have a visa that allows you to study in {insert name of country}":
+                case "Do you currently have a visa that allows you to study in ":
                     txtHaveVisa.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblHaveVisaNo.Checked = true;
                     else
                         rblHaveVisaYes.Checked = true;
+                    break;
+                case "Which Visa Do You Hold":
+                    txtVisa.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblvisaNo.Checked = true;
+                    else
+                        rblvisaYes.Checked = true;
                     break;
                 case "Validity From":
                     txtvalidityFrom.Value = setComments(Comments[k]);
