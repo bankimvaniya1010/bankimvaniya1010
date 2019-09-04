@@ -117,43 +117,95 @@ public partial class admin_supervisorapplicantvisa : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "Do you currently have a visa that allows you to study in {insert name of country}":
+                case "Do you currently have a visa that allows you to study in ":
+                    if (Comments[k].adminaction == 0)
+                        rblHaveVisaNo.Checked = true;
+                    else
+                        rblHaveVisaYes.Checked = true;
                     lblHaveVisaComments.Text = setComments(Comments[k]);
                     break;
                 case "Which Visa Do You Hold":
+                    if (Comments[k].adminaction == 0)
+                        rblvisaNo.Checked = true;
+                    else
+                        rblvisaYes.Checked = true;
                     lblvisaComments.Text = setComments(Comments[k]);
                     break;
                 case "Validity From":
+                    if (Comments[k].adminaction == 0)
+                        rblvalidityFromNo.Checked = true;
+                    else
+                        rblvalidityFromYes.Checked = true;
                     lblvalidityFromComments.Text = setComments(Comments[k]);
                     break;
                 case "Validity To":
+                    if (Comments[k].adminaction == 0)
+                        rblvalidityToNo.Checked = true;
+                    else
+                        rblvalidityToYes.Checked = true;
                     lblvalidityToComments.Text = setComments(Comments[k]);
                     break;
                 case "Visa No":
+                    if (Comments[k].adminaction == 0)
+                        rblvisanoNo.Checked = true;
+                    else
+                        rblvisanoYes.Checked = true;
                     lblvisanoComments.Text = setComments(Comments[k]);
                     break;
                 case "Where would you be making your Visa application":
+                    if (Comments[k].adminaction == 0)
+                        rblvisaappliedCountryNo.Checked = true;
+                    else
+                        rblvisaappliedCountryYes.Checked = true;
                     lblvisaappliedComments.Text = setComments(Comments[k]);
                     break;
                 case "City":
+                    if (Comments[k].adminaction == 0)
+                        rblvisacityNo.Checked = true;
+                    else
+                        rblvisacityYes.Checked = true;
                     lblvisacityComments.Text = setComments(Comments[k]);
                     break;
                 case "Visa Application Country":
+                    if (Comments[k].adminaction == 0)
+                        rblvisacountryNo.Checked = true;
+                    else
+                        rblvisacountryYes.Checked = true;
                     lblvisacountryComments.Text = setComments(Comments[k]);
                     break;
                 case "Date of first Visit to Country of Application":
+                    if (Comments[k].adminaction == 0)
+                        rblfirstvisitNo.Checked = true;
+                    else
+                        rblfirstvisitYes.Checked = true;
                     lblfirstvisitComments.Text = setComments(Comments[k]);
                     break;
                 case "Have you ever, lived, worked, studied in Country of Application before":
+                    if (Comments[k].adminaction == 0)
+                        rblPreviuosstayNo.Checked = true;
+                    else
+                        rblPreviuosstayYes.Checked = true;
                     lblPreviuosstayComments.Text = setComments(Comments[k]);
                     break;
                 case "Do your parents/step parents/spouse/partner/children/step-children live":
+                    if (Comments[k].adminaction == 0)
+                        rblparentNo.Checked = true;
+                    else
+                        rblparentYes.Checked = true;
                     lblparentComments.Text = setComments(Comments[k]);
                     break;
                 case "Have you ever been refused a Visa or Deported by Country of Application":
+                    if (Comments[k].adminaction == 0)
+                        rblparentdenyNo.Checked = true;
+                    else
+                        rblparentdenyYes.Checked = true;
                     lblDeniedVisaComments.Text = setComments(Comments[k]);
                     break;
                 case "Have your parents/step parents/spouse/partner/children/step-children ever been refused a visa or deported from":
+                    if (Comments[k].adminaction == 0)
+                        rblparentdenyNo.Checked = true;
+                    else
+                        rblparentdenyYes.Checked = true;
                     lblparentdenyComments.Text = setComments(Comments[k]);
                     break;
                 default:

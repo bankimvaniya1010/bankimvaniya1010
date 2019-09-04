@@ -20,7 +20,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblEmail" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4">  <asp:RadioButton ID="rblEmailYes" GroupName="Email" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblEmailNo" GroupName="Email" Text="No" runat="server" />
                                 <asp:Label ID="lblEmailComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -33,7 +34,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblMobile" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblMobileYes" GroupName="Mobile" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblMobileNo" GroupName="Mobile" Text="No" runat="server" />
                                 <asp:Label ID="lblMobileComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -46,7 +48,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblHomePhone" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblHomePhoneYes" GroupName="HomePhone" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblHomePhoneNo" GroupName="HomePhone" Text="No" runat="server" />
                                 <asp:Label ID="lblHomePhoneComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -59,7 +62,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblSkype" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4">  <asp:RadioButton ID="rblSkypeYes" GroupName="Skype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblSkypeNo" GroupName="Skype" Text="No" runat="server" />
                                 <asp:Label ID="lblSkypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -73,7 +77,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblSkypeDescription" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblSkypeDescriptionYes" GroupName="SkypeDescription" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblSkypeDescriptionNo" GroupName="SkypeDescription" Text="No" runat="server" />
                                 <asp:Label ID="lblSkypeDescriptionComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -86,7 +91,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblWhatsapp" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblWhatsappYes" GroupName="Whatsapp" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblWhatsappNo" GroupName="Whatsapp" Text="No" runat="server" />
                                 <asp:Label ID="lblWhatsappComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -99,7 +105,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblWhatsapphave" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"><asp:RadioButton ID="rblWhatsapphaveYes" GroupName="Whatsapphave" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblWhatsapphaveNo" GroupName="Whatsapphave" Text="No" runat="server" />
                                 <asp:Label ID="lblWhatsapphaveComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -112,7 +119,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblWhastappDesription" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblwhatsappDescYes" GroupName="whatsappDesc" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblwhatsappDescNo" GroupName="whatsappDesc" Text="No" runat="server" />
                                 <asp:Label ID="lblWhastappDesriptionComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -125,7 +133,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblPostalAddress" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblPostalAddressYes" GroupName="PostalAddress" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblPostalAddressNo" GroupName="PostalAddress" Text="No" runat="server" />
                                 <asp:Label ID="lblPostalAddressComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -138,7 +147,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblAddress" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblAddressYes" GroupName="Address" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblAddressNo" GroupName="Address" Text="No" runat="server" />
                                 <asp:Label ID="lblAddressComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -147,7 +157,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblCurrentAddressYes" GroupName="CurrentAddress" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblCurrentAddressNo" GroupName="CurrentAddress" Text="No" runat="server" />
                                 <asp:Label ID="lblCurrentAddressComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -160,7 +171,8 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblResidential" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblResidentialYes" GroupName="Residential" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblResidentialNo" GroupName="Residential" Text="No" runat="server" />
                                 <asp:Label ID="lblResidentialComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -192,7 +204,8 @@
                                 <asp:Label ID="lblPrevAddressCountry" runat="server"></asp:Label>
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4"> <asp:RadioButton ID="rblAddressHistoryYes" GroupName="AddressHistory" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblAddressHistoryNo" GroupName="AddressHistory" Text="No" runat="server" />
                                 <asp:Label ID="lblAddressHistoryComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -211,7 +224,8 @@
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNominneName" runat="server"></asp:Label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4"> <asp:RadioButton ID="rblNominneNameYes" GroupName="NominneName" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblNominneNameNo" GroupName="NominneName" Text="No" runat="server" />
                                     <asp:Label ID="lblNominneNameComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -224,7 +238,8 @@
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNomineeRealtion" runat="server"></asp:Label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4"> <asp:RadioButton ID="rblNomineeRelationYes" GroupName="NomineeRealtion" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblNomineeRelationNo" GroupName="NomineeRealtion" Text="No" runat="server" />
                                     <asp:Label ID="lblNomineeRealtionComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -237,7 +252,8 @@
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNomineeEmail" runat="server"></asp:Label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4"> <asp:RadioButton ID="rblNomineeEmailYes" GroupName="NomineeEmail" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblNomineeEmailNo" GroupName="NomineeEmail" Text="No" runat="server" />
                                     <asp:Label ID="lblNomineeEmailComments" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -250,7 +266,8 @@
                                 <div class="col-md-4">
                                     <asp:Label ID="lblNomineeMobile" runat="server"></asp:Label>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4"> <asp:RadioButton ID="rblNomineeMobileYes" GroupName="NomineeMobile" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblNomineeMobileNo" GroupName="NomineeMobile" Text="No" runat="server" />
                                     <asp:Label ID="lblNomineeMobileComments" runat="server"></asp:Label>
                                 </div>
                             </div>

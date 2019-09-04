@@ -296,54 +296,122 @@ public partial class admin_supervisorcontactdetails : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Email":
+                    if (Comments[k].adminaction == 0)
+                        rblEmailNo.Checked = true;
+                    else
+                        rblEmailYes.Checked = true;
                     lblEmailComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number":
+                    if (Comments[k].adminaction == 0)
+                        rblMobileNo.Checked = true;
+                    else
+                        rblMobileYes.Checked = true;
                     lblMobileComments.Text = setComments(Comments[k]);
                     break;
                 case "Home phone":
+                    if (Comments[k].adminaction == 0)
+                        rblHomePhoneNo.Checked = true;
+                    else
+                        rblHomePhoneYes.Checked = true;
                     lblHomePhoneComments.Text = setComments(Comments[k]);
                     break;
                 case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    if (Comments[k].adminaction == 0)
+                        rblSkypeNo.Checked = true;
+                    else
+                        rblSkypeYes.Checked = true;
                     lblSkypeComments.Text = setComments(Comments[k]);
                     break;
                 case "Skype ID":
+                    if (Comments[k].adminaction == 0)
+                        rblSkypeDescriptionNo.Checked = true;
+                    else
+                        rblSkypeDescriptionYes.Checked = true;
                     lblSkypeDescriptionComments.Text = setComments(Comments[k]);
                     break;
                 case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    if (Comments[k].adminaction == 0)
+                        rblWhatsappNo.Checked = true;
+                    else
+                        rblWhatsappYes.Checked = true;
                     lblWhatsappComments.Text = setComments(Comments[k]);
                     break;
                 case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    if (Comments[k].adminaction == 0)
+                        rblWhatsapphaveNo.Checked = true;
+                    else
+                        rblWhatsapphaveYes.Checked = true;
                     lblWhatsapphaveComments.Text = setComments(Comments[k]);
                     break;
                 case "Whatsapp Number":
+                    if (Comments[k].adminaction == 0)
+                        rblwhatsappDescNo.Checked = true;
+                    else
+                        rblwhatsappDescYes.Checked = true;
                     lblWhastappDesriptionComments.Text = setComments(Comments[k]);
                     break;
                 case "Postal Address":
+                    if (Comments[k].adminaction == 0)
+                        rblPostalAddressNo.Checked = true;
+                    else
+                        rblPostalAddressYes.Checked = true;
                     lblPostalAddressComments.Text = setComments(Comments[k]);
                     break;
                 case "Is your Postal Address same as your current residential address":
+                    if (Comments[k].adminaction == 0)
+                        rblAddressNo.Checked = true;
+                    else
+                        rblAddressYes.Checked = true;
                     lblAddressComments.Text = setComments(Comments[k]);
                     break;
                 case "Current Residential  Address":
+                    if (Comments[k].adminaction == 0)
+                        rblResidentialNo.Checked = true;
+                    else
+                        rblResidentialYes.Checked = true;
                     lblResidentialComments.Text = setComments(Comments[k]);
                     break;
                 case "GUARDIAN Full Name":
+                    if (Comments[k].adminaction == 0)
+                        rblNominneNameNo.Checked = true;
+                    else
+                        rblNominneNameYes.Checked = true;
                     lblNominneNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Relationship with GUARDIAN":
+                    if (Comments[k].adminaction == 0)
+                        rblNomineeRelationNo.Checked = true;
+                    else
+                        rblNomineeRelationYes.Checked = true;
                     lblNomineeRealtionComments.Text = setComments(Comments[k]);
                     break;
                 case "Email of GUARDIAN":
+                    if (Comments[k].adminaction == 0)
+                        rblNomineeEmailNo.Checked = true;
+                    else
+                        rblNomineeEmailYes.Checked = true;
                     lblNomineeEmailComments.Text = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of GUARDIAN":
+                    if (Comments[k].adminaction == 0)
+                        rblNomineeMobileNo.Checked = true;
+                    else
+                        rblNomineeMobileYes.Checked = true;
                     lblNomineeMobileComments.Text = setComments(Comments[k]);
                     break;
                 case "PREVIOUS ADDRESS HISTORY DETAILS":
+                    if (Comments[k].adminaction == 0)
+                        rblAddressHistoryNo.Checked = true;
+                    else
+                        rblAddressHistoryYes.Checked = true;
                     lblAddressHistoryComments.Text = setComments(Comments[k]);
                     break;
                 case "HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?":
+                    if (Comments[k].adminaction == 0)
+                        rblCurrentAddressNo.Checked = true;
+                    else
+                        rblCurrentAddressYes.Checked = true;
                     lblCurrentAddressComments.Text = setComments(Comments[k]);
                     break;
 

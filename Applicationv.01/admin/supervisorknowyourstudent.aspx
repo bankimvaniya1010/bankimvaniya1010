@@ -21,6 +21,8 @@
                                 <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />
                                 <asp:Label ID="labelpassportnoComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -35,6 +37,8 @@
                                 <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblDateOfissueYes" GroupName="DateOfissue" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblDateOfissueNo" GroupName="DateOfissue" Text="No" runat="server" />
                                 <asp:Label ID="lblDateOfissueComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -49,6 +53,8 @@
                                 <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblExpiryDateYes" GroupName="ExpiryDate" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblExpiryDateNo" GroupName="ExpiryDate" Text="No" runat="server" />
                                 <asp:Label ID="lblExpiryDateComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -62,6 +68,8 @@
                                 <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblcountryIssueNo" GroupName="countryIssue" Text="No" runat="server" />
                                 <asp:Label ID="lblcountryIssueComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -75,6 +83,8 @@
                                 <asp:Label ID="lblissueplace" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblissueplaceYes" GroupName="issueplace" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblissueplaceNo" GroupName="issueplace" Text="No" runat="server" />
                                 <asp:Label ID="lblissueplaceComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -88,6 +98,8 @@
                                 <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblalternateIdentitytypeYes" GroupName="alternateIdentitytype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateIdentitytypeNo" GroupName="alternateIdentitytype" Text="No" runat="server" />
                                 <asp:Label ID="lblalternateIdentitytypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -101,6 +113,8 @@
                                 <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblalternateIdentityNoYes" GroupName="alternateIdentityNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateIdentityNoNo" GroupName="alternateIdentityNo" Text="No" runat="server" />
                                 <asp:Label ID="lblalternateIdentityNoComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -116,6 +130,8 @@
                                 <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblalternatedobIdentitytypeYes" GroupName="alternatedobIdentitytype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternatedobIdentitytypeNo" GroupName="alternatedobIdentitytype" Text="No" runat="server" />
                                 <asp:Label ID="lblalternatedobIdentitytypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -129,6 +145,8 @@
                                 <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblalternatedobIdentityNoYes" GroupName="alternatedobIdentityNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternatedobIdentityNoNo" GroupName="alternatedobIdentityNo" Text="No" runat="server" />
                                 <asp:Label ID="lblalternatedobIdentityNoComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -143,6 +161,8 @@
                                 <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblalternateresidenceIdentitytypeYes" GroupName="alternateresidenceIdentitytype" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateresidenceIdentitytypeNo" GroupName="alternateresidenceIdentitytype" Text="No" runat="server" />
                                 <asp:Label ID="lblalternateresidenceIdentitytypeComments" runat="server"></asp:Label>
                             </div>
                         </div>
@@ -156,17 +176,21 @@
                                 <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
                             </div>
                             <div class="col-md-4">
+                                <asp:RadioButton ID="rblalternateresidenceIdentityNoYes" GroupName="alternateresidenceIdentityNo" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblalternateresidenceIdentityNoNo" GroupName="alternateresidenceIdentityNo" Text="No" runat="server" />
                                 <asp:Label ID="lblalternateresidenceIdentityNoComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
-                </div><div id="mainDiv" runat="server"></div>
-                 <div class="list-group-item">
+                </div>
+                <div id="mainDiv" runat="server"></div>
+                <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
                         <div class="form-row">
                             <label for="agentList" class="col-md-3 col-form-label form-label">Superviosr Action</label>
                             <div class="col-md-4">
-                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction"> Approved
+                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction">
+                                Approved
                                 <input type="radio" id="rbDenied" runat="server" name="supervisorAction">Further Review
                             </div>
                             <div class="col-md-4">
@@ -175,7 +199,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="list-group-item" id="employerwebsite">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">

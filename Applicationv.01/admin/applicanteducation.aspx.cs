@@ -1287,336 +1287,783 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Have you completed high school":
+                     if (Comments[k].adminaction == 0)
+                        rblhighschoolNo.Checked = true;
+                    else
+                        rblhighschoolYes.Checked = true;
                     txthighschool.Value = setComments(Comments[k]);
                     break;
                 case "Highest Education":
+                    if (Comments[k].adminaction == 0)
+                        rblhigestEducationNo.Checked = true;
+                    else
+                        rblhigestEducationYes.Checked = true;
                     txthigestEducation.Value = setComments(Comments[k]);
                     break;
                 case "Country of High School Education":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolCountryNo.Checked = true;
+                    else
+                        rblhighschoolCountryYes.Checked = true;
                     txthighschoolCountry.Value = setComments(Comments[k]);
                     break;
                 case "High School Start Date":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolstartDateNo.Checked = true;
+                    else
+                        rblhighschoolstartDateYes.Checked = true;
                     txthighschoolstartDate.Value = setComments(Comments[k]);
                     break;
                 case "High School End Date":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolendDateNo.Checked = true;
+                    else
+                        rblhighschoolendDateYes.Checked = true;
                     txthighschoolendDate.Value = setComments(Comments[k]);
                     break;
                 case "Name of School(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolNameNo.Checked = true;
+                    else
+                        rblhighschoolNameYes.Checked = true;
                     txthighschoolName.Value = setComments(Comments[k]);
                     break;
                 case "Qualification Type(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolQualificationtypeNo.Checked = true;
+                    else
+                        rblhighschoolQualificationtypeYes.Checked = true;
                     txthighschoolQualificationtype.Value = setComments(Comments[k]);
                     break;
                 case "Mode of study(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolstudymodeNo.Checked = true;
+                    else
+                        rblhighschoolstudymodeYes.Checked = true;
                     txthighschoolstudymode.Value = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(HighSchool)":
-                    txthighschoollanguage.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolstudymodeNo.Checked = true;
+                    else
+                        rblhighschoolstudymodeYes.Checked = true;
+                    txthighschoolstudymode.Value = setComments(Comments[k]);
                     break;
                 case "Grade Type(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblgradetypeNo.Checked = true;
+                    else
+                        rblgradetypeYes.Checked = true;
                     txtgradetype.Value = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolgradeachievedNo.Checked = true;
+                    else
+                        rblhighschoolgradeachievedYes.Checked = true;
                     txthighschoolgradeachieved.Value = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHighSchoolDategradeNo.Checked = true;
+                    else
+                        rblExpectedHighSchoolDategradeYes.Checked = true;
                     txtExpectedHighSchoolDategrade.Value = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolverifyNo.Checked = true;
+                    else
+                        rblhighschoolverifyYes.Checked = true;
                     txthighschoolverify.Value = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolrelationNo.Checked = true;
+                    else
+                        rblhighschoolrelationYes.Checked = true;
                     txthighschoolrelation.Value = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolcontactEmailNo.Checked = true;
+                    else
+                        rblhighschoolcontactEmailYes.Checked = true;
                     txthighschoolcontactEmail.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(HighSchool)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighschoolcontactMobileNo.Checked = true;
+                    else
+                        rblhighschoolcontactMobileYes.Checked = true;
                     txthighschoolcontactMobile.Value = setComments(Comments[k]);
                     break;
                 case "High School Grade":
+                    if (Comments[k].adminaction == 0)
+                        rblhighshoolgradeNo.Checked = true;
+                    else
+                        rblhighshoolgradeYes.Checked = true;
                     txthighschoolgrade.Value = setComments(Comments[k]);
                     break;
                 case "Have you completed Senior Secondary school? (Year 12)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryNo.Checked = true;
+                    else
+                        rblSecondaryYes.Checked = true;
                     txtSecondary.Value = setComments(Comments[k]);
                     break;
                 case "Country of Secondary Education":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryCountryNo.Checked = true;
+                    else
+                        rblSecondaryCountryYes.Checked = true;
                     txtSecondaryCountry.Value = setComments(Comments[k]);
                     break;
                 case "Secondary Start Date":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarystartDateNo.Checked = true;
+                    else
+                        rblSecondarystartDateYes.Checked = true;
                     txtSecondarystartDate.Value = setComments(Comments[k]);
                     break;
                 case "Secondary End Date":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryendDateNo.Checked = true;
+                    else
+                        rblSecondaryendDateYes.Checked = true;
                     txtSecondaryendDate.Value = setComments(Comments[k]);
                     break;
                 case "Name of School(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryschoolNameNo.Checked = true;
+                    else
+                        rblSecondaryschoolNameYes.Checked = true;
                     txtSecondaryschoolName.Value = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryQualificationtypeNo.Checked = true;
+                    else
+                        rblSecondaryQualificationtypeYes.Checked = true;
                     txtSecondaryQualificationtype.Value = setComments(Comments[k]);
                     break;
                 case "Mode of study(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarystudymodeNo.Checked = true;
+                    else
+                        rblSecondarystudymodeYes.Checked = true;
                     txtSecondarystudymode.Value = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarylanguageNo.Checked = true;
+                    else
+                        rblSecondarylanguageYes.Checked = true;
                     txtSecondarylanguage.Value = setComments(Comments[k]);
                     break;
                 case "Grade Type(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarygradetypeNo.Checked = true;
+                    else
+                        rblSecondarygradetypeYes.Checked = true;
                     txtSecondarygradetype.Value = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondarygradeachievedNo.Checked = true;
+                    else
+                        rblSecondarygradeachievedYes.Checked = true;
                     txtSecondarygradeachieved.Value = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedSecondaryDategradeNo.Checked = true;
+                    else
+                        rblExpectedSecondaryDategradeYes.Checked = true;
                     txtExpectedSecondaryDategrade.Value = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblSecondaryverifyNo.Checked = true;
+                    else
+                        rblSecondaryverifyYes.Checked = true;
                     txtSecondaryverify.Value = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondaryschoolrelationNo.Checked = true;
+                    else
+                        rblsecondaryschoolrelationYes.Checked = true;
                     txtsecondaryschoolrelation.Value = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondarycontactEmailNo.Checked = true;
+                    else
+                        rblsecondarycontactEmailYes.Checked = true;
                     txtsecondarycontactEmail.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Secondary)":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondarycontactMobileNo.Checked = true;
+                    else
+                        rblsecondarycontactMobileYes.Checked = true;
                     txtsecondarycontactMobile.Value = setComments(Comments[k]);
                     break;
                 case "Secondary Grade":
+                    if (Comments[k].adminaction == 0)
+                        rblsecondarygradeNo.Checked = true;
+                    else
+                        rblsecondarygradeYes.Checked = true;
                     txtSecondaryGrade.Value = setComments(Comments[k]);
                     break;
                 case "Have you completed any Diploma or Certificate Programs":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaNo.Checked = true;
+                    else
+                        rbldiplomaYes.Checked = true;
                     txtdiploma.Value = setComments(Comments[k]);
                     break;
                 case "Country of Diploma or Certificate Programs":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaCountryNo.Checked = true;
+                    else
+                        rbldiplomaCountryYes.Checked = true;
                     txtdiplomaCountry.Value = setComments(Comments[k]);
                     break;
                 case "Diploma Start Date":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomastartDateNo.Checked = true;
+                    else
+                        rbldiplomastartDateYes.Checked = true;
                     txtdiplomastartDate.Value = setComments(Comments[k]);
                     break;
                 case "Diploma End Date":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaendDateNo.Checked = true;
+                    else
+                        rbldiplomaendDateYes.Checked = true;
                     txtdiplomaendDate.Value = setComments(Comments[k]);
                     break;
                 case "Name of School(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaschoolNameNo.Checked = true;
+                    else
+                        rbldiplomaschoolNameYes.Checked = true;
                     txtdiplomaschoolName.Value = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaQualificationtypeNo.Checked = true;
+                    else
+                        rbldiplomaQualificationtypeYes.Checked = true;
                     txtdiplomaQualificationtype.Value = setComments(Comments[k]);
                     break;
                 case "Mode of study(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomastudymodeNo.Checked = true;
+                    else
+                        rbldiplomastudymodeYes.Checked = true;
                     txtdiplomastudymode.Value = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomalanguageNo.Checked = true;
+                    else
+                        rbldiplomalanguageYes.Checked = true;
                     txtdiplomalanguage.Value = setComments(Comments[k]);
                     break;
                 case "Grade Type(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomagradetypeNo.Checked = true;
+                    else
+                        rbldiplomagradetypeYes.Checked = true;
                     txtdiplomagradetype.Value = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomagradeachievedNo.Checked = true;
+                    else
+                        rbldiplomagradeachievedYes.Checked = true;
                     txtdiplomagradeachieved.Value = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedDiplomaDategradeNo.Checked = true;
+                    else
+                        rblExpectedDiplomaDategradeYes.Checked = true;
                     txtExpectedDiplomaDategrade.Value = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomaverifyNo.Checked = true;
+                    else
+                        rbldiplomaverifyYes.Checked = true;
                     txtdiplomaverify.Value = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomarelationNo.Checked = true;
+                    else
+                        rbldiplomarelationYes.Checked = true;
                     txtdiplomarelation.Value = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomacontactEmailNo.Checked = true;
+                    else
+                        rbldiplomacontactEmailYes.Checked = true;
                     txtdiplomacontactEmail.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Diploma)":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomacontactMobileNo.Checked = true;
+                    else
+                        rbldiplomacontactMobileYes.Checked = true;
                     txtdiplomacontactMobile.Value = setComments(Comments[k]);
                     break;
                 case "Diploma Grade":
+                    if (Comments[k].adminaction == 0)
+                        rbldiplomagradeNo.Checked = true;
+                    else
+                        rbldiplomagradeYes.Checked = true;
                     txtDiplomaGrade.Value = setComments(Comments[k]);
                     break;
                 case "Have you completed any Higher (Under Graduate, Masters or PhD) degree":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherNo.Checked = true;
+                    else
+                        rblhigherYes.Checked = true;
                     txthigher.Value = setComments(Comments[k]);
                     break;
                 case "Higher Course(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercourseNo.Checked = true;
+                    else
+                        rblhighercourseYes.Checked = true;
                     txthighercourse.Value = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryNo.Checked = true;
+                    else
+                        rblhigherCountryYes.Checked = true;
                     txthigherCountry.Value = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDateNo.Checked = true;
+                    else
+                        rblhigherstartDateYes.Checked = true;
                     txthigherstartDate.Value = setComments(Comments[k]);
                     break;
                 case "Higher End Date(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDateNo.Checked = true;
+                    else
+                        rblhigherendDateYes.Checked = true;
                     txthigherendDate.Value = setComments(Comments[k]);
                     break;
                 case "Name of School(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNameNo.Checked = true;
+                    else
+                        rblhigherschoolNameYes.Checked = true;
                     txthigherschoolName.Value = setComments(Comments[k]);
                     break;
                 case "Qualification Type(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypeNo.Checked = true;
+                    else
+                        rblhigherQualificationtypeYes.Checked = true;
                     txthigherQualificationtype.Value = setComments(Comments[k]);
                     break;
                 case "Mode of study(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodeNo.Checked = true;
+                    else
+                        rblhigherstudymodeYes.Checked = true;
                     txthigherstudymode.Value = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguageNo.Checked = true;
+                    else
+                        rblhigherlanguageYes.Checked = true;
                     txthigherlanguage.Value = setComments(Comments[k]);
                     break;
                 case "Grade Type(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypeNo.Checked = true;
+                    else
+                        rblhighergradetypeYes.Checked = true;
                     txthighergradetype.Value = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedNo.Checked = true;
+                    else
+                        rblhighergradeachievedYes.Checked = true;
                     txthighergradeachieved.Value = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradeNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradeYes.Checked = true;
                     txtExpectedHigherDategrade.Value = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyNo.Checked = true;
+                    else
+                        rblhigherverifyYes.Checked = true;
                     txthigherverify.Value = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationNo.Checked = true;
+                    else
+                        rblhigherrelationYes.Checked = true;
                     txthigherrelation.Value = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailNo.Checked = true;
+                    else
+                        rblhighercontactEmailYes.Checked = true;
                     txthighercontactEmail.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(UG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobileNo.Checked = true;
+                    else
+                        rblhighercontactMobileYes.Checked = true;
                     txthighercontactMobile.Value = setComments(Comments[k]);
                     break;
                 case "Higher Course(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercoursePGNo.Checked = true;
+                    else
+                        rblhighercoursePGYes.Checked = true;
                     txthighercoursePG.Value = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryPGNo.Checked = true;
+                    else
+                        rblhigherCountryPGYes.Checked = true;
                     txthigherCountryPG.Value = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDatePGNo.Checked = true;
+                    else
+                        rblhigherstartDatePGYes.Checked = true;
                     txthigherstartDatePG.Value = setComments(Comments[k]);
                     break;
                 case "Higher End Date(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDatePGNo.Checked = true;
+                    else
+                        rblhigherendDatePGYes.Checked = true;
                     txthigherendDatePG.Value = setComments(Comments[k]);
                     break;
                 case "Name of School(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNamePGNo.Checked = true;
+                    else
+                        rblhigherschoolNamePGYes.Checked = true;
                     txthigherschoolNamePG.Value = setComments(Comments[k]);
                     break;
                 case "Qualification Type(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypePGNo.Checked = true;
+                    else
+                        rblhigherQualificationtypePGYes.Checked = true;
                     txthigherQualificationtypePG.Value = setComments(Comments[k]);
                     break;
                 case "Mode of study(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodePGNo.Checked = true;
+                    else
+                        rblhigherstudymodePGYes.Checked = true;
                     txthigherstudymodePG.Value = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguagePGNo.Checked = true;
+                    else
+                        rblhigherlanguagePGYes.Checked = true;
                     txthigherlanguagePG.Value = setComments(Comments[k]);
                     break;
                 case "Grade Type(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypePGNo.Checked = true;
+                    else
+                        rblhighergradetypePGYes.Checked = true;
                     txthighergradetypePG.Value = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedPGNo.Checked = true;
+                    else
+                        rblhighergradeachievedPGYes.Checked = true;
                     txthighergradeachievedPG.Value = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradePGNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradePGYes.Checked = true;
                     txtExpectedHigherDategradePG.Value = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(PG)":
                     txthigherverifyPG.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyPGNo.Checked = true;
+                    else
+                        rblhigherverifyPGYes.Checked = true;
                     break;
                 case "Relationship with the Contact(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationPGNo.Checked = true;
+                    else
+                        rblhigherrelationPGYes.Checked = true;
                     txthigherrelationPG.Value = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailPGNo.Checked = true;
+                    else
+                        rblhighercontactEmailPGYes.Checked = true;
                     txthighercontactEmailPG.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(PG)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobilePGNo.Checked = true;
+                    else
+                        rblhighercontactMobilePGYes.Checked = true;
                     txthighercontactMobilePG.Value = setComments(Comments[k]);
                     break;
                 case "Higher Course(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercoursePhdNo.Checked = true;
+                    else
+                        rblhighercoursePhdYes.Checked = true;
                     txthighercoursePhd.Value = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryPhdNo.Checked = true;
+                    else
+                        rblhigherCountryPhdYes.Checked = true;
                     txthigherCountryPhd.Value = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDatePhdNo.Checked = true;
+                    else
+                        rblhigherstartDatePhdYes.Checked = true;
                     txthigherstartDatePhd.Value = setComments(Comments[k]);
                     break;
                 case "Higher End Date(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDatePhdNo.Checked = true;
+                    else
+                        rblhigherendDatePhdYes.Checked = true;
                     txthigherendDatePhd.Value = setComments(Comments[k]);
                     break;
                 case "Name of School(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNamePhdNo.Checked = true;
+                    else
+                        rblhigherschoolNamePhdYes.Checked = true;
                     txthigherschoolNamePhd.Value = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypePhdNo.Checked = true;
+                    else
+                        rblhigherQualificationtypePhdYes.Checked = true;
                     txthigherQualificationtypePhd.Value = setComments(Comments[k]);
                     break;
                 case "Mode of study(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodePhdNo.Checked = true;
+                    else
+                        rblhigherstudymodePhdYes.Checked = true;
                     txthigherstudymodePhd.Value = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguagePhdNo.Checked = true;
+                    else
+                        rblhigherlanguagePhdYes.Checked = true;
                     txthigherlanguagePhd.Value = setComments(Comments[k]);
                     break;
                 case "Grade Type(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypePhdNo.Checked = true;
+                    else
+                        rblhighergradetypePhdYes.Checked = true;
                     txthighergradetypePhd.Value = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedPhdNo.Checked = true;
+                    else
+                        rblhighergradeachievedPhdYes.Checked = true;
                     txthighergradeachievedPhd.Value = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradePhdNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradePhdYes.Checked = true;
                     txtExpectedHigherDategradePhd.Value = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyPhdNo.Checked = true;
+                    else
+                        rblhigherverifyPhdYes.Checked = true;
                     txthigherverifyPhd.Value = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationPhdNo.Checked = true;
+                    else
+                        rblhigherrelationPhdYes.Checked = true;
                     txthigherrelationPhd.Value = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailPhdNo.Checked = true;
+                    else
+                        rblhighercontactEmailPhdYes.Checked = true;
                     txthighercontactEmailPhd.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Phd)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobilePhdNo.Checked = true;
+                    else
+                        rblhighercontactMobilePhdYes.Checked = true;
                     txthighercontactMobilePhd.Value = setComments(Comments[k]);
                     break;
                 case "Higher Course(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblOtherHigherCourseNo.Checked = true;
+                    else
+                        rblOtherHigherCourseYes.Checked = true;
                     txthighercourseOther.Value = setComments(Comments[k]);
                     break;
                 case "Country of Higher Education(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherCountryOtherNo.Checked = true;
+                    else
+                        rblhigherCountryOtherYes.Checked = true;
                     txthigherCountryOther.Value = setComments(Comments[k]);
                     break;
                 case "Higher Start Date(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstartDateOtherNo.Checked = true;
+                    else
+                        rblhigherstartDateOtherYes.Checked = true;
                     txthigherstartDateOther.Value = setComments(Comments[k]);
                     break;
                 case "Higher End Date(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherendDateOtherNo.Checked = true;
+                    else
+                        rblhigherendDateOtherYes.Checked = true;
                     txthigherendDateOther.Value = setComments(Comments[k]);
                     break;
                 case "Name of School(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherschoolNameOtherNo.Checked = true;
+                    else
+                        rblhigherschoolNameOtherYes.Checked = true;
                     txthigherschoolNameOther.Value = setComments(Comments[k]);
                     break;
                 case "Qualification Type(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherQualificationtypeOtherNo.Checked = true;
+                    else
+                        rblhigherQualificationtypeOtherYes.Checked = true;
                     txthigherQualificationtypeOther.Value = setComments(Comments[k]);
                     break;
                 case "Mode of study(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherstudymodeOtherNo.Checked = true;
+                    else
+                        rblhigherstudymodeOtherYes.Checked = true;
                     txthigherstudymodeOther.Value = setComments(Comments[k]);
                     break;
                 case "Language (Medium) of Study(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherlanguageOtherNo.Checked = true;
+                    else
+                        rblhigherlanguageOtherYes.Checked = true;
                     txthigherlanguageOther.Value = setComments(Comments[k]);
                     break;
                 case "Grade Type(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradetypeOtherNo.Checked = true;
+                    else
+                        rblhighergradetypeOtherYes.Checked = true;
                     txthighergradetypeOther.Value = setComments(Comments[k]);
                     break;
                 case "Final Grade Achieved(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeachievedOtherNo.Checked = true;
+                    else
+                        rblhighergradeachievedOtherYes.Checked = true;
                     txthighergradeachievedOther.Value = setComments(Comments[k]);
                     break;
                 case "Expected dates when results will be declared(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblExpectedHigherDategradeOtherNo.Checked = true;
+                    else
+                        rblExpectedHigherDategradeOtherYes.Checked = true;
                     txtExpectedHigherDategradeOther.Value = setComments(Comments[k]);
                     break;
                 case "Name of Contact who can verify this qualification(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherverifyOtherNo.Checked = true;
+                    else
+                        rblhigherverifyOtherYes.Checked = true;
                     txthigherverifyOther.Value = setComments(Comments[k]);
                     break;
                 case "Relationship with the Contact(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhigherrelationOtherNo.Checked = true;
+                    else
+                        rblhigherrelationOtherYes.Checked = true;
                     txthigherrelationOther.Value = setComments(Comments[k]);
                     break;
                 case "Email ID of Contact who can verify your qualification(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactEmailOtherNo.Checked = true;
+                    else
+                        rblhighercontactEmailOtherYes.Checked = true;
+                  
                     txthighercontactEmailOther.Value = setComments(Comments[k]);
                     break;
                 case "Mobile/Cellular Number of Contact who can verify your qualification(Other)":
+                    if (Comments[k].adminaction == 0)
+                        rblhighercontactMobileOtherNo.Checked = true;
+                    else
+                        rblhighercontactMobileOtherYes.Checked = true;
+                   
                     txthighercontactMobileOther.Value = setComments(Comments[k]);
                     break;
                 case "Higher Grade":
+                    if (Comments[k].adminaction == 0)
+                        rblhighergradeNO.Checked = true;
+                    else
+                        rblhighergradeYes.Checked = true;
+                  
                     txtHigherGrade.Value = setComments(Comments[k]);
                     break;
                 default:
@@ -1634,269 +2081,269 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         {
             if ((highschool.Style.Value != "display: none") && ((lblhighschool.Text == "Yes") || (lblhighschool.Text == "No- I am currently studying for my high school qualification")))
             {
-                adminInputs.Add("Have you completed high school", txthighschool.Value.Trim());
+                adminInputs.Add("Have you completed high school", txthighschool.Value.Trim() + "~" + (rblhighschoolNo.Checked == true ? 0 : 1));
                 if (highschoolCountry.Style.Value != "display: none")
-                    adminInputs.Add("Country of High School Education", txthighschoolCountry.Value.Trim());
-                 if (highschoolstartDate.Style.Value != "display: none")
-                    adminInputs.Add("High School Start Date", txthighschoolstartDate.Value.Trim());
-                 if (highschoolendDate.Style.Value != "display: none")
-                    adminInputs.Add("High School End Date", txthighschoolendDate.Value.Trim());
-                 if (highschoolName.Style.Value != "display: none")
-                    adminInputs.Add("Name of School(HighSchool)", txthighschoolName.Value.Trim());
-                 if (highschoolQualificationtype.Style.Value != "display: none")
-                    adminInputs.Add("Qualification Type(HighSchool)", txthighschoolQualificationtype.Value.Trim());
-                 if (highschoolstudymode.Style.Value != "display: none")
-                    adminInputs.Add("Mode of study(HighSchool)", txthighschoolstudymode.Value.Trim());
-                 if (highschoollanguage.Style.Value != "display: none")
-                    adminInputs.Add("Language (Medium) of Study(HighSchool)", txthighschoollanguage.Value.Trim());
-                 if (gradetype.Style.Value != "display: none")
-                    adminInputs.Add("Grade Type(HighSchool)", txtgradetype.Value.Trim());
-                 if (highschoolgradeachieved.Style.Value != "display: none")
-                    adminInputs.Add("Final Grade Achieved(HighSchool)", txthighschoolgradeachieved.Value.Trim());
-                 if (ExpectedHighSchoolDategrade.Style.Value != "display: none")
-                    adminInputs.Add("Expected dates when results will be declared(HighSchool)", txtExpectedHighSchoolDategrade.Value.Trim());
-                 if (highschoolverify.Style.Value != "display: none")
-                    adminInputs.Add("Name of Contact who can verify this qualification(HighSchool)", txthighschoolverify.Value.Trim());
-                 if (highschoolrelation.Style.Value != "display: none")
-                    adminInputs.Add("Relationship with the Contact(HighSchool)", txthighschoolrelation.Value.Trim());
-                 if (highschoolcontactEmail.Style.Value != "display: none")
-                    adminInputs.Add("Email ID of Contact who can verify your qualification(HighSchool)", txthighschoolcontactEmail.Value.Trim());
-                 if (highschoolcontactMobile.Style.Value != "display: none")
-                    adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(HighSchool)", txthighschoolcontactMobile.Value.Trim());
-                 if (highshoolgrade.Style.Value != "display: none")
-                    adminInputs.Add("High School Grade", txthighschoolgrade.Value.Trim());
+                    adminInputs.Add("Country of High School Education", txthighschoolCountry.Value.Trim() + "~" + (rblhighschoolCountryNo.Checked == true ? 0 : 1));
+                if (highschoolstartDate.Style.Value != "display: none")
+                    adminInputs.Add("High School Start Date", txthighschoolstartDate.Value.Trim() + "~" + (rblhighschoolstartDateNo.Checked == true ? 0 : 1));
+                if (highschoolendDate.Style.Value != "display: none")
+                    adminInputs.Add("High School End Date", txthighschoolendDate.Value.Trim() + "~" + (rblhighschoolendDateNo.Checked == true ? 0 : 1));
+                if (highschoolName.Style.Value != "display: none")
+                    adminInputs.Add("Name of School(HighSchool)", txthighschoolName.Value.Trim() + "~" + (rblhighschoolNameNo.Checked == true ? 0 : 1));
+                if (highschoolQualificationtype.Style.Value != "display: none")
+                    adminInputs.Add("Qualification Type(HighSchool)", txthighschoolQualificationtype.Value.Trim() + "~" + (rblhighschoolQualificationtypeNo.Checked == true ? 0 : 1));
+                if (highschoolstudymode.Style.Value != "display: none")
+                    adminInputs.Add("Mode of study(HighSchool)", txthighschoolstudymode.Value.Trim() + "~" + (rblhighschoolstudymodeNo.Checked == true ? 0 : 1));
+                if (highschoollanguage.Style.Value != "display: none")
+                    adminInputs.Add("Language (Medium) of Study(HighSchool)", txthighschoollanguage.Value.Trim() + "~" + (rblhighschoollanguageNo.Checked == true ? 0 : 1));
+                if (gradetype.Style.Value != "display: none")
+                    adminInputs.Add("Grade Type(HighSchool)", txtgradetype.Value.Trim() + "~" + (rblgradetypeNo.Checked == true ? 0 : 1));
+                if (highschoolgradeachieved.Style.Value != "display: none")
+                    adminInputs.Add("Final Grade Achieved(HighSchool)", txthighschoolgradeachieved.Value.Trim() + "~" + (rblhighschoolgradeachievedNo.Checked == true ? 0 : 1));
+                if (ExpectedHighSchoolDategrade.Style.Value != "display: none")
+                    adminInputs.Add("Expected dates when results will be declared(HighSchool)", txtExpectedHighSchoolDategrade.Value.Trim() + "~" + (rblExpectedHighSchoolDategradeNo.Checked == true ? 0 : 1));
+                if (highschoolverify.Style.Value != "display: none")
+                    adminInputs.Add("Name of Contact who can verify this qualification(HighSchool)", txthighschoolverify.Value.Trim() + "~" + (rblhighschoolverifyNo.Checked == true ? 0 : 1));
+                if (highschoolrelation.Style.Value != "display: none")
+                    adminInputs.Add("Relationship with the Contact(HighSchool)", txthighschoolrelation.Value.Trim() + "~" + (rblhighschoolrelationNo.Checked == true ? 0 : 1));
+                if (highschoolcontactEmail.Style.Value != "display: none")
+                    adminInputs.Add("Email ID of Contact who can verify your qualification(HighSchool)", txthighschoolcontactEmail.Value.Trim() + "~" + (rblhighschoolcontactEmailNo.Checked == true ? 0 : 1));
+                if (highschoolcontactMobile.Style.Value != "display: none")
+                    adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(HighSchool)", txthighschoolcontactMobile.Value.Trim() + "~" + (rblhighschoolcontactMobileNo.Checked == true ? 0 : 1));
+                if (highshoolgrade.Style.Value != "display: none")
+                    adminInputs.Add("High School Grade", txthighschoolgrade.Value.Trim() + "~" + (rblhighshoolgradeNo.Checked == true ? 0 : 1));
 
             }
             else
             {
-                adminInputs.Add("Have you completed high school", txthighschool.Value.Trim());
+                adminInputs.Add("Have you completed high school", txthighschool.Value.Trim() + "~" + (rblhighschoolNo.Checked == true ? 0 : 1));
                 if (higestEducation.Style.Value != "display: none")
-                    adminInputs.Add("Highest Education", txthigestEducation.Value.Trim());
+                    adminInputs.Add("Highest Education", txthigestEducation.Value.Trim() + "~" + (rblhigestEducationNo.Checked == true ? 0 : 1));
 
             }
             if ((Secondary.Style.Value != "display: none") && ((lblSecondary.Text == "Yes") || (lblSecondary.Text == "No - I am currently still studying for my Senior Secondary")))
             {
-                adminInputs.Add("Have you completed Senior Secondary school? (Year 12)", txtSecondary.Value.Trim());
+                adminInputs.Add("Have you completed Senior Secondary school? (Year 12)", txtSecondary.Value.Trim() + "~" + (rblSecondaryNo.Checked == true ? 0 : 1));
                 if (SecondaryCountry.Style.Value != "display: none")
-                    adminInputs.Add("Country of Secondary Education", txtSecondaryCountry.Value.Trim());
-                 if (SecondarystartDate.Style.Value != "display: none")
-                    adminInputs.Add("Secondary Start Date", txtSecondarystartDate.Value.Trim());
-                 if (SecondaryendDate.Style.Value != "display: none")
-                    adminInputs.Add("Secondary End Date", txtSecondaryendDate.Value.Trim());
-                 if (SecondaryschoolName.Style.Value != "display: none")
-                    adminInputs.Add("Name of School(Secondary)", txtSecondaryschoolName.Value.Trim());
-                 if (SecondaryQualificationtype.Style.Value != "display: none")
-                    adminInputs.Add("Qualification Type(Secondary)", txtSecondaryQualificationtype.Value.Trim());
-                 if (Secondarystudymode.Style.Value != "display: none")
-                    adminInputs.Add("Mode of study(Secondary)", txtSecondarystudymode.Value.Trim());
-                 if (Secondarylanguage.Style.Value != "display: none")
-                    adminInputs.Add("Language (Medium) of Study(Secondary)", txtSecondarylanguage.Value.Trim());
-                 if (Secondarygradetype.Style.Value != "display: none")
-                    adminInputs.Add("Grade Type(Secondary)", txtSecondarygradetype.Value.Trim());
-                 if (Secondarygradeachieved.Style.Value != "display: none")
-                    adminInputs.Add("Final Grade Achieved(Secondary)", txtSecondarygradeachieved.Value.Trim());
-                 if (ExpectedSecondaryDategrade.Style.Value != "display: none")
-                    adminInputs.Add("Expected dates when results will be declared(Secondary)", txtExpectedSecondaryDategrade.Value.Trim());
-                 if (Secondaryverify.Style.Value != "display: none")
-                    adminInputs.Add("Name of Contact who can verify this qualification(Secondary)", txtSecondaryverify.Value.Trim());
-                 if (secondaryschoolrelation.Style.Value != "display: none")
-                    adminInputs.Add("Relationship with the Contact(Secondary)", txtsecondaryschoolrelation.Value.Trim());
-                 if (secondarycontactEmail.Style.Value != "display: none")
-                    adminInputs.Add("Email ID of Contact who can verify your qualification(Secondary)", txtsecondarycontactEmail.Value.Trim());
-                 if (secondarycontactMobile.Style.Value != "display: none")
-                    adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Secondary)", txtsecondarycontactMobile.Value.Trim());
-                 if (highshoolgrade.Style.Value != "display: none")
-                    adminInputs.Add("Secondary Grade", txtSecondaryGrade.Value.Trim());
+                    adminInputs.Add("Country of Secondary Education", txtSecondaryCountry.Value.Trim() + "~" + (rblSecondaryCountryNo.Checked == true ? 0 : 1));
+                if (SecondarystartDate.Style.Value != "display: none")
+                    adminInputs.Add("Secondary Start Date", txtSecondarystartDate.Value.Trim() + "~" + (rblSecondarystartDateNo.Checked == true ? 0 : 1));
+                if (SecondaryendDate.Style.Value != "display: none")
+                    adminInputs.Add("Secondary End Date", txtSecondaryendDate.Value.Trim() + "~" + (rblSecondaryendDateNo.Checked == true ? 0 : 1));
+                if (SecondaryschoolName.Style.Value != "display: none")
+                    adminInputs.Add("Name of School(Secondary)", txtSecondaryschoolName.Value.Trim() + "~" + (rblSecondaryschoolNameNo.Checked == true ? 0 : 1));
+                if (SecondaryQualificationtype.Style.Value != "display: none")
+                    adminInputs.Add("Qualification Type(Secondary)", txtSecondaryQualificationtype.Value.Trim() + "~" + (rblSecondaryQualificationtypeNo.Checked == true ? 0 : 1));
+                if (Secondarystudymode.Style.Value != "display: none")
+                    adminInputs.Add("Mode of study(Secondary)", txtSecondarystudymode.Value.Trim() + "~" + (rblSecondarystudymodeNo.Checked == true ? 0 : 1));
+                if (Secondarylanguage.Style.Value != "display: none")
+                    adminInputs.Add("Language (Medium) of Study(Secondary)", txtSecondarylanguage.Value.Trim() + "~" + (rblSecondarylanguageNo.Checked == true ? 0 : 1));
+                if (Secondarygradetype.Style.Value != "display: none")
+                    adminInputs.Add("Grade Type(Secondary)", txtSecondarygradetype.Value.Trim() + "~" + (rblSecondarygradetypeNo.Checked == true ? 0 : 1));
+                if (Secondarygradeachieved.Style.Value != "display: none")
+                    adminInputs.Add("Final Grade Achieved(Secondary)", txtSecondarygradeachieved.Value.Trim() + "~" + (rblSecondarygradeachievedNo.Checked == true ? 0 : 1));
+                if (ExpectedSecondaryDategrade.Style.Value != "display: none")
+                    adminInputs.Add("Expected dates when results will be declared(Secondary)", txtExpectedSecondaryDategrade.Value.Trim() + "~" + (rblExpectedSecondaryDategradeNo.Checked == true ? 0 : 1));
+                if (Secondaryverify.Style.Value != "display: none")
+                    adminInputs.Add("Name of Contact who can verify this qualification(Secondary)", txtSecondaryverify.Value.Trim() + "~" + (rblSecondaryverifyNo.Checked == true ? 0 : 1));
+                if (secondaryschoolrelation.Style.Value != "display: none")
+                    adminInputs.Add("Relationship with the Contact(Secondary)", txtsecondaryschoolrelation.Value.Trim() + "~" + (rblsecondaryschoolrelationNo.Checked == true ? 0 : 1));
+                if (secondarycontactEmail.Style.Value != "display: none")
+                    adminInputs.Add("Email ID of Contact who can verify your qualification(Secondary)", txtsecondarycontactEmail.Value.Trim() + "~" + (rblsecondarycontactEmailNo.Checked == true ? 0 : 1));
+                if (secondarycontactMobile.Style.Value != "display: none")
+                    adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Secondary)", txtsecondarycontactMobile.Value.Trim() + "~" + (rblsecondarycontactMobileNo.Checked == true ? 0 : 1));
+                if (secondarygrade.Style.Value != "display: none")
+                    adminInputs.Add("Secondary Grade", txtSecondaryGrade.Value.Trim() + "~" + (rblsecondarygradeNo.Checked == true ? 0 : 1));
             }
             else
             {
-                adminInputs.Add("Have you completed Senior Secondary school? (Year 12)", txtSecondary.Value.Trim());
+                adminInputs.Add("Have you completed Senior Secondary school? (Year 12)", txtSecondary.Value.Trim() + "~" + (rblSecondaryNo.Checked == true ? 0 : 1));
 
 
             }
             if ((diploma.Style.Value != "display: none") && ((lbldiploma.Text == "Yes") || (lbldiploma.Text == "I am currently studying for my Diploma/Certificate")))
             {
-                adminInputs.Add("Have you completed any Diploma or Certificate Programs", txtdiploma.Value.Trim());
+                adminInputs.Add("Have you completed any Diploma or Certificate Programs", txtdiploma.Value.Trim() + "~" + (rbldiplomaNo.Checked == true ? 0 : 1));
                 if (diplomaCountry.Style.Value != "display: none")
-                    adminInputs.Add("Country of Diploma or Certificate Programs", txtdiplomaCountry.Value.Trim());
-                 if (diplomastartDate.Style.Value != "display: none")
-                    adminInputs.Add("Diploma Start Date", txtdiplomastartDate.Value.Trim());
-                 if (diplomaendDate.Style.Value != "display: none")
-                    adminInputs.Add("Diploma End Date", txtdiplomaendDate.Value.Trim());
-                 if (diplomaschoolName.Style.Value != "display: none")
-                    adminInputs.Add("Name of School(Diploma)", txtdiplomaschoolName.Value.Trim());
-                 if (diplomaQualificationtype.Style.Value != "display: none")
-                    adminInputs.Add("Qualification Type(Diploma)", txtdiplomaQualificationtype.Value.Trim());
-                 if (diplomastudymode.Style.Value != "display: none")
-                    adminInputs.Add("Mode of study(Diploma)", txtdiplomastudymode.Value.Trim());
-                 if (diplomalanguage.Style.Value != "display: none")
-                    adminInputs.Add("Language (Medium) of Study(Diploma)", txtdiplomalanguage.Value.Trim());
-                 if (diplomagradetype.Style.Value != "display: none")
-                    adminInputs.Add("Grade Type(Diploma)", txtdiplomagradetype.Value.Trim());
-                 if (diplomagradeachieved.Style.Value != "display: none")
-                    adminInputs.Add("Final Grade Achieved(Diploma)", txtdiplomagradeachieved.Value.Trim());
-                 if (ExpectedDiplomaDategrade.Style.Value != "display: none")
-                    adminInputs.Add("Expected dates when results will be declared(Diploma)", txtExpectedDiplomaDategrade.Value.Trim());
-                 if (diplomaverify.Style.Value != "display: none")
-                    adminInputs.Add("Name of Contact who can verify this qualification(Diploma)", txtdiplomaverify.Value.Trim());
-                 if (diplomarelation.Style.Value != "display: none")
-                    adminInputs.Add("Relationship with the Contact(Diploma)", txtdiplomarelation.Value.Trim());
-                 if (diplomacontactEmail.Style.Value != "display: none")
-                    adminInputs.Add("Email ID of Contact who can verify your qualification(Diploma)", txtdiplomacontactEmail.Value.Trim());
-                 if (diplomacontactMobile.Style.Value != "display: none")
-                    adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Diploma)", txtdiplomacontactMobile.Value.Trim());
-                 if (highshoolgrade.Style.Value != "display: none")
-                    adminInputs.Add("Diploma Grade", txtDiplomaGrade.Value.Trim());
+                    adminInputs.Add("Country of Diploma or Certificate Programs", txtdiplomaCountry.Value.Trim() + "~" + (rbldiplomaCountryNo.Checked == true ? 0 : 1));
+                if (diplomastartDate.Style.Value != "display: none")
+                    adminInputs.Add("Diploma Start Date", txtdiplomastartDate.Value.Trim() + "~" + (rbldiplomastartDateNo.Checked == true ? 0 : 1));
+                if (diplomaendDate.Style.Value != "display: none")
+                    adminInputs.Add("Diploma End Date", txtdiplomaendDate.Value.Trim() + "~" + (rbldiplomaendDateNo.Checked == true ? 0 : 1));
+                if (diplomaschoolName.Style.Value != "display: none")
+                    adminInputs.Add("Name of School(Diploma)", txtdiplomaschoolName.Value.Trim() + "~" + (rbldiplomaschoolNameNo.Checked == true ? 0 : 1));
+                if (diplomaQualificationtype.Style.Value != "display: none")
+                    adminInputs.Add("Qualification Type(Diploma)", txtdiplomaQualificationtype.Value.Trim() + "~" + (rbldiplomaQualificationtypeNo.Checked == true ? 0 : 1));
+                if (diplomastudymode.Style.Value != "display: none")
+                    adminInputs.Add("Mode of study(Diploma)", txtdiplomastudymode.Value.Trim() + "~" + (rbldiplomastudymodeNo.Checked == true ? 0 : 1));
+                if (diplomalanguage.Style.Value != "display: none")
+                    adminInputs.Add("Language (Medium) of Study(Diploma)", txtdiplomalanguage.Value.Trim() + "~" + (rbldiplomalanguageNo.Checked == true ? 0 : 1));
+                if (diplomagradetype.Style.Value != "display: none")
+                    adminInputs.Add("Grade Type(Diploma)", txtdiplomagradetype.Value.Trim() + "~" + (rbldiplomagradetypeNo.Checked == true ? 0 : 1));
+                if (diplomagradeachieved.Style.Value != "display: none")
+                    adminInputs.Add("Final Grade Achieved(Diploma)", txtdiplomagradeachieved.Value.Trim() + "~" + (rbldiplomagradeachievedNo.Checked == true ? 0 : 1));
+                if (ExpectedDiplomaDategrade.Style.Value != "display: none")
+                    adminInputs.Add("Expected dates when results will be declared(Diploma)", txtExpectedDiplomaDategrade.Value.Trim() + "~" + (rblExpectedDiplomaDategradeNo.Checked == true ? 0 : 1));
+                if (diplomaverify.Style.Value != "display: none")
+                    adminInputs.Add("Name of Contact who can verify this qualification(Diploma)", txtdiplomaverify.Value.Trim() + "~" + (rbldiplomaverifyNo.Checked == true ? 0 : 1));
+                if (diplomarelation.Style.Value != "display: none")
+                    adminInputs.Add("Relationship with the Contact(Diploma)", txtdiplomarelation.Value.Trim() + "~" + (rbldiplomarelationNo.Checked == true ? 0 : 1));
+                if (diplomacontactEmail.Style.Value != "display: none")
+                    adminInputs.Add("Email ID of Contact who can verify your qualification(Diploma)", txtdiplomacontactEmail.Value.Trim() + "~" + (rbldiplomacontactEmailNo.Checked == true ? 0 : 1));
+                if (diplomacontactMobile.Style.Value != "display: none")
+                    adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Diploma)", txtdiplomacontactMobile.Value.Trim() + "~" + (rbldiplomacontactMobileNo.Checked == true ? 0 : 1));
+                if (diplomagrade.Style.Value != "display: none")
+                    adminInputs.Add("Diploma Grade", txtDiplomaGrade.Value.Trim() + "~" + (rbldiplomagradeNo.Checked == true ? 0 : 1));
             }
             else
             {
-                adminInputs.Add("Have you completed any Diploma or Certificate Programs", txtdiploma.Value.Trim());
+                adminInputs.Add("Have you completed any Diploma or Certificate Programs", txtdiploma.Value.Trim() + "~" + (rbldiplomaNo.Checked == true ? 0 : 1));
 
 
             }
 
-            if ((higher.Style.Value != "display: none") && ((lblSecondary.Text == "Yes") || (lblSecondary.Text == "I am currently studying for my higher qualification")))
+            if ((higher.Style.Value != "display: none") && ((lblhigher.Text == "Yes") || (lblhigher.Text == "I am currently studying for my higher qualification")))
             {
-                adminInputs.Add("Have you completed any Higher (Under Graduate, Masters or PhD) degree", txthigher.Value.Trim());
+                adminInputs.Add("Have you completed any Higher (Under Graduate, Masters or PhD) degree", txthigher.Value.Trim() + "~" + (rblhigherNo.Checked == true ? 0 : 1));
                 if (UG.Visible == true)
                 {
                     if (highercourse.Style.Value != "display: none")
-                        adminInputs.Add("Higher Course(UG)", txthighercourse.Value.Trim());
-                     if (higherCountry.Style.Value != "display: none")
-                        adminInputs.Add("Country of Higher Education(UG)", txthigherCountry.Value.Trim());
-                     if (higherstartDate.Style.Value != "display: none")
-                        adminInputs.Add("Higher Start Date(UG)", txthigherstartDate.Value.Trim());
-                     if (higherendDate.Style.Value != "display: none")
-                        adminInputs.Add("Higher End Date(UG)", txthigherendDate.Value.Trim());
-                     if (higherschoolName.Style.Value != "display: none")
-                        adminInputs.Add("Name of School(UG)", txthigherschoolName.Value.Trim());
-                     if (higherQualificationtype.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(UG)", txthigherQualificationtype.Value.Trim());
-                     if (higherstudymode.Style.Value != "display: none")
-                        adminInputs.Add("Mode of study(UG)", txthigherstudymode.Value.Trim());
-                     if (higherlanguage.Style.Value != "display: none")
-                        adminInputs.Add("Language (Medium) of Study(UG)", txthigherlanguage.Value.Trim());
-                     if (highergradetype.Style.Value != "display: none")
-                        adminInputs.Add("Grade Type(UG)", txthighergradetype.Value.Trim());
-                     if (highergradeachieved.Style.Value != "display: none")
-                        adminInputs.Add("Final Grade Achieved(UG)", txthighergradeachieved.Value.Trim());
-                     if (ExpectedHigherDategrade.Style.Value != "display: none")
-                        adminInputs.Add("Expected dates when results will be declared(UG)", txtExpectedHigherDategrade.Value.Trim());
-                     if (higherverify.Style.Value != "display: none")
-                        adminInputs.Add("Name of Contact who can verify this qualification(UG)", txthigherverify.Value.Trim());
-                     if (higherrelation.Style.Value != "display: none")
-                        adminInputs.Add("Relationship with the Contact(UG)", txthigherrelation.Value.Trim());
-                     if (highercontactEmail.Style.Value != "display: none")
-                        adminInputs.Add("Email ID of Contact who can verify your qualification(UG)", txthighercontactEmail.Value.Trim());
-                     if (highercontactMobile.Style.Value != "display: none")
-                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(UG)", txthighercontactMobile.Value.Trim());
+                        adminInputs.Add("Higher Course(UG)", txthighercourse.Value.Trim() + "~" + (rblhighercourseNo.Checked == true ? 0 : 1));
+                    if (higherCountry.Style.Value != "display: none")
+                        adminInputs.Add("Country of Higher Education(UG)", txthigherCountry.Value.Trim() + "~" + (rblhigherCountryNo.Checked == true ? 0 : 1));
+                    if (higherstartDate.Style.Value != "display: none")
+                        adminInputs.Add("Higher Start Date(UG)", txthigherstartDate.Value.Trim() + "~" + (rblhigherstartDateNo.Checked == true ? 0 : 1));
+                    if (higherendDate.Style.Value != "display: none")
+                        adminInputs.Add("Higher End Date(UG)", txthigherendDate.Value.Trim() + "~" + (rblhigherendDateNo.Checked == true ? 0 : 1));
+                    if (higherschoolName.Style.Value != "display: none")
+                        adminInputs.Add("Name of School(UG)", txthigherschoolName.Value.Trim() + "~" + (rblhigherschoolNameNo.Checked == true ? 0 : 1));
+                    if (higherQualificationtype.Style.Value != "display: none")
+                        adminInputs.Add("Qualification Type(UG)", txthigherQualificationtype.Value.Trim() + "~" + (rblhigherQualificationtypeNo.Checked == true ? 0 : 1));
+                    if (higherstudymode.Style.Value != "display: none")
+                        adminInputs.Add("Mode of study(UG)", txthigherstudymode.Value.Trim() + "~" + (rblhigherstudymodeNo.Checked == true ? 0 : 1));
+                    if (higherlanguage.Style.Value != "display: none")
+                        adminInputs.Add("Language (Medium) of Study(UG)", txthigherlanguage.Value.Trim() + "~" + (rblhigherlanguageNo.Checked == true ? 0 : 1));
+                    if (highergradetype.Style.Value != "display: none")
+                        adminInputs.Add("Grade Type(UG)", txthighergradetype.Value.Trim() + "~" + (rblhighergradetypeNo.Checked == true ? 0 : 1));
+                    if (highergradeachieved.Style.Value != "display: none")
+                        adminInputs.Add("Final Grade Achieved(UG)", txthighergradeachieved.Value.Trim() + "~" + (rblhighergradeachievedNo.Checked == true ? 0 : 1));
+                    if (ExpectedHigherDategrade.Style.Value != "display: none")
+                        adminInputs.Add("Expected dates when results will be declared(UG)", txtExpectedHigherDategrade.Value.Trim() + "~" + (rblExpectedHigherDategradeNo.Checked == true ? 0 : 1));
+                    if (higherverify.Style.Value != "display: none")
+                        adminInputs.Add("Name of Contact who can verify this qualification(UG)", txthigherverify.Value.Trim() + "~" + (rblhigherverifyNo.Checked == true ? 0 : 1));
+                    if (higherrelation.Style.Value != "display: none")
+                        adminInputs.Add("Relationship with the Contact(UG)", txthigherrelation.Value.Trim() + "~" + (rblhigherrelationNo.Checked == true ? 0 : 1));
+                    if (highercontactEmail.Style.Value != "display: none")
+                        adminInputs.Add("Email ID of Contact who can verify your qualification(UG)", txthighercontactEmail.Value.Trim() + "~" + (rblhighercontactEmailNo.Checked == true ? 0 : 1));
+                    if (highercontactMobile.Style.Value != "display: none")
+                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(UG)", txthighercontactMobile.Value.Trim() + "~" + (rblhighercontactMobileNo.Checked == true ? 0 : 1));
                 }
                 else if (PG.Visible == true)
                 {
                     if (highercoursePG.Style.Value != "display: none")
-                        adminInputs.Add("Higher Course(PG)", txthighercoursePG.Value.Trim());
-                     if (higherCountryPG.Style.Value != "display: none")
-                        adminInputs.Add("Country of Higher Education(PG)", txthigherCountryPG.Value.Trim());
-                     if (higherstartDatePG.Style.Value != "display: none")
-                        adminInputs.Add("Higher Start Date(PG)", txthigherstartDatePG.Value.Trim());
-                     if (higherendDatePG.Style.Value != "display: none")
-                        adminInputs.Add("Higher End Date(PG)", txthigherendDatePG.Value.Trim());
-                     if (higherschoolNamePG.Style.Value != "display: none")
-                        adminInputs.Add("Name of School(PG)", txthigherschoolNamePG.Value.Trim());
-                     if (higherQualificationtypePG.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(PG)", txthigherQualificationtypePG.Value.Trim());
-                     if (higherstudymodePG.Style.Value != "display: none")
-                        adminInputs.Add("Mode of study(PG)", txthigherstudymodePG.Value.Trim());
-                     if (higherlanguagePG.Style.Value != "display: none")
-                        adminInputs.Add("Language (Medium) of Study(PG)", txthigherlanguagePG.Value.Trim());
-                     if (highergradetypePG.Style.Value != "display: none")
-                        adminInputs.Add("Grade Type(PG)", txthighergradetypePG.Value.Trim());
-                     if (highergradeachievedPG.Style.Value != "display: none")
-                        adminInputs.Add("Final Grade Achieved(PG)", txthighergradeachievedPG.Value.Trim());
-                     if (ExpectedHigherDategradePG.Style.Value != "display: none")
-                        adminInputs.Add("Expected dates when results will be declared(PG)", txtExpectedHigherDategradePG.Value.Trim());
-                     if (higherverifyPG.Style.Value != "display: none")
-                        adminInputs.Add("Name of Contact who can verify this qualification(PG)", txthigherverifyPG.Value.Trim());
-                     if (higherrelationPG.Style.Value != "display: none")
-                        adminInputs.Add("Relationship with the Contact(PG)", txthigherrelationPG.Value.Trim());
-                     if (highercontactEmailPG.Style.Value != "display: none")
-                        adminInputs.Add("Email ID of Contact who can verify your qualification(PG)", txthighercontactEmailPG.Value.Trim());
-                     if (highercontactMobilePG.Style.Value != "display: none")
-                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(PG)", txthighercontactMobilePG.Value.Trim());
+                        adminInputs.Add("Higher Course(PG)", txthighercoursePG.Value.Trim() + "~" + (rblhighercoursePGNo.Checked == true ? 0 : 1));
+                    if (higherCountryPG.Style.Value != "display: none")
+                        adminInputs.Add("Country of Higher Education(PG)", txthigherCountryPG.Value.Trim() + "~" + (rblhigherCountryPGNo.Checked == true ? 0 : 1));
+                    if (higherstartDatePG.Style.Value != "display: none")
+                        adminInputs.Add("Higher Start Date(PG)", txthigherstartDatePG.Value.Trim() + "~" + (rblhigherstartDatePGNo.Checked == true ? 0 : 1));
+                    if (higherendDatePG.Style.Value != "display: none")
+                        adminInputs.Add("Higher End Date(PG)", txthigherendDatePG.Value.Trim() + "~" + (rblhigherendDatePGNo.Checked == true ? 0 : 1));
+                    if (higherschoolNamePG.Style.Value != "display: none")
+                        adminInputs.Add("Name of School(PG)", txthigherschoolNamePG.Value.Trim() + "~" + (rblhigherschoolNamePGNo.Checked == true ? 0 : 1));
+                    if (higherQualificationtypePG.Style.Value != "display: none")
+                        adminInputs.Add("Qualification Type(PG)", txthigherQualificationtypePG.Value.Trim() + "~" + (rblhigherQualificationtypePGNo.Checked == true ? 0 : 1));
+                    if (higherstudymodePG.Style.Value != "display: none")
+                        adminInputs.Add("Mode of study(PG)", txthigherstudymodePG.Value.Trim() + "~" + (rblhigherstudymodePGNo.Checked == true ? 0 : 1));
+                    if (higherlanguagePG.Style.Value != "display: none")
+                        adminInputs.Add("Language (Medium) of Study(PG)", txthigherlanguagePG.Value.Trim() + "~" + (rblhigherlanguagePGNo.Checked == true ? 0 : 1));
+                    if (highergradetypePG.Style.Value != "display: none")
+                        adminInputs.Add("Grade Type(PG)", txthighergradetypePG.Value.Trim() + "~" + (rblhighergradetypePGNo.Checked == true ? 0 : 1));
+                    if (highergradeachievedPG.Style.Value != "display: none")
+                        adminInputs.Add("Final Grade Achieved(PG)", txthighergradeachievedPG.Value.Trim() + "~" + (rblhighergradeachievedPGNo.Checked == true ? 0 : 1));
+                    if (ExpectedHigherDategradePG.Style.Value != "display: none")
+                        adminInputs.Add("Expected dates when results will be declared(PG)", txtExpectedHigherDategradePG.Value.Trim() + "~" + (rblExpectedHigherDategradePGNo.Checked == true ? 0 : 1));
+                    if (higherverifyPG.Style.Value != "display: none")
+                        adminInputs.Add("Name of Contact who can verify this qualification(PG)", txthigherverifyPG.Value.Trim() + "~" + (rblhigherverifyPGNo.Checked == true ? 0 : 1));
+                    if (higherrelationPG.Style.Value != "display: none")
+                        adminInputs.Add("Relationship with the Contact(PG)", txthigherrelationPG.Value.Trim() + "~" + (rblhigherrelationPGNo.Checked == true ? 0 : 1));
+                    if (highercontactEmailPG.Style.Value != "display: none")
+                        adminInputs.Add("Email ID of Contact who can verify your qualification(PG)", txthighercontactEmailPG.Value.Trim() + "~" + (rblhighercontactEmailPGNo.Checked == true ? 0 : 1));
+                    if (highercontactMobilePG.Style.Value != "display: none")
+                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(PG)", txthighercontactMobilePG.Value.Trim() + "~" + (rblhighercontactMobilePGNo.Checked == true ? 0 : 1));
                 }
                 else if (Phd.Visible == true)
                 {
                     if (highercoursePhd.Style.Value != "display: none")
-                        adminInputs.Add("Higher Course(Phd)", txthighercoursePhd.Value.Trim());
-                     if (higherCountryPhd.Style.Value != "display: none")
-                        adminInputs.Add("Country of Higher Education(Phd)", txthigherCountryPhd.Value.Trim());
-                     if (higherstartDatePhd.Style.Value != "display: none")
-                        adminInputs.Add("Higher Start Date(Phd)", txthigherstartDatePhd.Value.Trim());
-                     if (higherendDatePhd.Style.Value != "display: none")
-                        adminInputs.Add("Higher End Date(Phd)", txthigherendDatePhd.Value.Trim());
-                     if (higherschoolNamePhd.Style.Value != "display: none")
-                        adminInputs.Add("Name of School(Phd)", txthigherschoolNamePhd.Value.Trim());
-                     if (higherQualificationtypePhd.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(Phd)", txthigherQualificationtypePhd.Value.Trim());
-                     if (higherstudymodePhd.Style.Value != "display: none")
-                        adminInputs.Add("Mode of study(Phd)", txthigherstudymodePhd.Value.Trim());
-                     if(higherlanguagePhd.Style.Value != "display: none")
-                        adminInputs.Add("Language (Medium) of Study(Phd)", txthigherlanguagePhd.Value.Trim());
-                     if (highergradetypePhd.Style.Value != "display: none")
-                        adminInputs.Add("Grade Type(Phd)", txthighergradetypePhd.Value.Trim());
-                     if (highergradeachievedPhd.Style.Value != "display: none")
-                        adminInputs.Add("Final Grade Achieved(Phd)", txthighergradeachievedPhd.Value.Trim());
-                     if (ExpectedHigherDategradePhd.Style.Value != "display: none")
-                        adminInputs.Add("Expected dates when results will be declared(Phd)", txtExpectedHigherDategradePhd.Value.Trim());
-                     if (higherverifyPhd.Style.Value != "display: none")
-                        adminInputs.Add("Name of Contact who can verify this qualification(Phd)", txthigherverifyPhd.Value.Trim());
-                     if (higherrelationPhd.Style.Value != "display: none")
-                        adminInputs.Add("Relationship with the Contact(Phd)", txthigherrelationPhd.Value.Trim());
-                     if (highercontactEmailPhd.Style.Value != "display: none")
-                        adminInputs.Add("Email ID of Contact who can verify your qualification(Phd)", txthighercontactEmailPhd.Value.Trim());
-                     if (highercontactMobilePhd.Style.Value != "display: none")
-                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Phd)", txthighercontactMobilePhd.Value.Trim());
+                        adminInputs.Add("Higher Course(Phd)", txthighercoursePhd.Value.Trim() + "~" + (rblhighercoursePhdNo.Checked == true ? 0 : 1));
+                    if (higherCountryPhd.Style.Value != "display: none")
+                        adminInputs.Add("Country of Higher Education(Phd)", txthigherCountryPhd.Value.Trim() + "~" + (rblhigherCountryPhdNo.Checked == true ? 0 : 1));
+                    if (higherstartDatePhd.Style.Value != "display: none")
+                        adminInputs.Add("Higher Start Date(Phd)", txthigherstartDatePhd.Value.Trim() + "~" + (rblhigherstartDatePhdNo.Checked == true ? 0 : 1));
+                    if (higherendDatePhd.Style.Value != "display: none")
+                        adminInputs.Add("Higher End Date(Phd)", txthigherendDatePhd.Value.Trim() + "~" + (rblhigherendDatePhdNo.Checked == true ? 0 : 1));
+                    if (higherschoolNamePhd.Style.Value != "display: none")
+                        adminInputs.Add("Name of School(Phd)", txthigherschoolNamePhd.Value.Trim() + "~" + (rblhigherschoolNamePhdNo.Checked == true ? 0 : 1));
+                    if (higherQualificationtypePhd.Style.Value != "display: none")
+                        adminInputs.Add("Qualification Type(Phd)", txthigherQualificationtypePhd.Value.Trim() + "~" + (rblhigherQualificationtypePhdNo.Checked == true ? 0 : 1));
+                    if (higherstudymodePhd.Style.Value != "display: none")
+                        adminInputs.Add("Mode of study(Phd)", txthigherstudymodePhd.Value.Trim() + "~" + (rblhigherstudymodePhdNo.Checked == true ? 0 : 1));
+                    if (higherlanguagePhd.Style.Value != "display: none")
+                        adminInputs.Add("Language (Medium) of Study(Phd)", txthigherlanguagePhd.Value.Trim() + "~" + (rblhigherlanguagePhdNo.Checked == true ? 0 : 1));
+                    if (highergradetypePhd.Style.Value != "display: none")
+                        adminInputs.Add("Grade Type(Phd)", txthighergradetypePhd.Value.Trim() + "~" + (rblhighergradetypePhdNo.Checked == true ? 0 : 1));
+                    if (highergradeachievedPhd.Style.Value != "display: none")
+                        adminInputs.Add("Final Grade Achieved(Phd)", txthighergradeachievedPhd.Value.Trim() + "~" + (rblhighergradeachievedPhdNo.Checked == true ? 0 : 1));
+                    if (ExpectedHigherDategradePhd.Style.Value != "display: none")
+                        adminInputs.Add("Expected dates when results will be declared(Phd)", txtExpectedHigherDategradePhd.Value.Trim() + "~" + (rblExpectedHigherDategradePhdNo.Checked == true ? 0 : 1));
+                    if (higherverifyPhd.Style.Value != "display: none")
+                        adminInputs.Add("Name of Contact who can verify this qualification(Phd)", txthigherverifyPhd.Value.Trim() + "~" + (rblhigherverifyPhdNo.Checked == true ? 0 : 1));
+                    if (higherrelationPhd.Style.Value != "display: none")
+                        adminInputs.Add("Relationship with the Contact(Phd)", txthigherrelationPhd.Value.Trim() + "~" + (rblhigherrelationPhdNo.Checked == true ? 0 : 1));
+                    if (highercontactEmailPhd.Style.Value != "display: none")
+                        adminInputs.Add("Email ID of Contact who can verify your qualification(Phd)", txthighercontactEmailPhd.Value.Trim() + "~" + (rblhighercontactEmailPhdNo.Checked == true ? 0 : 1));
+                    if (highercontactMobilePhd.Style.Value != "display: none")
+                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Phd)", txthighercontactMobilePhd.Value.Trim() + "~" + (rblhighercontactMobilePhdNo.Checked == true ? 0 : 1));
                 }
                 else
                 {
                     if (highercourseOther.Style.Value != "display: none")
-                        adminInputs.Add("Higher Course(Other)", txthighercourseOther.Value.Trim());
-                     if (higherCountryOther.Style.Value != "display: none")
-                        adminInputs.Add("Country of Higher Education(Other)", txthigherCountryOther.Value.Trim());
-                     if (higherstartDateOther.Style.Value != "display: none")
-                        adminInputs.Add("Higher Start Date(Other)", txthigherstartDateOther.Value.Trim());
-                     if (higherendDateOther.Style.Value != "display: none")
-                        adminInputs.Add("Higher End Date(Other)", txthigherendDateOther.Value.Trim());
-                     if (higherschoolNameOther.Style.Value != "display: none")
-                        adminInputs.Add("Name of School(Other)", txthigherschoolNameOther.Value.Trim());
-                     if (higherQualificationtypeOther.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(Other)", txthigherQualificationtypeOther.Value.Trim());
-                     if (higherstudymodeOther.Style.Value != "display: none")
-                        adminInputs.Add("Mode of study(Other)", txthigherstudymodeOther.Value.Trim());
-                     if (higherlanguageOther.Style.Value != "display: none")
-                        adminInputs.Add("Language (Medium) of Study(Other)", txthigherlanguageOther.Value.Trim());
-                     if (highergradetypeOther.Style.Value != "display: none")
-                        adminInputs.Add("Grade Type(Other)", txthighergradetypeOther.Value.Trim());
-                     if (highergradeachievedOther.Style.Value != "display: none")
-                        adminInputs.Add("Final Grade Achieved(Other)", txthighergradeachievedOther.Value.Trim());
-                     if (ExpectedHigherDategradeOther.Style.Value != "display: none")
-                        adminInputs.Add("Expected dates when results will be declared(Other)", txtExpectedHigherDategradeOther.Value.Trim());
-                     if (higherverifyOther.Style.Value != "display: none")
-                        adminInputs.Add("Name of Contact who can verify this qualification(Other)", txthigherverifyOther.Value.Trim());
-                     if (higherrelationOther.Style.Value != "display: none")
-                        adminInputs.Add("Relationship with the Contact(Other)", txthigherrelationOther.Value.Trim());
-                     if (highercontactEmailOther.Style.Value != "display: none")
-                        adminInputs.Add("Email ID of Contact who can verify your qualification(Other)", txthighercontactEmailOther.Value.Trim());
-                     if (highercontactMobileOther.Style.Value != "display: none")
-                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Other)", txthighercontactMobileOther.Value.Trim());
+                        adminInputs.Add("Higher Course(Other)", txthighercourseOther.Value.Trim() + "~" + (rblOtherHigherCourseNo.Checked == true ? 0 : 1));
+                    if (higherCountryOther.Style.Value != "display: none")
+                        adminInputs.Add("Country of Higher Education(Other)", txthigherCountryOther.Value.Trim() + "~" + (rblhigherCountryOtherNo.Checked == true ? 0 : 1));
+                    if (higherstartDateOther.Style.Value != "display: none")
+                        adminInputs.Add("Higher Start Date(Other)", txthigherstartDateOther.Value.Trim() + "~" + (rblhigherstartDateOtherNo.Checked == true ? 0 : 1));
+                    if (higherendDateOther.Style.Value != "display: none")
+                        adminInputs.Add("Higher End Date(Other)", txthigherendDateOther.Value.Trim() + "~" + (rblhigherendDateOtherNo.Checked == true ? 0 : 1));
+                    if (higherschoolNameOther.Style.Value != "display: none")
+                        adminInputs.Add("Name of School(Other)", txthigherschoolNameOther.Value.Trim() + "~" + (rblhigherschoolNameOtherNo.Checked == true ? 0 : 1));
+                    if (higherQualificationtypeOther.Style.Value != "display: none")
+                        adminInputs.Add("Qualification Type(Other)", txthigherQualificationtypeOther.Value.Trim() + "~" + (rblhigherQualificationtypeOtherNo.Checked == true ? 0 : 1));
+                    if (higherstudymodeOther.Style.Value != "display: none")
+                        adminInputs.Add("Mode of study(Other)", txthigherstudymodeOther.Value.Trim() + "~" + (rblhigherstudymodeOtherNo.Checked == true ? 0 : 1));
+                    if (higherlanguageOther.Style.Value != "display: none")
+                        adminInputs.Add("Language (Medium) of Study(Other)", txthigherlanguageOther.Value.Trim() + "~" + (rblhigherlanguageOtherNo.Checked == true ? 0 : 1));
+                    if (highergradetypeOther.Style.Value != "display: none")
+                        adminInputs.Add("Grade Type(Other)", txthighergradetypeOther.Value.Trim() + "~" + (rblhighergradetypeOtherNo.Checked == true ? 0 : 1));
+                    if (highergradeachievedOther.Style.Value != "display: none")
+                        adminInputs.Add("Final Grade Achieved(Other)", txthighergradeachievedOther.Value.Trim() + "~" + (rblhighergradeachievedOtherNo.Checked == true ? 0 : 1));
+                    if (ExpectedHigherDategradeOther.Style.Value != "display: none")
+                        adminInputs.Add("Expected dates when results will be declared(Other)", txtExpectedHigherDategradeOther.Value.Trim() + "~" + (rblExpectedHigherDategradeOtherNo.Checked == true ? 0 : 1));
+                    if (higherverifyOther.Style.Value != "display: none")
+                        adminInputs.Add("Name of Contact who can verify this qualification(Other)", txthigherverifyOther.Value.Trim() + "~" + (rblhigherverifyOtherNo.Checked == true ? 0 : 1));
+                    if (higherrelationOther.Style.Value != "display: none")
+                        adminInputs.Add("Relationship with the Contact(Other)", txthigherrelationOther.Value.Trim() + "~" + (rblhigherrelationOtherNo.Checked == true ? 0 : 1));
+                    if (highercontactEmailOther.Style.Value != "display: none")
+                        adminInputs.Add("Email ID of Contact who can verify your qualification(Other)", txthighercontactEmailOther.Value.Trim() + "~" + (rblhighercontactEmailOtherNo.Checked == true ? 0 : 1));
+                    if (highercontactMobileOther.Style.Value != "display: none")
+                        adminInputs.Add("Mobile/Cellular Number of Contact who can verify your qualification(Other)", txthighercontactMobileOther.Value.Trim() + "~" + (rblhighercontactMobileOtherNo.Checked == true ? 0 : 1));
 
                 }
-                if (highshoolgrade.Style.Value != "display: none")
-                    adminInputs.Add("Higher Grade", txtHigherGrade.Value.Trim());
+                if (highergrade.Style.Value != "display: none")
+                    adminInputs.Add("Higher Grade", txtHigherGrade.Value.Trim() + "~" + (rblhighergradeNO.Checked == true ? 0 : 1));
             }
             else
             {
-                adminInputs.Add("Have you completed any Higher (Under Graduate, Masters or PhD) degree", txthigher.Value.Trim());
+                adminInputs.Add("Have you completed any Higher (Under Graduate, Masters or PhD) degree", txthigher.Value.Trim() + "~" + (rblhigherNo.Checked == true ? 0 : 1));
             }
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);

@@ -1,9 +1,10 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="supervisorapplicantfunding.aspx.cs" Inherits="admin_supervisorapplicantfunding" MasterPageFile="~/admin/admin.master" %>
+
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
     <title></title>
     <script>
-      
-    </script>
+
+</script>
 </asp:Content>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container page__container">
@@ -26,10 +27,13 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                         <div class="form-row">
                             <label id="label-Mobile" for="Mobile" class="col-md-3 col-form-label form-label">Would you study-n-live alone or would your family members come along </label>
-                           <div class="col-md-4">
+                            <div class="col-md-4">
                                 <asp:Label ID="lblstudy" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4"> <asp:Label ID="lblstudyComments" runat="server"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblstudyYes" GroupName="study" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblstudyNo" GroupName="study" Text="No" runat="server" />
+                                <asp:Label ID="lblstudyComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -38,10 +42,13 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                         <div class="form-row">
                             <label id="label-phone" for="phone" class="col-md-3 col-form-label form-label">No of Family members  </label>
-                           <div class="col-md-4">
+                            <div class="col-md-4">
                                 <asp:Label ID="lblfamilymember" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4"> <asp:Label ID="lblfamilymemberComments" runat="server"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblfamilymemberYes" GroupName="familymember" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblfamilymemberNo" GroupName="familymember" Text="No" runat="server" />
+                                <asp:Label ID="lblfamilymemberComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -53,7 +60,10 @@
                             <div class="col-md-4">
                                 <asp:Label ID="lblaccommodation" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4"> <asp:Label ID="lblaccommodationComments" runat="server"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblaccommodationYes" GroupName="accommodation" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblaccommodationNo" GroupName="accommodation" Text="No" runat="server" />
+                                <asp:Label ID="lblaccommodationComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -65,10 +75,13 @@
                             <label id="label-skypeDesc" for="skypeDesc" class="col-md-3 col-form-label form-label">
                                 Select the kind of accommodation you plan to have
                             </label>
-                           <div class="col-md-4">
+                            <div class="col-md-4">
                                 <asp:Label ID="lblmanagemeal" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4"> <asp:Label ID="lblmanagemealComments" runat="server"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblmanagemealYes" GroupName="managemeal" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblmanagemealNo" GroupName="managemeal" Text="No" runat="server" />
+                                <asp:Label ID="lblmanagemealComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -77,10 +90,13 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                         <div class="form-row">
                             <label id="label-whatsapp" for="whatsapp" class="col-md-3 col-form-label form-label">Select your preferred choice of transport in the city  </label>
-                           <div class="col-md-4">
+                            <div class="col-md-4">
                                 <asp:Label ID="lbltransportchoice" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4"> <asp:Label ID="lbltransportchoiceComments" runat="server"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rbltransportchoiceYes" GroupName="transportchoice" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbltransportchoiceNo" GroupName="transportchoice" Text="No" runat="server" />
+                                <asp:Label ID="lbltransportchoiceComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -89,10 +105,13 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                         <div class="form-row">
                             <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-3 col-form-label form-label">No of Trips you plan to take to your home country in a year</label>
-                           <div class="col-md-4">
+                            <div class="col-md-4">
                                 <asp:Label ID="lblTrips" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4"> <asp:Label ID="lblTripsComments" runat="server"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblTripsYes" GroupName="Trips" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblTripsNo" GroupName="Trips" Text="No" runat="server" />
+                                <asp:Label ID="lblTripsComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -104,10 +123,12 @@
                             <label id="labelentertainment" for="address" class="col-md-3 col-form-label form-label">
                                 How often in a week do you typically go out (entertainment) 
                             </label>
-                          <div class="col-md-4">
+                            <div class="col-md-4">
                                 <asp:Label ID="lblentertainment" runat="server"></asp:Label>
                             </div>
-                            <div class="col-md-4"><asp:Label ID="lblentertainmentComments" runat="server"></asp:Label>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblentertainmentYes" GroupName="entertainment" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblentertainmentNo" GroupName="entertainment" Text="No" runat="server" /><asp:Label ID="lblentertainmentComments" runat="server"></asp:Label>
                             </div>
                         </div>
                     </div>
@@ -225,13 +246,14 @@
                         </div>
                     </div>
                 </div>
-                 <div id="mainDiv" runat="server"></div>
+                <div id="mainDiv" runat="server"></div>
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
                         <div class="form-row">
                             <label for="agentList" class="col-md-3 col-form-label form-label">Superviosr Action</label>
                             <div class="col-md-4">
-                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction"> Approved
+                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction">
+                                Approved
                                 <input type="radio" id="rbDenied" runat="server" name="supervisorAction">Further Review
                             </div>
                             <div class="col-md-4">
@@ -240,11 +262,11 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
-                            <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click"  />
+                            <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click" />
                             <div class="col-md-6">
                             </div>
                         </div>

@@ -146,12 +146,24 @@ public partial class admin_supervisorapplicantsocial : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Link to your LinkedIn profile":
+                    if (Comments[k].adminaction == 0)
+                        rblLinkedinNo.Checked = true;
+                    else
+                        rblLinkedinYes.Checked = true;
                     lblLinkedinComments.Text = setComments(Comments[k]);
                     break;
                 case "Link to your Facebook profile":
+                    if (Comments[k].adminaction == 0)
+                        rblFacebookNo.Checked = true;
+                    else
+                        rblFacebookYes.Checked = true;
                     lblFacebookComments.Text = setComments(Comments[k]);
                     break;
                 case "Link to your twitter handle":
+                    if (Comments[k].adminaction == 0)
+                        rblTwitterNo.Checked = true;
+                    else
+                        rblTwitterYes.Checked = true;
                     lblTwitterComments.Text = setComments(Comments[k]);
                     break;
 

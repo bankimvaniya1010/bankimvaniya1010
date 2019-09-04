@@ -106,24 +106,52 @@ public partial class admin_supervisorapplicantfunding : System.Web.UI.Page
             switch (Comments[k].fieldname)
             {
                 case "Would you study-n-live alone or would your family members come along":
+                    if (Comments[k].adminaction == 0)
+                        rblstudyNo.Checked = true;
+                    else
+                        rblstudyYes.Checked = true;
                     lblstudyComments.Text = setComments(Comments[k]);
                     break;
                 case "No of Family members":
+                    if (Comments[k].adminaction == 0)
+                        rblfamilymemberNo.Checked = true;
+                    else
+                        rblfamilymemberYes.Checked = true;
                     lblfamilymemberComments.Text = setComments(Comments[k]);
                     break;
                 case "Select the kind of accommodation you plan to have":
+                    if (Comments[k].adminaction == 0)
+                        rblaccommodationNo.Checked = true;
+                    else
+                        rblaccommodationYes.Checked = true;
                     lblaccommodationComments.Text = setComments(Comments[k]);
                     break;
                 case "Select the kind of accommodation you plan to have(Meal)":
+                    if (Comments[k].adminaction == 0)
+                        rblmanagemealNo.Checked = true;
+                    else
+                        rblmanagemealYes.Checked = true;
                     lblmanagemealComments.Text = setComments(Comments[k]);
                     break;
                 case "Select your preferred choice of transport in the city":
+                    if (Comments[k].adminaction == 0)
+                        rbltransportchoiceNo.Checked = true;
+                    else
+                        rbltransportchoiceYes.Checked = true;
                     lbltransportchoiceComments.Text = setComments(Comments[k]);
                     break;
                 case "No of Trips you plan to take to your home country in a year":
+                    if (Comments[k].adminaction == 0)
+                        rblTripsNo.Checked = true;
+                    else
+                        rblTripsYes.Checked = true;
                     lblTripsComments.Text = setComments(Comments[k]);
                     break;
                 case "How often in a week do you typically go out (entertainment)":
+                    if (Comments[k].adminaction == 0)
+                        rblentertainmentNo.Checked = true;
+                    else
+                        rblentertainmentYes.Checked = true;
                     lblentertainmentComments.Text = setComments(Comments[k]);
                     break;
                 default:
