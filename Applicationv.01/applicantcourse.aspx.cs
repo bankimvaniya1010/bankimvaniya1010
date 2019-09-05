@@ -51,13 +51,6 @@ public partial class applicantcourse : System.Web.UI.Page
             BindCourseType(ddlcoursetype5);
             PopulateAppllicationInfo();
 
-            //BindCity(ddlCity1);
-            //BindCampus(ddlCampus1);
-            //BindCountry(ddlCountry1);
-            //BindMajor(ddlMajor1);
-            //BindMode(ddlmode1);
-            //BindCourses(ddlCourse1);
-
         }
     }
 
@@ -139,14 +132,16 @@ public partial class applicantcourse : System.Web.UI.Page
         return JsonConvert.SerializeObject(temp);
     }
     [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
-    public static string GetCourseDropdown()
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string GetCourseDropdown(int coursetypeid,int modeofstudyid ,int selectedMajorid)
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());        
         var temp = (from cm in db1.coursemaster
                     join md in db1.majordiscipline_master on cm.majordisciplineId equals md.id
-                    where md.universityid == universityID1
+                    join sm in db1.studymodemaster on cm.modeofstudyId equals sm.id
+                    join sl in db1.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
+                    where md.universityid == universityID1 && cm.majordisciplineId == selectedMajorid && cm.modeofstudyId == modeofstudyid && cm.levelofstudyId == coursetypeid
                     select new
                     {
                         coursename = cm.coursename,
@@ -161,16 +156,10 @@ public partial class applicantcourse : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var coursestype = (from ctm in db.coursetypemaster
-                               where ctm.universityid == universityID
-                               select new
-                               {
-                                   coursetypename = ctm.coursetypename,
-                                   coursetypeid = ctm.coursetypeid
-                               }).ToList();
+            var coursestype = db.studylevelmaster.ToList();
             ddl.DataSource = coursestype;
-            ddl.DataTextField = "coursetypename";
-            ddl.DataValueField = "coursetypeid";
+            ddl.DataTextField = "studylevel";
+            ddl.DataValueField = "studylevelid";
             ddl.DataBind();
             ddl.Items.Insert(0, lst);
 
@@ -182,14 +171,16 @@ public partial class applicantcourse : System.Web.UI.Page
         }
     }
 
-    private void BindCourses( DropDownList ddl)
+    private void BindCourses( DropDownList ddl, int coursetypeid, int selectedMajorid , int modeofstudyid)
     {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
             var courses = (from cm in db.coursemaster
                            join md in db.majordiscipline_master on cm.majordisciplineId equals md.id
-                           where md.universityid == universityID
+                           join sm in db.studymodemaster on cm.modeofstudyId equals sm.id
+                           join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
+                           where md.universityid == universityID && cm.majordisciplineId == selectedMajorid && cm.modeofstudyId == modeofstudyid && cm.levelofstudyId == coursetypeid
                            select new
                            {
                                coursename = cm.coursename,
@@ -372,77 +363,6 @@ public partial class applicantcourse : System.Web.UI.Page
         }
     }
 
-    //protected void ddlCollege1_SelectedIndexChanged(object sender, EventArgs e)
-    //{
-    //    BindCity(ddlCity1);
-    //    BindCampus(ddlCampus1);
-    //    BindCountry(ddlCountry1);
-    //    BindMajor(ddlMajor1);
-    //    BindMode(ddlmode1);
-    //}
-    protected void ddlCollege2_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCity(ddlCity2);
-        BindCampus(ddlCampus2);
-        BindCountry(ddlCountry2);
-        BindMajor(ddlMajor2);
-        BindMode(ddlMode2);
-        second.Attributes.Add("style", "display:block;");
-    }
-    protected void ddlCollege3_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCity(ddlCity3);
-        BindCampus(ddlCampus3);
-        BindCountry(ddlCountry3);
-        BindMajor(ddlMajor3);
-        BindMode(ddlMode3);
-        third.Attributes.Add("style", "display:block;");
-    }
-    protected void ddlCollege4_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCity(ddlCity4);
-        BindCampus(ddlCampus4);
-        BindCountry(ddlCountry4);
-        BindMajor(ddlMajor4);
-        BindMode(ddlMode4);
-        four.Attributes.Add("style", "display:block;");
-    }
-    protected void ddlCollege5_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCity(ddlCity5);
-        BindCampus(ddlCampus5);
-        BindCountry(ddlCountry5);
-        BindMajor(ddlMajor5);
-        BindMode(ddlMode5);
-        five.Attributes.Add("style", "display:block;");
-    }
-
-
-    //protected void ddlMajor1_SelectedIndexChanged(object sender, EventArgs e)
-    //{
-    //    BindCourses(ddlCourse1);
-    //}
-    protected void ddlMajor2_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCourses(ddlCourse2);
-        second.Attributes.Add("style", "display:block;");
-    }
-    protected void ddlMajor3_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCourses(ddlCourse3);
-        third.Attributes.Add("style", "display:block;");
-    }
-    protected void ddlMajor4_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCourses(ddlCourse4);
-        four.Attributes.Add("style", "display:block;");
-    }
-    protected void ddlMajor5_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindCourses(ddlCourse5);
-        five.Attributes.Add("style", "display:block;");
-    }
-
     private void PopulateAppllicationInfo()
     {
         try
@@ -465,26 +385,31 @@ public partial class applicantcourse : System.Web.UI.Page
                     {
                         BindCampus(ddlCampus1);
                         ddlCampus1.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                        hidCampusField1.Value = courseInfo.campus.ToString();
                     }
                     if (courseInfo.city != null)
                     {
                         BindCity(ddlCity1);
                         ddlCity1.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                        hidCityField1.Value = courseInfo.city.ToString();
                     }
                     if (courseInfo.country != null)
                     {
                         BindCountry(ddlCountry1);
                         ddlCountry1.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                        hidCountryField1.Value = courseInfo.country.ToString();
                     }
                     if (courseInfo.modeofstudy != null)
                     {
                         BindMode(ddlmode1);
                         ddlmode1.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                        hidModeField1.Value = courseInfo.modeofstudy.ToString();
                     }
                     if (courseInfo.majorofdiscipline != null)
                     {
                         BindMajor(ddlMajor1);
                         ddlMajor1.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                        HidMajorField1.Value = courseInfo.majorofdiscipline.ToString();
                     }
                     if (courseInfo.coursetype != null)
                     {
@@ -494,8 +419,9 @@ public partial class applicantcourse : System.Web.UI.Page
                     }
                     if (courseInfo.course != null)
                     {
-                        BindCourses(ddlCourse1);
+                        BindCourses(ddlCourse1,Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(ddlMajor1.SelectedValue), Convert.ToInt32(ddlmode1.SelectedValue));
                         ddlCourse1.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                        hidCourseField1.Value = courseInfo.course.ToString();
                     }
                     //txtCommencementdate1.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
@@ -519,12 +445,14 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCampus(ddlCampus2);
                         ddlCampus2.ClearSelection();
                         ddlCampus2.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                        hidCampusField2.Value = courseInfo.college_universityname.ToString();
                     }
                     if (courseInfo.city != null)
                     {
                         BindCity(ddlCity2);
                         ddlCity2.ClearSelection();
                         ddlCity2.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                        hidCityField2.Value = courseInfo.city.ToString();
                     }
                     if (courseInfo.country != null)
                     {
@@ -532,6 +460,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCountry(ddlCountry2);
                         ddlCountry2.ClearSelection();
                         ddlCountry2.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                        hidCountryField2.Value = courseInfo.country.ToString();
                     }
                     if (courseInfo.modeofstudy != null)
                     {
@@ -539,6 +468,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMode(ddlMode2);
                         ddlMode2.ClearSelection();
                         ddlMode2.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                        hidModeField2.Value = courseInfo.modeofstudy.ToString();
                     }
                     if (courseInfo.majorofdiscipline != null)
                     {
@@ -546,6 +476,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMajor(ddlMajor2);
                         ddlMajor2.ClearSelection();
                         ddlMajor2.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                        hidMajorField2.Value = courseInfo.majorofdiscipline.ToString();
                     }
                     if (courseInfo.coursetype != null)
                     {
@@ -555,9 +486,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     }
                     if (courseInfo.course != null)
                     {
-                        BindCourses(ddlCourse2);
+                        BindCourses(ddlCourse2, Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(ddlMajor2.SelectedValue), Convert.ToInt32(ddlMode2.SelectedValue));
                         ddlCourse2.ClearSelection();
                         ddlCourse2.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                        hidCourseField2.Value = courseInfo.course.ToString();
                     }
                     //txtCommencementdate2.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
@@ -581,12 +513,14 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCampus(ddlCampus3);
                         ddlCampus3.ClearSelection();
                         ddlCampus3.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                        hidCampusField3.Value = courseInfo.campus.ToString();
                     }
                     if (courseInfo.city != null)
                     {
                         BindCity(ddlCity3);
                         ddlCity3.ClearSelection();
                         ddlCity3.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                        hidCityField3.Value = courseInfo.city.ToString();
                     }
                     if (courseInfo.country != null)
                     {
@@ -594,6 +528,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCountry(ddlCountry3);
                         ddlCountry3.ClearSelection();
                         ddlCountry3.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                        hidCountryField3.Value = courseInfo.country.ToString();
                     }
                     if (courseInfo.modeofstudy != null)
                     {
@@ -601,6 +536,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMode(ddlMode3);
                         ddlMode3.ClearSelection();
                         ddlMode3.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                        hidModeField3.Value = courseInfo.modeofstudy.ToString();
                     }
                     if (courseInfo.majorofdiscipline != null)
                     {
@@ -608,6 +544,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMajor(ddlMajor3);
                         ddlMajor3.ClearSelection();
                         ddlMajor3.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                        hidMajorField3.Value = courseInfo.majorofdiscipline.ToString();
                     }
                     if (courseInfo.coursetype != null)
                     {
@@ -617,9 +554,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     }
                     if (courseInfo.course != null)
                     {
-                        BindCourses(ddlCourse3);
+                        BindCourses(ddlCourse3, Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(ddlMajor3.SelectedValue), Convert.ToInt32(ddlMode3.SelectedValue));
                         ddlCourse3.ClearSelection();
                         ddlCourse3.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                        hidCourseField3.Value = courseInfo.course.ToString();
                     }
                     //txtCommencementdate3.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
@@ -643,12 +581,14 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCampus(ddlCampus4);
                         ddlCampus4.ClearSelection();
                         ddlCampus4.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                        hidCampusField4.Value = courseInfo.campus.ToString();
                     }
                     if (courseInfo.city != null)
                     {
                         BindCity(ddlCity4);
                         ddlCity4.ClearSelection();
                         ddlCity4.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                        hidCityField4.Value = courseInfo.city.ToString();
                     }
                     if (courseInfo.country != null)
                     {
@@ -656,6 +596,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCountry(ddlCountry4);
                         ddlCountry4.ClearSelection();
                         ddlCountry4.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                        hidCountryField4.Value = courseInfo.country.ToString();
                     }
                     if (courseInfo.modeofstudy != null)
                     {
@@ -663,6 +604,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMode(ddlMode4);
                         ddlMode4.ClearSelection();
                         ddlMode4.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                        hidModeField4.Value = courseInfo.modeofstudy.ToString();
                     }
                     if (courseInfo.majorofdiscipline != null)
                     {
@@ -670,6 +612,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMajor(ddlMajor4);
                         ddlMajor4.ClearSelection();
                         ddlMajor4.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                        hidMajorField4.Value = courseInfo.majorofdiscipline.ToString();
                     }
                     if (courseInfo.coursetype != null)
                     {
@@ -679,9 +622,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     }
                     if (courseInfo.course != null)
                     {
-                        BindCourses(ddlCourse4);
+                        BindCourses(ddlCourse4, Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(ddlMajor4.SelectedValue), Convert.ToInt32(ddlMode4.SelectedValue));
                         ddlCourse4.ClearSelection();
                         ddlCourse4.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                        hidCourseField4.Value = courseInfo.course.ToString();
                     }
                     //txtCommencementdate4.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
@@ -705,12 +649,14 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCampus(ddlCampus5);
                         ddlCampus5.ClearSelection();
                         ddlCampus5.Items.FindByValue(courseInfo.campus.ToString()).Selected = true;
+                        hidCampusField5.Value = courseInfo.campus.ToString();
                     }
                     if (courseInfo.city != null)
                     {
                         BindCity(ddlCity5);
                         ddlCity5.ClearSelection();
                         ddlCity5.Items.FindByValue(courseInfo.city.ToString()).Selected = true;
+                        hidCityField5.Value = courseInfo.city.ToString();
                     }
                     if (courseInfo.country != null)
                     {
@@ -718,6 +664,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCountry(ddlCountry5);
                         ddlCountry5.ClearSelection();
                         ddlCountry5.Items.FindByValue(courseInfo.country.ToString()).Selected = true;
+                        hidCountryField5.Value = courseInfo.country.ToString();
                     }
                     if (courseInfo.modeofstudy != null)
                     {
@@ -725,6 +672,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMode(ddlMode5);
                         ddlMode5.ClearSelection();
                         ddlMode5.Items.FindByValue(courseInfo.modeofstudy.ToString()).Selected = true;
+                        hidModeField5.Value = courseInfo.modeofstudy.ToString();
                     }
                     if (courseInfo.majorofdiscipline != null)
                     {
@@ -732,6 +680,7 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindMajor(ddlMajor5);
                         ddlMajor5.ClearSelection();
                         ddlMajor5.Items.FindByValue(courseInfo.majorofdiscipline.ToString()).Selected = true;
+                        hidMajorField5.Value = courseInfo.majorofdiscipline.ToString();
                     }
                     if (courseInfo.coursetype != null)
                     {
@@ -741,9 +690,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     }
                     if (courseInfo.course != null)
                     {
-                        BindCourses(ddlCourse5);
+                        BindCourses(ddlCourse5, Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(ddlMajor5.SelectedValue), Convert.ToInt32(ddlMode5.SelectedValue));
                         ddlCourse5.ClearSelection();
                         ddlCourse5.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
+                        hidCourseField5.Value = courseInfo.course.ToString();
                     }
                     //txtCommencementdate5.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
