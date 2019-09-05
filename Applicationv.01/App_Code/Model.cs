@@ -581,7 +581,7 @@ public partial class applicationmaster
     public Nullable<int> majorofdiscipline { get; set; }
     public Nullable<int> coursetype { get; set; }
     public Nullable<int> course { get; set; }
-    public Nullable<System.DateTime> commencementdate { get; set; }
+    public string commencementdate { get; set; }
 }
 
 public partial class australiavisadetailmaster
@@ -957,6 +957,9 @@ public partial class australiavisadetailmaster
     public Nullable<System.DateTime> declarationdate2 { get; set; }
     public string declarationsignature3 { get; set; }
     public Nullable<System.DateTime> declarationdate3 { get; set; }
+    public string othertitle { get; set; }
+    public string authorizedothertitle { get; set; }
+    public string otheragenttitle { get; set; }
 }
 
 public partial class australiavisadocumentmaster
@@ -1078,7 +1081,12 @@ public partial class coursemaster
     public int courseid { get; set; }
     public string coursename { get; set; }
     public Nullable<int> majordisciplineId { get; set; }
-    public string levelofcode { get; set; }
+    public Nullable<int> modeofstudyId { get; set; }
+    public Nullable<int> levelofstudyId { get; set; }
+
+    public virtual majordiscipline_master majordiscipline_master { get; set; }
+    public virtual studylevelmaster studylevelmaster { get; set; }
+    public virtual studymodemaster studymodemaster { get; set; }
 }
 
 public partial class coursetypemaster
@@ -1360,7 +1368,7 @@ public partial class gte_clarification_questionmaster
     }
 
     public int id { get; set; }
-    public int gte_master1_id { get; set; }
+    public Nullable<int> gte_master1_id { get; set; }
     public string clarification_question { get; set; }
     public Nullable<bool> display_condition { get; set; }
     public string action { get; set; }
@@ -1368,6 +1376,17 @@ public partial class gte_clarification_questionmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
     public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
+}
+
+public partial class GTE_documentverification
+{
+    public int documentid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public string documentname { get; set; }
+    public Nullable<int> documentvalidationId { get; set; }
+    public Nullable<int> agentid { get; set; }
+    public Nullable<System.DateTime> lastupdatedate { get; set; }
+    public string remarks { get; set; }
 }
 
 public partial class gte_preliminary_questionmaster
@@ -1405,8 +1424,8 @@ public partial class gte_question_master_part2
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public gte_question_master_part2()
     {
-        this.gte_clarification_questionmaster = new HashSet<gte_clarification_questionmaster>();
         this.gte_question_part2_applicant_response = new HashSet<gte_question_part2_applicant_response>();
+        this.gte_clarification_questionmaster = new HashSet<gte_clarification_questionmaster>();
     }
 
     public int id { get; set; }
@@ -1418,9 +1437,9 @@ public partial class gte_question_master_part2
     public int false_risk_score { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
 }
 
 public partial class gte_question_part2_applicant_response
@@ -1565,9 +1584,18 @@ public partial class invalidatamaster
 
 public partial class majordiscipline_master
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public majordiscipline_master()
+    {
+        this.coursemaster = new HashSet<coursemaster>();
+    }
+
     public int id { get; set; }
     public string description { get; set; }
     public int universityid { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursemaster> coursemaster { get; set; }
 }
 
 public partial class managemeal
@@ -1798,6 +1826,7 @@ public partial class studylevelmaster
     public studylevelmaster()
     {
         this.students = new HashSet<students>();
+        this.coursemaster = new HashSet<coursemaster>();
     }
 
     public int studylevelid { get; set; }
@@ -1805,13 +1834,24 @@ public partial class studylevelmaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<students> students { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursemaster> coursemaster { get; set; }
 }
 
 public partial class studymodemaster
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public studymodemaster()
+    {
+        this.coursemaster = new HashSet<coursemaster>();
+    }
+
     public int id { get; set; }
     public string description { get; set; }
     public int universityid { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursemaster> coursemaster { get; set; }
 }
 
 public partial class studyoptionmaster

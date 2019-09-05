@@ -119,7 +119,12 @@
                                 <div class="form-row">
                                     <label id="label-commencementmonth1" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtCommencementdate1" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                        <%--<input id="txtCommencementdate1" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
+                                        <asp:DropDownList runat="server" ID="ddlCommencementdate">
+                                            <asp:ListItem Value="0">Please Select </asp:ListItem>
+                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
+                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +235,12 @@
                                 <div class="form-row">
                                     <label id="label-commencementmonth2" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                         <input id="txtCommencementdate2" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                         <%--<input id="txtCommencementdate2" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
+                                        <asp:DropDownList runat="server" ID="ddlCommencementdate2">
+                                            <asp:ListItem Value="0">Please Select </asp:ListItem>
+                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
+                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +352,12 @@
                                 <div class="form-row">
                                     <label id="label-commencementmonth3" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtCommencementdate3" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                        <%--<input id="txtCommencementdate3" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
+                                        <asp:DropDownList runat="server" ID="ddlCommencementdate3">
+                                            <asp:ListItem Value="0">Please Select </asp:ListItem>
+                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
+                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -453,7 +468,12 @@
                                 <div class="form-row">
                                     <label id="label-commencementmonth4" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtCommencementdate4" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                        <%--<input id="txtCommencementdate4" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
+                                        <asp:DropDownList runat="server" ID="ddlCommencementdate4">
+                                            <asp:ListItem Value="0">Please Select </asp:ListItem>
+                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
+                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -565,7 +585,12 @@
                                 <div class="form-row">
                                     <label id="label-commencementmonth5" for="commencementmonth1" class="col-md-3 col-form-label form-label">Select Commencement Date</label>
                                     <div class="col-md-6">
-                                        <input id="txtCommencementdate5" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">
+                                        <%--<input id="txtCommencementdate5" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
+                                        <asp:DropDownList runat="server" ID="ddlCommencementdate5">
+                                            <asp:ListItem Value="0">Please Select </asp:ListItem>
+                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
+                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -634,7 +659,7 @@
                 alert("Please Select Major Or Discipline");
             else if ($("#<%=hidCourseField1.ClientID%>").val() == "")
                 alert("Please Select Course");
-            else if ($("#<%=txtCommencementdate1.ClientID%>").val() == "")
+            else if ($("#<%=ddlCommencementdate.ClientID%>").val() == "0")
                 alert("Please Select Commencement Date");
             else
                 flag = true;
@@ -658,7 +683,7 @@
                     alert("Please Select Major Or Discipline");
                 else if ($("#<%=hidCourseField2.ClientID%>").val() == "")
                     alert("Please Select Course");
-                else if ($("#<%=txtCommencementdate2.ClientID%>").val() == "")
+                else if ($("#<%=ddlCommencementdate2.ClientID%>").val() == "0")
                     alert("Please Select Commencement Date");
                 else
                     flag = true;
@@ -685,7 +710,7 @@
                         alert("Please Select Major Or Discipline");
                     else if ($("#<%=hidCourseField3.ClientID%>").val() == "")
                         alert("Please Select Course");
-                    else if ($("#<%=txtCommencementdate3.ClientID%>").val() == "")
+                    else if ($("#<%=ddlCommencementdate3.ClientID%>").val() == "0")
                         alert("Please Select Commencement Date");
                     else
                         flag = true;                
@@ -711,7 +736,7 @@
                         alert("Please Select Major Or Discipline");
                     else if ($("#<%=hidCourseField4.ClientID%>").val() == "")
                         alert("Please Select Course");
-                    else if ($("#<%=txtCommencementdate4.ClientID%>").val() == "")
+                    else if ($("#<%=ddlCommencementdate4.ClientID%>").val() == "0")
                         alert("Please Select Commencement Date");
                     else
                         flag = true;                
@@ -738,7 +763,7 @@
                         alert("Please Select Major Or Discipline");
                     else if ($("#<%=hidCourseField5.ClientID%>").val() == "")
                         alert("Please Select Course");
-                    else if ($("#<%=txtCommencementdate5.ClientID%>").val() == "")
+                    else if ($("#<%=ddlCommencementdate5.ClientID%>").val() == "0")
                         alert("Please Select Commencement Date");
                     else
                         flag = true;
@@ -1529,6 +1554,11 @@
                 $("#<%=hidCourseField5.ClientID%>").val($("#<%=ddlCourse5.ClientID%>").val());
             });
 
-          
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Application_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantcourse').addClass('active');
+        });  
     </script>
 </asp:Content>
