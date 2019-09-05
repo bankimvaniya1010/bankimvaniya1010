@@ -44,11 +44,11 @@ public partial class gte_studentdetails : System.Web.UI.Page
             Bindtypeofworkexperienceyears();
             FillMonth(ddlhighestqualificationmonth);
             FillYears(ddlhighestqualificationYear);
-            BindstudyField(ddlhighestqualificationfield);
-            BindstudyField(ddlfieldofstudy);
+            BindMajorDiscipline(ddlhighestqualificationfield);
+            BindMajorDiscipline(ddlfieldofstudy);
             Bindannualfee();
-            BindCourse(ddlhighestqualificationAchieved);
-            BindCourse(ddlcourseapplied);
+            BindstudyField(ddlhighestqualificationAchieved);
+            BindstudyField(ddlcourseapplied);
             if (isuniversityGroupHead)
                 BindUnivercity(universityID);
             else
@@ -418,6 +418,24 @@ public partial class gte_studentdetails : System.Web.UI.Page
             ddl.DataSource = course;
             ddl.DataTextField = "coursename";
             ddl.DataValueField = "levelofcode";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    private void BindMajorDiscipline(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var discipline_master = db.majordiscipline_master.Where(x => x.universityid == universityID).ToList();
+            ddl.DataSource = discipline_master;
+            ddl.DataTextField = "description";
+            ddl.DataValueField = "id";
             ddl.DataBind();
             ddl.Items.Insert(0, lst);
         }

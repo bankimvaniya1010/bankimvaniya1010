@@ -204,19 +204,31 @@ public partial class gte_sop : System.Web.UI.Page
                 var condition_statements = statementList.Where(x => x.condition_applicable == true).ToList();
                 foreach (var item in condition_statements)
                 {
-                    bool? applicant_response = null;
-                    int[] item_questions_array = Array.ConvertAll(item.question_id.Split(','), int.Parse);
-                    foreach (int question in item_questions_array)
+                    if (item.value.Contains("field of study")) // For cheking field of study section 1 condition
                     {
-                        if (applicant_response == null)
-                            applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question && x.university_id == universityID)
-                                                   .Select(x => x.applicant_response.Value).FirstOrDefault();
-                        else
-                            applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question && x.university_id == universityID)
-                                                   .Select(x => x.applicant_response.Value).FirstOrDefault() && applicant_response.Value;
+                        if (applicantdetails.highestqualificationfield.Value == applicantdetails.fieldofstudyapplied.Value)
+                            statementList.Remove(condition_statements.Where(x => x.id == item.id).FirstOrDefault());
                     }
+                    /*else if (item.question_section.Contains("")) // For cheking level of study section 1 condition
+                    {   
+                        if(applicantdetails.highestqualificationfield.Value == applicantdetails.fieldofstudyapplied.Value)
+                    }*/
+                    else
+                    {
+                        bool? applicant_response = null;
+                        int[] item_questions_array = Array.ConvertAll(item.question_id.Split(','), int.Parse);
+                        foreach (int question in item_questions_array)
+                        {
+                            if (applicant_response == null)
+                                applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question && x.university_id == universityID)
+                                                       .Select(x => x.applicant_response.Value).FirstOrDefault();
+                            else
+                                applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.question_id == question && x.university_id == universityID)
+                                                       .Select(x => x.applicant_response.Value).FirstOrDefault() && applicant_response.Value;
+                        }
 
-                    statementList.Remove(condition_statements.Where(x => applicant_response.Value != Convert.ToBoolean(x.value) && x.id == item.id).FirstOrDefault());
+                        statementList.Remove(condition_statements.Where(x => applicant_response.Value != Convert.ToBoolean(x.value) && x.id == item.id).FirstOrDefault());
+                    }
                 }
             }
 
@@ -238,8 +250,13 @@ public partial class gte_sop : System.Web.UI.Page
                 }
                 if (item.statement.Contains("#Answer_CQ#"))
                 {
+                    int clarification_question_id;
                     var question_id = Convert.ToInt32(item.question_id); // Code will give error when multiple question ids are passed from DB.
-                    var clarification_question_id = db.gte_clarification_questionmaster.Where(x => x.gte_master1_id == question_id).Select(x => x.id).FirstOrDefault();
+                    if (item.question_section == "section 1")
+                        clarification_question_id = Convert.ToInt32(item.question_id);
+                    else
+                        clarification_question_id = db.gte_clarification_questionmaster.Where(x => x.gte_master1_id == question_id).Select(x => x.id).FirstOrDefault();
+
                     var response = db.gte_clarification_applicantresponse
                                      .Where(x => x.clarification_question_id == clarification_question_id && x.applicant_id == UserID && x.university_id == universityID)
                                      .Select(x => x.applicant_response).FirstOrDefault();
@@ -257,12 +274,10 @@ public partial class gte_sop : System.Web.UI.Page
                     item.statement = item.statement.Replace("#age#", Convert.ToString(currentAge.Years) + " years");
                 if (item.statement.Contains("#Country_of_highest_educational_qualification#"))
                     item.statement = item.statement.Replace("#Country_of_highest_educational_qualification#", highestQualificationCountry);
-                if (item.statement.Contains("#Answer_12#"))
-                    item.statement = item.statement.Replace("#Answer_12#", applicantdetails.levelofcourse);
                 if (item.statement.Contains("#Answer_14#"))
                     item.statement = item.statement.Replace("#Answer_14#", applicantdetails.coursename);
                 if (item.statement.Contains("#Name_of_Highest_education#"))
-                    item.statement = item.statement.Replace("#Name_of_Highest_education#", applicantdetails.highestqualificationname);
+                    item.statement = item.statement.Replace("#Name_of_Highest_education#", applicantdetails.highestqualificationname); // Need to check and confirm
                 if (item.statement.Contains("#years, months#"))
                 {
                     var highest_eduDate = applicantdetails.highestqualificationdate.Split('-');
@@ -284,9 +299,15 @@ public partial class gte_sop : System.Web.UI.Page
                     var experience = db.workexperienceyearsmaster.Where(x => x.workexperienceyearsid == applicantdetails.workexperience).Select(x => x.description).FirstOrDefault();
                     item.statement = item.statement.Replace("#Work_Experience#", experience);
                 }
+                if (item.statement.Contains("#Answer_12#"))
+                {
+                    int level = Convert.ToInt32(applicantdetails.levelofcourse);
+                    var levelOfCourse = db.studylevelmaster.Where(x => x.studylevelid == level).Select(x => x.studylevel).FirstOrDefault();
+                    item.statement = item.statement.Replace("#Answer_12#", levelOfCourse);
+                }
                 if (item.statement.Contains("#Answer_13#"))
                 {
-                    var study_field = db.registrationcourses.Where(x => x.courseid == applicantdetails.fieldofstudyapplied).Select(x => x.coursename).FirstOrDefault();
+                    var study_field = db.majordiscipline_master.Where(x => x.id == applicantdetails.fieldofstudyapplied && x.universityid == universityID).Select(x => x.description).FirstOrDefault();
                     item.statement = item.statement.Replace("#Answer_13#", study_field);
                 }
                 if (item.statement.Contains("#Answer_19#"))
