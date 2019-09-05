@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -35,14 +36,51 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                 displayLabel("GTE Question Part 2 not completed. Please answer all GTE Questions part 2 before attempting this section.");
             else
             {
+                var details = new gte_applicantdetails();
+                var isFullService = (bool)Session["FullService"];
+                if (isFullService)
+                {
+                    // Set to empty values to avoid errors, below details are missing from applicant details information.
+                    details.highestqualificationfield = 1;
+                    details.fieldofstudyapplied = 1;
+                }
+                else
+                    details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
                 var clarificationansweredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
-               
+
+                // Section 1 clarification questions
+                var section1_clarification_questionList = clarification_questionsList.Where(x => x.gte_master1_id == null && x.display_condition == null).ToList();
+                clarification_questionsList.RemoveAll(x => x.gte_master1_id == null && x.display_condition == null);
+
                 foreach (var item in applicant_response)
-                    clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
+                    clarification_questionsList.RemoveAll(x => x.gte_master1_id.Value == item.question_id && x.display_condition.Value != item.applicant_response.Value);
+
+                if (clarification_questionsList.Any(x => x.action != null))
+                {
+                    var sendEmailQuestion = clarification_questionsList.Where(x => x.action != null && x.action == "Send Email").ToList();
+                    clarification_questionsList.RemoveAll(x => x.action != null && x.action == "Send Email");
+                    foreach (var item in clarificationansweredQuestion)
+                    {
+                        if (!(sendEmailQuestion.Count > 0))
+                            break;
+
+                        sendEmailQuestion.RemoveAll(x => x.id == item.clarification_question_id);
+                    }
+                    clarificationansweredQuestion.RemoveAll(x => x.gte_clarification_questionmaster.action != null && x.gte_clarification_questionmaster.action == "Send Email");
+                    if (sendEmailQuestion.Count > 0)
+                        sendEmailsClarificationNotification(sendEmailQuestion);
+                }
+
+                if (details.highestqualificationfield.Value != details.fieldofstudyapplied.Value) // For adding field of study clarification question
+                    clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display Field of study clarification").FirstOrDefault());
 
                 if (clarificationansweredQuestion.Count >= clarification_questionsList.Count)
                     displayLabel("All questions have been answered in this part");
+                else
+                    foreach (var item in clarificationansweredQuestion)
+                        clarification_questionsList.RemoveAll(x => x.id == item.clarification_question_id);
 
                 if (clarification_questionsList.Count == 0)
                     displayLabel("Completed");
@@ -56,6 +94,29 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
         }
     }
 
+    private void sendEmailsClarificationNotification(List<gte_clarification_questionmaster> sendEmailQuestionList)
+    {
+        try
+        {
+            var studentEmailAddress = db.students.Where(x => x.studentid == UserID).Select(x => x.email).FirstOrDefault();
+            var name = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.firstname).FirstOrDefault();
+            StringBuilder sb = new StringBuilder();
+            foreach (var question in sendEmailQuestionList)
+            {
+                sb.Clear();
+                sb.Append("Dear " + name + ",<br/><br/>");
+                sb.Append("Following your attempt to stage 2 assessment, we would like you to be notified regarding laws and regulation.<br/>");
+                sb.Append(question.clarification_question + "<br/>");
+                sb.Append("<br/> Thank You <br/>");
+                sb.Append("The Application Center Admin Team <br/>");
+                objCom.SendMail(studentEmailAddress, sb.ToString(), "Test Clarification Notification");
+
+                saveClarificationResponse(question.id, "Email Sent");
+            }
+        }
+        catch (Exception e) { objLog.WriteLog(e.ToString()); }
+    }
+
     protected void btnsubmit_Click(object sender, EventArgs e)
     {
         int questionId = 0;
@@ -65,22 +126,8 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             {
                 Label labelId = (Label)item.FindControl("lblno");
                 questionId = Convert.ToInt32(labelId.Text);
-
-                bool responseInsertedForQuestion = db.gte_clarification_applicantresponse.Any(x => x.applicant_id == UserID && x.university_id == UniversityID && x.clarification_question_id == questionId);
-                if (!responseInsertedForQuestion)
-                {
-                    TextBox response = (TextBox)item.FindControl("txtResponse");
-                    gte_clarification_applicantresponse answer = new gte_clarification_applicantresponse()
-                    {
-                        applicant_id = UserID,
-                        clarification_question_id = questionId,
-                        applicant_response = response.Text,
-                        university_id = UniversityID
-                    };
-
-                    db.gte_clarification_applicantresponse.Add(answer);
-                    db.SaveChanges();
-                }
+                TextBox response = (TextBox)item.FindControl("txtResponse");
+                saveClarificationResponse(questionId, response.Text);
             }
 
             displayLabel("Thank you for answering all clarification questions.");
@@ -97,5 +144,27 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
         completedDiv.Style.Remove("display");
         clarity.Visible = false;
         lblCompleted.Text = labelMsg;
+    }
+
+    private void saveClarificationResponse(int questionID, string response)
+    {
+        try
+        {
+            bool responseInsertedForQuestion = db.gte_clarification_applicantresponse.Any(x => x.applicant_id == UserID && x.university_id == UniversityID && x.clarification_question_id == questionID);
+            if (!responseInsertedForQuestion)
+            {
+                gte_clarification_applicantresponse answer = new gte_clarification_applicantresponse()
+                {
+                    applicant_id = UserID,
+                    clarification_question_id = questionID,
+                    applicant_response = response,
+                    university_id = UniversityID
+                };
+
+                db.gte_clarification_applicantresponse.Add(answer);
+                db.SaveChanges();
+            }
+        }
+        catch (Exception e) { objLog.WriteLog(e.ToString()); }
     }
 }
