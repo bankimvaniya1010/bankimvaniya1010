@@ -50,6 +50,7 @@ public partial class personaldetails : System.Web.UI.Page
             objCom.BindCountries(ddlOtherNation);
             objCom.BindCountries(ddlSpouseNationality);
             BindMaritalstatus();
+            BindHighestStudy();
             BindAgent();
             BindTitle();
             FillMonth(ddlMonth);
@@ -72,6 +73,24 @@ public partial class personaldetails : System.Web.UI.Page
             GlobalVariables.universityMaxAge = maxAge;
             GlobalVariables.universityMinAge = minAge;
         }
+    }
+    public void BindHighestStudy()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var title = db.studylevelmaster.ToList();
+            ddlhigheststudy.DataSource = title;
+            ddlhigheststudy.DataTextField = "studylevel";
+            ddlhigheststudy.DataValueField = "studylevelid";
+            ddlhigheststudy.DataBind();
+            ddlhigheststudy.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+
     }
     public void FillMonth(DropDownList ddl)
     {
@@ -243,6 +262,10 @@ public partial class personaldetails : System.Web.UI.Page
                     rbtnMale.Checked = true;
                 else if (profileInfo.gender == 0)
                     rbtnFemale.Checked = true;
+                if (profileInfo.higheststudycompleted != null) {
+                    ddlhigheststudy.ClearSelection();
+                    ddlhigheststudy.Items.FindByValue(profileInfo.higheststudycompleted.ToString()).Selected = true;
+                }
                 if (profileInfo.nationality != null)
                 {
                     string appendText = "_False";
@@ -447,6 +470,9 @@ public partial class personaldetails : System.Web.UI.Page
             objapplicantDetail.universityid = universityID;
             objapplicantDetail.personaldetailsavedtime = DateTime.Now;
             objapplicantDetail.ispersonaldetailspresent = true;
+            if (ddlhigheststudy.SelectedValue != null) {
+                objapplicantDetail.higheststudycompleted =Convert.ToInt32(ddlhigheststudy.SelectedValue);
+            }
             if (ddlMarital.SelectedItem.Text == "Married")
             {
                 string spouseDateofBirth = ddlSpouseDOBYear.SelectedValue + "-" + ddlSpouseDOBMonth.SelectedValue + "-" + hidSpouseDOBDateField.Value;
@@ -689,6 +715,10 @@ public partial class personaldetails : System.Web.UI.Page
                     case "IF DIDN'T FIND AGENT NAME IN THE LIST THEN ADD HIS EMAIL ID TO SENT REGISTRATION LINK":
                         addnewagent.Attributes.Add("style", "display:block;");
                         labeladdnewagent.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Highest study level successfully completed":
+                        higheststudy.Attributes.Add("style", "display:block;");
+                        lblhigheststudy.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
                     default:
