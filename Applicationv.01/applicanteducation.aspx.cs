@@ -295,10 +295,6 @@ public partial class applicanteducation : System.Web.UI.Page
                         diplomacontactMobile.Attributes.Add("style", "display:block;");
                         labeldiplomacontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HIGHEST EDUCATION":
-                        higestEducation.Attributes.Add("style", "display:block;");
-                        labelhigestEducation.InnerHtml = setInnerHtml(fields[k]);
-                        break;
                     case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
                         Secondary.Attributes.Add("style", "display:block;");
                         labelSecondary.InnerHtml = setInnerHtml(fields[k]);
@@ -517,11 +513,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         ichighercontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icdiplomacontactMobile.Attributes.Add("style", "display:block;");
                         icdiplomacontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        break;
-                    case "HIGHEST EDUCATION":
-                        ichigestEducation.Attributes.Add("style", "display:block;");
-                        ichigestEducation.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        break;
+                        break;                  
                     case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
                         icSecondary.Attributes.Add("style", "display:block;");
                         icSecondary.Attributes.Add("data-tipso", setTooltips(fields[k]));
@@ -727,7 +719,7 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 txtHighSchoolcontactEmail.Value = EducationInfo.highschoolverificationemail;
                 txtHighSchoolcontactMobile.Value = EducationInfo.highschoolverificationmobile;
-                txtHigestEducation.Value = EducationInfo.highestdegree;
+                
                 /// High School Details End-----
 
                 /// Secondary Details
@@ -1065,7 +1057,7 @@ public partial class applicanteducation : System.Web.UI.Page
             objEdu.highschoolverificationrelationship = Convert.ToInt32(ddlHighSchoolVerificationRelationship.SelectedValue);
             objEdu.highschoolverificationemail = txtHighSchoolcontactEmail.Value;
             objEdu.highschoolverificationmobile = txtHighSchoolcontactMobile.Value;
-            objEdu.highestdegree = txtHigestEducation.Value;
+            
             /// High School Details End-----
 
             /// Secondary Details

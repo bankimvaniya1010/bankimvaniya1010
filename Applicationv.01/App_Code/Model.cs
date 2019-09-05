@@ -214,6 +214,7 @@ public partial class applicantdetails
     public Nullable<int> spousenationality { get; set; }
     public Nullable<System.DateTime> spousedob { get; set; }
     public Nullable<System.DateTime> marriagedate { get; set; }
+    public Nullable<int> higheststudycompleted { get; set; }
     public Nullable<int> isdisable { get; set; }
     public string disabilitydescription { get; set; }
     public string postaladdrees1 { get; set; }
@@ -315,7 +316,6 @@ public partial class applicanteducationdetails
     public string highschoolverificationmobile { get; set; }
     public string highschoolverificationkey { get; set; }
     public Nullable<bool> ishighschoolverified { get; set; }
-    public string highestdegree { get; set; }
     public Nullable<int> issecondarydone { get; set; }
     public Nullable<int> secondarycountry { get; set; }
     public string secondarystartdate { get; set; }
@@ -894,6 +894,7 @@ public partial class australiavisadetailmaster
     public string relationship671 { get; set; }
     public Nullable<int> havereceiveassistance { get; set; }
     public string title { get; set; }
+    public string othertitle { get; set; }
     public string assistedpersonfamilyname { get; set; }
     public string assistedpersongivenname { get; set; }
     public string assistedpersonaddress { get; set; }
@@ -916,6 +917,7 @@ public partial class australiavisadetailmaster
     public Nullable<int> havewrittencommunications { get; set; }
     public Nullable<int> haveauthorisedperson { get; set; }
     public string authorisedpersontitle { get; set; }
+    public string authorizedothertitle { get; set; }
     public string authorisedpersofamilynname { get; set; }
     public string authorisedpersongivenname { get; set; }
     public string authorisedpersonaddress { get; set; }
@@ -929,6 +931,7 @@ public partial class australiavisadetailmaster
     public string migratioagentNo { get; set; }
     public string offshoreagentId { get; set; }
     public string agenttitle { get; set; }
+    public string otheragenttitle { get; set; }
     public string agentfamilyname { get; set; }
     public string agentgivenname { get; set; }
     public string agentcompanyname { get; set; }
@@ -957,9 +960,6 @@ public partial class australiavisadetailmaster
     public Nullable<System.DateTime> declarationdate2 { get; set; }
     public string declarationsignature3 { get; set; }
     public Nullable<System.DateTime> declarationdate3 { get; set; }
-    public string othertitle { get; set; }
-    public string authorizedothertitle { get; set; }
-    public string otheragenttitle { get; set; }
 }
 
 public partial class australiavisadocumentmaster
@@ -1424,8 +1424,8 @@ public partial class gte_question_master_part2
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public gte_question_master_part2()
     {
-        this.gte_question_part2_applicant_response = new HashSet<gte_question_part2_applicant_response>();
         this.gte_clarification_questionmaster = new HashSet<gte_clarification_questionmaster>();
+        this.gte_question_part2_applicant_response = new HashSet<gte_question_part2_applicant_response>();
     }
 
     public int id { get; set; }
@@ -1437,9 +1437,9 @@ public partial class gte_question_master_part2
     public int false_risk_score { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
 }
 
 public partial class gte_question_part2_applicant_response
@@ -1825,17 +1825,18 @@ public partial class studylevelmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public studylevelmaster()
     {
-        this.students = new HashSet<students>();
         this.coursemaster = new HashSet<coursemaster>();
+        this.students = new HashSet<students>();
     }
 
     public int studylevelid { get; set; }
     public string studylevel { get; set; }
+    public string levelofcode { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<students> students { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<coursemaster> coursemaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<students> students { get; set; }
 }
 
 public partial class studymodemaster

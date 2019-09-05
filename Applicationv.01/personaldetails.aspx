@@ -248,6 +248,17 @@
                                     </div>
                                 </div>
                             </div>
+                             <div class="list-group-item" id="higheststudy" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-higheststudy">
+                                    <div class="form-row">
+                                        <label id="lblhigheststudy" runat="server" for="higheststudy" class="col-md-3 col-form-label form-label">Highest study level successfully completed</label>
+                                        <div class="col-md-6">
+                                        <asp:DropDownList runat="server" ID="ddlhigheststudy"  CssClass="form-control">
+                                        </asp:DropDownList>    
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="list-group-item" id="disability" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-disability">
                                     <div class="form-row">
@@ -489,6 +500,8 @@
             else if (!$("#<%=marital.ClientID%>").is(':hidden') && $("#<%=ddlMarital.ClientID%>").val() === "0")
                 alert("Please select valid marital status");
             else if ($("#<%=ddlMarital.ClientID%> option:selected").text() === "Married" && !isValidMaritalDetails()) { }
+            else if (!$("#<%=higheststudy.ClientID%>").is(':hidden') && $("#<%=ddlhigheststudy.ClientID%>").val() == "0")
+                alert("Please select Highest study level successfully completed");
             else if (!$("#<%=disability.ClientID%>").is(':hidden') && !($("#<%=rblDisabilityYes.ClientID%>").is(':checked') || $("#<%=rblDisabilityNo.ClientID%>").is(':checked')))
                 alert("Please Select Option to record disability");
             else if (!$("#<%=disabilitydesc.ClientID%>").is(':hidden') && $("#<%=ddlDisability.ClientID%>").val() === "0")

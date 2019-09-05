@@ -697,8 +697,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             worksheet.Cells[2, 15] = highschoolverificationRelationship;
             worksheet.Cells[2, 16] = string.IsNullOrEmpty(details.highschoolverificationemail) ? "N/A" : details.highschoolverificationemail;
             worksheet.Cells[2, 17] = string.IsNullOrEmpty(details.highschoolverificationmobile) ? "N/A" : details.highschoolverificationmobile;
-            worksheet.Cells[2, 18] = string.IsNullOrEmpty(details.highestdegree) ? "N/A" : details.highestdegree;
-
+           
             /// Sec School
             worksheet.Cells[2, 19] = issecondaryDone;
             worksheet.Cells[2, 20] = secondaryCountry;

@@ -381,7 +381,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                 else
                 {
                     lblhighschool.Text = "No- I do not have a high school qualification ";
-                    lblhigestEducation.Text = EducationInfo.highestdegree;
+                  //  lblhigestEducation.Text = EducationInfo.highestdegree;
                     HideHighSchool();
                 }
 

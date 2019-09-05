@@ -25,6 +25,7 @@ public partial class GTEEntities : DbContext
         throw new UnintentionalCodeFirstException();
     }
 
+    public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
     public virtual DbSet<accommodationplan> accommodationplan { get; set; }
     public virtual DbSet<admincomments> admincomments { get; set; }
     public virtual DbSet<admintooltips> admintooltips { get; set; }
@@ -57,6 +58,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantuniversitymapping> applicantuniversitymapping { get; set; }
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
+    public virtual DbSet<applicationmaster> applicationmaster { get; set; }
     public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
     public virtual DbSet<australiavisadocumentmaster> australiavisadocumentmaster { get; set; }
     public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
@@ -66,6 +68,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<clarificationquestionsmaster> clarificationquestionsmaster { get; set; }
     public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
+    public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<coursetypemaster> coursetypemaster { get; set; }
     public virtual DbSet<credentialmaster> credentialmaster { get; set; }
     public virtual DbSet<customfieldmaster> customfieldmaster { get; set; }
@@ -87,6 +90,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_answer_master> gte_answer_master { get; set; }
     public virtual DbSet<gte_applicantdetails> gte_applicantdetails { get; set; }
     public virtual DbSet<gte_applicantdocument> gte_applicantdocument { get; set; }
+    public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
+    public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
     public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
     public virtual DbSet<gte_preliminaryapplicantanswers> gte_preliminaryapplicantanswers { get; set; }
     public virtual DbSet<gte_progressbar> gte_progressbar { get; set; }
@@ -144,11 +149,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
-    public virtual DbSet<GTE_documentverification> GTE_documentverification { get; set; }
-    public virtual DbSet<applicationmaster> applicationmaster { get; set; }
-    public virtual DbSet<coursemaster> coursemaster { get; set; }
-    public virtual DbSet<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
-    public virtual DbSet<gte_clarification_questionmaster> gte_clarification_questionmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

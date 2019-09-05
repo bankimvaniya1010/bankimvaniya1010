@@ -194,18 +194,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="higestEducation" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-higestEducation">
-                                    <div class="form-row">
-                                        <label id="labelhigestEducation" runat="server" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
-                                        <div class="col-md-6">
-                                            <input id="txtHigestEducation" runat="server" type="text" placeholder="Highest Education" value="" class="form-control">
-                                            <span class="helpicon"><i id="ichigestEducation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            
                             <div class="list-group-item" id="highshoolgrade" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                     <div class="form-row">
@@ -1126,7 +1115,7 @@
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-            $("#<%=higestEducation.ClientID%>").hide()
+           
             // Attach Button click event listener 
             $("#<%=btn10th.ClientID%>").click(function () {
                 var country = $("#<%=ddlCountryHighSchool.ClientID%>").val();
@@ -1419,7 +1408,6 @@
                 $("#highschoolYear").show();
                 $("#<%=highschoolName.ClientID%>").show();
                 $("#<%=highschoolQualificationtype.ClientID%>").show();
-                $("#<%=higestEducation.ClientID%>").hide();
                 $("#<%=highshoolgrade.ClientID%>").show();
                 $("#<%=highschoolcontactMobile.ClientID%>").show();
                 $("#SecondarySection").show();
@@ -1438,8 +1426,7 @@
                 $("#<%=highschoolcontactEmail.ClientID%>").hide();
                 $("#highschoolYear").show();
                 $("#<%=highschoolName.ClientID%>").show();
-                $("#<%=highschoolQualificationtype.ClientID%>").show();
-                $("#<%=higestEducation.ClientID%>").hide();
+                $("#<%=highschoolQualificationtype.ClientID%>").show();                
                 $("#SecondarySection").hide();
                 $("#<%=highshoolgrade.ClientID%>").hide();
                 $("#<%=highschoolcontactMobile.ClientID%>").hide();
@@ -1459,7 +1446,6 @@
                 $("#highschoolYear").hide();
                 $("#<%=highschoolName.ClientID%>").hide();
                 $("#<%=highschoolQualificationtype.ClientID%>").hide();
-                $("#<%=higestEducation.ClientID%>").show();
                 $("#SecondarySection").hide();
                 $("#<%=highshoolgrade.ClientID%>").hide();
                 $("#<%=highschoolcontactMobile.ClientID%>").hide();
@@ -1478,9 +1464,7 @@
             var emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             var flag = false;
             if ((!$("#<%=highschool.ClientID%>").is(':hidden')) && !(($("#<%=rblHighYes.ClientID%>").is(":checked")) || ($("#<%=rblHighNo.ClientID%>").is(":checked")) || ($("#<%=rblHighNot.ClientID%>").is(":checked"))))
-                alert("Please Select Option to record High School details");
-            else if ((!$("#<%=higestEducation.ClientID%>").is(':hidden')) && ($("#<%=txtHigestEducation.ClientID%>").val() == ""))
-                alert("Please enter highest education what you have");
+                alert("Please Select Option to record High School details");            
             else if ((!$("#<%=highschoolCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlCountryHighSchool.ClientID%>").val() == "0"))
                 alert("Please select  high school country");
             else if ((!$("#<%=highschoolstartDate.ClientID%>").is(':hidden')) && (($("#<%=ddlHighSchoolStartDateMonth.ClientID%>").val() == "0") || ($("#<%=ddlHighSchoolStartDateYear.ClientID%>").val() == "0")))
