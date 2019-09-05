@@ -165,5 +165,6 @@
 [dir=ltr] .modal-header .close{float: none;height: auto;text-align: right;padding-bottom: 5px;padding-top: 10px;}
 [dir=ltr] .navbar-brand{font-size: 20px;}
 [dir=ltr] .mdk-header-layout__content{padding-top:114px !important;}
-
-
+[dir=ltr] button, [dir=ltr] select {
+    height: auto;
+}

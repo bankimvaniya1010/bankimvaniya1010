@@ -400,7 +400,7 @@
         }
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Application_list').addClass('open');
+            $('#studentapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantfunding').addClass('active');
         });
