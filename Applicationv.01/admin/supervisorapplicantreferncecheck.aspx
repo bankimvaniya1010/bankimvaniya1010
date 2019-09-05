@@ -13,32 +13,60 @@
         {
             string fieldName = Comments[k].fieldname;
             string AdminComments = Comments[k].comments;
+            int Adminaction = Convert.ToInt32(Comments[k].adminaction);
             int RefrenceCount = referenccheckList.Count;
             for (int i = 0; i < RefrenceCount; i++)
             {
             %>
-           <% if (fieldName == Name + (i + 1))
-        {%>
+            <% if (fieldName == Name + (i + 1))
+        {%> 
 
-            $("#lblName<%=i%>").text('<%=AdminComments%>');
-          <%   }
+
+            $("#txtName<%=i%>").val('<%=AdminComments%>');
+            <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=Name<%=i%>]')[1].checked = true;
+
+            <% }
+        else
+        { %>
+            $('input:radio[name=Name<%=i%>]')[0].checked = true;
+          <%  }
+        }
         else if (fieldName == Email + (i + 1))
         {%>
 
-            $("#lblEmail<%=i%>").text('<%=AdminComments%>');
-          <%   }
-        else if (fieldName == Mobile + (i + 1))
+            $("#txtEmail<%=i%>").val('<%=AdminComments%>');
+           <%   if (Adminaction == 0)
         {%>
-
-            $("#lblmobile<%=i%>").text('<%=AdminComments%>');
-          <%   }
+            $('input:radio[name=Email<%=i%>]')[1].checked = true;
 
 
+            <% }
+        else
+        { %>
+            $('input:radio[name=Email<%=i%>]')[0].checked = true;
+          <%  }
+        }
+        else if (fieldName == Mobile + (i + 1))
+        {%> 
+
+            $("#txtMobile<%=i%>").val('<%=AdminComments%>');
+            <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=Mobile<%=i%>]')[1].checked = true;
+
+            <% }
+        else
+        { %>
+            $('input:radio[name=Mobile<%=i%>]')[0].checked = true;
+          <%  }
+                }
             }
         }
         %>
         }
-       
+
     </script>
 </asp:Content>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
@@ -50,7 +78,7 @@
         <h1 class="h2">Applicant Reference Check</h1>
         <div class="card">
             <div class="list-group list-group-fit">
-              
+
 
                 <div class="card">
                     <% 
@@ -67,7 +95,8 @@
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].name %></span>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4">   <input type="radio" id="<%="rblNameYes" + k %>" name="<%="Name" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblNameNo" + k %>" name="<%="Name" + k %>" value="0">No
                                         <span id="<%="lblName" + k %>"></span>
                                     </div>
                                 </div>
@@ -81,7 +110,9 @@
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].mobile %></span>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4"> <input type="radio" id="<%="rblMobileYes" + k %>" name="<%="Mobile" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblMobileNo" + k %>" name="<%="Mobile" + k %>" value="0">
+                                        No
                                         <span id="<%="lblmobile" + k %>"></span>
                                     </div>
                                 </div>
@@ -95,7 +126,8 @@
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].email %></span>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-4"> <input type="radio" id="<%="rblEmailYes" + k %>" name="<%="Email" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblEmailNo" + k %>" name="<%="Email" + k %>" value="0">No
                                         <span id="<%="lblEmail" + k %>"></span>
                                     </div>
                                 </div>
@@ -103,21 +135,22 @@
                         </div>
 
                         <%} %><div id="mainDiv" runat="server"></div>
-                         <div class="list-group-item">
-                    <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
-                        <div class="form-row">
-                            <label for="agentList" class="col-md-3 col-form-label form-label">Superviosr Action</label>
-                            <div class="col-md-4">
-                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction"> Approved
+                        <div class="list-group-item">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
+                                <div class="form-row">
+                                    <label for="agentList" class="col-md-3 col-form-label form-label">Superviosr Action</label>
+                                    <div class="col-md-4">
+                                        <input type="radio" id="rbApproved" runat="server" name="supervisorAction">
+                                        Approved
                                 <input type="radio" id="rbDenied" runat="server" name="supervisorAction">Further Review
-                            </div>
-                            <div class="col-md-4">
-                                <asp:TextBox ID="txtComments" TextMode="MultiLine" CssClass="form-control"  runat="server"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <asp:TextBox ID="txtComments" TextMode="MultiLine" CssClass="form-control" runat="server"></asp:TextBox>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                        
+
                         <div class="list-group-item" id="employerwebsite">
                             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                 <div class="form-row">

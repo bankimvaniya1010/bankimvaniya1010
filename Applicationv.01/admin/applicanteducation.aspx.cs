@@ -304,10 +304,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         highercontactMobileOther.Attributes.Add("style", "display:block;");
                         labelhighercontactMobileOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HIGHEST EDUCATION":
-                        higestEducation.Attributes.Add("style", "display:block;");
-                        labelhigestEducation.InnerHtml = setInnerHtml(fields[k]);
-                        break;
+                  
                     case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
                         Secondary.Attributes.Add("style", "display:block;");
                         labelSecondary.InnerHtml = setInnerHtml(fields[k]);
@@ -602,10 +599,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         ichighercontactMobileOther.Attributes.Add("style", "display:block;");
                         ichighercontactMobileOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HIGHEST EDUCATION":
-                        ichigestEducation.Attributes.Add("style", "display:block;");
-                        ichigestEducation.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        break;
+                  
                     case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
                         icSecondary.Attributes.Add("style", "display:block;");
                         icSecondary.Attributes.Add("data-tipso", setTooltips(fields[k]));
@@ -664,13 +658,13 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 {
                     lblhighschool.Text = "Yes";
                     BindHighSchoolDetails(EducationInfo);
-                    higestEducation.Visible = false;
+                   // higestEducation.Visible = false;
                 }
                 else if (EducationInfo.ishighschooldone == 2)
                 {
                     lblhighschool.Text = "No- I am currently studying for my high school qualification";
                     BindHighSchoolDetails(EducationInfo);
-                    higestEducation.Visible = false;
+                //    higestEducation.Visible = false;
                 }
                 else
                 {
@@ -1293,13 +1287,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rblhighschoolYes.Checked = true;
                     txthighschool.Value = setComments(Comments[k]);
                     break;
-                case "Highest Education":
-                    if (Comments[k].adminaction == 0)
-                        rblhigestEducationNo.Checked = true;
-                    else
-                        rblhigestEducationYes.Checked = true;
-                    txthigestEducation.Value = setComments(Comments[k]);
-                    break;
+             
                 case "Country of High School Education":
                     if (Comments[k].adminaction == 0)
                         rblhighschoolCountryNo.Checked = true;
@@ -2117,10 +2105,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             else
             {
                 adminInputs.Add("Have you completed high school", txthighschool.Value.Trim() + "~" + (rblhighschoolNo.Checked == true ? 0 : 1));
-                if (higestEducation.Style.Value != "display: none")
-                    adminInputs.Add("Highest Education", txthigestEducation.Value.Trim() + "~" + (rblhigestEducationNo.Checked == true ? 0 : 1));
-
-            }
+                           }
             if ((Secondary.Style.Value != "display: none") && ((lblSecondary.Text == "Yes") || (lblSecondary.Text == "No - I am currently still studying for my Senior Secondary")))
             {
                 adminInputs.Add("Have you completed Senior Secondary school? (Year 12)", txtSecondary.Value.Trim() + "~" + (rblSecondaryNo.Checked == true ? 0 : 1));
@@ -2376,7 +2361,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
     private void HideHighSchool()
     {
 
-        higestEducation.Visible = true;
+     
 
         highschoolCountry.Visible = false;
         highschoolstartDate.Visible = false;

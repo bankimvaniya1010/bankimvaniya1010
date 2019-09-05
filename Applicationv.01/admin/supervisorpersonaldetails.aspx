@@ -47,6 +47,22 @@
 
                     </div>
                 </div>
+                <div class="list-group-item" id="passportsameasFirstName" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
+                        <div class="form-row">
+                            <label id="labelpassportsameasFirstName" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport First Name same as Above </label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblpassportsameasFirstName" runat="server"></asp:Label>
+
+                            </div>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblpassportsameasFirstNameYes" GroupName="passportsameasFirstName" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblpassportsameasFirstNameNo" GroupName="passportsameasFirstName" Text="No" runat="server" />
+                                <asp:Label ID="lblpassportsameasFirstNameComments" runat="server"></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="list-group-item" id="lastname" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-lastname">
                         <div class="form-row">
@@ -62,6 +78,23 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+                <div class="list-group-item" id="passportsameasLastName" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
+                        <div class="form-row">
+                            <label id="labelpassportsameasLastName" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport Last Name same as Above</label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblpassportsameasLastName" runat="server"></asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblpassportsameasLastNameYes" GroupName="passportsameasLastName" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblpassportsameasLastNameNo" GroupName="passportsameasLastName" Text="No" runat="server" />
+                                <span class="helpicon"><i id="icpassportsameasLastName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+
+                                <asp:Label ID="lblpassportsameasLastNameComments" runat="server"></asp:Label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item" id="preferedname" runat="server" style="display: none">
@@ -93,6 +126,22 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+                <div class="list-group-item" id="passportsameasmiddlename" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
+                        <div class="form-row">
+                            <label id="labelpassportsameasmiddlename" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport Middle Name same as Above</label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblpassportsameasmiddlename" runat="server"></asp:Label>
+                            </div>
+                            <div class="col-md-4">
+                                <asp:RadioButton ID="rblpassportsameasmiddlenameYes" GroupName="passportsameasmiddlename" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblpassportsameasmiddlenameNo" GroupName="passportsameasmiddlename" Text="No" runat="server" />
+                                <span class="helpicon"><i id="icpassportsameasmiddlename" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <asp:Label ID="lblpassportsameasmiddlenameComments" runat="server"></asp:Label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item" id="dob" runat="server" style="display: none">

@@ -70,17 +70,21 @@ public partial class admin_personaldetail : System.Web.UI.Page
                 }
                 lblTitle.Text = Title;
                 if (profileInfo.ispassportfirstname.HasValue && profileInfo.ispassportfirstname.Value)
-                    lblFirstName.Text = "Same as Passport firstname";
+                    lblpassportsameasFirstName.Text = "Yes";
                 else
-                    lblFirstName.Text = profileInfo.firstname;
+                    lblpassportsameasFirstName.Text = "No";
                 if (profileInfo.ispassportlastname.HasValue && profileInfo.ispassportlastname.Value)
-                    lblLastName.Text = "Same as Passport lastname";
+                    lblpassportsameasLastName.Text = "Yes";
                 else
-                    lblLastName.Text = profileInfo.lastname;
+                    lblLastName.Text = "No";
                 if (profileInfo.ispassportmiddlename.HasValue && profileInfo.ispassportmiddlename.Value)
-                    lblMiddleName.Text = "Same as Passport middlename";
+                    lblpassportsameasmiddlename.Text = "Yes";
                 else
-                    lblMiddleName.Text = profileInfo.middlename;
+                    lblpassportsameasmiddlename.Text = "No";
+
+                lblFirstName.Text = profileInfo.firstname;
+                lblLastName.Text = profileInfo.lastname;
+                lblMiddleName.Text = profileInfo.middlename;
                 lblPrefferedName.Text = profileInfo.prefferedname;
                 if (profileInfo.dateofbirth != null)
                 {
@@ -357,10 +361,12 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         break;
                     case "FIRST NAME":
                         firstname.Attributes.Add("style", "display:block;");
+                        passportsameasFirstName.Attributes.Add("style", "display:block;");
                         labelfirstname.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LAST NAME":
                         lastname.Attributes.Add("style", "display:block;");
+                        passportsameasLastName.Attributes.Add("style", "display:block;");
                         labellastname.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "PREFERRED NAME":
@@ -369,6 +375,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         break;
                     case "OTHER MIDDLE NAMES":
                         middlename.Attributes.Add("style", "display:block;");
+                        passportsameasmiddlename.Attributes.Add("style", "display:block;");
                         labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "DATE OF BIRTH":
@@ -444,12 +451,26 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     else
                         rblFirstNameYes.Checked = true;
                     break;
+                case "Passport First Name same as Above":
+                    txtpassportsameasFirstName.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblpassportsameasFirstNameNo.Checked = true;
+                    else
+                        rblpassportsameasFirstNameYes.Checked = true;
+                    break;
                 case "Last Name":
                     txtLastName.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblLastNameNo.Checked = true;
                     else
                         rblLastNameYes.Checked = true;
+                    break;
+                case "Passport Last Name same as Above":
+                    txtpassportsameasLastName.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblpassportsameasLastNameNo.Checked = true;
+                    else
+                        rblpassportsameasLastNameYes.Checked = true;
                     break;
                 case "Preferred Name":
                     txtPrefferedName.Value = setComments(Comments[k]);
@@ -464,6 +485,13 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         rblMiddleNameNo.Checked = true;
                     else
                         rblMiddleNameYes.Checked = true;
+                    break;
+                case "Passport Middle Name same as Above":
+                    txtpassportsameasmiddlename.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblpassportsameasmiddlenameNo.Checked = true;
+                    else
+                        rblpassportsameasmiddlenameYes.Checked = true;
                     break;
                 case "Date of birth":
                     txtDOB.Value = setComments(Comments[k]);
@@ -609,13 +637,22 @@ public partial class admin_personaldetail : System.Web.UI.Page
             if (title.Style.Value != "display: none")
                 adminInputs.Add("Title", txtTitle.Value.Trim() + "~" + (rblTitleNo.Checked == true ? 0 : 1));
             if (firstname.Style.Value != "display: none")
-                adminInputs.Add("First Name", txtFirstName.Value.Trim() + "~" + (rblFirstNameYes.Checked == true ? 0 : 1));
+            {
+                adminInputs.Add("First Name", txtFirstName.Value.Trim() + "~" + (rblFirstNameNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Passport First Name same as Above", txtpassportsameasFirstName.Value.Trim() + "~" + (rblpassportsameasFirstNameNo.Checked == true ? 0 : 1));
+            }
             if (lastname.Style.Value != "display: none")
+            {
                 adminInputs.Add("Last Name", txtLastName.Value.Trim() + "~" + (rblLastNameNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Passport Last Name same as Above", txtpassportsameasLastName.Value.Trim() + "~" + (rblpassportsameasLastNameNo.Checked == true ? 0 : 1));
+            }
             if (preferedname.Style.Value != "display: none")
                 adminInputs.Add("Preferred Name", txtPrefferedName.Value.Trim() + "~" + (rblPrefferedNameNo.Checked == true ? 0 : 1));
             if (middlename.Style.Value != "display: none")
+            {
                 adminInputs.Add("Other middle names", txtMiddleName.Value.Trim() + "~" + (rblMiddleNameNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Passport Middle Name same as Above", txtpassportsameasmiddlename.Value.Trim() + "~" + (rblpassportsameasmiddlenameNo.Checked == true ? 0 : 1));
+            }
             if (dob.Style.Value != "display: none")
                 adminInputs.Add("Date of birth", txtDOB.Value.Trim() + "~" + (rblDOBNo.Checked == true ? 0 : 1));
             if (gender.Style.Value != "display: none")

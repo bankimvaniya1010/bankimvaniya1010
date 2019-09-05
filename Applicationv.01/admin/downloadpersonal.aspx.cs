@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
+public partial class admin_downloadpersonal : System.Web.UI.Page
 {
     int userID = 0, ApplicantID = 0, universityID;
     bool isAgent = false;
@@ -47,7 +47,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
             PopulatePersonalInfo();
             SetControlsUniversitywise();
             SetAdminComments();
-            PopulateSupervisorComments();
+          //  PopulateSupervisorComments();
         }
     }
 
@@ -69,21 +69,17 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                 }
                 lblTitle.Text = Title;
                 if (profileInfo.ispassportfirstname.HasValue && profileInfo.ispassportfirstname.Value)
-                    lblpassportsameasFirstName.Text = "Yes";
+                    lblFirstName.Text = "Same as Passport firstname";
                 else
-                    lblpassportsameasFirstName.Text = "No";
+                    lblFirstName.Text = profileInfo.firstname;
                 if (profileInfo.ispassportlastname.HasValue && profileInfo.ispassportlastname.Value)
-                    lblpassportsameasLastName.Text = "Yes";
+                    lblLastName.Text = "Same as Passport lastname";
                 else
-                    lblLastName.Text = "No";
+                    lblLastName.Text = profileInfo.lastname;
                 if (profileInfo.ispassportmiddlename.HasValue && profileInfo.ispassportmiddlename.Value)
-                    lblpassportsameasmiddlename.Text = "Yes";
+                    lblMiddleName.Text = "Same as Passport middlename";
                 else
-                    lblpassportsameasmiddlename.Text = "No";
-
-                lblFirstName.Text = profileInfo.firstname;
-                lblLastName.Text = profileInfo.lastname;
-                lblMiddleName.Text = profileInfo.middlename;
+                    lblMiddleName.Text = profileInfo.middlename;
                 lblPrefferedName.Text = profileInfo.prefferedname;
                 if (profileInfo.dateofbirth != null)
                 {
@@ -258,12 +254,10 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         break;
                     case "FIRST NAME":
                         firstname.Attributes.Add("style", "display:block;");
-                        passportsameasFirstName.Attributes.Add("style", "display:block;");
                         labelfirstname.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "LAST NAME":
                         lastname.Attributes.Add("style", "display:block;");
-                        passportsameasLastName.Attributes.Add("style", "display:block;");
                         labellastname.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "PREFERRED NAME":
@@ -272,7 +266,6 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         break;
                     case "OTHER MIDDLE NAMES":
                         middlename.Attributes.Add("style", "display:block;");
-                        passportsameasmiddlename.Attributes.Add("style", "display:block;");
                         labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "DATE OF BIRTH":
@@ -348,47 +341,26 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         rblFirstNameYes.Checked = true;
                     lblFirstNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Passport First Name same as Above":
-                    lblpassportsameasFirstNameComments.Text = setComments(Comments[k]);
-                    if (Comments[k].adminaction == 0)
-                        rblpassportsameasFirstNameNo.Checked = true;
-                    else
-                        rblpassportsameasFirstNameYes.Checked = true;
-                    break;
                 case "Last Name":
-                    lblLastNameComments.Text = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblLastNameNo.Checked = true;
                     else
                         rblLastNameYes.Checked = true;
-                    break;
-                case "Passport Last Name same as Above":
-                    lblpassportsameasLastNameComments.Text = setComments(Comments[k]);
-                    if (Comments[k].adminaction == 0)
-                        rblpassportsameasLastNameNo.Checked = true;
-                    else
-                        rblpassportsameasLastNameYes.Checked = true;
+                    lblLastNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Preferred Name":
-                    lblPrefferedNameComments.Text = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblPrefferedNameNo.Checked = true;
                     else
                         rblPrefferedNameYes.Checked = true;
+                    lblPrefferedNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Other middle names":
-                    lblMiddleNameComments.Text = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblMiddleNameNo.Checked = true;
                     else
                         rblMiddleNameYes.Checked = true;
-                    break;
-                case "Passport Middle Name same as Above":
-                    lblpassportsameasmiddlenameComments.Text = setComments(Comments[k]);
-                    if (Comments[k].adminaction == 0)
-                        rblpassportsameasmiddlenameNo.Checked = true;
-                    else
-                        rblpassportsameasmiddlenameYes.Checked = true;
+                    lblMiddleNameComments.Text = setComments(Comments[k]);
                     break;
                 case "Date of birth":
                     if (Comments[k].adminaction == 0)
@@ -525,35 +497,5 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
         }
         if (CustomControls.Count > 0)
             objCom.SetCustomDataCommentForSupervisor(formId, ApplicantID, CustomControls, mainDiv, Comments);
-    }
-
-    private void PopulateSupervisorComments()
-    {
-        List<supervisorcomments> comments = objCom.GetSupervisorComments(ApplicantID, universityID, formId);
-        if (comments.Count > 0)
-        {
-            txtComments.Text = comments[0].comments;
-            if (comments[0].supervisoraction == 1)
-                rbApproved.Checked = true;
-            else if (comments[0].supervisoraction == 2)
-                rbDenied.Checked = true;
-        }
-    }
-
-    protected void btnSave_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            int ActionValue = 0;
-            if (rbApproved.Checked)
-                ActionValue = 1;
-            else if (rbDenied.Checked)
-                ActionValue = 2;
-            objCom.SaveSupervisorComments(ApplicantID, universityID, formId, userID, txtComments.Text, ActionValue);
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="knowyourstudent.aspx.cs" Inherits="admin_knowyourstudent" MasterPageFile="~/admin/admin.master" %>
+
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
     <title></title>
     <script>
@@ -83,7 +84,7 @@
                                 <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
                                 <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblcountryIssueNo" GroupName="countryIssue" Text="No" runat="server" />
-                                <span class="helpicon"><i id="icCountryofIssue" style="display: none" runat="server" class="fa fa-info-circle" ></i></span>
+                                <span class="helpicon"><i id="icCountryofIssue" style="display: none" runat="server" class="fa fa-info-circle"></i></span>
 
                             </div>
                             <div class="col-md-4">
@@ -231,7 +232,8 @@
 
             </div>
         </div>
-    </div><script type="text/javascript">
+    </div>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("#btnPassportNo").click(function () {
                 ManageRemarks('<%=txtPassportNo.ClientID%>', 'btnPassportNo');
@@ -282,7 +284,7 @@
             $("#<%=rblalternatedobIdentitytypeNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
             });
-             $("#btnalternatedobIdentitytype").click(function () {
+            $("#btnalternatedobIdentitytype").click(function () {
                 ManageRemarks('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
             });
             $("#<%=rblalternatedobIdentitytypeNo.ClientID%>").click(function () {
@@ -306,37 +308,53 @@
             $("#<%=rblalternateresidenceIdentityNoNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txtalternateresidenceIdentityNo.ClientID%>', 'btnalternateresidenceIdentityNo');
             });
-           
-             if ($('#<%=rblPassportNoNo.ClientID%>').prop('checked') == true)
+
+            if ($('#<%=rblPassportNoNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtPassportNo.ClientID%>', 'btnPassportNo');
-             if ($('#<%=rblDateOfissueNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblDateOfissueNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtDateOfissue.ClientID%>', 'btnDateOfissue');
-             if ($('#<%=rblExpiryDateNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblExpiryDateNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtExpiryDate.ClientID%>', 'btnExpiryDate');
-             if ($('#<%=rblissueplaceNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblissueplaceNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtissueplace.ClientID%>', 'btnissueplace');
-             if ($('#<%=rblcountryIssueNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblcountryIssueNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtcountryIssue.ClientID%>', 'btncountryIssue');
-             if ($('#<%=rblalternateIdentitytypeNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblalternateIdentitytypeNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtalternateIdentitytype.ClientID%>', 'btnalternateIdentitytype');
-             if ($('#<%=rblalternateIdentityNoNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblalternateIdentityNoNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtalternateIdentityNo.ClientID%>', 'btnalternateIdentityNo');
-             if ($('#<%=rblalternatedobIdentitytypeNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblalternatedobIdentitytypeNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
-             if ($('#<%=rblalternatedobIdentitytypeNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblalternatedobIdentitytypeNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
-             if ($('#<%=rblalternatedobIdentityNoNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblalternatedobIdentityNoNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtalternatedobIdentityNo.ClientID%>', 'btnalternatedobIdentityNo');
-             if ($('#<%=rblalternateresidenceIdentitytypeNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblalternateresidenceIdentitytypeNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtalternateresidenceIdentitytype.ClientID%>', 'btnalternateresidenceIdentitytype');
-             if ($('#<%=rblalternateresidenceIdentityNoNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblalternateresidenceIdentityNoNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtalternateresidenceIdentityNo.ClientID%>', 'btnalternateresidenceIdentityNo');
-           
-              function ManageRemarksIfNoCheked(cntrol, control2) {
+            <%    for (int n = 0; n < CustomControls.Count; n++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[n].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+        %>
+
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }%>
+            function ManageRemarksIfNoCheked(cntrol, control2) {
                 $("#" + cntrol + "").css('display', 'block');
                 $("#" + control2 + "").prop('value', 'Hide Comments');
             }
-           
+
             function ManageRemarks(control1, control2) {
                 if ($("#" + control1 + "").is(':hidden')) {
                     $("#" + control1 + "").css('display', 'block');

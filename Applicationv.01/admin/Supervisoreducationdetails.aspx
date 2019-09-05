@@ -241,21 +241,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group-item" id="higestEducation" runat="server" style="display: none">
-                    <div class="form-group m-0" role="group" aria-labelledby="label-higestEducation">
-                        <div class="form-row">
-                            <label id="labelhigestEducation" runat="server" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblhigestEducation" runat="server"></asp:Label>
-                            </div>
-                            <div class="col-md-4">
-                                <asp:RadioButton ID="rblhigestEducationYes" GroupName="higestEducation" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblhigestEducationNo" GroupName="higestEducation" Text="No" runat="server" />
-                                <asp:Label ID="lblhigestEducationComments" runat="server"></asp:Label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
 
                 <div class="list-group-item" id="highshoolgrade" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">

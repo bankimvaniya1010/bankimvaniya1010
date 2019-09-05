@@ -303,10 +303,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         highercontactMobileOther.Attributes.Add("style", "display:block;");
                         labelhighercontactMobileOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HIGHEST EDUCATION":
-                        higestEducation.Attributes.Add("style", "display:block;");
-                        labelhigestEducation.InnerHtml = setInnerHtml(fields[k]);
-                        break;
+                  
                     case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
                         Secondary.Attributes.Add("style", "display:block;");
                         labelSecondary.InnerHtml = setInnerHtml(fields[k]);
@@ -370,18 +367,18 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                 {
                     lblhighschool.Text = "Yes";
                     BindHighSchoolDetails(EducationInfo);
-                    higestEducation.Visible = false;
+                   // higestEducation.Visible = false;
                 }
                 else if (EducationInfo.ishighschooldone == 2)
                 {
                     lblhighschool.Text = "No- I am currently studying for my high school qualification";
                     BindHighSchoolDetails(EducationInfo);
-                    higestEducation.Visible = false;
+                  //  higestEducation.Visible = false;
                 }
                 else
                 {
                     lblhighschool.Text = "No- I do not have a high school qualification ";
-                  //  lblhigestEducation.Text = EducationInfo.highestdegree;
+                   // lblhigestEducation.Text = EducationInfo.highestdegree;
                     HideHighSchool();
                 }
 
@@ -972,13 +969,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rblhighschoolYes.Checked = true;
                     lblhighschoolComments.Text = setComments(Comments[k]);
                     break;
-                case "Highest Education":
-                    if (Comments[k].adminaction == 0)
-                        rblhigestEducationNo.Checked = true;
-                    else
-                        rblhigestEducationYes.Checked = true;
-                    lblhigestEducationComments.Text = setComments(Comments[k]);
-                    break;
+               
                 case "Country of High School Education":
                     if (Comments[k].adminaction == 0)
                         rblhighschoolCountryNo.Checked = true;
@@ -1773,7 +1764,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
     private void HideHighSchool()
     {
 
-        higestEducation.Visible = true;
+       
 
         highschoolCountry.Visible = false;
         highschoolstartDate.Visible = false;
