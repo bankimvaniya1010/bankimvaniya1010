@@ -474,7 +474,7 @@
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="visadocumentupload">
-                                                <a class="sidebar-menu-button">
+                                                <a class="sidebar-menu-button" href="australiavisadocumentupload.aspx">
                                                     <span class="sidebar-menu-text">Documents upload  </span>
                                                 </a>
                                             </li>
