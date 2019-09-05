@@ -522,6 +522,10 @@
                                             <label>Your intended address in Australia</label>
                                           <textarea id="txtaddressinaustralia" runat="server" class="form-control"></textarea>
                                         </div>
+                                         <div class="form-group">
+                                            <label>postal code</label>
+                                            <input type="text" runat="server" class="form-control" id="txtaddressinaustraliapostalcode">
+                                        </div>	                                        
                                          <div class="form-check-inline">
                                             <label class="form-check-label">
                                             <input type="radio" class="form-check-input" name="visastatus" runat="server" id="rbvisastatusgranted">Granted
@@ -807,9 +811,37 @@
                                     </div>
                                     <div class="form-group" runat="server" id="receiveassistanceontrols">
                                         <div class="form-group">
-                                        <label>Title</label>
-                                        <asp:DropDownList runat="server" ID="ddltitle"></asp:DropDownList>
+                                        <label>Title</label>                                        
                                      </div>
+                                     <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="title" runat="server" id="rbTitleMr">Mr
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="title" runat="server" id="rbTitleMs">Ms
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="title" runat="server" id="rbTitleMiss">Miss
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="title" runat="server" id="rbTitleMrs">Mrs
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="title" runat="server" id="rbOthertitle">Other
+                                        </label>
+                                    </div>
+                                    <div class="form-group" runat="server">
+                                        <label></label>
+                                        <input type="text" name="" class="form-control" runat="server" id="txtothertitle"/>
+                                    </div>
                                      <div class="form-group">
                                         <label>family name</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtassistedpersonfamilyname"/>
@@ -991,9 +1023,37 @@
                                     <b>Note: Do NOT complete this section if you are acting as a migration agent, go to Question 78 </b></h5>
                                      <label> <b class="ques-lbl">75)</b> Provide details of the person who is authorised on your behalf to receive all written communications about this application.</label>                                                                        
                                       <div class="form-group">
-                                        <label>Title</label>
-                                        <asp:DropDownList runat="server" ID="ddltitle1" CssClass="form-control"></asp:DropDownList>
+                                        <label>Title</label>                                        
                                      </div>
+                                     <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="authorizedtitle" runat="server" id="rbauthorizedTitleMr">Mr
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="authorizedtitle" runat="server" id="rbauthorizedTitleMs">Ms
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="authorizedtitle" runat="server" id="rbauthorizedTitleMiss">Miss
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="authorizedtitle" runat="server" id="rbauthorizedTitleMrs">Mrs
+                                        </label>
+                                    </div>
+                                         <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="authorizedtitle" runat="server" id="rbauthorizedOthertitle">Other
+                                        </label>
+                                    </div>
+                                    <div class="form-group" runat="server">
+                                        <label></label>
+                                        <input type="text" name="" class="form-control" runat="server" id="txtauthorizedothertitle"/>
+                                    </div>
                                      <div class="form-group">
                                         <label>family name</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtauthorisedpersofamilynname"/>
@@ -1070,9 +1130,37 @@
                                           <input type="text" runat="server" class="form-control" id="txtoffshoreagentId">
                                       </div>
                                       <div class="form-group">
-                                        <label>Title</label>
-                                        <asp:DropDownList runat="server" ID="ddltitle3" CssClass="form-control"></asp:DropDownList>
+                                        <label>Title</label>                                        
                                      </div>
+                                      <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="agenttitle" runat="server" id="rbagentTitleMr">Mr
+                                        </label>
+                                    </div>
+                                      <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="agenttitle" runat="server" id="rbagentTitleMs">Ms
+                                        </label>
+                                    </div>
+                                            <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="agenttitle" runat="server" id="rbagentTitleMiss">Miss
+                                        </label>
+                                    </div>
+                                      <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="agenttitle" runat="server" id="rbagentTitleMrs">Mrs
+                                        </label>
+                                    </div>
+                                      <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="agenttitle" runat="server" id="rbagentOthertitle">Other
+                                        </label>
+                                    </div>
+                                    <div class="form-group" runat="server">
+                                        <label></label>
+                                        <input type="text" name="" class="form-control" runat="server" id="txtagentothertitle"/>
+                                    </div>
                                      <div class="form-group">
                                         <label>family name</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtagentfamilyname"/>
@@ -1470,7 +1558,52 @@
                 $("#<%=solelegalrightscontrols.ClientID%>").show();
             else 
                 $("#<%=solelegalrightscontrols.ClientID%>").hide();
+            //68
+            if ($("#<%=rbOthertitle.ClientID%>").is(":checked"))
+                $("#<%=txtothertitle.ClientID%>").show();
+            else
+                $("#<%=txtothertitle.ClientID%>").hide();
+            //75
+            if ($("#<%=rbauthorizedOthertitle.ClientID%>").is(":checked"))
+                $("#<%=txtauthorizedothertitle.ClientID%>").show();
+            else
+                $("#<%=txtauthorizedothertitle.ClientID%>").hide();
+            
+            //78
+            if ($("#<%=rbagentOthertitle.ClientID%>").is(":checked"))
+                $("#<%=txtagentothertitle.ClientID%>").show();
+            else
+                $("#<%=txtagentothertitle.ClientID%>").hide();
         });
+
+        //68 title  
+        
+        $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$title']").click(function () {
+             if ($("#<%=rbOthertitle.ClientID%>").is(":checked"))
+                 $("#<%=txtothertitle.ClientID%>").show();
+             else
+                 $("#<%=txtothertitle.ClientID%>").hide();
+             });
+        });
+        //75
+         $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$authorizedtitle']").click(function () {
+             if ($("#<%=rbauthorizedOthertitle.ClientID%>").is(":checked"))
+                 $("#<%=txtauthorizedothertitle.ClientID%>").show();
+             else
+                 $("#<%=txtauthorizedothertitle.ClientID%>").hide();
+             });
+        });
+        //78
+         $(function () {
+         $("input[name='ctl00$ContentPlaceHolder1$agenttitle']").click(function () {
+             if ($("#<%=rbagentOthertitle.ClientID%>").is(":checked"))
+                 $("#<%=txtagentothertitle.ClientID%>").show();
+             else
+                 $("#<%=txtagentothertitle.ClientID%>").hide();
+             });
+        });	        });
         //71  
         $(function () {
          $("input[name='ctl00$ContentPlaceHolder1$agentinauttalia']").click(function () {
@@ -1915,7 +2048,7 @@
                 if (!($("#<%=rbauthorisedpersonNo.ClientID%>").is(':checked') || $("#<%=rbauthorisedpersonYes.ClientID%>").is(':checked')))
                     alert("please select Do you want the authorised person to receive health and/or character information about you, your spouse or your dependants, that may arise, or be revealed, in the course of this application  of field 74");
                 //75
-                else if ($("#<%=ddltitle1.ClientID%>").val() == "0")
+                 else if (!($("#<%=rbauthorizedTitleMiss.ClientID%>").is(':checked') || $("#<%=rbauthorizedTitleMr.ClientID%>").is(':checked') || $("#<%=rbauthorizedTitleMrs.ClientID%>").is(':checked') || $("#<%=rbauthorizedTitleMs.ClientID%>").is(':checked')))
                     alert("Please select title of field 75");
                 else if ($("#<%=txtauthorisedpersofamilynname.ClientID%>").val() == "")
                     alert("Please select Family name of field 75");
@@ -1932,7 +2065,7 @@
                     alert("Please select As the authorised recipient named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means? of field 76");
                 else if ($("#<%=rbagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtFaxnumber.ClientID%>").val() == "")
                     alert("Please enter fax number of field 76");
-                else if (($("#<%=rbagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtEmailaddress.ClientID%>").val() == "") || !(emailRegex.test($("#<%=txtEmailaddress.ClientID%>").val()))))
+                else if (($("#<%=rbagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtEmailaddress.ClientID%>").val() == "") || !(emailRegex.test($("#<%=txtEmailaddress.ClientID%>").val())))
                     alert("Please enter valid Email address of field 76");
 
                 else if ($("#<%=txtsignatureauthorizedperson.ClientID%>").val() == "")
@@ -1955,7 +2088,7 @@
                     alert("Please enter Migration Agent Registration Number (MARN) of field 78");
                 else if ($("#<%=txtoffshoreagentId.ClientID%>").val() == "")
                     alert("Please enter Offshore Agent ID Number (if allocated by the department) of field 78");
-                else if ($("#<%=ddltitle3.ClientID%>").val() == "0")
+                else if (!($("#<%=rbagentTitleMr.ClientID%>").is(':checked') || $("#<%=rbagentTitleMs.ClientID%>").is(':checked') || $("#<%=rbagentTitleMiss.ClientID%>").is(':checked') || $("#<%=rbagentTitleMrs.ClientID%>").is(':checked') || $("#<%=rbagentOthertitle.ClientID%>").is(':checked')))
                     alert("Please enter  Title of field 78");
                 else if ($("#<%=txtagentfamilyname.ClientID%>").val() == "")
                     alert("Please enter Family name  of field 78");
@@ -1974,7 +2107,7 @@
                     alert("Please select As the agent named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means of field 79");
                 else if ($("#<%=rbagentagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtagentfaxno.ClientID%>").val() == "")
                     alert("Please enter fax Number of field 79");
-                else if (($("#<%=rbagentagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtagentemailaddress.ClientID%>").val() == "") || !(emailRegex.test($("#<%=txtagentemailaddress.ClientID%>").val()))))
+                else if (($("#<%=rbagentagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtagentemailaddress.ClientID%>").val() == "") || !(emailRegex.test($("#<%=txtagentemailaddress.ClientID%>").val())))
                     alert("Please enter valid email address of field 79");
 
                 else if ($("#<%=txtagentsignatures.ClientID%>").val() == "")
@@ -1992,7 +2125,7 @@
             var validquestion = false;
             if ($("#<%=rbreceiveassistanceYes.ClientID%>").is(':checked'))
             {
-                if ($("#<%=ddltitle.ClientID%>").val() == "0")
+                if (!($("#<%=rbTitleMs.ClientID%>").is(':checked') || $("#<%=rbTitleMrs.ClientID%>").is(':checked') || $("#<%=rbTitleMr.ClientID%>").is(':checked') || $("#<%=rbTitleMiss.ClientID%>").is(':checked')))
                     alert("Please select title of field 68");
                 else if ($("#<%=txtassistedpersonfamilyname.ClientID%>").val() == "")
                     alert("Please enter family name of field 68");

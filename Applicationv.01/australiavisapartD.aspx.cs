@@ -27,10 +27,7 @@ public partial class australiavisapartD : System.Web.UI.Page
             allQuestions = objCom.FaqQuestionList();
             objCom.BindCountries(ddlfamilyresidencecountry);
             objCom.BindCountries(ddlfamilyresidencecountry1);
-            objCom.BindCountries(ddlfamilyresidencecountry2);
-            BindTitle(ddltitle);
-            BindTitle(ddltitle1);
-            BindTitle(ddltitle3);
+            objCom.BindCountries(ddlfamilyresidencecountry2);           
             populatepartDInfo();
         }
     }
@@ -238,6 +235,7 @@ public partial class australiavisapartD : System.Web.UI.Page
                 if (txtdob.Value != "")
                     objaustraliavisadetail.parentDateofBirthpartD = Convert.ToDateTime(txtdob.Value);
                 objaustraliavisadetail.parentaddresspartD = txtaddressinaustralia.Value;
+                objaustraliavisadetail.parentaddresspostalcodepartD = txtaddressinaustraliapostalcode.Value;
 
                 if (rbvisastatusgranted.Checked)
                 {
@@ -369,8 +367,17 @@ public partial class australiavisapartD : System.Web.UI.Page
             else if (rbreceiveassistanceYes.Checked)
             {
                 objaustraliavisadetail.havereceiveassistance = 1;
-                if (ddltitle.SelectedValue != "")
-                    objaustraliavisadetail.title = ddltitle.SelectedItem.Text;
+                if (rbTitleMr.Checked)
+                    objaustraliavisadetail.title = "Mr";
+                else if (rbTitleMs.Checked)
+                    objaustraliavisadetail.title = "Ms";
+                else if (rbTitleMiss.Checked)
+                    objaustraliavisadetail.title = "Miss";
+                else if (rbTitleMrs.Checked)
+                    objaustraliavisadetail.title = "Mrs";
+                else if (rbOthertitle.Checked)
+                    objaustraliavisadetail.title = "Other";
+                objaustraliavisadetail.othertitle = txtothertitle.Value;
                 objaustraliavisadetail.assistedpersonfamilyname = txtassistedpersonfamilyname.Value;
                 objaustraliavisadetail.assistedpersongivenname = txtassistedpersongivenname.Value;
                 objaustraliavisadetail.assistedpersonaddress = txtaddress.Value;
@@ -441,8 +448,17 @@ public partial class australiavisapartD : System.Web.UI.Page
             else if (rbauthorisedpersonYes.Checked)
                 objaustraliavisadetail.haveauthorisedperson = 1;
             //75
-            if (ddltitle1.SelectedValue != "")
-                objaustraliavisadetail.authorisedpersontitle = ddltitle1.SelectedItem.Text;
+            if (rbauthorizedTitleMr.Checked)
+                objaustraliavisadetail.authorisedpersontitle = "Mr";
+            else if (rbauthorizedTitleMs.Checked)
+                objaustraliavisadetail.authorisedpersontitle = "Ms";
+            else if (rbauthorizedTitleMiss.Checked)
+                objaustraliavisadetail.authorisedpersontitle = "Miss";
+            else if (rbauthorizedTitleMrs.Checked)
+                objaustraliavisadetail.authorisedpersontitle = "Mrs";
+            else if (rbauthorizedOthertitle.Checked)
+                objaustraliavisadetail.authorisedpersontitle = "Other";
+            objaustraliavisadetail.authorizedothertitle = txtauthorizedothertitle.Value;
             objaustraliavisadetail.authorisedpersofamilynname = txtauthorisedpersofamilynname.Value;
             objaustraliavisadetail.authorisedpersongivenname = txtauthorisedpersongivenname.Value;
             objaustraliavisadetail.authorisedpersonaddress = txtauthorisedpersonaddress.Value;
@@ -466,8 +482,17 @@ public partial class australiavisapartD : System.Web.UI.Page
             //78
             objaustraliavisadetail.migratioagentNo = txtmarnNo.Value;
             objaustraliavisadetail.offshoreagentId = txtoffshoreagentId.Value;
-            if (ddltitle3.SelectedValue != "")
-                objaustraliavisadetail.agenttitle = ddltitle3.SelectedItem.Text;
+            if (rbagentTitleMr.Checked)
+                objaustraliavisadetail.agenttitle = "Mr";
+            else if (rbagentTitleMs.Checked)
+                objaustraliavisadetail.agenttitle = "Ms";
+            else if (rbagentTitleMiss.Checked)
+                objaustraliavisadetail.agenttitle = "Miss";
+            else if (rbagentTitleMrs.Checked)
+                objaustraliavisadetail.agenttitle = "Mrs";
+            else if (rbagentOthertitle.Checked)
+                objaustraliavisadetail.agenttitle = "Other";
+            objaustraliavisadetail.otheragenttitle = txtagentothertitle.Value;
             objaustraliavisadetail.agentfamilyname = txtagentfamilyname.Value;
             objaustraliavisadetail.agentgivenname = txtagentgivenname.Value;
             objaustraliavisadetail.agentcompanyname = txtagentcompanyname.Value;
@@ -712,7 +737,9 @@ public partial class australiavisapartD : System.Web.UI.Page
                 txtfamilyname.Value = visaInfo.parentfamilynamePartD;
                 txtgivenname.Value = visaInfo.parentgivennamePartD;
                 if (visaInfo.parentDateofBirthpartD != null)
-                    txtaddressinaustralia.Value = Convert.ToDateTime(visaInfo.parentDateofBirthpartD).ToString("yyyy-MM-dd");
+                    txtdob.Value = Convert.ToDateTime(visaInfo.parentDateofBirthpartD).ToString("yyyy-MM-dd");
+                txtaddressinaustralia.Value = visaInfo.parentaddresspartD;
+                txtaddressinaustraliapostalcode.Value = visaInfo.parentaddresspostalcodepartD;
 
                 if (visaInfo.parentvisastatusPartD == 1)
                 {
@@ -815,12 +842,20 @@ public partial class australiavisapartD : System.Web.UI.Page
             else if (visaInfo.havereceiveassistance == 1)
             {
                 rbreceiveassistanceYes.Checked = true;
-                if (visaInfo.title != null)
+                if (visaInfo.title == "Mr")
+                    rbTitleMr.Checked = true;
+                else if (visaInfo.title == "Ms")
+                    rbTitleMs.Checked = true;
+                else if (visaInfo.title == "Miss")
+                    rbTitleMiss.Checked = true;
+                else if (visaInfo.title == "Mrs")
+                    rbTitleMrs.Checked = true;
+                else if (visaInfo.title == "Other")
                 {
-                    ddltitle.ClearSelection();
-                    ddltitle.Items.FindByValue(visaInfo.title.ToString()).Selected = true;
+                    rbOthertitle.Checked = true;
+                    txtothertitle.Value = visaInfo.othertitle;
                 }
-                txtassistedpersonfamilyname.Value = visaInfo.assistedpersonfamilyname;
+                    txtassistedpersonfamilyname.Value = visaInfo.assistedpersonfamilyname;
                 txtassistedpersongivenname.Value = visaInfo.assistedpersongivenname;
                 txtaddress.Value = visaInfo.assistedpersonaddress;
                 txtassistedpersonofficeno.Value = visaInfo.assistedpersonofficeno;
@@ -877,10 +912,18 @@ public partial class australiavisapartD : System.Web.UI.Page
             else if (visaInfo.haveauthorisedperson == 1)
                 rbauthorisedpersonYes.Checked = true;
             //75
-            if (visaInfo.authorisedpersontitle != null)
+            if (visaInfo.authorisedpersontitle == "Mr")
+                rbauthorizedTitleMr.Checked = true;
+            else if (visaInfo.authorisedpersontitle == "Ms")
+                rbauthorizedTitleMs.Checked = true;
+            else if (visaInfo.authorisedpersontitle == "Miss")
+                rbauthorizedTitleMiss.Checked = true;
+            else if (visaInfo.authorisedpersontitle == "Mrs")
+                rbauthorizedTitleMrs.Checked = true;
+            else if (visaInfo.authorisedpersontitle == "Other")
             {
-                ddltitle1.ClearSelection();
-                ddltitle1.Items.FindByValue(visaInfo.authorisedpersontitle.ToString()).Selected = true;
+                rbauthorizedOthertitle.Checked = true;
+                txtauthorizedothertitle.Value = visaInfo.authorizedothertitle;
             }
             txtauthorisedpersofamilynname.Value = visaInfo.authorisedpersofamilynname;
             txtauthorisedpersongivenname.Value =visaInfo.authorisedpersongivenname;
@@ -902,10 +945,18 @@ public partial class australiavisapartD : System.Web.UI.Page
             //78
             txtmarnNo.Value = visaInfo.migratioagentNo;
             txtoffshoreagentId.Value = visaInfo.offshoreagentId;
-            if (visaInfo.agenttitle != null)
+            if (visaInfo.agenttitle == "Mr")
+                rbagentTitleMr.Checked = true;
+            else if (visaInfo.agenttitle == "Ms")
+                rbagentTitleMs.Checked = true;
+            else if (visaInfo.agenttitle == "Miss")
+                rbagentTitleMiss.Checked = true;
+            else if (visaInfo.agenttitle == "Mrs")
+                rbagentTitleMrs.Checked = true;
+            else if (visaInfo.agenttitle == "Other")
             {
-                ddltitle3.ClearSelection();
-                ddltitle3.Items.FindByValue(visaInfo.agenttitle.ToString()).Selected = true;
+                rbagentOthertitle.Checked = true;
+                txtagentothertitle.Value = visaInfo.otheragenttitle;
             }
             txtagentfamilyname.Value = visaInfo.agentfamilyname;
             txtagentgivenname.Value = visaInfo.agentgivenname;

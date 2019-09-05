@@ -286,11 +286,33 @@
                                         </ul>
                                     </li>
                                      <li class="sidebar-menu-item" id="studentapplication_list">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Application">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                                 Student Application
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="Application">
+                                            <li class="sidebar-menu-item" id="applicantcourse">
+                                                <a class="sidebar-menu-button" href="applicantcourse.aspx?formid=14">
+                                                    <span class="sidebar-menu-text">Application</span>
+                                                </a>
+                                            </li>
+                                           <%-- <li class="sidebar-menu-item" id="applicantvisa">
+                                                <a class="sidebar-menu-button" href="applicantVisa.aspx">
+                                                    <span class="sidebar-menu-text">Visa Application</span>
+                                                </a>
+                                            </li>--%>
+                                            <li class="sidebar-menu-item" id="applicantfunding">
+                                                <a class="sidebar-menu-button" href="applicantfunding.aspx?formid=11">
+                                                    <span class="sidebar-menu-text">Funding</span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-menu-item" id="applicantcredittransfer">
+                                                <a class="sidebar-menu-button" href="applicantcredittransfer.aspx?formid=12">
+                                                    <span class="sidebar-menu-text">Credit Transfer</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <%--<li class="sidebar-menu-item" id="clarification_question_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#clarification_question">
@@ -789,7 +811,7 @@
     <script src="assets/js/countdown.js"></script>
     <script>
         function showFaqQuestion(question, answer) {
-            $('body').append('<div class="modal" id="faq-ans-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="faq-modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class=""><u>' + question + '</u><br>' + answer + '</div></div></div></div></div>');
+            $('body').append('<div class="modal" id="faq-ans-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="faq-modal-header modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class=""><u>' + question + '</u><br>' + answer + '</div></div></div></div></div>');
             $('#faq-ans-modal').modal('show');
              $('#faq-ans-modal').on('hidden.bs.modal', function () {
                  $('#faq-ans-modal').remove();
@@ -806,12 +828,13 @@
                 $("#gtevideoquestion").hide();
                 $("#gtestudent_sop").hide();
                 $("#gtedocmentupload").hide();
-                $("#message_menu_list").hide();
+                $("#message_menu_list").hide();                 
                 $("#student_list").hide();
                 $("#components_list").hide();
                 $("#profile_list").hide();                
                 $("#messageboard").hide();                
                 $("#admissionsOffer_list").hide();
+                $("#studentapplication_list").hide();
                 $("#visaapplication_list").hide();
                 $("#feepayment_list").hide();
                 $("#viewCOE_list").hide();
@@ -837,6 +860,7 @@
                 $("#profile_list").show();                
                 $("#messageboard").show();
                 $("#admissionsOffer_list").show();
+                $("#studentapplication_list").show();
                 $("#visaapplication_list").show();
                 $("#feepayment_list").show();
                 $("#viewCOE_list").show();

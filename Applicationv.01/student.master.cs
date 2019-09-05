@@ -39,12 +39,21 @@ public partial class admin : System.Web.UI.MasterPage
 
         if (!IsPostBack) {
             Bindseclanguagelist();
+            populateSelectedLanguage();
         }
         lblusername.Text = name;
         string universityName = db.university_master.Where(x => x.universityid == universityID).Select(x => x.university_name).FirstOrDefault();
         lbluniversityName.Text = universityName;
 
     }
+
+    private void populateSelectedLanguage()
+    {
+        string SecondaryLanguage = Utility.GetSecondaryLanguage();
+        if (SecondaryLanguage != "")
+            ddlseclanguage.Items.FindByValue(SecondaryLanguage.ToString()).Selected = true;
+    }
+
 
     private void Bindseclanguagelist()
     {
