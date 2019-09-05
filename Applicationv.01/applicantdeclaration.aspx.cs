@@ -53,8 +53,7 @@ public partial class applicantdeclaration : System.Web.UI.Page
                 db.applicantprogressbar.Add(applicantprogressbar);
             db.SaveChanges();
 
-            var gteDeclarationCompleted = (bool)Session["GteDeclarationDoneByApplicant"];
-            Session["DeclarationCompleted"] = true && gteDeclarationCompleted;
+            Session["DeclarationCompleted"] = true;
             Session["DeclarationDoneByApplicant"] = true;
 
             Response.Redirect(webURL + "default.aspx", true);

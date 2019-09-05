@@ -71,7 +71,7 @@ public partial class login : System.Web.UI.Page
                     if (isFullService)
                     {
                         isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(chkUser.studentid, universityID);
-                        isDeclarationCompleted = isDeclarationDoneByApplicant && isGteDeclarationDoneByApplicant;
+                        isDeclarationCompleted = isDeclarationDoneByApplicant;
                         isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(chkUser.studentid, universityID);
                     }
                     else
