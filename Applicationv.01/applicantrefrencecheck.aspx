@@ -85,7 +85,7 @@
                             </div>
                         </div>
 
-                    <div class="list-group-item" id="highergrade">
+                    <div class="list-group-item tbl-dtinfo" id="highergrade">
                         <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
 
                             <div class="">

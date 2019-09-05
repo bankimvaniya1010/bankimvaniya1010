@@ -60,6 +60,52 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
     }
 
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string GetCourseDropdown(int coursetypeid , int selectedMajorid)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from cm in db1.coursemaster
+                    join md in db1.majordiscipline_master on cm.majordisciplineId equals md.id                    
+                    join sl in db1.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
+                    where md.universityid == universityID1 && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid
+                    select new
+                    {
+                        coursename = cm.coursename,
+                        courseid = cm.courseid
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+
+    private void BindCourses(int coursetypeid, int selectedMajorid)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var courses = (from cm in db.coursemaster
+                           join md in db.majordiscipline_master on cm.majordisciplineId equals md.id                           
+                           join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
+                           where md.universityid == universityID && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid
+                           select new
+                           {
+                               coursename = cm.coursename,
+                               courseid = cm.courseid
+                           }).ToList();
+            ddlnameofcourse.DataSource = courses;
+            ddlnameofcourse.DataTextField = "coursename";
+            ddlnameofcourse.DataValueField = "courseid";
+            ddlnameofcourse.DataBind();
+            ddlnameofcourse.Items.Insert(0, lst);
+
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
     protected void btngteapplicantdetail_Click(object sender, EventArgs e)
     {
 
@@ -116,8 +162,10 @@ public partial class gte_studentdetails : System.Web.UI.Page
 
             if (ddlfieldofstudy.SelectedValue != "")
                 objgte_applicantdetails.fieldofstudyapplied = Convert.ToInt32(ddlfieldofstudy.SelectedValue);
-            objgte_applicantdetails.coursename = txtnameofcourse.Value;
-            objgte_applicantdetails.commencementdate = Convert.ToDateTime(txtcommencementdate.Value);
+            objgte_applicantdetails.coursename = hidnameofcourse.Value;
+            if (ddlCommencementdate.SelectedValue != "")
+                objgte_applicantdetails.commencementdate = ddlCommencementdate.SelectedValue;
+            //objgte_applicantdetails.commencementdate = Convert.ToDateTime(txtcommencementdate.Value);
 
             if (ddlworkexperience.SelectedValue != "" && Convert.ToInt32(ddlworkexperience.SelectedValue) == 1)
                 objgte_applicantdetails.workexperience = 0;
@@ -234,8 +282,20 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     ddlfieldofstudy.ClearSelection();
                     ddlfieldofstudy.Items.FindByValue(studentInfo.fieldofstudyapplied.ToString()).Selected = true;
                 }
-                txtnameofcourse.Value = studentInfo.coursename;
-                txtcommencementdate.Value = Convert.ToDateTime(studentInfo.commencementdate).ToString("yyyy-MM-dd");
+                if (studentInfo.coursename != null)
+                {
+                    BindCourses(Convert.ToInt32(ddlcourseapplied.SelectedValue), Convert.ToInt32(ddlfieldofstudy.SelectedValue));
+                    ddlnameofcourse.ClearSelection();
+                    ddlnameofcourse.Items.FindByValue(studentInfo.coursename.ToString()).Selected = true;
+                    hidnameofcourse.Value = studentInfo.coursename.ToString();
+                }
+                // txtnameofcourse.Value = studentInfo.coursename;
+                //txtcommencementdate.Value = Convert.ToDateTime(studentInfo.commencementdate).ToString("yyyy-MM-dd");
+                if (studentInfo.commencementdate != null)
+                {
+                    ddlCommencementdate.ClearSelection();
+                    ddlCommencementdate.Items.FindByValue(studentInfo.commencementdate.ToString()).Selected = true;
+                }
                 if (studentInfo.workexperience != null && studentInfo.workexperience != 0)
                 {
                     ddlworkexperience.ClearSelection();

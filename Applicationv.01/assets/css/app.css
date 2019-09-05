@@ -168,3 +168,12 @@
 [dir=ltr] button, [dir=ltr] select {
     height: auto;
 }
+.frm-rdbtn span label {
+    display: inline;
+}
+
+.frm-rdbtn span.form-control {
+    height: auto;
+}
+
+.tbl-dtinfo{width: 100%;float: left;}

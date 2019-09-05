@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_studentdetails.aspx.cs" Inherits="gte_studentdetails" MasterPageFile="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_studentdetails.aspx.cs" Inherits="gte_studentdetails" MasterPageFile="~/student.master" EnableEventValidation="false"%>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
@@ -225,7 +225,10 @@
                                     <div class="form-row">
                                         <label id="lblnameofcourse" runat="server" for="nameofcourse" class="col-md-3 col-form-label form-label">Name of Course you are applying for (First Choice)</label>
                                         <div class="col-md-6">
-                                            <input id="txtnameofcourse" runat="server" type="text" class="form-control" placeholder="Name Of Course">
+                                            <%--<input id="txtnameofcourse" runat="server" type="text" class="form-control" placeholder="Name Of Course">--%>
+                                            <asp:DropDownList runat="server" ID="ddlnameofcourse" CssClass="form-control">
+                                            </asp:DropDownList>
+                                            <asp:HiddenField ID="hidnameofcourse" runat="server"/>
                                             <span class="helpicon"><i id="icnameofcourse" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -236,7 +239,12 @@
                                     <div class="form-row">
                                         <label id="lblcommencementdate" runat="server" for="commencementdate" class="col-md-3 col-form-label form-label">Date of course commencement </label>
                                         <div class="col-md-6">
-                                            <input id="txtcommencementdate" runat="server" type="text" class="form-control" placeholder="Date of course commencement" data-toggle="flatpickr" value="">
+                                           <%-- <input id="txtcommencementdate" runat="server" type="text" class="form-control" placeholder="Date of course commencement" data-toggle="flatpickr" value="">--%>
+                                             <asp:DropDownList runat="server" ID="ddlCommencementdate" CssClass="form-control">
+                                                <asp:ListItem Value="0">Please Select </asp:ListItem>
+                                                <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
+                                                <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
+                                            </asp:DropDownList>
                                             <span class="helpicon"><i id="iccommencementdate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -362,9 +370,9 @@
                 alert("Please Select Level of Course you are applying for ");
             else  if ($("#<%=ddlfieldofstudy.ClientID%>").val() == "0")
                 alert("Please Select Field of study Applying to");
-            else if ($("#<%=txtnameofcourse.ClientID%>").val() == "")
+            else if ($("#<%=ddlnameofcourse.ClientID%>").val() == "0" || $("#<%=hidnameofcourse.ClientID%>").val() == "")
                 alert("Please Select Name of Course you are applying for");
-            else if ($("#<%=txtcommencementdate.ClientID%>").val() == "")
+            else if ($("#<%=ddlCommencementdate.ClientID%>").val() == "0")
                 alert("Please Select Date of course commencement ");
             else if ($("#<%=ddlworkexperience.ClientID%>").val() == "0")
                 alert("Please Select Work experience ");
@@ -433,6 +441,62 @@
                 $("#<%=fieldcontainer.ClientID%>").hide();
                       
         });
+
+        $("#<%=ddlcourseapplied.ClientID%>").change(function () {
+            if ($("#<%=ddlfieldofstudy.ClientID%>").val() != "") {
+                    var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
+                    var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
+                    $.ajax({
+                    type: "POST",
+                    url: "gte_studentdetails.aspx/GetCourseDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",                         
+                    data: "{'coursetypeid': '" + coursetype + "','selectedMajorid': '" + majorid+"'}", 
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);                            
+                            if ($("#<%=ddlnameofcourse.ClientID%>").length >= 1) {
+                                $("#<%=ddlnameofcourse.ClientID%>").empty();
+                                $("#<%=ddlnameofcourse.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Course"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddlnameofcourse.ClientID%>").append($("<option></option>").val(result[i].courseid).html(result[i].coursename));
+                            }
+                        }
+                    }
+                    });
+                }
+        });
+        $("#<%=ddlfieldofstudy.ClientID%>").change(function () {
+            if ($("#<%=ddlcourseapplied.ClientID%>").val() != "0") {
+               var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
+                    var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
+                    $.ajax({
+                    type: "POST",
+                    url: "gte_studentdetails.aspx/GetCourseDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'coursetypeid': '" + coursetype + "','selectedMajorid': '" + majorid+"'}", 
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);                            
+                            if ($("#<%=ddlnameofcourse.ClientID%>").length >= 1) {
+                                $("#<%=ddlnameofcourse.ClientID%>").empty();
+                                $("#<%=ddlnameofcourse.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Course"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddlnameofcourse.ClientID%>").append($("<option></option>").val(result[i].courseid).html(result[i].coursename));
+                            }
+                        }
+                    }
+                    });
+            }
+                
+        });
+        $("#<%=ddlnameofcourse.ClientID%>").change(function () {
+            $("#<%=hidnameofcourse.ClientID%>").val($("#<%=ddlnameofcourse.ClientID%>").val());
+        });
+
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');

@@ -1328,7 +1328,7 @@ public partial class gte_applicantdetails
     public string levelofcourse { get; set; }
     public Nullable<int> fieldofstudyapplied { get; set; }
     public string coursename { get; set; }
-    public Nullable<System.DateTime> commencementdate { get; set; }
+    public string commencementdate { get; set; }
     public Nullable<int> workexperience { get; set; }
     public Nullable<int> typeofworkexperience { get; set; }
     public Nullable<int> residencecountry { get; set; }
