@@ -22,9 +22,9 @@ public partial class australiavisapartD : System.Web.UI.Page
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
+        allQuestions = objCom.FaqQuestionList();
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
             objCom.BindCountries(ddlfamilyresidencecountry);
             objCom.BindCountries(ddlfamilyresidencecountry1);
             objCom.BindCountries(ddlfamilyresidencecountry2);           
@@ -269,7 +269,8 @@ public partial class australiavisapartD : System.Web.UI.Page
                 objaustraliavisadetail.havearrangementwithrelative = 1;
                 objaustraliavisadetail.familyNameofrelative = txtfamilyNameofrelative.Value;
                 objaustraliavisadetail.givenNameofrelative = txtgivenNameofrelative.Value;
-                objaustraliavisadetail.dateOfBirthofrelative = Convert.ToDateTime(txtdateOfBirth.Value);
+                if(txtdateOfBirth.Value != "")
+                    objaustraliavisadetail.dateOfBirthofrelative = Convert.ToDateTime(txtdateOfBirth.Value);
                 objaustraliavisadetail.addressofRelative = txtaddressofRelative.Value;
                 objaustraliavisadetail.relationshipofrelative = txtrelationshipofrelative.Value;
             }
@@ -285,7 +286,8 @@ public partial class australiavisapartD : System.Web.UI.Page
             {
                 objaustraliavisadetail.relativeresideasstatus = 2;
                 objaustraliavisadetail.permitedtostayfor = txtpermitedtostay.Value;
-                objaustraliavisadetail.permitedtostayDate = Convert.ToDateTime(txtuntildate.Value);
+                if(txtuntildate.Value != "")
+                    objaustraliavisadetail.permitedtostayDate = Convert.ToDateTime(txtuntildate.Value);
             }
             //63
             if (rbguardianvisagranted.Checked)
@@ -293,7 +295,8 @@ public partial class australiavisapartD : System.Web.UI.Page
                 objaustraliavisadetail.guardianvisasatus = 1;
                 objaustraliavisadetail.guardianvisano = txtguardianvisano.Value;
                 objaustraliavisadetail.guardianvisaperiodofstay = txtguardianvisaperiodofstay.Value;
-                objaustraliavisadetail.guardianvisaperiodofstayDate = Convert.ToDateTime(txtguardianvisaexpirydate.Value);
+                if(txtguardianvisaexpirydate.Value != "")
+                    objaustraliavisadetail.guardianvisaperiodofstayDate = Convert.ToDateTime(txtguardianvisaexpirydate.Value);
 
                 objaustraliavisadetail.govermentoffName = "";
                 objaustraliavisadetail.periodofstayofguardian ="";
@@ -314,12 +317,14 @@ public partial class australiavisapartD : System.Web.UI.Page
                 objaustraliavisadetail.havewelfarearrangements = 1;
             //65
             objaustraliavisadetail.parentsignature = parentsignature.Value;
-            objaustraliavisadetail.parentsignatureDate = Convert.ToDateTime(date.Value);
+            if(date.Value != "")
+                objaustraliavisadetail.parentsignatureDate = Convert.ToDateTime(date.Value);
             objaustraliavisadetail.parentFullname = txtparentfullname.Value;
             objaustraliavisadetail.parentRelationshipwithstudent = txtrelationwithstudent.Value;
 
             objaustraliavisadetail.parentsignature1 = parentsignature1.Value;
-            objaustraliavisadetail.parentsignatureDate1 = Convert.ToDateTime(date1.Value);
+            if(date1.Value != "")
+                objaustraliavisadetail.parentsignatureDate1 = Convert.ToDateTime(date1.Value);
             objaustraliavisadetail.parentFullname1 = txtparentfullname1.Value;
             objaustraliavisadetail.parentRelationshipwithstudent1 = txtrelationwithstudent1.Value;
             //66
@@ -345,11 +350,13 @@ public partial class australiavisapartD : System.Web.UI.Page
                     }
             //67
             objaustraliavisadetail.parentsignatur67 = txtparentsignatur67.Value;
-            objaustraliavisadetail.signDate = Convert.ToDateTime(txtsignDate.Value);
+            if(txtsignDate.Value != "")
+                objaustraliavisadetail.signDate = Convert.ToDateTime(txtsignDate.Value);
             objaustraliavisadetail.fullname67 = txtfullname67.Value;
             objaustraliavisadetail.relationship67 = txtrelationship67.Value;
             objaustraliavisadetail.parentsignatur671 = parentsignatur67.Value;
-            objaustraliavisadetail.signDate1 = Convert.ToDateTime(txtsignDate1.Value);
+            if(txtsignDate1.Value != "")
+                objaustraliavisadetail.signDate1 = Convert.ToDateTime(txtsignDate1.Value);
             objaustraliavisadetail.fullname671 = fullname67.Value;  
             objaustraliavisadetail.relationship671 = relationship67.Value;
             //68
@@ -478,7 +485,8 @@ public partial class australiavisapartD : System.Web.UI.Page
             }
             //77
             objaustraliavisadetail.signatureauthorizedperson = txtsignatureauthorizedperson.Value;
-            objaustraliavisadetail.dateofsign = Convert.ToDateTime(txtdateofsign.Value);
+            if(txtdateofsign.Value != "")
+                objaustraliavisadetail.dateofsign = Convert.ToDateTime(txtdateofsign.Value);
             //78
             objaustraliavisadetail.migratioagentNo = txtmarnNo.Value;
             objaustraliavisadetail.offshoreagentId = txtoffshoreagentId.Value;
@@ -513,7 +521,8 @@ public partial class australiavisapartD : System.Web.UI.Page
             }
             //80
             objaustraliavisadetail.agentsignature = txtagentsignatures.Value;
-            objaustraliavisadetail.agentsigndate = Convert.ToDateTime(txtagentsigndate.Value);
+            if(txtagentsigndate.Value != "")
+                objaustraliavisadetail.agentsigndate = Convert.ToDateTime(txtagentsigndate.Value);
             //81
             if (rbBankcheque.Checked)
                 objaustraliavisadetail.paymentmethod = 1;
@@ -539,7 +548,8 @@ public partial class australiavisapartD : System.Web.UI.Page
 
                 objaustraliavisadetail.amountinaustraliandollars = txtamountinaustraliandollars.Value;
                 objaustraliavisadetail.creditcardno = txtcreditcardno.Value;
-                objaustraliavisadetail.creditcardexpirydate = Convert.ToDateTime(txtcreditcardexpirydate.Value);
+                if(txtcreditcardexpirydate.Value != "")
+                    objaustraliavisadetail.creditcardexpirydate = Convert.ToDateTime(txtcreditcardexpirydate.Value);
                 objaustraliavisadetail.cardholdarname = txtcardholdarname.Value;
                 objaustraliavisadetail.contactnumber = txtcontactnumber.Value;
                 objaustraliavisadetail.addressofcardholder = txtaddressofcardholder.Value;
@@ -941,7 +951,8 @@ public partial class australiavisapartD : System.Web.UI.Page
             }
             //77
             txtsignatureauthorizedperson.Value = visaInfo.signatureauthorizedperson ;
-            txtdateofsign.Value = Convert.ToDateTime(visaInfo.dateofsign).ToString("yyyy-MM-dd");
+            if(visaInfo.dateofsign != null)
+                txtdateofsign.Value = Convert.ToDateTime(visaInfo.dateofsign).ToString("yyyy-MM-dd");
             //78
             txtmarnNo.Value = visaInfo.migratioagentNo;
             txtoffshoreagentId.Value = visaInfo.offshoreagentId;
@@ -975,7 +986,8 @@ public partial class australiavisapartD : System.Web.UI.Page
 
             //80
             txtagentsignatures.Value = visaInfo.agentsignature;
-            txtagentsigndate.Value = Convert.ToDateTime(visaInfo.agentsigndate).ToString("yyyy-MM-dd");
+            if (visaInfo.agentsigndate != null)
+                txtagentsigndate.Value = Convert.ToDateTime(visaInfo.agentsigndate).ToString("yyyy-MM-dd");
             //81
             if (visaInfo.paymentmethod == 1)
                 rbBankcheque.Checked = true;
@@ -1000,7 +1012,8 @@ public partial class australiavisapartD : System.Web.UI.Page
 
                 txtamountinaustraliandollars.Value = visaInfo.amountinaustraliandollars;
                 txtcreditcardno.Value = visaInfo.creditcardno;
-                txtcreditcardexpirydate.Value = Convert.ToDateTime(visaInfo.creditcardexpirydate).ToString("yyyy-MM-dd");
+                if(visaInfo.creditcardexpirydate != null)
+                    txtcreditcardexpirydate.Value = Convert.ToDateTime(visaInfo.creditcardexpirydate).ToString("yyyy-MM-dd");
                 txtcardholdarname.Value = visaInfo.cardholdarname;
                 txtcontactnumber.Value = visaInfo.contactnumber ;
                 txtaddressofcardholder.Value = visaInfo.addressofcardholder;
