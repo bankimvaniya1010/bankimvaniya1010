@@ -480,7 +480,7 @@ public partial class australiavisapartB : System.Web.UI.Page
                 txtsalarylevel.Value = visaInfo.salarylevel;
                 if (visaInfo.leavingdocAttch == 0)
                     rbdocattachedNo.Checked = true;
-                else if (visaInfo.leavingdocAttch == 0)
+                else if (visaInfo.leavingdocAttch == 1)
                     rbdocattachedYes.Checked = true;
                 //set1
                 if (visaInfo.employmenthistoryFromDate1 != null)
@@ -494,7 +494,7 @@ public partial class australiavisapartB : System.Web.UI.Page
                 txtsalarylevel1.Value = visaInfo.salarylevel1;
                 if (visaInfo.leavingdocAttch1 == 0)
                     rbdocattachedNo1.Checked = true;
-                else if (visaInfo.leavingdocAttch1 == 0)
+                else if (visaInfo.leavingdocAttch1 == 1)
                     rbdocattachedYes1.Checked = true;
                 //37
                 if (visaInfo.currentlyemployed == 0)

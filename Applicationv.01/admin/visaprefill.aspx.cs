@@ -41,13 +41,13 @@ public partial class visaprefill : System.Web.UI.Page
                 rblyourself.Checked = true;
             else if (VisaInfo.applyingfor == 2)
                 rblselfwithFamily.Checked = true;
-            else
+            else if (VisaInfo.applyingfor == 3)
                 rblyourfamily.Checked = true;
             familyname.Value = VisaInfo.familyname;
             givenname.Value = VisaInfo.givenname;
             if (VisaInfo.knownbyanothername == 1)
                 chkanothernameyes.Checked = true;
-            else
+            else if (VisaInfo.knownbyanothername == 0)
                 chkanothernameno.Checked = true;
             anotherfamilyname.Value = VisaInfo.anotherfamilyname;
             anothergivenname.Value = VisaInfo.anothergivenname;
@@ -55,7 +55,7 @@ public partial class visaprefill : System.Web.UI.Page
             // ownlanguagename2 = VisaInfo.ownlanguagename2;
             if (VisaInfo.gender == 1)
                 chkMale.Checked = true;
-            else
+            else if (VisaInfo.gender == 0)
                 chkFemale.Checked = true;
             if (VisaInfo.dateofbirth != null)
                 dateofbirth.Value = Convert.ToDateTime(VisaInfo.dateofbirth).ToString("dd/MMM/yyyy");
@@ -64,23 +64,23 @@ public partial class visaprefill : System.Web.UI.Page
                 countryofbirth.Value = objCom.GetCountryDiscription(Convert.ToInt32(VisaInfo.countryofbirth));
             if (VisaInfo.maritalstatus == 1)
                 chkMarried.Checked = true;
-            else if (VisaInfo.maritalstatus == 1)
-                chkSeparated.Checked = true;
             else if (VisaInfo.maritalstatus == 2)
-                chkWidowed.Checked = true;
+                chkSeparated.Checked = true;
             else if (VisaInfo.maritalstatus == 3)
-                chkEngaged.Checked = true;
+                chkWidowed.Checked = true;
             else if (VisaInfo.maritalstatus == 4)
-                chkDivorced.Checked = true;
+                chkEngaged.Checked = true;
             else if (VisaInfo.maritalstatus == 5)
-                chkNever.Checked = true;
+                chkDivorced.Checked = true;
             else if (VisaInfo.maritalstatus == 6)
+                chkNever.Checked = true;
+            else if (VisaInfo.maritalstatus == 7)
                 chkDefacto.Checked = true;
             if (VisaInfo.countryofcitizenship != null)
                 countryofcitizenship.Value = objCom.GetCountryDiscription(Convert.ToInt32(VisaInfo.countryofcitizenship));
             if (VisaInfo.holdothercitizenship == 0)
                 chkAnotherCitizenNo.Checked = true;
-            else
+            else if (VisaInfo.holdothercitizenship == 1)
             {
                 chkAnotherCitizenYes.Checked = true;
                 if (VisaInfo.anothercountryofcitizenship != null)
@@ -88,7 +88,7 @@ public partial class visaprefill : System.Web.UI.Page
             }
             if (VisaInfo.havepassport == 0)
                 chkPassposrtNo.Checked = true;
-            else
+            else if (VisaInfo.havepassport == 1)
                 chkPassposrtYes.Checked = true;
 
             passportno.Value = VisaInfo.passportno;
@@ -122,17 +122,17 @@ public partial class visaprefill : System.Web.UI.Page
             correspondenceaddresspoastalcode.Value = VisaInfo.correspondenceaddresspoastalcode; ;
             if (VisaInfo.agreetocommunicate == 0)
                 chkagreetocommunicateNo.Checked = true;
-            else
+            else if (VisaInfo.agreetocommunicate == 1)
                 chkagreetocommunicateYes.Checked = true;
             faxno.Value = VisaInfo.faxno; ;
             emailaddress.Value = VisaInfo.emailaddress;
             if (VisaInfo.applicationentrolledinschool == 0)
                 chkEnrollNo.Checked = true;
-            else
+            else if (VisaInfo.applicationentrolledinschool == 1)
                 chkEnrolYes.Checked = true;
-            if (VisaInfo.solelegalrights == 0)
+            if (VisaInfo.solelegalrights == 1)
                 chkSoleRightNo.Checked = true;
-            else
+            else if (VisaInfo.solelegalrights == 2)
                 chkSoleRightYes.Checked = true;
 
             guardiansfamilyname.Value = VisaInfo.guardiansfamilyname;
@@ -144,7 +144,7 @@ public partial class visaprefill : System.Web.UI.Page
             guardiansnatureoflegalrights.Value = VisaInfo.guardiansnatureoflegalrights;
             if (VisaInfo.guardiansstatutorydeclartion == 0)
                 chkstatutory1No.Checked = true;
-            else
+            else if (VisaInfo.guardiansstatutorydeclartion == 1)
                 chkstatutory1Yes.Checked = true;
             guardiansfamilyname1.Value = VisaInfo.guardiansfamilyname1;
             guardiansgivenname1.Value = VisaInfo.guardiansgivenname1;
@@ -155,32 +155,32 @@ public partial class visaprefill : System.Web.UI.Page
             guardiansnatureoflegalrights1.Value = VisaInfo.guardiansnatureoflegalrights1;
             if (VisaInfo.guardiansstatutorydeclartion1 == 0)
                 chkstatutory2No.Checked = true;
-            else
+            else if (VisaInfo.guardiansstatutorydeclartion1 == 1)
                 chkstatutory2Yes.Checked = true;
             if (VisaInfo.subjectofcourtorder == 0)
                 chkcourtorderNo.Checked = true;
-            else
+            else if (VisaInfo.subjectofcourtorder == 1)
                 chkcourtorderYes.Checked = true;
             if (VisaInfo.appliesforAustalianvisa == 0)
                 chkappliesNo.Checked = true;
-            else
+            else if (VisaInfo.appliesforAustalianvisa == 1)
                 chkappliesYes.Checked = true;
             if (VisaInfo.currentlyholdaustralianvisa == 0)
                 chkHoldNo.Checked = true;
-            else
+            else if (VisaInfo.currentlyholdaustralianvisa == 1)
                 chkHoldYes.Checked = true;
             if (VisaInfo.awaitingforaustralianvisa == 0)
                 chkAwaitingNo.Checked = true;
-            else
+            else if (VisaInfo.awaitingforaustralianvisa == 1)
                 chkAwaitingYes.Checked = true;
             nameonvisa.Value = VisaInfo.nameonvisa;
             typeofvisa.Value = VisaInfo.typeofvisa;
             placeofissuevisa.Value = VisaInfo.placeofissuevisa;
             if (VisaInfo.dateissuevisa != null)
                 dateissuevisa.Value = Convert.ToDateTime(VisaInfo.dateissuevisa).ToString("dd/MMM/yyyy");
-            if (VisaInfo.applicationrefusedorgranted == 0)
+            if (VisaInfo.applicationrefusedorgranted == 1)
                 chkvisa1refused.Checked = true;
-            else
+            else if (VisaInfo.applicationrefusedorgranted == 2)
                 chkvisa1granted.Checked = true;
 
             grantedvisalabelno.Value = VisaInfo.grantedvisalabelno;
@@ -191,23 +191,23 @@ public partial class visaprefill : System.Web.UI.Page
             if (VisaInfo.dateissuevisa1 != null)
                 dateissuevisa1.Value = Convert.ToDateTime(VisaInfo.dateissuevisa1).ToString("dd/MMM/yyyy");
 
-            if (VisaInfo.applicationrefusedorgranted1 == 0)
+            if (VisaInfo.applicationrefusedorgranted1 == 1)
                 chkvisa2refused.Checked = true;
-            else
+            else if (VisaInfo.applicationrefusedorgranted1 == 2)
                 chkvisa2granted.Checked = true;
             grantedvisalabelno1.Value = VisaInfo.grantedvisalabelno1;
             visagrantnumber1.Value = VisaInfo.visagrantnumber1;
             if (VisaInfo.applyingfortype == 1)
                 chkPartC.Checked = true;
-            if (VisaInfo.partB == 1)
+            else if (VisaInfo.applyingfortype == 2)
                 chkPartB.Checked = true;
             if (VisaInfo.applyinginaustralia == 0)
                 chkapplyingNo.Checked = true;
-            else
+            else if (VisaInfo.applyinginaustralia == 1)
                 chkapplyingYes.Checked = true;
             if (VisaInfo.docurrentlyholdstudentvisa == 0)
                 chkcurrentlyholdNo.Checked = true;
-            else
+            else if (VisaInfo.docurrentlyholdstudentvisa == 1)
                 chkcurrentlyholdYes.Checked = true;
 
             highestqualification.Value = VisaInfo.highestqualification;
@@ -222,7 +222,7 @@ public partial class visaprefill : System.Web.UI.Page
 
             if (VisaInfo.educationdocumentattached == 0)
                 chkeducationdocumentattachedNo.Checked = true;
-            else
+            else if (VisaInfo.educationdocumentattached == 1)
                 chkeducationdocumentattachedYes.Checked = true;
 
             otherundertakcoursename1.Value = VisaInfo.otherundertakcoursename1;
@@ -236,7 +236,7 @@ public partial class visaprefill : System.Web.UI.Page
                 otherfinishdate1.Value = Convert.ToDateTime(VisaInfo.otherfinishdate1).ToString("dd/MMM/yyyy");
             if (VisaInfo.otherdocumentattached1 == 0)
                 chkotherdocumentattached1No.Checked = true;
-            else
+            else if (VisaInfo.otherdocumentattached1 == 1)
                 chkotherdocumentattached1Yes.Checked = true;
 
             otherundertakcoursename2.Value = VisaInfo.otherundertakcoursename2;
@@ -251,11 +251,11 @@ public partial class visaprefill : System.Web.UI.Page
 
             if (VisaInfo.otherdocumentattached2 == 0)
                 chkotherdocumentattached2No.Checked = true;
-            else
+            else if (VisaInfo.otherdocumentattached2 == 1)
                 chkotherdocumentattached2Yes.Checked = true;
             if (VisaInfo.ispreviouslystudiedinaustralia == 0)
                 chkispreviouslyNo.Checked = true;
-            else
+            else if (VisaInfo.ispreviouslystudiedinaustralia == 1)
                 chkispreviouslyYes.Checked = true;
 
             previouslycoursename.Value = VisaInfo.previouslycoursename;
@@ -283,7 +283,7 @@ public partial class visaprefill : System.Web.UI.Page
                 chkhaveenrolmentYes.Checked = true;
             if (VisaInfo.haveenrolmentevidence == 0)
                 chkhaveenrolmentevidenceNo.Checked = true;
-            else
+            else if (VisaInfo.haveenrolmentevidence == 1)
                 chkhaveenrolmentevidenceYes.Checked = true;
 
             intendcoursename1.Value = VisaInfo.intendcoursename1;
@@ -294,11 +294,11 @@ public partial class visaprefill : System.Web.UI.Page
                 intendedfinishdate1.Value = Convert.ToDateTime(VisaInfo.intendedfinishdate1).ToString("dd/MMM/yyyy");
             if (VisaInfo.haveenrolment1 == 0)
                 chkhaveenrolment1No.Checked = true;
-            else
+            else if (VisaInfo.haveenrolment1 == 1)
                 chkhaveenrolment1Yes.Checked = true;
             if (VisaInfo.haveenrolmentevidence1 == 0)
                 chkhaveenrolmentevidence1No.Checked = true;
-            else
+            else if (VisaInfo.haveenrolmentevidence1 == 1)
                 chkhaveenrolmentevidence1Yes.Checked = true;
 
             intendcoursename2.Value = VisaInfo.intendcoursename2;
@@ -309,20 +309,20 @@ public partial class visaprefill : System.Web.UI.Page
                 intendedfinishdate2.Value = Convert.ToDateTime(VisaInfo.intendedfinishdate2).ToString("dd/MMM/yyyy");
             if (VisaInfo.haveenrolment2 == 0)
                 chkhaveenrolment2No.Checked = true;
-            else
+            else if (VisaInfo.haveenrolment2 == 1)
                 chkhaveenrolment2Yes.Checked = true;
             if (VisaInfo.haveenrolmentevidence2 == 0)
                 chkhaveenrolmentevidence2No.Checked = true;
-            else
+            else if (VisaInfo.haveenrolmentevidence2 == 1)
                 chkhaveenrolmentevidence2Yes.Checked = true;
 
             if (VisaInfo.applicantassesmentlevel == 0)
                 chkapplicantassesmentlevelNo.Checked = true;
-            else
+            else if (VisaInfo.applicantassesmentlevel == 1)
                 chkapplicantassesmentlevelYes.Checked = true;
             if (VisaInfo.englishlangtest == 0)
                 chkenglishlangtestNo.Checked = true;
-            else
+            else if (VisaInfo.englishlangtest == 1)
                 chkenglishlangtestYes.Checked = true;
 
             englishlangtestname.Value = VisaInfo.englishlangtestname;
@@ -345,7 +345,7 @@ public partial class visaprefill : System.Web.UI.Page
 
             if (VisaInfo.leavingdocAttch == 0)
                 chkleavingdocAttchNo.Checked = true;
-            else
+            else if (VisaInfo.leavingdocAttch == 1)
                 chkleavingdocAttchYes.Checked = true;
             if (VisaInfo.employmenthistoryFromDate1 != null)
                 employmenthistoryFromDate1.Value = Convert.ToDateTime(VisaInfo.employmenthistoryFromDate1).ToString("MMM/yyyy");
@@ -358,18 +358,18 @@ public partial class visaprefill : System.Web.UI.Page
             salarylevel1.Value = VisaInfo.salarylevel1;
             if (VisaInfo.leavingdocAttch1 == 0)
                 chkleavingdocAttch1No.Checked = true;
-            else
+            else if (VisaInfo.leavingdocAttch1 == 1)
                 chkleavingdocAttch1Yes.Checked = true;
             if (VisaInfo.currentlyemployed == 0)
                 chkcurrentlyemployedNo.Checked = true;
-            else
+            else if (VisaInfo.currentlyemployed == 1)
                 chkcurrentlyemployedYes.Checked = true;
 
             if (VisaInfo.ifnoThenOption == 1)
                 rblStudent.Checked = true;
             else if (VisaInfo.ifnoThenOption == 2)
                 rblunemployed.Checked = true;
-            else
+            else if (VisaInfo.ifnoThenOption == 3)
                 rblOther.Checked = true;
 
             otherdescription1.Value = VisaInfo.otherdescription1;
@@ -380,15 +380,15 @@ public partial class visaprefill : System.Web.UI.Page
             employercontactno.Value = VisaInfo.employercontactno;
             if (VisaInfo.evidenceofemployement == 0)
                 rblevidenceofemployementNo.Checked = true;
-            else
+            else if (VisaInfo.evidenceofemployement == 1)
                 rblevidenceofemployementYes.Checked = true;
             if (VisaInfo.currentlystudentinaustralia == 0)
                 rblcurrentlystudentinaustraliaNo.Checked = true;
-            else
+            else if (VisaInfo.currentlystudentinaustralia == 1)
                 rblcurrentlystudentinaustraliaYes.Checked = true;
             if (VisaInfo.joboffered == 0)
                 chkjobofferedNo.Checked = true;
-            else
+            else if (VisaInfo.joboffered == 1)
                 chkjobofferedYes.Checked = true;
 
             kindofemployementseeking.Value = VisaInfo.kindofemployementseeking;
@@ -422,22 +422,22 @@ public partial class visaprefill : System.Web.UI.Page
 
             if (VisaInfo.applyinaustraliaassecschool == 0)
                 chkapplyinaustraliaassecschoolNo.Checked = true;
-            else
+            else if (VisaInfo.applyinaustraliaassecschool == 1)
                 chkapplyinaustraliaassecschoolYes.Checked = true;
             if (VisaInfo.issufficientfund == 0)
                 chkissufficientfundNo.Checked = true;
-            else
+            else if (VisaInfo.issufficientfund == 1)
                 chkissufficientfundYes.Checked = true;
             if (VisaInfo.declarationDate42 != null)
                 declarationDate42.Value = Convert.ToDateTime(VisaInfo.declarationDate42).ToString("dd/MMM/yyyy");
 
-            if (VisaInfo.ifFamilyunitcompletedformpartC == 0)
+            if (VisaInfo.ifFamilyunitcompletedformpartC == 1)
                 chkFamilyunitcompletedformpartCNo.Checked = true;
-            else
+            else if (VisaInfo.ifFamilyunitcompletedformpartC == 2)
                 chkFamilyunitcompletedformpartCYes.Checked = true;
-            if (VisaInfo.studymorethanthreemonthpartC == 0)
+            if (VisaInfo.studymorethanthreemonthpartC == 1)
                 chkstudymorethanthreemonthpartCNo.Checked = true;
-            else
+            else if (VisaInfo.studymorethanthreemonthpartC == 2)
                 chkstudymorethanthreemonthpartCYes.Checked = true;
 
             studentnamepartC.Value = VisaInfo.studentnamepartC;
@@ -454,21 +454,21 @@ public partial class visaprefill : System.Web.UI.Page
             if (VisaInfo.assessmentexpirydatepartC != null)
                 assessmentexpirydatepartC.Value = Convert.ToDateTime(VisaInfo.assessmentexpirydatepartC).ToString("dd/MMM/yyyy");
 
-            if (VisaInfo.isstudentjoiningdeclarepartC == 0)
+            if (VisaInfo.isstudentjoiningdeclarepartC == 1)
                 chkisstudentjoiningdeclarepartCNo.Checked = true;
-            else
+            else if (VisaInfo.isstudentjoiningdeclarepartC == 2)
                 chkisstudentjoiningdeclarepartCYes.Checked = true;
-            if (VisaInfo.isstudentjoiningsatisfiedconditionpartC == 0)
+            if (VisaInfo.isstudentjoiningsatisfiedconditionpartC == 1)
                 chkisstudentjoiningsatisfiedconditionpartCNo.Checked = true;
-            else
+            else if (VisaInfo.isstudentjoiningsatisfiedconditionpartC == 2)
                 chkisstudentjoiningsatisfiedconditionpartCYes.Checked = true;
-            if (VisaInfo.suficientfundpartC == 0)
+            if (VisaInfo.suficientfundpartC == 1)
                 chksuficientfundpartCNo.Checked = true;
-            else
+            else if (VisaInfo.suficientfundpartC == 2)
                 chksuficientfundpartCYes.Checked = true;
             if (VisaInfo.livedoutsidecountryc == 0)
                 rbllivedoutsidecountrycNo.Checked = true;
-            else
+            else if (VisaInfo.livedoutsidecountryc == 1)
                 rbllivedoutsidecountrycYes.Checked = true;
 
 
@@ -496,106 +496,106 @@ public partial class visaprefill : System.Web.UI.Page
                 familyresidenceTodate2.Value = Convert.ToDateTime(VisaInfo.assessmentgrantdatepartC).ToString("dd/MMM/yyyy");
             if (VisaInfo.haveworkforaustralianhospital == 0)
                 rblhaveworkforaustralianhospitalNo.Checked = true;
-            else
+            else if (VisaInfo.haveworkforaustralianhospital == 1)
                 rblhaveworkforaustralianhospitalYes.Checked = true;
 
             descriptionofhospitalwork.Value = VisaInfo.descriptionofhospitalwork;
             if (VisaInfo.haveworkforaustralianpreschool == 0)
                 rblhaveworkforaustralianpreschoolNo.Checked = true;
-            else
+            else if (VisaInfo.haveworkforaustralianpreschool == 1)
                 rblhaveworkforaustralianpreschoolYes.Checked = true;
 
             descriptionofpreschoolwork.Value = VisaInfo.descriptionofpreschoolwork;
             if (VisaInfo.haveanyhealthissue == 0)
                 rblhaveanyhealthissueNo.Checked = true;
-            else
+            else if (VisaInfo.haveanyhealthissue == 1)
                 rblhaveanyhealthissueYes.Checked = true;
             detailofhealthissue.Value = VisaInfo.detailofhealthissue;
             if (VisaInfo.requireassistancewithmobility == 0)
                 rblrequireassistancewithmobilityNo.Checked = true;
-            else
+            else if (VisaInfo.requireassistancewithmobility == 1)
                 rblrequireassistancewithmobilityYes.Checked = true;
             descriptionofmobility.Value = VisaInfo.descriptionofmobility;
             if (VisaInfo.haevmedicalprocedures == 0)
                 rblhaevmedicalproceduresNo.Checked = true;
-            else
+            else if (VisaInfo.haevmedicalprocedures == 1)
                 rblhaevmedicalproceduresYes.Checked = true;
 
             proceduresdescription.Value = VisaInfo.proceduresdescription;
             if (VisaInfo.havemedicalfollowup == 0)
                 rblhavemedicalfollowupNo.Checked = true;
-            else
+            else if (VisaInfo.havemedicalfollowup == 1)
                 rblhavemedicalfollowupYes.Checked = true;
 
             medicalfollowupdescription.Value = VisaInfo.medicalfollowupdescription;
 
             if (VisaInfo.haveconvictedofcrime == 0)
                 rblhaveconvictedofcrimeNo.Checked = true;
-            else
+            else if (VisaInfo.haveconvictedofcrime == 1)
                 rblhaveconvictedofcrimeYes.Checked = true;
             if (VisaInfo.havechargeoffence == 0)
                 rblhavechargeoffenceNo.Checked = true;
-            else
+            else if (VisaInfo.havechargeoffence == 1)
                 rblhavechargeoffenceYes.Checked = true;
             if (VisaInfo.havecriminaloffence == 0)
                 rblhavecriminaloffenceNo.Checked = true;
-            else
+            else if (VisaInfo.havecriminaloffence == 1)
                 chkhavecriminaloffenceYes.Checked = true;
             if (VisaInfo.haveremovedfromcountry == 0)
                 rblhaveremovedfromcountryNo.Checked = true;
-            else
+            else if (VisaInfo.haveremovedfromcountry == 1)
                 rblhaveremovedfromcountryYes.Checked = true;
             if (VisaInfo.havetoavoidbeingremoved == 0)
                 rblhavetoavoidbeingremovedNo.Checked = true;
-            else
+            else if (VisaInfo.havetoavoidbeingremoved == 1)
                 rblhavetoavoidbeingremovedYes.Checked = true;
             if (VisaInfo.havebeenexcluded == 0)
                 rblhavebeenexcludedNo.Checked = true;
-            else
+            else if (VisaInfo.havebeenexcluded == 1)
                 rblhavebeenexcludedYes.Checked = true;
             if (VisaInfo.havehumanrightscrime == 0)
                 rblhavehumanrightscrimeNo.Checked = true;
-            else
+            else if (VisaInfo.havehumanrightscrime == 1)
                 rblhavehumanrightscrimeYes.Checked = true;
             if (VisaInfo.haverisktonationalsecurity == 0)
                 rblhaverisktonationalsecurityNo.Checked = true;
-            else
+            else if (VisaInfo.haverisktonationalsecurity == 1)
                 rblhaverisktonationalsecurityYes.Checked = true;
             if (VisaInfo.haveoutstandingdebets == 0)
                 rblhaveoutstandingdebetsNo.Checked = true;
-            else
+            else if (VisaInfo.haveoutstandingdebets == 1)
                 rblhaveoutstandingdebetsYes.Checked = true;
             if (VisaInfo.haveconvictedoffence == 0)
                 rblhaveconvictedoffenceNo.Checked = true;
-            else
+            else if (VisaInfo.haveconvictedoffence == 1)
                 chkhaveconvictedoffenceYes.Checked = true;
             if (VisaInfo.haveservedinmilitaryforce == 0)
                 rblhaveservedinmilitaryforceNo.Checked = true;
-            else
+            else if (VisaInfo.haveservedinmilitaryforce == 1)
                 rblhaveservedinmilitaryforceYes.Checked = true;
             descripofcharacterdeclaration.Value = VisaInfo.descripofcharacterdeclaration;
             if (VisaInfo.under18age == 0)
                 rblunder18ageNo.Checked = true;
-            else
+            else if (VisaInfo.under18age == 1)
                 rblunder18ageYes.Checked = true;
             if (VisaInfo.parentsituation == 1)
                 rblparentsituationNo.Checked = true;
             else if (VisaInfo.parentsituation == 2)
                 rblparentsituationYes.Checked = true;
-            else
+            else if (VisaInfo.parentsituation == 3)
                 rblparentsituationNot.Checked = true;
             if (VisaInfo.holdorappliedVisa == 0)
                 rblholdorappliedVisaNo.Checked = true;
-            else
+            else if (VisaInfo.holdorappliedVisa == 1)
                 rblholdorappliedVisaYes.Checked = true;
             parentfamilynamePartD.Value = VisaInfo.parentfamilynamePartD;
             parentgivennamePartD.Value = VisaInfo.parentgivennamePartD;
             if (VisaInfo.parentDateofBirthpartD != null)
                 parentDateofBirthpartD.Value = Convert.ToDateTime(VisaInfo.parentDateofBirthpartD).ToString("dd/MMM/yyyy");
             parentaddresspartD.Value = VisaInfo.parentaddresspartD;
-            if (VisaInfo.parentvisastatusPartD == 0)
+            if (VisaInfo.parentvisastatusPartD == 1)
                 rblparentvisastatusPartDNo.Checked = true;
-            else
+            else if (VisaInfo.parentvisastatusPartD == 2)
                 rblparentvisastatusPartDYes.Checked = true;
             parentvisalabelno.Value = VisaInfo.medicalfollowupdescription;
             parentvisadigitno.Value = VisaInfo.medicalfollowupdescription;
@@ -605,7 +605,7 @@ public partial class visaprefill : System.Web.UI.Page
             parentvisaappliedgovtofficename.Value = VisaInfo.parentvisaappliedgovtofficename;
             if (VisaInfo.havearrangementwithrelative == 0)
                 rblhavearrangementwithrelativeNo.Checked = true;
-            else
+            else if (VisaInfo.havearrangementwithrelative == 1)
                 rblhavearrangementwithrelativeYes.Checked = true;
 
             familyNameofrelative.Value = VisaInfo.familyNameofrelative;
@@ -614,9 +614,9 @@ public partial class visaprefill : System.Web.UI.Page
                 dateOfBirthofrelative.Value = Convert.ToDateTime(VisaInfo.dateOfBirthofrelative).ToString("dd/MMM/yyyy");
             addressofRelative.Value = VisaInfo.addressofRelative;
             relationshipofrelative.Value = VisaInfo.relationshipofrelative;
-            if (VisaInfo.relativeresideasstatus == 0)
+            if (VisaInfo.relativeresideasstatus == 1)
                 rblrelativeresideasstatusPerm.Checked = true;
-            else
+            else if (VisaInfo.relativeresideasstatus == 2)
                 rblrelativeresideasstatusTemp.Checked = true;
             permitedtostayfor.Value = VisaInfo.permitedtostayfor;
             if (VisaInfo.permitedtostayDate != null)
@@ -633,7 +633,7 @@ public partial class visaprefill : System.Web.UI.Page
             periodofstayofguardian.Value = VisaInfo.periodofstayofguardian;
             if (VisaInfo.havewelfarearrangements == 0)
                 rblhavewelfarearrangementsNo.Checked = true;
-            else
+            else if (VisaInfo.havewelfarearrangements == 1)
                 rblhavewelfarearrangementsYes.Checked = true;
 
             parentsignature.Value = VisaInfo.parentsignature;
@@ -650,7 +650,7 @@ public partial class visaprefill : System.Web.UI.Page
 
             if (VisaInfo.havesolelegalrights == 0)
                 rblhavesolelegalrightsNo.Checked = true;
-            else
+            else if (VisaInfo.havesolelegalrights == 1)
                 rblhavesolelegalrightsYes.Checked = true;
             personname.Value = VisaInfo.personname;
             personaddress.Value = VisaInfo.personaddress;
@@ -670,7 +670,7 @@ public partial class visaprefill : System.Web.UI.Page
             relationship671.Value = VisaInfo.relationship671;
             if (VisaInfo.havereceiveassistance == 0)
                 rblhavereceiveassistanceNo.Checked = true;
-            else
+            else if (VisaInfo.havereceiveassistance == 1)
                 rblhavereceiveassistanceYes.Checked = true;
             if (VisaInfo.title == "Mr")
                 rblTitleMr.Checked = true;
@@ -680,7 +680,7 @@ public partial class visaprefill : System.Web.UI.Page
                 rblTitleMiss.Checked = true;
             else if (VisaInfo.title == "Ms")
                 rblTitleMs.Checked = true;
-            else
+            else if (VisaInfo.title == "Other")
                 rblTitleOther.Checked = true;
 
             assistedpersonfamilyname.Value = VisaInfo.assistedpersonfamilyname;
@@ -690,11 +690,11 @@ public partial class visaprefill : System.Web.UI.Page
             assistedpersonmobileno.Value = VisaInfo.assistedpersonmobileno;
             if (VisaInfo.isregisteredwithMARA == 0)
                 rblisregisteredwithMARANo.Checked = true;
-            else
+            else if (VisaInfo.isregisteredwithMARA == 1)
                 rblisregisteredwithMARAYes.Checked = true;
             if (VisaInfo.haveeducationagent == 0)
                 rblhaveeducationagentNo.Checked = true;
-            else
+            else if (VisaInfo.haveeducationagent == 1)
                 rblhaveeducationagentYes.Checked = true;
 
 
@@ -708,31 +708,31 @@ public partial class visaprefill : System.Web.UI.Page
             educationagentfaxno.Value = VisaInfo.educationagentfaxno;
             if (VisaInfo.haveagentinaustralia == 0)
                 rblhaveagentinaustraliaNo.Checked = true;
-            else
+            else if (VisaInfo.haveagentinaustralia == 1)
                 rblhaveagentinaustraliaYes.Checked = true;
             if (VisaInfo.havepaytoassistance == 0)
                 rblhavepaytoassistanceNo.Checked = true;
-            else
+            else if (VisaInfo.havepaytoassistance == 1)
                 rblhavepaytoassistanceYes.Checked = true;
             howmuchyoupay.Value = VisaInfo.howmuchyoupay;
             giftgiven.Value = VisaInfo.giftgiven;
             valueofgift.Value = VisaInfo.valueofgift;
 
 
-            if (VisaInfo.haveauthorisedperson == 1)
+            if (VisaInfo.havewrittencommunications == 1)
                 rblhavewrittencommunicationsMyself.Checked = true;
-            else if (VisaInfo.haveauthorisedperson == 2)
+            else if (VisaInfo.havewrittencommunications == 2)
                 rblhavewrittencommunicationsMigrationagent.Checked = true;
-            else if (VisaInfo.haveauthorisedperson == 3)
+            else if (VisaInfo.havewrittencommunications == 3)
                 rblhavewrittencommunicationsOffshoreagent.Checked = true;
-            else if (VisaInfo.haveauthorisedperson == 4)
+            else if (VisaInfo.havewrittencommunications == 4)
                 rblhavewrittencommunicationsAgentExmpted.Checked = true;
-            else
+            else if (VisaInfo.havewrittencommunications == 5)
                 rblhavewrittencommunicationsAuthorised.Checked = true;
 
             if (VisaInfo.haveauthorisedperson == 0)
                 rblhaveauthorisedpersonNo.Checked = true;
-            else
+            else if (VisaInfo.haveauthorisedperson == 1)
                 rblhaveauthorisedpersonYes.Checked = true;
 
             if (VisaInfo.authorisedpersontitle == "Mr")
@@ -743,7 +743,7 @@ public partial class visaprefill : System.Web.UI.Page
                 rblauthorisedTitleMiss.Checked = true;
             else if (VisaInfo.authorisedpersontitle == "Ms")
                 rblauthorisedTitleMs.Checked = true;
-            else
+            else if (VisaInfo.authorisedpersontitle == "Other")
                 rblauthorisedTitleOther.Checked = true;
 
             authorisedpersofamilynname.Value = VisaInfo.authorisedpersofamilynname;
@@ -753,7 +753,7 @@ public partial class visaprefill : System.Web.UI.Page
             authorisedpersonmobileno.Value = VisaInfo.authorisedpersonmobileno;
             if (VisaInfo.haveagreetocommunicate == 0)
                 rblhaveagreetocommunicateNo.Checked = true;
-            else
+            else if (VisaInfo.haveagreetocommunicate == 1)
                 rblhaveagreetocommunicateYes.Checked = true;
 
             Faxnumber.Value = VisaInfo.Faxnumber;
@@ -772,7 +772,7 @@ public partial class visaprefill : System.Web.UI.Page
                 rblagentTitleMiss.Checked = true;
             else if (VisaInfo.agenttitle == "Ms")
                 rblagentTitleMs.Checked = true;
-            else
+            else if (VisaInfo.agenttitle == "Other")
                 rblagentTitleOther.Checked = true;
             agentfamilyname.Value = VisaInfo.agentfamilyname;
             agentgivenname.Value = VisaInfo.agentgivenname;
@@ -782,7 +782,7 @@ public partial class visaprefill : System.Web.UI.Page
             agentmobileno.Value = VisaInfo.agentmobileno;
             if (VisaInfo.agentagreetocommunicate == 0)
                 rblagentagreetocommunicateNo.Checked = true;
-            else
+            else if (VisaInfo.agentagreetocommunicate == 1)
                 rblagentagreetocommunicateYes.Checked = true;
             agentfaxno.Value = VisaInfo.agentfaxno;
             agentemailaddress.Value = VisaInfo.agentemailaddress;
@@ -823,10 +823,10 @@ public partial class visaprefill : System.Web.UI.Page
             declarationsignature.Value = VisaInfo.declarationsignature;
             if (VisaInfo.declarationdate != null)
                 declarationdate.Value = Convert.ToDateTime(VisaInfo.declarationdate).ToString("dd/MMM/yyyy");
-            declarationsignature1.Value = VisaInfo.declarationsignature;
+            declarationsignature1.Value = VisaInfo.declarationsignature1;
             if (VisaInfo.declarationdate1 != null)
                 declarationdate1.Value = Convert.ToDateTime(VisaInfo.declarationdate1).ToString("dd/MMM/yyyy");
-            declarationsignature2.Value = VisaInfo.declarationsignature;
+            declarationsignature2.Value = VisaInfo.declarationsignature2;
             if (VisaInfo.declarationdate2 != null)
                 declarationdate2.Value = Convert.ToDateTime(VisaInfo.declarationdate2).ToString("dd/MMM/yyyy");
             declarationsignature3.Value = VisaInfo.declarationsignature3;
@@ -846,7 +846,7 @@ public partial class visaprefill : System.Web.UI.Page
         {
             if (k == 0)
             {
-                aboutfamilyname1.Value = FamilyInfo[k].aboutfamilygivenname;
+                aboutfamilyname1.Value = FamilyInfo[k].aboutfamilyname;
                 aboutfamilygivenname1.Value = FamilyInfo[k].aboutfamilygivenname;
                 relationshiptoyou1.Value = FamilyInfo[k].relationshiptoyou;
                 citizenship1.Value = FamilyInfo[k].citizenship;
@@ -873,7 +873,7 @@ public partial class visaprefill : System.Web.UI.Page
             }
             else if (k == 1)
             {
-                aboutfamilyname2.Value = FamilyInfo[k].aboutfamilygivenname;
+                aboutfamilyname2.Value = FamilyInfo[k].aboutfamilyname;
                 aboutfamilygivenname2.Value = FamilyInfo[k].aboutfamilygivenname;
                 relationshiptoyou2.Value = FamilyInfo[k].relationshiptoyou;
                 citizenship2.Value = FamilyInfo[k].citizenship;
@@ -900,7 +900,7 @@ public partial class visaprefill : System.Web.UI.Page
             }
             else if (k == 2)
             {
-                aboutfamilyname3.Value = FamilyInfo[k].aboutfamilygivenname;
+                aboutfamilyname3.Value = FamilyInfo[k].aboutfamilyname;
                 aboutfamilygivenname3.Value = FamilyInfo[k].aboutfamilygivenname;
                 relationshiptoyou3.Value = FamilyInfo[k].relationshiptoyou;
                 citizenship3.Value = FamilyInfo[k].citizenship;
