@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -43,6 +44,8 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                     // Set to empty values to avoid errors, below details are missing from applicant details information.
                     details.highestqualificationfield = 1;
                     details.fieldofstudyapplied = 1;
+                    details.highestqualifiactionachieved = "1";
+                    details.levelofcourse = "1";
                 }
                 else
                     details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
@@ -75,6 +78,21 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
 
                 if (details.highestqualificationfield.Value != details.fieldofstudyapplied.Value) // For adding field of study clarification question
                     clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display Field of study clarification").FirstOrDefault());
+
+                var selectedHighestQualification = Convert.ToInt32(details.highestqualifiactionachieved);
+                var selectedAppliedQualification = Convert.ToInt32(details.levelofcourse);
+                var highestQualificationAchievedLevel = db.studylevelmaster
+                                                          .Where(x => x.studylevelid == selectedHighestQualification).ToList()
+                                                          .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
+                var appliedQualificationLevel = db.studylevelmaster
+                                                  .Where(x => x.studylevelid == selectedAppliedQualification).ToList()
+                                                  .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
+
+                if (!(highestQualificationAchievedLevel > 17 || appliedQualificationLevel > 17)) // Hard coded for removing values not to be considered in study level master table
+                {
+                    if (highestQualificationAchievedLevel > appliedQualificationLevel) // For adding level of study clarification question
+                        clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display level of study clarification").FirstOrDefault());
+                }
 
                 if (clarificationansweredQuestion.Count >= clarification_questionsList.Count)
                     displayLabel("All questions have been answered in this part");

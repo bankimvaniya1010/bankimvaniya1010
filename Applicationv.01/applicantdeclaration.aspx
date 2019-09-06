@@ -121,7 +121,7 @@
             if (questionGiven == 0) {
                 alert("Please first complete Quick Test");
             }
-            else if (!$('#decHeader1').is(":checked") && !$('#decPoint1').is(":checked") && !$('#decPoint2').is(":checked") && !$('#decPoint3').is(":checked") && !$('#decPoint4').is(":checked")) {
+            else if (!$('#decHeader1').is(":checked") || !$('#decPoint1').is(":checked") || !$('#decPoint2').is(":checked") || !$('#decPoint3').is(":checked") || !$('#decPoint4').is(":checked")) {
                 alert("Please tick all check boxes before proceeding.");
                 return false;
             }

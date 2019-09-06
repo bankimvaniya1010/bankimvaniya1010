@@ -26,7 +26,8 @@ public partial class preliminary : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         var isDeclarationDoneByApplicant = (bool)Session["DeclarationDoneByApplicant"];
         if (isDeclarationDoneByApplicant)
-            Response.Redirect(webURL + "default.aspx", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Declaration is completed. Please complete Student Information section to proceed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
         if (!IsPostBack)
         {
             GetQuestion();

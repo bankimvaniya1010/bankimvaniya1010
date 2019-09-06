@@ -26,7 +26,8 @@ public partial class gte_tutorial : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
-            Response.Redirect(webURL + "default.aspx", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList();
