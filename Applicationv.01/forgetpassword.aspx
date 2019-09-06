@@ -61,7 +61,7 @@
                         <div class="text-body">An email with password reset instructions has been sent to your email address, if it exists on our system.</div>
                     </div>
 
-                    <form action="student-dashboard.html" novalidate method="get">
+                    <form action="default.aspx" novalidate method="get">
                         <div class="form-group">
                             <label class="form-label" for="email">Email address:</label>
                             <div class="input-group input-group-merge">
