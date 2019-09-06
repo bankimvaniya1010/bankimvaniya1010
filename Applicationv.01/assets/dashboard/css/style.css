@@ -45,6 +45,29 @@ header{padding: 10px 0;}
 .font-bold,.label-y__name,.rating .ttl{font-weight: bold;}
 .pb30{padding-bottom: 30px;}
 .grey-bg{background-color: #f2f2f2;}
+.appln-dtlstable tr td{padding: 5px 15px; vertical-align: top;}
+.appln-dtlstable tr{padding-bottom: 40px;}
+
+.visa-formwrp .row{padding-left: 15px;}
+.visa-formwrp label{position: relative;}
+.ques-lbl{position: absolute;left: -30px;}
+
+.visaInfo-ttl{font-family: 'Roboto', sans-serif; font-size: 22px;font-weight: 600;padding:  15px 0 5px;margin: 0;}
+.visaInfo-descp{font-family: 'Roboto', sans-serif; font-size: 18px;margin: 0 0 10px;}
+ul li{font-size: 18px;padding-left: 15px;}
+
+
+.form-table{font-family: 'Roboto', sans-serif;}
+.form-table .txt{font-size: 18px;font-family: 'Roboto', sans-serif;font-weight: 400;position: relative;}
+.form-table p{margin: 0;font-size: 18px;}
+.form-table .part{font-size: 25px;font-weight: 800;}
+.form-table .part-sub{font-size: 22px;font-weight: 500;}
+.num-ques{position: absolute;left: -22px;font-weight: 800;}
+.form-table label{margin: 0;}
+.form-table ul{padding-left: 15px;}
+.form-table ul li{padding-left:0px;}
+.form-table tr{padding-bottom: 20px;display: block;}
+.form-table input[type="text"]{height: 25px;}
 @media screen and (min-width: 1024px){
 	.rating .chart__box {width: calc(100% - 70px);}
 

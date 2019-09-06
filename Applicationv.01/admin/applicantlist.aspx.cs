@@ -191,7 +191,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         htmlToPdf.Orientation = PageOrientation.Portrait;
         htmlToPdf.Size = PageSize.A3;
         htmlToPdf.Grayscale = false;
-        htmlToPdf.PageWidth = 200f;
+        htmlToPdf.PageWidth = 300f;
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);

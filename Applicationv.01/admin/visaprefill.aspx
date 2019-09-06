@@ -9,26 +9,16 @@
    
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" />
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>">
-    <style type="text/css">
-        .form-table .txt {
-            font-size: 13px;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 400;
-        }
-
-        .form-table p {
-            margin: 0;
-        }
-    </style>
+    
 </head>
 <body>
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 0 0 40px; background-color: #ffffff;">
         <tr>
             <td style="width: 100%;">
-                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 850px; margin: 0 auto;">
                     <tr>
                         <td>
-                            <img src="/assets/dashboard/img/pdf-head.jpg" class="img-fluid">
+                            <img src="/assets/dashboard/img/pdf-head.jpg" style="width:100%;">
                         </td>
                     </tr>
                 </table>
@@ -36,7 +26,7 @@
         </tr>
         <tr>
             <td>
-                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 850px; margin: 0 auto;">
                     <tr>
                         <td style="vertical-align: top; width: 50%; padding: 0 15px;">
                             <h3 class="visaInfo-ttl">Applying online</h3>
@@ -281,10 +271,10 @@ information available outside these hours). If you are outside Australia, please
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 0 0 40px; background-color: #ffffff;">
         <tr>
             <td style="width: 100%;">
-                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 850px; margin: 0 auto;">
                     <tr>
                         <td style="width: 25%; vertical-align: middle;">
-                            <img src="/assets/dashboard/img/pdf-head.jpg" class="img-fluid">
+                            <img src="/assets/dashboard/img/pdf-head.jpg" style="width:100%;">
                         </td>
                     </tr>
                 </table>
@@ -292,7 +282,7 @@ information available outside these hours). If you are outside Australia, please
         </tr>
         <tr>
             <td>
-                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 750px; margin: 0 auto;" class="form-table">
+                <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 850px; margin: 0 auto;" class="form-table">
                     <!-- Start Form here -->
                     <tr style="padding-top: 15px;">
                         <td style="width: 50%; vertical-align: top; padding: 0 15px;">
@@ -2611,7 +2601,7 @@ information available outside these hours). If you are outside Australia, please
                                     <br>
                                     <strong>Note:</strong> This option is available where applications are made in Australia. If you are making the application outside Australia and wish to pay by credit card, please check with the Australian Government office about the availability of this option. </span>
                             </p>
-                            <p class="txt">
+                            <p class="txt" style="font-size:12px;">
                                 <span style="border: 1px solid #000; margin-right: 5px; display: inline-block; width: 250px; padding: 5px;">
                                     <label>Payment by (tick one box)</label><br>
                                     <label style="text-align: right; width: 125px;">
