@@ -10,7 +10,24 @@
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
- <% 
+             <%    for (int k = 0; k < CustomControls.Count; k++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[k].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[k].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[k].customfieldid.ToString();
+        %>
+
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }
+
         for (int n = 0; n < referenccheckList.Count; n++)
         {%>
             $("#btnName<%=n%>").click(function () {
@@ -180,7 +197,7 @@
                                     <div class="col-md-4">
                                         <span><%=referenccheckList[k].name %></span>
                                         <input type="radio" id="<%="rblNameYes" + k %>" name="<%="Name" + k %>" value="1">Yes
-                                        <input type="radio" id="<%="rblNameNo" + k %>" name="<%="Name" + k %>" value="0">
+                                        <input type="radio" id="<%="rblNameNo" + k %>" name="<%="Name" + k %>" value="0">No
                                         No
                                         <span class="helpicon"><i id="<%="icName" + k %>" class="fa fa-info-circle" data-tipso="<%=NameTooltips %>" style='<%= NameTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>

@@ -341,6 +341,24 @@
                 ManageRemarksIfNoCheked('<%=txtTrips.ClientID%>', 'btnTrips');
             if ($('#<%=rblentertainmentNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtentertainment.ClientID%>', 'btnentertainment');
+
+             <%    for (int n = 0; n < CustomControls.Count; n++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[n].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+        %>
+
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }%>
             function ManageRemarksIfNoCheked(cntrol, control2) {
                 $("#" + cntrol + "").css('display', 'block');
                 $("#" + control2 + "").prop('value', 'Hide Comments');

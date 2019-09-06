@@ -55,9 +55,24 @@
                                 <input type="button" value="Add Remarks" id="btnFirstName" />
                                 <input id="txtFirstName" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
-
                         </div>
-
+                    </div>
+                </div>
+                <div class="list-group-item" id="passportsameasFirstName" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
+                        <div class="form-row">
+                            <label id="labelpassportsameasFirstName" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport First Name same as Above </label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblpassportsameasFirstName" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblpassportsameasFirstNameYes" GroupName="passportsameasFirstName" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblpassportsameasFirstNameNo" GroupName="passportsameasFirstName" Text="No" runat="server" />
+                                <span class="helpicon"><i id="icpassportsameasFirstName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="button" value="Add Remarks" id="btnpassportsameasFirstName" />
+                                <input id="txtpassportsameasFirstName" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item" id="lastname" runat="server" style="display: none">
@@ -77,6 +92,23 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+                <div class="list-group-item" id="passportsameasLastName" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
+                        <div class="form-row">
+                            <label id="labelpassportsameasLastName" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport Last Name same as Above</label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblpassportsameasLastName" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblpassportsameasLastNameYes" GroupName="passportsameasLastName" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblpassportsameasLastNameNo" GroupName="passportsameasLastName" Text="No" runat="server" />
+                                <span class="helpicon"><i id="icpassportsameasLastName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="button" value="Add Remarks" id="btnpassportsameasLastName" />
+                                <input id="txtpassportsameasLastName" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item" id="preferedname" runat="server" style="display: none">
@@ -112,6 +144,23 @@
                             </div>
                         </div>
 
+                    </div>
+                </div>
+                <div class="list-group-item" id="passportsameasmiddlename" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
+                        <div class="form-row">
+                            <label id="labelpassportsameasmiddlename" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport Middle Name same as Above</label>
+                            <div class="col-md-4">
+                                <asp:Label ID="lblpassportsameasmiddlename" runat="server"></asp:Label>
+                                <asp:RadioButton ID="rblpassportsameasmiddlenameYes" GroupName="passportsameasmiddlename" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rblpassportsameasmiddlenameNo" GroupName="passportsameasmiddlename" Text="No" runat="server" />
+                                <span class="helpicon"><i id="icpassportsameasmiddlename" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="button" value="Add Remarks" id="btnpassportsameasmiddlename" />
+                                <input id="txtpassportsameasmiddlename" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="list-group-item" id="dob" runat="server" style="display: none">
@@ -438,7 +487,23 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
+              <%    for (int n = 0; n < CustomControls.Count; n++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[n].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+        %>
 
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }%>
             if ($('#<%=rblAgentListNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtAgentList.ClientID%>', 'btnAgentList');
             if ($('#<%=rblAgentNo.ClientID%>').prop('checked') == true)
@@ -485,7 +550,12 @@
                 ManageRemarksIfNoCheked('<%=txtFirstName.ClientID%>', 'btnFirstName');
             if ($('#<%=rblTitleNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtTitle.ClientID%>', 'btnTitle');
-
+            if ($('#<%=rblpassportsameasLastNameNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
+            if ($('#<%=rblpassportsameasFirstNameNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
+            if ($('#<%=rblpassportsameasmiddlenameNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
             $("#btnAgentList").click(function () {
                 ManageRemarks('<%=txtAgentList.ClientID%>', 'btnAgentList');
             });
@@ -626,6 +696,24 @@
             });
             $("#<%=rblTitleNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txtTitle.ClientID%>', 'btnTitle');
+            });
+            $("#btnpassportsameasFirstName").click(function () {
+                ManageRemarks('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
+            });
+            $("#<%=rblpassportsameasFirstNameNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
+            });
+            $("#btnpassportsameasmiddlename").click(function () {
+                ManageRemarks('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
+            });
+            $("#<%=rblpassportsameasmiddlenameNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
+            });
+            $("#btnpassportsameasLastName").click(function () {
+                ManageRemarks('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
+            });
+            $("#<%=rblpassportsameasLastNameNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
             });
             function ManageRemarks(cntrol1, control2) {
                 if ($("#" + cntrol1 + "").is(':hidden')) {

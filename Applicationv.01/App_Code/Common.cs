@@ -932,19 +932,34 @@ public class Common
                     Label lblinput = new Label();
                     lblinput.ID = "lbl" + ControlsList[k].customfieldid;
 
-                  //  lblinput.Attributes["class"] = "form-control";
+                    //  lblinput.Attributes["class"] = "form-control";
                     // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
                     mycontrol.Controls.Add(lblinput);
-
+                    RadioButton rbYes = new RadioButton();
+                    RadioButton rbNo = new RadioButton();
+                    rbYes.Text = "Yes";
+                    rbNo.Text = "No";
+                    rbYes.ID = "rblYes" + ControlsList[k].customfieldid;
+                    rbYes.Attributes.Add("value", "1");
+                    rbNo.Attributes.Add("value", "0");
+                    rbNo.ID = "rblNo" + ControlsList[k].customfieldid;
+                    rbNo.GroupName = ControlsList[k].customfieldid.ToString();
+                    rbYes.GroupName = ControlsList[k].customfieldid.ToString();
+                    mycontrol.Controls.Add(rbYes);
+                    mycontrol.Controls.Add(rbNo);
                     TextBox txtcustombox = new TextBox();
                     txtcustombox.ID = "txt" + ControlsList[k].customfieldid;
-
+                    HtmlInputButton btnCustom = new HtmlInputButton();
+                    btnCustom.ID = "btn" + ControlsList[k].customfieldid;
+                    btnCustom.Value = "Add Remarks";
                     txtcustombox.Attributes["class"] = "form-control";
+                    txtcustombox.Attributes.Add("style", "display:none;");
                     // txtcustombox.Attributes.Add("title", ControlsList[k].tooltips);
+                    adminControl.Controls.Add(btnCustom);
                     adminControl.Controls.Add(txtcustombox);
                 }
             }
-        
+
         }
         catch (Exception ex)
         {
@@ -1206,7 +1221,10 @@ public class Common
                 int customFieldId = CustomControls[k].customfieldid;
                 string OptionID = "txt" + customFieldId;
                 TextBox txtDynamic = (TextBox)mainDiv.FindControl(OptionID);
-                adminInputs.Add(CustomControls[k].labeldescription, txtDynamic.Text);
+
+                string radioNo = "rblNo" + CustomControls[k].customfieldid;
+                RadioButton rblRadioNo = (RadioButton)mainDiv.FindControl(radioNo);
+                adminInputs.Add(CustomControls[k].labeldescription, txtDynamic.Text + "~" + (rblRadioNo.Checked == true ? 0 : 1));
             }
         }
         catch (Exception ex)
@@ -1367,7 +1385,7 @@ public class Common
     {
         try
         {
-            
+
             for (int k = 0; k < Comments.Count; k++)
             {
                 string customFieldName = Comments[k].fieldname;
@@ -1380,6 +1398,17 @@ public class Common
                         string OptionID = "txt" + customControlFieldId;
                         TextBox lblDynamic = (TextBox)mainDiv.FindControl(OptionID);
                         lblDynamic.Text = Comments[k].comments;
+                        string radioYes = "rblYes" + customControlFieldId;
+                        RadioButton rblRadioYes = (RadioButton)mainDiv.FindControl(radioYes);
+                        //rblRadioYes.Text = "Yes";
+                        //rblRadioYes.GroupName = radioYes;
+                        string radioNo = "rblNo" + customControlFieldId;
+                        RadioButton rblRadioNo = (RadioButton)mainDiv.FindControl(radioNo);
+                        if (Comments[k].adminaction == 0)
+                            rblRadioNo.Checked = true;
+                        else
+                            rblRadioYes.Checked = true;
+
                         break;
                     }
                 }

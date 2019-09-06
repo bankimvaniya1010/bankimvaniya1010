@@ -3,91 +3,229 @@
 <asp:Content runat="server" ID="content1" ContentPlaceHolderID="head">
     <title></title>
     <script>
-          $(document).ready(function () {
-                      
-            SetValue();
-        });
+        $(document).ready(function () {
+            $('.fa-info-circle').tipso({
+                position: 'right',
+                background: 'rgba(0,0,0,0.8)',
+                useTitle: false,
+            });
 
-        function SetValue() {
-             <% 
+
+       <%  
         for (int k = 0; k < Comments.Count; k++)
         {
             string fieldName = Comments[k].fieldname;
             string AdminComments = Comments[k].comments;
+            int Adminaction = Convert.ToInt32(Comments[k].adminaction);
             int EmployerCount = EmployersDetail.Count;
             for (int i = 0; i < EmployerCount; i++)
             {
-            %>
-           <% if (fieldName == employer + (i + 1))
-        {%>
+                if (fieldName == employer + (i + 1))
+                {%>
 
-            $("#lblemployer<%=i%>").text('<%=AdminComments%>');
-          <%   }
+            $("#txtemployer<%=i%>").val('<%=AdminComments%>');
+                 <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=employer<%=i%>]')[1].checked = true;
+
+                 <% }
+        else
+        { %>
+            $('input:radio[name=employer<%=i%>]')[0].checked = true;
+                      <%  }
+        }
         else if (fieldName == employerwebsite + (i + 1))
         {%>
 
-            $("#lblemployerwebsite<%=i%>").text('<%=AdminComments%>');
-          <%   }
+            $("#txtemployerwebsite<%=i%>").val('<%=AdminComments%>');
+                            <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=employerwebsite<%=i%>]')[1].checked = true;
+
+                                <% }
+        else
+        { %>
+            $('input:radio[name=employerwebsite<%=i%>]')[0].checked = true;
+                                  <%  }
+        }
+
         else if (fieldName == employercity + (i + 1))
         {%>
+            $("#txtemployercity<%=i%>").val('<%=AdminComments%>');
+                    <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=employerwebsite<%=i%>]')[1].checked = true;
 
-            $("#lblemployercity<%=i%>").text('<%=AdminComments%>');
-          <%   }
+                    <% }
+        else
+        { %>
+            $('input:radio[name=employercity<%=i%>]')[0].checked = true;
+                      <%  }
+        }
+
         else if (fieldName == employercountry + (i + 1))
         {%>
 
-            $("#lblemployercountry<%=i%>").text('<%=AdminComments%>');
-          <%   }
+
+            $("#txtemployercountry<%=i%>").val('<%=AdminComments%>');
+                        <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=employercountry<%=i%>]')[1].checked = true;
+
+                        <% }
+        else
+        { %>
+            $('input:radio[name=employercountry<%=i%>]')[0].checked = true;
+                      <%  }
+        }
+
         else if (fieldName == position + (i + 1))
         {%>
 
-            $("#lblposition<%=i%>").text('<%=AdminComments%>');
-          <%   }
+
+            $("#txtposition<%=i%>").val('<%=AdminComments%>');
+                        <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=position<%=i%>]')[1].checked = true;
+
+                        <% }
+        else
+        { %>
+            $('input:radio[name=position<%=i%>]')[0].checked = true;
+                      <%  }
+        }
+
         else if (fieldName == startdate + (i + 1))
         {%>
 
-            $("#lblstartdate<%=i%>").text('<%=AdminComments%>');
-          <%   }
+
+            $("#txtstartdate<%=i%>").val('<%=AdminComments%>');
+                        <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=startdate<%=i%>]')[1].checked = true;
+
+                        <% }
+        else
+        { %>
+            $('input:radio[name=startdate<%=i%>]')[0].checked = true;
+                      <%  }
+        }
+
         else if (fieldName == enddate + (i + 1))
         {%>
-            $("#lblendate<%=i%>").text('<%=AdminComments%>');
-          <%   }
+
+
+            $("#txtenddate<%=i%>").val('<%=AdminComments%>');
+                        <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=enddate<%=i%>]')[1].checked = true;
+
+                        <% }
+        else
+        { %>
+            $('input:radio[name=enddate<%=i%>]')[0].checked = true;
+                      <%  }
+        }
+
 
         else if (fieldName == BriefDescription + (i + 1))
         {%>
 
-            $("#lblbriefDescription<%=i%>").text('<%=AdminComments%>');
-          <%   }
+            $("#txtbriefDescription<%=i%>").val('<%=AdminComments%>');
+                    <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=briefDescription<%=i%>]')[1].checked = true;
+
+                    <% }
+        else
+        { %>
+            $('input:radio[name=briefDescription<%=i%>]')[0].checked = true;
+                  <%  }
+        }
+
         else if (fieldName == reportingmanger + (i + 1))
         {%>
 
-            $("#lblreportingmanger<%=i%>").text('<%=AdminComments%>');
-          <%   }
+
+            $("#txtreportingmanger<%=i%>").val('<%=AdminComments%>');
+                    <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=reportingmanger%=i%>]')[1].checked = true;
+
+                    <% }
+        else
+        { %>
+            $('input:radio[name=reportingmanger<%=i%>]')[0].checked = true;
+                  <%  }
+        }
+
         else if (fieldName == employmentverification + (i + 1))
         {%>
 
-            $("#lblemploymentverification<%=i%>").text('<%=AdminComments%>');
-          <%   }
+
+            $("#txtemploymentverification<%=i%>").val('<%=AdminComments%>');
+                    <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=employmentverification<%=i%>]')[1].checked = true;
+
+                    <% }
+        else
+        { %>
+            $('input:radio[name=employmentverification<%=i%>]')[0].checked = true;
+                  <%  }
+        }
+
         else if (fieldName == relationship + (i + 1))
         {%>
 
-            $("#lblrelationship<%=i%>").text('<%=AdminComments%>');
-          <%   }
-        else if (fieldName == email + (i + 1))
-        {%>
 
-            $("#lblemail<%=i%>").text('<%=AdminComments%>');
-          <%   }
+            $("#txtrelationship<%=i%>").val('<%=AdminComments%>');
+                    <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=relationship<%=i%>]')[1].checked = true;
+
+                    <% }
+        else
+        { %>
+            $('input:radio[name=relationship<%=i%>]')[0].checked = true;
+                  <%  }
+        }
+
+        else if (fieldName == email + (i + 1))
+        {%>  
+
+            $("#txtemail<%=i%>").val('<%=AdminComments%>');
+                    <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=email<%=i%>]')[1].checked = true;
+
+                    <% }
+        else
+        { %>
+            $('input:radio[name=email<%=i%>]')[0].checked = true;
+                  <%  }
+        }
+
         else if (fieldName == linkedin + (i + 1))
         {%>
+            $("#txtlinkedin<%=i%>").val('<%=AdminComments%>');
+                    <%   if (Adminaction == 0)
+        {%>
+            $('input:radio[name=linkedin<%=i%>]')[1].checked = true;
 
-            $("#lbllinkedin<%=i%>").text('<%=AdminComments%>');
-          <%   }
+                    <% }
+        else
+        { %>
+            $('input:radio[name=linkedin<%=i%>]')[0].checked = true;
+                  <%  }
+                }
+
             }
         }
+
         %>
         }
-       
+
     </script>
 </asp:Content>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
@@ -97,7 +235,7 @@
             <li class="breadcrumb-item active">Applicant Work Experince</li>
         </ol>
         <h1 class="h2">Applicant Work Experince</h1>
-      
+
         <div class="card">
             <% 
                 for (int k = 0; k < EmployersDetail.Count; k++)
@@ -122,7 +260,9 @@
                                 <div class="col-md-4">
                                     <span><%=EmployersDetail[k].organization %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblemploye" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblemployerYes" + k %>" name="<%="employer" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblemployerNo" + k %>" name="<%="employer" + k %>" value="0">No<span id="<%="lblemploye" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +274,9 @@
                                 <div class="col-md-4">
                                     <span><%=EmployersDetail[k].website %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblemployerwebsite" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblemployerwebsiteYes" + k %>" name="<%="employerwebsite" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblemployerwebsiteNo" + k %>" name="<%="employerwebsite" + k %>" value="0">No<span id="<%="lblemployerwebsite" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +288,9 @@
                                 <div class="col-md-4">
                                     <span><%=EmployersDetail[k].city %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblemployercity" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblemployercityYes" + k %>" name="<%="employercity" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblemployercityNo" + k %>" name="<%="employercity" + k %>" value="0">No<span id="<%="lblemployercity" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -158,7 +302,9 @@
                                 <div class="col-md-4">
                                     <span><%=EmployersDetail[k].country==null?"":objCom.GetCountryDiscription(Convert.ToInt32(EmployersDetail[k].country)) %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblemployercountry" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblemployercountryYes" + k %>" name="<%="employercountry" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblemployercountryNo" + k %>" name="<%="employercountry" + k %>" value="0">No<span id="<%="lblemployercountry" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +316,9 @@
                                 <div class="col-md-4">
                                     <span><%=EmployersDetail[k].designation %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblposition" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblpositionYes" + k %>" name="<%="position" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblpositionNo" + k %>" name="<%="position" + k %>" value="0">No<span id="<%="lblposition" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -183,7 +331,9 @@
                                 <div class="col-md-4">
                                     <span><%=Convert.ToDateTime(EmployersDetail[k].durationfrom).ToString("yyyy-MM-dd") %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblstartdate" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblstartdateYes" + k %>" name="<%="startdate" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblstartdateNo" + k %>" name="<%="startdate" + k %>" value="0">No<span id="<%="lblstartdate" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +345,9 @@
                                 <div class="col-md-4">
                                     <span><%=Convert.ToDateTime(EmployersDetail[k].durationto).ToString("yyyy-MM-dd") %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblendate" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblenddateYes" + k %>" name="<%="enddate" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblenddateNo" + k %>" name="<%="endadte" + k %>" value="0">No<span id="<%="lblendate" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -207,7 +359,9 @@
                                 <div class="col-md-4">
                                     <span><%=EmployersDetail[k].briefdescription %></span>
                                 </div>
-                                <div class="col-md-4"><span id="<%="lblbriefDescription" + k %>" ></span>
+                                <div class="col-md-4">
+                                    <input type="radio" id="<%="rblbriefDescriptionYes" + k %>" name="<%="briefDescription" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblbriefDescriptionNo" + k %>" name="<%="briefDescription" + k %>" value="0">No<span id="<%="lblbriefDescription" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +374,9 @@
                                     <span><%=EmployersDetail[k].nameofreportingmanger %></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <span id="<%="lblreportingmanger" + k %>" ></span>
+                                    <input type="radio" id="<%="rblreportingmangerYes" + k %>" name="<%="reportingmanger" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblreportingmangerNo" + k %>" name="<%="reportingmanger" + k %>" value="0">No
+                                    <span id="<%="lblreportingmanger" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -233,7 +389,10 @@
                                     <span><%=EmployersDetail[k].contactpersonwithdetails %></span>
                                 </div>
                                 <div class="col-md-4">
-                                     <span id="<%="lblemploymentverification" + k %>" ></span>
+                                    <input type="radio" id="<%="rblemploymentverificationYes" + k %>" name="<%="employmentverification" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblemploymentverificationNo" + k %>" name="<%="employmentverification" + k %>" value="0">No
+ 
+                                     <span id="<%="lblemploymentverification" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -246,7 +405,9 @@
                                     <span><%=EmployersDetail[k].relationshipwithcontact==null?"":objCom.GetRealtionship(Convert.ToInt32(EmployersDetail[k].relationshipwithcontact))%></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <span id="<%="lblrelationship" + k %>" ></span>
+                                    <input type="radio" id="<%="rblrelationshipYes" + k %>" name="<%="relationship" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblrelationshipNo" + k %>" name="<%="relationship" + k %>" value="0">No
+                                    <span id="<%="lblrelationship" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -259,7 +420,9 @@
                                     <span><%=EmployersDetail[k].emailid %></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <span id="<%="lblemail" + k %>" ></span>
+                                    <input type="radio" id="<%="rblemailYes" + k %>" name="<%="email" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rblemailNo" + k %>" name="<%="email" + k %>" value="0">No
+                                    <span id="<%="lblemail" + k %>"></span>
                                 </div>
                             </div>
                         </div>
@@ -272,19 +435,23 @@
                                     <span><%=EmployersDetail[k].linkedinidofcontact %></span>
                                 </div>
                                 <div class="col-md-4">
-                                    <span id="<%="lbllinkedin" + k %>" ></span>
+                                    <input type="radio" id="<%="rbllinkedinYes" + k %>" name="<%="linkedin" + k %>" value="1">Yes
+                                        <input type="radio" id="<%="rbllinkedinNo" + k %>" name="<%="linkedin" + k %>" value="0">No
+                                    <span id="<%="lbllinkedin" + k %>"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <%} %> <div id="mainDiv" runat="server"></div>
+                <%} %>
+                <div id="mainDiv" runat="server"></div>
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
                         <div class="form-row">
                             <label for="agentList" class="col-md-3 col-form-label form-label">Superviosr Action</label>
                             <div class="col-md-4">
-                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction"> Approved
+                                <input type="radio" id="rbApproved" runat="server" name="supervisorAction">
+                                Approved
                                 <input type="radio" id="rbDenied" runat="server" name="supervisorAction">Further Review
                             </div>
                             <div class="col-md-4">
@@ -293,12 +460,12 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:button id="btnSave" runat="server" text="Save Changes"  cssclass="btn btn-success"  OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
 
                         </div>
                     </div>

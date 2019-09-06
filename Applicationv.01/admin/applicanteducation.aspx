@@ -279,23 +279,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="list-group-item" id="higestEducation" runat="server" style="display: none">
-                    <div class="form-group m-0" role="group" aria-labelledby="label-higestEducation">
-                        <div class="form-row">
-                            <label id="labelhigestEducation" runat="server" for="higestEducation" class="col-md-3 col-form-label form-label">Highest Education</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblhigestEducation" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblhigestEducationYes" GroupName="higestEducation" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblhigestEducationNo" GroupName="higestEducation" Text="No" runat="server" />
-                                <span class="helpicon"><i id="ichigestEducation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="button" value="Add Remarks" id="btnhigestEducation" />
-                                <input id="txthigestEducation" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              
 
                 <div class="list-group-item" id="highshoolgrade" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
@@ -2230,12 +2214,7 @@
             $("#<%=rblhighschoolcontactMobileNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txthighschoolcontactMobile.ClientID%>', 'btnhighschoolcontactMobile');
             });
-            $("#btnhigestEducation").click(function () {
-                ManageRemarks('<%=txthigestEducation.ClientID%>', 'btnhigestEducation');
-            });
-            $("#<%=rblhigestEducationNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txthigestEducation.ClientID%>', 'btnhigestEducation');
-            });
+            
             $("#btnhighshoolgrade").click(function () {
                 ManageRemarks('<%=txthighschoolgrade.ClientID%>', 'btnhighshoolgrade');
             });
@@ -2839,8 +2818,7 @@
                 ManageRemarksIfNoCheked('<%=txthighschoolcontactEmail.ClientID%>', 'btnhighschoolcontactEmail');
            if ($('#<%=rblhighschoolcontactMobileNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txthighschoolcontactMobile.ClientID%>', 'btnhighschoolcontactMobile');
-           if ($('#<%=rblhigestEducationNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txthigestEducation.ClientID%>', 'btnhigestEducation');
+         
            if ($('#<%=rblhighshoolgradeNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txthighschoolgrade.ClientID%>', 'btnhighshoolgrade');
            if ($('#<%=rblSecondaryNo.ClientID%>').prop('checked') == true)
@@ -3023,6 +3001,24 @@
                 ManageRemarksIfNoCheked('<%=txthighercontactEmailOther.ClientID%>', 'btnhighercontactEmailOther');
            if ($('#<%=rblhighercontactMobileOtherNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txthighercontactMobileOther.ClientID%>', 'btnhighercontactMobileOther');
+
+             <%    for (int n = 0; n < CustomControls.Count; n++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[n].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+        %>
+
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }%>
             function ManageRemarks(cntrol1, control2) {
                 if ($("#" + cntrol1 + "").is(':hidden')) {
                     $("#" + cntrol1 + "").css('display', 'block');
