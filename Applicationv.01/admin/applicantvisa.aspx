@@ -390,7 +390,23 @@
                 ManageRemarksIfNoCheked('<%=txtDeniedVisa.ClientID%>', 'btnDeniedVisa');
              if ($('#<%=rblparentdenyNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtparentdeny.ClientID%>', 'btnparentdeny');
-          
+           <%    for (int n = 0; n < CustomControls.Count; n++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[n].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+        %>
+
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }%>
             function ManageRemarks(cntrol1, control2) {
                 if ($("#" + cntrol1 + "").is(':hidden')) {
                     $("#" + cntrol1 + "").css('display', 'block');

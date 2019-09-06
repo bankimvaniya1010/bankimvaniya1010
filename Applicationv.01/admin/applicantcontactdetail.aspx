@@ -10,6 +10,7 @@
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
+
         });
     </script>
 </asp:Content>
@@ -404,7 +405,7 @@
             $("#<%=rblwhatsappDescNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txtWhatsappDescription.ClientID%>', 'btnwhatsappDesc');
             });
-             $("#btnPostalAddress").click(function () {
+            $("#btnPostalAddress").click(function () {
                 ManageRemarks('<%=txtPostalAddress.ClientID%>', 'btnPostalAddress');
             });
             $("#<%=rblPostalAddressNo.ClientID%>").click(function () {
@@ -452,7 +453,7 @@
             $("#<%=rblNomineeEmailNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txtNomineeEmail.ClientID%>', 'btnNomineeEmail');
             });
-             $("#btnNomineeMobile").click(function () {
+            $("#btnNomineeMobile").click(function () {
                 ManageRemarks('<%=txtNomiineeMobile.ClientID%>', 'btnNomineeMobile');
             });
             $("#<%=rblNomineeMobileNo.ClientID%>").click(function () {
@@ -460,42 +461,59 @@
             });
 
 
-             if ($('#<%=rblEmailNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblEmailNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtEmail.ClientID%>', 'btnEmail');
-             if ($('#<%=rblMobileNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblMobileNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtMobile.ClientID%>', 'btnMobile');
-             if ($('#<%=rblHomePhoneNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblHomePhoneNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtHomePhone.ClientID%>', 'btnHomePhone');
-             if ($('#<%=rblSkypeNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblSkypeNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtSkype.ClientID%>', 'btnSkype');
-             if ($('#<%=rblSkypeDescriptionNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblSkypeDescriptionNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtSkypeDescription.ClientID%>', 'btnSkypeDescription');
-             if ($('#<%=rblWhatsappNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblWhatsappNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtWhatsapp.ClientID%>', 'btnWhatsapp');
-             if ($('#<%=rblWhatsapphaveNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblWhatsapphaveNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtWhastappHave.ClientID%>', 'btnWhatsapphave');
-             if ($('#<%=rblwhatsappDescNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblwhatsappDescNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtWhatsappDescription.ClientID%>', 'btnwhatsappDesc');
-             if ($('#<%=rblPostalAddressNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblPostalAddressNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtPostalAddress.ClientID%>', 'btnPostalAddress');
-             if ($('#<%=rblAddressNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblAddressNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtAddress.ClientID%>', 'btnAddress');
-             if ($('#<%=rblCurrentAddressNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblCurrentAddressNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtCurrentAddress.ClientID%>', 'btnCurrentAddress');
-             if ($('#<%=rblResidentialNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblResidentialNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtResidential.ClientID%>', 'btnResidential');
-             if ($('#<%=rblAddressHistoryNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblAddressHistoryNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtAddressHistory.ClientID%>', 'btnAddressHistory');
-             if ($('#<%=rblNominneNameNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblNominneNameNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtGuardianname.ClientID%>', 'btnNominneName');
-             if ($('#<%=rblNomineeRelationNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblNomineeRelationNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtNomineeRelation.ClientID%>', 'btnNomineeRelation');
-             if ($('#<%=rblNomineeEmailNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblNomineeEmailNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtNomineeEmail.ClientID%>', 'btnNomineeEmail');
-             if ($('#<%=rblNomineeMobileNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblNomineeMobileNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtNomiineeMobile.ClientID%>', 'btnNomineeMobile');
 
-             function ManageRemarksIfNoCheked(cntrol, control2) {
+             <%    for (int n = 0; n < CustomControls.Count; n++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[n].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+        %>
+
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }%>
+            function ManageRemarksIfNoCheked(cntrol, control2) {
                 $("#" + cntrol + "").css('display', 'block');
                 $("#" + control2 + "").prop('value', 'Hide Comments');
             }

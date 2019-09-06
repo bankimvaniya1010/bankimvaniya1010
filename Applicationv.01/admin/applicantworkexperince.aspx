@@ -10,6 +10,23 @@
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
+             <%    for (int k= 0;k < CustomControls.Count; k++)
+        {
+            string btnName = "ContentPlaceHolder1_btn" + CustomControls[k].customfieldid.ToString();
+            string txtName = "ContentPlaceHolder1_txt" + CustomControls[k].customfieldid.ToString();
+            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[k].customfieldid.ToString();
+        %>
+
+            $("#<%=btnName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            $("#<%=rblName%>").click(function () {
+                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            });
+            if ($('#<%=rblName%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+
+         <%  }%>
               <% 
         for (int n = 0; n < EmployersDetail.Count; n++)
         {%>  $("#btnemployer<%=n%>").click(function () {
@@ -24,7 +41,7 @@
             $("#rblemployerwebsiteNo<%=n%>").click(function () {
                 ManageRemarks('txtemployerwebsite<%=n%>', 'btnemployerwebsite<%=n%>');
             });
-           
+
             $("#btnemployercity<%=n%>").click(function () {
                 ManageRemarks('txtemployercity<%=n%>', 'btnemployercity<%=n%>');
             });
