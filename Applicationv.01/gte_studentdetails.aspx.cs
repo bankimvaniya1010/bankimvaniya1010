@@ -67,9 +67,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         GTEEntities db1 = new GTEEntities();
         var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var temp = (from cm in db1.coursemaster
-                    join md in db1.majordiscipline_master on cm.majordisciplineId equals md.id                    
-                    join sl in db1.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
-                    where md.universityid == universityID1 && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid
+                    where cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid
                     select new
                     {
                         coursename = cm.coursename,

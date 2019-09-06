@@ -125,14 +125,17 @@ public partial class australiavisapartC : System.Web.UI.Page
             //46
             objaustraliavisadetail.studentnamepartC = studentnamepartC.Value;
             objaustraliavisadetail.relationshiptostudentpartC = relationshiptostudentpartC.Value;
-            objaustraliavisadetail.studentdobpartC = Convert.ToDateTime(studentdobpartC.Value);
+            if(studentdobpartC.Value != null)
+                objaustraliavisadetail.studentdobpartC = Convert.ToDateTime(studentdobpartC.Value);
             objaustraliavisadetail.citizenshipofstudentpartC = citizenshipofstudentpartC.Value;
             objaustraliavisadetail.studentaddresspartC = studentaddresspartC.Value;
             objaustraliavisadetail.studentaddpostalcodepartC = studentaddpostalcodepartC.Value;
             objaustraliavisadetail.typeofstudentvisaheldpartC = typeofstudentvisaheldpartC.Value;
             objaustraliavisadetail.assessmentlevelpartC = assessmentlevelpartC.Value;
-            objaustraliavisadetail.assessmentgrantdatepartC = Convert.ToDateTime(assessmentgrantdatepartC.Value);
-            objaustraliavisadetail.assessmentexpirydatepartC = Convert.ToDateTime(assessmentexpirydatepartC.Value);
+            if(assessmentgrantdatepartC.Value != null)
+                objaustraliavisadetail.assessmentgrantdatepartC = Convert.ToDateTime(assessmentgrantdatepartC.Value);
+            if(assessmentexpirydatepartC.Value != null)
+                objaustraliavisadetail.assessmentexpirydatepartC = Convert.ToDateTime(assessmentexpirydatepartC.Value);
 
             //47
             if (isstudentjoiningdeclarepartCNo.Checked)

@@ -30,9 +30,7 @@ public partial class australiavisadetail : System.Web.UI.Page
             objCom.BindCountries(ddlresidencecountry);
             objCom.BindCountries(ddlfamilypassportcountry);
             objCom.BindCountries(ddlfamilypassportcountry1);
-            objCom.BindCountries(ddlfamilypassportcountry2);
-            BindMaritalStatus();
-
+            objCom.BindCountries(ddlfamilypassportcountry2);            
             populateVisaDetails();
 
 
@@ -58,7 +56,8 @@ public partial class australiavisadetail : System.Web.UI.Page
                 objFamilyvisadetail.aboutfamilygivenname = txtanoutfamilyGivenname1.Value;
                 objFamilyvisadetail.relationshiptoyou = txtrelationship.Value;
                 objFamilyvisadetail.citizenship = txtcitizen.Value;
-                objFamilyvisadetail.dobfamilymember = Convert.ToDateTime(txtfamilymemberdob.Value);
+                if(txtfamilymemberdob.Value != "")
+                    objFamilyvisadetail.dobfamilymember = Convert.ToDateTime(txtfamilymemberdob.Value);
                 if (familyhavepassportNo.Checked)
                 {
                     objFamilyvisadetail.isfamilymemberhavepassport = 0;
@@ -76,9 +75,10 @@ public partial class australiavisadetail : System.Web.UI.Page
                     objFamilyvisadetail.passportno = txtfamilypassportno.Value;
                     if (ddlfamilypassportcountry.SelectedValue != "")
                         objFamilyvisadetail.countryofpassport = Convert.ToInt32(ddlfamilypassportcountry.SelectedValue);
-
-                    objFamilyvisadetail.passportdateofissue = Convert.ToDateTime(txtfamilypassportdoi.Value);
-                    objFamilyvisadetail.passportdateofexpiry = Convert.ToDateTime(txtfamilypassportdoe.Value);
+                    if(txtfamilypassportdoi.Value != "")
+                        objFamilyvisadetail.passportdateofissue = Convert.ToDateTime(txtfamilypassportdoi.Value);
+                    if(txtfamilypassportdoe.Value != "")
+                        objFamilyvisadetail.passportdateofexpiry = Convert.ToDateTime(txtfamilypassportdoe.Value);
 
                     objFamilyvisadetail.passportplaceofissue = txtfamilypassportplaceofissue.Value;
                     if (studyinaustraliaNo.Checked)
@@ -214,12 +214,27 @@ public partial class australiavisadetail : System.Web.UI.Page
                 objaustraliavisadetail.gender = 1;
             else if (rbFemale.Checked)
                 objaustraliavisadetail.gender = 0;
-            objaustraliavisadetail.dateofbirth = Convert.ToDateTime(txtdob.Value);
+            if(txtdob.Value != "")
+                objaustraliavisadetail.dateofbirth = Convert.ToDateTime(txtdob.Value);
             objaustraliavisadetail.cityofbirth = txtcity.Value;
             if (ddlcountryofBirth.SelectedValue != "")
                 objaustraliavisadetail.countryofbirth = Convert.ToInt32(ddlcountryofBirth.SelectedValue);
-            if (ddlmaritalstatus.SelectedValue != "")
-                objaustraliavisadetail.maritalstatus = Convert.ToInt32(ddlmaritalstatus.SelectedValue);
+
+            if (rbMarried.Checked)
+                objaustraliavisadetail.maritalstatus = 1;
+            else if (rbSeperated.Checked)
+                objaustraliavisadetail.maritalstatus = 2;
+            else if (rbWidowed.Checked)
+                objaustraliavisadetail.maritalstatus = 3;
+            else if (rbEngaged.Checked)
+                objaustraliavisadetail.maritalstatus = 4;
+            else if (rbDivorced.Checked)
+                objaustraliavisadetail.maritalstatus = 5;
+            else if (rbNeverMarried.Checked)
+                objaustraliavisadetail.maritalstatus = 6;
+            else if (rbDeFacto.Checked)
+                objaustraliavisadetail.maritalstatus = 7;
+            
             if (ddlcitizenshipcountry.SelectedValue != "")
                 objaustraliavisadetail.countryofcitizenship = Convert.ToInt32(ddlcitizenshipcountry.SelectedValue);
             if (rbanothercitizenNo.Checked)
@@ -247,8 +262,10 @@ public partial class australiavisadetail : System.Web.UI.Page
                 objaustraliavisadetail.passportno = txtpassportno.Value;
                 if (ddlcountryofissue.SelectedValue != "")
                     objaustraliavisadetail.countryofpassport = Convert.ToInt32(ddlcountryofissue.SelectedValue);
-                objaustraliavisadetail.dateofissue = Convert.ToDateTime(txtdateofissue.Value);
-                objaustraliavisadetail.dateofexpiry = Convert.ToDateTime(txtexpirydate.Value);
+                if(txtdateofissue.Value != "")
+                    objaustraliavisadetail.dateofissue = Convert.ToDateTime(txtdateofissue.Value);
+                if(txtexpirydate.Value != "")
+                    objaustraliavisadetail.dateofexpiry = Convert.ToDateTime(txtexpirydate.Value);
             }
             objaustraliavisadetail.placeofissue = txtplaceofissue1.Value;
             objaustraliavisadetail.applicableidentificationno = txtapplicableidentificationno.Value;
@@ -718,11 +735,21 @@ public partial class australiavisadetail : System.Web.UI.Page
                     ddlcountryofBirth.Items.FindByValue(visaInfo.countryofbirth.ToString()).Selected = true;
                 }
 
-                if (visaInfo.maritalstatus != null)
-                {
-                    ddlmaritalstatus.ClearSelection();
-                    ddlmaritalstatus.Items.FindByValue(visaInfo.maritalstatus.ToString()).Selected = true;
-                }
+                if (visaInfo.maritalstatus == 1)
+                    rbMarried.Checked = true;
+                else if (visaInfo.maritalstatus == 2)
+                    rbSeperated.Checked = true;
+                else if (visaInfo.maritalstatus == 3)
+                    rbWidowed.Checked = true;
+                else if (visaInfo.maritalstatus == 4)
+                    rbEngaged.Checked = true;
+                else if (visaInfo.maritalstatus == 5)
+                    rbDivorced.Checked = true;
+                else if (visaInfo.maritalstatus == 6)
+                    rbNeverMarried.Checked = true;
+                else if (visaInfo.maritalstatus == 7)
+                    rbDeFacto.Checked = true;
+
                 if (visaInfo.countryofcitizenship != null)
                 {
                     ddlcitizenshipcountry.ClearSelection();
@@ -900,17 +927,4 @@ public partial class australiavisadetail : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
-    private void BindMaritalStatus()
-    {
-        ListItem lst = new ListItem("Please select", "0");
-
-        var Status = db.maritalstatusmaster.ToList();
-        ddlmaritalstatus.DataSource = Status;
-        ddlmaritalstatus.DataTextField = "description";
-        ddlmaritalstatus.DataValueField = "id";
-        ddlmaritalstatus.DataBind();
-        ddlmaritalstatus.Items.Insert(0, lst);
-    }
-
 }

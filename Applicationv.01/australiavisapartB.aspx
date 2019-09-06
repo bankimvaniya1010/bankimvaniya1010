@@ -900,7 +900,7 @@
 	        <div class="list-group-item">
                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                     <div class="form-row"> 
-                        <a href="australiavisadetail.aspx" class="btn btn-success" style="margin-right: 10px;">Back</a>
+                      <%--  <a href="australiavisadetail.aspx" class="btn btn-success" style="margin-right: 10px;">Back</a>--%>
                         <asp:Button ID="btnvisadetails" runat="server" Text="Submit & Proceed" CssClass="btn btn-success" OnClick="btnvisadetails_Click" OnClientClick ="return validateform()"/>
                         <div class="col-md-6">
                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>                                               
@@ -990,6 +990,16 @@
                 $("#<%=sufficientfundControls.ClientID%>").show();
             else 
                 $("#<%=sufficientfundControls.ClientID%>").hide();
+
+            if ($("#<%=assessmentlevelYes.ClientID%>").is(":checked")) 
+                $("#<%=que1.ClientID%>").show();
+            else 
+                $("#<%=que1.ClientID%>").hide();
+
+            if ($("#<%=applyinAustraliaNo.ClientID%>").is(":checked"))
+                $("#<%=que.ClientID%>").show();
+            else 
+                $("#<%=que.ClientID%>").hide();
         });
 
         //28  
@@ -1158,22 +1168,18 @@
                 alert("Please select if evidence of entrollment attached of field 32");
                 //33 34 35
             else if (!($("#<%=assessmentlevelNo.ClientID%>").is(':checked') || $("#<%=assessmentlevelYes.ClientID%>").is(':checked')))
-                alert("Please select Are you an applicant  in asssessment Level 1 or 2 of field 33");
-            else if ($("#<%=assessmentlevelNo.ClientID%>").is(':checked'))
-            {
-                if (!($("#<%=englishtestgivenNO.ClientID%>").is(':checked') || $("#<%=englishtestgivenYes.ClientID%>").is(':checked')))
-                    alert("Please select Have you undertaken an English language proficiency test within the last 24 months  of field 34 ");
-                else if ($("#<%=englishtestgivenYes.ClientID%>").is(':checked') && $("#<%=englishtestname.ClientID%>").val() == "")
-                    alert("please enter test name of field 34");
-                else if ($("#<%=englishtestgivenYes.ClientID%>").is(':checked') && $("#<%=englishtestDate.ClientID%>").val() == "")
-                    alert("please enter test date of field 34");
-                else if ($("#<%=englishtestgivenYes.ClientID%>").is(':checked') && $("#<%=englishtestcertificateNO.ClientID%>").val() == "")
-                    alert("pleas enter certificate number of field 34");
-                else if (!($("#<%=leastyearsincountriesNo.ClientID%>").is(':checked') || $("#<%=leastyearsincountriesYes.ClientID%>").is(':checked')))
-                    alert("Please select Have you studied for at least 5 years (in the English language) in one or more of the following countries of field 35");
-            
-            }
-                //36    
+                alert("Please select Are you an applicant  in asssessment Level 1 or 2 of field 33");                        
+            else if ($("#<%=assessmentlevelNo.ClientID%>").is(':checked') &&(!($("#<%=englishtestgivenNO.ClientID%>").is(':checked') || $("#<%=englishtestgivenYes.ClientID%>").is(':checked'))))
+                alert("Please select Have you undertaken an English language proficiency test within the last 24 months  of field 34 ");
+            else if ($("#<%=assessmentlevelNo.ClientID%>").is(':checked') && $("#<%=englishtestgivenYes.ClientID%>").is(':checked') && $("#<%=englishtestname.ClientID%>").val() == "")
+                alert("please enter test name of field 34");
+            else if ($("#<%=assessmentlevelNo.ClientID%>").is(':checked') && $("#<%=englishtestgivenYes.ClientID%>").is(':checked') && $("#<%=englishtestDate.ClientID%>").val() == "")
+                alert("please enter test date of field 34");
+            else if ($("#<%=assessmentlevelNo.ClientID%>").is(':checked') && $("#<%=englishtestgivenYes.ClientID%>").is(':checked') && $("#<%=englishtestcertificateNO.ClientID%>").val() == "")
+                alert("pleas enter certificate number of field 34");
+            else if ($("#<%=assessmentlevelNo.ClientID%>").is(':checked') && (!($("#<%=leastyearsincountriesNo.ClientID%>").is(':checked') || $("#<%=leastyearsincountriesYes.ClientID%>").is(':checked'))))
+                alert("Please select Have you studied for at least 5 years (in the English language) in one or more of the following countries of field 35");            
+            //36    
             else if ($("#<%=employmenthistoryFrom.ClientID%>").val() == "")
                 alert("Please enter employer details from date of field 36");
             else if ($("#<%=employmenthistoryTo.ClientID%>").val() == "")
@@ -1192,7 +1198,7 @@
                 alert("Please select documents attached of field 36");
                 //37
             else if (!($("#<%=currentlyemployedNo.ClientID%>").is(':checked') || $("#<%=currentlyemployedYes.ClientID%>").is(':checked')))
-                alert("Please select are you currently employed  of field 38");
+                alert("Please select are you currently employed  of field 37");
             else if ($("#<%=currentlyemployedNo.ClientID%>").is(':checked') && !($("#<%=rbstudent.ClientID%>").is(':checked') || $("#<%=rbunemployed.ClientID%>").is(':checked') || $("#<%=rbother.ClientID%>").is(':checked')))
                 alert("Please select options  of field 37");
             else if ($("#<%=rbother.ClientID%>").is(':checked') && $("#<%=txtotherdescription2.ClientID%>").val() == "")
@@ -1350,7 +1356,7 @@
         });
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Application_list').addClass('open');
+            $('#visaapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantvisa').addClass('active');
         });

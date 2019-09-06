@@ -138,10 +138,7 @@ public partial class applicantcourse : System.Web.UI.Page
         GTEEntities db1 = new GTEEntities();
         var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());        
         var temp = (from cm in db1.coursemaster
-                    join md in db1.majordiscipline_master on cm.majordisciplineId equals md.id
-                    join sm in db1.studymodemaster on cm.modeofstudyId equals sm.id
-                    join sl in db1.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
-                    where md.universityid == universityID1 && cm.majordisciplineId == selectedMajorid && cm.modeofstudyId == modeofstudyid && cm.levelofstudyId == coursetypeid
+                    where cm.majordisciplineId == selectedMajorid && cm.modeofstudyId == modeofstudyid && cm.levelofstudyId == coursetypeid
                     select new
                     {
                         coursename = cm.coursename,
@@ -177,10 +174,7 @@ public partial class applicantcourse : System.Web.UI.Page
         {
             ListItem lst = new ListItem("Please select", "0");
             var courses = (from cm in db.coursemaster
-                           join md in db.majordiscipline_master on cm.majordisciplineId equals md.id
-                           join sm in db.studymodemaster on cm.modeofstudyId equals sm.id
-                           join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
-                           where md.universityid == universityID && cm.majordisciplineId == selectedMajorid && cm.modeofstudyId == modeofstudyid && cm.levelofstudyId == coursetypeid
+                           where cm.majordisciplineId == selectedMajorid && cm.modeofstudyId == modeofstudyid && cm.levelofstudyId == coursetypeid
                            select new
                            {
                                coursename = cm.coursename,

@@ -1603,7 +1603,7 @@
              else
                  $("#<%=txtagentothertitle.ClientID%>").hide();
              });
-        });	        });
+        });	       
         //71  
         $(function () {
          $("input[name='ctl00$ContentPlaceHolder1$agentinauttalia']").click(function () {
@@ -2107,7 +2107,7 @@
                     alert("Please select As the agent named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means of field 79");
                 else if ($("#<%=rbagentagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtagentfaxno.ClientID%>").val() == "")
                     alert("Please enter fax Number of field 79");
-                else if (($("#<%=rbagentagreetocommunicateYes.ClientID%>").is(':checked') && $("#<%=txtagentemailaddress.ClientID%>").val() == "") || !(emailRegex.test($("#<%=txtagentemailaddress.ClientID%>").val())))
+                else if ($("#<%=rbagentagreetocommunicateYes.ClientID%>").is(':checked') && ($("#<%=txtagentemailaddress.ClientID%>").val() == "" || !(emailRegex.test($("#<%=txtagentemailaddress.ClientID%>").val()))))
                     alert("Please enter valid email address of field 79");
 
                 else if ($("#<%=txtagentsignatures.ClientID%>").val() == "")
@@ -2145,7 +2145,7 @@
                     alert("Please select Is the person an education agent?  of field 70");
                 else if ($("#<%=maraNO.ClientID%>").is(':checked') && $("#<%=rbeducationagentYes.ClientID%>").is(':checked') && $("#<%=txtbusinessname.ClientID%>").val() == "")
                     alert("Please enter Education Agency Business Name of field 70");
-                else if (($("#<%=maraNO.ClientID%>").is(':checked') && $("#<%=rbeducationagentYes.ClientID%>").is(':checked') && $("#<%=txteducationagentemail.ClientID%>").val() == "") || !(emailRegex.test($("#<%=txteducationagentemail.ClientID%>").val())))
+                else if ($("#<%=maraNO.ClientID%>").is(':checked') && $("#<%=rbeducationagentYes.ClientID%>").is(':checked') && ($("#<%=txteducationagentemail.ClientID%>").val() == "" || !(emailRegex.test($("#<%=txteducationagentemail.ClientID%>").val()))))
                     alert("Please enter valid E-mail address of field 70");
                 else if ($("#<%=maraNO.ClientID%>").is(':checked') && $("#<%=rbeducationagentYes.ClientID%>").is(':checked') && $("#<%=txteducationagentofficeno.ClientID%>").val() == "")
                     alert("Please enter Office hours of field 70");
@@ -2395,7 +2395,7 @@
         }
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Application_list').addClass('open');
+            $('#visaapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantvisa').addClass('active');
         });

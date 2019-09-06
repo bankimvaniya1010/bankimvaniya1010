@@ -124,9 +124,39 @@
 							
 							<div class="form-check-inline">
 							  <label class="form-check-label">
-							   <asp:DropDownList ID="ddlmaritalstatus" CssClass="form-control" runat="server"> </asp:DropDownList>   
+							       <input type="radio" id="rbMarried" runat="server" class="form-check-input" name="maritalstatus">Married                                   
 							  </label>
-							</div>							
+							</div>
+                             <div class="form-check-inline">
+							  <label class="form-check-label">
+							       <input type="radio" id="rbSeperated" runat="server" class="form-check-input" name="maritalstatus">Seperated
+							  </label>
+							</div>
+                             <div class="form-check-inline">
+							  <label class="form-check-label">
+							       <input type="radio" id="rbWidowed" runat="server" class="form-check-input" name="maritalstatus">Widowed
+							  </label>
+							</div>
+                             <div class="form-check-inline">
+							  <label class="form-check-label">
+							        <input type="radio" id="rbEngaged" runat="server" class="form-check-input" name="maritalstatus">Engaged
+							  </label>
+							</div>
+                             <div class="form-check-inline">
+							  <label class="form-check-label">
+							       <input type="radio" id="rbDivorced" runat="server" class="form-check-input" name="maritalstatus">Divorced
+							  </label>
+							</div>
+                               <div class="form-check-inline">
+							  <label class="form-check-label">
+							       <input type="radio" id="rbNeverMarried" runat="server" class="form-check-input" name="maritalstatus">Never Married
+							  </label>
+							</div>
+                               <div class="form-check-inline">
+							  <label class="form-check-label">
+							       <input type="radio" id="rbDeFacto" runat="server" class="form-check-input" name="maritalstatus">De Facto
+							  </label>
+							</div>
 
 						</div>
 					    </div>
@@ -1160,7 +1190,7 @@
             alert("Please enter city ");
         else if ($("#<%=ddlcountryofBirth.ClientID%>").val() == "0")
             alert("Please select country of Birth");
-        else if ($("#<%=ddlmaritalstatus.ClientID%>").val() == "0")
+        else if (!($("#<%=rbMarried.ClientID%>").is(':checked') || $("#<%=rbSeperated.ClientID%>").is(':checked') || $("#<%=rbWidowed.ClientID%>").is(':checked') || $("#<%=rbEngaged.ClientID%>").is(':checked') ||$("#<%=rbDivorced.ClientID%>").is(':checked') ||$("#<%=rbNeverMarried.ClientID%>").is(':checked') ||$("#<%=rbDeFacto.ClientID%>").is(':checked')))
             alert("Please select Maritial status");
         else if ($("#<%=ddlcitizenshipcountry.ClientID%>").val() == "0")
             alert("Please select country of citizenship");
