@@ -153,12 +153,13 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item " href="formmaster.aspx">Forms</a>
                                             <a class="dropdown-item " href="qualificationcountrymapping.aspx">Qualification Country Mapping</a>
-                                            <%--  <a class="dropdown-item " href="formfieldmapping.aspx">Form Fields Mapping</a>--%>
+                                            <a class="dropdown-item " href="primaryfieldmaster.aspx">Form Fields Mapping</a>
                                             <a class="dropdown-item" href="fieldmaster.aspx">Secondary Language</a>
                                             <a class="dropdown-item" href="universityformmapping.aspx">University Forms</a>
                                             <a class="dropdown-item" href="universityfieldmapping.aspx">University Fields</a>
                                             <a class="dropdown-item" href="masterfieldmapping.aspx">University Master Fields</a>
-                                            
+                                            <a class="dropdown-item" href="customfieldaddition.aspx">Add Custom Field Universitywise</a>
+                                            <a class="dropdown-item" href="customfieldlisting.aspx">Custom Field Listing Universitywise</a>
                                         </div>
                                     </li>                                  
                                     <li class="nav-item dropdown">

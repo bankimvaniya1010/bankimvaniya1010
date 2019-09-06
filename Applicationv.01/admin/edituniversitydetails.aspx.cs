@@ -151,7 +151,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.type = txtUniType.Value.Trim();
             universityObj.year_established = txtYearEstablish.Value.Trim();
             universityObj.short_description = txtUniSDescription.Value.Trim();
-            universityObj.long_description = txtUniLatitude.Value.Trim();
+            universityObj.long_description = txtUniLDescription.Value.Trim();
             universityObj.cityid = Convert.ToInt32(hidCityField.Value.Trim());
             universityObj.countryid = Convert.ToInt32(ddlCountry.SelectedItem.Value);
             universityObj.time_zone = ddlTimeZone.SelectedItem.Value;
