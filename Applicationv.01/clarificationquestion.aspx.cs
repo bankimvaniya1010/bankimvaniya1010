@@ -25,7 +25,8 @@ public partial class clarificationquestion : System.Web.UI.Page
         var showButton = false;
         var isDeclarationDoneByApplicant = (bool)Session["DeclarationDoneByApplicant"];
         if (!isDeclarationDoneByApplicant)
-            Response.Redirect(webURL + "default.aspx", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Please complete tutorials and declaration before proceeding.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
 
         if (!IsPostBack)
         {

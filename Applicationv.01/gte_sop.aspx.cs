@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using System.Text.RegularExpressions;
 
 public partial class gte_sop : System.Web.UI.Page
 {
@@ -72,6 +73,7 @@ public partial class gte_sop : System.Web.UI.Page
                         applicantdetails.dateofbirth = details.dateofbirth;
                         applicantdetails.universityid = universityID;
                         applicantdetails.workexperience = !String.IsNullOrEmpty(details.totalyearofexperience) ? Convert.ToInt32(details.totalyearofexperience) : 0;
+                        applicantdetails.highestqualifiactionachieved = details.higheststudycompleted.HasValue ? details.higheststudycompleted.Value.ToString() : "1";
 
                         if (educationDetails.ishighereducation == 1) // Applicant has entered most recent higher education
                         {
@@ -209,10 +211,24 @@ public partial class gte_sop : System.Web.UI.Page
                         if (applicantdetails.highestqualificationfield.Value == applicantdetails.fieldofstudyapplied.Value)
                             statementList.Remove(condition_statements.Where(x => x.id == item.id).FirstOrDefault());
                     }
-                    /*else if (item.question_section.Contains("")) // For cheking level of study section 1 condition
-                    {   
-                        if(applicantdetails.highestqualificationfield.Value == applicantdetails.fieldofstudyapplied.Value)
-                    }*/
+                    else if (item.value.Contains("level of study")) // For cheking level of study section 1 condition
+                    {
+                        var selectedHighestQualification = Convert.ToInt32(applicantdetails.highestqualifiactionachieved);
+                        var selectedAppliedQualification = Convert.ToInt32(applicantdetails.levelofcourse);
+                        var highestQualificationAchievedLevel = db.studylevelmaster
+                                                                  .Where(x => x.studylevelid == selectedHighestQualification).ToList()
+                                                                  .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
+                        var appliedQualificationLevel = db.studylevelmaster
+                                                          .Where(x => x.studylevelid == selectedAppliedQualification).ToList()
+                                                          .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
+                        if (!(highestQualificationAchievedLevel > 17 || appliedQualificationLevel > 17)) // Hard coded for last three study level master values
+                        {
+                            if (highestQualificationAchievedLevel < appliedQualificationLevel)
+                                statementList.Remove(condition_statements.Where(x => x.id == item.id).FirstOrDefault());
+                        }
+                        else
+                            statementList.Remove(condition_statements.Where(x => x.id == item.id).FirstOrDefault());
+                    }
                     else
                     {
                         bool? applicant_response = null;

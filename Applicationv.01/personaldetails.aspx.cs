@@ -256,6 +256,7 @@ public partial class personaldetails : System.Web.UI.Page
                     ddlYear.Items.FindByValue(dob.Year.ToString()).Selected = true;                    
                     FillDays(ddlDay, ddlYear, ddlMonth);
                     ddlDay.Items.FindByValue(dob.Day.ToString()).Selected = true;
+                    hidDOBDate.Value = dob.Day.ToString();
 
                 }
                 if (profileInfo.gender == 1)
@@ -424,7 +425,7 @@ public partial class personaldetails : System.Web.UI.Page
             objapplicantDetail.lastname = txtLastName.Value;
             objapplicantDetail.middlename = txtMiddleName.Value;
             objapplicantDetail.prefferedname = txtPreferedName.Value;
-            string dateofBirth = ddlYear.SelectedValue + "-" + ddlMonth.SelectedValue + "-" + ddlDay.SelectedValue;
+            string dateofBirth = ddlYear.SelectedValue + "-" + ddlMonth.SelectedValue + "-" + hidDOBDate.Value;
             objapplicantDetail.dateofbirth = Convert.ToDateTime(dateofBirth);
             if (rbtnMale.Checked)
                 objapplicantDetail.gender = 1;

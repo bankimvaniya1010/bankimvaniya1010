@@ -98,6 +98,7 @@
                                                 <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
                                             </asp:DropDownList>                                            
                                             <asp:DropDownList ID="ddlDay" CssClass="form-control" runat="server"></asp:DropDownList> <span class="helpicon"><i id="icDoB" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <asp:HiddenField runat="server" ID="hidDOBDate"/>
                                         </div>
                                     </div>
                                 </div>
@@ -488,7 +489,7 @@
                 alert("Kindly confirm middle name is same as passport name");
             else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked')))
                 alert("Please Select Option to record Gender");
-            else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0")))
+            else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0") || ($("#<%=hidDOBDate.ClientID%>").val() == "")))
                 alert("Please Select valid date of birth");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && !isValidUniversityAcceptAgeRange()) { }
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && $("#<%=ddlNationality.ClientID%>").val().split("_")[0] === "0")
@@ -634,6 +635,10 @@
             if (maritalStatus == "Married") {
                 $("#<%=statusMarried.ClientID%>").show();
             }
+
+            $("#<%=ddlDay.ClientID%>").change(function () {
+                $("#<%=hidDOBDate.ClientID%>").val($("#<%=ddlDay.ClientID%>").val());
+            });
 
             $("#<%=ddlNationality.ClientID%>").change(function () {
                 countryVal = $("#<%=ddlNationality.ClientID%>").val().split("_");

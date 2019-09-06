@@ -1236,7 +1236,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
                 sb.Append("Thank You <br/>");
                 sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEdu.highschoolverificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+                objCom.SendMail(objEdu.highschoolverificationemail, sb.ToString(), "Education Detail check for " + applicantName);
             }
 
             if (rblSecondaryYes.Checked)
@@ -1250,7 +1250,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
                 sb.Append("Thank You <br/>");
                 sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEdu.secondaryverificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+                objCom.SendMail(objEdu.secondaryverificationemail, sb.ToString(), "Education Detail check for " + applicantName);
             }
 
             if (rbldiplomaYes.Checked)
@@ -1264,7 +1264,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
                 sb.Append("Thank You <br/>");
                 sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEdu.diplomaverificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+                objCom.SendMail(objEdu.diplomaverificationemail, sb.ToString(), "Education Detail check for " + applicantName);
             }
 
             if (ddlCourse.SelectedValue != "" && rblhigherYes.Checked)
@@ -1278,7 +1278,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
                 sb.Append("Thank You <br/>");
                 sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEducation.verificationemail, sb.ToString(), "Education Detail check for" + applicantName);
+                objCom.SendMail(objEducation.verificationemail, sb.ToString(), "Education Detail check for " + applicantName);
             }
 
             var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
