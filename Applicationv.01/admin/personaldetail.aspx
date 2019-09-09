@@ -398,7 +398,21 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="list-group-item" role="group" id="higheststudy" runat="server" aria-labelledby="label-marriagedate" style="display: none">
+                    <div class="form-row">
+                        <label id="labelhigheststudy" runat="server" for="higheststudy" class="col-md-3 col-form-label form-label">Highest study level successfully completed</label>
+                        <div class="col-md-4">
+                            <asp:Label ID="lblhigheststudy" runat="server"></asp:Label>
+                            <asp:RadioButton ID="rblhigheststudyYes" GroupName="higheststudy" Text="Yes" runat="server" />
+                            <asp:RadioButton ID="rblhigheststudyNo" GroupName="higheststudy" Text="No" runat="server" />
+                            <span class="helpicon"><i id="ichigheststudy" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="button" value="Add Remarks" id="btnhigheststudy" />
+                            <input id="txthigheststudy" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
+                        </div>
+                    </div>
+                </div>
                 <div class="list-group-item" id="disability" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-disability">
                         <div class="form-row">
@@ -504,6 +518,8 @@
                 ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
 
          <%  }%>
+             if ($('#<%=rblhigheststudyNo.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
             if ($('#<%=rblAgentListNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtAgentList.ClientID%>', 'btnAgentList');
             if ($('#<%=rblAgentNo.ClientID%>').prop('checked') == true)
@@ -714,6 +730,12 @@
             });
             $("#<%=rblpassportsameasLastNameNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
+            });
+             $("#btnhigheststudy").click(function () {
+                ManageRemarks('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
+            });
+            $("#<%=rblpassportsameasLastNameNo.ClientID%>").click(function () {
+                ManageRemarks('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
             });
             function ManageRemarks(cntrol1, control2) {
                 if ($("#" + cntrol1 + "").is(':hidden')) {

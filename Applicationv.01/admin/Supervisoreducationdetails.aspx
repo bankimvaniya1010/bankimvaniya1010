@@ -284,7 +284,7 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                          
                                         </Columns>
                                     </asp:GridView>
 

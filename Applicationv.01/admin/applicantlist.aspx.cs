@@ -178,7 +178,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/downloadpersonal.aspx?formid=1&userid=" + applicantID + "&downloadPdf=1", null, filePath);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/downloadapplicantdetails.aspx?userid=" + applicantID + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
         Response.AppendHeader("Content-Disposition", "attachment; filename=Personal_Form_" + fileName);

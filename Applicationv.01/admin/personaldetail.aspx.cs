@@ -95,6 +95,10 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     lblGender.Text = "Male";
                 else if (profileInfo.gender == 0)
                     lblGender.Text = "Female";
+                if (profileInfo.higheststudycompleted != null)
+                {
+                    lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
+                }
                 String Nationality = "";
                 if (profileInfo.nationality != null)
                 {
@@ -305,7 +309,10 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         icAgentList.Attributes.Add("style", "display:block;");
                         icAgentList.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-
+                    case "Highest study level successfully completed":
+                        ichigheststudy.Attributes.Add("style", "display:block;");
+                        ichigheststudy.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
 
                     default:
                         break;
@@ -414,7 +421,10 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         agentList.Attributes.Add("style", "display:block;");
                         labelagentList.InnerHtml = setInnerHtml(fields[k]);
                         break;
-
+                    case "Highest study level successfully completed":
+                        higheststudy.Attributes.Add("style", "display:block;");
+                        labelhigheststudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
                     default:
                         break;
 
@@ -612,6 +622,13 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     else
                         rblAgentYes.Checked = true;
                     break;
+                case "Highest study level successfully completed":
+                    txthigheststudy.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblhigheststudyNo.Checked = true;
+                    else
+                        rblhigheststudyYes.Checked = true;
+                    break;
                 case "Agent Name":
                     txtAgentList.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
@@ -689,6 +706,8 @@ public partial class admin_personaldetail : System.Web.UI.Page
                 adminInputs.Add("Are you reffered by Agent", txtAgent.Value.Trim() + "~" + (rblAgentNo.Checked == true ? 0 : 1));
             if (agentList.Style.Value != "display: none")
                 adminInputs.Add("Agent Name", txtAgentList.Value.Trim() + "~" + (rblAgentListNo.Checked == true ? 0 : 1));
+            if (higheststudy.Style.Value != "display: none")
+                adminInputs.Add("Highest study level successfully completed", txthigheststudy.Value.Trim() + "~" + (rblhigheststudyNo.Checked == true ? 0 : 1));
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
