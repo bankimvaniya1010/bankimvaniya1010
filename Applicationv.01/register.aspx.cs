@@ -15,6 +15,7 @@ public partial class register : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    protected string LoginURL = "";
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -81,18 +82,35 @@ public partial class register : System.Web.UI.Page
                 db.SaveChanges();
                 // SaveCourses(id);
                 var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationemail.html"));
+                //string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationemail.html"));
+                //html = html.Replace("@UniversityName", university.university_name);
+                //html = html.Replace("@universityLogo", webURL + "/Docs/" + universityID + "/" + university.logo);
+                //html = html.Replace("@Name", name.Value == "" ? "Hello" : name.Value);
+                //html = html.Replace("@Email", email.Value);
+
+                //webURL = webURL + "verifystudent.aspx?key=" + usrObj.verificationkey;
+                //html = html.Replace("@url", webURL);
+                //html = html.Replace("@Loginurl", webURL + "/login.aspx");
+                //webURL = "";
+                //webURL = webURL + "registerconfimation.aspx?email="+ email.Value;
+
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationwithotp.html"));
                 html = html.Replace("@UniversityName", university.university_name);
-                html = html.Replace("@universityLogo", webURL + "/Docs/" + universityID + "/" + university.logo);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
+                //html = html.Replace("@universityLogo", "http://edu.applydirect.online/assets/dashboard/img/aiwt-logo.jpg");
+
                 html = html.Replace("@Name", name.Value == "" ? "Hello" : name.Value);
                 html = html.Replace("@Email", email.Value);
-               
-                webURL = webURL + "verifystudent.aspx?key=" + usrObj.verificationkey;
-                html = html.Replace("@url", webURL);
-                html = html.Replace("@Loginurl", webURL + "/login.aspx");
+                html = html.Replace("@OTP", otp.ToString());
+                if (usrObj.ispasswordset == true)
+                    LoginURL = webURL + "/login.aspx";
+                else
+                    LoginURL = webURL + "/login.aspx?active=1";
+                html = html.Replace("@Loginurl", LoginURL);
+
+                objCom.SendMail(email.Value.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["ActivationSubject"].ToString().Replace("@UniversityName", university.university_name));
                 webURL = "";
-                webURL = webURL + "registerconfimation.aspx?email="+ email.Value;
-                objCom.SendMail(email.Value.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["ConfirmationSubject"].ToString().Replace("@UniversityName", university.university_name));
+                webURL = webURL + "registerconfimation.aspx?email=" + email.Value;
                 Response.Redirect(webURL, true);
             }
 

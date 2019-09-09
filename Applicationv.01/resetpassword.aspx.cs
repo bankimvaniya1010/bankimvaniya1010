@@ -33,6 +33,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 string password = newpassword.Value;
                 login.password = objCom.EncodePasswordToMD5(password);
                 login.ispasswordset = true;
+                login.isverified = true;
                 db.SaveChanges();
                 universityID = Utility.GetUniversityId();
                 var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
