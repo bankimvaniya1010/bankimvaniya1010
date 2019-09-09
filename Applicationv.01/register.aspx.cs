@@ -102,10 +102,7 @@ public partial class register : System.Web.UI.Page
                 html = html.Replace("@Name", name.Value == "" ? "Hello" : name.Value);
                 html = html.Replace("@Email", email.Value);
                 html = html.Replace("@OTP", otp.ToString());
-                if (usrObj.ispasswordset == true)
-                    LoginURL = webURL + "/login.aspx";
-                else
-                    LoginURL = webURL + "/login.aspx?active=1";
+                LoginURL = webURL + "/login.aspx?active=1";
                 html = html.Replace("@Loginurl", LoginURL);
 
                 objCom.SendMail(email.Value.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["ActivationSubject"].ToString().Replace("@UniversityName", university.university_name));
