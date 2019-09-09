@@ -53,6 +53,7 @@ public partial class admin_createcity : System.Web.UI.Page
         }
         catch (Exception ex)
         {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Error saving record. Please try again')", true);
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }

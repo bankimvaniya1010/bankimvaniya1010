@@ -302,7 +302,7 @@
     <script>
 
         function validateForm() {
-            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var flag = false;
             if (!$("#<%=employmentInfo.ClientID%>").is(':hidden') && !($("#<%=rblEmploymentYes.ClientID%>").is(':checked') || $("#<%=rblEmploymentNo.ClientID%>").is(':checked'))) {
                 alert("Please Select Option to record any work experience");

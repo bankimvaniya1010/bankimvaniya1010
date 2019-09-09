@@ -334,7 +334,7 @@ public partial class applicantcourse : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem(" select University", "0");
+            ListItem lst = new ListItem(" Select University", "0");
             var universities = (from um in db.university_master
                                 join am in db.applicantdetails on um.universityid equals am.universityid 
                                 where am.applicantid == userID && um.universityid == universityID

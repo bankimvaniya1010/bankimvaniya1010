@@ -171,7 +171,7 @@
 
         function validateForm() {
             var flag = false;
-            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             if (!$("#<%=Name.ClientID%>").is(':hidden') && $("#<%=txtName.ClientID%>").val() == "")
                 alert("Please Enter Name");
             else if (!$("#<%=Mobile.ClientID%>").is(':hidden') && $("#<%=txtMobile.ClientID%>").val() == "")

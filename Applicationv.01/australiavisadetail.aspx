@@ -1163,7 +1163,7 @@
      });
      function validateForm()
      {
-        var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
         var flag = false;
         if ($("#<%=txtnoOfPeople.ClientID%>").val() == "")
             alert("Please Enter People included in application");

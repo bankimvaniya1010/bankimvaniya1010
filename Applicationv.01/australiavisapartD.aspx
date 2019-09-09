@@ -2040,7 +2040,7 @@
          $('#ContentPlaceHolder1_txtdeclarationdate3').flatpickr({
             dateFormat: 'Y-m-d', defaultDate: ""
         });
-        var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+        var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
         function validauthorizedrecipientQ73() {
             var valid1 = false;
             if ($("#<%=rbAuthorisedrecipient.ClientID%>").is(':checked')) {

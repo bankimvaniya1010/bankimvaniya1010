@@ -70,6 +70,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
         }
         catch (Exception ex)
         {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Error editing record. Please try again')", true);
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }

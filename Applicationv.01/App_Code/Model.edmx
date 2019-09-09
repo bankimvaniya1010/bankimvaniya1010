@@ -1006,12 +1006,12 @@
             <PropertyRef Name="city_id" />
           </Key>
           <Property Name="city_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="cost_of_living" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="around" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="weather" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="geting_there" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="cost_of_living" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="around" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="weather" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="geting_there" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="country_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="clarificationquestion_university_mapping">
@@ -4287,12 +4287,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <PropertyRef Name="city_id" />
           </Key>
           <Property Name="city_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="cost_of_living" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="around" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="weather" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="geting_there" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="cost_of_living" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="around" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="weather" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="geting_there" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="country_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="citymaster" ToRole="countriesmaster" />
           <NavigationProperty Name="universitycampus_city_mapping" Relationship="GTEModel.FK_mapping_citymaster" FromRole="citymaster" ToRole="universitycampus_city_mapping" />

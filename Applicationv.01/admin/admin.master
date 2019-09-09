@@ -121,7 +121,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="Default.aspx">Dashboard</a>
                                             <a class="dropdown-item" href="createuser.aspx">Create User</a>
-                                            <a class="dropdown-item" href="createcity.aspx">Create City</a>
+                                            <a class="dropdown-item" href="citymaster.aspx">Manage Cities</a>
                                             <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
                                             <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Tutorials</a>
                                             <a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>
