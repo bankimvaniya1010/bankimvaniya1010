@@ -25,15 +25,16 @@
                                         <tr>
                                             <td class="width25">
                                                 <a href="#" class="d-inline-block canning-logo">
-                                                    <img src="/assets/dashboard/img/canning-logo.jpg" class="img-fluid">
+                                                    <img src="<%=logoURL %>" class="img-fluid">
                                                 </a>
                                             </td>
                                             <td class="width75 text-right">
                                                 <div class="adm-frm-title">ADMISSIONS APPLICATION FORM</div>
-                                                <div class="adm-frm-no">No: AAA0001</div>
-                                                <div class="adm-frm-sub-txt">Country of Applicant: <span>India</span></div>
-                                                <div class="adm-frm-sub-txt">Commencement date: <span>01 October, 2019</span></div>
-                                                <div class="adm-frm-sub-txt">Course applied for: <span>Western Australian Certificate of Education (WACE)</span></div>
+                                             <%--   <div class="adm-frm-no">No: AAA0001</div>--%>
+                                                <div class="adm-frm-sub-txt">Country of Applicant: <span><%=Nationality %></span></div>
+                                               <%--  <div class="adm-frm-sub-txt">Commencement date: <span>01 October, 2019</span></div>
+                                               <div class="adm-frm-sub-txt">Course applied for: <span>Western Australian Certificate of Education (WACE)</span>
+                                                </div>--%>
                                             </td>
                                         </tr>
                                     </table>
