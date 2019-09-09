@@ -22,7 +22,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected List<customfieldmaster> CustomControlsEmp = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsRef = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsSocial = new List<customfieldmaster>();
-
+    protected string logoURL = "",  Nationality = "";
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     protected List<applicantemployerdetails> EmployersDetail = new List<applicantemployerdetails>();
     protected List<admincomments> Comments = new List<admincomments>();
@@ -65,8 +65,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
         {
             //if (CustomControls.Count > 0)
             //    objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
-
-            
+            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+            logoURL= webURL + "/Docs/" + universityID + "/" + university.logo;
             // Personal Detail Page
             SetPersonalControlsUniversitywise(1);
             PopulatePersonalInfo();
@@ -152,7 +152,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
                 }
-                String Nationality = "";
+              
                 if (profileInfo.nationality != null)
                 {
                     Nationality = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality));
