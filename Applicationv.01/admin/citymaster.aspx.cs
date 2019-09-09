@@ -69,4 +69,9 @@ public partial class admin_citymaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void btnCreateCity_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/admin/createcity.aspx");
+    }
 }
