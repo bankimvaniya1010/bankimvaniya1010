@@ -348,7 +348,19 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="list-group-item" role="group" id="higheststudy" runat="server" aria-labelledby="label-marriagedate" style="display: none">
+                    <div class="form-row">
+                        <label id="labelhigheststudy" runat="server" for="higheststudy" class="col-md-3 col-form-label form-label">Highest study level successfully completed</label>
+                        <div class="col-md-4">
+                            <asp:Label ID="lblhigheststudy" runat="server"></asp:Label>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:RadioButton ID="rblhigheststudyYes" GroupName="higheststudy" Text="Yes" runat="server" />
+                            <asp:RadioButton ID="rblhigheststudyNo" GroupName="higheststudy" Text="No" runat="server" />
+                            <asp:Label ID="lblhigheststudyComments" runat="server"></asp:Label>
+                        </div>
+                    </div>
+                </div>
                 <div class="list-group-item" id="disability" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-disability">
                         <div class="form-row">

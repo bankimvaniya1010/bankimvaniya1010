@@ -546,6 +546,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
 
                 if (LanguageInfo.giveenglishtest == 1)
                 {
+                    ieltsfieldContainer.Visible = true;
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lblCentreNo.Text = LanguageInfo.centerno;
@@ -564,6 +565,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
 
                 else if (LanguageInfo.giveenglishtest == 2)
                 {
+                    ptefieldContainer.Visible = true;
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lblptetesttaker.Text = LanguageInfo.testtakerId;
@@ -586,6 +588,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
 
                 else if (LanguageInfo.giveenglishtest == 3)
                 {
+                    tofelfieldContainer.Visible = true;
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lbltofelregistrationno.Text = LanguageInfo.registrationNo;

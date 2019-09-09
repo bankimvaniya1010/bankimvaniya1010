@@ -202,9 +202,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div id="ieltsfieldContainer" runat="server">
-                    <div class="list-group-item" id="testName" runat="server" style="display: none">
+                <div class="list-group-item" id="testName" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-testName">
                             <div class="form-row">
                                 <label id="labeltestName" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Name </label>
@@ -220,6 +218,8 @@
                             </div>
                         </div>
                     </div>
+                <div id="ieltsfieldContainer" runat="server" visible="false">
+                    
                     <div class="list-group-item" id="CandidateID" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-CandidateID">
                             <div class="form-row">
@@ -367,7 +367,7 @@
                     </div>
                 </div>
 
-                <div id="ptefieldContainer" runat="server">
+                <div id="ptefieldContainer" runat="server" visible="false">
                     <div class="list-group-item" id="ptetesttaker" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ptetesttaker">
                             <div class="form-row">
@@ -531,7 +531,7 @@
                     </div>
                 </div>
 
-                <div id="tofelfieldContainer" runat="server">
+                <div id="tofelfieldContainer" runat="server" visible="false">
 
                     <div class="list-group-item" id="tofelregistrationno" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelregistrationno">
