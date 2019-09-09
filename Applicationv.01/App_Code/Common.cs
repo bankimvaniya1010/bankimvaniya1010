@@ -1453,6 +1453,37 @@ public class Common
         Random random = new Random();
         return random.Next(min, max);
     }
+    public string GetCustomFieldValue(int applicatID, int formID, int fieldID)
+    {
+        string FieldValue = "";
+        var ControlsValue = db.customfieldvalue.Where(x => x.formid == formID && x.applicantid == applicatID && x.customfieldid == fieldID).FirstOrDefault();
+        if (ControlsValue != null)
+            FieldValue = ControlsValue.value;
+        return FieldValue;
+    }
+    public string GetCustomFieldAdminComments(int applicatID, int formID, string labelDescription, int University)
+    {
+        string AdminComments = "";
+        var ControlsValue = db.admincomments.Where(x => x.formid == formID && x.applicantid == applicatID && x.fieldname == labelDescription && x.universityid == University).FirstOrDefault();
+        if (ControlsValue != null)
+            AdminComments = ControlsValue.comments + "~" + (ControlsValue.adminaction == null ? "0" : ControlsValue.adminaction.ToString());
+        return AdminComments;
+    }
+    public string GetHighestDegree(int id)
+    {
+        string HighestDegree = "";
+        try
+        {
+            var GetHighestDegree = db.studylevelmaster.Where(x => x.studylevelid == id).FirstOrDefault();
+            if (GetHighestDegree != null)
+                HighestDegree = GetHighestDegree.studylevel;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return HighestDegree;
+    }
     [Serializable]
     public class FieldList
     {

@@ -94,6 +94,10 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                     lblGender.Text = "Male";
                 else if (profileInfo.gender == 0)
                     lblGender.Text = "Female";
+                if (profileInfo.higheststudycompleted != null)
+                {
+                    lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
+                }
                 String Nationality = "";
                 if (profileInfo.nationality != null)
                 {
@@ -311,7 +315,11 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         agentList.Attributes.Add("style", "display:block;");
                         labelagentList.InnerHtml = setInnerHtml(fields[k]);
                         break;
-
+                    case "Highest study level successfully completed":
+                        higheststudy.Attributes.Add("style", "display:block;");
+                        labelhigheststudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                        
                     default:
                         break;
 
@@ -516,7 +524,13 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         rblAgentListYes.Checked = true;
                     lblAgentListComments.Text = setComments(Comments[k]);
                     break;
-
+                case "Highest study level successfully completed":
+                    lblhigheststudyComments.Text = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rblhigheststudyNo.Checked = true;
+                    else
+                        rblhigheststudyYes.Checked = true;
+                    break;
                 default:
                     break;
 

@@ -78,6 +78,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
 
             for (int k = 0; k < fields.Count; k++)
             {
+
                 switch (fields[k].primaryfiledname)
                 {
                     case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
@@ -87,34 +88,6 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                     case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
                         EnglishBackground.Attributes.Add("style", "display:block;");
                         labelEnglishBackground.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
-                        EnglishTest.Attributes.Add("style", "display:block;");
-                        labelEnglishTest.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "TEST NAME":
-                        testName.Attributes.Add("style", "display:block;");
-                        labeltestName.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "CENTRE NO":
-                        CentreNo.Attributes.Add("style", "display:block;");
-                        labelCentreNo.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "CANDIDATE NO":
-                        CandidateID.Attributes.Add("style", "display:block;");
-                        labelCandidateID.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "CANDIDATE ID":
-                        CandidateID.Attributes.Add("style", "display:block;");
-                        labelCandidateID.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "TEST DATE":
-                        ieltsTestDate.Attributes.Add("style", "display:block;");
-                        labelieltsTestDate.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "OVERALL SCORE":
-                        LanguageScore.Attributes.Add("style", "display:block;");
-                        labelLanguageScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "COUNTRY OF ENGLISH LANGUAGE INTENSIVE COURSE":
                         Language.Attributes.Add("style", "display:block;");
@@ -148,6 +121,49 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         gradeachieved.Attributes.Add("style", "display:block;");
                         labelgradeachieved.InnerHtml = setInnerHtml(fields[k]);
                         break;
+                    case "EXPECTED DATE WHEN RESULTS WILL BE DECLARED":
+                        ExpectedDategrade.Attributes.Add("style", "display:block;");
+                        labelExpectedDategrade.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                        EnglishTest.Attributes.Add("style", "display:block;");
+                        labelEnglishTest.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "CEFR LEVEL":
+                        CEFR.Attributes.Add("style", "display:block;");
+                        labelCEFR.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "TEST REPORT REFERENCE NO":
+                        testRefno.Attributes.Add("style", "display:block;");
+                        labeltestRefno.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+
+
+                    //IELTS
+                    case "TEST NAME":
+                        testName.Attributes.Add("style", "display:block;");
+                        labeltestName.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "CANDIDATE NO":
+                        CandidateNo.Attributes.Add("style", "display:block;");
+                        labelCandidateNo.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "CANDIDATE ID":
+                        CandidateID.Attributes.Add("style", "display:block;");
+                        labelCandidateID.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "CENTRE NO":
+                        CentreNo.Attributes.Add("style", "display:block;");
+                        labelCentreNo.InnerHtml = setInnerHtml(fields[k]);
+                        labelptetestcenterNo.InnerHtml = setInnerHtml(fields[k]);
+                        labeltofelcenterNo.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "TEST DATE":
+                        ieltsTestDate.Attributes.Add("style", "display:block;");
+                        labelieltsTestDate.InnerHtml = setInnerHtml(fields[k]);
+                        labelpteTestDate.InnerHtml = setInnerHtml(fields[k]);
+                        labeltofelTestDate.InnerHtml = setInnerHtml(fields[k]);
+                        break;
                     case "SPEAKING SCORE":
                         SpeakingScore.Attributes.Add("style", "display:block;");
                         labelSpeakingScore.InnerHtml = setInnerHtml(fields[k]);
@@ -164,17 +180,89 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
                         WritingScore.Attributes.Add("style", "display:block;");
                         labelWritingScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "CEFR LEVEL":
-                        CEFR.Attributes.Add("style", "display:block;");
-                        labelCEFR.InnerHtml = setInnerHtml(fields[k]);
+                    case "TOTAL SCORE":
+                        LanguageScore.Attributes.Add("style", "display:block;");
+                        labelLanguageScore.InnerHtml = setInnerHtml(fields[k]);
+                        labelpteTotalScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "TEST REPORT REFERENCE NO":
-                        testRefno.Attributes.Add("style", "display:block;");
-                        labeltestRefno.InnerHtml = setInnerHtml(fields[k]);
+                    //PTE
+
+                    case "COMMUNICATIVE SKILLS READING":
+                        pteReadingScore.Attributes.Add("style", "display:block;");
+                        labelpteReadingScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "EXPECTED DATE WHEN RESULTS WILL BE DECLARED":
-                        ExpectedDategrade.Attributes.Add("style", "display:block;");
-                        labelExpectedDategrade.InnerHtml = setInnerHtml(fields[k]);
+                    case "COMMUNICATIVE SKILLS LISTENING":
+                        pteListeningScore.Attributes.Add("style", "display:block;");
+                        labelpteListeningScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "COMMUNICATIVE SKILLS SPEAKING":
+                        pteSpeakingScore.Attributes.Add("style", "display:block;");
+                        labelpteSpeakingScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "COMMUNICATIVE SKILLS WRITING":
+                        pteWritingScore.Attributes.Add("style", "display:block;");
+                        labelpteWritingScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "PTE TOTAL SCORE":
+                        pteTotalScore.Attributes.Add("style", "display:block;");
+                        break;
+                    case "TEST TAKER ID":
+                        ptetesttaker.Attributes.Add("style", "display:block;");
+                        labelptetesttaker.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "PTE REGISTRATION NUMBER":
+                        pteregistrationno.Attributes.Add("style", "display:block;");
+                        break;
+                    case "PTE CENTER COUNTRY":
+                        ptecentercountry.Attributes.Add("style", "display:block;");
+                        break;
+                    case "PTE CENTER NUMBER":
+                        ptetestcenterNo.Attributes.Add("style", "display:block;");
+                        break;
+                    case "PTE TEST DATE":
+                        pteTestDate.Attributes.Add("style", "display:block;");
+                        break;
+                    //TOFEL
+                    case "Reading iBT Scaled Score":
+                        tofelReadingScore.Attributes.Add("style", "display:block;");
+                        labeltofelReadingScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Listening iBT Scaled Score":
+                        tofelListeningScore.Attributes.Add("style", "display:block;");
+                        labeltofelListeningScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Speaking iBT Scaled Score":
+                        tofelSpeakingScore.Attributes.Add("style", "display:block;");
+                        labeltofelSpeakingScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Writing iBT Scaled Score":
+                        tofelWritingScore.Attributes.Add("style", "display:block;");
+                        labeltofelWritingScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Total Score (iBT Scaled Score)":
+                        tofelTotalScore.Attributes.Add("style", "display:block;");
+                        labeltofelTotalScore.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "TOFEL REGISTRATION NUMBER":
+                        tofelregistrationno.Attributes.Add("style", "display:block;");
+                        break;
+                    case "TOFEL CENTER NUMBER":
+                        tofelcenterNo.Attributes.Add("style", "display:block;");
+                        break;
+                    case "TOFEL CENTER COUNTRY":
+                        tofelcentercountry.Attributes.Add("style", "display:block;");
+                        break;
+                    case "TOFEL TEST DATE":
+                        tofelTestDate.Attributes.Add("style", "display:block;");
+                        break;
+
+                    case "TEST CENTER COUNTRY":
+                        labelptecentercountry.InnerHtml = setInnerHtml(fields[k]);
+                        labeltofelcentercountry.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "REGISTRATION NUMBER":
+                        labelpteregistrationno.InnerHtml = setInnerHtml(fields[k]);
+                        labeltofelregistrationno.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     default:
                         break;
@@ -186,7 +274,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-   
+
     private void PopulateLanguageDetails()
     {
         try
@@ -235,6 +323,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
 
                 if (LanguageInfo.giveenglishtest == 1)
                 {
+                    ieltsfieldContainer.Visible = true;
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lblCentreNo.Text = LanguageInfo.centerno;
@@ -253,6 +342,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
 
                 else if (LanguageInfo.giveenglishtest == 2)
                 {
+                    ptefieldContainer.Visible = true;
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lblptetesttaker.Text = LanguageInfo.testtakerId;
@@ -275,6 +365,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
 
                 else if (LanguageInfo.giveenglishtest == 3)
                 {
+                    tofelfieldContainer.Visible = true;
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lbltofelregistrationno.Text = LanguageInfo.registrationNo;
