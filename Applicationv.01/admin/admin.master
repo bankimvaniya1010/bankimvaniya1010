@@ -165,12 +165,14 @@
                                     <li class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">University</a>
                                         <div class="dropdown-menu">
+                                              <a class="dropdown-item" href="createcourse.aspx">Create Course</a>
                                             <a class="dropdown-item" href="createuniversity.aspx">Create University</a>
                                             <a class="dropdown-item" href="createuniversitycampus.aspx">Create University Campus</a>
                                             <a class="dropdown-item" href="createuniversitycrendentials.aspx">Add University credentials</a>
                                             <a class="dropdown-item" href="createfacility.aspx">Add Facility</a>
                                             <a class="dropdown-item" href="universitycampusmaster.aspx">View all campus</a>
                                             <a class="dropdown-item" href="universitymaster.aspx">View all universities</a>
+                                               <a class="dropdown-item" href="coursemaster.aspx">View all Courses</a>
                                             <a class="dropdown-item" href="adduniversitygrouping.aspx">Grouping</a>
                                         </div>
                                     </li>
