@@ -55,6 +55,23 @@ public partial class login : System.Web.UI.Page
                 }
                 else
                 {
+                    var isRecordPresent = db.applicantdetails.Any(x => x.applicantid == chkUser.studentid && x.universityid == universityID);
+                    if (!isRecordPresent)
+                    {
+                        applicantdetails objapplicant = new applicantdetails();
+                        objapplicant.applicantid = chkUser.studentid;
+                        objapplicant.email = chkUser.email.Trim();
+
+                        string[] nameArr = chkUser.name.Split(' ');
+                        objapplicant.firstname = nameArr[0];
+                        if (nameArr.Length > 1)
+                            objapplicant.lastname = chkUser.name.Substring(nameArr[0].Length + 1);
+
+                        objapplicant.universityid = universityID;
+                        db.applicantdetails.Add(objapplicant);
+                        db.SaveChanges();
+                    }
+
                     bool isDeclarationDoneByApplicant = false;
                     bool isGteDeclarationDoneByApplicant;
                     bool isProfileDetailsCompletedByApplicant;
