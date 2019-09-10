@@ -68,7 +68,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<clarificationquestionsmaster> clarificationquestionsmaster { get; set; }
     public virtual DbSet<controlmaster> controlmaster { get; set; }
     public virtual DbSet<countriesmaster> countriesmaster { get; set; }
-    public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<coursetypemaster> coursetypemaster { get; set; }
     public virtual DbSet<credentialmaster> credentialmaster { get; set; }
     public virtual DbSet<customfieldmaster> customfieldmaster { get; set; }
@@ -149,6 +148,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
+    public virtual DbSet<coursemaster> coursemaster { get; set; }
+    public virtual DbSet<currency_master> currency_master { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

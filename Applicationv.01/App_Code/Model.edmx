@@ -1056,6 +1056,7 @@
           <Property Name="majordisciplineId" Type="int" />
           <Property Name="modeofstudyId" Type="int" />
           <Property Name="levelofstudyId" Type="int" />
+          <Property Name="coursefee" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -1079,6 +1080,14 @@
           <Property Name="ranking_by_region" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="rank_improved" Type="bit" Nullable="false" />
           <Property Name="university_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="currency_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="currency_symbol" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="currency_code" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="customfieldmaster">
           <Key>
@@ -1715,6 +1724,8 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="currency_id" Type="int" Nullable="false" />
+          <Property Name="trip_amount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tuitionAndlivingcostmaster">
           <Key>
@@ -2006,6 +2017,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
               <PropertyRef Name="studentid" />
             </Principal>
             <Dependent Role="admincomments">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantdetails_students">
+          <End Role="students" Type="Self.students" Multiplicity="0..1" />
+          <End Role="applicantdetails" Type="Self.applicantdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantdetails">
               <PropertyRef Name="applicantid" />
             </Dependent>
           </ReferentialConstraint>
@@ -2466,6 +2489,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_trip_currencyMaster">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
+          <End Role="trips" Type="Self.trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trips">
+              <PropertyRef Name="currency_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_university_clarificationquestion_mapping">
           <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
           <End Role="clarificationquestion_university_mapping" Type="Self.clarificationquestion_university_mapping" Multiplicity="*" />
@@ -2592,6 +2627,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="credentialmaster" EntityType="Self.credentialmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="currency_master" EntityType="Self.currency_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="customfieldmaster" EntityType="Self.customfieldmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="customfieldvalue" EntityType="Self.customfieldvalue" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
@@ -2724,6 +2760,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="fk_applicantdetails_admincomments" Association="Self.fk_applicantdetails_admincomments">
             <End Role="students" EntitySet="students" />
             <End Role="admincomments" EntitySet="admincomments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantdetails_students" Association="Self.FK_applicantdetails_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantdetails" EntitySet="applicantdetails" />
           </AssociationSet>
           <AssociationSet Name="FK_applicantvisadetails_university_master" Association="Self.FK_applicantvisadetails_university_master">
             <End Role="university_master" EntitySet="university_master" />
@@ -2877,6 +2917,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
             <End Role="tooltipmaster" EntitySet="tooltipmaster" />
           </AssociationSet>
+          <AssociationSet Name="FK_trip_currencyMaster" Association="Self.FK_trip_currencyMaster">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="trips" EntitySet="trips" />
+          </AssociationSet>
           <AssociationSet Name="FK_university_clarificationquestion_mapping" Association="Self.FK_university_clarificationquestion_mapping">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="clarificationquestion_university_mapping" EntitySet="clarificationquestion_university_mapping" />
@@ -2958,7 +3002,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="clarificationquestionsmaster" EntityType="GTEModel.clarificationquestionsmaster" />
           <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
-          <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           <EntitySet Name="coursetypemaster" EntityType="GTEModel.coursetypemaster" />
           <EntitySet Name="credentialmaster" EntityType="GTEModel.credentialmaster" />
           <EntitySet Name="customfieldmaster" EntityType="GTEModel.customfieldmaster" />
@@ -3115,18 +3158,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="qualificationcountriesmapping" EntitySet="qualificationcountriesmapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_coursemaster_majordiscipline_master" Association="GTEModel.FK_coursemaster_majordiscipline_master">
-            <End Role="majordiscipline_master" EntitySet="majordiscipline_master" />
-            <End Role="coursemaster" EntitySet="coursemaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_coursemaster_studylevelmaster" Association="GTEModel.FK_coursemaster_studylevelmaster">
-            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
-            <End Role="coursemaster" EntitySet="coursemaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_coursemaster_studymodemaster" Association="GTEModel.FK_coursemaster_studymodemaster">
-            <End Role="studymodemaster" EntitySet="studymodemaster" />
-            <End Role="coursemaster" EntitySet="coursemaster" />
-          </AssociationSet>
           <AssociationSet Name="FK_coursetypemaster_university_master" Association="GTEModel.FK_coursetypemaster_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="coursetypemaster" EntitySet="coursetypemaster" />
@@ -3258,6 +3289,28 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_mapping_universitycampus" Association="GTEModel.FK_mapping_universitycampus">
             <End Role="universitycampus" EntitySet="universitycampus" />
             <End Role="universitycampus_city_mapping" EntitySet="universitycampus_city_mapping" />
+          </AssociationSet>
+          <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
+          <EntitySet Name="currency_master" EntityType="GTEModel.currency_master" />
+          <AssociationSet Name="FK_applicantdetails_students" Association="GTEModel.FK_applicantdetails_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantdetails" EntitySet="applicantdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_coursemaster_majordiscipline_master" Association="GTEModel.FK_coursemaster_majordiscipline_master">
+            <End Role="majordiscipline_master" EntitySet="majordiscipline_master" />
+            <End Role="coursemaster" EntitySet="coursemaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_coursemaster_studylevelmaster" Association="GTEModel.FK_coursemaster_studylevelmaster">
+            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
+            <End Role="coursemaster" EntitySet="coursemaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_coursemaster_studymodemaster" Association="GTEModel.FK_coursemaster_studymodemaster">
+            <End Role="studymodemaster" EntitySet="studymodemaster" />
+            <End Role="coursemaster" EntitySet="coursemaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trip_currencyMaster" Association="GTEModel.FK_trip_currencyMaster">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="trips" EntitySet="trips" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
@@ -3548,6 +3601,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="totalyearofexperience" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="studentsegment" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="studentstatus" Type="Int32" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -4336,19 +4390,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
           <NavigationProperty Name="qualificationcountriesmapping" Relationship="GTEModel.FK_qualificationcountriesmapping_countriesmaster" FromRole="countriesmaster" ToRole="qualificationcountriesmapping" />
         </EntityType>
-        <EntityType Name="coursemaster">
-          <Key>
-            <PropertyRef Name="courseid" />
-          </Key>
-          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="majordisciplineId" Type="Int32" />
-          <Property Name="modeofstudyId" Type="Int32" />
-          <Property Name="levelofstudyId" Type="Int32" />
-          <NavigationProperty Name="majordiscipline_master" Relationship="GTEModel.FK_coursemaster_majordiscipline_master" FromRole="coursemaster" ToRole="majordiscipline_master" />
-          <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="coursemaster" ToRole="studylevelmaster" />
-          <NavigationProperty Name="studymodemaster" Relationship="GTEModel.FK_coursemaster_studymodemaster" FromRole="coursemaster" ToRole="studymodemaster" />
-        </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
             <PropertyRef Name="coursetypeid" />
@@ -4968,6 +5009,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
           <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="students" ToRole="supervisorcomments" />
+          <NavigationProperty Name="applicantdetails" Relationship="GTEModel.FK_applicantdetails_students" FromRole="students" ToRole="applicantdetails" />
         </EntityType>
         <EntityType Name="studylevelmaster">
           <Key>
@@ -4976,8 +5018,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="studylevelid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="studylevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="levelofcode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="studylevelmaster" ToRole="coursemaster" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="studylevelmaster" ToRole="students" />
+          <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="studylevelmaster" ToRole="coursemaster" />
         </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
@@ -5069,6 +5111,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="currency_id" Type="Int32" Nullable="false" />
+          <Property Name="trip_amount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_trip_currencyMaster" FromRole="trips" ToRole="currency_master" />
         </EntityType>
         <EntityType Name="tuitionAndlivingcostmaster">
           <Key>
@@ -5469,42 +5514,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_coursemaster_majordiscipline_master">
-          <End Type="GTEModel.majordiscipline_master" Role="majordiscipline_master" Multiplicity="0..1" />
-          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="majordiscipline_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="coursemaster">
-              <PropertyRef Name="majordisciplineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_coursemaster_studylevelmaster">
-          <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="0..1" />
-          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="studylevelmaster">
-              <PropertyRef Name="studylevelid" />
-            </Principal>
-            <Dependent Role="coursemaster">
-              <PropertyRef Name="levelofstudyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_coursemaster_studymodemaster">
-          <End Type="GTEModel.studymodemaster" Role="studymodemaster" Multiplicity="0..1" />
-          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="studymodemaster">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="coursemaster">
-              <PropertyRef Name="modeofstudyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_coursetypemaster_university_master">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
           <End Type="GTEModel.coursetypemaster" Role="coursetypemaster" Multiplicity="*" />
@@ -5898,6 +5907,89 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="universitycampus_city_mapping">
               <PropertyRef Name="campusid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="coursemaster">
+          <Key>
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="majordisciplineId" Type="Int32" />
+          <Property Name="modeofstudyId" Type="Int32" />
+          <Property Name="levelofstudyId" Type="Int32" />
+          <Property Name="coursefee" Type="Decimal" />
+          <NavigationProperty Name="majordiscipline_master" Relationship="GTEModel.FK_coursemaster_majordiscipline_master" FromRole="coursemaster" ToRole="majordiscipline_master" />
+          <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="coursemaster" ToRole="studylevelmaster" />
+          <NavigationProperty Name="studymodemaster" Relationship="GTEModel.FK_coursemaster_studymodemaster" FromRole="coursemaster" ToRole="studymodemaster" />
+        </EntityType>
+        <EntityType Name="currency_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="currency_symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="currency_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="trips" Relationship="GTEModel.FK_trip_currencyMaster" FromRole="currency_master" ToRole="trips" />
+        </EntityType>
+        <Association Name="FK_applicantdetails_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
+          <End Type="GTEModel.applicantdetails" Role="applicantdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantdetails">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_coursemaster_majordiscipline_master">
+          <End Type="GTEModel.majordiscipline_master" Role="majordiscipline_master" Multiplicity="0..1" />
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="majordiscipline_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="coursemaster">
+              <PropertyRef Name="majordisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_coursemaster_studylevelmaster">
+          <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="0..1" />
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studylevelmaster">
+              <PropertyRef Name="studylevelid" />
+            </Principal>
+            <Dependent Role="coursemaster">
+              <PropertyRef Name="levelofstudyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_coursemaster_studymodemaster">
+          <End Type="GTEModel.studymodemaster" Role="studymodemaster" Multiplicity="0..1" />
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studymodemaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="coursemaster">
+              <PropertyRef Name="modeofstudyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trip_currencyMaster">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.trips" Role="trips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trips">
+              <PropertyRef Name="currency_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -7006,17 +7098,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="coursemaster">
-            <EntityTypeMapping TypeName="GTEModel.coursemaster">
-              <MappingFragment StoreEntitySet="coursemaster">
-                <ScalarProperty Name="levelofstudyId" ColumnName="levelofstudyId" />
-                <ScalarProperty Name="modeofstudyId" ColumnName="modeofstudyId" />
-                <ScalarProperty Name="majordisciplineId" ColumnName="majordisciplineId" />
-                <ScalarProperty Name="coursename" ColumnName="coursename" />
-                <ScalarProperty Name="courseid" ColumnName="courseid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="coursetypemaster">
             <EntityTypeMapping TypeName="GTEModel.coursetypemaster">
               <MappingFragment StoreEntitySet="coursetypemaster">
@@ -7737,6 +7818,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="trips">
             <EntityTypeMapping TypeName="GTEModel.trips">
               <MappingFragment StoreEntitySet="trips">
+                <ScalarProperty Name="trip_amount" ColumnName="trip_amount" />
+                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -7901,6 +7984,27 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="workexperienceyearsmaster">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="workexperienceyearsid" ColumnName="workexperienceyearsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="coursemaster">
+            <EntityTypeMapping TypeName="GTEModel.coursemaster">
+              <MappingFragment StoreEntitySet="coursemaster">
+                <ScalarProperty Name="coursefee" ColumnName="coursefee" />
+                <ScalarProperty Name="levelofstudyId" ColumnName="levelofstudyId" />
+                <ScalarProperty Name="modeofstudyId" ColumnName="modeofstudyId" />
+                <ScalarProperty Name="majordisciplineId" ColumnName="majordisciplineId" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="currency_master">
+            <EntityTypeMapping TypeName="GTEModel.currency_master">
+              <MappingFragment StoreEntitySet="currency_master">
+                <ScalarProperty Name="currency_code" ColumnName="currency_code" />
+                <ScalarProperty Name="currency_symbol" ColumnName="currency_symbol" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

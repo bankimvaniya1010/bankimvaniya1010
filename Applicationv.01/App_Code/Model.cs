@@ -282,6 +282,8 @@ public partial class applicantdetails
     public string totalyearofexperience { get; set; }
     public string studentsegment { get; set; }
     public Nullable<int> studentstatus { get; set; }
+
+    public virtual students students { get; set; }
 }
 
 public partial class applicantdocumentmaster
@@ -1083,6 +1085,7 @@ public partial class coursemaster
     public Nullable<int> majordisciplineId { get; set; }
     public Nullable<int> modeofstudyId { get; set; }
     public Nullable<int> levelofstudyId { get; set; }
+    public Nullable<decimal> coursefee { get; set; }
 
     public virtual majordiscipline_master majordiscipline_master { get; set; }
     public virtual studylevelmaster studylevelmaster { get; set; }
@@ -1112,6 +1115,22 @@ public partial class credentialmaster
     public int university_id { get; set; }
 
     public virtual university_master university_master { get; set; }
+}
+
+public partial class currency_master
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public currency_master()
+    {
+        this.trips = new HashSet<trips>();
+    }
+
+    public int id { get; set; }
+    public string currency_symbol { get; set; }
+    public string currency_code { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<trips> trips { get; set; }
 }
 
 public partial class customfieldmaster
@@ -1789,6 +1808,7 @@ public partial class students
         this.gte_applicantdocument = new HashSet<gte_applicantdocument>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
+        this.applicantdetails = new HashSet<applicantdetails>();
     }
 
     public int studentid { get; set; }
@@ -1818,6 +1838,8 @@ public partial class students
     public virtual studylevelmaster studylevelmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantdetails> applicantdetails { get; set; }
 }
 
 public partial class studylevelmaster
@@ -1825,8 +1847,8 @@ public partial class studylevelmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public studylevelmaster()
     {
-        this.coursemaster = new HashSet<coursemaster>();
         this.students = new HashSet<students>();
+        this.coursemaster = new HashSet<coursemaster>();
     }
 
     public int studylevelid { get; set; }
@@ -1834,9 +1856,9 @@ public partial class studylevelmaster
     public string levelofcode { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<coursemaster> coursemaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<students> students { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursemaster> coursemaster { get; set; }
 }
 
 public partial class studymodemaster
@@ -1937,6 +1959,10 @@ public partial class trips
 {
     public int id { get; set; }
     public string description { get; set; }
+    public int currency_id { get; set; }
+    public int trip_amount { get; set; }
+
+    public virtual currency_master currency_master { get; set; }
 }
 
 public partial class tuitionAndlivingcostmaster
