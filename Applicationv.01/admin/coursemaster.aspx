@@ -7,10 +7,15 @@
             <li class="breadcrumb-item active">Course Master</li>
         </ol>
         <h1 class="h2">Course Master</h1>
-
+        
         <div class="card">
 
-
+             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                <div class="form-row">
+                    <a href="createcourse.aspx"  style="margin-left:20px; margin-top:10px;" class="btn btn-success">Create Course</a>
+                   
+                </div>
+            </div>
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                    <asp:GridView ID="CourseGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"

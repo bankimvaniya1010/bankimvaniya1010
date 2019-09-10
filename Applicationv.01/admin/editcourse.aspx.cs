@@ -16,8 +16,8 @@ public partial class admin_editcourse : System.Web.UI.Page
     protected string imagepath = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null || (Session["UserID"] == null))
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
 
         if (!IsPostBack)
         {
