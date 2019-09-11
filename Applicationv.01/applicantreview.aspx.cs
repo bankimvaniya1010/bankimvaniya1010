@@ -75,7 +75,8 @@ public partial class applicantreview : System.Web.UI.Page
                       where pInfo.applicantid == userID && pInfo.universityid == universityID
                       select pInfo).ToList();
         }
-        Response.Redirect("personaldetails.aspx?formid=1", true);
+        else
+        	Response.Redirect("personaldetails.aspx?formid=1", true);
     }
    
 }

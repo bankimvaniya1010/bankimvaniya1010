@@ -44,15 +44,13 @@
                             Thank you for registering to apply for admission to
                         <%=universityName %>
                         </p>
-                        .
                         <p>Your Username is: <%=email %></p>
                         <br />
                         <p>
-                            An activation email has been sent to <%=email %>. Please click on the activation link and then log on to your account using your Username and the one-time use password sent to your personal email ID in a following email.
-To log in to the <%=universityName %>
+                            An email has been sent to <%=email %>, along with a one time use password.Please use that to log in .On your first sign in you would be prompted to  change the password.                            
                         </p>
                         <br />
-                        Application Center to start your application, click here <a href="login.aspx">Login</a>
+                       To log in to the <%=universityName %> Application Center click here <a href="login.aspx">Login</a>
 
 
 

@@ -36,7 +36,7 @@
 
                 <div class="card navbar-shadow">
                     <div class="card-header text-center">
-                        <h4 class="card-title">Sign Up</h4>
+                        <h4 class="card-title">Student Sign Up</h4>
                         <p class="card-subtitle">Create a new account</p>
                     </div>
                     <div class="card-body">

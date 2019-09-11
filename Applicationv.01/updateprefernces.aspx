@@ -42,7 +42,7 @@
                                     <label id="lblStudyLevel" for="exsistingpassword" class="col-md-3 col-form-label form-label">Study Level</label>
 
                                     <div class="col-md-6">
-                                        <asp:RadioButtonList ID="rblstudyLevel" RepeatColumns="2" runat="server"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rblstudyLevel" runat="server"></asp:RadioButtonList>
                                     </div>
 
                                 </div>
