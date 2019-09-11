@@ -20,7 +20,7 @@
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
-                    <h5> Read The Following Documents:</h5>
+                    <h5>Please Read The Following Documents:</h5>
                     <div class="pdf-container clearfix">
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
@@ -41,7 +41,7 @@
                     {
                     %>
                 <div class="card video-container" id="video" runat="server">
-                     <h5>Watch The Following Videos:</h5>
+                     <h5>Please Watch The Following Videos:</h5>
                        <div class="row">
                       <%for (int v = 0; v < allDocuments.Count; v++)
                           {
@@ -61,7 +61,7 @@
                     %>
                 <div class="card" id="declaration" runat="server">
                     <div class="card-body">
-                        <label  style="font-size:small;">I have Read and fully Understood the information contained in the  document and video above</label>
+                        <label  style="font-size:small;">I have Read and fully Understood the information contained in the above documents and videos </label>
                         <div class="media align-items-center">  
                             <div class="form-row" style="align-content:center">
                                 <a href="preliminaryquestion.aspx" class="btn btn-success">Next</a>                                      
