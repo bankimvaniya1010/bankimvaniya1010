@@ -134,8 +134,7 @@ public partial class uploaddocuments : System.Web.UI.Page
             string filePath = (sender as LinkButton).CommandArgument;
             if ((Session["Role"] == null) && (Session["UserID"] == null))
                 Response.Redirect(webURL + "Login.aspx");
-            UserID = Convert.ToInt32(Session["UserID"].ToString());
-            UserID = Convert.ToInt32(Session["Applicant"].ToString());
+            UserID = Convert.ToInt32(Session["UserID"].ToString());           
             docPath = docPath + "/" + UserID + "/Documents/";
             Response.ContentType = ContentType;
 
