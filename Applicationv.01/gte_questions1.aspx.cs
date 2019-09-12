@@ -49,9 +49,9 @@ public partial class gte_questions1 : System.Web.UI.Page
                 var isFullService = (bool)Session["FullService"];
 
                 if (isFullService)
-                    applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+                    applicantdetails = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
                 else
-                    applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+                    applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
 
                 if(applicantdetails != null)
                 {

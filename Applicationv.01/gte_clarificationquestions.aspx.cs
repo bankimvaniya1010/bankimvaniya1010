@@ -45,7 +45,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                     var application_details = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID && x.preferenceid.Value == 1).FirstOrDefault();
 
                     if(applicant_details == null || application_details == null)
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete applicant or application details. Please complete both before proceeding'); window.location='" + webURL + "default.aspx';", true);
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete student or application details. Please complete both before proceeding'); window.location='" + webURL + "default.aspx';", true);
 
                     // Set to empty values to avoid errors, below details are missing from applicant details information.
                     //details.highestqualificationfield = ;
