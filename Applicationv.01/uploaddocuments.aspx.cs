@@ -10,7 +10,7 @@ public partial class uploaddocuments : System.Web.UI.Page
 {
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
-    int UserID = 0, ApplicantID = 0;
+    int UserID = 0;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<applicantdetails> appDetails = new List<applicantdetails>();
@@ -24,7 +24,7 @@ public partial class uploaddocuments : System.Web.UI.Page
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
-        ApplicantID = Convert.ToInt32(Session["UserID"].ToString());
+        UserID = Convert.ToInt32(Session["UserID"].ToString());
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
         if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
@@ -72,47 +72,57 @@ public partial class uploaddocuments : System.Web.UI.Page
                 if (appEmpDetails[employ].wishtoaddemployer == 1)
                     documentList.Add("Proof of Work Experience (" + empCount + ")");
             }
+            ListItem lst = new ListItem("Please select", "0");
             ddlDocuments.DataSource = documentList;
             ddlDocuments.DataBind();
+            ddlDocuments.Items.Insert(0, lst);
             BindDocuments();
         }
     }
     protected void btn_login_Click(object sender, EventArgs e)
     {
-        if (avatar.HasFile)  //fileupload control contains a file  
+            //fileupload control contains a file  
             try
             {
+                var docname = ddlDocuments.SelectedValue.ToString();
+                var mode = "new";
+                var document = (from dInfo in db.applicantdocumentmaster
+                                where dInfo.universityid == UniversityID && dInfo.applicantid == UserID && dInfo.documentname == docname
+                                select dInfo).FirstOrDefault();
+                applicantdocumentmaster objDocument = new applicantdocumentmaster();
+                if (document != null)
+                {
+                    mode = "update";
+                    objDocument = document;
+                }
+            if (avatar.HasFile) {
                 docPath = docPath + "/" + UserID + "/Documents/";
                 if (!Directory.Exists(docPath))
                     Directory.CreateDirectory(docPath);
                 string extension = Path.GetExtension(avatar.PostedFile.FileName);
                 string filename = Guid.NewGuid() + extension;
                 avatar.SaveAs(docPath + filename);          // file path where you want to upload  
-                applicantdocumentmaster objDocument = new applicantdocumentmaster();
-                objDocument.applicantid = ApplicantID;
+
+                objDocument.applicantid = UserID;
                 objDocument.universityid = UniversityID;
                 objDocument.filename = filename;
                 objDocument.documentname = ddlDocuments.SelectedItem.Value;
                 objDocument.uploadedtime = DateTime.Now;
-                db.applicantdocumentmaster.Add(objDocument);
+                if (mode == "new")
+                    db.applicantdocumentmaster.Add(objDocument);
                 db.SaveChanges();
+            }
                 BindDocuments();
             }
             catch (Exception ex)
             {
                 objLog.WriteLog(ex.ToString());
-            }
-
-        else
-        {
-            //  lblMessgae.Text = "Please Select File and Upload Again";
-
-        }
+            }       
     }
 
     private void BindDocuments()
     {
-        var videoList = db.applicantdocumentmaster.Where(x => x.applicantid == ApplicantID && x.universityid==UniversityID).ToList();
+        var videoList = db.applicantdocumentmaster.Where(x => x.applicantid == UserID && x.universityid==UniversityID).ToList();
         rptVideo.DataSource = videoList;
         rptVideo.DataBind();
 
@@ -124,8 +134,7 @@ public partial class uploaddocuments : System.Web.UI.Page
             string filePath = (sender as LinkButton).CommandArgument;
             if ((Session["Role"] == null) && (Session["UserID"] == null))
                 Response.Redirect(webURL + "Login.aspx");
-            UserID = Convert.ToInt32(Session["UserID"].ToString());
-            ApplicantID = Convert.ToInt32(Session["Applicant"].ToString());
+            UserID = Convert.ToInt32(Session["UserID"].ToString());           
             docPath = docPath + "/" + UserID + "/Documents/";
             Response.ContentType = ContentType;
 

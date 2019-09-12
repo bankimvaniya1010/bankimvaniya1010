@@ -12,11 +12,12 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                    <div class="card faq-lftcard" style="width: 650px;">
+                    <div class="card">
+                      <div class="card-body">
                         <!--- First Preference-->
                         <div class="list-group list-group-fit">
                             <div class="list-group-item">
@@ -132,7 +133,7 @@
                         <!--- End First Preference-->
 
                         <!---  Second Preference-->
-                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('second');">Add Second Preference
+                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;" onclick="toggleDivVisibility('second');">Add Second Preference
                         </a>
                         <div id="second" runat="server">
                             <div class="list-group list-group-fit" id="secondpref">
@@ -249,7 +250,7 @@
                         <!--- End Second Preference-->
 
                         <!---  Third Preference-->
-                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('third')">Add Third Preference
+                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;" onclick="toggleDivVisibility('third')">Add Third Preference
                         </a>
                         <div id="third" runat="server">
                             <div class="list-group list-group-fit" id="thirdpref">
@@ -365,7 +366,7 @@
                         </div>
                         <!--- End Third Preference-->
                         <!---  Fourth Preference-->
-                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('four')">Add Fourth Preference
+                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;" onclick="toggleDivVisibility('four')">Add Fourth Preference
                         </a>
                         <div id="four" runat="server">
                             <div class="list-group list-group-fit" id="fourthPref">
@@ -482,7 +483,7 @@
                         <!--- End Fourth Preference-->
 
                         <!---  Fifth Preference-->
-                        <a class="btn btn-success" style="width: 200px" onclick="toggleDivVisibility('five')">Add Fifth Preference
+                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;" onclick="toggleDivVisibility('five')">Add Fifth Preference
                         </a>
                         <div id="five" runat="server">
                             <div class="list-group list-group-fit" id="fifthpref">
@@ -607,8 +608,10 @@
                                 </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
+                    </div>
+                    <div class="col-md-4">
                     <div class="card faq-qwrp" id="questions" runat="server">
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
@@ -627,8 +630,8 @@
                                      
                             </div>
                         </div>
-
-                </div>
+                    </div>
+                
 
             </div>
         </div>

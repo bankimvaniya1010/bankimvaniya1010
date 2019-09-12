@@ -52,9 +52,8 @@
                                            
                                             <div class="media-body">
                                                 <div class="custom-file" style="width: auto;">
-                                                    <asp:FileUpload ID="avatar" runat="server" CssClass="custom-file-input" />
-
-                                                    <label for="avatar" class="custom-file-label">Choose file</label>
+                                                <asp:Label ID="lblavatar" runat="server" />
+                                                <asp:FileUpload ID="avatar" runat="server" />                                                
                                                 </div>
                                             </div>
                                         </div>
@@ -65,7 +64,7 @@
                                     <div class="col-sm-8 offset-sm-3">
                                         <div class="media align-items-center">
                                             <div class="media-left">
-                                                <asp:Button ID="btn_login" runat="server" Text="Save Documents" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                                <asp:Button ID="btn_login" runat="server" Text="Save Documents" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateUploadedFile()"/>
 
                                             </div>
                                         </div>
@@ -122,6 +121,17 @@
         </div>
     </div>
     <script>
+         function validateUploadedFile() {
+            var flag = false;
+            if ($("#<%=ddlDocuments.ClientID%>").val() == "0")
+                alert("Please select document name");
+            else if ($("#<%=avatar.ClientID%>").val() == "")
+                alert("Please upload valid document");
+            else
+                flag = true;
+
+            return flag;
+        }
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#personal_menu_list').addClass('open');

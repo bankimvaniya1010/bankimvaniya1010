@@ -160,7 +160,7 @@
 .head-nav li+li:before{position: absolute;content: '';width: 1px;height: 10px;top: 0;bottom: 0;left: 0;margin: auto;background:#fff;}
 .head-nav li + li{margin-left: 10px;padding-left: 10px;}
 [dir=ltr] button.navbar-toggler{padding-top: 0;width: auto;}
-[dir=ltr] button.navbar-toggler .material-icons{margin-top: -4px;}
+[dir=ltr] button.navbar-toggler .material-icons{margin-top: 14px;}
 .pdf-wrpr .fa{font-size: 50px;}
 [dir=ltr] .modal-header .close{float: none;height: auto;text-align: right;padding-bottom: 5px;padding-top: 10px;}
 [dir=ltr] .navbar-brand{font-size: 20px;}
@@ -178,5 +178,4 @@
 
 .tbl-dtinfo{width: 100%;float: left;}
 
-input[type="radio"]{margin: 3px 3px 0px 5px !important;}
-
+[dir=ltr] input[type="radio"]{margin:3px 3px 0px 5px !important;}
