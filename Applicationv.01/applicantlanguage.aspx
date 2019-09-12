@@ -16,12 +16,12 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                    <div class="card faq-lftcard" style="width: 650px;">
-                        <div class="list-group list-group-fit">
+                    <div class="card">
+                        <div class="card-body list-group list-group-fit">
 
                             <div class="list-group-item" id="homelanguage" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-homelanguage">
@@ -542,6 +542,8 @@
                             </div>
                         </div>
                     </div>
+                    </div>
+                    <div class="col-md-4">
                     <div class="card faq-qwrp" id="questions" runat="server">
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
@@ -560,8 +562,8 @@
                                      
                             </div>
                         </div>
-
-                </div>
+                    </div>
+                
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>
                         <span id="tooltip"></span>

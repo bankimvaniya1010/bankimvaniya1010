@@ -12,11 +12,11 @@
     </div>
 
      <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                     <div class="card" style="width: 650px;">
+                     <div class="card">
                         <ul class="nav nav-tabs nav-tabs-card">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>

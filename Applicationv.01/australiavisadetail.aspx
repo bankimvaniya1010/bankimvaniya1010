@@ -12,9 +12,9 @@
         </ol>
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
                     <div class="">
 
                        <div class="list-group list-group-fit">
@@ -22,9 +22,9 @@
 
 	
 
-	    <section class="" id="partA">
-		 <div class="card faq-lftcard" style="width: 650px;">
-            
+	   <section class="" id="partA">
+		<div class="card">
+          <div class="card-body">
 			<div class="row" id="noOfPeople" runat="server">
 				<div class="col-12">
 					<label class="contrl-lbl" runat="server" id="lblnoOfPeople"><b class="ques-lbl">1)</b>How many people are included in this application?</label>
@@ -231,7 +231,7 @@
 					</div>
                     <%--14--%>
                     <div id="anotherIdentityNo" runat="server">
-					<div class="contrl-lbl"><b class="ques-lbl">14)</b>If you have any other identity numbers required by your government, give details:</div>
+					<label><b class="ques-lbl">14)</b>If you have any other identity numbers required by your government, give details:</label>
 					<div class="form-group">
 						<label>Type of number</label>
 						<input type="text" id="anotherIdentitytype1" name="" class="form-control" runat="server">
@@ -723,11 +723,11 @@
 					<!-- ques 24 end -->
 					<!-- ques 25 start -->
 					<div>
-						<div class="comm-txt"><b class="ques-lbl">25)</b> Are any of your dependants who are under 18 years of age, and who are included in this application, the subject of a court order giving you:			<ul>
+						<label><b class="ques-lbl">25)</b> Are any of your dependants who are under 18 years of age, and who are included in this application, the subject of a court order giving you:			<ul>
 							<li>the sole legal right to determine where they will live; or</li>
 							<li>the right to remove them from their country of usual residence?</li>
 						</ul>				
-						</div>
+						</label>
 						<div class="form-group" runat="server">
 							<div class="form-check-inline">
 							  <label class="form-check-label">
@@ -876,7 +876,7 @@
                 <!-- ques 27 start -->
 					<div>
 						<div class="form-group" id="applyingfortype" runat="server">
-							<label><<b class="ques-lbl">27)</b> If you are applying:</label>
+							<label><b class="ques-lbl">27)</b> If you are applying:</label>
 							<div class="form-check">
 							  <label class="form-check-label">
 							    <input type="radio" class="form-check-input" name="case" runat="server" id="memberofFamily">as a member of the family unit of a student
@@ -892,28 +892,10 @@
 					<!-- ques 27 end -->
                 </div>
                 </div>
+             </div>
         </div>
-          
-         <div class="card faq-qwrp" id="questions" runat="server">
-                            <div class="card-body">
-                            <%  if (allQuestions.Count > 0)
-                                { %>
-                            <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
-                                    <div class="">
-                                    <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div>                                                             
-                                                    <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
-                                            </div>                                                  
-                                    <%} %>
-                                </div>
-                            </div>      
-                                <%} %>  
-                                     
-                            </div>
-                        </div>
-            
-	   </section>
+
+         </section>
                                        
        
 
@@ -932,7 +914,28 @@
         </div>
 
     </div>
-                </div>
+  </div>
+   <div class="col-md-4">
+         <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                    <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+            </div>       
+	  
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>
                         <span id="tooltip"></span>
