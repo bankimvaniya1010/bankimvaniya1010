@@ -34,11 +34,11 @@
 
 
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-3 col-form-label form-label">File Name</label>
-                                    <div class="col-sm-8">
-                                        <div class="row">
+                                    <label for="name" class="col-sm-3 col-form-label form-label">Document Name</label>
+                                    <div class="col-sm-9">
+                                        <div class="row" style="padding-left:0px;">
                                             <div class="col-md-6">
-                                                <input id="name" type="text" runat="server" class="form-control" placeholder="File Name" value="">
+                                                <asp:DropDownList ID="ddlDocuments" CssClass="form-control" runat="server"></asp:DropDownList>
                                             </div>
 
                                         </div>
@@ -49,11 +49,7 @@
                                     <label for="avatar" class="col-sm-3 col-form-label form-label">Documents</label>
                                     <div class="col-sm-9">
                                         <div class="media align-items-center">
-                                            <div class="media-left">
-                                                <div class="icon-block rounded">
-                                                    <i class="material-icons text-muted-light md-36">photo</i>
-                                                </div>
-                                            </div>
+                                           
                                             <div class="media-body">
                                                 <div class="custom-file" style="width: auto;">
                                                     <asp:FileUpload ID="avatar" runat="server" CssClass="custom-file-input" />
@@ -115,71 +111,7 @@
                 </div>
 
                 <div id="page-nav" class="col-lg-auto page-nav">
-                    <div data-perfect-scrollbar>
-                        <div class="page-section pt-lg-32pt">
-
-                            <label class="form-label">Passport Size Photo Graph</label>
-                            <label class="form-label">Passport Copy (Bio Pages)</label>
-                          <%--  <%if ((appDetails.Count > 0) && (appDetails[0].alternativeiddentiproof == 1))
-                                { %>
-                            <label class="form-label">Proof of Identity </label>
-                            <%} %>
-                            <%if ((appDetails.Count > 0) && (appDetails[0].alternativedobproof == 1))
-                                { %>
-                            <label class="form-label">Proof of Date of Birth</label>
-                            <%} %>
-                            <%if ((appDetails.Count > 0) && (appDetails[0].alternativeresidenceproof == 1))
-                                { %>
-                            <label class="form-label">Proof of Residence </label>
-                            <%} %>--%>
-                            <%if ((appEduDetails.Count > 0) && appEduDetails[0].ishighschooldone == 1)
-                                { %>
-                            <label class="form-label">Proof of High School</label>
-                            <%} %>
-                            <%if ((appEduDetails.Count > 0) && (appEduDetails[0].issecondarydone == 1))
-                                { %>
-                            <label class="form-label">Proof of Senior Secondary School</label>
-                            <%} %>
-                            <%if ((appEduDetails.Count > 0) && (appEduDetails[0].ishighereducation == 1))
-                                {
-                                    for (int higher = 0; higher < appHigherDetails.Count; higher++)
-                                    {
-                                        if (appHigherDetails[higher].coursename == "UG")
-                                        { %>
-                            <label class="form-label">Proof of High Education(UG)</label>
-                            <%}
-
-                                if (appHigherDetails[higher].coursename == "PG")
-                                { %>
-                            <label class="form-label">Proof of High Education(PG)</label>
-                            <%}
-                                if (appHigherDetails[higher].coursename == "Phd")
-                                { %>
-                            <label class="form-label">Proof of High Education(Phd)</label>
-                            <%}
-                                    }
-                                }%>
-                            <%if ((appEduDetails.Count > 0) && (appEduDetails[0].isdiplomadone == 1))
-                                { %>
-                            <label class="form-label">Proof of Certificate / Diploma</label>
-                            <%} %>
-                            <%if ((appLangDetails.Count > 0) && (appLangDetails[0].isenglishintesive == 1))
-                                { %>
-                            <label class="form-label">Proof of Study - English Language Intensive </label>
-                            <%} %>
-                            <%if ((appLangDetails.Count > 0) && (appLangDetails[0].testname != ""))
-                                { %>
-                            <label class="form-label">Proof of English Language Test</label>
-                            <%} %>
-                            <%if (appEmpDetails.Count > 0)
-                                    {
-                                        if ((appLangDetails.Count > 0) && (appEmpDetails[0].wishtoaddemployer == 1))
-                                        { %>
-                            <label class="form-label">Proof of Work Experience </label>
-                            <%}
-                                    } %>
-                        </div>
-                    </div>
+                    
                     <div class="container page__container">
                         <div class="footer">
                         </div>
