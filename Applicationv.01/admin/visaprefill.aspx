@@ -6,10 +6,9 @@
     <title></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
+
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/bootstrap.min.css")%>" />
     <link rel="stylesheet" type="text/css" href="<%=VirtualPathUtility.ToAbsolute("~/assets/dashboard/css/style.css")%>">
-    
 </head>
 <body>
     <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%" style="padding: 0 0 40px; background-color: #ffffff;">
@@ -18,7 +17,7 @@
                 <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 850px; margin: 0 auto;">
                     <tr>
                         <td>
-                            <img src="/assets/dashboard/img/pdf-head.jpg" style="width:100%;">
+                            <img src="/assets/dashboard/img/pdf-head.jpg" style="width: 100%;">
                         </td>
                     </tr>
                 </table>
@@ -274,7 +273,7 @@ information available outside these hours). If you are outside Australia, please
                 <table border="0" cellpadding="0" cellspacing="0" style="padding: 0 0 40px; background-color: #ffffff; width: 850px; margin: 0 auto;">
                     <tr>
                         <td style="width: 25%; vertical-align: middle;">
-                            <img src="/assets/dashboard/img/pdf-head.jpg" style="width:100%;">
+                            <img src="/assets/dashboard/img/pdf-head.jpg" style="width: 100%;">
                         </td>
                     </tr>
                 </table>
@@ -361,9 +360,9 @@ information available outside these hours). If you are outside Australia, please
                                 <b class="num-ques">6</b>
                                 <label style="width: 50px;">Sex</label>
                                 <label style="width: 30px;">Male</label>
-                                <input type="checkbox" id="chkMale" runat="server" name="" style="margin-right: 20px; vertical-align: middle;">
+                                <input type="checkbox" id="chkMale" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                                 <label style="width: 50px;">Female</label>
-                                <input type="checkbox" id="chkFemale" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkFemale" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <b class="num-ques">7</b>
@@ -382,21 +381,21 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">9</b>Marital status </p>
                             <p class="txt">
                                 <label style="width: 60px;">Married</label>
-                                <input type="checkbox" id="chkMarried" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <input type="checkbox" id="chkMarried" runat="server" name="" style="margin-left: 10px; font-size: 11px; vertical-align: middle;">
                                 <label style="width: 60px;">Separated</label>
-                                <input type="checkbox" id="chkSeparated" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <input type="checkbox" id="chkSeparated" runat="server" name="" style="margin-left: 20px; font-size: 11px; vertical-align: middle;">
                                 <label style="width: 90px;">Windowed</label>
-                                <input type="checkbox" id="chkWidowed" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkWidowed" runat="server" name="" style="margin-left: 25px; vertical-align: middle;">
                                 <br>
                                 <label style="width: 60px;">Engaged</label>
-                                <input type="checkbox" id="chkEngaged" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <input type="checkbox" id="chkEngaged" runat="server" name="" style="margin-left: 10px; font-size: 11px; vertical-align: middle;">
                                 <label style="width: 60px;">Divorced</label>
-                                <input type="checkbox" id="chkDivorced" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
-                                <label style="width: 90px;">Never Married</label>
+                                <input type="checkbox" id="chkDivorced" runat="server" name="" style="margin-left: 20px; font-size: 11px; vertical-align: middle;">
+                                <label style="width: 115px;">Never Married</label>
                                 <input type="checkbox" id="chkNever" runat="server" name="" style="vertical-align: middle;">
                                 <br>
-                                <label style="width: 60px">De facto</label>
-                                <input type="checkbox" id="chkDefacto" runat="server" name="" style="margin-right: 10px; font-size: 11px; vertical-align: middle;">
+                                <label style="width: 68px">De facto</label>
+                                <input type="checkbox" id="chkDefacto" runat="server" name="" style="margin-left: 2px; font-size: 11px; vertical-align: middle;">
                             </p>
                         </td>
                         <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
@@ -439,11 +438,11 @@ information available outside these hours). If you are outside Australia, please
                                 <label style="width: 100px; margin-left: 60px;">
                                     Date of issue  
                                 </label>
-                                <input type="text" name="" id="dateofissue" runat="server" style="width: 160px; margin-bottom: 5px;" placeholder="Day/ Month / YEAR ">
+                                <input type="text" name="" id="dateofissue" runat="server" style="width: 160px; margin-bottom: 5px; font-size: 12px;" placeholder="Day/ Month / YEAR ">
                             </p>
                             <p class="txt">
                                 <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
-                                <input type="text" name="" id="dateofexpiry" runat="server" style="width: 160px;" placeholder="Day/ Month / YEAR ">
+                                <input type="text" name="" id="dateofexpiry" runat="server" style="width: 160px; font-size: 12px;" placeholder="Day/ Month / YEAR ">
                             </p>
 
 
@@ -488,7 +487,7 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="text" id="residenceaddressLine2" runat="server" name="" style="width: 340px;">
                             </p>
                             <p class="txt">
-                                <input type="text" id="residenceaddresspostalcode" runat="server" name="" style="width: 340px;">
+                                <input type="text" id="residenceaddresspostalcode" runat="server" name="" style="width: 340px; font-size: 12px;">
                             </p>
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">17</b>Your telephone numbers outside Australia </p>
                             <p class="txt">
@@ -507,16 +506,16 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="text" id="australiaresidentialaddline2" runat="server" name="" style="width: 340px;">
                             </p>
                             <p class="txt">
-                                <input type="text" id="australiaresidentialpostalcode" runat="server" name="" style="width: 340px;" placeholder="POSTCODE ">
+                                <input type="text" id="australiaresidentialpostalcode" runat="server" name="" style="width: 340px; font-size: 12px;" placeholder="POSTCODE ">
                             </p>
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">19</b>Your telephone numbers outside Australia </p>
                             <p class="txt">
                                 <label style="width: 100px;">Office hours  </label>
-                                <input type="text" id="officehrContactNoInAustralia" runat="server" name="" style="width: 240px;" placeholder="(AREA CODE              ) ">
+                                <input type="text" id="officehrContactNoInAustralia" runat="server" name="" style="width: 240px; font-size: 12px;" placeholder="(AREA CODE ) ">
                             </p>
                             <p class="txt">
                                 <label style="width: 100px;">After hours </label>
-                                <input type="text" id="afterhrContactNoInAustralia" runat="server" name="" style="width: 240px;" placeholder="( AREA CODE             )">
+                                <input type="text" id="afterhrContactNoInAustralia" runat="server" name="" style="width: 240px; font-size: 12px;" placeholder="( AREA CODE )">
                             </p>
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">20</b> Address for correspondence    </p>
                             <p class="txt">
@@ -526,7 +525,7 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="text" id="correspondenceaddressline2" runat="server" name="" style="width: 340px;">
                             </p>
                             <p class="txt">
-                                <input type="text" id="correspondenceaddresspoastalcode" runat="server" name="" style="width: 340px;" placeholder="POSTCODE ">
+                                <input type="text" id="correspondenceaddresspoastalcode" runat="server" name="" style="width: 340px; font-size: 12px;" placeholder="POSTCODE ">
                             </p>
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">21</b> Do you agree to the department communicating with you by fax, e-mail or other electronic means?  </p>
                             <p class="txt">
@@ -576,7 +575,7 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 80px;">Date of Birth </label>
-                                <input type="text" id="dobfamilymember1" runat="server" name="" style="width: 240px;" placeholder="Day/ Month / YEAR ">
+                                <input type="text" id="dobfamilymember1" runat="server" name="" style="width: 240px; font-size: 12px" placeholder="Day/ Month / YEAR ">
                             </p>
                             <p class="txt">Is this person included in this application?   </p>
                             <p class="txt">
@@ -597,11 +596,11 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 100px; margin-left: 60px;">Date of issue</label>
-                                <input type="text" id="passportdateofissue1" runat="server" name="" style="width: 160px;" placeholder="Day/ Month / YEAR ">
+                                <input type="text" id="passportdateofissue1" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="Day/ Month / YEAR ">
                             </p>
                             <p class="txt">
                                 <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
-                                <input type="text" id="passportdateofexpiry1" runat="server" name="" style="width: 160px;" placeholder="Day/ Month / YEAR ">
+                                <input type="text" id="passportdateofexpiry1" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="Day/ Month / YEAR ">
                             </p>
                             <p class="txt" style="margin-left: 60px;">
                                 Issuing authority/Place of issue as shown in passport<br>
@@ -612,9 +611,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <label style="width: 200px;">Does this person intend to study in Australia for more than 3 months? </label>
                                 <label style="width: 20px; margin-left: 20px;">No</label>
-                                <input type="checkbox" id="chkFamilyStudy1No" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <input type="checkbox" id="chkFamilyStudy1No" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkFamilyStudy1Yes" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkFamilyStudy1Yes" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                             </p>
                         </td>
                     </tr>
@@ -642,7 +641,7 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 100px;">Date of birth</label>
-                                <input type="text" id="dobfamilymember2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="dobfamilymember2" runat="server" name="" style="width: 160px; font-size: 12px" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt">Is this person included in this application?</p>
                             <p class="txt">
@@ -663,11 +662,11 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 100px; margin-left: 60px;">Date of issue </label>
-                                <input type="text" name="" id="passportdateofissue2" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" name="" id="passportdateofissue2" runat="server" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt">
                                 <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
-                                <input type="text" name="" id="passportdateofexpiry2" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" name="" id="passportdateofexpiry2" runat="server" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-left: 60px;">Issuing authority/Place of issue as shown in passport</p>
                             <input type="text" name="" id="passportplaceofissue2" runat="server" style="width: 270px; margin-left: 60px;">
@@ -676,9 +675,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <label style="width: 200px; margin-top: 20px;">Does this person intend to study in Australia for more than 3 months? </label>
                                 <label style="width: 20px; margin-left: 20px;">No</label>
-                                <input type="checkbox" id="chkFamilyStudy2No" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <input type="checkbox" id="chkFamilyStudy2No" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkFamilyStudy2Yes" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkFamilyStudy2Yes" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 100px;">3 Family name</label>
@@ -702,7 +701,7 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 100px;">Date of birth</label>
-                                <input type="text" id="dobfamilymember3" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="dobfamilymember3" runat="server" name="" style="width: 160px; font-size: 12px" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt">Is this person included in this application?   </p>
                             <p class="txt">
@@ -723,11 +722,11 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 100px; margin-left: 60px;">Date of issue </label>
-                                <input type="text" id="passportdateofissue3" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="passportdateofissue3" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt">
                                 <label style="width: 100px; margin-left: 60px;">Date of expiry</label>
-                                <input type="text" id="passportdateofexpiry3" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="passportdateofexpiry3" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-left: 60px;">Issuing authority/Place of issue as shown in passport</p>
                             <input type="text" name="" id="passportplaceofissue3" runat="server" style="width: 270px; margin-left: 60px;">
@@ -735,9 +734,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="">
                                 <label style="width: 200px; margin-top: 20px;">Does this person intend to study in Australia for more than 3 months? </label>
                                 <label style="width: 20px; margin-left: 20px;">No</label>
-                                <input type="checkbox" id="chkFamilyStudy3No" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <input type="checkbox" id="chkFamilyStudy3No" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkFamilyStudy3Yes" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkFamilyStudy3Yes" runat="server" name="" style="margin-left: 10px; vertical-align: middle;">
                             </p>
                         </td>
                         <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
@@ -789,7 +788,7 @@ information available outside these hours). If you are outside Australia, please
                                     </p>
                                     <p class="txt">
                                         <label style="width: 80px;"></label>
-                                        <input type="text" id="guardianspostalcode" runat="server" name="" placeholder="POSTAL CODE" style="width: 240px; margin-bottom: 5px;">
+                                        <input type="text" id="guardianspostalcode" runat="server" name="" placeholder="POSTAL CODE" style="width: 240px; margin-bottom: 5px; font-size: 12px;">
                                     </p>
                                 </br>
                                 <p class="txt">
@@ -807,9 +806,9 @@ information available outside these hours). If you are outside Australia, please
                                 <p class="txt" style="border-bottom: 1px solid #000; padding-bottom: 10px;">
                                     <label style="width: 230px;">Statutory declaration attached? </label>
                                     <label style="width: 20px;">No</label>
-                                    <input type="checkbox" id="chkstatutory1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                    <input type="checkbox" id="chkstatutory1No" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                     <label style="width: 25px;">Yes</label>
-                                    <input type="checkbox" id="chkstatutory1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                    <input type="checkbox" id="chkstatutory1Yes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 </p>
                                 <p class="txt" style="margin-top: 10px;">
                                     <label style="width: 80px;">Family name</label>
@@ -831,7 +830,7 @@ information available outside these hours). If you are outside Australia, please
                                 </p>
                                 <p class="txt">
                                     <label style="width: 80px;"></label>
-                                    <input type="text" id="guardianspostalcode1" runat="server" name="" placeholder="POSTAL CODE" style="width: 240px; margin-bottom: 5px;">
+                                    <input type="text" id="guardianspostalcode1" runat="server" name="" placeholder="POSTAL CODE" style="width: 240px; font-size: 12px; margin-bottom: 5px;">
                                 </p>
                             </br>
                             <p class="txt" style="margin-top: 20px;">
@@ -850,9 +849,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <label style="width: 230px;">Statutory declaration attached? </label>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkstatutory2No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkstatutory2No" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkstatutory2Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkstatutory2Yes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">25</b>Are any of your dependants who are under 18 years of age, and who are included in this application, the subject of a court order giving you:  </p>
@@ -882,23 +881,23 @@ information available outside these hours). If you are outside Australia, please
 	 							for any type of Australian visa?
                                 </label>
                                 <label style="width: 20px; margin-left: 20px;">No</label>
-                                <input type="checkbox" id="chkappliesNo" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <input type="checkbox" id="chkappliesNo" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkappliesYes" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkappliesYes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <p class="txt" style="">
                                 <label style="width: 200px; margin-top: 20px;">Do you currently hold a visa?</label>
                                 <label style="width: 20px; margin-left: 20px;">No</label>
-                                <input type="checkbox" id="chkHoldNo" runat="server" name="" style="margin-right: 15px; vertical-align: middle;">
+                                <input type="checkbox" id="chkHoldNo" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkHoldYes" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkHoldYes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <p class="txt" style="">
                                 <label style="width: 200px; margin-top: 20px;">Are you currently awaiting a decision on another visa application? </label>
                                 <label style="width: 20px; margin-left: 20px;">No</label>
-                                <input type="checkbox" name="" id="chkAwaitingNo" runat="server" style="margin-right: 15px; vertical-align: middle;">
+                                <input type="checkbox" name="" id="chkAwaitingNo" runat="server" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" name="" id="chkAwaitingYes" runat="server" style="vertical-align: middle;">
+                                <input type="checkbox" name="" id="chkAwaitingYes" runat="server" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <p class="txt">If you answered <strong>‘Yes’</strong> to any of the above questions, give details below </p>
                             <p class="txt" style="margin-top: 10px;">
@@ -915,16 +914,16 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 100px;">Date of issue</label>
-                                <input type="text" name="" id="dateissuevisa" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" name="" id="dateissuevisa" runat="server" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 100px;">Application </label>
                                 <label style="width: 55px;">Refused </label>
-                                <input type="checkbox" id="chkvisa1refused" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkvisa1refused" runat="server" name="" style="vertical-align: middle; margin-left: 12px;">
                             </p>
                             <p class="txt">
                                 <label style="width: 56px; margin-left: 102px;">Granted </label>
-                                <input type="checkbox" id="chkvisa1granted" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkvisa1granted" runat="server" name="" style="vertical-align: middle; margin-left: 12px;">
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
                                 <span class="txt" style="vertical-align: middle;">Visa label number</span>
                             </p>
@@ -954,16 +953,16 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 100px;">Date of issue</label>
-                                <input type="text" id="dateissuevisa1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="dateissuevisa1" runat="server" name="" style="width: 160px; font-size: 12px" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 100px;">Application </label>
                                 <label style="width: 55px;">Refused </label>
-                                <input type="checkbox" id="chkvisa2refused" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkvisa2refused" runat="server" name="" style="vertical-align: middle; margin-left: 12px;">
                             </p>
                             <p class="txt">
                                 <label style="width: 56px; margin-left: 102px;">Granted </label>
-                                <input type="checkbox" id="chkvisa2granted" runat="server" name="" style="vertical-align: middle;">
+                                <input type="checkbox" id="chkvisa2granted" runat="server" name="" style="vertical-align: middle; margin-left: 12px;">
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
                                 <span class="txt" style="vertical-align: middle;">Visa label number</span>
                             </p>
@@ -1036,24 +1035,24 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <input type="text" id="addressofeducationprovider" runat="server" name="" style="width: 330px;">
                                 <input type="text" name="" style="width: 330px;">
-                                <input type="text" id="educationproviderpostalcode" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" id="educationproviderpostalcode" runat="server" name="" style="width: 330px; font-size: 12px;" placeholder="PINCODE">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Commencement Date</label>
-                                <input type="text" id="commencementdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="commencementdate" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Finish  Date</label>
-                                <input type="text" id="finishdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="finishdate" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt">
                                 <label style="width: 230px;">Documentation attached?  </label>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkeducationdocumentattachedNo" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkeducationdocumentattachedNo" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkeducationdocumentattachedYes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkeducationdocumentattachedYes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                         </td>
                     </tr>
@@ -1072,22 +1071,22 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <input type="text" id="otheraddressofeducationprovider1" runat="server" name="" style="width: 330px;">
                                 <input type="text" name="" style="width: 330px;">
-                                <input type="text" id="othereduproviderpostalcode1" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" id="othereduproviderpostalcode1" runat="server" name="" style="width: 330px; font-size: 12px;" placeholder="PINCODE">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Commencement Date</label>
-                                <input type="text" name="" id="othercommencementdate1" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" name="" id="othercommencementdate1" runat="server" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Finish  Date</label>
-                                <input type="text" name="" id="otherfinishdate1" runat="server" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" name="" id="otherfinishdate1" runat="server" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px; border-bottom: 1px solid #000; padding-bottom: 10px;">
                                 <label style="width: 230px;">Documentation attached?  </label>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkotherdocumentattached1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkotherdocumentattached1No" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkotherdocumentattached1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkotherdocumentattached1Yes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <p class="txt" style="margin-top: 10px;">Other course undertaken outside Australia  </p>
                             <p class="txt">
@@ -1102,24 +1101,24 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <input type="text" id="otheraddressofeducationprovider2" runat="server" name="" style="width: 330px;">
                                 <input type="text" name="" style="width: 330px;">
-                                <input type="text" id="othereduproviderpostalcode2" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" id="othereduproviderpostalcode2" runat="server" name="" style="width: 330px; font-size: 12px;" placeholder="PINCODE">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Commencement Date</label>
-                                <input type="text" id="othercommencementdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="othercommencementdate2" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Finish  Date</label>
-                                <input type="text" id="otherfinishdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="otherfinishdate2" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt">
                                 <label style="width: 230px;">Documentation attached?  </label>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkotherdocumentattached2No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkotherdocumentattached2No" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkotherdocumentattached2Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkotherdocumentattached2Yes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <p class="txt"><b class="num-ques">31</b> Have you previously studied in Australia?   </p>
                             <p class="txt">
@@ -1142,9 +1141,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-left: 60px; margin-top: 10px;">Period of study </p>
                             <p class="txt">
                                 <label style="width: 35px; margin-left: 60px;">From </label>
-                                <input type="text" id="previouslycourseDateFrom" runat="server" name="" style="width: 101px; margin-right: 3px;" placeholder="MONTH / YEAR ">
+                                <input type="text" id="previouslycourseDateFrom" runat="server" name="" style="width: 101px; margin-right: 3px; font-size: 12px;" placeholder="MONTH / YEAR ">
                                 <label style="width: 17px; margin-left: 0px;">to</label>
-                                <input type="text" id="previouslycourseDateTo" runat="server" name="" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                                <input type="text" id="previouslycourseDateTo" runat="server" name="" style="width: 103px; font-size: 12px;" placeholder=" MONTH / YEAR ">
                             </p>
                         </td>
                         <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
@@ -1160,9 +1159,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-top: 10px;">Period of study </p>
                             <p class="txt" style="padding-bottom: 10px; border-bottom: 1px solid #000;">
                                 <label style="width: 35px; margin-top: 10px;">From</label>
-                                <input type="text" name="" id="previouslycourseDateFrom1" runat="server" style="width: 101px; margin-right: 3px;" placeholder="MONTH / YEAR ">
+                                <input type="text" name="" id="previouslycourseDateFrom1" runat="server" style="width: 101px; margin-right: 3px; font-size: 12px;" placeholder="MONTH / YEAR ">
                                 <label style="width: 17px; margin-left: 0px;">to</label>
-                                <input type="text" name="" id="previouslycourseDateTo1" runat="server" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                                <input type="text" name="" id="previouslycourseDateTo1" runat="server" style="width: 103px; font-size: 12px;" placeholder=" MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;">Previous course in Australia   </p>
                             <p class="txt">
@@ -1176,9 +1175,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-top: 10px;">Period of study </p>
                             <p class="txt">
                                 <label style="width: 35px; margin-top: 10px;">From </label>
-                                <input type="text" name="" style="width: 101px; margin-right: 3px;" placeholder="MONTH / YEAR ">
+                                <input type="text" name="" style="width: 101px; margin-right: 3px; font-size: 12px;" placeholder="MONTH / YEAR ">
                                 <label style="width: 17px; margin-left: 0px;">to</label>
-                                <input type="text" name="" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                                <input type="text" name="" style="width: 103px; font-size: 12px;" placeholder=" MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">32</b>Give details of your intended courses of study in Australia </p>
                             <p class="txt">You must provide evidence of enrolment. Unless you are seeking to study in Australia as a secondary school exchange student or as a student sponsored by AusAID or the Australian Department of Defence, you <strong>must</strong> attach: </p>
@@ -1201,29 +1200,29 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Commencement Date</label>
-                                <input type="text" id="intendedcommencementdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="intendedcommencementdate" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Finish  Date</label>
-                                <input type="text" id="intendedfinishdate" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="intendedfinishdate" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt"><b class="num-ques">31</b> Have you enrolled?   </p>
                             <br>
                             <p class="txt">
                                 <label style="width: 30px;">No</label>
                                 <input type="checkbox" id="chkhaveenrolmentNo" runat="server" name="" style="vertical-align: middle;">
-                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course’  </span>
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course  </span>
                             </p>
                             <p class="txt">
                                 <label style="width: 30px;">Yes</label>
                                 <input type="checkbox" id="chkhaveenrolmentYes" runat="server" name="" style="vertical-align: middle;">
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Is evidence of enrolment attached?  </span>
-
+                                <br>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkhaveenrolmentevidenceNo" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkhaveenrolmentevidenceNo" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkhaveenrolmentevidenceYes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkhaveenrolmentevidenceYes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                         </td>
                     </tr>
@@ -1240,29 +1239,29 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Commencement Date</label>
-                                <input type="text" id="intendedcommencementdate1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="intendedcommencementdate1" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Finish  Date</label>
-                                <input type="text" id="intendedfinishdate1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="intendedfinishdate1" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt"><b class="num-ques">31</b> Have you enrolled?   </p>
                             <br>
                             <p class="txt">
                                 <label style="width: 30px;">No</label>
                                 <input type="checkbox" id="chkhaveenrolment1No" runat="server" name="" style="vertical-align: middle;">
-                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course’  </span>
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course  </span>
                             </p>
                             <p class="txt">
                                 <label style="width: 30px;">Yes</label>
                                 <input type="checkbox" id="chkhaveenrolment1Yes" runat="server" name="" style="vertical-align: middle;">
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Is evidence of enrolment attached?  </span>
-
+                                <br>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkhaveenrolmentevidence1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkhaveenrolmentevidence1No" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkhaveenrolmentevidence1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkhaveenrolmentevidence1Yes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <hr style="border-color: #000">
                             <p class="txt" style="margin-top: 10px;">Intended course</p>
@@ -1276,18 +1275,18 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Commencement Date</label>
-                                <input type="text" id="intendedcommencementdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="intendedcommencementdate2" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px;">Finish  Date</label>
-                                <input type="text" id="intendedfinishdate2" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="intendedfinishdate2" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt"><b class="num-ques">31</b> Have you enrolled?   </p>
                             <br>
                             <p class="txt">
                                 <label style="width: 30px;">No</label>
                                 <input type="checkbox" id="chkhaveenrolment2No" runat="server" name="" style="vertical-align: middle;">
-                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course’  </span>
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Attach letter of ‘offer of a place in a course  </span>
                             </p>
                             <p class="txt">
                                 <label style="width: 30px;">Yes</label>
@@ -1295,9 +1294,9 @@ information available outside these hours). If you are outside Australia, please
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Is evidence of enrolment attached?  </span>
                                 <br>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkhaveenrolmentevidence2No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkhaveenrolmentevidence2No" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkhaveenrolmentevidence2Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkhaveenrolmentevidence2Yes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <h4 class="part-sub" style="margin-top: 20px;"><em>Your English language details</em></h4>
                             <p class="txt"><b class="num-ques">33</b> Are you an applicant in Assessment Level 1 or 2?    </p>
@@ -1323,7 +1322,7 @@ information available outside these hours). If you are outside Australia, please
                             <input type="text" id="englishlangtestname" runat="server" name="" style="width: 270px; margin-left: 60px;">
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 130px; margin-left: 60px;">Date of  test</label>
-                                <input type="text" id="englishlangtestDate" runat="server" name="" style="width: 135px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="englishlangtestDate" runat="server" name="" style="width: 135px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt">
                                 <label style="margin-left: 60px; margin-top: 10px;">Test certificate number </label>
@@ -1359,15 +1358,15 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-left: 0px; margin-top: 10px;">
                                 Period 
 				               <label style="width: 35px; margin-left: 10px;">From </label>
-                                <input type="text" name="" id="employmenthistoryFromDate" runat="server" style="width: 101px; margin-right: 4px;" placeholder="MONTH / YEAR ">
+                                <input type="text" name="" id="employmenthistoryFromDate" runat="server" style="width: 101px; margin-right: 4px; font-size: 12px;" placeholder="MONTH / YEAR ">
                                 <label style="width: 15px; margin-left: 0px;">to</label>
-                                <input type="text" name="" id="employmenthistoryToDate" runat="server" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                                <input type="text" name="" id="employmenthistoryToDate" runat="server" style="width: 103px; font-size: 12px;" placeholder=" MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;">Name and address of employer </p>
                             <p class="txt">
                                 <input type="text" id="employerInfoL0" runat="server" name="" style="width: 330px;">
                                 <input type="text" id="employerInfoL1" runat="server" name="" style="width: 330px;">
-                                <input type="text" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" name="" style="width: 330px; font-size: 12px;" placeholder="PINCODE">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
@@ -1388,22 +1387,22 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-top: 10px; padding-bottom: 10px; border-bottom: 1px solid #000;">
                                 <label style="width: 230px;">Documentation attached?  </label>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkleavingdocAttchNo" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkleavingdocAttchNo" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkleavingdocAttchYes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkleavingdocAttchYes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
                             <p class="txt" style="margin-left: 0px; margin-top: 10px;">
                                 Period 
 				               <label style="width: 35px; margin-left: 10px;">From </label>
-                                <input type="text" id="employmenthistoryFromDate1" runat="server" name="" style="width: 101px; margin-right: 4px;" placeholder="MONTH / YEAR ">
+                                <input type="text" id="employmenthistoryFromDate1" runat="server" name="" style="width: 101px; margin-right: 4px; font-size: 12px;" placeholder="MONTH / YEAR ">
                                 <label style="width: 15px; margin-left: 0px;">to</label>
-                                <input type="text" id="employmenthistoryToDate1" runat="server" name="" style="width: 103px;" placeholder=" MONTH / YEAR ">
+                                <input type="text" id="employmenthistoryToDate1" runat="server" name="" style="width: 103px; font-size: 12px;" placeholder=" MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;">Name and address of employer </p>
                             <p class="txt">
                                 <input type="text" id="employerInfoL2" runat="server" name="" style="width: 330px;">
                                 <input type="text" id="employerInfoL3" runat="server" name="" style="width: 330px;">
-                                <input type="text" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" name="" style="width: 330px; font-size: 12px;" placeholder="PINCODE">
                             </p>
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 120px;">Type of business </label>
@@ -1423,9 +1422,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 230px;">Documentation attached?  </label>
                                 <label style="width: 20px;">No</label>
-                                <input type="checkbox" id="chkleavingdocAttch1No" runat="server" name="" style="margin-right: 8px; vertical-align: middle;">
+                                <input type="checkbox" id="chkleavingdocAttch1No" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                                 <label style="width: 25px;">Yes</label>
-                                <input type="checkbox" id="chkleavingdocAttch1Yes" runat="server" name="" style="margin-right: 0px; vertical-align: middle;">
+                                <input type="checkbox" id="chkleavingdocAttch1Yes" runat="server" name="" style="margin-left: 8px; vertical-align: middle;">
                             </p>
 
                         </td>
@@ -1437,17 +1436,18 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt"><span class="num-ques">37</span>Are you currently employed?</p>
                             <p class="txt">
                                 <label style="width: 30px;">No</label>
-                                <input type="checkbox" id="chkcurrentlyemployedNo" runat="server" name="" style="vertical-align: middle;">
-                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Are you</span>
+                                <input type="checkbox" id="chkcurrentlyemployedNo" runat="server" name="" style="vertical-align: middle;"><br />
+                               
                             </p>
                             <p class="txt" style="margin-bottom: 5px;">
-                                a student
+                               Are you a student
                                 <input type="radio" id="rblStudent" runat="server" name="" style="vertical-align: middle; margin-right: 10px;">
                                 unemployed
                                 <input type="radio" id="rblunemployed" runat="server" name="" style="vertical-align: middle; margin-right: 10px;">
                                 other
-                                <input type="radio" id="rblOther" runat="server" name="" style="vertical-align: middle; margin-right: 10px;">
-                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Please describe</span>
+                                <input type="radio" id="rblOther" runat="server" name="" style="vertical-align: middle; margin-right: 10px;"><br />
+                                <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
+                                <span class="txt" style="vertical-align: middle;">Please describe</span>
                                 <br>
                                 <input type="text" name="" id="otherdescription1" runat="server" style="width: 100%; margin-top: 5px; margin-bottom: 5px;">
                                 <label>Why do you wish to undertake the course of study you have nominated? <i>If insufficient space, attach additional details.</i></label>
@@ -1470,7 +1470,7 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <input type="text" id="employername" runat="server" name="" style="width: 100%;">
                                 <input type="text" id="employeraddress" runat="server" name="" style="width: 100%;">
-                                <input type="text" name="" style="width: 100%;" placeholder="PINCODE">
+                                <input type="text" name="" style="width: 100%;font-size:12px;" placeholder="PINCODE">
                                 <input type="text" id="employercontactno" runat="server" name="" style="width: 100%; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
                             </p>
                             <p class="txt" style="margin-bottom: 5px;">
@@ -1495,13 +1495,13 @@ information available outside these hours). If you are outside Australia, please
                             <input type="text" name="" style="width: 270px; margin-left: 60px;">
                             <input type="text" name="" style="width: 270px; margin-left: 60px;">
                             <input type="text" name="" style="width: 270px; margin-left: 60px;">
-
+                            <br />
                             <label style="width: 30px;">Yes</label>
                             <input type="checkbox" id="chkjobofferedYes" runat="server" name="" style="vertical-align: middle;">
                             <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i><span class="txt" style="vertical-align: middle;">Name, address and telephone number of your employer  </span>
                             <input type="text" id="jobofferedname" runat="server" name="" style="width: 270px; margin-left: 60px;">
                             <input type="text" id="jobofferedaddress" runat="server" name="" style="width: 270px; margin-left: 60px;">
-                            <input type="text"  name="" style="width: 270px; margin-left: 60px;">
+                            <input type="text" name="" style="width: 270px; margin-left: 60px;">
                             <input type="text" name="" style="width: 270px; margin-left: 60px;" placeholder="POSTAL CODE">
 
                             <input type="text" id="jobofferedcontactno" runat="server" name="" style="width: 270px; margin-top: 10px; margin-left: 60px; font-size: 12px" placeholder="(COUNTRY CODE) (AREA CODE) NUMBER ">
@@ -1530,14 +1530,14 @@ information available outside these hours). If you are outside Australia, please
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 120px;">Date of birth </label>
-                                <input type="text" id="immediaterelativeDob" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="immediaterelativeDob" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">Address  </p>
                             <p class="txt">
                                 <input type="text" id="immediaterelativeaddress" runat="server" name="" style="width: 330px;">
                                 <input type="text" name="" style="width: 330px;">
-                                <input type="text" id="immediaterelativepostalcode" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" id="immediaterelativepostalcode" runat="server" name="" style="width: 330px;font-size:12px;" placeholder="PINCODE">
                             </p>
                             <p class="txt" style="margin-top: 10px;">Immigration status in Australia <em>(eg. temporary or permanent resident, Australian citizen)  </em></p>
                             <input type="text" id="immediaterelativeimmigrationstatus" runat="server" name="" style="width: 325px;" placeholder="">
@@ -1545,7 +1545,7 @@ information available outside these hours). If you are outside Australia, please
 
 				            <p class="txt" style="margin-top: 10px; border-bottom: 1px solid #000; padding-bottom: 10px;">
                                 <label style="width: 120px;">Date of arrival  </label>
-                                <input type="text" id="immediaterelativeDateofarrival" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="immediaterelativeDateofarrival" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
 
@@ -1561,14 +1561,14 @@ information available outside these hours). If you are outside Australia, please
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 120px;">Date of birth </label>
-                                <input type="text" id="immediaterelativeDob1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="immediaterelativeDob1" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">Address  </p>
                             <p class="txt">
                                 <input type="text" id="immediaterelativeaddress1" runat="server" name="" style="width: 330px;">
                                 <input type="text" name="" style="width: 330px;">
-                                <input type="text" id="immediaterelativepostalcode1" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" id="immediaterelativepostalcode1" runat="server" name="" style="width: 330px;font-size:12px;" placeholder="PINCODE">
                             </p>
                             <p class="txt" style="margin-top: 10px;">Immigration status in Australia <em>(eg. temporary or permanent resident, Australian citizen)  </em></p>
                             <input type="text" id="immediaterelativeimmigrationstatus1" runat="server" name="" style="width: 325px;" placeholder="">
@@ -1576,7 +1576,7 @@ information available outside these hours). If you are outside Australia, please
 
 				            <p class="txt" style="margin-top: 10px; border-bottom: 1px solid #000; padding-bottom: 10px;">
                                 <label style="width: 120px;">Date of arrival  </label>
-                                <input type="text" id="immediaterelativedateofarrival1" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="immediaterelativedateofarrival1" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                             <p class="txt" style="margin-top: 10px;"><b class="num-ques">40</b>Give details of your closest relative in your home country who is neither accompanying nor joining you in Australia  </p>
 
@@ -1593,7 +1593,7 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <input type="text" id="closestrelativeaddress" runat="server" name="" style="width: 330px;">
                                 <input type="text" name="" style="width: 330px;">
-                                <input type="text" id="closestrelativepostalcode" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" id="closestrelativepostalcode" runat="server" name="" style="width: 330px;font-size:12px;" placeholder="PINCODE">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
@@ -1647,7 +1647,7 @@ information available outside these hours). If you are outside Australia, please
                             <input type="text" name="" style="width: 280px; height: 100px; margin-left: 60px;">
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 60px;">Date</label>
-                                <input type="text" id="declarationDate42" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="declarationDate42" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
                         </td>
                         <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
@@ -1707,7 +1707,7 @@ information available outside these hours). If you are outside Australia, please
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 100px;">Date of Birth</label>
-                                <input type="text" id="studentdobpartC" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="studentdobpartC" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
@@ -1718,7 +1718,7 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <input type="text" id="studentaddresspartC" runat="server" name="" style="width: 330px;">
                                 <input type="text" name="" style="width: 330px;">
-                                <input type="text" id="studentaddpostalcodepartC" runat="server" name="" style="width: 330px;" placeholder="PINCODE">
+                                <input type="text" id="studentaddpostalcodepartC" runat="server" name="" style="width: 330px;font-size:12px;" placeholder="PINCODE">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
@@ -1733,12 +1733,12 @@ information available outside these hours). If you are outside Australia, please
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 100px;">Date granted </label>
-                                <input type="text" id="assessmentgrantdatepartC" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="assessmentgrantdatepartC" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
                                 <label style="width: 100px;">Expiry date </label>
-                                <input type="text" id="assessmentexpirydatepartC" runat="server" name="" style="width: 160px;" placeholder="DAY / MONTH / YEAR ">
+                                <input type="text" id="assessmentexpirydatepartC" runat="server" name="" style="width: 160px; font-size: 12px;" placeholder="DAY / MONTH / YEAR ">
                             </p>
 
                             <p class="txt" style="margin-top: 10px;">
@@ -1801,9 +1801,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">In the last 5 years, have you, or has any member of your family unit included in this application, visited or lived outside your country of usual residence for more than 3 consecutive months?</p>
                             <p class="txt">
                                 <b class="num-ques">50</b>
-                                <label style="width: 30px;">No</label><input id="rbllivedoutsidecountrycNo" runat="server" type="radio" name="" style="vertical-align: middle; margin-bottom: 5px;">
+                                <label style="width: 30px;">No</label><input id="rbllivedoutsidecountrycNo" runat="server" type="radio" name="" style="vertical-align: middle; margin-bottom: 5px;margin-left:2px">
                                 <br>
-                                <label style="width: 30px;">Yes</label><input id="rbllivedoutsidecountrycYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give Details</span>
+                                <label style="width: 30px;">Yes</label><input id="rbllivedoutsidecountrycYes" runat="server" type="radio" name="" style="vertical-align: middle;margin-left:4px"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give Details</span>
                             </p>
                             <hr style="border-color: #000">
                             <p class="txt">
@@ -1845,9 +1845,9 @@ information available outside these hours). If you are outside Australia, please
                             <br>
                             <p class="txt">
                                 <span class="num-ques">52</span> Do you, or any member of your family unit included in this application, intend to work in an Australian preschool-aged child care centre (including preschools and creches) as an employee or trainee?<br>
-                                <label style="width: 30px;">No</label><input type="radio" id="rblhaveworkforaustralianpreschoolNo" runat="server" name="" style="vertical-align: middle;">
+                                <label style="width: 30px;margin-right:2px;">No</label><input type="radio" id="rblhaveworkforaustralianpreschoolNo" runat="server" name="" style="vertical-align: middle;">
                                 <br>
-                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveworkforaustralianpreschoolYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give full details</span>
+                                <label style="width: 30px;margin-right:4px;">Yes</label><input type="radio" id="rblhaveworkforaustralianpreschoolYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give full details</span>
                             </p>
                             <p class="txt">
                                 <input type="text" id="descriptionofpreschoolwork" runat="server" name="" style="width: 100%;"><br>
@@ -1868,9 +1868,9 @@ information available outside these hours). If you are outside Australia, please
                                     <li>been in close contact with a person who has, or has had, active tuberculosis?</li>
                                     <li>ever had a chest x-ray which showed an abnormality?</li>
                                 </ul>
-                                <label style="width: 30px;">No</label><input id="rblhaveanyhealthissueNo" runat="server" type="radio" name="" style="vertical-align: middle;">
+                                <label style="width: 30px;font-size:18px;margin-right:2px;">No</label><input id="rblhaveanyhealthissueNo" runat="server" type="radio" name="" style="vertical-align: middle;">
                                 <br>
-                                <label style="width: 30px;">Yes</label><input id="rblhaveanyhealthissueYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give full details</span>
+                                <label style="width: 30px;font-size:18px;margin-right:4px;">Yes</label><input id="rblhaveanyhealthissueYes" runat="server" type="radio" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give full details</span>
                             </p>
                             <p class="txt">
                                 <input type="text" id="detailofhealthissue" runat="server" name="" style="width: 100%;"><br>
@@ -1884,9 +1884,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <span class="num-ques">54</span> Do you require assistance with mobility and/or care?
                                 <br>
-                                <label style="width: 30px;">No</label><input type="radio" id="rblrequireassistancewithmobilityNo" runat="server" name="" style="vertical-align: middle;">
+                                <label style="width: 30px;margin-right:2px;">No</label><input type="radio" id="rblrequireassistancewithmobilityNo" runat="server" name="" style="vertical-align: middle;">
                                 <br>
-                                <label style="width: 30px;">Yes</label><input type="radio" id="rblrequireassistancewithmobilityYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Provide details of the mobility/care concerns that apply to you and how they are addressed </span>
+                                <label style="width: 30px;margin-right:4px;">Yes</label><input type="radio" id="rblrequireassistancewithmobilityYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Provide details of the mobility/care concerns that apply to you and how they are addressed </span>
                             </p>
                             <p class="txt">
                                 <input type="text" id="descriptionofmobility" runat="server" name="" style="width: 100%;"><br>
@@ -1900,9 +1900,9 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt">
                                 <span class="num-ques">55</span> Do you intend performing medical procedures (eg. as a practising/trainee doctor, dentist, nurse) during your stay in Australia?
                                 <br>
-                                <label style="width: 30px;">No</label><input type="radio" id="rblhaevmedicalproceduresNo" runat="server" name="" style="vertical-align: middle;">
+                                <label style="width: 30px;margin-right:2px;">No</label><input type="radio" id="rblhaevmedicalproceduresNo" runat="server" name="" style="vertical-align: middle;">
                                 <br>
-                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaevmedicalproceduresYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Provide details of the medical/dental/nursing procedures you may be involved with in Australia</span>
+                                <label style="width: 30px;margin-right:4px;">Yes</label><input type="radio" id="rblhaevmedicalproceduresYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Provide details of the medical/dental/nursing procedures you may be involved with in Australia</span>
                             </p>
                             <p class="txt">
                                 <input type="text" id="proceduresdescription" runat="server" name="" style="width: 100%;"><br>
@@ -2244,7 +2244,7 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-bottom: 5px;"><span class="num-ques">65</span><i>I am satisfied with the reception, care and support arrangements that have been made in Australia for my dependent child under 18 years of age.</i></p>
                             <p class="txt" style="margin-bottom: 10px;"><b>Note: Both parents must sign this declaration</b></p>
                             <p class="txt">
-                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <label style="width: 135px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
                                 <textarea id="parentsignature" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
                             </p>
                             <p class="txt">
@@ -2259,11 +2259,11 @@ information available outside these hours). If you are outside Australia, please
                                 <input id="parentRelationshipwithstudent" runat="server" type="text" name="" style="width: 100%; margin-bottom: 10px;">
                             </p>
                             <p class="txt">
-                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <label style="width: 135px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
                                 <textarea id="parentsignature1" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
                             </p>
                             <p class="txt">
-                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input  id="parentsignatureDate1" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="parentsignatureDate1" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
                             </p>
                             <p class="txt">
                                 <label>Full name <i>(print in English)</i></label><br>
@@ -2290,7 +2290,7 @@ information available outside these hours). If you are outside Australia, please
                                 <label>Residential address</label>
                                 <input type="text" id="personaddress" runat="server" name="" style="width: 100%;">
                                 <input type="text" name="" style="width: 100%;">
-                                <input type="text"  name="" style="width: 100%; margin-bottom: 4px;">
+                                <input type="text" name="" style="width: 100%; margin-bottom: 4px;">
                                 <label>Telephone Number</label>
                                 <input type="text" id="personcontactno" runat="server" name="" style="width: 100%; font-size: 9px; margin-bottom: 4px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
                                 <label>Relationship to student visa applicant </label>
@@ -2310,7 +2310,7 @@ information available outside these hours). If you are outside Australia, please
                                 <i>I am not aware of any reason why the visa applicant should not travel to Australia (the custody/access/guardianship rights of another person are not affected).</i>
                             </p>
                             <p class="txt">
-                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <label style="width: 135px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
                                 <textarea id="parentsignatur67" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
                             </p>
                             <p class="txt">
@@ -2326,8 +2326,8 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <hr style="border-color: #000">
                             <p class="txt">
-                                <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
-                                <textarea id="parentsignatur671" runat="server"  rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                                <label style="width: 135px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of parent/person who has legal custody </label>
+                                <textarea id="parentsignatur671" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
                             </p>
                             <p class="txt">
                                 <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="signDate1" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
@@ -2354,15 +2354,15 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 Title: Mr
-                                <input  id="rblTitleMr" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                <input id="rblTitleMr" runat="server" type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
                                 Mrs
-                                <input id="rblTitleMrs" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                <input id="rblTitleMrs" runat="server" type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
                                 Miss
-                                <input id="rblTitleMiss" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                <input id="rblTitleMiss" runat="server" type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
                                 Ms
-                                <input id="rblTitleMs" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                <input id="rblTitleMs" runat="server" type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
                                 Other
-                                <input id="rblTitleOther" runat="server"  type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
+                                <input id="rblTitleOther" runat="server" type="radio" name="Title" style="vertical-align: middle; margin-right: 10px;">
                             </p>
                             <p class="txt" style="margin-bottom: 8px;">
                                 <label style="width: 80px;">Family name</label><input id="assistedpersonfamilyname" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
@@ -2371,7 +2371,7 @@ information available outside these hours). If you are outside Australia, please
                                 <label>Address</label>
                                 <input type="text" id="assistedpersonaddress" runat="server" name="" style="width: 100%;">
                                 <input type="text" name="" style="width: 100%;">
-                                <input type="text"  name="" style="width: 100%;">
+                                <input type="text" name="" style="width: 100%;">
                             </p>
                             <p class="txt" style="margin-bottom: 10px;">
                                 <label>Telephone number or daytime contact</label><br>
@@ -2391,9 +2391,9 @@ information available outside these hours). If you are outside Australia, please
                                 <span class="num-ques">70</span>Is the person an education agent?
                             </p>
                             <p class="txt" style="margin-bottom: 10px;">
-                                <label style="width: 30px;">No</label><input type="radio" id="rblhaveeducationagentNo" runat="server"  name="" style="vertical-align: middle;">
+                                <label style="width: 30px;">No</label><input type="radio" id="rblhaveeducationagentNo" runat="server" name="" style="vertical-align: middle;">
                                 <br>
-                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveeducationagentYes" runat="server"  name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Please give details below </span>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveeducationagentYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Please give details below </span>
                                 <br>
                                 <label>Education Agency Business Name</label>
                                 <input type="text" id="businessname" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
@@ -2402,7 +2402,7 @@ information available outside these hours). If you are outside Australia, please
                                 <label>Address <i>(if different from address given in Question 68)</i></label>
                                 <input type="text" id="educationagentaddress" runat="server" name="" style="width: 100%">
                                 <input type="text" name="" style="width: 100%">
-                                <input type="text"  name="" style="width: 100%; margin-bottom: 5px;">
+                                <input type="text" name="" style="width: 100%; margin-bottom: 5px;">
                                 <label>E-mail address</label>
                                 <input type="text" id="educationagentemail" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
                                 <label>Telephone number or daytime contact </label>
@@ -2431,9 +2431,9 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="text" id="howmuchyoupay" runat="server" name="" style="width: 250px;" placeholder="A$">
                                 <span style="width: 80px;">AND / OR</span>
                                 <label style="margin-top: 4px;">What kind of gift did you give? (eg. jewellery)</label>
-                                <input type="text"  id="giftgiven" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
+                                <input type="text" id="giftgiven" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
                                 <label>Value of gift (approximately)</label>
-                                <input type="text"  id="valueofgift" runat="server" name="" style="width: 100%;" placeholder="A$">
+                                <input type="text" id="valueofgift" runat="server" name="" style="width: 100%;" placeholder="A$">
                             </p>
                             <h6 class="part-sub"><i>Options for receiving written communications</i></h6>
                             <p class="txt">
@@ -2473,9 +2473,9 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="radio" id="rblauthorisedTitleOther" runat="server" name="authorisedTitle" style="vertical-align: middle; margin-right: 10px;">
                             </p>
                             <p class="txt" style="margin-bottom: 8px;">
-                                <label style="width: 80px;">Family name</label><input type="text" id="authorisedpersofamilynname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
-                                <label style="width: 80px;">Given names </label>
-                                <input type="text" name="" id="authorisedpersongivenname" runat="server" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 115px;">Family name</label><input type="text" id="authorisedpersofamilynname" runat="server" name="" style="width: 240px; margin-bottom: 5px;"><br>
+                                <label style="width: 110px;">Given names </label>
+                                <input type="text" name="" id="authorisedpersongivenname" runat="server" style="width: 240px; margin-bottom: 5px;"><br>
                                 <label>Authorised recipient’s postal address</label>
                                 <input type="text" id="authorisedpersonaddress" runat="server" name="" style="width: 100%;">
                                 <input type="text" name="" style="width: 100%;">
@@ -2483,9 +2483,9 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt" style="margin-bottom: 10px;">
                                 <label>Telephone number or daytime contact</label><br>
-                                <label style="width: 80px;">Office hours </label>
+                                <label style="width: 110px;">Office hours </label>
                                 <input type="text" id="authorisedpersonofficeno" runat="server" name="" style="width: 250px; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
-                                <label style="width: 80px;">Mobile phone</label><input type="text" id="authorisedpersonmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
+                                <label style="width: 115px;">Mobile phone</label><input type="text" id="authorisedpersonmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
                             </p>
                             <h6 class="part-sub"><i>Authorised recipient consent</i></h6>
                             <p class="txt"><span class="num-ques">76</span>As the authorised recipient named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means?</p>
@@ -2495,9 +2495,9 @@ information available outside these hours). If you are outside Australia, please
                                 <br>
                             </p>
                             <p class="txt" style="margin-bottom: 10px;">
-                                <label style="width: 80px;">Fax number</label>
-                                <input type="text" id="Faxnumber" runat="server" name="" style="width: 250px; margin-bottom: 5px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
-                                <label style="width: 80px;">E-mail address</label>
+                                <label style="width: 115px;">Fax number</label>
+                                <input type="text" id="Faxnumber" runat="server" name="" style="width: 250px; margin-bottom: 5px;font-size:12px" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label style="width: 115px;">E-mail address</label>
                                 <input type="text" id="authorizedpersonEmailaddress" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
                             </p>
                             <p class="txt" style="margin-bottom: 8px;">
@@ -2505,10 +2505,10 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt">
                                 <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px;">Signature of authorised recipient</label>
-                                <textarea id="signatureauthorizedperson" runat="server"   rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
+                                <textarea id="signatureauthorizedperson" runat="server" rows="4" style="width: 236px; margin-bottom: 5px;"></textarea>
                             </p>
                             <p class="txt" style="margin-bottom: 8px;">
-                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="dateofsign" runat="server"  type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
+                                <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label><input id="dateofsign" runat="server" type="text" name="" style="width: 236px; font-size: 10px; margin-bottom: 5px;" placeholder="DAY / MONTH / YEAR">
                             </p>
                             <p class="txt" style="margin-bottom: 10px;"><i class="fas fa-angle-double-right"></i>Now go to Question 81</p>
                         </td>
@@ -2539,9 +2539,9 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="radio" id="rblagentTitleOther" runat="server" name="agentTitle" style="vertical-align: middle; margin-right: 10px;">
                             </p>
                             <p class="txt" style="margin-bottom: 5px;">
-                                <label style="width: 80px;">Family name</label><input type="text" id="agentfamilyname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
-                                <label style="width: 80px;">Given names</label><input type="text" id="agentgivenname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
-                                <label style="width: 80px;">Business or company name</label><input id="agentcompanyname" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 115px;">Family name</label><input type="text" id="agentfamilyname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 115px;">Given names</label><input type="text" id="agentgivenname" runat="server" name="" style="width: 250px; margin-bottom: 5px;"><br>
+                                <label style="width: 115px;">Business or company name</label><input id="agentcompanyname" runat="server" type="text" name="" style="width: 250px; margin-bottom: 5px;"><br>
                                 <label>Postal Address</label>
                                 <input type="text" id="agenntaddress" runat="server" name="" style="width: 100%;">
                                 <input type="text" name="" style="width: 100%;">
@@ -2549,9 +2549,9 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt" style="margin-bottom: 10px;">
                                 <label>Telephone number or daytime contact</label><br>
-                                <label style="width: 80px;">Office hours </label>
+                                <label style="width: 115px;">Office hours </label>
                                 <input type="text" id="agentofficeno" runat="server" name="" style="width: 250px; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
-                                <label style="width: 80px;">Mobile phone</label><input type="text" id="agentmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
+                                <label style="width: 118px;">Mobile phone</label><input type="text" id="agentmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;font-size: 9px;">
                             </p>
                             <h6 class="part-sub"><i>Agent consent</i></h6>
                             <p class="txt"><span class="num-ques">79</span>As the agent named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means? </p>
@@ -2562,7 +2562,7 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt" style="margin-bottom: 10px;">
                                 <label style="width: 80px;">Fax number</label>
-                                <input type="text" id="agentfaxno" runat="server" name="" style="width: 250px; margin-bottom: 5px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <input type="text" id="agentfaxno" runat="server"  name="" style="width: 250px; margin-bottom: 5px;font-size:12px" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
                                 <label style="width: 80px;">E-mail address</label>
                                 <input type="text" name="" id="agentemailaddress" runat="server" style="width: 250px; margin-bottom: 5px;">
                             </p>
@@ -2601,7 +2601,7 @@ information available outside these hours). If you are outside Australia, please
                                     <br>
                                     <strong>Note:</strong> This option is available where applications are made in Australia. If you are making the application outside Australia and wish to pay by credit card, please check with the Australian Government office about the availability of this option. </span>
                             </p>
-                            <p class="txt" style="font-size:12px;">
+                            <p class="txt" style="font-size: 12px;">
                                 <span style="border: 1px solid #000; margin-right: 5px; display: inline-block; width: 250px; padding: 5px;">
                                     <label>Payment by (tick one box)</label><br>
                                     <label style="text-align: right; width: 125px;">
@@ -2645,7 +2645,7 @@ information available outside these hours). If you are outside Australia, please
                                 <label>Address</label>
                                 <input type="text" id="addressofcardholder" runat="server" name="" style="width: 100%;">
                                 <input type="text" name="" style="width: 100%;">
-                                <input type="text" name="" style="width: 100%;" placeholder="PINCODE">
+                                <input type="text" name="" style="width: 100%;font-size:12px;" placeholder="PINCODE">
                             </p>
                             <p class="txt">
                                 <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px; margin-top: 30px;">Signature of Cardholder </label>
@@ -2707,7 +2707,7 @@ information available outside these hours). If you are outside Australia, please
                             </p>
                             <p class="txt" style="margin-top: 20px;">
                                 <label style="width: 90px; font-weight: 600; vertical-align: top; padding-right: 10px; margin-top: 30px;">Signature </label>
-                                <textarea rows="4" id="declarationsignature1" runat="server"  style="width: 236px; margin-bottom: 5px; resize: none;"></textarea>
+                                <textarea rows="4" id="declarationsignature1" runat="server" style="width: 236px; margin-bottom: 5px; resize: none;"></textarea>
                             </p>
                             <p class="txt">
                                 <label style="width: 93px; text-align: right; padding-right: 10px;">Date</label>
@@ -2738,7 +2738,7 @@ information available outside these hours). If you are outside Australia, please
     </table>
 
 
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../assets/dashboard/js/jquery.min.js"></script>
+    <script src="../assets/dashboard/js/bootstrap.min.js"></script>
 </body>
 </html>
