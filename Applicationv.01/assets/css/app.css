@@ -177,3 +177,6 @@
 }
 
 .tbl-dtinfo{width: 100%;float: left;}
+
+input[type="radio"]{margin: 3px 3px 0px 5px !important;}
+
