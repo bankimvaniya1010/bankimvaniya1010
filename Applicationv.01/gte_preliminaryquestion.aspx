@@ -12,8 +12,8 @@
 
     </div>
     <div class="page ">
-
-        <div class="row" style="margin-left:50px;">
+       <div class="container page__container">
+        <div class="row">
             <div class="col-md-8">
               
                 <div class="card" id="questions" runat="server">
@@ -109,7 +109,7 @@
                 </div>
            
         </div>
-
+        </div>
         <div class="container page__container">
             <div class="footer">
             </div>

@@ -19,14 +19,14 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                    <div class="card" style="width: 450px;">
-                        <div class="list-group list-group-fit">
-                            <label style="font-size:large;">The following information will be reported:</label>
+                    <div class="card">
+                        <div class="card-body list-group list-group-fit">
                             <div class="list-group-item">
+                                <label style="font-size:large;">The following information will be reported:</label>
                                 <div class="form-group">
                                     <div class="form-row">
                                         <label id="lblSummaryHeader" runat="server" style="font-size:large;font-weight:500;">Summary</label><br />

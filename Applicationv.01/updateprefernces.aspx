@@ -14,12 +14,12 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-9">
 
-                    <div class="card faq-lftcard" style="width: 650px;">
-                        <div class="list-group list-group-fit">
+                    <div class="card">
+                        <div class="card-body list-group list-group-fit">
 
 
 
