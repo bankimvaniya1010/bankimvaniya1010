@@ -120,14 +120,19 @@
 
                 if (chckApply.is(':checked')) {
                     // Check for file uploaded or not and then raise alert
-                    uploadedfile = $("#ContentPlaceHolder1_scholarshipList_FileUploadControlName_" + i).val(); // File Upload control
+                    uploadedfile = $("#ContentPlaceHolder1_scholarshipList_completedApplicationForm_" + i); // File Upload control
                     if (uploadedfile.get(0).files.length == 0) {
                         alert("Please upload application form for scholarship no: " + (i + 1));
                         return false;
                     }
-                    var ext = uploadedfile.split('.').pop();
-                    if (ext != "pdf" || ext != "word") {
+                    var ext = uploadedfile.val().split('.').pop();
+                    if (!(ext == "pdf" || ext == "word")) {
                         alert("Please upload application form in either pdf or word format for scholarship no: " + (i + 1));
+                        return false;
+                    }
+                    var fileSize = Math.round((uploadedfile.get(0).files[0].size / 1024) / 1024);
+                    if (fileSize > 16) {
+                        alert("Please upload application form size less than 16MB for scholarship no: " + (i + 1));
                         return false;
                     }
                 }
