@@ -24,7 +24,6 @@
         <EntityTypeShape EntityType="GTEModel.applicantcampaign" Width="1.5" PointX="10.5" PointY="14.75" />
         <EntityTypeShape EntityType="GTEModel.applicantdatavalidation" Width="1.5" PointX="2.75" PointY="13.75" />
         <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="17.75" PointY="13.75" />
-        <EntityTypeShape EntityType="GTEModel.applicantdocumentmaster" Width="1.5" PointX="0.75" PointY="17.75" />
         <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="19.75" PointY="7.75" />
         <EntityTypeShape EntityType="GTEModel.applicantemployerdetails" Width="1.5" PointX="20.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.applicantformmaster" Width="1.5" PointX="2.75" PointY="17.75" />
@@ -191,6 +190,7 @@
         <EntityTypeShape EntityType="GTEModel.scholarships" Width="1.5" PointX="0.75" PointY="33.75" />
         <EntityTypeShape EntityType="GTEModel.applicant_scholarships" Width="1.5" PointX="3" PointY="34" />
         <AssociationConnector Association="GTEModel.FK_applicantScholarship_scholarships" />
+        <EntityTypeShape EntityType="GTEModel.applicantdocumentmaster" Width="1.5" PointX="33.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

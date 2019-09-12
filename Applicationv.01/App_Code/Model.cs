@@ -305,7 +305,7 @@ public partial class applicantdocumentmaster
     public string documentname { get; set; }
     public string filename { get; set; }
     public Nullable<System.DateTime> uploadedtime { get; set; }
-    public string fileextension { get; set; }
+    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicanteducationdetails

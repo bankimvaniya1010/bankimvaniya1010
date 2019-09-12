@@ -286,10 +286,10 @@
           </Key>
           <Property Name="documentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
-          <Property Name="documentname" Type="varchar" MaxLength="45" />
-          <Property Name="filename" Type="varchar" MaxLength="45" />
+          <Property Name="documentname" Type="varchar" MaxLength="100" />
+          <Property Name="filename" Type="varchar" MaxLength="100" />
           <Property Name="uploadedtime" Type="datetime" Precision="0" />
-          <Property Name="fileextension" Type="varchar" MaxLength="45" />
+          <Property Name="universityid" Type="int" />
         </EntityType>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -1908,7 +1908,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           </Key>
           <Property Name="documentid" Type="int" Nullable="false" />
           <Property Name="applicantid" Type="int" />
-          <Property Name="documentname" Type="varchar" MaxLength="45" />
+          <Property Name="documentname" Type="varchar" MaxLength="100" />
           <Property Name="documentvalidationId" Type="int" />
           <Property Name="agentid" Type="int" />
           <Property Name="lastupdatedate" Type="datetime" Precision="0" />
@@ -3020,7 +3020,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicantcampaign" EntityType="GTEModel.applicantcampaign" />
           <EntitySet Name="applicantdatavalidation" EntityType="GTEModel.applicantdatavalidation" />
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
-          <EntitySet Name="applicantdocumentmaster" EntityType="GTEModel.applicantdocumentmaster" />
           <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
           <EntitySet Name="applicantemployerdetails" EntityType="GTEModel.applicantemployerdetails" />
           <EntitySet Name="applicantformmaster" EntityType="GTEModel.applicantformmaster" />
@@ -3361,6 +3360,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="scholarships" EntitySet="scholarships" />
             <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
           </AssociationSet>
+          <EntitySet Name="applicantdocumentmaster" EntityType="GTEModel.applicantdocumentmaster" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -3651,17 +3651,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="studentsegment" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="studentstatus" Type="Int32" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
-        </EntityType>
-        <EntityType Name="applicantdocumentmaster">
-          <Key>
-            <PropertyRef Name="documentid" />
-          </Key>
-          <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="filename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="uploadedtime" Type="DateTime" />
-          <Property Name="fileextension" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -6081,6 +6070,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="applicantdocumentmaster">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="documentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="uploadedtime" Type="DateTime" />
+          <Property Name="universityid" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6380,18 +6380,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicantdocumentmaster">
-            <EntityTypeMapping TypeName="GTEModel.applicantdocumentmaster">
-              <MappingFragment StoreEntitySet="applicantdocumentmaster">
-                <ScalarProperty Name="fileextension" ColumnName="fileextension" />
-                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
-                <ScalarProperty Name="filename" ColumnName="filename" />
-                <ScalarProperty Name="documentname" ColumnName="documentname" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="documentid" ColumnName="documentid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -8120,6 +8108,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="university_id" ColumnName="university_id" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantdocumentmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantdocumentmaster">
+              <MappingFragment StoreEntitySet="applicantdocumentmaster">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="documentname" ColumnName="documentname" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

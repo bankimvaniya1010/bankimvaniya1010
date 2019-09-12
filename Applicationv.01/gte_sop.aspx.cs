@@ -79,6 +79,7 @@ public partial class gte_sop : System.Web.UI.Page
                         applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
                         applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
                         applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1; ;
+                        applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == applicationDetails.course.Value).Select(x => x.coursename).FirstOrDefault();
 
                         if (educationDetails.ishighereducation == 1) // Applicant has entered most recent higher education
                         {
@@ -107,7 +108,6 @@ public partial class gte_sop : System.Web.UI.Page
                         }
 
                         // Set to empty values to avoid errors, below details are missing from applicant details information.
-                        applicantdetails.coursename = String.Empty;
                         applicantdetails.highestqualificationfield = 1;
                     }
                 }
