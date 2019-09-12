@@ -41,11 +41,17 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                 var isFullService = (bool)Session["FullService"];
                 if (isFullService)
                 {
+                    var applicant_details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
+                    var application_details = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID && x.preferenceid.Value == 1).FirstOrDefault();
+
+                    if(applicant_details == null || application_details == null)
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete applicant or application details. Please complete both before proceeding'); window.location='" + webURL + "default.aspx';", true);
+
                     // Set to empty values to avoid errors, below details are missing from applicant details information.
-                    details.highestqualificationfield = 1;
-                    details.fieldofstudyapplied = 1;
-                    details.highestqualifiactionachieved = "1";
-                    details.levelofcourse = "1";
+                    //details.highestqualificationfield = ;
+                    details.fieldofstudyapplied = application_details.majorofdiscipline.HasValue ? application_details.majorofdiscipline.Value : 1;
+                    details.highestqualifiactionachieved = applicant_details.higheststudycompleted.HasValue ? applicant_details.higheststudycompleted.Value.ToString() : "1";
+                    details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value.ToString() : "1";
                 }
                 else
                     details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
@@ -76,9 +82,11 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                         sendEmailsClarificationNotification(sendEmailQuestion);
                 }
 
-                if (details.highestqualificationfield.Value != details.fieldofstudyapplied.Value) // For adding field of study clarification question
+                // For adding field of study clarification question
+                if (details.highestqualificationfield.Value != details.fieldofstudyapplied.Value)
                     clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display Field of study clarification").FirstOrDefault());
 
+                // For adding level of study clarification question
                 var selectedHighestQualification = Convert.ToInt32(details.highestqualifiactionachieved);
                 var selectedAppliedQualification = Convert.ToInt32(details.levelofcourse);
                 var highestQualificationAchievedLevel = db.studylevelmaster

@@ -26,6 +26,10 @@ public partial class gte_studentdetails : System.Web.UI.Page
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx", true);
 
+        var isFullService = (bool)Session["FullService"];
+        if (isFullService)
+            Response.Redirect("default.aspx", true);
+
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         isuniversityGroupHead = db.universitygrouping.Where(x => x.groupingheaduniversityid == universityID).ToList().Count > 0;
 

@@ -157,6 +157,18 @@ public partial class applicant_education
     public string othercourse_name { get; set; }
 }
 
+public partial class applicant_scholarships
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int university_id { get; set; }
+    public int scholarship_id { get; set; }
+    public string upload_form { get; set; }
+    public string approval_status { get; set; }
+
+    public virtual scholarships scholarships { get; set; }
+}
+
 public partial class applicantcampaign
 {
     public int campaignid { get; set; }
@@ -1480,6 +1492,7 @@ public partial class gte_questions_applicant_response
     public int applicant_id { get; set; }
     public int university_id { get; set; }
     public int applicant_response_time { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
 
     public virtual gte_answer_master gte_answer_master { get; set; }
     public virtual gte_questions_master gte_questions_master { get; set; }
@@ -1778,6 +1791,27 @@ public partial class rolemaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<adminusers> adminusers { get; set; }
+}
+
+public partial class scholarships
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public scholarships()
+    {
+        this.applicant_scholarships = new HashSet<applicant_scholarships>();
+    }
+
+    public int id { get; set; }
+    public string name { get; set; }
+    public string description { get; set; }
+    public string eligibility { get; set; }
+    public System.DateTime application_deadline { get; set; }
+    public string scholarship_form { get; set; }
+    public int award_amount { get; set; }
+    public string awarded_by { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicant_scholarships> applicant_scholarships { get; set; }
 }
 
 public partial class secondarylanguagemaster

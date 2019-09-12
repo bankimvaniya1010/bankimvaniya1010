@@ -65,7 +65,8 @@ public partial class gte_sop : System.Web.UI.Page
                     applicantdetails = new gte_applicantdetails();
                     var details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
                     var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                    if (details != null && educationDetails != null)
+                    var applicationDetails = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == universityID && x.preferenceid.Value == 1).FirstOrDefault();
+                    if (details != null && educationDetails != null && applicationDetails != null)
                     {
                         applicantdetails.nationality = details.nationality.Value;
                         applicantdetails.residencecountry = details.issameaspostal.Value == 1 ? details.postalcountry : details.residentialcountry;
@@ -74,6 +75,10 @@ public partial class gte_sop : System.Web.UI.Page
                         applicantdetails.universityid = universityID;
                         applicantdetails.workexperience = !String.IsNullOrEmpty(details.totalyearofexperience) ? Convert.ToInt32(details.totalyearofexperience) : 0;
                         applicantdetails.highestqualifiactionachieved = details.higheststudycompleted.HasValue ? details.higheststudycompleted.Value.ToString() : "1";
+
+                        applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
+                        applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
+                        applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1; ;
 
                         if (educationDetails.ishighereducation == 1) // Applicant has entered most recent higher education
                         {
@@ -102,10 +107,8 @@ public partial class gte_sop : System.Web.UI.Page
                         }
 
                         // Set to empty values to avoid errors, below details are missing from applicant details information.
-                        applicantdetails.cityofeducationInstitution = 1;
-                        applicantdetails.levelofcourse = String.Empty;
                         applicantdetails.coursename = String.Empty;
-                        applicantdetails.fieldofstudyapplied = 1;
+                        applicantdetails.highestqualificationfield = 1;
                     }
                 }
                 else
