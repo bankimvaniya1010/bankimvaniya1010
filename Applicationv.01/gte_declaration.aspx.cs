@@ -53,17 +53,23 @@ public partial class gte_declaration : System.Web.UI.Page
                 db.gte_progressbar.Add(gteProgressBar);
             db.SaveChanges();
 
+            Session["GteDeclarationDoneByApplicant"] = true;
             var isFullService = (bool)Session["FullService"];
             if (isFullService)
             {
                 var declarationCompleted = (bool)Session["DeclarationDoneByApplicant"];
                 Session["DeclarationCompleted"] = true && declarationCompleted;
+                var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
+                if (isProfileDetailsCompletedByApplicant)
+                    Response.Redirect("gte_questions1.aspx", true);
+                else
+                    Response.Redirect("default.aspx", true);
             }
             else
+            {
                 Session["DeclarationCompleted"] = true;
-
-            Session["GteDeclarationDoneByApplicant"] = true;
-            Response.Redirect(webURL + "gte_studentdetails.aspx", true);
+                Response.Redirect(webURL + "gte_studentdetails.aspx", true);
+            }
         }
         catch (Exception ex)
         {

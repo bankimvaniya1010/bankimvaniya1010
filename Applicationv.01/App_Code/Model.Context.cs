@@ -149,9 +149,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
     public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<currency_master> currency_master { get; set; }
+    public virtual DbSet<scholarships> scholarships { get; set; }
     public virtual DbSet<applicant_scholarships> applicant_scholarships { get; set; }
     public virtual DbSet<applicantdocumentmaster> applicantdocumentmaster { get; set; }
-    public virtual DbSet<scholarships> scholarships { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

@@ -99,6 +99,56 @@
                                      
                             </div>
                         </div>
+
+            <div style="display: none;" runat="server">
+                <div class="modal" id="IELTS-modal" tabindex="-1" role="dialog">
+                   <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                         <div class="faq-modal-header modal-header">
+	                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         </div>
+                         <div class="modal-body">
+                            <div class="">
+	                            <table border="1">
+                                    <tr>
+                                        <td>*Academic International English Language Testing System (IELTS)</td>
+                                        <td>6.0 with no band below 6.0 for Reading and Writing and no band below 5.5 in Speaking and Listening</td>
+                                    </tr>
+                                    <tr>
+                                        <td>*Cambridge Advanced English prior to January 2015 (CAE)</td>
+                                        <td>52 with no section less than Borderline</td>
+                                    </tr>
+                                    <tr>
+                                        <td>*Cambridge Advanced English after January 2015 (CAE)</td>
+                                        <td>169 with no band below 162</td>
+                                    </tr>
+                                    <tr>
+                                        <td>*Pearson Test of English (PTE)</td>
+                                        <td>54 with no band below 46</td>
+                                    </tr>
+                                    <tr>
+                                        <td>*Test of English as a Foreign Language - IBT (TOEFL IBT)</td>
+                                        <td>73 with no band less than 16</td>
+                                    </tr>
+                                    <tr>
+                                        <td>* *Test of English as a Foreign Language - Paper Based (TOEFL - Paper Based)</td>
+                                        <td>534 (Test of Written English 4.0)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Occupational English Test (OET)</td>
+                                        <td>OET with a minimum of C in the four components</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Special Tertiary Admissions Test (STAT)</td>
+                                        <td>Written English Score 140</td>
+                                    </tr>
+                                </table>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+            </div>
                 
         </div>
 
@@ -129,6 +179,12 @@
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepart1').addClass('active');
+
+            $('#lblClick').click(function () {
+                var IELTSModal = $('#IELTS-modal');
+                $('body').append(IELTSModal);
+                $('#IELTS-modal').modal('show');
+            });
 
             var minutesLabel = document.getElementById("minutes");	
             var secondsLabel = document.getElementById("seconds");	

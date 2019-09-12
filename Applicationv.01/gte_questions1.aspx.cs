@@ -137,6 +137,8 @@ public partial class gte_questions1 : System.Web.UI.Page
             text = text.Replace("#Nationality#", Convert.ToString(ViewState["nationality"]));
         if (text.Contains("#EducationalInstitution#"))
             text = text.Replace("#EducationalInstitution#", Convert.ToString(ViewState["eduInstitution"]));
+        if (text.Contains("#ClickToKnowMore#"))
+            text = text.Replace("#ClickToKnowMore#", "<lable id=lblClick style=\"color: DodgerBlue;\"> Click to know more </label>");
         
         return text;
     }
