@@ -141,6 +141,17 @@
           <Property Name="repeats_backlog" Type="varchar" MaxLength="200" />
           <Property Name="othercourse_name" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="applicant_scholarships">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicant_id" Type="int" Nullable="false" />
+          <Property Name="university_id" Type="int" Nullable="false" />
+          <Property Name="scholarship_id" Type="int" Nullable="false" />
+          <Property Name="upload_form" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="approval_status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="applicantcampaign">
           <Key>
             <PropertyRef Name="campaignid" />
@@ -275,10 +286,10 @@
           </Key>
           <Property Name="documentid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="applicantid" Type="int" />
-          <Property Name="documentname" Type="varchar" MaxLength="45" />
-          <Property Name="filename" Type="varchar" MaxLength="45" />
+          <Property Name="documentname" Type="varchar" MaxLength="100" />
+          <Property Name="filename" Type="varchar" MaxLength="100" />
           <Property Name="uploadedtime" Type="datetime" Precision="0" />
-          <Property Name="fileextension" Type="varchar" MaxLength="45" />
+          <Property Name="universityid" Type="int" />
         </EntityType>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -1362,6 +1373,7 @@
           <Property Name="applicant_id" Type="int" Nullable="false" />
           <Property Name="university_id" Type="int" Nullable="false" />
           <Property Name="applicant_response_time" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="gte_questions_master">
           <Key>
@@ -1600,6 +1612,19 @@
           </Key>
           <Property Name="roleid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="rolename" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="scholarships">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="eligibility" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="application_deadline" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="scholarship_form" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="award_amount" Type="int" Nullable="false" />
+          <Property Name="awarded_by" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="secondarylanguagemaster">
           <Key>
@@ -1883,7 +1908,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           </Key>
           <Property Name="documentid" Type="int" Nullable="false" />
           <Property Name="applicantid" Type="int" />
-          <Property Name="documentname" Type="varchar" MaxLength="45" />
+          <Property Name="documentname" Type="varchar" MaxLength="100" />
           <Property Name="documentvalidationId" Type="int" />
           <Property Name="agentid" Type="int" />
           <Property Name="lastupdatedate" Type="datetime" Precision="0" />
@@ -2030,6 +2055,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="applicantdetails">
               <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantScholarship_scholarships">
+          <End Role="scholarships" Type="Self.scholarships" Multiplicity="1" />
+          <End Role="applicant_scholarships" Type="Self.applicant_scholarships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scholarships">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="applicant_scholarships">
+              <PropertyRef Name="scholarship_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2596,6 +2633,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="answeroptionssecondary" EntityType="Self.answeroptionssecondary" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applcantdetailfieldvalidationmaster" EntityType="Self.applcantdetailfieldvalidationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicant_education" EntityType="Self.applicant_education" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicant_scholarships" EntityType="Self.applicant_scholarships" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantcampaign" EntityType="Self.applicantcampaign" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantdatavalidation" EntityType="Self.applicantdatavalidation" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantdetails" EntityType="Self.applicantdetails" Schema="GTE" store:Type="Tables" />
@@ -2678,6 +2716,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="registrationcourses" EntityType="Self.registrationcourses" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="scholarships" EntityType="Self.scholarships" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="secondarylanguagemaster" EntityType="Self.secondarylanguagemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="studentcoursemapping" EntityType="Self.studentcoursemapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="students" EntityType="Self.students" Schema="GTE" store:Type="Tables" />
@@ -2764,6 +2803,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_applicantdetails_students" Association="Self.FK_applicantdetails_students">
             <End Role="students" EntitySet="students" />
             <End Role="applicantdetails" EntitySet="applicantdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantScholarship_scholarships" Association="Self.FK_applicantScholarship_scholarships">
+            <End Role="scholarships" EntitySet="scholarships" />
+            <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
           </AssociationSet>
           <AssociationSet Name="FK_applicantvisadetails_university_master" Association="Self.FK_applicantvisadetails_university_master">
             <End Role="university_master" EntitySet="university_master" />
@@ -2977,7 +3020,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicantcampaign" EntityType="GTEModel.applicantcampaign" />
           <EntitySet Name="applicantdatavalidation" EntityType="GTEModel.applicantdatavalidation" />
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
-          <EntitySet Name="applicantdocumentmaster" EntityType="GTEModel.applicantdocumentmaster" />
           <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
           <EntitySet Name="applicantemployerdetails" EntityType="GTEModel.applicantemployerdetails" />
           <EntitySet Name="applicantformmaster" EntityType="GTEModel.applicantformmaster" />
@@ -3312,6 +3354,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="currency_master" EntitySet="currency_master" />
             <End Role="trips" EntitySet="trips" />
           </AssociationSet>
+          <EntitySet Name="applicant_scholarships" EntityType="GTEModel.applicant_scholarships" />
+          <EntitySet Name="applicantdocumentmaster" EntityType="GTEModel.applicantdocumentmaster" />
+          <EntitySet Name="scholarships" EntityType="GTEModel.scholarships" />
+          <AssociationSet Name="FK_applicantScholarship_scholarships" Association="GTEModel.FK_applicantScholarship_scholarships">
+            <End Role="scholarships" EntitySet="scholarships" />
+            <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -3602,17 +3651,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="studentsegment" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="studentstatus" Type="Int32" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
-        </EntityType>
-        <EntityType Name="applicantdocumentmaster">
-          <Key>
-            <PropertyRef Name="documentid" />
-          </Key>
-          <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="documentname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="filename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="uploadedtime" Type="DateTime" />
-          <Property Name="fileextension" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -4714,6 +4752,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="applicant_response_time" Type="Int32" Nullable="false" />
           <NavigationProperty Name="gte_answer_master" Relationship="GTEModel.FK_resposne_answer" FromRole="gte_questions_applicant_response" ToRole="gte_answer_master" />
           <NavigationProperty Name="gte_questions_master" Relationship="GTEModel.FK_response_question" FromRole="gte_questions_applicant_response" ToRole="gte_questions_master" />
+          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="gte_questions_master">
           <Key>
@@ -5993,6 +6032,55 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="applicant_scholarships">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="scholarship_id" Type="Int32" Nullable="false" />
+          <Property Name="upload_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="approval_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="applicant_scholarships" ToRole="scholarships" />
+        </EntityType>
+        <EntityType Name="applicantdocumentmaster">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="documentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="uploadedtime" Type="DateTime" />
+          <Property Name="universityid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="scholarships">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="eligibility" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="application_deadline" Type="DateTime" Nullable="false" />
+          <Property Name="scholarship_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="award_amount" Type="Int32" Nullable="false" />
+          <Property Name="awarded_by" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="applicant_scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="scholarships" ToRole="applicant_scholarships" />
+        </EntityType>
+        <Association Name="FK_applicantScholarship_scholarships">
+          <End Type="GTEModel.scholarships" Role="scholarships" Multiplicity="1" />
+          <End Type="GTEModel.applicant_scholarships" Role="applicant_scholarships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scholarships">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="applicant_scholarships">
+              <PropertyRef Name="scholarship_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6292,18 +6380,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicantdocumentmaster">
-            <EntityTypeMapping TypeName="GTEModel.applicantdocumentmaster">
-              <MappingFragment StoreEntitySet="applicantdocumentmaster">
-                <ScalarProperty Name="fileextension" ColumnName="fileextension" />
-                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
-                <ScalarProperty Name="filename" ColumnName="filename" />
-                <ScalarProperty Name="documentname" ColumnName="documentname" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="documentid" ColumnName="documentid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7415,6 +7491,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_questions_applicant_response">
             <EntityTypeMapping TypeName="GTEModel.gte_questions_applicant_response">
               <MappingFragment StoreEntitySet="gte_questions_applicant_response">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
                 <ScalarProperty Name="applicant_response_time" ColumnName="applicant_response_time" />
                 <ScalarProperty Name="university_id" ColumnName="university_id" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
@@ -8004,6 +8081,44 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="currency_master">
                 <ScalarProperty Name="currency_code" ColumnName="currency_code" />
                 <ScalarProperty Name="currency_symbol" ColumnName="currency_symbol" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicant_scholarships">
+            <EntityTypeMapping TypeName="GTEModel.applicant_scholarships">
+              <MappingFragment StoreEntitySet="applicant_scholarships">
+                <ScalarProperty Name="approval_status" ColumnName="approval_status" />
+                <ScalarProperty Name="upload_form" ColumnName="upload_form" />
+                <ScalarProperty Name="scholarship_id" ColumnName="scholarship_id" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantdocumentmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantdocumentmaster">
+              <MappingFragment StoreEntitySet="applicantdocumentmaster">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="documentname" ColumnName="documentname" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scholarships">
+            <EntityTypeMapping TypeName="GTEModel.scholarships">
+              <MappingFragment StoreEntitySet="scholarships">
+                <ScalarProperty Name="awarded_by" ColumnName="awarded_by" />
+                <ScalarProperty Name="award_amount" ColumnName="award_amount" />
+                <ScalarProperty Name="scholarship_form" ColumnName="scholarship_form" />
+                <ScalarProperty Name="application_deadline" ColumnName="application_deadline" />
+                <ScalarProperty Name="eligibility" ColumnName="eligibility" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -43,7 +43,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantcampaign> applicantcampaign { get; set; }
     public virtual DbSet<applicantdatavalidation> applicantdatavalidation { get; set; }
     public virtual DbSet<applicantdetails> applicantdetails { get; set; }
-    public virtual DbSet<applicantdocumentmaster> applicantdocumentmaster { get; set; }
     public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
     public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
     public virtual DbSet<applicantformmaster> applicantformmaster { get; set; }
@@ -150,6 +149,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
     public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<currency_master> currency_master { get; set; }
+    public virtual DbSet<applicant_scholarships> applicant_scholarships { get; set; }
+    public virtual DbSet<applicantdocumentmaster> applicantdocumentmaster { get; set; }
+    public virtual DbSet<scholarships> scholarships { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

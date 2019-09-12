@@ -18,11 +18,13 @@ public partial class uploaddocuments : System.Web.UI.Page
     protected List<applicantlanguagecompetency> appLangDetails = new List<applicantlanguagecompetency>();
     protected List<applicantemployerdetails> appEmpDetails = new List<applicantemployerdetails>();
     protected List<applicanthighereducation> appHigherDetails = new List<applicanthighereducation>();
+    List<string> documentList = new List<string>();
+    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
             Response.Redirect(webURL + "Login.aspx");
-        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        ApplicantID = Convert.ToInt32(Session["UserID"].ToString());
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
         if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
@@ -34,6 +36,44 @@ public partial class uploaddocuments : System.Web.UI.Page
             appLangDetails = db.applicantlanguagecompetency.Where(x => x.applicantid == UserID).ToList();
             appEmpDetails = db.applicantemployerdetails.Where(x => x.applicantid == UserID).ToList();
             appHigherDetails = db.applicanthighereducation.Where(x => x.applicantid == UserID).ToList();
+            documentList.Add("Passport Size Photo Graph");
+            documentList.Add("Passport Copy (Bio Pages)");
+            if ((appDetails.Count > 0) && (appDetails[0].alternativeIdentityproofId != null))
+                documentList.Add("Alternate Proof of Identity");
+            if ((appDetails.Count > 0) && (appDetails[0].alternativeproofdobId != null))
+                documentList.Add("Alternate Proof of Date of Birth");
+            if ((appDetails.Count > 0) && (appDetails[0].alternativeresidenceproofId != null))
+                documentList.Add("Alternate Proof of Residence");
+            if ((appEduDetails.Count > 0) && appEduDetails[0].ishighschooldone == 1)
+                documentList.Add("Proof of High School");
+            if ((appEduDetails.Count > 0) && appEduDetails[0].issecondarydone == 1)
+                documentList.Add("Proof of Senior Secondary School");
+            for (int higher = 0; higher < appHigherDetails.Count; higher++)
+            {
+                if (appHigherDetails[higher].coursename == "UG")
+                    documentList.Add("Proof of Higher Education(UG)");
+                if (appHigherDetails[higher].coursename == "PG")
+                    documentList.Add("Proof of Higher Education(PG)");
+                if (appHigherDetails[higher].coursename == "Phd")
+                    documentList.Add("Proof of Higher Education(Phd)");
+                if (appHigherDetails[higher].coursename == "Other")
+                    documentList.Add("Proof of Higher Education(Other)");
+            }
+            if ((appEduDetails.Count > 0) && appEduDetails[0].isdiplomadone == 1)
+                documentList.Add("Proof of Certificate / Diploma");
+            if ((appLangDetails.Count > 0) && (appLangDetails[0].isenglishintesive == 1))
+                documentList.Add("Proof of Study - English Language Intensive");
+            if ((appLangDetails.Count > 0) && (appLangDetails[0].testname != ""))
+                documentList.Add("Proof of English Language Test");
+            int empCount = 0;
+            for (int employ = 0; employ < appEmpDetails.Count; employ++)
+            {
+                empCount = empCount + 1;
+                if (appEmpDetails[employ].wishtoaddemployer == 1)
+                    documentList.Add("Proof of Work Experience (" + empCount + ")");
+            }
+            ddlDocuments.DataSource = documentList;
+            ddlDocuments.DataBind();
             BindDocuments();
         }
     }
@@ -46,12 +86,13 @@ public partial class uploaddocuments : System.Web.UI.Page
                 if (!Directory.Exists(docPath))
                     Directory.CreateDirectory(docPath);
                 string extension = Path.GetExtension(avatar.PostedFile.FileName);
-                string filename = name.Value + extension;
+                string filename = Guid.NewGuid() + extension;
                 avatar.SaveAs(docPath + filename);          // file path where you want to upload  
                 applicantdocumentmaster objDocument = new applicantdocumentmaster();
                 objDocument.applicantid = ApplicantID;
+                objDocument.universityid = UniversityID;
                 objDocument.filename = filename;
-                objDocument.documentname = name.Value;
+                objDocument.documentname = ddlDocuments.SelectedItem.Value;
                 objDocument.uploadedtime = DateTime.Now;
                 db.applicantdocumentmaster.Add(objDocument);
                 db.SaveChanges();
@@ -71,7 +112,7 @@ public partial class uploaddocuments : System.Web.UI.Page
 
     private void BindDocuments()
     {
-        var videoList = db.applicantdocumentmaster.Where(x => x.applicantid == ApplicantID).ToList();
+        var videoList = db.applicantdocumentmaster.Where(x => x.applicantid == ApplicantID && x.universityid==UniversityID).ToList();
         rptVideo.DataSource = videoList;
         rptVideo.DataBind();
 
