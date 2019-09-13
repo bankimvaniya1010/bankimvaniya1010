@@ -27,11 +27,11 @@
           <div class="card-body">
 			<div class="row" id="noOfPeople" runat="server">
 				<div class="col-12">
-					<label class="contrl-lbl" runat="server" id="lblnoOfPeople"><b class="ques-lbl">1)</b>How many people are included in this application?</label>
+					<label class="" runat="server" id="lblnoOfPeople"><b class="ques-lbl">1)</b>How many people are included in this application?</label>
 					<input type="text" id="txtnoOfPeople" runat="server" name="" class="form-control">
 				</div>
 				<div class="col-12">
-					<label class="contrl-lbl"><b class="ques-lbl">2)</b>Are you applying?</label>
+					<label class=""><b class="ques-lbl">2)</b>Are you applying?</label>
 					<div>
 						<div class="form-check">
 						<asp:RadioButton ID="rbasStudent" CssClass="form-control" runat="server" GroupName="type" Text="For Youreself as A student   " />
@@ -47,7 +47,7 @@
 				<div class="frm-lblttl">Your personal details</div>
 			
                     <div id="name" runat="server">
-					<div class="contrl-lbl"><b class="ques-lbl">3)</b>Your full name in English</div>
+					<label class=""><b class="ques-lbl">3)</b>Your full name in English</label>
 					<div class="form-group">
 						<label id="lblfamilyname" runat="server">Family name </label>
 						<input type="text" runat="server" id="txtfamilyname" name="" class="form-control" >
@@ -89,7 +89,7 @@
 					</div>
             <%--6--%>
 					    <div class="form-group" id="gender">
-							<label><b class="ques-lbl">6)</b>Sex</label>
+							<label><b class="ques-lbl">6)</b>Sex : </label>
 							<div class="form-check-inline">
 							  <label class="form-check-label">
 							    <input type="radio" runat="server" id="rbMale" class="form-check-input" name="gender">Male
@@ -107,7 +107,7 @@
 						</div>
                         
                         <div id="placeOfBirth">
-						<div class="contrl-lbl"><b class="ques-lbl">8)</b>Place of birth</div>
+						<label class=""><b class="ques-lbl">8)</b>Place of birth</label>
 						<div class="form-group">							
 							<label id="lblcity">Town/city</label>
 							<input type="text" runat="server" id="txtcity" name="" class="form-control">
@@ -251,7 +251,7 @@
                     </div>
                     <%--15--%>
                     <div class="form-group" id="residencecountry">
-						  <label><b class="ques-lbl">15)</b>Your COuntry Of usual residence</label>
+						  <label><b class="ques-lbl">15)</b>Your Country Of usual residence</label>
 						  <div class="mart-stustwrp">							
 							<div class="form-check-inline">
 							  <label class="form-check-label">
@@ -267,12 +267,12 @@
                               in your application being invalid.
 						  </label>
 						  <div class="mart-stustwrp">							
-							<div class="form-check-inline">
-							  <label class="form-check-label">
+							<div class="">
+							  <div class="form-group">
 							    <input id="txtAddressLine1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"> 
                                 <input id="txtAddressLine2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
                                 <input id="txtPostal" runat="server" type="text" placeholder="Postal" value="" class="form-control">
-							  </label>
+							  </div>
 							</div>	
 						</div>
 					</div>
@@ -293,12 +293,12 @@
 						  <label><b class="ques-lbl">18)</b>Your residential address in Australia(if known)
 						  </label>
 						  <div class="mart-stustwrp">							
-							<div class="form-check-inline">
-							  <label class="form-check-label">
+							<div class="">
+							  <div class="form-group">
 							    <input id="australiaresidentialaddline1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"> 
                                 <input id="australiaresidentialaddline2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
                                 <input id="australiaresidentialpostalcode" runat="server" type="text" placeholder="Postal" value="" class="form-control">
-							  </label>
+							  </div>
 							</div>	
 						</div>
 					</div>
@@ -319,12 +319,12 @@
 						  <label><b class="ques-lbl">20)</b>(Address of Correspondence
 						  </label>
 						  <div class="mart-stustwrp">							
-							<div class="form-check-inline">
-							  <label class="form-check-label">
+							<div class="">
+							  <div class="form-group">
 							    <input id="correspondenceaddressLine1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"> 
                                 <input id="correspondenceaddressLine2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
                                 <input id="correspondenceaddresspostalcode" runat="server" type="text" placeholder="Postal" value="" class="form-control">
-							  </label>
+							  </div>
 							</div>	
 						</div>
 					</div>
@@ -589,7 +589,7 @@
 					</div>
 					<!-- ques 22 end -->
 					<!-- ques 23 start -->
-					<div class="frm-lblttl"><b class="ques-lbl">23)</b>Dependants under 18 years of age</div>
+					<label class="frm-lblttl"><b class="ques-lbl">23)</b>Dependants under 18 years of age</label>
 					<div>
 						<div class="form-group">
 							<label>Have any school age dependants (that is, those who have turned 5 but who have not yet turned 18 years of age) included in this application been enrolled in a school in Australia?</label>

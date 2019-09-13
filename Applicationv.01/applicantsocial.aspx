@@ -64,8 +64,8 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <a href="applicantreview.aspx" class="btn btn-success" style="margin-right: 10px;">Review</a>
                                         <asp:Button ID="btnsocial" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnsocial_Click" OnClientClick="return validateForm()" />
+                                        <a href="applicantreview.aspx" class="btn btn-success" style="margin-left: 10px;">Go Review &nbsp; <i class="fas fa-angle-double-right"></i></a>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>

@@ -54,7 +54,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">                                         
-                                        <a href="preliminary.aspx" class="btn btn-success" style="margin-right:90px;">Cancel</a> 
+                                        <a href="preliminary.aspx" class="btn btn-danger" style="margin-right:90px;">Cancel</a> 
                                         <asp:Button ID="btnSave" runat="server" Text="Accept Declaration and Submit" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
                                     </div>
                                 </div>

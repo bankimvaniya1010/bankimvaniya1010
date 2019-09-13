@@ -18,12 +18,13 @@
 
     <div class="page ">
 
-        <div class="container page__container p-0">
-            <div class="row m-8">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
                     <div class="card">
-                        <ul class="nav nav-tabs nav-tabs-card">
+                        <div class="card-body">
+                        <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Upload Document</a>
                             </li>
@@ -104,7 +105,7 @@
 
                             </div>
 
-
+                            </div>
                         </div>
                     </div>
                 </div>

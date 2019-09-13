@@ -46,17 +46,25 @@
 
                                         </div>--%>
 
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("Answer1") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("Answer1") %>' />
+                                        </label>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("Answer2") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("Answer2") %>' />
+                                        </label>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("Answer3") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("Answer3") %>' />
+                                        </label>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("Answer4") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("Answer4") %>' />
+                                        </label>
                                     </div>
 
                                 </div>

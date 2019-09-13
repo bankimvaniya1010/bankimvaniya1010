@@ -25,7 +25,7 @@
                                         <label id="labelhighschool" runat="server" for="highschool" class="col-md-3 col-form-label form-label">Have you completed high school?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="rblHighYes" CssClass="form-control" runat="server" GroupName="highschool" Text="Yes" />
-                                            <asp:RadioButton ID="rblHighNo" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I am currently studying for my high school qualification " />
+                                            <asp:RadioButton ID="rblHighNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="highschool" Text="No- I am currently studying for my high school qualification " />
                                             <asp:RadioButton ID="rblHighNot" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I do not have a high school qualification " />
                                             <span class="helpicon"><i id="ichighschool" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
@@ -1042,8 +1042,8 @@
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <a href="applicantlanguage.aspx?formid=5" class="btn btn-success" style="margin-right: 10px;">English Language Competency</a>
                                         <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
+                                        <a href="applicantlanguage.aspx?formid=5" class="btn btn-success" style="margin-left: 10px;">Go English Language Competency &nbsp; <i class="fas fa-angle-double-right"></i></a>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -1056,10 +1056,11 @@
                     </div>
                     </div>
                     <div class="col-md-4">
+                        <div>
+                           <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                        </div>
                     <div class="card faq-qwrp" id="questions" runat="server">
-							<div>
-                                <img src="/assets/images/Banner1.jpg" class="img-fluid">
-                            </div>
+							
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>

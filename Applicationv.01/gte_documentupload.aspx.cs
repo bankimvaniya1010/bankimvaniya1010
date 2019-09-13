@@ -171,12 +171,12 @@ public partial class gte_documentupload : System.Web.UI.Page
 
                 System.Web.UI.HtmlControls.HtmlGenericControl label1 = new System.Web.UI.HtmlControls.HtmlGenericControl("Label");
                 label1.ID = "label" + fields[k].fieldid.ToString();
-                label1.Attributes["class"] = "col-md-3 col-form-label form-label";
+                label1.Attributes["class"] = "col-md-12 col-form-label form-label";
                 label1.Attributes["for"] = fields[k].fieldid.ToString();
                 label1.InnerHtml = fields[k].primaryfiledname;
                 divFormRow.Controls.Add(label1);
                 System.Web.UI.HtmlControls.HtmlGenericControl mycontrol = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                mycontrol.Attributes["class"] = "col-md-6";
+                mycontrol.Attributes["class"] = "col-md-12";
                 divFormRow.Controls.Add(mycontrol);
 
                 FileUpload fileUploadcustombox = new FileUpload();
