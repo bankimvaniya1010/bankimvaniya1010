@@ -54,7 +54,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">                                         
-                                        <a href="preliminary.aspx" class="btn btn-success" style="margin-right:90px;">Cancel</a> 
+                                        <a href="preliminary.aspx" class="btn btn-danger" style="margin-right:90px;">Cancel</a> 
                                         <asp:Button ID="btnSave" runat="server" Text="Accept Declaration and Submit" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
                                     </div>
                                 </div>
@@ -76,11 +76,12 @@
                             <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
                         </div>
                     </div>
-                    <div id="faq" class="card faq-qwrp">
-                           <div class="card faq-qwrp" id="Div1" runat="server">
                     <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                    <div id="faq" class="card faq-qwrp">
+                           <div class="" id="Div1" runat="server">
+                    
                                 <div class="card-body">
                                 <%  if (allQuestions.Count > 0)
                                     { %>

@@ -11,12 +11,12 @@
     </div>
 
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                    <div class="card faq-lftcard" style="width: 650px;">
-                        <ul class="nav nav-tabs nav-tabs-card">
+                    <div class="card">
+                        <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Upload Document</a>
                             </li>
@@ -25,7 +25,7 @@
                             <div class="tab-pane active" id="first">       
                                 <div id="mainDiv" runat="server"></div>
                                  <div class="form-group row">
-                                    <div class="col-sm-8 offset-sm-3">
+                                    <div class="col-md-12">
                                         <div class="media align-items-center">
                                             <div class="media-left">
                                                 <asp:Button ID="uploadbtn" runat="server" Text="Upload Documents" CssClass="btn btn-success" OnClick="uploadbtn_Click" OnClientClick="return validateUploadedFile()"/>
@@ -36,11 +36,13 @@
                             </div>
                         </div>
                     </div>
-                     
-                    <div class="card faq-qwrp" id="questions" runat="server">
-                    <div>
+                   </div>  
+                  <div class="col-md-4">
+                      <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
-                    </div>
+                      </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                    
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>
@@ -58,13 +60,14 @@
                                      
                             </div>
                         </div>
+                    </div>
                 </div>
                     <div class="container page__container">
                         <div class="footer">
                         </div>
                     </div>
                 </div>                     
-        </div>
+        
     </div>
     <script>
         function customcontrolValidation() {

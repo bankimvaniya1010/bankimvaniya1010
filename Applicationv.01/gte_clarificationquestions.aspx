@@ -15,11 +15,12 @@
     </div>
 
     <div class="page ">
-
-        <div class="row m-0">
-            <div class="col-lg container-fluid page__container">
+      <div class="container page__container">
+        <div class="row">
+            <div class="col-md-8">
               
-                <div class="card faq-lftcard" id="clarity" runat="server">
+                <div class="card" id="clarity" runat="server">
+                    <div class="card-body list-group-fit">
                     <asp:DataList ID="clarificationList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
@@ -50,17 +51,18 @@
                         <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Next" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
 
                     </div>
-                </div>
-                <div class="row" id="completedDiv" runat="server" style="display: none;">
-                    <div class="col-md-8">
-                        <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
+                   </div>
+                  </div>
+                    <div id="completedDiv" runat="server" style="display: none;">
+                    
+                            <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
-                      
-                <div class="card faq-qwrp" id="questions" runat="server">
+                <div class="col-md-4">
                     <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">                    
                     <div class="card-body">
                     <%  if (allQuestions.Count > 0)
                         { %>
@@ -78,10 +80,12 @@
                                      
                     </div>
                 </div>
-             </div>
+                </div>    
+                
+             
             
         </div>
-
+        </div>
         <div class="container page__container">
             <div class="footer">
             </div>

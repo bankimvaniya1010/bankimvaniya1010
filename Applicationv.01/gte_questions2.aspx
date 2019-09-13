@@ -13,10 +13,11 @@
     </div>
     <div class="page ">
 
-       <div class="row justify-content-end" style="margin-left:0;margin-right:0;">
+       <div class="container page__container">
+           <div class="row">
             <%--<div class="col-md-12">--%>
-              
-                <div class="card faq-lftcard col-md-8" id="questions" runat="server">
+                <div class="col-md-8">
+                <div class="card" id="questions" runat="server">
                     <div style="font-size:medium;text-align:center">
                         Questions <%=ViewState["Display"] %> out of <%=ViewState["QuestionsCount"] %>
                     </div>
@@ -54,15 +55,18 @@
 
                     </div>
                 </div>
-                 <div class="col-md-8" id="completedDiv" runat="server" style="display: none;">
+                 <div id="completedDiv" runat="server" style="display: none;">
                     <div>
                         <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
-                <div class="card faq-qwrp col-md-4" id="Div1" runat="server" style="background:transparent;">
-                    <div>
+                </div>
+               <div class="col-md-4">
+                   <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                <div class="card faq-qwrp" id="Div1" runat="server">
+                    
                             <div class="card-body" style="flex:none;background:#fff;">
                             <%  if (allfaqQuestion.Count > 0)
                                 { %>
@@ -80,8 +84,9 @@
                                      
                             </div>
                         </div>
+                   </div>
              </div>
-            
+            </div>
         </div>
 
         <div class="container page__container">

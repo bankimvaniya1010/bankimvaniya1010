@@ -69,7 +69,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">                                         
-                                        <a href="preliminary.aspx" class="btn btn-success" style="margin-right:90px;">I do not accept</a> 
+                                        <a href="preliminary.aspx" class="btn btn-danger" style="margin-right:90px;">I do not accept</a> 
                                         <asp:Button ID="btnSave" runat="server" Text="I accept" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
                                     </div>
                                 </div>
@@ -92,10 +92,11 @@
                             <label id="lblInstruct7" runat="server" style="font-size:small;">4. Lastly, please accept the declarations given below.</label><br />
                         </div>
                     </div>
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
                     <div class="card faq-qwrp" id="questions" runat="server">
-                            <div>
-                                <img src="/assets/images/Banner1.jpg" class="img-fluid">
-                            </div>
+                            
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>

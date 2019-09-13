@@ -46,17 +46,25 @@
 
                                         </div>--%>
 
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("Answer1") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("Answer1") %>' />
+                                        </label>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("Answer2") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("Answer2") %>' />
+                                        </label>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("Answer3") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("Answer3") %>' />
+                                        </label>
                                     </div>
-                                    <div class="form-group">
-                                        <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("Answer4") %>' />
+                                    <div class="form-check">
+                                        <label class="form-check-label inpt">
+                                            <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("Answer4") %>' />
+                                        </label>
                                     </div>
 
                                 </div>
@@ -93,10 +101,12 @@
                         <label id="lblInstruct6" runat="server" style="font-size:small;">6. Else you would required to take the test again post going through the tutorial again.</label><br />
                         <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
                     </div>
-                    <div class="card faq-qwrp" id="Div1" runat="server">
+                    </div>
                     <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                    <div class="card faq-qwrp" id="Div1" runat="server">
+                    
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>
@@ -114,7 +124,7 @@
                                      
                             </div>
                         </div>
-                </div>
+                
                 </div>
            
         </div>
