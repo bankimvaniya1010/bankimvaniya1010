@@ -71,13 +71,8 @@
             </div>
 
         </div>
-            </div>
-                             
-            <div class="card faq-qwrp adv-img-wrp" id="bannerimage" runat="server">
-                <div class="card-body adv-img">
-                    <img src="/assets/images/Banner1.jpg" class="img-fluid">
-                </div>
-            </div>
+            </div>                            
+            
         <div class="card faq-qwrp" id="questions" runat="server">
                     <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">

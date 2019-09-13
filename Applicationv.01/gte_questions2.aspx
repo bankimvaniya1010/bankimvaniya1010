@@ -59,11 +59,6 @@
                         <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
-                     <div class="card faq-qwrp adv-img-wrp" id="bannerimage" runat="server" style="position: relative;left: -35px;">
-                        <div class="card-body adv-img">
-                            <img src="/assets/images/Banner1.jpg" class="img-fluid">
-                        </div>
-                    </div>
                 <div class="card faq-qwrp col-md-4" id="Div1" runat="server" style="background:transparent;">
                     <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
