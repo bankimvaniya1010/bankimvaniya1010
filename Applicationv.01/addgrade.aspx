@@ -159,22 +159,24 @@
         }
         window.onbeforeunload = RefreshParent;
         $(document).ready(function () {
-            $('#<%=ddlsubjects.ClientID%>').change(function () {
-
-                if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') {
-                    $('#other').css({ 'display': 'block' });
-                }
-                else {
-                    $('#other').css({ 'display': 'none' });
-                }
-
-            });
+            if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') 
+                $("#<%=OtherSubject.ClientID%>").show();                
+            else 
+                $("#<%=OtherSubject.ClientID%>").hide();
+     
             $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
         });
+        $('#<%=ddlsubjects.ClientID%>').change(function () {
+            if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') 
+                $("#<%=OtherSubject.ClientID%>").show();                
+            else 
+                $("#<%=OtherSubject.ClientID%>").hide();                
+        });
+     
     </script>
 </body>
 </html>

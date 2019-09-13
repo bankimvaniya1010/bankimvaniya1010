@@ -13,10 +13,10 @@
     </div>
     <div class="page ">
 
-        <div class="row" style="margin-left:0;margin-right:0">
-            <div class="col-md-12">
+       <div class="row justify-content-end" style="margin-left:0;margin-right:0;">
+            <%--<div class="col-md-12">--%>
               
-                <div class="card faq-lftcard" id="questions" runat="server">
+                <div class="card faq-lftcard col-md-8" id="questions" runat="server">
                     <div style="font-size:medium;text-align:center">
                         Questions <%=ViewState["Display"] %> out of <%=ViewState["QuestionsCount"] %>
                     </div>
@@ -54,13 +54,16 @@
 
                     </div>
                 </div>
-                <div class="row" id="completedDiv" runat="server" style="display: none;">
-                    <div class="col-md-8">
+                 <div class="col-md-8" id="completedDiv" runat="server" style="display: none;">
+                    <div>
                         <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
-                <div class="card faq-qwrp" id="Div1" runat="server">
-                            <div class="card-body">
+                <div class="card faq-qwrp col-md-4" id="Div1" runat="server" style="background:transparent;">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
+                            <div class="card-body" style="flex:none;background:#fff;">
                             <%  if (allfaqQuestion.Count > 0)
                                 { %>
                             <div id="question" runat="server">
@@ -86,7 +89,7 @@
             </div>
 
         </div>
-    </div>
+   
     <script>
         function openLink(url) {
             $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="">Ans:' +url+ '</div></div></div></div></div>'  );

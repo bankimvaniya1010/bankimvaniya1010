@@ -11,6 +11,7 @@ public partial class updateprefernces : System.Web.UI.Page
     int universityID = 0, userID = 0;
     Common objCom = new Common();
     Logger objLog = new Logger();
+    protected static List<faq> allQuestions = new List<faq>();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,6 +21,7 @@ public partial class updateprefernces : System.Web.UI.Page
         userID = objUser.studentid;
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             BindCourses();
             BindStudyLevel();
             rblYear1.Text = DateTime.Now.Year.ToString();

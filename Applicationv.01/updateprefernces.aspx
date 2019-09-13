@@ -16,7 +16,7 @@
     <div class="page ">
         <div class="container page__container">
             <div class="row">
-                <div class="col-md-9">
+                <div class="col-md-8">
 
                     <div class="card">
                         <div class="card-body list-group list-group-fit">
@@ -41,7 +41,7 @@
                                 <div class="form-row">
                                     <label id="lblStudyLevel" for="exsistingpassword" class="col-md-3 col-form-label form-label">Study Level</label>
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-10 updt-prftbl">
                                         <asp:RadioButtonList ID="rblstudyLevel" runat="server"></asp:RadioButtonList>
                                     </div>
 
@@ -73,6 +73,29 @@
                         </div>
                     </div>
 
+                    </div>
+                     <div class="col-md-4">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
                     </div>
                     <div id="page-nav" class="col-lg-auto page-nav">
                         <div>
@@ -146,7 +169,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#profile_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#changepassword').addClass('active');
+            $('#updatepreferences').addClass('active');
         });
 
     </script>

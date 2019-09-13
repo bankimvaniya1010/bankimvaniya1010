@@ -612,6 +612,9 @@
                     </div>
                     </div>
                     <div class="col-md-4">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
                     <div class="card faq-qwrp" id="questions" runat="server">
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
@@ -1893,7 +1896,7 @@
 
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Application_list').addClass('open');
+            $('#studentapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantcourse').addClass('active');
         });  

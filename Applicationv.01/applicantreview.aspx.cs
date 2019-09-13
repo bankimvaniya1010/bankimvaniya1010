@@ -20,14 +20,16 @@ public partial class applicantreview : System.Web.UI.Page
     protected string PostalAddress = "";
     protected string ResidentailAddress = "";
     protected Common objComm = new Common();
+    protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (Session["LoginInfo"] == null)
-            Response.Redirect("Login.aspx", true);
+            Response.Redirect("Login.aspx", true);      
         else if (isProfileDetailsCompletedByApplicant)
         {
+            allQuestions = objComm.FaqQuestionList();
             var objUser = (students)Session["LoginInfo"];
             userID = objUser.studentid;
 

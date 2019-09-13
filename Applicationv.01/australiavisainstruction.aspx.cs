@@ -12,12 +12,15 @@ public partial class australiavisainstruction : System.Web.UI.Page
     int UniversityID ;
     public bool? checkTermsandCondition = false;
     australiavisadetailmaster australiavisadetailmaster = new australiavisadetailmaster();
+    protected static List<faq> allQuestions = new List<faq>();
+    Common objCom = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
 
         UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (!IsPostBack) {
+			allQuestions = objCom.FaqQuestionList();
             australiavisadetailmaster = db.australiavisadetailmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
             if (australiavisadetailmaster != null)
             {
@@ -25,8 +28,8 @@ public partial class australiavisainstruction : System.Web.UI.Page
                     Response.Redirect("australiavisadetail.aspx", true);
                 else
                     Response.Redirect("australiavisainstruction.aspx", true);
-            }
         }
+    }
     }
 
     protected void btntermcondition_Click(object sender, EventArgs e)

@@ -47,7 +47,7 @@ public partial class addgrade : System.Web.UI.Page
             ddlCourse.ClearSelection();
             if (classname != "")
                 ddlCourse.Items.FindByValue(classname).Selected = true;
-           
+            ddlCourse.Enabled = false;
             // ddlCourse.SelectedItem.Attributes.Add("ReadOnly", "true");
         }
 
@@ -107,8 +107,7 @@ public partial class addgrade : System.Web.UI.Page
     {
         try
         {
-            applicantsubjectwisegrade objGrade = new applicantsubjectwisegrade();
-            objGrade.othersubject = txtOther.Value;
+            applicantsubjectwisegrade objGrade = new applicantsubjectwisegrade();            
             objGrade.grade = txtGrade.Value;
             objGrade.applicantid = userID;
             objGrade.coursename = ddlCourse.SelectedValue;
@@ -116,6 +115,11 @@ public partial class addgrade : System.Web.UI.Page
                 objGrade.gradeid = Convert.ToInt32(ddlGradeType.SelectedValue);
             if ((ddlsubjects.SelectedValue != "") && (ddlsubjects.SelectedValue != "Others"))
                 objGrade.subjectid = Convert.ToInt32(ddlsubjects.SelectedValue);
+            else if(ddlsubjects.SelectedValue != "" && ddlsubjects.SelectedValue == "Others")
+            {
+                objGrade.subjectid = 0;
+                objGrade.othersubject = txtOther.Value;
+            }
             db.applicantsubjectwisegrade.Add(objGrade);
             db.SaveChanges();
         }

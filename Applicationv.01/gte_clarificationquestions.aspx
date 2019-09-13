@@ -16,8 +16,8 @@
 
     <div class="page ">
 
-        <div class="row" style="margin-left:50px;">
-            <div class="col-md-8">
+        <div class="row m-0">
+            <div class="col-lg container-fluid page__container">
               
                 <div class="card faq-lftcard" id="clarity" runat="server">
                     <asp:DataList ID="clarificationList" runat="server">
@@ -56,7 +56,11 @@
                         <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
+                      
                 <div class="card faq-qwrp" id="questions" runat="server">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
                     <div class="card-body">
                     <%  if (allQuestions.Count > 0)
                         { %>

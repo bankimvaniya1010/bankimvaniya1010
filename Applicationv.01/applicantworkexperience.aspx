@@ -21,16 +21,16 @@
                 <div class="col-md-8">
 
                     <div class="card">
-                        <div class="card-body list-group list-group-fit">
+                        <div class="list-group list-group-fit">
 
                             <asp:HiddenField ID="hdnemployer" runat="server" />
                             <asp:HiddenField ID="hdnRow" runat="server" />
-                            <div class="list-group-item" id="PreviousEmployment">
+                            <div class="card-body list-group-item" id="PreviousEmployment">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-PreviousEmployment">
-                                    <div class="form-row">
-                                        <div class="form-row">
+                                    <div class="">
+                                        <div class="">
 
-                                            <div class="col-md-9">
+                                            <div class="">
                                                 <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdEmployment" DataKeyNames="employerId" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdEmployment_DataBound" OnRowDeleting="grdEmployment_RowDeleting" OnRowEditing="grdEmployment_RowEditing" OnRowCommand="grdEmployment_RowCommand">
                                                         <Columns>
@@ -269,6 +269,9 @@
                     </div>
                     </div>
                     <div class="col-md-4">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
                     <div class="card faq-qwrp" id="questions" runat="server">
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)

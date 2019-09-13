@@ -78,6 +78,9 @@
                     </div>
                     <div id="faq" class="card faq-qwrp">
                            <div class="card faq-qwrp" id="Div1" runat="server">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
                                 <div class="card-body">
                                 <%  if (allQuestions.Count > 0)
                                     { %>
