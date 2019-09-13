@@ -16,12 +16,12 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                    <div class="card" style="width: 650px;">
-                        <div class="list-group list-group-fit">
+                    <div class="card">
+                        <div class="card-body list-group list-group-fit">
                             <div class="accordion" id="review">
                                 <div class="card z-depth-0 bordered">
                                     <div class="card-header" id="review1">
@@ -987,32 +987,42 @@
                                     </div>
 
                                     <div id="Social" class="collapse" aria-labelledby="review7" data-parent="#review">
-
+                                          <%if (objApplicant[0].facebookprofle !=null && objApplicant[0].facebookprofle != "")
+                                        { %>
                                         <div class="list-group-item">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                                 <div class="form-row">
-
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         FaceBook:<%=objApplicant[0].facebookprofle==null?"":objApplicant[0].facebookprofle.ToString() %>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <% } %>
+                                          <%if (objApplicant[0].twiterprofile !=null && objApplicant[0].twiterprofile != "")
+                                        { %>
+                                        <div class="list-group-item">
+                                            <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                                <div class="form-row">
+                                                    <div class="col-md-12">
                                                         Twitter: <%=objApplicant[0].twiterprofile==null?"":objApplicant[0].twiterprofile.ToString() %>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <% } %>
+                                        <%if (objApplicant[0].linkedprofile !=null && objApplicant[0].linkedprofile !="")
+                                        { %>
                                         <div class="list-group-item">
                                             <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                                 <div class="form-row">
-
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12">
                                                         Linked:<%=objApplicant[0].linkedprofile==null?"":objApplicant[0].linkedprofile.ToString() %>
-                                                    </div>
-                                                    <div class="col-md-6">
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                         <% } %>
 
 
 
@@ -1024,7 +1034,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employment">
                                     <div class="form-row">
 
-                                        <div class="col-md-9">
+                                        <div class="col-md-12">
                                             <label id="applicant" runat="server">1. I, #NameofApplicant#, declare that the information provided in this application is true and complete in every detail</label><br />
                                              <label id="applicantverify" runat="server">2. I authorise #NameofInstitution# to verify information about me from educational and other institutions which I can included in this application and/or accompanying documentation.</label>
                                             <br />
@@ -1056,9 +1066,32 @@
 
                     </div>
                 </div>
-            </div>
+            
 
-
+               <div class="col-md-4">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 
@@ -1111,7 +1144,12 @@
             dateFormat: 'Y-m-d'
         });
 
-
+          $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#personal_menu_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#applicantreview').addClass('active');
+        });
 
         //document.getElementById("ContentPlaceHolder1_dob").flatpickr({
         //    wrap: true,

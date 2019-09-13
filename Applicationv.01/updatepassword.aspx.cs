@@ -10,6 +10,7 @@ public partial class updatepassword : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
+    protected static List<faq> allQuestions = new List<faq>();
     int userID = 0, universityID;
    
     students objstudents = new students();
@@ -18,6 +19,9 @@ public partial class updatepassword : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
+        if (!IsPostBack) {
+            allQuestions = objCom.FaqQuestionList();
+        }
         
     }
   

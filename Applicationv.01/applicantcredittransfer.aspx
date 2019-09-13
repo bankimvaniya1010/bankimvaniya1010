@@ -93,7 +93,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#studentapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#applicantfunding').addClass('active');
+            $('#applicantcredittransfer').addClass('active');
         });
        
     </script>

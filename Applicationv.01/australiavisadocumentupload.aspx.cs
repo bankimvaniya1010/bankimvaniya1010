@@ -16,6 +16,8 @@ public partial class australiavisadocumentupload : System.Web.UI.Page
     australiavisadetailmaster australiavisadetailmaster = new australiavisadetailmaster();
     public DateTime studentDOB;
     australiavisadocumentmaster objaustraliavisadocumentmaster = new australiavisadocumentmaster();
+    protected static List<faq> allQuestions = new List<faq>();
+    Common objCom = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
         if ((Session["Role"] == null) && (Session["UserID"] == null))
@@ -24,7 +26,8 @@ public partial class australiavisadocumentupload : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
 
         if (!IsPostBack)
-        {            
+        {
+            allQuestions = objCom.FaqQuestionList();
             populatedocument();
         }
 

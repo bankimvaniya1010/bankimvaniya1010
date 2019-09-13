@@ -19,6 +19,8 @@ public partial class uploaddocuments : System.Web.UI.Page
     protected List<applicantemployerdetails> appEmpDetails = new List<applicantemployerdetails>();
     protected List<applicanthighereducation> appHigherDetails = new List<applicanthighereducation>();
     List<string> documentList = new List<string>();
+    protected static List<faq> allQuestions = new List<faq>();
+    protected Common objCom = new Common();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,6 +33,7 @@ public partial class uploaddocuments : System.Web.UI.Page
 
         if (!IsPostBack)
         {
+            allQuestions = objCom.FaqQuestionList();
             appDetails = db.applicantdetails.Where(x => x.applicantid == UserID).ToList();
             appEduDetails = db.applicanteducationdetails.Where(x => x.applicantid == UserID).ToList();
             appLangDetails = db.applicantlanguagecompetency.Where(x => x.applicantid == UserID).ToList();
