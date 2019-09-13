@@ -82,6 +82,9 @@
                     </div>
                 </div>
                 <div class="card faq-qwrp col-md-4" id="Div1" runat="server" style="background:transparent;">
+                    <div>
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
                             <div class="card-body" style="flex:none;background:#fff;">
                             <%  if (allfaqQuestion.Count > 0)
                                 { %>

@@ -143,7 +143,7 @@
                                     <div class="form-row">
                                         <label id="labelExpectedHighSchoolDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
-                                            <input id="txtExpectedHighSchoolResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                            <input id="txtExpectedHighSchoolResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="">
                                             <span class="helpicon"><i id="icExpectedHighSchoolDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -379,7 +379,7 @@
                                         <div class="form-row">
                                             <label id="labelExpectedSecondaryDategrade" runat="server" for="ExpectedSecondaryDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
-                                                <input id="txtExpectedSecondaryResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="today">
+                                                <input id="txtExpectedSecondaryResult" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="">
                                                 <span class="helpicon"><i id="icExpectedSecondaryDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -633,7 +633,7 @@
                                         <div class="form-row">
                                             <label id="labelExpectedHigherDategrade" runat="server" for="ExpectedHigherDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                             <div class="col-md-6">
-                                                <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                                <input id="txtExpectedHigherDategrade" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="">
                                                 <span class="helpicon"><i id="icExpectedHigherDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -929,7 +929,7 @@
                                     <div class="form-row">
                                         <label id="labelExpectedDiplomaDategrade" runat="server" for="ExpectedDiplomaDategrade" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
                                         <div class="col-md-6">
-                                            <input id="txtExpectedDiplomaResult" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="today">
+                                            <input id="txtExpectedDiplomaResult" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="">
                                             <span class="helpicon"><i id="icExpectedDiplomaDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -1057,6 +1057,9 @@
                     </div>
                     <div class="col-md-4">
                     <div class="card faq-qwrp" id="questions" runat="server">
+							<div>
+                                <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                            </div>
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>
@@ -1526,7 +1529,7 @@
             else if ((!$("#<%=secondarycontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtSecondarycontactMobile.ClientID%>").val() == ""))
                 alert("Please enter  secondary contact mobile no");
             else if ((!$("#<%=higher.ClientID%>").is(':hidden')) && !(($("#<%=rblhigherYes.ClientID%>").is(":checked")) || ($("#<%=rblhigherNo.ClientID%>").is(":checked")) || ($("#<%=rblhigherNot.ClientID%>").is(":checked"))))
-                alert("Please Select Option to record Secondary details");
+                alert("Please Select Option to record Higher Education details");
             else if ((!$("#<%=highercourse.ClientID%>").is(':hidden')) && ($("#<%=ddlCourse.ClientID%>").val() === ""))
                 alert("Please select  higher education course");
             else if ((!$("#<%=higherCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherCountry.ClientID%>").val() == "0"))
@@ -1655,7 +1658,7 @@
                             var result = JSON.parse(response.d);
                             if ($("#<%=ddlHighSchoolQualificationType.ClientID%>").length >= 1) {
                                 $("#<%=ddlHighSchoolQualificationType.ClientID%>").empty();
-                                $("#<%=ddlHighSchoolQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                                $("#<%=ddlHighSchoolQualificationType.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
                             }
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddlHighSchoolQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
@@ -1677,7 +1680,7 @@
                             var result = JSON.parse(response.d);
                             if ($("#<%=ddlSecondaryQualificationType.ClientID%>").length >= 1) {
                                 $("#<%=ddlSecondaryQualificationType.ClientID%>").empty();
-                                $("#<%=ddlSecondaryQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                                $("#<%=ddlSecondaryQualificationType.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
                             }
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddlSecondaryQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
@@ -1700,7 +1703,7 @@
                             var result = JSON.parse(response.d);
                             if ($("#<%=ddlHigherQualificationType.ClientID%>").length >= 1) {
                                 $("#<%=ddlHigherQualificationType.ClientID%>").empty();
-                                $("#<%=ddlHigherQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                                $("#<%=ddlHigherQualificationType.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
                             }
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddlHigherQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
@@ -1722,7 +1725,7 @@
                             var result = JSON.parse(response.d);
                             if ($("#<%=ddlDiplomaQualificationType.ClientID%>").length >= 1) {
                                 $("#<%=ddlDiplomaQualificationType.ClientID%>").empty();
-                                $("#<%=ddlDiplomaQualificationType.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val(0).html("Please Select"));
+                                $("#<%=ddlDiplomaQualificationType.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
                             }
                             for (var i = 0; i < result.length; i++) {
                                 $("#<%=ddlDiplomaQualificationType.ClientID%>").append($("<option></option>").val(result[i].qualificationid).html(result[i].qualificationname));
