@@ -85,8 +85,9 @@
                                         <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
-                                                  <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
+                                                  <asp:ListItem value="" selected="True" >Please Select</asp:ListItem>
                                             </asp:DropDownList>
+                                             <asp:HiddenField runat="server" ID="hidddlHighSchoolQualificationType"/>
                                             <span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -321,8 +322,9 @@
                                             <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryQualificationType" CssClass="form-control" runat="server">
-                                                     <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
+                                                     <asp:ListItem value="" selected="True">Please Select</asp:ListItem>
                                                 </asp:DropDownList>
+                                                <asp:HiddenField runat="server" ID="hidddlSecondaryQualificationType"/>ddlHigherQualificationType
                                                 <span class="helpicon"><i id="icSecondaryQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -575,8 +577,9 @@
                                             <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherQualificationType" CssClass="form-control" runat="server">
-                                                     <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
+                                                     <asp:ListItem value="" selected="True">Please Select</asp:ListItem>
                                                 </asp:DropDownList>
+                                                <asp:HiddenField runat="server" ID="hidddlHigherQualificationType"/>
                                                 <span class="helpicon"><i id="ichigherQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -870,8 +873,9 @@
                                         <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaQualificationType" CssClass="form-control" runat="server">
-                                                 <asp:ListItem value="" selected="selected" disabled="disabled">Please Select Qualification</asp:ListItem>
+                                                 <asp:ListItem value="" selected="True">Please Select</asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:HiddenField runat="server" ID="hidddlDiplomaQualificationType"/>
 
                                             <span class="helpicon"><i id="icdiplomaQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
@@ -1254,9 +1258,9 @@
                 $("#<%=diplomagradetype.ClientID%>").show();
                 $("#<%=diplomagradeachieved.ClientID%>").show();
                 $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
-                $("#<%=diplomaverify.ClientID%>").show();
-                $("#<%=diplomarelation.ClientID%>").show();
-                $("#<%=diplomacontactEmail.ClientID%>").show();
+                $("#<%=diplomaverify.ClientID%>").hide();
+                $("#<%=diplomarelation.ClientID%>").hide();
+                $("#<%=diplomacontactEmail.ClientID%>").hide();
                 $("#<%=diplomagrade.ClientID%>").hide();
                 $("#<%=diplomacontactMobile.ClientID%>").hide();
             }
@@ -1310,12 +1314,12 @@
                 $("#<%=highergradetype.ClientID%>").show();
                 $("#<%=highergradeachieved.ClientID%>").show();
                 $("#<%=ExpectedHigherDategrade.ClientID%>").show();
-                $("#<%=higherverify.ClientID%>").show();
-                $("#<%=higherrelation.ClientID%>").show();
-                $("#<%=highercontactEmail.ClientID%>").show();
+                $("#<%=higherverify.ClientID%>").hide();
+                $("#<%=higherrelation.ClientID%>").hide();
+                $("#<%=highercontactEmail.ClientID%>").hide();
                 $("#<%=highergrade.ClientID%>").hide();
                 $("#<%=addanother.ClientID%>").hide();
-                $("#<%=highercontactMobile.ClientID%>").show();
+                $("#<%=highercontactMobile.ClientID%>").hide();
             }
             else {
                 $("#<%=highercourse.ClientID%>").hide();
@@ -1349,7 +1353,6 @@
                 $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
                 $("#<%=Secondaryverify.ClientID%>").show();
                 $("#<%=secondaryschoolrelation.ClientID%>").show();
-                $("#<%=secondarygrade.ClientID%>").show();
                 $("#<%=SecondaryschoolName.ClientID%>").show();
                 $("#<%=SecondaryQualificationtype.ClientID%>").show();
                 $("HigherSectionSection").show();
@@ -1370,14 +1373,13 @@
                 $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
                 $("#<%=Secondaryverify.ClientID%>").hide();
                 $("#<%=secondaryschoolrelation.ClientID%>").hide();
-                $("#<%=secondarygrade.ClientID%>").show();
-                $("#<%=SecondaryschoolName.ClientID%>").show();
+                $("#<%=SecondaryschoolName.ClientID%>").hide();
+                $("#<%=secondarycontactEmail.ClientID%>").hide();
                 $("#<%=SecondaryQualificationtype.ClientID%>").show();
                 $("#<%=secondarygrade.ClientID%>").hide();
                 $("#<%=secondarycontactMobile.ClientID%>").hide();
             }
             else {
-                $("#<%=secondarycontactEmail.ClientID%>").hide();
                 $("#<%=SecondaryCountry.ClientID%>").hide();
                 $("#<%=SecondarystartDate.ClientID%>").hide();
                 $("#<%=SecondaryendDate.ClientID%>").hide();
@@ -1388,7 +1390,6 @@
                 $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
                 $("#<%=Secondaryverify.ClientID%>").hide();
                 $("#<%=secondaryschoolrelation.ClientID%>").hide();
-                $("#<%=secondarygrade.ClientID%>").hide();
                 $("#<%=SecondaryschoolName.ClientID%>").hide();
                 $("#<%=SecondaryQualificationtype.ClientID%>").hide();
                 $("#HigherSectionSection").show();
@@ -1457,7 +1458,7 @@
                 $("#<%=highschoolcontactMobile.ClientID%>").hide();
 
             }
-        }
+        }        
         function ConfirmOnDelete(item) {
             if (confirm("Are you sure to delete: " + item + "") == true)
                 return true;
@@ -1668,6 +1669,9 @@
                     }
                 });
              });
+             $("#<%=ddlHighSchoolQualificationType.ClientID%>").change(function () {
+                $("#<%=hidddlHighSchoolQualificationType.ClientID%>").val($("#<%=ddlHighSchoolQualificationType.ClientID%>").val());
+            });
              //country of secondary school edu  ddlSecondaryQualificationType
              $("#<%=ddlSecondaryCountry.ClientID%>").change(function () {
                 $.ajax({
@@ -1690,7 +1694,9 @@
                     }
                 });
              });
-
+             $("#<%=ddlSecondaryQualificationType.ClientID%>").change(function () {
+                $("#<%=hidddlSecondaryQualificationType.ClientID%>").val($("#<%=ddlSecondaryQualificationType.ClientID%>").val());
+            });
              //country of higher edu   
              $("#<%=ddlHigherCountry.ClientID%>").change(function () {
                 $.ajax({
@@ -1713,6 +1719,9 @@
                     }
                 });
              });
+             $("#<%=ddlHigherQualificationType.ClientID%>").change(function () {
+                $("#<%=hidddlHigherQualificationType.ClientID%>").val($("#<%=ddlHigherQualificationType.ClientID%>").val());
+             });
              //country of diploma
              $("#<%=ddlDiplomaCountry.ClientID%>").change(function () {
                 $.ajax({
@@ -1734,6 +1743,9 @@
                         }
                     }
                 });
+             });
+             $("#<%=ddlDiplomaQualificationType.ClientID%>").change(function () {
+                $("#<%=hidddlDiplomaQualificationType.ClientID%>").val($("#<%=ddlDiplomaQualificationType.ClientID%>").val());
              });
 
         });

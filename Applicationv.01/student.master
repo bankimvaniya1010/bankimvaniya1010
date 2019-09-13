@@ -479,7 +479,7 @@
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="visaapplication">
                                             <li class="sidebar-menu-item" id="applicantvisa">
-                                                <a class="sidebar-menu-button" href="australiavisadetail.aspx">
+                                                <a class="sidebar-menu-button" href="australiavisainstruction.aspx">
                                                     <span class="sidebar-menu-text">Australian Visa Form</span>
                                                 </a>
                                             </li>

@@ -58,12 +58,11 @@
                             <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
-                
-                  </div>    
-                <div class="card faq-qwrp" id="questions" runat="server">
+                <div class="col-md-4">
                     <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">                    
                     <div class="card-body">
                     <%  if (allQuestions.Count > 0)
                         { %>
@@ -81,6 +80,8 @@
                                      
                     </div>
                 </div>
+                </div>    
+                
              
             
         </div>
