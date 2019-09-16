@@ -29,9 +29,15 @@
                                 <div class="form-row">
                                     <label id="lblEnrol" for="exsistingpassword" class="col-md-3 col-form-label form-label">When you want to enrol</label>
                                     <div class="col-md-6">
-                                        <asp:RadioButton ID="rblYear1" runat="server" GroupName="enrollmentyear" />
-                                        <asp:RadioButton ID="rblYear2" runat="server" GroupName="enrollmentyear" />
-                                        <asp:RadioButton ID="rblYear3" runat="server" GroupName="enrollmentyear" />
+                                        <div class="form-check-inline">
+                                            <div class="form-check-label"><asp:RadioButton ID="rblYear1" runat="server" GroupName="enrollmentyear" /></div>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <div class="form-check-label"><asp:RadioButton ID="rblYear2" runat="server" GroupName="enrollmentyear" /></div>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <div class="form-check-label"><asp:RadioButton ID="rblYear3" runat="server" GroupName="enrollmentyear" /></div>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -41,7 +47,7 @@
                                 <div class="form-row">
                                     <label id="lblStudyLevel" for="exsistingpassword" class="col-md-3 col-form-label form-label">Study Level</label>
 
-                                    <div class="col-md-10 updt-prftbl">
+                                    <div class="col-md-9 updt-prftbl">
                                         <asp:RadioButtonList ID="rblstudyLevel" runat="server"></asp:RadioButtonList>
                                     </div>
 

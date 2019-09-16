@@ -13,10 +13,10 @@
     </div>
     <div class="page ">
 
-        <div class="row" style="margin-left: 0; margin-right: 0">
-            <div class="col-md-12">
-
-                <div class="card faq-lftcard" id="scholarships" runat="server">
+        <div class="container page__container">
+            <div class="row">
+               <div class="col-md-8">
+                <div class="card" id="scholarships" runat="server">
                     <asp:DataList ID="scholarshipList" runat="server" OnItemCommand="scholarshipList_ItemCommand">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
@@ -72,16 +72,18 @@
 
                     </div>
                 </div>
-                <div class="row" id="emptyScholarshipDiv" runat="server" style="display: none;">
-                    <div class="col-md-8">
+                
+                <div class="" id="emptyScholarshipDiv" runat="server" style="display: none;">
+                    <div>
                         <asp:Label ID="lblEmptyList" runat="server" Text=""></asp:Label>
                     </div>
                 </div>
-                <div class="card faq-qwrp" id="Div1" runat="server">
-                    
+               </div>
+                <div class="col-md-4">
                     <div>
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                <div class="card faq-qwrp" id="Div1" runat="server">
                     <div class="card-body">
                         <%  if (allfaqQuestion.Count > 0)
                             { %>
@@ -99,8 +101,10 @@
                         <%} %>
                     </div>
                 </div>
+                </div>
             </div>
-
+            
+         </div>
         </div>
 
         <div class="container page__container">
@@ -108,7 +112,6 @@
             </div>
 
         </div>
-    </div>
     <script>
         function openLink(url) {
             $('body').append('<div class="modal" id="video-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="">Ans:' + url + '</div></div></div></div></div>');

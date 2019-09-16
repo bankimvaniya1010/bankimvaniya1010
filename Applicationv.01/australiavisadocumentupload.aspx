@@ -17,7 +17,7 @@
                 <div class="col-md-8">
 
                      <div class="card">
-                        <ul class="nav nav-tabs nav-tabs-card">
+                        <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>
                             </li>
@@ -26,8 +26,8 @@
                             <div class="tab-pane active" id="first">
                                                      
                                 <div class="form-group row" id="identitydoc" runat="server">
-                                    <label for="identitydoc" id="lblidentitydoc" runat="server"><b>1)</b>Attach a copy of Evidence of your identity</label>
-                                    <div class="col-sm-8">
+                                    <label for="identitydoc" id="lblidentitydoc" runat="server" class="col-sm-12"><b>1)</b> Attach a copy of Evidence of your identity</label>
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <asp:DropDownList runat="server" ID="ddlidentity">
@@ -47,8 +47,8 @@
                                     </div>                                     
                                 </div>  
                                  <div class="form-group row" id="Welfaredoc" runat="server">
-                                    <label for="Welfaredoc" id="lblWelfaredoc" runat="server"><b>2)</b>Welfare arrangements for under 18 year old student</label>
-                                    <div class="col-sm-8">
+                                    <label for="Welfaredoc" id="lblWelfaredoc" runat="server" class="col-sm-12"><b>2)</b> Welfare arrangements for under 18 year old student</label>
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <asp:DropDownList runat="server" ID="ddlWelfaredoc">
@@ -67,8 +67,8 @@
                                     </div>                                     
                                 </div>  
                                 <div class="form-group row" id="GTERdoc" runat="server">
-                                    <label for="GTERdoc" id="lblGTERdoc" runat="server"><b>3)</b>Genuine Temporary Entrant requirement</label>
-                                    <div class="col-sm-8">
+                                    <label for="GTERdoc" id="lblGTERdoc" runat="server" class="col-sm-12"><b>3)</b> Genuine Temporary Entrant requirement</label>
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <asp:DropDownList runat="server" ID="ddlGTERdoc">
@@ -88,10 +88,10 @@
                                     </div>                                     
                                 </div> 
                                  <div class="form-group row" id="employmenthistory" runat="server">
-                                    <label for="acadamicdoc" id="lblemploymenthistory" runat="server"><b>4)</b>Evidence of current or most recent employment                                               
+                                    <label for="acadamicdoc" id="lblemploymenthistory" runat="server" class="col-sm-12"><b>4)</b> Evidence of current or most recent employment                                               
 
                                     </label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <asp:DropDownList runat="server" ID="ddlemploymenthistory">
@@ -110,9 +110,9 @@
                                     </div>                                     
                                 </div> 
                                 <div class="form-group row" id="relationshipEvidence" runat="server">
-                                    <label for="relationshipEvidence" id="lblrelationshipEvidence" runat="server"><b>5)</b>Relationship - spouse, de facto partner  
+                                    <label for="relationshipEvidence" id="lblrelationshipEvidence" runat="server" class="col-sm-12"><b>5)</b> Relationship - spouse, de facto partner  
                                     </label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <asp:DropDownList runat="server" ID="ddlrelationshipEvidence">
@@ -131,9 +131,9 @@
                                     </div>                                     
                                 </div>
                                  <div class="form-group row" id="namechangeevidence" runat="server">
-                                    <label for="namechangeevidence" id="lblnamechangeevidence" runat="server"><b>6)</b>Change of name
+                                    <label for="namechangeevidence" id="lblnamechangeevidence" runat="server" class="col-sm-12"><b>6)</b> Change of name
                                     </label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-12">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <asp:DropDownList runat="server" ID="ddlnamechangeevidence">

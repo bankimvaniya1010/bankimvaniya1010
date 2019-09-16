@@ -648,13 +648,11 @@ public partial class applicanteducation : System.Web.UI.Page
                     rblHighYes.Checked = true;
                 else if (EducationInfo.ishighschooldone == 2)
                     rblHighNo.Checked = true;
-                else
+                else if(EducationInfo.ishighschooldone == 3)
                     rblHighNot.Checked = true;
                 if (EducationInfo.highschoolcountry != null)
-                {
-                    bindQualification(ddlHighSchoolQualificationType, Convert.ToInt32(EducationInfo.highschoolcountry));
-                    ddlCountryHighSchool.Items.FindByValue(Convert.ToString(EducationInfo.highschoolcountry)).Selected = true;
-                    
+                {                    
+                    ddlCountryHighSchool.Items.FindByValue(Convert.ToString(EducationInfo.highschoolcountry)).Selected = true;                    
                 }
 
                 if (EducationInfo.highschoolstartdate != null)
@@ -680,10 +678,11 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 if (EducationInfo.highschoolqualificationtype != null)
                 {
-                    ddlHighSchoolQualificationType.ClearSelection();
+                    bindQualification(ddlHighSchoolQualificationType, Convert.ToInt32(ddlCountryHighSchool.SelectedValue));                    
                     ddlHighSchoolQualificationType.Items.FindByValue(EducationInfo.highschoolqualificationtype.ToString()).Selected = true;
+                    hidddlHighSchoolQualificationType.Value = EducationInfo.highschoolqualificationtype.ToString();
                 }
-                if (EducationInfo.highschoolmodeid != null)
+               if (EducationInfo.highschoolmodeid != null)
                 {
                     ddlHighSchoolStudyMode.ClearSelection();
                     ddlHighSchoolStudyMode.Items.FindByValue(EducationInfo.highschoolmodeid.ToString()).Selected = true;
@@ -704,7 +703,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     rblYes.Checked = true;
                 else if (EducationInfo.highschoolgradedeclared == 2)
                     rblYetToConduct.Checked = true;
-                else
+                else if (EducationInfo.highschoolgradedeclared == 3)
                     rblNot.Checked = true;
                 if (EducationInfo.highschoolreusltdate != null)
                     txtExpectedHighSchoolResult.Value = Convert.ToDateTime(EducationInfo.highschoolreusltdate).ToString("yyyy-MM-dd");
@@ -728,13 +727,11 @@ public partial class applicanteducation : System.Web.UI.Page
                     rblSecondaryYes.Checked = true;
                 else if (EducationInfo.issecondarydone == 2)
                     rblSecondaryNo.Checked = true;
-                else
+                else if(EducationInfo.issecondarydone == 3)
                     rblSecondaryNot.Checked = true;
                 if (EducationInfo.secondarycountry != null)
                 {
-                    bindQualification(ddlSecondaryQualificationType, Convert.ToInt32(EducationInfo.secondarycountry));
-                    ddlSecondaryCountry.Items.FindByValue(Convert.ToString(EducationInfo.secondarycountry)).Selected = true;
-                    
+                    ddlSecondaryCountry.Items.FindByValue(Convert.ToString(EducationInfo.secondarycountry)).Selected = true;                    
                 }
                 if (EducationInfo.secondaryresultdate != null)
                     txtExpectedSecondaryResult.Value = Convert.ToDateTime(EducationInfo.secondaryresultdate).ToString("yyyy-MM-dd");
@@ -759,8 +756,9 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 if (EducationInfo.secondaryqualificationtype != null)
                 {
-                    ddlSecondaryQualificationType.ClearSelection();
+                    bindQualification(ddlSecondaryQualificationType, Convert.ToInt32(ddlSecondaryCountry.SelectedValue));                    
                     ddlSecondaryQualificationType.Items.FindByValue(EducationInfo.secondaryqualificationtype.ToString()).Selected = true;
+                    hidddlSecondaryQualificationType.Value = EducationInfo.secondaryqualificationtype.ToString();
                 }
                 if (EducationInfo.secondarymodestudy != null)
                 {
@@ -781,7 +779,7 @@ public partial class applicanteducation : System.Web.UI.Page
                     rblSecondarygradeachievedYes.Checked = true;
                 else if (EducationInfo.secondarygradedeclared == 2)
                     SecondarygradeachievedYet.Checked = true;
-                else
+                else if (EducationInfo.secondarygradedeclared == 3)
                     SecondarygradeachievedNo.Checked = true;
 
 
@@ -804,13 +802,11 @@ public partial class applicanteducation : System.Web.UI.Page
                 else if (EducationInfo.isdiplomadone == 2)
                     rbldiplomaNo.Checked = true;
 
-                else
+                else if (EducationInfo.isdiplomadone == 3)
                     rbldiplomaNot.Checked = true;
                 if (EducationInfo.diplomacountry != null)
                 {
-                    bindQualification(ddlDiplomaQualificationType, Convert.ToInt32(EducationInfo.diplomacountry));
-                    ddlDiplomaCountry.Items.FindByValue(Convert.ToString(EducationInfo.diplomacountry)).Selected = true;
-                   
+                    ddlDiplomaCountry.Items.FindByValue(Convert.ToString(EducationInfo.diplomacountry)).Selected = true;                   
                 }
                 if (EducationInfo.diplomastartdate != null)
                 {
@@ -833,8 +829,9 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 if (EducationInfo.diplomaqualificationtype != null)
                 {
-                    ddlDiplomaQualificationType.ClearSelection();
+                    bindQualification(ddlDiplomaQualificationType, Convert.ToInt32(ddlDiplomaCountry.SelectedValue));                    
                     ddlDiplomaQualificationType.Items.FindByValue(EducationInfo.diplomaqualificationtype.ToString()).Selected = true;
+                    hidddlDiplomaQualificationType.Value = EducationInfo.diplomaqualificationtype.ToString();
                 }
                 if (EducationInfo.diplomastudymodeid != null)
                 {
@@ -880,7 +877,7 @@ public partial class applicanteducation : System.Web.UI.Page
                 if (EducationInfo.lastsavetime != null)
                     lblSaveTime.Text = " Record was last saved at " + EducationInfo.lastsavetime.ToString();
             }
-
+           
             var HigherEducation = (from pInfo in db.applicanthighereducation
                                    where pInfo.applicantid == userID && pInfo.universityid == universityID
                                    select pInfo).FirstOrDefault();
@@ -888,9 +885,7 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 if (HigherEducation.countryofhighereducation != null)
                 {
-                    bindQualification(ddlHigherQualificationType, Convert.ToInt32(HigherEducation.countryofhighereducation));
                     ddlHigherCountry.Items.FindByValue(HigherEducation.countryofhighereducation).Selected = true;
-                    
                 }
                 if (HigherEducation.coursename != null)
                 {
@@ -918,8 +913,9 @@ public partial class applicanteducation : System.Web.UI.Page
 
                 if (HigherEducation.qualificationtype != null)
                 {
-                    ddlHigherQualificationType.ClearSelection();
+                    bindQualification(ddlHigherQualificationType, Convert.ToInt32(ddlHigherCountry.SelectedValue));
                     ddlHigherQualificationType.Items.FindByValue(HigherEducation.qualificationtype.ToString()).Selected = true;
+                    hidddlHigherQualificationType.Value = HigherEducation.qualificationtype.ToString();
                 }
                 if (HigherEducation.studymodeid != null)
                 {
@@ -1023,41 +1019,67 @@ public partial class applicanteducation : System.Web.UI.Page
                 objEdu.ishighschooldone = 1;
                 objEdu.highschoolverificationkey = Guid.NewGuid().ToString();
                 objEdu.ishighschoolverified = false;
+                objEdu.highschoolverificationname = txtHighSchoolVerificationName.Value;
+                objEdu.highschoolverificationrelationship = Convert.ToInt32(ddlHighSchoolVerificationRelationship.SelectedValue);
+                objEdu.highschoolverificationemail = txtHighSchoolcontactEmail.Value;
+                objEdu.highschoolverificationmobile = txtHighSchoolcontactMobile.Value;
             }
-            else if (rblHighNo.Checked)
+            else if (rblHighNo.Checked) {
                 objEdu.ishighschooldone = 2;
-            else
+                objEdu.highschoolgradedeclared = null;
+                objEdu.highschoolverificationname = "";
+                objEdu.highschoolverificationrelationship = null;
+                objEdu.highschoolverificationemail = "";
+                objEdu.highschoolverificationmobile = "";
+            }
+            else if (rblHighNot.Checked)
+            {
                 objEdu.ishighschooldone = 3;
-            if (ddlCountryHighSchool.SelectedValue != "")
-                objEdu.highschoolcountry = Convert.ToInt32(ddlCountryHighSchool.SelectedValue);
+                objEdu.highschoolcountry = null;
+                objEdu.highschoolstartdate = null;
+                objEdu.highschoolendate = null;
+                objEdu.highschoolqualificationtype = null;
+                objEdu.highschoolmodeid = null;
+                objEdu.highschoolmediumid = null;
+                objEdu.highschoolgradedeclared = null;
+                objEdu.highschoolreusltdate = null;
+                objEdu.highschoolverificationname = "";
+                objEdu.highschoolverificationrelationship = null;
+                objEdu.highschoolverificationemail = "";
+                objEdu.highschoolverificationmobile = "";
+                //SUBJECT & GRADE
+                var record = db.applicantsubjectwisegrade.Where(c => c.applicantid == userID && c.coursename == "tenth").ToList();
+                for (var i = 0; i < record.Count; i++)
+                    db.applicantsubjectwisegrade.Remove(db.applicantsubjectwisegrade.Find(record[i].applicantgradeid));
+            }
+            if (rblHighYes.Checked || rblHighNo.Checked)
+            {
+                if (ddlCountryHighSchool.SelectedValue != "")
+                    objEdu.highschoolcountry = Convert.ToInt32(ddlCountryHighSchool.SelectedValue);
 
-            if ((ddlHighSchoolStartDateMonth.SelectedValue != "") && (ddlHighSchoolStartDateYear.SelectedValue != ""))
-                objEdu.highschoolstartdate = ddlHighSchoolStartDateMonth.SelectedValue + "-" + ddlHighSchoolStartDateYear.SelectedValue;
-            if ((ddlHighSchoolEndDateMonth.SelectedValue != "") && (ddlHighSchoolEndDateYear.SelectedValue != ""))
-                objEdu.highschoolendate = ddlHighSchoolEndDateMonth.SelectedValue + "-" + ddlHighSchoolEndDateYear.SelectedValue;
-            objEdu.highschoolname = txthighschoolName.Value;
-            if (ddlHighSchoolQualificationType.SelectedValue != "")
-                objEdu.highschoolqualificationtype = Convert.ToInt32(ddlHighSchoolQualificationType.SelectedValue);
-            if (ddlHigherStudyMode.SelectedValue != "")
-                objEdu.highschoolmodeid = Convert.ToInt32(ddlHighSchoolStudyMode.SelectedValue);
-            if (ddlHighschoolMedium.SelectedValue != "")
-                objEdu.highschoolmediumid = Convert.ToInt32(ddlHighschoolMedium.SelectedValue);
-            if (ddlHighSchoolGrade.SelectedValue != "")
-                objEdu.highschoolgradetypeid = Convert.ToInt32(ddlHighSchoolGrade.SelectedValue);
+                if ((ddlHighSchoolStartDateMonth.SelectedValue != "") && (ddlHighSchoolStartDateYear.SelectedValue != ""))
+                    objEdu.highschoolstartdate = ddlHighSchoolStartDateMonth.SelectedValue + "-" + ddlHighSchoolStartDateYear.SelectedValue;
+                if ((ddlHighSchoolEndDateMonth.SelectedValue != "") && (ddlHighSchoolEndDateYear.SelectedValue != ""))
+                    objEdu.highschoolendate = ddlHighSchoolEndDateMonth.SelectedValue + "-" + ddlHighSchoolEndDateYear.SelectedValue;
+                objEdu.highschoolname = txthighschoolName.Value;                
+                if(hidddlHighSchoolQualificationType.Value != "")
+                    objEdu.highschoolqualificationtype = Convert.ToInt32(hidddlHighSchoolQualificationType.Value);
+                if (ddlHigherStudyMode.SelectedValue != "")
+                    objEdu.highschoolmodeid = Convert.ToInt32(ddlHighSchoolStudyMode.SelectedValue);
+                if (ddlHighschoolMedium.SelectedValue != "")
+                    objEdu.highschoolmediumid = Convert.ToInt32(ddlHighschoolMedium.SelectedValue);
+                if (ddlHighSchoolGrade.SelectedValue != "")
+                    objEdu.highschoolgradetypeid = Convert.ToInt32(ddlHighSchoolGrade.SelectedValue);
+                if (txtExpectedHighSchoolResult.Value != "")
+                    objEdu.highschoolreusltdate = Convert.ToDateTime(txtExpectedHighSchoolResult.Value);
+                if (rblYes.Checked)
+                    objEdu.highschoolgradedeclared = 1;
+                else if (rblYetToConduct.Checked)
+                    objEdu.highschoolgradedeclared = 2;
+                else if (rblNot.Checked)
+                    objEdu.highschoolgradedeclared = 3;                
+            }
 
-            if (rblYes.Checked)
-                objEdu.highschoolgradedeclared = 1;
-            else if (rblYetToConduct.Checked)
-                objEdu.highschoolgradedeclared = 2;
-            else
-                objEdu.highschoolgradedeclared = 3;
-            if (txtExpectedHighSchoolResult.Value != "")
-                objEdu.highschoolreusltdate = Convert.ToDateTime(txtExpectedHighSchoolResult.Value);
-            objEdu.highschoolverificationname = txtHighSchoolVerificationName.Value;
-            objEdu.highschoolverificationrelationship = Convert.ToInt32(ddlHighSchoolVerificationRelationship.SelectedValue);
-            objEdu.highschoolverificationemail = txtHighSchoolcontactEmail.Value;
-            objEdu.highschoolverificationmobile = txtHighSchoolcontactMobile.Value;
-            
             /// High School Details End-----
 
             /// Secondary Details
@@ -1066,40 +1088,68 @@ public partial class applicanteducation : System.Web.UI.Page
                 objEdu.issecondarydone = 1;
                 objEdu.secondaryverificationkey = Guid.NewGuid().ToString();
                 objEdu.issecondaryverified = false;
+                objEdu.secondaryverificationname = txtSecondaryVerificationName.Value;
+                objEdu.secondaryverificationrelationship = Convert.ToInt32(ddlSecondaryVerificationRelationship.SelectedValue);
+                objEdu.secondaryverificationemail = txtSecondarycontactEmail.Value;
+                objEdu.secondaryverificationmobile = txtSecondarycontactMobile.Value;
             }
             else if (rblSecondaryNo.Checked)
+            {
                 objEdu.issecondarydone = 2;
-            else
+                objEdu.secondaryverificationname = "";
+                objEdu.secondaryverificationrelationship = null;
+                objEdu.secondaryverificationemail = "";
+                objEdu.secondaryverificationmobile = "";
+            }
+            else if ((rblSecondaryNot.Checked))
+            {
                 objEdu.issecondarydone = 3;
-            if (ddlSecondaryCountry.SelectedValue != "")
-                objEdu.secondarycountry = Convert.ToInt32(ddlSecondaryCountry.SelectedValue);
-            if ((ddlSecondaryStartDateMonth.SelectedValue != "") && (ddlSecondaryStartDateYear.SelectedValue != ""))
-                objEdu.secondarystartdate = ddlSecondaryStartDateMonth.SelectedValue + "-" + ddlSecondaryStartDateYear.SelectedValue;
-            if ((ddlSecondaryEndDateMonth.SelectedValue != "") && (ddlSecondaryEndDateYear.SelectedValue != ""))
-                objEdu.secondaryendate = ddlSecondaryEndDateMonth.SelectedValue + "-" + ddlSecondaryEndDateYear.SelectedValue;
+                objEdu.secondarycountry = null;
+                objEdu.secondarystartdate = null;
+                objEdu.secondaryendate = null;
+                objEdu.secondaryname = null;
+                objEdu.secondaryqualificationtype = null;
+                objEdu.secondarymodestudy = null;
+                objEdu.secondarymediumstudy = null;
+                objEdu.secondarygradetypeid = null;
+                objEdu.secondarygradedeclared = null;
+                objEdu.secondaryresultdate = null;
+                objEdu.secondaryverificationname = "";
+                objEdu.secondaryverificationrelationship = null;
+                objEdu.secondaryverificationemail = "";
+                objEdu.secondaryverificationmobile = "";
+                //SUBJECT & GRADE
+                var secondaryrecord = db.applicantsubjectwisegrade.Where(c => c.applicantid == userID && c.coursename == "twelth").ToList();
+                for (var i = 0; i < secondaryrecord.Count; i++)
+                    db.applicantsubjectwisegrade.Remove(db.applicantsubjectwisegrade.Find(secondaryrecord[i].applicantgradeid));
+            }
+            if (rblSecondaryYes.Checked || rblSecondaryNo.Checked)
+            {
+                if (ddlSecondaryCountry.SelectedValue != "")
+                    objEdu.secondarycountry = Convert.ToInt32(ddlSecondaryCountry.SelectedValue);
+                if ((ddlSecondaryStartDateMonth.SelectedValue != "") && (ddlSecondaryStartDateYear.SelectedValue != ""))
+                    objEdu.secondarystartdate = ddlSecondaryStartDateMonth.SelectedValue + "-" + ddlSecondaryStartDateYear.SelectedValue;
+                if ((ddlSecondaryEndDateMonth.SelectedValue != "") && (ddlSecondaryEndDateYear.SelectedValue != ""))
+                    objEdu.secondaryendate = ddlSecondaryEndDateMonth.SelectedValue + "-" + ddlSecondaryEndDateYear.SelectedValue;
 
-            objEdu.secondaryname = txtSecondarySchoolName.Value;
-            if (ddlSecondaryQualificationType.SelectedValue != "")
-                objEdu.secondaryqualificationtype = Convert.ToInt32(ddlSecondaryQualificationType.SelectedValue);
-            if (ddlSecondaryStudyMode.SelectedValue != "")
-                objEdu.secondarymodestudy = Convert.ToInt32(ddlSecondaryStudyMode.SelectedValue);
-            if (ddlSecondaryMedium.SelectedValue != "")
-                objEdu.secondarymediumstudy = Convert.ToInt32(ddlSecondaryMedium.SelectedValue);
-            if (ddlSecondaryGrade.SelectedValue != "")
-                objEdu.secondarygradetypeid = Convert.ToInt32(ddlSecondaryGrade.SelectedValue);
-            if (rblSecondarygradeachievedYes.Checked)
-                objEdu.secondarygradedeclared = 1;
-            else if (SecondarygradeachievedYet.Checked)
-                objEdu.secondarygradedeclared = 2;
-            else
-                objEdu.secondarygradedeclared = 3;
-            if (txtExpectedSecondaryResult.Value != "")
-                objEdu.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);
-
-            objEdu.secondaryverificationname = txtSecondaryVerificationName.Value;
-            objEdu.secondaryverificationrelationship = Convert.ToInt32(ddlSecondaryVerificationRelationship.SelectedValue);
-            objEdu.secondaryverificationemail = txtSecondarycontactEmail.Value;
-            objEdu.secondaryverificationmobile = txtSecondarycontactMobile.Value;
+                objEdu.secondaryname = txtSecondarySchoolName.Value;
+                if(hidddlSecondaryQualificationType.Value != "")
+                    objEdu.secondaryqualificationtype = Convert.ToInt32(hidddlSecondaryQualificationType.Value);
+                if (ddlSecondaryStudyMode.SelectedValue != "")
+                    objEdu.secondarymodestudy = Convert.ToInt32(ddlSecondaryStudyMode.SelectedValue);
+                if (ddlSecondaryMedium.SelectedValue != "")
+                    objEdu.secondarymediumstudy = Convert.ToInt32(ddlSecondaryMedium.SelectedValue);
+                if (ddlSecondaryGrade.SelectedValue != "")
+                    objEdu.secondarygradetypeid = Convert.ToInt32(ddlSecondaryGrade.SelectedValue);              
+                if (rblSecondarygradeachievedYes.Checked)
+                    objEdu.secondarygradedeclared = 1;
+                else if (SecondarygradeachievedYet.Checked)
+                    objEdu.secondarygradedeclared = 2;
+                else if(SecondarygradeachievedNo.Checked)
+                    objEdu.secondarygradedeclared = 3;
+                if (txtExpectedSecondaryResult.Value != "")
+                    objEdu.secondaryresultdate = Convert.ToDateTime(txtExpectedSecondaryResult.Value);
+            }
 
             /// Secondary Details End-----
             /// Diploma
@@ -1108,42 +1158,68 @@ public partial class applicanteducation : System.Web.UI.Page
                 objEdu.isdiplomadone = 1;
                 objEdu.diplomaverificationkey = Guid.NewGuid().ToString();
                 objEdu.isdiplomaverified = false;
+                objEdu.diplomaverificationname = txtDiplomaVerificationName.Value;
+                objEdu.diplomaverificationrelationship = Convert.ToInt32(ddlDiplomaVerificationRelationship.SelectedValue);
+                objEdu.diplomaverificationemail = txtDiplomacontactEmail.Value;
+                objEdu.diplomaverificationmobile = txtDiplomacontactMobile.Value;
+
             }
             else if (rbldiplomaNo.Checked)
+            {
                 objEdu.isdiplomadone = 2;
-            else
+                objEdu.diplomaverificationname = "";
+                objEdu.diplomaverificationrelationship = null;
+                objEdu.diplomaverificationemail = "";
+                objEdu.diplomaverificationmobile = "";
+            }
+            else if ((rbldiplomaNot.Checked))
+            {
                 objEdu.isdiplomadone = 3;
-            if (ddlDiplomaCountry.SelectedValue != "")
-                objEdu.diplomacountry = Convert.ToInt32(ddlDiplomaCountry.SelectedValue);
-            if ((ddlDiplomaStartDateMonth.SelectedValue != "") && (ddlDiplomaStartDateYear.SelectedValue != ""))
-                objEdu.diplomastartdate = ddlDiplomaStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
-            if ((ddlDiplomaEndDateMonth.SelectedValue != "") && (ddlDiplomaEndDateYear.SelectedValue != ""))
-                objEdu.diplomaendate = ddlDiplomaEndDateMonth.SelectedValue + "-" + ddlDiplomaEndDateYear.SelectedValue;
-
-
-            objEdu.diplomaschoolname = txtDiplomaschoolName.Value;
-            if (ddlDiplomaQualificationType.SelectedValue != "")
-                objEdu.diplomaqualificationtype = Convert.ToInt32(ddlDiplomaQualificationType.SelectedValue);
-            if (ddlDiplomaStudyMode.SelectedValue != "")
-                objEdu.diplomastudymodeid = Convert.ToInt32(ddlDiplomaStudyMode.SelectedValue);
-            if (ddlDiplomaMedium.SelectedValue != "")
-                objEdu.diplomamediumid = Convert.ToInt32(ddlDiplomaMedium.SelectedValue);
-            if (ddlDiplomaGrade.SelectedValue != "")
-                objEdu.diplomagradetypeid = Convert.ToInt32(ddlDiplomaGrade.SelectedValue);
-            if (rblDiplomaGradeYes.Checked)
-                objEdu.diplomagradeachieved = 1;
-            else if (rblDiplomaGradeYet.Checked)
-                objEdu.diplomagradeachieved = 2;
-            else
-                objEdu.diplomagradeachieved = 3;
-            if (txtExpectedDiplomaResult.Value != "")
-                objEdu.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
-
-            objEdu.diplomaverificationname = txtDiplomaVerificationName.Value;
-            objEdu.diplomaverificationrelationship = Convert.ToInt32(ddlDiplomaVerificationRelationship.SelectedValue);
-            objEdu.diplomaverificationemail = txtDiplomacontactEmail.Value;
-            objEdu.diplomaverificationmobile = txtDiplomacontactMobile.Value;
-
+                objEdu.diplomacountry = null;
+                objEdu.diplomastartdate = null;
+                objEdu.diplomaendate = null;
+                objEdu.diplomaschoolname = null;
+                objEdu.diplomaqualificationtype = null;
+                objEdu.diplomastudymodeid = null;
+                objEdu.diplomamediumid = null;
+                objEdu.diplomagradetypeid = null;
+                objEdu.diplomagradeachieved = null;
+                objEdu.diplomaresultdate = null;
+                objEdu.diplomaverificationname = "";
+                objEdu.diplomaverificationrelationship = null;
+                objEdu.diplomaverificationemail = "";
+                objEdu.diplomaverificationmobile = "";
+                //SUBJECT & GRADE
+                var diplomarecord = db.applicantsubjectwisegrade.Where(c => c.applicantid == userID && c.coursename == "diploma").ToList();
+                for (var i = 0; i < diplomarecord.Count; i++)
+                    db.applicantsubjectwisegrade.Remove(db.applicantsubjectwisegrade.Find(diplomarecord[i].applicantgradeid));
+            }
+            if (rbldiplomaYes.Checked || rbldiplomaNo.Checked)
+            {
+                if (ddlDiplomaCountry.SelectedValue != "")
+                    objEdu.diplomacountry = Convert.ToInt32(ddlDiplomaCountry.SelectedValue);
+                if ((ddlDiplomaStartDateMonth.SelectedValue != "") && (ddlDiplomaStartDateYear.SelectedValue != ""))
+                    objEdu.diplomastartdate = ddlDiplomaStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
+                if ((ddlDiplomaEndDateMonth.SelectedValue != "") && (ddlDiplomaEndDateYear.SelectedValue != ""))
+                    objEdu.diplomaendate = ddlDiplomaEndDateMonth.SelectedValue + "-" + ddlDiplomaEndDateYear.SelectedValue;
+                objEdu.diplomaschoolname = txtDiplomaschoolName.Value;
+                if(hidddlDiplomaQualificationType.Value != "")
+                    objEdu.diplomaqualificationtype = Convert.ToInt32(hidddlDiplomaQualificationType.Value);
+                if (ddlDiplomaStudyMode.SelectedValue != "")
+                    objEdu.diplomastudymodeid = Convert.ToInt32(ddlDiplomaStudyMode.SelectedValue);
+                if (ddlDiplomaMedium.SelectedValue != "")
+                    objEdu.diplomamediumid = Convert.ToInt32(ddlDiplomaMedium.SelectedValue);
+                if (ddlDiplomaGrade.SelectedValue != "")
+                    objEdu.diplomagradetypeid = Convert.ToInt32(ddlDiplomaGrade.SelectedValue);                
+                if (rblDiplomaGradeYes.Checked)
+                    objEdu.diplomagradeachieved = 1;
+                else if (rblDiplomaGradeYet.Checked)
+                    objEdu.diplomagradeachieved = 2;
+                else if (rblDiplomaGradeNot.Checked)
+                    objEdu.diplomagradeachieved = 3;
+                if (txtExpectedDiplomaResult.Value != "")
+                    objEdu.diplomaresultdate = Convert.ToDateTime(txtExpectedDiplomaResult.Value);
+            }            
             objEdu.lastsavetime = DateTime.Now;
             objEdu.iseducationdetailspresent = true;
             /// Diploma End-----
@@ -1155,7 +1231,6 @@ public partial class applicanteducation : System.Web.UI.Page
             else if(rblhigherNo.Checked)
                 objEdu.ishighereducation = 3;
             objEdu.universityid = universityID;
-
 
             if (mode == "new")
                 db.applicanteducationdetails.Add(objEdu);
@@ -1181,43 +1256,71 @@ public partial class applicanteducation : System.Web.UI.Page
                     objEducation.finalgradeacheived = 1;
                     objEducation.highereducationverificationkey = Guid.NewGuid().ToString();
                     objEducation.ishighereducationverified = false;
+                    objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
+                    objEducation.verificationemail = txtHighercontactEmail.Value;
+                    objEducation.verificationname = txtHigherVerificationName.Value;
+                    objEducation.verificationmobile = txtHighercontactMobile.Value;
                 }
-                else if (rblhigherNo.Checked)
+                else if (rblhigherNot.Checked)
+                {
                     objEducation.finalgradeacheived = 2;
-                else
+                    objEducation.relationshipwithverification = null;
+                    objEducation.verificationemail = "";
+                    objEducation.verificationname = "";
+                    objEducation.verificationmobile = "";
+                }
+                else if ((rblhigherNo.Checked))
+                {
                     objEducation.finalgradeacheived = 3;
+                    objEducation.countryofhighereducation = null;
+                    objEducation.coursename = null;
+                    objEducation.startdate = null;
+                    objEducation.endate = null;
+                    objEducation.schoolname = null;
+                    objEducation.qualificationtype = null;
+                    objEducation.studymodeid = null;
+                    objEducation.studymediumid = null;
+                    objEducation.gradetypeid = null;
+                    objEducation.finalgradeacheived = null;
+                    objEducation.resultdate = null;
+                    objEducation.relationshipwithverification = null;
+                    objEducation.verificationemail = "";
+                    objEducation.verificationname = "";
+                    objEducation.verificationmobile = "";
+                    //SUBJECT & GRADE
+                    var Higheredurecord = db.applicantsubjectwisegrade.Where(c => c.applicantid == userID && (c.coursename == "UG" || c.coursename == "PG" || c.coursename == "Phd" || c.coursename == "Other")).ToList();
+                    for (var i = 0; i < Higheredurecord.Count; i++)
+                        db.applicantsubjectwisegrade.Remove(db.applicantsubjectwisegrade.Find(Higheredurecord[i].applicantgradeid));
+                }
 
-                if (ddlHigherCountry.SelectedValue != "")
-                    objEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
-                objEducation.coursename = ddlCourse.SelectedValue;
-                if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
-                    objEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlHigherStartDateYear.SelectedValue;
-                if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
-                    objEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
+                if (rblhigherYes.Checked || rblhigherNot.Checked)
+                {
+                    if (ddlHigherCountry.SelectedValue != "")
+                        objEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
+                    objEducation.coursename = ddlCourse.SelectedValue;
+                    if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
+                        objEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlHigherStartDateYear.SelectedValue;
+                    if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
+                        objEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
 
-                objEducation.schoolname = txtHigherschoolName.Value;
-                if (ddlHigherQualificationType.SelectedValue != "")
-                    objEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
-                if (ddlHigherStudyMode.SelectedValue != "")
-                    objEducation.studymodeid = Convert.ToInt32(ddlHigherStudyMode.SelectedValue);
-                if (ddlHigherMedium.SelectedValue != "")
-                    objEducation.studymediumid = Convert.ToInt32(ddlHigherMedium.SelectedValue);
-                if (ddlHigherGrade.SelectedValue != "")
-                    objEducation.gradetypeid = Convert.ToInt32(ddlHigherGrade.SelectedValue);
-
-                if (rblhighergradeachievedYes.Checked)
-                    objEducation.finalgradeacheived = 1;
-                else if (rblhighergradeachievedYet.Checked)
-                    objEducation.finalgradeacheived = 2;
-                else
-                    objEducation.finalgradeacheived = 3;
-                if (txtExpectedHigherDategrade.Value != "")
-                    objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
-
-                objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
-                objEducation.verificationemail = txtHighercontactEmail.Value;
-                objEducation.verificationname = txtHigherVerificationName.Value;
-                objEducation.verificationmobile = txtHighercontactMobile.Value;
+                    objEducation.schoolname = txtHigherschoolName.Value;
+                    if(hidddlHigherQualificationType.Value != "")
+                        objEducation.qualificationtype = hidddlHigherQualificationType.Value;
+                    if (ddlHigherStudyMode.SelectedValue != "")
+                        objEducation.studymodeid = Convert.ToInt32(ddlHigherStudyMode.SelectedValue);
+                    if (ddlHigherMedium.SelectedValue != "")
+                        objEducation.studymediumid = Convert.ToInt32(ddlHigherMedium.SelectedValue);
+                    if (ddlHigherGrade.SelectedValue != "")
+                        objEducation.gradetypeid = Convert.ToInt32(ddlHigherGrade.SelectedValue);                    
+                    if (rblhighergradeachievedYes.Checked)
+                        objEducation.finalgradeacheived = 1;
+                    else if (rblhighergradeachievedYet.Checked)
+                        objEducation.finalgradeacheived = 2;
+                    else if(rblhighergradeachievedNo.Checked)
+                        objEducation.finalgradeacheived = 3;
+                    if (txtExpectedHigherDategrade.Value != "")
+                        objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
+                }
                 objEducation.universityid = universityID;
                 if (mode == "new")
                     db.applicanthighereducation.Add(objEducation);
@@ -1313,42 +1416,74 @@ public partial class applicanteducation : System.Web.UI.Page
 
             objEducation.applicantid = userID;
             if (rblhigherYes.Checked)
+            {
                 objEducation.finalgradeacheived = 1;
+                objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
+                objEducation.verificationemail = txtHighercontactEmail.Value;
+                objEducation.verificationname = txtHigherVerificationName.Value;
+                objEducation.verificationmobile = txtHighercontactMobile.Value;
+            }
+            else if (rblhigherNot.Checked)
+            {
+                objEducation.finalgradeacheived = 2;
+                objEducation.relationshipwithverification = null;
+                objEducation.verificationemail = "";
+                objEducation.verificationname = "";
+                objEducation.verificationmobile = "";
+            }
             else if (rblhigherNo.Checked)
-                objEducation.finalgradeacheived = 2;
-            else
+            {
                 objEducation.finalgradeacheived = 3;
+                objEducation.countryofhighereducation = "";
+                objEducation.coursename = null;
+                objEducation.startdate = null;
+                objEducation.endate = null;
+                objEducation.schoolname = null;
+                objEducation.qualificationtype = null;
+                objEducation.studymodeid = null;
+                objEducation.studymediumid = null;
+                objEducation.gradetypeid = null;
+                objEducation.finalgradeacheived = null;
+                objEducation.resultdate = null;
+                objEducation.relationshipwithverification = null;
+                objEducation.verificationemail = "";
+                objEducation.verificationname = "";
+                objEducation.verificationmobile = "";
+                //SUBJECT & GRADE
+                var Higheredurecord = db.applicantsubjectwisegrade.Where(c => c.applicantid == userID && (c.coursename == "UG" || c.coursename == "PG" || c.coursename == "Phd" || c.coursename == "Other")).ToList();
+                for (var i = 0; i < Higheredurecord.Count; i++)
+                    db.applicantsubjectwisegrade.Remove(db.applicantsubjectwisegrade.Find(Higheredurecord[i].applicantgradeid));
 
-            if (ddlHigherCountry.SelectedValue != "")
-                objEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
-            objEducation.coursename = ddlCourse.SelectedValue;
-            if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
-                objEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlDiplomaStartDateYear.SelectedValue;
-            if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
-                objEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
-            objEducation.schoolname = txtHigherschoolName.Value;
-            if (ddlHigherQualificationType.SelectedValue != "")
-                objEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
-            if (ddlHigherStudyMode.SelectedValue != "")
-                objEducation.studymodeid = Convert.ToInt32(ddlHigherStudyMode.SelectedValue);
-            if (ddlHigherMedium.SelectedValue != "")
-                objEducation.studymediumid = Convert.ToInt32(ddlHigherMedium.SelectedValue);
-            if (ddlHigherGrade.SelectedValue != "")
-                objEducation.gradetypeid = Convert.ToInt32(ddlHigherGrade.SelectedValue);
+            }
+            if (rblhigherYes.Checked || rblhigherNot.Checked)
+            {
+                if (ddlHigherCountry.SelectedValue != "")
+                    objEducation.countryofhighereducation = ddlHigherCountry.SelectedValue;
+                objEducation.coursename = ddlCourse.SelectedValue;
+                if ((ddlHigherStartDateMonth.SelectedValue != "") && (ddlHigherStartDateYear.SelectedValue != ""))
+                    objEducation.startdate = ddlHigherStartDateMonth.SelectedValue + "-" + ddlHigherStartDateYear.SelectedValue;
+                if ((ddlHigherEndDateMonth.SelectedValue != "") && (ddlHigherEndDateYear.SelectedValue != ""))
+                    objEducation.endate = ddlHigherEndDateMonth.SelectedValue + "-" + ddlHigherEndDateYear.SelectedValue;
+                objEducation.schoolname = txtHigherschoolName.Value;
+                if(hidddlHigherQualificationType.Value != null)
+                    objEducation.qualificationtype = hidddlHigherQualificationType.Value;
+                if (ddlHigherStudyMode.SelectedValue != "")
+                    objEducation.studymodeid = Convert.ToInt32(ddlHigherStudyMode.SelectedValue);
+                if (ddlHigherMedium.SelectedValue != "")
+                    objEducation.studymediumid = Convert.ToInt32(ddlHigherMedium.SelectedValue);
+                if (ddlHigherGrade.SelectedValue != "")
+                    objEducation.gradetypeid = Convert.ToInt32(ddlHigherGrade.SelectedValue);
 
-            if (rblhighergradeachievedYes.Checked)
-                objEducation.finalgradeacheived = 1;
-            else if (rblhighergradeachievedYet.Checked)
-                objEducation.finalgradeacheived = 2;
-            else
-                objEducation.finalgradeacheived = 3;
-            if (txtExpectedHigherDategrade.Value != "")
-                objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
-
-            objEducation.relationshipwithverification = Convert.ToInt32(ddlHigherVerificationRelationship.SelectedValue);
-            objEducation.verificationemail = txtHighercontactEmail.Value;
-            objEducation.verificationname = txtHigherVerificationName.Value;
-            objEducation.verificationmobile = txtHighercontactMobile.Value;
+                if (rblhighergradeachievedYes.Checked)
+                    objEducation.finalgradeacheived = 1;
+                else if (rblhighergradeachievedYet.Checked)
+                    objEducation.finalgradeacheived = 2;
+                else
+                    objEducation.finalgradeacheived = 3;
+                if (txtExpectedHigherDategrade.Value != "")
+                    objEducation.resultdate = Convert.ToDateTime(txtExpectedHigherDategrade.Value);
+            }
+            objEducation.universityid = universityID;
             if (mode == "new")
                 db.applicanthighereducation.Add(objEducation);
 
@@ -1817,8 +1952,8 @@ public partial class applicanteducation : System.Web.UI.Page
                     ddlHigherEndDateYear.Items.FindByValue(Convert.ToString(HigherEndDate[1])).Selected = true;
                 }
                 HigherEducation.schoolname = txtHigherschoolName.Value;
-                if (ddlHigherQualificationType.SelectedValue != "")
-                    HigherEducation.qualificationtype = ddlHigherQualificationType.SelectedValue;
+                if(hidddlHigherQualificationType.Value != null)
+                    HigherEducation.qualificationtype = hidddlHigherQualificationType.Value;
                 if (ddlHigherStudyMode.SelectedValue != "")
                     HigherEducation.studymodeid = Convert.ToInt32(ddlHigherStudyMode.SelectedValue);
                 if (ddlHigherMedium.SelectedValue != "")

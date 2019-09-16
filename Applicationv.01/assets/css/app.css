@@ -130,7 +130,9 @@
 
 .ques-lbl {
     position: absolute;
-    left: -20px;
+    width: 30px;
+    text-align: right;
+    left: -30px;
 }
 
 .list-group-item input[type="radio"], .list-group-item input[type="checkbox"]{margin-right: 3px;}
@@ -178,7 +180,12 @@
 
 .tbl-dtinfo{width: 100%;float: left;}
 
-[dir=ltr] input[type="radio"]{margin:3px 3px 0px 5px !important;}
+.form-control input[type="radio"]{margin:3px 3px 0px 6px !important;}
 .adv-img-wrp{padding-right: 0px !important;}
 .adv-img{padding: 0 !important;}
 .updt-prftbl td label{display: inline;}
+[dir=ltr] .form-control.frm-cntrl-rdo{height: auto;}
+[dir=ltr] .form-control.frm-cntrl-rdo label{display: inline;}
+[dir=ltr] .layout-fluid .page__container{max-width: 100%;padding-left: 50px;}
+[dir=ltr] .mdk-drawer__content{max-width: 256px;}
+[dir=ltr] .inpt input{margin-right: 6px;}

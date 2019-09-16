@@ -93,8 +93,16 @@
                                         <div class="form-row">
                                             <label id="labelemployment" runat="server" for="employment" class="col-md-3 col-form-label form-label">Do you wish to record any work experience that may be relevant to the course you are applying for?</label>
                                             <div class="col-md-6">
-                                                <asp:RadioButton ID="rblEmploymentYes" runat="server" GroupName="Employment" Text="Yes" />
-                                                <asp:RadioButton ID="rblEmploymentNo" runat="server" GroupName="Employment" Text="No" />
+                                                <div class="form-check-inline">
+                                                    <div class="form-check-label">
+                                                        <asp:RadioButton ID="rblEmploymentYes" runat="server" GroupName="Employment" Text="Yes" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-check-inline">
+                                                    <div class="form-check-label">
+                                                        <asp:RadioButton ID="rblEmploymentNo" runat="server" GroupName="Employment" Text="No" />
+                                                    </div>
+                                                </div>
                                                 <span class="helpicon"><i id="icemploymentInfo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -255,8 +263,8 @@
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                         <div class="form-row">
-                                            <a href="applicantsocial.aspx?formid=8" class="btn btn-success" style="margin-right: 10px;">Social</a>
                                             <asp:Button ID="btn_Save" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_Save_Click" OnClientClick="return validateForm()" />
+                                            <a href="applicantsocial.aspx?formid=8" class="btn btn-success" style="margin-left: 10px;">Go Social &nbsp; <i class="fas fa-angle-double-right"></i></a>
                                             <div class="col-md-6">
                                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                                 <asp:Label ID="lblSaveTime" runat="server"  Visible="false"></asp:Label>

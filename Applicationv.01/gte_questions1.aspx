@@ -13,16 +13,18 @@
     </div>
     <div class="page ">
 
-        <div class="row justify-content-end" style="margin-left:0;margin-right:0;">
+        <div class="container page__container">
            <!-- <div class="col-md-12 d-flex justify-content-end"> -->
-              
-                <div class="card faq-lftcard col-md-8" id="questions" runat="server">
+              <div class="row">
+                  <div class="col-md-8">
+                <div class="card" id="questions" runat="server">
                     <div style="font-size:medium;text-align:center">
                         Question <%=ViewState["AnsweredQuestionCount"] %> / <%=ViewState["QuestionsCount"] %>
                         <br/>
                         <label id="minutes"></label><label id="seconds"></label>
                         <asp:HiddenField ID="hidTime" runat="server" />
                     </div>
+                    <div class="card-body">
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
@@ -75,34 +77,39 @@
                         <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Next" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
 
                     </div>
+                   </div>
                 </div>
-                <div class="col-md-8" id="completedDiv" runat="server" style="display: none;">
-                    <div class="">
+                 <div id="completedDiv" runat="server" style="display: none;">
+                  <div class="">
                         <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
+                  </div>
+                 </div>
+                 </div>
+                  <div class="col-md-4">
+                      <div>
+                            <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                        </div>
+                    <div class="card faq-qwrp" id="Div1" runat="server">
+                        
+                                <div class="card-body" style="flex:none;background:#fff;">
+                                <%  if (allfaqQuestion.Count > 0)
+                                    { %>
+                                <div id="question" runat="server">
+                                        <h5>FAQ's</h5>
+                                        <div class="">
+                                        <%for (int q = 0; q < allfaqQuestion.Count; q++)
+                                            {%>  <div>                                                             
+                                                    <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> * <%=allfaqQuestion[q].question%> </label>
+                                                </div>                                                  
+                                        <%} %>
+                                    </div>
+                                </div>      
+                                    <%} %>  
+                                     
+                                </div>
+                           </div>
                     </div>
                 </div>
-                <div class="card faq-qwrp col-md-4" id="Div1" runat="server" style="background:transparent;">
-                    <div>
-                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
-                    </div>
-                            <div class="card-body" style="flex:none;background:#fff;">
-                            <%  if (allfaqQuestion.Count > 0)
-                                { %>
-                            <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
-                                    <div class="">
-                                    <%for (int q = 0; q < allfaqQuestion.Count; q++)
-                                        {%>  <div>                                                             
-                                                <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> * <%=allfaqQuestion[q].question%> </label>
-                                            </div>                                                  
-                                    <%} %>
-                                </div>
-                            </div>      
-                                <%} %>  
-                                     
-                            </div>
-                        </div>
-
             <div style="display: none;" runat="server">
                 <div class="modal" id="IELTS-modal" tabindex="-1" role="dialog">
                    <div class="modal-dialog" role="document">
