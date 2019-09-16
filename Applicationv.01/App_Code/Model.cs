@@ -12,8 +12,17 @@ using System.Collections.Generic;
 
 public partial class accommodationplan
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public accommodationplan()
+    {
+        this.manageaccomdationplan = new HashSet<manageaccomdationplan>();
+    }
+
     public int id { get; set; }
     public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageaccomdationplan> manageaccomdationplan { get; set; }
 }
 
 public partial class admincomments
@@ -1017,6 +1026,14 @@ public partial class citymaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public citymaster()
     {
+        this.manageaccomdationplan = new HashSet<manageaccomdationplan>();
+        this.manageentertainment = new HashSet<manageentertainment>();
+        this.managehealth_insurance = new HashSet<managehealth_insurance>();
+        this.managemealplan = new HashSet<managemealplan>();
+        this.managetransportchoice = new HashSet<managetransportchoice>();
+        this.managetrips = new HashSet<managetrips>();
+        this.manageutilities = new HashSet<manageutilities>();
+        this.managevisa = new HashSet<managevisa>();
         this.universitycampus_city_mapping = new HashSet<universitycampus_city_mapping>();
         this.university_master = new HashSet<university_master>();
     }
@@ -1031,6 +1048,22 @@ public partial class citymaster
     public int country_id { get; set; }
 
     public virtual countriesmaster countriesmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageaccomdationplan> manageaccomdationplan { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageentertainment> manageentertainment { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managehealth_insurance> managehealth_insurance { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managemealplan> managemealplan { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managetransportchoice> managetransportchoice { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managetrips> managetrips { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageutilities> manageutilities { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managevisa> managevisa { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -1134,7 +1167,14 @@ public partial class currency_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public currency_master()
     {
-        this.trips = new HashSet<trips>();
+        this.manageaccomdationplan = new HashSet<manageaccomdationplan>();
+        this.manageentertainment = new HashSet<manageentertainment>();
+        this.managehealth_insurance = new HashSet<managehealth_insurance>();
+        this.managemealplan = new HashSet<managemealplan>();
+        this.managetransportchoice = new HashSet<managetransportchoice>();
+        this.managetrips = new HashSet<managetrips>();
+        this.manageutilities = new HashSet<manageutilities>();
+        this.managevisa = new HashSet<managevisa>();
     }
 
     public int id { get; set; }
@@ -1142,7 +1182,21 @@ public partial class currency_master
     public string currency_code { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<trips> trips { get; set; }
+    public virtual ICollection<manageaccomdationplan> manageaccomdationplan { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageentertainment> manageentertainment { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managehealth_insurance> managehealth_insurance { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managemealplan> managemealplan { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managetransportchoice> managetransportchoice { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managetrips> managetrips { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageutilities> manageutilities { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managevisa> managevisa { get; set; }
 }
 
 public partial class customfieldmaster
@@ -1208,8 +1262,17 @@ public partial class educationverificationcontactmaster
 
 public partial class entertainment
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public entertainment()
+    {
+        this.manageentertainment = new HashSet<manageentertainment>();
+    }
+
     public int id { get; set; }
     public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageentertainment> manageentertainment { get; set; }
 }
 
 public partial class facilitiesmaster
@@ -1597,6 +1660,21 @@ public partial class gte_videouploadmaster
     public string videourl { get; set; }
 }
 
+public partial class health_insurance
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public health_insurance()
+    {
+        this.managehealth_insurance = new HashSet<managehealth_insurance>();
+    }
+
+    public int id { get; set; }
+    public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managehealth_insurance> managehealth_insurance { get; set; }
+}
+
 public partial class inferencemaster
 {
     public int inferenceid { get; set; }
@@ -1630,10 +1708,131 @@ public partial class majordiscipline_master
     public virtual ICollection<coursemaster> coursemaster { get; set; }
 }
 
-public partial class managemeal
+public partial class manageaccomdationplan
 {
     public int id { get; set; }
+    public int accomdationid { get; set; }
+    public int currencyid { get; set; }
+    public int cityid { get; set; }
+    public decimal amount { get; set; }
+    public Nullable<System.DateTime> createdate { get; set; }
+
+    public virtual accommodationplan accommodationplan { get; set; }
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+}
+
+public partial class manageentertainment
+{
+    public int id { get; set; }
+    public Nullable<int> entertainmentid { get; set; }
+    public Nullable<int> currencyid { get; set; }
+    public Nullable<int> cityid { get; set; }
+    public Nullable<decimal> amount { get; set; }
+    public Nullable<System.DateTime> createddate { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+    public virtual entertainment entertainment { get; set; }
+}
+
+public partial class managehealth_insurance
+{
+    public int id { get; set; }
+    public int insuranceid { get; set; }
+    public int cityid { get; set; }
+    public int currencyid { get; set; }
+    public decimal amount { get; set; }
+    public Nullable<System.DateTime> createddate { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+    public virtual health_insurance health_insurance { get; set; }
+}
+
+public partial class managemeal
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public managemeal()
+    {
+        this.managemealplan = new HashSet<managemealplan>();
+    }
+
+    public int id { get; set; }
     public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managemealplan> managemealplan { get; set; }
+}
+
+public partial class managemealplan
+{
+    public int id { get; set; }
+    public int mealid { get; set; }
+    public int currencyid { get; set; }
+    public int cityid { get; set; }
+    public decimal amount { get; set; }
+    public Nullable<System.DateTime> createdate { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+    public virtual managemeal managemeal { get; set; }
+}
+
+public partial class managetransportchoice
+{
+    public int id { get; set; }
+    public int transportchoice { get; set; }
+    public int currencyid { get; set; }
+    public int cityid { get; set; }
+    public decimal amount { get; set; }
+    public Nullable<System.DateTime> createddate { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+    public virtual transportchoice transportchoice1 { get; set; }
+}
+
+public partial class managetrips
+{
+    public int id { get; set; }
+    public int tripid { get; set; }
+    public int currencyid { get; set; }
+    public int cityid { get; set; }
+    public decimal amount { get; set; }
+    public Nullable<System.DateTime> createddate { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+    public virtual trips trips { get; set; }
+}
+
+public partial class manageutilities
+{
+    public int id { get; set; }
+    public Nullable<int> utilityid { get; set; }
+    public Nullable<int> cityid { get; set; }
+    public Nullable<int> currencyid { get; set; }
+    public Nullable<decimal> amount { get; set; }
+    public Nullable<System.DateTime> createddate { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+    public virtual utilities utilities { get; set; }
+}
+
+public partial class managevisa
+{
+    public int id { get; set; }
+    public int visaid { get; set; }
+    public int cityid { get; set; }
+    public int currencyid { get; set; }
+    public decimal amount { get; set; }
+    public Nullable<System.DateTime> createddate { get; set; }
+
+    public virtual citymaster citymaster { get; set; }
+    public virtual currency_master currency_master { get; set; }
+    public virtual visa visa { get; set; }
 }
 
 public partial class maritalstatusmaster
@@ -1838,11 +2037,11 @@ public partial class students
     {
         this.admincomments = new HashSet<admincomments>();
         this.applicantcampaign = new HashSet<applicantcampaign>();
+        this.applicantdetails = new HashSet<applicantdetails>();
         this.customfieldvalue = new HashSet<customfieldvalue>();
         this.gte_applicantdocument = new HashSet<gte_applicantdocument>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
-        this.applicantdetails = new HashSet<applicantdetails>();
     }
 
     public int studentid { get; set; }
@@ -1864,6 +2063,8 @@ public partial class students
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<applicantcampaign> applicantcampaign { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantdetails> applicantdetails { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_applicantdocument> gte_applicantdocument { get; set; }
@@ -1872,8 +2073,6 @@ public partial class students
     public virtual studylevelmaster studylevelmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<applicantdetails> applicantdetails { get; set; }
 }
 
 public partial class studylevelmaster
@@ -1881,8 +2080,8 @@ public partial class studylevelmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public studylevelmaster()
     {
-        this.students = new HashSet<students>();
         this.coursemaster = new HashSet<coursemaster>();
+        this.students = new HashSet<students>();
     }
 
     public int studylevelid { get; set; }
@@ -1890,9 +2089,9 @@ public partial class studylevelmaster
     public string levelofcode { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<students> students { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<coursemaster> coursemaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<students> students { get; set; }
 }
 
 public partial class studymodemaster
@@ -1985,18 +2184,32 @@ public partial class tooltipmaster
 
 public partial class transportchoice
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public transportchoice()
+    {
+        this.managetransportchoice = new HashSet<managetransportchoice>();
+    }
+
     public int id { get; set; }
     public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managetransportchoice> managetransportchoice { get; set; }
 }
 
 public partial class trips
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public trips()
+    {
+        this.managetrips = new HashSet<managetrips>();
+    }
+
     public int id { get; set; }
     public string description { get; set; }
-    public int currency_id { get; set; }
-    public int trip_amount { get; set; }
 
-    public virtual currency_master currency_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managetrips> managetrips { get; set; }
 }
 
 public partial class tuitionAndlivingcostmaster
@@ -2185,6 +2398,36 @@ public partial class universitywisetooltipmaster
     public virtual formmaster formmaster { get; set; }
     public virtual primaryfieldmaster primaryfieldmaster { get; set; }
     public virtual university_master university_master { get; set; }
+}
+
+public partial class utilities
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public utilities()
+    {
+        this.manageutilities = new HashSet<manageutilities>();
+    }
+
+    public int id { get; set; }
+    public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<manageutilities> manageutilities { get; set; }
+}
+
+public partial class visa
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public visa()
+    {
+        this.managevisa = new HashSet<managevisa>();
+    }
+
+    public int id { get; set; }
+    public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<managevisa> managevisa { get; set; }
 }
 
 public partial class visatype

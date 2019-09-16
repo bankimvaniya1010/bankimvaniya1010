@@ -166,7 +166,14 @@
                                     <li class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">University</a>
                                         <div class="dropdown-menu">
-                                           
+                                             <a class="dropdown-item" href="manageaccomdation.aspx">Manage Accommodation Plan</a>
+                                              <a class="dropdown-item" href="managemealplan.aspx"> Manage Meal</a>
+                                              <a class="dropdown-item" href="managetransportchoice.aspx">Manage Transport Choice</a>
+                                              <a class="dropdown-item" href="managetrips.aspx">Manage Trips</a>
+                                              <a class="dropdown-item" href="manageentertainment.aspx">Manage Entertainment</a>
+                                              <a class="dropdown-item" href="managehealthinsurance.aspx">Manage Health Insurance</a>
+                                              <a class="dropdown-item" href="managevisa.aspx">Manage Visa</a>
+                                              <a class="dropdown-item" href="manageutilities.aspx">Manage Utilities</a>
                                             <a class="dropdown-item" href="createuniversity.aspx">Create University</a>
                                             <a class="dropdown-item" href="createuniversitycampus.aspx">Create University Campus</a>
                                             <a class="dropdown-item" href="createuniversitycrendentials.aspx">Add University credentials</a>
