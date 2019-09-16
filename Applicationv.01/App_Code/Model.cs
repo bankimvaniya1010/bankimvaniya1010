@@ -118,8 +118,17 @@ public partial class alternatedobproof
 
 public partial class alternateidproofmaster
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public alternateidproofmaster()
+    {
+        this.countrywisealternateidproofmaster = new HashSet<countrywisealternateidproofmaster>();
+    }
+
     public int id { get; set; }
     public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<countrywisealternateidproofmaster> countrywisealternateidproofmaster { get; set; }
 }
 
 public partial class answer_mastersecondarylanguage
@@ -1109,6 +1118,7 @@ public partial class countriesmaster
     public countriesmaster()
     {
         this.citymaster = new HashSet<citymaster>();
+        this.countrywisealternateidproofmaster = new HashSet<countrywisealternateidproofmaster>();
         this.qualificationcountriesmapping = new HashSet<qualificationcountriesmapping>();
     }
 
@@ -1120,7 +1130,19 @@ public partial class countriesmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<citymaster> citymaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<countrywisealternateidproofmaster> countrywisealternateidproofmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
+}
+
+public partial class countrywisealternateidproofmaster
+{
+    public int id { get; set; }
+    public Nullable<int> alternateidproofID { get; set; }
+    public Nullable<int> countryID { get; set; }
+
+    public virtual alternateidproofmaster alternateidproofmaster { get; set; }
+    public virtual countriesmaster countriesmaster { get; set; }
 }
 
 public partial class coursemaster

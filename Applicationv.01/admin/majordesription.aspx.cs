@@ -23,12 +23,14 @@ public partial class admin_majordesription : System.Web.UI.Page
         try
         {
             var MajorList = (from q in db.majordiscipline_master
+                             join um in db.university_master
+                             on q.universityid equals um.universityid
 
                              select new
                              {
                                  id = q.id,
                                  description = q.description,
-                                 universityid = q.universityid,
+                                 UniversityName = um.university_name,
                              }).ToList();
             if (MajorList != null)
             {

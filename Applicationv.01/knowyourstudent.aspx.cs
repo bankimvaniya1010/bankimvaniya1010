@@ -210,16 +210,19 @@ public partial class knowyourstudent : System.Web.UI.Page
     {
         try
         {
+            int countryofuser = 0;
+            var applicantdetails = db.applicantdetails.Where(x=>x.applicantid == userID).FirstOrDefault();
+            if (applicantdetails != null)
+                countryofuser = Convert.ToInt32(applicantdetails.countryofbirth);            
             ListItem lst = new ListItem("Please select", "0");
             var identitytype = (from ap in db.alternateidproofmaster
-                                join ump in db.universitywisemastermapping on ap.id equals ump.mastervalueid
-                                join mn in db.master_name on ump.masterid equals mn.masterid
-                                where ump.universityid == universityID && ump.masterid == 3
+                                join cwm in db.countrywisealternateidproofmaster on ap.id equals cwm.alternateidproofID                                
+                                where cwm.countryID == countryofuser
                                 select new
                                 {
                                     description = ap.description,
                                     id = ap.id
-                                }).ToList();
+                                }).Distinct().ToList();
 
             ddlalternateIdentitytype.DataSource = identitytype;
             ddlalternateIdentitytype.DataTextField = "description";

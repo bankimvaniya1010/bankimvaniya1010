@@ -22,14 +22,7 @@ public partial class admin_educationmediummaster : System.Web.UI.Page
     {
         try
         {
-            var MediumList = (from q in db.educationmediummaster
-
-                              select new
-                              {
-                                  id = q.id,
-                                  description = q.description,
-
-                              }).ToList();
+            var MediumList = db.educationmediummaster.Select(c => new { c.id, c.description }).OrderByDescending(c => c.description.Equals("english", StringComparison.OrdinalIgnoreCase)).ThenBy(c => c.description).ToList();
             if (MediumList != null)
             {
                 gvEducationMedium.DataSource = MediumList;
