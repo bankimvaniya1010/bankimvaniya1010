@@ -1063,7 +1063,7 @@
             <PropertyRef Name="courseid" />
           </Key>
           <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="coursename" Type="varchar" MaxLength="45" />
+          <Property Name="coursename" Type="varchar" MaxLength="200" />
           <Property Name="majordisciplineId" Type="int" />
           <Property Name="modeofstudyId" Type="int" />
           <Property Name="levelofstudyId" Type="int" />
@@ -1457,6 +1457,13 @@
           <Property Name="universityid" Type="int" />
           <Property Name="videourl" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="health_insurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="inferencemaster">
           <Key>
             <PropertyRef Name="inferenceid" />
@@ -1484,12 +1491,100 @@
           <Property Name="description" Type="varchar" MaxLength="45" />
           <Property Name="universityid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="manageaccomdationplan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accomdationid" Type="int" Nullable="false" />
+          <Property Name="currencyid" Type="int" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="createdate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="manageentertainment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="entertainmentid" Type="int" />
+          <Property Name="currencyid" Type="int" />
+          <Property Name="cityid" Type="int" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="managehealth_insurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="insuranceid" Type="int" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="currencyid" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="managemeal">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="managemealplan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mealid" Type="int" Nullable="false" />
+          <Property Name="currencyid" Type="int" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="createdate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="managetransportchoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="transportchoice" Type="int" Nullable="false" />
+          <Property Name="currencyid" Type="int" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="createddate" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="managetrips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tripid" Type="int" Nullable="false" />
+          <Property Name="currencyid" Type="int" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="createddate" Type="timestamp" Precision="0" />
+        </EntityType>
+        <EntityType Name="manageutilities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="utilityid" Type="int" />
+          <Property Name="cityid" Type="int" />
+          <Property Name="currencyid" Type="int" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="managevisa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="visaid" Type="int" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="currencyid" Type="int" Nullable="false" />
+          <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="maritalstatusmaster">
           <Key>
@@ -1749,8 +1844,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" />
-          <Property Name="currency_id" Type="int" Nullable="false" />
-          <Property Name="trip_amount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tuitionAndlivingcostmaster">
           <Key>
@@ -1885,6 +1978,20 @@
           <Property Name="tooltips" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="formid" Type="int" Nullable="false" />
           <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="utilities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="visa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="visatype">
           <Key>
@@ -2262,6 +2369,294 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_manageaccomdationplan_accomation">
+          <End Role="accommodationplan" Type="Self.accommodationplan" Multiplicity="1" />
+          <End Role="manageaccomdationplan" Type="Self.manageaccomdationplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accommodationplan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageaccomdationplan">
+              <PropertyRef Name="accomdationid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_manageaccomdationplan_citymaster">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
+          <End Role="manageaccomdationplan" Type="Self.manageaccomdationplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="manageaccomdationplan">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageaccomdationplan_cureency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
+          <End Role="manageaccomdationplan" Type="Self.manageaccomdationplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageaccomdationplan">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageentertainment_city">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="0..1" />
+          <End Role="manageentertainment" Type="Self.manageentertainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="manageentertainment">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageentertainment_currency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="0..1" />
+          <End Role="manageentertainment" Type="Self.manageentertainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageentertainment">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageentertainment_entertainment">
+          <End Role="entertainment" Type="Self.entertainment" Multiplicity="0..1" />
+          <End Role="manageentertainment" Type="Self.manageentertainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entertainment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageentertainment">
+              <PropertyRef Name="entertainmentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managehealth_insurance_city">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
+          <End Role="managehealth_insurance" Type="Self.managehealth_insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managehealth_insurance">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managehealth_insurance_currency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
+          <End Role="managehealth_insurance" Type="Self.managehealth_insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managehealth_insurance">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managehealth_insurance_health">
+          <End Role="health_insurance" Type="Self.health_insurance" Multiplicity="1" />
+          <End Role="managehealth_insurance" Type="Self.managehealth_insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="health_insurance">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managehealth_insurance">
+              <PropertyRef Name="insuranceid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managemealplan_city">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
+          <End Role="managemealplan" Type="Self.managemealplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managemealplan">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managemealplan_currency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
+          <End Role="managemealplan" Type="Self.managemealplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managemealplan">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managemealplan_meal">
+          <End Role="managemeal" Type="Self.managemeal" Multiplicity="1" />
+          <End Role="managemealplan" Type="Self.managemealplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managemeal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managemealplan">
+              <PropertyRef Name="mealid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetransportchoice_city">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
+          <End Role="managetransportchoice" Type="Self.managetransportchoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managetransportchoice">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetransportchoice_currency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
+          <End Role="managetransportchoice" Type="Self.managetransportchoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetransportchoice">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetransportchoice_transportchoice">
+          <End Role="transportchoice" Type="Self.transportchoice" Multiplicity="1" />
+          <End Role="managetransportchoice" Type="Self.managetransportchoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transportchoice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetransportchoice">
+              <PropertyRef Name="transportchoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetrips_city">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
+          <End Role="managetrips" Type="Self.managetrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managetrips">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetrips_currency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
+          <End Role="managetrips" Type="Self.managetrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetrips">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetrips_trips">
+          <End Role="trips" Type="Self.trips" Multiplicity="1" />
+          <End Role="managetrips" Type="Self.managetrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trips">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetrips">
+              <PropertyRef Name="tripid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageutilities_city">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="0..1" />
+          <End Role="manageutilities" Type="Self.manageutilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="manageutilities">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageutilities_currency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="0..1" />
+          <End Role="manageutilities" Type="Self.manageutilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageutilities">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageutilities_utilities">
+          <End Role="utilities" Type="Self.utilities" Multiplicity="0..1" />
+          <End Role="manageutilities" Type="Self.manageutilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="utilities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageutilities">
+              <PropertyRef Name="utilityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managevisa_city">
+          <End Role="citymaster" Type="Self.citymaster" Multiplicity="1" />
+          <End Role="managevisa" Type="Self.managevisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managevisa">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managevisa_currency">
+          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
+          <End Role="managevisa" Type="Self.managevisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managevisa">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managevisa_visa">
+          <End Role="visa" Type="Self.visa" Multiplicity="1" />
+          <End Role="managevisa" Type="Self.managevisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managevisa">
+              <PropertyRef Name="visaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_mapping_campusdetail">
           <End Role="universitycampus" Type="Self.universitycampus" Multiplicity="1" />
           <End Role="facility_campus_mapping" Type="Self.facility_campus_mapping" Multiplicity="*" />
@@ -2526,18 +2921,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_trip_currencyMaster">
-          <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
-          <End Role="trips" Type="Self.trips" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="currency_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="trips">
-              <PropertyRef Name="currency_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_university_clarificationquestion_mapping">
           <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
           <End Role="clarificationquestion_university_mapping" Type="Self.clarificationquestion_university_mapping" Multiplicity="*" />
@@ -2699,10 +3082,19 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="gte_student_sop" EntityType="Self.gte_student_sop" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_tutorialmaster" EntityType="Self.gte_tutorialmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_videouploadmaster" EntityType="Self.gte_videouploadmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="health_insurance" EntityType="Self.health_insurance" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="majordiscipline_master" EntityType="Self.majordiscipline_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="manageaccomdationplan" EntityType="Self.manageaccomdationplan" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="manageentertainment" EntityType="Self.manageentertainment" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="managehealth_insurance" EntityType="Self.managehealth_insurance" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="managemeal" EntityType="Self.managemeal" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="managemealplan" EntityType="Self.managemealplan" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="managetransportchoice" EntityType="Self.managetransportchoice" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="managetrips" EntityType="Self.managetrips" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="manageutilities" EntityType="Self.manageutilities" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="managevisa" EntityType="Self.managevisa" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="maritalstatusmaster" EntityType="Self.maritalstatusmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="master_name" EntityType="Self.master_name" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="preliminary_questionmaster" EntityType="Self.preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
@@ -2743,6 +3135,8 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisetooltipmaster" EntityType="Self.universitywisetooltipmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="utilities" EntityType="Self.utilities" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="visa" EntityType="Self.visa" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="visatype" EntityType="Self.visatype" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="workexperienceyearsmaster" EntityType="Self.workexperienceyearsmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="GTE_documentverification" EntityType="Self.GTE_documentverification" store:Type="Views" store:Schema="GTE" store:Name="GTE.documentverification">
@@ -2872,6 +3266,102 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="formmaster" EntitySet="formmaster" />
             <End Role="admincomments" EntitySet="admincomments" />
           </AssociationSet>
+          <AssociationSet Name="fk_manageaccomdationplan_accomation" Association="Self.fk_manageaccomdationplan_accomation">
+            <End Role="accommodationplan" EntitySet="accommodationplan" />
+            <End Role="manageaccomdationplan" EntitySet="manageaccomdationplan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_manageaccomdationplan_citymaster" Association="Self.FK_manageaccomdationplan_citymaster">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="manageaccomdationplan" EntitySet="manageaccomdationplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageaccomdationplan_cureency" Association="Self.fk_manageaccomdationplan_cureency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="manageaccomdationplan" EntitySet="manageaccomdationplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageentertainment_city" Association="Self.fk_manageentertainment_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="manageentertainment" EntitySet="manageentertainment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageentertainment_currency" Association="Self.fk_manageentertainment_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="manageentertainment" EntitySet="manageentertainment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageentertainment_entertainment" Association="Self.fk_manageentertainment_entertainment">
+            <End Role="entertainment" EntitySet="entertainment" />
+            <End Role="manageentertainment" EntitySet="manageentertainment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managehealth_insurance_city" Association="Self.fk_managehealth_insurance_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managehealth_insurance" EntitySet="managehealth_insurance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managehealth_insurance_currency" Association="Self.fk_managehealth_insurance_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managehealth_insurance" EntitySet="managehealth_insurance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managehealth_insurance_health" Association="Self.fk_managehealth_insurance_health">
+            <End Role="health_insurance" EntitySet="health_insurance" />
+            <End Role="managehealth_insurance" EntitySet="managehealth_insurance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managemealplan_city" Association="Self.fk_managemealplan_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managemealplan" EntitySet="managemealplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managemealplan_currency" Association="Self.fk_managemealplan_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managemealplan" EntitySet="managemealplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managemealplan_meal" Association="Self.fk_managemealplan_meal">
+            <End Role="managemeal" EntitySet="managemeal" />
+            <End Role="managemealplan" EntitySet="managemealplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetransportchoice_city" Association="Self.fk_managetransportchoice_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managetransportchoice" EntitySet="managetransportchoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetransportchoice_currency" Association="Self.fk_managetransportchoice_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managetransportchoice" EntitySet="managetransportchoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetransportchoice_transportchoice" Association="Self.fk_managetransportchoice_transportchoice">
+            <End Role="transportchoice" EntitySet="transportchoice" />
+            <End Role="managetransportchoice" EntitySet="managetransportchoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetrips_city" Association="Self.fk_managetrips_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managetrips" EntitySet="managetrips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetrips_currency" Association="Self.fk_managetrips_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managetrips" EntitySet="managetrips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetrips_trips" Association="Self.fk_managetrips_trips">
+            <End Role="trips" EntitySet="trips" />
+            <End Role="managetrips" EntitySet="managetrips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageutilities_city" Association="Self.fk_manageutilities_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="manageutilities" EntitySet="manageutilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageutilities_currency" Association="Self.fk_manageutilities_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="manageutilities" EntitySet="manageutilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageutilities_utilities" Association="Self.fk_manageutilities_utilities">
+            <End Role="utilities" EntitySet="utilities" />
+            <End Role="manageutilities" EntitySet="manageutilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managevisa_city" Association="Self.fk_managevisa_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managevisa" EntitySet="managevisa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managevisa_currency" Association="Self.fk_managevisa_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managevisa" EntitySet="managevisa" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managevisa_visa" Association="Self.fk_managevisa_visa">
+            <End Role="visa" EntitySet="visa" />
+            <End Role="managevisa" EntitySet="managevisa" />
+          </AssociationSet>
           <AssociationSet Name="FK_mapping_campusdetail" Association="Self.FK_mapping_campusdetail">
             <End Role="universitycampus" EntitySet="universitycampus" />
             <End Role="facility_campus_mapping" EntitySet="facility_campus_mapping" />
@@ -2960,10 +3450,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
             <End Role="tooltipmaster" EntitySet="tooltipmaster" />
           </AssociationSet>
-          <AssociationSet Name="FK_trip_currencyMaster" Association="Self.FK_trip_currencyMaster">
-            <End Role="currency_master" EntitySet="currency_master" />
-            <End Role="trips" EntitySet="trips" />
-          </AssociationSet>
           <AssociationSet Name="FK_university_clarificationquestion_mapping" Association="Self.FK_university_clarificationquestion_mapping">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="clarificationquestion_university_mapping" EntitySet="clarificationquestion_university_mapping" />
@@ -3017,9 +3503,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="answeroptionssecondary" EntityType="GTEModel.answeroptionssecondary" />
           <EntitySet Name="applcantdetailfieldvalidationmaster" EntityType="GTEModel.applcantdetailfieldvalidationmaster" />
           <EntitySet Name="applicant_education" EntityType="GTEModel.applicant_education" />
+          <EntitySet Name="applicant_scholarships" EntityType="GTEModel.applicant_scholarships" />
           <EntitySet Name="applicantcampaign" EntityType="GTEModel.applicantcampaign" />
           <EntitySet Name="applicantdatavalidation" EntityType="GTEModel.applicantdatavalidation" />
           <EntitySet Name="applicantdetails" EntityType="GTEModel.applicantdetails" />
+          <EntitySet Name="applicantdocumentmaster" EntityType="GTEModel.applicantdocumentmaster" />
           <EntitySet Name="applicanteducationdetails" EntityType="GTEModel.applicanteducationdetails" />
           <EntitySet Name="applicantemployerdetails" EntityType="GTEModel.applicantemployerdetails" />
           <EntitySet Name="applicantformmaster" EntityType="GTEModel.applicantformmaster" />
@@ -3044,8 +3532,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="clarificationquestionsmaster" EntityType="GTEModel.clarificationquestionsmaster" />
           <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
+          <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           <EntitySet Name="coursetypemaster" EntityType="GTEModel.coursetypemaster" />
           <EntitySet Name="credentialmaster" EntityType="GTEModel.credentialmaster" />
+          <EntitySet Name="currency_master" EntityType="GTEModel.currency_master" />
           <EntitySet Name="customfieldmaster" EntityType="GTEModel.customfieldmaster" />
           <EntitySet Name="customfieldvalue" EntityType="GTEModel.customfieldvalue" />
           <EntitySet Name="disabilitymaster" EntityType="GTEModel.disabilitymaster" />
@@ -3079,10 +3569,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="gte_student_sop" EntityType="GTEModel.gte_student_sop" />
           <EntitySet Name="gte_tutorialmaster" EntityType="GTEModel.gte_tutorialmaster" />
           <EntitySet Name="gte_videouploadmaster" EntityType="GTEModel.gte_videouploadmaster" />
+          <EntitySet Name="health_insurance" EntityType="GTEModel.health_insurance" />
           <EntitySet Name="inferencemaster" EntityType="GTEModel.inferencemaster" />
           <EntitySet Name="invalidatamaster" EntityType="GTEModel.invalidatamaster" />
           <EntitySet Name="majordiscipline_master" EntityType="GTEModel.majordiscipline_master" />
+          <EntitySet Name="manageaccomdationplan" EntityType="GTEModel.manageaccomdationplan" />
+          <EntitySet Name="manageentertainment" EntityType="GTEModel.manageentertainment" />
+          <EntitySet Name="managehealth_insurance" EntityType="GTEModel.managehealth_insurance" />
           <EntitySet Name="managemeal" EntityType="GTEModel.managemeal" />
+          <EntitySet Name="managemealplan" EntityType="GTEModel.managemealplan" />
+          <EntitySet Name="managetransportchoice" EntityType="GTEModel.managetransportchoice" />
+          <EntitySet Name="managetrips" EntityType="GTEModel.managetrips" />
+          <EntitySet Name="manageutilities" EntityType="GTEModel.manageutilities" />
+          <EntitySet Name="managevisa" EntityType="GTEModel.managevisa" />
           <EntitySet Name="maritalstatusmaster" EntityType="GTEModel.maritalstatusmaster" />
           <EntitySet Name="master_name" EntityType="GTEModel.master_name" />
           <EntitySet Name="preliminary_questionmaster" EntityType="GTEModel.preliminary_questionmaster" />
@@ -3096,6 +3595,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="registrationcourses" EntityType="GTEModel.registrationcourses" />
           <EntitySet Name="relative_master" EntityType="GTEModel.relative_master" />
           <EntitySet Name="rolemaster" EntityType="GTEModel.rolemaster" />
+          <EntitySet Name="scholarships" EntityType="GTEModel.scholarships" />
           <EntitySet Name="secondarylanguagemaster" EntityType="GTEModel.secondarylanguagemaster" />
           <EntitySet Name="studentcoursemapping" EntityType="GTEModel.studentcoursemapping" />
           <EntitySet Name="students" EntityType="GTEModel.students" />
@@ -3122,8 +3622,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="universitywiseformmapping" EntityType="GTEModel.universitywiseformmapping" />
           <EntitySet Name="universitywisemastermapping" EntityType="GTEModel.universitywisemastermapping" />
           <EntitySet Name="universitywisetooltipmaster" EntityType="GTEModel.universitywisetooltipmaster" />
+          <EntitySet Name="utilities" EntityType="GTEModel.utilities" />
+          <EntitySet Name="visa" EntityType="GTEModel.visa" />
           <EntitySet Name="visatype" EntityType="GTEModel.visatype" />
           <EntitySet Name="workexperienceyearsmaster" EntityType="GTEModel.workexperienceyearsmaster" />
+          <AssociationSet Name="fk_manageaccomdationplan_accomation" Association="GTEModel.fk_manageaccomdationplan_accomation">
+            <End Role="accommodationplan" EntitySet="accommodationplan" />
+            <End Role="manageaccomdationplan" EntitySet="manageaccomdationplan" />
+          </AssociationSet>
           <AssociationSet Name="fk_adminusers_admincomments" Association="GTEModel.fk_adminusers_admincomments">
             <End Role="adminusers" EntitySet="adminusers" />
             <End Role="admincomments" EntitySet="admincomments" />
@@ -3168,9 +3674,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="adminusers" EntitySet="adminusers" />
             <End Role="supervisorcomments" EntitySet="supervisorcomments" />
           </AssociationSet>
+          <AssociationSet Name="FK_applicantScholarship_scholarships" Association="GTEModel.FK_applicantScholarship_scholarships">
+            <End Role="scholarships" EntitySet="scholarships" />
+            <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
+          </AssociationSet>
           <AssociationSet Name="fk_applicantcampaign_students" Association="GTEModel.fk_applicantcampaign_students">
             <End Role="students" EntitySet="students" />
             <End Role="applicantcampaign" EntitySet="applicantcampaign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantdetails_students" Association="GTEModel.FK_applicantdetails_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantdetails" EntitySet="applicantdetails" />
           </AssociationSet>
           <AssociationSet Name="FK_applicantvisadetails_university_master" Association="GTEModel.FK_applicantvisadetails_university_master">
             <End Role="university_master" EntitySet="university_master" />
@@ -3179,6 +3693,38 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_cityMaster_countriesMaster" Association="GTEModel.FK_cityMaster_countriesMaster">
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="citymaster" EntitySet="citymaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_manageaccomdationplan_citymaster" Association="GTEModel.FK_manageaccomdationplan_citymaster">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="manageaccomdationplan" EntitySet="manageaccomdationplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageentertainment_city" Association="GTEModel.fk_manageentertainment_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="manageentertainment" EntitySet="manageentertainment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managehealth_insurance_city" Association="GTEModel.fk_managehealth_insurance_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managehealth_insurance" EntitySet="managehealth_insurance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managemealplan_city" Association="GTEModel.fk_managemealplan_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managemealplan" EntitySet="managemealplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetransportchoice_city" Association="GTEModel.fk_managetransportchoice_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managetransportchoice" EntitySet="managetransportchoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetrips_city" Association="GTEModel.fk_managetrips_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managetrips" EntitySet="managetrips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageutilities_city" Association="GTEModel.fk_manageutilities_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="manageutilities" EntitySet="manageutilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managevisa_city" Association="GTEModel.fk_managevisa_city">
+            <End Role="citymaster" EntitySet="citymaster" />
+            <End Role="managevisa" EntitySet="managevisa" />
           </AssociationSet>
           <AssociationSet Name="FK_mapping_citymaster" Association="GTEModel.FK_mapping_citymaster">
             <End Role="citymaster" EntitySet="citymaster" />
@@ -3200,6 +3746,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="qualificationcountriesmapping" EntitySet="qualificationcountriesmapping" />
           </AssociationSet>
+          <AssociationSet Name="FK_coursemaster_majordiscipline_master" Association="GTEModel.FK_coursemaster_majordiscipline_master">
+            <End Role="majordiscipline_master" EntitySet="majordiscipline_master" />
+            <End Role="coursemaster" EntitySet="coursemaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_coursemaster_studylevelmaster" Association="GTEModel.FK_coursemaster_studylevelmaster">
+            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
+            <End Role="coursemaster" EntitySet="coursemaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_coursemaster_studymodemaster" Association="GTEModel.FK_coursemaster_studymodemaster">
+            <End Role="studymodemaster" EntitySet="studymodemaster" />
+            <End Role="coursemaster" EntitySet="coursemaster" />
+          </AssociationSet>
           <AssociationSet Name="FK_coursetypemaster_university_master" Association="GTEModel.FK_coursetypemaster_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="coursetypemaster" EntitySet="coursetypemaster" />
@@ -3207,6 +3765,38 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_credential_university" Association="GTEModel.FK_credential_university">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="credentialmaster" EntitySet="credentialmaster" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageaccomdationplan_cureency" Association="GTEModel.fk_manageaccomdationplan_cureency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="manageaccomdationplan" EntitySet="manageaccomdationplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageentertainment_currency" Association="GTEModel.fk_manageentertainment_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="manageentertainment" EntitySet="manageentertainment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managehealth_insurance_currency" Association="GTEModel.fk_managehealth_insurance_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managehealth_insurance" EntitySet="managehealth_insurance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managemealplan_currency" Association="GTEModel.fk_managemealplan_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managemealplan" EntitySet="managemealplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetransportchoice_currency" Association="GTEModel.fk_managetransportchoice_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managetransportchoice" EntitySet="managetransportchoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetrips_currency" Association="GTEModel.fk_managetrips_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managetrips" EntitySet="managetrips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageutilities_currency" Association="GTEModel.fk_manageutilities_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="manageutilities" EntitySet="manageutilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managevisa_currency" Association="GTEModel.fk_managevisa_currency">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="managevisa" EntitySet="managevisa" />
           </AssociationSet>
           <AssociationSet Name="FK_customfieldmaster_formmaster" Association="GTEModel.FK_customfieldmaster_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
@@ -3223,6 +3813,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_customfieldvalue_students" Association="GTEModel.FK_customfieldvalue_students">
             <End Role="students" EntitySet="students" />
             <End Role="customfieldvalue" EntitySet="customfieldvalue" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageentertainment_entertainment" Association="GTEModel.fk_manageentertainment_entertainment">
+            <End Role="entertainment" EntitySet="entertainment" />
+            <End Role="manageentertainment" EntitySet="manageentertainment" />
           </AssociationSet>
           <AssociationSet Name="FK_mapping_facilitiesMaster" Association="GTEModel.FK_mapping_facilitiesMaster">
             <End Role="facilitiesmaster" EntitySet="facilitiesmaster" />
@@ -3275,6 +3869,30 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_reportFeedBack_studentSop" Association="GTEModel.FK_reportFeedBack_studentSop">
             <End Role="gte_student_sop" EntitySet="gte_student_sop" />
             <End Role="gte_report_admin_comment" EntitySet="gte_report_admin_comment" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managehealth_insurance_health" Association="GTEModel.fk_managehealth_insurance_health">
+            <End Role="health_insurance" EntitySet="health_insurance" />
+            <End Role="managehealth_insurance" EntitySet="managehealth_insurance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managemealplan_meal" Association="GTEModel.fk_managemealplan_meal">
+            <End Role="managemeal" EntitySet="managemeal" />
+            <End Role="managemealplan" EntitySet="managemealplan" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetransportchoice_transportchoice" Association="GTEModel.fk_managetransportchoice_transportchoice">
+            <End Role="transportchoice" EntitySet="transportchoice" />
+            <End Role="managetransportchoice" EntitySet="managetransportchoice" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managetrips_trips" Association="GTEModel.fk_managetrips_trips">
+            <End Role="trips" EntitySet="trips" />
+            <End Role="managetrips" EntitySet="managetrips" />
+          </AssociationSet>
+          <AssociationSet Name="fk_manageutilities_utilities" Association="GTEModel.fk_manageutilities_utilities">
+            <End Role="utilities" EntitySet="utilities" />
+            <End Role="manageutilities" EntitySet="manageutilities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_managevisa_visa" Association="GTEModel.fk_managevisa_visa">
+            <End Role="visa" EntitySet="visa" />
+            <End Role="managevisa" EntitySet="managevisa" />
           </AssociationSet>
           <AssociationSet Name="FK_tooltips_primaryfieldmaster" Association="GTEModel.FK_tooltips_primaryfieldmaster">
             <End Role="primaryfieldmaster" EntitySet="primaryfieldmaster" />
@@ -3332,35 +3950,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="universitycampus" EntitySet="universitycampus" />
             <End Role="universitycampus_city_mapping" EntitySet="universitycampus_city_mapping" />
           </AssociationSet>
-          <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
-          <EntitySet Name="currency_master" EntityType="GTEModel.currency_master" />
-          <AssociationSet Name="FK_applicantdetails_students" Association="GTEModel.FK_applicantdetails_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantdetails" EntitySet="applicantdetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_coursemaster_majordiscipline_master" Association="GTEModel.FK_coursemaster_majordiscipline_master">
-            <End Role="majordiscipline_master" EntitySet="majordiscipline_master" />
-            <End Role="coursemaster" EntitySet="coursemaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_coursemaster_studylevelmaster" Association="GTEModel.FK_coursemaster_studylevelmaster">
-            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
-            <End Role="coursemaster" EntitySet="coursemaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_coursemaster_studymodemaster" Association="GTEModel.FK_coursemaster_studymodemaster">
-            <End Role="studymodemaster" EntitySet="studymodemaster" />
-            <End Role="coursemaster" EntitySet="coursemaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_trip_currencyMaster" Association="GTEModel.FK_trip_currencyMaster">
-            <End Role="currency_master" EntitySet="currency_master" />
-            <End Role="trips" EntitySet="trips" />
-          </AssociationSet>
-          <EntitySet Name="scholarships" EntityType="GTEModel.scholarships" />
-          <EntitySet Name="applicant_scholarships" EntityType="GTEModel.applicant_scholarships" />
-          <AssociationSet Name="FK_applicantScholarship_scholarships" Association="GTEModel.FK_applicantScholarship_scholarships">
-            <End Role="scholarships" EntitySet="scholarships" />
-            <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
-          </AssociationSet>
-          <EntitySet Name="applicantdocumentmaster" EntityType="GTEModel.applicantdocumentmaster" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -3380,6 +3969,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="manageaccomdationplan" Relationship="GTEModel.fk_manageaccomdationplan_accomation" FromRole="accommodationplan" ToRole="manageaccomdationplan" />
         </EntityType>
         <EntityType Name="admincomments">
           <Key>
@@ -3522,6 +4112,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="repeats_backlog" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="othercourse_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="applicant_scholarships">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="scholarship_id" Type="Int32" Nullable="false" />
+          <Property Name="upload_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="approval_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="applicant_scholarships" ToRole="scholarships" />
+        </EntityType>
         <EntityType Name="applicantcampaign">
           <Key>
             <PropertyRef Name="campaignid" />
@@ -3651,6 +4253,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="studentsegment" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="studentstatus" Type="Int32" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdetails_students" FromRole="applicantdetails" ToRole="students" />
+        </EntityType>
+        <EntityType Name="applicantdocumentmaster">
+          <Key>
+            <PropertyRef Name="documentid" />
+          </Key>
+          <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="documentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="uploadedtime" Type="DateTime" />
+          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -4387,6 +5000,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="name" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="country_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="citymaster" ToRole="countriesmaster" />
+          <NavigationProperty Name="manageaccomdationplan" Relationship="GTEModel.FK_manageaccomdationplan_citymaster" FromRole="citymaster" ToRole="manageaccomdationplan" />
+          <NavigationProperty Name="manageentertainment" Relationship="GTEModel.fk_manageentertainment_city" FromRole="citymaster" ToRole="manageentertainment" />
+          <NavigationProperty Name="managehealth_insurance" Relationship="GTEModel.fk_managehealth_insurance_city" FromRole="citymaster" ToRole="managehealth_insurance" />
+          <NavigationProperty Name="managemealplan" Relationship="GTEModel.fk_managemealplan_city" FromRole="citymaster" ToRole="managemealplan" />
+          <NavigationProperty Name="managetransportchoice" Relationship="GTEModel.fk_managetransportchoice_city" FromRole="citymaster" ToRole="managetransportchoice" />
+          <NavigationProperty Name="managetrips" Relationship="GTEModel.fk_managetrips_city" FromRole="citymaster" ToRole="managetrips" />
+          <NavigationProperty Name="manageutilities" Relationship="GTEModel.fk_manageutilities_city" FromRole="citymaster" ToRole="manageutilities" />
+          <NavigationProperty Name="managevisa" Relationship="GTEModel.fk_managevisa_city" FromRole="citymaster" ToRole="managevisa" />
           <NavigationProperty Name="universitycampus_city_mapping" Relationship="GTEModel.FK_mapping_citymaster" FromRole="citymaster" ToRole="universitycampus_city_mapping" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universityMaster_cityMaster" FromRole="citymaster" ToRole="university_master" />
         </EntityType>
@@ -4428,6 +5049,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
           <NavigationProperty Name="qualificationcountriesmapping" Relationship="GTEModel.FK_qualificationcountriesmapping_countriesmaster" FromRole="countriesmaster" ToRole="qualificationcountriesmapping" />
         </EntityType>
+        <EntityType Name="coursemaster">
+          <Key>
+            <PropertyRef Name="courseid" />
+          </Key>
+          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursename" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="majordisciplineId" Type="Int32" />
+          <Property Name="modeofstudyId" Type="Int32" />
+          <Property Name="levelofstudyId" Type="Int32" />
+          <Property Name="coursefee" Type="Decimal" />
+          <NavigationProperty Name="majordiscipline_master" Relationship="GTEModel.FK_coursemaster_majordiscipline_master" FromRole="coursemaster" ToRole="majordiscipline_master" />
+          <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="coursemaster" ToRole="studylevelmaster" />
+          <NavigationProperty Name="studymodemaster" Relationship="GTEModel.FK_coursemaster_studymodemaster" FromRole="coursemaster" ToRole="studymodemaster" />
+        </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
             <PropertyRef Name="coursetypeid" />
@@ -4452,6 +5087,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="rank_improved" Type="Boolean" Nullable="false" />
           <Property Name="university_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_credential_university" FromRole="credentialmaster" ToRole="university_master" />
+        </EntityType>
+        <EntityType Name="currency_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="currency_symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="currency_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="manageaccomdationplan" Relationship="GTEModel.fk_manageaccomdationplan_cureency" FromRole="currency_master" ToRole="manageaccomdationplan" />
+          <NavigationProperty Name="manageentertainment" Relationship="GTEModel.fk_manageentertainment_currency" FromRole="currency_master" ToRole="manageentertainment" />
+          <NavigationProperty Name="managehealth_insurance" Relationship="GTEModel.fk_managehealth_insurance_currency" FromRole="currency_master" ToRole="managehealth_insurance" />
+          <NavigationProperty Name="managemealplan" Relationship="GTEModel.fk_managemealplan_currency" FromRole="currency_master" ToRole="managemealplan" />
+          <NavigationProperty Name="managetransportchoice" Relationship="GTEModel.fk_managetransportchoice_currency" FromRole="currency_master" ToRole="managetransportchoice" />
+          <NavigationProperty Name="managetrips" Relationship="GTEModel.fk_managetrips_currency" FromRole="currency_master" ToRole="managetrips" />
+          <NavigationProperty Name="manageutilities" Relationship="GTEModel.fk_manageutilities_currency" FromRole="currency_master" ToRole="manageutilities" />
+          <NavigationProperty Name="managevisa" Relationship="GTEModel.fk_managevisa_currency" FromRole="currency_master" ToRole="managevisa" />
         </EntityType>
         <EntityType Name="customfieldmaster">
           <Key>
@@ -4517,6 +5168,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="manageentertainment" Relationship="GTEModel.fk_manageentertainment_entertainment" FromRole="entertainment" ToRole="manageentertainment" />
         </EntityType>
         <EntityType Name="facilitiesmaster">
           <Key>
@@ -4750,9 +5402,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="applicant_id" Type="Int32" Nullable="false" />
           <Property Name="university_id" Type="Int32" Nullable="false" />
           <Property Name="applicant_response_time" Type="Int32" Nullable="false" />
+          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="gte_answer_master" Relationship="GTEModel.FK_resposne_answer" FromRole="gte_questions_applicant_response" ToRole="gte_answer_master" />
           <NavigationProperty Name="gte_questions_master" Relationship="GTEModel.FK_response_question" FromRole="gte_questions_applicant_response" ToRole="gte_questions_master" />
-          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="gte_questions_master">
           <Key>
@@ -4840,6 +5492,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universityid" Type="Int32" />
           <Property Name="videourl" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="health_insurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="managehealth_insurance" Relationship="GTEModel.fk_managehealth_insurance_health" FromRole="health_insurance" ToRole="managehealth_insurance" />
+        </EntityType>
         <EntityType Name="inferencemaster">
           <Key>
             <PropertyRef Name="inferenceid" />
@@ -4868,12 +5528,125 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universityid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_coursemaster_majordiscipline_master" FromRole="majordiscipline_master" ToRole="coursemaster" />
         </EntityType>
+        <EntityType Name="manageaccomdationplan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accomdationid" Type="Int32" Nullable="false" />
+          <Property Name="currencyid" Type="Int32" Nullable="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" />
+          <Property Name="createdate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="accommodationplan" Relationship="GTEModel.fk_manageaccomdationplan_accomation" FromRole="manageaccomdationplan" ToRole="accommodationplan" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_manageaccomdationplan_citymaster" FromRole="manageaccomdationplan" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_manageaccomdationplan_cureency" FromRole="manageaccomdationplan" ToRole="currency_master" />
+        </EntityType>
+        <EntityType Name="manageentertainment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="entertainmentid" Type="Int32" />
+          <Property Name="currencyid" Type="Int32" />
+          <Property Name="cityid" Type="Int32" />
+          <Property Name="amount" Type="Decimal" />
+          <Property Name="createddate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_manageentertainment_city" FromRole="manageentertainment" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_manageentertainment_currency" FromRole="manageentertainment" ToRole="currency_master" />
+          <NavigationProperty Name="entertainment" Relationship="GTEModel.fk_manageentertainment_entertainment" FromRole="manageentertainment" ToRole="entertainment" />
+        </EntityType>
+        <EntityType Name="managehealth_insurance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="insuranceid" Type="Int32" Nullable="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="currencyid" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" />
+          <Property Name="createddate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managehealth_insurance_city" FromRole="managehealth_insurance" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managehealth_insurance_currency" FromRole="managehealth_insurance" ToRole="currency_master" />
+          <NavigationProperty Name="health_insurance" Relationship="GTEModel.fk_managehealth_insurance_health" FromRole="managehealth_insurance" ToRole="health_insurance" />
+        </EntityType>
         <EntityType Name="managemeal">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="managemealplan" Relationship="GTEModel.fk_managemealplan_meal" FromRole="managemeal" ToRole="managemealplan" />
+        </EntityType>
+        <EntityType Name="managemealplan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mealid" Type="Int32" Nullable="false" />
+          <Property Name="currencyid" Type="Int32" Nullable="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" />
+          <Property Name="createdate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managemealplan_city" FromRole="managemealplan" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managemealplan_currency" FromRole="managemealplan" ToRole="currency_master" />
+          <NavigationProperty Name="managemeal" Relationship="GTEModel.fk_managemealplan_meal" FromRole="managemealplan" ToRole="managemeal" />
+        </EntityType>
+        <EntityType Name="managetransportchoice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="transportchoice" Type="Int32" Nullable="false" />
+          <Property Name="currencyid" Type="Int32" Nullable="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" />
+          <Property Name="createddate" Type="DateTime" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managetransportchoice_city" FromRole="managetransportchoice" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managetransportchoice_currency" FromRole="managetransportchoice" ToRole="currency_master" />
+          <NavigationProperty Name="transportchoice1" Relationship="GTEModel.fk_managetransportchoice_transportchoice" FromRole="managetransportchoice" ToRole="transportchoice" />
+        </EntityType>
+        <EntityType Name="managetrips">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tripid" Type="Int32" Nullable="false" />
+          <Property Name="currencyid" Type="Int32" Nullable="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" />
+          <Property Name="createddate" Type="DateTime" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managetrips_city" FromRole="managetrips" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managetrips_currency" FromRole="managetrips" ToRole="currency_master" />
+          <NavigationProperty Name="trips" Relationship="GTEModel.fk_managetrips_trips" FromRole="managetrips" ToRole="trips" />
+        </EntityType>
+        <EntityType Name="manageutilities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="utilityid" Type="Int32" />
+          <Property Name="cityid" Type="Int32" />
+          <Property Name="currencyid" Type="Int32" />
+          <Property Name="amount" Type="Decimal" />
+          <Property Name="createddate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_manageutilities_city" FromRole="manageutilities" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_manageutilities_currency" FromRole="manageutilities" ToRole="currency_master" />
+          <NavigationProperty Name="utilities" Relationship="GTEModel.fk_manageutilities_utilities" FromRole="manageutilities" ToRole="utilities" />
+        </EntityType>
+        <EntityType Name="managevisa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="visaid" Type="Int32" Nullable="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="currencyid" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Decimal" Nullable="false" />
+          <Property Name="createddate" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managevisa_city" FromRole="managevisa" ToRole="citymaster" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managevisa_currency" FromRole="managevisa" ToRole="currency_master" />
+          <NavigationProperty Name="visa" Relationship="GTEModel.fk_managevisa_visa" FromRole="managevisa" ToRole="visa" />
         </EntityType>
         <EntityType Name="maritalstatusmaster">
           <Key>
@@ -5006,6 +5779,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="rolename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="adminusers" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="rolemaster" ToRole="adminusers" />
         </EntityType>
+        <EntityType Name="scholarships">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="eligibility" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="application_deadline" Type="DateTime" Nullable="false" />
+          <Property Name="scholarship_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="award_amount" Type="Int32" Nullable="false" />
+          <Property Name="awarded_by" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="applicant_scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="scholarships" ToRole="applicant_scholarships" />
+        </EntityType>
         <EntityType Name="secondarylanguagemaster">
           <Key>
             <PropertyRef Name="id" />
@@ -5043,12 +5830,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="ispasswordset" Type="Boolean" />
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_applicantdetails_admincomments" FromRole="students" ToRole="admincomments" />
           <NavigationProperty Name="applicantcampaign" Relationship="GTEModel.fk_applicantcampaign_students" FromRole="students" ToRole="applicantcampaign" />
+          <NavigationProperty Name="applicantdetails" Relationship="GTEModel.FK_applicantdetails_students" FromRole="students" ToRole="applicantdetails" />
           <NavigationProperty Name="customfieldvalue" Relationship="GTEModel.FK_customfieldvalue_students" FromRole="students" ToRole="customfieldvalue" />
           <NavigationProperty Name="gte_applicantdocument" Relationship="GTEModel.FK__students" FromRole="students" ToRole="gte_applicantdocument" />
           <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
           <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="students" ToRole="supervisorcomments" />
-          <NavigationProperty Name="applicantdetails" Relationship="GTEModel.FK_applicantdetails_students" FromRole="students" ToRole="applicantdetails" />
         </EntityType>
         <EntityType Name="studylevelmaster">
           <Key>
@@ -5057,8 +5844,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="studylevelid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="studylevel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="levelofcode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="students" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="studylevelmaster" ToRole="students" />
           <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="studylevelmaster" ToRole="coursemaster" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="studylevelmaster" ToRole="students" />
         </EntityType>
         <EntityType Name="studymodemaster">
           <Key>
@@ -5143,6 +5930,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="managetransportchoice" Relationship="GTEModel.fk_managetransportchoice_transportchoice" FromRole="transportchoice" ToRole="managetransportchoice" />
         </EntityType>
         <EntityType Name="trips">
           <Key>
@@ -5150,9 +5938,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="currency_id" Type="Int32" Nullable="false" />
-          <Property Name="trip_amount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_trip_currencyMaster" FromRole="trips" ToRole="currency_master" />
+          <NavigationProperty Name="managetrips" Relationship="GTEModel.fk_managetrips_trips" FromRole="trips" ToRole="managetrips" />
         </EntityType>
         <EntityType Name="tuitionAndlivingcostmaster">
           <Key>
@@ -5311,6 +6097,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="primaryfieldmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_primaryfieldmaster" FromRole="universitywisetooltipmaster" ToRole="primaryfieldmaster" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="universitywisetooltipmaster" ToRole="university_master" />
         </EntityType>
+        <EntityType Name="utilities">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="manageutilities" Relationship="GTEModel.fk_manageutilities_utilities" FromRole="utilities" ToRole="manageutilities" />
+        </EntityType>
+        <EntityType Name="visa">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="managevisa" Relationship="GTEModel.fk_managevisa_visa" FromRole="visa" ToRole="managevisa" />
+        </EntityType>
         <EntityType Name="visatype">
           <Key>
             <PropertyRef Name="id" />
@@ -5325,6 +6127,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="workexperienceyearsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="fk_manageaccomdationplan_accomation">
+          <End Type="GTEModel.accommodationplan" Role="accommodationplan" Multiplicity="1" />
+          <End Type="GTEModel.manageaccomdationplan" Role="manageaccomdationplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="accommodationplan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageaccomdationplan">
+              <PropertyRef Name="accomdationid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_adminusers_admincomments">
           <End Type="GTEModel.adminusers" Role="adminusers" Multiplicity="1" />
           <End Type="GTEModel.admincomments" Role="admincomments" Multiplicity="*" />
@@ -5457,6 +6271,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_applicantScholarship_scholarships">
+          <End Type="GTEModel.scholarships" Role="scholarships" Multiplicity="1" />
+          <End Type="GTEModel.applicant_scholarships" Role="applicant_scholarships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scholarships">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="applicant_scholarships">
+              <PropertyRef Name="scholarship_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_applicantcampaign_students">
           <End Type="GTEModel.students" Role="students" Multiplicity="1" />
           <End Type="GTEModel.applicantcampaign" Role="applicantcampaign" Multiplicity="*" />
@@ -5465,6 +6291,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <PropertyRef Name="studentid" />
             </Principal>
             <Dependent Role="applicantcampaign">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantdetails_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
+          <End Type="GTEModel.applicantdetails" Role="applicantdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantdetails">
               <PropertyRef Name="applicantid" />
             </Dependent>
           </ReferentialConstraint>
@@ -5490,6 +6328,102 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="citymaster">
               <PropertyRef Name="country_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_manageaccomdationplan_citymaster">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.manageaccomdationplan" Role="manageaccomdationplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="manageaccomdationplan">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageentertainment_city">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="0..1" />
+          <End Type="GTEModel.manageentertainment" Role="manageentertainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="manageentertainment">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managehealth_insurance_city">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.managehealth_insurance" Role="managehealth_insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managehealth_insurance">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managemealplan_city">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.managemealplan" Role="managemealplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managemealplan">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetransportchoice_city">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.managetransportchoice" Role="managetransportchoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managetransportchoice">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetrips_city">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.managetrips" Role="managetrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managetrips">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageutilities_city">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="0..1" />
+          <End Type="GTEModel.manageutilities" Role="manageutilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="manageutilities">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managevisa_city">
+          <End Type="GTEModel.citymaster" Role="citymaster" Multiplicity="1" />
+          <End Type="GTEModel.managevisa" Role="managevisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="citymaster">
+              <PropertyRef Name="city_id" />
+            </Principal>
+            <Dependent Role="managevisa">
+              <PropertyRef Name="cityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5553,6 +6487,42 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_coursemaster_majordiscipline_master">
+          <End Type="GTEModel.majordiscipline_master" Role="majordiscipline_master" Multiplicity="0..1" />
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="majordiscipline_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="coursemaster">
+              <PropertyRef Name="majordisciplineId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_coursemaster_studylevelmaster">
+          <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="0..1" />
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studylevelmaster">
+              <PropertyRef Name="studylevelid" />
+            </Principal>
+            <Dependent Role="coursemaster">
+              <PropertyRef Name="levelofstudyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_coursemaster_studymodemaster">
+          <End Type="GTEModel.studymodemaster" Role="studymodemaster" Multiplicity="0..1" />
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studymodemaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="coursemaster">
+              <PropertyRef Name="modeofstudyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_coursetypemaster_university_master">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
           <End Type="GTEModel.coursetypemaster" Role="coursetypemaster" Multiplicity="*" />
@@ -5574,6 +6544,102 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="credentialmaster">
               <PropertyRef Name="university_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageaccomdationplan_cureency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.manageaccomdationplan" Role="manageaccomdationplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageaccomdationplan">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageentertainment_currency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="0..1" />
+          <End Type="GTEModel.manageentertainment" Role="manageentertainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageentertainment">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managehealth_insurance_currency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.managehealth_insurance" Role="managehealth_insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managehealth_insurance">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managemealplan_currency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.managemealplan" Role="managemealplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managemealplan">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetransportchoice_currency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.managetransportchoice" Role="managetransportchoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetransportchoice">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetrips_currency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.managetrips" Role="managetrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetrips">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageutilities_currency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="0..1" />
+          <End Type="GTEModel.manageutilities" Role="manageutilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageutilities">
+              <PropertyRef Name="currencyid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managevisa_currency">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.managevisa" Role="managevisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managevisa">
+              <PropertyRef Name="currencyid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5622,6 +6688,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="customfieldvalue">
               <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageentertainment_entertainment">
+          <End Type="GTEModel.entertainment" Role="entertainment" Multiplicity="0..1" />
+          <End Type="GTEModel.manageentertainment" Role="manageentertainment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="entertainment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageentertainment">
+              <PropertyRef Name="entertainmentid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5778,6 +6856,78 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="gte_report_admin_comment">
               <PropertyRef Name="student_sop_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managehealth_insurance_health">
+          <End Type="GTEModel.health_insurance" Role="health_insurance" Multiplicity="1" />
+          <End Type="GTEModel.managehealth_insurance" Role="managehealth_insurance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="health_insurance">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managehealth_insurance">
+              <PropertyRef Name="insuranceid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managemealplan_meal">
+          <End Type="GTEModel.managemeal" Role="managemeal" Multiplicity="1" />
+          <End Type="GTEModel.managemealplan" Role="managemealplan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managemeal">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managemealplan">
+              <PropertyRef Name="mealid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetransportchoice_transportchoice">
+          <End Type="GTEModel.transportchoice" Role="transportchoice" Multiplicity="1" />
+          <End Type="GTEModel.managetransportchoice" Role="managetransportchoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="transportchoice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetransportchoice">
+              <PropertyRef Name="transportchoice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managetrips_trips">
+          <End Type="GTEModel.trips" Role="trips" Multiplicity="1" />
+          <End Type="GTEModel.managetrips" Role="managetrips" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trips">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managetrips">
+              <PropertyRef Name="tripid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_manageutilities_utilities">
+          <End Type="GTEModel.utilities" Role="utilities" Multiplicity="0..1" />
+          <End Type="GTEModel.manageutilities" Role="manageutilities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="utilities">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="manageutilities">
+              <PropertyRef Name="utilityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_managevisa_visa">
+          <End Type="GTEModel.visa" Role="visa" Multiplicity="1" />
+          <End Type="GTEModel.managevisa" Role="managevisa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="visa">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="managevisa">
+              <PropertyRef Name="visaid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5949,138 +7099,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="coursemaster">
-          <Key>
-            <PropertyRef Name="courseid" />
-          </Key>
-          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="coursename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="majordisciplineId" Type="Int32" />
-          <Property Name="modeofstudyId" Type="Int32" />
-          <Property Name="levelofstudyId" Type="Int32" />
-          <Property Name="coursefee" Type="Decimal" />
-          <NavigationProperty Name="majordiscipline_master" Relationship="GTEModel.FK_coursemaster_majordiscipline_master" FromRole="coursemaster" ToRole="majordiscipline_master" />
-          <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="coursemaster" ToRole="studylevelmaster" />
-          <NavigationProperty Name="studymodemaster" Relationship="GTEModel.FK_coursemaster_studymodemaster" FromRole="coursemaster" ToRole="studymodemaster" />
-        </EntityType>
-        <EntityType Name="currency_master">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="currency_symbol" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="currency_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="trips" Relationship="GTEModel.FK_trip_currencyMaster" FromRole="currency_master" ToRole="trips" />
-        </EntityType>
-        <Association Name="FK_applicantdetails_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
-          <End Type="GTEModel.applicantdetails" Role="applicantdetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantdetails">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_coursemaster_majordiscipline_master">
-          <End Type="GTEModel.majordiscipline_master" Role="majordiscipline_master" Multiplicity="0..1" />
-          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="majordiscipline_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="coursemaster">
-              <PropertyRef Name="majordisciplineId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_coursemaster_studylevelmaster">
-          <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="0..1" />
-          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="studylevelmaster">
-              <PropertyRef Name="studylevelid" />
-            </Principal>
-            <Dependent Role="coursemaster">
-              <PropertyRef Name="levelofstudyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_coursemaster_studymodemaster">
-          <End Type="GTEModel.studymodemaster" Role="studymodemaster" Multiplicity="0..1" />
-          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="studymodemaster">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="coursemaster">
-              <PropertyRef Name="modeofstudyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_trip_currencyMaster">
-          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
-          <End Type="GTEModel.trips" Role="trips" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="currency_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="trips">
-              <PropertyRef Name="currency_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="scholarships">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="eligibility" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="application_deadline" Type="DateTime" Nullable="false" />
-          <Property Name="scholarship_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="award_amount" Type="Int32" Nullable="false" />
-          <Property Name="awarded_by" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="applicant_scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="scholarships" ToRole="applicant_scholarships" />
-        </EntityType>
-        <EntityType Name="applicant_scholarships">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicant_id" Type="Int32" Nullable="false" />
-          <Property Name="university_id" Type="Int32" Nullable="false" />
-          <Property Name="scholarship_id" Type="Int32" Nullable="false" />
-          <Property Name="upload_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="approval_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="applicant_scholarships" ToRole="scholarships" />
-        </EntityType>
-        <Association Name="FK_applicantScholarship_scholarships">
-          <End Type="GTEModel.scholarships" Role="scholarships" Multiplicity="1" />
-          <End Type="GTEModel.applicant_scholarships" Role="applicant_scholarships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="scholarships">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="applicant_scholarships">
-              <PropertyRef Name="scholarship_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="applicantdocumentmaster">
-          <Key>
-            <PropertyRef Name="documentid" />
-          </Key>
-          <Property Name="documentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="documentname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="uploadedtime" Type="DateTime" />
-          <Property Name="universityid" Type="Int32" />
-        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6252,6 +7270,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="applicant_scholarships">
+            <EntityTypeMapping TypeName="GTEModel.applicant_scholarships">
+              <MappingFragment StoreEntitySet="applicant_scholarships">
+                <ScalarProperty Name="approval_status" ColumnName="approval_status" />
+                <ScalarProperty Name="upload_form" ColumnName="upload_form" />
+                <ScalarProperty Name="scholarship_id" ColumnName="scholarship_id" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="applicantcampaign">
             <EntityTypeMapping TypeName="GTEModel.applicantcampaign">
               <MappingFragment StoreEntitySet="applicantcampaign">
@@ -6380,6 +7410,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantpersonaldetailsid" ColumnName="applicantpersonaldetailsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicantdocumentmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicantdocumentmaster">
+              <MappingFragment StoreEntitySet="applicantdocumentmaster">
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="documentname" ColumnName="documentname" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="documentid" ColumnName="documentid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7174,6 +8216,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="coursemaster">
+            <EntityTypeMapping TypeName="GTEModel.coursemaster">
+              <MappingFragment StoreEntitySet="coursemaster">
+                <ScalarProperty Name="coursefee" ColumnName="coursefee" />
+                <ScalarProperty Name="levelofstudyId" ColumnName="levelofstudyId" />
+                <ScalarProperty Name="modeofstudyId" ColumnName="modeofstudyId" />
+                <ScalarProperty Name="majordisciplineId" ColumnName="majordisciplineId" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="coursetypemaster">
             <EntityTypeMapping TypeName="GTEModel.coursetypemaster">
               <MappingFragment StoreEntitySet="coursetypemaster">
@@ -7195,6 +8249,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="overall_rank_type2" ColumnName="overall_rank_type2" />
                 <ScalarProperty Name="overall_rank_type1" ColumnName="overall_rank_type1" />
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="currency_master">
+            <EntityTypeMapping TypeName="GTEModel.currency_master">
+              <MappingFragment StoreEntitySet="currency_master">
+                <ScalarProperty Name="currency_code" ColumnName="currency_code" />
+                <ScalarProperty Name="currency_symbol" ColumnName="currency_symbol" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7589,6 +8652,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="health_insurance">
+            <EntityTypeMapping TypeName="GTEModel.health_insurance">
+              <MappingFragment StoreEntitySet="health_insurance">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="inferencemaster">
             <EntityTypeMapping TypeName="GTEModel.inferencemaster">
               <MappingFragment StoreEntitySet="inferencemaster">
@@ -7619,10 +8690,106 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="manageaccomdationplan">
+            <EntityTypeMapping TypeName="GTEModel.manageaccomdationplan">
+              <MappingFragment StoreEntitySet="manageaccomdationplan">
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="accomdationid" ColumnName="accomdationid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manageentertainment">
+            <EntityTypeMapping TypeName="GTEModel.manageentertainment">
+              <MappingFragment StoreEntitySet="manageentertainment">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="entertainmentid" ColumnName="entertainmentid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managehealth_insurance">
+            <EntityTypeMapping TypeName="GTEModel.managehealth_insurance">
+              <MappingFragment StoreEntitySet="managehealth_insurance">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="insuranceid" ColumnName="insuranceid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="managemeal">
             <EntityTypeMapping TypeName="GTEModel.managemeal">
               <MappingFragment StoreEntitySet="managemeal">
                 <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managemealplan">
+            <EntityTypeMapping TypeName="GTEModel.managemealplan">
+              <MappingFragment StoreEntitySet="managemealplan">
+                <ScalarProperty Name="createdate" ColumnName="createdate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="mealid" ColumnName="mealid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managetransportchoice">
+            <EntityTypeMapping TypeName="GTEModel.managetransportchoice">
+              <MappingFragment StoreEntitySet="managetransportchoice">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="transportchoice" ColumnName="transportchoice" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managetrips">
+            <EntityTypeMapping TypeName="GTEModel.managetrips">
+              <MappingFragment StoreEntitySet="managetrips">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="tripid" ColumnName="tripid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="manageutilities">
+            <EntityTypeMapping TypeName="GTEModel.manageutilities">
+              <MappingFragment StoreEntitySet="manageutilities">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="utilityid" ColumnName="utilityid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managevisa">
+            <EntityTypeMapping TypeName="GTEModel.managevisa">
+              <MappingFragment StoreEntitySet="managevisa">
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="currencyid" ColumnName="currencyid" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="visaid" ColumnName="visaid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -7762,6 +8929,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="scholarships">
+            <EntityTypeMapping TypeName="GTEModel.scholarships">
+              <MappingFragment StoreEntitySet="scholarships">
+                <ScalarProperty Name="awarded_by" ColumnName="awarded_by" />
+                <ScalarProperty Name="award_amount" ColumnName="award_amount" />
+                <ScalarProperty Name="scholarship_form" ColumnName="scholarship_form" />
+                <ScalarProperty Name="application_deadline" ColumnName="application_deadline" />
+                <ScalarProperty Name="eligibility" ColumnName="eligibility" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="secondarylanguagemaster">
             <EntityTypeMapping TypeName="GTEModel.secondarylanguagemaster">
               <MappingFragment StoreEntitySet="secondarylanguagemaster">
@@ -7895,8 +9076,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="trips">
             <EntityTypeMapping TypeName="GTEModel.trips">
               <MappingFragment StoreEntitySet="trips">
-                <ScalarProperty Name="trip_amount" ColumnName="trip_amount" />
-                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -8048,6 +9227,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="utilities">
+            <EntityTypeMapping TypeName="GTEModel.utilities">
+              <MappingFragment StoreEntitySet="utilities">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visa">
+            <EntityTypeMapping TypeName="GTEModel.visa">
+              <MappingFragment StoreEntitySet="visa">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="visatype">
             <EntityTypeMapping TypeName="GTEModel.visatype">
               <MappingFragment StoreEntitySet="visatype">
@@ -8061,65 +9256,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="workexperienceyearsmaster">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="workexperienceyearsid" ColumnName="workexperienceyearsid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="coursemaster">
-            <EntityTypeMapping TypeName="GTEModel.coursemaster">
-              <MappingFragment StoreEntitySet="coursemaster">
-                <ScalarProperty Name="coursefee" ColumnName="coursefee" />
-                <ScalarProperty Name="levelofstudyId" ColumnName="levelofstudyId" />
-                <ScalarProperty Name="modeofstudyId" ColumnName="modeofstudyId" />
-                <ScalarProperty Name="majordisciplineId" ColumnName="majordisciplineId" />
-                <ScalarProperty Name="coursename" ColumnName="coursename" />
-                <ScalarProperty Name="courseid" ColumnName="courseid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="currency_master">
-            <EntityTypeMapping TypeName="GTEModel.currency_master">
-              <MappingFragment StoreEntitySet="currency_master">
-                <ScalarProperty Name="currency_code" ColumnName="currency_code" />
-                <ScalarProperty Name="currency_symbol" ColumnName="currency_symbol" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="scholarships">
-            <EntityTypeMapping TypeName="GTEModel.scholarships">
-              <MappingFragment StoreEntitySet="scholarships">
-                <ScalarProperty Name="awarded_by" ColumnName="awarded_by" />
-                <ScalarProperty Name="award_amount" ColumnName="award_amount" />
-                <ScalarProperty Name="scholarship_form" ColumnName="scholarship_form" />
-                <ScalarProperty Name="application_deadline" ColumnName="application_deadline" />
-                <ScalarProperty Name="eligibility" ColumnName="eligibility" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicant_scholarships">
-            <EntityTypeMapping TypeName="GTEModel.applicant_scholarships">
-              <MappingFragment StoreEntitySet="applicant_scholarships">
-                <ScalarProperty Name="approval_status" ColumnName="approval_status" />
-                <ScalarProperty Name="upload_form" ColumnName="upload_form" />
-                <ScalarProperty Name="scholarship_id" ColumnName="scholarship_id" />
-                <ScalarProperty Name="university_id" ColumnName="university_id" />
-                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicantdocumentmaster">
-            <EntityTypeMapping TypeName="GTEModel.applicantdocumentmaster">
-              <MappingFragment StoreEntitySet="applicantdocumentmaster">
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="uploadedtime" ColumnName="uploadedtime" />
-                <ScalarProperty Name="filename" ColumnName="filename" />
-                <ScalarProperty Name="documentname" ColumnName="documentname" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="documentid" ColumnName="documentid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
