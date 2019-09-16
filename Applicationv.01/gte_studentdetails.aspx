@@ -9,12 +9,12 @@
     </div>
 
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                    <div class="card faq-lftcard" style="width: 650px;">
-                        <div class="list-group list-group-fit">
+                    <div class="card">
+                        <div class="card-body list-group list-group-fit">
                             <h5>Personal Particulars</h5>
                              <div class="list-group-item" id="dob">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dob">
@@ -298,10 +298,12 @@
 
                         </div>
                     </div>
-                    <div class="card faq-qwrp" id="questions" runat="server">
-                    <div>
+                </div>
+                <div class="col-md-4">
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>

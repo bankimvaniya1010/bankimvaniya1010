@@ -133,7 +133,7 @@
                         <!--- End First Preference-->
 
                         <!---  Second Preference-->
-                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;color:#fff;font-size:14px;" onclick="toggleDivVisibility('second');">+Add Second Preference
+                        <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('second');">+ Add Second Preference
                         </a>
                         <div id="second" runat="server">
                             <div class="list-group list-group-fit" id="secondpref">
@@ -250,7 +250,7 @@
                         <!--- End Second Preference-->
 
                         <!---  Third Preference-->
-                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;color:#fff;font-size:14px;" onclick="toggleDivVisibility('third')">+Add Third Preference
+                        <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('third')">+ Add Third Preference
                         </a>
                         <div id="third" runat="server">
                             <div class="list-group list-group-fit" id="thirdpref">
@@ -366,7 +366,7 @@
                         </div>
                         <!--- End Third Preference-->
                         <!---  Fourth Preference-->
-                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;color:#fff;font-size:14px;" onclick="toggleDivVisibility('four')">+Add Fourth Preference
+                        <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('four')">+ Add Fourth Preference
                         </a>
                         <div id="four" runat="server">
                             <div class="list-group list-group-fit" id="fourthPref">
@@ -483,7 +483,7 @@
                         <!--- End Fourth Preference-->
 
                         <!---  Fifth Preference-->
-                        <a class="btn btn-success" style="width: 48%;margin-bottom:5px;color:#fff;font-size:14px;" onclick="toggleDivVisibility('five')">+Add Fifth Preference
+                        <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('five')">+ Add Fifth Preference
                         </a>
                         <div id="five" runat="server">
                             <div class="list-group list-group-fit" id="fifthpref">
@@ -612,7 +612,7 @@
                     </div>
                     </div>
                     <div class="col-md-4">
-                    <div>
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
                     <div class="card faq-qwrp" id="questions" runat="server">

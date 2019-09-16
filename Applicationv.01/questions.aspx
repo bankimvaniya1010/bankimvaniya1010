@@ -11,10 +11,10 @@
     </div>
     <div class="page ">
 
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
-                    <div class="card" style="width: 650px;">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
 
                         <asp:DataList ID="questionList" runat="server"  RepeatColumns="1" OnItemDataBound="questionList_ItemDataBound" >
                             <ItemTemplate>

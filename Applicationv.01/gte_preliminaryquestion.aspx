@@ -88,7 +88,7 @@
                     </div>
                 </div>
                     <div class="card faq-qwrp" id="Div1" runat="server">
-                    <div>
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
                             <div class="card-body">

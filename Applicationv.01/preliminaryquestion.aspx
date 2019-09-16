@@ -102,7 +102,7 @@
                         <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
                     </div>
                     </div>
-                    <div>
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
                     <div class="card faq-qwrp" id="Div1" runat="server">

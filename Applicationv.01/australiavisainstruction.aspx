@@ -14,7 +14,7 @@
                 <div class="col-md-8">
 
                     <div class="card">
-                        <div class="card-body list-group list-group-fit">
+                        <div class="card-body list-group-fit">
 
 
 
@@ -232,7 +232,7 @@ or Australian mission overseas.</div>
                     </div>                   
                 </div>
                 <div class="col-md-4">
-                    <div>
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
                     <div class="card faq-qwrp" id="Div2" runat="server">

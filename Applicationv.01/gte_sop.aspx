@@ -16,7 +16,7 @@
         <div class="container page__container">
          <div class="row">
            <div class="col-md-8">
-             <div class="card" style="padding-right:0;">
+             <div class="card">
               <div class="card-body list-group-fit">
                 <div class="list-group list-group-fit">
                     <div runat="server">
@@ -60,7 +60,7 @@
           </div>                            
         </div>
         <div class="col-md-4">
-            <div>
+            <div class="banImg-wrp">
                 <img src="/assets/images/Banner1.jpg" class="img-fluid">
             </div>
           <div class="card faq-qwrp" id="questions" runat="server">
