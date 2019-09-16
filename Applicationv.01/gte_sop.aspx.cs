@@ -78,7 +78,7 @@ public partial class gte_sop : System.Web.UI.Page
 
                         applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
                         applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
-                        applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1; ;
+                        applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1;
                         applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == applicationDetails.course.Value).Select(x => x.coursename).FirstOrDefault();
 
                         if (educationDetails.ishighereducation == 1) // Applicant has entered most recent higher education
@@ -110,6 +110,12 @@ public partial class gte_sop : System.Web.UI.Page
                         // Set to empty values to avoid errors, below details are missing from applicant details information.
                         applicantdetails.highestqualificationfield = 1;
                     }
+                    else if (details == null)
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Personal details missing. Please complete Student Information before proceeding.');window.location='" + webURL + "default.aspx';", true);
+                    else if (educationDetails == null)
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant education details missing. Please complete education details before proceeding.');window.location='" + webURL + "default.aspx';", true);
+                    else if (applicationDetails == null)
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Application missing. Please complete Student Application section before proceeding.');window.location='" + webURL + "default.aspx';", true);
                 }
                 else
                     applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
@@ -246,7 +252,7 @@ public partial class gte_sop : System.Web.UI.Page
                                                        .Select(x => x.applicant_response.Value).FirstOrDefault() && applicant_response.Value;
                         }
 
-                        statementList.Remove(condition_statements.Where(x => applicant_response.Value != Convert.ToBoolean(x.value) && x.id == item.id).FirstOrDefault());
+                        statementList.Remove(condition_statements.Where(x => x.id == item.id && applicant_response.Value != Convert.ToBoolean(x.value)).FirstOrDefault());
                     }
                 }
             }
