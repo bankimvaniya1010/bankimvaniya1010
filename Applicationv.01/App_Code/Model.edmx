@@ -1058,6 +1058,14 @@
           <Property Name="country_name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="dual_citizenship_allowed" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="countrywisealternateidproofmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="alternateidproofID" Type="int" />
+          <Property Name="countryID" Type="int" />
+        </EntityType>
         <EntityType Name="coursemaster">
           <Key>
             <PropertyRef Name="courseid" />
@@ -2021,6 +2029,30 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <Property Name="lastupdatedate" Type="datetime" Precision="0" />
           <Property Name="remarks" Type="varchar" MaxLength="200" />
         </EntityType>
+        <Association Name="FK__alternateidproofmaster">
+          <End Role="alternateidproofmaster" Type="Self.alternateidproofmaster" Multiplicity="0..1" />
+          <End Role="countrywisealternateidproofmaster" Type="Self.countrywisealternateidproofmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alternateidproofmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countrywisealternateidproofmaster">
+              <PropertyRef Name="alternateidproofID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__countriesmaster">
+          <End Role="countriesmaster" Type="Self.countriesmaster" Multiplicity="0..1" />
+          <End Role="countrywisealternateidproofmaster" Type="Self.countrywisealternateidproofmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countrywisealternateidproofmaster">
+              <PropertyRef Name="countryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__students">
           <End Role="students" Type="Self.students" Multiplicity="0..1" />
           <End Role="gte_applicantdocument" Type="Self.gte_applicantdocument" Multiplicity="*" />
@@ -3045,6 +3077,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="clarificationquestionsmaster" EntityType="Self.clarificationquestionsmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="controlmaster" EntityType="Self.controlmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="countriesmaster" EntityType="Self.countriesmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="countrywisealternateidproofmaster" EntityType="Self.countrywisealternateidproofmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="credentialmaster" EntityType="Self.credentialmaster" Schema="GTE" store:Type="Tables" />
@@ -3150,6 +3183,14 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
 `GTE_documentverification`.`remarks`
 FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK__alternateidproofmaster" Association="Self.FK__alternateidproofmaster">
+            <End Role="alternateidproofmaster" EntitySet="alternateidproofmaster" />
+            <End Role="countrywisealternateidproofmaster" EntitySet="countrywisealternateidproofmaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__countriesmaster" Association="Self.FK__countriesmaster">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="countrywisealternateidproofmaster" EntitySet="countrywisealternateidproofmaster" />
+          </AssociationSet>
           <AssociationSet Name="FK__students" Association="Self.FK__students">
             <End Role="students" EntitySet="students" />
             <End Role="gte_applicantdocument" EntitySet="gte_applicantdocument" />
@@ -3532,6 +3573,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="clarificationquestionsmaster" EntityType="GTEModel.clarificationquestionsmaster" />
           <EntitySet Name="controlmaster" EntityType="GTEModel.controlmaster" />
           <EntitySet Name="countriesmaster" EntityType="GTEModel.countriesmaster" />
+          <EntitySet Name="countrywisealternateidproofmaster" EntityType="GTEModel.countrywisealternateidproofmaster" />
           <EntitySet Name="coursemaster" EntityType="GTEModel.coursemaster" />
           <EntitySet Name="coursetypemaster" EntityType="GTEModel.coursetypemaster" />
           <EntitySet Name="credentialmaster" EntityType="GTEModel.credentialmaster" />
@@ -3674,6 +3716,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="adminusers" EntitySet="adminusers" />
             <End Role="supervisorcomments" EntitySet="supervisorcomments" />
           </AssociationSet>
+          <AssociationSet Name="FK__alternateidproofmaster" Association="GTEModel.FK__alternateidproofmaster">
+            <End Role="alternateidproofmaster" EntitySet="alternateidproofmaster" />
+            <End Role="countrywisealternateidproofmaster" EntitySet="countrywisealternateidproofmaster" />
+          </AssociationSet>
           <AssociationSet Name="FK_applicantScholarship_scholarships" Association="GTEModel.FK_applicantScholarship_scholarships">
             <End Role="scholarships" EntitySet="scholarships" />
             <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
@@ -3741,6 +3787,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_university_clarificationquestion_mapping" Association="GTEModel.FK_university_clarificationquestion_mapping">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="clarificationquestion_university_mapping" EntitySet="clarificationquestion_university_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__countriesmaster" Association="GTEModel.FK__countriesmaster">
+            <End Role="countriesmaster" EntitySet="countriesmaster" />
+            <End Role="countrywisealternateidproofmaster" EntitySet="countrywisealternateidproofmaster" />
           </AssociationSet>
           <AssociationSet Name="FK_qualificationcountriesmapping_countriesmaster" Association="GTEModel.FK_qualificationcountriesmapping_countriesmaster">
             <End Role="countriesmaster" EntitySet="countriesmaster" />
@@ -4062,6 +4112,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="countrywisealternateidproofmaster" Relationship="GTEModel.FK__alternateidproofmaster" FromRole="alternateidproofmaster" ToRole="countrywisealternateidproofmaster" />
         </EntityType>
         <EntityType Name="answer_mastersecondarylanguage">
           <Key>
@@ -5047,7 +5098,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="country_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="dual_citizenship_allowed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_cityMaster_countriesMaster" FromRole="countriesmaster" ToRole="citymaster" />
+          <NavigationProperty Name="countrywisealternateidproofmaster" Relationship="GTEModel.FK__countriesmaster" FromRole="countriesmaster" ToRole="countrywisealternateidproofmaster" />
           <NavigationProperty Name="qualificationcountriesmapping" Relationship="GTEModel.FK_qualificationcountriesmapping_countriesmaster" FromRole="countriesmaster" ToRole="qualificationcountriesmapping" />
+        </EntityType>
+        <EntityType Name="countrywisealternateidproofmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="alternateidproofID" Type="Int32" />
+          <Property Name="countryID" Type="Int32" />
+          <NavigationProperty Name="alternateidproofmaster" Relationship="GTEModel.FK__alternateidproofmaster" FromRole="countrywisealternateidproofmaster" ToRole="alternateidproofmaster" />
+          <NavigationProperty Name="countriesmaster" Relationship="GTEModel.FK__countriesmaster" FromRole="countrywisealternateidproofmaster" ToRole="countriesmaster" />
         </EntityType>
         <EntityType Name="coursemaster">
           <Key>
@@ -6271,6 +6333,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__alternateidproofmaster">
+          <End Type="GTEModel.alternateidproofmaster" Role="alternateidproofmaster" Multiplicity="0..1" />
+          <End Type="GTEModel.countrywisealternateidproofmaster" Role="countrywisealternateidproofmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alternateidproofmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countrywisealternateidproofmaster">
+              <PropertyRef Name="alternateidproofID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_applicantScholarship_scholarships">
           <End Type="GTEModel.scholarships" Role="scholarships" Multiplicity="1" />
           <End Type="GTEModel.applicant_scholarships" Role="applicant_scholarships" Multiplicity="*" />
@@ -6472,6 +6546,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="clarificationquestion_university_mapping">
               <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__countriesmaster">
+          <End Type="GTEModel.countriesmaster" Role="countriesmaster" Multiplicity="0..1" />
+          <End Type="GTEModel.countrywisealternateidproofmaster" Role="countrywisealternateidproofmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="countriesmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="countrywisealternateidproofmaster">
+              <PropertyRef Name="countryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8212,6 +8298,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="dual_citizenship_allowed" ColumnName="dual_citizenship_allowed" />
                 <ScalarProperty Name="country_name" ColumnName="country_name" />
                 <ScalarProperty Name="country_code" ColumnName="country_code" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="countrywisealternateidproofmaster">
+            <EntityTypeMapping TypeName="GTEModel.countrywisealternateidproofmaster">
+              <MappingFragment StoreEntitySet="countrywisealternateidproofmaster">
+                <ScalarProperty Name="countryID" ColumnName="countryID" />
+                <ScalarProperty Name="alternateidproofID" ColumnName="alternateidproofID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

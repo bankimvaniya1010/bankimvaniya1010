@@ -227,6 +227,7 @@
                                         <div class="col-md-6">
                                             <%--<input id="txtnameofcourse" runat="server" type="text" class="form-control" placeholder="Name Of Course">--%>
                                             <asp:DropDownList runat="server" ID="ddlnameofcourse" CssClass="form-control">
+                                                <asp:ListItem Value="">Please select</asp:ListItem>
                                             </asp:DropDownList>
                                             <asp:HiddenField ID="hidnameofcourse" runat="server"/>
                                             <span class="helpicon"><i id="icnameofcourse" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>

@@ -51,6 +51,7 @@
         <EntityTypeShape EntityType="GTEModel.controlmaster" Width="1.5" PointX="0.75" PointY="20.75" />
         <EntityTypeShape EntityType="GTEModel.countriesmaster" Width="1.5" PointX="0.75" PointY="39.5" />
         <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="13.5" PointY="54" />
+<EntityTypeShape EntityType="GTEModel.countrywisealternateidproofmaster" Width="1.5" PointX="3" PointY="38.125" />
         <EntityTypeShape EntityType="GTEModel.coursetypemaster" Width="1.5" PointX="7.5" PointY="85.5" />
         <EntityTypeShape EntityType="GTEModel.credentialmaster" Width="1.5" PointX="7.5" PointY="94.875" />
         <EntityTypeShape EntityType="GTEModel.currency_master" Width="1.5" PointX="3" PointY="33.625" />
@@ -156,6 +157,7 @@
         <AssociationConnector Association="GTEModel.fk_adminuniversitywisetooltips_university_master" />
         <AssociationConnector Association="GTEModel.FK_adminusers_rolemaster" />
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_adminusers" />
+        <AssociationConnector Association="GTEModel.FK__alternateidproofmaster" />
         <AssociationConnector Association="GTEModel.FK_applicantScholarship_scholarships" />
         <AssociationConnector Association="GTEModel.fk_applicantcampaign_students" />
         <AssociationConnector Association="GTEModel.FK_applicantdetails_students" />
@@ -173,6 +175,7 @@
         <AssociationConnector Association="GTEModel.FK_universityMaster_cityMaster" />
         <AssociationConnector Association="GTEModel.FK_clarificationmaster_clarificationquestion_mapping" />
         <AssociationConnector Association="GTEModel.FK_university_clarificationquestion_mapping" />
+        <AssociationConnector Association="GTEModel.FK__countriesmaster" />
         <AssociationConnector Association="GTEModel.FK_qualificationcountriesmapping_countriesmaster" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_majordiscipline_master" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_studylevelmaster" />
