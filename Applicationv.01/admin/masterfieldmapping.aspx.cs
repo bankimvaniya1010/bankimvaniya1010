@@ -61,9 +61,7 @@ public partial class admin_mastermapping : System.Web.UI.Page
         else if (MasterID == 1)
             masterdata = db.alternateadressproofmaster.ToList();
         else if (MasterID == 2)
-            masterdata = db.alternatedobproof.ToList();
-        else if (MasterID == 3)
-            masterdata = db.alternateidproofmaster.ToList();
+            masterdata = db.alternatedobproof.ToList();       
         else if (MasterID == 4)
             masterdata = db.disabilitymaster.ToList();
         else if (MasterID == 5)

@@ -125,7 +125,7 @@
                                             <a class="dropdown-item" href="scholarshipmaster.aspx">Manage Scholarships</a>
                                             <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
                                             <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Tutorials</a>
-                                            <a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>
+                                            <%--<a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>--%>
                                             <a class="dropdown-item" href="educationmediummaster.aspx">Education Medium Master</a>
                                             <a class="dropdown-item" href="alternateaddressproof.aspx">Alternate Address Proof</a>
                                             <a class="dropdown-item" href="alternatedobproof.aspx">Alternate DOB Proof</a>
@@ -154,6 +154,7 @@
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item " href="formmaster.aspx">Forms</a>
                                             <a class="dropdown-item " href="qualificationcountrymapping.aspx">Qualification Country Mapping</a>
+                                            <a class="dropdown-item " href="alternateIdproofcountrywiselisting.aspx">Alternate Id Proof Country Mapping</a>
                                             <a class="dropdown-item " href="primaryfieldmaster.aspx">Form Fields Mapping</a>
                                             <a class="dropdown-item" href="fieldmaster.aspx">Secondary Language</a>
                                             <a class="dropdown-item" href="universityformmapping.aspx">University Forms</a>
