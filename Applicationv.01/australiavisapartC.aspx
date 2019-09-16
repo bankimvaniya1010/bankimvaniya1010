@@ -13,12 +13,12 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
-                    <div class="card faq-lftcard" style="width: 650px;">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
 
-                       <div class="list-group list-group-fit">
+                       <div class="card-body list-group list-group-fit">
                              <!-- Part C Start -->
         <div class="row" id="partc">
         <div class="col-12 step-txt">Part C – To be completed only if you are a family unit member joining a student in Australia</div>
@@ -69,7 +69,7 @@
         <!-- ques 45 end -->
         <!-- ques 46 start -->
         <div>
-        <div class="comm-txt"><b class="ques-lbl">46)</b> Provide details of the student you are joining in Australia </div>
+        <label><b class="ques-lbl">46)</b> Provide details of the student you are joining in Australia </label>
         <div class="form-group">
         <label>Name</label>
         <input type="text" name="" class="form-control" runat="server" id="studentnamepartC">
@@ -133,7 +133,7 @@
         <!-- ques 47 end -->
         <!-- ques 48 start -->
         <div>
-        <div class="comm-txt"><b class="ques-lbl">48)</b> Is the student you are joining</div>
+        <label><b class="ques-lbl">48)</b> Is the student you are joining</label>
         <ul>
         <li>the holder of an International Postgraduate Research Scholarship;</li>
         <li>sponsored by AusAID or the Australian Department of Defence;</li>
@@ -196,9 +196,10 @@
         </div>
 
     </div>
-       
+      </div>
+     <div class="col-md-4">
         <div class="card faq-qwrp" id="questions" runat="server">
-                    <div>
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
                             <div class="card-body">
@@ -219,13 +220,14 @@
                             </div>
                         </div>
                 </div>
+       </div>
+        </div>  
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>
                         <span id="tooltip"></span>
                     </div>
                 </div>
-            </div>
-        </div>      
+                
     </div>
 
 

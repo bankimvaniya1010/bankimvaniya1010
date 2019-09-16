@@ -15,16 +15,16 @@
         <div class="container page__container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="">
+                    <div class="card">
 
-                       <div class="list-group list-group-fit">
+                       <div class="card-body list-group list-group-fit">
 
 
 	
 
 	   <section class="" id="partA">
-		<div class="card">
-          <div class="card-body">
+		<div class="">
+          <div class="">
 			<div class="row" id="noOfPeople" runat="server">
 				<div class="col-12">
 					<label class="" runat="server" id="lblnoOfPeople"><b class="ques-lbl">1)</b>How many people are included in this application?</label>
@@ -359,9 +359,9 @@
 						</div>
 					</div>
  <!-- ques 22 start -->
-					<div class="frm-lblttl"><b class="ques-lbl">22)</b>About your family</div>
+					<div class="frm-lblttl">About your family</div>
 					<div>
-						<div class="comm-txt">Give details of all members of your family unit whether or not they intend to accompany you to Australia.</div>
+						<label><b class="ques-lbl">22)</b>Give details of all members of your family unit whether or not they intend to accompany you to Australia.</label>
 						<div class="comm-txt italic">Members of the family unit are your spouse (including a de facto spouse) and any unmarried dependent children of you or your spouse who have not yet turned 18 years of age.</div>
 						<hr>
 						<div id="family0">
@@ -589,10 +589,10 @@
 					</div>
 					<!-- ques 22 end -->
 					<!-- ques 23 start -->
-					<label class="frm-lblttl"><b class="ques-lbl">23)</b>Dependants under 18 years of age</label>
+					<div class="frm-lblttl">Dependants under 18 years of age</div>
 					<div>
 						<div class="form-group">
-							<label>Have any school age dependants (that is, those who have turned 5 but who have not yet turned 18 years of age) included in this application been enrolled in a school in Australia?</label>
+							<label><b class="ques-lbl">23)</b>Have any school age dependants (that is, those who have turned 5 but who have not yet turned 18 years of age) included in this application been enrolled in a school in Australia?</label>
 							<div class="form-check-inline">
 							  <label class="form-check-label">
 							    <input type="radio" class="form-check-input" name="agedependt" runat="server" id="enrolledonscoolNO">No
@@ -916,7 +916,7 @@
     </div>
   </div>
    <div class="col-md-4">
-                    <div>
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
          <div class="card faq-qwrp" id="questions" runat="server">

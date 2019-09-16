@@ -189,3 +189,9 @@
 [dir=ltr] .layout-fluid .page__container{max-width: 100%;padding-left: 50px;}
 [dir=ltr] .mdk-drawer__content{max-width: 256px;}
 [dir=ltr] .inpt input{margin-right: 6px;}
+.m10{margin: 10px;}
+.appcnt-add{width: 48%;margin-bottom:5px;color:#fff !important;font-size:14px;}
+.banImg-wrp img{height: 200px !important;width: 200px !important;margin: 0 auto;display: block;}
+.banImg-wrp{padding: 10px 5px;background: #fff;}
+.faq-qwrp{box-shadow: none !important;border: 0 !important;}
+.get-upldv{margin-bottom: 20px;}

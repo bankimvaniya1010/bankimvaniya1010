@@ -1045,9 +1045,9 @@
                             <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                    <div class="form-row">
+                                    <div class="form-row justify-content-between">
                                         <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
-                                        <a href="applicantlanguage.aspx?formid=5" class="btn btn-success" style="margin-left: 10px;">Go English Language Competency &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                        <a href="applicantlanguage.aspx?formid=5" class="btn btn-success" style="margin-left: 10px;">Go To English Language Competency &nbsp; <i class="fas fa-angle-double-right"></i></a>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -1060,7 +1060,7 @@
                     </div>
                     </div>
                     <div class="col-md-4">
-                        <div>
+                        <div class="banImg-wrp">
                            <img src="/assets/images/Banner1.jpg" class="img-fluid">
                         </div>
                     <div class="card faq-qwrp" id="questions" runat="server">

@@ -11,12 +11,12 @@
         </ol>
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
-                    <div class="card faq-lftcard" style="width: 650px;">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
 
-                       <div class="list-group list-group-fit">
+                       <div class="card-body list-group list-group-fit">
                         <div class="row" id="partc">
                             <div class="col-12 step-txt">Part D – To be completed BY All Applicant
                                 Health Declaration
@@ -1397,7 +1397,7 @@
 	                        <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">  
-                                      <asp:Button ID="btngoBackTo" runat="server" Text="Back" OnClick="btngoBackTo_Click"/>
+                                      <asp:Button ID="btngoBackTo" CssClass="btn btn-success" runat="server" Text="Back" OnClick="btngoBackTo_Click"/> &nbsp;&nbsp;&nbsp;
                                         <asp:Button ID="btnvisadetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnvisadetails_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>                                               
@@ -1409,11 +1409,12 @@
                         </div>
 
                     </div>
-                     
-                    <div class="card faq-qwrp" id="questions" runat="server">
-                    <div>
+                   </div>
+                    <div class="col-md-4">
+                     <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">                    
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>

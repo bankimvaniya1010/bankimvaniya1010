@@ -12,13 +12,13 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
 
-                    <div class="card" style="width: 650px;">
+                    <div class="card">
 
-                        <div class="list-group list-group-fit">
+                        <div class="card-body list-group list-group-fit">
                             <div class="list-group-item" id="confirmation" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                     <div class="form-row">

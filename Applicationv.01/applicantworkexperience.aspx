@@ -21,7 +21,7 @@
                 <div class="col-md-8">
 
                     <div class="card">
-                        <div class="list-group list-group-fit">
+                        <div class="card-body list-group list-group-fit">
 
                             <asp:HiddenField ID="hdnemployer" runat="server" />
                             <asp:HiddenField ID="hdnRow" runat="server" />
@@ -86,7 +86,7 @@
 
                                 </div>
                             </div>
-                            <a class="btn btn-success" style="width: 200px" role="button" href="javascript:void(0)" onclick="toggleDisplay()">Add work experience</a>
+                            <a class="btn btn-success" style="width: 200px;margin:10px;" role="button" href="javascript:void(0)" onclick="toggleDisplay()">Add work experience</a>
                             <div id="employment" runat="server" style="display: none;">
                                 <div class="list-group-item" id="employmentInfo" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employment">
@@ -262,22 +262,22 @@
 
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                        <div class="form-row">
+                                        <div class="form-row justify-content-between">
                                             <asp:Button ID="btn_Save" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_Save_Click" OnClientClick="return validateForm()" />
-                                            <a href="applicantsocial.aspx?formid=8" class="btn btn-success" style="margin-left: 10px;">Go Social &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                            <a href="applicantsocial.aspx?formid=8" class="btn btn-success" style="margin-left: 10px;">Go To Social &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                            </div>
+                                    </div>
                                             <div class="col-md-6">
                                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                                 <asp:Label ID="lblSaveTime" runat="server"  Visible="false"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
+                                            </div>                                        
                                 </div>
                             </div>
                         </div>
                     </div>
                     </div>
                     <div class="col-md-4">
-                    <div>
+                    <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
                     <div class="card faq-qwrp" id="questions" runat="server">
