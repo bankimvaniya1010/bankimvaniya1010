@@ -143,6 +143,14 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtepreliminaryquestionmaster').addClass('active');
+        });
+    </script>
 </asp:Content>
 
 

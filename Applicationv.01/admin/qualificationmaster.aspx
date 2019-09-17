@@ -103,4 +103,12 @@
         </div>
 
     </div>
+    <script>
+		$(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#admin_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#qualificationmaster').addClass('active');
+        });
+	</script>
 </asp:Content>

@@ -66,4 +66,12 @@
         </div>
 
     </div>
+    <script>
+		$(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#universitymenu_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#coursemaster').addClass('active');
+	    });
+	</script>
 </asp:Content>

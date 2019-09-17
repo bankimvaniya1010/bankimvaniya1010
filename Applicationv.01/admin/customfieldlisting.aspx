@@ -101,7 +101,14 @@
 
 
     </div>
-
+<script>
+		$(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#setting_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#customfieldlisting').addClass('active');
+        });
+	</script>
 </asp:Content>
 
 

@@ -17,8 +17,13 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Tooltips Listing </li>
         </ol>
-        <h1 class="h2">Tooltips Listing </h1>
-
+        <h1 class="h2">Student University Wise Tooltips Listing </h1>
+        <div class="media align-items-center">  
+            <div class="form-row">
+                <a href="universitywisetooltipsaddedit.aspx" class="btn btn-success">Add New</a>
+                                      
+            </div>
+        </div>
         <div class="card">
 
 
@@ -85,7 +90,14 @@
 
 
     </div>
-
+    <script>
+		$(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#admin_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#universitywisetooltipslisting').addClass('active');
+        });
+	</script>
 </asp:Content>
 
 

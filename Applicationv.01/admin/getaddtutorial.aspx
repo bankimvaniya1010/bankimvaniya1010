@@ -163,7 +163,14 @@
                
             });
        });
+       $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtetutorialmaster').addClass('active');
+        });
     </script>
+         </div>
 </asp:Content>
 
 

@@ -70,6 +70,14 @@
 
 
     </div>
+    <script>
+		$(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#setting_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#universityfieldmapping').addClass('active');
+        });
+	</script>
 
 </asp:Content>
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">

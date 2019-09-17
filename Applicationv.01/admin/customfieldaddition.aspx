@@ -113,6 +113,12 @@
             return true;
 
         }
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#setting_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#customfieldaddition').addClass('active');
+	    });
     </script>
 </asp:Content>
 

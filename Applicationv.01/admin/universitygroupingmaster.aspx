@@ -7,7 +7,11 @@
             <li class="breadcrumb-item active">University Grouping Master</li>
         </ol>
         <h1 class="h2">University Grouping Master</h1>
-
+         <div class="media align-items-center">  
+            <div class="form-row">
+                <a href="adduniversitygrouping.aspx" class="btn btn-success">Add New</a>                                      
+            </div>
+        </div>
         <div class="card">
 
             <div class="tab-content card-body">
@@ -43,4 +47,12 @@
             </div>
         </div>
     </div>
+    <script>
+         $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#universitymenu_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#universitygroupingmaster').addClass('active');
+	    });
+    </script>
 </asp:Content>
