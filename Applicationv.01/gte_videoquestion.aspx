@@ -24,26 +24,25 @@
                                             How would pursuing your selected course at 
                                             <asp:Label ID="lblinstitutename" runat="server"></asp:Label>, <asp:Label ID="lblcity" runat="server"></asp:Label>      
                                             help you ? What do you plan to do after completing this course.
-                                        </label>    
-                                        <div class="col-md-6">
-                                      
-                                        </div>
+                                        </label>
                                     </div>
                                 </div>
                             </div>                               
                              <div class="list-group-item" id="uploadbtn">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                     
+                                        <div class="col-xs-12 get-upldv">
                                           <input type="file" runat="server" name="FileUpload" id="FileUpload"/>
-                                        <asp:Label ID="lblupload" runat="server" />
-                                         <input type="hidden" id="hidDocumentPath" runat="server" />
-                                         <asp:HyperLink runat="server" ID="uploadedFile" Target="_blank"></asp:HyperLink>
-                                        <div class="col-md-6">
                                         </div>
-                                         <div class="media-left">                                  
+                                        <div class="media-left col-md-6">                                  
                                             <asp:Button ID="btnupload" runat="server" Text="Upload" CssClass="btn btn-primary btn-block" OnClientClick="return validateUploadedFile()" OnClick="btnupload_Click" />                                                                                                               
                                          </div>
+                                        <div class="col-md-6 d-flex align-self-center">
+                                            <asp:Label ID="lblupload" runat="server" />
+                                         <input type="hidden" id="hidDocumentPath" runat="server" />
+                                         <asp:HyperLink runat="server" ID="uploadedFile" Target="_blank"></asp:HyperLink>
+                                        </div>
+                                         
                                     </div>
                                 </div>
                             </div>                          
@@ -51,10 +50,11 @@
                     </div>
                     </div>
                    <div class="col-md-4">
-                    <div class="card faq-qwrp" id="questions" runat="server">
-                    <div>
+                       <div class="banImg-wrp">
                         <img src="/assets/images/Banner1.jpg" class="img-fluid">
                     </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                    
                             <div class="card-body">
                             <%  if (allQuestions.Count > 0)
                                 { %>

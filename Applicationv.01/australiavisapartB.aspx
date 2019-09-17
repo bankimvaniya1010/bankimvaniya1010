@@ -12,12 +12,12 @@
 
     </div>
     <div class="page ">
-        <div class="container page__container p-0">
-            <div class="row m-0">
-                <div class="col-lg container-fluid page__container">
-                    <div class="card faq-lftcard" style="width: 650px;">
+        <div class="container page__container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
 
-                       <div class="list-group list-group-fit">
+                       <div class="card-body list-group list-group-fit">
 
 
 	        <!-- Part B Start -->
@@ -47,7 +47,7 @@
             <!-- ques 29 end -->
             <div runat="server" id="question29">
             <div class="form-group" id="holdvisa" runat="server">
-            <label>29)Do you currently hold a student visa?</label>
+            <label><b class="ques-lbl">29)</b>Do you currently hold a student visa?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
                <input type="radio" class="form-check-input" name="hold-visa" runat="server" id="holdvisaNo">No
@@ -66,7 +66,7 @@
             <!-- ques 29 end -->
             <!-- ques 30 start -->
             <div runat="server" id="question30">
-            <div class="comm-txt"><b class="ques-lbl">30)</b>Provide details of your highest qualification obtained outside Australia, as well as all other studies and training obtained outside Australia.</div>
+            <label><b class="ques-lbl">30)</b>Provide details of your highest qualification obtained outside Australia, as well as all other studies and training obtained outside Australia.</label>
             <div class="comm-txt">You must provide evidence of your study and training, including academic records, if you are:
             <ul>
             <li>in Assessment Level 3, 4 or 5; or</li>
@@ -258,7 +258,7 @@
             <!-- ques 31 end -->
             <!-- ques 32 start -->
             <div runat="server" id="question32">
-            <div class="comm-txt"><b class="ques-lbl">32)</b>Give details of your intended courses of study in Australia.</div>
+            <label><b class="ques-lbl">32)</b>Give details of your intended courses of study in Australia.</label>
             <div class="comm-txt">You must provide evidence of enrolment. Unless you are seeking to study in Australia as a secondary school exchange student or as a student sponsored by AusAID or the Australian Department of Defence, you must attach:
             <ul>
             <li><b>if applying in Australia, or outside Australia as an Assessment Level 1 or 2 student,</b> the electronic confirmation of enrolment certificate from your education provider. If you propose to study more than one course you must provide either an electronic confirmation of enrolment certificate, or an original ‘offer of a place in a course’ letter from your education provider for each additional course; or</li>
@@ -422,12 +422,12 @@
             <!-- ques 32 end -->
             <!-- ques 33 start -->
              <div runat="server" id="question33">
-            <div class="frm-lblttl"><b class="ques-lbl">33)</b>Your English language details</div>
+            <div class="frm-lblttl">Your English language details</div>
             
             <div class="form-group">
             <div class="form-check-inline">
              <label class="form-check-label">
-                 <label> Are you an applicant  in asssessment Level 1 or 2?</label>
+                 <label><b class="ques-lbl">33)</b> Are you an applicant  in asssessment Level 1 or 2?</label>
                <input type="radio" class="form-check-input" name="assement" runat="server" id="assessmentlevelNo">No
              </label>
             </div>
@@ -475,7 +475,7 @@
             <!-- ques 34 end -->
             <!-- ques 35 start -->
             <div runat="server" id="question35">
-            <div class="comm-txt"><b class="ques-lbl">35)</b>Have you studied for at least 5 years (in the English language) in one or more of the following countries:
+            <label><b class="ques-lbl">35)</b>Have you studied for at least 5 years (in the English language) in one or more of the following countries:
             <ul>
             <li>Australia;</li>
             <li>the Republic of Ireland;</li>
@@ -485,7 +485,7 @@
             <li>the United States of America?</li>
             <li>South Africa;</li>
             </ul>
-            </div>	
+            </label>	
             <div class="form-group">
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -507,7 +507,7 @@
             <div runat="server" id="question36">
                 <div class="frm-lblttl">Your employment details</div>
             
-            <div class="comm-txt"><b class="ques-lbl">36)</b>Give details of your employment history since leaving school/college/university.</div>
+            <label><b class="ques-lbl">36)</b>Give details of your employment history since leaving school/college/university.</label>
             <hr>
             <div class="form-group">
             <label>Period</label>
@@ -729,8 +729,8 @@
             <!-- ques 38 end -->
             <!-- ques 39 start -->
                 <div runat="server" id="question39">
-            <div class="frm-lblttl"><b class="ques-lbl">39)</b>Other address details</div>
-            <div class="comm-txt">Give details of any immediate relatives in Australia <i>(ie. parent, spouse, child, brother or sister)</i></div>
+            <div class="frm-lblttl">Other address details</div>
+            <label><b class="ques-lbl">39)</b>Give details of any immediate relatives in Australia <i>(ie. parent, spouse, child, brother or sister)</i></label>
             <hr>
             <div>
                 <div class="form-group">
@@ -797,7 +797,7 @@
             <!-- ques 39 end -->
             <!-- ques 40 start -->
             <div runat="server" id="question40">
-            <div class="comm-txt"><b class="ques-lbl">40)</b>Give details of your closest relative in your home country who is neither accompanying nor joining you in Australia</div>
+            <label><b class="ques-lbl">40)</b>Give details of your closest relative in your home country who is neither accompanying nor joining you in Australia</label>
             <div class="form-group">
             <label>Name</label>
             <input type="text" name="" class="form-control" runat="server" id="txtclosestrelativename">
@@ -822,9 +822,9 @@
             <!-- ques 40 end -->
             <!-- ques 41 start -->
             <div runat="server" id="question41">
-            <div class="frm-lblttl"><b class="ques-lbl">41)</b>Financial details</div>
+            <div class="frm-lblttl">Financial details</div>
             <div class="form-group">
-            <label>Are you applying to study in Australia as a secondary school exchange student?</label>
+            <label><b class="ques-lbl">41)</b>Are you applying to study in Australia as a secondary school exchange student?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
                <input type="radio" class="form-check-input" name="studyin" runat="server" id="applytostudyinausstraliaNO">No
@@ -875,12 +875,12 @@
             <!-- ques 42 end -->
             <!-- ques 43 start -->
             <div runat="server" id="question43">
-            <div class="frm-lblttl"><b class="ques-lbl">43)</b>Additional information</div>
-            <div class="comm-txt">
+            <div class="frm-lblttl">Additional information</div>
+            <label><b class="ques-lbl">43)</b>
             If there is any other information or documentation you would like taken into consideration in assessing your application attach it to the application.
             Remember that a decision may be based solely on the information you provide in this application.
 
-            </div>
+            </label>
             <div class="comm-txt">
             <b>Note:</b> If you are in Australia as the holder of a student subclass 570–576 visa and you wish to change your principal course within the first 12 months of that course, and your new principal course will be in a
             new education sector, then as part of this application you must provide exceptional circumstances to justify the change of course.
@@ -912,10 +912,13 @@
         </div>
 
     </div>
-        <div class="card faq-qwrp" id="questions" runat="server">        
-            <div>
+   </div>
+    <div class="col-md-4">
+        <div class="banImg-wrp">
                 <img src="/assets/images/Banner1.jpg" class="img-fluid">
             </div>
+        <div class="card faq-qwrp" id="questions" runat="server">        
+            
             <div class="card-body">
             <%  if (allQuestions.Count > 0)
                 { %>
@@ -933,7 +936,7 @@
                                      
             </div>
         </div>
-                </div>
+       </div>         
                 <div id="page-nav" class="col-lg-auto page-nav">
                     <div>
                         <span id="tooltip"></span>
