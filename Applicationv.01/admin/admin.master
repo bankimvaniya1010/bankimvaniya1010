@@ -132,6 +132,7 @@
                                             <a class="dropdown-item" href="alternateidproof.aspx">Alternate ID Proof</a>
                                             <a class="dropdown-item" href="disability.aspx">Disability Master</a>
                                             <a class="dropdown-item" href="grademaster.aspx">Grade Master</a>
+                                            <a class="dropdown-item" href="subjectmaster.aspx">Manage Subject Master</a>
                                             <a class="dropdown-item" href="majordesription.aspx">Major Discipline Master</a>
                                             <a class="dropdown-item" href="sutdymode.aspx">Study Mode Master</a>
                                             <a class="dropdown-item" href="titlemaster.aspx">Title Master</a>

@@ -21,18 +21,16 @@ public partial class admin_subjectmaster : System.Web.UI.Page
     {
         try
         {
-            var SubjectList = (from q in db.subjectmaster
-
-                                     select new
-                                     {
-                                         id = q.id,
-                                         description = q.description,
-
-                                     }).ToList();
+            var SubjectList = (from sm in db.subjectmaster
+                        select new
+                        {
+                            id = sm.id,
+                            description = sm.description,
+                        }).SortBy("id").ToList();
             if (SubjectList != null)
             {
-                SubjectGridView.DataSource = SubjectList;
-                SubjectGridView.DataBind();
+                gvsubjectmasterGridView.DataSource = SubjectList;
+                gvsubjectmasterGridView.DataBind();
             }
         }
         catch (Exception ex)
@@ -40,33 +38,34 @@ public partial class admin_subjectmaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
-    protected void SubjectGridView_DataBound(object sender, EventArgs e)
-    {
-
-    }
-
-    protected void SubjectGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
-    {
-        SubjectGridView.EditIndex = -1;
-        BindSubject();
-    }
-
-    protected void SubjectGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        
+    protected void gvsubjectmasterGridView_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
     {
         try
         {
+            gvsubjectmasterGridView.EditIndex = -1;
+            BindSubject();
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 
+    protected void gvsubjectmasterGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
             if (e.CommandName.Equals("AddNew"))
 
             {
-                subjectmaster objSubject = new subjectmaster();
+                subjectmaster objsubjectmaster = new subjectmaster();
 
-                TextBox txtDescription = (TextBox)SubjectGridView.FooterRow.FindControl("txtDescriptionFooter");
+                TextBox txtDescription = (TextBox)gvsubjectmasterGridView.FooterRow.FindControl("txtDescription1");
 
-                objSubject.description = txtDescription.Text.Trim();
+                objsubjectmaster.description = txtDescription.Text.Trim();
 
-                db.subjectmaster.Add(objSubject);
+                db.subjectmaster.Add(objsubjectmaster);
                 db.SaveChanges();
                 BindSubject();
             }
@@ -77,7 +76,7 @@ public partial class admin_subjectmaster : System.Web.UI.Page
         }
     }
 
-    protected void SubjectGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+    protected void gvsubjectmasterGridView_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         try
         {
@@ -102,18 +101,13 @@ public partial class admin_subjectmaster : System.Web.UI.Page
         }
     }
 
-    protected void SubjectGridView_RowDeleted(object sender, GridViewDeletedEventArgs e)
-    {
-
-    }
-
-    protected void SubjectGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    protected void gvsubjectmasterGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         try
         {
-            int ID = Convert.ToInt32(SubjectGridView.DataKeys[e.RowIndex].Values[0]);
-            subjectmaster QID = db.subjectmaster.Where(b => b.id == ID).First();
-            db.subjectmaster.Remove(QID);
+            int ID = Convert.ToInt32(gvsubjectmasterGridView.DataKeys[e.RowIndex].Values[0]);
+            subjectmaster subject = db.subjectmaster.Where(b => b.id == ID).First();
+            db.subjectmaster.Remove(subject);
             db.SaveChanges();
             BindSubject();
         }
@@ -123,30 +117,32 @@ public partial class admin_subjectmaster : System.Web.UI.Page
         }
     }
 
-    protected void SubjectGridView_RowEditing(object sender, GridViewEditEventArgs e)
-    {
-        SubjectGridView.EditIndex = e.NewEditIndex;
-        BindSubject();
-    }
-
-    protected void SubjectGridView_RowUpdated(object sender, GridViewUpdatedEventArgs e)
-    {
-
-    }
-
-    protected void SubjectGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    protected void gvsubjectmasterGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         try
         {
-            int ID = Convert.ToInt32(SubjectGridView.DataKeys[e.RowIndex].Values[0]);
-            subjectmaster objSubject = db.subjectmaster.Where(b => b.id == ID).First();
+            gvsubjectmasterGridView.EditIndex = e.NewEditIndex;
+            BindSubject();
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
+    protected void gvsubjectmasterGridView_RowUpdating(object sender, GridViewUpdateEventArgs e)
+    {
+        try
+        {
+            int ID = Convert.ToInt32(gvsubjectmasterGridView.DataKeys[e.RowIndex].Values[0]);
+            subjectmaster subject = db.subjectmaster.Where(b => b.id == ID).First();
 
 
-            TextBox txtDescription = (TextBox)SubjectGridView.Rows[e.RowIndex].FindControl("txtDescription");
+            TextBox txtDescription = (TextBox)gvsubjectmasterGridView.Rows[e.RowIndex].FindControl("txtDescription");
 
-            objSubject.description = txtDescription.Text.Trim();
+            subject.description = txtDescription.Text.Trim();
 
-            SubjectGridView.EditIndex = -1;
+            gvsubjectmasterGridView.EditIndex = -1;
             db.SaveChanges();
             BindSubject();
         }

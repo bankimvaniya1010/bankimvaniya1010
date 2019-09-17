@@ -15,54 +15,51 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Subject Master</li>
+            <li class="breadcrumb-item active">Manage Subject Master</li>
         </ol>
-        <h1 class="h2">Subject Master</h1>
+        <h1 class="h2">Manage Subject Master</h1>
 
         <div class="card">
 
 
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
-                    <asp:GridView ID="SubjectGridView" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
+                    <asp:GridView ID="gvsubjectmasterGridView" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
                         DataKeyNames="id"
                         AllowPaging="True"
                         CellPadding="3"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="SubjectGridView_DataBound" OnRowCancelingEdit="SubjectGridView_RowCancelingEdit" OnRowCommand="SubjectGridView_RowCommand" OnRowDataBound="SubjectGridView_RowDataBound" OnRowDeleted="SubjectGridView_RowDeleted" OnRowDeleting="SubjectGridView_RowDeleting" OnRowEditing="SubjectGridView_RowEditing" OnRowUpdated="SubjectGridView_RowUpdated" OnRowUpdating="SubjectGridView_RowUpdating">
+                        CellSpacing="2" OnRowCancelingEdit="gvsubjectmasterGridView_RowCancelingEdit" OnRowCommand="gvsubjectmasterGridView_RowCommand" OnRowDataBound="gvsubjectmasterGridView_RowDataBound" OnRowDeleting="gvsubjectmasterGridView_RowDeleting" OnRowEditing="gvsubjectmasterGridView_RowEditing" OnRowUpdating="gvsubjectmasterGridView_RowUpdating">
 
                         <Columns>
+                            <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="id" />
 
-                            <asp:BoundField DataField="id" HeaderText="Form id" InsertVisible="False"
-                                ReadOnly="True" SortExpression="id" />
-
-
-                            <asp:TemplateField HeaderText="Description" SortExpression="Subject Name">
+                            <asp:TemplateField HeaderText="Subject Name" SortExpression="Description">
 
                                 <EditItemTemplate>
-                                     
-                                    <asp:TextBox ID="txtSubject"  CssClass="form-control" TextMode="MultiLine" runat="server" Text='<%# Bind("Subjectname") %>'></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredSubjectEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Subject Cannot Be Empty' ControlToValidate='txtSubject' />
+
+                                    <asp:TextBox ID="txtDescription" CssClass="form-control" TextMode="MultiLine" runat="server" Text='<%# Bind("description") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredDescEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Subject Name Cannot Be Empty' ControlToValidate='txtDescription' />
                                 </EditItemTemplate>
 
                                 <FooterTemplate>
 
-                                    <asp:TextBox ID="txtSubjectFooter" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredSubjectFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Subject  Cannot Be Empty' ControlToValidate='txtSubjectFooter' />
+                                    <asp:TextBox ID="txtDescription1" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredDescFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Subject Name Cannot Be Empty' ControlToValidate='txtDescription1' />
                                 </FooterTemplate>
 
                                 <ItemTemplate>
 
-                                    <asp:Label ID="lblSubject" runat="server" Text='<%# Bind("Subjectname") %>'></asp:Label>
+                                    <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("description") %>'></asp:Label>
 
                                 </ItemTemplate>
 
                             </asp:TemplateField>
 
 
-                            <asp:TemplateField HeaderText="Edit" ShowHeader="False">
+                            <asp:TemplateField HeaderText="Action" ShowHeader="False">
 
                                 <EditItemTemplate>
 
