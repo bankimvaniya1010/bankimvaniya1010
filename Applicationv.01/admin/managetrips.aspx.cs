@@ -32,7 +32,10 @@ public partial class admin_managetrips : System.Web.UI.Page
                                   Tripsname = t.description,
                                   City = c.description,
                                   currency = curr.currency_symbol,
-                                  amount = mt.amount
+                                  amount = mt.amount,
+                                  extra_adult_percentage = mt.extra_adult_percentage == null ? 0 : mt.extra_adult_percentage,
+                                  extra_child_percentage = mt.extra_child_percentage == null ? 0 : mt.extra_child_percentage
+
                               }).ToList();
             if (courseList != null)
             {

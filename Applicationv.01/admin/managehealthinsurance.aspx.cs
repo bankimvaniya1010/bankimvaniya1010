@@ -33,7 +33,10 @@ public partial class admin_Managehealthinsurance : System.Web.UI.Page
                                   HealthInsurancename = i.description,
                                   City = c.description,
                                   currency = curr.currency_symbol,
-                                  amount = mi.amount
+                                  amount = mi.amount,
+                                  extra_adult_amount = mi.extra_adult_amount == null ? 0 : mi.extra_adult_amount,
+                                  extra_child_amount = mi.extra_child_amount == null ? 0 : mi.extra_child_amount
+
                               }).ToList();
             if (courseList != null)
             {

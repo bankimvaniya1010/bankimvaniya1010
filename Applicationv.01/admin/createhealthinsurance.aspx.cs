@@ -108,6 +108,10 @@ public partial class admin_createhealthinsurance : System.Web.UI.Page
                 InsuranceObj.cityid = CityID;
                 InsuranceObj.currencyid = Currencyid;
                 InsuranceObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdult.Value.Trim() != "")
+                    InsuranceObj.extra_adult_amount = Convert.ToDecimal(txtExtraAdult.Value.Trim());
+                if (txtExtraChild.Value.Trim() != "")
+                    InsuranceObj.extra_child_amount = Convert.ToDecimal(txtExtraChild.Value.Trim());
                 db.managehealth_insurance.Add(InsuranceObj);
                 db.SaveChanges();
 

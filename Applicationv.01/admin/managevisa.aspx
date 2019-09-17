@@ -48,6 +48,16 @@
                                     <asp:Label ID="lblVisaFee" runat="server" Text='<%# Bind("amount") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Extra Adult Fee">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAdultVisaFee" runat="server" Text='<%# Bind("extra_adult_amount") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Extra Child Fee">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblChildVisaFee" runat="server" Text='<%# Bind("extra_child_amount") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
                             <asp:TemplateField HeaderText="Action">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit"></asp:LinkButton>

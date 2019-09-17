@@ -108,6 +108,11 @@ public partial class admin_createutilities : System.Web.UI.Page
                 UtilitiesObj.cityid = CityID;
                 UtilitiesObj.currencyid = Currencyid;
                 UtilitiesObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    UtilitiesObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    UtilitiesObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
                 db.manageutilities.Add(UtilitiesObj);
                 db.SaveChanges();
 

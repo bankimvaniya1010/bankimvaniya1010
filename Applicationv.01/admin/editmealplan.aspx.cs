@@ -36,6 +36,10 @@ public partial class admin_editmealplan : System.Web.UI.Page
                     ViewState["id"] = id;
 
                     txtFee.Value = Convert.ToString(existingMeal.amount);
+                    if (existingMeal.extra_adult_percentage != null)
+                        txtExtraAdultPercentage.Value = Convert.ToString(existingMeal.extra_adult_percentage);
+                    if (existingMeal.extra_child_percentage != null)
+                        txtExtraChildPercentage.Value = Convert.ToString(existingMeal.extra_child_percentage);
 
                     if (existingMeal.mealid != 0)
                     {
@@ -149,6 +153,12 @@ public partial class admin_editmealplan : System.Web.UI.Page
                 MealObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 MealObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 MealObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    MealObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    MealObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
+
                 db.SaveChanges();
                 Response.Redirect("~/admin/managemealplan.aspx");
             }

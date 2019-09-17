@@ -34,6 +34,10 @@ public partial class admin_editmanageaccomdation : System.Web.UI.Page
                 if (existingAccomdation != null)
                 {
                     ViewState["id"] = id;
+                    if (existingAccomdation.extra_adult_percentage != null)
+                        txtExtraAdultPercentage.Value = Convert.ToString(existingAccomdation.extra_adult_percentage);
+                    if (existingAccomdation.extra_child_percentage != null)
+                        txtExtraChildPercentage.Value = Convert.ToString(existingAccomdation.extra_child_percentage);
 
                     txtFee.Value = Convert.ToString(existingAccomdation.amount);
 
@@ -137,7 +141,7 @@ public partial class admin_editmanageaccomdation : System.Web.UI.Page
         if (ddlCurrency.SelectedItem.Value != "0")
             Currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
         var existingAccomdation = (from Accomdation in db.manageaccomdationplan
-                                   where Accomdation.accomdationid == accomdationID && Accomdation.cityid == CityID && Accomdation.currencyid == Currencyid
+                                   where Accomdation.accomdationid == accomdationID && Accomdation.cityid == CityID && Accomdation.currencyid == Currencyid && Accomdation.id != id
                                    select Accomdation).FirstOrDefault();
         if (existingAccomdation == null)
         {
@@ -149,6 +153,11 @@ public partial class admin_editmanageaccomdation : System.Web.UI.Page
                 AccomdationObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 AccomdationObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 AccomdationObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    AccomdationObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    AccomdationObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
                 db.SaveChanges();
                 Response.Redirect("~/admin/manageaccomdation.aspx");
             }

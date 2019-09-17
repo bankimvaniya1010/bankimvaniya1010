@@ -32,7 +32,10 @@ public partial class admin_manageentertainment : System.Web.UI.Page
                                   Entertainmentname = e.description,
                                   City = c.description,
                                   currency = curr.currency_symbol,
-                                  amount = me.amount
+                                  amount = me.amount,
+                                  extra_adult_percentage = me.extra_adult_percentage == null ? 0 : me.extra_adult_percentage,
+                                  extra_child_percentage = me.extra_child_percentage == null ? 0 : me.extra_child_percentage
+
                               }).ToList();
             if (courseList != null)
             {

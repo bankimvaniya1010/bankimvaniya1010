@@ -32,7 +32,10 @@ public partial class admin_managemealplan : System.Web.UI.Page
                                   Mealname = m.description,
                                   City = c.description,
                                   currency = curr.currency_symbol,
-                                  amount = mp.amount
+                                  amount = mp.amount,
+                                  extra_adult_percentage = mp.extra_adult_percentage == null ? 0 : mp.extra_adult_percentage,
+                                  extra_child_percentage = mp.extra_child_percentage == null ? 0 : mp.extra_child_percentage
+
                               }).ToList();
             if (courseList != null)
             {

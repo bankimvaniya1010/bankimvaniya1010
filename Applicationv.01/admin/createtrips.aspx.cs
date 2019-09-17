@@ -108,6 +108,11 @@ public partial class admin_createtrips : System.Web.UI.Page
                 TripsObj.cityid = CityID;
                 TripsObj.currencyid = Currencyid;
                 TripsObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    TripsObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    TripsObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
                 db.managetrips.Add(TripsObj);
                 db.SaveChanges();
 

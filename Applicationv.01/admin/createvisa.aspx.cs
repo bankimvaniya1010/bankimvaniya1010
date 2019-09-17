@@ -108,6 +108,10 @@ public partial class admin_createvisa : System.Web.UI.Page
                 VisaObj.cityid = CityID;
                 VisaObj.currencyid = Currencyid;
                 VisaObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdult.Value.Trim() != "")
+                    VisaObj.extra_adult_amount = Convert.ToDecimal(txtExtraAdult.Value.Trim());
+                if (txtExtraChild.Value.Trim() != "")
+                    VisaObj.extra_child_amount = Convert.ToDecimal(txtExtraChild.Value.Trim());
                 db.managevisa.Add(VisaObj);
                 db.SaveChanges();
 

@@ -99,8 +99,8 @@ public partial class admin_createentertainment : System.Web.UI.Page
             if (ddlCurrency.SelectedItem.Value != "0")
                 Currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
             var existingEntertainment = (from Entertainment in db.manageentertainment
-                                       where Entertainment.entertainmentid == EntertainmentID && Entertainment.cityid == CityID 
-                                       select Entertainment).FirstOrDefault();
+                                         where Entertainment.entertainmentid == EntertainmentID && Entertainment.cityid == CityID
+                                         select Entertainment).FirstOrDefault();
             if (existingEntertainment == null)
             {
 
@@ -108,6 +108,12 @@ public partial class admin_createentertainment : System.Web.UI.Page
                 EntertainmentObj.cityid = CityID;
                 EntertainmentObj.currencyid = Currencyid;
                 EntertainmentObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    EntertainmentObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    EntertainmentObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
+
                 db.manageentertainment.Add(EntertainmentObj);
                 db.SaveChanges();
 

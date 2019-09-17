@@ -36,6 +36,10 @@ public partial class admin_editentertainment : System.Web.UI.Page
                     ViewState["id"] = id;
 
                     txtFee.Value = Convert.ToString(existingEntertainment.amount);
+                    if (existingEntertainment.extra_adult_percentage != null)
+                        txtExtraAdultPercentage.Value = Convert.ToString(existingEntertainment.extra_adult_percentage);
+                    if (existingEntertainment.extra_child_percentage != null)
+                        txtExtraChildPercentage.Value = Convert.ToString(existingEntertainment.extra_child_percentage);
 
                     if (existingEntertainment.entertainmentid != 0)
                     {
@@ -137,9 +141,9 @@ public partial class admin_editentertainment : System.Web.UI.Page
         if (ddlCurrency.SelectedItem.Value != "0")
             Currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
         var existingEntertainment = (from Entertainment in db.manageentertainment
-                                     where Entertainment.entertainmentid == EntertainmentID && Entertainment.cityid == CityID 
+                                     where Entertainment.entertainmentid == EntertainmentID && Entertainment.cityid == CityID
                                      && Entertainment.id != id
-                                   select Entertainment).FirstOrDefault();
+                                     select Entertainment).FirstOrDefault();
         if (existingEntertainment == null)
         {
             manageentertainment EntertainmentObj = db.manageentertainment.Where(x => x.id == id).First();
@@ -150,6 +154,10 @@ public partial class admin_editentertainment : System.Web.UI.Page
                 EntertainmentObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 EntertainmentObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 EntertainmentObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    EntertainmentObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    EntertainmentObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
                 db.SaveChanges();
                 Response.Redirect("~/admin/manageentertainment.aspx");
             }

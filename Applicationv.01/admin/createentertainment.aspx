@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="createentertainment.aspx.cs" Inherits="admin_createentertainment"  MasterPageFile="~/admin/admin.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="createentertainment.aspx.cs" Inherits="admin_createentertainment" MasterPageFile="~/admin/admin.master" %>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
 </asp:Content>
@@ -57,7 +57,26 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label for="extraAdult" class="col-sm-3 col-form-label form-label">Extra Adult Percentage</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtExtraAdultPercentage" type="text" runat="server" class="form-control" placeholder="Extra Adult Percentage" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="extraChild" class="col-sm-3 col-form-label form-label">Extra Child Percentage</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtExtraChildPercentage" type="text" runat="server" class="form-control" placeholder="Extra Child Percentage" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -84,27 +103,36 @@
 
 
             var fee = $('#<%=txtFee.ClientID%>').val();
+            var AdultPercentage = $('#<%=txtExtraAdultPercentage.ClientID%>').val();
+            var ChildPercentage = $('#<%=txtExtraChildPercentage.ClientID%>').val();
             var City = $('#<%=ddlCity.ClientID%>').val();
             var Currency = $('#<%=ddlCurrency.ClientID%>').val();
             var Entertainment = $('#<%=ddlEntertainment.ClientID%>').val();
             if (Entertainment == 0 || isNaN(parseInt(Entertainment))) {
-                alert("Please select Entertainment");
+                alert("Please select entertainment");
                 return false;
             }
             else if (Currency == 0 || isNaN(parseInt(Currency))) {
-                alert("Please select Currency");
+                alert("Please select currency");
                 return false;
             }
             else if (City == 0 || isNaN(parseInt(City))) {
-                alert("Please select City");
+                alert("Please select city");
                 return false;
             }
 
-            else
-                if (fee == '') {
-                    alert("Please enter Amount");
-                    return false;
-                }
+            else if (fee == '') {
+                alert("Please enter amount");
+                return false;
+            }
+            else if ((AdultPercentage != '') && isNaN(parseInt(AdultPercentage))) {
+                alert("Please enter appropriate extra adult percentage ");
+                return false;
+            }
+            else if ((ChildPercentage != '') && isNaN(parseInt(ChildPercentage))) {
+                alert("Please enter appropriate extra child percentage ");
+                return false;
+            }
             return true;
 
         }
