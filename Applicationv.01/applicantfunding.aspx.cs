@@ -1,7 +1,10 @@
-﻿using System;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -72,6 +75,18 @@ public partial class applicantfunding : System.Web.UI.Page
             ddlFamilyMember.DataValueField = "id";
             ddlFamilyMember.DataBind();
             ddlFamilyMember.Items.Insert(0, lst);
+
+            ddlFamilyAdult.DataSource = familymember;
+            ddlFamilyAdult.DataTextField = "description";
+            ddlFamilyAdult.DataValueField = "id";
+            ddlFamilyAdult.DataBind();
+            ddlFamilyAdult.Items.Insert(0, lst);
+
+            ddlFamilyChildren.DataSource = familymember;
+            ddlFamilyChildren.DataTextField = "description";
+            ddlFamilyChildren.DataValueField = "id";
+            ddlFamilyChildren.DataBind();
+            ddlFamilyChildren.Items.Insert(0, lst);
         }
         catch (Exception ex)
         {
@@ -286,5 +301,122 @@ public partial class applicantfunding : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetAccommodationOptions()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.accommodationplan.Select(x => new { x.id, x.description }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+
+    protected void btnCalculateCosts_Click(object sender, EventArgs e)
+    {
+        var studyWithChoice = ddlstudy.SelectedItem;
+        var noOfAdultFamilyMember = 0;
+        var noOfChildFamilyMember = 0;
+        if (studyWithChoice.Text.Contains("Family"))
+        {
+            noOfAdultFamilyMember = Convert.ToInt32(ddlFamilyAdult.SelectedValue);
+            noOfChildFamilyMember = Convert.ToInt32(ddlFamilyChildren.SelectedValue);
+        }
+
+        var accomdationSelection = Convert.ToInt32(hidAccomdation.Value);
+        var mealsSelection = Convert.ToInt32(ddlCooking.SelectedValue);
+        var transportSelection = Convert.ToInt32(ddltransportchoice.SelectedValue);
+        var tripsSelection = Convert.ToInt32(ddlTrips.SelectedValue);
+        var entertainmentSelection = Convert.ToInt32(ddlEntertainment.SelectedValue);
+
+        try
+        {
+            var applicationDetails = db.applicationmaster.Where(x => x.applicantid == userID && x.universityid == universityID && x.preferenceid == 1)
+                                                         .Select(s => new { courseId = s.course.Value, cityId = s.city.Value }).FirstOrDefault();
+            var cityId = applicationDetails.cityId;
+            var courseId = applicationDetails.courseId;
+
+            // Pending to get other education cost from course master
+            //var other_educationCost = 54643;/*db.coursemaster
+            //                              .Where(x => x.accomdationid == accomdationSelection && x.cityid == cityId && x.currencyid == currencyId)
+            //                              .Select(s => s.amount).FirstOrDefault();*/
+
+            var tutionFeeCost = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursefee).FirstOrDefault();
+            if (tutionFeeCost == null)
+                Response.Redirect("default.aspx", true);
+
+            var accomdationDetails = db.manageaccomdationplan.Where(x => x.accomdationid == accomdationSelection && x.cityid == cityId)
+                                       .Select(s => new { s.amount, s.currencyid, adult_percentage = s.extra_adult_percentage.HasValue ? (s.extra_adult_percentage.Value / 100) : 0m, child_percentage = s.extra_child_percentage.HasValue ? (s.extra_child_percentage.Value / 100) : 0m })
+                                       .FirstOrDefault();
+
+            var mealsCostDetails = db.managemealplan.Where(x => x.mealid == mealsSelection && x.cityid == cityId)
+                                     .Select(s => new { s.amount, adult_percentage = s.extra_adult_percentage.HasValue ? (s.extra_adult_percentage.Value / 100) : 0m, child_percentage = s.extra_child_percentage.HasValue ? (s.extra_child_percentage.Value / 100) : 0m })
+                                     .FirstOrDefault();
+
+            var transportationCostDetails = db.managetransportchoice.Where(x => x.transportchoice == transportSelection && x.cityid == cityId)
+                                              .Select(s => new { s.amount, adult_percentage = s.extra_adult_percentage.HasValue ? (s.extra_adult_percentage.Value / 100) : 0m, child_percentage = s.extra_child_percentage.HasValue ? (s.extra_child_percentage.Value / 100) : 0m })
+                                              .FirstOrDefault();
+
+            var tripsCostDetails = db.managetrips.Where(x => x.tripid == tripsSelection && x.cityid == cityId)
+                                     .Select(s => new { s.amount, adult_percentage = s.extra_adult_percentage.HasValue ? (s.extra_adult_percentage.Value / 100) : 0m, child_percentage = s.extra_child_percentage.HasValue ? (s.extra_child_percentage.Value / 100) : 0m })
+                                     .FirstOrDefault();
+
+            var entertainmentCostDetails = db.manageentertainment.Where(x => x.entertainmentid == entertainmentSelection && x.cityid == cityId)
+                                             .Select(s => new { amount = s.amount.Value, adult_percentage = s.extra_adult_percentage.HasValue ? (s.extra_adult_percentage.Value / 100) : 0m, child_percentage = s.extra_child_percentage.HasValue ? (s.extra_child_percentage.Value / 100) : 0m })
+                                             .FirstOrDefault();
+
+            var utilitiesCostDetails = db.manageutilities.Where(x => x.cityid == cityId)
+                                         .Select(s => new { amount = s.amount.Value, adult_percentage = s.extra_adult_percentage.HasValue ? (s.extra_adult_percentage.Value / 100) : 0m, child_percentage = s.extra_child_percentage.HasValue ? (s.extra_child_percentage.Value / 100) : 0m })
+                                         .FirstOrDefault();
+
+            var healthCostDetails = db.managehealth_insurance.Where(x => x.cityid == cityId).Select(s => new { s.amount, child_insurance = s.extra_child_amount.Value, extra_adult_insurance = s.extra_adult_amount.Value }).FirstOrDefault();
+            var visaCostDetails = db.managevisa.Where(x => x.cityid == cityId).Select(s => new { s.amount, child_visa = s.extra_adult_amount.Value, extra_adult_visa = s.extra_child_amount.Value }).FirstOrDefault();
+
+            var currencyDetails = db.currency_master.Where(x => x.id == accomdationDetails.currencyid).Select(x => new { symbol = x.currency_symbol, code = x.currency_code }).FirstOrDefault();
+            var accomdationCost = accomdationDetails.amount;
+            var mealsCost = mealsCostDetails.amount;
+            var transportationCost = transportationCostDetails.amount;
+            var tripsCost = tripsCostDetails.amount;
+            var entertainmentCost = entertainmentCostDetails.amount;
+            var utilitiesCost = utilitiesCostDetails.amount;
+
+            var healthCost = healthCostDetails.amount;
+            var visaCost = visaCostDetails.amount;
+
+            var living_expenses = accomdationCost + mealsCost + transportationCost + tripsCost + entertainmentCost + utilitiesCost + healthCost + visaCost;
+
+            if (studyWithChoice.Text.Contains("Family"))
+            {
+                accomdationCost = accomdationCost + (accomdationCost * noOfAdultFamilyMember * accomdationDetails.adult_percentage) + (accomdationCost * noOfChildFamilyMember * accomdationDetails.child_percentage);
+                mealsCost = mealsCost + (mealsCost * noOfAdultFamilyMember * mealsCostDetails.adult_percentage) + (mealsCost * noOfChildFamilyMember * mealsCostDetails.child_percentage);
+                transportationCost = transportationCost + (transportationCost * noOfAdultFamilyMember * transportationCostDetails.adult_percentage) + (transportationCost * noOfChildFamilyMember * transportationCostDetails.child_percentage);
+                tripsCost = tripsCost + (tripsCost * noOfAdultFamilyMember * tripsCostDetails.adult_percentage) + (tripsCost * noOfChildFamilyMember * tripsCostDetails.child_percentage);
+                entertainmentCost = entertainmentCost + (entertainmentCost * noOfAdultFamilyMember * entertainmentCostDetails.adult_percentage) + (entertainmentCost * noOfChildFamilyMember * entertainmentCostDetails.child_percentage);
+                utilitiesCost = utilitiesCost + (utilitiesCost * noOfAdultFamilyMember * utilitiesCostDetails.adult_percentage) + (utilitiesCost * noOfChildFamilyMember * utilitiesCostDetails.child_percentage);
+
+                healthCost = healthCost + (noOfAdultFamilyMember * healthCostDetails.extra_adult_insurance) + (noOfChildFamilyMember * healthCostDetails.child_insurance);
+                visaCost = visaCost + (noOfAdultFamilyMember * visaCostDetails.extra_adult_visa) + (noOfChildFamilyMember * visaCostDetails.child_visa);
+
+                living_expenses = accomdationCost + mealsCost + transportationCost + tripsCost + entertainmentCost + utilitiesCost + healthCost + visaCost;
+            }
+
+            tution_fee.InnerText = currencyDetails.symbol + Math.Round(tutionFeeCost.Value, 0).ToString();
+            accomodation_cost.InnerText = currencyDetails.symbol + Math.Round(accomdationCost, 0).ToString();
+            meals_cost.InnerText = currencyDetails.symbol + Math.Round(mealsCost, 0).ToString();
+            transportation_cost.InnerText = currencyDetails.symbol + Math.Round(transportationCost, 0).ToString();
+            trips_cost.InnerText = currencyDetails.symbol + Math.Round(tripsCost, 0).ToString();
+            entertainment_cost.InnerText = currencyDetails.symbol + Math.Round(entertainmentCost, 0).ToString();
+            utilities_cost.InnerText = currencyDetails.symbol + Math.Round(utilitiesCost, 0).ToString();
+            health_insurance_cost.InnerText = currencyDetails.symbol + Math.Round(healthCost, 0).ToString();
+            visa_cost.InnerText = currencyDetails.symbol + Math.Round(visaCost, 0).ToString();
+
+            living_cost.InnerText = currencyDetails.symbol + Math.Round(living_expenses, 0).ToString();
+            living_cost1.InnerText = living_cost.InnerText;
+            grand_total.InnerText = currencyDetails.symbol + Math.Round(tutionFeeCost.Value + living_expenses, 0).ToString();
+            hidCurrency.Value = currencyDetails.code + currencyDetails.symbol;
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+
+        cost.Style.Remove("display");
     }
 }
