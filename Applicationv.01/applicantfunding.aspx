@@ -207,19 +207,15 @@
                                 </div>
                             </div>
 
-                            <div class="list-group-item" runat="server" style ="display:none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-address">
+                            <div class="list-group-item" id="funding" runat="server" style ="display:none">
+                                <asp:HiddenField ID="hidAmount" runat="server" />
+                                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <label id="labelfunding" for="address" class="col-md-9 col-form-label form-label">
-                                            How do you plan to fund your education and living costs of $10,000 per annum or S30000 for the duration of your course 
+                                        <label id="labelfunding" for="address" class="col-form-label form-label">
+                                            How do you plan to fund your education and living costs of <%=hidCurrency.Value %> <%=hidAmount.Value %> for the duration of your course 
                                         </label>
                                        
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="list-group-item" id="funding" runat="server" style ="display:none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
 
                                         <div class="col-md-9">
@@ -238,7 +234,7 @@
                                                             <input type="number" runat="server" id="txtPrivateFinancePercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcPrivateFinance" class="form-control" value=0>
+                                                            <input type="number" disabled="disabled" id="txtCalcPrivateFinance" step=".01" class="form-control" value=0>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -247,7 +243,7 @@
                                                             <input type="number" runat="server" id="txtScholarshipPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcScholarshipAmount" class="form-control" value=0>
+                                                            <input type="number" disabled="disabled" id="txtCalcScholarshipAmount" step=".01" class="form-control" value=0>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -256,7 +252,7 @@
                                                             <input type="number" runat="server" id="txtLoanPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcLoanAmount" class="form-control" value=0>
+                                                            <input type="number" disabled="disabled" id="txtCalcLoanAmount" step=".01" class="form-control" value=0>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -265,7 +261,7 @@
                                                             <input type="number" runat="server" id="txtSponsorshipPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcSponsorshipAmount" class="form-control" value=0>
+                                                            <input type="number" disabled="disabled" id="txtCalcSponsorshipAmount" step=".01" class="form-control" value=0>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -274,7 +270,7 @@
                                                             <input type="number" runat="server" id="txtPartTimeWorkPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcPartimeAmount" class="form-control" value=0>
+                                                            <input type="number" disabled="disabled" id="txtCalcPartimeAmount" step=".01" class="form-control" value=0>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -283,7 +279,7 @@
                                                             <input type="number" runat="server" disabled="disabled" id="txtTotalPercentage" class="form-control" value=0>
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtSumTotalAmount" class="form-control" value=0>
+                                                            <input type="number" disabled="disabled" id="txtSumTotalAmount" step=".01" class="form-control" value=0>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -428,37 +424,45 @@
             else
                 $("#familymember").hide();
 
-            var Amount = 10000;
+
+            var Amount = parseInt(<%=hidAmount.Value%>);
+            $("#<%=txtPrivateFinancePercentage.ClientID%>").val("0");
+            $("#<%=txtScholarshipPercentage.ClientID%>").val("0");
+            $("#<%=txtLoanPercentage.ClientID%>").val("0");
+            $("#<%=txtPartTimeWorkPercentage.ClientID%>").val("0");
+            $("#<%=txtSponsorshipPercentage.ClientID%>").val("0");
+            $("#<%=txtTotalPercentage.ClientID%>").val("0");
+
             $("#<%=txtPrivateFinancePercentage.ClientID%>").change(function () {
-                var privateFinanceAmount = (Amount * $("#<%=txtPrivateFinancePercentage.ClientID%>").val()) / 100;
+                var privateFinanceAmount = Math.round(Amount * $("#<%=txtPrivateFinancePercentage.ClientID%>").val()) / 100;
                 $("#txtCalcPrivateFinance").val(privateFinanceAmount);
                 var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
                 $("#<%=txtTotalPercentage.ClientID%>").val(total);
             });
 
             $("#<%=txtScholarshipPercentage.ClientID%>").change(function () {
-                var scholarshipAmount = (Amount * $("#<%=txtScholarshipPercentage.ClientID%>").val()) / 100;
+                var scholarshipAmount = Math.round(Amount * $("#<%=txtScholarshipPercentage.ClientID%>").val()) / 100;
                 $("#txtCalcScholarshipAmount").val(scholarshipAmount);
                 var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
                 $("#<%=txtTotalPercentage.ClientID%>").val(total);
             });
 
             $("#<%=txtLoanPercentage.ClientID%>").change(function () {
-                var loanAmount = (Amount * $("#<%=txtLoanPercentage.ClientID%>").val()) / 100;
+                var loanAmount = Math.round(Amount * $("#<%=txtLoanPercentage.ClientID%>").val()) / 100;
                 $("#txtCalcLoanAmount").val(loanAmount);
                 var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
                 $("#<%=txtTotalPercentage.ClientID%>").val(total);
             });
 
             $("#<%=txtSponsorshipPercentage.ClientID%>").change(function () {
-                var sponsorshipAmount = (Amount * $("#<%=txtSponsorshipPercentage.ClientID%>").val()) / 100;
+                var sponsorshipAmount = Math.round(Amount * $("#<%=txtSponsorshipPercentage.ClientID%>").val()) / 100;
                 $("#txtCalcSponsorshipAmount").val(sponsorshipAmount);
                 var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
                 $("#<%=txtTotalPercentage.ClientID%>").val(total);
             });
 
             $("#<%=txtPartTimeWorkPercentage.ClientID%>").change(function () {
-                var partTimeWorkAmount = (Amount * $("#<%=txtPartTimeWorkPercentage.ClientID%>").val()) / 100;
+                var partTimeWorkAmount = Math.round(Amount * $("#<%=txtPartTimeWorkPercentage.ClientID%>").val()) / 100;
                 $("#txtCalcPartimeAmount").val(partTimeWorkAmount);
                 var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
                 $("#<%=txtTotalPercentage.ClientID%>").val(total);
@@ -489,14 +493,14 @@
             var sponsorshipPercentage = parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val());
             var partTimeWorkPercentage = parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
 
-            var privateFinanceAmount = parseInt($("#txtCalcPrivateFinance").val());
-            var scholarshipAmount = parseInt($("#txtCalcScholarshipAmount").val());
-            var loanAmount = parseInt($("#txtCalcLoanAmount").val());
-            var sponsorshipAmount = parseInt($("#txtCalcSponsorshipAmount").val());
-            var partTimeWorkAmount = parseInt($("#txtCalcPartimeAmount").val());
+            var privateFinanceAmount = parseFloat($("#txtCalcPrivateFinance").val());
+            var scholarshipAmount = parseFloat($("#txtCalcScholarshipAmount").val());
+            var loanAmount = parseFloat($("#txtCalcLoanAmount").val());
+            var sponsorshipAmount = parseFloat($("#txtCalcSponsorshipAmount").val());
+            var partTimeWorkAmount = parseFloat($("#txtCalcPartimeAmount").val());
 
             var total = privateFinancePercentage + scholarshipPercentage + loanPercentage + sponsorshipPercentage + partTimeWorkPercentage;
-            var totalAmount = privateFinanceAmount + scholarshipAmount + loanAmount + sponsorshipAmount + partTimeWorkAmount;
+            var totalAmount = Math.round(privateFinanceAmount + scholarshipAmount + loanAmount + sponsorshipAmount + partTimeWorkAmount);
             $("#txtSumTotalAmount").val(totalAmount);
 
             if (total > 100)

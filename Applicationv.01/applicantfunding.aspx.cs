@@ -414,9 +414,11 @@ public partial class applicantfunding : System.Web.UI.Page
             living_cost1.InnerText = living_cost.InnerText;
             grand_total.InnerText = currencyDetails.symbol + Math.Round(tutionFeeCost.Value + living_expenses, 0).ToString();
             hidCurrency.Value = currencyDetails.code + currencyDetails.symbol;
+            hidAmount.Value = Math.Round(tutionFeeCost.Value + living_expenses, 0).ToString();
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
 
         cost.Style.Remove("display");
+        funding.Style.Remove("display");
     }
 }
