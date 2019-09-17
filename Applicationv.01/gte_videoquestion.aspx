@@ -34,8 +34,15 @@
                                         <div class="col-xs-12 get-upldv">
                                           <input type="file" runat="server" name="FileUpload" id="FileUpload"/>
                                         </div>
+                                        <div class="media-left col-xs-12">
+                                            <div style="position:relative;width:202px;background:#f0f0f0;margin-bottom: 15px;"> 
+                                                <div id="progress" class="hide" style="background: blue; height: 20px;width:0;color:#fff;">
+                                                    <div class="status" style="margin-left:10px;"></div>
+                                                </div> 
+                                            </div> 
+                                        </div>
                                         <div class="media-left col-md-6">                                  
-                                            <asp:Button ID="btnupload" runat="server" Text="Upload" CssClass="btn btn-primary btn-block" OnClientClick="return validateUploadedFile()" OnClick="btnupload_Click" />                                                                                                               
+                                            <asp:Button ID="btnupload" runat="server" Text="Upload" CssClass="btn btn-primary btn-block" OnClientClick="return validateUploadedFile()" />
                                          </div>
                                         <div class="col-md-6 d-flex align-self-center">
                                             <asp:Label ID="lblupload" runat="server" />
@@ -126,7 +133,63 @@
             else
                 flag = true;
 
-            return flag;
+            if (flag) {
+                $("#ContentPlaceHolder1_btnupload").attr("disabled", "true")
+                $("#progress").removeClass("hide");
+                var progressEle = $("#progress");
+                progressEle.css("background-color", "blue");
+
+                var formData = new FormData();
+                var data = $("#ContentPlaceHolder1_FileUpload")[0].files[0];
+
+                formData.append("files", data);
+
+                var dummyProgress = 1;
+                var intervalId = -1;
+                var req = new XMLHttpRequest();
+
+                req.upload.addEventListener("progress", function (event) {
+
+                    var percent = (event.loaded / event.total) * 90;
+                    var progress = Math.round((event.loaded / event.total) * 90);
+                    console.log("progress:" + progress);
+                    if (progress < 90) {
+                        $(".status").html(progress + "%");
+                        progressEle.width(progress + "%");
+                    }
+                    else {
+                        progress = progress + dummyProgress;
+                        if (progress <= 99) {
+                            $(".status").html(progress + "%");
+                            progressEle.width(progress + "%");
+                        }
+                        if (intervalId == -1) {
+                            intervalId = setInterval(function () {
+                                progress = progress + dummyProgress;
+                                dummyProgress++;
+                                if (progress <= 99) {
+                                    $(".status").html(progress + "%");
+                                    progressEle.width(progress + "%");
+                                }
+                                else
+                                    clearInterval(intervalId);
+                            }, 2500);
+                        }
+                    }
+                });
+
+                req.onreadystatechange = function () {
+                    if (req.status && req.status == 200 && (req.readyState == 4)) {
+                        $("#ContentPlaceHolder1_btnupload").removeAttr("disabled");
+                        alert("Video uploaded successfully");
+                        location.reload();
+                    }
+                }
+
+                req.open("POST", 'gte_videoquestion.aspx/uploadVideo', true);
+                req.send(formData);
+            }
+            return false;
         }
 
         function getFileInfo() {
