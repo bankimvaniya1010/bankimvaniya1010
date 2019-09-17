@@ -36,6 +36,10 @@ public partial class admin_edittransportchoice : System.Web.UI.Page
                     ViewState["id"] = id;
 
                     txtFee.Value = Convert.ToString(existingTransportchoice.amount);
+                    if (existingTransportchoice.extra_adult_percentage != null)
+                        txtExtraAdultPercentage.Value = Convert.ToString(existingTransportchoice.extra_adult_percentage);
+                    if (existingTransportchoice.extra_child_percentage != null)
+                        txtExtraChildPercentage.Value = Convert.ToString(existingTransportchoice.extra_child_percentage);
 
                     if (existingTransportchoice.transportchoice != 0)
                     {
@@ -150,6 +154,11 @@ public partial class admin_edittransportchoice : System.Web.UI.Page
                 TransportchoiceObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 TransportchoiceObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 TransportchoiceObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    TransportchoiceObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    TransportchoiceObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
                 db.SaveChanges();
                 Response.Redirect("~/admin/managetransportchoice.aspx");
             }

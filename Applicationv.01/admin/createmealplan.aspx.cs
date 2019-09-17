@@ -108,6 +108,11 @@ public partial class admin_createmealplan : System.Web.UI.Page
                 mealObj.cityid = CityID;
                 mealObj.currencyid = Currencyid;
                 mealObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    mealObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    mealObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
                 db.managemealplan.Add(mealObj);
                 db.SaveChanges();
 

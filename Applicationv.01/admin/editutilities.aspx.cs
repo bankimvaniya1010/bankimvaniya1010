@@ -37,6 +37,10 @@ public partial class admin_editutilities : System.Web.UI.Page
                     ViewState["id"] = id;
 
                     txtFee.Value = Convert.ToString(existingUtilities.amount);
+                    if (existingUtilities.extra_adult_percentage != null)
+                        txtExtraAdultPercentage.Value = Convert.ToString(existingUtilities.extra_adult_percentage);
+                    if (existingUtilities.extra_child_percentage != null)
+                        txtExtraChildPercentage.Value = Convert.ToString(existingUtilities.extra_child_percentage);
 
                     if (existingUtilities.utilityid != 0)
                     {
@@ -138,8 +142,8 @@ public partial class admin_editutilities : System.Web.UI.Page
         if (ddlCurrency.SelectedItem.Value != "0")
             Currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
         var existingUtilities = (from Utilities in db.manageutilities
-                            where Utilities.utilityid == UtilitiesID && Utilities.cityid == CityID && Utilities.id != id
-                            select Utilities).FirstOrDefault();
+                                 where Utilities.utilityid == UtilitiesID && Utilities.cityid == CityID && Utilities.id != id
+                                 select Utilities).FirstOrDefault();
         if (existingUtilities == null)
         {
             manageutilities UtilitiesObj = db.manageutilities.Where(x => x.id == id).First();
@@ -150,6 +154,10 @@ public partial class admin_editutilities : System.Web.UI.Page
                 UtilitiesObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 UtilitiesObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 UtilitiesObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    UtilitiesObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    UtilitiesObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
                 db.SaveChanges();
                 Response.Redirect("~/admin/manageUtilities.aspx");
             }

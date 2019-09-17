@@ -33,7 +33,9 @@ public partial class admin_managevisa : System.Web.UI.Page
                                   Visaname = v.description,
                                   City = c.description,
                                   currency = curr.currency_symbol,
-                                  amount = mv.amount
+                                  amount = mv.amount,
+                                  extra_adult_amount= mv.extra_adult_amount==null ?0: mv.extra_adult_amount,
+                                  extra_child_amount = mv.extra_child_amount == null ? 0 : mv.extra_child_amount
                               }).ToList();
             if (visaList != null)
             {

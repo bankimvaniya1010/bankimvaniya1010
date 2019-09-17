@@ -36,6 +36,10 @@ public partial class admin_edittrips : System.Web.UI.Page
                     ViewState["id"] = id;
 
                     txtFee.Value = Convert.ToString(existingTrips.amount);
+                    if (existingTrips.extra_adult_percentage != null)
+                        txtExtraAdultPercentage.Value = Convert.ToString(existingTrips.extra_adult_percentage);
+                    if (existingTrips.extra_child_percentage != null)
+                        txtExtraChildPercentage.Value = Convert.ToString(existingTrips.extra_child_percentage);
 
                     if (existingTrips.tripid != 0)
                     {
@@ -149,6 +153,11 @@ public partial class admin_edittrips : System.Web.UI.Page
                 TripsObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 TripsObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 TripsObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    TripsObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    TripsObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
                 db.SaveChanges();
                 Response.Redirect("~/admin/managetrips.aspx");
             }

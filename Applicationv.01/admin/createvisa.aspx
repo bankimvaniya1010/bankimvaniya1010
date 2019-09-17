@@ -57,7 +57,26 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="form-group row">
+                        <label for="ExtraAdult" class="col-sm-3 col-form-label form-label">Extra Adult Fee</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtExtraAdult" type="text" runat="server" class="form-control" placeholder="Extra Adult Fee" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ExtraChild" class="col-sm-3 col-form-label form-label">Extra Child Fee</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtExtraChild" type="text" runat="server" class="form-control" placeholder="Extra Child Fee" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -81,30 +100,37 @@
 
 
         function validateForm() {
-
+            var AdultAmount = $('#<%=txtExtraAdult.ClientID%>').val();
+            var ChildAmount = $('#<%=txtExtraChild.ClientID%>').val();
 
             var fee = $('#<%=txtFee.ClientID%>').val();
             var City = $('#<%=ddlCity.ClientID%>').val();
             var Currency = $('#<%=ddlCurrency.ClientID%>').val();
             var Visa = $('#<%=ddlVisa.ClientID%>').val();
             if (Visa == 0 || isNaN(parseInt(Visa))) {
-                alert("Please select Visa");
+                alert("Please select visa");
                 return false;
             }
             else if (Currency == 0 || isNaN(parseInt(Currency))) {
-                alert("Please select Currency");
+                alert("Please select currency");
                 return false;
             }
             else if (City == 0 || isNaN(parseInt(City))) {
-                alert("Please select City");
+                alert("Please select city");
                 return false;
             }
-
-            else
-                if (fee == '') {
-                    alert("Please enter Amount");
-                    return false;
-                }
+            else if (fee == '') {
+                alert("Please enter amount");
+                return false;
+            }
+            else if ((AdultAmount != '') && isNaN(parseInt(AdultAmount))) {
+                alert("Please enter appropriate extra adult amount ");
+                return false;
+            }
+            else if ((ChildAmount != '') && isNaN(parseInt(ChildAmount))) {
+                alert("Please enter appropriate extra child amount ");
+                return false;
+            }
             return true;
 
         }

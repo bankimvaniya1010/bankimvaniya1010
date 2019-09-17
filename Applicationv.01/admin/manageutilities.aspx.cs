@@ -33,7 +33,10 @@ public partial class admin_manageutilities : System.Web.UI.Page
                                   Utilitiesname = u.description,
                                   City = c.description,
                                   currency = curr.currency_symbol,
-                                  amount = mu.amount
+                                  amount = mu.amount,
+                                  extra_adult_percentage = mu.extra_adult_percentage == null ? 0 : mu.extra_adult_percentage,
+                                  extra_child_percentage = mu.extra_child_percentage == null ? 0 : mu.extra_child_percentage
+
                               }).ToList();
             if (courseList != null)
             {

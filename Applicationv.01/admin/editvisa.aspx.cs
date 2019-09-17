@@ -37,7 +37,10 @@ public partial class admin_editvisa : System.Web.UI.Page
                     ViewState["id"] = id;
 
                     txtFee.Value = Convert.ToString(existingVisa.amount);
-
+                    if (existingVisa.extra_adult_amount != null)
+                        txtExtraAdult.Value = Convert.ToString(existingVisa.extra_adult_amount);
+                    if (existingVisa.extra_child_amount != null)
+                        txtExtraChild.Value = Convert.ToString(existingVisa.extra_child_amount);
                     if (existingVisa.visaid != 0)
                     {
                         ddlVisa.ClearSelection();
@@ -150,6 +153,10 @@ public partial class admin_editvisa : System.Web.UI.Page
                 VisaObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 VisaObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 VisaObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdult.Value.Trim() != "")
+                    VisaObj.extra_adult_amount = Convert.ToDecimal(txtExtraAdult.Value.Trim());
+                if (txtExtraChild.Value.Trim() != "")
+                    VisaObj.extra_child_amount = Convert.ToDecimal(txtExtraChild.Value.Trim());
                 db.SaveChanges();
                 Response.Redirect("~/admin/manageVisa.aspx");
             }

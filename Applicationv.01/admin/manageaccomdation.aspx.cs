@@ -32,7 +32,9 @@ public partial class admin_manageaccomdation : System.Web.UI.Page
                                   Accomdationname = a.description,
                                   City = c.description,
                                   currency = curr.currency_symbol,
-                                  amount = am.amount
+                                  amount = am.amount,
+                                  extra_adult_percentage = am.extra_adult_percentage == null ? 0 : am.extra_adult_percentage,
+                                  extra_child_percentage = am.extra_child_percentage == null ? 0 : am.extra_child_percentage
                               }).ToList();
             if (courseList != null)
             {

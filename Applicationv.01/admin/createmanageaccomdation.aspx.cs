@@ -108,6 +108,11 @@ public partial class admin_createmanageaccomdation : System.Web.UI.Page
                 accomdationObj.cityid = CityID;
                 accomdationObj.currencyid = Currencyid;
                 accomdationObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    accomdationObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    accomdationObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
                 db.manageaccomdationplan.Add(accomdationObj);
                 db.SaveChanges();
 

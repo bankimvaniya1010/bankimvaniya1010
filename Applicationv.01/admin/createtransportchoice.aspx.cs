@@ -108,6 +108,13 @@ public partial class admin_createtransportchoice : System.Web.UI.Page
                 transportObj.cityid = CityID;
                 transportObj.currencyid = Currencyid;
                 transportObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdultPercentage.Value.Trim() != "")
+                    transportObj.extra_adult_percentage = Convert.ToDecimal(txtExtraAdultPercentage.Value.Trim());
+                if (txtExtraChildPercentage.Value.Trim() != "")
+                    transportObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
+
+
+
                 db.managetransportchoice.Add(transportObj);
                 db.SaveChanges();
 

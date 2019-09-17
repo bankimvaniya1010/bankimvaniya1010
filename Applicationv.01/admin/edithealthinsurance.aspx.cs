@@ -37,7 +37,10 @@ public partial class admin_edithealthinsurance : System.Web.UI.Page
                     ViewState["id"] = id;
 
                     txtFee.Value = Convert.ToString(existingInsurance.amount);
-
+                    if (existingInsurance.extra_adult_amount != null)
+                        txtExtraAdult.Value = Convert.ToString(existingInsurance.extra_adult_amount);
+                    if (existingInsurance.extra_child_amount != null)
+                        txtExtraChild.Value = Convert.ToString(existingInsurance.extra_child_amount);
                     if (existingInsurance.insuranceid != 0)
                     {
                         ddlInsurance.ClearSelection();
@@ -138,8 +141,8 @@ public partial class admin_edithealthinsurance : System.Web.UI.Page
         if (ddlCurrency.SelectedItem.Value != "0")
             Currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
         var existingInsurance = (from Insurance in db.managehealth_insurance
-                            where Insurance.insuranceid == InsuranceID && Insurance.cityid == CityID && Insurance.id != id
-                            select Insurance).FirstOrDefault();
+                                 where Insurance.insuranceid == InsuranceID && Insurance.cityid == CityID && Insurance.id != id
+                                 select Insurance).FirstOrDefault();
         if (existingInsurance == null)
         {
             managehealth_insurance InsuranceObj = db.managehealth_insurance.Where(x => x.id == id).First();
@@ -150,6 +153,10 @@ public partial class admin_edithealthinsurance : System.Web.UI.Page
                 InsuranceObj.cityid = Convert.ToInt32(ddlCity.SelectedItem.Value);
                 InsuranceObj.currencyid = Convert.ToInt32(ddlCurrency.SelectedItem.Value);
                 InsuranceObj.amount = Convert.ToDecimal(txtFee.Value.Trim());
+                if (txtExtraAdult.Value.Trim() != "")
+                    InsuranceObj.extra_adult_amount = Convert.ToDecimal(txtExtraAdult.Value.Trim());
+                if (txtExtraChild.Value.Trim() != "")
+                    InsuranceObj.extra_child_amount = Convert.ToDecimal(txtExtraChild.Value.Trim());
                 db.SaveChanges();
                 Response.Redirect("~/admin/managehealthinsurance.aspx");
             }
