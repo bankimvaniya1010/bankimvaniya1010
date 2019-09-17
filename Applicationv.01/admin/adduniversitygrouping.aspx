@@ -85,6 +85,12 @@
             return true;
             
         }
-    </script>
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#universitymenu_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#universitygroupingmaster').addClass('active');
+	    });
+</script>
 
 </asp:Content>

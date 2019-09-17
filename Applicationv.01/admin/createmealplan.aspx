@@ -135,5 +135,11 @@
 
 
         }
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#universitymenu_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#managemealplan').addClass('active');
+	    });
     </script>
 </asp:Content>

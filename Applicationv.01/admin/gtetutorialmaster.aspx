@@ -77,7 +77,7 @@
                                 </EditItemTemplate>                              
 
                                 <ItemTemplate>
-                                    <a href="/admin/tutorialmaster.aspx?id=<%# Eval("id") %>">Edit</a>
+                                    <a href="/admin/getaddtutorial.aspx?id=<%# Eval("id") %>">Edit</a>
                                 </ItemTemplate>
 
                             </asp:TemplateField>
@@ -97,7 +97,16 @@
             </div>
 
         </div>
+    <script>
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#gte_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#gtetutorialmaster').addClass('active');
+        });
+    </script>
 </asp:Content>
+
 
 
 

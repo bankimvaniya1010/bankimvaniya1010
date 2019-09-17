@@ -38,17 +38,6 @@
 </head>
 
 <body class=" fixed-layout">
-
-    <form runat="server">
-
-
-
-
-
-
-
-
-
         <div class="preloader">
             <div class="sk-double-bounce">
                 <div class="sk-child sk-double-bounce1"></div>
@@ -74,29 +63,30 @@
 
 
                             <!-- Menu -->
-                            <ul class="nav navbar-nav flex-nowrap">
+                             <a href="default.aspx" class="navbar-brand">
+                                <%-- <img src="assets/images/logo/white.svg" class="mr-2" alt="LearnPlus" />--%>
+                                <span class="d-none d-xs-md-block">
+                                   <%-- <asp:Label ID="lbluniversityName" runat="server"></asp:Label> - The Application Center</span>--%>
+                            </a>
 
+                            <ul class="nav navbar-nav flex-nowrap head-nav">
 
+                            <!-- User dropdown -->
+                            <li class="nav-item ml-1 ml-md-3">
+                                                                   
+                                    Welcome  &nbsp;<asp:Label ID="lbladminname" runat="server"></asp:Label>
+                               <!-- <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="login.aspx">
+                                        <i class="material-icons">lock</i> Logout
+                                    </a>
+                                </div> -->
+                            </li>                           
+                            <li>
+                                <a href="login.aspx">Logout</a>
+                            </li>
+                            <!-- // END User dropdown -->
 
-
-
-
-
-
-
-                                <li class="nav-item dropdown ml-1 ml-md-3">
-                                    <a class="nav-link dropdown-toggle user-dropdown" data-toggle="dropdown" href="#" role="button">
-                                       <h5 style="color:white"> <asp:Label ID="lbladminname" runat="server"></asp:Label> </h5></a>  
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        
-                                        <a class="dropdown-item" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/login.aspx">
-                                            <i class="material-icons">lock</i> Logout
-                                        </a>
-                                    </div>
-                                </li>
-                                <!-- // END User dropdown -->
-
-                            </ul>
+                        </ul>
                             <!-- // END Menu -->
                         </div>
                     </nav>
@@ -108,7 +98,7 @@
             <!-- // END Header -->
 
             <!-- Header Layout Content -->
-            <div class="mdk-header-layout__content d-flex flex-column">
+          <%--  <div class="mdk-header-layout__content">
 
                 <div class="page__header">
                     <div class="navbar bg-dark navbar-dark navbar-expand-sm d-none2 d-md-flex2">
@@ -125,7 +115,7 @@
                                             <a class="dropdown-item" href="scholarshipmaster.aspx">Manage Scholarships</a>
                                             <a class="dropdown-item" href="preliminaryquestion.aspx">Create Preliminary Questions</a>
                                             <a class="dropdown-item" href="preliminaryvideomaster.aspx">Create Tutorials</a>
-                                            <%--<a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>--%>
+                                            <%--<a class="dropdown-item" href="questioncreate.aspx">Create Questions</a>
                                             <a class="dropdown-item" href="educationmediummaster.aspx">Education Medium Master</a>
                                             <a class="dropdown-item" href="alternateaddressproof.aspx">Alternate Address Proof</a>
                                             <a class="dropdown-item" href="alternatedobproof.aspx">Alternate DOB Proof</a>
@@ -212,331 +202,337 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
             <!-- // END Header Layout Content -->
-
-        </div>
+          
         <!-- // END Header Layout -->
-
-
-
-
-
-        <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
+         <div class="mdk-header-layout__content">
+            <div class="mdk-drawer-layout js-mdk-drawer-layout">
+                <div class="mdk-drawer-layout__content page ">
+                    <form runat="server">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </form>
+                </div>
+                <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
             <div class="mdk-drawer__content ">
                 <div class="sidebar sidebar-left sidebar-dark bg-dark o-hidden" data-perfect-scrollbar>
                     <div class="sidebar-p-y">
-                        <div class="sidebar-heading">APPLICATIONS</div>
-                        <ul class="sidebar-menu sm-active-button-bg">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="fixed-student-dashboard.html">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">account_box</i> Student
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="fixed-instructor-dashboard.html">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">school</i> Instructor
-                                </a>
-                            </li>
-                        </ul>
+                       
                         <!-- Account menu -->
-                        <div class="sidebar-heading">Account</div>
+                       
                         <ul class="sidebar-menu">
-                            <li class="sidebar-menu-item open">
-                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#account_menu">
+                            <li class="sidebar-menu-item" id="admin_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#admin_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                    Account
+                                    Admin
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="account_menu">
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/login.aspx">
-                                            <span class="sidebar-menu-text">Login</span>
+                                <ul class="sidebar-submenu sm-indent collapse show" id="admin_menu">
+                                    <li class="sidebar-menu-item" id="dashboard">
+                                        <a class="sidebar-menu-button" href="Default.aspx">
+                                            <span class="sidebar-menu-text">Dashboard</span>
+                                        </a>
+                                    </li>                                   
+                                    <li class="sidebar-menu-item" id="createuser">
+                                        <a class="sidebar-menu-button" href="createuser.aspx">
+                                            <span class="sidebar-menu-text">create User</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="guest-signup.html">
-                                            <span class="sidebar-menu-text">Sign Up</span>
+                                    <li class="sidebar-menu-item" id="managecity">
+                                        <a class="sidebar-menu-button" href="citymaster.aspx">
+                                            <span class="sidebar-menu-text">Manage City</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="guest-forgot-password.html">
-                                            <span class="sidebar-menu-text">Forgot Password</span>
+                                    <li class="sidebar-menu-item" id="manageScholarships">
+                                        <a class="sidebar-menu-button" href="scholarshipmaster.aspx">
+                                            <span class="sidebar-menu-text">Manage Scholarships</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item active">
-                                        <a class="sidebar-menu-button" href="fixed-student-account-edit.html">
-                                            <span class="sidebar-menu-text">Edit Account</span>
+                                    <li class="sidebar-menu-item" id="preliminaryquestion">
+                                        <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
+                                            <span class="sidebar-menu-text">Create Preliminary Questions </span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-account-edit-basic.html">
-                                            <span class="sidebar-menu-text">Basic Information</span>
+                                    <li class="sidebar-menu-item" id="preliminaryvideomaster">
+                                        <a class="sidebar-menu-button" href="preliminaryvideomaster.aspx">
+                                            <span class="sidebar-menu-text">Create Tutorials </span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-account-edit-profile.html">
-                                            <span class="sidebar-menu-text">Profile &amp; Privacy</span>
+                                    <%--<li class="sidebar-menu-item" id="questioncreate">
+                                        <a class="sidebar-menu-button" href="questioncreate.aspx">
+                                            <span class="sidebar-menu-text">Create Questions</span>
+                                        </a>
+                                    </li>--%>
+                                    <li class="sidebar-menu-item" id="educationmediummaster">
+                                        <a class="sidebar-menu-button" href="educationmediummaster.aspx">
+                                            <span class="sidebar-menu-text"> Education Medium Master</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-account-billing-subscription.html">
-                                            <span class="sidebar-menu-text">Subscription</span>
+                                    <li class="sidebar-menu-item" id="alternateaddressproof">
+                                        <a class="sidebar-menu-button" href="alternateaddressproof.aspx">
+                                            <span class="sidebar-menu-text">Alternate Address Proof </span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-account-billing-upgrade.html">
-                                            <span class="sidebar-menu-text">Upgrade Account</span>
+                                    <li class="sidebar-menu-item" id="alternatedobproof">
+                                        <a class="sidebar-menu-button" href="alternatedobproof.aspx">
+                                            <span class="sidebar-menu-text">Alternate DOB Proof</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-account-billing-payment-information.html">
-                                            <span class="sidebar-menu-text">Payment Information</span>
+                                    <li class="sidebar-menu-item" id="alternateidproof">
+                                        <a class="sidebar-menu-button" href="alternateidproof.aspx">
+                                            <span class="sidebar-menu-text">Alternate ID Proof</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-billing.html">
-                                            <span class="sidebar-menu-text">Payment History</span>
+                                    <li class="sidebar-menu-item" id="disability">
+                                        <a class="sidebar-menu-button" href="disability.aspx">
+                                            <span class="sidebar-menu-text">Disability Master</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-invoice.html">
-                                            <span class="sidebar-menu-text">Student Invoice</span>
+                                    <li class="sidebar-menu-item" id="grademaster">
+                                        <a class="sidebar-menu-button" href="grademaster.aspx">
+                                            <span class="sidebar-menu-text">Grade Master</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-instructor-invoice.html">
-                                            <span class="sidebar-menu-text">Instructor Invoice</span>
+                                    <li class="sidebar-menu-item" id="subjectmaster">
+                                        <a class="sidebar-menu-button" href="subjectmaster.aspx">
+                                            <span class="sidebar-menu-text">Manage Subject Master</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-instructor-edit-invoice.html">
-                                            <span class="sidebar-menu-text">Edit Invoice</span>
+                                    <li class="sidebar-menu-item" id="majordesription">
+                                        <a class="sidebar-menu-button" href="majordesription.aspx">
+                                            <span class="sidebar-menu-text"> Major Discipline Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="sutdymode">
+                                        <a class="sidebar-menu-button" href="sutdymode.aspx">
+                                            <span class="sidebar-menu-text">Study Mode Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="titlemaster">
+                                        <a class="sidebar-menu-button" href="titlemaster.aspx">
+                                            <span class="sidebar-menu-text">Title Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="qualificationmaster">
+                                        <a class="sidebar-menu-button" href="qualificationmaster.aspx">
+                                            <span class="sidebar-menu-text">Qualification Master</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="tooltipslisting">
+                                        <a class="sidebar-menu-button" href="tooltipslisting.aspx">
+                                            <span class="sidebar-menu-text">Student Tooltips</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="universitywisetooltipslisting">
+                                        <a class="sidebar-menu-button" href="universitywisetooltipslisting.aspx">
+                                            <span class="sidebar-menu-text">Universities Student Tool Tips</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="admintooltipslisting">
+                                        <a class="sidebar-menu-button" href="admintooltipslisting.aspx">
+                                            <span class="sidebar-menu-text">Admin Tool Tips</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="adminuniversitywisetooltipslisting">
+                                        <a class="sidebar-menu-button" href="adminuniversitywisetooltipslisting.aspx">
+                                            <span class="sidebar-menu-text">Universities Wise Admin Tool Tips</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" data-toggle="collapse" href="#messages_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">comment</i> Messages
-                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                            <li class="sidebar-menu-item" id="viewapplicant_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#ViewApplicant_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> 
+                                    View Applicant                                
+                                    <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse" id="messages_menu">
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-messages.html">
-                                            <span class="sidebar-menu-text">Conversation</span>
-                                            <span class="sidebar-menu-badge badge badge-primary badge-notifications ml-auto">2</span>
+                                <ul class="sidebar-submenu sm-indent collapse" id="ViewApplicant_menu">
+                                    <li class="sidebar-menu-item" id="applicantlist"> 
+                                        <a class="sidebar-menu-button" href="applicantlist.aspx">
+                                            <span class="sidebar-menu-text">Applicant List</span>
                                         </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-messages-2.html">
-                                            <span class="sidebar-menu-text">Conversation - 2</span>
-                                        </a>
-                                    </li>
+                                    </li>                                    
                                 </ul>
                             </li>
-                        </ul>
-                        <div class="sidebar-heading">Student</div>
-                        <ul class="sidebar-menu sm-active-button-bg">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="fixed-student-browse-courses.html">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">search</i> Browse Courses
+                             <li class="sidebar-menu-item" id="setting_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Settings_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    Settings
+                                    <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                            </li>
-
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" data-toggle="collapse" href="#forum_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">chat_bubble_outline</i>
-                                    Community
-                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                </a>
-                                <ul class="sidebar-submenu sm-indent collapse" id="forum_menu">
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-forum.html">
-                                            <span class="sidebar-menu-text">Forum</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-forum-thread.html">
-                                            <span class="sidebar-menu-text">Discussion</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-forum-ask.html">
-                                            <span class="sidebar-menu-text">Ask Question</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-profile.html">
-                                            <span class="sidebar-menu-text">Student Profile - Courses</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-student-profile-posts.html">
-                                            <span class="sidebar-menu-text">Student Profile - Posts</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-instructor-profile.html">
-                                            <span class="sidebar-menu-text">Instructor Profile</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="fixed-student-help-center.html">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">live_help</i> Get Help
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/login.aspx">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">lock_open</i> Logout
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- Components menu -->
-                        <div class="sidebar-heading">Components</div>
-                        <ul class="sidebar-menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#components_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">tune</i>
-                                    Components
-                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                </a>
-                                <ul class="sidebar-submenu sm-indent collapse" id="components_menu">
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-avatars.html">
-                                            <span class="sidebar-menu-text">Avatars</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-forms.html">
+                                <ul class="sidebar-submenu sm-indent collapse" id="Settings_menu">
+                                    <li class="sidebar-menu-item" id="formmaster"> 
+                                        <a class="sidebar-menu-button" href="formmaster.aspx">
                                             <span class="sidebar-menu-text">Forms</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-loaders.html">
-                                            <span class="sidebar-menu-text">Loaders</span>
+                                    <li class="sidebar-menu-item" id="qualificationcountrymapping"> 
+                                        <a class="sidebar-menu-button" href="qualificationcountrymapping.aspx">
+                                            <span class="sidebar-menu-text">Qualification Country Mapping</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-tables.html">
-                                            <span class="sidebar-menu-text">Tables</span>
+                                    <li class="sidebar-menu-item" id="alternateIdproofcountrywiselisting"> 
+                                        <a class="sidebar-menu-button" href="alternateIdproofcountrywiselisting.aspx">
+                                            <span class="sidebar-menu-text">Alternate Id Proof Country Mapping</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-cards.html">
-                                            <span class="sidebar-menu-text">Cards</span>
+                                    <li class="sidebar-menu-item" id="primaryfieldmaster"> 
+                                        <a class="sidebar-menu-button" href="primaryfieldmaster.aspx">
+                                            <span class="sidebar-menu-text"> Form Fields Mapping</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-tabs.html">
-                                            <span class="sidebar-menu-text">Tabs</span>
+                                    <li class="sidebar-menu-item" id="fieldmaster"> 
+                                        <a class="sidebar-menu-button" href="fieldmaster.aspx">
+                                            <span class="sidebar-menu-text">Secondary Language</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-icons.html">
-                                            <span class="sidebar-menu-text">Icons</span>
+                                    <li class="sidebar-menu-item" id="universityformmapping"> 
+                                        <a class="sidebar-menu-button" href="universityformmapping.aspx">
+                                            <span class="sidebar-menu-text">University Forms</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-buttons.html">
-                                            <span class="sidebar-menu-text">Buttons</span>
+                                    <li class="sidebar-menu-item" id="universityfieldmapping"> 
+                                        <a class="sidebar-menu-button" href="universityfieldmapping.aspx">
+                                            <span class="sidebar-menu-text"> University Fields</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-alerts.html">
-                                            <span class="sidebar-menu-text">Alerts</span>
+                                    <li class="sidebar-menu-item" id="masterfieldmapping"> 
+                                        <a class="sidebar-menu-button" href="masterfieldmapping.aspx">
+                                            <span class="sidebar-menu-text"> University Master Fields</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-badges.html">
-                                            <span class="sidebar-menu-text">Badges</span>
+                                    <li class="sidebar-menu-item" id="customfieldaddition"> 
+                                        <a class="sidebar-menu-button" href="customfieldaddition.aspx">
+                                            <span class="sidebar-menu-text">Add Custom Field Universitywise</span>
                                         </a>
                                     </li>
-                                    <!-- <li class="sidebar-menu-item">
-        <a class="sidebar-menu-button" href="fixed-ui-modals.html">
-          <span class="sidebar-menu-text">- Modals</span>
-        </a>
-      </li> -->
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-progress.html">
-                                            <span class="sidebar-menu-text">Progress Bars</span>
-                                        </a>
-                                    </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-pagination.html">
-                                            <span class="sidebar-menu-text">Pagination</span>
+                                    <li class="sidebar-menu-item" id="customfieldlisting"> 
+                                        <a class="sidebar-menu-button" href="customfieldlisting.aspx">
+                                            <span class="sidebar-menu-text">Custom Field Listing Universitywise</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#plugins_menu">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">folder</i>
-                                    Plugins
-                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                             <li class="sidebar-menu-item" id="universitymenu_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#University_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i> 
+                                    University
+                                    <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse" id="plugins_menu">
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-charts.html">
-                                            <span class="sidebar-menu-text">Charts</span>
+                                <ul class="sidebar-submenu sm-indent collapse" id="University_menu">
+                                    <li class="sidebar-menu-item" id="manageaccomdation"> 
+                                        <a class="sidebar-menu-button" href="manageaccomdation.aspx">
+                                            <span class="sidebar-menu-text">Manage Accommodation Plan</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-drag.html">
-                                            <span class="sidebar-menu-text">Drag &amp; Drop</span>
+                                    <li class="sidebar-menu-item" id="managemealplan"> 
+                                        <a class="sidebar-menu-button" href="managemealplan.aspx">
+                                            <span class="sidebar-menu-text">Manage Meal </span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-calendar.html">
-                                            <span class="sidebar-menu-text">Calendar</span>
+                                    <li class="sidebar-menu-item" id="managetransportchoice"> 
+                                        <a class="sidebar-menu-button" href="managetransportchoice.aspx">
+                                            <span class="sidebar-menu-text"> Manage Transport Choice</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-nestable.html">
-                                            <span class="sidebar-menu-text">Nestable</span>
+                                    <li class="sidebar-menu-item" id="managetrips"> 
+                                        <a class="sidebar-menu-button" href="managetrips.aspx">
+                                            <span class="sidebar-menu-text">Manage Trips </span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-tree.html">
-                                            <span class="sidebar-menu-text">Tree</span>
+                                    <li class="sidebar-menu-item" id="manageentertainment"> 
+                                        <a class="sidebar-menu-button" href="manageentertainment.aspx">
+                                            <span class="sidebar-menu-text">Manage Entertainment </span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-maps-vector.html">
-                                            <span class="sidebar-menu-text">Vector Maps</span>
+                                    <li class="sidebar-menu-item" id="managehealthinsurance"> 
+                                        <a class="sidebar-menu-button" href="managehealthinsurance.aspx">
+                                            <span class="sidebar-menu-text"> Manage Health Insurance</span>
                                         </a>
                                     </li>
-                                    <li class="sidebar-menu-item">
-                                        <a class="sidebar-menu-button" href="fixed-ui-sweet-alert.html">
-                                            <span class="sidebar-menu-text">Sweet Alert</span>
+                                    <li class="sidebar-menu-item" id="managevisa"> 
+                                        <a class="sidebar-menu-button" href="managevisa.aspx">
+                                            <span class="sidebar-menu-text"> Manage Visa</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="manageutilities"> 
+                                        <a class="sidebar-menu-button" href="manageutilities.aspx">
+                                            <span class="sidebar-menu-text">Manage Utilities</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="createuniversity"> 
+                                        <a class="sidebar-menu-button" href="createuniversity.aspx">
+                                            <span class="sidebar-menu-text">Create University </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="createuniversitycampus"> 
+                                        <a class="sidebar-menu-button" href="createuniversitycampus.aspx">
+                                            <span class="sidebar-menu-text">Create University Campus</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="createuniversitycrendentials"> 
+                                        <a class="sidebar-menu-button" href="createuniversitycrendentials.aspx">
+                                            <span class="sidebar-menu-text"> Add University credentials</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="createfacility"> 
+                                        <a class="sidebar-menu-button" href="createfacility.aspx">
+                                            <span class="sidebar-menu-text">Add Facility</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="universitycampusmaster"> 
+                                        <a class="sidebar-menu-button" href="universitycampusmaster.aspx">
+                                            <span class="sidebar-menu-text">View all campus </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="universitymaster"> 
+                                        <a class="sidebar-menu-button" href="universitymaster.aspx">
+                                            <span class="sidebar-menu-text">View all universities</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="coursemaster"> 
+                                        <a class="sidebar-menu-button" href="coursemaster.aspx">
+                                            <span class="sidebar-menu-text">Manage Courses</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="universitygroupingmaster">
+                                        <a class="sidebar-menu-button" href="universitygroupingmaster.aspx">
+                                            <span class="sidebar-menu-text">Grouping</span>
+                                        </a>
+                                    </li>                                 
+                                </ul>
+                            </li>
+                            <li class="sidebar-menu-item" id="gte_list">
+                                <a class="sidebar-menu-button" data-toggle="collapse" href="#gte_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                    GTE
+                                    <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="gte_menu">
+                                    <li class="sidebar-menu-item" id="gtetutorialmaster"> 
+                                        <a class="sidebar-menu-button" href="gtetutorialmaster.aspx">
+                                            <span class="sidebar-menu-text">GTE Tutorial</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="gtepreliminaryquestionmaster"> 
+                                        <a class="sidebar-menu-button" href="gtepreliminaryquestionmaster.aspx">
+                                            <span class="sidebar-menu-text">GTE Preliminary Question</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        <!-- // END Components Menu -->
-
-                        <div class="sidebar-heading">Layout</div>
-                        <ul class="sidebar-menu">
-                            <li class="sidebar-menu-item">
-                                <a class="sidebar-menu-button" href="student-account-edit.html">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dashboard</i> Fluid Layout
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item active">
-                                <a class="sidebar-menu-button" href="fixed-student-account-edit.html">
-                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dashboard</i> Fixed Layout
-                                </a>
-                            </li>
-                        </ul>
+                      
+                        <!-- // END Components Menu -->                        
                     </div>
                 </div>
             </div>
         </div>
 
-    </form>
+              </div>
+         </div>
+    
 
 
 

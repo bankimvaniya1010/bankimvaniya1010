@@ -223,6 +223,12 @@
                 $("#<%=hidDeadLineDate.ClientID%>").val($("#<%=ddlDay.ClientID%>").val());
             });
         });
+        $(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#admin_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#manageScholarships').addClass('active');
+        });
     </script>
 
 </asp:Content>
