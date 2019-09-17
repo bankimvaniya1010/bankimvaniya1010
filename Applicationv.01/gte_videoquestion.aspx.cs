@@ -42,13 +42,16 @@ public partial class gte_videoquestion : System.Web.UI.Page
         }
         lblinstitutename.Text = InstituteName;
         lblcity.Text = city;
+        HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
+        if (httpPostedFile.Count > 0)
+            uploadVideo(httpPostedFile[0]);
     }
 
-    protected void btnupload_Click(object sender, EventArgs e)
+    protected void uploadVideo(HttpPostedFile httpPostedFile)
     {
         try
         {
-            var mode = "new";           
+            var mode = "new";
             var data = (from vInfo in db.gte_videouploadmaster
                         where vInfo.universityid == universityID && vInfo.applicantid == userID
                         select vInfo).FirstOrDefault();
@@ -58,18 +61,14 @@ public partial class gte_videoquestion : System.Web.UI.Page
                 mode = "update";
                 objgte_videouploadmaster = data;
             }
-            if (FileUpload.Value != "")
-            {
-                string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GteUploadedVideo";
-                string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(FileUpload.PostedFile.FileName));
-                string filePath = string.Concat(dirPath, "/", fileName);
-                DirectoryInfo di = new DirectoryInfo(dirPath);
-                if (!di.Exists)
-                    di.Create();
-                FileUpload.PostedFile.SaveAs(filePath);
-                objgte_videouploadmaster.videourl= fileName;
-
-            }
+            string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"] + "/GteUploadedVideo";
+            string fileName = string.Concat(Guid.NewGuid(), Path.GetExtension(httpPostedFile.FileName));
+            string filePath = string.Concat(dirPath, "/", fileName);
+            DirectoryInfo di = new DirectoryInfo(dirPath);
+            if (!di.Exists)
+                di.Create();
+            httpPostedFile.SaveAs(filePath);
+            objgte_videouploadmaster.videourl = fileName;
             objgte_videouploadmaster.applicantid = userID;
             objgte_videouploadmaster.universityid = universityID;
             if (mode == "new")
