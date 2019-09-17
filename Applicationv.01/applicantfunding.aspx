@@ -22,14 +22,14 @@
                             <div class="list-group-item" id="labelstudylive">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-calculator">
                                     <div class="form-row">
-                                        <label id="label-calculator" for="calculator" class="col-md-3 col-form-label form-label">StudyNlive Budget Calculator</label>
+                                        <label id="label-calculator" for="calculator" class="col-form-label form-label">Study-N-Live Budget Calculator</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="list-group-item" id="study" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                                     <div class="form-row">
-                                        <label id="label-Mobile" for="Mobile" class="col-md-3 col-form-label form-label">Would you study-n-live alone or would your family members come along </label>
+                                        <label id="label-Mobile" for="Mobile" class="col-md-5 col-form-label form-label">Would you study-n-live alone or would your family members come along </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlstudy" CssClass="form-control" runat="server"></asp:DropDownList>
                                         </div>
@@ -39,9 +39,19 @@
                             <div class="list-group-item" id="familymember">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                                     <div class="form-row">
-                                        <label id="label-phone" for="phone" class="col-md-3 col-form-label form-label">No of Family members  </label>
+                                        <label id="label-phone" for="phone" class="col-md-4 col-form-label form-label">No of Family members  </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlFamilyMember" CssClass="form-control" runat="server"> </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <label id="label-family-adult" for="phone" class="col-md-3 col-form-label form-label">No of Adult Family members  </label>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlFamilyAdult" CssClass="form-control" runat="server"></asp:DropDownList>
+                                </div>
+                                        <label id="label-family-children" for="phone" class="col-md-3 col-form-label form-label">No of Children in Family  </label>
+                                        <div class="col-md-3">
+                                            <asp:DropDownList ID="ddlFamilyChildren" CssClass="form-control" runat="server"></asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
@@ -49,10 +59,11 @@
                             <div class="list-group-item" id="accommodation" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skype">
                                     <div class="form-row">
-                                        <label id="label-skype" for="skype" class="col-md-3 col-form-label form-label">Select the kind of accommodation you plan to have </label>
+                                        <label id="label-skype" for="skype" class="col-md-4 col-form-label form-label">Select the kind of accommodation you plan to have </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlAccomdation" CssClass="form-control" runat="server"> </asp:DropDownList>
                                         </div>
+                                        <asp:HiddenField ID="hidAccomdation" runat="server" />
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +71,7 @@
                             <div class="list-group-item" id="managemeal" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
-                                        <label id="label-skypeDesc" for="skypeDesc" class="col-md-3 col-form-label form-label">
+                                        <label id="label-skypeDesc" for="skypeDesc" class="col-md-4 col-form-label form-label">
                                             Select how you plan to manage meals
                                         </label>
                                         <div class="col-md-6">
@@ -72,7 +83,7 @@
                             <div class="list-group-item" id="transportchoice" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                                     <div class="form-row">
-                                        <label id="label-whatsapp" for="whatsapp" class="col-md-3 col-form-label form-label">Select your preferred choice of transport in the city  </label>
+                                        <label id="label-whatsapp" for="whatsapp" class="col-md-4 col-form-label form-label">Select your preferred choice of transport in the city  </label>
                                         <div class="col-md-6">
                                              <asp:DropDownList ID="ddltransportchoice" CssClass="form-control" runat="server"></asp:DropDownList>                                           
                                         </div>
@@ -82,7 +93,7 @@
                             <div class="list-group-item" id="Trips" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
-                                        <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-3 col-form-label form-label">No of Trips you plan to take to your home country in a year</label>
+                                        <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-4 col-form-label form-label">No of Trips you plan to take to your home country in a year</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlTrips" CssClass="form-control" runat="server">  </asp:DropDownList>
                                         </div>
@@ -93,7 +104,7 @@
                             <div class="list-group-item" id="entertainment" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-address">
                                     <div class="form-row">
-                                        <label id="labelentertainment" for="address" class="col-md-3 col-form-label form-label">
+                                        <label id="labelentertainment" for="address" class="col-md-4 col-form-label form-label">
                                             How often in a week do you typically go out (entertainment) 
                                         </label>
                                         <div class="col-md-6">
@@ -103,58 +114,90 @@
                                 </div>
                             </div>
 
+                            <div class="list-group-item">
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <asp:Button ID="btnCalculateCosts" runat="server" CssClass="btn btn-success" Text="Calculate Costs" OnClientClick="return validateForm()" OnClick="btnCalculateCosts_Click" />
+                                    </div>
+                                </div>
+                            </div>
                             <div class="list-group-item" id="cost" runat="server" style ="display:none">
+                                <asp:HiddenField ID="hidCurrency" runat="server" />
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
 
-                                        <div class="col-md-9">
+                                        <div class="col-md-12">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>Cost Head</th>
-                                                        <th>Estimated Costs</th>
+                                                        <th>Curerncy</th>
+                                                        <th>Cost Per Year</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list">
                                                     <tr>
-                                                        <td class="name">Tuition Fee </td>
-                                                        <td></td>
+                                                        <td class="name">Estimated Tuition Fee </td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="tution_fee" runat='server'></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="name">Other Education Costs </td>
-                                                        <td></td>
+                                                        <td class="name">Estimated Living Expenses </td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="living_cost1" runat='server'></td>
+                                                    </tr>
+                                                    <tr style="font-weight:bold">
+                                                        <td class="name">Total Estimated Expenses </td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="grand_total" runat='server'></td>
+                                                    </tr>
+                                                    <tr style="font-weight:bold">
+                                                        <td>Break down of Living Costs </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="name">Accommodation  </td>
-                                                        <td></td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="accomodation_cost" runat='server'></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="name">Meals / Groceries  </td>
-                                                        <td></td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="meals_cost" runat='server'></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="name">Transportation </td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="transportation_cost" runat='server'></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="name">Travel & related  </td>
-                                                        <td></td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="trips_cost" runat='server'></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="name">Utilities, including Phone & internet </td>
-                                                        <td></td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="utilities_cost" runat='server'></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="name">Entertainment  </td>
-                                                        <td></td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="entertainment_cost" runat='server'></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="name">Health Insurance   </td>
-                                                        <td></td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="health_insurance_cost" runat='server'></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="name">Misc </td>
-                                                        <td></td>
+                                                        <td class="name">Visa Costs(First Year) </td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="visa_cost" runat='server'></td>
                                                     </tr>
                                                     <tr>
                                                         <td class="name">Totals  </td>
-                                                        <td></td>
+                                                        <td> <%=hidCurrency.Value %> </td>
+                                                        <td id="living_cost" runat='server'></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -297,16 +340,15 @@
             var flag = false;
             if ($("#<%=ddlstudy.ClientID%>").val() == "0")
                 alert("Please Select Would you study-n-live alone or would your family members come along");
-            else if ($("#<%=ddlstudy.ClientID%>").val() == "2" && $("#<%=ddlFamilyMember.ClientID%>").val() == "0")
-                alert("Please Select No of Family members");
-            else if ($("#<%=ddlAccomdation.ClientID%>").val() == "0")
+             else if ($("#<%=ddlstudy.ClientID%>").val() == "2" && !isvalidFamilyDetails()) { }
+            else if ($("#<%=hidAccomdation.ClientID%>").val() == "" || $("#<%=hidAccomdation.ClientID%>").val() == "0")
                 alert("Please Select the kind of accommodation you plan to have");
             else if ($("#<%=ddlCooking.ClientID%>").val() == "0")
                 alert("Please Select  how you plan to manage meals");
             else if ($("#<%=ddltransportchoice.ClientID%>").val() == "0")
                 alert("Please Select your preferred choice of transport in the city");
             else if ($("#<%=ddlTrips.ClientID%>").val() == "0")
-                alert("Please Select No of Trips you plan to take to your home country in a year");
+                alert("Please Select No of Trips you plan to take to your home country per year");
             else if ($("#<%=ddlEntertainment.ClientID%>").val() == "0")
                 alert("Please Select  How often in a week do you typically go out (entertainment) ");
             else
@@ -314,18 +356,75 @@
             
             return flag;
         }
+
+        function isvalidFamilyDetails() {
+            var flag = false;
+
+            var totalFamilyMembers = parseInt($("#<%=ddlFamilyMember.ClientID%>").val()) + 1;
+            var adultFamilyMembers = parseInt($("#<%=ddlFamilyAdult.ClientID%>").val());
+            var childFamilyMembers = parseInt($("#<%=ddlFamilyChildren.ClientID%>").val());
+
+            if ($("#<%=ddlFamilyMember.ClientID%>").val() == "0")
+                alert("Please Select No of Family members");
+            else if (totalFamilyMembers !== (adultFamilyMembers + childFamilyMembers + 1))
+                alert("Please select appropriate family members as No of Family members does not match Adult/Child members.");
+            else
+                flag = true;
+
+            return flag;
+        }
+
          $(function() {
             $("#<%=ddlstudy.ClientID%>").change(function() {
-                if ($(this).val() == "2")
+                $("#<%=hidAccomdation.ClientID%>").val("");
+                if ($(this).val() == "2") {
                     $("#familymember").show();               
-                else
+                    removeAccommodationOptionsForFamily();
+                }
+                else {
                     $("#familymember").hide(); 
                      $("#<%=ddlFamilyMember.ClientID%>").val("0");
+                     var accomdationItem = $('#<%=ddlAccomdation.ClientID%>').children('option').length;
+                    if (accomdationItem <= 3)
+                        addAccommodationOptionsForSingle();
+                }
             });
         });
+
+        $(function () {
+            $("#<%=ddlAccomdation.ClientID%>").change(function () {
+                $("#<%=hidAccomdation.ClientID%>").val($("#<%=ddlAccomdation.ClientID%>").val());
+            });
+        });
+
+        function addAccommodationOptionsForSingle() {
+            $("#<%=ddlAccomdation.ClientID%> option").remove();
+            $("#<%=ddlAccomdation.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val("0").html("Please select"));
+            $.ajax({
+                type: "GET",
+                url: "applicantfunding.aspx/GetAccommodationOptions",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        for (var i = 0; i < result.length; i++)
+                            $('#<%=ddlAccomdation.ClientID%>').append($("<option></option>").val(result[i].id).html(result[i].description));
+                    }
+                }
+            });
+        }
+
+        function removeAccommodationOptionsForFamily() {
+            $('#<%=ddlAccomdation.ClientID%> option:contains(On-Campus - Shared)').remove();
+            $('#<%=ddlAccomdation.ClientID%> option:contains(On Campus - Private)').remove();
+            $('#<%=ddlAccomdation.ClientID%> option:contains(Off Campus - Shared)').remove();
+        }
         $(document).ready(function () {
-            if ($("#<%=ddlstudy.ClientID%>").val() == "2")
+            if ($("#<%=ddlstudy.ClientID%>").val() == "2") {
                 $("#familymember").show();
+                removeAccommodationOptionsForFamily();
+            }
             else
                 $("#familymember").hide();
 
