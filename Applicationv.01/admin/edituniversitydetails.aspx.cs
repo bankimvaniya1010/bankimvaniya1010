@@ -86,6 +86,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     ddlCountry.SelectedIndex = existingUninversity.countryid;
                     txtUniAcceptedMaxAge.Value = Convert.ToString(existingUninversity.acceptedmaxage);
                     txtUniAcceptedMinAge.Value = Convert.ToString(existingUninversity.acceptedminage);
+                    txtstripcolor.Value = existingUninversity.headerstripcolor;
+                    txtverticalnavigationcolor.Value = existingUninversity.verticalnavigationcolor;
+                    txtfontcolor.Value = existingUninversity.fontcolor;
                     foreach (ListItem item in subscription.Items)
                     {
                         string value = existingUninversity.full_service ? "1" : "0";
@@ -165,6 +168,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
             universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
             universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
+            universityObj.headerstripcolor = txtstripcolor.Value;
+            universityObj.verticalnavigationcolor = txtverticalnavigationcolor.Value;
+            universityObj.fontcolor = txtfontcolor.Value;
             if (logo.HasFile)  //fileupload control contains a file  
             {
                 docPath = docPath + "/" + universityObj.universityid + "/";

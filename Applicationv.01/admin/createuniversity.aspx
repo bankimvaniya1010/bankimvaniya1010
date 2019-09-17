@@ -311,6 +311,36 @@
                             </div>
                         </div>
                     </div>
+                     <div class="form-group row">
+                        <label for="stripcolor" class="col-sm-3 col-form-label form-label">header strip Color </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" runat="server" id="headerstripcolor" class="form-control" placeholder="header strip Color"/>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="verticalnavigationcolor" class="col-sm-3 col-form-label form-label">Color Of vertical navigation </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" runat="server" id="verticalnavigationcolor" class="form-control" placeholder="Color Of vertical navigation "/>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> font Color </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" runat="server" id="fontcolor" class="form-control" placeholder="font color"/>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -328,7 +358,7 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
-
+            
             $("#<%=ddlCountry.ClientID%>").change(function () {
                 $.ajax({
                     type: "GET",
@@ -357,7 +387,7 @@
             });
 
         });
-
+       
         function validateForm() {
 
             var txtUniName = $('#<%=txtUniName.ClientID%>').val();
@@ -387,6 +417,10 @@
             var subscriptionSelection = $('#<%=subscription.ClientID%>').val();
             var txtNotesDisclaimer = $('#<%=txtNotesDisclaimer.ClientID%>').val();
             var fllogo = $('#<%=logo.ClientID%>').val();
+            var headerstripcolor = $('#<%=headerstripcolor.ClientID%>').val();
+            var verticalNavigationcolor = $('#<%=verticalnavigationcolor.ClientID%>').val();
+            var fontcolor =$('#<%=fontcolor.ClientID%>').val();
+
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
@@ -501,6 +535,19 @@
                 alert("Please upload logo");
                 return false;
             }
+            else if (headerstripcolor == '') {
+                alert("Please enter header strip color");
+                return false;
+            }
+            else if (verticalNavigationcolor == '') {
+                alert("Please enter Vertical Navigation color");
+                return false;
+            }
+            else if (headerstripcolor == '') {
+                alert("Please enter font color");
+                return false;
+            }
+
             return true;
 
         }

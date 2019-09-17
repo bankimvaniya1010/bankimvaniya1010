@@ -73,6 +73,9 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
                 universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
                 universityObj.logo = "";
+                universityObj.headerstripcolor = headerstripcolor.Value;
+                universityObj.verticalnavigationcolor = verticalnavigationcolor.Value;
+                universityObj.fontcolor = fontcolor.Value;
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
                 if (logo.HasFile)  //fileupload control contains a file  

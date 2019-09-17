@@ -1738,6 +1738,8 @@ public partial class manageaccomdationplan
     public int cityid { get; set; }
     public decimal amount { get; set; }
     public Nullable<System.DateTime> createdate { get; set; }
+    public Nullable<decimal> extra_adult_percentage { get; set; }
+    public Nullable<decimal> extra_child_percentage { get; set; }
 
     public virtual accommodationplan accommodationplan { get; set; }
     public virtual citymaster citymaster { get; set; }
@@ -1752,6 +1754,8 @@ public partial class manageentertainment
     public Nullable<int> cityid { get; set; }
     public Nullable<decimal> amount { get; set; }
     public Nullable<System.DateTime> createddate { get; set; }
+    public Nullable<decimal> extra_adult_percentage { get; set; }
+    public Nullable<decimal> extra_child_percentage { get; set; }
 
     public virtual citymaster citymaster { get; set; }
     public virtual currency_master currency_master { get; set; }
@@ -1766,6 +1770,8 @@ public partial class managehealth_insurance
     public int currencyid { get; set; }
     public decimal amount { get; set; }
     public Nullable<System.DateTime> createddate { get; set; }
+    public Nullable<decimal> extra_adult_amount { get; set; }
+    public Nullable<decimal> extra_child_amount { get; set; }
 
     public virtual citymaster citymaster { get; set; }
     public virtual currency_master currency_master { get; set; }
@@ -1795,6 +1801,8 @@ public partial class managemealplan
     public int cityid { get; set; }
     public decimal amount { get; set; }
     public Nullable<System.DateTime> createdate { get; set; }
+    public Nullable<decimal> extra_adult_percentage { get; set; }
+    public Nullable<decimal> extra_child_percentage { get; set; }
 
     public virtual citymaster citymaster { get; set; }
     public virtual currency_master currency_master { get; set; }
@@ -1809,6 +1817,8 @@ public partial class managetransportchoice
     public int cityid { get; set; }
     public decimal amount { get; set; }
     public Nullable<System.DateTime> createddate { get; set; }
+    public Nullable<decimal> extra_adult_percentage { get; set; }
+    public Nullable<decimal> extra_child_percentage { get; set; }
 
     public virtual citymaster citymaster { get; set; }
     public virtual currency_master currency_master { get; set; }
@@ -1823,6 +1833,8 @@ public partial class managetrips
     public int cityid { get; set; }
     public decimal amount { get; set; }
     public Nullable<System.DateTime> createddate { get; set; }
+    public Nullable<decimal> extra_adult_percentage { get; set; }
+    public Nullable<decimal> extra_child_percentage { get; set; }
 
     public virtual citymaster citymaster { get; set; }
     public virtual currency_master currency_master { get; set; }
@@ -1837,6 +1849,8 @@ public partial class manageutilities
     public Nullable<int> currencyid { get; set; }
     public Nullable<decimal> amount { get; set; }
     public Nullable<System.DateTime> createddate { get; set; }
+    public Nullable<decimal> extra_adult_percentage { get; set; }
+    public Nullable<decimal> extra_child_percentage { get; set; }
 
     public virtual citymaster citymaster { get; set; }
     public virtual currency_master currency_master { get; set; }
@@ -1851,6 +1865,8 @@ public partial class managevisa
     public int currencyid { get; set; }
     public decimal amount { get; set; }
     public Nullable<System.DateTime> createddate { get; set; }
+    public Nullable<decimal> extra_adult_amount { get; set; }
+    public Nullable<decimal> extra_child_amount { get; set; }
 
     public virtual citymaster citymaster { get; set; }
     public virtual currency_master currency_master { get; set; }
@@ -2311,6 +2327,9 @@ public partial class university_master
     public bool full_service { get; set; }
     public string notes_disclaimer { get; set; }
     public string logo { get; set; }
+    public string headerstripcolor { get; set; }
+    public string verticalnavigationcolor { get; set; }
+    public string fontcolor { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

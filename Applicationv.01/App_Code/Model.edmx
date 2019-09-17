@@ -1508,6 +1508,8 @@
           <Property Name="currencyid" Type="int" Nullable="false" />
           <Property Name="cityid" Type="int" Nullable="false" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="extra_adult_percentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_percentage" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createdate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="manageentertainment">
@@ -1519,6 +1521,8 @@
           <Property Name="currencyid" Type="int" />
           <Property Name="cityid" Type="int" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_adult_percentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_percentage" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="managehealth_insurance">
@@ -1530,6 +1534,8 @@
           <Property Name="cityid" Type="int" Nullable="false" />
           <Property Name="currencyid" Type="int" Nullable="false" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="extra_adult_amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_amount" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="managemeal">
@@ -1548,6 +1554,8 @@
           <Property Name="currencyid" Type="int" Nullable="false" />
           <Property Name="cityid" Type="int" Nullable="false" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="extra_adult_percentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_percentage" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createdate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="managetransportchoice">
@@ -1559,6 +1567,8 @@
           <Property Name="currencyid" Type="int" Nullable="false" />
           <Property Name="cityid" Type="int" Nullable="false" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="extra_adult_percentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_percentage" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createddate" Type="timestamp" Precision="0" />
         </EntityType>
         <EntityType Name="managetrips">
@@ -1570,6 +1580,8 @@
           <Property Name="currencyid" Type="int" Nullable="false" />
           <Property Name="cityid" Type="int" Nullable="false" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="extra_adult_percentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_percentage" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createddate" Type="timestamp" Precision="0" />
         </EntityType>
         <EntityType Name="manageutilities">
@@ -1581,6 +1593,8 @@
           <Property Name="cityid" Type="int" />
           <Property Name="currencyid" Type="int" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_adult_percentage" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_percentage" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="managevisa">
@@ -1592,6 +1606,8 @@
           <Property Name="cityid" Type="int" Nullable="false" />
           <Property Name="currencyid" Type="int" Nullable="false" />
           <Property Name="amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="extra_adult_amount" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="extra_child_amount" Type="decimal" Precision="10" Scale="2" />
           <Property Name="createddate" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="maritalstatusmaster">
@@ -1919,6 +1935,9 @@
           <Property Name="full_service" Type="bit" Nullable="false" />
           <Property Name="notes_disclaimer" Type="varchar" MaxLength="1000" Nullable="false" />
           <Property Name="logo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="headerstripcolor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="verticalnavigationcolor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="fontcolor" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -5603,6 +5622,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="accommodationplan" Relationship="GTEModel.fk_manageaccomdationplan_accomation" FromRole="manageaccomdationplan" ToRole="accommodationplan" />
           <NavigationProperty Name="citymaster" Relationship="GTEModel.FK_manageaccomdationplan_citymaster" FromRole="manageaccomdationplan" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_manageaccomdationplan_cureency" FromRole="manageaccomdationplan" ToRole="currency_master" />
+          <Property Name="extra_adult_percentage" Type="Decimal" />
+          <Property Name="extra_child_percentage" Type="Decimal" />
         </EntityType>
         <EntityType Name="manageentertainment">
           <Key>
@@ -5617,6 +5638,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_manageentertainment_city" FromRole="manageentertainment" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_manageentertainment_currency" FromRole="manageentertainment" ToRole="currency_master" />
           <NavigationProperty Name="entertainment" Relationship="GTEModel.fk_manageentertainment_entertainment" FromRole="manageentertainment" ToRole="entertainment" />
+          <Property Name="extra_adult_percentage" Type="Decimal" />
+          <Property Name="extra_child_percentage" Type="Decimal" />
         </EntityType>
         <EntityType Name="managehealth_insurance">
           <Key>
@@ -5631,6 +5654,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managehealth_insurance_city" FromRole="managehealth_insurance" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managehealth_insurance_currency" FromRole="managehealth_insurance" ToRole="currency_master" />
           <NavigationProperty Name="health_insurance" Relationship="GTEModel.fk_managehealth_insurance_health" FromRole="managehealth_insurance" ToRole="health_insurance" />
+          <Property Name="extra_adult_amount" Type="Decimal" />
+          <Property Name="extra_child_amount" Type="Decimal" />
         </EntityType>
         <EntityType Name="managemeal">
           <Key>
@@ -5653,6 +5678,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managemealplan_city" FromRole="managemealplan" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managemealplan_currency" FromRole="managemealplan" ToRole="currency_master" />
           <NavigationProperty Name="managemeal" Relationship="GTEModel.fk_managemealplan_meal" FromRole="managemealplan" ToRole="managemeal" />
+          <Property Name="extra_adult_percentage" Type="Decimal" />
+          <Property Name="extra_child_percentage" Type="Decimal" />
         </EntityType>
         <EntityType Name="managetransportchoice">
           <Key>
@@ -5667,6 +5694,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managetransportchoice_city" FromRole="managetransportchoice" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managetransportchoice_currency" FromRole="managetransportchoice" ToRole="currency_master" />
           <NavigationProperty Name="transportchoice1" Relationship="GTEModel.fk_managetransportchoice_transportchoice" FromRole="managetransportchoice" ToRole="transportchoice" />
+          <Property Name="extra_adult_percentage" Type="Decimal" />
+          <Property Name="extra_child_percentage" Type="Decimal" />
         </EntityType>
         <EntityType Name="managetrips">
           <Key>
@@ -5681,6 +5710,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managetrips_city" FromRole="managetrips" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managetrips_currency" FromRole="managetrips" ToRole="currency_master" />
           <NavigationProperty Name="trips" Relationship="GTEModel.fk_managetrips_trips" FromRole="managetrips" ToRole="trips" />
+          <Property Name="extra_adult_percentage" Type="Decimal" />
+          <Property Name="extra_child_percentage" Type="Decimal" />
         </EntityType>
         <EntityType Name="manageutilities">
           <Key>
@@ -5695,6 +5726,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_manageutilities_city" FromRole="manageutilities" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_manageutilities_currency" FromRole="manageutilities" ToRole="currency_master" />
           <NavigationProperty Name="utilities" Relationship="GTEModel.fk_manageutilities_utilities" FromRole="manageutilities" ToRole="utilities" />
+          <Property Name="extra_adult_percentage" Type="Decimal" />
+          <Property Name="extra_child_percentage" Type="Decimal" />
         </EntityType>
         <EntityType Name="managevisa">
           <Key>
@@ -5709,6 +5742,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="citymaster" Relationship="GTEModel.fk_managevisa_city" FromRole="managevisa" ToRole="citymaster" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.fk_managevisa_currency" FromRole="managevisa" ToRole="currency_master" />
           <NavigationProperty Name="visa" Relationship="GTEModel.fk_managevisa_visa" FromRole="managevisa" ToRole="visa" />
+          <Property Name="extra_adult_amount" Type="Decimal" />
+          <Property Name="extra_child_amount" Type="Decimal" />
         </EntityType>
         <EntityType Name="maritalstatusmaster">
           <Key>
@@ -6081,6 +6116,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitygrouping" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
+          <Property Name="headerstripcolor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="verticalnavigationcolor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fontcolor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -8788,6 +8826,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="manageaccomdationplan">
             <EntityTypeMapping TypeName="GTEModel.manageaccomdationplan">
               <MappingFragment StoreEntitySet="manageaccomdationplan">
+                <ScalarProperty Name="extra_child_percentage" ColumnName="extra_child_percentage" />
+                <ScalarProperty Name="extra_adult_percentage" ColumnName="extra_adult_percentage" />
                 <ScalarProperty Name="createdate" ColumnName="createdate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="cityid" ColumnName="cityid" />
@@ -8800,6 +8840,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="manageentertainment">
             <EntityTypeMapping TypeName="GTEModel.manageentertainment">
               <MappingFragment StoreEntitySet="manageentertainment">
+                <ScalarProperty Name="extra_child_percentage" ColumnName="extra_child_percentage" />
+                <ScalarProperty Name="extra_adult_percentage" ColumnName="extra_adult_percentage" />
                 <ScalarProperty Name="createddate" ColumnName="createddate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="cityid" ColumnName="cityid" />
@@ -8812,6 +8854,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="managehealth_insurance">
             <EntityTypeMapping TypeName="GTEModel.managehealth_insurance">
               <MappingFragment StoreEntitySet="managehealth_insurance">
+                <ScalarProperty Name="extra_child_amount" ColumnName="extra_child_amount" />
+                <ScalarProperty Name="extra_adult_amount" ColumnName="extra_adult_amount" />
                 <ScalarProperty Name="createddate" ColumnName="createddate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="currencyid" ColumnName="currencyid" />
@@ -8832,6 +8876,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="managemealplan">
             <EntityTypeMapping TypeName="GTEModel.managemealplan">
               <MappingFragment StoreEntitySet="managemealplan">
+                <ScalarProperty Name="extra_child_percentage" ColumnName="extra_child_percentage" />
+                <ScalarProperty Name="extra_adult_percentage" ColumnName="extra_adult_percentage" />
                 <ScalarProperty Name="createdate" ColumnName="createdate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="cityid" ColumnName="cityid" />
@@ -8844,6 +8890,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="managetransportchoice">
             <EntityTypeMapping TypeName="GTEModel.managetransportchoice">
               <MappingFragment StoreEntitySet="managetransportchoice">
+                <ScalarProperty Name="extra_child_percentage" ColumnName="extra_child_percentage" />
+                <ScalarProperty Name="extra_adult_percentage" ColumnName="extra_adult_percentage" />
                 <ScalarProperty Name="createddate" ColumnName="createddate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="cityid" ColumnName="cityid" />
@@ -8856,6 +8904,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="managetrips">
             <EntityTypeMapping TypeName="GTEModel.managetrips">
               <MappingFragment StoreEntitySet="managetrips">
+                <ScalarProperty Name="extra_child_percentage" ColumnName="extra_child_percentage" />
+                <ScalarProperty Name="extra_adult_percentage" ColumnName="extra_adult_percentage" />
                 <ScalarProperty Name="createddate" ColumnName="createddate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="cityid" ColumnName="cityid" />
@@ -8868,6 +8918,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="manageutilities">
             <EntityTypeMapping TypeName="GTEModel.manageutilities">
               <MappingFragment StoreEntitySet="manageutilities">
+                <ScalarProperty Name="extra_child_percentage" ColumnName="extra_child_percentage" />
+                <ScalarProperty Name="extra_adult_percentage" ColumnName="extra_adult_percentage" />
                 <ScalarProperty Name="createddate" ColumnName="createddate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="currencyid" ColumnName="currencyid" />
@@ -8880,6 +8932,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="managevisa">
             <EntityTypeMapping TypeName="GTEModel.managevisa">
               <MappingFragment StoreEntitySet="managevisa">
+                <ScalarProperty Name="extra_child_amount" ColumnName="extra_child_amount" />
+                <ScalarProperty Name="extra_adult_amount" ColumnName="extra_adult_amount" />
                 <ScalarProperty Name="createddate" ColumnName="createddate" />
                 <ScalarProperty Name="amount" ColumnName="amount" />
                 <ScalarProperty Name="currencyid" ColumnName="currencyid" />
@@ -9219,6 +9273,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="fontcolor" ColumnName="fontcolor" />
+                <ScalarProperty Name="verticalnavigationcolor" ColumnName="verticalnavigationcolor" />
+                <ScalarProperty Name="headerstripcolor" ColumnName="headerstripcolor" />
                 <ScalarProperty Name="logo" ColumnName="logo" />
                 <ScalarProperty Name="notes_disclaimer" ColumnName="notes_disclaimer" />
                 <ScalarProperty Name="full_service" ColumnName="full_service" />
