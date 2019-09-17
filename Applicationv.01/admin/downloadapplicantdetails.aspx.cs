@@ -27,7 +27,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected List<applicantemployerdetails> EmployersDetail = new List<applicantemployerdetails>();
     protected List<admincomments> Comments = new List<admincomments>();
     protected List<admincomments> RefComments = new List<admincomments>();
-    protected string Name = "", Email = "", Mobile = "";
+    protected string Name = "", RefrenceEmail = "", RefrenceMobile = "";
     protected string employmentInfo = "", employerwebsite = "", employer = "", employercity = "", employercountry = "", position = "", startdate = "", enddate = "", BriefDescription = "", reportingmanger = "", employmentverification = "", relationship = "", emailEmployment = "", linkedin = "";
     protected Common objCom = new Common();
     protected List<applicanthighereducation> HigherEducation = new List<applicanthighereducation>();
@@ -3301,10 +3301,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         Name = setInnerHtml(fields[k]);
                         break;
                     case "MOBILE/CELLULAR NUMBER":
-                        Mobile = setInnerHtml(fields[k]);
+                        RefrenceMobile = setInnerHtml(fields[k]);
                         break;
                     case "EMAIL":
-                        Email = setInnerHtml(fields[k]);
+                        RefrenceEmail = setInnerHtml(fields[k]);
                         break;
                     default:
                         break;

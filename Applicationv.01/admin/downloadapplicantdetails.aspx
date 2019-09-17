@@ -5686,9 +5686,9 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" style='<%= Mobile == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" style='<%= RefrenceMobile == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelmobile" for="name"><%=Mobile %> </label>
+                                                <label id="labelmobile" for="name"><%=RefrenceMobile %> </label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -5709,9 +5709,9 @@
                                                 </table>
                                             </td>
                                         </tr>
-                                        <tr class="adm-form-row-tr" style='<%= Email == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
+                                        <tr class="adm-form-row-tr" style='<%= RefrenceEmail == "" ? "visibility: hidden;": "visibility:visible;"  %>'>
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelEmail" for="Email"><%=Email %> </label>
+                                                <label id="labelEmail" for="Email"><%=RefrenceEmail %> </label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -6187,7 +6187,7 @@
             $('#imgNameYes<%=r%>').css("visibility", "visible");
           <%  }
             }
-            else if (fieldName == Email + (r + 1))
+            else if (fieldName == RefrenceEmail + (r + 1))
             {%>
 
             $("#txtEmail<%=r%>").val('<%=AdminComments%>');
@@ -6202,7 +6202,7 @@
             $('#imgEmailYes<%=r%>').css("visibility", "visible");
           <%  }
             }
-            else if (fieldName == Mobile + (r + 1))
+            else if (fieldName == RefrenceMobile + (r + 1))
             {%> 
 
             $("#txtMobile<%=r%>").val('<%=AdminComments%>');
