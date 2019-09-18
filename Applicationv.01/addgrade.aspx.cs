@@ -17,7 +17,7 @@ public partial class addgrade : System.Web.UI.Page
     string classname = "";
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["LoginInfo"] == null)
+        if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;

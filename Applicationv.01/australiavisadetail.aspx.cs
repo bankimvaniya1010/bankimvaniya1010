@@ -16,9 +16,9 @@ public partial class australiavisadetail : System.Web.UI.Page
     protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-        if (Session["LoginInfo"] == null)
+        if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         if (!IsPostBack) {

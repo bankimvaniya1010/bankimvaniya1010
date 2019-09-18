@@ -16,6 +16,8 @@ public partial class registerconfimation : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         email = Request.QueryString["email"];
         universityID = Utility.GetUniversityId();
         var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();

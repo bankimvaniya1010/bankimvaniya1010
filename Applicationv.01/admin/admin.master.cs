@@ -9,8 +9,11 @@ public partial class admin_admin : System.Web.UI.MasterPage
 {
     private GTEEntities db = new GTEEntities();
     int roleid = 0;
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         roleid = Convert.ToInt32(Session["Role"].ToString());
         string name = db.adminusers.Where(x => x.roleid == roleid).Select(x => x.name).FirstOrDefault();
         lbladminname.Text = name;

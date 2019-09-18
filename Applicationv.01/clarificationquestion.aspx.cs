@@ -17,9 +17,9 @@ public partial class clarificationquestion : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         universityID = Utility.GetUniversityId();
-        if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         var showButton = false;

@@ -24,8 +24,8 @@ public partial class uploaddocuments : System.Web.UI.Page
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
-        if ((Session["Role"] == null) && (Session["UserID"] == null))
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
         if (!isDeclarationCompleted)

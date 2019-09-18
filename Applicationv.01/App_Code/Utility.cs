@@ -16,9 +16,16 @@ public static class Utility
         return SecondaryLanguage;
     }
 
+    public static Boolean CheckStudentLogin()
+    {
+        if (HttpContext.Current.Session["Role"] == null || HttpContext.Current.Session["UserID"] == null || !HttpContext.Current.Session["Role"].ToString().Equals("student"))
+            return false;
+        return true;
+    }
+
     public static Boolean CheckAdminLogin()
     {
-        if (HttpContext.Current.Session["Role"] == null || HttpContext.Current.Session["UserID"] == null)
+        if (HttpContext.Current.Session["Role"] == null || HttpContext.Current.Session["UserID"] == null || HttpContext.Current.Session["Role"].ToString().Equals("student"))
             return false;
         return true;
     }

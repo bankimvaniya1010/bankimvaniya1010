@@ -87,6 +87,7 @@ public partial class login : System.Web.UI.Page
                         pnl_warning.Visible = false;
                         Session["LoginInfo"] = chkUser;
                         Session["UserID"] = chkUser.studentid;
+                        Session["Role"] = "student";
                         isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(chkUser.studentid);
                         isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
 

@@ -14,9 +14,11 @@ public partial class australiavisainstruction : System.Web.UI.Page
     australiavisadetailmaster australiavisadetailmaster = new australiavisadetailmaster();
     protected static List<faq> allQuestions = new List<faq>();
     Common objCom = new Common();
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (!IsPostBack) {

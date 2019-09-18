@@ -18,8 +18,8 @@ public partial class gte_sop : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         UserID = objUser.studentid;
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());

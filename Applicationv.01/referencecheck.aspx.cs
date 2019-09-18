@@ -15,6 +15,8 @@ public partial class referencecheck : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         if ((Request.QueryString["referncekey"] != null) && (Request.QueryString["referncekey"] != ""))
             referenceKey = Convert.ToString(Request.QueryString["referncekey"]);
         else
