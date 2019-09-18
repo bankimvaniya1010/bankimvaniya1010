@@ -61,7 +61,7 @@
 
                             </asp:TemplateField>
                            
-                            <asp:TemplateField HeaderText="universityid" SortExpression="universityid">
+                            <asp:TemplateField HeaderText="Institution" SortExpression="universityid">
 
                                     <EditItemTemplate>
                                          <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("universityid") %>' Visible="false"></asp:Label>

@@ -245,6 +245,9 @@ public partial class applicantdetails
     public Nullable<System.DateTime> spousedob { get; set; }
     public Nullable<System.DateTime> marriagedate { get; set; }
     public Nullable<int> higheststudycompleted { get; set; }
+    public Nullable<int> fieldofhigheststudy { get; set; }
+    public Nullable<int> countryofhigheststudy { get; set; }
+    public string studycompletedate { get; set; }
     public Nullable<int> isdisable { get; set; }
     public string disabilitydescription { get; set; }
     public string postaladdrees1 { get; set; }
@@ -1145,18 +1148,50 @@ public partial class countrywisealternateidproofmaster
     public virtual countriesmaster countriesmaster { get; set; }
 }
 
+public partial class course_campus_mapping
+{
+    public int id { get; set; }
+    public int courseid { get; set; }
+    public int campusid { get; set; }
+
+    public virtual coursemaster coursemaster { get; set; }
+    public virtual universitycampus universitycampus { get; set; }
+}
+
+public partial class course_dates
+{
+    public int id { get; set; }
+    public int courseid { get; set; }
+    public System.DateTime commencementdate { get; set; }
+
+    public virtual coursemaster coursemaster { get; set; }
+}
+
 public partial class coursemaster
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public coursemaster()
+    {
+        this.course_campus_mapping = new HashSet<course_campus_mapping>();
+        this.course_dates = new HashSet<course_dates>();
+    }
+
     public int courseid { get; set; }
     public string coursename { get; set; }
     public Nullable<int> majordisciplineId { get; set; }
     public Nullable<int> modeofstudyId { get; set; }
     public Nullable<int> levelofstudyId { get; set; }
     public Nullable<decimal> coursefee { get; set; }
+    public Nullable<int> universityid { get; set; }
 
-    public virtual majordiscipline_master majordiscipline_master { get; set; }
     public virtual studylevelmaster studylevelmaster { get; set; }
     public virtual studymodemaster studymodemaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<course_campus_mapping> course_campus_mapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<course_dates> course_dates { get; set; }
+    public virtual university_master university_master { get; set; }
+    public virtual majordiscipline_master majordiscipline_master { get; set; }
 }
 
 public partial class coursetypemaster
@@ -1724,7 +1759,6 @@ public partial class majordiscipline_master
 
     public int id { get; set; }
     public string description { get; set; }
-    public int universityid { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<coursemaster> coursemaster { get; set; }
@@ -2058,6 +2092,24 @@ public partial class secondarylanguagemaster
     public string secondarylanguagename { get; set; }
 }
 
+public partial class sop_instruction
+{
+    public int id { get; set; }
+    public int university_id { get; set; }
+    public string university_instruction { get; set; }
+}
+
+public partial class student_sop
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int university_id { get; set; }
+    public string student_sop1 { get; set; }
+    public string student_submitted_sop { get; set; }
+    public bool is_student_sop_submitted { get; set; }
+    public System.DateTime submitted_at { get; set; }
+}
+
 public partial class studentcoursemapping
 {
     public int id { get; set; }
@@ -2075,11 +2127,11 @@ public partial class students
     {
         this.admincomments = new HashSet<admincomments>();
         this.applicantcampaign = new HashSet<applicantcampaign>();
-        this.applicantdetails = new HashSet<applicantdetails>();
         this.customfieldvalue = new HashSet<customfieldvalue>();
         this.gte_applicantdocument = new HashSet<gte_applicantdocument>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
+        this.applicantdetails = new HashSet<applicantdetails>();
     }
 
     public int studentid { get; set; }
@@ -2101,8 +2153,6 @@ public partial class students
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<applicantcampaign> applicantcampaign { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<applicantdetails> applicantdetails { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<customfieldvalue> customfieldvalue { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_applicantdocument> gte_applicantdocument { get; set; }
@@ -2111,6 +2161,8 @@ public partial class students
     public virtual studylevelmaster studylevelmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantdetails> applicantdetails { get; set; }
 }
 
 public partial class studylevelmaster
@@ -2299,6 +2351,7 @@ public partial class university_master
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
+        this.coursemaster = new HashSet<coursemaster>();
     }
 
     public int universityid { get; set; }
@@ -2356,6 +2409,8 @@ public partial class university_master
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursemaster> coursemaster { get; set; }
 }
 
 public partial class universitycampus
@@ -2365,6 +2420,7 @@ public partial class universitycampus
     {
         this.facility_campus_mapping = new HashSet<facility_campus_mapping>();
         this.universitycampus_city_mapping = new HashSet<universitycampus_city_mapping>();
+        this.course_campus_mapping = new HashSet<course_campus_mapping>();
     }
 
     public int campusid { get; set; }
@@ -2380,6 +2436,8 @@ public partial class universitycampus
     public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<course_campus_mapping> course_campus_mapping { get; set; }
 }
 
 public partial class universitycampus_city_mapping

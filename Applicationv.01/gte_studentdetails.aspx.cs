@@ -85,19 +85,19 @@ public partial class gte_studentdetails : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var courses = (from cm in db.coursemaster
-                           join md in db.majordiscipline_master on cm.majordisciplineId equals md.id                           
-                           join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
-                           where md.universityid == universityID && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid
-                           select new
-                           {
-                               coursename = cm.coursename,
-                               courseid = cm.courseid
-                           }).ToList();
-            ddlnameofcourse.DataSource = courses;
-            ddlnameofcourse.DataTextField = "coursename";
-            ddlnameofcourse.DataValueField = "courseid";
-            ddlnameofcourse.DataBind();
+            //var courses = (from cm in db.coursemaster
+            //               join md in db.majordiscipline_master on cm.majordisciplineid equals md.id
+            //               join sl in db.studylevelmaster on cm.levelofstudyid equals sl.studylevelid
+            //               where md.universityid == universityid && cm.majordisciplineid == selectedMajorid && cm.levelofstudyid == coursetypeid
+            //               select new
+            //               {
+            //                   coursename = cm.coursename,
+            //                   courseid = cm.courseid
+            //               }).tolist();
+            //ddlnameofcourse.DataSource = courses;
+            //ddlnameofcourse.DataTextField= "coursename";
+            //ddlnameofcourse.DataValueField = "courseid";
+            //ddlnameofcourse.DataBind();
             ddlnameofcourse.Items.Insert(0, lst);
 
 
@@ -494,7 +494,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var discipline_master = db.majordiscipline_master.Where(x => x.universityid == universityID).ToList();
+            var discipline_master = db.majordiscipline_master.ToList();
             ddl.DataSource = discipline_master;
             ddl.DataTextField = "description";
             ddl.DataValueField = "id";

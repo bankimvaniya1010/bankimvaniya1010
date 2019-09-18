@@ -60,29 +60,6 @@
                                 </ItemTemplate>
 
                             </asp:TemplateField>
-                        
-                           <asp:TemplateField HeaderText="UniversityName" SortExpression="universityid">
-
-                                    <EditItemTemplate>
-                                         <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>' Visible="false"></asp:Label>
-                                        <asp:DropDownList ID="ddlUniversity" Width="200px" runat="server"></asp:DropDownList>
-                                        <asp:RequiredFieldValidator runat='server' ID='requiredddlUniversity' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please select University' InitialValue="0" ControlToValidate='ddlUniversity' />
-                                    </EditItemTemplate>
-
-                                    <FooterTemplate>
-                                        <asp:DropDownList ID="ddlUniversityFooter" Width="200px" runat="server"></asp:DropDownList>
-
-                                        <asp:RequiredFieldValidator runat='server' ID='requiredddlUniversityFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' InitialValue="0" ErrorMessage='Please select University' ControlToValidate='ddlUniversityFooter' />
-                                    </FooterTemplate>
-
-                                    <ItemTemplate>
-
-                                        <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
-
-                                    </ItemTemplate>
-
-                                </asp:TemplateField>
-                          
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
 
                                 <EditItemTemplate>

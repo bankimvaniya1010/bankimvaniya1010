@@ -6,9 +6,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">User Create</li>
+            <li class="breadcrumb-item active">Create New User</li>
         </ol>
-        <h1 class="h2">User Create</h1>
+        <h1 class="h2">Create New User </h1>
 
         <div class="card">
 
@@ -55,7 +55,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="TxtMobile" type="text" runat="server" class="form-control" placeholder="Email">
+                                    <input id="TxtMobile" type="text" runat="server" class="form-control" placeholder="Mobile">
                                 </div>
 
                             </div>

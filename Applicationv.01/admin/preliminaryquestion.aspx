@@ -24,7 +24,7 @@
 
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False" ShowFooter="true" Width="400px"
+                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False" ShowFooter="true"
                         DataKeyNames="preliminaryid"
                         AllowPaging="True"
                         CellPadding="3"
@@ -35,7 +35,7 @@
 
                         <Columns>
 
-                            <asp:BoundField DataField="preliminaryid" HeaderText="Preliminary id" InsertVisible="False"
+                            <asp:BoundField DataField="preliminaryid" HeaderText="Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="preliminaryid" />
 
                             <asp:TemplateField HeaderText="Question" SortExpression="Description">
@@ -51,7 +51,7 @@
                                     <asp:Label ID="lblQuestion" runat="server" Text='<%# Bind("question") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                               <asp:TemplateField HeaderText="University" SortExpression="universityid">
+                               <asp:TemplateField HeaderText="Institution" SortExpression="universityid">
                                 <EditItemTemplate>
                                      <asp:Label ID="lblUniversityEdit" style="display:none" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                     <asp:DropDownList ID="ddlUniversity"  runat="server" ></asp:DropDownList>

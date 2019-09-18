@@ -40,9 +40,9 @@
                     </div>
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label form-label">Master Fields</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-9">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12 admin-checkbx">
                                    <asp:CheckBoxList ID="chkMasterField" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
 

@@ -23,12 +23,13 @@ public partial class admin_sutdymode : System.Web.UI.Page
         try
         {
             var ModeList = (from q in db.studymodemaster
-
+                            join um in db.university_master
+                            on q.universityid equals um.universityid
                             select new
                             {
                                 id = q.id,
                                 description = q.description,
-                                universityid = q.universityid,
+                                universityid = um.university_name,
                             }).ToList();
             if (ModeList != null)
             {

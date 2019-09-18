@@ -24,7 +24,6 @@
         <EntityTypeShape EntityType="GTEModel.applicant_scholarships" Width="1.5" PointX="10" PointY="1.125" />
         <EntityTypeShape EntityType="GTEModel.applicantcampaign" Width="1.5" PointX="12.75" PointY="49.125" />
         <EntityTypeShape EntityType="GTEModel.applicantdatavalidation" Width="1.5" PointX="6.75" PointY="13.75" />
-        <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="12.75" PointY="82.875" />
         <EntityTypeShape EntityType="GTEModel.applicantdocumentmaster" Width="1.5" PointX="8.75" PointY="13.75" />
         <EntityTypeShape EntityType="GTEModel.applicanteducationdetails" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.applicantemployerdetails" Width="1.5" PointX="0.75" PointY="14.75" />
@@ -91,7 +90,6 @@
         <EntityTypeShape EntityType="GTEModel.health_insurance" Width="1.5" PointX="9" PointY="35.5" />
         <EntityTypeShape EntityType="GTEModel.inferencemaster" Width="1.5" PointX="0.75" PointY="23.75" />
         <EntityTypeShape EntityType="GTEModel.invalidatamaster" Width="1.5" PointX="6.75" PointY="23.75" />
-        <EntityTypeShape EntityType="GTEModel.majordiscipline_master" Width="1.5" PointX="11.25" PointY="61.75" />
         <EntityTypeShape EntityType="GTEModel.manageaccomdationplan" Width="1.5" PointX="5.25" PointY="42" />
         <EntityTypeShape EntityType="GTEModel.manageentertainment" Width="1.5" PointX="5.25" PointY="38" />
         <EntityTypeShape EntityType="GTEModel.managehealth_insurance" Width="1.5" PointX="11.25" PointY="38" />
@@ -160,7 +158,6 @@
         <AssociationConnector Association="GTEModel.FK__alternateidproofmaster" />
         <AssociationConnector Association="GTEModel.FK_applicantScholarship_scholarships" />
         <AssociationConnector Association="GTEModel.fk_applicantcampaign_students" />
-        <AssociationConnector Association="GTEModel.FK_applicantdetails_students" />
         <AssociationConnector Association="GTEModel.FK_applicantvisadetails_university_master" />
         <AssociationConnector Association="GTEModel.FK_cityMaster_countriesMaster" />
         <AssociationConnector Association="GTEModel.FK_manageaccomdationplan_citymaster" />
@@ -177,7 +174,6 @@
         <AssociationConnector Association="GTEModel.FK_university_clarificationquestion_mapping" />
         <AssociationConnector Association="GTEModel.FK__countriesmaster" />
         <AssociationConnector Association="GTEModel.FK_qualificationcountriesmapping_countriesmaster" />
-        <AssociationConnector Association="GTEModel.FK_coursemaster_majordiscipline_master" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_studylevelmaster" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_studymodemaster" />
         <AssociationConnector Association="GTEModel.FK_coursetypemaster_university_master" />
@@ -228,6 +224,18 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
+        <EntityTypeShape EntityType="GTEModel.sop_instruction" Width="1.5" PointX="5.375" PointY="27.75" />
+        <EntityTypeShape EntityType="GTEModel.student_sop" Width="1.5" PointX="15.375" PointY="27.75" />
+        <EntityTypeShape EntityType="GTEModel.applicantdetails" Width="1.5" PointX="12.75" PointY="83.5" />
+        <AssociationConnector Association="GTEModel.FK_applicantdetails_students" />
+        <EntityTypeShape EntityType="GTEModel.course_campus_mapping" Width="1.5" PointX="15.75" PointY="77" />
+        <EntityTypeShape EntityType="GTEModel.course_dates" Width="1.5" PointX="15.75" PointY="57.875" />
+        <AssociationConnector Association="GTEModel.FK_courseMapping_coursemaster" />
+        <AssociationConnector Association="GTEModel.FK_courseMapping_universitycampus" />
+        <AssociationConnector Association="GTEModel.FK_courseDates_coursemaster_" />
+        <AssociationConnector Association="GTEModel.FK_coursemaster_universitymaster" />
+        <EntityTypeShape EntityType="GTEModel.majordiscipline_master" Width="1.5" PointX="10.875" PointY="63" />
+        <AssociationConnector Association="GTEModel.FK_coursemaster_majordiscipline_master" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

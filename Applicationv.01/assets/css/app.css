@@ -201,3 +201,11 @@
 .admin-header .navbar-brand{float: left;margin-top: 12px;}
 .admin-header .head-nav{float: right;margin-top: 17px;}
 .admin-header .navbar-toggler{float: left;display: block !important;}
+
+[dir=ltr] input[type="checkbox"]{margin: 3px 3px 3px 4px}
+.admin-checkbx label{display: inline;}
+.admin-checkbx table td{padding: 5px 0;}
+
+[dir=ltr] .admin-bdtemp .sidebar-menu .material-icons{position: absolute;left: 15px;top: 0px;}
+[dir=ltr] .admin-bdtemp .sidebar-menu .sidebar-menu-button{padding-left: 3rem;margin-bottom: 25px;}
+[dir=ltr] .admin-bdtemp .sidebar-menu-button{line-height: 20px;}

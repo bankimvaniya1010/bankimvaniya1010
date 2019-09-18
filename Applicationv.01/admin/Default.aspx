@@ -15,11 +15,12 @@
 
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
-
+                    <div>Welcome To The Application Center.</div>
                     
                   
                   
                    
+
 
                 </div>
 

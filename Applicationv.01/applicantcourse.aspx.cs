@@ -108,10 +108,8 @@ public partial class applicantcourse : System.Web.UI.Page
     [ScriptMethod(UseHttpGet = true)]
     public static string GetMajorDropdown()
     {
-        GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        GTEEntities db1 = new GTEEntities();        
         var temp = (from md in db1.majordiscipline_master
-                    where md.universityid == universityID1
                     select new
                     {
                         description = md.description,
@@ -202,13 +200,7 @@ public partial class applicantcourse : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var major = (from md in db.majordiscipline_master
-                         where md.universityid == universityID
-                         select new
-                         {
-                             description = md.description,
-                             id = md.id
-                         }).ToList();
+            var major = db.majordiscipline_master.ToList();
             ddl.DataSource = major;
             ddl.DataTextField = "description";
             ddl.DataValueField = "id";
