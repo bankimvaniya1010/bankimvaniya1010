@@ -201,3 +201,8 @@
 .admin-header .navbar-brand{float: left;margin-top: 12px;}
 .admin-header .head-nav{float: right;margin-top: 17px;}
 .admin-header .navbar-toggler{float: left;display: block !important;}
+
+[dir=ltr] input[type="checkbox"]{margin: 3px 3px 3px 4px}
+.admin-checkbx label{display: inline;}
+.admin-checkbx table td{padding: 5px 0;}
+
