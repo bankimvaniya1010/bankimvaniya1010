@@ -46,7 +46,7 @@
         </div>
 
         <!-- Header Layout -->
-        <div class="mdk-header-layout js-mdk-header-layout">
+        <div class="mdk-header-layout js-mdk-header-layout admin-bdtemp">
 
             <!-- Header -->
 
@@ -55,9 +55,9 @@
 
                     <!-- Navbar -->
                     <nav id="default-navbar" class="navbar navbar-expand navbar-dark bg-primary m-0">
-                        <div class="container">
+                        <div class="admin-header clearfix">
                             <!-- Toggle sidebar -->
-                            <button class="navbar-toggler d-block" data-toggle="sidebar" type="button">
+                            <button class="navbar-toggler" data-toggle="sidebar" type="button">
                                 <span class="material-icons">menu</span>
                             </button>
 
@@ -66,7 +66,7 @@
                              <a href="default.aspx" class="navbar-brand">
                                 <%-- <img src="assets/images/logo/white.svg" class="mr-2" alt="LearnPlus" />--%>
                                 <span class="d-none d-xs-md-block">
-                                   <%-- <asp:Label ID="lbluniversityName" runat="server"></asp:Label> - The Application Center</span>--%>
+                                    The Application Center Admin Portal</span>
                             </a>
 
                             <ul class="nav navbar-nav flex-nowrap head-nav">

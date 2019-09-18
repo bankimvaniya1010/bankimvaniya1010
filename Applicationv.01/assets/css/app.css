@@ -197,3 +197,7 @@
 .get-upldv{margin-bottom: 20px;}
 
 .hide{display:none;}
+.admin-header{display: block !important;width: 100%;}
+.admin-header .navbar-brand{float: left;margin-top: 12px;}
+.admin-header .head-nav{float: right;margin-top: 17px;}
+.admin-header .navbar-toggler{float: left;display: block !important;}
