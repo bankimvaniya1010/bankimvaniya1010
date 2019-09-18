@@ -22,7 +22,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected List<customfieldmaster> CustomControlsEmp = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsRef = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsSocial = new List<customfieldmaster>();
-    protected string logoURL = "",  Nationality = "";
+    protected string logoURL = "", NationalityValue = "";
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     protected List<applicantemployerdetails> EmployersDetail = new List<applicantemployerdetails>();
     protected List<admincomments> Comments = new List<admincomments>();
@@ -155,7 +155,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
               
                 if (profileInfo.nationality != null)
                 {
-                    Nationality = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality));
+                    NationalityValue = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.nationality));
                     //  lblNationality.Text = Nationality;
                 }
                 if (profileInfo.nationality != null)
@@ -175,7 +175,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                             lblDualNationality.Text = "NO";
                     }
 
-                    if (Nationality.ToUpper() == GlobalVariables.GetChinaCountryName)
+                    if (NationalityValue.ToUpper() == GlobalVariables.GetChinaCountryName)
                     {
                         if (profileInfo.haschinesecodenumber.HasValue && profileInfo.haschinesecodenumber.Value)
                         {
@@ -191,7 +191,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                             textChineseCodeDiv.Style.Remove("display");
                         }
                     }
-                    else if (Nationality.ToUpper() == GlobalVariables.GetRussiaCountryName)
+                    else if (NationalityValue.ToUpper() == GlobalVariables.GetRussiaCountryName)
                     {
                         if (!string.IsNullOrEmpty(profileInfo.patronymicname))
                         {

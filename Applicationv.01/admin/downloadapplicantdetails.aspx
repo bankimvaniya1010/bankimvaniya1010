@@ -31,7 +31,7 @@
                                             <td class="width75 text-right">
                                                 <div class="adm-frm-title">ADMISSIONS APPLICATION FORM</div>
                                              <%--   <div class="adm-frm-no">No: AAA0001</div>--%>
-                                                <div class="adm-frm-sub-txt">Country of Applicant: <span><%=Nationality %></span></div>
+                                                <div class="adm-frm-sub-txt">Country of Applicant: <span><%=NationalityValue %></span></div>
                                                <%--  <div class="adm-frm-sub-txt">Commencement date: <span>01 October, 2019</span></div>
                                                <div class="adm-frm-sub-txt">Course applied for: <span>Western Australian Certificate of Education (WACE)</span>
                                                 </div>--%>
@@ -5995,7 +5995,7 @@
             $("#txtemployercity<%=i%>").val('<%=AdminComments%>');
                     <%   if (Adminaction == 0)
             {%>
-            $('#imgemployerwebsiteNo<%=i%>').css("visibility", "visible");
+            $('#imgemployercityNo<%=i%>').css("visibility", "visible");
 
                     <% }
             else
