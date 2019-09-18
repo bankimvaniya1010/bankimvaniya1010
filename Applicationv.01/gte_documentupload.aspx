@@ -72,48 +72,47 @@
     <script>
         function customcontrolValidation() {
             var flag = false;
-            var Count = '<%=CustomControls.Count%>';
-            if (Count == '0')
+            var Count = $('input[type="file"]');
+            if (Count.length == 0)
                 flag = true;
-             <% for (int k = 0; k < CustomControls.Count; k++)
-        {            
-            FileUpload fileUploadDynamic = (FileUpload)mainDiv.FindControl("file" + CustomControls[k].customfieldid);
-            HyperLink hyperLinkDynamic = (HyperLink)mainDiv.FindControl("hyperlink" + CustomControls[k].customfieldid);
-            var fileDescription = CustomControls[k].labeldescription.ToLower();
-                %>
+            for (var i = 0; i < fieldscount.length; i++) {
+                if ($('input[type="file"]')[i].id.indexOf("ContentPlaceHolder1_filenonstatic") >= 0) {
+                    var elementId = $('input[type="file"]')[i].id.replace("ContentPlaceHolder1_filenonstatic", "");
 
-            if (!validfileExtention($("#<%=fileUploadDynamic.ClientID%>").val() , $("#<%=hyperLinkDynamic.ClientID%>").attr("href"))) {
-                alert("Please Select Valid <%= fileDescription%>" + "\n");
-                return false;
-            }
-            else
-                flag = true;
-             <% }%> 
+                    var anchorId = "ContentPlaceHolder1_hyperlinknonstatic" + elementId;
+                    if (!validfileExtention(elementId.val(), anchorId.attr("href"))) {
+                        alert("Please select valid fileDescription \n");
+                        flag = false;
+                        return false;
+                    }
+                    else
+                        flag = true;
+                }
+            } 
             return flag;
         }
 
         function validateUploadedFile() {
             var flag = false;
-            var fieldscount = '<%=fields.Count%>';
-            if (fieldscount == '0')
+            var fieldscount = $('input[type="file"]');
+            if (fieldscount.length == 0)
                 flag = true;
-             <% for (int j = 0; j < fields.Count; j++)
-        {           
-            FileUpload fileUploadDynamic = (FileUpload)mainDiv.FindControl("filenonstatic" + fields[j].fieldid);
-            HyperLink hyperlinkDynamic = (HyperLink)mainDiv.FindControl("hyperlinknonstatic" + fields[j].fieldid);
-            var fileDescription = fields[j].primaryfiledname.ToLower();
-                %>
 
-             if (!validfileExtention($("#<%=fileUploadDynamic.ClientID%>").val(), $("#<%=hyperlinkDynamic.ClientID%>").attr("href")))
-            {
-                alert("Please select valid <%= fileDescription%>" + "\n");
-                flag = false;
-                return false;
+            for (var i = 0; i < fieldscount.length; i++) {
+                if ($('input[type="file"]')[i].id.indexOf("ContentPlaceHolder1_filenonstatic") >= 0) {
+                    var elementId = $('input[type="file"]')[i].id.replace("ContentPlaceHolder1_filenonstatic", "");
+
+                    var anchorId = "ContentPlaceHolder1_hyperlinknonstatic" + elementId;
+                    if (!validfileExtention(elementId.val(), anchorId.attr("href"))) {
+                        alert("Please select valid fileDescription \n");
+                        flag = false;
+                        return false;
+                    }
+                    else
+                        flag = true;
+                }
             }
-            else
-                flag = true;
-            
-             <% }%> 
+
             if (flag)
                 flag = customcontrolValidation();
             return flag;
