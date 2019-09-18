@@ -17,8 +17,8 @@ public partial class admin : System.Web.UI.MasterPage
     int UserID = 0;    
     protected void Page_Load(object sender, EventArgs e)
     {
-        if ((Session["Role"] == null) && (Session["UserID"] == null))
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         string name = db.students.Where(x => x.studentid == UserID).Select(x => x.name).FirstOrDefault();
         var gteQuestionPart2Count = db.gte_question_master_part2.Count();

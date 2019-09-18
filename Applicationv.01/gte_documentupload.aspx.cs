@@ -23,8 +23,8 @@ public partial class gte_documentupload : System.Web.UI.Page
     gte_applicantdocument objgte_applicantdocument = new gte_applicantdocument();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if ((Session["Role"] == null) && (Session["UserID"] == null))
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
 

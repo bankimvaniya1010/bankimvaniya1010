@@ -25,8 +25,8 @@ public partial class applicantreview : System.Web.UI.Page
     {
         var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-        if (Session["LoginInfo"] == null)
-            Response.Redirect("Login.aspx", true);      
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         else if (isProfileDetailsCompletedByApplicant)
         {
             allQuestions = objComm.FaqQuestionList();

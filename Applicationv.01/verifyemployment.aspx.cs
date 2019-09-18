@@ -8,9 +8,11 @@ using System.Web.UI.WebControls;
 public partial class verifyemployment : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
-
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         if (!IsPostBack)
         {
             if (Request.QueryString["key"] != null)

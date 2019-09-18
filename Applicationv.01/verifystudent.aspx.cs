@@ -16,6 +16,8 @@ public partial class verifystudent : System.Web.UI.Page
     protected string LoginURL = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         if (!IsPostBack)
         {
             if (Request.QueryString["key"] != null)

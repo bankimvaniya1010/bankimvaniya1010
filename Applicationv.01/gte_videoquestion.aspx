@@ -30,13 +30,13 @@
                             </div>                               
                              <div class="list-group-item" id="uploadbtn">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                    <div class="form-row">
-                                        <div class="col-xs-12 get-upldv">
+                                    <div class="row">
+                                        <div class="col-md-12 get-upldv">
                                           <input type="file" runat="server" name="FileUpload" id="FileUpload"/>
                                         </div>
-                                        <div class="media-left col-xs-12">
-                                            <div style="position:relative;width:202px;background:#f0f0f0;margin-bottom: 15px;"> 
-                                                <div id="progress" class="hide" style="background: blue; height: 20px;width:0;color:#fff;">
+                                        <div class="media-left col-md-12">
+                                            <div style="position:relative;width:202px;background:#f0f0f0;margin-bottom: 15px;height:25px;"> 
+                                                <div id="progress" class="hide" style="background: blue; height: 25px;width:0;color:#fff;">
                                                     <div class="status" style="margin-left:10px;"></div>
                                                 </div> 
                                             </div> 

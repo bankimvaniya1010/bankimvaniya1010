@@ -23,7 +23,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        if (Session["LoginInfo"] == null)
+        if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
 
         var isFullService = (bool)Session["FullService"];

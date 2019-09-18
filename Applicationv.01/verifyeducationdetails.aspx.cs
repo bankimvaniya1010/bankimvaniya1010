@@ -13,6 +13,8 @@ public partial class verifyhighschool : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckStudentLogin())
+            Response.Redirect(webURL + "Login.aspx", true);
         if (!IsPostBack)
         {
             if (Request.QueryString["key"] != null || Request.QueryString["type"] != null)
