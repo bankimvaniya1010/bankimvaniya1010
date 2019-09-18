@@ -70,50 +70,45 @@
         
     </div>
     <script>
+
+        var customerControlArr = [];
+        var uploadedFileControlArr = [];
+
         function customcontrolValidation() {
             var flag = false;
-            var Count = '<%=CustomControls.Count%>';
-            if (Count == '0')
+            if (customerControlArr.length == 0)
                 flag = true;
-             <% for (int k = 0; k < CustomControls.Count; k++)
-        {            
-            FileUpload fileUploadDynamic = (FileUpload)mainDiv.FindControl("file" + CustomControls[k].customfieldid);
-            HyperLink hyperLinkDynamic = (HyperLink)mainDiv.FindControl("hyperlink" + CustomControls[k].customfieldid);
-            var fileDescription = CustomControls[k].labeldescription.ToLower();
-                %>
-
-            if (!validfileExtention($("#<%=fileUploadDynamic.ClientID%>").val() , $("#<%=hyperLinkDynamic.ClientID%>").attr("href"))) {
-                alert("Please Select Valid <%= fileDescription%>" + "\n");
-                return false;
+            for (var i = 0; i < customerControlArr.length; i++) {
+                var fileElement = $("#" + customerControlArr[i].fileElement);
+                var anchorElement = $("#" + customerControlArr[i].anchorElement);
+                if (!validfileExtention(fileElement.val(), anchorElement.attr("href"))) {
+                    alert("Please select valid fileDescription \n");
+                    flag = false;
+                    return false;
+                }
+                else
+                    flag = true;
             }
-            else
-                flag = true;
-             <% }%> 
             return flag;
         }
 
         function validateUploadedFile() {
             var flag = false;
-            var fieldscount = '<%=fields.Count%>';
-            if (fieldscount == '0')
+            if (uploadedFileControlArr.length == 0)
                 flag = true;
-             <% for (int j = 0; j < fields.Count; j++)
-        {           
-            FileUpload fileUploadDynamic = (FileUpload)mainDiv.FindControl("filenonstatic" + fields[j].fieldid);
-            HyperLink hyperlinkDynamic = (HyperLink)mainDiv.FindControl("hyperlinknonstatic" + fields[j].fieldid);
-            var fileDescription = fields[j].primaryfiledname.ToLower();
-                %>
 
-             if (!validfileExtention($("#<%=fileUploadDynamic.ClientID%>").val(), $("#<%=hyperlinkDynamic.ClientID%>").attr("href")))
-            {
-                alert("Please select valid <%= fileDescription%>" + "\n");
-                flag = false;
-                return false;
+            for (var i = 0; i < uploadedFileControlArr.length; i++) {
+                var fileElement = $("#" + uploadedFileControlArr[i].fileElement);
+                var anchorElement = $("#" + uploadedFileControlArr[i].anchorElement);
+                if (!validfileExtention(fileElement.val(), anchorElement.attr("href"))) {
+                    alert("Please select valid fileDescription \n");
+                    flag = false;
+                    return false;
+                }
+                else
+                    flag = true;
             }
-            else
-                flag = true;
-            
-             <% }%> 
+
             if (flag)
                 flag = customcontrolValidation();
             return flag;
@@ -140,6 +135,18 @@
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtedocmentupload').addClass('active');
+
+            var fieldscount = $('input[type="file"]');
+            for (var i = 0; i < fieldscount.length; i++) {
+                if ($('input[type="file"]')[i].id.indexOf("ContentPlaceHolder1_filenonstatic") >= 0) {
+                    var elementId = $('input[type="file"]')[i].id.replace("ContentPlaceHolder1_filenonstatic", "");
+                    uploadedFileControlArr.push({ fileElement: $('input[type="file"]')[i].id, anchorElement: "ContentPlaceHolder1_hyperlinknonstatic" + elementId });
+                }
+                else if ($('input[type="file"]')[i].id.indexOf("ContentPlaceHolder1_file") >= 0) {
+                    var elementId = $('input[type="file"]')[i].id.replace("ContentPlaceHolder1_file", "");
+                    customerControlArr.push({ fileElement: $('input[type="file"]')[i].id, anchorElement: "ContentPlaceHolder1_hyperlink" + elementId });
+                }
+            }
         });
     </script>
 </asp:Content>
