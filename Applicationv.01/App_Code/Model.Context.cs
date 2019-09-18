@@ -43,7 +43,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicant_scholarships> applicant_scholarships { get; set; }
     public virtual DbSet<applicantcampaign> applicantcampaign { get; set; }
     public virtual DbSet<applicantdatavalidation> applicantdatavalidation { get; set; }
-    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
     public virtual DbSet<applicantdocumentmaster> applicantdocumentmaster { get; set; }
     public virtual DbSet<applicanteducationdetails> applicanteducationdetails { get; set; }
     public virtual DbSet<applicantemployerdetails> applicantemployerdetails { get; set; }
@@ -110,7 +109,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<health_insurance> health_insurance { get; set; }
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
     public virtual DbSet<invalidatamaster> invalidatamaster { get; set; }
-    public virtual DbSet<majordiscipline_master> majordiscipline_master { get; set; }
     public virtual DbSet<manageaccomdationplan> manageaccomdationplan { get; set; }
     public virtual DbSet<manageentertainment> manageentertainment { get; set; }
     public virtual DbSet<managehealth_insurance> managehealth_insurance { get; set; }
@@ -164,6 +162,12 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<visa> visa { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
+    public virtual DbSet<sop_instruction> sop_instruction { get; set; }
+    public virtual DbSet<student_sop> student_sop { get; set; }
+    public virtual DbSet<applicantdetails> applicantdetails { get; set; }
+    public virtual DbSet<course_campus_mapping> course_campus_mapping { get; set; }
+    public virtual DbSet<course_dates> course_dates { get; set; }
+    public virtual DbSet<majordiscipline_master> majordiscipline_master { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

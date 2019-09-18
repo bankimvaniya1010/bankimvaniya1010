@@ -332,7 +332,7 @@ public partial class gte_sop : System.Web.UI.Page
                 }
                 if (item.statement.Contains("#Answer_13#"))
                 {
-                    var study_field = db.majordiscipline_master.Where(x => x.id == applicantdetails.fieldofstudyapplied && x.universityid == universityID).Select(x => x.description).FirstOrDefault();
+                    var study_field = db.majordiscipline_master.Where(x => x.id == applicantdetails.fieldofstudyapplied).Select(x => x.description).FirstOrDefault();
                     item.statement = item.statement.Replace("#Answer_13#", study_field);
                 }
                 if (item.statement.Contains("#Answer_19#"))

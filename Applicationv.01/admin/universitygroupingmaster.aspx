@@ -16,7 +16,7 @@
 
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                   <asp:GridView ID="universityGroupingGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="true" CellPadding="3"
+                   <asp:GridView ID="universityGroupingGridView" CssClass="table" runat="server" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="key"
@@ -25,12 +25,12 @@
                        <Columns>
                            <asp:BoundField DataField="key" HeaderText="Group Head University ID" InsertVisible="False"
                                 ReadOnly="True" SortExpression="key" />
-                           <asp:TemplateField HeaderText="University Name">
+                           <asp:TemplateField HeaderText="Institution Name">
                                <ItemTemplate>
                                     <asp:Label ID="lblUniversityName" runat="server" Text='<%# Bind("universityHeadName") %>'></asp:Label>
                                 </ItemTemplate>
                            </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Universities under head University">
+                           <asp:TemplateField HeaderText="Institution's under head Institution">
                                <ItemTemplate>
                                     <asp:Label ID="lblUniversityList" runat="server" Text='<%# Bind("universitiesNames") %>'></asp:Label>
                                 </ItemTemplate>

@@ -11,8 +11,8 @@
         <div class="card">
             <div class="tab-content card-body">
                 <div class="form-group row">
-                    <asp:DropDownList ID="ddlUniversity" runat="server" class="form-control col-sm-3" AutoPostBack="true" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged"></asp:DropDownList>
-                    <asp:Button ID="addNewCampus" runat="server" Text="Add New Campus" OnClick="addNewCampus_Click" class="form-control col-sm-2" />
+                    <asp:DropDownList ID="ddlUniversity" runat="server" class="form-control col-sm-4" AutoPostBack="true" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged"></asp:DropDownList>
+                    <asp:Button ID="addNewCampus" runat="server" Text="Add New Campus" OnClick="addNewCampus_Click" class="form-control col-sm-4" />
                 </div>
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                    <asp:GridView ID="universityCampusGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="true" CellPadding="3"

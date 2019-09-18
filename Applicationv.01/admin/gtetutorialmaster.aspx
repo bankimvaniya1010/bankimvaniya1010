@@ -29,7 +29,7 @@
 
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False" Width="800px"
+                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
                         DataKeyNames="id"
                         AllowPaging="True"
                         CellPadding="2"
@@ -54,7 +54,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="University" SortExpression="universityid">                                                           
+                             <asp:TemplateField HeaderText="Institution" SortExpression="universityid">                                                           
                                 <ItemTemplate>
                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                 </ItemTemplate>

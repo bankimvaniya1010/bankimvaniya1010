@@ -16,7 +16,7 @@
            <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
                     <div class="form-group row" runat="server">
-                        <label for="name" class="col-sm-3 col-form-label form-label">University Name</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Institution Name</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">

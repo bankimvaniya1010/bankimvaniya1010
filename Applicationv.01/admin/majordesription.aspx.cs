@@ -22,15 +22,11 @@ public partial class admin_majordesription : System.Web.UI.Page
     {
         try
         {
-            var MajorList = (from q in db.majordiscipline_master
-                             join um in db.university_master
-                             on q.universityid equals um.universityid
-
+            var MajorList = (from q in db.majordiscipline_master                             
                              select new
                              {
                                  id = q.id,
-                                 description = q.description,
-                                 UniversityName = um.university_name,
+                                 description = q.description,                                
                              }).ToList();
             if (MajorList != null)
             {
@@ -64,11 +60,9 @@ public partial class admin_majordesription : System.Web.UI.Page
             {
                 majordiscipline_master objMajor = new majordiscipline_master();
 
-                TextBox txtDescription = (TextBox)gvMajorDescription.FooterRow.FindControl("txtDescription1");
-                DropDownList ddlUniversityFooter = (DropDownList)gvMajorDescription.FooterRow.FindControl("ddlUniversityFooter");
+                TextBox txtDescription = (TextBox)gvMajorDescription.FooterRow.FindControl("txtDescription1");                
 
                 objMajor.description = txtDescription.Text.Trim();
-                objMajor.universityid = Convert.ToInt32(ddlUniversityFooter.SelectedValue);
                 db.majordiscipline_master.Add(objMajor);
                 db.SaveChanges();
                 BindMajorDescription();
@@ -83,37 +77,14 @@ public partial class admin_majordesription : System.Web.UI.Page
     protected void gvMajorDescription_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         try
-        {
-            var universitymaster = db.university_master.ToList();
-            DropDownList ddlUniversityEdit = (e.Row.FindControl("ddlUniversity") as DropDownList);
-            DropDownList ddlUniversityFooter = (e.Row.FindControl("ddlUniversityFooter") as DropDownList);
-            ListItem lst = new ListItem("Please select", "0");
-
-            if (ddlUniversityFooter != null)
-            {
-                ddlUniversityFooter.DataSource = universitymaster;
-                ddlUniversityFooter.DataTextField = "university_name";
-                ddlUniversityFooter.DataValueField = "universityid";
-                ddlUniversityFooter.DataBind();
-                ddlUniversityFooter.Items.Insert(0, lst);
-            }
-            if (ddlUniversityEdit != null)
-            {
-                ddlUniversityEdit.DataSource = universitymaster;
-                ddlUniversityEdit.DataTextField = "university_name";
-                ddlUniversityEdit.DataValueField = "universityid";
-                ddlUniversityEdit.DataBind();
-                ddlUniversityEdit.Items.Insert(0, lst);
-            }
-           
-           
+        {  
             if (e.Row.RowState != DataControlRowState.Edit) // check for RowState
             {
                 if (e.Row.RowType == DataControlRowType.DataRow) //check for RowType
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[3].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[32].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter
@@ -176,10 +147,8 @@ public partial class admin_majordesription : System.Web.UI.Page
 
 
             TextBox txtDescription = (TextBox)gvMajorDescription.Rows[e.RowIndex].FindControl("txtDescription");
-            DropDownList ddlUniversity = (DropDownList)gvMajorDescription.Rows[e.RowIndex].FindControl("ddlUniversity");
 
             objMajor.description = txtDescription.Text.Trim();
-            objMajor.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
             
             gvMajorDescription.EditIndex = -1;
             db.SaveChanges();

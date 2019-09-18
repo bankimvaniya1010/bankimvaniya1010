@@ -18,12 +18,15 @@
             <li class="breadcrumb-item active">Universitywise Custom Field Listing </li>
         </ol>
         <h1 class="h2">Universitywise Custom Field Listing  </h1>
-
+         <div class="media align-items-center">  
+            <div class="form-row">
+                <a href="customfieldaddition.aspx" class="btn btn-success">Add New</a>                                      
+            </div>
+        </div>
         <div class="card">
 
 
-            <div class="tab-content card-body">
-                 <div><a href="customfieldaddition.aspx">Add New Custom Field</a></div>
+            <div class="tab-content card-body">                 
                 <div class="tab-pane active" id="first">
 
 
@@ -52,7 +55,7 @@
 
 
 
-                    <asp:GridView ID="gvCustomField" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
+                    <asp:GridView ID="gvCustomField" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="false"
                         DataKeyNames="customfieldid"
                         AllowPaging="True"
                         CellPadding="3"

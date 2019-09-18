@@ -26,8 +26,7 @@
         <div class="card">
 
 
-            <div class="tab-content card-body">
-                <div><a href="tooltipsaddedit.aspx">Add tooltips</a></div>
+            <div class="tab-content card-body">               
                 <div class="tab-pane active" id="first">
                     <div class="form-group row">
                         <label for="name" class="col-sm-3 col-form-label form-label">Form</label>

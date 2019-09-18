@@ -14,9 +14,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Preliminary Video Master</li>
+            <li class="breadcrumb-item active">Tutorial Master</li>
         </ol>
-        <h1 class="h2">Preliminary Video Master</h1>
+        <h1 class="h2">Tutorial Master</h1>
           <div class="media align-items-center">  
             <div class="form-row">
                 <a href="tutorialmaster.aspx" class="btn btn-success">Add New</a>
@@ -28,7 +28,7 @@
 
             <div class="tab-content card-body">
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False" Width="800px"
+                    <asp:GridView ID="QuestiontGridView" CssClass="table" runat="server" AutoGenerateColumns="False"
                         DataKeyNames="id"
                         AllowPaging="True"
                         CellPadding="2"
@@ -53,7 +53,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                             <asp:TemplateField HeaderText="University" SortExpression="universityid">                                                           
+                             <asp:TemplateField HeaderText="Institution" SortExpression="universityid">                                                           
                                 <ItemTemplate>
                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                 </ItemTemplate>
