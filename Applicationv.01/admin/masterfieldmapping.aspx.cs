@@ -9,8 +9,11 @@ public partial class admin_mastermapping : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
         {
             BindUniversity();

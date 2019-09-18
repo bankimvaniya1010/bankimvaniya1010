@@ -41,6 +41,8 @@ public partial class admin_gtereport : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if ((Request.QueryString["ID"] == null) || (Request.QueryString["ID"].ToString() == ""))
             Response.Redirect(webURL + "admin/default.aspx", true);

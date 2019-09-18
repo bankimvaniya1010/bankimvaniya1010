@@ -12,6 +12,8 @@ public partial class admin_alternateIdproofcountrywiselisting : System.Web.UI.Pa
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack) {
             BindData();
         }

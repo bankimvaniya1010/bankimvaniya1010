@@ -12,8 +12,8 @@ public partial class admin_educationverificationcontactmaster : System.Web.UI.Pa
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if ((Session["Role"] == null) && (Session["UserID"] == null))
-            Response.Redirect(webURL + "admin/login.aspx", true);
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
             BindEducationVerificationContact();
     }

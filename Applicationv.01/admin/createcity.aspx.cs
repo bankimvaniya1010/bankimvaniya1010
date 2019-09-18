@@ -15,8 +15,8 @@ public partial class admin_createcity : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null || (Session["UserID"] == null))
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
 
         if (!IsPostBack)
         { objCommon.BindCountries(ddlCountry); }

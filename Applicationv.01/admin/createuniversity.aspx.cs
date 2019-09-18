@@ -19,8 +19,8 @@ public partial class admin_createuniversity : System.Web.UI.Page
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null || (Session["UserID"] == null))
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
 
         if (!IsPostBack)
         {

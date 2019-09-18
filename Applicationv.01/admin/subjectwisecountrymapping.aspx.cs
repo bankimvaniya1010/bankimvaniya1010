@@ -15,6 +15,8 @@ public partial class admin_subjectwisecountrymapping : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
         {
             objCom.BindCountries(ddlCountry);

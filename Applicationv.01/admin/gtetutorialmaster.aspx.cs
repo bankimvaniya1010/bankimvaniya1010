@@ -12,8 +12,8 @@ public partial class admin_gtetutorialmaster : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if ((Session["Role"] == null) && (Session["UserID"] == null))
-            Response.Redirect(webURL + "admin/Login.aspx");
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
             BindGrid();
     }

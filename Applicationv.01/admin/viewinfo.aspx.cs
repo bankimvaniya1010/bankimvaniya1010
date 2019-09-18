@@ -22,8 +22,8 @@ public partial class admin_viewinfo : System.Web.UI.Page
     protected Common objComm = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         // var objUser = (user)Session["LoginInfo"];
         if ((Request.QueryString["ID"] != null) && (Request.QueryString["ID"] != null))
             userID = Convert.ToInt32(Request.QueryString["ID"]);

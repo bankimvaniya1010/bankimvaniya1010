@@ -10,8 +10,11 @@ public partial class admin_alternateIdproofcountrywise : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     Common objcom = new Common();
+    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
         {
             objcom.BindCountries(ddlcountry);

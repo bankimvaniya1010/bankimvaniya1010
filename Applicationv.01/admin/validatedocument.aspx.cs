@@ -17,8 +17,8 @@ public partial class admin_validatedocument : System.Web.UI.Page
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["LoginInfo"] == null)
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         agentID = objUser.studentid;
         if ((Request.QueryString["ID"] != null) && (Request.QueryString["ID"] != null))

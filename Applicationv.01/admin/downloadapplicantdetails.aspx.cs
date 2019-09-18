@@ -34,8 +34,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-        //if (!Utility.CheckAdminLogin())
-        //    Response.Redirect(webURL + "admin/Login.aspx", true);
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         userID = Convert.ToInt32(Session["UserID"]);
        
         if ((Request.QueryString["userid"] == null) || (Request.QueryString["userid"].ToString() == ""))

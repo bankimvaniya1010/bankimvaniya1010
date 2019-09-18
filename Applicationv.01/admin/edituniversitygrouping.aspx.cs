@@ -14,6 +14,8 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
         if (Request.QueryString["headUniversityID"] != null)
         {
             int headUniversityId;
