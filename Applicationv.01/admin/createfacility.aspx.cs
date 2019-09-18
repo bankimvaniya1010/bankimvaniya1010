@@ -14,8 +14,8 @@ public partial class admin_addfacility : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Role"] == null || (Session["UserID"] == null))
-            Response.Redirect(webURL + "Login.aspx");
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
