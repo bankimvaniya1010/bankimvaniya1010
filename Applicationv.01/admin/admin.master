@@ -120,7 +120,7 @@
                                     Dashboard
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="dashboar_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="dashboar_menu">
                                     <li class="sidebar-menu-item" id="dashboard">
                                         <a class="sidebar-menu-button" href="Default.aspx">
                                             <span class="sidebar-menu-text">Dashboard</span>
@@ -134,7 +134,7 @@
                                    Manage Applicantions
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="manageapplicantions_menu">
+                                <ul class="sidebar-submenu sm-indent collapse " id="manageapplicantions_menu">
                                    <li class="sidebar-menu-item" id="applicantlist"> 
                                         <a class="sidebar-menu-button" href="applicantlist.aspx">
                                             <span class="sidebar-menu-text">View & Manage Applications </span>
@@ -148,7 +148,7 @@
                                    Roles & Permissions
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="role_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="role_menu">
                                     <li class="sidebar-menu-item" id="createuser">
                                         <a class="sidebar-menu-button" href="createuser.aspx">
                                             <span class="sidebar-menu-text">create User</span>
@@ -162,7 +162,7 @@
                                    Setup & Manage Cities 
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="city_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="city_menu">
                                    <li class="sidebar-menu-item" id="managecity">
                                         <a class="sidebar-menu-button" href="citymaster.aspx">
                                             <span class="sidebar-menu-text">Manage City</span>
@@ -176,7 +176,7 @@
                                   Setup & Manage Institution
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="institution_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="institution_menu">
                                                                         <li class="sidebar-menu-item" id="createuniversity"> 
                                         <a class="sidebar-menu-button" href="createuniversity.aspx">
                                             <span class="sidebar-menu-text">Create Institution </span>
@@ -222,7 +222,7 @@
                                    Customize Forms
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="CustomizeForms_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="CustomizeForms_menu">
                                   <li class="sidebar-menu-item" id="educationmediummaster">
                                         <a class="sidebar-menu-button" href="educationmediummaster.aspx">
                                             <span class="sidebar-menu-text"> Education Medium Master</span>
@@ -326,7 +326,7 @@
                                    Manage Course
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="course_menu">
+                                <ul class="sidebar-submenu sm-indent collapse " id="course_menu">
                                     <li class="sidebar-menu-item" id="coursemaster"> 
                                         <a class="sidebar-menu-button" href="coursemaster.aspx">
                                             <span class="sidebar-menu-text">Manage Courses</span>
@@ -340,7 +340,7 @@
                                   Manage Tooltips
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="managetooltips_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="managetooltips_menu">
                                    <li class="sidebar-menu-item" id="tooltipslisting">
                                         <a class="sidebar-menu-button" href="tooltipslisting.aspx">
                                             <span class="sidebar-menu-text">Standard Tooltips</span>
@@ -369,7 +369,7 @@
                                    Manage Cost Calculator
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="Costcalculator_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="Costcalculator_menu">
                                     <li class="sidebar-menu-item" id="manageaccomdation"> 
                                         <a class="sidebar-menu-button" href="manageaccomdation.aspx">
                                             <span class="sidebar-menu-text">Manage Accommodation Plan</span>
@@ -418,7 +418,7 @@
                                    Setup and Manage Tutorials
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="tutorial_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="tutorial_menu">
                                    <li class="sidebar-menu-item" id="preliminaryquestion">
                                         <a class="sidebar-menu-button" href="preliminaryquestion.aspx">
                                             <span class="sidebar-menu-text">Preliminary Questions Master</span>
@@ -456,7 +456,7 @@
                                    Setup & Manage Scholarships
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="Scholarships_menu">
+                                <ul class="sidebar-submenu sm-indent collapse " id="Scholarships_menu">
                                       <li class="sidebar-menu-item" id="manageScholarships">
                                         <a class="sidebar-menu-button" href="scholarshipmaster.aspx">
                                             <span class="sidebar-menu-text">Manage Scholarships</span>
@@ -470,7 +470,7 @@
                                    Manage Languages
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
-                                <ul class="sidebar-submenu sm-indent collapse show" id="managelanguages_menu">
+                                <ul class="sidebar-submenu sm-indent collapse" id="managelanguages_menu">
                                     <li class="sidebar-menu-item" id="fieldmaster"> 
                                         <a class="sidebar-menu-button" href="fieldmaster.aspx">
                                             <span class="sidebar-menu-text">Secondary Language</span>

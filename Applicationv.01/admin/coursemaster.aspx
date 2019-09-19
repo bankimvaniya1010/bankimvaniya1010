@@ -32,6 +32,11 @@
                                     <asp:Label ID="lblcourseName" runat="server" Text='<%# Bind("coursename") %>'></asp:Label>
                                 </ItemTemplate>
                            </asp:TemplateField>
+                           <asp:TemplateField HeaderText="Institution">
+                               <ItemTemplate>
+                                    <asp:Label ID="lbluniversityname" runat="server" Text='<%# Bind("universityname") %>'></asp:Label>
+                                </ItemTemplate>
+                           </asp:TemplateField>
                            <asp:TemplateField HeaderText="Major Discipline Name">
                                <ItemTemplate>
                                     <asp:Label ID="lbldisciplineName" runat="server" Text='<%# Bind("displineDesc") %>'></asp:Label>
@@ -69,7 +74,7 @@
     <script>
 		$(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
-	        $('#universitymenu_list').addClass('open');
+	        $('#course_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
 	        $('#coursemaster').addClass('active');
 	    });

@@ -24,7 +24,7 @@
 
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
-                    <asp:GridView ID="gvApplicant" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
+                    <asp:GridView ID="gvApplicant" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="false"
                         DataKeyNames="applicantid"
                         AllowPaging="True"
                         CellPadding="3"
@@ -34,11 +34,21 @@
                         CellSpacing="2" OnRowCommand="gvApplicant_RowCommand" OnPageIndexChanging="gvApplicant_PageIndexChanging" OnRowDataBound="gvApplicant_RowDataBound">
 
                         <Columns>
-                            <asp:BoundField DataField="applicantid" HeaderText="ID" InsertVisible="False"
+                            <asp:BoundField DataField="applicantid" HeaderText="Applicant Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
                             <asp:TemplateField HeaderText="Name" SortExpression="firstName">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("name") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Nationality">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblNationality" runat="server" Text='<%# Bind("nationality") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                             <asp:TemplateField HeaderText="Course Applied">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblcourseapplied" runat="server" Text='<%# Bind("courseapplied") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">

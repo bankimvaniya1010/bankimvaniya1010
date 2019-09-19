@@ -19,22 +19,28 @@ public partial class admin_coursemaster : System.Web.UI.Page
     }
 
     private void BindGrid()
-    {
+     {
         try
-        {
+        {          
             var courseList = (from cm in db.coursemaster
-                                    join displine in db.majordiscipline_master on cm.majordisciplineId equals displine.id
-                                    join study in db.studymodemaster on cm.modeofstudyId equals study.id
-                                    join level in db.studylevelmaster on cm.levelofstudyId equals level.studylevelid
-                                    select new
-                                    {
-                                        courseid = cm.courseid,
-                                        coursename = cm.coursename,
-                                        displineDesc = displine.description,
-                                        studyDesc = study.description,
-                                        studylevel = level.studylevel,
-                                        coursefee = cm.coursefee==null?0 : cm.coursefee
-                                    }).ToList();
+                              join displine in db.majordiscipline_master on cm.majordisciplineId equals displine.id into displineData
+                              from x in displineData.DefaultIfEmpty()
+                              join study in db.studymodemaster on cm.modeofstudyId equals study.id into studyData
+                              from x1 in studyData.DefaultIfEmpty()
+                              join level in db.studylevelmaster on cm.levelofstudyId equals level.studylevelid into levelData
+                              from x2 in levelData.DefaultIfEmpty()
+                              join um in db.university_master on cm.universityid equals um.universityid into universityData
+                              from x3 in universityData.DefaultIfEmpty()
+                              select new
+                              {
+                                  courseid = cm.courseid,
+                                  coursename = cm.coursename,
+                                  displineDesc = (x.description == null) ? string.Empty : x.description,
+                                  studyDesc = x1.description == null ? string.Empty : x1.description,
+                                  studylevel = x2.studylevel == null ? string.Empty : x2.studylevel,
+                                  universityname = x3.university_name == null ? string.Empty : x3.university_name,
+                                  coursefee = cm.coursefee == null ? 0 : cm.coursefee,
+                              }).SortBy("courseid").ToList();          
             if (courseList != null)
             {
                CourseGridView.DataSource = courseList;

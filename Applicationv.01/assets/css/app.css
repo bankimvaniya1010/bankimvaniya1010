@@ -209,3 +209,11 @@
 [dir=ltr] .admin-bdtemp .sidebar-menu .material-icons{position: absolute;left: 15px;top: 0px;}
 [dir=ltr] .admin-bdtemp .sidebar-menu .sidebar-menu-button{padding-left: 3rem;margin-bottom: 25px;}
 [dir=ltr] .admin-bdtemp .sidebar-menu-button{line-height: 20px;}
+[dir=ltr] .admin-bdtemp .sidebar-menu .sidebar-submenu .sidebar-menu-button{margin-bottom: 15px;}
+
+[dir=ltr] .mdk-header [data-primary]{background-color: #e51837!important;}
+[dir=ltr] .sidebar-dark.sidebar-left{background-color: #1c2329!important;}
+[dir=ltr] .sidebar-dark .sidebar-submenu .sidebar-menu-text{color: #cccccc;}
+[dir=ltr] .sidebar-dark .open>.sidebar-menu-button{color: #fff;}
+[dir=ltr] .navbar-dark .navbar-toggler{color: #fff;}
+[dir=ltr] .sidebar-dark .sidebar-heading{color: #fff;}
