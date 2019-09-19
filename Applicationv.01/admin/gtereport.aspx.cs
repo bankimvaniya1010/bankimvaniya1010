@@ -32,7 +32,7 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _recommendationRemark = "";
     protected string _notesDisclaimer = "";
 
-    protected int roleID = 0, ApplicantID = 0, universityID = 0;
+    protected int ApplicantID = 0, universityID = 0;
     string _universityName;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
@@ -41,196 +41,194 @@ public partial class admin_gtereport : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-        if ((Request.QueryString["ID"] == null) || (Request.QueryString["ID"].ToString() == ""))
-            Response.Redirect(webURL + "admin/default.aspx", true);
+        if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["downloadPdf"] == null || Request.QueryString["downloadPdf"].ToString() == "")
+        { }
         else
-            ApplicantID = Convert.ToInt32(Request.QueryString["ID"].ToString());
-        if ((Request.QueryString["downloadPdf"] == null) || (Request.QueryString["downloadPdf"].ToString() == ""))
         {
-            ViewState["downloadPdf"] = 0;
-            if (!Utility.CheckAdminLogin())
-                Response.Redirect(webURL + "admin/Login.aspx", true);
-        }
-        else
-            ViewState["downloadPdf"] = Convert.ToInt32(Request.QueryString["downloadPdf"]);
+            int downloadPdf = 0;
+            int.TryParse(Request.QueryString["downloadPdf"].ToString(), out downloadPdf);
 
-        var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
-        _studentName = Personal.firstname + " " + Personal.lastname;
-
-        roleID = Convert.ToInt32(Session["Role"]);
-        if (!IsPostBack)
-        {
-            DateTime currentDate = DateTime.Now;
-            _institutionID = universityID.ToString();
-            _reportType = "AU - GS &amp; GTE (TYPE 1)";
-            _reportDate = currentDate.ToString("dd-MMM-y");
-            _notesDisclaimer = db.university_master.Where(x => x.universityid == universityID).Select(x => x.notes_disclaimer).FirstOrDefault();
-            _reportNo = "ECU - " + currentDate.Year + currentDate.ToString("MM") + currentDate.ToString("dd") + currentDate.Hour + currentDate.Minute + ApplicantID;
-
-            var gte_student_sop = db.gte_student_sop
-                                    .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
-                                    .FirstOrDefault();
-
-            if (gte_student_sop != null)
+            if ((downloadPdf == 0 && Utility.CheckAdminLogin()) || (downloadPdf == 1 && Request.QueryString["token"] != null && Request.QueryString["token"].ToString() == "XS7MKjHLunMAvqzCGr"))
             {
-                ViewState["student_sop_id"] = gte_student_sop.id;
-                _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
-                _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
-                _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
-                _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
-                _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
-            }
+                universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+                ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
+                ViewState["downloadPdf"] = downloadPdf;
 
-            var section2_max_score_by_tag = db.gte_answer_master
-                                              .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score, x.gte_questions_master.tag })
-                                              .GroupBy(x => x.gte_question_id)
-                                              .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), x.FirstOrDefault().tag })
-                                              .GroupBy(x => x.tag)
-                                              .Select(x => new { gte_max_by_tag = x.Sum(y => y.max_gte_score_per_question), risk_max_by_tag = x.Sum(y => y.max_risk_score_per_question), tag = x.Key })
-                                              .OrderBy(x => x.tag).ToList();
+                var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
+                _studentName = Personal.firstname + " " + Personal.lastname;
 
-            var applicant_section2_score = db.gte_questions_applicant_response
-                                             .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
-                                             .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score, x.gte_questions_master.tag })
-                                             .Distinct()
-                                             .GroupBy(x => x.tag)
-                                             .Select(x => new { applicant_risk_score = x.Sum(y => y.gte_risk_score), applicant_gte_score = x.Sum(y => y.gte_score), x.FirstOrDefault().tag })
-                                             .OrderBy(x => x.tag).ToList();
-
-            var reportObj = new List<object>();
-            for (int i = 0; i < applicant_section2_score.Count; i++)
-            {
-                if (applicant_section2_score[i].tag == section2_max_score_by_tag[i].tag)
+                if (!IsPostBack)
                 {
-                    decimal applicant_gte_score = applicant_section2_score[i].applicant_gte_score;
-                    decimal max_gte_score = section2_max_score_by_tag[i].gte_max_by_tag;
-                    decimal applicant_risk_score = applicant_section2_score[i].applicant_risk_score;
-                    decimal max_risk_score = section2_max_score_by_tag[i].risk_max_by_tag;
-                    reportObj.Add(new
+                    DateTime currentDate = DateTime.Now;
+                    _institutionID = universityID.ToString();
+                    _reportType = "AU - GS &amp; GTE (TYPE 1)";
+                    _reportDate = currentDate.ToString("dd-MMM-y");
+                    _notesDisclaimer = db.university_master.Where(x => x.universityid == universityID).Select(x => x.notes_disclaimer).FirstOrDefault();
+                    _reportNo = "ECU - " + currentDate.Year + currentDate.ToString("MM") + currentDate.ToString("dd") + currentDate.Hour + currentDate.Minute + ApplicantID;
+
+                    var gte_student_sop = db.gte_student_sop
+                                            .Where(x => x.applicant_id == ApplicantID && x.universityid == universityID && x.is_sop_submitted_by_applicant == true)
+                                            .FirstOrDefault();
+
+                    if (gte_student_sop != null)
                     {
-                        gte_percentage = Math.Round((applicant_gte_score / max_gte_score) * 100, 0),
-                        risk_percentage = Math.Round((applicant_risk_score / max_risk_score) * 100, 0),
-                        section2_max_score_by_tag[i].tag
-                    });
-                }
-            }
+                        ViewState["student_sop_id"] = gte_student_sop.id;
+                        _genuineStudentAssesment = gte_student_sop.applicant_generated_sop_para1;
+                        _situationStudentAssesment = gte_student_sop.applicant_generated_sop_para2;
+                        _potentialStudentAssesment = gte_student_sop.applicant_generated_sop_para3;
+                        _paragraph4 = gte_student_sop.applicant_generated_sop_para4;
+                        _paragraph5 = gte_student_sop.applicant_generated_sop_para5;
+                    }
 
-            var section3_max_score_by_tag = db.gte_question_master_part2
-                                              .GroupBy(x => x.tag)
-                                              .Select(x => new { gte_score = x.Sum(y => y.true_gte_score + y.false_gte_score), risk_score = x.Sum(y => y.true_risk_score + y.false_risk_score), tag = x.Key })
-                                              .OrderBy(x => x.tag).ToList();
+                    var section2_max_score_by_tag = db.gte_answer_master
+                                                      .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score, x.gte_questions_master.tag })
+                                                      .GroupBy(x => x.gte_question_id)
+                                                      .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), x.FirstOrDefault().tag })
+                                                      .GroupBy(x => x.tag)
+                                                      .Select(x => new { gte_max_by_tag = x.Sum(y => y.max_gte_score_per_question), risk_max_by_tag = x.Sum(y => y.max_risk_score_per_question), tag = x.Key })
+                                                      .OrderBy(x => x.tag).ToList();
 
-            var applicant_section3_score = db.gte_question_part2_applicant_response
-                                             .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
-                                             .Select(x => new
-                                             {
-                                                 x.gte_question_master_part2.tag,
-                                                 gte_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_gte_score : x.gte_question_master_part2.false_gte_score,
-                                                 risk_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_risk_score : x.gte_question_master_part2.false_risk_score
-                                             })
-                                             .GroupBy(x => x.tag)
-                                             .Select(x => new { applicant_gte_score = x.Sum(y => y.gte_score_per_question), applicant_risk_score = x.Sum(y => y.risk_score_per_question), tag = x.Key })
-                                             .OrderBy(x => x.tag).ToList();
-
-            for (int i = 0; i < applicant_section3_score.Count; i++)
-            {
-                if (applicant_section3_score[i].tag == section3_max_score_by_tag[i].tag)
-                {
-                    decimal applicant_gte_score = applicant_section3_score[i].applicant_gte_score;
-                    decimal max_gte_score = section3_max_score_by_tag[i].gte_score;
-                    decimal applicant_risk_score = applicant_section3_score[i].applicant_risk_score;
-                    decimal max_risk_score = section3_max_score_by_tag[i].risk_score;
-
-                    reportObj.Add(new
-                    {
-                        gte_percentage = Math.Round((applicant_gte_score / max_gte_score) * 100, 0),
-                        risk_percentage = Math.Round((applicant_risk_score / max_risk_score) * 100, 0),
-                        section3_max_score_by_tag[i].tag
-                    });
-                }
-            }
-
-            var overall_section2_max_score = db.gte_answer_master
-                                               .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score })
-                                               .GroupBy(x => x.gte_question_id)
-                                               .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), questionId = x.Key });
-
-            var overall_applicant_section2_score = db.gte_questions_applicant_response
+                    var applicant_section2_score = db.gte_questions_applicant_response
                                                      .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
-                                                     .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score })
-                                                     .Distinct();
+                                                     .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score, x.gte_questions_master.tag })
+                                                     .Distinct()
+                                                     .GroupBy(x => x.tag)
+                                                     .Select(x => new { applicant_risk_score = x.Sum(y => y.gte_risk_score), applicant_gte_score = x.Sum(y => y.gte_score), x.FirstOrDefault().tag })
+                                                     .OrderBy(x => x.tag).ToList();
 
-            var overall_section3_max_score = db.gte_question_master_part2
-                                               .Select(x => new
-                                               {
-                                                   max_gte_score_per_question = x.true_gte_score > x.false_gte_score ? x.true_gte_score : x.false_gte_score,
-                                                   max_risk_score_per_question = x.true_risk_score > x.false_risk_score ? x.true_risk_score : x.false_risk_score,
-                                                   questionId = x.id
-                                               });
+                    var reportObj = new List<object>();
+                    for (int i = 0; i < applicant_section2_score.Count; i++)
+                    {
+                        if (applicant_section2_score[i].tag == section2_max_score_by_tag[i].tag)
+                        {
+                            decimal applicant_gte_score = applicant_section2_score[i].applicant_gte_score;
+                            decimal max_gte_score = section2_max_score_by_tag[i].gte_max_by_tag;
+                            decimal applicant_risk_score = applicant_section2_score[i].applicant_risk_score;
+                            decimal max_risk_score = section2_max_score_by_tag[i].risk_max_by_tag;
+                            reportObj.Add(new
+                            {
+                                gte_percentage = Math.Round((applicant_gte_score / max_gte_score) * 100, 0),
+                                risk_percentage = Math.Round((applicant_risk_score / max_risk_score) * 100, 0),
+                                section2_max_score_by_tag[i].tag
+                            });
+                        }
+                    }
 
-            var overall_applicant_section3_score = db.gte_question_part2_applicant_response
+                    var section3_max_score_by_tag = db.gte_question_master_part2
+                                                      .GroupBy(x => x.tag)
+                                                      .Select(x => new { gte_score = x.Sum(y => y.true_gte_score + y.false_gte_score), risk_score = x.Sum(y => y.true_risk_score + y.false_risk_score), tag = x.Key })
+                                                      .OrderBy(x => x.tag).ToList();
+
+                    var applicant_section3_score = db.gte_question_part2_applicant_response
                                                      .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
                                                      .Select(x => new
                                                      {
-                                                         questionId = x.gte_question_master_part2.id,
+                                                         x.gte_question_master_part2.tag,
                                                          gte_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_gte_score : x.gte_question_master_part2.false_gte_score,
                                                          risk_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_risk_score : x.gte_question_master_part2.false_risk_score
-                                                     });
+                                                     })
+                                                     .GroupBy(x => x.tag)
+                                                     .Select(x => new { applicant_gte_score = x.Sum(y => y.gte_score_per_question), applicant_risk_score = x.Sum(y => y.risk_score_per_question), tag = x.Key })
+                                                     .OrderBy(x => x.tag).ToList();
 
-            decimal overall_max_gte_score = overall_section2_max_score.Sum(x => x.max_gte_score_per_question) + overall_section3_max_score.Sum(x => x.max_gte_score_per_question);
-            decimal overall_max_risk_score = overall_section2_max_score.Sum(x => x.max_risk_score_per_question) + overall_section3_max_score.Sum(x => x.max_risk_score_per_question);
-            decimal overall_applicant_gte_score = overall_applicant_section2_score.Sum(x => x.gte_score) + overall_applicant_section3_score.Sum(x => x.gte_score_per_question);
-            decimal overall_applicant_risk_score = overall_applicant_section2_score.Sum(x => x.gte_risk_score) + overall_applicant_section3_score.Sum(x => x.risk_score_per_question);
+                    for (int i = 0; i < applicant_section3_score.Count; i++)
+                    {
+                        if (applicant_section3_score[i].tag == section3_max_score_by_tag[i].tag)
+                        {
+                            decimal applicant_gte_score = applicant_section3_score[i].applicant_gte_score;
+                            decimal max_gte_score = section3_max_score_by_tag[i].gte_score;
+                            decimal applicant_risk_score = applicant_section3_score[i].applicant_risk_score;
+                            decimal max_risk_score = section3_max_score_by_tag[i].risk_score;
 
-            reportObj.Add(new
-            {
-                gte_percentage = Math.Round((overall_applicant_gte_score / overall_max_gte_score) * 100),
-                risk_percentage = Math.Round((overall_applicant_risk_score / overall_max_risk_score) * 100),
-                tag = "Overall"
-            });
+                            reportObj.Add(new
+                            {
+                                gte_percentage = Math.Round((applicant_gte_score / max_gte_score) * 100, 0),
+                                risk_percentage = Math.Round((applicant_risk_score / max_risk_score) * 100, 0),
+                                section3_max_score_by_tag[i].tag
+                            });
+                        }
+                    }
 
-            DataTable table = new DataTable();
-            table.Columns.Add("Title");
-            table.Columns.Add("Value");
-            foreach (var item in reportObj)
-            {
-                string tag = Convert.ToString(item.GetType().GetProperty("tag").GetValue(item, null));
-                DataRow _r = table.NewRow();
-                _r["Title"] = "Risk";
-                _r["Value"] = Convert.ToString(item.GetType().GetProperty("risk_percentage").GetValue(item, null));
+                    var overall_section2_max_score = db.gte_answer_master
+                                                       .Select(x => new { x.gte_question_id, x.gte_risk_score, x.gte_score })
+                                                       .GroupBy(x => x.gte_question_id)
+                                                       .Select(x => new { max_gte_score_per_question = x.Max(z => z.gte_score), max_risk_score_per_question = x.Max(z => z.gte_risk_score), questionId = x.Key });
 
-                table.Rows.Add(_r);
-                _r = table.NewRow();
-                _r["Title"] = "GTE";
-                _r["Value"] = Convert.ToString(item.GetType().GetProperty("gte_percentage").GetValue(item, null));
-                table.Rows.Add(_r);
+                    var overall_applicant_section2_score = db.gte_questions_applicant_response
+                                                             .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
+                                                             .Select(x => new { x.gte_question_id, x.gte_answer_master.gte_risk_score, x.gte_answer_master.gte_score })
+                                                             .Distinct();
 
-                if (tag == "Character & Criminal Record")
-                    populateGraph(Character, table);
-                else if (tag == "Genuine Student")
-                    populateGraph(Genuine, table);
-                else if (tag == "Compliance to Visa Conditions")
-                    populateGraph(Compliance, table);
-                else if (tag == "Retention Risk")
-                    populateGraph(Retention, table);
-                else if (tag == "Immigration History")
-                    populateGraph(Immigration, table);
-                else if (tag == "Situation in the Students Home Country")
-                    populateGraph(Situation, table);
-                else if (tag == "Potential Situation in Australia")
-                    populateGraph(Potential, table);
-                else if (tag == "Value of the course to the students future future")
-                    populateGraph(courseValue, table);
-                else if (tag == "Overall")
-                    populateGraph(OverAll, table);
+                    var overall_section3_max_score = db.gte_question_master_part2
+                                                       .Select(x => new
+                                                       {
+                                                           max_gte_score_per_question = x.true_gte_score > x.false_gte_score ? x.true_gte_score : x.false_gte_score,
+                                                           max_risk_score_per_question = x.true_risk_score > x.false_risk_score ? x.true_risk_score : x.false_risk_score,
+                                                           questionId = x.id
+                                                       });
 
-                table.Clear();
+                    var overall_applicant_section3_score = db.gte_question_part2_applicant_response
+                                                             .Where(x => x.applicant_id == ApplicantID && x.university_id == universityID)
+                                                             .Select(x => new
+                                                             {
+                                                                 questionId = x.gte_question_master_part2.id,
+                                                                 gte_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_gte_score : x.gte_question_master_part2.false_gte_score,
+                                                                 risk_score_per_question = x.applicant_response.Value ? x.gte_question_master_part2.true_risk_score : x.gte_question_master_part2.false_risk_score
+                                                             });
+
+                    decimal overall_max_gte_score = overall_section2_max_score.Sum(x => x.max_gte_score_per_question) + overall_section3_max_score.Sum(x => x.max_gte_score_per_question);
+                    decimal overall_max_risk_score = overall_section2_max_score.Sum(x => x.max_risk_score_per_question) + overall_section3_max_score.Sum(x => x.max_risk_score_per_question);
+                    decimal overall_applicant_gte_score = overall_applicant_section2_score.Sum(x => x.gte_score) + overall_applicant_section3_score.Sum(x => x.gte_score_per_question);
+                    decimal overall_applicant_risk_score = overall_applicant_section2_score.Sum(x => x.gte_risk_score) + overall_applicant_section3_score.Sum(x => x.risk_score_per_question);
+
+                    reportObj.Add(new
+                    {
+                        gte_percentage = Math.Round((overall_applicant_gte_score / overall_max_gte_score) * 100),
+                        risk_percentage = Math.Round((overall_applicant_risk_score / overall_max_risk_score) * 100),
+                        tag = "Overall"
+                    });
+
+                    DataTable table = new DataTable();
+                    table.Columns.Add("Title");
+                    table.Columns.Add("Value");
+                    foreach (var item in reportObj)
+                    {
+                        string tag = Convert.ToString(item.GetType().GetProperty("tag").GetValue(item, null));
+                        DataRow _r = table.NewRow();
+                        _r["Title"] = "Risk";
+                        _r["Value"] = Convert.ToString(item.GetType().GetProperty("risk_percentage").GetValue(item, null));
+
+                        table.Rows.Add(_r);
+                        _r = table.NewRow();
+                        _r["Title"] = "GTE";
+                        _r["Value"] = Convert.ToString(item.GetType().GetProperty("gte_percentage").GetValue(item, null));
+                        table.Rows.Add(_r);
+
+                        if (tag == "Character & Criminal Record")
+                            populateGraph(Character, table);
+                        else if (tag == "Genuine Student")
+                            populateGraph(Genuine, table);
+                        else if (tag == "Compliance to Visa Conditions")
+                            populateGraph(Compliance, table);
+                        else if (tag == "Retention Risk")
+                            populateGraph(Retention, table);
+                        else if (tag == "Immigration History")
+                            populateGraph(Immigration, table);
+                        else if (tag == "Situation in the Students Home Country")
+                            populateGraph(Situation, table);
+                        else if (tag == "Potential Situation in Australia")
+                            populateGraph(Potential, table);
+                        else if (tag == "Value of the course to the students future future")
+                            populateGraph(courseValue, table);
+                        else if (tag == "Overall")
+                            populateGraph(OverAll, table);
+
+                        table.Clear();
+                    }
+
+                    populateCommentsAndReviews();
+                }
             }
-
-            populateCommentsAndReviews();
         }
     }
 

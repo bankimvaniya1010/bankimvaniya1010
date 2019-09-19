@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_downloadpersonal : System.Web.UI.Page
 {
-    protected int userID = 0, ApplicantID = 0, universityID;
+    protected int ApplicantID = 0, universityID;
     bool isAgent = false;
     int formId = 0;
     private GTEEntities db = new GTEEntities();
@@ -33,75 +33,71 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected List<applicanthighereducation> HigherEducation = new List<applicanthighereducation>();
     protected void Page_Load(object sender, EventArgs e)
     {
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-        if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);
-        userID = Convert.ToInt32(Session["UserID"]);
-       
-        if ((Request.QueryString["userid"] == null) || (Request.QueryString["userid"].ToString() == ""))
-        {
-            Response.Redirect(webURL + "admin/default.aspx", true);
-        }
+        if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["token"] == null || Request.QueryString["token"].ToString() != "XS7MKjHLunMAvqzCGr")
+        { }
         else
-            ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
-
-        CustomControlsPersonal = objCom.CustomControlist(1, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        CustomControlsConatct = objCom.CustomControlist(2, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        CustomControlsKYS = objCom.CustomControlist(3, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        CustomControlsEdu = objCom.CustomControlist(4, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        CustomControlsLang = objCom.CustomControlist(5, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        CustomControlsRef = objCom.CustomControlist(6, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        CustomControlsSocial = objCom.CustomControlist(8, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        CustomControlsEmp = objCom.CustomControlist(7, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-        EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
-
-        SetControlsUniversitywiseEmployment(7);
-        Comments = objCom.GetAdminComments(7, universityID, ApplicantID);
-        RefComments = objCom.GetAdminComments(6, universityID, ApplicantID);
-        referenccheckList = db.applicantreferencecheck.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
-        SetControlsUniversitywiseRef(6);
-
-        if (!IsPostBack)
         {
-            //if (CustomControls.Count > 0)
-            //    objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
-            var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-            logoURL= webURL + "/Docs/" + universityID + "/" + university.logo;
-            // Personal Detail Page
-            SetPersonalControlsUniversitywise(1);
-            PopulatePersonalInfo();
-            SetPersonalAdminComments(1);
-            PopulatePersonalSupervisorComments(1);
-            // contact Detail page
-            
-            SetConatctControlsUniversitywise(2);
-            PopulateConatctInfo();
-            SetContactAdminComments(2);
-            PopulateConatctSupervisorComments(2);
-            // KYS Deatils
-          
-            SetControlsUniversitywiseKYS(3);
-            PopulateKYSDetails();
-            SetAdminCommentsKYS(3);
-            PopulateSupervisorCommentsKYS(3);
-            // eDUCATION
-          
-            SetControlsUniversitywiseEducation(4);
-            EducationDetails();
-            SetAdminCommentseducation(4);
-            PopulateSupervisorCommentsEducation(4);
-            //Language
-            SetControlsUniversitywiseLanguage(5);
-            SetAdminCommentsLanguage(5);
-            PopulateLanguageDetails();
-            PopulateSupervisorCommentsLanguage(5);
-            // Employment
+            universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+            ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
 
-          
-            SetControlsUniversitywise(8);
-            PopulateSocailInfo();
-            SetAdminCommentsSocail(8);
-            PopulateSupervisorCommentsSocial(8);
+            CustomControlsPersonal = objCom.CustomControlist(1, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsConatct = objCom.CustomControlist(2, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsKYS = objCom.CustomControlist(3, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsEdu = objCom.CustomControlist(4, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsLang = objCom.CustomControlist(5, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsRef = objCom.CustomControlist(6, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsSocial = objCom.CustomControlist(8, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsEmp = objCom.CustomControlist(7, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
+
+            SetControlsUniversitywiseEmployment(7);
+            Comments = objCom.GetAdminComments(7, universityID, ApplicantID);
+            RefComments = objCom.GetAdminComments(6, universityID, ApplicantID);
+            referenccheckList = db.applicantreferencecheck.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
+            SetControlsUniversitywiseRef(6);
+
+            if (!IsPostBack)
+            {
+                //if (CustomControls.Count > 0)
+                //    objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
+                var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                logoURL = webURL + "/Docs/" + universityID + "/" + university.logo;
+                // Personal Detail Page
+                SetPersonalControlsUniversitywise(1);
+                PopulatePersonalInfo();
+                SetPersonalAdminComments(1);
+                PopulatePersonalSupervisorComments(1);
+                // contact Detail page
+
+                SetConatctControlsUniversitywise(2);
+                PopulateConatctInfo();
+                SetContactAdminComments(2);
+                PopulateConatctSupervisorComments(2);
+                // KYS Deatils
+
+                SetControlsUniversitywiseKYS(3);
+                PopulateKYSDetails();
+                SetAdminCommentsKYS(3);
+                PopulateSupervisorCommentsKYS(3);
+                // eDUCATION
+
+                SetControlsUniversitywiseEducation(4);
+                EducationDetails();
+                SetAdminCommentseducation(4);
+                PopulateSupervisorCommentsEducation(4);
+                //Language
+                SetControlsUniversitywiseLanguage(5);
+                SetAdminCommentsLanguage(5);
+                PopulateLanguageDetails();
+                PopulateSupervisorCommentsLanguage(5);
+                // Employment
+
+
+                SetControlsUniversitywise(8);
+                PopulateSocailInfo();
+                SetAdminCommentsSocail(8);
+                PopulateSupervisorCommentsSocial(8);
+            }
         }
     }
 
@@ -655,7 +651,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                 {
                     lblCurrentAddress.Text = "Yes";
 
-                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
 
                     //lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
                     //lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
@@ -812,7 +808,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
 
     private void SetContactAdminComments(int formId)
     {
-        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, userID);
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         for (int k = 0; k < Comments.Count; k++)
         {
             switch (Comments[k].fieldname)
