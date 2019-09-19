@@ -14,21 +14,17 @@ public partial class visaprefill : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int userID = 0, universityID = 0;
 
-
-
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-        if ((Request.QueryString["id"] == null) || (Request.QueryString["id"].ToString() == ""))
-        {
-            Response.Redirect(webURL + "default.aspx", true);
-        }
+        if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["token"] == null || Request.QueryString["token"].ToString() != "XS7MKjHLunMAvqzCGr")
+        { }
         else
+        {
+            universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
             userID = Convert.ToInt32(Request.QueryString["id"].ToString());
-        SetVisaDetails();
-        SetFamilyDetail();
+            SetVisaDetails();
+            SetFamilyDetail();
+        }
     }
 
     private void SetVisaDetails()

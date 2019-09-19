@@ -153,7 +153,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 downloadApplicantDetails(ID);
             }
             if (Comamandname.Equals("FeedBackGTE"))
-                Response.Redirect(webURL + "admin/gtereport.aspx?ID=" + ID, true);
+                Response.Redirect(webURL + "admin/gtereport.aspx?downloadPdf=0&id=" + ID, true);
             if (Comamandname.Equals("GTE"))
                 downloadGTEReport(ID);
             if (Comamandname.Equals("VisaForm"))
@@ -178,7 +178,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/downloadapplicantdetails.aspx?userid=" + applicantID + "&downloadPdf=1", null, filePath);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/downloadapplicantdetails.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
         Response.AppendHeader("Content-Disposition", "attachment; filename=Personal_Form_" + fileName);
@@ -195,7 +195,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/visaprefill.aspx?ID=" + applicantID + "&downloadPdf=1", null, filePath);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/visaprefill.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
         Response.AppendHeader("Content-Disposition", "attachment; filename=Visa_Form_" + fileName);
@@ -212,7 +212,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
         string fileName = Guid.NewGuid() + ".pdf";
         string filePath = string.Concat(dirPath, "\\", fileName);
-        htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?ID=" + applicantID + "&downloadPdf=1", null, filePath);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/gtereport.aspx?token=XS7MKjHLunMAvqzCGr&id=" + applicantID + "&downloadPdf=1", null, filePath);
 
         Response.ContentType = "application/pdf";
         Response.AppendHeader("Content-Disposition", "attachment; filename=GTE_Report_" + fileName);
