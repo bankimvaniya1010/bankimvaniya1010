@@ -23,14 +23,33 @@ public partial class admin_createcourse : System.Web.UI.Page
             bindMajorDisciplineDropdown();
             bindStudyLevelDropdown();
             bindStudyModeDropdown();
+            BindUniversity();
         }
     }
 
+    private void BindUniversity()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var Universiity = db.university_master.ToList();            
+            ddlUniversity.DataSource = Universiity;
+            ddlUniversity.DataTextField = "university_name";
+            ddlUniversity.DataValueField = "universityid";
+            ddlUniversity.DataBind();
+            ddlUniversity.Items.Insert(0, lst);            
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.StackTrace.ToString());
+        }
+    }
     private void bindMajorDisciplineDropdown()
     {
         try
         {
-            ListItem lst = new ListItem("Please select Major Discipline", "0");
+            ListItem lst = new ListItem("Please select", "0");
             List<majordiscipline_master> DisciplineMaster = db.majordiscipline_master.ToList();
 
             ddldiscipline.DataSource = DisciplineMaster;
@@ -50,7 +69,7 @@ public partial class admin_createcourse : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select Study Level", "0");
+            ListItem lst = new ListItem("Please select", "0");
             List<studylevelmaster> StudylevelMaster = db.studylevelmaster.ToList();
 
             ddlstudylevel.DataSource = StudylevelMaster;
@@ -70,7 +89,7 @@ public partial class admin_createcourse : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select Study Mode", "0");
+            ListItem lst = new ListItem("Please select", "0");
             List<studymodemaster> StudymodeMaster = db.studymodemaster.ToList();
 
             ddlstudymode.DataSource = StudymodeMaster;
@@ -101,6 +120,7 @@ public partial class admin_createcourse : System.Web.UI.Page
                 courseObj.levelofstudyId = Convert.ToInt32(ddlstudylevel.SelectedItem.Value);
                 courseObj.modeofstudyId = Convert.ToInt32(ddlstudymode.SelectedItem.Value);
                 courseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
+                courseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
 
                 db.coursemaster.Add(courseObj);
                 db.SaveChanges();

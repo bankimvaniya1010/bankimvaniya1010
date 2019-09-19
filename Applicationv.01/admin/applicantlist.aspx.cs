@@ -35,17 +35,22 @@ public partial class admin_applicantlist : System.Web.UI.Page
     {
         try
         {
-            var applicant = (from q in db.applicantdetails
-                             where q.universityid == universityID
-
+            var applicant = (from ad in db.applicantdetails
+                             join cm in db.countriesmaster on ad.nationality equals cm.id into cmdata
+                             from x in cmdata.DefaultIfEmpty()
+                             join am in db.applicationmaster on ad.universityid equals am.universityid into amdata
+                             from x1 in amdata.Where(c => c.preferenceid == 1 && c.applicantid == ad.applicantid).DefaultIfEmpty()
+                             join course in db.coursemaster on x1.course equals course.courseid into coursedata
+                             from x2 in coursedata.DefaultIfEmpty()
+                             where ad.universityid == universityID
                              select new
                              {
-                                 applicantid = q.applicantid,
-                                 name = q.firstname + " " + q.lastname,
+                                 applicantid = ad.applicantid,
+                                 nationality = (x == null) ? string.Empty : x.country_name,
+                                 courseapplied = (x2 == null) ? string.Empty : x2.coursename,
+                                 name = ad.firstname + " " + ad.lastname,
 
-                             }).ToList();
-            gvApplicant.DataSource = applicant;
-            gvApplicant.DataBind();
+                             }).SortBy("applicantid").ToList();
         }
         catch (Exception ex)
         {

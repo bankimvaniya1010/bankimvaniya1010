@@ -31,6 +31,7 @@ public partial class admin_editcourse : System.Web.UI.Page
                 bindMajorDisciplineDropdown();
                 bindStudyLevelDropdown();
                 bindStudyModeDropdown();
+                BindUniversity();
                 if (existingCourse != null)
                 {
                     ViewState["courseID"] = courseID;
@@ -52,7 +53,12 @@ public partial class admin_editcourse : System.Web.UI.Page
                         ddlstudymode.ClearSelection();
                         ddlstudymode.Items.FindByValue(existingCourse.modeofstudyId.ToString()).Selected = true;
                     }
-                    
+                    if (existingCourse.universityid != null)
+                    {
+                        ddlUniversity.ClearSelection();
+                        ddlUniversity.Items.FindByValue(existingCourse.universityid.ToString()).Selected = true;
+                    }                    
+
 
                 }
                 else
@@ -64,6 +70,24 @@ public partial class admin_editcourse : System.Web.UI.Page
         }
     }
 
+    private void BindUniversity()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var Universiity = db.university_master.ToList();
+            ddlUniversity.DataSource = Universiity;
+            ddlUniversity.DataTextField = "university_name";
+            ddlUniversity.DataValueField = "universityid";
+            ddlUniversity.DataBind();
+            ddlUniversity.Items.Insert(0, lst);
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.StackTrace.ToString());
+        }
+    }
     private void bindMajorDisciplineDropdown()
     {
         try
@@ -137,6 +161,7 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.levelofstudyId = Convert.ToInt32(ddlstudylevel.SelectedItem.Value);
             CourseObj.modeofstudyId = Convert.ToInt32(ddlstudymode.SelectedItem.Value);
             CourseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
+            CourseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
             db.SaveChanges();
             Response.Redirect("~/admin/coursemaster.aspx");
         }

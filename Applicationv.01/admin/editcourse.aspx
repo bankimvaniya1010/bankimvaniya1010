@@ -28,6 +28,16 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="ddluniversity" class="col-sm-3 col-form-label form-label">Institution</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlUniversity" name="ddluniversity" runat="server" class="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="discipline" class="col-sm-3 col-form-label form-label">Major Discipline</label>
                         <div class="col-sm-8">
                             <div class="row">
@@ -92,6 +102,7 @@
             var discipline = $('#<%=ddldiscipline.ClientID%>').val();
             var studyLevel = $('#<%=ddlstudylevel.ClientID%>').val();
             var studymode = $('#<%=ddlstudymode.ClientID%>').val();
+            var university =$('#<%=ddlUniversity.ClientID%>').val();
 
 
             if (txtCourse == '') {
@@ -115,12 +126,16 @@
                 alert("Please enter Course fee");
                 return false;
             }
+            else if (university == 0) {
+                alert("Please select University");
+                return false;
+           }
             return true;
 
         }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
-	        $('#universitymenu_list').addClass('open');
+	        $('#course_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
 	        $('#coursemaster').addClass('active');
 	    });
