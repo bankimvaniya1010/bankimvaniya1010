@@ -26,14 +26,18 @@
                 <div class="list-group-item" id="homelanguage" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-homelanguage">
                         <div class="form-row">
-                            <label id="labelhomelanguage" runat="server" for="homelanguage" class="col-md-3 col-form-label form-label">What language do you speak at home</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblhomelanguage" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblhomelanguageYes" GroupName="homelanguage" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblhomelanguageNo" GroupName="homelanguage" Text="No" runat="server" />
+                            <label id="labelhomelanguage" runat="server" for="homelanguage" class="col-md-2 col-form-label form-label">What language do you speak at home</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblhomelanguage" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblhomelanguageYes" GroupName="homelanguage" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblhomelanguageNo" GroupName="homelanguage" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="ichomelanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-2">
                                 <input type="button" value="Add Remarks" id="btnhomelanguage" />
                                 <input id="txthomelanguage" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -44,14 +48,18 @@
                 <div class="list-group-item" id="EnglishBackground" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-EnglishBackground">
                         <div class="form-row">
-                            <label id="labelEnglishBackground" runat="server" for="EnglishBackground" class="col-md-3 col-form-label form-label">Have you studied an English Language Intensive Course for students from non-English speaking backgrounds</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblEnglishBackground" runat="server"></asp:Label>
+                            <label id="labelEnglishBackground" runat="server" for="EnglishBackground" class="col-md-2 col-form-label form-label">Have you studied an English Language Intensive Course for students from non-English speaking backgrounds</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblEnglishBackground" runat="server"></asp:Label>
+                                </div>
+                                 <div class="prdtl-vrfy">
                                 <asp:RadioButton ID="rblEnglishBackgroundYes" GroupName="EnglishBackground" Text="Yes" runat="server" />
                                 <asp:RadioButton ID="rblEnglishBackgroundNo" GroupName="EnglishBackground" Text="No" runat="server" />
+                                    </div>
                                 <span class="helpicon"><i id="icEnglishBackground" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnEnglishBackground" />
                                 <input id="txtEnglishBackground" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -63,14 +71,18 @@
                     <div class="list-group-item" id="Language" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-Language">
                             <div class="form-row">
-                                <label id="labelLanguage" runat="server" for="Language" class="col-md-3 col-form-label form-label">Country of English Language Intensive Course</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblLanguage" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblLanguageYes" GroupName="Language" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblLanguageNo" GroupName="Language" Text="No" runat="server" />
+                                <label id="labelLanguage" runat="server" for="Language" class="col-md-2 col-form-label form-label">Country of English Language Intensive Course</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblLanguage" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblLanguageYes" GroupName="Language" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblLanguageNo" GroupName="Language" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icLanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnLanguage" />
                                     <input id="txtLanguage" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -80,14 +92,18 @@
                     <div class="list-group-item" id="YearCompletion" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-YearCompletion">
                             <div class="form-row">
-                                <label id="labelYearCompletion" runat="server" for="YearCompletion" class="col-md-3 col-form-label form-label">Year of Completion/Expected </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblYearCompletion" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblYearCompletionYes" GroupName="YearCompletion" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblYearCompletionNo" GroupName="YearCompletion" Text="No" runat="server" />
+                                <label id="labelYearCompletion" runat="server" for="YearCompletion" class="col-md-2 col-form-label form-label">Year of Completion/Expected </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblYearCompletion" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblYearCompletionYes" GroupName="YearCompletion" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblYearCompletionNo" GroupName="YearCompletion" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icYearCompletion" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnYearCompletion" />
                                     <input id="txtYearCompletion" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -97,14 +113,18 @@
                     <div class="list-group-item" id="NameCollege" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-NameCollege">
                             <div class="form-row">
-                                <label id="labelNameCollege" runat="server" for="NameCollege" class="col-md-3 col-form-label form-label">Name of College or University</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblNameCollege" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblNameCollegeYes" GroupName="NameCollege" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblNameCollegeNo" GroupName="NameCollege" Text="No" runat="server" />
+                                <label id="labelNameCollege" runat="server" for="NameCollege" class="col-md-2 col-form-label form-label">Name of College or University</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblNameCollege" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblNameCollegeYes" GroupName="NameCollege" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblNameCollegeNo" GroupName="NameCollege" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icNameCollege" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnNameCollege" />
                                     <input id="txtNameCollege" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -114,14 +134,18 @@
                     <div class="list-group-item" id="studymode" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-studymode">
                             <div class="form-row">
-                                <label id="labelstudymode" runat="server" for="studymode" class="col-md-3 col-form-label form-label">Mode of study</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblstudymode" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblstudymodeYes" GroupName="studymode" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblstudymodeNo" GroupName="studymode" Text="No" runat="server" />
+                                <label id="labelstudymode" runat="server" for="studymode" class="col-md-2 col-form-label form-label">Mode of study</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblstudymode" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblstudymodeYes" GroupName="studymode" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblstudymodeNo" GroupName="studymode" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icstudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnstudymode" />
                                     <input id="txtstudymode" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -131,14 +155,18 @@
                     <div class="list-group-item" id="QualificationType" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-QualificationType">
                             <div class="form-row">
-                                <label id="labelQualificationType" runat="server" for="QualificationType" class="col-md-3 col-form-label form-label">Qualification Type</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblQualificationType" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblQualificationTypeYes" GroupName="QualificationType" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblQualificationTypeNo" GroupName="QualificationType" Text="No" runat="server" />
+                                <label id="labelQualificationType" runat="server" for="QualificationType" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblQualificationType" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblQualificationTypeYes" GroupName="QualificationType" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblQualificationTypeNo" GroupName="QualificationType" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icQualificationType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnQualificationType" />
                                     <input id="txtQualificationType" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -148,14 +176,18 @@
                     <div class="list-group-item" id="QualificationName" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-QualificationName">
                             <div class="form-row">
-                                <label id="labelQualificationName" runat="server" for="QualificationName" class="col-md-3 col-form-label form-label">Qualification Name</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblQualificationName" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblQualificationNameYes" GroupName="QualificationName" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblQualificationNameNo" GroupName="QualificationName" Text="No" runat="server" />
+                                <label id="labelQualificationName" runat="server" for="QualificationName" class="col-md-2 col-form-label form-label">Qualification Name</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblQualificationName" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblQualificationNameYes" GroupName="QualificationName" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblQualificationNameNo" GroupName="QualificationName" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icQualificationName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnQualificationName" />
                                     <input id="txtQualificationName" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -165,14 +197,18 @@
                     <div class="list-group-item" id="gradetype" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-gradetype">
                             <div class="form-row">
-                                <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblgradetype" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblgradetypeYes" GroupName="gradetype" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblgradetypeNo" GroupName="gradetype" Text="No" runat="server" />
+                                <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-2 col-form-label form-label">Grade Type</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblgradetype" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblgradetypeYes" GroupName="gradetype" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblgradetypeNo" GroupName="gradetype" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btngradetype" />
                                     <input id="txtgradetype" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -182,15 +218,19 @@
                     <div class="list-group-item" id="gradeachieved" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-gradeachieved">
                             <div class="form-row">
-                                <label id="labelgradeachieved" runat="server" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblgradeachieved" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblgradeachievedYes" GroupName="gradeachieved" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblgradeachievedNo" GroupName="gradeachieved" Text="No" runat="server" />
+                                <label id="labelgradeachieved" runat="server" for="gradeachieved" class="col-md-2 col-form-label form-label">Final Grade Achieved </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblgradeachieved" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblgradeachievedYes" GroupName="gradeachieved" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblgradeachievedNo" GroupName="gradeachieved" Text="No" runat="server" />
+                                    </div>
 
                                     <span class="helpicon"><i id="icgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+        3                       <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btngradeachieved" />
                                     <input id="txtgradeachieved" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -200,14 +240,18 @@
                     <div class="list-group-item" id="ExpectedDategrade" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedDategrade">
                             <div class="form-row">
-                                <label id="labelExpectedDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblExpectedDategrade" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblExpectedDategradeYes" GroupName="ExpectedDategrade" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblExpectedDategradeNo" GroupName="ExpectedDategrade" Text="No" runat="server" />
+                                <label id="labelExpectedDategrade" runat="server" for="EnglishCourse" class="col-md-2 col-form-label form-label">Expected dates when results will be declared </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblExpectedDategrade" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblExpectedDategradeYes" GroupName="ExpectedDategrade" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblExpectedDategradeNo" GroupName="ExpectedDategrade" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icExpectedDategrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnExpectedDategrade" />
                                     <input id="txtExpectedDategrade" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -220,14 +264,18 @@
                 <div class="list-group-item" id="EnglishTest" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-EnglishTest">
                         <div class="form-row">
-                            <label id="labelEnglishTest" runat="server" for="EnglishTest" class="col-md-3 col-form-label form-label">Have you sat any one of the following English Language competency tests</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblEnglishTest" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblEnglishTestYes" GroupName="EnglishTest" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblEnglishTestNo" GroupName="EnglishTest" Text="No" runat="server" />
+                            <label id="labelEnglishTest" runat="server" for="EnglishTest" class="col-md-2 col-form-label form-label">Have you sat any one of the following English Language competency tests</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblEnglishTest" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblEnglishTestYes" GroupName="EnglishTest" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblEnglishTestNo" GroupName="EnglishTest" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icEnglishTest" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnEnglishTest" />
                                 <input id="txtEnglishTest" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -237,14 +285,18 @@
                  <div class="list-group-item" id="testName" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-testName">
                             <div class="form-row">
-                                <label id="labeltestName" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Name </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltestName" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltestNameYes" GroupName="testName" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltestNameNo" GroupName="testName" Text="No" runat="server" />
+                                <label id="labeltestName" runat="server" for="testName" class="col-md-2 col-form-label form-label">Test Name </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltestName" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltestNameYes" GroupName="testName" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltestNameNo" GroupName="testName" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictestName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntestName" />
                                     <input id="txttestName" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -256,14 +308,18 @@
                     <div class="list-group-item" id="CandidateID" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-CandidateID">
                             <div class="form-row">
-                                <label id="labelCandidateID" runat="server" for="CandidateID" class="col-md-3 col-form-label form-label">Candidate ID </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblCandidateID" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblCandidateIDYes" GroupName="CandidateID" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblCandidateIDNo" GroupName="CandidateID" Text="No" runat="server" />
+                                <label id="labelCandidateID" runat="server" for="CandidateID" class="col-md-2 col-form-label form-label">Candidate ID </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblCandidateID" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblCandidateIDYes" GroupName="CandidateID" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblCandidateIDNo" GroupName="CandidateID" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icCandidateID" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnCandidateID" />
                                     <input id="txtCandidateID" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -273,14 +329,18 @@
                     <div class="list-group-item" id="CandidateNo" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-CandidateNo">
                             <div class="form-row">
-                                <label id="labelCandidateNo" runat="server" for="CandidateNo" class="col-md-3 col-form-label form-label">Candidate No </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblCandidateNo" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblCandidateNoYes" GroupName="CandidateNo" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblCandidateNoNo" GroupName="CandidateNo" Text="No" runat="server" />
+                                <label id="labelCandidateNo" runat="server" for="CandidateNo" class="col-md-2 col-form-label form-label">Candidate No </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblCandidateNo" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblCandidateNoYes" GroupName="CandidateNo" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblCandidateNoNo" GroupName="CandidateNo" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icCandidateNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnCandidateNo" />
                                     <input id="txtCandidateNo" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -290,14 +350,18 @@
                     <div class="list-group-item" id="ieltsTestDate" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ieltsTestDate">
                             <div class="form-row">
-                                <label id="labelieltsTestDate" runat="server" for="ieltsTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblieltsTestDate" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblieltsTestDateYes" GroupName="ieltsTestDate" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblieltsTestDateNo" GroupName="ieltsTestDate" Text="No" runat="server" />
+                                <label id="labelieltsTestDate" runat="server" for="ieltsTestDate" class="col-md-2 col-form-label form-label">Test Date</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblieltsTestDate" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblieltsTestDateYes" GroupName="ieltsTestDate" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblieltsTestDateNo" GroupName="ieltsTestDate" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icieltsTestDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnieltsTestDate" />
                                     <input id="txtieltsTestDate" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -307,14 +371,18 @@
                     <div class="list-group-item" id="CentreNo" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-CentreNo">
                             <div class="form-row">
-                                <label id="labelCentreNo" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Centre No </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblCentreNo" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblCentreNoYes" GroupName="CentreNo" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblCentreNoNo" GroupName="CentreNo" Text="No" runat="server" />
+                                <label id="labelCentreNo" runat="server" for="testName" class="col-md-2 col-form-label form-label">Test Centre No </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblCentreNo" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblCentreNoYes" GroupName="CentreNo" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblCentreNoNo" GroupName="CentreNo" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icCenterno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnCentreNo" />
                                     <input id="txtCentreNo" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -325,14 +393,18 @@
                     <div class="list-group-item" id="ReadingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ReadingScore">
                             <div class="form-row">
-                                <label id="labelReadingScore" runat="server" for="ReadingScore" class="col-md-3 col-form-label form-label">Reading Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblReadingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblReadingScoreYes" GroupName="ReadingScoreIelt" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblReadingScoreNo" GroupName="ReadingScoreIelt" Text="No" runat="server" />
+                                <label id="labelReadingScore" runat="server" for="ReadingScore" class="col-md-2 col-form-label form-label">Reading Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblReadingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblReadingScoreYes" GroupName="ReadingScoreIelt" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblReadingScoreNo" GroupName="ReadingScoreIelt" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icReadingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnReadingScore" />
                                     <input id="txtReadingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -342,14 +414,18 @@
                     <div class="list-group-item" id="ListeningScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ListeningScore">
                             <div class="form-row">
-                                <label id="labelListeningScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Listening Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblListeningScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblListeningScoreYes" GroupName="ListeningScoreIlet" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblListeningScoreNo" GroupName="ListeningScoreIlet" Text="No" runat="server" />
+                                <label id="labelListeningScore" runat="server" for="ListeningScore" class="col-md-2 col-form-label form-label">Listening Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblListeningScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblListeningScoreYes" GroupName="ListeningScoreIlet" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblListeningScoreNo" GroupName="ListeningScoreIlet" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icListeningScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnListeningScore" />
                                     <input id="txtListeningScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -359,14 +435,18 @@
                     <div class="list-group-item" id="SpeakingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-SpeakingScore">
                             <div class="form-row">
-                                <label id="labelSpeakingScore" runat="server" for="SpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblSpeakingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblSpeakingScoreYes" GroupName="SpeakingScoreIlet" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblSpeakingScoreNo" GroupName="SpeakingScoreIlet" Text="No" runat="server" />
+                                <label id="labelSpeakingScore" runat="server" for="SpeakingScore" class="col-md-2 col-form-label form-label">Speaking Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblSpeakingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblSpeakingScoreYes" GroupName="SpeakingScoreIlet" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblSpeakingScoreNo" GroupName="SpeakingScoreIlet" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icSpeakingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnSpeakingScore" />
                                     <input id="txtSpeakingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -376,14 +456,18 @@
                     <div class="list-group-item" id="WritingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-WritingScore">
                             <div class="form-row">
-                                <label id="labelWritingScore" runat="server" for="WritingScore" class="col-md-3 col-form-label form-label">Writing Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblWritingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblWritingScoreYes" GroupName="WritingScoreIlet" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblWritingScoreNo" GroupName="WritingScoreIlet" Text="No" runat="server" />
+                                <label id="labelWritingScore" runat="server" for="WritingScore" class="col-md-2 col-form-label form-label">Writing Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblWritingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblWritingScoreYes" GroupName="WritingScoreIlet" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblWritingScoreNo" GroupName="WritingScoreIlet" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icWritingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnWritingScore" />
                                     <input id="txtWritingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -393,14 +477,18 @@
                     <div class="list-group-item" id="LanguageScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-LanguageScore">
                             <div class="form-row">
-                                <label id="labelLanguageScore" runat="server" for="LanguageScore" class="col-md-3 col-form-label form-label">Total Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblLanguageScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblLanguageScoreYes" GroupName="LanguageScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblLanguageScoreNo" GroupName="LanguageScore" Text="No" runat="server" />
+                                <label id="labelLanguageScore" runat="server" for="LanguageScore" class="col-md-2 col-form-label form-label">Total Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblLanguageScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblLanguageScoreYes" GroupName="LanguageScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblLanguageScoreNo" GroupName="LanguageScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icLanguageScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnLanguageScore" />
                                     <input id="txtLanguageScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -413,14 +501,18 @@
                     <div class="list-group-item" id="ptetesttaker" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ptetesttaker">
                             <div class="form-row">
-                                <label id="labelptetesttaker" runat="server" for="ptetesttaker" class="col-md-3 col-form-label form-label">Test Taker ID</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblptetesttaker" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblptetesttakerYes" GroupName="ptetesttaker" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblptetesttakerNo" GroupName="ptetesttaker" Text="No" runat="server" />
+                                <label id="labelptetesttaker" runat="server" for="ptetesttaker" class="col-md-2 col-form-label form-label">Test Taker ID</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblptetesttaker" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblptetesttakerYes" GroupName="ptetesttaker" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblptetesttakerNo" GroupName="ptetesttaker" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteTesttaker" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnptetesttaker" />
                                     <input id="txtptetesttaker" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -430,14 +522,18 @@
                     <div class="list-group-item" id="pteregistrationno" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-pteregistrationno">
                             <div class="form-row">
-                                <label id="labelpteregistrationno" runat="server" for="pteregistrationno" class="col-md-3 col-form-label form-label">Registration Number </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblpteregistrationno" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblpteregistrationnoYes" GroupName="pteregistrationno" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblpteregistrationnoNo" GroupName="pteregistrationno" Text="No" runat="server" />
+                                <label id="labelpteregistrationno" runat="server" for="pteregistrationno" class="col-md-2 col-form-label form-label">Registration Number </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblpteregistrationno" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblpteregistrationnoYes" GroupName="pteregistrationno" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblpteregistrationnoNo" GroupName="pteregistrationno" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteregistrationno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnpteregistrationno" />
                                     <input id="txtpteregistrationno" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -447,14 +543,18 @@
                     <div class="list-group-item" id="pteTestDate" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-pteTestDate">
                             <div class="form-row">
-                                <label id="labelpteTestDate" runat="server" for="pteTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblpteTestDate" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblpteTestDateYes" GroupName="pteTestDate" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblpteTestDateNo" GroupName="pteTestDate" Text="No" runat="server" />
+                                <label id="labelpteTestDate" runat="server" for="pteTestDate" class="col-md-2 col-form-label form-label">Test Date</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblpteTestDate" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblpteTestDateYes" GroupName="pteTestDate" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblpteTestDateNo" GroupName="pteTestDate" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteTestDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnpteTestDate" />
                                     <input id="txtpteTestDate" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -464,14 +564,18 @@
                     <div class="list-group-item" id="ptecentercountry" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ptecentercountry">
                             <div class="form-row">
-                                <label id="labelptecentercountry" runat="server" for="ptecentercountry" class="col-md-3 col-form-label form-label">Test Center Country</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblptecentercountry" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblptecentercountryYes" GroupName="ptecentercountry" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblptecentercountryNo" GroupName="ptecentercountry" Text="No" runat="server" />
+                                <label id="labelptecentercountry" runat="server" for="ptecentercountry" class="col-md-2 col-form-label form-label">Test Center Country</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblptecentercountry" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblptecentercountryYes" GroupName="ptecentercountry" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblptecentercountryNo" GroupName="ptecentercountry" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icptecountryt" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnptecentercountry" />
                                     <input id="txtptecentercountry" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -481,14 +585,18 @@
                     <div class="list-group-item" id="ptetestcenterNo" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ptetestcenterNo">
                             <div class="form-row">
-                                <label id="labelptetestcenterNo" runat="server" for="ptetestcenterNo" class="col-md-3 col-form-label form-label">Test Centre No </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblptetestcenterNo" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblptetestcenterNoYes" GroupName="ptetestcenterNo" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblptetestcenterNoNo" GroupName="ptetestcenterNo" Text="No" runat="server" />
+                                <label id="labelptetestcenterNo" runat="server" for="ptetestcenterNo" class="col-md-2 col-form-label form-label">Test Centre No </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblptetestcenterNo" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblptetestcenterNoYes" GroupName="ptetestcenterNo" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblptetestcenterNoNo" GroupName="ptetestcenterNo" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icptetestcenterNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnptetestcenterNo" />
                                     <input id="txtptetestcenterNo" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -499,14 +607,18 @@
                     <div class="list-group-item" id="pteReadingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-pteReadingScore">
                             <div class="form-row">
-                                <label id="labelpteReadingScore" runat="server" for="pteReadingScore" class="col-md-3 col-form-label form-label">Reading Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblpteReadingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblpteReadingScoreYes" GroupName="pteReadingScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblpteReadingScoreNo" GroupName="pteReadingScore" Text="No" runat="server" />
+                                <label id="labelpteReadingScore" runat="server" for="pteReadingScore" class="col-md-2 col-form-label form-label">Reading Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblpteReadingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblpteReadingScoreYes" GroupName="pteReadingScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblpteReadingScoreNo" GroupName="pteReadingScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteReadingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnpteReadingScore" />
                                     <input id="txtpteReadingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -516,14 +628,18 @@
                     <div class="list-group-item" id="pteListeningScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-pteListeningScore">
                             <div class="form-row">
-                                <label id="labelpteListeningScore" runat="server" for="pteListeningScore" class="col-md-3 col-form-label form-label">Listening Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblpteListeningScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblpteListeningScoreYes" GroupName="pteListeningScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblpteListeningScoreNo" GroupName="pteListeningScore" Text="No" runat="server" />
+                                <label id="labelpteListeningScore" runat="server" for="pteListeningScore" class="col-md-2 col-form-label form-label">Listening Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblpteListeningScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblpteListeningScoreYes" GroupName="pteListeningScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblpteListeningScoreNo" GroupName="pteListeningScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteListeningScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnpteListeningScore" />
                                     <input id="txtpteListeningScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -533,14 +649,18 @@
                     <div class="list-group-item" id="pteSpeakingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-pteSpeakingScore">
                             <div class="form-row">
-                                <label id="labelpteSpeakingScore" runat="server" for="pteSpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblpteSpeakingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblpteSpeakingScoreYes" GroupName="pteSpeakingScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblpteSpeakingScoreNo" GroupName="pteSpeakingScore" Text="No" runat="server" />
+                                <label id="labelpteSpeakingScore" runat="server" for="pteSpeakingScore" class="col-md-2 col-form-label form-label">Speaking Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblpteSpeakingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblpteSpeakingScoreYes" GroupName="pteSpeakingScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblpteSpeakingScoreNo" GroupName="pteSpeakingScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteSpeakingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnpteSpeakingScore" />
                                     <input id="txtpteSpeakingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -550,14 +670,18 @@
                     <div class="list-group-item" id="pteWritingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-pteWritingScore">
                             <div class="form-row">
-                                <label id="labelpteWritingScore" runat="server" for="pteWritingScore" class="col-md-3 col-form-label form-label">Writing Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblpteWritingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblpteWritingScoreYes" GroupName="pteWritingScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblpteWritingScoreNo" GroupName="pteWritingScore" Text="No" runat="server" />
+                                <label id="labelpteWritingScore" runat="server" for="pteWritingScore" class="col-md-2 col-form-label form-label">Writing Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblpteWritingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblpteWritingScoreYes" GroupName="pteWritingScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblpteWritingScoreNo" GroupName="pteWritingScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteWritingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnpteWritingScore" />
                                     <input id="txtpteWritingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -567,14 +691,18 @@
                     <div class="list-group-item" id="pteTotalScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-pteTotalScore">
                             <div class="form-row">
-                                <label id="labelpteTotalScore" runat="server" for="pteTotalScore" class="col-md-3 col-form-label form-label">Total Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lblpteTotalScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rblpteTotalScoreYes" GroupName="pteTotalScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rblpteTotalScoreNo" GroupName="pteTotalScore" Text="No" runat="server" />
+                                <label id="labelpteTotalScore" runat="server" for="pteTotalScore" class="col-md-2 col-form-label form-label">Total Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lblpteTotalScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rblpteTotalScoreYes" GroupName="pteTotalScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rblpteTotalScoreNo" GroupName="pteTotalScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="icpteTotalScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btnpteTotalScore" />
                                     <input id="txtpteTotalScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -588,14 +716,18 @@
                     <div class="list-group-item" id="tofelregistrationno" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelregistrationno">
                             <div class="form-row">
-                                <label id="labeltofelregistrationno" runat="server" for="tofelregistrationno" class="col-md-3 col-form-label form-label">Registration Number </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelregistrationno" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelregistrationnoYes" GroupName="tofelregistrationno" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelregistrationnoNo" GroupName="tofelregistrationno" Text="No" runat="server" />
+                                <label id="labeltofelregistrationno" runat="server" for="tofelregistrationno" class="col-md-2 col-form-label form-label">Registration Number </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelregistrationno" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelregistrationnoYes" GroupName="tofelregistrationno" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelregistrationnoNo" GroupName="tofelregistrationno" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelregistrationno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelregistrationno" />
                                     <input id="txttofelregistrationno" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -605,14 +737,18 @@
                     <div class="list-group-item" id="tofelTestDate" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelTestDate">
                             <div class="form-row">
-                                <label id="labeltofelTestDate" runat="server" for="tofelTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelTestDate" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelTestDateYes" GroupName="tofelTestDate" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelTestDateNo" GroupName="tofelTestDate" Text="No" runat="server" />
+                                <label id="labeltofelTestDate" runat="server" for="tofelTestDate" class="col-md-2 col-form-label form-label">Test Date</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelTestDate" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelTestDateYes" GroupName="tofelTestDate" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelTestDateNo" GroupName="tofelTestDate" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelTestDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelTestDate" />
                                     <input id="txttofelTestDate" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -622,14 +758,18 @@
                     <div class="list-group-item" id="tofelcentercountry" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelcentercountry">
                             <div class="form-row">
-                                <label id="labeltofelcentercountry" runat="server" for="tofelcentercountry" class="col-md-3 col-form-label form-label">Test Center Country</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelcentercountry" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelcentercountryYes" GroupName="tofelcentercountry" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelcentercountryNo" GroupName="tofelcentercountry" Text="No" runat="server" />
+                                <label id="labeltofelcentercountry" runat="server" for="tofelcentercountry" class="col-md-2 col-form-label form-label">Test Center Country</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelcentercountry" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelcentercountryYes" GroupName="tofelcentercountry" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelcentercountryNo" GroupName="tofelcentercountry" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelcentercountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelcentercountry" />
                                     <input id="txttofelcentercountry" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -639,14 +779,18 @@
                     <div class="list-group-item" id="tofelcenterNo" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelcenterNo">
                             <div class="form-row">
-                                <label id="labeltofelcenterNo" runat="server" for="tofelcenterNo" class="col-md-3 col-form-label form-label">Test Centre No </label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelcenterNo" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelcenterNoYes" GroupName="tofelcenterNo" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelcenterNo" GroupName="tofelcenterNo" Text="No" runat="server" />
+                                <label id="labeltofelcenterNo" runat="server" for="tofelcenterNo" class="col-md-2 col-form-label form-label">Test Centre No </label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelcenterNo" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelcenterNoYes" GroupName="tofelcenterNo" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelcenterNo" GroupName="tofelcenterNo" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="itofelcenterNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelcenterNo" />
                                     <input id="txttofelcenterNo" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -657,14 +801,18 @@
                     <div class="list-group-item" id="tofelReadingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelReadingScore">
                             <div class="form-row">
-                                <label id="labeltofelReadingScore" runat="server" for="tofelReadingScore" class="col-md-3 col-form-label form-label">Reading Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelReadingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelReadingScoreYes" GroupName="countryIssue" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelReadingScoreNo" GroupName="countryIssue" Text="No" runat="server" />
+                                <label id="labeltofelReadingScore" runat="server" for="tofelReadingScore" class="col-md-2 col-form-label form-label">Reading Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelReadingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelReadingScoreYes" GroupName="countryIssue" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelReadingScoreNo" GroupName="countryIssue" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelReadingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelReadingScore" />
                                     <input id="txttofelReadingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -674,14 +822,18 @@
                     <div class="list-group-item" id="tofelListeningScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelListeningScore">
                             <div class="form-row">
-                                <label id="labeltofelListeningScore" runat="server" for="tofelListeningScore" class="col-md-3 col-form-label form-label">Listening Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelListeningScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelListeningScoreYes" GroupName="tofelListeningScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelListeningScoreNo" GroupName="tofelListeningScore" Text="No" runat="server" />
+                                <label id="labeltofelListeningScore" runat="server" for="tofelListeningScore" class="col-md-2 col-form-label form-label">Listening Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelListeningScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelListeningScoreYes" GroupName="tofelListeningScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelListeningScoreNo" GroupName="tofelListeningScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelListeningScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelListeningScore" />
                                     <input id="txttofelListeningScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -691,14 +843,18 @@
                     <div class="list-group-item" id="tofelSpeakingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelSpeakingScore">
                             <div class="form-row">
-                                <label id="labeltofelSpeakingScore" runat="server" for="tofelSpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelSpeakingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelSpeakingScoreYes" GroupName="tofelSpeakingScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelSpeakingScoreNo" GroupName="tofelSpeakingScore" Text="No" runat="server" />
+                                <label id="labeltofelSpeakingScore" runat="server" for="tofelSpeakingScore" class="col-md-2 col-form-label form-label">Speaking Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelSpeakingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelSpeakingScoreYes" GroupName="tofelSpeakingScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelSpeakingScoreNo" GroupName="tofelSpeakingScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelSpeakingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelSpeakingScore" />
                                     <input id="txttofelSpeakingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -708,14 +864,18 @@
                     <div class="list-group-item" id="tofelWritingScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelWritingScore">
                             <div class="form-row">
-                                <label id="labeltofelWritingScore" runat="server" for="tofelWritingScore" class="col-md-3 col-form-label form-label">Writing Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelWritingScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelWritingScoreYes" GroupName="tofelWritingScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelWritingScoreNo" GroupName="tofelWritingScore" Text="No" runat="server" />
+                                <label id="labeltofelWritingScore" runat="server" for="tofelWritingScore" class="col-md-2 col-form-label form-label">Writing Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelWritingScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelWritingScoreYes" GroupName="tofelWritingScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelWritingScoreNo" GroupName="tofelWritingScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelWritingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelWritingScore" />
                                     <input id="txttofelWritingScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -725,14 +885,18 @@
                     <div class="list-group-item" id="tofelTotalScore" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelTotalScore">
                             <div class="form-row">
-                                <label id="labeltofelTotalScore" runat="server" for="tofelTotalScore" class="col-md-3 col-form-label form-label">Total Score</label>
-                                <div class="col-md-4">
-                                    <asp:Label ID="lbltofelTotalScore" runat="server"></asp:Label>
-                                    <asp:RadioButton ID="rbltofelTotalScoreYes" GroupName="tofelTotalScore" Text="Yes" runat="server" />
-                                    <asp:RadioButton ID="rbltofelTotalScoreNo" GroupName="tofelTotalScore" Text="No" runat="server" />
+                                <label id="labeltofelTotalScore" runat="server" for="tofelTotalScore" class="col-md-2 col-form-label form-label">Total Score</label>
+                                <div class="col-md-6">
+                                    <div class="prdtl-ans">
+                                        <asp:Label ID="lbltofelTotalScore" runat="server"></asp:Label>
+                                    </div>
+                                    <div class="prdtl-vrfy">
+                                        <asp:RadioButton ID="rbltofelTotalScoreYes" GroupName="tofelTotalScore" Text="Yes" runat="server" />
+                                        <asp:RadioButton ID="rbltofelTotalScoreNo" GroupName="tofelTotalScore" Text="No" runat="server" />
+                                    </div>
                                     <span class="helpicon"><i id="ictofelTotalScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btntofelTotalScore" />
                                     <input id="txttofelTotalScore" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -744,14 +908,18 @@
                 <div class="list-group-item" id="CEFR" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-CEFR">
                         <div class="form-row">
-                            <label id="labelCEFR" runat="server" for="CEFR" class="col-md-3 col-form-label form-label">CEFR Level </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblCEFR" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblCEFRYes" GroupName="CEFR" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblCEFRNo" GroupName="CEFR" Text="No" runat="server" />
+                            <label id="labelCEFR" runat="server" for="CEFR" class="col-md-2 col-form-label form-label">CEFR Level </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblCEFR" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblCEFRYes" GroupName="CEFR" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblCEFRNo" GroupName="CEFR" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icCEFR" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnCEFR" />
                                 <input id="txtCEFR" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -761,14 +929,18 @@
                 <div class="list-group-item" id="testRefno" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-testRefno">
                         <div class="form-row">
-                            <label id="labeltestRefno" runat="server" for="testRefno" class="col-md-3 col-form-label form-label">Test Report Reference No </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lbltestRefno" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rbltestRefnoYes" GroupName="testRefno" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rbltestRefnoNo" GroupName="testRefno" Text="No" runat="server" />
+                            <label id="labeltestRefno" runat="server" for="testRefno" class="col-md-2 col-form-label form-label">Test Report Reference No </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lbltestRefno" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rbltestRefnoYes" GroupName="testRefno" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rbltestRefnoNo" GroupName="testRefno" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="ictestRefno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btntestRefno" />
                                 <input id="txttestRefno" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>

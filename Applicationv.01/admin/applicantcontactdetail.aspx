@@ -27,14 +27,18 @@
                 <div class="list-group-item" id="email" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-email">
                         <div class="form-row">
-                            <label id="labelemail" runat="server" for="email" class="col-md-3 col-form-label form-label">Email *</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblEmail" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblEmailYes" GroupName="Email" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblEmailNo" GroupName="Email" Text="No" runat="server" />
+                            <label id="labelemail" runat="server" for="email" class="col-md-2 col-form-label form-label">Email *</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblEmail" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblEmailYes" GroupName="Email" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblEmailNo" GroupName="Email" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnEmail" />
                                 <input id="txtEmail" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -44,14 +48,18 @@
                 <div class="list-group-item" id="mobile" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                         <div class="form-row">
-                            <label id="labelMobile" runat="server" for="Mobile" class="col-md-3 col-form-label form-label">Mobile/Cellular Number *</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblMobile" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblMobileYes" GroupName="Mobile" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblMobileNo" GroupName="Mobile" Text="No" runat="server" />
+                            <label id="labelMobile" runat="server" for="Mobile" class="col-md-2 col-form-label form-label">Mobile/Cellular Number *</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblMobile" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblMobileYes" GroupName="Mobile" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblMobileNo" GroupName="Mobile" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnMobile" />
                                 <input id="txtMobile" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -61,14 +69,18 @@
                 <div class="list-group-item" id="phone" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                         <div class="form-row">
-                            <label id="labelphone" runat="server" for="phone" class="col-md-3 col-form-label form-label">Home phone</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblHomePhone" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblHomePhoneYes" GroupName="HomePhone" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblHomePhoneNo" GroupName="HomePhone" Text="No" runat="server" />
+                            <label id="labelphone" runat="server" for="phone" class="col-md-2 col-form-label form-label">Home phone</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblHomePhone" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblHomePhoneYes" GroupName="HomePhone" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblHomePhoneNo" GroupName="HomePhone" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icHomePhone" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnHomePhone" />
                                 <input id="txtHomePhone" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -78,14 +90,18 @@
                 <div class="list-group-item" id="skype" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-skype">
                         <div class="form-row">
-                            <label id="labelskype" runat="server" for="skype" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblSkype" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblSkypeYes" GroupName="Skype" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblSkypeNo" GroupName="Skype" Text="No" runat="server" />
+                            <label id="labelskype" runat="server" for="skype" class="col-md-2 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblSkype" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblSkypeYes" GroupName="Skype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSkypeNo" GroupName="Skype" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icSkype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnSkype" />
                                 <input id="txtSkype" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -96,14 +112,18 @@
                 <div class="list-group-item" id="skypeDesc" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                         <div class="form-row">
-                            <label id="labelskypeDesc" runat="server" for="skypeDesc" class="col-md-3 col-form-label form-label">Skype ID</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblSkypeDescription" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblSkypeDescriptionYes" GroupName="SkypeDescription" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblSkypeDescriptionNo" GroupName="SkypeDescription" Text="No" runat="server" />
+                            <label id="labelskypeDesc" runat="server" for="skypeDesc" class="col-md-2 col-form-label form-label">Skype ID</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblSkypeDescription" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblSkypeDescriptionYes" GroupName="SkypeDescription" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSkypeDescriptionNo" GroupName="SkypeDescription" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icSkypeDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnSkypeDescription" />
                                 <input id="txtSkypeDescription" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -113,15 +133,19 @@
                 <div class="list-group-item" id="whatsapp" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                         <div class="form-row">
-                            <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblWhatsapp" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblWhatsappYes" GroupName="Whatsapp" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblWhatsappNo" GroupName="Whatsapp" Text="No" runat="server" />
+                            <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-2 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblWhatsapp" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblWhatsappYes" GroupName="Whatsapp" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblWhatsappNo" GroupName="Whatsapp" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icWhatsapp" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnWhatsapp" />
                                 <input id="txtWhatsapp" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -131,14 +155,18 @@
                 <div class="list-group-item" id="whatsappHave" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-whatsappHave">
                         <div class="form-row">
-                            <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-3 col-form-label form-label">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblWhatsapphave" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblWhatsapphaveYes" GroupName="Whatsapphave" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblWhatsapphaveNo" GroupName="Whatsapphave" Text="No" runat="server" />
+                            <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-2 col-form-label form-label">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblWhatsapphave" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblWhatsapphaveYes" GroupName="Whatsapphave" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblWhatsapphaveNo" GroupName="Whatsapphave" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icWhatsapphave" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnWhatsapphave" />
                                 <input id="txtWhastappHave" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -148,15 +176,19 @@
                 <div class="list-group-item" id="whatsappDesc" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                         <div class="form-row">
-                            <label id="labelwhatsappDesc" runat="server" for="whatsappDesc" class="col-md-3 col-form-label form-label">Whatsapp Number</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblWhastappDesription" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblwhatsappDescYes" GroupName="whatsappDesc" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblwhatsappDescNo" GroupName="whatsappDesc" Text="No" runat="server" />
+                            <label id="labelwhatsappDesc" runat="server" for="whatsappDesc" class="col-md-2 col-form-label form-label">Whatsapp Number</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblWhastappDesription" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblwhatsappDescYes" GroupName="whatsappDesc" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblwhatsappDescNo" GroupName="whatsappDesc" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icWhatsappDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnwhatsappDesc" />
                                 <input id="txtWhatsappDescription" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -166,14 +198,18 @@
                 <div class="list-group-item" id="postal" runat="server" style="display: none">
                     <div class="form-group m-0" role="postal" aria-labelledby="label-postal">
                         <div class="form-row">
-                            <label id="labelpostal" runat="server" for="postal" class="col-md-3 col-form-label form-label">Postal Address</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblPostalAddress" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblPostalAddressYes" GroupName="PostalAddress" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblPostalAddressNo" GroupName="PostalAddress" Text="No" runat="server" />
+                            <label id="labelpostal" runat="server" for="postal" class="col-md-2 col-form-label form-label">Postal Address</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblPostalAddress" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblPostalAddressYes" GroupName="PostalAddress" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblPostalAddressNo" GroupName="PostalAddress" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnPostalAddress" />
                                 <input id="txtPostalAddress" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -183,27 +219,35 @@
                 <div class="list-group-item" id="address" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-address">
                         <div class="form-row">
-                            <label id="labeladdress" runat="server" for="address" class="col-md-3 col-form-label form-label">Is your Postal Address same as your current residential address</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblAddress" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblAddressYes" GroupName="Address" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblAddressNo" GroupName="Address" Text="No" runat="server" />
+                            <label id="labeladdress" runat="server" for="address" class="col-md-2 col-form-label form-label">Is your Postal Address same as your current residential address</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblAddress" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblAddressYes" GroupName="Address" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblAddressNo" GroupName="Address" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnAddress" />
                                 <input id="txtAddress" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
                         </div>
                         <div class="form-row">
-                            <label id="labelCurrentAddress" runat="server" for="currentAddressSelection" class="col-md-3 col-form-label form-label">Have you been living in the current address for Less than 1 year?</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblCurrentAddressYes" GroupName="CurrentAddress" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblCurrentAddressNo" GroupName="CurrentAddress" Text="No" runat="server" />
+                            <label id="labelCurrentAddress" runat="server" for="currentAddressSelection" class="col-md-2 col-form-label form-label">Have you been living in the current address for Less than 1 year?</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblCurrentAddressYes" GroupName="CurrentAddress" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblCurrentAddressNo" GroupName="CurrentAddress" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icCurrentAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnCurrentAddress" />
                                 <input id="txtCurrentAddress" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -213,14 +257,18 @@
                 <div class="list-group-item" id="residential" runat="server" style="display: none">
                     <div class="form-group m-0" role="Residential" aria-labelledby="label-Residential ">
                         <div class="form-row">
-                            <label id="labelResidential" runat="server" for="title" class="col-md-3 col-form-label form-label">Current Residential  Address</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblResidential" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblResidentialYes" GroupName="Residential" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblResidentialNo" GroupName="Residential" Text="No" runat="server" />
+                            <label id="labelResidential" runat="server" for="title" class="col-md-2 col-form-label form-label">Current Residential  Address</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblResidential" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblResidentialYes" GroupName="Residential" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblResidentialNo" GroupName="Residential" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnResidential" />
                                 <input id="txtResidential" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>

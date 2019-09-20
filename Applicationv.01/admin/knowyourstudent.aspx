@@ -26,14 +26,18 @@
                 <div class="list-group-item" id="passportno" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-passportno">
                         <div class="form-row">
-                            <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />
+                            <label id="labelpassportno" runat="server" for="passportno" class="col-md-2 col-form-label form-label">Passport Number </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />
+                                </div>
                                 <span><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnPassportNo" />
                                 <input id="txtPassportNo" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -44,14 +48,18 @@
                 <div class="list-group-item" id="dateofissue" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-dateofissue">
                         <div class="form-row">
-                            <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Date of Issue </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblDateOfissueYes" GroupName="DateOfissue" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblDateOfissueNo" GroupName="DateOfissue" Text="No" runat="server" />
+                            <label id="labeldateofissue" runat="server" for="dateofissue" class="col-md-2 col-form-label form-label">Date of Issue </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblDateOfissueYes" GroupName="DateOfissue" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblDateOfissueNo" GroupName="DateOfissue" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnDateOfissue" />
                                 <input id="txtDateOfissue" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -62,14 +70,18 @@
                 <div class="list-group-item" runat="server" style="display: none;" id="expirydate">
                     <div class="form-group m-0" role="group" aria-labelledby="label-expirydate">
                         <div class="form-row">
-                            <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">Expiry Date </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblExpiryDateYes" GroupName="ExpiryDate" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblExpiryDateNo" GroupName="ExpiryDate" Text="No" runat="server" />
+                            <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-2 col-form-label form-label">Expiry Date </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblExpiryDateYes" GroupName="ExpiryDate" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblExpiryDateNo" GroupName="ExpiryDate" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnExpiryDate" />
                                 <input id="txtExpiryDate" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -79,15 +91,19 @@
                 <div class="list-group-item" runat="server" style="display: none;" id="countryIssue">
                     <div class="form-group m-0" role="group" aria-labelledby="label-countryIssue">
                         <div class="form-row">
-                            <label id="labelcountryIssue" runat="server" for="countryIssue" class="col-md-3 col-form-label form-label">COUNTRY OF ISSUE </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblcountryIssueNo" GroupName="countryIssue" Text="No" runat="server" />
+                            <label id="labelcountryIssue" runat="server" for="countryIssue" class="col-md-2 col-form-label form-label">COUNTRY OF ISSUE </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblcountryIssueNo" GroupName="countryIssue" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icCountryofIssue" style="display: none" runat="server" class="fa fa-info-circle"></i></span>
 
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btncountryIssue" />
                                 <input id="txtcountryIssue" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -97,14 +113,18 @@
                 <div class="list-group-item" id="issueplace" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-issueplace">
                         <div class="form-row">
-                            <label id="labelissueplace" runat="server" for="issueplace" class="col-md-3 col-form-label form-label">CITY OF ISSUE </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblissueplace" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblissueplaceYes" GroupName="issueplace" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblissueplaceNo" GroupName="issueplace" Text="No" runat="server" />
+                            <label id="labelissueplace" runat="server" for="issueplace" class="col-md-2 col-form-label form-label">CITY OF ISSUE </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblissueplace" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblissueplaceYes" GroupName="issueplace" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblissueplaceNo" GroupName="issueplace" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icCityofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnissueplace" />
                                 <input id="txtissueplace" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -114,14 +134,18 @@
                 <div class="list-group-item" id="alternateIdentitytype" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-alternateIdentitytype">
                         <div class="form-row">
-                            <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-3 col-form-label form-label">Select Identity Proof Type</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblalternateIdentitytypeYes" GroupName="alternateIdentitytype" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblalternateIdentitytypeNo" GroupName="alternateIdentitytype" Text="No" runat="server" />
+                            <label id="labelalternateIdentitytype" runat="server" for="alternateIdentitytype" class="col-md-2 col-form-label form-label">Select Identity Proof Type</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblalternateIdentitytypeYes" GroupName="alternateIdentitytype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateIdentitytypeNo" GroupName="alternateIdentitytype" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icIdentityProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnalternateIdentitytype" />
                                 <input id="txtalternateIdentitytype" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -131,14 +155,18 @@
                 <div class="list-group-item" id="alternateIdentityNo" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-alternateIdentityNo">
                         <div class="form-row">
-                            <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-3 col-form-label form-label">Identity Proof Number</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblalternateIdentityNoYes" GroupName="alternateIdentityNo" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblalternateIdentityNoNo" GroupName="alternateIdentityNo" Text="No" runat="server" />
+                            <label id="labelalternateIdentityNo" runat="server" for="alternateIdentityNo" class="col-md-2 col-form-label form-label">Identity Proof Number</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblalternateIdentityNoYes" GroupName="alternateIdentityNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateIdentityNoNo" GroupName="alternateIdentityNo" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnalternateIdentityNo" />
                                 <input id="txtalternateIdentityNo" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -150,14 +178,18 @@
                 <div class="list-group-item" id="alternatedobIdentitytype" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-alternatedobIdentitytype">
                         <div class="form-row">
-                            <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-3 col-form-label form-label">Select DOB Proof Type </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblalternatedobIdentitytypeYes" GroupName="alternatedobIdentitytype" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblalternatedobIdentitytypeNo" GroupName="alternatedobIdentitytype" Text="No" runat="server" />
+                            <label id="labelalternatedobIdentitytype" runat="server" for="alternatedobIdentitytype" class="col-md-2 col-form-label form-label">Select DOB Proof Type </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblalternatedobIdentitytypeYes" GroupName="alternatedobIdentitytype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternatedobIdentitytypeNo" GroupName="alternatedobIdentitytype" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnalternatedobIdentitytype" />
                                 <input id="txtalternatedobIdentitytype" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -167,14 +199,18 @@
                 <div class="list-group-item" id="alternatedobIdentityNo" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-alternatedobIdentityNo">
                         <div class="form-row">
-                            <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-3 col-form-label form-label">DOB proof Number</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblalternatedobIdentityNoYes" GroupName="alternatedobIdentityNo" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblalternatedobIdentityNoNo" GroupName="alternatedobIdentityNo" Text="No" runat="server" />
+                            <label id="labelalternatedobIdentityNo" runat="server" for="alternatedobIdentityNo" class="col-md-2 col-form-label form-label">DOB proof Number</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblalternatedobIdentityNoYes" GroupName="alternatedobIdentityNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternatedobIdentityNoNo" GroupName="alternatedobIdentityNo" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnalternatedobIdentityNo" />
                                 <input id="txtalternatedobIdentityNo" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -185,14 +221,18 @@
                 <div class="list-group-item" id="alternateresidenceIdentitytype" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceIdentitytype">
                         <div class="form-row">
-                            <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype" class="col-md-3 col-form-label form-label">Select Residence Proof Type </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblalternateresidenceIdentitytypeYes" GroupName="alternateresidenceIdentitytype" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblalternateresidenceIdentitytypeNo" GroupName="alternateresidenceIdentitytype" Text="No" runat="server" />
+                            <label id="labelalternateresidenceIdentitytype" runat="server" for="alternateresidenceIdentitytype" class="col-md-2 col-form-label form-label">Select Residence Proof Type </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblalternateresidenceIdentitytypeYes" GroupName="alternateresidenceIdentitytype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateresidenceIdentitytypeNo" GroupName="alternateresidenceIdentitytype" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnalternateresidenceIdentitytype" />
                                 <input id="txtalternateresidenceIdentitytype" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>
@@ -202,14 +242,18 @@
                 <div class="list-group-item" id="alternateresidenceIdentityNo" runat="server" style="display: none;">
                     <div class="form-group m-0" role="group" aria-labelledby="label-alternateresidenceIdentityNo">
                         <div class="form-row">
-                            <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo" class="col-md-3 col-form-label form-label">Residence Proof Number</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblalternateresidenceIdentityNoYes" GroupName="alternateresidenceIdentityNo" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblalternateresidenceIdentityNoNo" GroupName="alternateresidenceIdentityNo" Text="No" runat="server" />
+                            <label id="labelalternateresidenceIdentityNo" runat="server" for="alternateresidenceIdentityNo" class="col-md-2 col-form-label form-label">Residence Proof Number</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblalternateresidenceIdentityNoYes" GroupName="alternateresidenceIdentityNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateresidenceIdentityNoNo" GroupName="alternateresidenceIdentityNo" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnalternateresidenceIdentityNo" />
                                 <input id="txtalternateresidenceIdentityNo" style="display: none" runat="server" type="text" class="form-control" placeholder="Admin Comments">
                             </div>

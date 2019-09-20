@@ -51,6 +51,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
                                  name = ad.firstname + " " + ad.lastname,
 
                              }).SortBy("applicantid").ToList();
+            gvApplicant.DataSource = applicant;
+            gvApplicant.DataBind();
         }
         catch (Exception ex)
         {
