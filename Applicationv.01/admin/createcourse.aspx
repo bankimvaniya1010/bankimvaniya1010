@@ -86,20 +86,14 @@
                                     </select>
                                     <asp:HiddenField ID="hidUniversityCampuses" runat="server" Value="" />
                                 </div>
+                                <input id="btnAddCommencementDate" style="display:none" type="button" class="form-control" value="Add Commencement Date" />
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course </label>
-                        <div class="col-sm-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input id="txtCommencementDate" runat="server" type="text" class="form-control" placeholder="Commencement Date" value="">
-                                    <asp:HiddenField ID="hidCommencementDate" runat="server" Value="" />
-                                </div>
-                            </div>
-                        </div>
+                    <asp:HiddenField ID="hidCommencementDateCount" runat="server" Value="0" />
+                    <asp:HiddenField ID="hidCommencementDates" runat="server" Value="" />
+                    <div id="commencementDatesDiv" class="form-group row">
                     </div>
 
                     <div class="form-group row">
@@ -122,6 +116,43 @@
     </div>
 
     <script type="text/javascript">
+
+        function isValidCommencementDate() {
+            var commencementDateCounter = $("#<%=hidCommencementDateCount.ClientID %>").val();
+            $("#<%=hidCommencementDates.ClientID %>").val('');
+
+            for (var i = 0; i < commencementDateCounter; i++) {
+                if ($('#txtCommencementDate_' + i).val() == "" || $('#txtCommencementDate_' + i).val() == null) {
+                    alert("Please select commencement date");
+                    return false;
+                }
+                else {
+                    var data = $('#txtCommencementDate_' + i).val() + "," + $("#<%=hidCommencementDates.ClientID %>").val();
+                    $("#<%=hidCommencementDates.ClientID %>").val(data);
+                }
+            }
+            return true;
+        }
+
+        function createCommencementDateBlock() {
+            
+            var campusCount = $("#<%=ddlUniversityCampuses.ClientID%> option").length;
+            var hidCommencementDate = $("#<%=hidCommencementDateCount.ClientID %>");
+            var hidCommencementDateCount = parseInt(hidCommencementDate.val());
+
+            if (campusCount > hidCommencementDateCount) {
+                var count = parseInt(hidCommencementDate.val());
+                hidCommencementDate.val(count + 1);
+
+                var content = '<label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course</label>' +
+                              '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
+                              '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="">' +
+                              '</div></div></div>';
+                $("#commencementDatesDiv").append(content);
+                $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
+            }
+        }
+
 
         function validateForm() {
 
@@ -164,10 +195,7 @@
                 alert("Please select applicable university campuses for the course");
                 return false;
             }
-            else if ($('#<%=txtCommencementDate.ClientID%>').val() == "") {
-                alert("Please select commencement date for the course");
-                return false;
-            }
+            else if (!isValidCommencementDate()) { return false; }
             return true;
 
         }
@@ -193,14 +221,17 @@
                             for (var i = 0; i < result.length; i++)
                                 $("#<%=ddlUniversityCampuses.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
 
+                            $("#commencementDatesDiv").empty();
+                            $("#btnAddCommencementDate").show();
                             $("#<%=hidUniversityCampuses.ClientID%>").val("");
+                            $("#<%=hidCommencementDateCount.ClientID %>").val('0');
                         }
                     }
                 });
             });
 
-            $(function () {
-                $('#<%=txtCommencementDate.ClientID%>').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy', altField: '#hidCommencementDate', altFormat: 'mm-dd-yy' });
+            $("#btnAddCommencementDate").click(function () {
+                createCommencementDateBlock();
             });
 
             $("#<%=ddlUniversityCampuses.ClientID%>").blur(function () {

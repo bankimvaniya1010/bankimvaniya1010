@@ -138,8 +138,15 @@ public partial class admin_createcourse : System.Web.UI.Page
                 db.coursemaster.Add(courseObj);
                 db.SaveChanges();
 
-                course_dates courseStartdate = new course_dates { courseid = courseObj.courseid, commencementdate = Convert.ToDateTime(hidCommencementDate.Value).Date };
-                db.course_dates.Add(courseStartdate);
+                var commencementDates = hidCommencementDates.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var item in commencementDates)
+                {
+                    var dateArr = item.Split(Convert.ToChar("-"));
+                    var date = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
+                    course_dates course_date = new course_dates() { courseid = courseObj.courseid, commencementdate = date };
+                    db.course_dates.Add(course_date);
+                }
+
                 var campusIds = hidUniversityCampuses.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var campusId in campusIds)
                 {
