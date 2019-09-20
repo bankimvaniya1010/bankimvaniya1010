@@ -131,7 +131,7 @@
                             <li class="sidebar-menu-item" id="manageapplicantions_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#manageapplicantions_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                   Manage Applicantions
+                                   Manage Applications
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse " id="manageapplicantions_menu">
