@@ -78,6 +78,31 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="ddlUniversityCampuses" class="col-sm-3 col-form-label form-label">University Campuses</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select id="ddlUniversityCampuses" name="ddlUniversityCampuses" runat="server" class="form-control" multiple="true">
+                                    </select>
+                                    <asp:HiddenField ID="hidUniversityCampuses" runat="server" Value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtCommencementDate" runat="server" type="text" class="form-control" placeholder="Commencement Date" value="">
+                                    <asp:HiddenField ID="hidCommencementDate" runat="server" Value="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -98,7 +123,6 @@
 
     <script type="text/javascript">
 
-
         function validateForm() {
 
             var txtCourse = $('#<%=txtCourseName.ClientID%>').val();
@@ -107,6 +131,8 @@
             var studyLevel = $('#<%=ddlstudylevel.ClientID%>').val();
             var studymode = $('#<%=ddlstudymode.ClientID%>').val();
             var university = $('#<%=ddlUniversity.ClientID%>').val();
+            var universityCampuses = $("#<%=hidUniversityCampuses.ClientID%>").val().split(',');
+            universityCampuses = $.grep(universityCampuses, function(n){ return (n); });
 
 
             if (txtCourse == '') {
@@ -134,6 +160,14 @@
                 alert("Please Select University");
                 return false;
             }
+            else if (universityCampuses.length < 1) {
+                alert("Please select applicable university campuses for the course");
+                return false;
+            }
+            else if ($('#<%=txtCommencementDate.ClientID%>').val() == "") {
+                alert("Please select commencement date for the course");
+                return false;
+            }
             return true;
 
         }
@@ -141,7 +175,43 @@
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#course_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
-	        $('#coursemaster').addClass('active');
+            $('#coursemaster').addClass('active');
+
+            $("#<%=ddlUniversity.ClientID%>").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "createcourse.aspx/GetUniversityCampuses",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { universityId: $("#<%=ddlUniversity.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlUniversityCampuses.ClientID%>").length >= 1) {
+                                $("#<%=ddlUniversityCampuses.ClientID%>").empty();
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlUniversityCampuses.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
+
+                            $("#<%=hidUniversityCampuses.ClientID%>").val("");
+                        }
+                    }
+                });
+            });
+
+            $(function () {
+                $('#<%=txtCommencementDate.ClientID%>').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy', altField: '#hidCommencementDate', altFormat: 'mm-dd-yy' });
+            });
+
+            $("#<%=ddlUniversityCampuses.ClientID%>").blur(function () {
+                $("#<%=hidUniversityCampuses.ClientID%>").val("");
+                var selectedUniCampuses = $("#<%=ddlUniversityCampuses.ClientID%>").val();
+                if (selectedUniCampuses.length > 0) {
+                    for (var i = 0; i < selectedUniCampuses.length; i++)
+                        $("#<%=hidUniversityCampuses.ClientID%>").val($("#<%=hidUniversityCampuses.ClientID%>").val() + selectedUniCampuses[i] + ",");
+                }
+            });
+
 	    });
     </script>
 </asp:Content>

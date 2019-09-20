@@ -31,6 +31,10 @@
     <link type="text/css" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/css/app.css" rel="stylesheet">
     <link type="text/css" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/css/app.rtl.css" rel="stylesheet">
 
+    <!-- jQuery UI-->
+    <script src="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/js/jquery-ui-1.12.1.min.js"></script>
+    <link type="text/css" href="<%=System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString() %>/assets/css/jquery-ui-1.12.1.min.css" rel="stylesheet">
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
