@@ -49,10 +49,14 @@ public partial class personaldetails : System.Web.UI.Page
             objCom.BindCountries(ddlNationality, true);
             objCom.BindCountries(ddlOtherNation);
             objCom.BindCountries(ddlSpouseNationality);
+            objCom.BindCountries(ddlHighestQualificationCountry);
             BindMaritalstatus();
             BindHighestStudy();
+            BindFieldOfStudy();
             BindAgent();
             BindTitle();
+            FillMonth(ddlHighQualificationCompletedMonth);
+            FillYears(ddlHighQualificationCompletedYear, false);
             FillMonth(ddlMonth);
             FillYears(ddlYear);
            // FillDays(ddlDay, ddlYear, ddlMonth);
@@ -92,6 +96,22 @@ public partial class personaldetails : System.Web.UI.Page
         }
 
     }
+
+    public void BindFieldOfStudy()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var discipline_master = db.majordiscipline_master.ToList();
+            ddlfieldstudy.DataSource = discipline_master;
+            ddlfieldstudy.DataTextField = "description";
+            ddlfieldstudy.DataValueField = "id";
+            ddlfieldstudy.DataBind();
+            ddlfieldstudy.Items.Insert(0, lst);
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
+
     public void FillMonth(DropDownList ddl)
     {
         try
@@ -109,11 +129,11 @@ public partial class personaldetails : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    public void FillYears(DropDownList ddl)
+    public void FillYears(DropDownList ddl, bool setDefaultMaxYears = true)
     {
         try
         {
-            int maxYers = DateTime.Now.AddYears(-15).Year;
+            int maxYers = setDefaultMaxYears ? DateTime.Now.AddYears(-15).Year : DateTime.Now.Year;
             for (int i = 1975; i <= maxYers; i++)
             {
                 ddl.Items.Add(i.ToString());
@@ -267,6 +287,20 @@ public partial class personaldetails : System.Web.UI.Page
                     ddlhigheststudy.ClearSelection();
                     ddlhigheststudy.Items.FindByValue(profileInfo.higheststudycompleted.ToString()).Selected = true;
                 }
+                if (profileInfo.fieldofhigheststudy != null)
+                {
+                    ddlfieldstudy.ClearSelection();
+                    ddlfieldstudy.Items.FindByValue(profileInfo.fieldofhigheststudy.ToString()).Selected = true;
+                }
+                if (profileInfo.studycompletedate != null)
+                {
+                    string[] studyCompleteDate = profileInfo.studycompletedate.ToString().Split('-');
+                    ddlHighQualificationCompletedMonth.ClearSelection();
+                    ddlHighQualificationCompletedMonth.Items.FindByValue(Convert.ToString(studyCompleteDate[0])).Selected = true;
+                    ddlHighQualificationCompletedYear.ClearSelection();
+                    ddlHighQualificationCompletedYear.Items.FindByValue(Convert.ToString(studyCompleteDate[1])).Selected = true;
+                }
+
                 if (profileInfo.nationality != null)
                 {
                     string appendText = "_False";
@@ -327,6 +361,11 @@ public partial class personaldetails : System.Web.UI.Page
                 {
                     ddlBirthCountry.ClearSelection();
                     ddlBirthCountry.Items.FindByValue(profileInfo.countryofbirth.ToString()).Selected = true;
+                }
+                if (profileInfo.countryofhigheststudy != null)
+                {
+                    ddlHighestQualificationCountry.ClearSelection();
+                    ddlHighestQualificationCountry.Items.FindByValue(profileInfo.countryofhigheststudy.ToString()).Selected = true;
                 }
                 if (profileInfo.maritalstatus != null)
                 {
@@ -453,6 +492,10 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.patronymicname = txtPatronymicName.Value.Trim();
             if (ddlBirthCountry.SelectedValue != "")
                 objapplicantDetail.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
+            if (ddlHighestQualificationCountry.SelectedValue != "")
+                objapplicantDetail.countryofhigheststudy = Convert.ToInt32(ddlHighestQualificationCountry.SelectedValue);
+            if ((ddlHighQualificationCompletedMonth.SelectedValue != "") && (ddlHighQualificationCompletedYear.SelectedValue != ""))
+                objapplicantDetail.studycompletedate = ddlHighQualificationCompletedMonth.SelectedValue + "-" + ddlHighQualificationCompletedYear.SelectedValue;
             if (ddlMarital.SelectedValue != "")
                 objapplicantDetail.maritalstatus = Convert.ToInt32(ddlMarital.SelectedValue);
             if (rblDisabilityYes.Checked)
@@ -474,6 +517,8 @@ public partial class personaldetails : System.Web.UI.Page
             if (ddlhigheststudy.SelectedValue != null) {
                 objapplicantDetail.higheststudycompleted =Convert.ToInt32(ddlhigheststudy.SelectedValue);
             }
+            if (ddlfieldstudy.SelectedValue != null)
+                objapplicantDetail.fieldofhigheststudy = Convert.ToInt32(ddlfieldstudy.SelectedValue);
             if (ddlMarital.SelectedItem.Text == "Married")
             {
                 string spouseDateofBirth = ddlSpouseDOBYear.SelectedValue + "-" + ddlSpouseDOBMonth.SelectedValue + "-" + hidSpouseDOBDateField.Value;
@@ -720,6 +765,18 @@ public partial class personaldetails : System.Web.UI.Page
                     case "Highest study level successfully completed":
                         higheststudy.Attributes.Add("style", "display:block;");
                         lblhigheststudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Highest study successfully completed field":
+                        fieldstudy.Attributes.Add("style", "display:block;");
+                        lblfieldstudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of highest qualification":
+                        highestQualificationCountry.Attributes.Add("style", "display:block;");
+                        labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Year and Month of highest qualification":
+                        highQualificationCompleteDate.Attributes.Add("style", "display:block;");
+                        lblhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
                     default:

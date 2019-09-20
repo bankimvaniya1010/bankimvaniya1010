@@ -196,6 +196,18 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="list-group-item" id="universityCampus" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-universitycampusname">
+                                    <div class="form-row">
+                                        <label id="lblCampusName" runat="server" for="universitycampusname" class="col-md-3 col-form-label form-label">Please select university campus you are applying to  </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlUniversityCampus" CssClass="form-control" runat="server">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="list-group-item" id="courseapplied">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-courseapplied">
                                     <div class="form-row">
@@ -243,8 +255,6 @@
                                            <%-- <input id="txtcommencementdate" runat="server" type="text" class="form-control" placeholder="Date of course commencement" data-toggle="flatpickr" value="">--%>
                                              <asp:DropDownList runat="server" ID="ddlCommencementdate" CssClass="form-control">
                                                 <asp:ListItem Value="0">Please Select </asp:ListItem>
-                                                <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
-                                                <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
                                             </asp:DropDownList>
                                             <span class="helpicon"><i id="iccommencementdate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
@@ -376,6 +386,8 @@
                 alert("Please Select Level of Course you are applying for ");
             else  if ($("#<%=ddlfieldofstudy.ClientID%>").val() == "0")
                 alert("Please Select Field of study Applying to");
+            else  if ($("#<%=ddlUniversityCampus.ClientID%>").val() == "0")
+                alert("Please select university campus you are applying to");
             else if ($("#<%=ddlnameofcourse.ClientID%>").val() == "0" || $("#<%=hidnameofcourse.ClientID%>").val() == "")
                 alert("Please Select Name of Course you are applying for");
             else if ($("#<%=ddlCommencementdate.ClientID%>").val() == "0")
@@ -449,43 +461,19 @@
         });
 
         $("#<%=ddlcourseapplied.ClientID%>").change(function () {
-            if ($("#<%=ddlfieldofstudy.ClientID%>").val() != "") {
-                    var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
-                    var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
-                    $.ajax({
-                    type: "POST",
-                    url: "gte_studentdetails.aspx/GetCourseDropdown",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",                         
-                    data: "{'coursetypeid': '" + coursetype + "','selectedMajorid': '" + majorid+"'}", 
-                    success: function (response) {
-                        if (response.d) {
-                            var result = JSON.parse(response.d);                            
-                            if ($("#<%=ddlnameofcourse.ClientID%>").length >= 1) {
-                                $("#<%=ddlnameofcourse.ClientID%>").empty();
-                                $("#<%=ddlnameofcourse.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Course"));
-                            }
-                            for (var i = 0; i < result.length; i++) {
-                                $("#<%=ddlnameofcourse.ClientID%>").append($("<option></option>").val(result[i].courseid).html(result[i].coursename));
-                            }
-                        }
-                    }
-                    });
-                }
-        });
-        $("#<%=ddlfieldofstudy.ClientID%>").change(function () {
-            if ($("#<%=ddlcourseapplied.ClientID%>").val() != "0") {
-               var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
-                    var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
-                    $.ajax({
+            if ($("#<%=ddlfieldofstudy.ClientID%>").val() != "" && $("#<%=ddlUniversityCampus.ClientID%>").val() != "0") {
+                var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
+                var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
+                var campusId = $("#<%=ddlUniversityCampus.ClientID%>").val();
+                $.ajax({
                     type: "POST",
                     url: "gte_studentdetails.aspx/GetCourseDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    data: "{'coursetypeid': '" + coursetype + "','selectedMajorid': '" + majorid+"'}", 
+                    data: "{'coursetypeid': '" + coursetype + "','selectedMajorid': '" + majorid + "', 'campusId': '" + campusId + "'}",
                     success: function (response) {
                         if (response.d) {
-                            var result = JSON.parse(response.d);                            
+                            var result = JSON.parse(response.d);
                             if ($("#<%=ddlnameofcourse.ClientID%>").length >= 1) {
                                 $("#<%=ddlnameofcourse.ClientID%>").empty();
                                 $("#<%=ddlnameofcourse.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Course"));
@@ -495,10 +483,62 @@
                             }
                         }
                     }
-                    });
+                });
             }
-                
         });
+        $("#<%=ddlfieldofstudy.ClientID%>").change(function () {
+            if ($("#<%=ddlcourseapplied.ClientID%>").val() != "0" && $("#<%=ddlUniversityCampus.ClientID%>").val() != "0") {
+                var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
+                var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
+                var campusId = $("#<%=ddlUniversityCampus.ClientID%>").val();
+                $.ajax({
+                    type: "POST",
+                    url: "gte_studentdetails.aspx/GetCourseDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'coursetypeid': '" + coursetype + "','selectedMajorid': '" + majorid + "', 'campusId': '" + campusId + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlnameofcourse.ClientID%>").length >= 1) {
+                                $("#<%=ddlnameofcourse.ClientID%>").empty();
+                                $("#<%=ddlnameofcourse.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Course"));
+                            }
+                            for (var i = 0; i < result.length; i++) {
+                                $("#<%=ddlnameofcourse.ClientID%>").append($("<option></option>").val(result[i].courseid).html(result[i].coursename));
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#<%=universityCampus.ClientID%>").change(function () {
+            if ($("#<%=ddlfieldofstudy.ClientID%>").val() != "" && $("#<%=ddlcourseapplied.ClientID%>").val() != "0") {
+                var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();
+                var majorid = $("#<%=ddlfieldofstudy.ClientID%>").val();
+                var campusId = $("#<%=ddlUniversityCampus.ClientID%>").val();
+                $.ajax({
+                    type: "POST",
+                    url: "gte_studentdetails.aspx/GetCourseDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'coursetypeid': '" + coursetype + "','selectedMajorid': '" + majorid + "', 'campusId': '" + campusId + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlnameofcourse.ClientID%>").length >= 1) {
+                                $("#<%=ddlnameofcourse.ClientID%>").empty();
+                                $("#<%=ddlnameofcourse.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Course"));
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlnameofcourse.ClientID%>").append($("<option></option>").val(result[i].courseid).html(result[i].coursename));
+                        }
+                    }
+                });
+            }
+        });
+
         $("#<%=ddlnameofcourse.ClientID%>").change(function () {
             $("#<%=hidnameofcourse.ClientID%>").val($("#<%=ddlnameofcourse.ClientID%>").val());
         });

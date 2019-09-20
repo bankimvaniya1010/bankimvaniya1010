@@ -1297,6 +1297,7 @@
           <Property Name="highestqualificationcountry" Type="int" />
           <Property Name="levelofcourse" Type="varchar" MaxLength="11" />
           <Property Name="fieldofstudyapplied" Type="int" />
+          <Property Name="campusid" Type="int" />
           <Property Name="coursename" Type="varchar" MaxLength="50" />
           <Property Name="commencementdate" Type="varchar" MaxLength="50" />
           <Property Name="workexperience" Type="int" />
@@ -3720,7 +3721,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="formmaster" EntityType="GTEModel.formmaster" />
           <EntitySet Name="grademaster" EntityType="GTEModel.grademaster" />
           <EntitySet Name="gte_answer_master" EntityType="GTEModel.gte_answer_master" />
-          <EntitySet Name="gte_applicantdetails" EntityType="GTEModel.gte_applicantdetails" />
           <EntitySet Name="gte_applicantdocument" EntityType="GTEModel.gte_applicantdocument" />
           <EntitySet Name="gte_clarification_applicantresponse" EntityType="GTEModel.gte_clarification_applicantresponse" />
           <EntitySet Name="gte_clarification_questionmaster" EntityType="GTEModel.gte_clarification_questionmaster" />
@@ -4146,6 +4146,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="majordiscipline_master" EntitySet="majordiscipline_master" />
             <End Role="coursemaster" EntitySet="coursemaster" />
           </AssociationSet>
+          <EntitySet Name="gte_applicantdetails" EntityType="GTEModel.gte_applicantdetails" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -5382,35 +5383,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="gte_question_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="gte_questions_master" Relationship="GTEModel.FK_answer_gteQuestion" FromRole="gte_answer_master" ToRole="gte_questions_master" />
           <NavigationProperty Name="gte_questions_applicant_response" Relationship="GTEModel.FK_resposne_answer" FromRole="gte_answer_master" ToRole="gte_questions_applicant_response" />
-        </EntityType>
-        <EntityType Name="gte_applicantdetails">
-          <Key>
-            <PropertyRef Name="gte_applicantdetailsid" />
-          </Key>
-          <Property Name="gte_applicantdetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="dateofbirth" Type="DateTime" />
-          <Property Name="nationality" Type="Int32" />
-          <Property Name="countryofbirth" Type="Int32" />
-          <Property Name="maritalstatus" Type="Int32" />
-          <Property Name="dateofmarriage" Type="DateTime" />
-          <Property Name="nationalityofspouse" Type="Int32" />
-          <Property Name="highestqualificationname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="highestqualifiactionachieved" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="highestqualificationfield" Type="Int32" />
-          <Property Name="highestqualificationdate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="highestqualificationcountry" Type="Int32" />
-          <Property Name="levelofcourse" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="fieldofstudyapplied" Type="Int32" />
-          <Property Name="coursename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="commencementdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="workexperience" Type="Int32" />
-          <Property Name="typeofworkexperience" Type="Int32" />
-          <Property Name="residencecountry" Type="Int32" />
-          <Property Name="tuitionandlivingcost" Type="Int32" />
-          <Property Name="nameofuniversityappliedfor" Type="Int32" />
-          <Property Name="cityofeducationInstitution" Type="Int32" />
         </EntityType>
         <EntityType Name="gte_applicantdocument">
           <Key>
@@ -7445,6 +7417,36 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="gte_applicantdetails">
+          <Key>
+            <PropertyRef Name="gte_applicantdetailsid" />
+          </Key>
+          <Property Name="gte_applicantdetailsid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="dateofbirth" Type="DateTime" />
+          <Property Name="nationality" Type="Int32" />
+          <Property Name="countryofbirth" Type="Int32" />
+          <Property Name="maritalstatus" Type="Int32" />
+          <Property Name="dateofmarriage" Type="DateTime" />
+          <Property Name="nationalityofspouse" Type="Int32" />
+          <Property Name="highestqualificationname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="highestqualifiactionachieved" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="highestqualificationfield" Type="Int32" />
+          <Property Name="highestqualificationdate" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="highestqualificationcountry" Type="Int32" />
+          <Property Name="levelofcourse" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="fieldofstudyapplied" Type="Int32" />
+          <Property Name="campusid" Type="Int32" />
+          <Property Name="coursename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="commencementdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="workexperience" Type="Int32" />
+          <Property Name="typeofworkexperience" Type="Int32" />
+          <Property Name="residencecountry" Type="Int32" />
+          <Property Name="tuitionandlivingcost" Type="Int32" />
+          <Property Name="nameofuniversityappliedfor" Type="Int32" />
+          <Property Name="cityofeducationInstitution" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -8684,36 +8686,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="gte_applicantdetails">
-            <EntityTypeMapping TypeName="GTEModel.gte_applicantdetails">
-              <MappingFragment StoreEntitySet="gte_applicantdetails">
-                <ScalarProperty Name="cityofeducationInstitution" ColumnName="cityofeducationInstitution" />
-                <ScalarProperty Name="nameofuniversityappliedfor" ColumnName="nameofuniversityappliedfor" />
-                <ScalarProperty Name="tuitionandlivingcost" ColumnName="tuitionandlivingcost" />
-                <ScalarProperty Name="residencecountry" ColumnName="residencecountry" />
-                <ScalarProperty Name="typeofworkexperience" ColumnName="typeofworkexperience" />
-                <ScalarProperty Name="workexperience" ColumnName="workexperience" />
-                <ScalarProperty Name="commencementdate" ColumnName="commencementdate" />
-                <ScalarProperty Name="coursename" ColumnName="coursename" />
-                <ScalarProperty Name="fieldofstudyapplied" ColumnName="fieldofstudyapplied" />
-                <ScalarProperty Name="levelofcourse" ColumnName="levelofcourse" />
-                <ScalarProperty Name="highestqualificationcountry" ColumnName="highestqualificationcountry" />
-                <ScalarProperty Name="highestqualificationdate" ColumnName="highestqualificationdate" />
-                <ScalarProperty Name="highestqualificationfield" ColumnName="highestqualificationfield" />
-                <ScalarProperty Name="highestqualifiactionachieved" ColumnName="highestqualifiactionachieved" />
-                <ScalarProperty Name="highestqualificationname" ColumnName="highestqualificationname" />
-                <ScalarProperty Name="nationalityofspouse" ColumnName="nationalityofspouse" />
-                <ScalarProperty Name="dateofmarriage" ColumnName="dateofmarriage" />
-                <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
-                <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
-                <ScalarProperty Name="nationality" ColumnName="nationality" />
-                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="gte_applicantdetailsid" ColumnName="gte_applicantdetailsid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="gte_applicantdocument">
             <EntityTypeMapping TypeName="GTEModel.gte_applicantdocument">
               <MappingFragment StoreEntitySet="gte_applicantdocument">
@@ -9673,6 +9645,37 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="majordiscipline_master">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_applicantdetails">
+            <EntityTypeMapping TypeName="GTEModel.gte_applicantdetails">
+              <MappingFragment StoreEntitySet="gte_applicantdetails">
+                <ScalarProperty Name="cityofeducationInstitution" ColumnName="cityofeducationInstitution" />
+                <ScalarProperty Name="nameofuniversityappliedfor" ColumnName="nameofuniversityappliedfor" />
+                <ScalarProperty Name="tuitionandlivingcost" ColumnName="tuitionandlivingcost" />
+                <ScalarProperty Name="residencecountry" ColumnName="residencecountry" />
+                <ScalarProperty Name="typeofworkexperience" ColumnName="typeofworkexperience" />
+                <ScalarProperty Name="workexperience" ColumnName="workexperience" />
+                <ScalarProperty Name="commencementdate" ColumnName="commencementdate" />
+                <ScalarProperty Name="coursename" ColumnName="coursename" />
+                <ScalarProperty Name="campusid" ColumnName="campusid" />
+                <ScalarProperty Name="fieldofstudyapplied" ColumnName="fieldofstudyapplied" />
+                <ScalarProperty Name="levelofcourse" ColumnName="levelofcourse" />
+                <ScalarProperty Name="highestqualificationcountry" ColumnName="highestqualificationcountry" />
+                <ScalarProperty Name="highestqualificationdate" ColumnName="highestqualificationdate" />
+                <ScalarProperty Name="highestqualificationfield" ColumnName="highestqualificationfield" />
+                <ScalarProperty Name="highestqualifiactionachieved" ColumnName="highestqualifiactionachieved" />
+                <ScalarProperty Name="highestqualificationname" ColumnName="highestqualificationname" />
+                <ScalarProperty Name="nationalityofspouse" ColumnName="nationalityofspouse" />
+                <ScalarProperty Name="dateofmarriage" ColumnName="dateofmarriage" />
+                <ScalarProperty Name="maritalstatus" ColumnName="maritalstatus" />
+                <ScalarProperty Name="countryofbirth" ColumnName="countryofbirth" />
+                <ScalarProperty Name="nationality" ColumnName="nationality" />
+                <ScalarProperty Name="dateofbirth" ColumnName="dateofbirth" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="gte_applicantdetailsid" ColumnName="gte_applicantdetailsid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

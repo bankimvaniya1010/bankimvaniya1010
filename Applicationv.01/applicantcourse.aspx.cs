@@ -148,6 +148,14 @@ public partial class applicantcourse : System.Web.UI.Page
         return JsonConvert.SerializeObject(temp);
     }    
 
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string GetCommenceDateDropdown(int courseid)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.course_dates.Where(x => x.courseid == courseid && x.commencementdate > DateTime.Now).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
+        return JsonConvert.SerializeObject(temp);
+    }
 
     private void BindCourseType(DropDownList ddl)
     {
@@ -352,6 +360,20 @@ public partial class applicantcourse : System.Web.UI.Page
         }
     }
 
+    private void BindCommencementDate(int courseId, DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Select CommencementDate", "0");
+            var dates = db.course_dates.Where(x => x.courseid == courseId && x.commencementdate > DateTime.Now).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
+            ddl.DataSource = dates;
+            ddl.DataTextField = "commencementdate";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        } catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
+
     private void PopulateAppllicationInfo()
     {
         try
@@ -415,8 +437,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     //txtCommencementdate1.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
+                        BindCommencementDate(Convert.ToInt32(hidCourseField1.Value), ddlCommencementdate);
                         ddlCommencementdate.ClearSelection();
                         ddlCommencementdate.Items.FindByValue(courseInfo.commencementdate.ToString()).Selected = true;
+                        hidCommencementDate1.Value = courseInfo.commencementdate.ToString();
                     }
                 }
 
@@ -483,8 +507,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     //txtCommencementdate2.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
+                        BindCommencementDate(Convert.ToInt32(hidCourseField2.Value), ddlCommencementdate2);
                         ddlCommencementdate2.ClearSelection();
                         ddlCommencementdate2.Items.FindByValue(courseInfo.commencementdate.ToString()).Selected = true;
+                        hidCommencementDate2.Value = courseInfo.commencementdate.ToString();
                     }
                 }
 
@@ -551,8 +577,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     //txtCommencementdate3.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
+                        BindCommencementDate(Convert.ToInt32(hidCourseField3.Value), ddlCommencementdate3);
                         ddlCommencementdate3.ClearSelection();
                         ddlCommencementdate3.Items.FindByValue(courseInfo.commencementdate.ToString()).Selected = true;
+                        hidCommencementDate3.Value = courseInfo.commencementdate.ToString();
                     }
                 }
 
@@ -619,8 +647,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     //txtCommencementdate4.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
+                        BindCommencementDate(Convert.ToInt32(hidCourseField4.Value), ddlCommencementdate4);
                         ddlCommencementdate4.ClearSelection();
                         ddlCommencementdate4.Items.FindByValue(courseInfo.commencementdate.ToString()).Selected = true;
+                        hidCommencementDate4.Value = courseInfo.commencementdate.ToString();
                     }
                 }
 
@@ -687,8 +717,10 @@ public partial class applicantcourse : System.Web.UI.Page
                     //txtCommencementdate5.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
+                        BindCommencementDate(Convert.ToInt32(hidCourseField5.Value), ddlCommencementdate5);
                         ddlCommencementdate5.ClearSelection();
                         ddlCommencementdate5.Items.FindByValue(courseInfo.commencementdate.ToString()).Selected = true;
+                        hidCommencementDate5.Value = courseInfo.commencementdate.ToString();
                     }
                 }
             }
@@ -698,7 +730,6 @@ public partial class applicantcourse : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
 
     private void SaveApplicantPreference(int preferenceid, string collegename,int campus, int city, int country, int modeofstudy, int majorofdiscipline, int coursetype, int course, string commencementdate)
     {
@@ -740,15 +771,15 @@ public partial class applicantcourse : System.Web.UI.Page
     {
         try
         {                  
-            SaveApplicantPreference(1, ddlCollege1.SelectedValue, Convert.ToInt32(hidCampusField1.Value) , Convert.ToInt32(hidCityField1.Value), Convert.ToInt32(hidCountryField1.Value), Convert.ToInt32(hidModeField1.Value), Convert.ToInt32(HidMajorField1.Value), Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(hidCourseField1.Value), ddlCommencementdate.SelectedValue);
+            SaveApplicantPreference(1, ddlCollege1.SelectedValue, Convert.ToInt32(hidCampusField1.Value) , Convert.ToInt32(hidCityField1.Value), Convert.ToInt32(hidCountryField1.Value), Convert.ToInt32(hidModeField1.Value), Convert.ToInt32(HidMajorField1.Value), Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(hidCourseField1.Value), hidCommencementDate1.Value);
             if (Convert.ToInt16(ddlCollege2.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(2, ddlCollege2.SelectedValue, Convert.ToInt32(hidCampusField2.Value), Convert.ToInt32(hidCityField2.Value), Convert.ToInt32(hidCountryField2.Value), Convert.ToInt32(hidModeField2.Value), Convert.ToInt32(hidMajorField2.Value), Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(hidCourseField2.Value), ddlCommencementdate2.SelectedValue);
+                SaveApplicantPreference(2, ddlCollege2.SelectedValue, Convert.ToInt32(hidCampusField2.Value), Convert.ToInt32(hidCityField2.Value), Convert.ToInt32(hidCountryField2.Value), Convert.ToInt32(hidModeField2.Value), Convert.ToInt32(hidMajorField2.Value), Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(hidCourseField2.Value), hidCommencementDate2.Value);
             if (Convert.ToInt16(ddlCollege3.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(3, ddlCollege3.SelectedValue, Convert.ToInt32(hidCampusField3.Value), Convert.ToInt32(hidCityField3.Value), Convert.ToInt32(hidCountryField3.Value), Convert.ToInt32(hidModeField3.Value), Convert.ToInt32(hidMajorField3.Value), Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(hidCourseField3.Value), ddlCommencementdate3.SelectedValue);
+                SaveApplicantPreference(3, ddlCollege3.SelectedValue, Convert.ToInt32(hidCampusField3.Value), Convert.ToInt32(hidCityField3.Value), Convert.ToInt32(hidCountryField3.Value), Convert.ToInt32(hidModeField3.Value), Convert.ToInt32(hidMajorField3.Value), Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(hidCourseField3.Value), hidCommencementDate3.Value);
             if (Convert.ToInt16(ddlCollege4.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(4, ddlCollege4.SelectedValue, Convert.ToInt32(hidCampusField4.Value), Convert.ToInt32(hidCityField4.Value), Convert.ToInt32(hidCountryField4.Value), Convert.ToInt32(hidModeField4.Value), Convert.ToInt32(hidMajorField4.Value), Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(hidCourseField4.Value), ddlCommencementdate4.SelectedValue);
+                SaveApplicantPreference(4, ddlCollege4.SelectedValue, Convert.ToInt32(hidCampusField4.Value), Convert.ToInt32(hidCityField4.Value), Convert.ToInt32(hidCountryField4.Value), Convert.ToInt32(hidModeField4.Value), Convert.ToInt32(hidMajorField4.Value), Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(hidCourseField4.Value), hidCommencementDate4.Value);
             if (Convert.ToInt16(ddlCollege5.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(5, ddlCollege5.SelectedValue, Convert.ToInt32(hidCampusField5.Value), Convert.ToInt32(hidCityField5.Value), Convert.ToInt32(hidCountryField5.Value), Convert.ToInt32(hidModeField5.Value), Convert.ToInt32(hidMajorField5.Value), Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(hidCourseField5.Value), ddlCommencementdate5.SelectedValue);
+                SaveApplicantPreference(5, ddlCollege5.SelectedValue, Convert.ToInt32(hidCampusField5.Value), Convert.ToInt32(hidCityField5.Value), Convert.ToInt32(hidCountryField5.Value), Convert.ToInt32(hidModeField5.Value), Convert.ToInt32(hidMajorField5.Value), Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(hidCourseField5.Value), hidCommencementDate5.Value);
             PopulateAppllicationInfo();
         }
         catch (Exception ex)

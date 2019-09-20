@@ -123,9 +123,8 @@
                                         <%--<input id="txtCommencementdate1" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
                                         <asp:DropDownList runat="server" ID="ddlCommencementdate" CssClass="form-control">
                                             <asp:ListItem Value="0">Please Select </asp:ListItem>
-                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
-                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:HiddenField ID="hidCommencementDate1" runat="server" />
                                     </div>
                                 </div>
                             </div>
@@ -239,9 +238,8 @@
                                          <%--<input id="txtCommencementdate2" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
                                         <asp:DropDownList runat="server" ID="ddlCommencementdate2" CssClass="form-control">
                                             <asp:ListItem Value="0">Please Select </asp:ListItem>
-                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
-                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:HiddenField ID="hidCommencementDate2" runat="server" />
                                     </div>
                                 </div>
                             </div>
@@ -356,9 +354,8 @@
                                         <%--<input id="txtCommencementdate3" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
                                         <asp:DropDownList runat="server" ID="ddlCommencementdate3" CssClass="form-control">
                                             <asp:ListItem Value="0">Please Select </asp:ListItem>
-                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
-                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:HiddenField ID="hidCommencementDate3" runat="server" />
                                     </div>
                                 </div>
                             </div>
@@ -472,9 +469,8 @@
                                         <%--<input id="txtCommencementdate4" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
                                         <asp:DropDownList runat="server" ID="ddlCommencementdate4" CssClass="form-control">
                                             <asp:ListItem Value="0">Please Select </asp:ListItem>
-                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
-                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:HiddenField ID="hidCommencementDate4" runat="server" />
                                     </div>
                                 </div>
                             </div>
@@ -589,9 +585,8 @@
                                         <%--<input id="txtCommencementdate5" runat="server" type="text" class="form-control" placeholder="Commencement Date" data-toggle="flatpickr" value="">--%>
                                         <asp:DropDownList runat="server" ID="ddlCommencementdate5" CssClass="form-control">
                                             <asp:ListItem Value="0">Please Select </asp:ListItem>
-                                            <asp:ListItem Value="Options of Semester">Options of Semester </asp:ListItem>
-                                            <asp:ListItem Value="Deferred Entry">Deferred Entry</asp:ListItem>
                                         </asp:DropDownList>
+                                        <asp:HiddenField ID="hidCommencementDate5" runat="server" />
                                     </div>
                                 </div>
                             </div>
@@ -665,8 +660,8 @@
                 alert("Please Select Major Or Discipline");
             else if ($("#<%=ddlCourse1.ClientID%>").val() == "0" || $("#<%=hidCourseField1.ClientID%>").val() == "")
                 alert("Please Select Course");
-            else if ($("#<%=ddlCommencementdate.ClientID%>").val() == "0")
-                 alert("Please Select Commencement Date");
+            else if ($("#<%=ddlCommencementdate.ClientID%>").val() == "0" || $("#<%=hidCommencementDate1.ClientID%>").val() == "")
+                alert("Please Select Commencement Date");
             else
                 flag = true;
             
@@ -689,7 +684,7 @@
                     alert("Please Select Major Or Discipline");
                 else if ($("#<%=ddlCourse2.ClientID%>").val() == "0" || $("#<%=hidCourseField2.ClientID%>").val() == "")
                     alert("Please Select Course");
-                else if ($("#<%=ddlCommencementdate2.ClientID%>").val() == "0")
+                else if ($("#<%=ddlCommencementdate2.ClientID%>").val() == "0" || $("#<%=hidCommencementDate2.ClientID%>").val() == "")
                     alert("Please Select Commencement Date");
                 else
                     flag = true;
@@ -715,10 +710,10 @@
                         alert("Please Select Major Or Discipline");
                     else if ($("#<%=ddlCourse3.ClientID%>").val() == "0" || $("#<%=hidCourseField3.ClientID%>").val() == "")
                         alert("Please Select Course");
-                    else if ($("#<%=ddlCommencementdate3.ClientID%>").val() == "0")
-                        alert("Please Select Commencement Date");
-                    else
-                        flag = true;                
+                    else if ($("#<%=ddlCommencementdate3.ClientID%>").val() == "0" || $("#<%=hidCommencementDate3.ClientID%>").val() == "")
+                    alert("Please Select Commencement Date");
+                else
+                    flag = true;
             }
             else
                 flag = true;
@@ -741,10 +736,10 @@
                         alert("Please Select Major Or Discipline");
                     else if ($("#<%=ddlCourse4.ClientID%>").val() == "0" || $("#<%=hidCourseField4.ClientID%>").val() == "")
                         alert("Please Select Course");
-                    else if ($("#<%=ddlCommencementdate4.ClientID%>").val() == "0")
-                        alert("Please Select Commencement Date");
-                    else
-                        flag = true;                
+                    else if ($("#<%=ddlCommencementdate4.ClientID%>").val() == "0" || $("#<%=hidCommencementDate4.ClientID%>").val() == "")
+                    alert("Please Select Commencement Date");
+                else
+                    flag = true;
             }
             else
                 flag = true;
@@ -767,10 +762,10 @@
                         alert("Please Select Major Or Discipline");
                     else if ($("#<%=ddlCourse5.ClientID%>").val() == "0" || $("#<%=hidCourseField5.ClientID%>").val() == "")
                         alert("Please Select Course");
-                    else if ($("#<%=ddlCommencementdate5.ClientID%>").val() == "0")
-                        alert("Please Select Commencement Date");
-                    else
-                        flag = true;
+                    else if ($("#<%=ddlCommencementdate5.ClientID%>").val() == "0" || $("#<%=hidCommencementDate5.ClientID%>").val() == "")
+                    alert("Please Select Commencement Date");
+                else
+                    flag = true;
             }
             else
                 flag = true;
@@ -1045,27 +1040,54 @@
         });
         $("#<%=ddlCourse1.ClientID%>").change(function () {
             $("#<%=hidCourseField1.ClientID%>").val($("#<%=ddlCourse1.ClientID%>").val());
-        });
-        //campus2
-         $("#<%=ddlCollege2.ClientID%>").change(function () {
+
+            if ($("#<%=hidCourseField1.ClientID%>").val() != "") {
+                var courseId = $("#<%=ddlCourse1.ClientID%>").val();
                 $.ajax({
-                    type: "GET",
-                    url: "applicantcourse.aspx/GetCampusDropdown",
+                    type: "POST",
+                    url: "applicantcourse.aspx/GetCommenceDateDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (response) {                        
+                    data: "{'courseid': '" + courseId + "'}",
+                    success: function (response) {
                         if (response.d) {
-                            var result = JSON.parse(response.d);                            
-                            if ($("#<%=ddlCampus2.ClientID%>").length >= 1) {
-                                $("#<%=ddlCampus2.ClientID%>").empty();
-                                $("#<%=ddlCampus2.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlCommencementdate.ClientID%>").length >= 1) {
+                                $("#<%=ddlCommencementdate.ClientID%>").empty();
+                                $("#<%=ddlCommencementdate.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Commencement Date"));
                             }
-                            for (var i = 0; i < result.length; i++) {
-                                $("#<%=ddlCampus2.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
-                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlCommencementdate.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].commencementdate));
                         }
                     }
                 });
+            }
+        });
+
+        $("#<%=ddlCommencementdate.ClientID%>").change(function () {
+            $("#<%=hidCommencementDate1.ClientID%>").val($("#<%=ddlCommencementdate.ClientID%>").val());
+        });
+
+        //campus2
+        $("#<%=ddlCollege2.ClientID%>").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "applicantcourse.aspx/GetCampusDropdown",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        if ($("#<%=ddlCampus2.ClientID%>").length >= 1) {
+                            $("#<%=ddlCampus2.ClientID%>").empty();
+                            $("#<%=ddlCampus2.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                        }
+                        for (var i = 0; i < result.length; i++) {
+                            $("#<%=ddlCampus2.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
+                        }
+                    }
+                }
+            });
         });
         $("#<%=ddlCampus2.ClientID%>").change(function () {
             $("#<%=hidCampusField2.ClientID%>").val($("#<%=ddlCampus2.ClientID%>").val());
@@ -1255,28 +1277,55 @@
                 
         });       
         $("#<%=ddlCourse2.ClientID%>").change(function () {
-                $("#<%=hidCourseField2.ClientID%>").val($("#<%=ddlCourse2.ClientID%>").val());
-        });
-         //campus3
-         $("#<%=ddlCollege3.ClientID%>").change(function () {
+            $("#<%=hidCourseField2.ClientID%>").val($("#<%=ddlCourse2.ClientID%>").val());
+
+            if ($("#<%=hidCourseField2.ClientID%>").val() != "") {
+                var courseId = $("#<%=ddlCourse2.ClientID%>").val();
                 $.ajax({
-                    type: "GET",
-                    url: "applicantcourse.aspx/GetCampusDropdown",
+                    type: "POST",
+                    url: "applicantcourse.aspx/GetCommenceDateDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (response) {                        
+                    data: "{'courseid': '" + courseId + "'}",
+                    success: function (response) {
                         if (response.d) {
-                            var result = JSON.parse(response.d);                            
-                            if ($("#<%=ddlCampus3.ClientID%>").length >= 1) {
-                                $("#<%=ddlCampus3.ClientID%>").empty();
-                                $("#<%=ddlCampus3.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlCommencementdate2.ClientID%>").length >= 1) {
+                                $("#<%=ddlCommencementdate2.ClientID%>").empty();
+                                $("#<%=ddlCommencementdate2.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Commencement Date"));
                             }
-                            for (var i = 0; i < result.length; i++) {
-                                $("#<%=ddlCampus3.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
-                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlCommencementdate2.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].commencementdate));
                         }
                     }
                 });
+            }
+        });
+
+        $("#<%=ddlCommencementdate2.ClientID%>").change(function () {
+            $("#<%=hidCommencementDate2.ClientID%>").val($("#<%=ddlCommencementdate2.ClientID%>").val());
+        });
+
+        //campus3
+        $("#<%=ddlCollege3.ClientID%>").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "applicantcourse.aspx/GetCampusDropdown",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        if ($("#<%=ddlCampus3.ClientID%>").length >= 1) {
+                            $("#<%=ddlCampus3.ClientID%>").empty();
+                            $("#<%=ddlCampus3.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                        }
+                        for (var i = 0; i < result.length; i++) {
+                            $("#<%=ddlCampus3.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
+                        }
+                    }
+                }
+            });
         });
         $("#<%=ddlCampus3.ClientID%>").change(function () {
                 $("#<%=hidCampusField3.ClientID%>").val($("#<%=ddlCampus3.ClientID%>").val());
@@ -1468,27 +1517,54 @@
         });
         $("#<%=ddlCourse3.ClientID%>").change(function () {
             $("#<%=hidCourseField3.ClientID%>").val($("#<%=ddlCourse3.ClientID%>").val());
-        });
-         //campus4
-         $("#<%=ddlCollege4.ClientID%>").change(function () {
+
+            if ($("#<%=hidCourseField3.ClientID%>").val() != "") {
+                var courseId = $("#<%=ddlCourse3.ClientID%>").val();
                 $.ajax({
-                    type: "GET",
-                    url: "applicantcourse.aspx/GetCampusDropdown",
+                    type: "POST",
+                    url: "applicantcourse.aspx/GetCommenceDateDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (response) {                        
+                    data: "{'courseid': '" + courseId + "'}",
+                    success: function (response) {
                         if (response.d) {
-                            var result = JSON.parse(response.d);                            
-                            if ($("#<%=ddlCampus4.ClientID%>").length >= 1) {
-                                $("#<%=ddlCampus4.ClientID%>").empty();
-                                $("#<%=ddlCampus4.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlCommencementdate3.ClientID%>").length >= 1) {
+                                $("#<%=ddlCommencementdate3.ClientID%>").empty();
+                                $("#<%=ddlCommencementdate3.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Commencement Date"));
                             }
-                            for (var i = 0; i < result.length; i++) {
-                                $("#<%=ddlCampus4.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
-                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlCommencementdate3.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].commencementdate));
                         }
                     }
                 });
+            }
+        });
+
+        $("#<%=ddlCommencementdate3.ClientID%>").change(function () {
+            $("#<%=hidCommencementDate3.ClientID%>").val($("#<%=ddlCommencementdate3.ClientID%>").val());
+        });
+
+        //campus4
+        $("#<%=ddlCollege4.ClientID%>").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "applicantcourse.aspx/GetCampusDropdown",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        if ($("#<%=ddlCampus4.ClientID%>").length >= 1) {
+                            $("#<%=ddlCampus4.ClientID%>").empty();
+                            $("#<%=ddlCampus4.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                        }
+                        for (var i = 0; i < result.length; i++) {
+                            $("#<%=ddlCampus4.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
+                        }
+                    }
+                }
+            });
         });
         $("#<%=ddlCampus4.ClientID%>").change(function () {
                 $("#<%=hidCampusField4.ClientID%>").val($("#<%=ddlCampus4.ClientID%>").val());
@@ -1679,27 +1755,54 @@
         });
         $("#<%=ddlCourse4.ClientID%>").change(function () {
             $("#<%=hidCourseField4.ClientID%>").val($("#<%=ddlCourse4.ClientID%>").val());
-        });
-         //campus5
-         $("#<%=ddlCollege5.ClientID%>").change(function () {
+
+            if ($("#<%=hidCourseField3.ClientID%>").val() != "") {
+                var courseId = $("#<%=ddlCourse4.ClientID%>").val();
                 $.ajax({
-                    type: "GET",
-                    url: "applicantcourse.aspx/GetCampusDropdown",
+                    type: "POST",
+                    url: "applicantcourse.aspx/GetCommenceDateDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function (response) {                        
+                    data: "{'courseid': '" + courseId + "'}",
+                    success: function (response) {
                         if (response.d) {
-                            var result = JSON.parse(response.d);                            
-                            if ($("#<%=ddlCampus5.ClientID%>").length >= 1) {
-                                $("#<%=ddlCampus5.ClientID%>").empty();
-                                $("#<%=ddlCampus5.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlCommencementdate4.ClientID%>").length >= 1) {
+                                $("#<%=ddlCommencementdate4.ClientID%>").empty();
+                                $("#<%=ddlCommencementdate4.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Commencement Date"));
                             }
-                            for (var i = 0; i < result.length; i++) {
-                                $("#<%=ddlCampus5.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
-                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlCommencementdate4.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].commencementdate));
                         }
                     }
                 });
+            }
+        });
+
+        $("#<%=ddlCommencementdate4.ClientID%>").change(function () {
+            $("#<%=hidCommencementDate4.ClientID%>").val($("#<%=ddlCommencementdate4.ClientID%>").val());
+        });
+
+        //campus5
+        $("#<%=ddlCollege5.ClientID%>").change(function () {
+            $.ajax({
+                type: "GET",
+                url: "applicantcourse.aspx/GetCampusDropdown",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        if ($("#<%=ddlCampus5.ClientID%>").length >= 1) {
+                            $("#<%=ddlCampus5.ClientID%>").empty();
+                            $("#<%=ddlCampus5.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Campus"));
+                        }
+                        for (var i = 0; i < result.length; i++) {
+                            $("#<%=ddlCampus5.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
+                        }
+                    }
+                }
+            });
         });
         $("#<%=ddlCampus5.ClientID%>").change(function () {
                 $("#<%=hidCampusField5.ClientID%>").val($("#<%=ddlCampus5.ClientID%>").val());
@@ -1892,6 +1995,32 @@
         });
         $("#<%=ddlCourse5.ClientID%>").change(function () {
             $("#<%=hidCourseField5.ClientID%>").val($("#<%=ddlCourse5.ClientID%>").val());
+
+            if ($("#<%=hidCourseField5.ClientID%>").val() != "") {
+                var courseId = $("#<%=ddlCourse5.ClientID%>").val();
+                $.ajax({
+                    type: "POST",
+                    url: "applicantcourse.aspx/GetCommenceDateDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'courseid': '" + courseId + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlCommencementdate5.ClientID%>").length >= 1) {
+                                $("#<%=ddlCommencementdate5.ClientID%>").empty();
+                                $("#<%=ddlCommencementdate5.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Select Commencement Date"));
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlCommencementdate5.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].commencementdate));
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#<%=ddlCommencementdate5.ClientID%>").change(function () {
+            $("#<%=hidCommencementDate5.ClientID%>").val($("#<%=ddlCommencementdate5.ClientID%>").val());
         });
 
         $(document).ready(function () {

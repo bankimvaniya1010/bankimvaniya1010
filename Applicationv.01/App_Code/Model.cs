@@ -1478,6 +1478,7 @@ public partial class gte_applicantdetails
     public Nullable<int> highestqualificationcountry { get; set; }
     public string levelofcourse { get; set; }
     public Nullable<int> fieldofstudyapplied { get; set; }
+    public Nullable<int> campusid { get; set; }
     public string coursename { get; set; }
     public string commencementdate { get; set; }
     public Nullable<int> workexperience { get; set; }
