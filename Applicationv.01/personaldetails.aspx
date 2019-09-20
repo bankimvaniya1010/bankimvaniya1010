@@ -266,6 +266,40 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="list-group-item" id="fieldstudy" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-fieldstudy">
+                                    <div class="form-row">
+                                        <label id="lblfieldstudy" runat="server" for="fieldstudy" class="col-md-3 col-form-label form-label">Completed highest study in field of</label>
+                                        <div class="col-md-6">
+                                        <asp:DropDownList runat="server" ID="ddlfieldstudy" CssClass="form-control">
+                                        </asp:DropDownList>    
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="highestQualificationCountry" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highestQualificationCountry">
+                                    <div class="form-row">
+                                        <label id="labelhighestQualificationCountry" runat="server" for="highestQualificationCountry" class="col-md-3 col-form-label form-label">Country of Highest Qualificatiion Achieved</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlHighestQualificationCountry" runat="server" CssClass="form-control">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item frm-rdbtn" id="highQualificationCompleteDate" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highQualificationCompleteDate">
+                                    <div class="form-row">
+                                        <label id="lblhighQualificationCompleteDate" runat="server" for="highQualificationCompleteDate" class="col-md-3 col-form-label form-label">Completion Date </label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlHighQualificationCompletedMonth" CssClass="form-control" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlHighQualificationCompletedYear" CssClass="form-control" runat="server"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="list-group-item" id="disability" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-disability">
                                     <div class="form-row">
@@ -513,6 +547,12 @@
             else if ($("#<%=ddlMarital.ClientID%> option:selected").text() === "Married" && !isValidMaritalDetails()) { }
             else if (!$("#<%=higheststudy.ClientID%>").is(':hidden') && $("#<%=ddlhigheststudy.ClientID%>").val() == "0")
                 alert("Please select Highest study level successfully completed");
+            else if (!$("#<%=fieldstudy.ClientID%>").is(':hidden') && $("#<%=ddlfieldstudy.ClientID%>").val() == "0")
+                alert("Please select field of highest study successfully completed");
+            else if (!$("#<%=highestQualificationCountry.ClientID%>").is(':hidden') && $("#<%=ddlHighestQualificationCountry.ClientID%>").val() === "0")
+                alert("Please select valid Highest Qualification Country");
+            else if ((!$("#<%=highQualificationCompleteDate.ClientID%>").is(':hidden')) && (($("#<%=ddlHighQualificationCompletedMonth.ClientID%>").val() == "0") || ($("#<%=ddlHighQualificationCompletedYear.ClientID%>").val() == "0")))
+                alert("Please select highest qualification completion month and year");
             else if (!$("#<%=disability.ClientID%>").is(':hidden') && !($("#<%=rblDisabilityYes.ClientID%>").is(':checked') || $("#<%=rblDisabilityNo.ClientID%>").is(':checked')))
                 alert("Please Select Option to record disability");
             else if (!$("#<%=disabilitydesc.ClientID%>").is(':hidden') && $("#<%=ddlDisability.ClientID%>").val() === "0")

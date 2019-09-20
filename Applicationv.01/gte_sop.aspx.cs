@@ -76,6 +76,10 @@ public partial class gte_sop : System.Web.UI.Page
                         applicantdetails.workexperience = !String.IsNullOrEmpty(details.totalyearofexperience) ? Convert.ToInt32(details.totalyearofexperience) : 0;
                         applicantdetails.highestqualifiactionachieved = details.higheststudycompleted.HasValue ? details.higheststudycompleted.Value.ToString() : "1";
 
+                        applicantdetails.highestqualificationfield = details.fieldofhigheststudy.HasValue ? details.fieldofhigheststudy.Value : 1;
+                        applicantdetails.highestqualificationdate = details.studycompletedate;
+                        applicantdetails.highestqualificationcountry = Convert.ToInt32(details.countryofhigheststudy.HasValue);
+
                         applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
                         applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
                         applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1;
@@ -84,31 +88,14 @@ public partial class gte_sop : System.Web.UI.Page
                         if (educationDetails.ishighereducation == 1) // Applicant has entered most recent higher education
                         {
                             var higherEducationDetail = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                            applicantdetails.highestqualificationcountry = Convert.ToInt32(higherEducationDetail.countryofhighereducation);
                             applicantdetails.highestqualificationname = higherEducationDetail.coursename;
-                            applicantdetails.highestqualificationdate = higherEducationDetail.endate;
                         }
                         else if (educationDetails.ishighereducation.Value > 1 && educationDetails.isdiplomadone.Value == 1) // Diploma is highest completed qualification
-                        {
-                            applicantdetails.highestqualificationcountry = educationDetails.diplomacountry;
                             applicantdetails.highestqualificationname = "Diploma";
-                            applicantdetails.highestqualificationdate = educationDetails.diplomaendate;
-                        }
                         else if (educationDetails.ishighereducation > 1 && educationDetails.issecondarydone.Value == 1) // Secondary is highest completed qualification
-                        {
-                            applicantdetails.highestqualificationcountry = educationDetails.secondarycountry;
                             applicantdetails.highestqualificationname = "Secondary Education";
-                            applicantdetails.highestqualificationdate = educationDetails.secondaryendate;
-                        }
                         else if ((educationDetails.issecondarydone.Value > 1 || educationDetails.isdiplomadone.Value > 1) && educationDetails.ishighschooldone.Value == 1) // High School is highest completed qualification
-                        {
-                            applicantdetails.highestqualificationcountry = educationDetails.highschoolcountry;
                             applicantdetails.highestqualificationname = "High School Education";
-                            applicantdetails.highestqualificationdate = educationDetails.highschoolendate;
-                        }
-
-                        // Set to empty values to avoid errors, below details are missing from applicant details information.
-                        applicantdetails.highestqualificationfield = 1;
                     }
                     else if (details == null)
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Personal details missing. Please complete Student Information before proceeding.');window.location='" + webURL + "default.aspx';", true);

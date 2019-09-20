@@ -71,7 +71,6 @@
         <EntityTypeShape EntityType="GTEModel.formmaster" Width="1.5" PointX="8.25" PointY="59" />
         <EntityTypeShape EntityType="GTEModel.grademaster" Width="1.5" PointX="20.75" PointY="21.75" />
         <EntityTypeShape EntityType="GTEModel.gte_answer_master" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="GTEModel.gte_applicantdetails" Width="1.5" PointX="22.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.gte_applicantdocument" Width="1.5" PointX="12.75" PointY="46.25" />
         <EntityTypeShape EntityType="GTEModel.gte_clarification_applicantresponse" Width="1.5" PointX="5.25" PointY="8.125" />
         <EntityTypeShape EntityType="GTEModel.gte_clarification_questionmaster" Width="1.5" PointX="3" PointY="8" />
@@ -236,6 +235,7 @@
         <AssociationConnector Association="GTEModel.FK_coursemaster_universitymaster" />
         <EntityTypeShape EntityType="GTEModel.majordiscipline_master" Width="1.5" PointX="10.875" PointY="63" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_majordiscipline_master" />
+        <EntityTypeShape EntityType="GTEModel.gte_applicantdetails" Width="1.5" PointX="22.75" PointY="0.875" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
