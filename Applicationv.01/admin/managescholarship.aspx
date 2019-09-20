@@ -225,7 +225,7 @@
         });
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#admin_list').addClass('open');
+            $('#Scholarships_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#manageScholarships').addClass('active');
         });

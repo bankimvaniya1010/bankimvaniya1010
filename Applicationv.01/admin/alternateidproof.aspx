@@ -106,7 +106,7 @@
     <script>
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#admin_list').addClass('open');
+            $('#CustomizeForms_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#alternateidproof').addClass('active');
         });

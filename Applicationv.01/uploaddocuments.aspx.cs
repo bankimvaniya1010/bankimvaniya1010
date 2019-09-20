@@ -41,11 +41,11 @@ public partial class uploaddocuments : System.Web.UI.Page
             appHigherDetails = db.applicanthighereducation.Where(x => x.applicantid == UserID).ToList();
             documentList.Add("Passport Size Photo Graph");
             documentList.Add("Passport Copy (Bio Pages)");
-            if ((appDetails.Count > 0) && (appDetails[0].alternativeIdentityproofId != null))
+            if ((appDetails.Count > 0) && (appDetails[0].alternativeIdentityproofId != null && appDetails[0].alternativeIdentityproofId != 0))
                 documentList.Add("Alternate Proof of Identity");
-            if ((appDetails.Count > 0) && (appDetails[0].alternativeproofdobId != null))
+            if ((appDetails.Count > 0) && (appDetails[0].alternativeproofdobId != null && appDetails[0].alternativeproofdobId != 0))
                 documentList.Add("Alternate Proof of Date of Birth");
-            if ((appDetails.Count > 0) && (appDetails[0].alternativeresidenceproofId != null))
+            if ((appDetails.Count > 0) && (appDetails[0].alternativeresidenceproofId != null  && appDetails[0].alternativeresidenceproofId != 0))
                 documentList.Add("Alternate Proof of Residence");
             if ((appEduDetails.Count > 0) && appEduDetails[0].ishighschooldone == 1)
                 documentList.Add("Proof of High School");
@@ -66,7 +66,7 @@ public partial class uploaddocuments : System.Web.UI.Page
                 documentList.Add("Proof of Certificate / Diploma");
             if ((appLangDetails.Count > 0) && (appLangDetails[0].isenglishintesive == 1))
                 documentList.Add("Proof of Study - English Language Intensive");
-            if ((appLangDetails.Count > 0) && (appLangDetails[0].testname != ""))
+            if ((appLangDetails.Count > 0) && (appLangDetails[0].testname != "" && appLangDetails[0].testname != null))
                 documentList.Add("Proof of English Language Test");
             int empCount = 0;
             for (int employ = 0; employ < appEmpDetails.Count; employ++)

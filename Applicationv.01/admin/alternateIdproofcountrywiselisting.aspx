@@ -78,7 +78,7 @@
     <script>
          $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
-	        $('#setting_list').addClass('open');
+	        $('#CustomizeForms_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
 	        $('#alternateIdproofcountrywiselisting').addClass('active');
 	    });
