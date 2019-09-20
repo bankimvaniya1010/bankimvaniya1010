@@ -29,5 +29,12 @@
         </div>
 
     </div>
-
+    <script>
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#dashboard_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#dashboard').addClass('active');
+	    });
+    </script>
 </asp:Content>

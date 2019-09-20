@@ -80,7 +80,7 @@
     <script>
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#admin_list').addClass('open');
+            $('#managetooltips_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#tooltipslisting').addClass('active');
         });

@@ -74,7 +74,7 @@
      <script>
 		$(document).ready(function () {
 	            $('.sidebar-menu-item').removeClass('open');
-	            $('#universitymenu_list').addClass('open');
+	            $('#Costcalculator_list').addClass('open');
 	            $('.sidebar-menu-item').removeClass('active');
 	            $('#managetransportchoice').addClass('active');
 	        });

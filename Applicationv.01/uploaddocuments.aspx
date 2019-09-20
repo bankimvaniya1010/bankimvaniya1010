@@ -38,7 +38,7 @@
                                     <label for="name" class="col-sm-3 col-form-label form-label">Document Name</label>
                                     <div class="col-sm-9">
                                         <div class="row" style="padding-left:0px;">
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <asp:DropDownList ID="ddlDocuments" CssClass="form-control" runat="server"></asp:DropDownList>
                                             </div>
 
