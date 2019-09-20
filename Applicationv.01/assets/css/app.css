@@ -155,9 +155,11 @@
 .faq-modal-header{position: inherit;right: 10px;top: 10px;}
 
 #ddlseclanguage{height: auto;border: 0;background: transparent;color: #fff;width: 100%;}
+.frnd-hdr #ddlseclanguage{color: #455560;}
 #ddlseclanguage option{color: #383b3d;}
 .head-nav li, .head-nav a{color: #fff;font-size: 14px;}
-.head-nav a:hover{color: #fff;}
+.frnd-hdr .head-nav li, .frnd-hdr .head-nav a{color: #455560;}
+.head-nav a:hover{color: #455560;}
 .head-nav li{position: relative;}
 .head-nav li+li:before{position: absolute;content: '';width: 1px;height: 10px;top: 0;bottom: 0;left: 0;margin: auto;background:#fff;}
 .head-nav li + li{margin-left: 10px;padding-left: 10px;}
@@ -209,11 +211,20 @@
 [dir=ltr] .admin-bdtemp .sidebar-menu .material-icons{position: absolute;left: 15px;top: 0px;}
 [dir=ltr] .admin-bdtemp .sidebar-menu .sidebar-menu-button{padding-left: 3rem;margin-bottom: 25px;}
 [dir=ltr] .admin-bdtemp .sidebar-menu-button{line-height: 20px;}
-[dir=ltr] .admin-bdtemp .sidebar-menu .sidebar-submenu .sidebar-menu-button{margin-bottom: 15px;}
+[dir=ltr] .admin-bdtemp .sidebar-menu .sidebar-submenu .sidebar-menu-button{margin-bottom: 10px;padding-left: 2rem;}
 
-[dir=ltr] .mdk-header [data-primary]{background-color: #e51837!important;}
-[dir=ltr] .sidebar-dark.sidebar-left{background-color: #1c2329!important;}
-[dir=ltr] .sidebar-dark .sidebar-submenu .sidebar-menu-text{color: #cccccc;}
-[dir=ltr] .sidebar-dark .open>.sidebar-menu-button{color: #fff;}
-[dir=ltr] .navbar-dark .navbar-toggler{color: #fff;}
-[dir=ltr] .sidebar-dark .sidebar-heading{color: #fff;}
+[dir=ltr] .frnd-hdr .mdk-header [data-primary]{background-color: #fff!important;}
+[dir=ltr] .frnd-hdr .sidebar-dark.sidebar-left{background-color: #1c2329!important;}
+[dir=ltr] .frnd-hdr .sidebar-dark .open>.sidebar-menu-button{color: #fff;}
+[dir=ltr] .frnd-hdr .navbar-dark .navbar-toggler{color: #455560;}
+[dir=ltr] .frnd-hdr .sidebar-dark .sidebar-heading{color: #fff;}
+.frnd-hdr .logo-img{max-width: 80px;z-index: 2;position: absolute;left: 0;top: 0;}
+[dir=ltr] .frnd-hdr .navbar-brand > span{padding-left: 10px;color: #455560;}
+[dir=ltr] .frnd-hdr .navbar-brand{position: relative;z-index: 1;padding-left: 80px;}
+.frnd-hdr .head-bgbtm {height: 20px;background: #e51837;}
+[dir=ltr] .frnd-hdr .sidebar-p-y{padding-top: 3rem;}
+[dir=ltr] .frnd-hdr .mdk-header-layout__content{padding-top: 148px !important;}
+.prdtl-vrfy input[type='radio'] {margin-left: 20px;}
+.prdtl-ans{width: 62%;display: inline-block;padding: 0 10px;}
+.prdtl-vrfy{width: 35%;display: inline-block;padding: 0 10px 0 0;}
+.helpicon{right: 15px;}

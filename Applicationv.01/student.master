@@ -56,7 +56,7 @@
     </div>
 
     <!-- Header Layout -->
-    <div class="mdk-header-layout js-mdk-header-layout">
+    <div class="mdk-header-layout js-mdk-header-layout frnd-hdr">
 
         <!-- Header -->
 
@@ -73,8 +73,8 @@
                        
                         <!-- Brand -->
                         <a href="default.aspx" class="navbar-brand">
-                            <%-- <img src="assets/images/logo/white.svg" class="mr-2" alt="LearnPlus" />--%>
-                            <span class="d-none d-xs-md-block"><asp:Label ID="lbluniversityName" runat="server"></asp:Label> - The Application Center</span>
+                            <img src="assets/images/logo/canning_logo.jpg" class="logo-img"/>
+                            <span class="d-none d-xs-md-block"><asp:Label ID="lbluniversityName" runat="server"></asp:Label>  - Application Center</span>
                         </a>
 
 
@@ -108,7 +108,7 @@
                     </div>
                 </nav>
                 <!-- // END Navbar -->
-
+                <div class="head-bgbtm"></div>
             </div>
         </div>
 
