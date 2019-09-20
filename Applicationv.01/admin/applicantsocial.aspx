@@ -27,14 +27,18 @@
                 <div class="list-group-item" id="linkedin" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-linked">
                         <div class="form-row">
-                            <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">Link to your LinkedIn profile</label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblLinkedinYes" GroupName="Linkedin" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblLinkedinNo" GroupName="Linkedin" Text="No" runat="server" />
+                            <label id="labellinked" runat="server" for="linked" class="col-md-2 col-form-label form-label">Link to your LinkedIn profile</label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblLinkedinYes" GroupName="Linkedin" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblLinkedinNo" GroupName="Linkedin" Text="No" runat="server" />
+                                </div>
                                 <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnLinkedn" />
                                 <input id="txtLinkedinComments" runat="server" type="text" class="form-control" placeholder="Admin Comments" style="display: none">
                             </div>
@@ -44,16 +48,20 @@
                 <div class="list-group-item" id="facebook" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-facebook">
                         <div class="form-row">
-                            <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">Link to your Facebook profile </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblFacebook" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblFacebookYes" GroupName="Facebook" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblFacebookNo" GroupName="Facebook" Text="No" runat="server" />
+                            <label id="labelfacebook" runat="server" for="employer" class="col-md-2 col-form-label form-label">Link to your Facebook profile </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblFacebook" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblFacebookYes" GroupName="Facebook" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblFacebookNo" GroupName="Facebook" Text="No" runat="server" />
+                                </div>
 
 
                                 <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnFaceBook" />
                                 <input id="txtFacebookComments" runat="server" type="text" class="form-control" style="display: none" placeholder="Admin Comments">
                             </div>
@@ -63,16 +71,20 @@
                 <div class="list-group-item" id="twitter" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-twitter">
                         <div class="form-row">
-                            <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">Link to your twitter handle </label>
-                            <div class="col-md-4">
-                                <asp:Label ID="lblTwitter" runat="server"></asp:Label>
-                                <asp:RadioButton ID="rblTwitterYes" GroupName="twitter" Text="Yes" runat="server" />
-                                <asp:RadioButton ID="rblTwitterNo" GroupName="twitter" Text="No" runat="server" />
+                            <label id="labeltwitter" runat="server" for="twitter" class="col-md-2 col-form-label form-label">Link to your twitter handle </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblTwitter" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rblTwitterYes" GroupName="twitter" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblTwitterNo" GroupName="twitter" Text="No" runat="server" />
+                                </div>
 
 
                                 <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <input type="button" value="Add Remarks" id="btnTwitter" />
                                 <input id="txtTwitterComments" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
                             </div>
