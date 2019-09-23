@@ -23,14 +23,15 @@ public partial class applicant_sop : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCom.FaqQuestionList();
-            txtUniversityInstruction.Text = db.sop_instruction.Where(x => x.university_id == UniversityID).Select(x => x.university_instruction).FirstOrDefault();
+            universityInstruction.InnerText = db.sop_instruction.Where(x => x.university_id == UniversityID).Select(x => x.university_instruction).FirstOrDefault();
 
             var sop_details = db.student_sop.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).FirstOrDefault();
             if (sop_details != null)
             {
                 if (sop_details.is_student_sop_submitted)
                 {
-                    txtStudentSOP.Text = sop_details.student_submitted_sop;
+                    txtStudentSOP.Style.Add("display", "none");
+                    studentSOP.InnerText = sop_details.student_submitted_sop;
 
                     btnEdit.Style.Add("display", "none");
                     btnSave.Style.Add("display", "none");
@@ -65,6 +66,9 @@ public partial class applicant_sop : System.Web.UI.Page
         btnEdit.Style.Add("display", "none");
         btnSave.Style.Add("display", "none");
         btnsubmit.Style.Add("display", "none");
+
+        txtStudentSOP.Style.Add("display", "none");
+        studentSOP.InnerText = sop.student_submitted_sop;
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

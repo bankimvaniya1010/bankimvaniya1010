@@ -18,11 +18,12 @@
                 <div class="col-md-8">
                     <div class="card" runat="server">
                         <div class="card-body list-group-fit">
-                            <div class="list-group list-group-fit">
-                                <asp:TextBox ID="txtUniversityInstruction" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
+                            <h3>INSTRUCTIONS FOR WRITING YOUR SOP</h3>
+                            <div class="list-group list-group-fit" runat="server" id="universityInstruction">
                             </div>
-
-                            <div class="list-group list-group-fit">
+                            <br/>
+                            <h3>Student SOP:</h3>
+                            <div class="list-group list-group-fit" runat="server" id="studentSOP">
                                 <asp:TextBox ID="txtStudentSOP" runat="server" TextMode="MultiLine"></asp:TextBox>
                             </div>
 
@@ -71,7 +72,7 @@
                 return false;
             }
             if ($('#<%=txtStudentSOP.ClientID%>').val().match(/\S+/g).length > 200) {
-                alert("SOP created exceeds 200 words. Please review SOP once again before proceeding.");
+                alert("SOP exceeds 200 words. Please review SOP once again before proceeding.");
                 return false;
             }
         }
