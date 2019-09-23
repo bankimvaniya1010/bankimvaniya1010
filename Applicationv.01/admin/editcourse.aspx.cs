@@ -31,13 +31,13 @@ public partial class admin_editcourse : System.Web.UI.Page
                     Response.Redirect("~/admin/default.aspx");
 
                 coursemaster existingCourse = db.coursemaster.Where(obj => obj.courseid == courseID).First();
-                course_dates existingDate = db.course_dates.Where(obj => obj.courseid == courseID).First();
+                var existingDates = db.course_dates.Where(obj => obj.courseid == courseID).ToList();
                 var mappings = db.course_campus_mapping.Where(obj => obj.courseid == courseID).ToList();
                 bindMajorDisciplineDropdown();
                 bindStudyLevelDropdown();
                 bindStudyModeDropdown();
                 BindUniversity();
-                if (existingCourse != null && existingDate != null)
+                if (existingCourse != null && existingDates != null)
                 {
                     ViewState["courseID"] = courseID;
 
@@ -63,10 +63,10 @@ public partial class admin_editcourse : System.Web.UI.Page
                         ddlUniversity.ClearSelection();
                         ddlUniversity.Items.FindByValue(existingCourse.universityid.ToString()).Selected = true;
                     }
-                    if (existingDate.commencementdate != null)
+                    if (existingDates.Count > 0)
                     {
-                        txtCommencementDate.Value = existingDate.commencementdate.ToString("dd/MM/yyyy");
-                        hidCommencementDate.Value = existingDate.commencementdate.ToString();
+                        for (int i = 0; i < existingDates.Count; i++)
+                            hidCommencementDates.Value += existingDates[i].commencementdate.ToString("dd-MM-yyyy") + ",";
                     }
                         
                     if (mappings != null)
@@ -198,8 +198,14 @@ public partial class admin_editcourse : System.Web.UI.Page
             db.SaveChanges();
         }
 
+        var existingCourseDates = db.course_dates.Where(x => x.courseid == CourseID).ToList();
+        if (existingCourseDates != null)
+        {
+            db.course_dates.RemoveRange(existingCourseDates);
+            db.SaveChanges();
+        }
+
         coursemaster CourseObj = db.coursemaster.Where(x => x.courseid == CourseID).First();
-        course_dates courseDate = db.course_dates.Where(x => x.courseid == CourseID).FirstOrDefault();
         try
         {
             CourseObj.coursename = txtCourseName.Value.Trim();
@@ -208,8 +214,16 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.modeofstudyId = Convert.ToInt32(ddlstudymode.SelectedItem.Value);
             CourseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
             CourseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
-            courseDate.commencementdate = Convert.ToDateTime(hidCommencementDate.Value).Date;
             db.SaveChanges();
+
+            var commencementDates = hidCommencementDates.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in commencementDates)
+            {
+                var dateArr = item.Split(Convert.ToChar("-"));
+                var date = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
+                course_dates course_date = new course_dates() { courseid = CourseObj.courseid, commencementdate = date };
+                db.course_dates.Add(course_date);
+            }
 
             var campusIds = hidUniversityCampuses.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var campusId in campusIds)
