@@ -78,6 +78,25 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="ddlUniversityCampuses" class="col-sm-3 col-form-label form-label">University Campuses</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <select id="ddlUniversityCampuses" name="ddlUniversityCampuses" runat="server" class="form-control" multiple="true">
+                                    </select>
+                                    <asp:HiddenField ID="hidUniversityCampuses" runat="server" Value="" />
+                                </div>
+                                <input id="btnAddCommencementDate" style="display:none" type="button" class="form-control" value="Add Commencement Date" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <asp:HiddenField ID="hidCommencementDateCount" runat="server" Value="0" />
+                    <asp:HiddenField ID="hidCommencementDates" runat="server" Value="" />
+                    <div id="commencementDatesDiv" class="form-group row">
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -98,6 +117,37 @@
 
     <script type="text/javascript">
 
+        function isValidCommencementDate() {
+            var commencementDateCounter = $("#<%=hidCommencementDateCount.ClientID %>").val();
+            $("#<%=hidCommencementDates.ClientID %>").val('');
+
+            for (var i = 0; i < commencementDateCounter; i++) {
+                if ($('#txtCommencementDate_' + i).val() == "" || $('#txtCommencementDate_' + i).val() == null) {
+                    alert("Please select commencement date");
+                    return false;
+                }
+                else {
+                    var data = $('#txtCommencementDate_' + i).val() + "," + $("#<%=hidCommencementDates.ClientID %>").val();
+                    $("#<%=hidCommencementDates.ClientID %>").val(data);
+                }
+            }
+            return true;
+        }
+
+        function createCommencementDateBlock() {
+            
+            var hidCommencementDate = $("#<%=hidCommencementDateCount.ClientID %>");
+            var count = parseInt(hidCommencementDate.val());
+            hidCommencementDate.val(count + 1);
+
+            var content = '<label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course</label>' +
+                          '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
+                          '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="">' +
+                          '</div></div></div>';
+            $("#commencementDatesDiv").append(content);
+            $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
+        }
+
 
         function validateForm() {
 
@@ -107,6 +157,8 @@
             var studyLevel = $('#<%=ddlstudylevel.ClientID%>').val();
             var studymode = $('#<%=ddlstudymode.ClientID%>').val();
             var university = $('#<%=ddlUniversity.ClientID%>').val();
+            var universityCampuses = $("#<%=hidUniversityCampuses.ClientID%>").val().split(',');
+            universityCampuses = $.grep(universityCampuses, function(n){ return (n); });
 
 
             if (txtCourse == '') {
@@ -134,6 +186,11 @@
                 alert("Please Select University");
                 return false;
             }
+            else if (universityCampuses.length < 1) {
+                alert("Please select applicable university campuses for the course");
+                return false;
+            }
+            else if (!isValidCommencementDate()) { return false; }
             return true;
 
         }
@@ -141,7 +198,46 @@
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#course_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
-	        $('#coursemaster').addClass('active');
+            $('#coursemaster').addClass('active');
+
+            $("#<%=ddlUniversity.ClientID%>").change(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "createcourse.aspx/GetUniversityCampuses",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { universityId: $("#<%=ddlUniversity.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlUniversityCampuses.ClientID%>").length >= 1) {
+                                $("#<%=ddlUniversityCampuses.ClientID%>").empty();
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlUniversityCampuses.ClientID%>").append($("<option></option>").val(result[i].campusid).html(result[i].campusname));
+
+                            $("#commencementDatesDiv").empty();
+                            $("#btnAddCommencementDate").show();
+                            $("#<%=hidUniversityCampuses.ClientID%>").val("");
+                            $("#<%=hidCommencementDateCount.ClientID %>").val('0');
+                        }
+                    }
+                });
+            });
+
+            $("#btnAddCommencementDate").click(function () {
+                createCommencementDateBlock();
+            });
+
+            $("#<%=ddlUniversityCampuses.ClientID%>").blur(function () {
+                $("#<%=hidUniversityCampuses.ClientID%>").val("");
+                var selectedUniCampuses = $("#<%=ddlUniversityCampuses.ClientID%>").val();
+                if (selectedUniCampuses.length > 0) {
+                    for (var i = 0; i < selectedUniCampuses.length; i++)
+                        $("#<%=hidUniversityCampuses.ClientID%>").val($("#<%=hidUniversityCampuses.ClientID%>").val() + selectedUniCampuses[i] + ",");
+                }
+            });
+
 	    });
     </script>
 </asp:Content>

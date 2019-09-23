@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -28,11 +31,13 @@ public partial class admin_editcourse : System.Web.UI.Page
                     Response.Redirect("~/admin/default.aspx");
 
                 coursemaster existingCourse = db.coursemaster.Where(obj => obj.courseid == courseID).First();
+                course_dates existingDate = db.course_dates.Where(obj => obj.courseid == courseID).First();
+                var mappings = db.course_campus_mapping.Where(obj => obj.courseid == courseID).ToList();
                 bindMajorDisciplineDropdown();
                 bindStudyLevelDropdown();
                 bindStudyModeDropdown();
                 BindUniversity();
-                if (existingCourse != null)
+                if (existingCourse != null && existingDate != null)
                 {
                     ViewState["courseID"] = courseID;
 
@@ -57,17 +62,50 @@ public partial class admin_editcourse : System.Web.UI.Page
                     {
                         ddlUniversity.ClearSelection();
                         ddlUniversity.Items.FindByValue(existingCourse.universityid.ToString()).Selected = true;
-                    }                    
-
-
+                    }
+                    if (existingDate.commencementdate != null)
+                    {
+                        txtCommencementDate.Value = existingDate.commencementdate.ToString("dd/MM/yyyy");
+                        hidCommencementDate.Value = existingDate.commencementdate.ToString();
+                    }
+                        
+                    if (mappings != null)
+                    {
+                        BindUniversityCampus(Convert.ToInt32(ddlUniversity.SelectedValue));
+                        foreach (var maps in mappings)
+                        {
+                            ddlUniversityCampuses.Items.FindByValue(maps.campusid.ToString()).Selected = true;
+                            hidUniversityCampuses.Value = hidUniversityCampuses.Value + maps.campusid + ",";
+                        }
+                    }
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Course does not exists')", true);
-
             }
             else
                 Response.Redirect("~/admin/default.aspx");
         }
+    }
+
+    private void BindUniversityCampus(int universityId)
+    {
+        try
+        {
+            var Universiity = db.universitycampus.Where(x => x.universityid == universityId).ToList();
+            ddlUniversityCampuses.DataSource = Universiity;
+            ddlUniversityCampuses.DataTextField = "campusname";
+            ddlUniversityCampuses.DataValueField = "campusid";
+            ddlUniversityCampuses.DataBind();
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
+    }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetUniversityCampuses(int universityId)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var campuses = db1.universitycampus.Where(x => x.universityid == universityId).Select(x => new { x.campusid, x.campusname }).ToList();
+        return JsonConvert.SerializeObject(campuses);
     }
 
     private void BindUniversity()
@@ -149,11 +187,19 @@ public partial class admin_editcourse : System.Web.UI.Page
         }
     }
 
-
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         int CourseID = Convert.ToInt32(ViewState["courseID"]);
+
+        var existingMappings = db.course_campus_mapping.Where(x => x.courseid == CourseID).ToList();
+        if (existingMappings != null)
+        {
+            db.course_campus_mapping.RemoveRange(existingMappings);
+            db.SaveChanges();
+        }
+
         coursemaster CourseObj = db.coursemaster.Where(x => x.courseid == CourseID).First();
+        course_dates courseDate = db.course_dates.Where(x => x.courseid == CourseID).FirstOrDefault();
         try
         {
             CourseObj.coursename = txtCourseName.Value.Trim();
@@ -162,12 +208,19 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.modeofstudyId = Convert.ToInt32(ddlstudymode.SelectedItem.Value);
             CourseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
             CourseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            courseDate.commencementdate = Convert.ToDateTime(hidCommencementDate.Value).Date;
             db.SaveChanges();
-            Response.Redirect("~/admin/coursemaster.aspx");
+
+            var campusIds = hidUniversityCampuses.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var campusId in campusIds)
+            {
+                course_campus_mapping mapping = new course_campus_mapping { courseid = CourseObj.courseid, campusid = Convert.ToInt32(campusId) };
+                db.course_campus_mapping.Add(mapping);
+            }
+            db.SaveChanges();
+
+            Response.Redirect("~/admin/coursemaster.aspx", true);
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 }

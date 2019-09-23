@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -105,6 +108,16 @@ public partial class admin_createcourse : System.Web.UI.Page
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }
+
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetUniversityCampuses(int universityId)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var campuses = db1.universitycampus.Where(x => x.universityid == universityId).Select(x => new { x.campusid, x.campusname }).ToList();
+        return JsonConvert.SerializeObject(campuses);
+    }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         coursemaster courseObj = new coursemaster();
@@ -125,16 +138,27 @@ public partial class admin_createcourse : System.Web.UI.Page
                 db.coursemaster.Add(courseObj);
                 db.SaveChanges();
 
+                var commencementDates = hidCommencementDates.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var item in commencementDates)
+                {
+                    var dateArr = item.Split(Convert.ToChar("-"));
+                    var date = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
+                    course_dates course_date = new course_dates() { courseid = courseObj.courseid, commencementdate = date };
+                    db.course_dates.Add(course_date);
+                }
+
+                var campusIds = hidUniversityCampuses.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var campusId in campusIds)
+                {
+                    course_campus_mapping mapping = new course_campus_mapping { courseid = courseObj.courseid, campusid = Convert.ToInt32(campusId) };
+                    db.course_campus_mapping.Add(mapping);
+                }
+                db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
             }
             else
-            {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Course already exists')", true);
-            }
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 }
