@@ -174,6 +174,12 @@
                 $("#" + control2 + "").prop('value', 'Hide Comments');
             }
         });
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#manageapplicantions_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#applicantlist').addClass('active');
+	    });
     </script>
 </asp:Content>
 

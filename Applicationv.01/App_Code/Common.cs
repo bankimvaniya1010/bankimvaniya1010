@@ -916,15 +916,18 @@ public class Common
 
                 System.Web.UI.HtmlControls.HtmlGenericControl label1 = new System.Web.UI.HtmlControls.HtmlGenericControl("Label");
                 label1.ID = "label" + ControlsList[k].labeldescription;
-                label1.Attributes["class"] = "col-md-3 col-form-label form-label";
+                label1.Attributes["class"] = "col-md-2 col-form-label form-label";
                 label1.Attributes["for"] = ControlsList[k].labeldescription;
                 label1.InnerHtml = ControlsList[k].labeldescription;
                 divFormRow.Controls.Add(label1);
                 System.Web.UI.HtmlControls.HtmlGenericControl mycontrol = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                mycontrol.Attributes["class"] = "col-md-4";
+                mycontrol.Attributes["class"] = "col-md-3 prdtl-ans";
                 divFormRow.Controls.Add(mycontrol);
+                System.Web.UI.HtmlControls.HtmlGenericControl rbcontrol = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                rbcontrol.Attributes["class"] = "col-md-3 prdtl-vrfy";
+                divFormRow.Controls.Add(rbcontrol);
                 System.Web.UI.HtmlControls.HtmlGenericControl adminControl = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-                adminControl.Attributes["class"] = "col-md-4";
+                adminControl.Attributes["class"] = "col-md-3";
                 divFormRow.Controls.Add(adminControl);
 
                 if (ControlsList[k].type.ToLower() == "textbox")
@@ -945,8 +948,8 @@ public class Common
                     rbNo.ID = "rblNo" + ControlsList[k].customfieldid;
                     rbNo.GroupName = ControlsList[k].customfieldid.ToString();
                     rbYes.GroupName = ControlsList[k].customfieldid.ToString();
-                    mycontrol.Controls.Add(rbYes);
-                    mycontrol.Controls.Add(rbNo);
+                    rbcontrol.Controls.Add(rbYes);
+                    rbcontrol.Controls.Add(rbNo);
                     TextBox txtcustombox = new TextBox();
                     txtcustombox.ID = "txt" + ControlsList[k].customfieldid;
                     HtmlInputButton btnCustom = new HtmlInputButton();
@@ -1483,6 +1486,21 @@ public class Common
             log.WriteLog(ex.ToString());
         }
         return HighestDegree;
+    }
+    public string GetHighestStudyField(int id)
+    {
+        string Highestfieldofstudy = "";
+        try
+        {
+            var major = db.majordiscipline_master.FirstOrDefault();
+            if (major != null)
+                Highestfieldofstudy = major.description;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return Highestfieldofstudy;        
     }
     [Serializable]
     public class FieldList

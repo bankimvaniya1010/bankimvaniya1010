@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_personaldetail : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0, universityID;
+    int adminId = 0, ApplicantID = 0, universityID;
     bool isAgent = false;
     int formId = 0;
     private GTEEntities db = new GTEEntities();
@@ -24,7 +24,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        userID = Convert.ToInt32(Session["UserID"]);
+        adminId = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -98,6 +98,20 @@ public partial class admin_personaldetail : System.Web.UI.Page
                 if (profileInfo.higheststudycompleted != null)
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
+                }
+                if (profileInfo.fieldofhigheststudy != null)
+                {
+                    lblfieldstudy.Text = objCom.GetHighestStudyField(Convert.ToInt32(profileInfo.fieldofhigheststudy));
+                }
+                if (profileInfo.studycompletedate != null)
+                {
+                    lblhighQualificationCompleteDate.Text = profileInfo.studycompletedate;
+                }
+                String qualificationCountry = "";
+                if (profileInfo.countryofhigheststudy != null)
+                {
+                    qualificationCountry = objCom.GetCountryDiscription(Convert.ToInt32(profileInfo.countryofhigheststudy));
+                    lblhighestQualificationCountry.Text = qualificationCountry;
                 }
                 String Nationality = "";
                 if (profileInfo.nationality != null)
@@ -313,7 +327,18 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         ichigheststudy.Attributes.Add("style", "display:block;");
                         ichigheststudy.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-
+                    case "Highest study successfully completed field":
+                        icfieldstudy.Attributes.Add("style", "display:block;");
+                        icfieldstudy.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "Country of highest qualification":
+                        ichighestQualificationCountry.Attributes.Add("style", "display:block;");
+                        ichighestQualificationCountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "Year and Month of highest qualification":
+                        ichighQualificationCompleteDate.Attributes.Add("style", "display:block;");
+                        ichighQualificationCompleteDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
                     default:
                         break;
 
@@ -424,6 +449,18 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     case "Highest study level successfully completed":
                         higheststudy.Attributes.Add("style", "display:block;");
                         labelhigheststudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Highest study successfully completed field":
+                        fieldstudy.Attributes.Add("style", "display:block;");
+                        labelfieldstudy.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Country of highest qualification":
+                        highestQualificationCountry.Attributes.Add("style", "display:block;");
+                        labelhighestQualificationCountry.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "Year and Month of highest qualification":
+                        highQualificationCompleteDate.Attributes.Add("style", "display:block;");
+                        labelhighQualificationCompleteDate.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     default:
                         break;
@@ -629,6 +666,27 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     else
                         rblhigheststudyYes.Checked = true;
                     break;
+                case "Highest study successfully completed field":
+                    txtfieldstudy.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbfieldstudyNo.Checked = true;
+                    else
+                        rbfieldstudyYes.Checked = true;
+                    break;
+                case "Country of Highest Qualificatiion Achieved":
+                    txthighestQualificationCountry.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbhighestQualificationCountryNo.Checked = true;
+                    else
+                        rbhighestQualificationCountryYes.Checked = true;
+                    break;
+                case "Year and Month of highest qualification":
+                    txthighQualificationCompleteDate.Value = setComments(Comments[k]);
+                    if (Comments[k].adminaction == 0)
+                        rbhighQualificationCompleteDateNo.Checked = true;
+                    else
+                        rbhighQualificationCompleteDateYes.Checked = true;
+                    break;
                 case "Agent Name":
                     txtAgentList.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
@@ -708,10 +766,16 @@ public partial class admin_personaldetail : System.Web.UI.Page
                 adminInputs.Add("Agent Name", txtAgentList.Value.Trim() + "~" + (rblAgentListNo.Checked == true ? 0 : 1));
             if (higheststudy.Style.Value != "display: none")
                 adminInputs.Add("Highest study level successfully completed", txthigheststudy.Value.Trim() + "~" + (rblhigheststudyNo.Checked == true ? 0 : 1));
+            if (fieldstudy.Style.Value != "display: none")
+                adminInputs.Add("Highest study successfully completed field", txtfieldstudy.Value.Trim() + "~" + (rbfieldstudyNo.Checked == true ? 0 : 1));
+            if (highestQualificationCountry.Style.Value != "display: none")
+                adminInputs.Add("Country of Highest Qualificatiion Achieved", txthighestQualificationCountry.Value.Trim() + "~" + (rbhighestQualificationCountryNo.Checked == true ? 0 : 1));
+            if (highQualificationCompleteDate.Style.Value != "display: none")
+                adminInputs.Add("Year and Month of highest qualification", txthighQualificationCompleteDate.Value.Trim() + "~" + (rbhighQualificationCompleteDateNo.Checked == true ? 0 : 1));
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
-            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, adminId, adminInputs);
         }
         catch (Exception ex)
         {

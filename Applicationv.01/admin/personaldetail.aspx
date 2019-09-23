@@ -525,7 +525,65 @@
                         </div>
                     </div>
                 </div>
-
+                 <div class="list-group-item" role="group" id="fieldstudy" runat="server" aria-labelledby="label-fieldstudy" style="display: none">
+                    <div class="form-row">
+                        <label id="labelfieldstudy" runat="server" for="fieldstudy" class="col-md-2 col-form-label form-label">Completed highest study in field </label>
+                        <div class="col-md-6">
+                            <div class="prdtl-ans">
+                                <asp:Label ID="lblfieldstudy" runat="server"></asp:Label>
+                            </div>
+                            <div class="prdtl-vrfy">
+                                <asp:RadioButton ID="rbfieldstudyYes" GroupName="fieldstudy" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbfieldstudyNo" GroupName="fieldstudy" Text="No" runat="server" />
+                            </div>
+                            <span class="helpicon"><i id="icfieldstudy" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" value="Add Remarks" id="btnfieldstudy" />
+                            <input id="txtfieldstudy" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group-item" role="group" id="highestQualificationCountry" runat="server" aria-labelledby="label-highestQualificationCountry" style="display: none">
+                    <div class="form-row">
+                        <label id="labelhighestQualificationCountry" runat="server" for="highestQualificationCountry" class="col-md-2 col-form-label form-label">Country of Highest Qualificatiion Achieved</label>
+                        <div class="col-md-6">
+                             <div class="prdtl-ans">
+                                <asp:Label ID="lblhighestQualificationCountry" runat="server"></asp:Label>
+                            </div>
+                             <div class="prdtl-vrfy">
+                                <asp:RadioButton ID="rbhighestQualificationCountryYes" GroupName="QualificationCountry" Text="Yes" runat="server" />
+                                <asp:RadioButton ID="rbhighestQualificationCountryNo" GroupName="QualificationCountry" Text="No" runat="server" />
+                             </div>
+                            <span class="helpicon"><i id="ichighestQualificationCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="button" value="Add Remarks" id="btnhighestQualificationCountry" />
+                            <input id="txthighestQualificationCountry" runat="server" type="text" style="display: none" class="form-control" placeholder="Admin Comments">
+                        </div>
+                    </div>
+                </div>
+                 <div class="list-group-item" id="highQualificationCompleteDate" runat="server" style="display: none">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-highQualificationCompleteDate">
+                        <div class="form-row">
+                            <label id="labelhighQualificationCompleteDate" runat="server" for="highQualificationCompleteDate" class="col-md-2 col-form-label form-label">Completion Date </label>
+                            <div class="col-md-6">
+                                <div class="prdtl-ans">
+                                    <asp:Label ID="lblhighQualificationCompleteDate" runat="server"></asp:Label>
+                                </div>
+                                <div class="prdtl-vrfy">
+                                    <asp:RadioButton ID="rbhighQualificationCompleteDateYes" GroupName="QualificationCompleteDate" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rbhighQualificationCompleteDateNo" GroupName="QualificationCompleteDate" Text="No" runat="server" />
+                                </div>
+                                <span class="helpicon"><i id="ichighQualificationCompleteDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="button" value="Add Remarks" id="btnhighQualificationCompleteDate" />
+                                <input id="txthighQualificationCompleteDate" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="list-group-item" id="disabilitydesc" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-disabilitydesc">
                         <div class="form-row">
@@ -595,7 +653,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validateform()"/>
                             <div class="col-md-6">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
 
@@ -607,260 +665,457 @@
         </div>
     </div>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
               <%    for (int n = 0; n < CustomControls.Count; n++)
         {
             string btnName = "ContentPlaceHolder1_btn" + CustomControls[n].customfieldid.ToString();
             string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
-            string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+            string rblNo = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
+            string rblYes = "ContentPlaceHolder1_rblYes" + CustomControls[n].customfieldid.ToString();
         %>
+            if ($('#<%=txtName%>').val() != "")
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
 
             $("#<%=btnName%>").click(function () {
                 ManageRemarks('<%=txtName%>', '<%=btnName%>');
             });
-            $("#<%=rblName%>").click(function () {
-                ManageRemarks('<%=txtName%>', '<%=btnName%>');
+            $("#<%=rblYes%>").click(function () {
+                ManageRemarksIfYesCheked('<%=txtName%>', '<%=btnName%>');
             });
-            if ($('#<%=rblName%>').prop('checked') == true)
+            $('#<%=rblNo%>').click(function () {
                 ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
+            });
 
          <%  }%>
-             if ($('#<%=rblhigheststudyNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
-            if ($('#<%=rblAgentListNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtAgentList.ClientID%>', 'btnAgentList');
-            if ($('#<%=rblAgentNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtAgent.ClientID%>', 'btnAgent');
-            if ($('#<%=rbldisabilitydescNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtDisabilityDescription.ClientID%>', 'btndisabilitydesc');
-            if ($('#<%=rblDisabilityNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtDisability.ClientID%>', 'btnDisability');
-            if ($('#<%=rblMarriagedateNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtMarrigeDate.ClientID%>', 'btnMarriagedate');
-            if ($('#<%=rblSpouseDobNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtSpouseDOB.ClientID%>', 'btnSpouseDob');
-            if ($('#<%=rblSpouseNatinalityNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtSpouseNationality.ClientID%>', 'btnSpouseNatinality');
-            if ($('#<%=rblspouseNameNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtSpousename.ClientID%>', 'btnspouseName');
-            if ($('#<%=rblMaritalNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtMarital.ClientID%>', 'btnMarital');
-            if ($('#<%=rblBirthCountryNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtBirthCountry.ClientID%>', 'btnBirthCountry');
-            if ($('#<%=rblSecondNationNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtOtherNation.ClientID%>', 'btnSecondNation');
-            if ($('#<%=rblChineseCodeNoNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtDualNationlity.ClientID%>', 'btnDualNationality');
-            if ($('#<%=rblSpouseNatinalityNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtRussiaName.ClientID%>', 'btnRussianName');
-            if ($('#<%=rblSpouseNatinalityNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtChineseCodeNo.ClientID%>', 'btnChineseCodeNo');
-            if ($('#<%=rblChineseCodeNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtChineseCode.ClientID%>', 'btnChineseCode');
-            if ($('#<%=rblNationalityNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtNationality.ClientID%>', 'btnNationality');
-            if ($('#<%=rblGenderNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtGender.ClientID%>', 'btnGender');
-            if ($('#<%=rblDOBNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtDOB.ClientID%>', 'btnDOB');
-            if ($('#<%=rblMiddleNameNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtMiddleName.ClientID%>', 'btnMiddleName');
-            if ($('#<%=rblPrefferedNameNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtPrefferedName.ClientID%>', 'btnPrefferedName');
-            if ($('#<%=rblLastNameNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtLastName.ClientID%>', 'btnLastName');
-            if ($('#<%=rblFirstNameNo.ClientID%>').prop('checked') == true)
+            //comment textbox
+            if ($("#<%=txtFirstName.ClientID%>").val() != "")
                 ManageRemarksIfNoCheked('<%=txtFirstName.ClientID%>', 'btnFirstName');
-            if ($('#<%=rblTitleNo.ClientID%>').prop('checked') == true)
+            if ($("#<%=txtTitle.ClientID%>").val() != "")
                 ManageRemarksIfNoCheked('<%=txtTitle.ClientID%>', 'btnTitle');
-            if ($('#<%=rblpassportsameasLastNameNo.ClientID%>').prop('checked') == true)
-                ManageRemarksIfNoCheked('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
-            if ($('#<%=rblpassportsameasFirstNameNo.ClientID%>').prop('checked') == true)
+            if ($("#<%=txtAgentList.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtAgentList.ClientID%>', 'btnAgentList');
+            if ($("#<%=txtAgent.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtAgent.ClientID%>', 'btnAgent');
+            if ($("#<%=txtDisabilityDescription.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtDisabilityDescription.ClientID%>', 'btndisabilitydesc');
+            if ($("#<%=txtDisability.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtDisability.ClientID%>', 'btnDisability');
+            if ($("#<%=txtMarrigeDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtMarrigeDate.ClientID%>', 'btnMarriagedate');
+            if ($("#<%=txtSpouseDOB.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSpouseDOB.ClientID%>', 'btnSpouseDob');
+            if ($("#<%=txtSpouseNationality.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSpouseNationality.ClientID%>', 'btnSpouseNatinality');
+            if ($("#<%=txtSpousename.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSpousename.ClientID%>', 'btnspouseName');
+            if ($("#<%=txtMarital.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtMarital.ClientID%>', 'btnMarital');
+            if ($("#<%=txtBirthCountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtBirthCountry.ClientID%>', 'btnBirthCountry');
+            if ($("#<%=txtOtherNation.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtOtherNation.ClientID%>', 'btnSecondNation');
+            if ($("#<%=txtDualNationlity.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtDualNationlity.ClientID%>', 'btnDualNationality');
+            if ($("#<%=txtRussiaName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtRussiaName.ClientID%>', 'btnRussianName');
+            if ($("#<%=txtChineseCodeNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtChineseCodeNo.ClientID%>', 'btnChineseCodeNo');
+            if ($("#<%=txtChineseCode.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtChineseCode.ClientID%>', 'btnChineseCode');
+            if ($("#<%=txtNationality.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtNationality.ClientID%>', 'btnNationality');
+            if ($("#<%=txtDOB.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtDOB.ClientID%>', 'btnDOB');
+            if ($("#<%=txtMiddleName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtMiddleName.ClientID%>', 'btnMiddleName');
+            if ($("#<%=txtPrefferedName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtPrefferedName.ClientID%>', 'btnPrefferedName');
+            if ($("#<%=txtLastName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtLastName.ClientID%>', 'btnLastName');
+            if ($("#<%=txtpassportsameasFirstName.ClientID%>").val() != "")
                 ManageRemarksIfNoCheked('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
-            if ($('#<%=rblpassportsameasmiddlenameNo.ClientID%>').prop('checked') == true)
+            if ($("#<%=txtpassportsameasmiddlename.ClientID%>").val() != "")
                 ManageRemarksIfNoCheked('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
-            $("#btnAgentList").click(function () {
-                ManageRemarks('<%=txtAgentList.ClientID%>', 'btnAgentList');
-            });
-            $("#<%=rblAgentListNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtAgentList.ClientID%>', 'btnAgentList');
-            });
-            $("#btnAgent").click(function () {
-                ManageRemarks('<%=txtAgent.ClientID%>', 'btnAgent');
-            });
-            $("#<%=rblAgentNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtAgent.ClientID%>', 'btnAgent');
-            });
-            $("#btndisabilitydesc").click(function () {
-                ManageRemarks('<%=txtDisabilityDescription.ClientID%>', 'btndisabilitydesc');
-            });
-            $("#<%=rbldisabilitydescNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtDisabilityDescription.ClientID%>', 'btndisabilitydesc');
-            });
+            if ($("#<%=txtpassportsameasLastName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
+            if ($("#<%=txthigheststudy.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
+            if ($("#<%=txtGender.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtGender.ClientID%>', 'btnGender');
+            if ($("#<%=txtfieldstudy.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtfieldstudy.ClientID%>', 'btnfieldstudy');
+            if ($("#<%=txthighestQualificationCountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighestQualificationCountry.ClientID%>', 'btnhighestQualificationCountry');
+            if ($("#<%=txthighQualificationCompleteDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighQualificationCompleteDate.ClientID%>', 'btnhighQualificationCompleteDate');
+           
+        });
+        //button
+        $("#btnAgentList").click(function () {
+            ManageRemarks('<%=txtAgentList.ClientID%>', 'btnAgentList');
+        });
+        $("#btnAgent").click(function () {
+            ManageRemarks('<%=txtAgent.ClientID%>', 'btnAgent');
+        });
+        $("#btndisabilitydesc").click(function () {
+            ManageRemarks('<%=txtDisabilityDescription.ClientID%>', 'btndisabilitydesc');
+        });
+        $("#btnDisability").click(function () {
+            ManageRemarks('<%=txtDisability.ClientID%>', 'btnDisability');
+        });
+        $("#btnMarriagedate").click(function () {
+            ManageRemarks('<%=txtMarrigeDate.ClientID%>', 'btnMarriagedate');
+        });
+        $("#btnSpouseDob").click(function () {
+            ManageRemarks('<%=txtSpouseDOB.ClientID%>', 'btnSpouseDob');
+        });
+        $("#btnSpouseNatinality").click(function () {
+            ManageRemarks('<%=txtSpouseNationality.ClientID%>', 'btnSpouseNatinality');
+        });
+        $("#btnspouseName").click(function () {
+            ManageRemarks('<%=txtSpousename.ClientID%>', 'btnspouseName');
+        });
+        $("#btnMarital").click(function () {
+            ManageRemarks('<%=txtMarital.ClientID%>', 'btnMarital');
+        });
+        $("#btnBirthCountry").click(function () {
+            ManageRemarks('<%=txtBirthCountry.ClientID%>', 'btnBirthCountry');
+        });
+        $("#btnSecondNation").click(function () {
+            ManageRemarks('<%=txtOtherNation.ClientID%>', 'btnSecondNation');
+        });
+        $("#btnDualNationality").click(function () {
+            ManageRemarks('<%=txtDualNationlity.ClientID%>', 'btnDualNationality');
+        });
+        $("#btnRussianName").click(function () {
+            ManageRemarks('<%=txtRussiaName.ClientID%>', 'btnRussianName');
+        });
+        $("#btnChineseCodeNo").click(function () {
+            ManageRemarks('<%=txtChineseCodeNo.ClientID%>', 'btnChineseCodeNo');
+        });
+        $("#btnChineseCode").click(function () {
+            ManageRemarks('<%=txtChineseCode.ClientID%>', 'btnChineseCode');
+        });
+        $("#btnNationality").click(function () {
+            ManageRemarks('<%=txtNationality.ClientID%>', 'btnNationality');
+        });
+        $("#btnDOB").click(function () {
+            ManageRemarks('<%=txtDOB.ClientID%>', 'btnDOB');
+        });
+        $("#btnMiddleName").click(function () {
+            ManageRemarks('<%=txtMiddleName.ClientID%>', 'btnMiddleName');
+        });
+         $("#btnPrefferedName").click(function () {
+            ManageRemarks('<%=txtPrefferedName.ClientID%>', 'btnPrefferedName');
+        });
+        $("#btnLastName").click(function () {
+            ManageRemarks('<%=txtLastName.ClientID%>', 'btnLastName');
+        });
+        $("#btnFirstName").click(function () {
+            ManageRemarks('<%=txtFirstName.ClientID%>', 'btnFirstName');
+        });
+        $("#btnTitle").click(function () {
+            ManageRemarks('<%=txtTitle.ClientID%>', 'btnTitle');
+        });
+        $("#btnpassportsameasFirstName").click(function () {
+            ManageRemarks('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
+        });
+        $("#btnpassportsameasmiddlename").click(function () {
+            ManageRemarks('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
+        });
+        $("#btnpassportsameasLastName").click(function () {
+            ManageRemarks('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
+        });
+        $("#btnhigheststudy").click(function () {
+            ManageRemarks('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
+        });
+        $("#btnGender").click(function () {
+            ManageRemarks('<%=txtGender.ClientID%>', 'btnGender');
+        });
+        $("#btnfieldstudy").click(function () {
+            ManageRemarks('<%=txtfieldstudy.ClientID%>', 'btnfieldstudy');
+        });
+        $("#btnhighestQualificationCountry").click(function () {
+            ManageRemarks('<%=txthighestQualificationCountry.ClientID%>', 'btnhighestQualificationCountry');
+        });
+        $("#btnhighQualificationCompleteDate").click(function () {
+            ManageRemarks('<%=txthighQualificationCompleteDate.ClientID%>', 'btnhighQualificationCompleteDate');
+        }); 
+        //Yes Click
+        $("#<%=rblAgentListYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtAgentList.ClientID%>', 'btnAgentList');
+        }); 
+        $("#<%=rblAgentYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtAgent.ClientID%>', 'btnAgent');
+        }); 
+        $("#<%=rbldisabilitydescYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtDisabilityDescription.ClientID%>', 'btndisabilitydesc');
+        }); 
+        $("#<%=rblDisabilityYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtDisability.ClientID%>', 'btnDisability');
+        });
+        $("#<%=rblMarriagedateYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtMarrigeDate.ClientID%>', 'btnMarriagedate');
+        }); 
+        $("#<%=rblSpouseDobYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtSpouseDOB.ClientID%>', 'btnSpouseDob');
+        }); 
+        $("#<%=rblSpouseNatinalityYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtSpouseNationality.ClientID%>', 'btnSpouseNatinality');
+        });
+        $("#<%=rblspouseNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtSpousename.ClientID%>', 'btnspouseName');
+        });
+        $("#<%=rblMaritalYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtMarital.ClientID%>', 'btnMarital');
+        });
+        $("#<%=rblBirthCountryYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtBirthCountry.ClientID%>', 'btnBirthCountry');
+        }); 
+        $("#<%=rblSecondNationYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtOtherNation.ClientID%>', 'btnSecondNation');
+        });
+        $("#<%=rblDualNationalityYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtDualNationlity.ClientID%>', 'btnDualNationality');
+        });
+        $("#<%=rblRussianNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtRussiaName.ClientID%>', 'btnRussianName');
+        });
+        $("#<%=rblChineseCodeYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtChineseCodeNo.ClientID%>', 'btnChineseCodeNo');
+        }); 
+        $("#<%=rblChineseCodeYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtChineseCode.ClientID%>', 'btnChineseCode');
+        });
+        $("#<%=rblNationalityYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtNationality.ClientID%>', 'btnNationality');
+        }); 
+        $("#<%=rblDOBYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtDOB.ClientID%>', 'btnDOB');
+        });
+        $("#<%=rblMiddleNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtMiddleName.ClientID%>', 'btnMiddleName');
+        });
+        $("#<%=rblPrefferedNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtPrefferedName.ClientID%>', 'btnPrefferedName');
+        }); 
+        $("#<%=rblLastNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtLastName.ClientID%>', 'btnLastName');
+        }); 
+        $("#<%=rblFirstNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtFirstName.ClientID%>', 'btnFirstName');
+        }); 
+        $("#<%=rblTitleYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtTitle.ClientID%>', 'btnTitle');
+        }); 
+        $("#<%=rblpassportsameasFirstNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
+        });
+        $("#<%=rblpassportsameasmiddlenameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
+        });
+        $("#<%=rblpassportsameasLastNameYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
+        }); 
+        $("#<%=rblhigheststudyYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
+        }); 
+        $("#<%=rblGenderYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtGender.ClientID%>', 'btnGender');
+        });
+        $("#<%=rbfieldstudyYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txtfieldstudy.ClientID%>', 'btnfieldstudy');
+        });
+        $("#<%=rbhighestQualificationCountryYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txthighestQualificationCountry.ClientID%>', 'btnhighestQualificationCountry');
+        });  
+        $("#<%=rbhighQualificationCompleteDateYes.ClientID%>").click(function () {
+            ManageRemarksIfYesCheked('<%=txthighQualificationCompleteDate.ClientID%>', 'btnhighQualificationCompleteDate');
+        });
+        //No click
+        $("#<%=rblAgentListNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtAgentList.ClientID%>', 'btnAgentList');
+        });
+        $("#<%=rblAgentNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtAgent.ClientID%>', 'btnAgent');
+        });
+        $("#<%=rbldisabilitydescNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtDisabilityDescription.ClientID%>', 'btndisabilitydesc');
+        });
+        $("#<%=rblDisabilityNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtDisability.ClientID%>', 'btnDisability');
+        });
+        $("#<%=rblMarriagedateNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtMarrigeDate.ClientID%>', 'btnMarriagedate');
+        });
+        $("#<%=rblSpouseDobNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtSpouseDOB.ClientID%>', 'btnSpouseDob');
+        });
+        $("#<%=rblSpouseNatinalityNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtSpouseNationality.ClientID%>', 'btnSpouseNatinality');
+        });
+        $("#<%=rblspouseNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtSpousename.ClientID%>', 'btnspouseName');
+        }); 
+        $("#<%=rblMaritalNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtMarital.ClientID%>', 'btnMarital');
+        });
+        $("#<%=rblBirthCountryNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtBirthCountry.ClientID%>', 'btnBirthCountry');
+        });
+        $("#<%=rblSecondNationNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtOtherNation.ClientID%>', 'btnSecondNation');
+        });
+        $("#<%=rblDualNationalityNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtDualNationlity.ClientID%>', 'btnDualNationality');
+        });
+        $("#<%=rblRussianNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtRussiaName.ClientID%>', 'btnRussianName');
+        });
+        $("#<%=rblChineseCodeNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtChineseCodeNo.ClientID%>', 'btnChineseCodeNo');
+        });
+        $("#<%=rblChineseCodeNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtChineseCode.ClientID%>', 'btnChineseCode');
+        });
+        $("#<%=rblNationalityNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtNationality.ClientID%>', 'btnNationality');
+        });
+        $("#<%=rblDOBNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtDOB.ClientID%>', 'btnDOB');
+        });
+        $("#<%=rblMiddleNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtMiddleName.ClientID%>', 'btnMiddleName');
+        });
+        $("#<%=rblPrefferedNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtPrefferedName.ClientID%>', 'btnPrefferedName');
+        });
+        $("#<%=rblLastNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtLastName.ClientID%>', 'btnLastName');
+        });
+        $("#<%=rblFirstNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtFirstName.ClientID%>', 'btnFirstName');
+        });
+        $("#<%=rblTitleNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtTitle.ClientID%>', 'btnTitle');
+        });
+        $("#<%=rblpassportsameasFirstNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
+        });
+        $("#<%=rblpassportsameasmiddlenameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
+        });
+        $("#<%=rblpassportsameasLastNameNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
+        });
+        $("#<%=rblhigheststudyNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
+        }); 
+        $("#<%=rblGenderNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtGender.ClientID%>', 'btnGender');
+        });
+        $("#<%=rbfieldstudyNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txtfieldstudy.ClientID%>', 'btnfieldstudy');
+        });
+        $("#<%=rbhighestQualificationCountryNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txthighestQualificationCountry.ClientID%>', 'btnhighestQualificationCountry');
+        });         
+        $("#<%=rbhighQualificationCompleteDateNo.ClientID%>").click(function () {
+            ManageRemarksIfNoCheked('<%=txthighQualificationCompleteDate.ClientID%>', 'btnhighQualificationCompleteDate');
+        });
 
-            $("#btnDisability").click(function () {
-                ManageRemarks('<%=txtDisability.ClientID%>', 'btnDisability');
-            });
-            $("#<%=rblDisabilityNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtDisability.ClientID%>', 'btnDisability');
-            });
-            $("#btnMarriagedate").click(function () {
-                ManageRemarks('<%=txtMarrigeDate.ClientID%>', 'btnMarriagedate');
-            });
-            $("#<%=rblMarriagedateNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtMarrigeDate.ClientID%>', 'btnMarriagedate');
-            });
-            $("#btnSpouseDob").click(function () {
-                ManageRemarks('<%=txtSpouseDOB.ClientID%>', 'btnSpouseDob');
-            });
-            $("#<%=rblSpouseDobNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtSpouseDOB.ClientID%>', 'btnSpouseDob');
-            });
-            $("#btnSpouseNatinality").click(function () {
-                ManageRemarks('<%=txtSpouseNationality.ClientID%>', 'btnSpouseNatinality');
-            });
-            $("#<%=rblSpouseNatinalityNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtSpouseNationality.ClientID%>', 'btnSpouseNatinality');
-            });
-            $("#btnspouseName").click(function () {
-                ManageRemarks('<%=txtSpousename.ClientID%>', 'btnspouseName');
-            });
-            $("#<%=rblspouseNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtSpousename.ClientID%>', 'btnspouseName');
-            });
-            $("#btnMarital").click(function () {
-                ManageRemarks('<%=txtMarital.ClientID%>', 'btnMarital');
-            });
-            $("#<%=rblMaritalNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtMarital.ClientID%>', 'btnMarital');
-            });
-            $("#btnBirthCountry").click(function () {
-                ManageRemarks('<%=txtBirthCountry.ClientID%>', 'btnBirthCountry');
-            });
-            $("#<%=rblBirthCountryNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtBirthCountry.ClientID%>', 'btnBirthCountry');
-            });
-            $("#btnSecondNation").click(function () {
-                ManageRemarks('<%=txtOtherNation.ClientID%>', 'btnSecondNation');
-            });
-            $("#<%=rblSecondNationNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtOtherNation.ClientID%>', 'btnSecondNation');
-            });
-            $("#btnDualNationality").click(function () {
-                ManageRemarks('<%=txtDualNationlity.ClientID%>', 'btnDualNationality');
-            });
-            $("#<%=rblDualNationalityNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtDualNationlity.ClientID%>', 'btnDualNationality');
-            });
-            $("#btnRussianName").click(function () {
-                ManageRemarks('<%=txtRussiaName.ClientID%>', 'btnRussianName');
-            });
-            $("#<%=rblRussianNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtRussiaName.ClientID%>', 'btnRussianName');
-            });
-            $("#btnChineseCodeNo").click(function () {
-                ManageRemarks('<%=txtChineseCodeNo.ClientID%>', 'btnChineseCodeNo');
-            });
-            $("#<%=rblChineseCodeNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtChineseCodeNo.ClientID%>', 'btnChineseCodeNo');
-            });
-            $("#btnChineseCode").click(function () {
-                ManageRemarks('<%=txtChineseCode.ClientID%>', 'btnChineseCode');
-            });
-            $("#<%=rblChineseCodeNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtChineseCode.ClientID%>', 'btnChineseCode');
-            });
-            $("#btnNationality").click(function () {
-                ManageRemarks('<%=txtNationality.ClientID%>', 'btnNationality');
-            });
-            $("#<%=rblNationalityNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtNationality.ClientID%>', 'btnNationality');
-            });
-            $("#btnGender").click(function () {
-                ManageRemarks('<%=txtGender.ClientID%>', 'btnGender');
-            });
-            $("#<%=rblGenderNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtGender.ClientID%>', 'btnGender');
-            });
-
-
-            $("#btnDOB").click(function () {
-                ManageRemarks('<%=txtDOB.ClientID%>', 'btnDOB');
-            });
-            $("#<%=rblDOBNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtDOB.ClientID%>', 'btnDOB');
-            });
-            $("#btnMiddleName").click(function () {
-                ManageRemarks('<%=txtMiddleName.ClientID%>', 'btnMiddleName');
-            });
-            $("#<%=rblMiddleNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtMiddleName.ClientID%>', 'btnMiddleName');
-            });
-            $("#btnPrefferedName").click(function () {
-                ManageRemarks('<%=txtPrefferedName.ClientID%>', 'btnPrefferedName');
-            });
-            $("#<%=rblPrefferedNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtPrefferedName.ClientID%>', 'btnPrefferedName');
-            });
-            $("#btnLastName").click(function () {
-                ManageRemarks('<%=txtLastName.ClientID%>', 'btnLastName');
-            });
-            $("#<%=rblLastNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtLastName.ClientID%>', 'btnLastName');
-            });
-            $("#btnFirstName").click(function () {
-                ManageRemarks('<%=txtFirstName.ClientID%>', 'btnFirstName');
-            });
-            $("#<%=rblFirstNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtFirstName.ClientID%>', 'btnFirstName');
-            });
-            $("#btnTitle").click(function () {
-                ManageRemarks('<%=txtTitle.ClientID%>', 'btnTitle');
-            });
-            $("#<%=rblTitleNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtTitle.ClientID%>', 'btnTitle');
-            });
-            $("#btnpassportsameasFirstName").click(function () {
-                ManageRemarks('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
-            });
-            $("#<%=rblpassportsameasFirstNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtpassportsameasFirstName.ClientID%>', 'btnpassportsameasFirstName');
-            });
-            $("#btnpassportsameasmiddlename").click(function () {
-                ManageRemarks('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
-            });
-            $("#<%=rblpassportsameasmiddlenameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtpassportsameasmiddlename.ClientID%>', 'btnpassportsameasmiddlename');
-            });
-            $("#btnpassportsameasLastName").click(function () {
-                ManageRemarks('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
-            });
-            $("#<%=rblpassportsameasLastNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txtpassportsameasLastName.ClientID%>', 'btnpassportsameasLastName');
-            });
-             $("#btnhigheststudy").click(function () {
-                ManageRemarks('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
-            });
-            $("#<%=rblpassportsameasLastNameNo.ClientID%>").click(function () {
-                ManageRemarks('<%=txthigheststudy.ClientID%>', 'btnhigheststudy');
-            });
-            function ManageRemarks(cntrol1, control2) {
-                if ($("#" + cntrol1 + "").is(':hidden')) {
-                    $("#" + cntrol1 + "").css('display', 'block');
-                    $("#" + control2 + "").prop('value', 'Hide Comments');
-                    // $("#btnTwitter").html("Hide Comments");
-                }
-                else {
-                    $("#" + cntrol1 + "").css('display', 'none');
-                    // $("#btnTwitter").html("Add Comments")
-                    $("#" + control2 + "").prop('value', 'Add Comments');
-                }
+        function ManageRemarks(cntrol1, control2)
+        {
+            if ($("#" + cntrol1 + "").is(':hidden')) {
+                $("#" + cntrol1 + "").css('display', 'block');
+                $("#" + control2 + "").prop('value', 'Hide Remarks');
             }
-            function ManageRemarksIfNoCheked(cntrol, control2) {
+            else
+            {
+                $("#" + cntrol1 + "").css('display', 'none');
+                $("#" + control2 + "").prop('value', 'Add Remarks');
+            }
+        }
+        function ManageRemarksIfYesCheked(cntrol, control2) {
+                $("#" + cntrol + "").css('display', 'none');
+                $("#" + control2 + "").prop('value', 'Add Remarks');
+        }
+        function ManageRemarksIfNoCheked(cntrol, control2) {
                 $("#" + cntrol + "").css('display', 'block');
-                $("#" + control2 + "").prop('value', 'Hide Comments');
-            }
-        });</script>
+                $("#" + control2 + "").prop('value', 'Hide Remarks');
+        }
+       function validateform()
+        {
+            var flag = false;
+            if (!$("#<%=title.ClientID%>").is(':hidden') && !($("#<%=rblTitleYes.ClientID%>").is(':checked') || $("#<%=rblTitleNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Title");
+            else if (!$("#<%=firstname.ClientID%>").is(':hidden') && !($("#<%=rblFirstNameYes.ClientID%>").is(':checked') || $("#<%=rblFirstNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for First Name");
+            else if (!$("#<%=passportsameasFirstName.ClientID%>").is(':hidden') && !($("#<%=rblpassportsameasFirstNameYes.ClientID%>").is(':checked') || $("#<%=rblpassportsameasFirstNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Passport first name same as above");
+            else if (!$("#<%=lastname.ClientID%>").is(':hidden') && !($("#<%=rblLastNameYes.ClientID%>").is(':checked') || $("#<%=rblLastNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Last Name");
+            else if (!$("#<%=passportsameasLastName.ClientID%>").is(':hidden') && !($("#<%=rblpassportsameasLastNameYes.ClientID%>").is(':checked') || $("#<%=rblpassportsameasLastNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Passport last name same as above");
+            else if (!$("#<%=preferedname.ClientID%>").is(':hidden') && !($("#<%=rblPrefferedNameYes.ClientID%>").is(':checked') || $("#<%=rblPrefferedNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Preffered Name");
+            else if (!$("#<%=middlename.ClientID%>").is(':hidden') && !($("#<%=rblMiddleNameYes.ClientID%>").is(':checked') || $("#<%=rblMiddleNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Middle Name");
+            else if (!$("#<%=passportsameasmiddlename.ClientID%>").is(':hidden') && !($("#<%=rblpassportsameasmiddlenameYes.ClientID%>").is(':checked') || $("#<%=rblpassportsameasmiddlenameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for passport Middle name same as above");
+            else if (!$("#<%=dob.ClientID%>").is(':hidden') && !($("#<%=rblDOBYes.ClientID%>").is(':checked') || $("#<%=rblDOBNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Date of birth");
+            else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rblGenderYes.ClientID%>").is(':checked') || $("#<%=rblGenderNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for gender");
+            else if (!$("#<%=nationality.ClientID%>").is(':hidden') && !($("#<%=rblNationalityYes.ClientID%>").is(':checked') || $("#<%=rblNationalityNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Nationality");
+            else if (!$("#<%=chineseCode.ClientID%>").is(':hidden') && !($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') || $("#<%=rblChineseCodeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for chinese Commercial Code");
+            else if (!$("#<%=textChineseCodeDiv.ClientID%>").is(':hidden') && !($("#<%=rblChineseCodeNoYes.ClientID%>").is(':checked') || $("#<%=rblChineseCodeNoNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Chinese Commercial Code Number");
+            else if (!$("#<%=russianName.ClientID%>").is(':hidden') && !($("#<%=rblRussianNameYes.ClientID%>").is(':checked') || $("#<%=rblRussianNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for In English, provide your patronymic name");
+            else if (!$("#<%=dualNationality.ClientID%>").is(':hidden') && !($("#<%=rblDualNationalityYes.ClientID%>").is(':checked') || $("#<%=rblDualNationalityNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Dual Nationality");
+            else if (!$("#<%=secondNation.ClientID%>").is(':hidden') && !($("#<%=rblSecondNationYes.ClientID%>").is(':checked') || $("#<%=rblSecondNationNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Dual Nationality and citizenship");
+            else if (!$("#<%=birthcountry.ClientID%>").is(':hidden') && !($("#<%=rblBirthCountryYes.ClientID%>").is(':checked') || $("#<%=rblBirthCountryNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Chinese Code");
+            else if (!$("#<%=marital.ClientID%>").is(':hidden') && !($("#<%=rblMaritalYes.ClientID%>").is(':checked') || $("#<%=rblMaritalNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Marital status");
+            else if (!$("#<%=statusMarried.ClientID%>").is(':hidden') && !($("#<%=rblspouseNameYes.ClientID%>").is(':checked') || $("#<%=rblspouseNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Spouse Name");
+            else if (!$("#<%=SpouseNationality.ClientID%>").is(':hidden') && !($("#<%=rblSpouseNatinalityYes.ClientID%>").is(':checked') || $("#<%=rblSpouseNatinalityNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Spouse Nationality");
+            else if (!$("#<%=SpouseDOB.ClientID%>").is(':hidden') && !($("#<%=rblSpouseDobYes.ClientID%>").is(':checked') || $("#<%=rblSpouseDobNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Spouse Date of birth");
+            else if (!$("#<%=MarriageDate.ClientID%>").is(':hidden') && !($("#<%=rblMarriagedateYes.ClientID%>").is(':checked') || $("#<%=rblMarriagedateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Date of Marriage");
+            else if (!$("#<%=higheststudy.ClientID%>").is(':hidden') && !($("#<%=rblhigheststudyYes.ClientID%>").is(':checked') || $("#<%=rblhigheststudyNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highest study");
+            else if (!$("#<%=disability.ClientID%>").is(':hidden') && !($("#<%=rblDisabilityYes.ClientID%>").is(':checked') || $("#<%=rblDisabilityNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Do You have Disability ");         
+            else if (!$("#<%=fieldstudy.ClientID%>").is(':hidden') && !($("#<%=rbfieldstudyYes.ClientID%>").is(':checked') || $("#<%=rbfieldstudyNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for field of study");
+            else if (!$("#<%=highestQualificationCountry.ClientID%>").is(':hidden') && !($("#<%=rbhighestQualificationCountryYes.ClientID%>").is(':checked') || $("#<%=rbhighestQualificationCountryNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option forqualification country ");
+            else if (!$("#<%=highQualificationCompleteDate.ClientID%>").is(':hidden') && !($("#<%=rbhighQualificationCompleteDateYes.ClientID%>").is(':checked') || $("#<%=rbhighQualificationCompleteDateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for qualification date");
+            else if (!$("#<%=agent.ClientID%>").is(':hidden') && !($("#<%=rblAgentYes.ClientID%>").is(':checked') || $("#<%=rblAgentNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Are you referred by agent ");
+            else
+                flag = true;
+            return flag;
+        } 
+
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#manageapplicantions_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#applicantlist').addClass('active');
+	    });
+    </script>
 </asp:Content>
 
 
