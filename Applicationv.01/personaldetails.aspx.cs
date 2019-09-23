@@ -119,6 +119,7 @@ public partial class personaldetails : System.Web.UI.Page
             // ddlYear.Items.FindByValue(System.DateTime.Now.Year.ToString()).Selected = true;  //set current year as selected
             DateTimeFormatInfo info = DateTimeFormatInfo.GetInstance(null);
             //Fill Months
+            ddl.Items.Add(new ListItem("Please select", "0"));
             for (int i = 1; i <= 12; i++)
             {
                 ddl.Items.Add(new ListItem(info.GetMonthName(i).Substring(0, 3).ToUpper(), i.ToString()));
@@ -134,6 +135,7 @@ public partial class personaldetails : System.Web.UI.Page
         try
         {
             int maxYers = setDefaultMaxYears ? DateTime.Now.AddYears(-15).Year : DateTime.Now.Year;
+            ddl.Items.Add(new ListItem("Please select", "0"));
             for (int i = 1975; i <= maxYers; i++)
             {
                 ddl.Items.Add(i.ToString());

@@ -192,16 +192,19 @@
                         <div class="list-group-item" style='<%= Name == "" ? "display:none;": "display:block;"  %>'>
                             <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                 <div class="form-row">
-                                    <label id="labelname" for="name" class="col-md-3 col-form-label form-label"><%=Name %></label>
+                                    <label id="labelname" for="name" class="col-md-2 col-form-label form-label"><%=Name %></label>
 
-                                    <div class="col-md-4">
-                                        <span><%=referenccheckList[k].name %></span>
-                                        <input type="radio" id="<%="rblNameYes" + k %>" name="<%="Name" + k %>" value="1">Yes
-                                        <input type="radio" id="<%="rblNameNo" + k %>" name="<%="Name" + k %>" value="0">No
-                                        No
+                                    <div class="col-md-6">
+                                        <div class="prdtl-ans">
+                                            <span><%=referenccheckList[k].name %></span>
+                                        </div>
+                                        <div class="prdtl-vrfy">
+                                            <input type="radio" id="<%="rblNameYes" + k %>" name="<%="Name" + k %>" value="1">Yes
+                                            <input type="radio" id="<%="rblNameNo" + k %>" name="<%="Name" + k %>" value="0">No
+                                        </div>
                                         <span class="helpicon"><i id="<%="icName" + k %>" class="fa fa-info-circle" data-tipso="<%=NameTooltips %>" style='<%= NameTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="button" value="Add Remarks" id="<%="btnName" + k %>" />
                                         <input id="<%="txtName" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
                                     </div>
@@ -211,17 +214,20 @@
                         <div class="list-group-item" style='<%= Mobile == "" ? "display:none;": "display:block;"  %>'>
                             <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                 <div class="form-row">
-                                    <label id="labelmobile" for="name" class="col-md-3 col-form-label form-label"><%=Mobile %> </label>
+                                    <label id="labelmobile" for="name" class="col-md-2 col-form-label form-label"><%=Mobile %> </label>
 
-                                    <div class="col-md-4">
-                                        <span><%=referenccheckList[k].mobile %></span>
-                                        <input type="radio" id="<%="rblMobileYes" + k %>" name="<%="Mobile" + k %>" value="1">Yes
-                                        <input type="radio" id="<%="rblMobileNo" + k %>" name="<%="Mobile" + k %>" value="0">
-                                        No
+                                    <div class="col-md-6">
+                                        <div class="prdtl-ans">
+                                            <span><%=referenccheckList[k].mobile %></span>
+                                        </div>
+                                        <div class="prdtl-vrfy">
+                                            <input type="radio" id="<%="rblMobileYes" + k %>" name="<%="Mobile" + k %>" value="1">Yes
+                                            <input type="radio" id="<%="rblMobileNo" + k %>" name="<%="Mobile" + k %>" value="0">No
+                                        </div>
 
                                         <span class="helpicon"><i id="<%="icMobile" + k %>" class="fa fa-info-circle" data-tipso="<%=MobileTooltips %>" style='<%= MobileTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="button" value="Add Remarks" id="<%="btnMobile" + k %>" />
                                         <input id="<%="txtMobile" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
                                     </div>
@@ -231,16 +237,20 @@
                         <div class="list-group-item" style='<%= Email == "" ? "display:none;": "display:block;"  %>'>
                             <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                 <div class="form-row">
-                                    <label id="labelEmail" for="Email" class="col-md-3 col-form-label form-label"><%=Email %> </label>
+                                    <label id="labelEmail" for="Email" class="col-md-2 col-form-label form-label"><%=Email %> </label>
 
-                                    <div class="col-md-4">
-                                        <span><%=referenccheckList[k].email %></span>
-                                        <input type="radio" id="<%="rblEmailYes" + k %>" name="<%="Email" + k %>" value="1">Yes
-                                        <input type="radio" id="<%="rblEmailNo" + k %>" name="<%="Email" + k %>" value="0">No
+                                    <div class="col-md-6">
+                                        <div class="prdtl-ans">
+                                            <span><%=referenccheckList[k].email %></span>
+                                        </div>
+                                        <div class="prdtl-vrfy">
+                                            <input type="radio" id="<%="rblEmailYes" + k %>" name="<%="Email" + k %>" value="1">Yes
+                                            <input type="radio" id="<%="rblEmailNo" + k %>" name="<%="Email" + k %>" value="0">No
+                                        </div>
 
                                         <span class="helpicon"><i id="<%="icEmail" + k %>" class="fa fa-info-circle" data-tipso="<%=EmailTooltips %>" style='<%= EmailTooltips == "" ? "display:none;": "display:block;"  %>'></i></span>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <input type="button" value="Add Remarks" id="<%="btnEmail" + k %>" />
                                         <input id="<%="txtEmail" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
                                     </div>
@@ -270,4 +280,12 @@
 
 
     </div>
+    <script>
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#manageapplicantions_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#applicantlist').addClass('active');
+	    });
+    </script>
 </asp:Content>

@@ -265,7 +265,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validaform()"/>
                             <div class="col-md-6">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                 <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -412,5 +412,30 @@
                 }
             }
 
-        });</script>
+        });
+        function validaform()
+        {
+            var flag = false;
+            if (!$("#<%=passportno.ClientID%>").is(':hidden') && !($("#<%=rblPassportNoNo.ClientID%>").is(':checked') || $("#<%=rblPassportNoYes.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Passport Number");
+            <%--else if (!$("#<%=passportno.ClientID%>").is(':hidden') && $("#<%=rblPassportNoNo.ClientID%>").is(':checked') && $("#<%=txtPassportNo.ClientID%>").val() == "")
+                alert("Please enter comments for passport Number");--%>
+            else if (!$("#<%=dateofissue.ClientID%>").is(':hidden') && !($("#<%=rblDateOfissueNo.ClientID%>").is(':checked') || $("#<%=rblDateOfissueYes.ClientID%>").is(':checked'))) 
+                alert("Please select option for Date of Issue");
+            else if (!$("#<%=dateofissue.ClientID%>").is(':hidden') && $("#<%=rblDateOfissueNo.ClientID%>").is(':checked') && $("#<%=txtDateOfissue.ClientID%>").val() == "")
+                alert("Please enter comments for date of issue");
+            else if (!$("#<%=expirydate.ClientID%>").is(':hidden') && !($("#<%=rblExpiryDateNo.ClientID%>").is(':checked') || $("#<%=rblExpiryDateYes.ClientID%>").is(':checked'))) 
+                alert("Please select option for Expiry Date");
+            
+            else
+                flag = true;
+            return flag;
+        }
+        $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#manageapplicantions_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#applicantlist').addClass('active');
+	    });
+    </script>
 </asp:Content>
