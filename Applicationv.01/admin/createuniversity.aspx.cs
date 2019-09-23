@@ -76,6 +76,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.headerstripcolor = headerstripcolor.Value;
                 universityObj.verticalnavigationcolor = verticalnavigationcolor.Value;
                 universityObj.fontcolor = fontcolor.Value;
+                universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
                 if (logo.HasFile)  //fileupload control contains a file  
