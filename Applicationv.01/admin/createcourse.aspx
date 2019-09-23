@@ -136,21 +136,16 @@
 
         function createCommencementDateBlock() {
             
-            var campusCount = $("#<%=ddlUniversityCampuses.ClientID%> option").length;
             var hidCommencementDate = $("#<%=hidCommencementDateCount.ClientID %>");
-            var hidCommencementDateCount = parseInt(hidCommencementDate.val());
+            var count = parseInt(hidCommencementDate.val());
+            hidCommencementDate.val(count + 1);
 
-            if (campusCount > hidCommencementDateCount) {
-                var count = parseInt(hidCommencementDate.val());
-                hidCommencementDate.val(count + 1);
-
-                var content = '<label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course</label>' +
-                              '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
-                              '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="">' +
-                              '</div></div></div>';
-                $("#commencementDatesDiv").append(content);
-                $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
-            }
+            var content = '<label for="commencementDates" class="col-sm-3 col-form-label form-label">Please enter commencement date for course</label>' +
+                          '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
+                          '<input id="txtCommencementDate_' + count + '" type="text" class="form-control" placeholder="Commencement Date" value="">' +
+                          '</div></div></div>';
+            $("#commencementDatesDiv").append(content);
+            $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
         }
 
 
