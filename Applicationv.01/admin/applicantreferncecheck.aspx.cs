@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class admin_applicantreferncecheck : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0, universityID;
+    int adminID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -25,7 +25,7 @@ public partial class admin_applicantreferncecheck : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        userID = Convert.ToInt32(Session["UserID"]);
+        adminID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -178,11 +178,12 @@ public partial class admin_applicantreferncecheck : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
-            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, adminID, adminInputs);
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+        Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
     }
 }

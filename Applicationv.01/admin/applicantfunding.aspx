@@ -98,7 +98,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                         <div class="form-row">
                             <label id="label-skypeDesc" for="skypeDesc" class="col-md-2 col-form-label form-label">
-                                Select the kind of accommodation you plan to have
+                                Select the kind of Meal you plan to have
                             </label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
@@ -300,7 +300,7 @@
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
-                            <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click" />
+                            <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click" OnClientClick="return validateform()"/>
                             <div class="col-md-6">
                             </div>
                         </div>
@@ -313,6 +313,22 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
+            //comment box
+             if ($("#<%=txtstudy.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtstudy.ClientID%>', 'btnstudy');
+             if ($("#<%=txtfamilymember.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtfamilymember.ClientID%>', 'btnfamilymember');
+             if ($("#<%=txtaccommodation.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtaccommodation.ClientID%>', 'btnaccommodation');
+             if ($("#<%=txtmanagemeal.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtmanagemeal.ClientID%>', 'btnmanagemeal');
+             if ($("#<%=txttransportchoice.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttransportchoice.ClientID%>', 'btntransportchoice');
+             if ($("#<%=txtTrips.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtTrips.ClientID%>', 'btnTrips');
+             if ($("#<%=txtentertainment.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtentertainment.ClientID%>', 'btnentertainment');
+
             $("#btnstudy").click(function () {
                 ManageRemarks('<%=txtstudy.ClientID%>', 'btnstudy');
             });
@@ -355,7 +371,7 @@
             $("#<%=rblentertainmentNo.ClientID%>").click(function () {
                 ManageRemarks('<%=txtentertainment.ClientID%>', 'btnentertainment');
             });
-              if ($('#<%=rblstudyNo.ClientID%>').prop('checked') == true)
+            if ($('#<%=rblstudyNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtstudy.ClientID%>', 'btnstudy');
             if ($('#<%=rblfamilymemberNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txtfamilymember.ClientID%>', 'btnfamilymember');
@@ -405,6 +421,27 @@
             }
 
         });
+        function validateform()
+        {
+            var flag = false;
+            if (!$("#<%=study.ClientID%>").is(':hidden') && !($("#<%=rblstudyYes.ClientID%>").is(':checked') || $("#<%=rblstudyNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Would you study-n-live alone or would your family members come along ");
+            else if (!$("#<%=familymember.ClientID%>").is(':hidden') && !($("#<%=rblfamilymemberYes.ClientID%>").is(':checked') || $("#<%=rblfamilymemberNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for No of Family members ");
+            else if (!$("#<%=accommodation.ClientID%>").is(':hidden') && !($("#<%=rblaccommodationYes.ClientID%>").is(':checked') || $("#<%=rblaccommodationNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Select the kind of accommodation you plan to have");
+            else if (!$("#<%=managemeal.ClientID%>").is(':hidden') && !($("#<%=rblmanagemealYes.ClientID%>").is(':checked') || $("#<%=rblmanagemealNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Select the kind of meal you plan to have ");
+            else if (!$("#<%=transportchoice.ClientID%>").is(':hidden') && !($("#<%=rbltransportchoiceYes.ClientID%>").is(':checked') || $("#<%=rbltransportchoiceNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Select your preferred choice of transport in the city ");
+            else if (!$("#<%=Trips.ClientID%>").is(':hidden') && !($("#<%=rblTripsYes.ClientID%>").is(':checked') || $("#<%=rblTripsNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for No of Trips you plan to take to your home country in a year");
+            else if (!$("#<%=entertainment.ClientID%>").is(':hidden') && !($("#<%=rblentertainmentYes.ClientID%>").is(':checked') || $("#<%=rblentertainmentNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for How often in a week do you typically go out (entertainment) ");    
+            else
+                flag = true;
+            return flag;
+        }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#manageapplicantions_list').addClass('open');

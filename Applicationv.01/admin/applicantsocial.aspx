@@ -96,7 +96,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validateform()"/>
                             <div class="col-md-6">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
 
@@ -112,6 +112,15 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
+            if ($("#<%=txtLinkedinComments.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtLinkedinComments.ClientID%>', 'btnLinkedn');
+
+            if ($("#<%=txtFacebookComments.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtFacebookComments.ClientID%>', 'btnFaceBook');
+
+            if ($("#<%=txtTwitterComments.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtTwitterComments.ClientID%>', 'btnTwitter');
+
             $("#btnLinkedn").click(function () {
                 ManageRemarks('<%=txtLinkedinComments.ClientID%>', 'btnLinkedn');
             });
@@ -174,6 +183,19 @@
                 $("#" + control2 + "").prop('value', 'Hide Comments');
             }
         });
+        function validateform()
+        {
+            var flag = false;
+            if (!$("#<%=linkedin.ClientID%>").is(':hidden') && !($("#<%=rblLinkedinNo.ClientID%>").is(':checked') || $("#<%=rblLinkedinYes.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for LinkedIn profile");
+            else if (!$("#<%=facebook.ClientID%>").is(':hidden') && !($("#<%=rblFacebookNo.ClientID%>").is(':checked') || $("#<%=rblFacebookYes.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Facebook profile");
+            else if (!$("#<%=twitter.ClientID%>").is(':hidden') && !($("#<%=rblTwitterNo.ClientID%>").is(':checked') || $("#<%=rblTwitterYes.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for LinkedIn profile");
+            else
+                flag = true;
+            return flag;
+        }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#manageapplicantions_list').addClass('open');

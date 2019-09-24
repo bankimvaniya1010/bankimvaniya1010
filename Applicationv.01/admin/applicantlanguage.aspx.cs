@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_applicantlanguage : System.Web.UI.Page
 {
-    int userID = 0, ApplicantID = 0, universityID;
+    int adminID = 0, ApplicantID = 0, universityID;
     bool isAgent = false;
     int formId = 0;
     private GTEEntities db = new GTEEntities();
@@ -22,7 +22,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        userID = Convert.ToInt32(Session["UserID"]);
+        adminID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -510,43 +510,60 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                 lblhomelanguage.Text = LanguageInfo.homelanuage;
 
                 if (LanguageInfo.isenglishintesive == 1)
-                    lblEnglishBackground.Text = "";
+                {
+                    lblEnglishBackground.Text = "yes";
+                    if (LanguageInfo.isfinalgradeachieved == 1)
+                        lblgradeachieved.Text = "Results Declared";
+                    else if (LanguageInfo.isfinalgradeachieved == 2)
+                        lblgradeachieved.Text = "Examination not conducted yet";
+                    else if (LanguageInfo.isfinalgradeachieved == 3)
+                        lblgradeachieved.Text = "Examination Conducted, but Result not declared";
+                    ExpectedDategrade.Attributes.Add("style","display:none");
+                }
                 else if (LanguageInfo.isenglishintesive == 2)
-                    lblEnglishBackground.Text = "";
-                else
-                    lblEnglishBackground.Text = "";
-                if (LanguageInfo.countryofcourse != null)
-                    lblLanguage.Text = objCom.GetCountryDiscription(Convert.ToInt32(LanguageInfo.countryofcourse));
+                {
+                    lblEnglishBackground.Text = "No - I am currently still studying for my English Language Course";
+                    if (LanguageInfo.expectedgraderesult != null)
+                        lblExpectedDategrade.Text = Convert.ToDateTime(LanguageInfo.expectedgraderesult).ToString("yyyy-MM-dd");
+                    gradeachieved.Attributes.Add("style", "display:none");
+                }
+                else if (LanguageInfo.isenglishintesive == 3)
+                {
+                    lblEnglishBackground.Text = "No - I have not studied an English Language Intensive Course for people from non-English speaking backgrounds";
+                    Language.Attributes.Add("style", "display:none");
+                    YearCompletion.Attributes.Add("style", "display:none");
+                    NameCollege.Attributes.Add("style", "display:none");                    
+                    studymode.Attributes.Add("style", "display:none");
+                    QualificationType.Attributes.Add("style", "display:none");
+                    QualificationName.Attributes.Add("style", "display:none");
+                    gradetype.Attributes.Add("style", "display:none");
+                    gradeachieved.Attributes.Add("style", "display:none");
+                    ExpectedDategrade.Attributes.Add("style", "display:none");
+                }
 
-
-                if (LanguageInfo.studymode != null)
+                if (LanguageInfo.isenglishintesive == 1 || LanguageInfo.isenglishintesive == 2)
                 {
-                    lblstudymode.Text = objCom.GetStudyMode(Convert.ToInt32(LanguageInfo.studymode));
-                }
-                if (LanguageInfo.gradetype != null)
-                {
-                    lblgradetype.Text = objCom.GetGrade(Convert.ToInt32(LanguageInfo.gradetype));
-                }
-                if (LanguageInfo.expectedgraderesult != null)
-                    lblExpectedDategrade.Text = Convert.ToDateTime(LanguageInfo.expectedgraderesult).ToString("yyyy-MM-dd");
-                if (LanguageInfo.yearofcompletion != null)
-                    lblYearCompletion.Text = Convert.ToDateTime(LanguageInfo.yearofcompletion).ToString("yyyy-MM-dd");
-                lblNameCollege.Text = LanguageInfo.instituename;
-                lblQualificationName.Text = LanguageInfo.qualificationname;
-                if (LanguageInfo.qualificationtype != null)
-                {
-                    lblQualificationType.Text = objCom.GetGrade(Convert.ToInt32(LanguageInfo.qualificationtype));
-                }
-                if (LanguageInfo.isfinalgradeachieved == 1)
-                    lblgradeachieved.Text = "Results Declared";
-                else if (LanguageInfo.isfinalgradeachieved == 2)
-                    lblgradeachieved.Text = "Examination not conducted yet";
-                else if (LanguageInfo.isfinalgradeachieved == 3)
-                    lblgradeachieved.Text = "Examination Conducted, but Result not declared";
+                    if (LanguageInfo.studymode != null)
+                    {
+                        lblstudymode.Text = objCom.GetStudyMode(Convert.ToInt32(LanguageInfo.studymode));
+                    }
+                    if (LanguageInfo.gradetype != null)
+                    {
+                        lblgradetype.Text = objCom.GetGrade(Convert.ToInt32(LanguageInfo.gradetype));
+                    }
+                    if (LanguageInfo.yearofcompletion != null)
+                        lblYearCompletion.Text = Convert.ToDateTime(LanguageInfo.yearofcompletion).ToString("yyyy-MM-dd");
+                    lblNameCollege.Text = LanguageInfo.instituename;
+                    lblQualificationName.Text = LanguageInfo.qualificationname;
+                    if (LanguageInfo.qualificationtype != null)
+                    {
+                        lblQualificationType.Text = objCom.GetGrade(Convert.ToInt32(LanguageInfo.qualificationtype));
+                    }                        
+                }                   
 
                 if (LanguageInfo.giveenglishtest == 1)
                 {
-                    ieltsfieldContainer.Visible = true;
+                    ieltsfieldContainer.Attributes.Add("style", "display:block");
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lblCentreNo.Text = LanguageInfo.centerno;
@@ -562,10 +579,9 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                     lblReadingScore.Text = LanguageInfo.readingscore;
 
                 }
-
                 else if (LanguageInfo.giveenglishtest == 2)
                 {
-                    ptefieldContainer.Visible = true;
+                    ptefieldContainer.Attributes.Add("style","display : block");
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lblptetesttaker.Text = LanguageInfo.testtakerId;
@@ -588,7 +604,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
 
                 else if (LanguageInfo.giveenglishtest == 3)
                 {
-                    tofelfieldContainer.Visible = true;
+                    tofelfieldContainer.Attributes.Add("style","display:block");
                     lblEnglishTest.Text = "Yes";
                     lbltestName.Text = LanguageInfo.testname;
                     lbltofelregistrationno.Text = LanguageInfo.registrationNo;
@@ -618,6 +634,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             }
         }
 
+        
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
@@ -1010,7 +1027,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
-            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, adminID, adminInputs);
         }
         catch (Exception ex)
         {

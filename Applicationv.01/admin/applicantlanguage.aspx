@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="BackgroundfieldContainer" runat="server" style="display: none;">
+                <div id="BackgroundfieldContainer" runat="server">
 
                     <div class="list-group-item" id="Language" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-Language">
@@ -227,10 +227,9 @@
                                         <asp:RadioButton ID="rblgradeachievedYes" GroupName="gradeachieved" Text="Yes" runat="server" />
                                         <asp:RadioButton ID="rblgradeachievedNo" GroupName="gradeachieved" Text="No" runat="server" />
                                     </div>
-
                                     <span class="helpicon"><i id="icgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                 </div>
-        3                       <div class="col-md-3">
+                                <div class="col-md-3">
                                     <input type="button" value="Add Remarks" id="btngradeachieved" />
                                     <input id="txtgradeachieved" runat="server" style="display: none" type="text" class="form-control" placeholder="Admin Comments">
                                 </div>
@@ -281,8 +280,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                 <div class="list-group-item" id="testName" runat="server" style="display: none">
+                </div>                 
+                <div id="ieltsfieldContainer" runat="server" style="display: none">
+                   <div class="list-group-item" id="testName" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-testName">
                             <div class="form-row">
                                 <label id="labeltestName" runat="server" for="testName" class="col-md-2 col-form-label form-label">Test Name </label>
@@ -303,8 +303,6 @@
                             </div>
                         </div>
                     </div>
-                <div id="ieltsfieldContainer" runat="server" visible="false">
-                   
                     <div class="list-group-item" id="CandidateID" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-CandidateID">
                             <div class="form-row">
@@ -497,7 +495,7 @@
                     </div>
                 </div>
 
-                <div id="ptefieldContainer" runat="server" visible="false">
+                <div id="ptefieldContainer" runat="server" style="display: none">
                     <div class="list-group-item" id="ptetesttaker" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-ptetesttaker">
                             <div class="form-row">
@@ -711,7 +709,7 @@
                     </div>
                 </div>
 
-                <div id="tofelfieldContainer" runat="server" visible="false">
+                <div id="tofelfieldContainer" runat="server" style="display:none">
 
                     <div class="list-group-item" id="tofelregistrationno" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-tofelregistrationno">
@@ -951,7 +949,7 @@
                 <div class="list-group-item" id="employerwebsite">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
-                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validaform()"/>
                             <div class="col-md-4">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                 <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -966,6 +964,94 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
+            //comment box
+            if ($('#<%=txthomelanguage.ClientID%>').prop('checked') == true)
+                ManageRemarksIfNoCheked('<%=txthomelanguage.ClientID%>', 'btnhomelanguage');
+            if ($("#<%=txtEnglishBackground.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtEnglishBackground.ClientID%>', 'btnEnglishBackground');
+            if ($("#<%=txtLanguage.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtLanguage.ClientID%>', 'btnLanguage');
+            if ($("#<%=txtYearCompletion.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtYearCompletion.ClientID%>', 'btnYearCompletion');
+            if ($("#<%=txtNameCollege.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtNameCollege.ClientID%>', 'btnNameCollege');
+            if ($("#<%=txtstudymode.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtstudymode.ClientID%>', 'btnstudymode');
+            if ($("#<%=txtQualificationType.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtQualificationType.ClientID%>', 'btnQualificationType');
+            if ($("#<%=txtQualificationName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtQualificationName.ClientID%>', 'btnQualificationName');
+            if ($("#<%=txtgradetype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtgradetype.ClientID%>', 'btngradetype');
+            if ($("#<%=txtgradeachieved.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtgradeachieved.ClientID%>', 'btngradeachieved');
+            if ($("#<%=txtExpectedDategrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedDategrade.ClientID%>', 'btnExpectedDategrade');
+            if ($("#<%=txtEnglishTest.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtEnglishTest.ClientID%>', 'btnEnglishTest');
+            if ($("#<%=txttestName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttestName.ClientID%>', 'btntestName');
+            if ($("#<%=txtCandidateID.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtCandidateID.ClientID%>', 'btnCandidateID');
+            if ($("#<%=txtCandidateNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtCandidateNo.ClientID%>', 'btnCandidateNo');
+            if ($("#<%=txtieltsTestDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtieltsTestDate.ClientID%>', 'btnieltsTestDate');
+            if ($("#<%=txtCentreNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtCentreNo.ClientID%>', 'btnCentreNo');
+            if ($("#<%=txtReadingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtReadingScore.ClientID%>', 'btnReadingScore');
+            if ($("#<%=txtWritingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtWritingScore.ClientID%>', 'btnWritingScore');
+            if ($("#<%=txtListeningScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtListeningScore.ClientID%>', 'btnListeningScore');
+            if ($("#<%=txtSpeakingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSpeakingScore.ClientID%>', 'btnSpeakingScore');
+            if ($("#<%=txtLanguageScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtLanguageScore.ClientID%>', 'btnLanguageScore');
+            if ($("#<%=txtptetesttaker.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtptetesttaker.ClientID%>', 'btnptetesttaker');
+            if ($("#<%=txtpteregistrationno.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpteregistrationno.ClientID%>', 'btnpteregistrationno');
+            if ($("#<%=txtpteTestDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpteTestDate.ClientID%>', 'btnpteTestDate');
+            if ($("#<%=txtptecentercountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtptecentercountry.ClientID%>', 'btnptecentercountry');
+            if ($("#<%=txtptetestcenterNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtptetestcenterNo.ClientID%>', 'btnptetestcenterNo');
+            if ($("#<%=txtpteReadingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpteReadingScore.ClientID%>', 'btnpteReadingScore');
+            if ($("#<%=txtpteListeningScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpteListeningScore.ClientID%>', 'btnpteListeningScore');
+            if ($("#<%=txtpteWritingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpteWritingScore.ClientID%>', 'btnpteWritingScore');
+            if ($("#<%=txtpteSpeakingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpteSpeakingScore.ClientID%>', 'btnpteSpeakingScore');
+            if ($("#<%=txtpteTotalScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtpteTotalScore.ClientID%>', 'btnpteTotalScore');
+            if ($("#<%=txttofelregistrationno.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelregistrationno.ClientID%>', 'btntofelregistrationno');
+            if ($("#<%=txttofelTestDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelTestDate.ClientID%>', 'btntofelTestDate');
+            if ($("#<%=txttofelcentercountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelcentercountry.ClientID%>', 'btntofelcentercountry');
+            if ($("#<%=txttofelcenterNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelcenterNo.ClientID%>', 'btntofelcenterNo');
+            if ($("#<%=txttofelReadingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelReadingScore.ClientID%>', 'btntofelReadingScore');
+            if ($("#<%=txttofelListeningScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelListeningScore.ClientID%>', 'btntofelListeningScore');
+            if ($("#<%=txttofelSpeakingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelSpeakingScore.ClientID%>', 'btntofelSpeakingScore');
+            if ($("#<%=txttofelWritingScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelWritingScore.ClientID%>', 'btntofelWritingScore');
+            if ($("#<%=txttofelTotalScore.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttofelTotalScore.ClientID%>', 'btntofelTotalScore');
+            if ($("#<%=txtCEFR.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtCEFR.ClientID%>', 'btnCEFR');
+            if ($("#<%=txttestRefno.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txttestRefno.ClientID%>', 'btntestRefno');
+
             $("#btnhomelanguage").click(function () {
                 ManageRemarks('<%=txthomelanguage.ClientID%>', 'btnhomelanguage');
             });
@@ -1349,6 +1435,103 @@
                 $("#" + control2 + "").prop('value', 'Hide Comments');
             }
         });
+        function validaform()
+        {
+            var flag = false;
+            if (!$("#<%=homelanguage.ClientID%>").is(':hidden') && !($("#<%=rblhomelanguageYes.ClientID%>").is(':checked') || $("#<%=rblhomelanguageNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for what language do you speak at home");
+            else if (!$("#<%=EnglishBackground.ClientID%>").is(':hidden') && !($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for have you studied an english langugae intensive course");
+            else if (!$("#<%=Language.ClientID%>").is(':hidden') && $("#<%=rblLanguageYes.ClientID%>").is(':checked') && $("#<%=rblLanguageNo.ClientID%>").val() == "")
+                alert("Please enter comments for country of course");
+            else if (!$("#<%=YearCompletion.ClientID%>").is(':hidden') && !($("#<%=rblYearCompletionYes.ClientID%>").is(':checked') || $("#<%=rblYearCompletionNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for year of completion");
+            else if (!$("#<%=NameCollege.ClientID%>").is(':hidden') && !($("#<%=rblNameCollegeYes.ClientID%>").is(':checked') || $("#<%=rblNameCollegeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Name of college");
+            else if (!$("#<%=studymode.ClientID%>").is(':hidden') && !($("#<%=rblstudymodeYes.ClientID%>").is(':checked') || $("#<%=rblstudymodeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for mode of study");
+            else if (!$("#<%=QualificationType.ClientID%>").is(':hidden') && !($("#<%=rblQualificationTypeYes.ClientID%>").is(':checked') || $("#<%=rblQualificationTypeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Qualification type");
+            else if (!$("#<%=QualificationName.ClientID%>").is(':hidden') && !($("#<%=rblQualificationNameYes.ClientID%>").is(':checked') || $("#<%=rblQualificationNameNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Qualification name");
+            else if (!$("#<%=gradetype.ClientID%>").is(':hidden') && !($("#<%=rblgradetypeYes.ClientID%>").is(':checked') || $("#<%=rblgradetypeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Grade type");
+            else if (!$("#<%=gradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblgradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblgradeachievedNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Final grade achieved");
+            else if (!$("#<%=ExpectedDategrade.ClientID%>").is(':hidden') && !($("#<%=rblExpectedDategradeYes.ClientID%>").is(':checked') || $("#<%=rblExpectedDategradeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Expected Date when result will be declared");
+           //test ieltsfieldContainer
+            else if (!$("#<%=EnglishTest.ClientID%>").is(':hidden') && !($("#<%=rblEnglishTestYes.ClientID%>").is(':checked') || $("#<%=rblEnglishTestNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for English Test");
+            else if (!$("#<%=ieltsfieldContainer.ClientID%>").is(':hidden') && !$("#<%=testName.ClientID%>").is(':hidden') && !($("#<%=rbltestNameYes.ClientID%>").is(':checked') || $("#<%=rbltestNameNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for testName");
+            else if (!$("#<%=CandidateID.ClientID%>").is(':hidden') && !($("#<%=rblCandidateIDYes.ClientID%>").is(':checked') || $("#<%=rblCandidateIDNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for CandidateID");
+            else if (!$("#<%=CandidateNo.ClientID%>").is(':hidden') && !($("#<%=rblCandidateNoYes.ClientID%>").is(':checked') || $("#<%=rblCandidateNoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for CandidateNo");
+            else if (!$("#<%=ieltsTestDate.ClientID%>").is(':hidden') && !($("#<%=rblieltsTestDateYes.ClientID%>").is(':checked') || $("#<%=rblieltsTestDateNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for test Date");
+            else if (!$("#<%=CentreNo.ClientID%>").is(':hidden') && !($("#<%=rblCentreNoYes.ClientID%>").is(':checked') || $("#<%=rblCentreNoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Center Number");
+            else if (!$("#<%=ReadingScore.ClientID%>").is(':hidden') && !($("#<%=rblReadingScoreYes.ClientID%>").is(':checked') || $("#<%=rblReadingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Reading Score");
+            else if (!$("#<%=ListeningScore.ClientID%>").is(':hidden') && !($("#<%=rblListeningScoreYes.ClientID%>").is(':checked') || $("#<%=rblListeningScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Listening Score");
+            else if (!$("#<%=SpeakingScore.ClientID%>").is(':hidden') && !($("#<%=rblSpeakingScoreYes.ClientID%>").is(':checked') || $("#<%=rblSpeakingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Speaking Score");
+            else if (!$("#<%=WritingScore.ClientID%>").is(':hidden') && !($("#<%=rblWritingScoreYes.ClientID%>").is(':checked') || $("#<%=rblWritingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Writing Score");
+            else if (!$("#<%=LanguageScore.ClientID%>").is(':hidden') && !($("#<%=rblLanguageScoreYes.ClientID%>").is(':checked') || $("#<%=rblLanguageScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Language Score");
+                //ptefieldContainer
+            else if (!$("#<%=ptetesttaker.ClientID%>").is(':hidden') && !($("#<%=rblptetesttakerNo.ClientID%>").is(':checked') || $("#<%=rblptetesttakerYes.ClientID%>").is(':checked'))) 
+                alert("Please select option for Test Taker");
+            else if (!$("#<%=pteregistrationno.ClientID%>").is(':hidden') && !($("#<%=rblpteregistrationnoYes.ClientID%>").is(':checked') || $("#<%=rblpteregistrationnoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Registration Number");
+            else if (!$("#<%=pteTestDate.ClientID%>").is(':hidden') && !($("#<%=rblpteTestDateYes.ClientID%>").is(':checked') || $("#<%=rblpteTestDateNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for test Date ");
+            else if (!$("#<%=ptecentercountry.ClientID%>").is(':hidden') && !($("#<%=rblptecentercountryYes.ClientID%>").is(':checked') || $("#<%=rblptecentercountryNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for test center country");
+            else if (!$("#<%=ptetestcenterNo.ClientID%>").is(':hidden') && !($("#<%=rblptetestcenterNoYes.ClientID%>").is(':checked') || $("#<%=rblptetestcenterNoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for center number");
+            else if (!$("#<%=pteReadingScore.ClientID%>").is(':hidden') && !($("#<%=rblpteReadingScoreYes.ClientID%>").is(':checked') || $("#<%=rblpteReadingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Reading score");
+            else if (!$("#<%=pteListeningScore.ClientID%>").is(':hidden') && !($("#<%=rblpteListeningScoreYes.ClientID%>").is(':checked') || $("#<%=rblpteListeningScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for listening score");
+            else if (!$("#<%=pteSpeakingScore.ClientID%>").is(':hidden') && !($("#<%=rblpteSpeakingScoreYes.ClientID%>").is(':checked') || $("#<%=rblpteSpeakingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for speaking score");
+            else if (!$("#<%=pteWritingScore.ClientID%>").is(':hidden') && !($("#<%=rblpteWritingScoreYes.ClientID%>").is(':checked') || $("#<%=rblpteWritingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for writting score");
+            else if (!$("#<%=pteTotalScore.ClientID%>").is(':hidden') && !($("#<%=rblpteTotalScoreNo.ClientID%>").is(':checked') || $("#<%=rblpteTotalScoreYes.ClientID%>").is(':checked'))) 
+                alert("Please select option for pte total score");
+               //tofel
+            else if (!$("#<%=tofelregistrationno.ClientID%>").is(':hidden') && !($("#<%=rbltofelregistrationnoYes.ClientID%>").is(':checked') || $("#<%=rbltofelregistrationnoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for registration number ");
+            else if (!$("#<%=tofelTestDate.ClientID%>").is(':hidden') && !($("#<%=rbltofelTestDateYes.ClientID%>").is(':checked') || $("#<%=rbltofelTestDateNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for test date");
+            else if (!$("#<%=tofelcentercountry.ClientID%>").is(':hidden') && !($("#<%=rbltofelcentercountryYes.ClientID%>").is(':checked') || $("#<%=rbltofelcentercountryYes.ClientID%>").is(':checked'))) 
+                alert("Please select option for center country");
+            else if (!$("#<%=tofelcenterNo.ClientID%>").is(':hidden') && !($("#<%=rbltofelcenterNoYes.ClientID%>").is(':checked') || $("#<%=rbltofelcenterNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for center number");
+            else if (!$("#<%=tofelReadingScore.ClientID%>").is(':hidden') && !($("#<%=rbltofelReadingScoreYes.ClientID%>").is(':checked') || $("#<%=rbltofelReadingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Reading score");
+            else if (!$("#<%=tofelListeningScore.ClientID%>").is(':hidden') && !($("#<%=rbltofelListeningScoreYes.ClientID%>").is(':checked') || $("#<%=rbltofelListeningScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for listening score");
+            else if (!$("#<%=tofelSpeakingScore.ClientID%>").is(':hidden') && !($("#<%=rbltofelSpeakingScoreYes.ClientID%>").is(':checked') || $("#<%=rbltofelSpeakingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for speaking score");
+            else if (!$("#<%=tofelWritingScore.ClientID%>").is(':hidden') && !($("#<%=rbltofelWritingScoreYes.ClientID%>").is(':checked') || $("#<%=rbltofelWritingScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for writting score");
+            else if (!$("#<%=tofelTotalScore.ClientID%>").is(':hidden') && !($("#<%=rbltofelTotalScoreYes.ClientID%>").is(':checked') || $("#<%=rbltofelTotalScoreNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for total score");
+                 //
+            else if (!$("#<%=CEFR.ClientID%>").is(':hidden') && !($("#<%=rblCEFRYes.ClientID%>").is(':checked') || $("#<%=rblCEFRNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for CEFR LEVEL");
+            else if (!$("#<%=testRefno.ClientID%>").is(':hidden') && !($("#<%=rbltestRefnoYes.ClientID%>").is(':checked') || $("#<%=rbltestRefnoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for test report reference number");
+            else
+                flag = true;
+            return flag;
+        }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#manageapplicantions_list').addClass('open');

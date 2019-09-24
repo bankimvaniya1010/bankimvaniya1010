@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class admin_applicanteducation : System.Web.UI.Page
 {
     int formId = 0;
-    int userID = 0, ApplicantID = 0, universityID;
+    int adminId = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -23,7 +23,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        userID = Convert.ToInt32(Session["UserID"]);
+        adminId = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -733,10 +733,10 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                                select pInfo).ToList();
             if (HigherEducation == null)
             {
-                UG.Visible = false;
-                PG.Visible = false;
-                Phd.Visible = false;
-                highercourseOther.Visible = false;
+                UG.Attributes.Add("style", "display: none");
+                PG.Attributes.Add("style", "display: none");
+                Phd.Attributes.Add("style", "display: none");
+                highercourseOther.Attributes.Add("style", "display: none");
             }
             else
                 BindHigher(HigherEducation);
@@ -1048,7 +1048,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         {
             if (EducationInfo[k].coursename.ToLower() == "pg")
             {
-                PG.Visible = true;
+                PG.Attributes.Add("style", "display: block");
                 lblhighercoursePG.Text = EducationInfo[k].coursename;
                 if (EducationInfo[k].countryofhighereducation != null)
                 {
@@ -1103,7 +1103,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             }
             else if (EducationInfo[k].coursename.ToLower() == "phd")
             {
-                Phd.Visible = true;
+                Phd.Attributes.Add("style", "display: block");
                 lblhighercoursePhd.Text = EducationInfo[k].coursename;
                 if (EducationInfo[k].countryofhighereducation != null)
                 {
@@ -1158,7 +1158,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             }
             else if (EducationInfo[k].coursename.ToLower() == "ug")
             {
-                UG.Visible = true;
+                UG.Attributes.Add("style", "display: block");
                 lblhighercourse.Text = EducationInfo[k].coursename;
                 if (EducationInfo[k].countryofhighereducation != null)
                 {
@@ -1214,7 +1214,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             }
             else
             {
-                OtherHigherCourse.Visible = true;
+                OtherHigherCourse.Attributes.Add("style", "display: block");
                 lblhighercourseOther.Text = EducationInfo[k].coursename;
                 if (EducationInfo[k].countryofhighereducation != null)
                 {
@@ -2333,7 +2333,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
-            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, adminId, adminInputs);
         }
         catch (Exception ex)
         {
@@ -2343,56 +2343,56 @@ public partial class admin_applicanteducation : System.Web.UI.Page
 
     private void HideDiploma()
     {
-        diplomaCountry.Visible = false;
-        diplomastartDate.Visible = false;
-        diplomaendDate.Visible = false;
-        diplomaschoolName.Visible = false;
-        diplomaQualificationtype.Visible = false;
-        diplomastudymode.Visible = false;
-        diplomalanguage.Visible = false;
-        diplomagradetype.Visible = false;
-        diplomagradeachieved.Visible = false;
-        ExpectedDiplomaDategrade.Visible = false;
-        diplomaverify.Visible = false;
-        diplomarelation.Visible = false;
-        diplomacontactEmail.Visible = false;
-        diplomacontactMobile.Visible = false;
+        diplomaCountry.Attributes.Add("style", "display: none");
+        diplomastartDate.Attributes.Add("style", "display: none");
+        diplomaendDate.Attributes.Add("style", "display: none");
+        diplomaschoolName.Attributes.Add("style", "display: none");
+        diplomaQualificationtype.Attributes.Add("style", "display: none");
+        diplomastudymode.Attributes.Add("style", "display: none");
+        diplomalanguage.Attributes.Add("style", "display: none");
+        diplomagradetype.Attributes.Add("style", "display: none");
+        diplomagradeachieved.Attributes.Add("style", "display: none");
+        ExpectedDiplomaDategrade.Attributes.Add("style", "display: none");
+        diplomaverify.Attributes.Add("style", "display: none");
+        diplomarelation.Attributes.Add("style", "display: none");
+        diplomacontactEmail.Attributes.Add("style", "display: none");
+        diplomacontactMobile.Attributes.Add("style", "display: none");
     }
     private void HideHighSchool()
     {
 
-     
 
-        highschoolCountry.Visible = false;
-        highschoolstartDate.Visible = false;
-        highschoolendDate.Visible = false;
-        highschoolName.Visible = false;
-        highschoolQualificationtype.Visible = false;
-        highschoolstudymode.Visible = false;
-        highschoollanguage.Visible = false;
-        gradetype.Visible = false;
-        highschoolgradeachieved.Visible = false;
-        ExpectedHighSchoolDategrade.Visible = false;
-        highschoolverify.Visible = false;
-        highschoolrelation.Visible = false;
-        highschoolcontactEmail.Visible = false;
-        highschoolcontactMobile.Visible = false;
+
+        highschoolCountry.Attributes.Add("style", "display: none");
+        highschoolstartDate.Attributes.Add("style", "display: none");
+        highschoolendDate.Attributes.Add("style", "display: none");
+        highschoolName.Attributes.Add("style", "display: none");
+        highschoolQualificationtype.Attributes.Add("style", "display: none");
+        highschoolstudymode.Attributes.Add("style", "display: none");
+        highschoollanguage.Attributes.Add("style", "display: none");
+        gradetype.Attributes.Add("style", "display: none");
+        highschoolgradeachieved.Attributes.Add("style", "display: none");
+        ExpectedHighSchoolDategrade.Attributes.Add("style", "display: none");
+        highschoolverify.Attributes.Add("style", "display: none");
+        highschoolrelation.Attributes.Add("style", "display: none");
+        highschoolcontactEmail.Attributes.Add("style", "display: none");
+        highschoolcontactMobile.Attributes.Add("style", "display: none");
     }
     private void HideSecondary()
     {
-        SecondaryCountry.Visible = false;
-        SecondarystartDate.Visible = false;
-        SecondaryendDate.Visible = false;
-        SecondaryschoolName.Visible = false;
-        SecondaryQualificationtype.Visible = false;
-        Secondarystudymode.Visible = false;
-        Secondarylanguage.Visible = false;
-        Secondarygradetype.Visible = false;
-        Secondarygradeachieved.Visible = false;
-        ExpectedSecondaryDategrade.Visible = false;
-        Secondaryverify.Visible = false;
-        secondaryschoolrelation.Visible = false;
-        secondarycontactEmail.Visible = false;
-        secondarycontactMobile.Visible = false;
+        SecondaryCountry.Attributes.Add("style", "display: none");
+        SecondarystartDate.Attributes.Add("style", "display: none");
+        SecondaryendDate.Attributes.Add("style", "display: none");
+        SecondaryschoolName.Attributes.Add("style", "display: none");
+        SecondaryQualificationtype.Attributes.Add("style", "display: none");
+        Secondarystudymode.Attributes.Add("style", "display: none");
+        Secondarylanguage.Attributes.Add("style", "display: none");
+        Secondarygradetype.Attributes.Add("style", "display: none");
+        Secondarygradeachieved.Attributes.Add("style", "display: none");
+        ExpectedSecondaryDategrade.Attributes.Add("style", "display: none");
+        Secondaryverify.Attributes.Add("style", "display: none");
+        secondaryschoolrelation.Attributes.Add("style", "display: none");
+        secondarycontactEmail.Attributes.Add("style", "display: none");
+        secondarycontactMobile.Attributes.Add("style", "display: none");
     }
 }

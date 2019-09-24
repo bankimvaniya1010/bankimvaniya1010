@@ -253,7 +253,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>               
                 <div class="list-group-item" id="residential" runat="server" style="display: none">
                     <div class="form-group m-0" role="Residential" aria-labelledby="label-Residential ">
                         <div class="form-row">
@@ -312,7 +312,7 @@
 
                     </div>
                 </div>
-                <div id="guardian" runat="server" visible="false">
+                <div id="guardian" runat="server" style="display: none">
 
                     <div class="list-group-item" id="guardianname" runat="server" style="display: none">
 
@@ -391,7 +391,7 @@
                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                     <div class="form-row">
 
-                        <asp:Button ID="btnSave" runat="server" Text="Save Changes" class="btn btn-success" OnClick="btnSave_Click" />
+                        <asp:Button ID="btnSave" runat="server" Text="Save Changes" class="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validaform()"/>
                         <div class="col-md-6">
                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -399,11 +399,49 @@
                     </div>
                 </div>
             </div>
+    
         </div>
     </div>
 
     <script type="text/javascript">
         $(document).ready(function () {
+            //comment box
+            
+            if ($("#<%=txtEmail.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtEmail.ClientID%>', 'btnEmail');
+            if ($("#<%=txtMobile.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtMobile.ClientID%>', 'btnMobile');
+            if ($("#<%=txtHomePhone.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtHomePhone.ClientID%>', 'btnHomePhone');
+            if ($("#<%=txtSkype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSkype.ClientID%>', 'btnSkype');
+            if ($("#<%=txtSkypeDescription.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSkypeDescription.ClientID%>', 'btnSkypeDescription');
+            if ($("#<%=txtWhatsapp.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtWhatsapp.ClientID%>', 'btnWhatsapp');
+            if ($("#<%=txtWhastappHave.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtWhastappHave.ClientID%>', 'btnWhatsapphave');
+            if ($("#<%=txtWhatsappDescription.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtWhatsappDescription.ClientID%>', 'btnwhatsappDesc');
+            if ($("#<%=txtPostalAddress.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtPostalAddress.ClientID%>', 'btnPostalAddress');
+            if ($("#<%=txtAddress.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtAddress.ClientID%>', 'btnAddress');
+            if ($("#<%=txtCurrentAddress.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtCurrentAddress.ClientID%>', 'btnCurrentAddress');
+            if ($("#<%=txtResidential.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtResidential.ClientID%>', 'btnResidential');
+            if ($("#<%=txtAddressHistory.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtAddressHistory.ClientID%>', 'btnAddressHistory');
+            if ($("#<%=txtGuardianname.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtGuardianname.ClientID%>', 'btnNominneName');
+            if ($("#<%=txtNomineeRelation.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtNomineeRelation.ClientID%>', 'btnNomineeRelation');
+            if ($("#<%=txtNomineeEmail.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtNomineeEmail.ClientID%>', 'btnNomineeEmail');
+            if ($("#<%=txtNomiineeMobile.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtNomiineeMobile.ClientID%>', 'btnNomineeMobile');
+
             $("#btnEmail").click(function () {
                 ManageRemarks('<%=txtEmail.ClientID%>', 'btnEmail');
             });
@@ -579,6 +617,45 @@
             }
 
         });
+        function validaform()
+        {
+            var flag = false;
+            if (!$("#<%=email.ClientID%>").is(':hidden') && !($("#<%=rblEmailYes.ClientID%>").is(':checked') || $("#<%=rblEmailNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Email");
+            else if (!$("#<%=mobile.ClientID%>").is(':hidden') && !($("#<%=rblMobileYes.ClientID%>").is(':checked') || $("#<%=rblMobileNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Mobile Number");
+            else if (!$("#<%=phone.ClientID%>").is(':hidden') && $("#<%=rblHomePhoneYes.ClientID%>").is(':checked') && $("#<%=rblHomePhoneNo.ClientID%>").val() == "")
+                alert("Please enter comments for Home phone number");
+            else if (!$("#<%=skype.ClientID%>").is(':hidden') && !($("#<%=rblSkypeYes.ClientID%>").is(':checked') || $("#<%=rblSkypeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for would you like to connect via skype");
+            else if (!$("#<%=skypeDesc.ClientID%>").is(':hidden') && !($("#<%=rblSkypeDescriptionYes.ClientID%>").is(':checked') || $("#<%=rblSkypeDescriptionNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for description of skype Id");
+            else if (!$("#<%=whatsapp.ClientID%>").is(':hidden') && !($("#<%=rblWhatsappYes.ClientID%>").is(':checked') || $("#<%=rblWhatsappNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for would you like to connect via whatsapp");
+            else if (!$("#<%=whatsappHave.ClientID%>").is(':hidden') && !($("#<%=rblWhatsapphaveYes.ClientID%>").is(':checked') || $("#<%=rblWhatsapphaveNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Is your whatsapp no same as your mobile number");
+            else if (!$("#<%=whatsappDesc.ClientID%>").is(':hidden') && !($("#<%=rblwhatsappDescYes.ClientID%>").is(':checked') || $("#<%=rblwhatsappDescNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Whatsapp Number");
+            else if (!$("#<%=postal.ClientID%>").is(':hidden') && !($("#<%=rblPostalAddressYes.ClientID%>").is(':checked') || $("#<%=rblPostalAddressNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Postal Address");
+            else if (!$("#<%=address.ClientID%>").is(':hidden') && !($("#<%=rblAddressYes.ClientID%>").is(':checked') || $("#<%=rblAddressNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Is your Postal Address same as your current residential address");
+            else if (!$("#<%=residential.ClientID%>").is(':hidden') && !($("#<%=rblResidentialYes.ClientID%>").is(':checked') || $("#<%=rblResidentialNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Current Residential  Address");
+            else if (!$("#<%=addressHistory.ClientID%>").is(':hidden') && !($("#<%=rblAddressHistoryYes.ClientID%>").is(':checked') || $("#<%=rblAddressHistoryNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Previous Address History Details");
+            else if (!$("#<%=guardianname.ClientID%>").is(':hidden') && !($("#<%=rblNominneNameYes.ClientID%>").is(':checked') || $("#<%=rblNominneNameNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for guardian Full Name");
+            else if (!$("#<%=guardianrelation.ClientID%>").is(':hidden') && !($("#<%=rblNomineeRelationYes.ClientID%>").is(':checked') || $("#<%=rblNomineeRelationNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Relationship with guardian");
+            else if (!$("#<%=guardianemail.ClientID%>").is(':hidden') && !($("#<%=rblNomineeEmailYes.ClientID%>").is(':checked') || $("#<%=rblNomineeEmailNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Email of guardian");
+            else if (!$("#<%=guardianmobile.ClientID%>").is(':hidden') && !($("#<%=rblNomineeMobileYes.ClientID%>").is(':checked') || $("#<%=rblNomineeMobileNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Mobile/Cellular Number of guardian");
+            else
+                flag = true;
+            return flag;
+        }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#manageapplicantions_list').addClass('open');

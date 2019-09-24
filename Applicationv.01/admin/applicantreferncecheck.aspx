@@ -4,7 +4,7 @@
     <title></title>
     <script>
         $(document).ready(function () {
-
+        
             $('.fa-info-circle').tipso({
                 position: 'right',
                 background: 'rgba(0,0,0,0.8)',
@@ -16,7 +16,7 @@
             string txtName = "ContentPlaceHolder1_txt" + CustomControls[k].customfieldid.ToString();
             string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[k].customfieldid.ToString();
         %>
-
+            
             $("#<%=btnName%>").click(function () {
                 ManageRemarks('<%=txtName%>', '<%=btnName%>');
             });
@@ -30,6 +30,14 @@
 
         for (int n = 0; n < referenccheckList.Count; n++)
         {%>
+            //comment box
+            if ($("#txtName<%=n%>").val() != "")
+                ManageRemarksIfNoCheked('txtName<%=n%>', 'btnName<%=n%>');
+            if ($("#txtMobile<%=n%>").val() != "")
+                ManageRemarksIfNoCheked('txtMobile<%=n%>', 'btnMobile<%=n%>');
+            if ($("#txtEmail<%=n%>").val() != "")
+                ManageRemarksIfNoCheked('txtEmail<%=n%>', 'btnEmail<%=n%>');
+
             $("#btnName<%=n%>").click(function () {
                 ManageRemarks('txtName<%=n%>', 'btnName<%=n%>');
             });
@@ -124,10 +132,11 @@
                 $("#" + cntrol + "").css('display', 'block');
                 $("#" + control2 + "").prop('value', 'Hide Comments');
             }
+        
         });
 
         function GetValue() {
-
+            
             var inputValue = "";
             var inputactionValue = "";
          <% 
@@ -169,6 +178,35 @@
 
 
         }
+        function validateform()
+        {
+             <% for (int k = 0; k < referenccheckList.Count; k++)
+           { %>
+            
+            if (!$("#name").is(':hidden') && !($('#rblNameYes<%=k%>').is(':checked') || $('#rblNameNo<%=k%>').is(':checked'))) {
+                alert("Please select option for Name of reference");
+                return false;
+            }
+            else if (!$("#mobile").is(':hidden') && !($('#rblMobileYes<%=k%>').is(':checked') || $('#rblMobileNo<%=k%>').is(':checked'))) {
+                alert("Please select option for Mobile of reference");
+                return false;
+            }
+            else if (!$("#Email").is(':hidden') && !($('#rblEmailYes<%=k%>').is(':checked') || $('#rblEmailNo<%=k%>').is(':checked'))) {
+                alert("Please select option for Email of reference");
+                return false;
+            }
+            
+        <% } %> 
+            GetValue();
+            return true;
+        }
+
+         $(document).ready(function () {
+	        $('.sidebar-menu-item').removeClass('open');
+	        $('#manageapplicantions_list').addClass('open');
+	        $('.sidebar-menu-item').removeClass('active');
+	        $('#applicantlist').addClass('active');
+	    });
     </script>
 </asp:Content>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
@@ -189,7 +227,7 @@
 
                     %>
                     <div class="list-group list-group-fit">
-                        <div class="list-group-item" style='<%= Name == "" ? "display:none;": "display:block;"  %>'>
+                        <div class="list-group-item" id="name" style='<%= Name == "" ? "display:none;": "display:block;"  %>'>
                             <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                 <div class="form-row">
                                     <label id="labelname" for="name" class="col-md-2 col-form-label form-label"><%=Name %></label>
@@ -206,15 +244,15 @@
                                     </div>
                                     <div class="col-md-3">
                                         <input type="button" value="Add Remarks" id="<%="btnName" + k %>" />
-                                        <input id="<%="txtName" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
+                                        <input id="<%="txtName" + k %>" style="display: none;" type="text" placeholder="Add Comments" value="" class="form-control">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" style='<%= Mobile == "" ? "display:none;": "display:block;"  %>'>
+                        <div class="list-group-item" id="mobile" style='<%= Mobile == "" ? "display:none;": "display:block;"  %>'>
                             <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                 <div class="form-row">
-                                    <label id="labelmobile" for="name" class="col-md-2 col-form-label form-label"><%=Mobile %> </label>
+                                    <label id="labelmobile" for="mobile" class="col-md-2 col-form-label form-label"><%=Mobile %> </label>
 
                                     <div class="col-md-6">
                                         <div class="prdtl-ans">
@@ -229,12 +267,12 @@
                                     </div>
                                     <div class="col-md-3">
                                         <input type="button" value="Add Remarks" id="<%="btnMobile" + k %>" />
-                                        <input id="<%="txtMobile" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
+                                        <input id="<%="txtMobile" + k %>" style="display: none;" type="text" placeholder="Add Comments" value="" class="form-control">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="list-group-item" style='<%= Email == "" ? "display:none;": "display:block;"  %>'>
+                        <div class="list-group-item" id="Email" style='<%= Email == "" ? "display:none;": "display:block;"  %>'>
                             <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                 <div class="form-row">
                                     <label id="labelEmail" for="Email" class="col-md-2 col-form-label form-label"><%=Email %> </label>
@@ -252,7 +290,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <input type="button" value="Add Remarks" id="<%="btnEmail" + k %>" />
-                                        <input id="<%="txtEmail" + k %>" style="display: none;" type="text" placeholder="Name" value="" class="form-control">
+                                        <input id="<%="txtEmail" + k %>" style="display: none;" type="text" placeholder="Add Comments" value="" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -263,7 +301,7 @@
                         <div class="list-group-item" id="employerwebsite">
                             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                 <div class="form-row">
-                                    <asp:Button ID="btnReference" runat="server" Text="Save Changes" OnClientClick="GetValue();" CssClass="btn btn-success" OnClick="btnReference_Click" />
+                                    <asp:Button ID="btnReference" runat="server" Text="Save Changes" OnClientClick="return validateform()" CssClass="btn btn-success" OnClick="btnReference_Click"/>
                                     <div class="col-md-6">
                                         <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                         <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -280,12 +318,5 @@
 
 
     </div>
-    <script>
-        $(document).ready(function () {
-	        $('.sidebar-menu-item').removeClass('open');
-	        $('#manageapplicantions_list').addClass('open');
-	        $('.sidebar-menu-item').removeClass('active');
-	        $('#applicantlist').addClass('active');
-	    });
-    </script>
+   
 </asp:Content>

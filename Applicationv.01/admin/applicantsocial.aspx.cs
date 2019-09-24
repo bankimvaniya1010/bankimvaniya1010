@@ -10,7 +10,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
 {
     int formId = 0;
     Common objCom = new Common();
-    int userID = 0, ApplicantID = 0, universityID;
+    int adminID = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
@@ -22,7 +22,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        userID = Convert.ToInt32(Session["UserID"]);
+        adminID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -42,10 +42,10 @@ public partial class admin_applicantsocial : System.Web.UI.Page
         {
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, ApplicantID, CustomControls, mainDiv);
-            SetToolTips();
-            PopulatePersonalInfo();
+            SetToolTips();            
             SetControlsUniversitywise();
             SetAdminComments();
+            PopulatePersonalInfo();
         }
     }
     private void SetToolTips()
@@ -113,17 +113,20 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             if (profileInfo != null)
             {
                 if ((profileInfo.havefacebookaccount == null) || (profileInfo.havefacebookaccount == false))
-                    lblFacebook.Text = "User has opted, he has no facebook account";
-                else
                     lblFacebook.Text = profileInfo.facebookprofle;
+                else
+                    lblFacebook.Text = "User has opted, he has no facebook account";
+                
                 if ((profileInfo.havelinkedinaccount == null) || (profileInfo.havelinkedinaccount == false))
-                    lblLinkedin.Text = "User has opted, he has no Linkedin  account";
-                else
                     lblLinkedin.Text = profileInfo.linkedprofile;
-                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
-                    lblTwitter.Text = "User has opted, he has no Linkedin  account";
                 else
+                    lblLinkedin.Text = "User has opted, he has no Linkedin  account";
+                
+                if ((profileInfo.havetwitteraccount == null) || (profileInfo.havetwitteraccount == false))
                     lblTwitter.Text = profileInfo.twiterprofile;
+                else
+                    lblTwitter.Text = "User has opted, he has no Linkedin  account";
+                
 
             }
 
@@ -254,7 +257,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
-            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, adminID, adminInputs);
         }
         catch (Exception ex)
         {

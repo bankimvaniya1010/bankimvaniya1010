@@ -2465,7 +2465,7 @@
                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                         <div class="form-row">
 
-                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" />
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validateform()"/>
                             <div class="col-md-4">
                                 <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                 <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -2482,6 +2482,222 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            //all comment box
+                      
+           if ($("#<%=txthighschool.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschool.ClientID%>', 'btnhighschool');
+           if ($("#<%=txthighschoolCountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolCountry.ClientID%>', 'btnhighschoolCountry');
+           if ($("#<%=txthighschoolstartDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolstartDate.ClientID%>', 'btnhighschoolstartDate');
+           if ($("#<%=txthighschoolendDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolendDate.ClientID%>', 'btnhighschoolendDate');
+           if ($("#<%=txthighschoolName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolName.ClientID%>', 'btnhighschoolName');
+           if ($("#<%=txthighschoolQualificationtype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolQualificationtype.ClientID%>', 'btnhighschoolQualificationtype');
+           if ($("#<%=txthighschoolstudymode.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolstudymode.ClientID%>', 'btnhighschoolstudymode');
+           if ($("#<%=txthighschoollanguage.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoollanguage.ClientID%>', 'btnhighschoollanguage');
+           if ($("#<%=txtgradetype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtgradetype.ClientID%>', 'btngradetype');
+           if ($("#<%=txthighschoolgradeachieved.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolgradeachieved.ClientID%>', 'btnhighschoolgradeachieved');
+           if ($("#<%=txtExpectedHighSchoolDategrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedHighSchoolDategrade.ClientID%>', 'btnExpectedHighSchoolDategrade');
+           if ($("#<%=txthighschoolverify.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolverify.ClientID%>', 'btnhighschoolverify');
+           if ($("#<%=txthighschoolrelation.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolrelation.ClientID%>', 'btnhighschoolrelation');
+           if ($("#<%=txthighschoolcontactEmail.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolcontactEmail.ClientID%>', 'btnhighschoolcontactEmail');
+           if ($("#<%=txthighschoolcontactMobile.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolcontactMobile.ClientID%>', 'btnhighschoolcontactMobile');
+         
+           if ($("#<%=txthighschoolgrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighschoolgrade.ClientID%>', 'btnhighshoolgrade');
+           if ($("#<%=txtSecondary.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondary.ClientID%>', 'btnSecondary');
+           if ($("#<%=txtSecondaryCountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondaryCountry.ClientID%>', 'btnSecondaryCountry');
+           if ($("#<%=txtSecondarystartDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondarystartDate.ClientID%>', 'btnSecondarystartDate');
+           if ($("#<%=txtSecondaryendDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondaryendDate.ClientID%>', 'btnSecondaryendDate');
+           if ($("#<%=txtSecondaryschoolName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondaryschoolName.ClientID%>', 'btnSecondaryschoolName');
+           if ($("#<%=txtSecondaryQualificationtype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondaryQualificationtype.ClientID%>', 'btnSecondaryQualificationtype');
+           if ($("#<%=txtSecondarystudymode.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondarystudymode.ClientID%>', 'btnSecondarystudymode');
+           if ($("#<%=txtSecondarylanguage.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondarylanguage.ClientID%>', 'btnSecondarylanguage');
+           if ($("#<%=txtSecondarygradetype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondarygradetype.ClientID%>', 'btnSecondarygradetype');
+           if ($("#<%=txtSecondarygradeachieved.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondarygradeachieved.ClientID%>', 'btnSecondarygradeachieved');
+           if ($("#<%=txtExpectedSecondaryDategrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedSecondaryDategrade.ClientID%>', 'btnExpectedSecondaryDategrade');
+           if ($("#<%=txtSecondaryverify.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondaryverify.ClientID%>', 'btnSecondaryverify');
+           if ($("#<%=txtsecondaryschoolrelation.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtsecondaryschoolrelation.ClientID%>', 'btnsecondaryschoolrelation');
+           if ($("#<%=txtsecondarycontactEmail.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtsecondarycontactEmail.ClientID%>', 'btnsecondarycontactEmail');
+           if ($("#<%=txtsecondarycontactMobile.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtsecondarycontactMobile.ClientID%>', 'btnsecondarycontactMobile');
+           if ($("#<%=txtSecondaryGrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtSecondaryGrade.ClientID%>', 'btnsecondarygrade');
+           if ($("#<%=txtdiploma.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiploma.ClientID%>', 'btndiploma');
+           if ($("#<%=txtdiplomaCountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomaCountry.ClientID%>', 'btndiplomaCountry');
+           if ($("#<%=txtdiplomastartDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomastartDate.ClientID%>', 'btndiplomastartDate');
+           if ($("#<%=txtdiplomaendDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomaendDate.ClientID%>', 'btndiplomaendDate');
+           if ($("#<%=txtdiplomaschoolName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomaschoolName.ClientID%>', 'btndiplomaschoolName');
+           if ($("#<%=txtdiplomaQualificationtype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomaQualificationtype.ClientID%>', 'btndiplomaQualificationtype');
+           if ($("#<%=txtdiplomastudymode.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomastudymode.ClientID%>', 'btndiplomastudymode');
+           if ($("#<%=txtdiplomalanguage.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomalanguage.ClientID%>', 'btndiplomalanguage');
+           if ($("#<%=txtdiplomagradetype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomagradetype.ClientID%>', 'btndiplomagradetype');
+           if ($("#<%=txtdiplomagradeachieved.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomagradeachieved.ClientID%>', 'btndiplomagradeachieved');
+           if ($("#<%=txtExpectedDiplomaDategrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedDiplomaDategrade.ClientID%>', 'btnExpecteddiplomaDategrade');
+           if ($("#<%=txtdiplomaverify.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomaverify.ClientID%>', 'btndiplomaverify');
+           if ($("#<%=txtdiplomarelation.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomarelation.ClientID%>', 'btndiplomarelation');
+           if ($("#<%=txtdiplomacontactEmail.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomacontactEmail.ClientID%>', 'btndiplomacontactEmail');
+           if ($("#<%=txtdiplomacontactMobile.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtdiplomacontactMobile.ClientID%>', 'btndiplomacontactMobile');
+           if ($("#<%=txtDiplomaGrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtDiplomaGrade.ClientID%>', 'btndiplomagrade');
+           if ($("#<%=txthigher.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigher.ClientID%>', 'btnhigher');
+           if ($("#<%=txthigherCountry.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherCountry.ClientID%>', 'btnhigherCountry');
+           if ($("#<%=txthigherstartDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstartDate.ClientID%>', 'btnhigherstartDate');
+           if ($("#<%=txthigherendDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherendDate.ClientID%>', 'btnhigherendDate');
+           if ($("#<%=txthigherschoolName.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherschoolName.ClientID%>', 'btnhigherschoolName');
+           if ($("#<%=txthigherQualificationtype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherQualificationtype.ClientID%>', 'btnhigherQualificationtype');
+           if ($("#<%=txthigherstudymode.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstudymode.ClientID%>', 'btnhigherstudymode');
+           if ($("#<%=txthigherlanguage.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherlanguage.ClientID%>', 'btnhigherlanguage');
+           if ($("#<%=txthighergradetype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradetype.ClientID%>', 'btnhighergradetype');
+           if ($("#<%=txthighergradeachieved.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradeachieved.ClientID%>', 'btnhighergradeachieved');
+           if ($("#<%=txtExpectedHigherDategrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedHigherDategrade.ClientID%>', 'btnExpectedhigherDategrade');
+           if ($("#<%=txthigherverify.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherverify.ClientID%>', 'btnhigherverify');
+           if ($("#<%=txthigherrelation.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherrelation.ClientID%>', 'btnhigherrelation');
+           if ($("#<%=txthighercontactEmail.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactEmail.ClientID%>', 'btnhighercontactEmail');
+           if ($("#<%=txthighercontactMobile.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactMobile.ClientID%>', 'btnhighercontactMobile');
+           if ($("#<%=txtHigherGrade.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtHigherGrade.ClientID%>', 'btnhighergrade');
+           if ($("#<%=txthigherCountryPG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherCountryPG.ClientID%>', 'btnhigherCountryPG');
+           if ($("#<%=txthigherstartDatePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstartDatePG.ClientID%>', 'btnhigherstartDatePG');
+           if ($("#<%=txthigherendDatePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherendDatePG.ClientID%>', 'btnhigherendDatePG');
+           if ($("#<%=txthigherschoolNamePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherschoolNamePG.ClientID%>', 'btnhigherschoolNamePG');
+           if ($("#<%=txthigherQualificationtypePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherQualificationtypePG.ClientID%>', 'btnhigherQualificationtypePG');
+           if ($("#<%=txthigherstudymodePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstudymodePG.ClientID%>', 'btnhigherstudymodePG');
+           if ($("#<%=txthigherlanguagePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherlanguagePG.ClientID%>', 'btnhigherlanguagePG');
+           if ($("#<%=txthighergradetypePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradetypePG.ClientID%>', 'btnhighergradetypePG');
+           if ($("#<%=txthighergradeachievedPG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradeachievedPG.ClientID%>', 'btnhighergradeachievedPG');
+           if ($("#<%=txtExpectedHigherDategradePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedHigherDategradePG.ClientID%>', 'btnExpectedhigherDategradePG');
+           if ($("#<%=txthigherverifyPG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherverifyPG.ClientID%>', 'btnhigherverifyPG');
+           if ($("#<%=txthigherrelationPG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherrelationPG.ClientID%>', 'btnhigherrelationPG');
+           if ($("#<%=txthighercontactEmailPG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactEmailPG.ClientID%>', 'btnhighercontactEmailPG');
+           if ($("#<%=txthighercontactMobilePG.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactMobilePG.ClientID%>', 'btnhighercontactMobilePG');
+           if ($("#<%=txthigherCountryPhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherCountryPhd.ClientID%>', 'btnhigherCountryPhd');
+           if ($("#<%=txthigherstartDatePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstartDatePhd.ClientID%>', 'btnhigherstartDatePhd');
+           if ($("#<%=txthigherendDatePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherendDatePhd.ClientID%>', 'btnhigherendDatePhd');
+           if ($("#<%=txthigherschoolNamePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherschoolNamePhd.ClientID%>', 'btnhigherschoolNamePhd');
+           if ($("#<%=txthigherQualificationtypePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherQualificationtypePhd.ClientID%>', 'btnhigherQualificationtypePhd');
+           if ($("#<%=txthigherstudymodePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstudymodePhd.ClientID%>', 'btnhigherstudymodePhd');
+           if ($("#<%=txthigherlanguagePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherlanguagePhd.ClientID%>', 'btnhigherlanguagePhd');
+           if ($("#<%=txthighergradetypePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradetypePhd.ClientID%>', 'btnhighergradetypePhd');
+           if ($("#<%=txthighergradeachievedPhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradeachievedPhd.ClientID%>', 'btnhighergradeachievedPhd');
+           if ($("#<%=txtExpectedHigherDategradePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedHigherDategradePhd.ClientID%>', 'btnExpectedhigherDategradePhd');
+           if ($("#<%=txthigherverifyPhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherverifyPhd.ClientID%>', 'btnhigherverifyPhd');
+           if ($("#<%=txthigherrelationPhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherrelationPhd.ClientID%>', 'btnhigherrelationPhd');
+           if ($("#<%=txthighercontactEmailPhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactEmailPhd.ClientID%>', 'btnhighercontactEmailPhd');
+           if ($("#<%=txthighercontactMobilePhd.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactMobilePhd.ClientID%>', 'btnhighercontactMobilePhd');
+           if ($("#<%=txthigherCountryOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherCountryOther.ClientID%>', 'btnhigherCountryOther');
+           if ($("#<%=txthigherstartDateOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstartDateOther.ClientID%>', 'btnhigherstartDateOther');
+           if ($("#<%=txthigherendDateOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherendDateOther.ClientID%>', 'btnhigherendDateOther');
+           if ($("#<%=txthigherschoolNameOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherschoolNameOther.ClientID%>', 'btnhigherschoolNameOther');
+           if ($("#<%=txthigherQualificationtypeOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherQualificationtypeOther.ClientID%>', 'btnhigherQualificationtypeOther');
+           if ($("#<%=txthigherstudymodeOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherstudymodeOther.ClientID%>', 'btnhigherstudymodeOther');
+           if ($("#<%=txthigherlanguageOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherlanguageOther.ClientID%>', 'btnhigherlanguageOther');
+           if ($("#<%=txthighergradetypeOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradetypeOther.ClientID%>', 'btnhighergradetypeOther');
+           if ($("#<%=txthighergradeachievedOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighergradeachievedOther.ClientID%>', 'btnhighergradeachievedOther');
+           if ($("#<%=txtExpectedHigherDategradeOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpectedHigherDategradeOther.ClientID%>', 'btnExpectedhigherDategradeOther');
+           if ($("#<%=txthigherverifyOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherverifyOther.ClientID%>', 'btnhigherverifyOther');
+           if ($("#<%=txthigherrelationOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthigherrelationOther.ClientID%>', 'btnhigherrelationOther');
+           if ($("#<%=txthighercontactEmailOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactEmailOther.ClientID%>', 'btnhighercontactEmailOther');
+           if ($("#<%=txthighercontactMobileOther.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txthighercontactMobileOther.ClientID%>', 'btnhighercontactMobileOther');
+
             // High School
             $("#btnhighschool").click(function () {
                 ManageRemarks('<%=txthighschool.ClientID%>', 'btnhighschool');
@@ -3151,7 +3367,7 @@
                 ManageRemarks('<%=txthighercontactMobileOther.ClientID%>', 'btnhighercontactMobileOther');
             });
 
-            if ($('#<%=rblhighschoolNo.ClientID%>').prop('checked') == true)
+           if ($('#<%=rblhighschoolNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txthighschool.ClientID%>', 'btnhighschool');
            if ($('#<%=rblhighschoolCountryNo.ClientID%>').prop('checked') == true)
                 ManageRemarksIfNoCheked('<%=txthighschoolCountry.ClientID%>', 'btnhighschoolCountry');
@@ -3394,11 +3610,208 @@
                     $("#" + control2 + "").prop('value', 'Add Comments');
                 }
             }
- function ManageRemarksIfNoCheked(cntrol, control2) {
+            function ManageRemarksIfNoCheked(cntrol, control2) {
                 $("#" + cntrol + "").css('display', 'block');
                 $("#" + control2 + "").prop('value', 'Hide Comments');
             }
         });
+        function validateform()
+        {
+            var flag = false;
+            if (!$("#<%=highschool.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Have you completed high school");
+            else if (!$("#<%=highschoolCountry.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolCountryYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolCountryNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for HighschoolCountry of High School Education");
+            else if (!$("#<%=highschoolstartDate.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolstartDateYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolstartDateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool start date");    
+            else if (!$("#<%=highschoolendDate.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolendDateYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolendDateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool End date");
+            else if (!$("#<%=highschoolName.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolNameYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool school name");
+            else if (!$("#<%=highschoolQualificationtype.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolQualificationtypeYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolQualificationtypeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool qualification type");
+            else if (!$("#<%=highschoolstudymode.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolstudymodeYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolstudymodeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool study mode");
+            else if (!$("#<%=highschoollanguage.ClientID%>").is(':hidden') && !($("#<%=rblhighschoollanguageYes.ClientID%>").is(':checked') || $("#<%=rblhighschoollanguageNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool school language");    
+            else if (!$("#<%=gradetype.ClientID%>").is(':hidden') && !($("#<%=rblgradetypeYes.ClientID%>").is(':checked') || $("#<%=rblgradetypeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool grade type");    
+            else if (!$("#<%=highschoolgradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolgradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolgradeachievedNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool grade achieved");
+            else if (!$("#<%=ExpectedHighSchoolDategrade.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHighSchoolDategradeYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolverifyNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool expected date");
+            else if (!$("#<%=highschoolverify.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolverifyYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolverifyNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool Name of Contact who can verify this qualification ");
+            else if (!$("#<%=highschoolrelation.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolrelationYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolrelationNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool relationship with contact");
+            else if (!$("#<%=highschoolcontactEmail.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolcontactEmailYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolcontactEmailNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool email id of contact");
+            else if (!$("#<%=highschoolcontactMobile.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolcontactMobileYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolcontactMobileNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Highschool contact mobile number");
+            //sec
+            else if (!$("#<%=Secondary.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Have you completed Senior Secondary school? (Year 12)?");
+            else if (!$("#<%=SecondaryCountry.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryCountryYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryCountryNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary schoolCountry of High School Education");
+            else if (!$("#<%=SecondarystartDate.ClientID%>").is(':hidden') && !($("#<%=rblSecondarystartDateYes.ClientID%>").is(':checked') || $("#<%=rblSecondarystartDateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school start date");    
+            else if (!$("#<%=SecondaryendDate.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryendDateYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryendDateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school End date");
+            else if (!$("#<%=SecondaryschoolName.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryschoolNameYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryschoolNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school school name");
+            else if (!$("#<%=SecondaryQualificationtype.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryQualificationtypeYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryQualificationtypeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school qualification type");
+            else if (!$("#<%=Secondarystudymode.ClientID%>").is(':hidden') && !($("#<%=rblSecondarystudymodeYes.ClientID%>").is(':checked') || $("#<%=rblSecondarystudymodeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school study mode");
+            else if (!$("#<%=Secondarylanguage.ClientID%>").is(':hidden') && !($("#<%=rblSecondarylanguageYes.ClientID%>").is(':checked') || $("#<%=rblSecondarylanguageNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school school language"); 
+            else if (!$("#<%=Secondarygradetype.ClientID%>").is(':hidden') && !($("#<%=rblSecondarygradetypeYes.ClientID%>").is(':checked') || $("#<%=rblSecondarygradetypeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school grade type");    
+            else if (!$("#<%=Secondarygradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblSecondarygradeachievedNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school grade achieved");
+            else if (!$("#<%=ExpectedSecondaryDategrade.ClientID%>").is(':hidden') && !($("#<%=rblExpectedSecondaryDategradeYes.ClientID%>").is(':checked') || $("#<%=rblExpectedSecondaryDategradeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school expected date");
+            else if (!$("#<%=Secondaryverify.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryverifyYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryverifyNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school Name of Contact who can verify this qualification ");
+            else if (!$("#<%=secondaryschoolrelation.ClientID%>").is(':hidden') && !($("#<%=rblsecondaryschoolrelationYes.ClientID%>").is(':checked') || $("#<%=rblsecondaryschoolrelationNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school relationship with contact");
+            else if (!$("#<%=secondarycontactEmail.ClientID%>").is(':hidden') && !($("#<%=rblsecondarycontactEmailYes.ClientID%>").is(':checked') || $("#<%=rblsecondarycontactEmailNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school email id of contact");
+            else if (!$("#<%=secondarycontactMobile.ClientID%>").is(':hidden') && !($("#<%=rblsecondarycontactMobileYes.ClientID%>").is(':checked') || $("#<%=rblsecondarycontactMobileNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Secondary school contact mobile number");
+                //higher UG
+            else if (!$("#<%=higher.ClientID%>").is(':hidden') && !($("#<%=rblhigherYes.ClientID%>").is(':checked') || $("#<%=rblhigherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Have you completed Senior Secondary school? (Year 12)?");
+            else if (!$("#<%=highercourse.ClientID%>").is(':hidden') && !($("#<%=rblhighercourseYes.ClientID%>").is(':checked') || $("#<%=rblhighercourseNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Course");
+            else if (!$("#<%=higherCountry.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationCountry of High School Education");
+            else if (!$("#<%=higherstartDate.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDateYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstart date");    
+            else if (!$("#<%=higherendDate.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDateYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDateNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationEnd date");
+            else if (!$("#<%=higherschoolName.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNameYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNameNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool name");
+            else if (!$("#<%=higherQualificationtype.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypeYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationqualification type");
+            else if (!$("#<%=higherstudymode.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodeYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstudy mode");
+            else if (!$("#<%=higherlanguage.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguageYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguageNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool language"); 
+            else if (!$("#<%=highergradetype.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypeYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade type");    
+            else if (!$("#<%=highergradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade achieved");
+            else if (!$("#<%=ExpectedHigherDategrade.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradeYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradeNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationexpected date");
+            else if (!$("#<%=higherverify.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+            else if (!$("#<%=higherrelation.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationrelationship with contact");
+            else if (!$("#<%=highercontactEmail.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationemail id of contact");
+            else if (!$("#<%=highercontactMobile.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobileYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobileNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationcontact mobile number");
+                //Higher PG            
+            else if (!$("#<%=highercoursePG.ClientID%>").is(':hidden') && !($("#<%=rblhighercoursePGYes.ClientID%>").is(':checked') || $("#<%=rblhighercoursePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Course");
+            else if (!$("#<%=higherCountryPG.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryPGYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryPGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationCountry of High School Education");
+            else if (!$("#<%=higherstartDatePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDatePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDatePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstart date");    
+            else if (!$("#<%=higherendDatePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDatePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDatePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationEnd date");
+            else if (!$("#<%=higherschoolNamePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNamePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNamePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool name");
+            else if (!$("#<%=higherQualificationtypePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationqualification type");
+            else if (!$("#<%=higherstudymodePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstudy mode");
+            else if (!$("#<%=higherlanguagePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguagePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguagePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool language"); 
+            else if (!$("#<%=highergradetypePG.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypePGYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade type");    
+            else if (!$("#<%=highergradeachievedPG.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedPGYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedPGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade achieved");
+            else if (!$("#<%=ExpectedHigherDategradePG.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradePGYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationexpected date");
+            else if (!$("#<%=higherverifyPG.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyPGYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyPGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+            else if (!$("#<%=higherrelationPG.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationPGYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationPGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationrelationship with contact");
+            else if (!$("#<%=highercontactEmailPG.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailPGYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailPGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationemail id of contact");
+            else if (!$("#<%=highercontactMobilePG.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobilePGYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobilePGNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationcontact mobile number");
+                //Higher PHD
+           
+            else if (!$("#<%=highercoursePhd.ClientID%>").is(':hidden') && !($("#<%=rblhighercoursePhdYes.ClientID%>").is(':checked') || $("#<%=rblhighercoursePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Course");
+            else if (!$("#<%=higherCountryPhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryPhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryPhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationCountry of High School Education");
+            else if (!$("#<%=higherstartDatePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDatePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDatePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstart date");    
+            else if (!$("#<%=higherendDatePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDatePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDatePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationEnd date");
+            else if (!$("#<%=higherschoolNamePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNamePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNamePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool name");
+            else if (!$("#<%=higherQualificationtypePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationqualification type");
+            else if (!$("#<%=higherstudymodePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstudy mode");
+            else if (!$("#<%=higherlanguagePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguagePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguagePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool language"); 
+            else if (!$("#<%=highergradetypePhd.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypePhdYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade type");    
+            else if (!$("#<%=highergradeachievedPhd.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedPhdYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedPhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade achieved");
+            else if (!$("#<%=ExpectedHigherDategradePhd.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradePhdYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationexpected date");
+            else if (!$("#<%=higherverifyPhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyPhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyPhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+            else if (!$("#<%=higherrelationPhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationPhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationPhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationrelationship with contact");
+            else if (!$("#<%=highercontactEmailPhd.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailPhdYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailPhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationemail id of contact");
+            else if (!$("#<%=highercontactMobilePhd.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobilePhdYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobilePhdNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationcontact mobile number");
+    
+                //Higher Other           
+            else if (!$("#<%=highercourseOther.ClientID%>").is(':hidden') && !($("#<%=rblOtherHigherCourseNo.ClientID%>").is(':checked') || $("#<%=rblOtherHigherCourseYes.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Course");
+            else if (!$("#<%=higherCountryOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationCountry of High School Education");
+            else if (!$("#<%=higherstartDateOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDateOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDateOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstart date");    
+            else if (!$("#<%=higherendDateOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDateOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDateOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationEnd date");
+            else if (!$("#<%=higherschoolNameOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNameOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNameOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool name");
+            else if (!$("#<%=higherQualificationtypeOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypeOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypeOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationqualification type");
+            else if (!$("#<%=higherstudymodeOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodeOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodeOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationstudy mode");
+            else if (!$("#<%=higherlanguageOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguageOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguageOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationschool language"); 
+            else if (!$("#<%=highergradetypeOther.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypeOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypeOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade type");    
+            else if (!$("#<%=highergradeachievedOther.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationgrade achieved");
+            else if (!$("#<%=ExpectedHigherDategradeOther.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradeOtherYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradeOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationexpected date");
+            else if (!$("#<%=higherverifyOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+            else if (!$("#<%=higherrelationOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationrelationship with contact");
+            else if (!$("#<%=highercontactEmailOther.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationemail id of contact");
+            else if (!$("#<%=highercontactMobileOther.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobileOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobileOtherNo.ClientID%>").is(':checked'))) 
+                alert("Please seclect option for Higher Educationcontact mobile number");
+                
+            else
+                flag = true;
+            return flag;
+        }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#manageapplicantions_list').addClass('open');
