@@ -279,6 +279,30 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function () {
+            //comment box
+            if ($("#<%=txtPassportNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtPassportNo.ClientID%>', 'btnPassportNo');
+            if ($("#<%=txtDateOfissue.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtDateOfissue.ClientID%>', 'btnDateOfissue');
+            if ($("#<%=txtExpiryDate.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtExpiryDate.ClientID%>', 'btnExpiryDate');
+            if ($("#<%=txtissueplace.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtissueplace.ClientID%>', 'btnissueplace');
+            if ($("#<%=txtcountryIssue.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtcountryIssue.ClientID%>', 'btncountryIssue');
+            if ($("#<%=txtalternateIdentitytype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtalternateIdentitytype.ClientID%>', 'btnalternateIdentitytype');
+            if ($("#<%=txtalternateIdentityNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtalternateIdentityNo.ClientID%>', 'btnalternateIdentityNo');
+            if ($("#<%=txtalternatedobIdentitytype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtalternatedobIdentitytype.ClientID%>', 'btnalternatedobIdentitytype');
+            if ($("#<%=txtalternatedobIdentityNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtalternatedobIdentityNo.ClientID%>', 'btnalternatedobIdentityNo');
+            if ($("#<%=txtalternateresidenceIdentitytype.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtalternateresidenceIdentitytype.ClientID%>', 'btnalternateresidenceIdentitytype');
+            if ($("#<%=txtalternateresidenceIdentityNo.ClientID%>").val() != "")
+                ManageRemarksIfNoCheked('<%=txtalternateresidenceIdentityNo.ClientID%>', 'btnalternateresidenceIdentityNo');
+
             $("#btnPassportNo").click(function () {
                 ManageRemarks('<%=txtPassportNo.ClientID%>', 'btnPassportNo');
             });
@@ -418,15 +442,26 @@
             var flag = false;
             if (!$("#<%=passportno.ClientID%>").is(':hidden') && !($("#<%=rblPassportNoNo.ClientID%>").is(':checked') || $("#<%=rblPassportNoYes.ClientID%>").is(':checked'))) 
                 alert("Please seclect option for Passport Number");
-            <%--else if (!$("#<%=passportno.ClientID%>").is(':hidden') && $("#<%=rblPassportNoNo.ClientID%>").is(':checked') && $("#<%=txtPassportNo.ClientID%>").val() == "")
-                alert("Please enter comments for passport Number");--%>
             else if (!$("#<%=dateofissue.ClientID%>").is(':hidden') && !($("#<%=rblDateOfissueNo.ClientID%>").is(':checked') || $("#<%=rblDateOfissueYes.ClientID%>").is(':checked'))) 
-                alert("Please select option for Date of Issue");
-            else if (!$("#<%=dateofissue.ClientID%>").is(':hidden') && $("#<%=rblDateOfissueNo.ClientID%>").is(':checked') && $("#<%=txtDateOfissue.ClientID%>").val() == "")
-                alert("Please enter comments for date of issue");
+                alert("Please select option for Date of Issue");           
             else if (!$("#<%=expirydate.ClientID%>").is(':hidden') && !($("#<%=rblExpiryDateNo.ClientID%>").is(':checked') || $("#<%=rblExpiryDateYes.ClientID%>").is(':checked'))) 
                 alert("Please select option for Expiry Date");
-            
+            else if (!$("#<%=countryIssue.ClientID%>").is(':hidden') && !($("#<%=rblcountryIssueYes.ClientID%>").is(':checked') || $("#<%=rblcountryIssueNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for country of issue");
+            else if (!$("#<%=issueplace.ClientID%>").is(':hidden') && !($("#<%=rblissueplaceYes.ClientID%>").is(':checked') || $("#<%=rblissueplaceNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for place of issue");
+            else if (!$("#<%=alternateIdentitytype.ClientID%>").is(':hidden') && !($("#<%=rblalternateIdentitytypeYes.ClientID%>").is(':checked') || $("#<%=rblalternateIdentitytypeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Alternate Identity proof type");
+            else if (!$("#<%=alternateIdentityNo.ClientID%>").is(':hidden') && !($("#<%=rblalternateIdentityNoYes.ClientID%>").is(':checked') || $("#<%=rblalternateIdentityNoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Alternate Identity proof Number");
+            else if (!$("#<%=alternatedobIdentitytype.ClientID%>").is(':hidden') && !($("#<%=rblalternatedobIdentitytypeYes.ClientID%>").is(':checked') || $("#<%=rblalternatedobIdentitytypeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Alternate Dob proof Type");
+            else if (!$("#<%=alternatedobIdentityNo.ClientID%>").is(':hidden') && !($("#<%=rblalternatedobIdentityNoYes.ClientID%>").is(':checked') || $("#<%=rblalternatedobIdentityNoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Alternate Dob proof Number");
+            else if (!$("#<%=alternateresidenceIdentitytype.ClientID%>").is(':hidden') && !($("#<%=rblalternateresidenceIdentitytypeYes.ClientID%>").is(':checked') || $("#<%=rblalternateresidenceIdentitytypeNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Alternate residence proof type");
+            else if (!$("#<%=alternateresidenceIdentityNo.ClientID%>").is(':hidden') && !($("#<%=rblalternateresidenceIdentityNoYes.ClientID%>").is(':checked') || $("#<%=rblalternateresidenceIdentityNoNo.ClientID%>").is(':checked'))) 
+                alert("Please select option for Alternate residence proof Number");
             else
                 flag = true;
             return flag;

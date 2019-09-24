@@ -219,7 +219,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             {
                 objapplicantDetail.isdifferentwhatsapp = 1;
             }
-            else if (rblwhatsappNo.Checked)
+            else if (rblWhatsupsameNo.Checked)
             {
                 objapplicantDetail.isdifferentwhatsapp = 2;
                 objapplicantDetail.whatsappno = txtWhatsappNo.Text;

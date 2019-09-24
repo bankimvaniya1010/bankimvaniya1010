@@ -464,23 +464,20 @@
                  alert("Please select valid postal country");
             else if (!$("#<%=address.ClientID%>").is(':hidden') && !($("#<%=rblAddressYes.ClientID%>").is(':checked') || $("#<%=rblAddressNo.ClientID%>").is(':checked')))
                  alert("Please Select Option to record is your postal and residentail address is same");
-            else if (!$("#<%=address.ClientID%>").is(':hidden') && $("#<%=rblAddressNo.ClientID%>").is(':checked'))
-            {
-                if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress1.ClientID%>").val() == ""))
-                    alert("Please enter first residential address line");
-                else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress2.ClientID%>").val() == ""))
-                    alert("Please enter second residential address line");
-                else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress3.ClientID%>").val() == ""))
-                    alert("Please enter third residential address line");
-                else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialCity.ClientID%>").val() == ""))
-                    alert("Please enter residential city");
-                else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialState.ClientID%>").val() == ""))
-                    alert("Please enter residential state");
-                else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialpostal.ClientID%>").val() == ""))
-                    alert("Please enter residential postal code");
-                else if ((!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=ddlResidentialCountry.ClientID%>").val() == "0"))
-                    alert("Please enter residential Country");
-            }
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress1.ClientID%>").val() == ""))
+                alert("Please enter first residential address line");
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress2.ClientID%>").val() == ""))
+                alert("Please enter second residential address line");
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress3.ClientID%>").val() == ""))
+                alert("Please enter third residential address line");
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialCity.ClientID%>").val() == ""))
+                alert("Please enter residential city");
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialState.ClientID%>").val() == ""))
+                alert("Please enter residential state");
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialpostal.ClientID%>").val() == ""))
+                alert("Please enter residential postal code");
+            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=ddlResidentialCountry.ClientID%>").val() == "0"))
+                alert("Please enter residential Country");            
             else if (!$("#<%=addressHistory.ClientID%>").is(':hidden') && !($("#<%=rblCurrentAddYes.ClientID%>").is(':checked') || $("#<%=rblCurrentAddNo.ClientID%>").is(':checked')))
                  alert("Please Select Option to record your previous residential address.");
             else if (!$("#<%=addressHistory.ClientID%>").is(':hidden') && $("#<%=rblCurrentAddYes.ClientID%>").is(':checked') && !isvalidAllAddressDetails()) { }

@@ -11,7 +11,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
 
     int formId = 0;
     Common objCom = new Common();
-    int userID = 0, ApplicantID = 0, universityID;
+    int adminId = 0, ApplicantID = 0, universityID;
     private GTEEntities db = new GTEEntities();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
@@ -23,7 +23,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        userID = Convert.ToInt32(Session["UserID"]);
+        adminId = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);
@@ -45,9 +45,9 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
             SetAdminComments();
-            PopulatePersonalInfo();
+            SetControlsUniversitywise();           
             SetToolTips();
-            SetControlsUniversitywise();
+            PopulatePersonalInfo();
         }
     }
     private void PopulatePersonalInfo()
@@ -66,13 +66,12 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                 {
                     lblSkype.Text = "Yes";
                     lblSkypeDescription.Text = profileInfo.skypeid;
-                    skypeDesc.Visible = true;
+                    skypeDesc.Attributes.Add("style","display: block");
                 }
                 else if (profileInfo.haveskypeid == 0)
                 {
-                    lblSkype.Text = "No";
-                    lblSkypeDescription.Text = "";
-                    skypeDesc.Visible = false;
+                    lblSkype.Text = "No";                    
+                    skypeDesc.Attributes.Add("style","display: none");
                 }
 
                 if (profileInfo.havewhatsup == 1)
@@ -80,20 +79,21 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                     lblWhatsapp.Text = "Yes";
                     if (profileInfo.isdifferentwhatsapp == 1)
                     {
-                        lblWhatsapphave.Text = "No";
-                        lblWhastappDesription.Text = profileInfo.whatsappno;
+                        lblWhatsapphave.Text = "Yes";
+                        whatsappDesc.Attributes.Add("style", "display: none");
                     }
                     else if (profileInfo.isdifferentwhatsapp == 2)
                     {
-                        lblWhatsapphave.Text = "Yes";
-                        whatsappDesc.Visible = false;
+                        lblWhatsapphave.Text = "No";
+                        lblWhastappDesription.Text = profileInfo.whatsappno;
+                        
                     }
                 }
                 else if (profileInfo.havewhatsup == 2)
                 {
                     lblWhatsapp.Text = "No";
-                    whatsappHave.Visible = false;
-                    whatsappDesc.Visible = false;
+                    whatsappHave.Attributes.Add("style", "display: none");
+                    whatsappDesc.Attributes.Add("style", "display: none");
                 }
 
 
@@ -124,7 +124,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                 {
                     lblCurrentAddress.Text = "Yes";
 
-                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                    var lstOfResidences = db.applicantresidencehistory.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
 
                     lblPrevAddStartDate.Text = Convert.ToDateTime(lstOfResidences[0].residencestartdate).ToString("yyyy-MM-dd");
                     lblPrevAddEndDate.Text = Convert.ToDateTime(lstOfResidences[0].residenceenddate).ToString("yyyy-MM-dd");
@@ -165,17 +165,17 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                 DateTime Dob = Convert.ToDateTime(profileInfo.dateofbirth);
                 Age objAge = new Age(Dob, DateTime.Now);
                 if (profileInfo.isnomineeverified == true)
-                    isVerifed.Visible = true;
+                    isVerifed.Attributes.Add("style", "display: block");
                 else
-                    isVerifed.Visible = false;
+                    isVerifed.Attributes.Add("style", "display: none");
                 if (objAge.Years < 18)
                 {
 
-                    guardian.Visible = true;
+                    guardian.Attributes.Add("style", "display: block");
                     // gurdianmessgae.InnerText = gurdianmessgae.InnerText.Replace("#Year#", objAge.Years.ToString()).Replace("#Month#", objAge.Months.ToString());
                 }
                 else
-                    guardian.Visible = false;
+                    guardian.Attributes.Add("style", "display: none");
 
             }
         }
@@ -393,7 +393,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
     }
     private void SetAdminComments()
     {
-        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, userID);
+        List<admincomments> Comments = objCom.GetAdminComments(formId, universityID, ApplicantID);
         for (int k = 0; k < Comments.Count; k++)
         {
             switch (Comments[k].fieldname)
@@ -573,7 +573,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
-            objCom.SaveAdminComments(ApplicantID, universityID, formId, userID, adminInputs);
+            objCom.SaveAdminComments(ApplicantID, universityID, formId, adminId, adminInputs);
         }
         catch (Exception ex)
         {
