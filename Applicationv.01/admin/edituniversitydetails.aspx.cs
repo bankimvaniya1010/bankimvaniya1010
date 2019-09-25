@@ -90,6 +90,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtverticalnavigationcolor.Value = existingUninversity.verticalnavigationcolor;
                     txtfontcolor.Value = existingUninversity.fontcolor;
                     txtUniversitySop.Text = existingUninversity.sop_instruction_for_applicant;
+                    txtUniversityScholarship.Text = existingUninversity.scholarship_instruction;
                     foreach (ListItem item in subscription.Items)
                     {
                         string value = existingUninversity.full_service ? "1" : "0";
@@ -173,6 +174,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.verticalnavigationcolor = txtverticalnavigationcolor.Value;
             universityObj.fontcolor = txtfontcolor.Value;
             universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
+            universityObj.scholarship_instruction = txtUniversityScholarship.Text;
             if (logo.HasFile)  //fileupload control contains a file  
             {
                 docPath = docPath + "/" + universityObj.universityid + "/";

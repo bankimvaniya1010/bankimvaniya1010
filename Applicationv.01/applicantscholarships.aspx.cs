@@ -27,6 +27,7 @@ public partial class applicantscholarships : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
+            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.scholarship_instruction).FirstOrDefault();
             var allScholarshipList = db.scholarships.AsNoTracking().Where(x => x.application_deadline > DateTime.Now && (x.awarded_by.Contains("University - " + UniversityID) || !x.awarded_by.Contains("University"))).ToList();
             var appliedScholarshipList = db.applicant_scholarships.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
 

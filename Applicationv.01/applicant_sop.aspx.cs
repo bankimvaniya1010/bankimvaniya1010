@@ -51,24 +51,14 @@ public partial class applicant_sop : System.Web.UI.Page
 
     protected void btnsubmit_Click(object sender, EventArgs e)
     {
-        student_sop sop = db.student_sop.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).FirstOrDefault();
-        if (sop == null)
-            sop = new student_sop { applicant_id = UserID, university_id = UniversityID };
-
-        sop.student_sop1 = txtStudentSOP.Text;
-        sop.student_submitted_sop = txtStudentSOP.Text;
-        sop.submitted_at = DateTime.Now;
-        sop.is_student_sop_submitted = true;
-
-        db.student_sop.Add(sop);
-        db.SaveChanges();
+        SaveSopDetails("Submit", txtStudentSOP.Text);
 
         btnEdit.Style.Add("display", "none");
         btnSave.Style.Add("display", "none");
         btnsubmit.Style.Add("display", "none");
 
         txtStudentSOP.Style.Add("display", "none");
-        studentSOP.InnerText = sop.student_submitted_sop;
+        studentSOP.InnerText = txtStudentSOP.Text;
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
@@ -77,6 +67,11 @@ public partial class applicant_sop : System.Web.UI.Page
         btnEdit.Style.Remove("display");
         btnSave.Style.Add("display", "none");
 
+        SaveSopDetails("Save", txtStudentSOP.Text);
+    }
+
+    private void SaveSopDetails(string option, string sopString)
+    {
         var mode = "new";
         student_sop sop = db.student_sop.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).FirstOrDefault();
         student_sop sopObj = new student_sop();
@@ -88,11 +83,10 @@ public partial class applicant_sop : System.Web.UI.Page
 
         sopObj.applicant_id = UserID;
         sopObj.university_id = UniversityID;
-        sopObj.is_student_sop_submitted = false;
-        sopObj.student_submitted_sop = string.Empty;
-        sopObj.submitted_at = DateTime.MinValue;
-
-        sopObj.student_sop1 = txtStudentSOP.Text;
+        sopObj.student_sop1 = sopString;
+        sopObj.is_student_sop_submitted = option == "Save" ? false : true;
+        sopObj.student_submitted_sop = option == "Save" ? string.Empty : sopString;
+        sopObj.submitted_at = option == "Save" ? DateTime.MinValue : DateTime.Now;
 
         if (mode == "new")
             db.student_sop.Add(sopObj);
