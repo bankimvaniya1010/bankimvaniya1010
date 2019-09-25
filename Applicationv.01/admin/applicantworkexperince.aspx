@@ -573,16 +573,16 @@
         <h1 class="h2">Applicant Work Experince</h1>
         <asp:HiddenField ID="hdnValue" runat="server" />
         <div class="card">
-            <% 
+        <% 
+            if (EmployersDetail.Count > 0)
+            {
                 for (int k = 0; k < EmployersDetail.Count; k++)
-                {
-
-            %>
-            <div id="employment">
+                {%>
+                        <div id="employment">
                 <div class="list-group-item">
                     <div class="form-group m-0" role="group" aria-labelledby="label-employment">
                         <div class="form-row">
-                            <label id="labelemployment" for="employment" class="col-md-3 col-form-label form-label"><b>Employment History:<%=k+1 %></b></label>
+                            <label id="labelemployment" for="employment" class="col-md-3 col-form-label form-label"><b>Employment History:<%=k + 1 %></b></label>
 
                         </div>
                     </div>
@@ -658,7 +658,7 @@
                                 <label id="labelemployercountry" for="employercountry" class="col-md-2 col-form-label form-label"><%=employercountry %></label>
                                 <div class="col-md-6">
                                     <div class="prdtl-ans">	
-                                        <span><%=EmployersDetail[k].country==null?"":objCom.GetCountryDiscription(Convert.ToInt32(EmployersDetail[k].country)) %></span>
+                                        <span><%=EmployersDetail[k].country == null ? "" : objCom.GetCountryDiscription(Convert.ToInt32(EmployersDetail[k].country)) %></span>
                                     </div>
                                     <div class="prdtl-vrfy">
                                         <input type="radio" id="<%="rblemployercountryYes" + k %>" name="<%="employercountry" + k %>" value="1">Yes
@@ -806,7 +806,7 @@
                                 <label id="labelrelationship" for="relationship" class="col-md-2 col-form-label form-label"><%=relationship %>   </label>
                                 <div class="col-md-6">
                                      <div class="prdtl-ans">
-                                        <span><%=EmployersDetail[k].relationshipwithcontact==null?"":objCom.GetRealtionship(Convert.ToInt32(EmployersDetail[k].relationshipwithcontact))%></span>
+                                        <span><%=EmployersDetail[k].relationshipwithcontact == null ? "" : objCom.GetRealtionship(Convert.ToInt32(EmployersDetail[k].relationshipwithcontact))%></span>
                                       </div>
                                     <div class="prdtl-vrfy">
                                          <input type="radio" id="<%="rblrelationshipYes" + k %>" name="<%="relationship" + k %>" value="1">Yes
@@ -866,15 +866,28 @@
                 </div>
               
             </div>
-            <%} %>
-            <div id="mainDiv" runat="server"></div>
-            <div class="list-group-item">
-                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                    <div class="form-row">
-                        <asp:Button ID="btnSave" runat="server" Text="Save Changes" OnClientClick="return validateform()" CssClass="btn btn-success" OnClick="btnSave_Click"/>
+
+                <%}%>
+                <div id="mainDiv" runat="server"></div>
+                <div class="list-group-item">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                        <div class="form-row">
+                            <asp:Button ID="btnSave" runat="server" Text="Save Changes" OnClientClick="return validateform()" CssClass="btn btn-success" OnClick="btnSave_Click"/>
+                        </div>
                     </div>
                 </div>
-            </div>
+        <%  }
+            else if(EmployersDetail.Count == 0)
+            {%>
+               <div class="list-group-item">
+                    <div class="form-group m-0" role="group" aria-labelledby="label-employment">
+                        <div class="form-row">
+                            <label id="norecord" for="employment" class="col-md-12 col-form-label form-label">NO Employment History Found</label>
+                        </div>
+                    </div>
+                </div>
+         <% } %>
+            
         </div>
     </div>
 </asp:Content>

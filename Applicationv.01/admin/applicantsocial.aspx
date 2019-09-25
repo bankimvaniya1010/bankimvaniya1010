@@ -212,7 +212,7 @@
                     %>
 
             if (!($("#<%=rbDynamicsYes.ClientID%>").is(':checked') || $("#<%=rbDynamicsNo.ClientID%>").is(':checked'))) {
-                alert("Please Select  <%= Description%>" + "\n");
+                alert("Please Select option for <%= Description%>" + "\n");
                 flag = false;
                 return false;
             }

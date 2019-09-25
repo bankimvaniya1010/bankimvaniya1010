@@ -79,9 +79,9 @@
 
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#student_application').addClass('open');
+            $('#studentapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#your_application').addClass('active');
+            $('#your_sop').addClass('active');
 
             $("#<%=btnEdit.ClientID%>").click(function () {
                 var btnEdit = this;

@@ -508,7 +508,7 @@
         }
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#studentapplication_list').addClass('open');
+            $('#studentapplication_finances').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantfunding').addClass('active');
         });

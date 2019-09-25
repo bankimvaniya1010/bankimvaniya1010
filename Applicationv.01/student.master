@@ -301,10 +301,10 @@
                                                 <a class="sidebar-menu-button" href="applicantVisa.aspx">
                                                     <span class="sidebar-menu-text">Visa Application</span>
                                                 </a>
-                                            </li>--%>
-                                            <li class="sidebar-menu-item" id="applicantfunding">
-                                                <a class="sidebar-menu-button" href="applicantfunding.aspx?formid=11">
-                                                    <span class="sidebar-menu-text">Funding</span>
+                                            </li>--%>    
+                                            <li class="sidebar-menu-item" id="your_sop">
+                                                <a class="sidebar-menu-button" href="applicant_sop.aspx">
+                                                    <span class="sidebar-menu-text">Your SOP</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantcredittransfer">
@@ -327,21 +327,13 @@
                                                     <span class="sidebar-menu-text">Scholarships</span>
                                                 </a>
                                             </li>
-                                        </ul>
-                                    </li>
-                                    <li class="sidebar-menu-item" id="student_application">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#your_application">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                            Your Application<span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-                                        <ul class="sidebar-submenu sm-indent collapse" id="your_application">
-                                            <li class="sidebar-menu-item" id="your_sop">
-                                                <a class="sidebar-menu-button" href="applicant_sop.aspx">
-                                                    <span class="sidebar-menu-text">Your SOP</span>
+                                             <li class="sidebar-menu-item" id="applicantfunding">
+                                                <a class="sidebar-menu-button" href="applicantfunding.aspx?formid=11">
+                                                    <span class="sidebar-menu-text">Cost Calculator</span>
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>                                   
                                     <%--<li class="sidebar-menu-item" id="clarification_question_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#clarification_question">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -484,6 +476,14 @@
                                             </li>
                                         </ul>
                                     </li>
+                                    <li class="sidebar-menu-item" id="viewCOE_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                           View CoE
+                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+
+                                    </li>
                                     <li class="sidebar-menu-item" id="visaapplication_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#visaapplication">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -517,14 +517,7 @@
                                         </a>
 
                                     </li>
-                                    <li class="sidebar-menu-item" id="viewCOE_list">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
-                                           View CoE
-                                            <span class="ml-auto sidebar-menu-toggle-icon"></span>
-                                        </a>
-
-                                    </li>
+                                    
                                     <li class="sidebar-menu-item" id="predeparture_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
