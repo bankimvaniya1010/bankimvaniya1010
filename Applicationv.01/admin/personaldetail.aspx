@@ -1105,10 +1105,33 @@
             else if (!$("#<%=agent.ClientID%>").is(':hidden') && !($("#<%=rblAgentYes.ClientID%>").is(':checked') || $("#<%=rblAgentNo.ClientID%>").is(':checked'))) 
                 alert("Please seclect option for Are you referred by agent ");
             else
-                flag = true;
+               flag = true;
+           if (flag == true)
+                flag = customcontrolValidation();
             return flag;
         } 
+        function customcontrolValidation() {
+            var flag = false;
+            var Count = '<%=CustomControls.Count%>';
+            if (Count == '0')
+                flag = true;
+             <% for (int k = 0; k < CustomControls.Count; k++)
+        {
+            RadioButton rbDynamicsYes = (RadioButton)mainDiv.FindControl("rblYes" + CustomControls[k].customfieldid);
+            RadioButton rbDynamicsNo = (RadioButton)mainDiv.FindControl("rblNo" + CustomControls[k].customfieldid);
+            var Description = CustomControls[k].labeldescription.ToLower();
+                    %>
 
+            if (!($("#<%=rbDynamicsYes.ClientID%>").is(':checked') || $("#<%=rbDynamicsNo.ClientID%>").is(':checked'))) {
+                alert("Please Select option for <%= Description%>" + "\n");
+                flag = false;
+                return false;
+            }
+            else
+                flag = true;
+               <% }%>
+            return flag;
+        }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#manageapplicantions_list').addClass('open');

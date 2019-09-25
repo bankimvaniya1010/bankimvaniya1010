@@ -392,6 +392,8 @@
             string txtName = "ContentPlaceHolder1_txt" + CustomControls[n].customfieldid.ToString();
             string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[n].customfieldid.ToString();
         %>
+            if ($('#<%=txtName%>').val() != "")
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
 
             $("#<%=btnName%>").click(function () {
                 ManageRemarks('<%=txtName%>', '<%=btnName%>');
@@ -440,6 +442,30 @@
                 alert("Please select option for How often in a week do you typically go out (entertainment) ");    
             else
                 flag = true;
+            if (flag == true)
+                flag = customcontrolValidation();
+            return flag;
+        }
+        function customcontrolValidation() {
+            var flag = false;
+            var Count = '<%=CustomControls.Count%>';
+            if (Count == '0')
+                flag = true;
+             <% for (int k = 0; k < CustomControls.Count; k++)
+        {
+            RadioButton rbDynamicsYes = (RadioButton)mainDiv.FindControl("rblYes" + CustomControls[k].customfieldid);
+            RadioButton rbDynamicsNo = (RadioButton)mainDiv.FindControl("rblNo" + CustomControls[k].customfieldid);
+            var Description = CustomControls[k].labeldescription.ToLower();
+                    %>
+
+            if (!($("#<%=rbDynamicsYes.ClientID%>").is(':checked') || $("#<%=rbDynamicsNo.ClientID%>").is(':checked'))) {
+                alert("Please Select option for <%= Description%>" + "\n");
+                flag = false;
+                return false;
+            }
+            else
+                flag = true;
+               <% }%>
             return flag;
         }
         $(document).ready(function () {

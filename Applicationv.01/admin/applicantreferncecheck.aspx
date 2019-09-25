@@ -16,6 +16,8 @@
             string txtName = "ContentPlaceHolder1_txt" + CustomControls[k].customfieldid.ToString();
             string rblName = "ContentPlaceHolder1_rblNo" + CustomControls[k].customfieldid.ToString();
         %>
+            if ($('#<%=txtName%>').val() != "")
+                ManageRemarksIfNoCheked('<%=txtName%>', '<%=btnName%>');
             
             $("#<%=btnName%>").click(function () {
                 ManageRemarks('<%=txtName%>', '<%=btnName%>');
@@ -182,23 +184,43 @@
         {
              <% for (int k = 0; k < referenccheckList.Count; k++)
            { %>
-            
-            if (!$("#name").is(':hidden') && !($('#rblNameYes<%=k%>').is(':checked') || $('#rblNameNo<%=k%>').is(':checked'))) {
+            var flag = false;
+            if (!$("#name").is(':hidden') && !($('#rblNameYes<%=k%>').is(':checked') || $('#rblNameNo<%=k%>').is(':checked')))
                 alert("Please select option for Name of reference");
-                return false;
-            }
-            else if (!$("#mobile").is(':hidden') && !($('#rblMobileYes<%=k%>').is(':checked') || $('#rblMobileNo<%=k%>').is(':checked'))) {
+            else if (!$("#mobile").is(':hidden') && !($('#rblMobileYes<%=k%>').is(':checked') || $('#rblMobileNo<%=k%>').is(':checked')))
                 alert("Please select option for Mobile of reference");
-                return false;
-            }
-            else if (!$("#Email").is(':hidden') && !($('#rblEmailYes<%=k%>').is(':checked') || $('#rblEmailNo<%=k%>').is(':checked'))) {
+            else if (!$("#Email").is(':hidden') && !($('#rblEmailYes<%=k%>').is(':checked') || $('#rblEmailNo<%=k%>').is(':checked')))
                 alert("Please select option for Email of reference");
-                return false;
-            }
+            else
+                flag = true;
+            if (flag == true)
+                flag == customcontrolValidation();
             
         <% } %> 
             GetValue();
             return true;
+        }
+        function customcontrolValidation() {
+            var flag = false;
+            var Count = '<%=CustomControls.Count%>';
+            if (Count == '0')
+                flag = true;
+             <% for (int k = 0; k < CustomControls.Count; k++)
+        {
+            RadioButton rbDynamicsYes = (RadioButton)mainDiv.FindControl("rblYes" + CustomControls[k].customfieldid);
+            RadioButton rbDynamicsNo = (RadioButton)mainDiv.FindControl("rblNo" + CustomControls[k].customfieldid);
+            var Description = CustomControls[k].labeldescription.ToLower();
+                    %>
+
+            if (!($("#<%=rbDynamicsYes.ClientID%>").is(':checked') || $("#<%=rbDynamicsNo.ClientID%>").is(':checked'))) {
+                alert("Please Select option for <%= Description%>" + "\n");
+                flag = false;
+                return false;
+            }
+            else
+                flag = true;
+               <% }%>
+            return flag;
         }
 
          $(document).ready(function () {
