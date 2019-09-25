@@ -327,6 +327,11 @@
                                                     <span class="sidebar-menu-text">Scholarships</span>
                                                 </a>
                                             </li>
+                                             <li class="sidebar-menu-item" id="applicantscholarshipstatus">
+                                                <a class="sidebar-menu-button" href="applicantscholarshipstatus.aspx">
+                                                    <span class="sidebar-menu-text">View Applied Scholarships Status</span>
+                                                </a>
+                                            </li>
                                              <li class="sidebar-menu-item" id="applicantfunding">
                                                 <a class="sidebar-menu-button" href="applicantfunding.aspx?formid=11">
                                                     <span class="sidebar-menu-text">Cost Calculator</span>

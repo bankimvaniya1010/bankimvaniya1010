@@ -102,7 +102,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <asp:fileupload id="applicationForm" runat="server" cssclass="custom-file-input"/>
-                                    <label for="applicationForm" class="custom-file-label">Choose application form file</label>
+                                    <label for="applicationForm" runat="server" id="fileName" class="custom-file-label">Choose application form file</label>
                                     <asp:HiddenField ID="hidFileUploaded" runat="server" />
                                 </div>
                             </div>
@@ -228,6 +228,14 @@
             $('#Scholarships_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#manageScholarships').addClass('active');
+
+            $("#<%=applicationForm.ClientID%>").change(function (event) {
+                var path = $(this).val();
+                if (path != '' && path != null) {
+                    var q = path.substring(path.lastIndexOf('\\') + 1);
+                    $("#<%=fileName.ClientID%>").text(q);
+                }
+            });
         });
     </script>
 

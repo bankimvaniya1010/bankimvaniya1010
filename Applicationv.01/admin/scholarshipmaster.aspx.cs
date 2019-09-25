@@ -27,7 +27,7 @@ public partial class admin_scholarshipmaster : System.Web.UI.Page
             var scholarshipList = db.scholarships.ToList();
             foreach (var item in scholarshipList)
             {
-                item.scholarship_form = "\\Applicationv.01\\Docs\\Scholarship Forms\\" + item.scholarship_form;
+                item.scholarship_form = "\\Docs\\Scholarship Forms\\" + item.scholarship_form;
                 // set awarded by option
                 if (item.awarded_by.Contains("University"))
                 {

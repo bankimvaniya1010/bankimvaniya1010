@@ -2378,6 +2378,7 @@ public partial class university_master
     public string verticalnavigationcolor { get; set; }
     public string fontcolor { get; set; }
     public string sop_instruction_for_applicant { get; set; }
+    public string scholarship_instruction { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

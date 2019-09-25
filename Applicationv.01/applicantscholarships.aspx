@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Your Scholarships</li>
         </ol>
-        <h1 class="h2">Scholarships</h1>
+        <h1 class="h2">Scholarships and Funding</h1>
 
     </div>
     <div class="page ">
@@ -16,6 +16,11 @@
         <div class="container page__container">
             <div class="row">
                <div class="col-md-8">
+                   <div class="list-group-fit">
+                       <h3>INSTRUCTIONS FOR SCHOLARSHIPS & FUNDING</h3>
+                       <div class="list-group list-group-fit" runat="server" id="universityInstruction">
+                       </div>
+                   </div>
                 <div class="card" id="scholarships" runat="server">
                     <asp:DataList ID="scholarshipList" runat="server" OnItemCommand="scholarshipList_ItemCommand">
                         <ItemTemplate>
@@ -55,11 +60,11 @@
                                         <label for="scholarshipForm" class="col-form-label form-label">Upload Completed Application Form </label>
                                         <div class="col-md-6">
                                             <asp:FileUpload ID="completedApplicationForm" runat="server" CssClass="custom-file-input" />
-                                            <label for="completedApplicationForm" class="custom-file-label">Choose application file</label>
+                                            <label for="completedApplicationForm" runat="server" id="fileName" class="custom-file-label">Choose application file</label>
                                         </div>
                                     </div>
                                     <div class="form-group option">
-                                        <asp:CheckBox ID="chkApply" runat="server" Text="Apply" />
+                                        <asp:CheckBox ID="chkApply" runat="server" Text="Apply Scholarship" />
                                     </div>
 
                                 </div>
@@ -121,11 +126,13 @@
             });
         }
         function validateForm() {
+            var scholarshipSelected = false;
             var scholarshipsCount = <%=applicantscholarships.scholarshipCount%>;
             for (var i = 0; i < scholarshipsCount; i++) {
                 var chckApply = $("#ContentPlaceHolder1_scholarshipList_chkApply_" + i);
 
                 if (chckApply.is(':checked')) {
+                    scholarshipSelected = true;
                     // Check for file uploaded or not and then raise alert
                     uploadedfile = $("#ContentPlaceHolder1_scholarshipList_completedApplicationForm_" + i); // File Upload control
                     if (uploadedfile.get(0).files.length == 0) {
@@ -145,6 +152,11 @@
                 }
             }
 
+            if (!scholarshipSelected) {
+                alert("No scholarship selected to apply. Please select applicable scholarships");
+                return false;
+            }
+
             return true;
         }
 
@@ -153,6 +165,18 @@
             $('#studentapplication_finances').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantscholarship').addClass('active');
+
+            var count = $('input[type="file"]');
+            for (var i = 0; i < count.length; i++) {
+                $("#ContentPlaceHolder1_scholarshipList_completedApplicationForm_" + i).change(function (event) {
+                    var path = $(this).val();
+                    var id =  event.target.id.replace("ContentPlaceHolder1_scholarshipList_completedApplicationForm_", "");
+                    if (path != '' && path != null) {
+                        var q = path.substring(path.lastIndexOf('\\') + 1);
+                        $("#ContentPlaceHolder1_scholarshipList_fileName_" + id).text(q);
+                    }
+                });
+            }
         });
     </script>
 

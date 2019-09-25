@@ -95,6 +95,8 @@ public partial class admin_managescholarship : System.Web.UI.Page
                 }
 
                 hidFileUploaded.Value = existingScholarship.scholarship_form;
+                string fileExtension = existingScholarship.scholarship_form.Split('.')[1];
+                fileName.InnerText = txtScholarshipName.Value + "." + fileExtension;
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Scholarship does not exists'); window.location='" + webURL + "admin/scholarshipmaster.aspx';", true);
@@ -181,10 +183,12 @@ public partial class admin_managescholarship : System.Web.UI.Page
                 string extension = Path.GetExtension(applicationForm.PostedFile.FileName);
                 string filename = Guid.NewGuid().ToString() + extension;
                 if (mode == "update")
+                {
                     File.Delete(docPath + objScholarship.scholarship_form);
+                    db.SaveChanges();
+                }
                 applicationForm.SaveAs(docPath + filename);
                 objScholarship.scholarship_form = filename;
-                db.SaveChanges();
             }
 
             if (mode == "new")
