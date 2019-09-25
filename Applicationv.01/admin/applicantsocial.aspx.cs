@@ -37,11 +37,11 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
         CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
         if (CustomControls.Count > 0)
-            objCom.AddCustomControl(CustomControls, mainDiv);
+            objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
         if (!IsPostBack)
         {
             if (CustomControls.Count > 0)
-                objCom.SetCustomData(formId, ApplicantID, CustomControls, mainDiv);
+                objCom.SetCustomDataAdmin(formId, ApplicantID, CustomControls, mainDiv);
             SetToolTips();            
             SetControlsUniversitywise();
             SetAdminComments();
