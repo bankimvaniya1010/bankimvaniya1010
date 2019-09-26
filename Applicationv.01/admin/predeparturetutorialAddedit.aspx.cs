@@ -1,34 +1,31 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_tutorialmaster : System.Web.UI.Page
+public partial class admin_predeparturetutorialAddedit : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     Common objCom = new Common();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int universityID ;
+    int adminId = 0;
     int tutorialId;
-
-    tutorialmaster objtutorialmaster = new tutorialmaster();
+    predeparturetutorialmaster objtutorialmaster = new predeparturetutorialmaster();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-
+        adminId = Convert.ToInt32(Session["UserID"]);
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
             tutorialId = -1;
             if (int.TryParse(Request.QueryString["id"], out tutorialId))
             {
-                objtutorialmaster = db.tutorialmaster.Where(obj => obj.id == tutorialId).FirstOrDefault();
+                objtutorialmaster = db.predeparturetutorialmaster.Where(obj => obj.predeparturetutorialid == tutorialId).FirstOrDefault();
                 if (objtutorialmaster == null)
                     tutorialId = -1;
             }
@@ -41,7 +38,6 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
                 PopulatetutorialInfo();
         }
     }
-
     private void BindUniversity()
     {
         try
@@ -62,9 +58,10 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
 
     private void PopulatetutorialInfo()
     {
-        try {
-            var tutorailData = (from tInfo in db.tutorialmaster
-                                where tInfo.id == tutorialId
+        try
+        {
+            var tutorailData = (from tInfo in db.predeparturetutorialmaster
+                                where tInfo.predeparturetutorialid == tutorialId
                                 select tInfo).FirstOrDefault();
             if (tutorailData != null)
             {
@@ -98,16 +95,16 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
         }
     }
 
-        protected void btn_submit_Click(object sender, EventArgs e)
+    protected void btn_submit_Click(object sender, EventArgs e)
     {
         try
         {
             var mode = "new";
-            var universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            var universityID = Convert.ToInt32(ddlUniversity.SelectedValue);
             if (tutorialId != -1)
             {
-                var tutorailData = (from tInfo in db.tutorialmaster
-                                    where tInfo.universityid == universityid && tInfo.id == tutorialId
+                var tutorailData = (from tInfo in db.predeparturetutorialmaster
+                                    where tInfo.universityid == universityID && tInfo.predeparturetutorialid == tutorialId
                                     select tInfo).FirstOrDefault();
 
                 if (tutorailData != null)
@@ -116,10 +113,10 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
                     objtutorialmaster = tutorailData;
                 }
             }
-            
+
             objtutorialmaster.type = ddlType.SelectedValue;
-            objtutorialmaster.title = txtDescription.Value;           
-            objtutorialmaster.status = 1;
+            objtutorialmaster.title = txtDescription.Value;
+            
             if (!ddlType.SelectedValue.ToString().Equals("video", StringComparison.OrdinalIgnoreCase) && (FileUpload.HasFile || !string.IsNullOrEmpty(hidDocumentPath.Value)))
             {
                 if (FileUpload.HasFile)
@@ -138,21 +135,22 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
             else
             {
                 var value = txtVideourl.Value;
-                var videoURL = value.Substring(value.LastIndexOf("=")+1);
+                var videoURL = value.Substring(value.LastIndexOf("=") + 1);
                 objtutorialmaster.videourl = videoURL;
                 objtutorialmaster.documentpath = "";
             }
             objtutorialmaster.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            objtutorialmaster.created_by = adminId;
             if (mode == "new")
-                db.tutorialmaster.Add(objtutorialmaster);
-            db.SaveChanges();
-            lblMessage.Text = "Saved Successfully";
-            lblMessage.Visible = true;
+                db.predeparturetutorialmaster.Add(objtutorialmaster);
+            db.SaveChanges();            
+            Response.Redirect("predeparturetutoriallisting.aspx", true);
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.StackTrace.ToString());
         }
-       
+
     }
+
 }

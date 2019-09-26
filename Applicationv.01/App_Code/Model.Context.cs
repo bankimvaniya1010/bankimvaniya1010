@@ -58,7 +58,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantuniversitymapping> applicantuniversitymapping { get; set; }
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
-    public virtual DbSet<applicationmaster> applicationmaster { get; set; }
     public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
     public virtual DbSet<australiavisadocumentmaster> australiavisadocumentmaster { get; set; }
     public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
@@ -169,6 +168,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<rejection_reasonmaster> rejection_reasonmaster { get; set; }
     public virtual DbSet<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
+    public virtual DbSet<applicationmaster> applicationmaster { get; set; }
+    public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
+    public virtual DbSet<predeparturetutorialmaster> predeparturetutorialmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
