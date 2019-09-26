@@ -78,6 +78,10 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.fontcolor = fontcolor.Value;
                 universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
                 universityObj.scholarship_instruction = txtUniversityScholarship.Text;
+                universityObj.acceptance_terms = txtAcceptanceTerms.Text;
+                universityObj.deferment_terms = txtDefermentTerms.Text;
+                universityObj.rejection_terms = txtRejectionTerms.Text;
+                universityObj.withdrawn_terms = txtWithdrawnTerms.Text;
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
                 if (logo.HasFile)  //fileupload control contains a file  

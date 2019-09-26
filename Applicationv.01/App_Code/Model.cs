@@ -2395,6 +2395,10 @@ public partial class university_master
     public string fontcolor { get; set; }
     public string sop_instruction_for_applicant { get; set; }
     public string scholarship_instruction { get; set; }
+    public string acceptance_terms { get; set; }
+    public string deferment_terms { get; set; }
+    public string rejection_terms { get; set; }
+    public string withdrawn_terms { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
