@@ -324,7 +324,7 @@
                                                 <asp:DropDownList ID="ddlSecondaryQualificationType" CssClass="form-control" runat="server">
                                                      <asp:ListItem value="" selected="True">Please Select</asp:ListItem>
                                                 </asp:DropDownList>
-                                                <asp:HiddenField runat="server" ID="hidddlSecondaryQualificationType"/>ddlHigherQualificationType
+                                                <asp:HiddenField runat="server" ID="hidddlSecondaryQualificationType"/>
                                                 <span class="helpicon"><i id="icSecondaryQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
