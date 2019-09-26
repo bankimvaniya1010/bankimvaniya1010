@@ -47,8 +47,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                     if(applicant_details == null || application_details == null)
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete student or application details. Please complete both before proceeding'); window.location='" + webURL + "default.aspx';", true);
 
-                    // Set to empty values to avoid errors, below details are missing from applicant details information.
-                    //details.highestqualificationfield = ;
+                    details.highestqualificationfield = applicant_details.fieldofhigheststudy.HasValue ? applicant_details.fieldofhigheststudy.Value : 1;
                     details.fieldofstudyapplied = application_details.majorofdiscipline.HasValue ? application_details.majorofdiscipline.Value : 1;
                     details.highestqualifiactionachieved = applicant_details.higheststudycompleted.HasValue ? applicant_details.higheststudycompleted.Value.ToString() : "1";
                     details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value.ToString() : "1";
