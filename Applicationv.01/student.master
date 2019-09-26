@@ -524,11 +524,18 @@
                                     </li>
                                     
                                     <li class="sidebar-menu-item" id="predeparture_list">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#predeparture">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                           Pre-Departure Info
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
+                                         <ul class="sidebar-submenu sm-indent collapse" id="predeparture">
+                                            <li class="sidebar-menu-item" id="predeparturetutorial">
+                                                <a class="sidebar-menu-button" href="predeparturetutorial.aspx">
+                                                    <span class="sidebar-menu-text">predeparture</span>
+                                                </a>
+                                            </li>
+                                         </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="supportservice">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">

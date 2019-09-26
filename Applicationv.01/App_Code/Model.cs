@@ -617,6 +617,12 @@ public partial class applicationmaster
     public Nullable<int> coursetype { get; set; }
     public Nullable<int> course { get; set; }
     public string commencementdate { get; set; }
+    public Nullable<int> current_status { get; set; }
+    public Nullable<System.DateTime> dateofapplication { get; set; }
+    public Nullable<System.DateTime> dateofdecision { get; set; }
+    public Nullable<int> decision { get; set; }
+    public string condition_statement { get; set; }
+    public string admission_remark { get; set; }
 }
 
 public partial class australiavisadetailmaster
@@ -1920,6 +1926,20 @@ public partial class master_name
     public string mastername { get; set; }
 }
 
+public partial class predeparturetutorialmaster
+{
+    public int predeparturetutorialid { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public string type { get; set; }
+    public string documentpath { get; set; }
+    public string videourl { get; set; }
+    public string title { get; set; }
+    public Nullable<int> created_by { get; set; }
+    public Nullable<System.DateTime> crearted_at { get; set; }
+
+    public virtual university_master university_master { get; set; }
+}
+
 public partial class preliminary_questionmaster
 {
     public long preliminaryid { get; set; }
@@ -2343,6 +2363,12 @@ public partial class typeofworkexperiencemaster
     public string description { get; set; }
 }
 
+public partial class university_application_decision_master
+{
+    public int id { get; set; }
+    public string decision_description { get; set; }
+}
+
 public partial class university_master
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -2362,6 +2388,7 @@ public partial class university_master
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
         this.universitywise_rejectionreasonmapping = new HashSet<universitywise_rejectionreasonmapping>();
+        this.predeparturetutorialmaster = new HashSet<predeparturetutorialmaster>();
     }
 
     public int universityid { get; set; }
@@ -2429,6 +2456,8 @@ public partial class university_master
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<predeparturetutorialmaster> predeparturetutorialmaster { get; set; }
 }
 
 public partial class universitycampus

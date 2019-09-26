@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="tutorialmaster.aspx.cs" Inherits="admin_tutorialmaster"  MasterPageFile="~/admin/admin.master"  %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="predeparturetutorialAddedit.aspx.cs" Inherits="admin_predeparturetutorialAddedit" MasterPageFile="~/admin/admin.master"%>
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="head">
      
 </asp:Content>
@@ -8,9 +7,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-                <li class="breadcrumb-item active">Tutoails</li>
+                <li class="breadcrumb-item active">Predeparture Tutorials Add/Edit</li>
         </ol>
-        <h1 class="h2">Tutorials </h1>
+        <h1 class="h2">Predeparture Tutorials Add/Edit </h1>
 
         <div class="card">
            <div class="tab-content card-body">
@@ -167,9 +166,12 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#tutorial_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#preliminaryvideomaster').addClass('active');
+            $('#predeparturetutorial').addClass('active');
         });
     </script>
         </div>
 </asp:Content>
+
+
+
 
