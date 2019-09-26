@@ -23,8 +23,8 @@
 
 
             <div class="tab-content card-body">
-                <div class="tab-pane active" id="first">
-                    <asp:GridView ID="gvApplicant" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="false"
+                <div class="tab-pane active" id="first">                    
+                    <asp:GridView ID="gvApplicant" runat="server" CssClass="table gvApplicant" AutoGenerateColumns="False" ShowFooter="false"
                         DataKeyNames="applicantid"
                         AllowPaging="True"
                         CellPadding="3"
@@ -34,23 +34,20 @@
                         CellSpacing="2" OnRowCommand="gvApplicant_RowCommand" OnPageIndexChanging="gvApplicant_PageIndexChanging" OnRowDataBound="gvApplicant_RowDataBound">
 
                         <Columns>
-                            <asp:BoundField DataField="applicantid" HeaderText="Applicant Id" InsertVisible="False"
-                                ReadOnly="True" SortExpression="id" />
-                            <asp:TemplateField HeaderText="Name" SortExpression="firstName">
+                            <asp:BoundField DataField="applicantid" HeaderText="Id" InsertVisible="False"
+                                ReadOnly="True" SortExpression="id"/>
+                                
+                            <asp:TemplateField HeaderText="Applicant Details" SortExpression="firstName">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("name") %>'></asp:Label>
+                                    <b>Applicant Id:</b>   <asp:Label ID="Label1" runat="server" Text='<%# Bind("applicantid") %>'></asp:Label><br/>
+                                    <b>Applicant Name: </b> <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("name") %>'></asp:Label><br/>
+                                    <b>Start Date: </b><asp:Label ID="lblstartdate" runat="server" Text='<%# Bind("applicationstartdate") %>'></asp:Label><br/>
+                                    <b>Nationality :</b>   <asp:Label ID="lblNationality" runat="server" Text='<%# Bind("nationality") %>'></asp:Label><br/>
+                                    <b>Course Applied :</b> <asp:Label ID="lblcourseapplied" runat="server" Text='<%# Bind("courseapplied") %>'></asp:Label><br/>
+                                    <b>Commencement Date :</b>  <asp:Label ID="lblCommencementDate" runat="server" Text='<%# Bind("commencementDate") %>'></asp:Label>
                                 </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Nationality">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblNationality" runat="server" Text='<%# Bind("nationality") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                             <asp:TemplateField HeaderText="Course Applied">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblcourseapplied" runat="server" Text='<%# Bind("courseapplied") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>                           
+                            
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                 <ItemTemplate>
                                     <asp:LinkButton ID="lnkPersonal" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="Personal" Text="View Personal"></asp:LinkButton>|
@@ -75,7 +72,7 @@
                             </asp:TemplateField>
 
                         </Columns>
-                    </asp:GridView>
+                    </asp:GridView>                  
                 </div>
 
 

@@ -362,6 +362,46 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Acceptance Terms</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtAcceptanceTerms" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Deferment Terms</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtDefermentTerms" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label">Rejection Terms </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtRejectionTerms" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label">Withdrawn Terms</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtWithdrawnTerms" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
@@ -438,10 +478,7 @@
             var txtUniAcceptedMinAge = $('#<%=txtUniAcceptedMinAge.ClientID%>').val();
             var subscriptionSelection = $('#<%=subscription.ClientID%>').val();
             var txtNotesDisclaimer = $('#<%=txtNotesDisclaimer.ClientID%>').val();
-            var fllogo = $('#<%=logo.ClientID%>').val();
-            var headerstripcolor = $('#<%=headerstripcolor.ClientID%>').val();
-            var verticalNavigationcolor = $('#<%=verticalnavigationcolor.ClientID%>').val();
-            var fontcolor = $('#<%=fontcolor.ClientID%>').val();
+            var fllogo = $('#<%=logo.ClientID%>').val();           
             var sopInstruction = $('#<%=txtUniversitySop.ClientID%>').val();
             var scholarshipInstruction = $('#<%=txtUniversityScholarship.ClientID%>').val();
 
@@ -558,19 +595,7 @@
             else if (fllogo == '') {
                 alert("Please upload logo");
                 return false;
-            }
-            else if (headerstripcolor == '') {
-                alert("Please enter header strip color");
-                return false;
-            }
-            else if (verticalNavigationcolor == '') {
-                alert("Please enter Vertical Navigation color");
-                return false;
-            }
-            else if (headerstripcolor == '') {
-                alert("Please enter font color");
-                return false;
-            }
+            }           
             else if (sopInstruction == "") {
                 alert("Please enter university sop instruction");
                 return false;

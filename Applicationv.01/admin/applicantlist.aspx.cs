@@ -42,6 +42,10 @@ public partial class admin_applicantlist : System.Web.UI.Page
                              from x1 in amdata.Where(c => c.preferenceid == 1 && c.applicantid == ad.applicantid).DefaultIfEmpty()
                              join course in db.coursemaster on x1.course equals course.courseid into coursedata
                              from x2 in coursedata.DefaultIfEmpty()
+                             join coursedate in db.course_dates on x1.course equals coursedate.id into dateData
+                             from x3 in dateData.DefaultIfEmpty()
+                             join sm in db.students on ad.applicantid equals sm.studentid into studentData
+                             from x4 in studentData.DefaultIfEmpty()
                              where ad.universityid == universityID
                              select new
                              {
@@ -49,6 +53,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
                                  nationality = (x == null) ? string.Empty : x.country_name,
                                  courseapplied = (x2 == null) ? string.Empty : x2.coursename,
                                  name = ad.firstname + " " + ad.lastname,
+                                 applicationstartdate = x4.creationdate,
+                                 commencementdate = (x3 == null) ? (DateTime?)null : x3.commencementdate,
 
                              }).SortBy("applicantid").ToList();
             gvApplicant.DataSource = applicant;

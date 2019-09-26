@@ -91,6 +91,10 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtfontcolor.Value = existingUninversity.fontcolor;
                     txtUniversitySop.Text = existingUninversity.sop_instruction_for_applicant;
                     txtUniversityScholarship.Text = existingUninversity.scholarship_instruction;
+                    txtAcceptanceTerms.Text = existingUninversity.acceptance_terms;
+                    txtDefermentTerms.Text = existingUninversity.deferment_terms;
+                    txtRejectionTerms.Text = existingUninversity.rejection_terms;
+                    txtWithdrawnTerms.Text = existingUninversity.withdrawn_terms;
                     foreach (ListItem item in subscription.Items)
                     {
                         string value = existingUninversity.full_service ? "1" : "0";
@@ -175,6 +179,10 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.fontcolor = txtfontcolor.Value;
             universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
             universityObj.scholarship_instruction = txtUniversityScholarship.Text;
+            universityObj.acceptance_terms = txtAcceptanceTerms.Text;
+            universityObj.deferment_terms = txtDefermentTerms.Text;
+            universityObj.rejection_terms = txtRejectionTerms.Text;
+            universityObj.withdrawn_terms = txtWithdrawnTerms.Text;
             if (logo.HasFile)  //fileupload control contains a file  
             {
                 docPath = docPath + "/" + universityObj.universityid + "/";
