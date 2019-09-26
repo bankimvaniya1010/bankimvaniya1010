@@ -228,3 +228,9 @@
 .prdtl-ans{width: 52%;display: inline-block;padding: 0 10px;}
 .prdtl-vrfy{width: 45%;display: inline-block;padding: 0 10px 0 0;}
 .admin-bdtemp .helpicon{right: 15px;}
+
+.gvApplicant td, th{width: 14%;}
+.gvApplicant-resp{max-height: 500px;}
+[dir=ltr] .table td, [dir=ltr] .table th{border-top: 1px solid gray;}
+[dir=ltr] .table.gvApplicant td:nth-child(1), [dir=ltr] .table.gvApplicant th:nth-child(1){width: 1%;}
+

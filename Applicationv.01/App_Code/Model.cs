@@ -2033,6 +2033,21 @@ public partial class registrationcourses
     public virtual ICollection<studentcoursemapping> studentcoursemapping { get; set; }
 }
 
+public partial class rejection_reasonmaster
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public rejection_reasonmaster()
+    {
+        this.universitywise_rejectionreasonmapping = new HashSet<universitywise_rejectionreasonmapping>();
+    }
+
+    public int id { get; set; }
+    public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
+}
+
 public partial class relative_master
 {
     public long id { get; set; }
@@ -2346,6 +2361,7 @@ public partial class university_master
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
+        this.universitywise_rejectionreasonmapping = new HashSet<universitywise_rejectionreasonmapping>();
     }
 
     public int universityid { get; set; }
@@ -2407,6 +2423,8 @@ public partial class university_master
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
 }
 
 public partial class universitycampus
@@ -2454,6 +2472,18 @@ public partial class universitygrouping
 
     public virtual university_master university_master { get; set; }
     public virtual university_master university_master1 { get; set; }
+}
+
+public partial class universitywise_rejectionreasonmapping
+{
+    public int reasonmappingID { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> reasonid { get; set; }
+    public Nullable<int> created_by { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+
+    public virtual rejection_reasonmaster rejection_reasonmaster { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitywisefieldmapping

@@ -1727,6 +1727,13 @@
           <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="coursename" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
+        <EntityType Name="rejection_reasonmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="relative_master">
           <Key>
             <PropertyRef Name="id" />
@@ -2001,6 +2008,16 @@
           <Property Name="groupingheaduniversityid" Type="int" Nullable="false" />
           <Property Name="universityid" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="universitywise_rejectionreasonmapping">
+          <Key>
+            <PropertyRef Name="reasonmappingID" />
+          </Key>
+          <Property Name="reasonmappingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="reasonid" Type="int" />
+          <Property Name="created_by" Type="int" />
+          <Property Name="created_at" Type="timestamp" Precision="0" StoreGeneratedPattern="Identity" />
+        </EntityType>
         <EntityType Name="universitywisefieldmapping">
           <Key>
             <PropertyRef Name="universitywisefieldmappingid" />
@@ -2106,6 +2123,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__rejection_reasonmaster">
+          <End Role="rejection_reasonmaster" Type="Self.rejection_reasonmaster" Multiplicity="0..1" />
+          <End Role="universitywise_rejectionreasonmapping" Type="Self.universitywise_rejectionreasonmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rejection_reasonmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="universitywise_rejectionreasonmapping">
+              <PropertyRef Name="reasonid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__students">
           <End Role="students" Type="Self.students" Multiplicity="0..1" />
           <End Role="gte_applicantdocument" Type="Self.gte_applicantdocument" Multiplicity="*" />
@@ -2115,6 +2144,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="gte_applicantdocument">
               <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__university_master">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="0..1" />
+          <End Role="universitywise_rejectionreasonmapping" Type="Self.universitywise_rejectionreasonmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitywise_rejectionreasonmapping">
+              <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3242,6 +3283,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="question_master" EntityType="Self.question_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="realtionshipmaster" EntityType="Self.realtionshipmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="registrationcourses" EntityType="Self.registrationcourses" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="rejection_reasonmaster" EntityType="Self.rejection_reasonmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="relative_master" EntityType="Self.relative_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="rolemaster" EntityType="Self.rolemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="scholarships" EntityType="Self.scholarships" Schema="GTE" store:Type="Tables" />
@@ -3268,6 +3310,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="universitycampus" EntityType="Self.universitycampus" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitycampus_city_mapping" EntityType="Self.universitycampus_city_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitygrouping" EntityType="Self.universitygrouping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitywise_rejectionreasonmapping" EntityType="Self.universitywise_rejectionreasonmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywiseformmapping" EntityType="Self.universitywiseformmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisemastermapping" EntityType="Self.universitywisemastermapping" Schema="GTE" store:Type="Tables" />
@@ -3295,9 +3338,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="countriesmaster" EntitySet="countriesmaster" />
             <End Role="countrywisealternateidproofmaster" EntitySet="countrywisealternateidproofmaster" />
           </AssociationSet>
+          <AssociationSet Name="FK__rejection_reasonmaster" Association="Self.FK__rejection_reasonmaster">
+            <End Role="rejection_reasonmaster" EntitySet="rejection_reasonmaster" />
+            <End Role="universitywise_rejectionreasonmapping" EntitySet="universitywise_rejectionreasonmapping" />
+          </AssociationSet>
           <AssociationSet Name="FK__students" Association="Self.FK__students">
             <End Role="students" EntitySet="students" />
             <End Role="gte_applicantdocument" EntitySet="gte_applicantdocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK__university_master" Association="Self.FK__university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitywise_rejectionreasonmapping" EntitySet="universitywise_rejectionreasonmapping" />
           </AssociationSet>
           <AssociationSet Name="fk_admintooltips_formmaster" Association="Self.fk_admintooltips_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
@@ -4138,6 +4189,16 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_universitywisetooltipmaster_universitymaster" Association="GTEModel.FK_universitywisetooltipmaster_universitymaster">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
+          </AssociationSet>
+          <EntitySet Name="rejection_reasonmaster" EntityType="GTEModel.rejection_reasonmaster" />
+          <EntitySet Name="universitywise_rejectionreasonmapping" EntityType="GTEModel.universitywise_rejectionreasonmapping" />
+          <AssociationSet Name="FK__rejection_reasonmaster" Association="GTEModel.FK__rejection_reasonmaster">
+            <End Role="rejection_reasonmaster" EntitySet="rejection_reasonmaster" />
+            <End Role="universitywise_rejectionreasonmapping" EntitySet="universitywise_rejectionreasonmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__university_master" Association="GTEModel.FK__university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitywise_rejectionreasonmapping" EntitySet="universitywise_rejectionreasonmapping" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
@@ -7264,6 +7325,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitygrouping" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
+          <NavigationProperty Name="universitywise_rejectionreasonmapping" Relationship="GTEModel.FK__university_master" FromRole="university_master" ToRole="universitywise_rejectionreasonmapping" />
         </EntityType>
         <Association Name="fk_university_master_admincomments">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
@@ -7429,6 +7491,50 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <PropertyRef Name="universityid" />
             </Principal>
             <Dependent Role="universitywisetooltipmaster">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="rejection_reasonmaster">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="universitywise_rejectionreasonmapping" Relationship="GTEModel.FK__rejection_reasonmaster" FromRole="rejection_reasonmaster" ToRole="universitywise_rejectionreasonmapping" />
+        </EntityType>
+        <EntityType Name="universitywise_rejectionreasonmapping">
+          <Key>
+            <PropertyRef Name="reasonmappingID" />
+          </Key>
+          <Property Name="reasonmappingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="reasonid" Type="Int32" />
+          <Property Name="created_by" Type="Int32" />
+          <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="rejection_reasonmaster" Relationship="GTEModel.FK__rejection_reasonmaster" FromRole="universitywise_rejectionreasonmapping" ToRole="rejection_reasonmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK__university_master" FromRole="universitywise_rejectionreasonmapping" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK__rejection_reasonmaster">
+          <End Type="GTEModel.rejection_reasonmaster" Role="rejection_reasonmaster" Multiplicity="0..1" />
+          <End Type="GTEModel.universitywise_rejectionreasonmapping" Role="universitywise_rejectionreasonmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="rejection_reasonmaster">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="universitywise_rejectionreasonmapping">
+              <PropertyRef Name="reasonid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
+          <End Type="GTEModel.universitywise_rejectionreasonmapping" Role="universitywise_rejectionreasonmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitywise_rejectionreasonmapping">
               <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
@@ -9655,6 +9761,25 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="university_name" ColumnName="university_name" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="rejection_reasonmaster">
+            <EntityTypeMapping TypeName="GTEModel.rejection_reasonmaster">
+              <MappingFragment StoreEntitySet="rejection_reasonmaster">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universitywise_rejectionreasonmapping">
+            <EntityTypeMapping TypeName="GTEModel.universitywise_rejectionreasonmapping">
+              <MappingFragment StoreEntitySet="universitywise_rejectionreasonmapping">
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="reasonid" ColumnName="reasonid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="reasonmappingID" ColumnName="reasonmappingID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
