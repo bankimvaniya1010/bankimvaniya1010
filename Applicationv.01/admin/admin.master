@@ -312,6 +312,11 @@
                                             <span class="sidebar-menu-text"> Institution Fields</span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item" id="rejectionreasonmapping"> 
+                                        <a class="sidebar-menu-button" href="universitywiserejectionreasonmapping.aspx">
+                                            <span class="sidebar-menu-text"> Institution Rejection Reason Selection</span>
+                                        </a>
+                                    </li>
                                     <li class="sidebar-menu-item" id="masterfieldmapping"> 
                                         <a class="sidebar-menu-button" href="masterfieldmapping.aspx">
                                             <span class="sidebar-menu-text"> Institution Master Fields selection</span>

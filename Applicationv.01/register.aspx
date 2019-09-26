@@ -36,6 +36,9 @@
 
                 <div class="card navbar-shadow">
                     <div class="card-header text-center">
+                        <div class="frnd-hdr logo-img">
+                            <img src="assets/images/logo/canning_logo.jpg" class="logo-img"/>
+                        </div>
                         <h4 class="card-title">Student Sign Up</h4>
                         <p class="card-subtitle">Create a new account</p>
                     </div>

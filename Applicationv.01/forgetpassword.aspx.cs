@@ -17,8 +17,7 @@ public partial class forgetpassword : System.Web.UI.Page
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Utility.CheckStudentLogin())
-            Response.Redirect(webURL + "Login.aspx", true);
+        
     }
 
     protected void btn_login_Click(object sender, EventArgs e)
