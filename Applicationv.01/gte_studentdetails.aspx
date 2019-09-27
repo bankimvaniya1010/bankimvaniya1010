@@ -178,6 +178,7 @@
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddltypeofworkexperience" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
+                                            <asp:HiddenField runat="server" ID="hidddltypeofworkexperience"/>
                                             <span class="helpicon"><i id="i1ctypeofworkexperience" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -459,7 +460,41 @@
                 $("#<%=fieldcontainer.ClientID%>").hide();
                       
         });
-
+        
+       var workstatus = $("#<%=ddlworkexperience.ClientID%> option:selected").text();
+            $("#<%=ddlworkexperience.ClientID%>").change(function () {
+            workstatus = $("#<%=ddlworkexperience.ClientID%> option:selected").text();
+                if (workstatus == "None") {
+                    $("#<%=ddltypeofworkexperience.ClientID%>").empty();
+                    $("#<%=ddltypeofworkexperience.ClientID%>").append($('<option selected="selected"></option>').val(1).html("Not Applicable"));                    
+                }
+                else if(workstatus != "None" && workstatus != "Please Select")
+                {
+                        $.ajax({
+                        type: "GET",
+                        url: "gte_studentdetails.aspx/GetWorkTypeDropdown",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) 
+                            {
+                                if (response.d) 
+                                {
+                                    var result = JSON.parse(response.d);                            
+                                    if ($("#<%=ddltypeofworkexperience.ClientID%>").length >= 1) {
+                                        $("#<%=ddltypeofworkexperience.ClientID%>").empty();
+                                        $("#<%=ddltypeofworkexperience.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
+                                    }
+                                    for (var i = 0; i < result.length; i++) {
+                                        $("#<%=ddltypeofworkexperience.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].description));
+                                    }
+                                }
+                            }
+                        });
+                }
+        });            
+        $("#<%=ddltypeofworkexperience.ClientID%>").change(function () {
+            $("#<%=hidddltypeofworkexperience.ClientID%>").val($("#<%=ddltypeofworkexperience.ClientID%>").val());
+        });
         $("#<%=ddlcourseapplied.ClientID%>").change(function () {
             if ($("#<%=ddlfieldofstudy.ClientID%>").val() != "" && $("#<%=ddlUniversityCampus.ClientID%>").val() != "0") {
                 var coursetype = $("#<%=ddlcourseapplied.ClientID%>").val();

@@ -208,6 +208,7 @@ public partial class applicantfunding : System.Web.UI.Page
                 {
                     ddlAccomdation.ClearSelection();
                     ddlAccomdation.Items.FindByValue(fundingInfo.accommodationplan.ToString()).Selected = true;
+                    hidAccomdation.Value = fundingInfo.accommodationplan.ToString();
                 }
                 if (fundingInfo.managemeal != null)
                 {

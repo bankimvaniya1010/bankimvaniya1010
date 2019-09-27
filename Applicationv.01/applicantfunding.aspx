@@ -234,7 +234,7 @@
                                                             <input type="number" runat="server" id="txtPrivateFinancePercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcPrivateFinance" step=".01" class="form-control" value=0>
+                                                            <input type="text" disabled="disabled" id="txtCalcPrivateFinance" class="form-control" value=0 style="width: 177%;">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -243,7 +243,7 @@
                                                             <input type="number" runat="server" id="txtScholarshipPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcScholarshipAmount" step=".01" class="form-control" value=0>
+                                                            <input type="text" disabled="disabled" id="txtCalcScholarshipAmount" class="form-control" value=0 style="width: 177%;">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -252,7 +252,7 @@
                                                             <input type="number" runat="server" id="txtLoanPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcLoanAmount" step=".01" class="form-control" value=0>
+                                                            <input type="text" disabled="disabled" id="txtCalcLoanAmount" class="form-control" value=0 style="width: 177%;">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -261,7 +261,7 @@
                                                             <input type="number" runat="server" id="txtSponsorshipPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcSponsorshipAmount" step=".01" class="form-control" value=0>
+                                                            <input type="text" disabled="disabled" id="txtCalcSponsorshipAmount" class="form-control" value=0 style="width: 177%;">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -270,7 +270,7 @@
                                                             <input type="number" runat="server" id="txtPartTimeWorkPercentage" value=0 class="form-control" />
                                                         </td>
                                                         <td>
-                                                            <input type="number" disabled="disabled" id="txtCalcPartimeAmount" step=".01" class="form-control" value=0>
+                                                            <input type="text" disabled="disabled" id="txtCalcPartimeAmount" class="form-control" value=0 style="width: 177%;">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -278,8 +278,8 @@
                                                         <td>
                                                             <input type="number" runat="server" disabled="disabled" id="txtTotalPercentage" class="form-control" value=0>
                                                         </td>
-                                                        <td>
-                                                            <input type="number" disabled="disabled" id="txtSumTotalAmount" step=".01" class="form-control" value=0>
+                                                        <td>                                                           
+                                                           <input type="text" disabled="disabled" id="txtSumTotalAmount" class="form-control" value=0 style="width: 177%;">
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -336,8 +336,8 @@
             var flag = false;
             if ($("#<%=ddlstudy.ClientID%>").val() == "0")
                 alert("Please Select Would you study-n-live alone or would your family members come along");
-             else if ($("#<%=ddlstudy.ClientID%>").val() == "2" && !isvalidFamilyDetails()) { }
-            else if ($("#<%=hidAccomdation.ClientID%>").val() == "" || $("#<%=hidAccomdation.ClientID%>").val() == "0")
+            else if ($("#<%=ddlstudy.ClientID%>").val() == "2" && !isvalidFamilyDetails()) { }
+            else if ($("#<%=hidAccomdation.ClientID%>").val() == "" || $("#<%=ddlAccomdation.ClientID%>").val() == "0")
                 alert("Please Select the kind of accommodation you plan to have");
             else if ($("#<%=ddlCooking.ClientID%>").val() == "0")
                 alert("Please Select  how you plan to manage meals");
@@ -502,9 +502,12 @@
             var total = privateFinancePercentage + scholarshipPercentage + loanPercentage + sponsorshipPercentage + partTimeWorkPercentage;
             var totalAmount = Math.round(privateFinanceAmount + scholarshipAmount + loanAmount + sponsorshipAmount + partTimeWorkAmount);
             $("#txtSumTotalAmount").val(totalAmount);
-
+            var flag = false;
             if (total > 100)
                 alert("Please check contribution percentage once again as total exceeds 100");
+            else
+                flag = true;
+            return true;
         }
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
