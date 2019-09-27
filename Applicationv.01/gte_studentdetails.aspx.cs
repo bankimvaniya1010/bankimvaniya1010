@@ -45,8 +45,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             objCom.BindCountries(ddlhighestqualificationcountry);
             BindUniversityCampuses();
             BindMaritalstatus();
-            Bindworkexperienceyears();
-            Bindtypeofworkexperienceyears();
+            Bindworkexperienceyears();          
             FillMonth(ddlhighestqualificationmonth);
             FillYears(ddlhighestqualificationYear);
             BindMajorDiscipline(ddlhighestqualificationfield);
@@ -65,7 +64,20 @@ public partial class gte_studentdetails : System.Web.UI.Page
             populategteapplicantdetail();            
         }
     }
-
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetWorkTypeDropdown()
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var temp = (from sd in db1.typeofworkexperiencemaster                    
+                    select new
+                    {
+                        description = sd.description,
+                        id = sd.workexperiencetypesid
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
     private void BindCommencementDate(DropDownList ddl)
     {
         try
@@ -212,8 +224,10 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (ddlworkexperience.SelectedValue != "" && Convert.ToInt32(ddlworkexperience.SelectedValue) != 1)
                 objgte_applicantdetails.workexperience = Convert.ToInt32(ddlworkexperience.SelectedValue);
 
-            if (ddltypeofworkexperience.SelectedValue != "")
-                objgte_applicantdetails.typeofworkexperience = Convert.ToInt32(ddltypeofworkexperience.SelectedValue);
+            if (Convert.ToInt32(ddlworkexperience.SelectedValue) == 1)
+                objgte_applicantdetails.typeofworkexperience = 0;
+            else 
+                objgte_applicantdetails.typeofworkexperience = Convert.ToInt32(hidddltypeofworkexperience.Value);
 
 
             if (ddlcountryresidence.SelectedValue != "")
@@ -352,7 +366,10 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 if (studentInfo.typeofworkexperience != null)
                 {
                     ddltypeofworkexperience.ClearSelection();
-                    ddltypeofworkexperience.Items.FindByValue(studentInfo.typeofworkexperience.ToString()).Selected = true;
+                    Bindtypeofworkexperienceyears(Convert.ToInt32(studentInfo.workexperience));
+                    if(studentInfo.workexperience != 0)
+                        ddltypeofworkexperience.Items.FindByValue(studentInfo.typeofworkexperience.ToString()).Selected = true;
+                    hidddltypeofworkexperience.Value = studentInfo.typeofworkexperience.ToString();
                 }
                 if (studentInfo.residencecountry != null)
                 {
@@ -463,17 +480,22 @@ public partial class gte_studentdetails : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    private void Bindtypeofworkexperienceyears()
+    private void Bindtypeofworkexperienceyears(int ddlworkexpValue)
     {
         try
         {
-            ListItem lst = new ListItem("Please select", "0");
-            var workexperiencetype = db.typeofworkexperiencemaster.ToList();
-            ddltypeofworkexperience.DataSource = workexperiencetype;
-            ddltypeofworkexperience.DataTextField = "description";
-            ddltypeofworkexperience.DataValueField = "workexperiencetypesid";
-            ddltypeofworkexperience.DataBind();
-            ddltypeofworkexperience.Items.Insert(0, lst);
+            if (ddlworkexpValue == 0)
+                ddltypeofworkexperience.Items.Insert(0, "Not Applicable");
+            else 
+            {
+                ListItem lst = new ListItem("Please select", "0");
+                var workexperiencetype = db.typeofworkexperiencemaster.ToList();
+                ddltypeofworkexperience.DataSource = workexperiencetype;
+                ddltypeofworkexperience.DataTextField = "description";
+                ddltypeofworkexperience.DataValueField = "workexperiencetypesid";
+                ddltypeofworkexperience.DataBind();
+                ddltypeofworkexperience.Items.Insert(0, lst);
+            }
         }
         catch (Exception ex)
         {
