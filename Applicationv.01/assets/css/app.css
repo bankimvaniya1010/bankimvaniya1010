@@ -233,4 +233,6 @@
 .gvApplicant-resp{max-height: 500px;}
 [dir=ltr] .table td, [dir=ltr] .table th{border-top: 1px solid gray;}
 [dir=ltr] .table.gvApplicant td:nth-child(1), [dir=ltr] .table.gvApplicant th:nth-child(1){width: 1%;}
-
+.scholtble tr + tr{border-top: 1px solid #808080;}
+.padR0{padding-right: 0 !important;}
+[dir=ltr] .btn{height: 40px;margin: 10px;}
