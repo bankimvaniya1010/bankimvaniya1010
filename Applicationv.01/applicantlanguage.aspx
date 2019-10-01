@@ -135,8 +135,8 @@
                                             <label id="labelgradeachieved" runat="server" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
                                             <div class="col-md-9">
                                                 <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
-                                                <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
-                                                <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
+                                                <asp:RadioButton ID="rblYetToConduct" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
+                                                <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
                                                 <span class="helpicon"><i id="icgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -544,7 +544,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
                                         <asp:Button ID="btnlanguagecompetency" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnlanguagecompetency_Click" OnClientClick="return validateForm()"/>
-                                        <a href="applicantworkexperience.aspx?formid=7" class="btn btn-success m10">Go To Work Experience &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To Work Experience" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                       
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>

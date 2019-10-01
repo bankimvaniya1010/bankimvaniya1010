@@ -143,7 +143,8 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
                                         <asp:Button ID="btnidentification" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnidentification_Click" OnClientClick="return validateForm()" />
-                                        <a href="applicanteducation.aspx?formid=4" class="btn btn-success" style="margin-left: 10px;">Go To Education Details &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To Education Details" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                        
+
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>

@@ -107,9 +107,9 @@
                                     <div class="form-row">
                                         <label id="labelpostal" runat="server" for="postal" class="col-md-3 col-form-label form-label">Postal Address</label>
                                         <div class="col-md-6">
-                                            <input id="txtAddressLine1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"> <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                            <input id="txtAddressLine2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
-                                            <input id="txtAddressLine3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control">
+                                            <input id="txtAddressLine1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control" maxlength="200"> <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtAddressLine2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control" maxlength="200">
+                                            <input id="txtAddressLine3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control" maxlength="200">
                                             <input id="txtCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
                                             <input id="txtState" runat="server" type="text" placeholder="State" value="" class="form-control">
                                             <input id="txtPostal" runat="server" type="text" placeholder="Postal" value="" class="form-control">
@@ -143,9 +143,9 @@
                                         <label id="labelResidential" runat="server" for="title" class="col-md-3 col-form-label form-label">Current Residential  Address</label>
                                         <div class="col-md-6">
 
-                                            <input id="txtResidentialAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control"><span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
-                                            <input id="txtResidentialAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
-                                            <input id="txtResidentialAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control">
+                                            <input id="txtResidentialAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control" maxlength="200"><span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtResidentialAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control" maxlength="200">
+                                            <input id="txtResidentialAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control" maxlength="200">
                                             <input id="txtResidentialCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
                                             <input id="txtResidentialState" runat="server" type="text" placeholder="State" value="" class="form-control">
                                             <input id="txtResidentialpostal" runat="server" type="text" placeholder="Postal code" value="" class="form-control">
@@ -173,9 +173,9 @@
                                         <div class="col-md-6">
                                             <input id="txtPrevAddStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="">
                                             <input id="txtPrevAddEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="">
-                                            <input id="prevAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control">
-                                            <input id="prevAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control">
-                                            <input id="prevAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control">
+                                            <input id="prevAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control" maxlength="200">
+                                            <input id="prevAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control" maxlength="200">
+                                            <input id="prevAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control" maxlength="200">
                                             <input id="prevAddressCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
                                             <input id="prevAddressState" runat="server" type="text" placeholder="State" value="" class="form-control">
                                             <input id="prevAddressPostalCode" runat="server" type="text" placeholder="Postal code" value="" class="form-control">
@@ -238,7 +238,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
                                         <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
-                                        <a href="knowyourstudent.aspx?formid=3" class="btn btn-success" style="margin-left: 10px;">Go To Identification Details &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To Identification Details" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible ="false"></asp:Label>

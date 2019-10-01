@@ -21,8 +21,8 @@
                        <div class="list-group list-group-fit" runat="server" id="universityInstruction">
                        </div>
                    </div>
-                <div class="card" id="scholarships" runat="server">
-                    <asp:DataList ID="scholarshipList" runat="server" OnItemCommand="scholarshipList_ItemCommand">
+                <div class="card padR0" id="scholarships" runat="server">
+                    <asp:DataList ID="scholarshipList" runat="server" OnItemCommand="scholarshipList_ItemCommand" CssClass="scholtble">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
                                 <div class="card-body">

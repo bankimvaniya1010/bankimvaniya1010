@@ -203,7 +203,8 @@ public partial class applicantsocial : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    protected void btnsocial_Click(object sender, EventArgs e)
+
+    private void SaveSocialDetails()
     {
         try
         {
@@ -219,11 +220,12 @@ public partial class applicantsocial : System.Web.UI.Page
                 objapplicantDetail = profileInfo;
             }
             objapplicantDetail.facebookprofle = txtFacebook.Value;
-            if (ChkFacebook.Checked) {
+            if (ChkFacebook.Checked)
+            {
                 objapplicantDetail.havefacebookaccount = true;
                 objapplicantDetail.facebookprofle = "";
             }
-                
+
             else
                 objapplicantDetail.havefacebookaccount = false;
 
@@ -233,7 +235,7 @@ public partial class applicantsocial : System.Web.UI.Page
                 objapplicantDetail.havelinkedinaccount = true;
                 objapplicantDetail.linkedprofile = "";
             }
-                
+
             else
                 objapplicantDetail.havelinkedinaccount = false;
 
@@ -243,7 +245,7 @@ public partial class applicantsocial : System.Web.UI.Page
                 objapplicantDetail.havetwitteraccount = true;
                 objapplicantDetail.twiterprofile = "";
             }
-                
+
             else
                 objapplicantDetail.havetwitteraccount = false;
 
@@ -262,11 +264,21 @@ public partial class applicantsocial : System.Web.UI.Page
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
 
             lblMessage.Text = "Your Contact Details have been saved";
- //           lblMessage.Visible = true;
+            //           lblMessage.Visible = true;
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+    protected void btnsocial_Click(object sender, EventArgs e)
+    {
+        SaveSocialDetails();
+    }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        SaveSocialDetails();
+        Response.Redirect("applicantrefrencecheck.aspx?formid=6", true);
     }
 }

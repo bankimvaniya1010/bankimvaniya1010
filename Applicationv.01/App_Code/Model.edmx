@@ -217,17 +217,17 @@
           <Property Name="studycompletedate" Type="varchar" MaxLength="7" />
           <Property Name="isdisable" Type="int" />
           <Property Name="disabilitydescription" Type="varchar" MaxLength="50" />
-          <Property Name="postaladdrees1" Type="varchar" MaxLength="45" />
-          <Property Name="postaladdrees2" Type="varchar" MaxLength="45" />
-          <Property Name="postaladdrees3" Type="varchar" MaxLength="45" />
+          <Property Name="postaladdrees1" Type="varchar" MaxLength="200" />
+          <Property Name="postaladdrees2" Type="varchar" MaxLength="200" />
+          <Property Name="postaladdrees3" Type="varchar" MaxLength="200" />
           <Property Name="postalcity" Type="varchar" MaxLength="45" />
           <Property Name="postalstate" Type="varchar" MaxLength="45" />
           <Property Name="postalcountry" Type="int" />
           <Property Name="postalpostcode" Type="varchar" MaxLength="8" />
           <Property Name="residentailpostcode" Type="varchar" MaxLength="8" />
-          <Property Name="residentialaddress1" Type="varchar" MaxLength="45" />
-          <Property Name="residentialaddress2" Type="varchar" MaxLength="45" />
-          <Property Name="residentialaddress3" Type="varchar" MaxLength="45" />
+          <Property Name="residentialaddress1" Type="varchar" MaxLength="200" />
+          <Property Name="residentialaddress2" Type="varchar" MaxLength="200" />
+          <Property Name="residentialaddress3" Type="varchar" MaxLength="200" />
           <Property Name="residentialcity" Type="varchar" MaxLength="45" />
           <Property Name="residentialstate" Type="varchar" MaxLength="45" />
           <Property Name="residentialcountry" Type="int" />
@@ -510,9 +510,9 @@
           <Property Name="universityid" Type="int" Nullable="false" />
           <Property Name="residencestartdate" Type="datetime" Precision="0" />
           <Property Name="residenceenddate" Type="datetime" Precision="0" />
-          <Property Name="residenceaddress1" Type="varchar" MaxLength="50" />
-          <Property Name="residenceaddress2" Type="varchar" MaxLength="50" />
-          <Property Name="residenceaddress3" Type="varchar" MaxLength="50" />
+          <Property Name="residenceaddress1" Type="varchar" MaxLength="200" />
+          <Property Name="residenceaddress2" Type="varchar" MaxLength="200" />
+          <Property Name="residenceaddress3" Type="varchar" MaxLength="200" />
           <Property Name="residencepostcode" Type="varchar" MaxLength="8" />
           <Property Name="residentialstate" Type="varchar" MaxLength="50" />
           <Property Name="residentialcity" Type="varchar" MaxLength="50" />
@@ -579,6 +579,13 @@
           <Property Name="isvisadenied" Type="int" />
           <Property Name="isparentvisadenied" Type="int" />
         </EntityType>
+        <EntityType Name="application_status_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status_description" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="applicationmaster">
           <Key>
             <PropertyRef Name="applicationmasterid" />
@@ -602,6 +609,11 @@
           <Property Name="decision" Type="int" />
           <Property Name="condition_statement" Type="varchar" MaxLength="2000" />
           <Property Name="admission_remark" Type="varchar" MaxLength="2000" />
+          <Property Name="activity_ip" Type="varchar" MaxLength="50" />
+          <Property Name="activity_date" Type="datetime" Precision="0" />
+          <Property Name="deferment_date" Type="date" />
+          <Property Name="rejection_reason" Type="int" />
+          <Property Name="rejection_remark" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="australiavisadetailmaster">
           <Key>
@@ -1090,6 +1102,14 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="courseid" Type="int" Nullable="false" />
           <Property Name="commencementdate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="course_defermentdates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseid" Type="int" Nullable="false" />
+          <Property Name="defermentdate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="coursemaster">
           <Key>
@@ -2005,6 +2025,7 @@
           <Property Name="fontcolor" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="sop_instruction_for_applicant" Type="varchar" MaxLength="20000" Nullable="false" />
           <Property Name="scholarship_instruction" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="application_instruction" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="acceptance_terms" Type="varchar" MaxLength="2000" />
           <Property Name="deferment_terms" Type="varchar" MaxLength="2000" />
           <Property Name="rejection_terms" Type="varchar" MaxLength="2000" />
@@ -2558,6 +2579,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Principal>
             <Dependent Role="customfieldvalue">
               <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_defermentDate_coursemaster">
+          <End Role="coursemaster" Type="Self.coursemaster" Multiplicity="1" />
+          <End Role="course_defermentdates" Type="Self.course_defermentdates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursemaster">
+              <PropertyRef Name="courseid" />
+            </Principal>
+            <Dependent Role="course_defermentdates">
+              <PropertyRef Name="courseid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3251,6 +3284,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="application_status_master" EntityType="Self.application_status_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicationmaster" EntityType="Self.applicationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisadetailmaster" EntityType="Self.australiavisadetailmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisadocumentmaster" EntityType="Self.australiavisadocumentmaster" Schema="GTE" store:Type="Tables" />
@@ -3264,6 +3298,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="countrywisealternateidproofmaster" EntityType="Self.countrywisealternateidproofmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_campus_mapping" EntityType="Self.course_campus_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="course_dates" EntityType="Self.course_dates" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="course_defermentdates" EntityType="Self.course_defermentdates" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursemaster" EntityType="Self.coursemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="coursetypemaster" EntityType="Self.coursetypemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="credentialmaster" EntityType="Self.credentialmaster" Schema="GTE" store:Type="Tables" />
@@ -3517,6 +3552,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_customfieldvalue_students" Association="Self.FK_customfieldvalue_students">
             <End Role="students" EntitySet="students" />
             <End Role="customfieldvalue" EntitySet="customfieldvalue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_defermentDate_coursemaster" Association="Self.FK_defermentDate_coursemaster">
+            <End Role="coursemaster" EntitySet="coursemaster" />
+            <End Role="course_defermentdates" EntitySet="course_defermentdates" />
           </AssociationSet>
           <AssociationSet Name="fk_frommaster_admincomments" Association="Self.fk_frommaster_admincomments">
             <End Role="formmaster" EntitySet="formmaster" />
@@ -4253,6 +4292,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_predeparturetutorialmaster_university_master" Association="GTEModel.FK_predeparturetutorialmaster_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="predeparturetutorialmaster" EntitySet="predeparturetutorialmaster" />
+          </AssociationSet>
+          <EntitySet Name="application_status_master" EntityType="GTEModel.application_status_master" />
+          <EntitySet Name="course_defermentdates" EntityType="GTEModel.course_defermentdates" />
+          <AssociationSet Name="FK_defermentDate_coursemaster" Association="GTEModel.FK_defermentDate_coursemaster">
+            <End Role="coursemaster" EntitySet="coursemaster" />
+            <End Role="course_defermentdates" EntitySet="course_defermentdates" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
@@ -5264,6 +5309,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="course_dates" Relationship="GTEModel.FK_courseDates_coursemaster_" FromRole="coursemaster" ToRole="course_dates" />
           <NavigationProperty Name="majordiscipline_master" Relationship="GTEModel.FK_coursemaster_majordiscipline_master" FromRole="coursemaster" ToRole="majordiscipline_master" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_coursemaster_universitymaster" FromRole="coursemaster" ToRole="university_master" />
+          <NavigationProperty Name="course_defermentdates" Relationship="GTEModel.FK_defermentDate_coursemaster" FromRole="coursemaster" ToRole="course_defermentdates" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -7367,6 +7413,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="rejection_terms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="withdrawn_terms" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="predeparturetutorialmaster" Relationship="GTEModel.FK_predeparturetutorialmaster_university_master" FromRole="university_master" ToRole="predeparturetutorialmaster" />
+          <Property Name="application_instruction" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="fk_university_master_admincomments">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
@@ -7603,6 +7650,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="decision" Type="Int32" />
           <Property Name="condition_statement" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="admission_remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="activity_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="activity_date" Type="DateTime" />
+          <Property Name="deferment_date" Type="DateTime" />
+          <Property Name="rejection_reason" Type="Int32" />
+          <Property Name="rejection_remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="university_application_decision_master">
           <Key>
@@ -7634,6 +7686,34 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="predeparturetutorialmaster">
               <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="application_status_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status_description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="course_defermentdates">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseid" Type="Int32" Nullable="false" />
+          <Property Name="defermentdate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_defermentDate_coursemaster" FromRole="course_defermentdates" ToRole="coursemaster" />
+        </EntityType>
+        <Association Name="FK_defermentDate_coursemaster">
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="1" />
+          <End Type="GTEModel.course_defermentdates" Role="course_defermentdates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursemaster">
+              <PropertyRef Name="courseid" />
+            </Principal>
+            <Dependent Role="course_defermentdates">
+              <PropertyRef Name="courseid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -9809,6 +9889,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="application_instruction" ColumnName="application_instruction" />
                 <ScalarProperty Name="withdrawn_terms" ColumnName="withdrawn_terms" />
                 <ScalarProperty Name="rejection_terms" ColumnName="rejection_terms" />
                 <ScalarProperty Name="deferment_terms" ColumnName="deferment_terms" />
@@ -9869,6 +9950,11 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicationmaster">
             <EntityTypeMapping TypeName="GTEModel.applicationmaster">
               <MappingFragment StoreEntitySet="applicationmaster">
+                <ScalarProperty Name="rejection_remark" ColumnName="rejection_remark" />
+                <ScalarProperty Name="rejection_reason" ColumnName="rejection_reason" />
+                <ScalarProperty Name="deferment_date" ColumnName="deferment_date" />
+                <ScalarProperty Name="activity_date" ColumnName="activity_date" />
+                <ScalarProperty Name="activity_ip" ColumnName="activity_ip" />
                 <ScalarProperty Name="admission_remark" ColumnName="admission_remark" />
                 <ScalarProperty Name="condition_statement" ColumnName="condition_statement" />
                 <ScalarProperty Name="decision" ColumnName="decision" />
@@ -9910,6 +9996,23 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="predeparturetutorialid" ColumnName="predeparturetutorialid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="application_status_master">
+            <EntityTypeMapping TypeName="GTEModel.application_status_master">
+              <MappingFragment StoreEntitySet="application_status_master">
+                <ScalarProperty Name="status_description" ColumnName="status_description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="course_defermentdates">
+            <EntityTypeMapping TypeName="GTEModel.course_defermentdates">
+              <MappingFragment StoreEntitySet="course_defermentdates">
+                <ScalarProperty Name="defermentdate" ColumnName="defermentdate" />
+                <ScalarProperty Name="courseid" ColumnName="courseid" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -729,8 +729,7 @@ public partial class applicantlanguage : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
-    protected void btnlanguagecompetency_Click(object sender, EventArgs e)
+    private void SaveLanguageDetails()
     {
         try
         {
@@ -827,12 +826,13 @@ public partial class applicantlanguage : System.Web.UI.Page
 
                 objLanguage.testname = null;
                 objLanguage.candidateid = null;
-                objLanguage.candidateno = null;                
+                objLanguage.candidateno = null;
 
             }
 
-            else if (rblLanguagtofel.Checked) {
-                objLanguage.giveenglishtest = 3;                
+            else if (rblLanguagtofel.Checked)
+            {
+                objLanguage.giveenglishtest = 3;
                 objLanguage.registrationNo = txttofelregistrationno.Value;
                 objLanguage.examdate = Convert.ToDateTime(txttofelTestDate.Value);
                 if (ddltofelcentercountry.SelectedValue != null)
@@ -849,10 +849,10 @@ public partial class applicantlanguage : System.Web.UI.Page
                 objLanguage.testname = null;
                 objLanguage.candidateid = null;
                 objLanguage.candidateno = null;
-               
+
 
             }
-                                            
+
             if (ddlCEFR.SelectedValue != "")
             {
                 objLanguage.cefrlevel = ddlCEFR.SelectedValue;
@@ -873,12 +873,22 @@ public partial class applicantlanguage : System.Web.UI.Page
             if (!isProfileDetailsCompletedByApplicant)
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
             lblMessage.Text = "Your Contact Details have been saved";
-  //          lblMessage.Visible = true;
+            //          lblMessage.Visible = true;
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+    protected void btnlanguagecompetency_Click(object sender, EventArgs e)
+    {
+        SaveLanguageDetails();
+    }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        SaveLanguageDetails();
+        Response.Redirect("applicantworkexperience.aspx?formid=7", true);
     }
 }
 

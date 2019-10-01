@@ -446,7 +446,7 @@ public partial class personaldetails : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    private void SavePersonaldetails()
     {
         try
         {
@@ -516,8 +516,9 @@ public partial class personaldetails : System.Web.UI.Page
             objapplicantDetail.universityid = universityID;
             objapplicantDetail.personaldetailsavedtime = DateTime.Now;
             objapplicantDetail.ispersonaldetailspresent = true;
-            if (ddlhigheststudy.SelectedValue != null) {
-                objapplicantDetail.higheststudycompleted =Convert.ToInt32(ddlhigheststudy.SelectedValue);
+            if (ddlhigheststudy.SelectedValue != null)
+            {
+                objapplicantDetail.higheststudycompleted = Convert.ToInt32(ddlhigheststudy.SelectedValue);
             }
             if (ddlfieldstudy.SelectedValue != null)
                 objapplicantDetail.fieldofhigheststudy = Convert.ToInt32(ddlfieldstudy.SelectedValue);
@@ -549,12 +550,16 @@ public partial class personaldetails : System.Web.UI.Page
 
             lblMessage.Text = "Your Personal Details have been saved";
             //            lblMessage.Visible = true;
-            
+
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+    protected void btn_login_Click(object sender, EventArgs e)
+    {
+        SavePersonaldetails();
     }
 
     private void SetToolTips()
@@ -800,6 +805,12 @@ public partial class personaldetails : System.Web.UI.Page
         sb.Append(webURL + "registeragent.aspx" + " <br/>");
         sb.Append("Thank You Backend Team The Application Center,<br/>");
         objCom.SendMail(txtAgentname.Text, sb.ToString(), "Agent Registration Link");
+    }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        SavePersonaldetails();
+        Response.Redirect("applicantcontactdetail.aspx?formid=2",true);
     }
 }
 

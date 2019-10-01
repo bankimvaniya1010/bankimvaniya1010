@@ -71,7 +71,7 @@ public partial class knowyourstudent : System.Web.UI.Page
         }
     }
 
-    protected void btnidentification_Click(object sender, EventArgs e)
+    private void SaveIdentificationDetails()
     {
         try
         {
@@ -124,13 +124,18 @@ public partial class knowyourstudent : System.Web.UI.Page
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
 
             lblMessage.Text = "Your Contact Details have been saved";
- //           lblMessage.Visible = true;
+            //           lblMessage.Visible = true;
 
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void btnidentification_Click(object sender, EventArgs e)
+    {
+        SaveIdentificationDetails();
     }
 
     private void PopulateKYSDetails()
@@ -454,5 +459,11 @@ public partial class knowyourstudent : System.Web.UI.Page
         var details = db1.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
         details.verifiedpassportnamedob = confirmation;
         db1.SaveChanges();
+    }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        SaveIdentificationDetails();
+        Response.Redirect("applicanteducation.aspx?formid=4", true);
     }
 }

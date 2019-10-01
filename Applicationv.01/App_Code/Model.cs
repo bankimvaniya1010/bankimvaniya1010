@@ -602,6 +602,12 @@ public partial class applicantvisadetails
     public virtual university_master university_master { get; set; }
 }
 
+public partial class application_status_master
+{
+    public int id { get; set; }
+    public string status_description { get; set; }
+}
+
 public partial class applicationmaster
 {
     public int applicationmasterid { get; set; }
@@ -623,6 +629,11 @@ public partial class applicationmaster
     public Nullable<int> decision { get; set; }
     public string condition_statement { get; set; }
     public string admission_remark { get; set; }
+    public string activity_ip { get; set; }
+    public Nullable<System.DateTime> activity_date { get; set; }
+    public Nullable<System.DateTime> deferment_date { get; set; }
+    public Nullable<int> rejection_reason { get; set; }
+    public string rejection_remark { get; set; }
 }
 
 public partial class australiavisadetailmaster
@@ -1173,6 +1184,15 @@ public partial class course_dates
     public virtual coursemaster coursemaster { get; set; }
 }
 
+public partial class course_defermentdates
+{
+    public int id { get; set; }
+    public int courseid { get; set; }
+    public System.DateTime defermentdate { get; set; }
+
+    public virtual coursemaster coursemaster { get; set; }
+}
+
 public partial class coursemaster
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -1180,6 +1200,7 @@ public partial class coursemaster
     {
         this.course_campus_mapping = new HashSet<course_campus_mapping>();
         this.course_dates = new HashSet<course_dates>();
+        this.course_defermentdates = new HashSet<course_defermentdates>();
     }
 
     public int courseid { get; set; }
@@ -1198,6 +1219,8 @@ public partial class coursemaster
     public virtual ICollection<course_dates> course_dates { get; set; }
     public virtual majordiscipline_master majordiscipline_master { get; set; }
     public virtual university_master university_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<course_defermentdates> course_defermentdates { get; set; }
 }
 
 public partial class coursetypemaster
@@ -2426,6 +2449,7 @@ public partial class university_master
     public string deferment_terms { get; set; }
     public string rejection_terms { get; set; }
     public string withdrawn_terms { get; set; }
+    public string application_instruction { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

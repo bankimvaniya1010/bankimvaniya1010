@@ -21,7 +21,7 @@
 
 
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-8">
 
             <div class="card">
                 <div class="card-header d-flex align-items-center">
@@ -51,8 +51,30 @@
 
 
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-4">
 
+                    <div class="banImg-wrp">
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
+                    <div class="card faq-qwrp" id="questions" runat="server">
+                            <div class="card-body">
+                            <%  if (allQuestions.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                    <h5>FAQ's</h5>
+                                    <div class="">
+                                    <%for (int q = 0; q < allQuestions.Count; q++)
+                                        {%>  <div>                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                            </div>                                                  
+                                    <%} %>
+                                </div>
+                            </div>      
+                                <%} %>  
+                                     
+                            </div>
+                        </div>
+                    
           
 
 

@@ -1047,7 +1047,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
                                         <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
-                                        <a href="applicantlanguage.aspx?formid=5" class="btn btn-success" style="margin-left: 10px;">Go To English Language Competency &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To English Competency" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>

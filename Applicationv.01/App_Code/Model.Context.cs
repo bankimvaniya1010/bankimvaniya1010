@@ -171,6 +171,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicationmaster> applicationmaster { get; set; }
     public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
     public virtual DbSet<predeparturetutorialmaster> predeparturetutorialmaster { get; set; }
+    public virtual DbSet<application_status_master> application_status_master { get; set; }
+    public virtual DbSet<course_defermentdates> course_defermentdates { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
