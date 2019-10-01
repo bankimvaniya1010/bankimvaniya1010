@@ -203,74 +203,8 @@ public partial class applicantsocial : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-    protected void btnsocial_Click(object sender, EventArgs e)
-    {
-        try
-        {
 
-            var mode = "new";
-            var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID && pInfo.universityid == universityID
-                               select pInfo).FirstOrDefault();
-            applicantdetails objapplicantDetail = new applicantdetails();
-            if (profileInfo != null)
-            {
-                mode = "update";
-                objapplicantDetail = profileInfo;
-            }
-            objapplicantDetail.facebookprofle = txtFacebook.Value;
-            if (ChkFacebook.Checked) {
-                objapplicantDetail.havefacebookaccount = true;
-                objapplicantDetail.facebookprofle = "";
-            }
-                
-            else
-                objapplicantDetail.havefacebookaccount = false;
-
-            objapplicantDetail.linkedprofile = txtLinkedin.Value;
-            if (chkLinkeIn.Checked)
-            {
-                objapplicantDetail.havelinkedinaccount = true;
-                objapplicantDetail.linkedprofile = "";
-            }
-                
-            else
-                objapplicantDetail.havelinkedinaccount = false;
-
-            objapplicantDetail.twiterprofile = txtTwitter.Value;
-            if (chkTwitter.Checked)
-            {
-                objapplicantDetail.havetwitteraccount = true;
-                objapplicantDetail.twiterprofile = "";
-            }
-                
-            else
-                objapplicantDetail.havetwitteraccount = false;
-
-            objapplicantDetail.socialprofilesavetime = DateTime.Now;
-            objapplicantDetail.issocialprofilepresent = true;
-            objapplicantDetail.applicantid = userID;
-            objapplicantDetail.universityid = universityID;
-            if (mode == "new")
-                db.applicantdetails.Add(objapplicantDetail);
-            db.SaveChanges();
-            if (CustomControls.Count > 0)
-                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
-
-            var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
-            if (!isProfileDetailsCompletedByApplicant)
-                Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
-
-            lblMessage.Text = "Your Contact Details have been saved";
- //           lblMessage.Visible = true;
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void gotoNextPage_Click(object sender, EventArgs e)
+    private void SaveSocialDetails()
     {
         try
         {
@@ -328,13 +262,23 @@ public partial class applicantsocial : System.Web.UI.Page
             var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
             if (!isProfileDetailsCompletedByApplicant)
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
-            
+
+            lblMessage.Text = "Your Contact Details have been saved";
+            //           lblMessage.Visible = true;
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+    protected void btnsocial_Click(object sender, EventArgs e)
+    {
+        SaveSocialDetails();
+    }
 
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        SaveSocialDetails();
         Response.Redirect("applicantrefrencecheck.aspx?formid=6", true);
     }
 }

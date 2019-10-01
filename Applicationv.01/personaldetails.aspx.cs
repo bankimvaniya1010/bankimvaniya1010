@@ -446,7 +446,7 @@ public partial class personaldetails : System.Web.UI.Page
         }
     }
 
-    protected void btn_login_Click(object sender, EventArgs e)
+    private void SavePersonaldetails()
     {
         try
         {
@@ -516,8 +516,9 @@ public partial class personaldetails : System.Web.UI.Page
             objapplicantDetail.universityid = universityID;
             objapplicantDetail.personaldetailsavedtime = DateTime.Now;
             objapplicantDetail.ispersonaldetailspresent = true;
-            if (ddlhigheststudy.SelectedValue != null) {
-                objapplicantDetail.higheststudycompleted =Convert.ToInt32(ddlhigheststudy.SelectedValue);
+            if (ddlhigheststudy.SelectedValue != null)
+            {
+                objapplicantDetail.higheststudycompleted = Convert.ToInt32(ddlhigheststudy.SelectedValue);
             }
             if (ddlfieldstudy.SelectedValue != null)
                 objapplicantDetail.fieldofhigheststudy = Convert.ToInt32(ddlfieldstudy.SelectedValue);
@@ -549,12 +550,16 @@ public partial class personaldetails : System.Web.UI.Page
 
             lblMessage.Text = "Your Personal Details have been saved";
             //            lblMessage.Visible = true;
-            
+
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+    protected void btn_login_Click(object sender, EventArgs e)
+    {
+        SavePersonaldetails();
     }
 
     private void SetToolTips()
@@ -804,110 +809,7 @@ public partial class personaldetails : System.Web.UI.Page
 
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
-        try
-        {
-            var mode = "new";
-            var profileInfo = (from pInfo in db.applicantdetails
-                               where pInfo.applicantid == userID && pInfo.universityid == universityID
-                               select pInfo).FirstOrDefault();
-            applicantdetails objapplicantDetail = new applicantdetails();
-            if (profileInfo != null)
-            {
-                mode = "update";
-                objapplicantDetail = profileInfo;
-            }
-            objapplicantDetail.title = Convert.ToInt32(ddlTitle.SelectedValue);
-            objapplicantDetail.othertitle = txtTitle.Value;
-            objapplicantDetail.firstname = txtFirstName.Value;
-            objapplicantDetail.lastname = txtLastName.Value;
-            objapplicantDetail.middlename = txtMiddleName.Value;
-            objapplicantDetail.prefferedname = txtPreferedName.Value;
-            string dateofBirth = ddlYear.SelectedValue + "-" + ddlMonth.SelectedValue + "-" + hidDOBDate.Value;
-            objapplicantDetail.dateofbirth = Convert.ToDateTime(dateofBirth);
-            if (rbtnMale.Checked)
-                objapplicantDetail.gender = 1;
-            else if (rbtnFemale.Checked)
-                objapplicantDetail.gender = 0;
-            if (ddlNationality.SelectedValue != "")
-            {
-                string[] array = ddlNationality.SelectedValue.Split('_');
-                objapplicantDetail.nationality = Convert.ToInt32(array[0]);
-            }
-            if (ddlOtherNation.SelectedValue != "" && Convert.ToInt32(ddlOtherNation.SelectedValue) > 0)
-                objapplicantDetail.nationality2 = Convert.ToInt32(ddlOtherNation.SelectedValue);
-            if (objapplicantDetail.nationality2.HasValue && objapplicantDetail.nationality.HasValue)
-                objapplicantDetail.hasdualcitizenship = true;
-            if (rblNationalityNo.Checked)
-                objapplicantDetail.hasdualcitizenship = false;
-            if (rblChineseCodeYes.Checked)
-            {
-                objapplicantDetail.chinesecodenumber = txtChineseCodeNumber.Value.Trim();
-                objapplicantDetail.haschinesecodenumber = true;
-            }
-            else if (rblChineseCodeNo.Checked)
-                objapplicantDetail.haschinesecodenumber = false;
-            if (txtPatronymicName.Value != "")
-                objapplicantDetail.patronymicname = txtPatronymicName.Value.Trim();
-            if (ddlBirthCountry.SelectedValue != "")
-                objapplicantDetail.countryofbirth = Convert.ToInt32(ddlBirthCountry.SelectedValue);
-            if (ddlHighestQualificationCountry.SelectedValue != "")
-                objapplicantDetail.countryofhigheststudy = Convert.ToInt32(ddlHighestQualificationCountry.SelectedValue);
-            if ((ddlHighQualificationCompletedMonth.SelectedValue != "") && (ddlHighQualificationCompletedYear.SelectedValue != ""))
-                objapplicantDetail.studycompletedate = ddlHighQualificationCompletedMonth.SelectedValue + "-" + ddlHighQualificationCompletedYear.SelectedValue;
-            if (ddlMarital.SelectedValue != "")
-                objapplicantDetail.maritalstatus = Convert.ToInt32(ddlMarital.SelectedValue);
-            if (rblDisabilityYes.Checked)
-                objapplicantDetail.isdisable = 1;
-            else if (rblDisabilityNo.Checked)
-                objapplicantDetail.isdisable = 2;
-            if (ddlDisability.SelectedValue != "")
-                objapplicantDetail.disabilitydescription = ddlDisability.SelectedValue;
-            if (rblAgentYes.Checked)
-                objapplicantDetail.isstudentreferbyagent = 1;
-            else if (rblAgentNo.Checked)
-                objapplicantDetail.isstudentreferbyagent = 0;
-            if (ddlAgent.SelectedValue != "")
-                objapplicantDetail.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
-            objapplicantDetail.applicantid = userID;
-            objapplicantDetail.universityid = universityID;
-            objapplicantDetail.personaldetailsavedtime = DateTime.Now;
-            objapplicantDetail.ispersonaldetailspresent = true;
-            if (ddlhigheststudy.SelectedValue != null)
-            {
-                objapplicantDetail.higheststudycompleted = Convert.ToInt32(ddlhigheststudy.SelectedValue);
-            }
-            if (ddlfieldstudy.SelectedValue != null)
-                objapplicantDetail.fieldofhigheststudy = Convert.ToInt32(ddlfieldstudy.SelectedValue);
-            if (ddlMarital.SelectedItem.Text == "Married")
-            {
-                string spouseDateofBirth = ddlSpouseDOBYear.SelectedValue + "-" + ddlSpouseDOBMonth.SelectedValue + "-" + hidSpouseDOBDateField.Value;
-                string marriageDate = ddlMarriageYear.SelectedValue + "-" + ddlMarriageMonth.SelectedValue + "-" + hidMarriageDateField.Value;
-
-                objapplicantDetail.ismarried = true;
-                objapplicantDetail.spousedob = Convert.ToDateTime(spouseDateofBirth);
-                objapplicantDetail.marriagedate = Convert.ToDateTime(marriageDate);
-                objapplicantDetail.spousename = txtSpouseName.Value.Trim();
-                objapplicantDetail.spousenationality = Convert.ToInt32(ddlSpouseNationality.SelectedValue);
-            }
-
-            objapplicantDetail.ispassportfirstname = passportFirstName.Checked;
-            objapplicantDetail.ispassportlastname = passportLastName.Checked;
-            objapplicantDetail.ispassportmiddlename = passportMiddleName.Checked;
-            if (mode == "new")
-                db.applicantdetails.Add(objapplicantDetail);
-            db.SaveChanges();
-            PopulatePersonalInfo();
-            if (CustomControls.Count > 0)
-                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
-
-            var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
-            if (!isProfileDetailsCompletedByApplicant)
-                Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
+        SavePersonaldetails();
         Response.Redirect("applicantcontactdetail.aspx?formid=2",true);
     }
 }
