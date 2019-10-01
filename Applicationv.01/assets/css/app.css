@@ -236,3 +236,9 @@
 .scholtble tr + tr{border-top: 1px solid #808080;}
 .padR0{padding-right: 0 !important;}
 [dir=ltr] .btn{height: 40px;margin: 10px;}
+.frst-rw{width: 34%;}
+.sec-rw{width: 30%;}
+.third-rw{width: 36%;}
+.third-rw span{display: block;background: #e9ecef;min-height: 40px;min-width: 110px;padding: .5rem .5rem;border:1px solid #f0f1f2;border-radius: .25rem;}
+.sidebar-menu-icon{width: 24px;margin-right: .5rem;}
+.fundng-tbl tr{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;}

@@ -15,6 +15,8 @@ public partial class _Default : System.Web.UI.Page
     int UserID = 0, applicantID = 0;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string progressStatus = "";
+    protected static List<faq> allQuestions = new List<faq>();
+    Common objCom = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckStudentLogin())
@@ -25,7 +27,8 @@ public partial class _Default : System.Web.UI.Page
         Session["Applicant"] = UserID;
         if (!IsPostBack)
         {
-            /*SetprogressStatus();*/ 
+            allQuestions = objCom.FaqQuestionList();
+            /*SetprogressStatus();*/
             //if (Session["SecondaryLang"] == null)
             //    Session["SecondaryLang"] = "ar";
         }

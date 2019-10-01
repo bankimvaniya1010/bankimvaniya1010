@@ -455,4 +455,67 @@ public partial class knowyourstudent : System.Web.UI.Page
         details.verifiedpassportnamedob = confirmation;
         db1.SaveChanges();
     }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var mode = "new";
+            var profileInfo = (from pInfo in db.applicantdetails
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               select pInfo).FirstOrDefault();
+            applicantdetails objapplicantDetail = new applicantdetails();
+            if (profileInfo != null)
+            {
+                mode = "update";
+                objapplicantDetail = profileInfo;
+            }
+            objapplicantDetail.passportno = txtPassportNo.Value;
+            objapplicantDetail.passportissuedate = Convert.ToDateTime(txtdateofissue.Value);
+            objapplicantDetail.passportexpirydate = Convert.ToDateTime(txtexpirydate.Value);
+            if (ddlCountryofIssue.SelectedValue != "")
+            {
+                objapplicantDetail.passportissuecountry = ddlCountryofIssue.SelectedValue;
+            }
+            objapplicantDetail.passportissuecity = txtissueplaceCity.Value;
+            if (ddlalternateIdentitytype.SelectedValue != "")
+            {
+                objapplicantDetail.alternativeIdentityproofId = Convert.ToInt32(ddlalternateIdentitytype.SelectedValue);
+            }
+            if (ddlalternatedobIdentitytype.SelectedValue != "")
+            {
+                objapplicantDetail.alternativeproofdobId = Convert.ToInt32(ddlalternatedobIdentitytype.SelectedValue);
+            }
+
+            if (ddlalternateresidenceIdentitytype.SelectedValue != "")
+            {
+                objapplicantDetail.alternativeresidenceproofId = Convert.ToInt32(ddlalternateresidenceIdentitytype.SelectedValue);
+            }
+            objapplicantDetail.alternativeproofdobno = txtalternatedobIdentityNo.Value;
+            objapplicantDetail.alternativeresidenceproofno = txtalternateresidenceIdentityNo.Value;
+            objapplicantDetail.alternativeIdentityproofno = txtalternateIdentityNo.Value;
+            objapplicantDetail.identificationsavetime = DateTime.Now;
+            objapplicantDetail.isidentificationpresent = true;
+            objapplicantDetail.applicantid = userID;
+            objapplicantDetail.universityid = universityID;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantDetail);
+            db.SaveChanges();
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+
+            var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
+            if (!isProfileDetailsCompletedByApplicant)
+                Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);
+
+            lblMessage.Text = "Your Contact Details have been saved";
+            //           lblMessage.Visible = true;
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+        Response.Redirect("applicanteducation.aspx?formid=4", true);
+    }
 }

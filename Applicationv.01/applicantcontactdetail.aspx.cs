@@ -585,4 +585,194 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var mode = "new";
+            var profileInfo = (from pInfo in db.applicantdetails
+                               where pInfo.applicantid == userID && pInfo.universityid == universityID
+                               select pInfo).FirstOrDefault();
+            applicantdetails objapplicantDetail = new applicantdetails();
+            if (profileInfo != null)
+            {
+                mode = "update";
+                objapplicantDetail = profileInfo;
+            }
+
+            objapplicantDetail.email = txtEmail.Value;
+            objapplicantDetail.mobileno = txtMobile.Value;
+            objapplicantDetail.homephone = txtHomePhone.Value;
+
+            if (rblSkypeYes.Checked == true)
+            {
+                objapplicantDetail.haveskypeid = 1;
+                objapplicantDetail.skypeid = txtSkype.Text;
+            }
+
+            else if (rblSkypeNo.Checked == true)
+            { objapplicantDetail.haveskypeid = 0; }
+
+            if (rblwhatsappYes.Checked)
+            {
+                objapplicantDetail.havewhatsup = 1;
+            }
+            else if (rblwhatsappNo.Checked == true)
+            { objapplicantDetail.havewhatsup = 2; }
+
+            if (rblWhatsupsameYes.Checked)
+            {
+                objapplicantDetail.isdifferentwhatsapp = 1;
+            }
+            else if (rblWhatsupsameNo.Checked)
+            {
+                objapplicantDetail.isdifferentwhatsapp = 2;
+                objapplicantDetail.whatsappno = txtWhatsappNo.Text;
+            }
+
+            objapplicantDetail.postaladdrees1 = txtAddressLine1.Value;
+            objapplicantDetail.postaladdrees2 = txtAddressLine2.Value;
+            objapplicantDetail.postaladdrees3 = txtAddressLine3.Value;
+            objapplicantDetail.postalcity = txtCity.Value;
+            objapplicantDetail.postalstate = txtState.Value;
+            objapplicantDetail.postalpostcode = txtPostal.Value;
+            if (ddlpostalCountry.SelectedValue != "")
+                objapplicantDetail.postalcountry = Convert.ToInt32(ddlpostalCountry.SelectedValue);
+
+            if (rblAddressYes.Checked == true)
+            {
+                objapplicantDetail.issameaspostal = 1;
+            }
+
+            else if (rblAddressNo.Checked == true)
+            {
+                objapplicantDetail.issameaspostal = 2;
+                objapplicantDetail.residentialaddress1 = txtResidentialAddress1.Value;
+                objapplicantDetail.residentialaddress2 = txtResidentialAddress2.Value;
+                objapplicantDetail.residentialaddress3 = txtResidentialAddress3.Value;
+                objapplicantDetail.residentialcity = txtResidentialCity.Value;
+                objapplicantDetail.residentialstate = txtResidentialState.Value;
+                objapplicantDetail.residentailpostcode = txtResidentialpostal.Value;
+                if (ddlResidentialCountry.SelectedValue != "")
+                    objapplicantDetail.residentialcountry = Convert.ToInt32(ddlResidentialCountry.SelectedValue);
+            }
+
+            if (rblCurrentAddYes.Checked)
+            {
+                var existinglst = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                if (existinglst != null && existinglst.Count > 0)
+                {
+                    db.applicantresidencehistory.RemoveRange(existinglst);
+                    db.SaveChanges();
+                }
+
+                objapplicantDetail.haspreviousresidence = true;
+                List<applicantresidencehistory> lstresidenceHistory = new List<applicantresidencehistory>();
+                applicantresidencehistory resHistory = new applicantresidencehistory();
+
+                resHistory.applicantid = userID;
+                resHistory.universityid = universityID;
+                resHistory.residencestartdate = Convert.ToDateTime(txtPrevAddStartDate.Value);
+                resHistory.residenceenddate = Convert.ToDateTime(txtPrevAddEndDate.Value);
+                resHistory.residenceaddress1 = prevAddress1.Value;
+                resHistory.residenceaddress2 = prevAddress2.Value;
+                resHistory.residenceaddress3 = prevAddress3.Value;
+                resHistory.residentialcity = prevAddressCity.Value;
+                resHistory.residentialstate = prevAddressState.Value;
+                resHistory.residencepostcode = prevAddressPostalCode.Value;
+                if (ddlResidentialCountry.SelectedValue != "")
+                    resHistory.residentialcountry = Convert.ToInt32(ddlPrevAddressCountry.SelectedValue);
+
+                lstresidenceHistory.Add(resHistory);
+
+                string[] prevAddressStartDates = hidAddressStartDate.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressEndDates = hidAddressEndDate.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddresses1 = hidAddress1.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddresses2 = hidAddress2.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddresses3 = hidAddress3.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressCities = hidAddressCity.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressStates = hidAddressState.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressCountries = hidAddressCountry.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] prevAddressPostalCodes = hidAddressPostalCode.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                int count = prevAddressStartDates.Length;
+
+                for (int i = 0; i < count; i++)
+                {
+                    applicantresidencehistory tempHistory = new applicantresidencehistory();
+
+                    tempHistory.applicantid = userID;
+                    tempHistory.universityid = universityID;
+                    tempHistory.residencestartdate = Convert.ToDateTime(prevAddressStartDates[i]);
+                    tempHistory.residenceenddate = Convert.ToDateTime(prevAddressEndDates[i]);
+                    tempHistory.residenceaddress1 = prevAddresses1[i];
+                    tempHistory.residenceaddress2 = prevAddresses2[i];
+                    tempHistory.residenceaddress3 = prevAddresses3[i];
+                    tempHistory.residentialcity = prevAddressCities[i];
+                    tempHistory.residentialstate = prevAddressStates[i];
+                    tempHistory.residencepostcode = prevAddressPostalCodes[i];
+                    tempHistory.residentialcountry = Convert.ToInt32(prevAddressCountries[i]);
+
+                    lstresidenceHistory.Add(tempHistory);
+                }
+
+                db.applicantresidencehistory.AddRange(lstresidenceHistory);
+                db.SaveChanges();
+            }
+            else if (rblCurrentAddNo.Checked)
+                objapplicantDetail.haspreviousresidence = false;
+            if (rblCurrentAddNo.Checked && mode == "update")
+            {
+                var existinglst = db.applicantresidencehistory.Where(x => x.applicantid == userID && x.universityid == universityID).ToList();
+                if (existinglst != null && existinglst.Count > 0)
+                {
+                    db.applicantresidencehistory.RemoveRange(existinglst);
+                    db.SaveChanges();
+                }
+            }
+            objapplicantDetail.nomineefullname = txtNomineeName.Value;
+            objapplicantDetail.nomineeemail = txtEmailNominee.Value;
+            objapplicantDetail.nomineemobile = txtMobileNominee.Value;
+            objapplicantDetail.relationshipwithnominee = txtRelationNominee.Value;
+            if (objapplicantDetail.nomineeemail != null && !string.IsNullOrEmpty(objapplicantDetail.nomineeemail))
+            {
+                objapplicantDetail.isnomineeverified = false;
+                objapplicantDetail.nomineeverificationkey = Guid.NewGuid().ToString();
+            }
+            objapplicantDetail.contactdetailsavetime = DateTime.Now;
+            objapplicantDetail.iscontactdetailspresent = true;
+            objapplicantDetail.universityid = universityID;
+            objapplicantDetail.applicantid = userID;
+            if (mode == "new")
+                db.applicantdetails.Add(objapplicantDetail);
+            db.SaveChanges();
+            hidAddressHistory.Value = "0";
+
+            if (objapplicantDetail.nomineeemail != null && !string.IsNullOrEmpty(objapplicantDetail.nomineeemail))
+            {
+                string url = webURL + "verifynominee.aspx?key=" + objapplicantDetail.nomineeverificationkey;
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Dear " + objapplicantDetail.nomineefullname + ",<br/><br/>");
+
+                sb.Append(objapplicantDetail.firstname + " " + objapplicantDetail.lastname + " has given your nomination for verification.<br/>");
+                sb.Append("Please validate nomination details of " + objapplicantDetail.firstname + " " + objapplicantDetail.lastname + " with link given below <br/>");
+                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
+                sb.Append("Thank You <br/>");
+                sb.Append("The Application Center Validation Team <br/>");
+                objCom.SendMail(objapplicantDetail.nomineeemail, sb.ToString(), "Nomination Detail check for" + objapplicantDetail.firstname + " " + objapplicantDetail.lastname);
+            }
+
+            if (CustomControls.Count > 0)
+                objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
+
+            var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
+            if (!isProfileDetailsCompletedByApplicant)
+                Session["ProfileDetailsCompletedByApplicant"] = objCom.SetStudentDetailsCompletedStatus(userID, universityID);           
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+        Response.Redirect("knowyourstudent.aspx?formid=3", true);
+    }
 }

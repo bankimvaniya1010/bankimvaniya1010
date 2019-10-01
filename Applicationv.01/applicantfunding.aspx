@@ -218,68 +218,74 @@
                                     </div>
                                     <div class="form-row">
 
-                                        <div class="col-md-9">
-                                            <table class="table">
+                                        <div class="col-md-12">
+                                            <table class="table fundng-tbl">
                                                 <thead>
                                                     <tr>
-                                                        <th>Funding Source</th>
-                                                        <th>% Contribution (Amount) </th>
-                                                        <th>Amount</th>
+                                                        <th class="frst-rw">Funding Source</th>
+                                                        <th class="sec-rw">% Contribution (Amount) </th>
+                                                        <th class="third-rw">Amount</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody class="list">
                                                     <tr>
-                                                        <td class="name">Private Finance  </td>
-                                                        <td>
+                                                        <td class="name frst-rw">Private Finance  </td>
+                                                        <td class="sec-rw">
                                                             <input type="number" runat="server" id="txtPrivateFinancePercentage" value=0 class="form-control" />
                                                         </td>
-                                                        <td>
-                                                            <input type="text" disabled="disabled" id="txtCalcPrivateFinance" class="form-control" value=0 style="width: 177%;">
+                                                        <td class="third-rw">
+                                                            <input type="text" disabled="disabled" id="txtCalcPrivateFinance" class="form-control" value=0>
+                                                            <%--<span id="txtCalcPrivateFinance"></span>--%>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="name">Scholarship </td>
-                                                        <td>
+                                                        <td class="name frst-rw">Scholarship </td>
+                                                        <td class="sec-rw">
                                                             <input type="number" runat="server" id="txtScholarshipPercentage" value=0 class="form-control" />
                                                         </td>
-                                                        <td>
-                                                            <input type="text" disabled="disabled" id="txtCalcScholarshipAmount" class="form-control" value=0 style="width: 177%;">
+                                                        <td class="third-rw">
+                                                            <input type="text" disabled="disabled" id="txtCalcScholarshipAmount" class="form-control" value=0>
+                                                            <%--<span id="txtCalcScholarshipAmount"></span>--%>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="name">Student Loan </td>
-                                                        <td>
+                                                        <td class="name frst-rw">Student Loan </td>
+                                                        <td class="sec-rw">
                                                             <input type="number" runat="server" id="txtLoanPercentage" value=0 class="form-control" />
                                                         </td>
-                                                        <td>
-                                                            <input type="text" disabled="disabled" id="txtCalcLoanAmount" class="form-control" value=0 style="width: 177%;">
+                                                        <td class="third-rw">
+                                                            <input type="text" disabled="disabled" id="txtCalcLoanAmount" class="form-control" value=0>
+                                                            <%--<span id="txtCalcLoanAmount"></span>--%>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="name">Sponsorship (Company/Family/Friends)</td>
-                                                        <td>
+                                                        <td class="name frst-rw">Sponsorship (Company/Family/Friends)</td>
+                                                        <td class="sec-rw">
                                                             <input type="number" runat="server" id="txtSponsorshipPercentage" value=0 class="form-control" />
                                                         </td>
-                                                        <td>
-                                                            <input type="text" disabled="disabled" id="txtCalcSponsorshipAmount" class="form-control" value=0 style="width: 177%;">
+                                                        <td class="third-rw">
+                                                            <input type="text" disabled="disabled" id="txtCalcSponsorshipAmount" class="form-control" value=0>
+                                                            <%--<span id="txtCalcSponsorshipAmount"></span>--%>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="name">Part-time work alongside my study </td>
-                                                        <td>
+                                                        <td class="name frst-rw">Part-time work alongside my study </td>
+                                                        <td class="sec-rw">
                                                             <input type="number" runat="server" id="txtPartTimeWorkPercentage" value=0 class="form-control" />
                                                         </td>
-                                                        <td>
-                                                            <input type="text" disabled="disabled" id="txtCalcPartimeAmount" class="form-control" value=0 style="width: 177%;">
+                                                        <td class="third-rw">
+                                                            <input type="text" disabled="disabled" id="txtCalcPartimeAmount" class="form-control" value=0>
+                                                            <%--<span id="txtCalcPartimeAmount"></span>--%>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="name">Total</td>
-                                                        <td>
+                                                        <td class="name frst-rw">Total</td>
+                                                        <td class="sec-rw">
                                                             <input type="number" runat="server" disabled="disabled" id="txtTotalPercentage" class="form-control" value=0>
                                                         </td>
-                                                        <td>                                                           
-                                                           <input type="text" disabled="disabled" id="txtSumTotalAmount" class="form-control" value=0 style="width: 177%;">
+                                                        <td class="third-rw">                                                           
+                                                           <input type="text" disabled="disabled" id="txtSumTotalAmount" class="form-control" value=0>
+                                                            <%--<span id="txtSumTotalAmount"></span>--%>
                                                         </td>
                                                     </tr>
                                                 </tbody>
