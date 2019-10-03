@@ -10,20 +10,20 @@ using System.Web.UI.WebControls;
 
 public partial class admin_editcourse : System.Web.UI.Page
 {
-    private GTEEntities db = new GTEEntities();
+    private GTEEntities db = new GTEEntities();    
 
     Common objCommon = new Common();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-
+    
     protected string imagepath = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);
+            Response.Redirect(webURL + "admin/Login.aspx", true);       
 
         if (!IsPostBack)
-        {
+        {           
             if (Request.QueryString["courseID"] != null)
             {
                 int courseID;
@@ -32,12 +32,13 @@ public partial class admin_editcourse : System.Web.UI.Page
 
                 coursemaster existingCourse = db.coursemaster.Where(obj => obj.courseid == courseID).First();
                 var existingDates = db.course_dates.Where(obj => obj.courseid == courseID).ToList();
-                var mappings = db.course_campus_mapping.Where(obj => obj.courseid == courseID).ToList();
+                var exsistingderementDate = db.course_defermentdates.Where(obj => obj.courseid == courseID).ToList();
+                var mappings = db.course_campus_mapping.Where(obj => obj.courseid == courseID).ToList();                
                 bindMajorDisciplineDropdown();
                 bindStudyLevelDropdown();
                 bindStudyModeDropdown();
                 BindUniversity();
-                if (existingCourse != null && existingDates != null)
+                if (existingCourse != null && existingDates != null && exsistingderementDate != null)
                 {
                     ViewState["courseID"] = courseID;
 
@@ -63,12 +64,22 @@ public partial class admin_editcourse : System.Web.UI.Page
                         ddlUniversity.ClearSelection();
                         ddlUniversity.Items.FindByValue(existingCourse.universityid.ToString()).Selected = true;
                     }
+                    if (existingCourse.courseeligibility != null)
+                    {
+                        txtcourseeligibility.Value = existingCourse.courseeligibility;
+                    }
                     if (existingDates.Count > 0)
                     {
                         for (int i = 0; i < existingDates.Count; i++)
                             hidCommencementDates.Value += existingDates[i].commencementdate.ToString("dd-MM-yyyy") + ",";
+                        }
+
+                    if (exsistingderementDate.Count > 0)
+                    {
+                        for (int i = 0; i < exsistingderementDate.Count; i++)
+                            Hiddefermentdates.Value += exsistingderementDate[i].defermentdate.ToString("dd-MM-yyyy") + ",";
                     }
-                        
+                       
                     if (mappings != null)
                     {
                         BindUniversityCampus(Convert.ToInt32(ddlUniversity.SelectedValue));
@@ -213,6 +224,7 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.levelofstudyId = Convert.ToInt32(ddlstudylevel.SelectedItem.Value);
             CourseObj.modeofstudyId = Convert.ToInt32(ddlstudymode.SelectedItem.Value);
             CourseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
+            CourseObj.courseeligibility = txtcourseeligibility.Value;
             CourseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
             db.SaveChanges();
 
@@ -223,6 +235,17 @@ public partial class admin_editcourse : System.Web.UI.Page
                 var date = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
                 course_dates course_date = new course_dates() { courseid = CourseObj.courseid, commencementdate = date };
                 db.course_dates.Add(course_date);
+            }
+
+               
+
+            var defermentdates = Hiddefermentdates.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var item in defermentdates)
+            {
+                var dateArr = item.Split(Convert.ToChar("-"));
+                var Defermentdate = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
+                course_defermentdates course_defermentdates = new course_defermentdates() { courseid = CourseObj.courseid, defermentdate = Defermentdate };
+                db.course_defermentdates.Add(course_defermentdates);
             }
 
             var campusIds = hidUniversityCampuses.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

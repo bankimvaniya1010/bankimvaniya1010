@@ -30,7 +30,7 @@ public partial class admin_managetransportchoice : System.Web.UI.Page
                               {
                                   id = mt.id,
                                   TransportChoicename = t.description,
-                                  City = c.description,
+                                  City = c.name,
                                   currency = curr.currency_symbol,
                                   amount = mt.amount,
                                   extra_adult_percentage = mt.extra_adult_percentage == null ? 0 : mt.extra_adult_percentage,

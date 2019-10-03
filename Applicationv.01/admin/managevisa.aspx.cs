@@ -31,7 +31,7 @@ public partial class admin_managevisa : System.Web.UI.Page
                               {
                                   id = mv.id,
                                   Visaname = v.description,
-                                  City = c.description,
+                                  City = c.name,
                                   currency = curr.currency_symbol,
                                   amount = mv.amount,
                                   extra_adult_amount= mv.extra_adult_amount==null ?0: mv.extra_adult_amount,

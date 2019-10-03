@@ -24,8 +24,8 @@
                                         <label id="label-email" for="email" class="col-md-3 col-form-label form-label">Do you plan to undertake a credit transfer  </label>
                                         <div class="col-md-6">
                                             <div class="col-md-6">
-                                            <asp:RadioButton ID="rblCreditYes" runat="server" CssClass="form-control" GroupName="credittransfer" Text="Yes" />
-                                            <asp:RadioButton ID="rblCreditNo" runat="server" CssClass="form-control" GroupName="credittransfer" Text="No" />
+                                            <asp:RadioButton ID="rblCreditYes" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="credittransfer" Text="Yes" />
+                                            <asp:RadioButton ID="rblCreditNo" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="credittransfer" Text="No" />
                                            
                                         </div>
                                         </div>

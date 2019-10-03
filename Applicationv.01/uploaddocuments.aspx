@@ -49,7 +49,7 @@
                                 <div class="form-group row">
                                     <label for="avatar" class="col-sm-3 col-form-label form-label">Documents</label>
                                     <div class="col-sm-9">
-                                        <div class="media align-items-center">
+                                        <div class="media align-items-center flex-wrap">
                                            
                                             <div class="media-body">
                                                 <div class="custom-file" style="width: auto;">
@@ -57,6 +57,12 @@
                                                 <asp:FileUpload ID="avatar" runat="server" />                                                
                                                 </div>
                                             </div>
+                                             <div style="position:relative;width:202px;margin-bottom: 15px;height:25px;display:block;"> 
+                                                <div id="progress" class="hide" style="background:#f0f0f0; height: 25px;width:0;color:#fff;">
+                                                    <div class="status" style="margin-left:10px;"></div>
+                                                </div> 
+                                            </div> 
+
                                         </div>
                                     </div>
                                 </div>
@@ -65,7 +71,7 @@
                                     <div class="col-sm-8 offset-sm-3">
                                         <div class="media align-items-center">
                                             <div class="media-left">
-                                                <asp:Button ID="btn_login" runat="server" Text="Save Documents" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateUploadedFile()"/>
+                                                <asp:Button ID="btn_login" runat="server" Text="Save Documents" CssClass="btn btn-success" OnClientClick="return validateUploadedFile()"/>
 
                                             </div>
                                         </div>
@@ -144,18 +150,73 @@
         </div>
     </div>
     <script>
-         function validateUploadedFile() {
+        function validateUploadedFile() {                    
             var flag = false;
             if ($("#<%=ddlDocuments.ClientID%>").val() == "0")
                 alert("Please select document name");
             else if ($("#<%=avatar.ClientID%>").val() == "")
                 alert("Please upload valid document");
             else
-                flag = true;
+                flag = true;            
+            if (flag) {
+                <%--$("#<%=btn_login.ClientID%>").attr("disabled", "disabled"); --%>
+                $("#ContentPlaceHolder1_btn_login").attr("disabled", "true");
+                $("#progress").removeClass("hide");
+                var progressEle = $("#progress");
+                progressEle.css("background-color", "red");
 
-            return flag;
+                var formData = new FormData();                
+                var data = $("#ContentPlaceHolder1_avatar")[0].files[0];                
+                formData.append("doc_name", $("#<%=ddlDocuments.ClientID%>").val());
+                formData.append("files", data);
+
+                var dummyProgress = 1;
+                var intervalId = -1;
+                var req = new XMLHttpRequest();
+
+                 req.upload.addEventListener("progress", function (event) {
+
+                    var percent = (event.loaded / event.total) * 90;
+                    var progress = Math.round((event.loaded / event.total) * 90);
+                    console.log("progress:" + progress);
+                    if (progress < 90) {
+                        $(".status").html(progress + "%");
+                        progressEle.width(progress + "%");
+                    }
+                    else {
+                        progress = progress + dummyProgress;
+                        if (progress <= 99) {
+                            $(".status").html(progress + "%");
+                            progressEle.width(progress + "%");
+                        }
+                        if (intervalId == -1) {
+                            intervalId = setInterval(function () {
+                                progress = progress + dummyProgress;
+                                dummyProgress++;
+                                if (progress <= 99) {
+                                    $(".status").html(progress + "%");
+                                    progressEle.width(progress + "%");
+                                }
+                                else
+                                    clearInterval(intervalId);
+                            }, 2500);
+                        }
+                    }
+                });
+
+                req.onreadystatechange = function () {
+                    if (req.status && req.status == 200 && (req.readyState == 4)) {
+                        $("#ContentPlaceHolder1_btn_login").removeAttr("disabled");
+                        alert("uploaded successfully");
+                        location.reload();
+                    }
+                }
+                req.open("POST", 'uploaddocuments.aspx/uploadDoc', true);
+                req.send(formData);
+            }
+            return false;
         }
-        $(document).ready(function () {
+        $(document).ready(function () {           
             $('.sidebar-menu-item').removeClass('open');
             $('#personal_menu_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');

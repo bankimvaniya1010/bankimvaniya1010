@@ -30,7 +30,7 @@ public partial class admin_managemealplan : System.Web.UI.Page
                               {
                                   id = mp.id,
                                   Mealname = m.description,
-                                  City = c.description,
+                                  City = c.name,
                                   currency = curr.currency_symbol,
                                   amount = mp.amount,
                                   extra_adult_percentage = mp.extra_adult_percentage == null ? 0 : mp.extra_adult_percentage,

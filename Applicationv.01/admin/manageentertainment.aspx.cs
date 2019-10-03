@@ -30,7 +30,7 @@ public partial class admin_manageentertainment : System.Web.UI.Page
                               {
                                   id = me.id,
                                   Entertainmentname = e.description,
-                                  City = c.description,
+                                  City = c.name,
                                   currency = curr.currency_symbol,
                                   amount = me.amount,
                                   extra_adult_percentage = me.extra_adult_percentage == null ? 0 : me.extra_adult_percentage,

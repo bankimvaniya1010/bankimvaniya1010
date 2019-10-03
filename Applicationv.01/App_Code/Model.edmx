@@ -612,8 +612,12 @@
           <Property Name="activity_ip" Type="varchar" MaxLength="50" />
           <Property Name="activity_date" Type="datetime" Precision="0" />
           <Property Name="deferment_date" Type="date" />
+          <Property Name="deferment_remark" Type="varchar" MaxLength="100" />
           <Property Name="rejection_reason" Type="int" />
           <Property Name="rejection_remark" Type="varchar" MaxLength="100" />
+          <Property Name="offer_letter_file" Type="varchar" MaxLength="200" />
+          <Property Name="coe_letter_file" Type="varchar" MaxLength="200" />
+          <Property Name="eligibility_response" Type="int" />
         </EntityType>
         <EntityType Name="australiavisadetailmaster">
           <Key>
@@ -1122,6 +1126,7 @@
           <Property Name="levelofstudyId" Type="int" />
           <Property Name="universityid" Type="int" />
           <Property Name="coursefee" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="courseeligibility" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -5310,6 +5315,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="majordiscipline_master" Relationship="GTEModel.FK_coursemaster_majordiscipline_master" FromRole="coursemaster" ToRole="majordiscipline_master" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_coursemaster_universitymaster" FromRole="coursemaster" ToRole="university_master" />
           <NavigationProperty Name="course_defermentdates" Relationship="GTEModel.FK_defermentDate_coursemaster" FromRole="coursemaster" ToRole="course_defermentdates" />
+          <Property Name="courseeligibility" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -7655,6 +7661,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="deferment_date" Type="DateTime" />
           <Property Name="rejection_reason" Type="Int32" />
           <Property Name="rejection_remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="deferment_remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="offer_letter_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="coe_letter_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="eligibility_response" Type="Int32" />
         </EntityType>
         <EntityType Name="university_application_decision_master">
           <Key>
@@ -8727,6 +8737,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="coursemaster">
             <EntityTypeMapping TypeName="GTEModel.coursemaster">
               <MappingFragment StoreEntitySet="coursemaster">
+                <ScalarProperty Name="courseeligibility" ColumnName="courseeligibility" />
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="coursefee" ColumnName="coursefee" />
                 <ScalarProperty Name="levelofstudyId" ColumnName="levelofstudyId" />
@@ -9950,6 +9961,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicationmaster">
             <EntityTypeMapping TypeName="GTEModel.applicationmaster">
               <MappingFragment StoreEntitySet="applicationmaster">
+                <ScalarProperty Name="eligibility_response" ColumnName="eligibility_response" />
+                <ScalarProperty Name="coe_letter_file" ColumnName="coe_letter_file" />
+                <ScalarProperty Name="offer_letter_file" ColumnName="offer_letter_file" />
+                <ScalarProperty Name="deferment_remark" ColumnName="deferment_remark" />
                 <ScalarProperty Name="rejection_remark" ColumnName="rejection_remark" />
                 <ScalarProperty Name="rejection_reason" ColumnName="rejection_reason" />
                 <ScalarProperty Name="deferment_date" ColumnName="deferment_date" />

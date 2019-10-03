@@ -31,7 +31,7 @@ public partial class admin_manageutilities : System.Web.UI.Page
                               {
                                   id = mu.id,
                                   Utilitiesname = u.description,
-                                  City = c.description,
+                                  City = c.name,
                                   currency = curr.currency_symbol,
                                   amount = mu.amount,
                                   extra_adult_percentage = mu.extra_adult_percentage == null ? 0 : mu.extra_adult_percentage,
