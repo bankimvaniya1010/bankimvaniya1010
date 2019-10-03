@@ -242,3 +242,4 @@
 .third-rw span{display: block;background: #e9ecef;min-height: 40px;min-width: 110px;padding: .5rem .5rem;border:1px solid #f0f1f2;border-radius: .25rem;}
 .sidebar-menu-icon{width: 24px;margin-right: .5rem;}
 .fundng-tbl tr{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;}
+.cours-elig-lbl{max-height: 100px;overflow-y: auto;margin-bottom: 10px;}

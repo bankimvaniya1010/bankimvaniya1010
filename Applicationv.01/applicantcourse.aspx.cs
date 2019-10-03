@@ -68,7 +68,7 @@ public partial class applicantcourse : System.Web.UI.Page
                     where um.universityid == universityID1
                     select new
                     {
-                        description = cm.description,
+                        description = cm.name,
                         city_id = cm.city_id
                     }).ToList();
         return JsonConvert.SerializeObject(temp);
@@ -146,7 +146,20 @@ public partial class applicantcourse : System.Web.UI.Page
                         courseid = cm.courseid
                     }).ToList();
         return JsonConvert.SerializeObject(temp);
-    }    
+    }
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string GetCourseEligibility(int courseid)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = (from cm in db1.coursemaster
+                    where cm.courseid == courseid
+                    select new
+                    {
+                        courseeligibility = cm.courseeligibility,                        
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
 
     [WebMethod]
     [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
@@ -374,6 +387,25 @@ public partial class applicantcourse : System.Web.UI.Page
         } catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 
+    private void BindEligibility(int preferenceID, int courseId, Label lbl)
+    {
+        try
+        {
+            var Eligibility = (from am in db.applicationmaster
+                               join cm in db.coursemaster on am.course equals cm.courseid
+                               where am.course == courseId && am.applicantid == userID && am.preferenceid == preferenceID
+                               select new
+                               {
+                                   courseeligibility = cm.courseeligibility,
+                               }).FirstOrDefault();
+            lbl.Text = Eligibility.courseeligibility;
+
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
     private void PopulateAppllicationInfo()
     {
         try
@@ -433,6 +465,15 @@ public partial class applicantcourse : System.Web.UI.Page
                         BindCourses(ddlCourse1,Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(ddlMajor1.SelectedValue), Convert.ToInt32(ddlmode1.SelectedValue));
                         ddlCourse1.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
                         hidCourseField1.Value = courseInfo.course.ToString();
+                    }
+                    if (courseInfo.eligibility_response != null)
+                    {
+                        courseeligibility.Attributes.Add("style", "display:block");
+                        BindEligibility(1,Convert.ToInt32(ddlCourse1.SelectedValue), lblcourseeligibility);
+                        if (courseInfo.eligibility_response == 1)
+                            eligibilityYes.Checked = true;
+                        else if (courseInfo.eligibility_response == 0)
+                            eligibilityNo.Checked = true;                        
                     }
                     //txtCommencementdate1.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
@@ -504,6 +545,15 @@ public partial class applicantcourse : System.Web.UI.Page
                         ddlCourse2.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
                         hidCourseField2.Value = courseInfo.course.ToString();
                     }
+                    if (courseInfo.eligibility_response != null)
+                    {
+                        courseeligibility2.Attributes.Add("style", "display:block");
+                        BindEligibility(2, Convert.ToInt32(ddlCourse2.SelectedValue), lblcourseeligibility2);
+                        if (courseInfo.eligibility_response == 1)
+                            eligibilityYes2.Checked = true;
+                        else if (courseInfo.eligibility_response == 0)
+                            eligibilityNo2.Checked = true;
+                    }
                     //txtCommencementdate2.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
@@ -573,6 +623,15 @@ public partial class applicantcourse : System.Web.UI.Page
                         ddlCourse3.ClearSelection();
                         ddlCourse3.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
                         hidCourseField3.Value = courseInfo.course.ToString();
+                    }
+                    if (courseInfo.eligibility_response != null)
+                    {
+                        courseeligibility3.Attributes.Add("style", "display:block");
+                        BindEligibility(3, Convert.ToInt32(ddlCourse3.SelectedValue), lblcourseeligibility3);
+                        if (courseInfo.eligibility_response == 1)
+                            eligibilityYes3.Checked = true;
+                        else if (courseInfo.eligibility_response == 0)
+                            eligibilityNo3.Checked = true;
                     }
                     //txtCommencementdate3.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
@@ -644,6 +703,15 @@ public partial class applicantcourse : System.Web.UI.Page
                         ddlCourse4.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
                         hidCourseField4.Value = courseInfo.course.ToString();
                     }
+                    if (courseInfo.eligibility_response != null)
+                    {
+                        courseeligibility4.Attributes.Add("style", "display:block");
+                        BindEligibility(4, Convert.ToInt32(ddlCourse4.SelectedValue), lblcourseeligibility4);
+                        if (courseInfo.eligibility_response == 1)
+                            eligibilityYes4.Checked = true;
+                        else if (courseInfo.eligibility_response == 0)
+                            eligibilityNo4.Checked = true;
+                    }
                     //txtCommencementdate4.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
@@ -714,6 +782,15 @@ public partial class applicantcourse : System.Web.UI.Page
                         ddlCourse5.Items.FindByValue(courseInfo.course.ToString()).Selected = true;
                         hidCourseField5.Value = courseInfo.course.ToString();
                     }
+                    if (courseInfo.eligibility_response != null)
+                    {
+                        courseeligibility5.Attributes.Add("style", "display:block");
+                        BindEligibility(5, Convert.ToInt32(ddlCourse5.SelectedValue), lblcourseeligibility5);
+                        if (courseInfo.eligibility_response == 1)
+                            eligibilityYes5.Checked = true;
+                        else if (courseInfo.eligibility_response == 0)
+                            eligibilityNo5.Checked = true;
+                    }
                     //txtCommencementdate5.Value = Convert.ToDateTime(courseInfo.commencementdate).ToString("yyyy-MM-dd");
                     if (courseInfo.commencementdate != null)
                     {
@@ -731,7 +808,7 @@ public partial class applicantcourse : System.Web.UI.Page
         }
     }
 
-    private void SaveApplicantPreference(int preferenceid, string collegename,int campus, int city, int country, int modeofstudy, int majorofdiscipline, int coursetype, int course, string commencementdate)
+    private void SaveApplicantPreference(int preferenceid, string collegename,int campus, int city, int country, int modeofstudy, int majorofdiscipline, int coursetype, int course, string commencementdate,int eligibilityresponse)
     {
         try
         { 
@@ -755,6 +832,7 @@ public partial class applicantcourse : System.Web.UI.Page
             objapplicationmaster.course = course;
             objapplicationmaster.commencementdate = commencementdate;
             objapplicationmaster.preferenceid = preferenceid;
+            objapplicationmaster.eligibility_response = eligibilityresponse;
             objapplicationmaster.applicantid = userID;
             objapplicationmaster.universityid = universityID;
             if (mode == "new")
@@ -771,15 +849,15 @@ public partial class applicantcourse : System.Web.UI.Page
     {
         try
         {                  
-            SaveApplicantPreference(1, ddlCollege1.SelectedValue, Convert.ToInt32(hidCampusField1.Value) , Convert.ToInt32(hidCityField1.Value), Convert.ToInt32(hidCountryField1.Value), Convert.ToInt32(hidModeField1.Value), Convert.ToInt32(HidMajorField1.Value), Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(hidCourseField1.Value), hidCommencementDate1.Value);
+            SaveApplicantPreference(1, ddlCollege1.SelectedValue, Convert.ToInt32(hidCampusField1.Value) , Convert.ToInt32(hidCityField1.Value), Convert.ToInt32(hidCountryField1.Value), Convert.ToInt32(hidModeField1.Value), Convert.ToInt32(HidMajorField1.Value), Convert.ToInt32(ddlCourseType1.SelectedValue), Convert.ToInt32(hidCourseField1.Value), hidCommencementDate1.Value, Convert.ToInt32(Hidcourseeligibility.Value));
             if (Convert.ToInt16(ddlCollege2.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(2, ddlCollege2.SelectedValue, Convert.ToInt32(hidCampusField2.Value), Convert.ToInt32(hidCityField2.Value), Convert.ToInt32(hidCountryField2.Value), Convert.ToInt32(hidModeField2.Value), Convert.ToInt32(hidMajorField2.Value), Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(hidCourseField2.Value), hidCommencementDate2.Value);
+                SaveApplicantPreference(2, ddlCollege2.SelectedValue, Convert.ToInt32(hidCampusField2.Value), Convert.ToInt32(hidCityField2.Value), Convert.ToInt32(hidCountryField2.Value), Convert.ToInt32(hidModeField2.Value), Convert.ToInt32(hidMajorField2.Value), Convert.ToInt32(ddlcoursetype2.SelectedValue), Convert.ToInt32(hidCourseField2.Value), hidCommencementDate2.Value, Convert.ToInt32(Hidcourseeligibility2.Value));
             if (Convert.ToInt16(ddlCollege3.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(3, ddlCollege3.SelectedValue, Convert.ToInt32(hidCampusField3.Value), Convert.ToInt32(hidCityField3.Value), Convert.ToInt32(hidCountryField3.Value), Convert.ToInt32(hidModeField3.Value), Convert.ToInt32(hidMajorField3.Value), Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(hidCourseField3.Value), hidCommencementDate3.Value);
+                SaveApplicantPreference(3, ddlCollege3.SelectedValue, Convert.ToInt32(hidCampusField3.Value), Convert.ToInt32(hidCityField3.Value), Convert.ToInt32(hidCountryField3.Value), Convert.ToInt32(hidModeField3.Value), Convert.ToInt32(hidMajorField3.Value), Convert.ToInt32(ddlcoursetype3.SelectedValue), Convert.ToInt32(hidCourseField3.Value), hidCommencementDate3.Value, Convert.ToInt32(Hidcourseeligibility3.Value));
             if (Convert.ToInt16(ddlCollege4.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(4, ddlCollege4.SelectedValue, Convert.ToInt32(hidCampusField4.Value), Convert.ToInt32(hidCityField4.Value), Convert.ToInt32(hidCountryField4.Value), Convert.ToInt32(hidModeField4.Value), Convert.ToInt32(hidMajorField4.Value), Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(hidCourseField4.Value), hidCommencementDate4.Value);
+                SaveApplicantPreference(4, ddlCollege4.SelectedValue, Convert.ToInt32(hidCampusField4.Value), Convert.ToInt32(hidCityField4.Value), Convert.ToInt32(hidCountryField4.Value), Convert.ToInt32(hidModeField4.Value), Convert.ToInt32(hidMajorField4.Value), Convert.ToInt32(ddlcoursetype4.SelectedValue), Convert.ToInt32(hidCourseField4.Value), hidCommencementDate4.Value, Convert.ToInt32(Hidcourseeligibility4.Value));
             if (Convert.ToInt16(ddlCollege5.SelectedValue.ToString()) > 0)
-                SaveApplicantPreference(5, ddlCollege5.SelectedValue, Convert.ToInt32(hidCampusField5.Value), Convert.ToInt32(hidCityField5.Value), Convert.ToInt32(hidCountryField5.Value), Convert.ToInt32(hidModeField5.Value), Convert.ToInt32(hidMajorField5.Value), Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(hidCourseField5.Value), hidCommencementDate5.Value);
+                SaveApplicantPreference(5, ddlCollege5.SelectedValue, Convert.ToInt32(hidCampusField5.Value), Convert.ToInt32(hidCityField5.Value), Convert.ToInt32(hidCountryField5.Value), Convert.ToInt32(hidModeField5.Value), Convert.ToInt32(hidMajorField5.Value), Convert.ToInt32(ddlcoursetype5.SelectedValue), Convert.ToInt32(hidCourseField5.Value), hidCommencementDate5.Value, Convert.ToInt32(Hidcourseeligibility4.Value));
             PopulateAppllicationInfo();
         }
         catch (Exception ex)

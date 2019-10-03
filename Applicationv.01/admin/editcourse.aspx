@@ -87,14 +87,30 @@
                                     <asp:HiddenField ID="hidUniversityCampuses" runat="server" Value="" />
                                 </div>
                                 <input id="btnAddCommencementDate" type="button" class="form-control" value="Add Commencement Date" />
+                                <input id="btnAddDefermentDate" type="button" class="form-control" value="Add Deferment Date" />
                             </div>
                         </div>
                     </div>
-
+                      <div class="form-group row">
+                        <label for="courseeligibility" class="col-sm-3 col-form-label form-label">Course eligibility</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <textarea runat="server" id="txtcourseeligibility" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <asp:HiddenField ID="hidCommencementDateCount" runat="server" Value="0" />
                     <asp:HiddenField ID="hidCommencementDates" runat="server" Value="" />
                     <div id="commencementDatesDiv" class="form-group row">
                     </div>
+
+                    <asp:HiddenField ID="HiddefermentdatesCount" runat="server" Value="0" />
+                    <asp:HiddenField ID="Hiddefermentdates" runat="server" Value="" />
+                    <div id="defermentdatesDiv" class="form-group row">
+                    </div>
+
 
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
@@ -111,8 +127,8 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-
+    <script type="text/javascript">       
+     
         function isValidCommencementDate() {
             var commencementDateCounter = $("#<%=hidCommencementDateCount.ClientID %>").val();
             $("#<%=hidCommencementDates.ClientID %>").val('');
@@ -129,7 +145,37 @@
             }
             return true;
         }
+        function isValidDefermentDates() {
+            var defermentDatesCounter = $("#<%=HiddefermentdatesCount.ClientID %>").val();
+            $("#<%=Hiddefermentdates.ClientID %>").val('');
 
+            for (var i = 0; i < defermentDatesCounter; i++) {
+                if ($('#txtdefermentdates_' + i).val() == "" || $('#txtdefermentdates_' + i).val() == null) {
+                    alert("Please select Deferment date");
+                    return false;
+                }
+                else {
+                    var data = $('#txtdefermentdates_' + i).val() + "," + $("#<%=Hiddefermentdates.ClientID %>").val();
+                    $("#<%=Hiddefermentdates.ClientID %>").val(data);
+                }
+            }
+            return true;
+        }
+        function createDefermentDateBlock(date) {
+
+            var hiddefermentdate= $("#<%=HiddefermentdatesCount.ClientID %>");
+            var count = parseInt(hiddefermentdate.val());
+            hiddefermentdate.val(count + 1);
+            var DateContent = '<label for="defermentdates" class="col-sm-3 col-form-label form-label">Please enter Defermentdates date for course</label>' +
+                          '<div class="col-sm-8"><div class="row"><div class="col-md-6">' +
+                          '<input id="txtdefermentdates_' + count + '" type="text" class="form-control" placeholder="Defermentdates Date" value="">' +
+                '</div></div></div>';
+            $("#defermentdatesDiv").append(DateContent);
+            $('#txtdefermentdates_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
+
+            if (date != "")
+                $('#txtdefermentdates_' + count).val(date);
+        }
         function createCommencementDateBlock(date) {
 
             var hidCommencementDate = $("#<%=hidCommencementDateCount.ClientID %>");
@@ -144,7 +190,7 @@
             $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
 
             if (date != "")
-                $('#txtCommencementDate_' + count).val(date);
+                 $('#txtCommencementDate_' + count).val(date);                
         }
 
         function validateForm() {
@@ -189,6 +235,7 @@
                 return false;
             }
             else if (!isValidCommencementDate()) { return false; }
+            else if (!isValidDefermentDates()) { return false; }
             return true;
 
         }
@@ -222,13 +269,20 @@
 
             $("#btnAddCommencementDate").click(function () {
                 createCommencementDateBlock(null);
-            });
+            });           
 
             var commencementDateArray = $("#<%=hidCommencementDates.ClientID %>").val().split(',');
             var count = commencementDateArray.length - 1;
             for (var i = 0; i < count; i++)
                 createCommencementDateBlock(commencementDateArray[i]);
 
+            $("#btnAddDefermentDate").click(function () {
+                createDefermentDateBlock(null);
+            });
+            var defermentDateArray = $("#<%=Hiddefermentdates.ClientID %>").val().split(',');
+            var count = defermentDateArray.length - 1;
+            for (var i = 0; i < count; i++)
+                createDefermentDateBlock(defermentDateArray[i]);
 
             $("#<%=ddlUniversityCampuses.ClientID%>").blur(function () {
                 $("#<%=hidUniversityCampuses.ClientID%>").val("");

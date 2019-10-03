@@ -15,12 +15,12 @@ public partial class admin_createcourse : System.Web.UI.Page
     Common objCommon = new Common();
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-
+   
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-
+        
         if (!IsPostBack)
         {
             bindMajorDisciplineDropdown();
@@ -134,6 +134,7 @@ public partial class admin_createcourse : System.Web.UI.Page
                 courseObj.modeofstudyId = Convert.ToInt32(ddlstudymode.SelectedItem.Value);
                 courseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
                 courseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+                courseObj.courseeligibility = txtcourseeligibility.Value;
 
                 db.coursemaster.Add(courseObj);
                 db.SaveChanges();
@@ -145,6 +146,15 @@ public partial class admin_createcourse : System.Web.UI.Page
                     var date = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
                     course_dates course_date = new course_dates() { courseid = courseObj.courseid, commencementdate = date };
                     db.course_dates.Add(course_date);
+                }
+
+                var Defermentdates = Hiddefermentdates.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var item in Defermentdates)
+                {
+                    var dateArr = item.Split(Convert.ToChar("-"));
+                    var defermentdate = Convert.ToDateTime(string.Concat(dateArr[2], "-", dateArr[1], "-", dateArr[0]));
+                    course_defermentdates course_defermentdate = new course_defermentdates() { courseid = courseObj.courseid, defermentdate = defermentdate };
+                    db.course_defermentdates.Add(course_defermentdate);
                 }
 
                 var campusIds = hidUniversityCampuses.Value.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

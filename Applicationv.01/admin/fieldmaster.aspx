@@ -217,7 +217,7 @@
     <script>
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#setting_list').addClass('open');
+            $('#managelanguages_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#fieldmaster').addClass('active');
         });

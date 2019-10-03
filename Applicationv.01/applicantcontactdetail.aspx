@@ -450,10 +450,10 @@
                 //postal 
             else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtAddressLine1.ClientID%>").val() == "")
                 alert("Please enter first postal address line");
-            else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtAddressLine2.ClientID%>").val() == "")
+            <%--else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtAddressLine2.ClientID%>").val() == "")
                 alert("Please enter second postal address line");
             else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtAddressLine3.ClientID%>").val() == "")
-                alert("Please enter third postal address line");
+                alert("Please enter third postal address line");--%>
             else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtCity.ClientID%>").val() == "")
                 alert("Please enter postal city");
             else if (!$("#<%=postal.ClientID%>").is(':hidden') && $("#<%=txtState.ClientID%>").val() == "")
@@ -466,10 +466,10 @@
                  alert("Please Select Option to record is your postal and residentail address is same");
             else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress1.ClientID%>").val() == ""))
                 alert("Please enter first residential address line");
-            else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress2.ClientID%>").val() == ""))
+            <%--else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress2.ClientID%>").val() == ""))
                 alert("Please enter second residential address line");
             else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialAddress3.ClientID%>").val() == ""))
-                alert("Please enter third residential address line");
+                alert("Please enter third residential address line");--%>
             else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialCity.ClientID%>").val() == ""))
                 alert("Please enter residential city");
             else if ($("#<%=rblAddressNo.ClientID%>").is(':checked') && (!$("#<%=residential.ClientID%>").is(':hidden')) && ($("#<%=txtResidentialState.ClientID%>").val() == ""))

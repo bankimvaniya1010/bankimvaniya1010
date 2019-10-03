@@ -634,6 +634,10 @@ public partial class applicationmaster
     public Nullable<System.DateTime> deferment_date { get; set; }
     public Nullable<int> rejection_reason { get; set; }
     public string rejection_remark { get; set; }
+    public string deferment_remark { get; set; }
+    public string offer_letter_file { get; set; }
+    public string coe_letter_file { get; set; }
+    public Nullable<int> eligibility_response { get; set; }
 }
 
 public partial class australiavisadetailmaster
@@ -1210,6 +1214,7 @@ public partial class coursemaster
     public Nullable<int> levelofstudyId { get; set; }
     public Nullable<decimal> coursefee { get; set; }
     public Nullable<int> universityid { get; set; }
+    public string courseeligibility { get; set; }
 
     public virtual studylevelmaster studylevelmaster { get; set; }
     public virtual studymodemaster studymodemaster { get; set; }

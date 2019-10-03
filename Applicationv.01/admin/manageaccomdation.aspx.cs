@@ -30,7 +30,7 @@ public partial class admin_manageaccomdation : System.Web.UI.Page
                               {
                                   id = am.id,
                                   Accomdationname = a.description,
-                                  City = c.description,
+                                  City = c.name,
                                   currency = curr.currency_symbol,
                                   amount = am.amount,
                                   extra_adult_percentage = am.extra_adult_percentage == null ? 0 : am.extra_adult_percentage,

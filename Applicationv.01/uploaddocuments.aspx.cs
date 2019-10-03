@@ -80,47 +80,47 @@ public partial class uploaddocuments : System.Web.UI.Page
             ddlDocuments.DataBind();
             ddlDocuments.Items.Insert(0, lst);
             BindDocuments();
+            HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
+            if (httpPostedFile.Count > 0)
+                uploadDoc(httpPostedFile[0], HttpContext.Current.Request["doc_name"]);
         }
     }
-    protected void btn_login_Click(object sender, EventArgs e)
-    {
-            //fileupload control contains a file  
-            try
+    protected void uploadDoc(HttpPostedFile httpPostedFile, string docName)
+    {        
+        try
+        {
+            var mode = "new";
+            var document = (from dInfo in db.applicantdocumentmaster
+                            where dInfo.universityid == UniversityID && dInfo.applicantid == UserID && dInfo.documentname == docName
+                            select dInfo).FirstOrDefault();
+            applicantdocumentmaster objDocument = new applicantdocumentmaster();
+            if (document != null)
             {
-                var docname = ddlDocuments.SelectedValue.ToString();
-                var mode = "new";
-                var document = (from dInfo in db.applicantdocumentmaster
-                                where dInfo.universityid == UniversityID && dInfo.applicantid == UserID && dInfo.documentname == docname
-                                select dInfo).FirstOrDefault();
-                applicantdocumentmaster objDocument = new applicantdocumentmaster();
-                if (document != null)
-                {
-                    mode = "update";
-                    objDocument = document;
-                }
-            if (avatar.HasFile) {
-                docPath = docPath + "/" + UserID + "/Documents/";
-                if (!Directory.Exists(docPath))
-                    Directory.CreateDirectory(docPath);
-                string extension = Path.GetExtension(avatar.PostedFile.FileName);
-                string filename = Guid.NewGuid() + extension;
-                avatar.SaveAs(docPath + filename);          // file path where you want to upload  
-
-                objDocument.applicantid = UserID;
-                objDocument.universityid = UniversityID;
-                objDocument.filename = filename;
-                objDocument.documentname = ddlDocuments.SelectedItem.Value;
-                objDocument.uploadedtime = DateTime.Now;
-                if (mode == "new")
-                    db.applicantdocumentmaster.Add(objDocument);
-                db.SaveChanges();
+                mode = "update";
+                objDocument = document;
             }
-                BindDocuments();
-            }
-            catch (Exception ex)
-            {
-                objLog.WriteLog(ex.ToString());
-            }       
+            
+            docPath = docPath + "/" + UserID + "/Documents/";
+            if (!Directory.Exists(docPath))
+                Directory.CreateDirectory(docPath);
+            string extension = Path.GetExtension(httpPostedFile.FileName);
+            string filename = Guid.NewGuid() + extension;
+            httpPostedFile.SaveAs(docPath + filename);          // file path where you want to upload  
+                              
+            objDocument.applicantid = UserID;
+            objDocument.universityid = UniversityID;
+            objDocument.filename = filename;
+            objDocument.documentname = docName;
+            objDocument.uploadedtime = DateTime.Now;
+            if (mode == "new")
+                db.applicantdocumentmaster.Add(objDocument);
+            db.SaveChanges();
+            BindDocuments();
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }       
     }
 
     private void BindDocuments()

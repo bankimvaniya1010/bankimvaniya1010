@@ -34,7 +34,7 @@ public partial class admin_createhealthinsurance : System.Web.UI.Page
             List<citymaster> Citymaster = db.citymaster.ToList();
 
             ddlCity.DataSource = Citymaster;
-            ddlCity.DataTextField = "description";
+            ddlCity.DataTextField = "name";
             ddlCity.DataValueField = "city_id";
             ddlCity.DataBind();
             ddlCity.Items.Insert(0, lst);

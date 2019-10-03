@@ -115,6 +115,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="list-group-item" id="courseeligibility" runat="server" style="display: none">
+                            <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility">
+                                <div class="form-row">
+                                    <label id="label-courseeligibility" for="course1" class="col-md-3 col-form-label form-label">Course Eligibility</label>
+                                    <div class="col-md-9">
+                                        <asp:Label id="lblcourseeligibility" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
+                                        <div class="form-check-inline">
+                                            <asp:RadioButton runat="server" ID="eligibilityYes" Text="I comply to this" class="form-check-label" GroupName="eligibilityresponse"/>
+                                          </div>
+                                        <div class="form-check-inline">
+                                            <asp:RadioButton runat="server" ID="eligibilityNo" Text="I don't comply to this" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                        </div>
+                                        <asp:HiddenField runat="server" ID="Hidcourseeligibility"/>
+                                    </div>
+                                    <br/>
+                                    <div class="col-md-6">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                       
                         <div class="list-group-item" id="commencementmonth1" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
@@ -230,6 +251,27 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="list-group-item" id="courseeligibility2" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility">
+                                    <div class="form-row">
+                                        <label id="label-courseeligibility2" for="course1" class="col-md-3 col-form-label form-label">Course Eligibility</label>
+                                        <div class="col-md-6">
+                                            <asp:Label id="lblcourseeligibility2" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityYes2" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                              </div>
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityNo2" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                            </div>
+                                            <asp:HiddenField runat="server" ID="Hidcourseeligibility2"/>
+                                        </div>
+                                        <br/>
+                                        <div class="col-md-6">
+          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
                             <div class="list-group-item" id="commencementmonth2" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
@@ -343,6 +385,23 @@
                                             </asp:DropDownList>
                                             <asp:HiddenField ID="hidCourseField3" runat="server" />
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="courseeligibility3" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility">
+                                    <div class="form-row">
+                                        <label id="label-courseeligibility3" for="courseeligibility3" class="col-md-3 col-form-label form-label">Course Eligibility</label>
+                                        <div class="col-md-6">
+                                            <asp:Label id="lblcourseeligibility3" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityYes3" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                              </div>
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityNo3" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                            </div>
+                                                <asp:HiddenField runat="server" ID="Hidcourseeligibility3"/>
+                                         </div>                                                                                       
                                     </div>
                                 </div>
                             </div>
@@ -461,6 +520,23 @@
                                     </div>
                                 </div>
                             </div>
+                           <div class="list-group-item" id="courseeligibility4" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility4">
+                                    <div class="form-row">
+                                        <label id="label-courseeligibility4" for="courseeligibility4" class="col-md-3 col-form-label form-label">Course Eligibility</label>
+                                        <div class="col-md-6">
+                                            <asp:Label id="lblcourseeligibility4" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityYes4" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                              </div>
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityNo4" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                            </div>
+                                                <asp:HiddenField runat="server" ID="Hidcourseeligibility4"/>
+                                         </div>                                                                                       
+                                    </div>
+                                </div>
+                            </div>
                             <div class="list-group-item" id="commencementmonth4" runat="server">
                             <div class="form-group m-0" role="group" aria-labelledby="label-commencementmonth1">
                                 <div class="form-row">
@@ -574,6 +650,23 @@
                                             </asp:DropDownList>
                                             <asp:HiddenField ID="hidCourseField5" runat="server" />
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="courseeligibility5" runat="server" style="display: none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility5">
+                                    <div class="form-row">
+                                        <label id="label-courseeligibility5" for="courseeligibility5" class="col-md-3 col-form-label form-label">Course Eligibility</label>
+                                        <div class="col-md-6">
+                                            <asp:Label id="lblcourseeligibility5" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityYes5" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                              </div>
+                                            <div class="form-check-inline">
+                                                <asp:RadioButton runat="server" ID="eligibilityNo5" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                            </div>
+                                                <asp:HiddenField runat="server" ID="Hidcourseeligibility5"/>
+                                         </div>                                                                                       
                                     </div>
                                 </div>
                             </div>
@@ -1038,6 +1131,37 @@
             }
                 
         });
+        //course eligibility1
+        $("#<%=ddlCourse1.ClientID%>").change(function ()
+        {            
+            var courseID = $("#<%=ddlCourse1.ClientID%>").val();
+            $.ajax({
+            type: "POST",
+            url: "applicantcourse.aspx/GetCourseEligibility",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data:"{'courseid': '" + courseID + "'}",
+            success: function (response) {
+                if (response.d) {                    
+                    var result = JSON.parse(response.d);
+                    if (courseID != 0) {
+                        $("#<%=courseeligibility.ClientID%>").show();
+                        $("#<%=lblcourseeligibility.ClientID%>").text("");
+                        for (var i = 0; i < result.length; i++)
+                            $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
+                    }
+                    else
+                        $("#<%=courseeligibility.ClientID%>").hide();
+                }
+            }
+            });
+        });     
+        $("input[name='ctl00$ContentPlaceHolder1$eligibilityresponse']").click(function () {
+            if ($("#<%=eligibilityYes.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility.ClientID%>").val(1);
+            else if($("#<%=eligibilityNo.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility.ClientID%>").val(0);
+        });
         $("#<%=ddlCourse1.ClientID%>").change(function () {
             $("#<%=hidCourseField1.ClientID%>").val($("#<%=ddlCourse1.ClientID%>").val());
 
@@ -1275,7 +1399,40 @@
                 }
             }
                 
-        });       
+        });   
+        //course eligibility2
+        $("#<%=ddlCourse2.ClientID%>").change(function ()
+        {            
+            var courseID = $("#<%=ddlCourse2.ClientID%>").val();
+            $.ajax({
+            type: "POST",
+            url: "applicantcourse.aspx/GetCourseEligibility",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data:"{'courseid': '" + courseID + "'}",
+            success: function (response) {
+                if (response.d) {                    
+                    var result = JSON.parse(response.d);
+                    if (courseID != 0) {
+                        $("#<%=courseeligibility2.ClientID%>").show();
+                        $("#<%=lblcourseeligibility2.ClientID%>").text("");
+                        for (var i = 0; i < result.length; i++)
+                            $("#<%=lblcourseeligibility2.ClientID%>").append(result[i].courseeligibility);
+                    }
+                    else
+                        $("#<%=courseeligibility2.ClientID%>").hide();
+                }
+            }
+            });
+        });     
+        $("input[name='ctl00$ContentPlaceHolder2$eligibilityresponse']").click(function () {
+            if ($("#<%=eligibilityYes2.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility2.ClientID%>").val(1);
+            else if($("#<%=eligibilityNo2.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility2.ClientID%>").val(0);
+        });
+
+
         $("#<%=ddlCourse2.ClientID%>").change(function () {
             $("#<%=hidCourseField2.ClientID%>").val($("#<%=ddlCourse2.ClientID%>").val());
 
@@ -1515,6 +1672,37 @@
             }
                 
         });
+        //course eligibility3
+        $("#<%=ddlCourse3.ClientID%>").change(function ()
+        {            
+            var courseID = $("#<%=ddlCourse3.ClientID%>").val();
+            $.ajax({
+            type: "POST",
+            url: "applicantcourse.aspx/GetCourseEligibility",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data:"{'courseid': '" + courseID + "'}",
+            success: function (response) {
+                if (response.d) {                    
+                    var result = JSON.parse(response.d);
+                    if (courseID != 0) {
+                        $("#<%=courseeligibility3.ClientID%>").show();
+                        $("#<%=lblcourseeligibility3.ClientID%>").text("");
+                        for (var i = 0; i < result.length; i++)
+                            $("#<%=lblcourseeligibility3.ClientID%>").append(result[i].courseeligibility);
+                    }
+                    else
+                        $("#<%=courseeligibility3.ClientID%>").hide();
+                }
+            }
+            });
+        });     
+        $("input[name='ctl00$ContentPlaceHolder3$eligibilityresponse']").click(function () {
+            if ($("#<%=eligibilityYes3.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility3.ClientID%>").val(1);
+            else if($("#<%=eligibilityNo3.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility3.ClientID%>").val(0);
+        });
         $("#<%=ddlCourse3.ClientID%>").change(function () {
             $("#<%=hidCourseField3.ClientID%>").val($("#<%=ddlCourse3.ClientID%>").val());
 
@@ -1752,6 +1940,37 @@
                 }
             }
                 
+        });
+        //course eligibility4
+        $("#<%=ddlCourse4.ClientID%>").change(function ()
+        {            
+            var courseID = $("#<%=ddlCourse4.ClientID%>").val();
+            $.ajax({
+            type: "POST",
+            url: "applicantcourse.aspx/GetCourseEligibility",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data:"{'courseid': '" + courseID + "'}",
+            success: function (response) {
+                if (response.d) {                    
+                    var result = JSON.parse(response.d);
+                    if (courseID != 0) {
+                        $("#<%=courseeligibility4.ClientID%>").show();
+                        $("#<%=lblcourseeligibility4.ClientID%>").text("");
+                        for (var i = 0; i < result.length; i++)
+                            $("#<%=lblcourseeligibility4.ClientID%>").append(result[i].courseeligibility);
+                    }
+                    else
+                        $("#<%=courseeligibility4.ClientID%>").hide();
+                }
+            }
+            });
+        });     
+        $("input[name='ctl00$ContentPlaceHolder4$eligibilityresponse']").click(function () {
+            if ($("#<%=eligibilityYes4.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility4.ClientID%>").val(1);
+            else if($("#<%=eligibilityNo4.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility4.ClientID%>").val(0);
         });
         $("#<%=ddlCourse4.ClientID%>").change(function () {
             $("#<%=hidCourseField4.ClientID%>").val($("#<%=ddlCourse4.ClientID%>").val());
@@ -1993,6 +2212,37 @@
             }
                 
         });
+        //course eligibility5
+        $("#<%=ddlCourse5.ClientID%>").change(function ()
+        {            
+            var courseID = $("#<%=ddlCourse5.ClientID%>").val();
+            $.ajax({
+            type: "POST",
+            url: "applicantcourse.aspx/GetCourseEligibility",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data:"{'courseid': '" + courseID + "'}",
+            success: function (response) {
+                if (response.d) {                    
+                    var result = JSON.parse(response.d);
+                    if (courseID != 0) {
+                        $("#<%=courseeligibility5.ClientID%>").show();
+                        $("#<%=lblcourseeligibility5.ClientID%>").text("");
+                        for (var i = 0; i < result.length; i++)
+                            $("#<%=lblcourseeligibility5.ClientID%>").append(result[i].courseeligibility);
+                    }
+                    else
+                        $("#<%=courseeligibility5.ClientID%>").hide();
+                }
+            }
+            });
+        });     
+        $("input[name='ctl00$ContentPlaceHolder5$eligibilityresponse']").click(function () {
+            if ($("#<%=eligibilityYes5.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility5.ClientID%>").val(1);
+            else if($("#<%=eligibilityNo5.ClientID%>").is(":checked"))
+                $("#<%=Hidcourseeligibility5.ClientID%>").val(0);
+        });
         $("#<%=ddlCourse5.ClientID%>").change(function () {
             $("#<%=hidCourseField5.ClientID%>").val($("#<%=ddlCourse5.ClientID%>").val());
 
@@ -2021,8 +2271,8 @@
 
         $("#<%=ddlCommencementdate5.ClientID%>").change(function () {
             $("#<%=hidCommencementDate5.ClientID%>").val($("#<%=ddlCommencementdate5.ClientID%>").val());
-        });
-
+        });       
+              
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#studentapplication_list').addClass('open');
