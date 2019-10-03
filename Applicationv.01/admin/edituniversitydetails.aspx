@@ -406,6 +406,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for managing application status</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtUniversityApplication" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
@@ -481,6 +492,8 @@
             var txtNotesDisclaimer = $('#<%=txtNotesDisclaimer.ClientID%>').val();
             var sopInstruction = $('#<%=txtUniversitySop.ClientID%>').val();
             var scholarshipInstruction = $('#<%=txtUniversityScholarship.ClientID%>').val();
+            var applicationInstruction = $('#<%=txtUniversityApplication.ClientID%>').val();
+
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
@@ -597,6 +610,10 @@
             }
             else if (scholarshipInstruction == "") {
                 alert("Please enter university scholarship instructions");
+                return false;
+            }
+            else if (applicationInstruction == "") {
+                alert("Please enter university application status instructions");
                 return false;
             }
 

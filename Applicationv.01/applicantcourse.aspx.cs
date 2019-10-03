@@ -166,7 +166,7 @@ public partial class applicantcourse : System.Web.UI.Page
     public static string GetCommenceDateDropdown(int courseid)
     {
         GTEEntities db1 = new GTEEntities();
-        var temp = db1.course_dates.Where(x => x.courseid == courseid && x.commencementdate > DateTime.Now).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
+        var temp = db1.course_dates.Where(x => x.courseid == courseid && x.commencementdate > DateTime.Now).OrderBy(x => x.commencementdate).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
         return JsonConvert.SerializeObject(temp);
     }
 
@@ -836,7 +836,10 @@ public partial class applicantcourse : System.Web.UI.Page
             objapplicationmaster.applicantid = userID;
             objapplicationmaster.universityid = universityID;
             if (mode == "new")
+            {
+                objapplicationmaster.current_status = 1;
                 db.applicationmaster.Add(objapplicationmaster);
+            }
             db.SaveChanges();
         }
         catch (Exception ex)

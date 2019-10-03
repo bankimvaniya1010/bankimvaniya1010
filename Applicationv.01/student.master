@@ -339,6 +339,20 @@
                                             </li>
                                         </ul>
                                     </li>                                   
+                                    <li class="sidebar-menu-item" id="studentapplication_choice">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Choices">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            Your Choices
+		                                    <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                        </a>
+                                        <ul class="sidebar-submenu sm-indent collapse" id="Choices">
+                                            <li class="sidebar-menu-item" id="applicantchoices">
+                                                <a class="sidebar-menu-button" href="applicantchoicestatus.aspx">
+                                                    <span class="sidebar-menu-text">View Status</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                     <%--<li class="sidebar-menu-item" id="clarification_question_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#clarification_question">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>

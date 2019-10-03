@@ -144,6 +144,11 @@
                                             <span class="sidebar-menu-text">View & Manage Applications </span>
                                         </a>
                                     </li>    
+                                    <li class="sidebar-menu-item" id="courseApplication">
+                                        <a class="sidebar-menu-button" href="managestudentapplication.aspx">
+                                            <span class="sidebar-menu-text">View & Manage Student Course Application </span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="role_list">

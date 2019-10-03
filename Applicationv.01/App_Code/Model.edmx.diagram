@@ -238,13 +238,13 @@
         <EntityTypeShape EntityType="GTEModel.universitywise_rejectionreasonmapping" Width="1.5" PointX="13.5" PointY="77.125" />
         <AssociationConnector Association="GTEModel.FK__rejection_reasonmaster" />
         <AssociationConnector Association="GTEModel.FK__university_master" />
-        <EntityTypeShape EntityType="GTEModel.applicationmaster" Width="1.5" PointX="5.375" PointY="27.75" />
         <EntityTypeShape EntityType="GTEModel.university_application_decision_master" Width="1.5" PointX="27.375" PointY="19.75" />
         <EntityTypeShape EntityType="GTEModel.predeparturetutorialmaster" Width="1.5" PointX="7.5" PointY="106.375" />
         <AssociationConnector Association="GTEModel.FK_predeparturetutorialmaster_university_master" />
-        <EntityTypeShape EntityType="GTEModel.application_status_master" Width="1.5" PointX="21.375" PointY="27.75" />
         <EntityTypeShape EntityType="GTEModel.course_defermentdates" Width="1.5" PointX="15.75" PointY="51" />
         <AssociationConnector Association="GTEModel.FK_defermentDate_coursemaster" />
+        <EntityTypeShape EntityType="GTEModel.application_status_master" Width="1.5" PointX="5.375" PointY="27.75" />
+        <EntityTypeShape EntityType="GTEModel.applicationmaster" Width="1.5" PointX="21.375" PointY="27.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
