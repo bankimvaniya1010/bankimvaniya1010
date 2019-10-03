@@ -606,6 +606,7 @@ public partial class application_status_master
 {
     public int id { get; set; }
     public string status_description { get; set; }
+    public string status_for { get; set; }
 }
 
 public partial class applicationmaster
@@ -632,9 +633,10 @@ public partial class applicationmaster
     public string activity_ip { get; set; }
     public Nullable<System.DateTime> activity_date { get; set; }
     public Nullable<System.DateTime> deferment_date { get; set; }
+    public string deferment_remark { get; set; }
+    public string deferment_decision { get; set; }
     public Nullable<int> rejection_reason { get; set; }
     public string rejection_remark { get; set; }
-    public string deferment_remark { get; set; }
     public string offer_letter_file { get; set; }
     public string coe_letter_file { get; set; }
     public Nullable<int> eligibility_response { get; set; }

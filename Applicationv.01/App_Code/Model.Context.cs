@@ -168,11 +168,11 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<rejection_reasonmaster> rejection_reasonmaster { get; set; }
     public virtual DbSet<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
-    public virtual DbSet<applicationmaster> applicationmaster { get; set; }
     public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
     public virtual DbSet<predeparturetutorialmaster> predeparturetutorialmaster { get; set; }
-    public virtual DbSet<application_status_master> application_status_master { get; set; }
     public virtual DbSet<course_defermentdates> course_defermentdates { get; set; }
+    public virtual DbSet<application_status_master> application_status_master { get; set; }
+    public virtual DbSet<applicationmaster> applicationmaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

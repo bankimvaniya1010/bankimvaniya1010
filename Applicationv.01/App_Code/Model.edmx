@@ -585,6 +585,7 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="status_description" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="status_for" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="applicationmaster">
           <Key>
@@ -605,7 +606,7 @@
           <Property Name="commencementdate" Type="varchar" MaxLength="50" />
           <Property Name="current_status" Type="int" />
           <Property Name="dateofapplication" Type="datetime" Precision="0" StoreGeneratedPattern="Identity" />
-          <Property Name="dateofdecision" Type="date" />
+          <Property Name="dateofdecision" Type="datetime" Precision="0" />
           <Property Name="decision" Type="int" />
           <Property Name="condition_statement" Type="varchar" MaxLength="2000" />
           <Property Name="admission_remark" Type="varchar" MaxLength="2000" />
@@ -613,6 +614,7 @@
           <Property Name="activity_date" Type="datetime" Precision="0" />
           <Property Name="deferment_date" Type="date" />
           <Property Name="deferment_remark" Type="varchar" MaxLength="100" />
+          <Property Name="deferment_decision" Type="varchar" MaxLength="50" />
           <Property Name="rejection_reason" Type="int" />
           <Property Name="rejection_remark" Type="varchar" MaxLength="100" />
           <Property Name="offer_letter_file" Type="varchar" MaxLength="200" />
@@ -4291,19 +4293,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitywise_rejectionreasonmapping" EntitySet="universitywise_rejectionreasonmapping" />
           </AssociationSet>
-          <EntitySet Name="applicationmaster" EntityType="GTEModel.applicationmaster" />
           <EntitySet Name="university_application_decision_master" EntityType="GTEModel.university_application_decision_master" />
           <EntitySet Name="predeparturetutorialmaster" EntityType="GTEModel.predeparturetutorialmaster" />
           <AssociationSet Name="FK_predeparturetutorialmaster_university_master" Association="GTEModel.FK_predeparturetutorialmaster_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="predeparturetutorialmaster" EntitySet="predeparturetutorialmaster" />
           </AssociationSet>
-          <EntitySet Name="application_status_master" EntityType="GTEModel.application_status_master" />
           <EntitySet Name="course_defermentdates" EntityType="GTEModel.course_defermentdates" />
           <AssociationSet Name="FK_defermentDate_coursemaster" Association="GTEModel.FK_defermentDate_coursemaster">
             <End Role="coursemaster" EntitySet="coursemaster" />
             <End Role="course_defermentdates" EntitySet="course_defermentdates" />
           </AssociationSet>
+          <EntitySet Name="application_status_master" EntityType="GTEModel.application_status_master" />
+          <EntitySet Name="applicationmaster" EntityType="GTEModel.applicationmaster" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -7633,39 +7635,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="applicationmaster">
-          <Key>
-            <PropertyRef Name="applicationmasterid" />
-          </Key>
-          <Property Name="applicationmasterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="preferenceid" Type="Int32" />
-          <Property Name="college_universityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="campus" Type="Int32" />
-          <Property Name="city" Type="Int32" />
-          <Property Name="country" Type="Int32" />
-          <Property Name="modeofstudy" Type="Int32" />
-          <Property Name="majorofdiscipline" Type="Int32" />
-          <Property Name="coursetype" Type="Int32" />
-          <Property Name="course" Type="Int32" />
-          <Property Name="commencementdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="current_status" Type="Int32" />
-          <Property Name="dateofapplication" Type="DateTime" />
-          <Property Name="dateofdecision" Type="DateTime" />
-          <Property Name="decision" Type="Int32" />
-          <Property Name="condition_statement" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="admission_remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="activity_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="activity_date" Type="DateTime" />
-          <Property Name="deferment_date" Type="DateTime" />
-          <Property Name="rejection_reason" Type="Int32" />
-          <Property Name="rejection_remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="deferment_remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="offer_letter_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="coe_letter_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="eligibility_response" Type="Int32" />
-        </EntityType>
         <EntityType Name="university_application_decision_master">
           <Key>
             <PropertyRef Name="id" />
@@ -7699,13 +7668,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="application_status_master">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="status_description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="course_defermentdates">
           <Key>
             <PropertyRef Name="id" />
@@ -7727,6 +7689,48 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="application_status_master">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status_description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="status_for" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="applicationmaster">
+          <Key>
+            <PropertyRef Name="applicationmasterid" />
+          </Key>
+          <Property Name="applicationmasterid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="preferenceid" Type="Int32" />
+          <Property Name="college_universityname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="campus" Type="Int32" />
+          <Property Name="city" Type="Int32" />
+          <Property Name="country" Type="Int32" />
+          <Property Name="modeofstudy" Type="Int32" />
+          <Property Name="majorofdiscipline" Type="Int32" />
+          <Property Name="coursetype" Type="Int32" />
+          <Property Name="course" Type="Int32" />
+          <Property Name="commencementdate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="current_status" Type="Int32" />
+          <Property Name="dateofapplication" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dateofdecision" Type="DateTime" />
+          <Property Name="decision" Type="Int32" />
+          <Property Name="condition_statement" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="admission_remark" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="activity_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="activity_date" Type="DateTime" />
+          <Property Name="deferment_date" Type="DateTime" />
+          <Property Name="deferment_remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="deferment_decision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="rejection_reason" Type="Int32" />
+          <Property Name="rejection_remark" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="offer_letter_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="coe_letter_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="eligibility_response" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9958,40 +9962,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="applicationmaster">
-            <EntityTypeMapping TypeName="GTEModel.applicationmaster">
-              <MappingFragment StoreEntitySet="applicationmaster">
-                <ScalarProperty Name="eligibility_response" ColumnName="eligibility_response" />
-                <ScalarProperty Name="coe_letter_file" ColumnName="coe_letter_file" />
-                <ScalarProperty Name="offer_letter_file" ColumnName="offer_letter_file" />
-                <ScalarProperty Name="deferment_remark" ColumnName="deferment_remark" />
-                <ScalarProperty Name="rejection_remark" ColumnName="rejection_remark" />
-                <ScalarProperty Name="rejection_reason" ColumnName="rejection_reason" />
-                <ScalarProperty Name="deferment_date" ColumnName="deferment_date" />
-                <ScalarProperty Name="activity_date" ColumnName="activity_date" />
-                <ScalarProperty Name="activity_ip" ColumnName="activity_ip" />
-                <ScalarProperty Name="admission_remark" ColumnName="admission_remark" />
-                <ScalarProperty Name="condition_statement" ColumnName="condition_statement" />
-                <ScalarProperty Name="decision" ColumnName="decision" />
-                <ScalarProperty Name="dateofdecision" ColumnName="dateofdecision" />
-                <ScalarProperty Name="dateofapplication" ColumnName="dateofapplication" />
-                <ScalarProperty Name="current_status" ColumnName="current_status" />
-                <ScalarProperty Name="commencementdate" ColumnName="commencementdate" />
-                <ScalarProperty Name="course" ColumnName="course" />
-                <ScalarProperty Name="coursetype" ColumnName="coursetype" />
-                <ScalarProperty Name="majorofdiscipline" ColumnName="majorofdiscipline" />
-                <ScalarProperty Name="modeofstudy" ColumnName="modeofstudy" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="campus" ColumnName="campus" />
-                <ScalarProperty Name="college_universityname" ColumnName="college-universityname" />
-                <ScalarProperty Name="preferenceid" ColumnName="preferenceid" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="applicationmasterid" ColumnName="applicationmasterid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="university_application_decision_master">
             <EntityTypeMapping TypeName="GTEModel.university_application_decision_master">
               <MappingFragment StoreEntitySet="university_application_decision_master">
@@ -10014,20 +9984,56 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="application_status_master">
-            <EntityTypeMapping TypeName="GTEModel.application_status_master">
-              <MappingFragment StoreEntitySet="application_status_master">
-                <ScalarProperty Name="status_description" ColumnName="status_description" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="course_defermentdates">
             <EntityTypeMapping TypeName="GTEModel.course_defermentdates">
               <MappingFragment StoreEntitySet="course_defermentdates">
                 <ScalarProperty Name="defermentdate" ColumnName="defermentdate" />
                 <ScalarProperty Name="courseid" ColumnName="courseid" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="application_status_master">
+            <EntityTypeMapping TypeName="GTEModel.application_status_master">
+              <MappingFragment StoreEntitySet="application_status_master">
+                <ScalarProperty Name="status_for" ColumnName="status_for" />
+                <ScalarProperty Name="status_description" ColumnName="status_description" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicationmaster">
+            <EntityTypeMapping TypeName="GTEModel.applicationmaster">
+              <MappingFragment StoreEntitySet="applicationmaster">
+                <ScalarProperty Name="eligibility_response" ColumnName="eligibility_response" />
+                <ScalarProperty Name="coe_letter_file" ColumnName="coe_letter_file" />
+                <ScalarProperty Name="offer_letter_file" ColumnName="offer_letter_file" />
+                <ScalarProperty Name="rejection_remark" ColumnName="rejection_remark" />
+                <ScalarProperty Name="rejection_reason" ColumnName="rejection_reason" />
+                <ScalarProperty Name="deferment_decision" ColumnName="deferment_decision" />
+                <ScalarProperty Name="deferment_remark" ColumnName="deferment_remark" />
+                <ScalarProperty Name="deferment_date" ColumnName="deferment_date" />
+                <ScalarProperty Name="activity_date" ColumnName="activity_date" />
+                <ScalarProperty Name="activity_ip" ColumnName="activity_ip" />
+                <ScalarProperty Name="admission_remark" ColumnName="admission_remark" />
+                <ScalarProperty Name="condition_statement" ColumnName="condition_statement" />
+                <ScalarProperty Name="decision" ColumnName="decision" />
+                <ScalarProperty Name="dateofdecision" ColumnName="dateofdecision" />
+                <ScalarProperty Name="dateofapplication" ColumnName="dateofapplication" />
+                <ScalarProperty Name="current_status" ColumnName="current_status" />
+                <ScalarProperty Name="commencementdate" ColumnName="commencementdate" />
+                <ScalarProperty Name="course" ColumnName="course" />
+                <ScalarProperty Name="coursetype" ColumnName="coursetype" />
+                <ScalarProperty Name="majorofdiscipline" ColumnName="majorofdiscipline" />
+                <ScalarProperty Name="modeofstudy" ColumnName="modeofstudy" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="campus" ColumnName="campus" />
+                <ScalarProperty Name="college_universityname" ColumnName="college-universityname" />
+                <ScalarProperty Name="preferenceid" ColumnName="preferenceid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="applicationmasterid" ColumnName="applicationmasterid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
