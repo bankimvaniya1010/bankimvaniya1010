@@ -38,7 +38,7 @@ public partial class admin_editcourse : System.Web.UI.Page
                 bindStudyLevelDropdown();
                 bindStudyModeDropdown();
                 BindUniversity();
-                if (existingCourse != null && existingDates != null && exsistingderementDate != null)
+                if (existingCourse != null && existingDates != null)
                 {
                     ViewState["courseID"] = courseID;
 
@@ -74,7 +74,7 @@ public partial class admin_editcourse : System.Web.UI.Page
                             hidCommencementDates.Value += existingDates[i].commencementdate.ToString("dd-MM-yyyy") + ",";
                         }
 
-                    if (exsistingderementDate.Count > 0)
+                    if (exsistingderementDate != null && exsistingderementDate.Count > 0)
                     {
                         for (int i = 0; i < exsistingderementDate.Count; i++)
                             Hiddefermentdates.Value += exsistingderementDate[i].defermentdate.ToString("dd-MM-yyyy") + ",";
