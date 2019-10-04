@@ -51,7 +51,9 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlstudymode" name="ddlstudymode" runat="server" class="form-control"></asp:DropDownList>
+                                    <select ID="ddlstudymode" name="ddlstudymode" runat="server" class="form-control">
+                                    </select>
+                                    <asp:HiddenField ID="hidStudyMode" runat="server" Value="" />
                                 </div>
                             </div>
                         </div>
@@ -199,7 +201,7 @@
             var txtcoursefee = $('#<%=txtCoursefee.ClientID%>').val();
             var discipline = $('#<%=ddldiscipline.ClientID%>').val();
             var studyLevel = $('#<%=ddlstudylevel.ClientID%>').val();
-            var studymode = $('#<%=ddlstudymode.ClientID%>').val();
+            var studymode = $('#<%=hidStudyMode.ClientID%>').val();
             var university = $('#<%=ddlUniversity.ClientID%>').val();
             var universityCampuses = $("#<%=hidUniversityCampuses.ClientID%>").val().split(',');
             universityCampuses = $.grep(universityCampuses, function(n){ return (n); });
@@ -270,6 +272,32 @@
                         }
                     }
                 });
+
+                $.ajax({
+                    type: "GET",
+                    url: "createcourse.aspx/GetStudyModeDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: { universityId: $("#<%=ddlUniversity.ClientID%>").val() },
+                    success: function (response) {
+                        if (response.d) {
+                            $('#<%=hidStudyMode.ClientID%>').val(0);
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlstudymode.ClientID%>").length >= 1) {
+                                $("#<%=ddlstudymode.ClientID%>").empty();
+                                $("#<%=ddlstudymode.ClientID%>").append($('<option selected="selected" disabled="disabled"></option>').val("0").html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlstudymode.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].description));
+                        }
+                    }
+                });
+
+            });
+
+            $("#<%=ddlstudymode.ClientID%>").change(function () {
+                var studyMode = $("#<%=ddlstudymode.ClientID%>").val();
+                $('#<%=hidStudyMode.ClientID%>').val(studyMode);
             });
 
             $("#btnAddCommencementDate").click(function () {
