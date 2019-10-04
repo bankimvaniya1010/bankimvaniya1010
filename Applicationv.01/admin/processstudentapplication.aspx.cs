@@ -93,7 +93,7 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
     protected void choiceList_ItemDataBound(object sender, DataListItemEventArgs e)
     {
         e.Item.FindControl("defermentDiv").Visible = false;
-
+        e.Item.FindControl("hypLnkViewOffer").Visible = false;
         object row = e.Item.DataItem;
         PropertyInfo pCurrentStatus = row.GetType().GetProperty("currentStatus");
         PropertyInfo pDecision = row.GetType().GetProperty("decision");
@@ -140,7 +140,12 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
             bool isApplicationAccepted = decisionObj.Where(x => x.id == decision).FirstOrDefault().decision_description.Contains("APPLICATION ACCEPTED");
             if (isApplicationAccepted)// If decision is application accepted
             {
-                // Pending to add offer letter in Obj and binding it to front end controls
+                PropertyInfo pFileName = row.GetType().GetProperty("offer_letter_file");
+                string fileName = pFileName.GetValue(row, null) as string;
+                HyperLink hypLnkViewOffer = e.Item.FindControl("hypLnkViewOffer") as HyperLink;
+                hypLnkViewOffer.NavigateUrl = "\\Docs\\Offer Letters\\" + fileName;
+
+                e.Item.FindControl("hypLnkViewOffer").Visible = true;
             }
         }
 
@@ -250,12 +255,12 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 if (!string.IsNullOrEmpty(admissionRemark))
                     application.admission_remark = admissionRemark;
 
-                application.decision = Convert.ToInt32(decision);
+                application.decision = Convert.ToInt32(ddlDecision.SelectedItem.Value);
                 application.dateofdecision = DateTime.Now;
                 
                 db.SaveChanges();
 
-                //sendEmailsNotificationForDecision(application.applicantid.Value, application.universityid.Value);
+                sendEmailsNotificationForDecision(application.applicantid.Value, application.universityid.Value);
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }

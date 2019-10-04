@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -172,27 +173,42 @@ public partial class applicantchoicestatus : System.Web.UI.Page
             int applicationId = Convert.ToInt32(commandArgs[0]);
             var application = db.applicationmaster.Where(x => x.applicationmasterid == applicationId).FirstOrDefault();
             int status_id = 0;
-            if (e.CommandName == "Accept")
-                status_id = db.application_status_master.Where(x => x.status_description.ToUpper() == "OFFER ACCEPTED").Select(x => x.id).FirstOrDefault();
-            else if (e.CommandName == "Defer")
+            if (e.CommandName == "Download")
             {
-                status_id = db.application_status_master.Where(x => x.status_description.ToUpper() == "OFFER DEFERRED").Select(x => x.id).FirstOrDefault();
-                application.deferment_date = Convert.ToDateTime(((DropDownList)e.Item.FindControl("deferPeriod")).SelectedItem.Text);
-            }
-            else if (e.CommandName == "Reject")
-            {
-                status_id = db.application_status_master.Where(x => x.status_description.ToUpper() == "OFFER REJECTED").Select(x => x.id).FirstOrDefault();
-                application.rejection_reason = Convert.ToInt32(((DropDownList)e.Item.FindControl("rejectionReason")).SelectedValue);
-                string text = ((TextBox)e.Item.FindControl("rejectOtherReason")).Text;
-                if (!string.IsNullOrEmpty(text))
-                    application.rejection_remark = ((TextBox)e.Item.FindControl("rejectOtherReason")).Text;
-            }
+                var fileExtension = Path.GetExtension(application.offer_letter_file);
+                Label lblUniversityCourse = e.Item.FindControl("lblUniversityCourse") as Label;
+                string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                string filePath = string.Concat(dirPath + "\\" + "Offer Letters", "\\", application.offer_letter_file);
 
-            application.current_status = status_id;
-            application.activity_ip = Request.UserHostAddress; // IP adderess value
-            application.activity_date = DateTime.Now; // Activity Date Value
-            db.SaveChanges();
-            objLog.WriteLog("User IP Address: " + Request.UserHostAddress);
+                Response.ContentType = "application/pdf";
+                Response.AppendHeader("Content-Disposition", "attachment; filename=OfferLetter_" + lblUniversityCourse.Text + fileExtension);
+                Response.TransmitFile(filePath);
+                Response.End();
+            }
+            else
+            {
+                if (e.CommandName == "Accept")
+                    status_id = db.application_status_master.Where(x => x.status_description.ToUpper() == "OFFER ACCEPTED").Select(x => x.id).FirstOrDefault();
+                else if (e.CommandName == "Defer")
+                {
+                    status_id = db.application_status_master.Where(x => x.status_description.ToUpper() == "OFFER DEFERRED").Select(x => x.id).FirstOrDefault();
+                    application.deferment_date = Convert.ToDateTime(((DropDownList)e.Item.FindControl("deferPeriod")).SelectedItem.Text);
+                }
+                else if (e.CommandName == "Reject")
+                {
+                    status_id = db.application_status_master.Where(x => x.status_description.ToUpper() == "OFFER REJECTED").Select(x => x.id).FirstOrDefault();
+                    application.rejection_reason = Convert.ToInt32(((DropDownList)e.Item.FindControl("rejectionReason")).SelectedValue);
+                    string text = ((TextBox)e.Item.FindControl("rejectOtherReason")).Text;
+                    if (!string.IsNullOrEmpty(text))
+                        application.rejection_remark = ((TextBox)e.Item.FindControl("rejectOtherReason")).Text;
+                }
+
+                application.current_status = status_id;
+                application.activity_ip = Request.UserHostAddress; // IP adderess value
+                application.activity_date = DateTime.Now; // Activity Date Value
+                db.SaveChanges();
+                objLog.WriteLog("User IP Address: " + Request.UserHostAddress);
+            }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
 

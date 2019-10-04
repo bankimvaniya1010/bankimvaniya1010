@@ -47,6 +47,56 @@ public partial class Resetpassword : System.Web.UI.Page
                 html = html.Replace("@Loginurl", webURL + "/login.aspx");
                 objCom.SendMail(login.email.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["PasswordReset"].ToString().Replace("@UniversityName", university.university_name));
                 lblMessage.Text = "Password has been set and sent to your registered email address.";
+
+                var isRecordPresent = db.applicantdetails.Any(x => x.applicantid == login.studentid && x.universityid == universityID);
+                if (!isRecordPresent)
+                {
+                    applicantdetails objapplicant = new applicantdetails();
+                    objapplicant.applicantid = login.studentid;
+                    objapplicant.email = login.email.Trim();
+
+                    string[] nameArr = login.name.Split(' ');
+                    objapplicant.firstname = nameArr[0];
+                    if (nameArr.Length > 1)
+                        objapplicant.lastname = login.name.Substring(nameArr[0].Length + 1);
+
+                    objapplicant.universityid = universityID;
+                    db.applicantdetails.Add(objapplicant);
+                    db.SaveChanges();
+                }
+
+                bool isDeclarationDoneByApplicant = false;
+                bool isGteDeclarationDoneByApplicant;
+                bool isProfileDetailsCompletedByApplicant;
+
+                bool isFullService;
+                bool isDeclarationCompleted;
+
+                Session["LoginInfo"] = login;
+                Session["UserID"] = login.studentid;
+                Session["Role"] = "student";
+                isGteDeclarationDoneByApplicant = objCom.IsGteDeclarationDoneByApplicant(login.studentid);
+                isFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+
+                if (isFullService)
+                {
+                    isDeclarationDoneByApplicant = objCom.IsDeclarationDoneByApplicant(login.studentid, universityID);
+                    isDeclarationCompleted = isDeclarationDoneByApplicant;
+                    isProfileDetailsCompletedByApplicant = objCom.SetStudentDetailsCompletedStatus(login.studentid, universityID);
+                }
+                else
+                {
+                    isDeclarationCompleted = isGteDeclarationDoneByApplicant;
+                    isProfileDetailsCompletedByApplicant = objCom.SetGteStudentDetailsCompletedStatus(login.studentid, universityID);
+                }
+
+                Session["DeclarationDoneByApplicant"] = isDeclarationDoneByApplicant;
+                Session["GteDeclarationDoneByApplicant"] = isGteDeclarationDoneByApplicant;
+                Session["ProfileDetailsCompletedByApplicant"] = isProfileDetailsCompletedByApplicant;
+                Session["FullService"] = isFullService;
+                Session["DeclarationCompleted"] = isDeclarationCompleted;
+
+                Response.Redirect(webURL + "default.aspx");
             }
             else
             {
