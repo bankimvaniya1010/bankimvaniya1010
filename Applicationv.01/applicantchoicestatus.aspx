@@ -166,7 +166,7 @@
 
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#studentapplication_choice').addClass('open');
+            $('#admissionsOffer_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantchoices').addClass('active');
 

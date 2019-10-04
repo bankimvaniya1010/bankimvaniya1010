@@ -285,7 +285,7 @@
                     });
                 }
                 else
-                    window.location("personaldetails.aspx?formid=1");
+                    window.location= "personaldetails.aspx?formid=1";
             }
             
         });

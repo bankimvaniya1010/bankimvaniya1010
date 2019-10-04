@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 public partial class admin_managestudentapplication : System.Web.UI.Page
 {
     Logger objLog = new Logger();
+    Common objCom = new Common();
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID;
@@ -30,7 +31,7 @@ public partial class admin_managestudentapplication : System.Web.UI.Page
             foreach (var applicant in applicantList)
             {
                 var details = db.applicantdetails.Where(x => x.applicantid == applicant.Value && x.universityid == universityID).FirstOrDefault();
-                var obj = new { details.applicantid, name = details.firstname + " " + details.lastname, details.nationality };
+                var obj = new { details.applicantid, name = details.firstname + " " + details.lastname, nationality = objCom.GetCountryDiscription(details.nationality.Value) };
                 list.Add(obj);
             }
             gvApplications.DataSource = list;

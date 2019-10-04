@@ -21,6 +21,7 @@ public partial class applicantreview : System.Web.UI.Page
     protected string ResidentailAddress = "";
     protected Common objComm = new Common();
     protected static List<faq> allQuestions = new List<faq>();
+    protected static string pageDetail = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
@@ -78,7 +79,59 @@ public partial class applicantreview : System.Web.UI.Page
                       select pInfo).ToList();
         }
         else
-        	Response.Redirect("personaldetails.aspx?formid=1", true);
+        {
+            review.Visible = false;
+            var objUser = (students)Session["LoginInfo"];
+            userID = objUser.studentid;
+
+            var personalDetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+            var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+            var languageCompetency = db.applicantlanguagecompetency.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+
+            if (personalDetails == null || !personalDetails.ispersonaldetailspresent)
+                pageDetail = "Personal Details";
+            else if(personalDetails == null || !personalDetails.iscontactdetailspresent)
+                pageDetail = "Contact Details";
+            else if (personalDetails == null || !personalDetails.issocialprofilepresent)
+                pageDetail = "Social Profile";
+            else if (personalDetails == null || !personalDetails.isidentificationpresent)
+                pageDetail = "Identification";
+            else if (educationDetails == null || !educationDetails.iseducationdetailspresent)
+                pageDetail = "Education Qualification";
+            else if (languageCompetency == null || !languageCompetency.islanguagecompetencypresent)
+                pageDetail = "English Competency";
+
+            switch (pageDetail)
+            {
+                case "Contact Details":
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantcontactdetail.aspx?formid=2';", true);
+                    break;                                                                              
+                case "Personal Details":                                                                
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
+                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "personaldetails.aspx?formid=1';", true);
+                    break;                                                                              
+                case "Social Profile":                                                                  
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
+                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantsocial.aspx?formid=8';", true);
+                    break;                                                                              
+                case "Identification":                                                                  
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
+                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "knowyourstudent.aspx?formid=3';", true);
+                    break;                                                                              
+                case "Education Qualification":                                                         
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
+                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicanteducation.aspx?formid=4';", true);
+                    break;                                                                              
+                case "English Competency":                                                              
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
+                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantlanguage.aspx?formid=5';", true);
+                    break;
+                default:
+                    Response.Redirect("default.aspx", true);
+                    break;
+            }
+        }
     }
    
 }

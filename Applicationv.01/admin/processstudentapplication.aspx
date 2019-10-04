@@ -57,6 +57,9 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList class="form-control" id="ddlDecision" runat="server"></asp:DropDownList>
                                             </div>
+                                            <div>
+                                                <asp:HyperLink ID="hypLnkViewOffer" runat="server" Target="_blank">View Offer Letter</asp:HyperLink>
+                                            </div>
                                         </div>
                                         <div class="form-group" id="decisionDateDiv" runat="server" style="display:none">
                                             <label for="dateOfDecision" class="col-form-label form-label">Date of Decision: </label>
