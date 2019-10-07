@@ -42,7 +42,7 @@
                 <div class="row m-0">
                     <div class="col-lg container-fluid page__container">
 
-                        <div class="card" style="width: 650px;">
+                        <div class="card shwcenter" style="width: 650px;">
 
                             <div class="list-group list-group-fit">
                                 <div class="list-group-item" id="Qualification" runat="server" style="display: none;">
@@ -106,9 +106,11 @@
                                 </div>
                                 <div class="page-nav__content" style="margin: 20px">
                                     <asp:Button ID="btn_login" OnClientClick="return validateForm()" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
-
+                                    <asp:Label runat="server" ID="lblMessage" Visible="false"></asp:Label>
                                 </div>
-
+                                <input type="hidden" runat="server" id="hidStatus" value="false" />
+                                <input type="hidden" runat="server" id="hidGradeId" value="" />
+                                <input type="hidden" runat="server" id="hidModeStatus" value="" />
                             </div>
 
 
@@ -150,15 +152,12 @@
             return flag;
         }
 
-
-
-        function RefreshParent() {
-            if (window.opener != null && !window.opener.closed) {
-                window.opener.location.reload();
-            }
-        }
-        window.onbeforeunload = RefreshParent;
         $(document).ready(function () {
+            if (window.opener != null && !window.opener.closed && $("#<%=hidStatus.ClientID%>").val() && $("#<%=hidStatus.ClientID%>").val() == "true") {                
+                window.opener.refreshGrid($("#<%=hidGradeId.ClientID%>").val(), $("#<%=hidModeStatus.ClientID%>").val(), $("#<%=ddlCourse.ClientID%>").val(), $("#ddlsubjects option:selected").text(), $("#<%=txtOther.ClientID%>").val(), $("#ddlGradeType option:selected").text(), $("#<%=txtGrade.ClientID%>").val());
+                self.window.close();
+            }
+            
             if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') 
                 $("#<%=OtherSubject.ClientID%>").show();                
             else 

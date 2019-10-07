@@ -107,7 +107,26 @@ public partial class addgrade : System.Web.UI.Page
     {
         try
         {
-            applicantsubjectwisegrade objGrade = new applicantsubjectwisegrade();            
+
+            var subject = ddlsubjects.SelectedValue;
+            int subjectID;
+            if (subject == "Others")
+                subjectID = 0;
+            else
+                subjectID = Convert.ToInt32(ddlsubjects.SelectedValue);
+
+            var mode = "new";
+            var Info = (from pInfo in db.applicantsubjectwisegrade
+                        where pInfo.applicantid == userID && pInfo.subjectid == subjectID && pInfo.coursename == classname
+                        select pInfo).FirstOrDefault();
+
+            applicantsubjectwisegrade objGrade = new applicantsubjectwisegrade();
+            if (Info != null)
+            {
+                mode = "update";
+                objGrade = Info;
+            }
+
             objGrade.grade = txtGrade.Value;
             objGrade.applicantid = userID;
             objGrade.coursename = ddlCourse.SelectedValue;
@@ -120,8 +139,17 @@ public partial class addgrade : System.Web.UI.Page
                 objGrade.subjectid = 0;
                 objGrade.othersubject = txtOther.Value;
             }
-            db.applicantsubjectwisegrade.Add(objGrade);
+            if(mode== "new")
+                db.applicantsubjectwisegrade.Add(objGrade);
             db.SaveChanges();
+            hidGradeId.Value = objGrade.applicantgradeid.ToString();
+            hidModeStatus.Value = mode;
+            lblMessage.Text = "Record Saved successfully";
+            lblMessage.Visible = true;
+            hidStatus.Value = "true";
+
+
+
         }
         catch (Exception ex)
         {

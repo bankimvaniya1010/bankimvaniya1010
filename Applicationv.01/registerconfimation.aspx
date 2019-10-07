@@ -35,8 +35,11 @@
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
 
                 <div class="card navbar-shadow">
-                    <div class="card-header text-center">
-                        <h4 class="card-title">Confirmation Page</h4>
+                    <div class="card-header text-center logn-head">
+                         <div class="frnd-hdr logo-img">
+                            <img src="assets/images/logo/canning_logo.jpg" class="logo-img"/>
+                        </div>
+                        <h4 class="card-title">Confirmation Page</h4>                        
 
                     </div>
                     <div class="card-body">

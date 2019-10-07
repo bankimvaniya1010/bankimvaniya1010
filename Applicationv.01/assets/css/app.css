@@ -243,3 +243,5 @@
 .sidebar-menu-icon{width: 24px;margin-right: .5rem;}
 .fundng-tbl tr{display: -webkit-flex;display: -moz-flex;display: -ms-flex;display: -o-flex;display: flex;}
 .cours-elig-lbl{max-height: 100px;overflow-y: auto;margin-bottom: 10px;}
+.logn-head{min-height: 78px;}
+.shwcenter {margin-top: 11%; margin-left: 3%;}
