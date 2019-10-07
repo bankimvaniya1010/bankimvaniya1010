@@ -255,8 +255,8 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility">
                                     <div class="form-row">
                                         <label id="label-courseeligibility2" for="course1" class="col-md-3 col-form-label form-label">Course Eligibility</label>
-                                        <div class="col-md-6">
-                                            <asp:Label id="lblcourseeligibility2" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                        <div class="col-md-9">
+                                            <asp:Label id="lblcourseeligibility2" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
                                                 <asp:RadioButton runat="server" ID="eligibilityYes2" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
                                               </div>
@@ -392,8 +392,8 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility">
                                     <div class="form-row">
                                         <label id="label-courseeligibility3" for="courseeligibility3" class="col-md-3 col-form-label form-label">Course Eligibility</label>
-                                        <div class="col-md-6">
-                                            <asp:Label id="lblcourseeligibility3" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                        <div class="col-md-9">
+                                            <asp:Label id="lblcourseeligibility3" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
                                                 <asp:RadioButton runat="server" ID="eligibilityYes3" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
                                               </div>
@@ -524,8 +524,8 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility4">
                                     <div class="form-row">
                                         <label id="label-courseeligibility4" for="courseeligibility4" class="col-md-3 col-form-label form-label">Course Eligibility</label>
-                                        <div class="col-md-6">
-                                            <asp:Label id="lblcourseeligibility4" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                        <div class="col-md-9">
+                                            <asp:Label id="lblcourseeligibility4" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
                                                 <asp:RadioButton runat="server" ID="eligibilityYes4" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
                                               </div>
@@ -657,8 +657,8 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-courseeligibility5">
                                     <div class="form-row">
                                         <label id="label-courseeligibility5" for="courseeligibility5" class="col-md-3 col-form-label form-label">Course Eligibility</label>
-                                        <div class="col-md-6">
-                                            <asp:Label id="lblcourseeligibility5" runat="server" class="form-control frm-cntrl-rdo cours-elig-lbl"></asp:Label> 
+                                        <div class="col-md-9">
+                                            <asp:Label id="lblcourseeligibility5" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
                                                 <asp:RadioButton runat="server" ID="eligibilityYes5" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
                                               </div>
@@ -1144,17 +1144,11 @@
             success: function (response) {
                 if (response.d) {                    
                     var result = JSON.parse(response.d);
-                    if (courseID != 0)
+                    if (courseID != 0 && result.courseeligibility != "")
                     {
                         $("#<%=courseeligibility.ClientID%>").show();
                         $("#<%=lblcourseeligibility.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++)
-                        {
-                            if (result[i].courseeligibility != "")
-                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
-                            else
-                                $("#<%=courseeligibility.ClientID%>").hide();
-                        }
+                        $("#<%=lblcourseeligibility.ClientID%>").append(result.courseeligibility);
                     }
                     else
                         $("#<%=courseeligibility.ClientID%>").hide();
@@ -1419,15 +1413,11 @@
             success: function (response) {
                 if (response.d) {                    
                     var result = JSON.parse(response.d);
-                    if (courseID != 0) {
+                    if (courseID != 0 && result.courseeligibility != "")
+                    {
                         $("#<%=courseeligibility2.ClientID%>").show();
                         $("#<%=lblcourseeligibility2.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++) {
-                            if (result[i].courseeligibility != "")
-                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
-                            else
-                                $("#<%=courseeligibility.ClientID%>").hide();
-                        }
+                        ("#<%=lblcourseeligibility2.ClientID%>").append(result.courseeligibility);
                     }
                     else
                         $("#<%=courseeligibility2.ClientID%>").hide();
@@ -1695,15 +1685,10 @@
             success: function (response) {
                 if (response.d) {                    
                     var result = JSON.parse(response.d);
-                    if (courseID != 0) {
+                    if (courseID != 0 && result.courseeligibility != "") {
                         $("#<%=courseeligibility3.ClientID%>").show();
                         $("#<%=lblcourseeligibility3.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++){
-                            if (result[i].courseeligibility != "")
-                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
-                            else
-                                $("#<%=courseeligibility.ClientID%>").hide();
-                        }
+                        $("#<%=lblcourseeligibility3.ClientID%>").append(result.courseeligibility);
                     }
                     else
                         $("#<%=courseeligibility3.ClientID%>").hide();
@@ -1968,15 +1953,10 @@
             success: function (response) {
                 if (response.d) {                    
                     var result = JSON.parse(response.d);
-                    if (courseID != 0) {
+                    if (courseID != 0 && result.courseeligibility != "") {
                         $("#<%=courseeligibility4.ClientID%>").show();
                         $("#<%=lblcourseeligibility4.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++){
-                            if (result[i].courseeligibility != "")
-                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
-                            else
-                                $("#<%=courseeligibility.ClientID%>").hide();
-                        }
+                        $("#<%=lblcourseeligibility4.ClientID%>").append(result.courseeligibility);                       
                     }
                     else
                         $("#<%=courseeligibility4.ClientID%>").hide();
@@ -2243,15 +2223,10 @@
             success: function (response) {
                 if (response.d) {                    
                     var result = JSON.parse(response.d);
-                    if (courseID != 0) {
+                    if (courseID != 0 && result.courseeligibility != "") {
                         $("#<%=courseeligibility5.ClientID%>").show();
                         $("#<%=lblcourseeligibility5.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++){
-                            if (result[i].courseeligibility != "")
-                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
-                            else
-                                $("#<%=courseeligibility.ClientID%>").hide();
-                        }
+                        $("#<%=lblcourseeligibility5.ClientID%>").append(result.courseeligibility);
                     }
                     else
                         $("#<%=courseeligibility5.ClientID%>").hide();

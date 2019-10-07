@@ -157,7 +157,7 @@ public partial class applicantcourse : System.Web.UI.Page
                     select new
                     {
                         courseeligibility = cm.courseeligibility,                        
-                    }).ToList();
+                    }).FirstOrDefault();
         return JsonConvert.SerializeObject(temp);
     }
 
