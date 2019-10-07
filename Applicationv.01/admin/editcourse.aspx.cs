@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class admin_editcourse : System.Web.UI.Page
@@ -36,7 +37,6 @@ public partial class admin_editcourse : System.Web.UI.Page
                 var mappings = db.course_campus_mapping.Where(obj => obj.courseid == courseID).ToList();                
                 bindMajorDisciplineDropdown();
                 bindStudyLevelDropdown();
-                bindStudyModeDropdown();
                 BindUniversity();
                 if (existingCourse != null && existingDates != null)
                 {
@@ -54,15 +54,17 @@ public partial class admin_editcourse : System.Web.UI.Page
                         ddlstudylevel.ClearSelection();
                         ddlstudylevel.Items.FindByValue(existingCourse.levelofstudyId.ToString()).Selected = true;
                     }
-                    if (existingCourse.modeofstudyId != null)
-                    {
-                        ddlstudymode.ClearSelection();
-                        ddlstudymode.Items.FindByValue(existingCourse.modeofstudyId.ToString()).Selected = true;
-                    }
                     if (existingCourse.universityid != null)
                     {
                         ddlUniversity.ClearSelection();
                         ddlUniversity.Items.FindByValue(existingCourse.universityid.ToString()).Selected = true;
+
+                        if (existingCourse.modeofstudyId != null)
+                        {
+                            bindStudyModeDropdown(ddlstudymode, existingCourse.universityid.Value);
+                            ddlstudymode.Items.FindByValue(existingCourse.modeofstudyId.ToString()).Selected = true;
+                            hidStudyMode.Value = existingCourse.modeofstudyId.ToString();
+                        }
                     }
                     if (existingCourse.courseeligibility != null)
                     {
@@ -177,25 +179,29 @@ public partial class admin_editcourse : System.Web.UI.Page
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }
-    private void bindStudyModeDropdown()
+    private void bindStudyModeDropdown(HtmlSelect ddlstudymode, int universityId)
     {
         try
         {
             ListItem lst = new ListItem("Please select Study Mode", "0");
-            List<studymodemaster> StudymodeMaster = db.studymodemaster.ToList();
+            List<studymodemaster> StudymodeMaster = db.studymodemaster.Where(x => x.universityid == universityId).ToList();
 
             ddlstudymode.DataSource = StudymodeMaster;
             ddlstudymode.DataTextField = "description";
             ddlstudymode.DataValueField = "id";
             ddlstudymode.DataBind();
             ddlstudymode.Items.Insert(0, lst);
-            // ddlstudymode.SelectedIndex = universityID;
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
+    }
 
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+    [WebMethod]
+    [ScriptMethod(UseHttpGet = true)]
+    public static string GetStudyModeDropdown(int universityId)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.studymodemaster.Where(x => x.universityid == universityId).ToList().Select(x => new { description = x.description, x.id });
+        return JsonConvert.SerializeObject(temp);
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -222,7 +228,7 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.coursename = txtCourseName.Value.Trim();
             CourseObj.majordisciplineId = Convert.ToInt32(ddldiscipline.SelectedItem.Value);
             CourseObj.levelofstudyId = Convert.ToInt32(ddlstudylevel.SelectedItem.Value);
-            CourseObj.modeofstudyId = Convert.ToInt32(ddlstudymode.SelectedItem.Value);
+            CourseObj.modeofstudyId = Convert.ToInt32(hidStudyMode.Value);
             CourseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
             CourseObj.courseeligibility = txtcourseeligibility.Value;
             CourseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
