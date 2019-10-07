@@ -31,7 +31,10 @@ public partial class admin_managestudentapplication : System.Web.UI.Page
             foreach (var applicant in applicantList)
             {
                 var details = db.applicantdetails.Where(x => x.applicantid == applicant.Value && x.universityid == universityID).FirstOrDefault();
-                var obj = new { details.applicantid, name = details.firstname + " " + details.lastname, nationality = objCom.GetCountryDiscription(details.nationality.Value) };
+                string nationality = string.Empty;
+                if (details.nationality.HasValue)
+                    nationality = objCom.GetCountryDiscription(details.nationality.Value);
+                var obj = new { details.applicantid, name = details.firstname + " " + details.lastname, nationality };
                 list.Add(obj);
             }
             gvApplications.DataSource = list;
