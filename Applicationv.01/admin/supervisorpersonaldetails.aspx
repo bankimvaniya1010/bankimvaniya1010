@@ -66,7 +66,7 @@
                 <div class="list-group-item" id="lastname" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-lastname">
                         <div class="form-row">
-                            <label id="labellastname" runat="server" for="lastname" class="col-md-3 col-form-label form-label">Last Name *</label>
+                            <label id="labellastname" runat="server" for="lastname" class="col-md-3 col-form-label form-label">Family Name *</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblLastName" runat="server"></asp:Label>
 
@@ -83,7 +83,7 @@
                 <div class="list-group-item" id="passportsameasLastName" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
                         <div class="form-row">
-                            <label id="labelpassportsameasLastName" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport Last Name same as Above</label>
+                            <label id="labelpassportsameasLastName" runat="server" for="firstname" class="col-md-3 col-form-label form-label">Passport Family Name same as Above</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblpassportsameasLastName" runat="server"></asp:Label>
                             </div>
@@ -115,7 +115,7 @@
                 <div class="list-group-item" id="middlename" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-middlename">
                         <div class="form-row">
-                            <label id="labelmiddlename" runat="server" for="middlename" class="col-md-3 col-form-label form-label">Other middle names</label>
+                            <label id="labelmiddlename" runat="server" for="middlename" class="col-md-3 col-form-label form-label">Middle Name(s)</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblMiddleName" runat="server"></asp:Label>
                             </div>
@@ -177,7 +177,7 @@
                 <div class="list-group-item" id="nationality" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-Nationality">
                         <div class="form-row">
-                            <label id="labelNationality" runat="server" for="Nationality" class="col-md-3 col-form-label form-label">Nationality and citizenship</label>
+                            <label id="labelNationality" runat="server" for="Nationality" class="col-md-3 col-form-label form-label">Citizenship</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblNationality" runat="server"></asp:Label>
                             </div>
@@ -249,7 +249,7 @@
                 <div class="list-group-item" id="secondNation" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondNationality">
                         <div class="form-row">
-                            <label id="labelSecondNation" runat="server" for="SecondNationality" class="col-md-3 col-form-label form-label">Nationality and citizenship</label>
+                            <label id="labelSecondNation" runat="server" for="SecondNationality" class="col-md-3 col-form-label form-label">Citizenship</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblOtherNation" runat="server"></asp:Label>
                             </div>

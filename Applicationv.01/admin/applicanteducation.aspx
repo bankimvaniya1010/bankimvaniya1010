@@ -47,7 +47,7 @@
                 <div class="list-group-item" id="highschoolCountry" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolCountry">
                         <div class="form-row">
-                            <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-2 col-form-label form-label">Country of High School Education</label>
+                            <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-2 col-form-label form-label">Country of High School</label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
                                     <asp:Label ID="lblhighschoolCountry" runat="server"></asp:Label>
@@ -131,7 +131,7 @@
                 <div class="list-group-item" id="highschoolQualificationtype" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolQualificationtype">
                         <div class="form-row">
-                            <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                            <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-2 col-form-label form-label">Qualification Name</label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
                                     <asp:Label ID="lblhighschoolQualificationtype" runat="server"></asp:Label>
@@ -510,7 +510,7 @@
                     <div class="list-group-item" id="SecondaryQualificationtype" runat="server" style="display: none">
                         <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryQualificationtype">
                             <div class="form-row">
-                                <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                                <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype" class="col-md-2 col-form-label form-label">Qualification Name</label>
                                 <div class="col-md-6">
                                     <div class="prdtl-ans">
                                         <asp:Label ID="lblSecondaryQualificationtype" runat="server"></asp:Label>
@@ -913,7 +913,7 @@
                         <div class="list-group-item" id="higherQualificationtype" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-6">
                                         <div class="prdtl-ans">
                                             <asp:Label ID="lblhigherQualificationtype" runat="server"></asp:Label>
@@ -1233,7 +1233,7 @@
                         <div class="list-group-item" id="higherQualificationtypePG" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-6">
                                         <div class="prdtl-ans">
                                             <asp:Label ID="lblhigherQualificationtypePG" runat="server"></asp:Label>
@@ -1553,7 +1553,7 @@
                         <div class="list-group-item" id="higherQualificationtypePhd" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-6">
                                         <div class="prdtl-ans">
                                             <asp:Label ID="lblhigherQualificationtypePhd" runat="server"></asp:Label>
@@ -1873,7 +1873,7 @@
                         <div class="list-group-item" id="higherQualificationtypeOther" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype" class="col-md-2 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-6">
                                         <div class="prdtl-ans">
                                             <asp:Label ID="lblhigherQualificationtypeOther" runat="server"></asp:Label>
@@ -2232,7 +2232,7 @@
                 <div class="list-group-item" id="diplomaQualificationtype" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-diplomaQualificationtype">
                         <div class="form-row">
-                            <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-2 col-form-label form-label">Qualification Type</label>
+                            <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-2 col-form-label form-label">Qualification Name</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lbldiplomaQualificationtype" runat="server"></asp:Label>
                                 <asp:RadioButton ID="rbldiplomaQualificationtypeYes" GroupName="diplomaQualificationtype" Text="Yes" runat="server" />
@@ -3621,194 +3621,194 @@
         {
             var flag = false;
             if (!$("#<%=highschool.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Have you completed high school");
+                alert("Please select option for Have you completed high school");
             else if (!$("#<%=highschoolCountry.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolCountryYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolCountryNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for HighschoolCountry of High School Education");
+                alert("Please select option for HighschoolCountry of High School");
             else if (!$("#<%=highschoolstartDate.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolstartDateYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolstartDateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool start date");    
+                alert("Please select option for Highschool start date");    
             else if (!$("#<%=highschoolendDate.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolendDateYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolendDateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool End date");
+                alert("Please select option for Highschool End date");
             else if (!$("#<%=highschoolName.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolNameYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool school name");
+                alert("Please select option for Highschool school name");
             else if (!$("#<%=highschoolQualificationtype.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolQualificationtypeYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolQualificationtypeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool qualification type");
+                alert("Please select option for Highschool qualification name");
             else if (!$("#<%=highschoolstudymode.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolstudymodeYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolstudymodeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool study mode");
+                alert("Please select option for Highschool study mode");
             else if (!$("#<%=highschoollanguage.ClientID%>").is(':hidden') && !($("#<%=rblhighschoollanguageYes.ClientID%>").is(':checked') || $("#<%=rblhighschoollanguageNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool school language");    
+                alert("Please select option for Highschool school language");    
             else if (!$("#<%=gradetype.ClientID%>").is(':hidden') && !($("#<%=rblgradetypeYes.ClientID%>").is(':checked') || $("#<%=rblgradetypeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool grade type");    
+                alert("Please select option for Highschool grade type");    
             else if (!$("#<%=highschoolgradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolgradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolgradeachievedNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool grade achieved");
+                alert("Please select option for Highschool grade achieved");
             else if (!$("#<%=ExpectedHighSchoolDategrade.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHighSchoolDategradeYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolverifyNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool expected date");
+                alert("Please select option for Highschool expected date");
             else if (!$("#<%=highschoolverify.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolverifyYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolverifyNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool Name of Contact who can verify this qualification ");
+                alert("Please select option for Highschool Name of Contact who can verify this qualification ");
             else if (!$("#<%=highschoolrelation.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolrelationYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolrelationNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool relationship with contact");
+                alert("Please select option for Highschool relationship with contact");
             else if (!$("#<%=highschoolcontactEmail.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolcontactEmailYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolcontactEmailNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool email id of contact");
+                alert("Please select option for Highschool email id of contact");
             else if (!$("#<%=highschoolcontactMobile.ClientID%>").is(':hidden') && !($("#<%=rblhighschoolcontactMobileYes.ClientID%>").is(':checked') || $("#<%=rblhighschoolcontactMobileNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highschool contact mobile number");
+                alert("Please select option for Highschool contact mobile number");
             //sec
             else if (!$("#<%=Secondary.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Have you completed Senior Secondary school? (Year 12)?");
+                alert("Please select option for Have you completed Senior Secondary school? (Year 12)?");
             else if (!$("#<%=SecondaryCountry.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryCountryYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryCountryNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary schoolCountry of High School Education");
+                alert("Please select option for Secondary schoolCountry of High School");
             else if (!$("#<%=SecondarystartDate.ClientID%>").is(':hidden') && !($("#<%=rblSecondarystartDateYes.ClientID%>").is(':checked') || $("#<%=rblSecondarystartDateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school start date");    
+                alert("Please select option for Secondary school start date");    
             else if (!$("#<%=SecondaryendDate.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryendDateYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryendDateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school End date");
+                alert("Please select option for Secondary school End date");
             else if (!$("#<%=SecondaryschoolName.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryschoolNameYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryschoolNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school school name");
+                alert("Please select option for Secondary school school name");
             else if (!$("#<%=SecondaryQualificationtype.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryQualificationtypeYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryQualificationtypeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school qualification type");
+                alert("Please select option for Secondary school qualification name");
             else if (!$("#<%=Secondarystudymode.ClientID%>").is(':hidden') && !($("#<%=rblSecondarystudymodeYes.ClientID%>").is(':checked') || $("#<%=rblSecondarystudymodeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school study mode");
+                alert("Please select option for Secondary school study mode");
             else if (!$("#<%=Secondarylanguage.ClientID%>").is(':hidden') && !($("#<%=rblSecondarylanguageYes.ClientID%>").is(':checked') || $("#<%=rblSecondarylanguageNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school school language"); 
+                alert("Please select option for Secondary school school language"); 
             else if (!$("#<%=Secondarygradetype.ClientID%>").is(':hidden') && !($("#<%=rblSecondarygradetypeYes.ClientID%>").is(':checked') || $("#<%=rblSecondarygradetypeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school grade type");    
+                alert("Please select option for Secondary school grade type");    
             else if (!$("#<%=Secondarygradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblSecondarygradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblSecondarygradeachievedNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school grade achieved");
+                alert("Please select option for Secondary school grade achieved");
             else if (!$("#<%=ExpectedSecondaryDategrade.ClientID%>").is(':hidden') && !($("#<%=rblExpectedSecondaryDategradeYes.ClientID%>").is(':checked') || $("#<%=rblExpectedSecondaryDategradeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school expected date");
+                alert("Please select option for Secondary school expected date");
             else if (!$("#<%=Secondaryverify.ClientID%>").is(':hidden') && !($("#<%=rblSecondaryverifyYes.ClientID%>").is(':checked') || $("#<%=rblSecondaryverifyNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school Name of Contact who can verify this qualification ");
+                alert("Please select option for Secondary school Name of Contact who can verify this qualification ");
             else if (!$("#<%=secondaryschoolrelation.ClientID%>").is(':hidden') && !($("#<%=rblsecondaryschoolrelationYes.ClientID%>").is(':checked') || $("#<%=rblsecondaryschoolrelationNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school relationship with contact");
+                alert("Please select option for Secondary school relationship with contact");
             else if (!$("#<%=secondarycontactEmail.ClientID%>").is(':hidden') && !($("#<%=rblsecondarycontactEmailYes.ClientID%>").is(':checked') || $("#<%=rblsecondarycontactEmailNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school email id of contact");
+                alert("Please select option for Secondary school email id of contact");
             else if (!$("#<%=secondarycontactMobile.ClientID%>").is(':hidden') && !($("#<%=rblsecondarycontactMobileYes.ClientID%>").is(':checked') || $("#<%=rblsecondarycontactMobileNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Secondary school contact mobile number");
+                alert("Please select option for Secondary school contact mobile number");
                 //higher UG
             else if (!$("#<%=higher.ClientID%>").is(':hidden') && !($("#<%=rblhigherYes.ClientID%>").is(':checked') || $("#<%=rblhigherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Have you completed Senior Secondary school? (Year 12)?");
+                alert("Please select option for Have you completed Senior Secondary school? (Year 12)?");
             else if (!$("#<%=highercourse.ClientID%>").is(':hidden') && !($("#<%=rblhighercourseYes.ClientID%>").is(':checked') || $("#<%=rblhighercourseNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Course");
+                alert("Please select option for Higher Course");
             else if (!$("#<%=higherCountry.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationCountry of High School Education");
+                alert("Please select option for Higher EducationCountry of High School");
             else if (!$("#<%=higherstartDate.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDateYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstart date");    
+                alert("Please select option for Higher Educationstart date");    
             else if (!$("#<%=higherendDate.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDateYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationEnd date");
+                alert("Please select option for Higher EducationEnd date");
             else if (!$("#<%=higherschoolName.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNameYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool name");
+                alert("Please select option for Higher Educationschool name");
             else if (!$("#<%=higherQualificationtype.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypeYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationqualification type");
+                alert("Please select option for Higher Educationqualification name");
             else if (!$("#<%=higherstudymode.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodeYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstudy mode");
+                alert("Please select option for Higher Educationstudy mode");
             else if (!$("#<%=higherlanguage.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguageYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguageNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool language"); 
+                alert("Please select option for Higher Educationschool language"); 
             else if (!$("#<%=highergradetype.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypeYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade type");    
+                alert("Please select option for Higher Educationgrade type");    
             else if (!$("#<%=highergradeachieved.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade achieved");
+                alert("Please select option for Higher Educationgrade achieved");
             else if (!$("#<%=ExpectedHigherDategrade.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradeYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationexpected date");
+                alert("Please select option for Higher Educationexpected date");
             else if (!$("#<%=higherverify.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+                alert("Please select option for Higher EducationName of Contact who can verify this qualification ");
             else if (!$("#<%=higherrelation.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationrelationship with contact");
+                alert("Please select option for Higher Educationrelationship with contact");
             else if (!$("#<%=highercontactEmail.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationemail id of contact");
+                alert("Please select option for Higher Educationemail id of contact");
             else if (!$("#<%=highercontactMobile.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobileYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobileNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationcontact mobile number");
+                alert("Please select option for Higher Educationcontact mobile number");
                 //Higher PG            
             else if (!$("#<%=highercoursePG.ClientID%>").is(':hidden') && !($("#<%=rblhighercoursePGYes.ClientID%>").is(':checked') || $("#<%=rblhighercoursePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Course");
+                alert("Please select option for Higher Course");
             else if (!$("#<%=higherCountryPG.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryPGYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryPGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationCountry of High School Education");
+                alert("Please select option for Higher EducationCountry of High School");
             else if (!$("#<%=higherstartDatePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDatePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDatePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstart date");    
+                alert("Please select option for Higher Educationstart date");    
             else if (!$("#<%=higherendDatePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDatePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDatePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationEnd date");
+                alert("Please select option for Higher EducationEnd date");
             else if (!$("#<%=higherschoolNamePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNamePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNamePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool name");
+                alert("Please select option for Higher Educationschool name");
             else if (!$("#<%=higherQualificationtypePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationqualification type");
+                alert("Please select option for Higher Educationqualification name");
             else if (!$("#<%=higherstudymodePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstudy mode");
+                alert("Please select option for Higher Educationstudy mode");
             else if (!$("#<%=higherlanguagePG.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguagePGYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguagePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool language"); 
+                alert("Please select option for Higher Educationschool language"); 
             else if (!$("#<%=highergradetypePG.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypePGYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade type");    
+                alert("Please select option for Higher Educationgrade type");    
             else if (!$("#<%=highergradeachievedPG.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedPGYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedPGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade achieved");
+                alert("Please select option for Higher Educationgrade achieved");
             else if (!$("#<%=ExpectedHigherDategradePG.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradePGYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationexpected date");
+                alert("Please select option for Higher Educationexpected date");
             else if (!$("#<%=higherverifyPG.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyPGYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyPGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+                alert("Please select option for Higher EducationName of Contact who can verify this qualification ");
             else if (!$("#<%=higherrelationPG.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationPGYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationPGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationrelationship with contact");
+                alert("Please select option for Higher Educationrelationship with contact");
             else if (!$("#<%=highercontactEmailPG.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailPGYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailPGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationemail id of contact");
+                alert("Please select option for Higher Educationemail id of contact");
             else if (!$("#<%=highercontactMobilePG.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobilePGYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobilePGNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationcontact mobile number");
+                alert("Please select option for Higher Educationcontact mobile number");
                 //Higher PHD
            
             else if (!$("#<%=highercoursePhd.ClientID%>").is(':hidden') && !($("#<%=rblhighercoursePhdYes.ClientID%>").is(':checked') || $("#<%=rblhighercoursePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Course");
+                alert("Please select option for Higher Course");
             else if (!$("#<%=higherCountryPhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryPhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryPhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationCountry of High School Education");
+                alert("Please select option for Higher EducationCountry of High School");
             else if (!$("#<%=higherstartDatePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDatePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDatePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstart date");    
+                alert("Please select option for Higher Educationstart date");    
             else if (!$("#<%=higherendDatePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDatePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDatePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationEnd date");
+                alert("Please select option for Higher EducationEnd date");
             else if (!$("#<%=higherschoolNamePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNamePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNamePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool name");
+                alert("Please select option for Higher Educationschool name");
             else if (!$("#<%=higherQualificationtypePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationqualification type");
+                alert("Please select option for Higher Educationqualification name");
             else if (!$("#<%=higherstudymodePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstudy mode");
+                alert("Please select option for Higher Educationstudy mode");
             else if (!$("#<%=higherlanguagePhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguagePhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguagePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool language"); 
+                alert("Please select option for Higher Educationschool language"); 
             else if (!$("#<%=highergradetypePhd.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypePhdYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade type");    
+                alert("Please select option for Higher Educationgrade type");    
             else if (!$("#<%=highergradeachievedPhd.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedPhdYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedPhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade achieved");
+                alert("Please select option for Higher Educationgrade achieved");
             else if (!$("#<%=ExpectedHigherDategradePhd.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradePhdYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationexpected date");
+                alert("Please select option for Higher Educationexpected date");
             else if (!$("#<%=higherverifyPhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyPhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyPhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+                alert("Please select option for Higher EducationName of Contact who can verify this qualification ");
             else if (!$("#<%=higherrelationPhd.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationPhdYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationPhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationrelationship with contact");
+                alert("Please select option for Higher Educationrelationship with contact");
             else if (!$("#<%=highercontactEmailPhd.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailPhdYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailPhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationemail id of contact");
+                alert("Please select option for Higher Educationemail id of contact");
             else if (!$("#<%=highercontactMobilePhd.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobilePhdYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobilePhdNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationcontact mobile number");
+                alert("Please select option for Higher Educationcontact mobile number");
     
                 //Higher Other           
             else if (!$("#<%=highercourseOther.ClientID%>").is(':hidden') && !($("#<%=rblOtherHigherCourseNo.ClientID%>").is(':checked') || $("#<%=rblOtherHigherCourseYes.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Course");
+                alert("Please select option for Higher Course");
             else if (!$("#<%=higherCountryOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherCountryOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherCountryOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationCountry of High School Education");
+                alert("Please select option for Higher EducationCountry of High School");
             else if (!$("#<%=higherstartDateOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherstartDateOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherstartDateOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstart date");    
+                alert("Please select option for Higher Educationstart date");    
             else if (!$("#<%=higherendDateOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherendDateOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherendDateOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationEnd date");
+                alert("Please select option for Higher EducationEnd date");
             else if (!$("#<%=higherschoolNameOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherschoolNameOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherschoolNameOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool name");
+                alert("Please select option for Higher Educationschool name");
             else if (!$("#<%=higherQualificationtypeOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherQualificationtypeOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherQualificationtypeOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationqualification type");
+                alert("Please select option for Higher Educationqualification name");
             else if (!$("#<%=higherstudymodeOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherstudymodeOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherstudymodeOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationstudy mode");
+                alert("Please select option for Higher Educationstudy mode");
             else if (!$("#<%=higherlanguageOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherlanguageOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherlanguageOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationschool language"); 
+                alert("Please select option for Higher Educationschool language"); 
             else if (!$("#<%=highergradetypeOther.ClientID%>").is(':hidden') && !($("#<%=rblhighergradetypeOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighergradetypeOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade type");    
+                alert("Please select option for Higher Educationgrade type");    
             else if (!$("#<%=highergradeachievedOther.ClientID%>").is(':hidden') && !($("#<%=rblhighergradeachievedOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighergradeachievedOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationgrade achieved");
+                alert("Please select option for Higher Educationgrade achieved");
             else if (!$("#<%=ExpectedHigherDategradeOther.ClientID%>").is(':hidden') && !($("#<%=rblExpectedHigherDategradeOtherYes.ClientID%>").is(':checked') || $("#<%=rblExpectedHigherDategradeOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationexpected date");
+                alert("Please select option for Higher Educationexpected date");
             else if (!$("#<%=higherverifyOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherverifyOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherverifyOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher EducationName of Contact who can verify this qualification ");
+                alert("Please select option for Higher EducationName of Contact who can verify this qualification ");
             else if (!$("#<%=higherrelationOther.ClientID%>").is(':hidden') && !($("#<%=rblhigherrelationOtherYes.ClientID%>").is(':checked') || $("#<%=rblhigherrelationOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationrelationship with contact");
+                alert("Please select option for Higher Educationrelationship with contact");
             else if (!$("#<%=highercontactEmailOther.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactEmailOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactEmailOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationemail id of contact");
+                alert("Please select option for Higher Educationemail id of contact");
             else if (!$("#<%=highercontactMobileOther.ClientID%>").is(':hidden') && !($("#<%=rblhighercontactMobileOtherYes.ClientID%>").is(':checked') || $("#<%=rblhighercontactMobileOtherNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Higher Educationcontact mobile number");
+                alert("Please select option for Higher Educationcontact mobile number");
                 
             else
                 flag = true;

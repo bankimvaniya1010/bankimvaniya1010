@@ -160,7 +160,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         highschool.Attributes.Add("style", "display:block;");
                         labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY OF HIGH SCHOOL EDUCATION":
+                    case "COUNTRY OF HIGH SCHOOL":
                         highschoolCountry.Attributes.Add("style", "display:block;");
                         labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -194,7 +194,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         diplomaschoolName.Attributes.Add("style", "display:block;");
                         labeldiplomaschoolName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "QUALIFICATION TYPE":
+                    case "QUALIFICATION NAME":
                         highschoolQualificationtype.Attributes.Add("style", "display:block;");
                         labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryQualificationtype.Attributes.Add("style", "display:block;");
@@ -379,7 +379,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         ichighschool.Attributes.Add("style", "display:block;");
                         ichighschool.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COUNTRY OF HIGH SCHOOL EDUCATION":
+                    case "COUNTRY OF HIGH SCHOOL":
                         ichighschoolCountry.Attributes.Add("style", "display:block;");
                         ichighschoolCountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -413,7 +413,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         icdiplomaschoolName.Attributes.Add("style", "display:block;");
                         icdiplomaschoolName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "QUALIFICATION TYPE":
+                    case "QUALIFICATION NAME":
                         ichighschoolQualificationtype.Attributes.Add("style", "display:block;");
                         ichighschoolQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondaryQualificationtype.Attributes.Add("style", "display:block;");

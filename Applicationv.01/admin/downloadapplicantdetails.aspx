@@ -138,7 +138,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="lastname" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labellastname" runat="server" for="lastname">Last Name *</label>
+                                                <label id="labellastname" runat="server" for="lastname">Family Name *</label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -160,7 +160,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="passportsameasLastName" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelpassportsameasLastName" runat="server" for="firstname">Passport Last Name same as Above</label>
+                                                <label id="labelpassportsameasLastName" runat="server" for="firstname">Passport Family Name same as Above</label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -206,7 +206,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="middlename" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelmiddlename" runat="server" for="middlename">Other middle names</label>
+                                                <label id="labelmiddlename" runat="server" for="middlename">Middle Name(s)</label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -294,7 +294,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="nationality" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelNationality" runat="server" for="Nationality">Nationality and citizenship</label></td>
+                                                <label id="labelNationality" runat="server" for="Nationality">Citizenship</label></td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
                                                     <tr>
@@ -416,7 +416,7 @@
 
                                         <tr class="adm-form-row-tr" id="secondNation" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelSecondNation" runat="server" for="SecondNationality">Nationality and citizenship</label></td>
+                                                <label id="labelSecondNation" runat="server" for="SecondNationality">Citizenship</label></td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
                                                     <tr>
@@ -1628,7 +1628,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="highschoolCountry" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelhighschoolCountry" runat="server" for="highschoolCountry">Country of High School Education</label>
+                                                <label id="labelhighschoolCountry" runat="server" for="highschoolCountry">Country of High School</label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -1721,7 +1721,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="highschoolQualificationtype" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype">Qualification Type</label>
+                                                <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype">Qualification Name</label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -2073,7 +2073,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="SecondaryQualificationtype" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype">Qualification Type</label>
+                                                <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype">Qualification Name</label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">
@@ -2452,7 +2452,7 @@
                                                     </tr>
                                                     <tr class="adm-form-row-tr" id="higherQualificationtype" runat="server" visible="false">
                                                         <td class="width30 td-rightlabel">
-                                                            <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype">Qualification Type</label>
+                                                            <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
                                                             <table cellpadding="0" cellspacing="0" class="table">
@@ -2809,7 +2809,7 @@
                                                     </tr>
                                                     <tr class="adm-form-row-tr" id="higherQualificationtypePG" runat="server" visible="false">
                                                         <td class="width30 td-rightlabel">
-                                                            <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype">Qualification Type</label>
+                                                            <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
                                                             <table cellpadding="0" cellspacing="0" class="table">
@@ -3166,7 +3166,7 @@
                                                     </tr>
                                                     <tr class="adm-form-row-tr" id="higherQualificationtypePhd" runat="server" visible="false">
                                                         <td class="width30 td-rightlabel">
-                                                            <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype">Qualification Type</label>
+                                                            <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
                                                             <table cellpadding="0" cellspacing="0" class="table">
@@ -3523,7 +3523,7 @@
                                                     </tr>
                                                     <tr class="adm-form-row-tr" id="higherQualificationtypeOther" runat="server" visible="false">
                                                         <td class="width30 td-rightlabel">
-                                                            <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype">Qualification Type</label>
+                                                            <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype">Qualification Name</label>
                                                         </td>
                                                         <td class="width70">
                                                             <table cellpadding="0" cellspacing="0" class="table">
@@ -3877,7 +3877,7 @@
                                         </tr>
                                         <tr class="adm-form-row-tr" id="diplomaQualificationtype" runat="server" visible="false">
                                             <td class="width30 td-rightlabel">
-                                                <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype">Qualification Type</label>
+                                                <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype">Qualification Name</label>
                                             </td>
                                             <td class="width70">
                                                 <table cellpadding="0" cellspacing="0" class="table">

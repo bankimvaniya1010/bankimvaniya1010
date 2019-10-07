@@ -47,7 +47,7 @@
                             <div class="list-group-item" id="middlename" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-middlename">
                                     <div class="form-row">
-                                        <label id="labelmiddlename" runat="server" for="middlename" class="col-md-3 col-form-label form-label">Other middle names</label>
+                                        <label id="labelmiddlename" runat="server" for="middlename" class="col-md-3 col-form-label form-label">Middle Name(s)</label>
                                         <div class="col-md-6">
                                             <input id="txtMiddleName" runat="server" type="text" placeholder="As they appear in your passport
 
@@ -61,16 +61,16 @@
                             <div class="list-group-item" id="lastname" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-lastname">
                                     <div class="form-row">
-                                        <label id="labellastname" runat="server" for="lastname" class="col-md-3 col-form-label form-label">Last Name *</label>
+                                        <label id="labellastname" runat="server" for="lastname" class="col-md-3 col-form-label form-label">Family Name *</label>
                                         <div class="col-md-6">
-                                            <input id="txtLastName" runat="server" type="text" class="form-control" placeholder="Last name as it appears in your passport
+                                            <input id="txtLastName" runat="server" type="text" class="form-control" placeholder="Family name as it appears in your passport
 
 "
                                                 required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                           
                                     </div>
                                     </div>
-                                    <asp:CheckBox ID="passportLastName" runat="server" /><span class="form-label">Please Confirm the last name is same as in your passport</span>
+                                    <asp:CheckBox ID="passportLastName" runat="server" /><span class="form-label">Please Confirm the family name is same as in your passport</span>
                                 </div>
                             </div>
                             <div class="list-group-item" id="preferedname" runat="server" style="display: none">
@@ -112,6 +112,8 @@
                                         <div class="col-md-6">
                                             <input type="radio" id="rbtnMale" runat="server" name="gender" required>Male</input>
                                             <input type="radio" id="rbtnFemale" runat="server" name="gender" required>Female</input>
+                                            <input type="radio" id="rbtnOther" runat="server" name="gender" required>Other</input>
+                                            <input type="radio" id="rbtnPreferNot" runat="server" name="gender" required>Prefer not to say</input>
                                              <span class="helpicon"><i id="icGender" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -120,7 +122,7 @@
                             <div class="list-group-item" id="nationality" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Nationality">
                                     <div class="form-row">
-                                        <label id="labelNationality" runat="server" for="Nationality" class="col-md-3 col-form-label form-label">Nationality and citizenship</label>
+                                        <label id="labelNationality" runat="server" for="Nationality" class="col-md-3 col-form-label form-label">Citizenship</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlNationality" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -170,7 +172,7 @@
                             <div class="list-group-item" id="secondNation" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-SecondNationality">
                                     <div class="form-row">
-                                        <label id="labelSecondNation" runat="server" for="SecondNationality" class="col-md-3 col-form-label form-label">Nationality and citizenship</label>
+                                        <label id="labelSecondNation" runat="server" for="SecondNationality" class="col-md-3 col-form-label form-label">Citizenship</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlOtherNation" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
@@ -522,16 +524,16 @@
             else if (!$("#<%=passportFirstName.ClientID%>").prop('checked'))
                 alert("Kindly confirm first name is same as passport name");
             else if (!$("#<%=lastname.ClientID%>").is(':hidden') && $("#<%=txtLastName.ClientID%>").val() == "")
-                alert("Please enter last name");
+                alert("Please enter family name");
             else if (!$("#<%=passportLastName.ClientID%>").prop('checked'))
-                alert("Kindly confirm last name is same as passport name");
+                alert("Kindly confirm family name is same as passport name");
           <%--  else if (!$("#<%=preferedname.ClientID%>").is(':hidden') && $("#<%=txtPreferedName.ClientID%>").val() == "")
                 alert("Please enter prefered name");
             else if (!$("#<%=middlename.ClientID%>").is(':hidden') && $("#<%=txtMiddleName.ClientID%>").val() == "")
                 alert("Please enter middle name");
             else if (!$("#<%=passportMiddleName.ClientID%>").prop('checked'))
                 alert("Kindly confirm middle name is same as passport name");--%>
-            else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked')))
+            else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rbtnFemale.ClientID%>").is(':checked') || $("#<%=rbtnMale.ClientID%>").is(':checked') || $("#<%=rbtnOther.ClientID%>").is(':checked') || $("#<%=rbtnPreferNot.ClientID%>").is(':checked')))
                 alert("Please Select Option to record Gender");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && (($("#<%=ddlDay.ClientID%>").val() == "0") || ($("#<%=ddlMonth.ClientID%>").val() == "0") || ($("#<%=ddlYear.ClientID%>").val() == "0") || ($("#<%=hidDOBDate.ClientID%>").val() == "")))
                 alert("Please Select valid date of birth");

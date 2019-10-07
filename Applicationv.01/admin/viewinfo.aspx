@@ -53,7 +53,7 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                OTHER MIDDLE NAMES: <%= objApplicant[0].middlename == null ? "" : objApplicant[0].middlename.ToString() %>
+                                                MIDDLE NAME(S): <%= objApplicant[0].middlename == null ? "" : objApplicant[0].middlename.ToString() %>
                                             </div>
                                             <div class="col-md-6">
                                                 DATE OF BIRTH:<%=objApplicant[0].dateofbirth == null ? "" : Convert.ToDateTime(objApplicant[0].dateofbirth).ToString("yyyy-MM-dd") %>
@@ -66,10 +66,16 @@
                                         <div class="form-row">
 
                                             <div class="col-md-6">
-                                                GENDER:<%= objApplicant[0].gender.ToString() == "1" ? "Male" : "Female" %>
+                                                <%  string gender = string.Empty;
+                                                    if (objApplicant[0].gender.ToString() == "1") gender = "Male";
+                                                    else if (objApplicant[0].gender.ToString() == "0") gender = "Female";
+                                                    else if (objApplicant[0].gender.ToString() == "2") gender = "Other";
+                                                    else if (objApplicant[0].gender.ToString() == "3") gender = "Prefer not to say";
+                                                %>
+                                                GENDER:<%= gender%>
                                             </div>
                                             <div class="col-md-6">
-                                                NATIONALITY AND CITIZENSHIP:<%=objComm.GetCountryDiscription(Convert.ToInt32(objApplicant[0].nationality)) %>
+                                                CITIZENSHIP:<%=objComm.GetCountryDiscription(Convert.ToInt32(objApplicant[0].nationality)) %>
                                             </div>
                                         </div>
                                     </div>
@@ -307,7 +313,7 @@
                                                 Completed High School:<%= objEdu[0].ishighschooldone.ToString() == "1" ? "Yes" : "No" %>
                                             </div>
                                             <div class="col-md-6">
-                                                COUNTRY OF HIGH SCHOOL EDUCATION:<%=objComm.GetCountryDiscription(Convert.ToInt32(objEdu[0].highschoolcountry)) %>
+                                                COUNTRY OF HIGH SCHOOL:<%=objComm.GetCountryDiscription(Convert.ToInt32(objEdu[0].highschoolcountry)) %>
                                             </div>
                                         </div>
                                     </div>
@@ -333,7 +339,7 @@
                                                 NAME OF SCHOOL:<%= objEdu[0].highschoolname == null ? "" : objEdu[0].highschoolname.ToString() %>
                                             </div>
                                             <div class="col-md-6">
-                                                QUALIFICATION TYPE:<%= objEdu[0].highschoolqualificationtype == null ? "" : objEdu[0].highschoolqualificationtype.ToString() %>
+                                                QUALIFICATION NAME:<%= objEdu[0].highschoolqualificationtype == null ? "" : objEdu[0].highschoolqualificationtype.ToString() %>
                                             </div>
                                         </div>
                                     </div>
@@ -438,7 +444,7 @@
                                                 NAME OF SCHOOL:<%= objEdu[0].secondaryname == null ? "" : objEdu[0].secondaryname.ToString() %>
                                             </div>
                                             <div class="col-md-6">
-                                                QUALIFICATION TYPE:<%= objEdu[0].secondaryqualificationtype == null ? "" : objEdu[0].secondaryqualificationtype.ToString() %>
+                                                QUALIFICATION NAME:<%= objEdu[0].secondaryqualificationtype == null ? "" : objEdu[0].secondaryqualificationtype.ToString() %>
                                             </div>
                                         </div>
                                     </div>
@@ -545,7 +551,7 @@
                                                 NAME OF SCHOOL:<%= objHigherEdu[i].schoolname == null ? "" :objHigherEdu[i].schoolname.ToString() %>
                                             </div>
                                             <div class="col-md-6">
-                                                QUALIFICATION TYPE:<%= objHigherEdu[i].qualificationtype == null ? "" : objHigherEdu[i].qualificationtype.ToString() %>
+                                                QUALIFICATION NAME:<%= objHigherEdu[i].qualificationtype == null ? "" : objHigherEdu[i].qualificationtype.ToString() %>
                                             </div>
                                         </div>
                                     </div>
@@ -651,7 +657,7 @@
                                                 NAME OF SCHOOL:<%= objEdu[0].diplomaschoolname == null ? "" : objEdu[0].diplomaschoolname.ToString() %>
                                             </div>
                                             <div class="col-md-6">
-                                                QUALIFICATION TYPE:<%= objEdu[0].diplomaqualificationtype == null ? "" : objEdu[0].diplomaqualificationtype.ToString() %>
+                                                QUALIFICATION NAME:<%= objEdu[0].diplomaqualificationtype == null ? "" : objEdu[0].diplomaqualificationtype.ToString() %>
                                             </div>
                                         </div>
                                     </div>

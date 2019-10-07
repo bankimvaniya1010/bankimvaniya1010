@@ -285,6 +285,11 @@ public partial class personaldetails : System.Web.UI.Page
                     rbtnMale.Checked = true;
                 else if (profileInfo.gender == 0)
                     rbtnFemale.Checked = true;
+                else if (profileInfo.gender == 2)
+                    rbtnOther.Checked = true;
+                else if (profileInfo.gender == 3)
+                    rbtnPreferNot.Checked = true;
+
                 if (profileInfo.higheststudycompleted != null) {
                     ddlhigheststudy.ClearSelection();
                     ddlhigheststudy.Items.FindByValue(profileInfo.higheststudycompleted.ToString()).Selected = true;
@@ -472,6 +477,11 @@ public partial class personaldetails : System.Web.UI.Page
                 objapplicantDetail.gender = 1;
             else if (rbtnFemale.Checked)
                 objapplicantDetail.gender = 0;
+            else if (rbtnOther.Checked)
+                objapplicantDetail.gender = 2;
+            else if (rbtnPreferNot.Checked)
+                objapplicantDetail.gender = 3;
+
             if (ddlNationality.SelectedValue != "")
             {
                 string[] array = ddlNationality.SelectedValue.Split('_');
@@ -596,7 +606,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icfirstname.Attributes.Add("style", "display:block;");
                         icfirstname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "LAST NAME":
+                    case "FAMILY NAME":
                         iclastname.Attributes.Add("style", "display:block;");
                         iclastname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -604,7 +614,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icPreferredname.Attributes.Add("style", "display:block;");
                         icPreferredname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "OTHER MIDDLE NAMES":
+                    case "MIDDLE NAME(S)":
                         icmiddlename.Attributes.Add("style", "display:block;");
                         icmiddlename.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -616,7 +626,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icGender.Attributes.Add("style", "display:block;");
                         icGender.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "NATIONALITY AND CITIZENSHIP":
+                    case "CITIZENSHIP":
                         icNationality.Attributes.Add("style", "display:block;");
                         icNationality.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -717,7 +727,7 @@ public partial class personaldetails : System.Web.UI.Page
                         firstname.Attributes.Add("style", "display:block;");
                         labelfirstname.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LAST NAME":
+                    case "FAMILY NAME":
                         lastname.Attributes.Add("style", "display:block;");
                         labellastname.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -725,7 +735,7 @@ public partial class personaldetails : System.Web.UI.Page
                         preferedname.Attributes.Add("style", "display:block;");
                         labelpreferreName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "OTHER MIDDLE NAMES":
+                    case "MIDDLE NAME(S)":
                         middlename.Attributes.Add("style", "display:block;");
                         labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -737,7 +747,7 @@ public partial class personaldetails : System.Web.UI.Page
                         gender.Attributes.Add("style", "display:block;");
                         labelgender.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "NATIONALITY AND CITIZENSHIP":
+                    case "CITIZENSHIP":
                         nationality.Attributes.Add("style", "display:block;");
                         labelNationality.InnerHtml = setInnerHtml(fields[k]);
                         break;

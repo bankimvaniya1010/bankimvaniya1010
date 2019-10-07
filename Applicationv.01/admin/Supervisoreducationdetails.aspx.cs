@@ -90,7 +90,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         highschool.Attributes.Add("style", "display:block;");
                         labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY OF HIGH SCHOOL EDUCATION":
+                    case "COUNTRY OF HIGH SCHOOL":
                         highschoolCountry.Attributes.Add("style", "display:block;");
                         labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -142,7 +142,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         higherschoolNameOther.Attributes.Add("style", "display:block;");
                         labelhigherschoolNameOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "QUALIFICATION TYPE":
+                    case "QUALIFICATION NAME":
                         highschoolQualificationtype.Attributes.Add("style", "display:block;");
                         labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryQualificationtype.Attributes.Add("style", "display:block;");
@@ -970,7 +970,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                     lblhighschoolComments.Text = setComments(Comments[k]);
                     break;
                
-                case "Country of High School Education":
+                case "Country of High School":
                     if (Comments[k].adminaction == 0)
                         rblhighschoolCountryNo.Checked = true;
                     else
@@ -998,7 +998,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rblhighschoolNameYes.Checked = true;
                     lblhighschoolNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(HighSchool)":
+                case "Qualification Name(HighSchool)":
                     if (Comments[k].adminaction == 0)
                         rblhighschoolQualificationtypeNo.Checked = true;
                     else
@@ -1110,7 +1110,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rblSecondaryschoolNameYes.Checked = true;
                     lblSecondaryschoolNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Secondary)":
+                case "Qualification Name(Secondary)":
                     if (Comments[k].adminaction == 0)
                         rblSecondaryQualificationtypeNo.Checked = true;
                     else
@@ -1222,7 +1222,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rbldiplomaschoolNameYes.Checked = true;
                     lbldiplomaschoolNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Diploma)":
+                case "Qualification Name(Diploma)":
                     if (Comments[k].adminaction == 0)
                         rbldiplomaQualificationtypeNo.Checked = true;
                     else
@@ -1341,7 +1341,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rblhigherschoolNameYes.Checked = true;
                     lblhigherschoolNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(UG)":
+                case "Qualification Name(UG)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypeNo.Checked = true;
                     else
@@ -1446,7 +1446,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rblhigherschoolNamePGYes.Checked = true;
                     lblhigherschoolNamePGComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(PG)":
+                case "Qualification Name(PG)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypePGNo.Checked = true;
                     else
@@ -1551,7 +1551,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rblhigherschoolNamePhdYes.Checked = true;
                     lblhigherschoolNamePhdComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Phd)":
+                case "Qualification Name(Phd)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypePhdNo.Checked = true;
                     else
@@ -1656,7 +1656,7 @@ public partial class admin_Supervisoreducationdetails : System.Web.UI.Page
                         rblhigherschoolNameOtherYes.Checked = true;
                     lblhigherschoolNameOtherComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Other)":
+                case "Qualification Name(Other)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypeOtherNo.Checked = true;
                     else

@@ -32,7 +32,7 @@
                 <div class="list-group-item" id="highschoolCountry" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolCountry">
                         <div class="form-row">
-                            <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School Education</label>
+                            <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lblhighschoolCountry" runat="server"></asp:Label>
                             </div>
@@ -689,7 +689,7 @@
                         <div class="list-group-item" id="higherQualificationtype" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblhigherQualificationtype" runat="server"></asp:Label>
                                     </div>
@@ -919,7 +919,7 @@
                         <div class="list-group-item" id="higherQualificationtypePG" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtypePG" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblhigherQualificationtypePG" runat="server"></asp:Label>
                                     </div>
@@ -1149,7 +1149,7 @@
                         <div class="list-group-item" id="higherQualificationtypePhd" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtypePhd" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblhigherQualificationtypePhd" runat="server"></asp:Label>
                                     </div>
@@ -1378,7 +1378,7 @@
                         <div class="list-group-item" id="higherQualificationtypeOther" runat="server" style="display: none">
                             <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                 <div class="form-row">
-                                    <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                    <label id="labelhigherQualificationtypeOther" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                     <div class="col-md-4">
                                         <asp:Label ID="lblhigherQualificationtypeOther" runat="server"></asp:Label>
                                     </div>
@@ -1666,7 +1666,7 @@
                 <div class="list-group-item" id="diplomaQualificationtype" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-diplomaQualificationtype">
                         <div class="form-row">
-                            <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                            <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                             <div class="col-md-4">
                                 <asp:Label ID="lbldiplomaQualificationtype" runat="server"></asp:Label>
                             </div>

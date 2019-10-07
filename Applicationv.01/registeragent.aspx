@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label class="form-label" for="name">Name:</label>
                             <div class="input-group input-group-merge">
-                                <input id="name" type="text" runat="server" required="" class="form-control form-control-prepended" placeholder="Your first and last name">
+                                <input id="name" type="text" runat="server" required="" class="form-control form-control-prepended" placeholder="Your first and family name">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-user"></span>
