@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Dashbaord</li>
+            <li class="breadcrumb-item active">Dashboard</li>
         </ol>
-        <h1 class="h2">Dashbaord</h1>
+        <h1 class="h2">Dashboard</h1>
 
         <div class="card">
 

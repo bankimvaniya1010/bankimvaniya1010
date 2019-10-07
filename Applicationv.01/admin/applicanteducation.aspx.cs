@@ -91,7 +91,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         highschool.Attributes.Add("style", "display:block;");
                         labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY OF HIGH SCHOOL EDUCATION":
+                    case "COUNTRY OF HIGH SCHOOL":
                         highschoolCountry.Attributes.Add("style", "display:block;");
                         labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -143,7 +143,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         higherschoolNameOther.Attributes.Add("style", "display:block;");
                         labelhigherschoolNameOther.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "QUALIFICATION TYPE":
+                    case "QUALIFICATION NAME":
                         highschoolQualificationtype.Attributes.Add("style", "display:block;");
                         labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         SecondaryQualificationtype.Attributes.Add("style", "display:block;");
@@ -386,7 +386,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         ichighschool.Attributes.Add("style", "display:block;");
                         ichighschool.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COUNTRY OF HIGH SCHOOL EDUCATION":
+                    case "COUNTRY OF HIGH SCHOOL":
                         ichighschoolCountry.Attributes.Add("style", "display:block;");
                         ichighschoolCountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -438,7 +438,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         ichigherschoolNameOther.Attributes.Add("style", "display:block;");
                         ichigherschoolNameOther.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "QUALIFICATION TYPE":
+                    case "QUALIFICATION NAME":
                         ichighschoolQualificationtype.Attributes.Add("style", "display:block;");
                         ichighschoolQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondaryQualificationtype.Attributes.Add("style", "display:block;");
@@ -1288,7 +1288,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                     txthighschool.Value = setComments(Comments[k]);
                     break;
              
-                case "Country of High School Education":
+                case "Country of High School":
                     if (Comments[k].adminaction == 0)
                         rblhighschoolCountryNo.Checked = true;
                     else
@@ -1316,7 +1316,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rblhighschoolNameYes.Checked = true;
                     txthighschoolName.Value = setComments(Comments[k]);
                     break;
-                case "Qualification Type(HighSchool)":
+                case "Qualification Name(HighSchool)":
                     if (Comments[k].adminaction == 0)
                         rblhighschoolQualificationtypeNo.Checked = true;
                     else
@@ -1428,7 +1428,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rblSecondaryschoolNameYes.Checked = true;
                     txtSecondaryschoolName.Value = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Secondary)":
+                case "Qualification Name(Secondary)":
                     if (Comments[k].adminaction == 0)
                         rblSecondaryQualificationtypeNo.Checked = true;
                     else
@@ -1540,7 +1540,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rbldiplomaschoolNameYes.Checked = true;
                     txtdiplomaschoolName.Value = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Diploma)":
+                case "Qualification Name(Diploma)":
                     if (Comments[k].adminaction == 0)
                         rbldiplomaQualificationtypeNo.Checked = true;
                     else
@@ -1659,7 +1659,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rblhigherschoolNameYes.Checked = true;
                     txthigherschoolName.Value = setComments(Comments[k]);
                     break;
-                case "Qualification Type(UG)":
+                case "Qualification Name(UG)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypeNo.Checked = true;
                     else
@@ -1764,7 +1764,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rblhigherschoolNamePGYes.Checked = true;
                     txthigherschoolNamePG.Value = setComments(Comments[k]);
                     break;
-                case "Qualification Type(PG)":
+                case "Qualification Name(PG)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypePGNo.Checked = true;
                     else
@@ -1869,7 +1869,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rblhigherschoolNamePhdYes.Checked = true;
                     txthigherschoolNamePhd.Value = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Phd)":
+                case "Qualification Name(Phd)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypePhdNo.Checked = true;
                     else
@@ -1974,7 +1974,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                         rblhigherschoolNameOtherYes.Checked = true;
                     txthigherschoolNameOther.Value = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Other)":
+                case "Qualification Name(Other)":
                     if (Comments[k].adminaction == 0)
                         rblhigherQualificationtypeOtherNo.Checked = true;
                     else
@@ -2071,7 +2071,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
             {
                 adminInputs.Add("Have you completed high school", txthighschool.Value.Trim() + "~" + (rblhighschoolNo.Checked == true ? 0 : 1));
                 if (highschoolCountry.Style.Value != "display: none")
-                    adminInputs.Add("Country of High School Education", txthighschoolCountry.Value.Trim() + "~" + (rblhighschoolCountryNo.Checked == true ? 0 : 1));
+                    adminInputs.Add("Country of High School", txthighschoolCountry.Value.Trim() + "~" + (rblhighschoolCountryNo.Checked == true ? 0 : 1));
                 if (highschoolstartDate.Style.Value != "display: none")
                     adminInputs.Add("High School Start Date", txthighschoolstartDate.Value.Trim() + "~" + (rblhighschoolstartDateNo.Checked == true ? 0 : 1));
                 if (highschoolendDate.Style.Value != "display: none")
@@ -2079,7 +2079,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 if (highschoolName.Style.Value != "display: none")
                     adminInputs.Add("Name of School(HighSchool)", txthighschoolName.Value.Trim() + "~" + (rblhighschoolNameNo.Checked == true ? 0 : 1));
                 if (highschoolQualificationtype.Style.Value != "display: none")
-                    adminInputs.Add("Qualification Type(HighSchool)", txthighschoolQualificationtype.Value.Trim() + "~" + (rblhighschoolQualificationtypeNo.Checked == true ? 0 : 1));
+                    adminInputs.Add("Qualification Name(HighSchool)", txthighschoolQualificationtype.Value.Trim() + "~" + (rblhighschoolQualificationtypeNo.Checked == true ? 0 : 1));
                 if (highschoolstudymode.Style.Value != "display: none")
                     adminInputs.Add("Mode of study(HighSchool)", txthighschoolstudymode.Value.Trim() + "~" + (rblhighschoolstudymodeNo.Checked == true ? 0 : 1));
                 if (highschoollanguage.Style.Value != "display: none")
@@ -2118,7 +2118,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 if (SecondaryschoolName.Style.Value != "display: none")
                     adminInputs.Add("Name of School(Secondary)", txtSecondaryschoolName.Value.Trim() + "~" + (rblSecondaryschoolNameNo.Checked == true ? 0 : 1));
                 if (SecondaryQualificationtype.Style.Value != "display: none")
-                    adminInputs.Add("Qualification Type(Secondary)", txtSecondaryQualificationtype.Value.Trim() + "~" + (rblSecondaryQualificationtypeNo.Checked == true ? 0 : 1));
+                    adminInputs.Add("Qualification Name(Secondary)", txtSecondaryQualificationtype.Value.Trim() + "~" + (rblSecondaryQualificationtypeNo.Checked == true ? 0 : 1));
                 if (Secondarystudymode.Style.Value != "display: none")
                     adminInputs.Add("Mode of study(Secondary)", txtSecondarystudymode.Value.Trim() + "~" + (rblSecondarystudymodeNo.Checked == true ? 0 : 1));
                 if (Secondarylanguage.Style.Value != "display: none")
@@ -2158,7 +2158,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                 if (diplomaschoolName.Style.Value != "display: none")
                     adminInputs.Add("Name of School(Diploma)", txtdiplomaschoolName.Value.Trim() + "~" + (rbldiplomaschoolNameNo.Checked == true ? 0 : 1));
                 if (diplomaQualificationtype.Style.Value != "display: none")
-                    adminInputs.Add("Qualification Type(Diploma)", txtdiplomaQualificationtype.Value.Trim() + "~" + (rbldiplomaQualificationtypeNo.Checked == true ? 0 : 1));
+                    adminInputs.Add("Qualification Name(Diploma)", txtdiplomaQualificationtype.Value.Trim() + "~" + (rbldiplomaQualificationtypeNo.Checked == true ? 0 : 1));
                 if (diplomastudymode.Style.Value != "display: none")
                     adminInputs.Add("Mode of study(Diploma)", txtdiplomastudymode.Value.Trim() + "~" + (rbldiplomastudymodeNo.Checked == true ? 0 : 1));
                 if (diplomalanguage.Style.Value != "display: none")
@@ -2203,7 +2203,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                     if (higherschoolName.Style.Value != "display: none")
                         adminInputs.Add("Name of School(UG)", txthigherschoolName.Value.Trim() + "~" + (rblhigherschoolNameNo.Checked == true ? 0 : 1));
                     if (higherQualificationtype.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(UG)", txthigherQualificationtype.Value.Trim() + "~" + (rblhigherQualificationtypeNo.Checked == true ? 0 : 1));
+                        adminInputs.Add("Qualification Name(UG)", txthigherQualificationtype.Value.Trim() + "~" + (rblhigherQualificationtypeNo.Checked == true ? 0 : 1));
                     if (higherstudymode.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(UG)", txthigherstudymode.Value.Trim() + "~" + (rblhigherstudymodeNo.Checked == true ? 0 : 1));
                     if (higherlanguage.Style.Value != "display: none")
@@ -2236,7 +2236,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                     if (higherschoolNamePG.Style.Value != "display: none")
                         adminInputs.Add("Name of School(PG)", txthigherschoolNamePG.Value.Trim() + "~" + (rblhigherschoolNamePGNo.Checked == true ? 0 : 1));
                     if (higherQualificationtypePG.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(PG)", txthigherQualificationtypePG.Value.Trim() + "~" + (rblhigherQualificationtypePGNo.Checked == true ? 0 : 1));
+                        adminInputs.Add("Qualification Name(PG)", txthigherQualificationtypePG.Value.Trim() + "~" + (rblhigherQualificationtypePGNo.Checked == true ? 0 : 1));
                     if (higherstudymodePG.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(PG)", txthigherstudymodePG.Value.Trim() + "~" + (rblhigherstudymodePGNo.Checked == true ? 0 : 1));
                     if (higherlanguagePG.Style.Value != "display: none")
@@ -2269,7 +2269,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                     if (higherschoolNamePhd.Style.Value != "display: none")
                         adminInputs.Add("Name of School(Phd)", txthigherschoolNamePhd.Value.Trim() + "~" + (rblhigherschoolNamePhdNo.Checked == true ? 0 : 1));
                     if (higherQualificationtypePhd.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(Phd)", txthigherQualificationtypePhd.Value.Trim() + "~" + (rblhigherQualificationtypePhdNo.Checked == true ? 0 : 1));
+                        adminInputs.Add("Qualification Name(Phd)", txthigherQualificationtypePhd.Value.Trim() + "~" + (rblhigherQualificationtypePhdNo.Checked == true ? 0 : 1));
                     if (higherstudymodePhd.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(Phd)", txthigherstudymodePhd.Value.Trim() + "~" + (rblhigherstudymodePhdNo.Checked == true ? 0 : 1));
                     if (higherlanguagePhd.Style.Value != "display: none")
@@ -2302,7 +2302,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                     if (higherschoolNameOther.Style.Value != "display: none")
                         adminInputs.Add("Name of School(Other)", txthigherschoolNameOther.Value.Trim() + "~" + (rblhigherschoolNameOtherNo.Checked == true ? 0 : 1));
                     if (higherQualificationtypeOther.Style.Value != "display: none")
-                        adminInputs.Add("Qualification Type(Other)", txthigherQualificationtypeOther.Value.Trim() + "~" + (rblhigherQualificationtypeOtherNo.Checked == true ? 0 : 1));
+                        adminInputs.Add("Qualification Name(Other)", txthigherQualificationtypeOther.Value.Trim() + "~" + (rblhigherQualificationtypeOtherNo.Checked == true ? 0 : 1));
                     if (higherstudymodeOther.Style.Value != "display: none")
                         adminInputs.Add("Mode of study(Other)", txthigherstudymodeOther.Value.Trim() + "~" + (rblhigherstudymodeOtherNo.Checked == true ? 0 : 1));
                     if (higherlanguageOther.Style.Value != "display: none")

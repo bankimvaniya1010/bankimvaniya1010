@@ -144,6 +144,10 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblGender.Text = "Male";
                 else if (profileInfo.gender == 0)
                     lblGender.Text = "Female";
+                else if (profileInfo.gender == 2)
+                    lblGender.Text = "Other";
+                else if (profileInfo.gender == 3)
+                    lblGender.Text = "Prefer Not to say";
                 if (profileInfo.higheststudycompleted != null)
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
@@ -314,7 +318,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         passportsameasFirstName.Visible = true;
                         labelfirstname.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LAST NAME":
+                    case "FAMILY NAME":
                         lastname.Visible = true;
                         passportsameasLastName.Visible = true;
                         labellastname.InnerHtml = setInnerHtml(fields[k]);
@@ -323,7 +327,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         preferedname.Visible = true;
                         labelpreferreName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "OTHER MIDDLE NAMES":
+                    case "MIDDLE NAME(S)":
                         middlename.Visible = true;
                         passportsameasmiddlename.Visible = true;
                         labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
@@ -336,7 +340,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         gender.Visible = true;
                         labelgender.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "NATIONALITY AND CITIZENSHIP":
+                    case "CITIZENSHIP":
                         nationality.Visible = true;
                         labelNationality.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -404,7 +408,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgFirstNameYes.Visible = true;
                     lblFirstNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Last Name":
+                case "Family Name":
                     if (Comments[k].adminaction == 0)
                         imglastnameNo.Visible = true;
                     else
@@ -418,7 +422,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgpreferednameYes.Visible = true;
                     lblPrefferedNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Other middle names":
+                case "Middle Name(s)":
                     if (Comments[k].adminaction == 0)
                         imgmiddlenameNo.Visible = true;
                     else
@@ -439,7 +443,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imggenderYes.Visible = true;
                     lblGenderComments.Text = setComments(Comments[k]);
                     break;
-                case "Nationality and citizenship":
+                case "Citizenship":
                     if (Comments[k].adminaction == 0)
                         imgnationalityNo.Visible = true;
                     else
@@ -474,7 +478,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgdualNationalityYes.Visible = true;
                     lblDualNationalityComments.Text = setComments(Comments[k]);
                     break;
-                case "Nationality and citizenship(Second)":
+                case "Citizenship(Second)":
                     if (Comments[k].adminaction == 0)
                         imgsecondNationNo.Visible = true;
                     else
@@ -1495,7 +1499,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         highschool.Visible = true;
                         labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY OF HIGH SCHOOL EDUCATION":
+                    case "COUNTRY OF HIGH SCHOOL":
                         highschoolCountry.Visible = true;
                         labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -1774,7 +1778,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                     lblhighschoolComments.Text = setComments(Comments[k]);
                     break;
 
-                case "Country of High School Education":
+                case "Country of High School":
                     if (Comments[k].adminaction == 0)
                         imghighschoolCountryNo.Visible = true;
                     else
@@ -1908,7 +1912,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgSecondaryNameYes.Visible = true;
                     lblSecondaryNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Secondary)":
+                case "Qualification Name(Secondary)":
                     if (Comments[k].adminaction == 0)
                         imgSecondaryQualificationtypeNo.Visible = true;
                     else
@@ -2014,7 +2018,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imgdiplomaNameYes.Visible = true;
                     lbldiplomaNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Diploma)":
+                case "Qualification Name(Diploma)":
                     if (Comments[k].adminaction == 0)
                         imgdiplomaQualificationtypeNo.Visible = true;
                     else
@@ -2127,7 +2131,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imghigherNameYes.Visible = true;
                     lblhigherNameComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(UG)":
+                case "Qualification Name(UG)":
                     if (Comments[k].adminaction == 0)
                         imghigherQualificationtypeNo.Visible = true;
                     else
@@ -2232,7 +2236,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imghigherNamePGYes.Visible = true;
                     lblhigherNamePGComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(PG)":
+                case "Qualification Name(PG)":
                     if (Comments[k].adminaction == 0)
                         imghigherQualificationtypePGNo.Visible = true;
                     else
@@ -2337,7 +2341,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imghigherNamePhdYes.Visible = true;
                     lblhigherNamePhdComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Phd)":
+                case "Qualification Name(Phd)":
                     if (Comments[k].adminaction == 0)
                         imghigherQualificationtypePhdNo.Visible = true;
                     else
@@ -2442,7 +2446,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         imghigherNameOtherYes.Visible = true;
                     lblhigherNameOtherComments.Text = setComments(Comments[k]);
                     break;
-                case "Qualification Type(Other)":
+                case "Qualification Name(Other)":
                     if (Comments[k].adminaction == 0)
                         imghigherQualificationtypeOtherNo.Visible = true;
                     else

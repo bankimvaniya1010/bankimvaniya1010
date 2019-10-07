@@ -89,7 +89,7 @@
                 <div class="list-group-item" id="lastname" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-lastname">
                         <div class="form-row">
-                            <label id="labellastname" runat="server" for="lastname" class="col-md-2 col-form-label form-label">Last Name *</label>
+                            <label id="labellastname" runat="server" for="lastname" class="col-md-2 col-form-label form-label">Family Name *</label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
                                     <asp:Label ID="lblLastName" runat="server"></asp:Label>
@@ -112,7 +112,7 @@
                 <div class="list-group-item" id="passportsameasLastName" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-firstname">
                         <div class="form-row">
-                            <label id="labelpassportsameasLastName" runat="server" for="firstname" class="col-md-2 col-form-label form-label">Passport Last Name same as Above</label>
+                            <label id="labelpassportsameasLastName" runat="server" for="firstname" class="col-md-2 col-form-label form-label">Passport Family Name same as Above</label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
                                     <asp:Label ID="lblpassportsameasLastName" runat="server"></asp:Label>
@@ -154,7 +154,7 @@
                 <div class="list-group-item" id="middlename" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-middlename">
                         <div class="form-row">
-                            <label id="labelmiddlename" runat="server" for="middlename" class="col-md-2 col-form-label form-label">Other middle names</label>
+                            <label id="labelmiddlename" runat="server" for="middlename" class="col-md-2 col-form-label form-label">Middle Name(s)</label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
                                     <asp:Label ID="lblMiddleName" runat="server"></asp:Label>
@@ -239,7 +239,7 @@
                 <div class="list-group-item" id="nationality" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-Nationality">
                         <div class="form-row">
-                            <label id="labelNationality" runat="server" for="Nationality" class="col-md-2 col-form-label form-label">Nationality and citizenship</label>
+                            <label id="labelNationality" runat="server" for="Nationality" class="col-md-2 col-form-label form-label">Citizenship</label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
                                     <asp:Label ID="lblNationality" runat="server"></asp:Label>
@@ -341,7 +341,7 @@
                 <div class="list-group-item" id="secondNation" runat="server" style="display: none">
                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondNationality">
                         <div class="form-row">
-                            <label id="labelSecondNation" runat="server" for="SecondNationality" class="col-md-2 col-form-label form-label">Nationality and citizenship</label>
+                            <label id="labelSecondNation" runat="server" for="SecondNationality" class="col-md-2 col-form-label form-label">Citizenship</label>
                             <div class="col-md-6">
                                 <div class="prdtl-ans">
                                     <asp:Label ID="lblOtherNation" runat="server"></asp:Label>
@@ -1049,61 +1049,61 @@
         {
             var flag = false;
             if (!$("#<%=title.ClientID%>").is(':hidden') && !($("#<%=rblTitleYes.ClientID%>").is(':checked') || $("#<%=rblTitleNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Title");
+                alert("Please select option for Title");
             else if (!$("#<%=firstname.ClientID%>").is(':hidden') && !($("#<%=rblFirstNameYes.ClientID%>").is(':checked') || $("#<%=rblFirstNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for First Name");
+                alert("Please select option for First Name");
             else if (!$("#<%=passportsameasFirstName.ClientID%>").is(':hidden') && !($("#<%=rblpassportsameasFirstNameYes.ClientID%>").is(':checked') || $("#<%=rblpassportsameasFirstNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Passport first name same as above");
+                alert("Please select option for Passport first name same as above");
             else if (!$("#<%=lastname.ClientID%>").is(':hidden') && !($("#<%=rblLastNameYes.ClientID%>").is(':checked') || $("#<%=rblLastNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Last Name");
+                alert("Please select option for Family Name");
             else if (!$("#<%=passportsameasLastName.ClientID%>").is(':hidden') && !($("#<%=rblpassportsameasLastNameYes.ClientID%>").is(':checked') || $("#<%=rblpassportsameasLastNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Passport last name same as above");
+                alert("Please select option for Passport family name same as above");
             else if (!$("#<%=preferedname.ClientID%>").is(':hidden') && !($("#<%=rblPrefferedNameYes.ClientID%>").is(':checked') || $("#<%=rblPrefferedNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Preffered Name");
+                alert("Please select option for Preffered Name");
             else if (!$("#<%=middlename.ClientID%>").is(':hidden') && !($("#<%=rblMiddleNameYes.ClientID%>").is(':checked') || $("#<%=rblMiddleNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Middle Name");
+                alert("Please select option for Middle Name");
             else if (!$("#<%=passportsameasmiddlename.ClientID%>").is(':hidden') && !($("#<%=rblpassportsameasmiddlenameYes.ClientID%>").is(':checked') || $("#<%=rblpassportsameasmiddlenameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for passport Middle name same as above");
+                alert("Please select option for passport Middle name same as above");
             else if (!$("#<%=dob.ClientID%>").is(':hidden') && !($("#<%=rblDOBYes.ClientID%>").is(':checked') || $("#<%=rblDOBNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Date of birth");
+                alert("Please select option for Date of birth");
             else if (!$("#<%=gender.ClientID%>").is(':hidden') && !($("#<%=rblGenderYes.ClientID%>").is(':checked') || $("#<%=rblGenderNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for gender");
+                alert("Please select option for gender");
             else if (!$("#<%=nationality.ClientID%>").is(':hidden') && !($("#<%=rblNationalityYes.ClientID%>").is(':checked') || $("#<%=rblNationalityNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Nationality");
+                alert("Please select option for Nationality");
             else if (!$("#<%=chineseCode.ClientID%>").is(':hidden') && !($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') || $("#<%=rblChineseCodeNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for chinese Commercial Code");
+                alert("Please select option for chinese Commercial Code");
             else if (!$("#<%=textChineseCodeDiv.ClientID%>").is(':hidden') && !($("#<%=rblChineseCodeNoYes.ClientID%>").is(':checked') || $("#<%=rblChineseCodeNoNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Chinese Commercial Code Number");
+                alert("Please select option for Chinese Commercial Code Number");
             else if (!$("#<%=russianName.ClientID%>").is(':hidden') && !($("#<%=rblRussianNameYes.ClientID%>").is(':checked') || $("#<%=rblRussianNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for In English, provide your patronymic name");
+                alert("Please select option for In English, provide your patronymic name");
             else if (!$("#<%=dualNationality.ClientID%>").is(':hidden') && !($("#<%=rblDualNationalityYes.ClientID%>").is(':checked') || $("#<%=rblDualNationalityNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Dual Nationality");
+                alert("Please select option for Dual Nationality");
             else if (!$("#<%=secondNation.ClientID%>").is(':hidden') && !($("#<%=rblSecondNationYes.ClientID%>").is(':checked') || $("#<%=rblSecondNationNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Dual Nationality and citizenship");
+                alert("Please select option for Dual Citizenship");
             else if (!$("#<%=birthcountry.ClientID%>").is(':hidden') && !($("#<%=rblBirthCountryYes.ClientID%>").is(':checked') || $("#<%=rblBirthCountryNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Chinese Code");
+                alert("Please select option for Chinese Code");
             else if (!$("#<%=marital.ClientID%>").is(':hidden') && !($("#<%=rblMaritalYes.ClientID%>").is(':checked') || $("#<%=rblMaritalNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Marital status");
+                alert("Please select option for Marital status");
             else if (!$("#<%=statusMarried.ClientID%>").is(':hidden') && !($("#<%=rblspouseNameYes.ClientID%>").is(':checked') || $("#<%=rblspouseNameNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Spouse Name");
+                alert("Please select option for Spouse Name");
             else if (!$("#<%=SpouseNationality.ClientID%>").is(':hidden') && !($("#<%=rblSpouseNatinalityYes.ClientID%>").is(':checked') || $("#<%=rblSpouseNatinalityNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Spouse Nationality");
+                alert("Please select option for Spouse Nationality");
             else if (!$("#<%=SpouseDOB.ClientID%>").is(':hidden') && !($("#<%=rblSpouseDobYes.ClientID%>").is(':checked') || $("#<%=rblSpouseDobNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Spouse Date of birth");
+                alert("Please select option for Spouse Date of birth");
             else if (!$("#<%=MarriageDate.ClientID%>").is(':hidden') && !($("#<%=rblMarriagedateYes.ClientID%>").is(':checked') || $("#<%=rblMarriagedateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Date of Marriage");
+                alert("Please select option for Date of Marriage");
             else if (!$("#<%=higheststudy.ClientID%>").is(':hidden') && !($("#<%=rblhigheststudyYes.ClientID%>").is(':checked') || $("#<%=rblhigheststudyNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Highest study");
+                alert("Please select option for Highest study");
             else if (!$("#<%=disability.ClientID%>").is(':hidden') && !($("#<%=rblDisabilityYes.ClientID%>").is(':checked') || $("#<%=rblDisabilityNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Do You have Disability ");         
+                alert("Please select option for Do You have Disability ");         
             else if (!$("#<%=fieldstudy.ClientID%>").is(':hidden') && !($("#<%=rbfieldstudyYes.ClientID%>").is(':checked') || $("#<%=rbfieldstudyNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for field of study");
+                alert("Please select option for field of study");
             else if (!$("#<%=highestQualificationCountry.ClientID%>").is(':hidden') && !($("#<%=rbhighestQualificationCountryYes.ClientID%>").is(':checked') || $("#<%=rbhighestQualificationCountryNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option forqualification country ");
+                alert("Please select option forqualification country ");
             else if (!$("#<%=highQualificationCompleteDate.ClientID%>").is(':hidden') && !($("#<%=rbhighQualificationCompleteDateYes.ClientID%>").is(':checked') || $("#<%=rbhighQualificationCompleteDateNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for qualification date");
+                alert("Please select option for qualification date");
             else if (!$("#<%=agent.ClientID%>").is(':hidden') && !($("#<%=rblAgentYes.ClientID%>").is(':checked') || $("#<%=rblAgentNo.ClientID%>").is(':checked'))) 
-                alert("Please seclect option for Are you referred by agent ");
+                alert("Please select option for Are you referred by agent ");
             else
                flag = true;
            if (flag == true)

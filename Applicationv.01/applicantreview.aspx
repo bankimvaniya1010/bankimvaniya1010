@@ -53,7 +53,7 @@
                                                 <div class="form-row">
 
                                                     <div class="col-md-6">
-                                                        OTHER MIDDLE NAMES: <%= objApplicant[0].middlename == null ? "" : objApplicant[0].middlename.ToString() %>
+                                                        MIDDLE NAME(S): <%= objApplicant[0].middlename == null ? "" : objApplicant[0].middlename.ToString() %>
                                                     </div>
                                                     <div class="col-md-6">
                                                         DATE OF BIRTH:<%=objApplicant[0].dateofbirth == null ? "" : Convert.ToDateTime(objApplicant[0].dateofbirth).ToString("yyyy-MM-dd") %>
@@ -66,10 +66,16 @@
                                                 <div class="form-row">
 
                                                     <div class="col-md-6">
-                                                        GENDER:<%= objApplicant[0].gender.ToString() == "1" ? "Male" : "Female" %>
+                                                        <%  string gender = string.Empty;
+                                                            if (objApplicant[0].gender.ToString() == "1") gender = "Male";
+                                                            else if (objApplicant[0].gender.ToString() == "0") gender = "Female";
+                                                            else if (objApplicant[0].gender.ToString() == "2") gender = "Other";
+                                                            else if (objApplicant[0].gender.ToString() == "3") gender = "Prefer not to say";
+                                                        %>
+                                                        GENDER:<%= gender%>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        NATIONALITY AND CITIZENSHIP:<%=objComm.GetCountryDiscription(Convert.ToInt32(objApplicant[0].nationality)) %>
+                                                        CITIZENSHIP:<%=objComm.GetCountryDiscription(Convert.ToInt32(objApplicant[0].nationality)) %>
                                                     </div>
                                                 </div>
                                             </div>

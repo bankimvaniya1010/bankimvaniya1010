@@ -36,7 +36,7 @@
                             <div class="list-group-item frm-rdbtn" id="highschoolCountry" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolCountry">
                                     <div class="form-row">
-                                        <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School Education</label>
+                                        <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server" AutoPostBack="false">
                                             </asp:DropDownList>
@@ -83,7 +83,7 @@
                             <div class="list-group-item frm-rdbtn" id="highschoolQualificationtype" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolQualificationtype">
                                     <div class="form-row">
-                                        <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                        <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
                                                   <asp:ListItem value="" selected="True" >Please Select</asp:ListItem>
@@ -322,7 +322,7 @@
                                 <div class="list-group-item frm-rdbtn" id="SecondaryQualificationtype" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryQualificationtype">
                                         <div class="form-row">
-                                            <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                            <label id="labelSecondaryQualificationtype" runat="server" for="SecondaryQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlSecondaryQualificationType" CssClass="form-control" runat="server">
                                                      <asp:ListItem value="" selected="True">Please Select</asp:ListItem>
@@ -582,7 +582,7 @@
                                 <div class="list-group-item frm-rdbtn" id="higherQualificationtype" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherQualificationtype">
                                         <div class="form-row">
-                                            <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                            <label id="labelhigherQualificationtype" runat="server" for="higherQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHigherQualificationType" CssClass="form-control" runat="server">
                                                      <asp:ListItem value="" selected="True">Please Select</asp:ListItem>
@@ -880,7 +880,7 @@
                             <div class="list-group-item frm-rdbtn" id="diplomaQualificationtype" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaQualificationtype">
                                     <div class="form-row">
-                                        <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Type</label>
+                                        <label id="labeldiplomaQualificationtype" runat="server" for="diplomaQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlDiplomaQualificationType" CssClass="form-control" runat="server">
                                                  <asp:ListItem value="" selected="True">Please Select</asp:ListItem>
@@ -1541,7 +1541,7 @@
             else if ((!$("#<%=highschoolName.ClientID%>").is(':hidden')) && ($("#<%=txthighschoolName.ClientID%>").val() == ""))
                 alert("Please enter high school name");
             else if ((!$("#<%=highschoolQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolQualificationType.ClientID%>").val() == "0"))
-                alert("Please select  high school qualification type");
+                alert("Please select high school qualification name");
             else if ((!$("#<%=highschoolstudymode.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolStudyMode.ClientID%>").val() == "0"))
                 alert("Please select high school study mode");
             else if ((!$("#<%=highschoollanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlHighschoolMedium.ClientID%>").val() == "0"))
@@ -1571,7 +1571,7 @@
             else if ((!$("#<%=SecondaryschoolName.ClientID%>").is(':hidden')) && ($("#<%=txtSecondarySchoolName.ClientID%>").val() == ""))
                 alert("Please enter secondary school name");
             else if ((!$("#<%=SecondaryQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryQualificationType.ClientID%>").val() == "0"))
-                alert("Please select secondary qualification type");
+                alert("Please select secondary qualification name");
             else if ((!$("#<%=Secondarystudymode.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryStudyMode.ClientID%>").val() == "0"))
                 alert("Please select secondary study mode");
             else if ((!$("#<%=Secondarylanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryMedium.ClientID%>").val() == "0"))
@@ -1604,7 +1604,7 @@
             else if ((!$("#<%=higherschoolName.ClientID%>").is(':hidden')) && ($("#<%=txtHigherschoolName.ClientID%>").val() == ""))
                 alert("Please enter higher education school name");
             else if ((!$("#<%=higherQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherQualificationType.ClientID%>").val() == "0"))
-                alert("Please select higher education qualification type");
+                alert("Please select higher education qualification name");
             else if ((!$("#<%=higherstudymode.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherStudyMode.ClientID%>").val() == "0"))
                 alert("Please select higher education study mode");
             else if ((!$("#<%=higherlanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlHigherMedium.ClientID%>").val() == "0"))
@@ -1635,7 +1635,7 @@
             else if ((!$("#<%=diplomaschoolName.ClientID%>").is(':hidden')) && ($("#<%=txtDiplomaschoolName.ClientID%>").val() == ""))
                 alert("Please enter diploma school name");
             else if ((!$("#<%=diplomaQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlDiplomaQualificationType.ClientID%>").val() == "0"))
-                alert("Please select diploma qualification type");
+                alert("Please select diploma qualification name");
 
             else if ((!$("#<%=diplomastudymode.ClientID%>").is(':hidden')) && ($("#<%=ddlDiplomaStudyMode.ClientID%>").val() == "0"))
                 alert("Please select diploma study mode");
