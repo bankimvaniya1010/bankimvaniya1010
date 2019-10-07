@@ -24,6 +24,8 @@ public partial class applicanteducation : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
 
+    public dynamic grade10 , gradeSecondary , gradehigher , gradediploma;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckStudentLogin())
@@ -1125,7 +1127,7 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         try
         {
-            var grade10 = (from a in db.applicantsubjectwisegrade
+            grade10 = (from a in db.applicantsubjectwisegrade
                            join g in db.grademaster on a.gradeid equals g.id
                            join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
                            from x in tmp.DefaultIfEmpty()
@@ -1134,14 +1136,12 @@ public partial class applicanteducation : System.Web.UI.Page
                            select new
                            {
                                applicantgradeid = a.applicantgradeid,
-                               coursename = a.coursename,
-                               othersubject = a.othersubject,
-                               subject = x.description,
-                               gradetype = g.description,
-                               studentgrade = a.grade
+                               coursename = (a.coursename == null) ? string.Empty : a.coursename,
+                               othersubject =(a.othersubject == null) ?string.Empty: a.othersubject,
+                               subject = (x.description == null)? "Others" : x.description,
+                               gradetype = (g.description == null) ? string.Empty : g.description,
+                               studentgrade = (a.grade == null) ? string.Empty : a.grade
                            }).ToList();
-            grd10.DataSource = grade10;
-            grd10.DataBind();
         }
         catch (Exception ex)
         {
@@ -1152,7 +1152,7 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         try
         {
-            var gradediploma = (from a in db.applicantsubjectwisegrade
+            gradediploma = (from a in db.applicantsubjectwisegrade
                                 join g in db.grademaster on a.gradeid equals g.id
                                 join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
                                 from x in tmp.DefaultIfEmpty()
@@ -1161,14 +1161,12 @@ public partial class applicanteducation : System.Web.UI.Page
                                 select new
                                 {
                                     applicantgradeid = a.applicantgradeid,
-                                    coursename = a.coursename,
-                                    othersubject = a.othersubject,
-                                    subject = x.description,
-                                    gradetype = g.description,
-                                    studentgrade = a.grade
+                                    coursename = (a.coursename == null) ? string.Empty : a.coursename,
+                                    othersubject = (a.othersubject == null) ? string.Empty : a.othersubject,
+                                    subject = (x.description == null) ? "Others" : x.description,
+                                    gradetype = (g.description == null) ? string.Empty : g.description,
+                                    studentgrade = (a.grade == null) ? string.Empty : a.grade
                                 }).ToList();
-            grdDiploma.DataSource = gradediploma;
-            grdDiploma.DataBind();
         }
         catch (Exception ex)
         {
@@ -1179,7 +1177,7 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         try
         {
-            var gradeSecondary = (from a in db.applicantsubjectwisegrade
+            gradeSecondary = (from a in db.applicantsubjectwisegrade
                                   join g in db.grademaster on a.gradeid equals g.id
                                   join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
                                   from x in tmp.DefaultIfEmpty()
@@ -1188,14 +1186,12 @@ public partial class applicanteducation : System.Web.UI.Page
                                   select new
                                   {
                                       applicantgradeid = a.applicantgradeid,
-                                      coursename = a.coursename,
-                                      othersubject = a.othersubject,
-                                      subject = x.description,
-                                      gradetype = g.description,
-                                      studentgrade = a.grade
+                                      coursename = (a.coursename == null) ? string.Empty : a.coursename,
+                                      othersubject = (a.othersubject == null) ? string.Empty : a.othersubject,
+                                      subject = (x.description == null) ? "Others" : x.description,
+                                      gradetype = (g.description == null) ? string.Empty : g.description,
+                                      studentgrade = (a.grade == null) ? string.Empty : a.grade
                                   }).ToList();
-            grdSecondary.DataSource = gradeSecondary;
-            grdSecondary.DataBind();
         }
         catch (Exception ex)
         {
@@ -1206,7 +1202,7 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         try
         {
-            var gradehigher = (from a in db.applicantsubjectwisegrade
+             gradehigher = (from a in db.applicantsubjectwisegrade
                                join g in db.grademaster on a.gradeid equals g.id
                                join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
                                from x in tmp.DefaultIfEmpty()
@@ -1215,14 +1211,12 @@ public partial class applicanteducation : System.Web.UI.Page
                                select new
                                {
                                    applicantgradeid = a.applicantgradeid,
-                                   coursename = a.coursename,
-                                   othersubject = a.othersubject,
-                                   subject = x.description,
-                                   gradetype = g.description,
-                                   studentgrade = a.grade
+                                   coursename = (a.coursename == null) ? string.Empty : a.coursename,
+                                   othersubject = (a.othersubject == null) ? string.Empty : a.othersubject,
+                                   subject = (x.description == null) ? "Others" : x.description,
+                                   gradetype = (g.description == null) ? string.Empty : g.description,
+                                   studentgrade = (a.grade == null) ? string.Empty : a.grade
                                }).ToList();
-            grdHigher.DataSource = gradehigher;
-            grdHigher.DataBind();
         }
         catch (Exception ex)
         {
@@ -1253,205 +1247,16 @@ public partial class applicanteducation : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
-    protected void grd10_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string RemoveSubjectData(int recordID)
     {
-        try
-        {
-            int id = Convert.ToInt32(grd10.DataKeys[e.RowIndex].Values[0]);
-            applicantsubjectwisegrade grade = db.applicantsubjectwisegrade.Where(b => b.applicantgradeid == id).First();
-            db.applicantsubjectwisegrade.Remove(grade);
-            db.SaveChanges();
-            bind10grade();
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void grdSecondary_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        try
-        {
-            int id = Convert.ToInt32(grdSecondary.DataKeys[e.RowIndex].Values[0]);
-            applicantsubjectwisegrade grade = db.applicantsubjectwisegrade.Where(b => b.applicantgradeid == id).First();
-            db.applicantsubjectwisegrade.Remove(grade);
-            db.SaveChanges();
-            bindSecondarygrade();
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void grdHigher_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        try
-        {
-            int id = Convert.ToInt32(grdHigher.DataKeys[e.RowIndex].Values[0]);
-            applicantsubjectwisegrade grade = db.applicantsubjectwisegrade.Where(b => b.applicantgradeid == id).First();
-            db.applicantsubjectwisegrade.Remove(grade);
-            db.SaveChanges();
-            bindhighergrade();
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void grdDiploma_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        try
-        {
-            int id = Convert.ToInt32(grdDiploma.DataKeys[e.RowIndex].Values[0]);
-            applicantsubjectwisegrade grade = db.applicantsubjectwisegrade.Where(b => b.applicantgradeid == id).First();
-            db.applicantsubjectwisegrade.Remove(grade);
-            db.SaveChanges();
-            binddiplomagrade();
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void grdDiploma_RowDeleted(object sender, GridViewDeletedEventArgs e)
-    {
-
-    }
-
-    protected void grdDiploma_DataBound(object sender, EventArgs e)
-    {
-        try
-        {
-            foreach (GridViewRow row in grdDiploma.Rows)
-            {
-
-                if (row.RowState != DataControlRowState.Edit) // check for RowState
-                {
-                    if (row.RowType == DataControlRowType.DataRow) //check for RowType
-                    {
-                        string id = row.Cells[0].Text; // Get the id to be deleted
-                                                       //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
-                        if (lb != null)
-                        {
-                            //attach the JavaScript function with the ID as the paramter
-                            lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
-                        }
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void grdHigher_RowDeleted(object sender, GridViewDeletedEventArgs e)
-    {
-
-    }
-
-    protected void grdHigher_DataBound(object sender, EventArgs e)
-    {
-        try
-        {
-            foreach (GridViewRow row in grdHigher.Rows)
-            {
-
-                if (row.RowState != DataControlRowState.Edit) // check for RowState
-                {
-                    if (row.RowType == DataControlRowType.DataRow) //check for RowType
-                    {
-                        string id = row.Cells[0].Text; // Get the id to be deleted
-                                                       //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
-                        if (lb != null)
-                        {
-                            //attach the JavaScript function with the ID as the paramter
-                            lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
-                        }
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void grdSecondary_RowDeleted(object sender, GridViewDeletedEventArgs e)
-    {
-
-    }
-
-    protected void grdSecondary_DataBound(object sender, EventArgs e)
-    {
-        try
-        {
-            foreach (GridViewRow row in grdSecondary.Rows)
-            {
-
-                if (row.RowState != DataControlRowState.Edit) // check for RowState
-                {
-                    if (row.RowType == DataControlRowType.DataRow) //check for RowType
-                    {
-                        string id = row.Cells[0].Text; // Get the id to be deleted
-                                                       //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
-                        if (lb != null)
-                        {
-                            //attach the JavaScript function with the ID as the paramter
-                            lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
-                        }
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
-
-    protected void grd10_RowDeleted(object sender, GridViewDeletedEventArgs e)
-    {
-
-    }
-
-    protected void grd10_DataBound(object sender, EventArgs e)
-    {
-        try
-        {
-            foreach (GridViewRow row in grd10.Rows)
-            {
-
-                if (row.RowState != DataControlRowState.Edit) // check for RowState
-                {
-                    if (row.RowType == DataControlRowType.DataRow) //check for RowType
-                    {
-                        string id = row.Cells[0].Text; // Get the id to be deleted
-                                                       //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[6].Controls[0];
-                        if (lb != null)
-                        {
-                            //attach the JavaScript function with the ID as the paramter
-                            lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
-                        }
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
+        GTEEntities db1 = new GTEEntities();            
+        applicantsubjectwisegrade grade = db1.applicantsubjectwisegrade.Where(b => b.applicantgradeid == recordID).First();
+        db1.applicantsubjectwisegrade.Remove(grade);
+        db1.SaveChanges();
+        return JsonConvert.SerializeObject(recordID);
     }
 
     protected void grdHigherCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)

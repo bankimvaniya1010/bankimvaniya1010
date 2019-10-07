@@ -35,7 +35,10 @@
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
 
                 <div class="card navbar-shadow">
-                    <div class="card-header text-center">
+                    <div class="card-header text-center logn-head">
+                        <div class="frnd-hdr logo-img">
+                            <img src="assets/images/logo/canning_logo.jpg" class="logo-img"/>
+                        </div>
                         <h4 class="card-title">Password Reset</h4>
 
                     </div>

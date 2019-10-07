@@ -19,6 +19,7 @@
                     <div class="card">
                         <div class="card-body list-group list-group-fit">
                             <!----High School Start------>
+                        <div id="highshool">
                             <div class="list-group-item frm-rdbtn" id="highschool" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                     <div class="form-row">
@@ -195,65 +196,67 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="list-group-item" id="highshoolgrade" runat="server" style="display: none">
+                         </div>   
+
+                        <div class="list-group-item" id="highshoolgrade" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                     <div class="form-row">
                                         <input type="button" runat="server" class="btn btn-success" id="btn10th" value="Add Subject and their Grades" />
                                     </div>
-                                    <div class="form-row">
-                                        <div class="col-md-9">
+                                        <div class="form-row">
+                                        <div class="col-md-12">                                            
                                             <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                                                <asp:GridView ID="grd10" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grd10_DataBound" OnRowDeleted="grd10_RowDeleted" OnRowDeleting="grd10_RowDeleting">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
-                                                            ReadOnly="True" SortExpression="applicantgradeid" />
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblcoursename" runat="server"
-                                                                    Text='<%#Eval("coursename")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblsubject" runat="server"
-                                                                    Text='<%#Eval("subject")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblothers" runat="server"
-                                                                    Text='<%#Eval("othersubject")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblGradeType" runat="server"
-                                                                    Text='<%#Eval("gradetype")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblGrade" runat="server"
-                                                                    Text='<%#Eval("studentgrade")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                             
+                                                <table class="table" border="1" id="ContentPlaceHolder1_grd10" style="border-collapse:collapse;">
+		                                        <tbody>                                                       
+                                                    <tr>
+			                                            <th scope="col">ID</th>
+                                                        <th scope="col">Course Name</th>
+                                                        <th scope="col">Subject</th>
+                                                        <th scope="col">Others </th>
+                                                        <th scope="col">Grade Type</th>
+                                                        <th scope="col">Grade </th>
+                                                        <th scope="col">Delete</th>
+		                                            </tr>
+            
+                                                    <%for (var i = 0; i < grade10.Count; i++)
+                                                        { %>
+                                                            <tr id="grade_tr_<%=grade10[i].applicantgradeid %>">
+			                                                <td><%=grade10[i].applicantgradeid %></td>
+                                                            <td style="width:30px;">
+                                                                <span><%=grade10[i].coursename %></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=grade10[i].subject%></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=grade10[i].othersubject%></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=grade10[i].gradetype%></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=grade10[i].studentgrade%></span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="javascript:void(0)" onclick="ConfirmOnDelete('<%=grade10[i].applicantgradeid%>');">Delete</a>
+                                                            </td>
+		                                                </tr>
 
-                                                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
-                                                    </Columns>
-                                                </asp:GridView>
+                                                    <% } %>
 
-                                            </div>
-
+		                                        </tbody>
+                                            </table>
+                                            </div>                                           
                                         </div>
-                                    </div>
+                                    </div>                                  
                                 </div>
                             </div>
 
                             <!----High School END------>
 
                             <!----Secondary Start------>
-                            <div id="SecondarySection">
+                        <div id="SecondarySection">
                                 <div class="list-group-item frm-rdbtn" id="Secondary" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondary">
                                         <div class="form-row">
@@ -431,55 +434,60 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="list-group-item" id="secondarygrade" runat="server" style="display: none">
+                               </div> 
+
+                        <div class="list-group-item" id="secondarygrade" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                         <div class="form-row">
                                             <input type="button" runat="server" class="btn btn-success" id="btn12th" value="Add Subject and their Grades" />
                                         </div>
                                         <div class="form-row">
-                                            <div class="col-md-9">
-                                                <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                                                    <asp:GridView ID="grdSecondary" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdSecondary_DataBound" OnRowDeleted="grdSecondary_RowDeleted" OnRowDeleting="grdSecondary_RowDeleting">
-                                                        <Columns>
-                                                            <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="applicantgradeid" />
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblcoursename" runat="server"
-                                                                        Text='<%#Eval("coursename")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblsubject" runat="server"
-                                                                        Text='<%#Eval("subject")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblothers" runat="server"
-                                                                        Text='<%#Eval("othersubject")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblGradeType" runat="server"
-                                                                        Text='<%#Eval("gradetype")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblGrade" runat="server"
-                                                                        Text='<%#Eval("studentgrade")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
-                                                        </Columns>
-                                                    </asp:GridView>
+                                            <div class="col-md-12">
+                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                                                  <table class="table" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_grdSecondary" style="border-collapse:collapse;">
+		                                            
+                                                      <tbody>
+                                                            <tr>
+			                                                    <th scope="col">ID</th>
+                                                                <th scope="col">Course Name</th>
+                                                                <th scope="col">Subject</th>
+                                                                <th scope="col">Others </th>
+                                                                <th scope="col">Grade Type</th>
+                                                                <th scope="col">Grade </th>
+                                                                <th scope="col">Delete</th>
+		                                                    </tr>
+            
+                                                        <%for (var i = 0; i < gradeSecondary.Count; i++)
+                                                         {
+                                                                %>
+                                                             <tr id="grade_tr_<%=gradeSecondary[i].applicantgradeid %>">
+			                                                    <td><%=gradeSecondary[i].applicantgradeid %></td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradeSecondary[i].coursename %></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradeSecondary[i].subject%></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradeSecondary[i].othersubject%></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradeSecondary[i].gradetype%></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradeSecondary[i].studentgrade%></span>
+                                                                </td>
+                                                                <td>
+                                                                    <a onclick="ConfirmOnDelete('<%=gradeSecondary[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
+                                                                </td>
+		                                                    </tr>
+
+                                                       <% } %>
+
+		                                            </tbody>
+                                                </table>
 
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -487,10 +495,10 @@
 
 
 
-                            </div>
+                            
                             <!----Secondary END------>
                             <!----Higher Education Start------>
-                            <div id="HigherSectionSection">
+                         <div id="HigherSectionSection">
                                 <div class="list-group-item frm-rdbtn" id="higher" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higher">
                                         <div class="form-row">
@@ -686,63 +694,64 @@
                                         </div>
                                     </div>
                                 </div>
+                                </div>
 
-                                <div class="list-group-item frm-rdbtn" id="highergrade" runat="server" style="display: none">
+                         <div class="list-group-item frm-rdbtn" id="highergrade" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                         <div class="form-row">
                                             <input type="button" runat="server" class="btn btn-success" id="btnhigher" value="Add Subject and their Grades" />
                                         </div>
                                         <div class="form-row">
-                                            <div class="col-md-9">
+                                            <div class="col-md-12">
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                                                    <asp:GridView ID="grdHigher" DataKeyNames="applicantgradeid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigher_DataBound" OnRowDeleted="grdHigher_RowDeleted" OnRowDeleting="grdHigher_RowDeleting">
-                                                        <Columns>
-                                                            <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
-                                                                ReadOnly="True" SortExpression="applicantgradeid" />
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblcoursename" runat="server"
-                                                                        Text='<%#Eval("coursename")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblsubject" runat="server"
-                                                                        Text='<%#Eval("subject")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblothers" runat="server"
-                                                                        Text='<%#Eval("othersubject")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblGradeType" runat="server"
-                                                                        Text='<%#Eval("gradetype")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblGrade" runat="server"
-                                                                        Text='<%#Eval("studentgrade")%>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
+                                                    <table class="table" border="1" id="ContentPlaceHolder1_grdHigher" style="border-collapse:collapse;">
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="col">ID</th>
+                                                            <th scope="col">Course Name</th>
+                                                            <th scope="col">Subject</th>
+                                                            <th scope="col">Others </th>
+                                                            <th scope="col">Grade Type</th>
+                                                            <th scope="col">Grade </th>
+                                                            <th scope="col">Delete</th>
+                                                        </tr>
 
-                                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
-                                                        </Columns>
-                                                    </asp:GridView>
+                                                    <%for (var i = 0; i < gradehigher.Count; i++)
+                                                      {
+                                                            %>
+                                                         <tr id="grade_tr_<%=gradehigher[i].applicantgradeid %>">
+                                                            <td><%=gradehigher[i].applicantgradeid %></td>
+                                                            <td style="width:30px;">
+                                                                <span><%=gradehigher[i].coursename %></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=gradehigher[i].subject%></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=gradehigher[i].othersubject%></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=gradehigher[i].gradetype%></span>
+                                                            </td>
+                                                            <td style="width:30px;">
+                                                                <span><%=gradehigher[i].studentgrade%></span>
+                                                            </td>
+                                                            <td>
+                                                                <a onclick="ConfirmOnDelete('<%=gradehigher[i].applicantgradeid %>');" href="javascript:void(0)">Delete</a>
+                                                            </td>
+                                                        </tr>
 
+                                                   <% } %>
+
+                                                </tbody>
+                                                    </table>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-                                <div class="list-group-item frm-rdbtn" id="addanother" runat="server" style="display: none">
+
+                         <div class="list-group-item frm-rdbtn" id="addanother" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highergrade">
                                         <div class="form-row">
 
@@ -752,7 +761,7 @@
                                             </div>
                                         </div>
                                         <div class="form-row">
-                                            <div class="col-md-9">
+                                            <div class="col-md-12">
                                                 <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                                                     <asp:GridView ID="grdHigherCourses" DataKeyNames="applicanthighereducationid" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdHigherCourses_DataBound" OnRowDeleted="grdHigherCourses_RowDeleted" OnRowDeleting="grdHigherCourses_RowDeleting" OnRowEditing="grdHigherCourses_RowEditing" OnRowCommand="grdHigherCourses_RowCommand">
                                                         <Columns>
@@ -803,9 +812,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            
                             <!----Higher Education END------>
                             <!----Diploma Start------>
+                         <div id="diplomadiv">
                             <div class="list-group-item frm-rdbtn" id="diploma" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diploma">
                                     <div class="form-row">
@@ -984,52 +994,57 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item" id="diplomagrade" runat="server" style="display: none">
+                                </div>
+
+                          <div class="list-group-item" id="diplomagrade" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                     <div class="form-row">
                                         <input type="button" runat="server" class="btn btn-success" id="btndiploma" value="Add Subject and their Grades" />
                                     </div>
                                     <div class="form-row">
-                                        <div class="col-md-9">
+                                        <div class="col-md-12">
                                             <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                                                <asp:GridView ID="grdDiploma" runat="server" DataKeyNames="applicantgradeid" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdDiploma_DataBound" OnRowDeleted="grdDiploma_RowDeleted" OnRowDeleting="grdDiploma_RowDeleting">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="applicantgradeid" HeaderText="ID" InsertVisible="False"
-                                                            ReadOnly="True" SortExpression="applicantgradeid" />
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Course Name">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblcoursename" runat="server"
-                                                                    Text='<%#Eval("coursename")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Subject">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblsubject" runat="server"
-                                                                    Text='<%#Eval("subject")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Others ">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblothers" runat="server"
-                                                                    Text='<%#Eval("othersubject")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade Type">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblGradeType" runat="server"
-                                                                    Text='<%#Eval("gradetype")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-Width="30px" HeaderText="Grade ">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lblGrade" runat="server"
-                                                                    Text='<%#Eval("studentgrade")%>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                                 <table class="table" cellspacing="0" rules="all" border="1" id="ContentPlaceHolder1_grdDiploma" style="border-collapse:collapse;">
+                                                     <tbody>
+                                                            <tr>
+                                                                <th scope="col">ID</th>
+                                                                <th scope="col">Course Name</th>
+                                                                <th scope="col">Subject</th>
+                                                                <th scope="col">Others </th>
+                                                                <th scope="col">Grade Type</th>
+                                                                <th scope="col">Grade </th>
+                                                                <th scope="col">Delete</th>
+                                                            </tr>
 
-                                                        <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
-                                                    </Columns>
-                                                </asp:GridView>
+                                                        <%for (var i = 0; i < gradediploma.Count; i++)
+                                                          {
+                                                                %>
+                                                             <tr id="grade_tr_<%=gradediploma[i].applicantgradeid %>">
+                                                                <td><%=gradediploma[i].applicantgradeid %></td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradediploma[i].coursename %></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradediploma[i].subject%></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradediploma[i].othersubject%></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradediploma[i].gradetype%></span>
+                                                                </td>
+                                                                <td style="width:30px;">
+                                                                    <span><%=gradediploma[i].studentgrade%></span>
+                                                                </td>
+                                                                <td>
+                                                                    <a onclick="ConfirmOnDelete('<%=gradediploma[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
+                                                                </td>
+                                                            </tr>
+
+                                                       <% } %>
+
+                                                    </tbody>
+                                                 </table>
 
                                             </div>
 
@@ -1037,10 +1052,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                             <!----Diploma END------>
                             <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item">
@@ -1082,7 +1093,7 @@
                                      
                             </div>
                         </div>
-                     </div>
+                     </div>                
                 
                 <div id="page-nav" class="col-lg-auto page-nav">
 
@@ -1125,34 +1136,38 @@
             window.intlTelInput(input, {
                 utilsScript: "/assets/js/utils.js?1551697588835" // just for formatting/placeholders etc
             });
-           
+
             // Attach Button click event listener 
+
+            var left = ($(window).width() / 2) - (700 / 2),
+                top = ($(window).height() / 2) - (500 / 2);
+            
             $("#<%=btn10th.ClientID%>").click(function () {
                 var country = $("#<%=ddlCountryHighSchool.ClientID%>").val();
                 var grade = $("#<%=ddlHighSchoolGrade.ClientID%>").val();
-                var course = "tenth"
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var course = "tenth";
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
 
             });
             $("#<%=btn12th.ClientID%>").click(function () {
                 var country = $("#<%=ddlSecondaryCountry.ClientID%>").val();
                 var grade = $("#<%=ddlSecondaryGrade.ClientID%>").val();
-                var course = "twelth"
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var course = "twelth";
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
 
             });
             $("#<%=btnhigher.ClientID%>").click(function () {
                 var country = $("#<%=ddlHigherCountry.ClientID%>").val();
                 var grade = $("#<%=ddlHigherGrade.ClientID%>").val();
-                var course = $("#<%=ddlCourse.ClientID%>").val()
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var course = $("#<%=ddlCourse.ClientID%>").val();
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
 
             });
             $("#<%=btndiploma.ClientID%>").click(function () {
                 var country = $("#<%=ddlDiplomaCountry.ClientID%>").val();
                 var grade = $("#<%=ddlDiplomaGrade.ClientID%>").val();
-                var course = "diploma"
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'width = 600, height = 400, scrollbars = yes');
+                var course = "diploma";
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
 
             });
 
@@ -1162,7 +1177,58 @@
             ToggleHighSchool();
 
         });
+         function refreshGrid(gradeid, mode, course, subject, otherSubject, gradeType, grade)
+         {             
+                if (course == "tenth")
+                {
+                    if (mode == "new")
+                        $('#ContentPlaceHolder1_grd10').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                    else
+                        $("#ContentPlaceHolder1_grd10").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                }
+                else if (course == "twelth")
+                {  
+                    if (mode == "new")
+                        $('#ContentPlaceHolder1_grdSecondary').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                    else
+                        $("#ContentPlaceHolder1_grdSecondary").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                    
+                }
+                else if (course == "UG" || course == "PG" || course == "Phd" || course == "Other" )
+                {
+                    if (mode == "new")
+                        $('#ContentPlaceHolder1_grdHigher').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                    else
+                        $("#ContentPlaceHolder1_grdHigher").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                }
+                else if (course == "diploma")
+                {
+                    if (mode == "new")
+                        $('#ContentPlaceHolder1_grdDiploma').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                    else
+                        $("#ContentPlaceHolder1_grdDiploma").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                }
+         }
 
+        function ConfirmOnDelete(recordID) {
+            if (confirm("Are you sure to delete: " + recordID + "")) {
+                $.ajax({
+                    type: "POST",
+                    url: "applicanteducation.aspx/RemoveSubjectData",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'recordID': '" + recordID + "'}",
+                    success: function (result) {
+                        if (result) {
+                            $("#grade_tr_" + recordID + "").remove();
+                            alert("Record Deleted Successfully");
+                        }
+                    }
+                });
+
+            }
+        }
+                
         //Handle High School
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$highschool']").click(function () {
@@ -1459,13 +1525,7 @@
 
             }
         }        
-        function ConfirmOnDelete(item) {
-            if (confirm("Are you sure to delete: " + item + "") == true)
-                return true;
-            else
-                return false;
-        }
-
+        
 
         function validateForm() {
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;

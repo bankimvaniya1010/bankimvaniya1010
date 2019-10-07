@@ -1144,11 +1144,17 @@
             success: function (response) {
                 if (response.d) {                    
                     var result = JSON.parse(response.d);
-                    if (courseID != 0) {
+                    if (courseID != 0)
+                    {
                         $("#<%=courseeligibility.ClientID%>").show();
                         $("#<%=lblcourseeligibility.ClientID%>").text("");
                         for (var i = 0; i < result.length; i++)
-                            $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
+                        {
+                            if (result[i].courseeligibility != "")
+                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
+                            else
+                                $("#<%=courseeligibility.ClientID%>").hide();
+                        }
                     }
                     else
                         $("#<%=courseeligibility.ClientID%>").hide();
@@ -1416,8 +1422,12 @@
                     if (courseID != 0) {
                         $("#<%=courseeligibility2.ClientID%>").show();
                         $("#<%=lblcourseeligibility2.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++)
-                            $("#<%=lblcourseeligibility2.ClientID%>").append(result[i].courseeligibility);
+                        for (var i = 0; i < result.length; i++) {
+                            if (result[i].courseeligibility != "")
+                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
+                            else
+                                $("#<%=courseeligibility.ClientID%>").hide();
+                        }
                     }
                     else
                         $("#<%=courseeligibility2.ClientID%>").hide();
@@ -1688,8 +1698,12 @@
                     if (courseID != 0) {
                         $("#<%=courseeligibility3.ClientID%>").show();
                         $("#<%=lblcourseeligibility3.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++)
-                            $("#<%=lblcourseeligibility3.ClientID%>").append(result[i].courseeligibility);
+                        for (var i = 0; i < result.length; i++){
+                            if (result[i].courseeligibility != "")
+                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
+                            else
+                                $("#<%=courseeligibility.ClientID%>").hide();
+                        }
                     }
                     else
                         $("#<%=courseeligibility3.ClientID%>").hide();
@@ -1957,8 +1971,12 @@
                     if (courseID != 0) {
                         $("#<%=courseeligibility4.ClientID%>").show();
                         $("#<%=lblcourseeligibility4.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++)
-                            $("#<%=lblcourseeligibility4.ClientID%>").append(result[i].courseeligibility);
+                        for (var i = 0; i < result.length; i++){
+                            if (result[i].courseeligibility != "")
+                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
+                            else
+                                $("#<%=courseeligibility.ClientID%>").hide();
+                        }
                     }
                     else
                         $("#<%=courseeligibility4.ClientID%>").hide();
@@ -2228,8 +2246,12 @@
                     if (courseID != 0) {
                         $("#<%=courseeligibility5.ClientID%>").show();
                         $("#<%=lblcourseeligibility5.ClientID%>").text("");
-                        for (var i = 0; i < result.length; i++)
-                            $("#<%=lblcourseeligibility5.ClientID%>").append(result[i].courseeligibility);
+                        for (var i = 0; i < result.length; i++){
+                            if (result[i].courseeligibility != "")
+                                $("#<%=lblcourseeligibility.ClientID%>").append(result[i].courseeligibility);
+                            else
+                                $("#<%=courseeligibility.ClientID%>").hide();
+                        }
                     }
                     else
                         $("#<%=courseeligibility5.ClientID%>").hide();
