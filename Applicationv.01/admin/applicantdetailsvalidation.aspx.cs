@@ -144,7 +144,14 @@ public partial class admin_applicantdetailsvalidation : System.Web.UI.Page
                     case "Gender":
                         dr["id"] = validateDatalist[k].id;
                         dr["KeyName"] = validateDatalist[k].keyname;
-                        dr["KeyValue"] = objApplicant[0].gender == 1 ? "Male" : "Female";
+                        if (objApplicant[0].gender == 1)
+                            dr["KeyValue"] = "Male";
+                        else if (objApplicant[0].gender == 0)
+                            dr["KeyValue"] = "Female";
+                        else if (objApplicant[0].gender == 2)
+                            dr["KeyValue"] = "Other";
+                        else if (objApplicant[0].gender == 3)
+                            dr["KeyValue"] = "Prefer not to say";
                         dr["isValid"] = validateDatalist[k].isvalid;
                         dr["proofofValidation"] = validateDatalist[k].proofofvalidation;
                         dr["remarks"] = validateDatalist[k].remarks;

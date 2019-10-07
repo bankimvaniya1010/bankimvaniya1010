@@ -581,7 +581,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Cells[1, 5] = "High School Start Date";
         worksheet.Cells[1, 6] = "High School End Date";
         worksheet.Cells[1, 7] = "Name Of School";
-        worksheet.Cells[1, 8] = "High School Qualification Type";
+        worksheet.Cells[1, 8] = "High School Qualification Name";
         worksheet.Cells[1, 9] = "High School Mode oF Study";
         worksheet.Cells[1, 10] = "High School Language Of Study";
         worksheet.Cells[1, 11] = "High School Grade Type";
@@ -600,7 +600,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Cells[1, 21] = "start Date";
         worksheet.Cells[1, 22] = "End Date";
         worksheet.Cells[1, 23] = "Name Of Institute";
-        worksheet.Cells[1, 24] = "Qualification Type";
+        worksheet.Cells[1, 24] = "Qualification Name";
         worksheet.Cells[1, 25] = "Mode oF Study";
         worksheet.Cells[1, 26] = "Language Of Study";
         worksheet.Cells[1, 27] = "Grade Type";
@@ -617,7 +617,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Cells[1, 36] = "start Date";
         worksheet.Cells[1, 37] = "End Date";
         worksheet.Cells[1, 38] = "Name Of Institute";
-        worksheet.Cells[1, 39] = "Qualification Type";
+        worksheet.Cells[1, 39] = "Qualification Name";
         worksheet.Cells[1, 40] = "Mode oF Study";
         worksheet.Cells[1, 41] = "Language Of Study";
         worksheet.Cells[1, 42] = "Grade Type";
@@ -933,6 +933,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string spouseNationality = string.Empty;
         string disabilityDesc = "N/A";
         string agentName = "N/A";
+        string gender = string.Empty;
 
         worksheet.Name = "Personal Details";
         worksheet.Activate();
@@ -941,11 +942,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
         worksheet.Cells[1, 2] = "University Name";
         worksheet.Cells[1, 3] = "First Name";
         worksheet.Cells[1, 4] = "Middle Name";
-        worksheet.Cells[1, 5] = "Last Name";
+        worksheet.Cells[1, 5] = "Family Name";
         worksheet.Cells[1, 6] = "Prefered Name";
         worksheet.Cells[1, 7] = "Passport First Name";
         worksheet.Cells[1, 8] = "Passport Middle Name";
-        worksheet.Cells[1, 9] = "Passport Last Name";
+        worksheet.Cells[1, 9] = "Passport Family Name";
         worksheet.Cells[1, 10] = "Date of Birth";
         worksheet.Cells[1, 11] = "Gender";
         worksheet.Cells[1, 12] = "Nationality";
@@ -981,6 +982,17 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 disabilityDesc = db.disabilitymaster.Where(x => x.id == Convert.ToInt32(details.disabilitydescription)).Select(x => x.description).FirstOrDefault();
             if (details.isstudentreferbyagent.HasValue && details.isstudentreferbyagent.Value == 1 && details.agentid.HasValue)
                 agentName = db.agentmaster.Where(x => x.agentid == details.agentid).Select(x => x.agentname).FirstOrDefault();
+            if (details.gender.HasValue)
+            {
+                if (details.gender.Value == 1)
+                    gender = "Male";
+                else if (details.gender.Value == 0)
+                    gender = "FeMale";
+                else if (details.gender.Value == 2)
+                    gender = "Other";
+                else if (details.gender.Value == 3)
+                    gender = "Prefer not to say";
+            }
 
             worksheet.Cells[2, 1] = details.applicantid;
             worksheet.Cells[2, 2] = universityName;
@@ -992,7 +1004,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             worksheet.Cells[2, 8] = details.ispassportmiddlename.HasValue && details.ispassportmiddlename.Value ? "Yes" : "No";
             worksheet.Cells[2, 9] = details.ispassportlastname.HasValue && details.ispassportlastname.Value ? "Yes" : "No";
             worksheet.Cells[2, 10] = details.dateofbirth.HasValue ? details.dateofbirth.Value.ToString("dd/MM/yyyy") : "N/A";
-            worksheet.Cells[2, 11] = details.gender != null && details.gender.Value == 1 ? "Male" : "Female";
+            worksheet.Cells[2, 11] = gender;
             worksheet.Cells[2, 12] = nationality;
             worksheet.Cells[2, 13] = details.haschinesecodenumber.HasValue ? "Yes" : "No";
             worksheet.Cells[2, 14] = string.IsNullOrEmpty(details.chinesecodenumber) ? "N/A" : details.chinesecodenumber;

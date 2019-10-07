@@ -95,6 +95,10 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     lblGender.Text = "Male";
                 else if (profileInfo.gender == 0)
                     lblGender.Text = "Female";
+                else if (profileInfo.gender == 2)
+                    lblGender.Text = "Other";
+                else if (profileInfo.gender == 3)
+                    lblGender.Text = "Prefer Not to Say";
                 if (profileInfo.higheststudycompleted != null)
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
@@ -275,7 +279,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         icfirstname.Attributes.Add("style", "display:block;");
                         icfirstname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "LAST NAME":
+                    case "FAMILY NAME":
                         iclastname.Attributes.Add("style", "display:block;");
                         iclastname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -283,7 +287,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         icPreferredname.Attributes.Add("style", "display:block;");
                         icPreferredname.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "OTHER MIDDLE NAMES":
+                    case "MIDDLE NAME(S)":
                         icmiddlename.Attributes.Add("style", "display:block;");
                         icmiddlename.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -295,7 +299,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         icGender.Attributes.Add("style", "display:block;");
                         icGender.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "NATIONALITY AND CITIZENSHIP":
+                    case "CITIZENSHIP":
                         icNationality.Attributes.Add("style", "display:block;");
                         icNationality.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -396,7 +400,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         passportsameasFirstName.Attributes.Add("style", "display:block;");
                         labelfirstname.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LAST NAME":
+                    case "FAMILY NAME":
                         lastname.Attributes.Add("style", "display:block;");
                         passportsameasLastName.Attributes.Add("style", "display:block;");
                         labellastname.InnerHtml = setInnerHtml(fields[k]);
@@ -405,7 +409,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         preferedname.Attributes.Add("style", "display:block;");
                         labelpreferreName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "OTHER MIDDLE NAMES":
+                    case "MIDDLE NAME(S)":
                         middlename.Attributes.Add("style", "display:block;");
                         passportsameasmiddlename.Attributes.Add("style", "display:block;");
                         labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
@@ -418,7 +422,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         gender.Attributes.Add("style", "display:block;");
                         labelgender.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "NATIONALITY AND CITIZENSHIP":
+                    case "CITIZENSHIP":
                         nationality.Attributes.Add("style", "display:block;");
                         labelNationality.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -505,14 +509,14 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     else
                         rblpassportsameasFirstNameYes.Checked = true;
                     break;
-                case "Last Name":
+                case "Family Name":
                     txtLastName.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblLastNameNo.Checked = true;
                     else
                         rblLastNameYes.Checked = true;
                     break;
-                case "Passport Last Name same as Above":
+                case "Passport Family Name same as Above":
                     txtpassportsameasLastName.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblpassportsameasLastNameNo.Checked = true;
@@ -526,7 +530,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     else
                         rblPrefferedNameYes.Checked = true;
                     break;
-                case "Other middle names":
+                case "Middle Name(s)":
                     txtMiddleName.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblMiddleNameNo.Checked = true;
@@ -554,7 +558,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     else
                         rblGenderYes.Checked = true;
                     break;
-                case "Nationality and citizenship":
+                case "Citizenship":
                     txtNationality.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblNationalityNo.Checked = true;
@@ -589,7 +593,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                     else
                         rblDualNationalityYes.Checked = true;
                     break;
-                case "Nationality and citizenship(Second)":
+                case "Citizenship(Second)":
                     txtOtherNation.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblSecondNationNo.Checked = true;
@@ -718,14 +722,14 @@ public partial class admin_personaldetail : System.Web.UI.Page
             }
             if (lastname.Style.Value != "display: none")
             {
-                adminInputs.Add("Last Name", txtLastName.Value.Trim() + "~" + (rblLastNameNo.Checked == true ? 0 : 1));
-                adminInputs.Add("Passport Last Name same as Above", txtpassportsameasLastName.Value.Trim() + "~" + (rblpassportsameasLastNameNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Family Name", txtLastName.Value.Trim() + "~" + (rblLastNameNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Passport Family Name same as Above", txtpassportsameasLastName.Value.Trim() + "~" + (rblpassportsameasLastNameNo.Checked == true ? 0 : 1));
             }
             if (preferedname.Style.Value != "display: none")
                 adminInputs.Add("Preferred Name", txtPrefferedName.Value.Trim() + "~" + (rblPrefferedNameNo.Checked == true ? 0 : 1));
             if (middlename.Style.Value != "display: none")
             {
-                adminInputs.Add("Other middle names", txtMiddleName.Value.Trim() + "~" + (rblMiddleNameNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Middle Name(s)", txtMiddleName.Value.Trim() + "~" + (rblMiddleNameNo.Checked == true ? 0 : 1));
                 adminInputs.Add("Passport Middle Name same as Above", txtpassportsameasmiddlename.Value.Trim() + "~" + (rblpassportsameasmiddlenameNo.Checked == true ? 0 : 1));
             }
             if (dob.Style.Value != "display: none")
@@ -733,7 +737,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
             if (gender.Style.Value != "display: none")
                 adminInputs.Add("Gender", txtGender.Value.Trim() + "~" + (rblGenderNo.Checked == true ? 0 : 1));
             if (nationality.Style.Value != "display: none")
-                adminInputs.Add("Nationality and citizenship", txtNationality.Value.Trim() + "~" + (rblNationalityNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Citizenship", txtNationality.Value.Trim() + "~" + (rblNationalityNo.Checked == true ? 0 : 1));
             if (chineseCode.Style.Value != "display: none")
                 adminInputs.Add("Do you ever use a Chinese Commercial Code Number for your names", txtChineseCode.Value.Trim() + "~" + (rblChineseCodeNo.Checked == true ? 0 : 1));
             if (textChineseCodeDiv.Style.Value != "display: none")
@@ -743,7 +747,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
             if (dualNationality.Style.Value != "display: none")
                 adminInputs.Add("Do you have dual Citizenship", txtDualNationlity.Value.Trim() + "~" + (rblDualNationalityNo.Checked == true ? 0 : 1));
             if (secondNation.Style.Value != "display: none")
-                adminInputs.Add("Nationality and citizenship(Second)", txtOtherNation.Value.Trim() + "~" + (rblSecondNationNo.Checked == true ? 0 : 1));
+                adminInputs.Add("Citizenship(Second)", txtOtherNation.Value.Trim() + "~" + (rblSecondNationNo.Checked == true ? 0 : 1));
             if (birthcountry.Style.Value != "display: none")
                 adminInputs.Add("Country of birth", txtBirthCountry.Value.Trim() + "~" + (rblBirthCountryNo.Checked == true ? 0 : 1));
             if (marital.Style.Value != "display: none")

@@ -94,6 +94,10 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                     lblGender.Text = "Male";
                 else if (profileInfo.gender == 0)
                     lblGender.Text = "Female";
+                else if (profileInfo.gender == 2)
+                    lblGender.Text = "Other";
+                else if (profileInfo.gender == 3)
+                    lblGender.Text = "Prefer Not to say";
                 if (profileInfo.higheststudycompleted != null)
                 {
                     lblhigheststudy.Text = objCom.GetHighestDegree(Convert.ToInt32(profileInfo.higheststudycompleted));
@@ -265,7 +269,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         passportsameasFirstName.Attributes.Add("style", "display:block;");
                         labelfirstname.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LAST NAME":
+                    case "FAMILY NAME":
                         lastname.Attributes.Add("style", "display:block;");
                         passportsameasLastName.Attributes.Add("style", "display:block;");
                         labellastname.InnerHtml = setInnerHtml(fields[k]);
@@ -274,7 +278,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         preferedname.Attributes.Add("style", "display:block;");
                         labelpreferreName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "OTHER MIDDLE NAMES":
+                    case "MIDDLE NAME(S)":
                         middlename.Attributes.Add("style", "display:block;");
                         passportsameasmiddlename.Attributes.Add("style", "display:block;");
                         labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
@@ -287,7 +291,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         gender.Attributes.Add("style", "display:block;");
                         labelgender.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "NATIONALITY AND CITIZENSHIP":
+                    case "CITIZENSHIP":
                         nationality.Attributes.Add("style", "display:block;");
                         labelNationality.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -363,14 +367,14 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                     else
                         rblpassportsameasFirstNameYes.Checked = true;
                     break;
-                case "Last Name":
+                case "Family Name":
                     lblLastNameComments.Text = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblLastNameNo.Checked = true;
                     else
                         rblLastNameYes.Checked = true;
                     break;
-                case "Passport Last Name same as Above":
+                case "Passport Family Name same as Above":
                     lblpassportsameasLastNameComments.Text = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblpassportsameasLastNameNo.Checked = true;
@@ -384,7 +388,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                     else
                         rblPrefferedNameYes.Checked = true;
                     break;
-                case "Other middle names":
+                case "Middle Name(s)":
                     lblMiddleNameComments.Text = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rblMiddleNameNo.Checked = true;
@@ -412,7 +416,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         rblGenderYes.Checked = true;
                     lblGenderComments.Text = setComments(Comments[k]);
                     break;
-                case "Nationality and citizenship":
+                case "Citizenship":
                     if (Comments[k].adminaction == 0)
                         rblNationalityNo.Checked = true;
                     else
@@ -447,7 +451,7 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
                         rblDualNationalityYes.Checked = true;
                     lblDualNationalityComments.Text = setComments(Comments[k]);
                     break;
-                case "Nationality and citizenship(Second)":
+                case "Citizenship(Second)":
                     if (Comments[k].adminaction == 0)
                         rblSecondNationNo.Checked = true;
                     else
