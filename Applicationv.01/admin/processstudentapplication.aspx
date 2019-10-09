@@ -200,6 +200,8 @@
                     alert("Please select current status for prefernce no. " + (id + 1));
                 else if (admissionRemarkText == "" || admissionRemarkText == null)
                     alert("Please enter general remarks for prefernce no. " + (id + 1));
+                else if (ddlDecisionValueText.includes("application accepted") && (ddlCurrentStatusValueText.includes("application rejected") || ddlCurrentStatusValueText.includes("application withdrawn"))) // Check for decision of "APPLICATION ACCEPTED" and current Status "APPLICATION REJECTED OR WITHDRAWN"
+                    alert("Current Status cannot be set to " + ddlCurrentStatusValueText + " as decision selected is " + ddlDecisionValueText);
                 else if (ddlDecisionValueText.includes("application rejected") && !ddlCurrentStatusValueText.includes("application rejected")) // Check for decision of "APPLICATION REJECTED" and current Status "APPLICATION REJECTED"
                     alert("Current Status cannot be set to " + ddlCurrentStatusValueText + " as decision selected is " + ddlDecisionValueText);
                 else if (ddlDecisionValueText.includes("application withdrawn") && !ddlCurrentStatusValueText.includes("application withdrawn")) // Check for decision of "APPLICATION WITHDRAWN" and current Status "APPLICATION WITHDRAWN"

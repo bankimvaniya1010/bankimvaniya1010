@@ -24,7 +24,7 @@ public partial class applicanteducation : System.Web.UI.Page
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
 
-    public dynamic grade10 , gradeSecondary , gradehigher , gradediploma;
+    public List<grades> grade10 = new List<grades>(), gradeSecondary = new List<grades>(), gradehigher = new List<grades>(), gradediploma = new List<grades>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -1133,7 +1133,7 @@ public partial class applicanteducation : System.Web.UI.Page
                            from x in tmp.DefaultIfEmpty()
                            where a.applicantid == userID && a.coursename == "tenth"
 
-                           select new
+                           select new grades()
                            {
                                applicantgradeid = a.applicantgradeid,
                                coursename = (a.coursename == null) ? string.Empty : a.coursename,
@@ -1142,8 +1142,6 @@ public partial class applicanteducation : System.Web.UI.Page
                                gradetype = (g.description == null) ? string.Empty : g.description,
                                studentgrade = (a.grade == null) ? string.Empty : a.grade
                            }).ToList();
-            if (grade10.Count < 1)
-                highshoolgrade.Visible = false;
         }
         catch (Exception ex)
         {
@@ -1160,7 +1158,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                 from x in tmp.DefaultIfEmpty()
                                 where a.applicantid == userID && a.coursename == "diploma"
 
-                                select new
+                                select new grades()
                                 {
                                     applicantgradeid = a.applicantgradeid,
                                     coursename = (a.coursename == null) ? string.Empty : a.coursename,
@@ -1169,8 +1167,6 @@ public partial class applicanteducation : System.Web.UI.Page
                                     gradetype = (g.description == null) ? string.Empty : g.description,
                                     studentgrade = (a.grade == null) ? string.Empty : a.grade
                                 }).ToList();
-            if (gradediploma.Count < 1)
-                diplomagrade.Visible = false;
         }
         catch (Exception ex)
         {
@@ -1187,7 +1183,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                   from x in tmp.DefaultIfEmpty()
                                   where a.applicantid == userID && a.coursename == "twelth"
 
-                                  select new
+                                  select new grades()
                                   {
                                       applicantgradeid = a.applicantgradeid,
                                       coursename = (a.coursename == null) ? string.Empty : a.coursename,
@@ -1196,8 +1192,6 @@ public partial class applicanteducation : System.Web.UI.Page
                                       gradetype = (g.description == null) ? string.Empty : g.description,
                                       studentgrade = (a.grade == null) ? string.Empty : a.grade
                                   }).ToList();
-            if (gradeSecondary.Count < 1)
-                secondarygrade.Visible = false;
         }
         catch (Exception ex)
         {
@@ -1214,7 +1208,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                from x in tmp.DefaultIfEmpty()
                                where a.applicantid == userID && (a.coursename == "UG" || a.coursename == "PG" || a.coursename == "Phd" || a.coursename == "Other")
 
-                               select new
+                               select new grades()
                                {
                                    applicantgradeid = a.applicantgradeid,
                                    coursename = (a.coursename == null) ? string.Empty : a.coursename,
@@ -1223,8 +1217,6 @@ public partial class applicanteducation : System.Web.UI.Page
                                    gradetype = (g.description == null) ? string.Empty : g.description,
                                    studentgrade = (a.grade == null) ? string.Empty : a.grade
                                }).ToList();
-            if (gradehigher.Count < 1)
-                highergrade.Visible = false;
         }
         catch (Exception ex)
         {
@@ -1813,5 +1805,15 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         SaveEducationData();       
         Response.Redirect("applicantlanguage.aspx?formid=5", true);
+    }
+
+    public class grades
+    {
+        public int applicantgradeid;
+        public string coursename;
+        public string othersubject;
+        public string subject;
+        public string gradetype;
+        public string studentgrade;
     }
 }

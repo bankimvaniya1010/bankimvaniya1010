@@ -258,10 +258,10 @@
                                         <div class="col-md-9">
                                             <asp:Label id="lblcourseeligibility2" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityYes2" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                                <asp:RadioButton runat="server" ID="eligibilityYes2" Text="Yes" class="form-check-label" GroupName="eligibilityresponse2"/>
                                               </div>
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityNo2" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                                <asp:RadioButton runat="server" ID="eligibilityNo2" Text="No" class="form-check-label" GroupName="eligibilityresponse2"/> 
                                             </div>
                                             <asp:HiddenField runat="server" ID="Hidcourseeligibility2"/>
                                         </div>
@@ -395,10 +395,10 @@
                                         <div class="col-md-9">
                                             <asp:Label id="lblcourseeligibility3" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityYes3" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                                <asp:RadioButton runat="server" ID="eligibilityYes3" Text="Yes" class="form-check-label" GroupName="eligibilityresponse3"/>
                                               </div>
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityNo3" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                                <asp:RadioButton runat="server" ID="eligibilityNo3" Text="No" class="form-check-label" GroupName="eligibilityresponse3"/> 
                                             </div>
                                                 <asp:HiddenField runat="server" ID="Hidcourseeligibility3"/>
                                          </div>                                                                                       
@@ -527,10 +527,10 @@
                                         <div class="col-md-9">
                                             <asp:Label id="lblcourseeligibility4" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityYes4" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                                <asp:RadioButton runat="server" ID="eligibilityYes4" Text="Yes" class="form-check-label" GroupName="eligibilityresponse4"/>
                                               </div>
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityNo4" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                                <asp:RadioButton runat="server" ID="eligibilityNo4" Text="No" class="form-check-label" GroupName="eligibilityresponse4"/> 
                                             </div>
                                                 <asp:HiddenField runat="server" ID="Hidcourseeligibility4"/>
                                          </div>                                                                                       
@@ -660,10 +660,10 @@
                                         <div class="col-md-9">
                                             <asp:Label id="lblcourseeligibility5" runat="server" class="form-control frm-cntrl-rdo"></asp:Label> 
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityYes5" Text="Yes" class="form-check-label" GroupName="eligibilityresponse"/>
+                                                <asp:RadioButton runat="server" ID="eligibilityYes5" Text="Yes" class="form-check-label" GroupName="eligibilityresponse5"/>
                                               </div>
                                             <div class="form-check-inline">
-                                                <asp:RadioButton runat="server" ID="eligibilityNo5" Text="No" class="form-check-label" GroupName="eligibilityresponse"/> 
+                                                <asp:RadioButton runat="server" ID="eligibilityNo5" Text="No" class="form-check-label" GroupName="eligibilityresponse5"/> 
                                             </div>
                                                 <asp:HiddenField runat="server" ID="Hidcourseeligibility5"/>
                                          </div>                                                                                       
@@ -755,6 +755,8 @@
                 alert("Please Select Course");
             else if ($("#<%=ddlCommencementdate.ClientID%>").val() == "0" || $("#<%=hidCommencementDate1.ClientID%>").val() == "")
                 alert("Please Select Commencement Date");
+            else if ($("#<%=Hidcourseeligibility.ClientID%>").val() == "")
+                alert("Please Select course eligibility for preference 1");
             else
                 flag = true;
             
@@ -779,6 +781,8 @@
                     alert("Please Select Course");
                 else if ($("#<%=ddlCommencementdate2.ClientID%>").val() == "0" || $("#<%=hidCommencementDate2.ClientID%>").val() == "")
                     alert("Please Select Commencement Date");
+                else if ($("#<%=Hidcourseeligibility2.ClientID%>").val() == "")
+                    alert("Please Select course eligibility for preference 2");
                 else
                     flag = true;
             }
@@ -804,7 +808,9 @@
                     else if ($("#<%=ddlCourse3.ClientID%>").val() == "0" || $("#<%=hidCourseField3.ClientID%>").val() == "")
                         alert("Please Select Course");
                     else if ($("#<%=ddlCommencementdate3.ClientID%>").val() == "0" || $("#<%=hidCommencementDate3.ClientID%>").val() == "")
-                    alert("Please Select Commencement Date");
+                        alert("Please Select Commencement Date");
+                    else if ($("#<%=Hidcourseeligibility3.ClientID%>").val() == "")
+                        alert("Please Select course eligibility for preference 3");
                 else
                     flag = true;
             }
@@ -830,9 +836,11 @@
                     else if ($("#<%=ddlCourse4.ClientID%>").val() == "0" || $("#<%=hidCourseField4.ClientID%>").val() == "")
                         alert("Please Select Course");
                     else if ($("#<%=ddlCommencementdate4.ClientID%>").val() == "0" || $("#<%=hidCommencementDate4.ClientID%>").val() == "")
-                    alert("Please Select Commencement Date");
-                else
-                    flag = true;
+                        alert("Please Select Commencement Date");
+                    else if ($("#<%=Hidcourseeligibility4.ClientID%>").val() == "")
+                        alert("Please Select course eligibility for preference 4");
+                    else
+                        flag = true;
             }
             else
                 flag = true;
@@ -856,9 +864,11 @@
                     else if ($("#<%=ddlCourse5.ClientID%>").val() == "0" || $("#<%=hidCourseField5.ClientID%>").val() == "")
                         alert("Please Select Course");
                     else if ($("#<%=ddlCommencementdate5.ClientID%>").val() == "0" || $("#<%=hidCommencementDate5.ClientID%>").val() == "")
-                    alert("Please Select Commencement Date");
-                else
-                    flag = true;
+                        alert("Please Select Commencement Date");
+                    else if ($("#<%=Hidcourseeligibility5.ClientID%>").val() == "")
+                        alert("Please Select course eligibility for preference 5");
+                    else
+                        flag = true;
             }
             else
                 flag = true;
@@ -1417,7 +1427,7 @@
                     {
                         $("#<%=courseeligibility2.ClientID%>").show();
                         $("#<%=lblcourseeligibility2.ClientID%>").text("");
-                        ("#<%=lblcourseeligibility2.ClientID%>").append(result.courseeligibility);
+                        $("#<%=lblcourseeligibility2.ClientID%>").append(result.courseeligibility);
                     }
                     else
                         $("#<%=courseeligibility2.ClientID%>").hide();
@@ -1425,7 +1435,7 @@
             }
             });
         });     
-        $("input[name='ctl00$ContentPlaceHolder2$eligibilityresponse']").click(function () {
+        $("input[name='ctl00$ContentPlaceHolder1$eligibilityresponse2']").click(function () {
             if ($("#<%=eligibilityYes2.ClientID%>").is(":checked"))
                 $("#<%=Hidcourseeligibility2.ClientID%>").val(1);
             else if($("#<%=eligibilityNo2.ClientID%>").is(":checked"))
@@ -1696,7 +1706,7 @@
             }
             });
         });     
-        $("input[name='ctl00$ContentPlaceHolder3$eligibilityresponse']").click(function () {
+        $("input[name='ctl00$ContentPlaceHolder1$eligibilityresponse3']").click(function () {
             if ($("#<%=eligibilityYes3.ClientID%>").is(":checked"))
                 $("#<%=Hidcourseeligibility3.ClientID%>").val(1);
             else if($("#<%=eligibilityNo3.ClientID%>").is(":checked"))
@@ -1964,7 +1974,7 @@
             }
             });
         });     
-        $("input[name='ctl00$ContentPlaceHolder4$eligibilityresponse']").click(function () {
+        $("input[name='ctl00$ContentPlaceHolder1$eligibilityresponse4']").click(function () {
             if ($("#<%=eligibilityYes4.ClientID%>").is(":checked"))
                 $("#<%=Hidcourseeligibility4.ClientID%>").val(1);
             else if($("#<%=eligibilityNo4.ClientID%>").is(":checked"))
@@ -2234,7 +2244,7 @@
             }
             });
         });     
-        $("input[name='ctl00$ContentPlaceHolder5$eligibilityresponse']").click(function () {
+        $("input[name='ctl00$ContentPlaceHolder1$eligibilityresponse5']").click(function () {
             if ($("#<%=eligibilityYes5.ClientID%>").is(":checked"))
                 $("#<%=Hidcourseeligibility5.ClientID%>").val(1);
             else if($("#<%=eligibilityNo5.ClientID%>").is(":checked"))
