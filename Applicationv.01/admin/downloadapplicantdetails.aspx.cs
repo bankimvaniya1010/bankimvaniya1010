@@ -686,7 +686,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                         hidAddressCountry.Value += objCom.GetCountryDiscription(Convert.ToInt32(lstOfResidences[i].residentialcountry)) + ";";
                     }
                 }
-                else if (!profileInfo.haspreviousresidence.Value)
+                else if (profileInfo.haspreviousresidence.HasValue && !profileInfo.haspreviousresidence.Value)
                     lblCurrentAddress.Text = "No";
                 lblNominneName.Text = profileInfo.nomineefullname;
                 lblNomineeEmail.Text = profileInfo.nomineeemail;
