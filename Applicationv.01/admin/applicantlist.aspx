@@ -41,10 +41,10 @@
                                 <ItemTemplate>
                                     <b>Applicant Id:</b>   <asp:Label ID="Label1" runat="server" Text='<%# Bind("applicantid") %>'></asp:Label><br/>
                                     <b>Applicant Name: </b> <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("name") %>'></asp:Label><br/>
-                                    <b>Start Date: </b><asp:Label ID="lblstartdate" runat="server" Text='<%# Bind("applicationstartdate") %>'></asp:Label><br/>
+                                    <b>Start Date: </b><asp:Label ID="lblstartdate" runat="server" Text='<%# Bind("applicationstartdate","{0:dd-MM-yyyy}") %>'></asp:Label><br/>
                                     <b>Nationality :</b>   <asp:Label ID="lblNationality" runat="server" Text='<%# Bind("nationality") %>'></asp:Label><br/>
                                     <b>Course Applied :</b> <asp:Label ID="lblcourseapplied" runat="server" Text='<%# Bind("courseapplied") %>'></asp:Label><br/>
-                                    <b>Commencement Date :</b>  <asp:Label ID="lblCommencementDate" runat="server" Text='<%# Bind("commencementDate") %>'></asp:Label>
+                                    <b>Commencement Date :</b>  <asp:Label ID="lblCommencementDate" runat="server" Text='<%# Bind("commencementDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>                           
                             

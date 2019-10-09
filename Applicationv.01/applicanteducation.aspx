@@ -240,7 +240,7 @@
                                                             <span><%=grade10[i].studentgrade%></span>
                                                         </td>
                                                         <td>
-                                                            <a href="javascript:void(0)" onclick="ConfirmOnDelete('<%=grade10[i].applicantgradeid%>');">Delete</a>
+                                                            <a href="javascript:void(0)" onclick="ConfirmOnDelete('<%=grade10[i].applicantgradeid%>','<%=grade10[i].subject%>','<%=grade10[i].coursename%>');">Delete</a>
                                                         </td>
                                                     </tr>
 
@@ -482,7 +482,7 @@
                                                                   <span><%=gradeSecondary[i].studentgrade%></span>
                                                               </td>
                                                               <td>
-                                                                  <a onclick="ConfirmOnDelete('<%=gradeSecondary[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
+                                                                  <a onclick="ConfirmOnDelete('<%=gradeSecondary[i].applicantgradeid%>','<%=gradeSecondary[i].subject%>','<%=gradeSecondary[i].coursename%>');" href="javascript:void(0)">Delete</a>
                                                               </td>
                                                           </tr>
 
@@ -743,7 +743,7 @@
                                                                     <span><%=gradehigher[i].studentgrade%></span>
                                                                 </td>
                                                                 <td>
-                                                                    <a onclick="ConfirmOnDelete('<%=gradehigher[i].applicantgradeid %>');" href="javascript:void(0)">Delete</a>
+                                                                    <a onclick="ConfirmOnDelete('<%=gradehigher[i].applicantgradeid %>','<%=gradehigher[i].subject%>','<%=gradehigher[i].coursename%>');" href="javascript:void(0)">Delete</a>
                                                                 </td>
                                                             </tr>
 
@@ -1046,7 +1046,7 @@
                                                                  <span><%=gradediploma[i].studentgrade%></span>
                                                              </td>
                                                              <td>
-                                                                 <a onclick="ConfirmOnDelete('<%=gradediploma[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
+                                                                 <a onclick="ConfirmOnDelete('<%=gradediploma[i].applicantgradeid%>','<%=gradediploma[i].subject%>','<%=gradediploma[i].coursename%>');" href="javascript:void(0)">Delete</a>
                                                              </td>
                                                          </tr>
 
@@ -1188,41 +1188,40 @@
             ToggleHighSchool();
 
         });
-         function refreshGrid(gradeid, mode, course, subject, otherSubject, gradeType, grade)
+        function refreshGrid(gradeid, mode, course, subject, otherSubject, gradeType, grade)
          {             
                 if (course == "tenth")
                 {
-                    if (mode == "new")
-                        $('#ContentPlaceHolder1_grd10').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                    if (mode == "new") 
+                        $('#ContentPlaceHolder1_grd10').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');                        
                     else
-                        $("#ContentPlaceHolder1_grd10").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                        $("#ContentPlaceHolder1_grd10").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                 }
                 else if (course == "twelth")
                 {  
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdSecondary').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdSecondary').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
-                        $("#ContentPlaceHolder1_grdSecondary").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                        $("#ContentPlaceHolder1_grdSecondary").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                     
                 }
                 else if (course == "UG" || course == "PG" || course == "Phd" || course == "Other" )
                 {
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdHigher').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdHigher').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
-                        $("#ContentPlaceHolder1_grdHigher").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                        $("#ContentPlaceHolder1_grdHigher").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                 }
                 else if (course == "diploma")
                 {
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdDiploma').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdDiploma').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
-                        $("#ContentPlaceHolder1_grdDiploma").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid + ');" href="javascript:void(0)">Delete</a></td>');
+                        $("#ContentPlaceHolder1_grdDiploma").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');    
                 }
          }
-
-        function ConfirmOnDelete(recordID) {
-            if (confirm("Are you sure to delete: " + recordID + "")) {
+          function ConfirmOnDelete(recordID, subject, coursename) {
+            if (confirm("Are you sure wants to delete record of " + coursename + " of Subject "+ subject + "")) {
                 $.ajax({
                     type: "POST",
                     url: "applicanteducation.aspx/RemoveSubjectData",

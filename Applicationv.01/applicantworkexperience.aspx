@@ -58,6 +58,11 @@
                                                                     <asp:Label ID="lblStart" runat="server" Text='<%#Eval("durationfrom", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Current Working">
+                                                                <ItemTemplate>
+                                                                    <asp:Label ID="lblcurrentlyworking" runat="server" Text='<%#Convert.ToInt32(Eval("iscurrentworking")) == 1 ?"Yes":"No"%>'></asp:Label>
+                                                                </ItemTemplate>
+                                                            </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="To">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lbldurationto" runat="server" Text='<%#Eval("durationto", "{0:dd/MM/yyyy}") %>'></asp:Label>
@@ -193,6 +198,7 @@
                                                 <label id="labelendate" runat="server" for="endate" class="col-md-3 col-form-label form-label">End Date</label>
                                                 <div class="col-md-6">
                                                     <input id="txtEndate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icenddate" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
+                                                    <asp:CheckBox ID="chkCurrentlyWorking" runat="server" Text="Currently Work Here" class="form-label"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -264,7 +270,7 @@
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                         <div class="form-row justify-content-between">
                                             <asp:Button ID="btn_Save" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_Save_Click" OnClientClick="return validateForm()" />
-                                            <a href="applicantsocial.aspx?formid=8" class="btn btn-success" style="margin-left: 10px;">Go To Social &nbsp; <i class="fas fa-angle-double-right"></i></a>
+                                            <asp:Button ID="gotoNextPage" runat="server" Text="Go To Social" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                                                                    
                                             </div>
                                     </div>
                                             <div class="col-md-6">
@@ -335,7 +341,7 @@
                     alert("Please Enter Your Designation");
                 else if (!$("#<%=startdate.ClientID%>").is(':hidden') && $("#<%=txtStartDate.ClientID%>").val() == "")
                     alert("Please Select Start Date");
-                else if (!$("#<%=endate.ClientID%>").is(':hidden') && $("#<%=txtEndate.ClientID%>").val() == "")
+                else if (!$("#<%=endate.ClientID%>").is(':hidden') && !$("#<%=chkCurrentlyWorking.ClientID%>").is(":checked") && $("#<%=txtEndate.ClientID%>").val() == "")
                     alert("Please Select End Date");
                  else if ($("#<%=txtStartDate.ClientID%>").val() != "" && $("#<%=txtEndate.ClientID%>").val() != "" && $("#<%=txtStartDate.ClientID%>").val() > $("#<%=txtEndate.ClientID%>").val())
                     alert("Please Enter Valid end date");
@@ -370,11 +376,11 @@
             $("#<%=chkWebsite.ClientID%>").change(function () {
                 if ($(this).is(":checked")) {
                     $("#<%=txtemployerwebsite.ClientID%>").val("");
-                    $("#<%=txtemployerwebsite.ClientID%>").attr("disabled", "disabled");
+                    $("#<%=txtemployerwebsite.ClientID%>").attr("disabled", "disabled");                
                 }
                 else
                     $("#<%=txtemployerwebsite.ClientID%>").removeAttr("disabled");
-            });
+            });           
 
             var emp = $("#<%=hdnemployer.ClientID%>").val()
             if (emp != '') {
@@ -383,8 +389,28 @@
             else {
                 $("#<%=fieldContainer.ClientID%>").hide();
             }
-        });
 
+            if ($("#<%=chkCurrentlyWorking.ClientID%>").is(":checked")) {
+                $("#<%=txtEndate.ClientID%>").attr("disabled", "disabled");
+                $("#<%=txtEndate.ClientID%>").css('background-color', '#e9ecef');
+            }
+            else {
+                $("#<%=txtEndate.ClientID%>").removeAttr("disabled");
+                $("#<%=txtEndate.ClientID%>").removeAttr('style');
+            }
+
+        });
+        $("#<%=chkCurrentlyWorking.ClientID%>").change(function () {
+            if ($(this).is(":checked")) {
+                $("#<%=txtEndate.ClientID%>").val("");
+                $("#<%=txtEndate.ClientID%>").attr("disabled", "disabled");
+                $("#<%=txtEndate.ClientID%>").css('background-color', '#e9ecef');
+            }
+            else {
+                $("#<%=txtEndate.ClientID%>").removeAttr("disabled");
+                $("#<%=txtEndate.ClientID%>").removeAttr('style');
+            }
+        });
         $(function () {
             $("input[name='ctl00$ContentPlaceHolder1$Employment']").click(function () {
                 if ($("#<%=rblEmploymentYes.ClientID%>").is(":checked")) {
@@ -421,13 +447,16 @@
                 $("#<%=txtPosition.ClientID%>").val("");
                 $("#<%=txtStartDate.ClientID%>").val("");
                 $("#<%=txtEndate.ClientID%>").val("");
+                $("#<%=chkCurrentlyWorking.ClientID%>").prop("checked", false);
+                $("#<%=txtEndate.ClientID%>").removeAttr("disabled");
+                $("#<%=txtEndate.ClientID%>").removeAttr('style');
                 $("#<%=txtbriefDescription.ClientID%>").val("");
                 $("#<%=txtreportingmanger.ClientID%>").val("");
                 $("#<%=txtemploymentverification.ClientID%>").val("");
                 $("#<%=ddlRelationship.ClientID%>").val("0");
                 $("#<%=txtEmail.ClientID%>").val("");
                 $("#<%=txtlinkedin.ClientID%>").val("");
-               // $("#<%=employment.ClientID%>").hide();
+                $("#<%=ddlworkexperience.ClientID%>").val("0");
                 $("#<%=hdnemployer.ClientID%>").val("");
                 $("#<%=fieldContainer.ClientID%>").hide();
                 $("#<%=lblSaveTime.ClientID%>").hide();
