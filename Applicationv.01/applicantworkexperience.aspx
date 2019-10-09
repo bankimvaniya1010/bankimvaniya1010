@@ -58,7 +58,7 @@
                                                                     <asp:Label ID="lblStart" runat="server" Text='<%#Eval("durationfrom", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Current Working">
+                                                            <asp:TemplateField HeaderText="Present Job">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblcurrentlyworking" runat="server" Text='<%#Convert.ToInt32(Eval("iscurrentworking")) == 1 ?"Yes":"No"%>'></asp:Label>
                                                                 </ItemTemplate>
