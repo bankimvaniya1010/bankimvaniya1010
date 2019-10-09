@@ -30,7 +30,7 @@ public partial class admin_managestudentapplication : System.Web.UI.Page
             List<object> list = new List<object>();
             foreach (var applicant in applicantList)
             {
-                var details = db.applicantdetails.Where(x => x.applicantid == applicant.Value && x.universityid == universityID).FirstOrDefault();
+                var details = db.applicantdetails.Where(x => x.applicantid == applicant && x.universityid == universityID).FirstOrDefault();
                 string nationality = string.Empty;
                 if (details.nationality.HasValue)
                     nationality = objCom.GetCountryDiscription(details.nationality.Value);
