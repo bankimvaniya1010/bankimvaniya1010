@@ -987,7 +987,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 if (details.gender.Value == 1)
                     gender = "Male";
                 else if (details.gender.Value == 0)
-                    gender = "FeMale";
+                    gender = "Female";
                 else if (details.gender.Value == 2)
                     gender = "Other";
                 else if (details.gender.Value == 3)

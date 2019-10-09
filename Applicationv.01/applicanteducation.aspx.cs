@@ -1142,6 +1142,8 @@ public partial class applicanteducation : System.Web.UI.Page
                                gradetype = (g.description == null) ? string.Empty : g.description,
                                studentgrade = (a.grade == null) ? string.Empty : a.grade
                            }).ToList();
+            if (grade10.Count < 1)
+                highshoolgrade.Visible = false;
         }
         catch (Exception ex)
         {
@@ -1167,6 +1169,8 @@ public partial class applicanteducation : System.Web.UI.Page
                                     gradetype = (g.description == null) ? string.Empty : g.description,
                                     studentgrade = (a.grade == null) ? string.Empty : a.grade
                                 }).ToList();
+            if (gradediploma.Count < 1)
+                diplomagrade.Visible = false;
         }
         catch (Exception ex)
         {
@@ -1192,6 +1196,8 @@ public partial class applicanteducation : System.Web.UI.Page
                                       gradetype = (g.description == null) ? string.Empty : g.description,
                                       studentgrade = (a.grade == null) ? string.Empty : a.grade
                                   }).ToList();
+            if (gradeSecondary.Count < 1)
+                secondarygrade.Visible = false;
         }
         catch (Exception ex)
         {
@@ -1217,6 +1223,8 @@ public partial class applicanteducation : System.Web.UI.Page
                                    gradetype = (g.description == null) ? string.Empty : g.description,
                                    studentgrade = (a.grade == null) ? string.Empty : a.grade
                                }).ToList();
+            if (gradehigher.Count < 1)
+                highergrade.Visible = false;
         }
         catch (Exception ex)
         {
