@@ -260,7 +260,7 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 
                 db.SaveChanges();
 
-                sendEmailsNotificationForDecision(application.applicantid.Value, application.universityid.Value);
+                sendEmailsNotificationForDecision(application.applicantid, application.universityid);
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }

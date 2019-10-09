@@ -80,7 +80,7 @@ public partial class applicantreview : System.Web.UI.Page
         }
         else
         {
-            review.Visible = false;
+            cardData.Visible = false;
             var objUser = (students)Session["LoginInfo"];
             userID = objUser.studentid;
 

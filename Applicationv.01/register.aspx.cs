@@ -49,7 +49,7 @@ public partial class register : System.Web.UI.Page
                 // usrObj.password = objCom.EncodePasswordToMD5(password);
                 // usrObj.role = 3;
                 usrObj.email = email.Value.Trim();
-                int otp = objCom.RandomNumber(1000, 999999);
+                int otp = objCom.RandomNumber(100000, 999999);
                 usrObj.otp = otp;
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
                 usrObj.studylevelid = 1;// Convert.ToInt32(rblstudyLevel.SelectedValue);

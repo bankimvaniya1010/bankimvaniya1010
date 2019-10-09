@@ -25,7 +25,12 @@ public partial class forgetpassword : System.Web.UI.Page
         try
         {
             var login = db.students.Where(l => l.email == email.Value).FirstOrDefault();
-            if (login != null)
+            if (login != null && !login.isverified)
+            {
+                lblMessage.Visible = true;
+                lblMessage.Text = "Account is not activated. Please use OTP sent to your registered mail to activate your account.";
+            }
+            else if (login != null)
             {
                 lblMessage.Visible = true;
                 string password = System.Web.Security.Membership.GeneratePassword(8, 2);
