@@ -218,32 +218,35 @@
                                                         <th scope="col">Grade </th>
                                                         <th scope="col">Delete</th>
 		                                            </tr>
-            
-                                                    <%for (var i = 0; i < grade10.Count; i++)
-                                                        { %>
-                                                            <tr id="grade_tr_<%=grade10[i].applicantgradeid %>">
-			                                                <td><%=grade10[i].applicantgradeid %></td>
-                                                            <td style="width:30px;">
-                                                                <span><%=grade10[i].coursename %></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=grade10[i].subject%></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=grade10[i].othersubject%></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=grade10[i].gradetype%></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=grade10[i].studentgrade%></span>
-                                                            </td>
-                                                            <td>
-                                                                <a href="javascript:void(0)" onclick="ConfirmOnDelete('<%=grade10[i].applicantgradeid%>');">Delete</a>
-                                                            </td>
-		                                                </tr>
+                                                    <%if (grade10.Count > 0)
+                                                        {
+                                                            for (var i = 0; i < grade10.Count; i++)
+                                                            { %>
+                                                    <tr id="grade_tr_<%=grade10[i].applicantgradeid %>">
+                                                        <td><%=grade10[i].applicantgradeid %></td>
+                                                        <td style="width: 30px;">
+                                                            <span><%=grade10[i].coursename %></span>
+                                                        </td>
+                                                        <td style="width: 30px;">
+                                                            <span><%=grade10[i].subject%></span>
+                                                        </td>
+                                                        <td style="width: 30px;">
+                                                            <span><%=grade10[i].othersubject%></span>
+                                                        </td>
+                                                        <td style="width: 30px;">
+                                                            <span><%=grade10[i].gradetype%></span>
+                                                        </td>
+                                                        <td style="width: 30px;">
+                                                            <span><%=grade10[i].studentgrade%></span>
+                                                        </td>
+                                                        <td>
+                                                            <a href="javascript:void(0)" onclick="ConfirmOnDelete('<%=grade10[i].applicantgradeid%>');">Delete</a>
+                                                        </td>
+                                                    </tr>
 
-                                                    <% } %>
+                                                    <% }
+                                                    } %>
+                                                    
 
 		                                        </tbody>
                                             </table>
@@ -456,33 +459,35 @@
                                                                 <th scope="col">Grade </th>
                                                                 <th scope="col">Delete</th>
 		                                                    </tr>
-            
-                                                        <%for (var i = 0; i < gradeSecondary.Count; i++)
-                                                         {
-                                                                %>
-                                                             <tr id="grade_tr_<%=gradeSecondary[i].applicantgradeid %>">
-			                                                    <td><%=gradeSecondary[i].applicantgradeid %></td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradeSecondary[i].coursename %></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradeSecondary[i].subject%></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradeSecondary[i].othersubject%></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradeSecondary[i].gradetype%></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradeSecondary[i].studentgrade%></span>
-                                                                </td>
-                                                                <td>
-                                                                    <a onclick="ConfirmOnDelete('<%=gradeSecondary[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
-                                                                </td>
-		                                                    </tr>
+                                                          <%if (gradeSecondary.Count > 0)
+                                                              {
+                                                                  for (var i = 0; i < gradeSecondary.Count; i++)
+                                                                  {
+                                                          %>
+                                                          <tr id="grade_tr_<%=gradeSecondary[i].applicantgradeid %>">
+                                                              <td><%=gradeSecondary[i].applicantgradeid %></td>
+                                                              <td style="width: 30px;">
+                                                                  <span><%=gradeSecondary[i].coursename %></span>
+                                                              </td>
+                                                              <td style="width: 30px;">
+                                                                  <span><%=gradeSecondary[i].subject%></span>
+                                                              </td>
+                                                              <td style="width: 30px;">
+                                                                  <span><%=gradeSecondary[i].othersubject%></span>
+                                                              </td>
+                                                              <td style="width: 30px;">
+                                                                  <span><%=gradeSecondary[i].gradetype%></span>
+                                                              </td>
+                                                              <td style="width: 30px;">
+                                                                  <span><%=gradeSecondary[i].studentgrade%></span>
+                                                              </td>
+                                                              <td>
+                                                                  <a onclick="ConfirmOnDelete('<%=gradeSecondary[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
+                                                              </td>
+                                                          </tr>
 
-                                                       <% } %>
+                                                          <% }
+                                                          }%>
 
 		                                            </tbody>
                                                 </table>
@@ -715,33 +720,36 @@
                                                             <th scope="col">Grade </th>
                                                             <th scope="col">Delete</th>
                                                         </tr>
-
-                                                    <%for (var i = 0; i < gradehigher.Count; i++)
-                                                      {
+                                                            <%if (gradehigher.Count > 0)
+                                                                {
+                                                                    for (var i = 0; i < gradehigher.Count; i++)
+                                                                    {
                                                             %>
-                                                         <tr id="grade_tr_<%=gradehigher[i].applicantgradeid %>">
-                                                            <td><%=gradehigher[i].applicantgradeid %></td>
-                                                            <td style="width:30px;">
-                                                                <span><%=gradehigher[i].coursename %></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=gradehigher[i].subject%></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=gradehigher[i].othersubject%></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=gradehigher[i].gradetype%></span>
-                                                            </td>
-                                                            <td style="width:30px;">
-                                                                <span><%=gradehigher[i].studentgrade%></span>
-                                                            </td>
-                                                            <td>
-                                                                <a onclick="ConfirmOnDelete('<%=gradehigher[i].applicantgradeid %>');" href="javascript:void(0)">Delete</a>
-                                                            </td>
-                                                        </tr>
+                                                            <tr id="grade_tr_<%=gradehigher[i].applicantgradeid %>">
+                                                                <td><%=gradehigher[i].applicantgradeid %></td>
+                                                                <td style="width: 30px;">
+                                                                    <span><%=gradehigher[i].coursename %></span>
+                                                                </td>
+                                                                <td style="width: 30px;">
+                                                                    <span><%=gradehigher[i].subject%></span>
+                                                                </td>
+                                                                <td style="width: 30px;">
+                                                                    <span><%=gradehigher[i].othersubject%></span>
+                                                                </td>
+                                                                <td style="width: 30px;">
+                                                                    <span><%=gradehigher[i].gradetype%></span>
+                                                                </td>
+                                                                <td style="width: 30px;">
+                                                                    <span><%=gradehigher[i].studentgrade%></span>
+                                                                </td>
+                                                                <td>
+                                                                    <a onclick="ConfirmOnDelete('<%=gradehigher[i].applicantgradeid %>');" href="javascript:void(0)">Delete</a>
+                                                                </td>
+                                                            </tr>
 
-                                                   <% } %>
+                                                            <% }
+                                                            } %>
+                                                    
 
                                                 </tbody>
                                                     </table>
@@ -1015,33 +1023,36 @@
                                                                 <th scope="col">Grade </th>
                                                                 <th scope="col">Delete</th>
                                                             </tr>
+                                                         <%if (gradediploma.Count > 0)
+                                                             {
+                                                                 for (var i = 0; i < gradediploma.Count; i++)
+                                                                 {
+                                                         %>
+                                                         <tr id="grade_tr_<%=gradediploma[i].applicantgradeid %>">
+                                                             <td><%=gradediploma[i].applicantgradeid %></td>
+                                                             <td style="width: 30px;">
+                                                                 <span><%=gradediploma[i].coursename %></span>
+                                                             </td>
+                                                             <td style="width: 30px;">
+                                                                 <span><%=gradediploma[i].subject%></span>
+                                                             </td>
+                                                             <td style="width: 30px;">
+                                                                 <span><%=gradediploma[i].othersubject%></span>
+                                                             </td>
+                                                             <td style="width: 30px;">
+                                                                 <span><%=gradediploma[i].gradetype%></span>
+                                                             </td>
+                                                             <td style="width: 30px;">
+                                                                 <span><%=gradediploma[i].studentgrade%></span>
+                                                             </td>
+                                                             <td>
+                                                                 <a onclick="ConfirmOnDelete('<%=gradediploma[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
+                                                             </td>
+                                                         </tr>
 
-                                                        <%for (var i = 0; i < gradediploma.Count; i++)
-                                                          {
-                                                                %>
-                                                             <tr id="grade_tr_<%=gradediploma[i].applicantgradeid %>">
-                                                                <td><%=gradediploma[i].applicantgradeid %></td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradediploma[i].coursename %></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradediploma[i].subject%></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradediploma[i].othersubject%></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradediploma[i].gradetype%></span>
-                                                                </td>
-                                                                <td style="width:30px;">
-                                                                    <span><%=gradediploma[i].studentgrade%></span>
-                                                                </td>
-                                                                <td>
-                                                                    <a onclick="ConfirmOnDelete('<%=gradediploma[i].applicantgradeid%>');" href="javascript:void(0)">Delete</a>
-                                                                </td>
-                                                            </tr>
-
-                                                       <% } %>
+                                                         <% }
+                                                             } %>
+                                                        
 
                                                     </tbody>
                                                  </table>
