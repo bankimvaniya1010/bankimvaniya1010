@@ -310,7 +310,14 @@ public partial class applicantworkexperience : System.Web.UI.Page
                     }
                     txtPosition.Value = employerInfo.designation;
                     txtStartDate.Value = Convert.ToDateTime(employerInfo.durationfrom).ToString("yyyy-MM-dd");
-                    txtEndate.Value = Convert.ToDateTime(employerInfo.durationto).ToString("yyyy-MM-dd");
+                    if(employerInfo.durationto != null)
+                        txtEndate.Value = Convert.ToDateTime(employerInfo.durationto).ToString("yyyy-MM-dd");
+                    if (employerInfo.iscurrentworking == 1)
+                    {
+                        chkCurrentlyWorking.Checked = true;
+                        txtEndate.Attributes.Add("disabled", "disabled");
+                        txtEndate.Attributes.Add("style", "background-color :#e9ecef");
+                    }
                     txtbriefDescription.Value = employerInfo.briefdescription;
                     txtreportingmanger.Value = employerInfo.nameofreportingmanger;
                     txtemploymentverification.Value = employerInfo.contactpersonwithdetails;
@@ -334,8 +341,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-
-    protected void btn_Save_Click(object sender, EventArgs e)
+    private void SaveEmploymentDetails()
     {
         try
         {
@@ -374,7 +380,16 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 objEmployer.emailid = txtEmail.Value;
                 objEmployer.linkedinidofcontact = txtlinkedin.Value;
                 objEmployer.durationfrom = Convert.ToDateTime(txtStartDate.Value);
-                objEmployer.durationto = Convert.ToDateTime(txtEndate.Value);
+                if (chkCurrentlyWorking.Checked)
+                {
+                    objEmployer.iscurrentworking = 1;
+                    objEmployer.durationto = null;
+                }
+                else
+                {
+                    objEmployer.iscurrentworking = 0;
+                    objEmployer.durationto = Convert.ToDateTime(txtEndate.Value);
+                }
                 objEmployer.applicantid = userID;
                 objEmployer.employerverificationkey = Guid.NewGuid().ToString();
                 objEmployer.isemployerdetailverified = false;
@@ -393,7 +408,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
 
             }
             db.SaveChanges();
-           
+
             if (rblEmploymentYes.Checked)
             {
                 string url = webURL + "verifyemployment.aspx?key=" + objEmployer.employerverificationkey;
@@ -409,15 +424,26 @@ public partial class applicantworkexperience : System.Web.UI.Page
             }
 
             lblMessage.Text = "Your Work Experience Details have been saved";
-  //          lblMessage.Visible = true;
+            //          lblMessage.Visible = true;
             BindEmploymentDetails();
             employment.Attributes.Add("style", "display:none;");
-            
+
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void btn_Save_Click(object sender, EventArgs e)
+        {
+        SaveEmploymentDetails();
+    }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        SaveEmploymentDetails();
+        Response.Redirect("applicantsocial.aspx?formid=8",true);
     }
 
     private void BindEmploymentDetails()
@@ -427,6 +453,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             var empDetails = (from eInfo in db.applicantemployerdetails
                               where eInfo.applicantid == userID && eInfo.universityid == universityID && eInfo.wishtoaddemployer == 1
                               select eInfo).ToList();
+            
             grdEmployment.DataSource = empDetails;
             grdEmployment.DataBind();
         }
@@ -523,4 +550,6 @@ public partial class applicantworkexperience : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+   
 }
