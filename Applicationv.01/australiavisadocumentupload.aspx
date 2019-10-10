@@ -37,7 +37,7 @@
                                                     <asp:ListItem Value="Drivers Licence">National identity card, or Drivers Licence </asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-md-3">                                                
+                                            <div class="col-md-12 file-updbtnwrp">                                                
                                                 <asp:Label ID="lbluploadidentitydoc" runat="server" />
                                                 <asp:FileUpload ID="identitydocupload" runat="server" /> 
                                                 <input type="hidden" id="hididentitydocPath" runat="server" />
@@ -57,7 +57,7 @@
                                                     <asp:ListItem Value="appropriate accommodation">confirmation of appropriate accommodation </asp:ListItem>                                                   
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-md-3">                                                
+                                            <div class="col-md-12 file-updbtnwrp">                                                
                                                 <asp:Label ID="lbluploadWelfaredoc" runat="server" />
                                                 <asp:FileUpload ID="WelfaredocFileUpload" runat="server" /> 
                                                 <input type="hidden" id="HidWelfaredocPath" runat="server" />
@@ -78,7 +78,7 @@
                                                     <asp:ListItem Value="academic transcripts in Australia">certified copy of your academic transcripts in Australia</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-md-3">                                                
+                                            <div class="col-md-12 file-updbtnwrp">                                                
                                                 <asp:Label ID="lbluploadGTERdoc" runat="server" />
                                                 <asp:FileUpload ID="GTERdocFileUpload" runat="server" /> 
                                                 <input type="hidden" id="HidGTERdocPath" runat="server" />
@@ -100,7 +100,7 @@
                                                     <asp:ListItem Value="resume">resume </asp:ListItem>  
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-md-3">                                                
+                                            <div class="col-md-12 file-updbtnwrp">                                                
                                                 <asp:Label ID="lbluploademploymenthistory" runat="server" />
                                                 <asp:FileUpload ID="employmenthistoryFileUpload" runat="server" /> 
                                                 <input type="hidden" id="HidemploymenthistoryPath" runat="server" />
@@ -121,7 +121,7 @@
                                                     <asp:ListItem Value="Household Booklet">Family/Household Booklet </asp:ListItem>  
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-md-3">                                                
+                                            <div class="col-md-12 file-updbtnwrp">                                                
                                                 <asp:Label ID="lbluploadrelationshipEvidence" runat="server" />
                                                 <asp:FileUpload ID="relationshipEvidenceFileUpload" runat="server" /> 
                                                 <input type="hidden" id="HidrelationshipEvidencePath" runat="server" />
@@ -143,7 +143,7 @@
                                                     <asp:ListItem Value="evidence ofName change">certified copy of evidence of the name change</asp:ListItem>
                                                 </asp:DropDownList>
                                             </div>
-                                            <div class="col-md-3">                                                
+                                            <div class="col-md-12 file-updbtnwrp">                                                
                                                 <asp:Label ID="lbluploadnamechangeevidence" runat="server" />
                                                 <asp:FileUpload ID="namechangeevidenceFileUpload" runat="server" /> 
                                                 <input type="hidden" id="HidnamechangeevidencePath" runat="server" />
@@ -258,7 +258,7 @@
         }
          $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Gte_list').addClass('open');
+            $('#visaapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#visadocumentupload').addClass('active');
         });
