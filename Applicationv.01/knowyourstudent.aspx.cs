@@ -216,7 +216,7 @@ public partial class knowyourstudent : System.Web.UI.Page
         try
         {
             int countryofuser = 0;
-            var applicantdetails = db.applicantdetails.Where(x=>x.applicantid == userID).FirstOrDefault();
+            var applicantdetails = db.applicantdetails.Where(x=>x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
             if (applicantdetails != null)
                 countryofuser = Convert.ToInt32(applicantdetails.countryofbirth);            
             ListItem lst = new ListItem("Please select", "0");
