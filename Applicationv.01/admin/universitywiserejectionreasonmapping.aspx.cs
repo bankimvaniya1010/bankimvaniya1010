@@ -85,6 +85,8 @@ public partial class admin_universitywiserejectionreasonmapping : System.Web.UI.
 
     protected void ddlUniversity_SelectedIndexChanged(object sender, EventArgs e)
     {
+        chkrejectionreason.Items.Clear();
+        BindReason();
         int universityId = Convert.ToInt16(ddlUniversity.SelectedValue);
         var universityWise = db.universitywise_rejectionreasonmapping.Where(x => x.universityid == universityId).ToList();
         for (int k = 0; k < universityWise.Count; k++)
