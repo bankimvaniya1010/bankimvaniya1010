@@ -100,7 +100,6 @@
                                     <textarea runat="server" id="txtcourseeligibility" class="form-control edit-textarea"></textarea>
                                 </div>
                                 <input id="btnAddCommencementDate" style="display:none" type="button" class="form-control" value="Add Commencement Date" />
-                                <input id="btnAddDefermentDate" style="display:none" type="button" class="form-control" value="Add Deferment Date" />
                             </div>
                         </div>
                     </div>
@@ -109,7 +108,12 @@
                     <asp:HiddenField ID="hidCommencementDates" runat="server" Value="" />
                     <div id="commencementDatesDiv" class="form-group row">
                     </div>
-
+                    <div class="form-group row">
+                        <div class="col-md-8">
+                            <input id="btnAddDefermentDate" style="display:none ;margin-left: 214px;" type="button" class="form-control" value="Add Deferment Date" />
+                        </div>
+                    </div>
+                    
                     <asp:HiddenField ID="HiddefermentdatesCount" runat="server" Value="0" />
                     <asp:HiddenField ID="Hiddefermentdates" runat="server" Value="" />
                     <div id="defermentdatesDiv" class="form-group row">
