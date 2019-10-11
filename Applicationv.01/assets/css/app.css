@@ -246,3 +246,4 @@
 .logn-head{min-height: 78px;}
 .shwcenter {margin-top: 11%; margin-left: 3%;}
 .file-updbtnwrp input[type="file"]{max-width: 100%;margin-top: 8px;}
+[dir=ltr] textarea.form-control.edit-textarea{height: 100px;margin-bottom: 15px;}
