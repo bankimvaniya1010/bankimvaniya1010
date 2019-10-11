@@ -46,75 +46,82 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
 
                     if(applicant_details == null || application_details == null)
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete student or application details. Please complete both before proceeding'); window.location='" + webURL + "default.aspx';", true);
-
-                    details.highestqualificationfield = applicant_details.fieldofhigheststudy.HasValue ? applicant_details.fieldofhigheststudy.Value : 1;
-                    details.fieldofstudyapplied = application_details.majorofdiscipline.HasValue ? application_details.majorofdiscipline.Value : 1;
-                    details.highestqualifiactionachieved = applicant_details.higheststudycompleted.HasValue ? applicant_details.higheststudycompleted.Value.ToString() : "1";
-                    details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value.ToString() : "1";
+                    else
+                    {
+                        details.highestqualificationfield = applicant_details.fieldofhigheststudy.HasValue ? applicant_details.fieldofhigheststudy.Value : 1;
+                        details.fieldofstudyapplied = application_details.majorofdiscipline.HasValue ? application_details.majorofdiscipline.Value : 1;
+                        details.highestqualifiactionachieved = applicant_details.higheststudycompleted.HasValue ? applicant_details.higheststudycompleted.Value.ToString() : "1";
+                        details.levelofcourse = application_details.coursetype.HasValue ? application_details.coursetype.Value.ToString() : "1";
+                    }
                 }
                 else
                     details = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
 
-                var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
-                var clarificationansweredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
-
-                // Section 1 clarification questions
-                var section1_clarification_questionList = clarification_questionsList.Where(x => x.gte_master1_id == null && x.display_condition == null).ToList();
-                clarification_questionsList.RemoveAll(x => x.gte_master1_id == null && x.display_condition == null);
-
-                foreach (var item in applicant_response)
-                    clarification_questionsList.RemoveAll(x => x.gte_master1_id.Value == item.question_id && x.display_condition.Value != item.applicant_response.Value);
-
-                if (clarification_questionsList.Any(x => x.action != null))
+                if (details.highestqualificationfield != null)
                 {
-                    var sendEmailQuestion = clarification_questionsList.Where(x => x.action != null && x.action == "Send Email").ToList();
-                    clarification_questionsList.RemoveAll(x => x.action != null && x.action == "Send Email");
-                    foreach (var item in clarificationansweredQuestion)
+                    var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
+                    var clarificationansweredQuestion = db.gte_clarification_applicantresponse.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
+
+                    // Section 1 clarification questions
+                    var section1_clarification_questionList = clarification_questionsList.Where(x => x.gte_master1_id == null && x.display_condition == null).ToList();
+                    clarification_questionsList.RemoveAll(x => x.gte_master1_id == null && x.display_condition == null);
+
+                    foreach (var item in applicant_response)
+                        clarification_questionsList.RemoveAll(x => x.gte_master1_id.Value == item.question_id && x.display_condition.Value != item.applicant_response.Value);
+
+                    if (clarification_questionsList.Any(x => x.action != null))
                     {
-                        if (!(sendEmailQuestion.Count > 0))
-                            break;
+                        var sendEmailQuestion = clarification_questionsList.Where(x => x.action != null && x.action == "Send Email").ToList();
+                        clarification_questionsList.RemoveAll(x => x.action != null && x.action == "Send Email");
+                        foreach (var item in clarificationansweredQuestion)
+                        {
+                            if (!(sendEmailQuestion.Count > 0))
+                                break;
 
-                        sendEmailQuestion.RemoveAll(x => x.id == item.clarification_question_id);
+                            sendEmailQuestion.RemoveAll(x => x.id == item.clarification_question_id);
+                        }
+                        clarificationansweredQuestion.RemoveAll(x => x.gte_clarification_questionmaster.action != null && x.gte_clarification_questionmaster.action == "Send Email");
+                        if (sendEmailQuestion.Count > 0)
+                            sendEmailsClarificationNotification(sendEmailQuestion);
                     }
-                    clarificationansweredQuestion.RemoveAll(x => x.gte_clarification_questionmaster.action != null && x.gte_clarification_questionmaster.action == "Send Email");
-                    if (sendEmailQuestion.Count > 0)
-                        sendEmailsClarificationNotification(sendEmailQuestion);
+
+                    // For adding field of study clarification question
+                    if (details.highestqualificationfield.Value != details.fieldofstudyapplied.Value)
+                        clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display Field of study clarification").FirstOrDefault());
+
+                    // For adding level of study clarification question
+                    var selectedHighestQualification = Convert.ToInt32(details.highestqualifiactionachieved);
+                    var selectedAppliedQualification = Convert.ToInt32(details.levelofcourse);
+                    var highestQualificationAchievedLevel = db.studylevelmaster
+                                                              .Where(x => x.studylevelid == selectedHighestQualification).ToList()
+                                                              .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
+                    var appliedQualificationLevel = db.studylevelmaster
+                                                      .Where(x => x.studylevelid == selectedAppliedQualification).ToList()
+                                                      .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
+
+                    if (!(highestQualificationAchievedLevel > 17 || appliedQualificationLevel > 17)) // Hard coded for removing values not to be considered in study level master table
+                    {
+                        if (highestQualificationAchievedLevel > appliedQualificationLevel) // For adding level of study clarification question
+                            clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display level of study clarification").FirstOrDefault());
+                    }
+
+                    if (clarificationansweredQuestion.Count >= clarification_questionsList.Count)
+                        displayLabel("All questions have been answered in this part");
+                    else
+                        foreach (var item in clarificationansweredQuestion)
+                            clarification_questionsList.RemoveAll(x => x.id == item.clarification_question_id);
+
+                    if (clarification_questionsList.Count == 0)
+                        displayLabel("Completed");
+                    else
+                    {
+                        QuestionsCount = clarification_questionsList.Count;
+                        clarificationList.DataSource = clarification_questionsList;
+                        clarificationList.DataBind();
+                    }
                 }
-
-                // For adding field of study clarification question
-                if (details.highestqualificationfield.Value != details.fieldofstudyapplied.Value)
-                    clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display Field of study clarification").FirstOrDefault());
-
-                // For adding level of study clarification question
-                var selectedHighestQualification = Convert.ToInt32(details.highestqualifiactionachieved);
-                var selectedAppliedQualification = Convert.ToInt32(details.levelofcourse);
-                var highestQualificationAchievedLevel = db.studylevelmaster
-                                                          .Where(x => x.studylevelid == selectedHighestQualification).ToList()
-                                                          .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
-                var appliedQualificationLevel = db.studylevelmaster
-                                                  .Where(x => x.studylevelid == selectedAppliedQualification).ToList()
-                                                  .Select(x => Convert.ToInt32(Regex.Replace(x.levelofcode, "[^0-9]+", string.Empty))).FirstOrDefault();
-
-                if (!(highestQualificationAchievedLevel > 17 || appliedQualificationLevel > 17)) // Hard coded for removing values not to be considered in study level master table
-                {
-                    if (highestQualificationAchievedLevel > appliedQualificationLevel) // For adding level of study clarification question
-                        clarification_questionsList.Add(section1_clarification_questionList.Where(x => x.action == "Display level of study clarification").FirstOrDefault());
-                }
-
-                if (clarificationansweredQuestion.Count >= clarification_questionsList.Count)
-                    displayLabel("All questions have been answered in this part");
                 else
-                    foreach (var item in clarificationansweredQuestion)
-                        clarification_questionsList.RemoveAll(x => x.id == item.clarification_question_id);
-
-                if (clarification_questionsList.Count == 0)
-                    displayLabel("Completed");
-                else
-                {
-                    QuestionsCount = clarification_questionsList.Count;
-                    clarificationList.DataSource = clarification_questionsList;
-                    clarificationList.DataBind();
-                }
+                    displayLabel("GTE Personal Details not completed. Please provide Personal Details before attempting this section.");
             }
         }
     }
