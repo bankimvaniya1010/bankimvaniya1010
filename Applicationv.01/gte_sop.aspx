@@ -16,35 +16,35 @@
         <div class="container page__container">
          <div class="row">
            <div class="col-md-8">
-             <div class="card">
+             <div class="card" runat="server" id="sop_section">
               <div class="card-body list-group-fit">
                 <div class="list-group list-group-fit">
                     <div runat="server">
-                        <asp:TextBox ID="txtPara1" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
+                        <asp:TextBox ID="txtPara1" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="list-group list-group-fit">
                     <div runat="server">
-                        <asp:TextBox ID="txtPara2" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
+                        <asp:TextBox ID="txtPara2" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="list-group list-group-fit">
                     <div runat="server">
-                        <asp:TextBox ID="txtPara3" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>                    
+                        <asp:TextBox ID="txtPara3" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>                    
                     </div>            
                 </div>
 
                 <div class="list-group list-group-fit">
                     <div runat="server">
-                        <asp:TextBox ID="txtPara4" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
+                        <asp:TextBox ID="txtPara4" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>
                 </div>
 
                 <div class="list-group list-group-fit">
                     <div runat="server">
-                        <asp:TextBox ID="txtPara5" runat="server" ReadOnly="true" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
+                        <asp:TextBox ID="txtPara5" runat="server" TextMode="MultiLine" Width="100%" Height="300px" Font-Size="Medium"></asp:TextBox>
                     </div>
                 </div>
 
@@ -57,8 +57,13 @@
                 </div>
 
             </div>
-          </div>                            
-        </div>
+          </div>
+
+               <div id="completedDiv" runat="server" style="display: none;">
+                   <asp:Label ID="lblCompleted" runat="server" Text=""></asp:Label>
+               </div>
+
+           </div>
         <div class="col-md-4">
             <div class="banImg-wrp">
                 <img src="/assets/images/Banner1.jpg" class="img-fluid">
@@ -94,6 +99,12 @@
 
     <script>
         $(document).ready(function () {
+
+            $("#<%=txtPara1.ClientID%>").attr('readonly', true);
+            $("#<%=txtPara2.ClientID%>").attr('readonly', true);
+            $("#<%=txtPara3.ClientID%>").attr('readonly', true);
+            $("#<%=txtPara4.ClientID%>").attr('readonly', true);
+            $("#<%=txtPara5.ClientID%>").attr('readonly', true);
 
             $("#<%=btnEdit.ClientID%>").click(function () {
                 var btnEdit = this;

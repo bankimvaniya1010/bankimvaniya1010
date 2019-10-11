@@ -59,91 +59,130 @@ public partial class gte_sop : System.Web.UI.Page
             }
             else
             {
-                var isFullService = (bool)Session["FullService"];
-                if (isFullService)
+                var answeredGteQuestion1 = db.gte_questions_applicant_response.AsNoTracking().Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
+                var allGteQuestions1 = db.gte_questions_master.AsNoTracking().ToList();
+
+                var answeredGteQuestion2 = db.gte_question_part2_applicant_response.AsNoTracking().Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
+                var allGteQuestions2 = db.gte_question_master_part2.AsNoTracking().ToList();
+
+                var clarification_questionsList = db.gte_clarification_questionmaster.AsNoTracking().ToList();
+                var answeredClarificationQuestion = db.gte_clarification_applicantresponse.AsNoTracking().Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
+
+                foreach (var item in answeredGteQuestion2)
+                    clarification_questionsList.RemoveAll(x => x.gte_master1_id == item.question_id && x.display_condition.Value != item.applicant_response.Value);
+
+                clarification_questionsList.RemoveAll(x => x.gte_master1_id == null);
+
+                if (answeredGteQuestion1.Count != allGteQuestions1.Count) // Check for gte assesment 1 check
                 {
-                    applicantdetails = new gte_applicantdetails();
-                    var details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                    var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                    var applicationDetails = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == universityID && x.preferenceid.Value == 1).FirstOrDefault();
-                    if (details != null && educationDetails != null && applicationDetails != null)
-                    {
-                        applicantdetails.nationality = details.nationality.Value;
-                        applicantdetails.residencecountry = details.issameaspostal.Value == 1 ? details.postalcountry : details.residentialcountry;
-                        applicantdetails.countryofbirth = details.countryofbirth;
-                        applicantdetails.dateofbirth = details.dateofbirth;
-                        applicantdetails.universityid = universityID;
-                        applicantdetails.workexperience = !String.IsNullOrEmpty(details.totalyearofexperience) ? Convert.ToInt32(details.totalyearofexperience) : 0;
-                        applicantdetails.highestqualifiactionachieved = details.higheststudycompleted.HasValue ? details.higheststudycompleted.Value.ToString() : "1";
-
-                        applicantdetails.highestqualificationfield = details.fieldofhigheststudy.HasValue ? details.fieldofhigheststudy.Value : 1;
-                        applicantdetails.highestqualificationdate = details.studycompletedate;
-                        applicantdetails.highestqualificationcountry = Convert.ToInt32(details.countryofhigheststudy.HasValue);
-
-                        applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
-                        applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
-                        applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1;
-                        applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == applicationDetails.course.Value).Select(x => x.coursename).FirstOrDefault();
-
-                        if (educationDetails.ishighereducation == 1) // Applicant has entered most recent higher education
-                        {
-                            var higherEducationDetail = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
-                            applicantdetails.highestqualificationname = higherEducationDetail.coursename;
-                        }
-                        else if (educationDetails.ishighereducation.Value > 1 && educationDetails.isdiplomadone.Value == 1) // Diploma is highest completed qualification
-                            applicantdetails.highestqualificationname = "Diploma";
-                        else if (educationDetails.ishighereducation > 1 && educationDetails.issecondarydone.Value == 1) // Secondary is highest completed qualification
-                            applicantdetails.highestqualificationname = "Secondary Education";
-                        else if ((educationDetails.issecondarydone.Value > 1 || educationDetails.isdiplomadone.Value > 1) && educationDetails.ishighschooldone.Value == 1) // High School is highest completed qualification
-                            applicantdetails.highestqualificationname = "High School Education";
-                    }
-                    else if (details == null)
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Personal details missing. Please complete Student Information before proceeding.');window.location='" + webURL + "default.aspx';", true);
-                    else if (educationDetails == null)
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant education details missing. Please complete education details before proceeding.');window.location='" + webURL + "default.aspx';", true);
-                    else if (applicationDetails == null)
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Application missing. Please complete Student Application section before proceeding.');window.location='" + webURL + "default.aspx';", true);
+                    completedDiv.Visible = true;
+                    completedDiv.Style.Remove("display");
+                    sop_section.Visible = false;
+                    lblCompleted.Text = "Please complete GTE Stage-1 Assessment before proceeding";
+                }
+                else if (answeredGteQuestion2.Count != allGteQuestions2.Count)  // Check for gte assesment 2 check
+                {
+                    completedDiv.Visible = true;
+                    completedDiv.Style.Remove("display");
+                    sop_section.Visible = false;
+                    lblCompleted.Text = "Please complete GTE Stage-2 Assessment before proceeding";
+                }
+                else if (answeredClarificationQuestion.Count < clarification_questionsList.Count) // Check for gte clarification question check
+                {
+                    completedDiv.Visible = true;
+                    completedDiv.Style.Remove("display");
+                    sop_section.Visible = false;
+                    lblCompleted.Text = "Please complete GTE Clarification questions before proceeding";
                 }
                 else
-                    applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
-
-                if (applicantdetails == null)
-                    Response.Redirect("default.aspx", true);
-
-                try
                 {
-                    btnSave.Style.Add("display", "none");
-                    btnsubmit.Style.Remove("display");
-                    btnEdit.Style.Remove("display");
+                    var isFullService = (bool)Session["FullService"];
+                    if (isFullService)
+                    {
+                        applicantdetails = new gte_applicantdetails();
+                        var details = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                        var educationDetails = db.applicanteducationdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                        var applicationDetails = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == universityID && x.preferenceid.Value == 1).FirstOrDefault();
+                        if (details != null && educationDetails != null && applicationDetails != null)
+                        {
+                            applicantdetails.nationality = details.nationality.Value;
+                            applicantdetails.residencecountry = details.issameaspostal.Value == 1 ? details.postalcountry : details.residentialcountry;
+                            applicantdetails.countryofbirth = details.countryofbirth;
+                            applicantdetails.dateofbirth = details.dateofbirth;
+                            applicantdetails.universityid = universityID;
+                            applicantdetails.workexperience = !String.IsNullOrEmpty(details.totalyearofexperience) ? Convert.ToInt32(details.totalyearofexperience) : 0;
+                            applicantdetails.highestqualifiactionachieved = details.higheststudycompleted.HasValue ? details.higheststudycompleted.Value.ToString() : "1";
 
-                    txtPara1.Text = construct_para(1, applicantdetails);
-                    txtPara2.Text = construct_para(2, applicantdetails);
-                    txtPara3.Text = construct_para(3, applicantdetails);
-                    txtPara4.Text = construct_para(4, applicantdetails);
-                    txtPara5.Text = construct_para(5, applicantdetails);
+                            applicantdetails.highestqualificationfield = details.fieldofhigheststudy.HasValue ? details.fieldofhigheststudy.Value : 1;
+                            applicantdetails.highestqualificationdate = details.studycompletedate;
+                            applicantdetails.highestqualificationcountry = Convert.ToInt32(details.countryofhigheststudy.HasValue);
 
-                    gte_student_sop sop = new gte_student_sop();
-                    sop.gte_sop_para1 = txtPara1.Text;
-                    sop.gte_sop_para2 = txtPara2.Text;
-                    sop.gte_sop_para3 = txtPara3.Text;
-                    sop.gte_sop_para4 = txtPara4.Text;
-                    sop.gte_sop_para5 = txtPara5.Text;
-                    sop.applicant_generated_sop_para1 = string.Empty;
-                    sop.applicant_generated_sop_para2 = string.Empty;
-                    sop.applicant_generated_sop_para3 = string.Empty;
-                    sop.applicant_generated_sop_para4 = string.Empty;
-                    sop.applicant_generated_sop_para5 = string.Empty;
-                    sop.is_sop_submitted_by_applicant = false;
-                    sop.applicant_id = UserID;
-                    sop.universityid = universityID;
-                    sop.created_at = DateTime.Now;
+                            applicantdetails.levelofcourse = applicationDetails.coursetype.HasValue ? applicationDetails.coursetype.Value.ToString() : "1";
+                            applicantdetails.cityofeducationInstitution = applicationDetails.city.HasValue ? applicationDetails.city.Value : 1;
+                            applicantdetails.fieldofstudyapplied = applicationDetails.majorofdiscipline.HasValue ? applicationDetails.majorofdiscipline.Value : 1;
+                            applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == applicationDetails.course.Value).Select(x => x.coursename).FirstOrDefault();
 
-                    db.gte_student_sop.Add(sop);
-                    db.SaveChanges();
+                            applicantdetails.highestqualificationname = string.Empty;  // Initial Value for highest qualification
+                            if (educationDetails.ishighereducation.HasValue && educationDetails.ishighereducation.Value == 1) // Applicant has entered most recent higher education
+                            {
+                                var higherEducationDetail = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                                applicantdetails.highestqualificationname = higherEducationDetail.coursename;
+                            }
+                            else if (educationDetails.isdiplomadone.HasValue && educationDetails.isdiplomadone.Value == 1) // Diploma is highest completed qualification
+                                applicantdetails.highestqualificationname = "Diploma";
+                            else if (educationDetails.issecondarydone.HasValue && educationDetails.issecondarydone.Value == 1) // Secondary is highest completed qualification
+                                applicantdetails.highestqualificationname = "Secondary Education";
+                            else if (educationDetails.ishighschooldone.HasValue && educationDetails.ishighschooldone.Value == 1) // High School is highest completed qualification
+                                applicantdetails.highestqualificationname = "High School Education";
+                        }
+                        else if (details == null)
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Personal details missing. Please complete Student Information before proceeding.');window.location='" + webURL + "default.aspx';", true);
+                        else if (educationDetails == null)
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Applicant education details missing. Please complete education details before proceeding.');window.location='" + webURL + "default.aspx';", true);
+                        else if (applicationDetails == null)
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Application missing. Please complete Student Application section before proceeding.');window.location='" + webURL + "default.aspx';", true);
+                    }
+                    else
+                        applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID).FirstOrDefault();
+
+                    if (applicantdetails == null)
+                        Response.Redirect("default.aspx", true);
+
+                    try
+                    {
+                        btnSave.Style.Add("display", "none");
+                        btnsubmit.Style.Remove("display");
+                        btnEdit.Style.Remove("display");
+
+                        txtPara1.Text = construct_para(1, applicantdetails);
+                        txtPara2.Text = construct_para(2, applicantdetails);
+                        txtPara3.Text = construct_para(3, applicantdetails);
+                        txtPara4.Text = construct_para(4, applicantdetails);
+                        txtPara5.Text = construct_para(5, applicantdetails);
+
+                        gte_student_sop sop = new gte_student_sop();
+                        sop.gte_sop_para1 = txtPara1.Text;
+                        sop.gte_sop_para2 = txtPara2.Text;
+                        sop.gte_sop_para3 = txtPara3.Text;
+                        sop.gte_sop_para4 = txtPara4.Text;
+                        sop.gte_sop_para5 = txtPara5.Text;
+                        sop.applicant_generated_sop_para1 = string.Empty;
+                        sop.applicant_generated_sop_para2 = string.Empty;
+                        sop.applicant_generated_sop_para3 = string.Empty;
+                        sop.applicant_generated_sop_para4 = string.Empty;
+                        sop.applicant_generated_sop_para5 = string.Empty;
+                        sop.is_sop_submitted_by_applicant = false;
+                        sop.applicant_id = UserID;
+                        sop.universityid = universityID;
+                        sop.created_at = DateTime.Now;
+
+                        db.gte_student_sop.Add(sop);
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    { objLog.WriteLog(ex.ToString()); }
+
                 }
-                catch (Exception ex)
-                { objLog.WriteLog(ex.ToString()); }
-                
             }
         }
     }
@@ -354,6 +393,8 @@ public partial class gte_sop : System.Web.UI.Page
                 text = text.Replace("#EducationalInstitution#", institutionDetails.university_name);
             }
         }
+        if (text.Contains("#ClickToKnowMore#"))
+            text = text.Replace("#ClickToKnowMore#", string.Empty);
 
         return text;
     }
@@ -381,12 +422,6 @@ public partial class gte_sop : System.Web.UI.Page
         btnsubmit.Style.Remove("display");
         btnEdit.Style.Remove("display");
         btnSave.Style.Add("display", "none");
-
-        txtPara1.ReadOnly = true;
-        txtPara2.ReadOnly = true;
-        txtPara3.ReadOnly = true;
-        txtPara4.ReadOnly = true;
-        txtPara5.ReadOnly = true;
 
         gte_student_sop sop = db.gte_student_sop.Where(x => x.applicant_id == UserID && x.universityid == universityID).FirstOrDefault();
         sop.applicant_generated_sop_para1 = txtPara1.Text;
