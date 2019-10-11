@@ -88,8 +88,6 @@
                                     </select>
                                     <asp:HiddenField ID="hidUniversityCampuses" runat="server" Value="" />
                                 </div>
-                                <input id="btnAddCommencementDate" type="button" class="form-control" value="Add Commencement Date" />
-                                <input id="btnAddDefermentDate" type="button" class="form-control" value="Add Deferment Date" />
                             </div>
                         </div>
                     </div>
@@ -97,19 +95,25 @@
                         <label for="courseeligibility" class="col-sm-3 col-form-label form-label">Course eligibility</label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <textarea runat="server" id="txtcourseeligibility" class="form-control"></textarea>
+                                <div class="col-md-12">
+                                    <textarea runat="server" id="txtcourseeligibility" class="form-control edit-textarea"></textarea>
                                 </div>
+                                <input id="btnAddCommencementDate" type="button" class="form-control" value="Add Commencement Date" />
+                                <input id="btnAddDefermentDate" type="button" class="form-control" value="Add Deferment Date" />
                             </div>
                         </div>
                     </div>
                     <asp:HiddenField ID="hidCommencementDateCount" runat="server" Value="0" />
                     <asp:HiddenField ID="hidCommencementDates" runat="server" Value="" />
+                    <asp:HiddenField ID="hidExistingCommencementDates" runat="server" Value=""/>
+                    <asp:HiddenField ID="hidExistingCommencementDateIds" runat="server" Value=""/>
                     <div id="commencementDatesDiv" class="form-group row">
                     </div>
 
                     <asp:HiddenField ID="HiddefermentdatesCount" runat="server" Value="0" />
                     <asp:HiddenField ID="Hiddefermentdates" runat="server" Value="" />
+                    <asp:HiddenField ID="hidExixtingDefermentDate" runat="server" Value=""/>
+                    <asp:HiddenField ID="hidExistingDefermentDateIds" runat="server" Value=""/>
                     <div id="defermentdatesDiv" class="form-group row">
                     </div>
 
@@ -175,11 +179,19 @@
             $("#defermentdatesDiv").append(DateContent);
             $('#txtdefermentdates_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
 
-            if (date != "")
+            if (date != "") {
                 $('#txtdefermentdates_' + count).val(date);
+                var existingdefermentDateArray = $("#<%=hidExixtingDefermentDate.ClientID %>").val().split(',');
+                var existingDefermentDateCount = existingdefermentDateArray .length - 1;
+                for (var i = 0; i < existingDefermentDateCount ; i++)
+                {
+                    if (existingdefermentDateArray [i] == date)
+                        $('#txtdefermentdates_' + count).attr("disabled", "true");                    
+                }
+            }
         }
         function createCommencementDateBlock(date) {
-
+            
             var hidCommencementDate = $("#<%=hidCommencementDateCount.ClientID %>");
             var count = parseInt(hidCommencementDate.val());
             hidCommencementDate.val(count + 1);
@@ -192,7 +204,16 @@
             $('#txtCommencementDate_' + count).datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
 
             if (date != "")
-                 $('#txtCommencementDate_' + count).val(date);                
+            {
+                $('#txtCommencementDate_' + count).val(date);
+                var existingcommencementDateArray = $("#<%=hidExistingCommencementDates.ClientID %>").val().split(',');
+                var existingDateCount = existingcommencementDateArray.length - 1;
+                for (var i = 0; i < existingDateCount; i++)
+                {
+                    if (existingcommencementDateArray[i] == date)
+                        $('#txtCommencementDate_' + count).attr("disabled", "true");                    
+                }
+            }            
         }
 
         function validateForm() {

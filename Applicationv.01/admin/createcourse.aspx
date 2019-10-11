@@ -88,8 +88,6 @@
                                     </select>
                                     <asp:HiddenField ID="hidUniversityCampuses" runat="server" Value="" />
                                 </div>
-                                <input id="btnAddCommencementDate" style="display:none" type="button" class="form-control" value="Add Commencement Date" />
-                                <input id="btnAddDefermentDate" style="display:none" type="button" class="form-control" value="Add Deferment Date" />
                             </div>
                         </div>
                     </div>
@@ -98,9 +96,11 @@
                         <label for="courseeligibility" class="col-sm-3 col-form-label form-label">Course eligibility</label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <textarea runat="server" id="txtcourseeligibility" class="form-control"></textarea>
+                                <div class="col-md-12">
+                                    <textarea runat="server" id="txtcourseeligibility" class="form-control edit-textarea"></textarea>
                                 </div>
+                                <input id="btnAddCommencementDate" style="display:none" type="button" class="form-control" value="Add Commencement Date" />
+                                <input id="btnAddDefermentDate" style="display:none" type="button" class="form-control" value="Add Deferment Date" />
                             </div>
                         </div>
                     </div>
