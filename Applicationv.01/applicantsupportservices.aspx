@@ -105,5 +105,12 @@
 
         </div>
    
-
+<script>
+    $(document).ready(function () {
+        $('.sidebar-menu-item').removeClass('open');
+        $('#supportservice_list').addClass('open');
+        $('.sidebar-menu-item').removeClass('active');
+        $('#supportservices').addClass('active');
+    });
+</script>
 </asp:Content>

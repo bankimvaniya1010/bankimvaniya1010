@@ -532,7 +532,7 @@
                                             </li>
                                          </ul>
                                     </li>
-                                    <li class="sidebar-menu-item" id="supportservice">
+                                    <li class="sidebar-menu-item" id="supportservice_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#services">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                            Support Services
