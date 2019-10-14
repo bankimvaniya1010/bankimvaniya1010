@@ -2009,6 +2009,7 @@ public partial class payment_details
     public string instruction { get; set; }
     public string payment_proof_file_name { get; set; }
     public int payment_status { get; set; }
+    public Nullable<System.DateTime> payment_verified_date { get; set; }
 
     public virtual currency_master currency_master { get; set; }
     public virtual university_master university_master { get; set; }
@@ -2411,6 +2412,15 @@ public partial class supportservicemaster
     public string imagepath { get; set; }
 }
 
+public partial class supportservices_enquiries
+{
+    public int id { get; set; }
+    public Nullable<int> supportserviceId { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> applicantid { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+}
+
 public partial class timezonemaster
 {
     public int ID { get; set; }
@@ -2574,6 +2584,7 @@ public partial class university_master
     public string rejection_terms { get; set; }
     public string withdrawn_terms { get; set; }
     public string fee_payment_instructions { get; set; }
+    public string supprot_service_instructions { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

@@ -475,7 +475,7 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>                                     
                                     <li class="sidebar-menu-item" id="viewCOE_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -532,13 +532,19 @@
                                             </li>
                                          </ul>
                                     </li>
-                                    <li class="sidebar-menu-item" id="supportservice">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                    <li class="sidebar-menu-item" id="supportservice_list">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#services">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                            Support Services
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-
+                                         <ul class="sidebar-submenu sm-indent collapse" id="services">
+                                            <li class="sidebar-menu-item" id="supportservices">
+                                                <a class="sidebar-menu-button" href="applicantsupportservices.aspx">
+                                                    <span class="sidebar-menu-text">Support Services</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="message_menu_list">
                                         <a class="sidebar-menu-button" data-toggle="collapse" href="#messages_menu">

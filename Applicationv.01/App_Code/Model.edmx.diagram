@@ -272,6 +272,7 @@
         <EntityTypeShape EntityType="GTEModel.universitywise_supportservicemapping" Width="1.5" PointX="11.375" PointY="24.75" />
         <AssociationConnector Association="GTEModel.FK_payment_details_currency_master" />
         <AssociationConnector Association="GTEModel.FK_payment_details_university_master" />
+        <EntityTypeShape EntityType="GTEModel.supportservices_enquiries" Width="1.5" PointX="25.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -62,7 +62,7 @@ public partial class admin_universitywisesupportservicemapping : System.Web.UI.P
         BindService();
         int universityId = Convert.ToInt16(ddlUniversity.SelectedValue);
         var universityWise = (from usm in db.universitywise_supportservicemapping
-                              join sm in db.supportservicemaster on usm.id equals sm.supportservicemasterId
+                              join sm in db.supportservicemaster on usm.supportserviceID equals sm.supportservicemasterId
                               where usm.universityid == universityId select usm).ToList();
         for (int k = 0; k < universityWise.Count; k++)
         {

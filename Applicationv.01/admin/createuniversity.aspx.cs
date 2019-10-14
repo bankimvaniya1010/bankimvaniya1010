@@ -83,6 +83,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.rejection_terms = txtRejectionTerms.Text;
                 universityObj.withdrawn_terms = txtWithdrawnTerms.Text;
                 universityObj.application_instruction = txtUniversityApplication.Text;
+                universityObj.supprot_service_instructions = txtsupportserviceInstructions.Text;
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
                 if (logo.HasFile)  //fileupload control contains a file  
