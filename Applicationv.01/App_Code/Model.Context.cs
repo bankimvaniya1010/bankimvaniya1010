@@ -173,6 +173,11 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<visa> visa { get; set; }
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
+    public virtual DbSet<payment_description_master> payment_description_master { get; set; }
+    public virtual DbSet<payment_details> payment_details { get; set; }
+    public virtual DbSet<payment_status_master> payment_status_master { get; set; }
+    public virtual DbSet<supportservicemaster> supportservicemaster { get; set; }
+    public virtual DbSet<universitywise_supportservicemapping> universitywise_supportservicemapping { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

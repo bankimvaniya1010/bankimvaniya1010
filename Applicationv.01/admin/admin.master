@@ -332,6 +332,16 @@
                                             <span class="sidebar-menu-text">Institution Custom field listing</span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item" id="supportservicemaster"> 
+                                        <a class="sidebar-menu-button" href="supportservicelisting.aspx">
+                                            <span class="sidebar-menu-text">Manage support Service </span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="universitywisesupportservicemapping"> 
+                                        <a class="sidebar-menu-button" href="universitywisesupportservicemapping.aspx">
+                                            <span class="sidebar-menu-text">Institution Support Service Selection</span>
+                                        </a>
+                                    </li>
                                 </ul>                                
                             </li>                          
                             <li class="sidebar-menu-item" id="course_list">

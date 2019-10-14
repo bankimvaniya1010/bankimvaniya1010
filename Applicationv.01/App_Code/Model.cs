@@ -1299,6 +1299,7 @@ public partial class currency_master
         this.managetrips = new HashSet<managetrips>();
         this.manageutilities = new HashSet<manageutilities>();
         this.managevisa = new HashSet<managevisa>();
+        this.payment_details = new HashSet<payment_details>();
     }
 
     public int id { get; set; }
@@ -1321,6 +1322,8 @@ public partial class currency_master
     public virtual ICollection<manageutilities> manageutilities { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<managevisa> managevisa { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<payment_details> payment_details { get; set; }
 }
 
 public partial class customfieldmaster
@@ -1987,6 +1990,36 @@ public partial class master_name
     public string mastername { get; set; }
 }
 
+public partial class payment_description_master
+{
+    public int id { get; set; }
+    public string payment_description { get; set; }
+}
+
+public partial class payment_details
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int university_id { get; set; }
+    public System.DateTime request_date { get; set; }
+    public int payment_for { get; set; }
+    public System.DateTime due_date { get; set; }
+    public int amount { get; set; }
+    public int currency_id { get; set; }
+    public string instruction { get; set; }
+    public string payment_proof_file_name { get; set; }
+    public int payment_status { get; set; }
+
+    public virtual currency_master currency_master { get; set; }
+    public virtual university_master university_master { get; set; }
+}
+
+public partial class payment_status_master
+{
+    public int id { get; set; }
+    public string status_description { get; set; }
+}
+
 public partial class predeparturetutorialmaster
 {
     public int predeparturetutorialid { get; set; }
@@ -2367,6 +2400,17 @@ public partial class supervisorcomments
     public virtual university_master university_master { get; set; }
 }
 
+public partial class supportservicemaster
+{
+    public int supportservicemasterId { get; set; }
+    public string servicetype { get; set; }
+    public string serviceprovider_name { get; set; }
+    public string serviceprovider_phonenumber { get; set; }
+    public string serviceprovider_email { get; set; }
+    public string description { get; set; }
+    public string imagepath { get; set; }
+}
+
 public partial class timezonemaster
 {
     public int ID { get; set; }
@@ -2490,6 +2534,7 @@ public partial class university_master
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
+        this.payment_details = new HashSet<payment_details>();
     }
 
     public int universityid { get; set; }
@@ -2528,6 +2573,7 @@ public partial class university_master
     public string deferment_terms { get; set; }
     public string rejection_terms { get; set; }
     public string withdrawn_terms { get; set; }
+    public string fee_payment_instructions { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
@@ -2580,6 +2626,8 @@ public partial class university_master
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<payment_details> payment_details { get; set; }
 }
 
 public partial class universitycampus
@@ -2639,6 +2687,15 @@ public partial class universitywise_rejectionreasonmapping
 
     public virtual rejection_reasonmaster rejection_reasonmaster { get; set; }
     public virtual university_master university_master { get; set; }
+}
+
+public partial class universitywise_supportservicemapping
+{
+    public int id { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> supportserviceID { get; set; }
+    public Nullable<System.DateTime> created_at { get; set; }
+    public Nullable<int> created_by { get; set; }
 }
 
 public partial class universitywisefieldmapping

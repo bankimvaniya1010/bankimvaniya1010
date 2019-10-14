@@ -265,6 +265,13 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
+        <EntityTypeShape EntityType="GTEModel.payment_description_master" Width="1.5" PointX="5.375" PointY="23.75" />
+        <EntityTypeShape EntityType="GTEModel.payment_details" Width="1.5" PointX="11.25" PointY="137.625" />
+        <EntityTypeShape EntityType="GTEModel.payment_status_master" Width="1.5" PointX="7.375" PointY="23.75" />
+        <EntityTypeShape EntityType="GTEModel.supportservicemaster" Width="1.5" PointX="9.375" PointY="24.75" />
+        <EntityTypeShape EntityType="GTEModel.universitywise_supportservicemapping" Width="1.5" PointX="11.375" PointY="24.75" />
+        <AssociationConnector Association="GTEModel.FK_payment_details_currency_master" />
+        <AssociationConnector Association="GTEModel.FK_payment_details_university_master" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
