@@ -92,6 +92,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniversitySop.Text = existingUninversity.sop_instruction_for_applicant;
                     txtUniversityScholarship.Text = existingUninversity.scholarship_instruction;
                     txtUniversityApplication.Text = existingUninversity.application_instruction;
+                    txtUniversityFeePayment.Text = existingUninversity.fee_payment_instructions;
                     txtAcceptanceTerms.Text = existingUninversity.acceptance_terms;
                     txtDefermentTerms.Text = existingUninversity.deferment_terms;
                     txtRejectionTerms.Text = existingUninversity.rejection_terms;
@@ -183,6 +184,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
             universityObj.scholarship_instruction = txtUniversityScholarship.Text;
             universityObj.application_instruction = txtUniversityApplication.Text;
+            universityObj.fee_payment_instructions = txtUniversityFeePayment.Text;
             universityObj.acceptance_terms = txtAcceptanceTerms.Text;
             universityObj.deferment_terms = txtDefermentTerms.Text;
             universityObj.rejection_terms = txtRejectionTerms.Text;

@@ -49,7 +49,7 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 emptyChoicesDiv.Visible = true;
                 emptyChoicesDiv.Style.Remove("display");
                 choices.Visible = false;
-                lblEmptyList.Text = "Student has filled application form. Please try again later";
+                lblEmptyList.Text = "Student has not filled application form. Please try again later";
             }
             else
             {
