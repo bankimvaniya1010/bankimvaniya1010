@@ -64,13 +64,14 @@
                                      <asp:LinkButton ID="lnkGteReportFeedBack" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="FeedBackGTE" Text="GTE Report FeedBack"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkDownloadGteReport" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="GTE" Text="Download GTE Report"></asp:LinkButton>
                                       <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VisaForm" Text="Download Visa Form"></asp:LinkButton>|
-                                      <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="PerDown" Text="Download Information"></asp:LinkButton>|
+                                      <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="PerDown" Text="Download Information"></asp:LinkButton>|                                      
                                     <asp:LinkButton ID="lnkProcessPayments" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ProcessPaymentRequest" Text="Process Payment Request"></asp:LinkButton>
                                     <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
                                     --%>
+                                    <asp:LinkButton ID="LinkbtnvisaDates" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VisaDate" Text="Add Visa Dates Details"></asp:LinkButton>
                                 </ItemTemplate>
-                            </asp:TemplateField>
+                            </asp:TemplateField>                              
 
                         </Columns>
                     </asp:GridView>                  

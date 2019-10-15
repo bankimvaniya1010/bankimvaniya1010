@@ -286,6 +286,7 @@
           <Property Name="visasubmittedtodepartment_date" Type="datetime" Precision="0" />
           <Property Name="visadecisionreceived_date" Type="datetime" Precision="0" />
           <Property Name="visagranted" Type="int" />
+          <Property Name="visaremarks" Type="varchar" MaxLength="2000" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -5194,6 +5195,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="visasubmittedtodepartment_date" Type="DateTime" />
           <Property Name="visadecisionreceived_date" Type="DateTime" />
           <Property Name="visagranted" Type="Int32" />
+          <Property Name="visaremarks" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicantdocumentmaster">
           <Key>
@@ -8941,6 +8943,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantdetails">
               <MappingFragment StoreEntitySet="applicantdetails">
+                <ScalarProperty Name="visaremarks" ColumnName="visaremarks" />
                 <ScalarProperty Name="visagranted" ColumnName="visagranted" />
                 <ScalarProperty Name="visadecisionreceived_date" ColumnName="visadecisionreceived_date" />
                 <ScalarProperty Name="visasubmittedtodepartment_date" ColumnName="visasubmittedtodepartment_date" />

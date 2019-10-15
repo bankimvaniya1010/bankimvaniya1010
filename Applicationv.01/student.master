@@ -506,6 +506,11 @@
                                                     <span class="sidebar-menu-text">Documents upload  </span>
                                                 </a>
                                             </li>
+                                            <li class="sidebar-menu-item" id="Viewvisastatus">
+                                                <a class="sidebar-menu-button" href="visastatus.aspx">
+                                                    <span class="sidebar-menu-text">View Status </span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     

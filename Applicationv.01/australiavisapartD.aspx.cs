@@ -574,6 +574,7 @@ public partial class australiavisapartD : System.Web.UI.Page
 
             objaustraliavisadetail.applicantid = userID;
             objaustraliavisadetail.universityid = universityID;
+            objaustraliavisadetail.recordsaved_at = DateTime.Now;
             if (mode == "new")
                 db.australiavisadetailmaster.Add(objaustraliavisadetail);
             db.SaveChanges();
