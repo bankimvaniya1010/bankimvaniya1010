@@ -179,6 +179,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<supportservicemaster> supportservicemaster { get; set; }
     public virtual DbSet<universitywise_supportservicemapping> universitywise_supportservicemapping { get; set; }
     public virtual DbSet<supportservices_enquiries> supportservices_enquiries { get; set; }
+    public virtual DbSet<payment_description_mappings> payment_description_mappings { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

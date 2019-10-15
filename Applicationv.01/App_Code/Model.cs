@@ -315,6 +315,10 @@ public partial class applicantdetails
     public string totalyearofexperience { get; set; }
     public string studentsegment { get; set; }
     public Nullable<int> studentstatus { get; set; }
+    public Nullable<System.DateTime> visaverfied_date { get; set; }
+    public Nullable<System.DateTime> visasubmittedtodepartment_date { get; set; }
+    public Nullable<System.DateTime> visadecisionreceived_date { get; set; }
+    public Nullable<int> visagranted { get; set; }
 
     public virtual students students { get; set; }
 }
@@ -1040,6 +1044,7 @@ public partial class australiavisadetailmaster
     public Nullable<System.DateTime> declarationdate2 { get; set; }
     public string declarationsignature3 { get; set; }
     public Nullable<System.DateTime> declarationdate3 { get; set; }
+    public Nullable<System.DateTime> recordsaved_at { get; set; }
 
     public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
@@ -1990,10 +1995,29 @@ public partial class master_name
     public string mastername { get; set; }
 }
 
-public partial class payment_description_master
+public partial class payment_description_mappings
 {
     public int id { get; set; }
+    public int payment_description_id { get; set; }
+    public int university_id { get; set; }
+
+    public virtual payment_description_master payment_description_master { get; set; }
+    public virtual university_master university_master { get; set; }
+}
+
+public partial class payment_description_master
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public payment_description_master()
+    {
+        this.payment_description_mappings = new HashSet<payment_description_mappings>();
+    }
+
+    public int id { get; set; }
     public string payment_description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<payment_description_mappings> payment_description_mappings { get; set; }
 }
 
 public partial class payment_details
@@ -2545,6 +2569,7 @@ public partial class university_master
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
         this.payment_details = new HashSet<payment_details>();
+        this.payment_description_mappings = new HashSet<payment_description_mappings>();
     }
 
     public int universityid { get; set; }
@@ -2585,6 +2610,7 @@ public partial class university_master
     public string withdrawn_terms { get; set; }
     public string fee_payment_instructions { get; set; }
     public string supprot_service_instructions { get; set; }
+    public string visa_instructions { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
@@ -2639,6 +2665,8 @@ public partial class university_master
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<payment_details> payment_details { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<payment_description_mappings> payment_description_mappings { get; set; }
 }
 
 public partial class universitycampus
