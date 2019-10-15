@@ -247,3 +247,6 @@
 .shwcenter {margin-top: 11%; margin-left: 3%;}
 .file-updbtnwrp input[type="file"]{max-width: 100%;margin-top: 8px;}
 [dir=ltr] textarea.form-control.edit-textarea{height: 100px;margin-bottom: 15px;}
+.visaStatusBox{width: 19.5%;background: #ebebeb !important;}
+.visaStatusBox+ .visaStatusBox {margin-left: 2px;}
+.visaStatusBox label{word-break: break-all;min-height: 72px;}

@@ -175,6 +175,8 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 downloadPerDown(ID);
             //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
+            if(Comamandname.Equals("VisaDate"))
+                Response.Redirect(webURL + "admin/visaDates.aspx?userid=" + ID, true);
         }
         catch (Exception ex)
         {

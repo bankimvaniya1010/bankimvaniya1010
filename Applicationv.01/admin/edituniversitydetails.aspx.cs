@@ -97,6 +97,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtRejectionTerms.Text = existingUninversity.rejection_terms;
                     txtWithdrawnTerms.Text = existingUninversity.withdrawn_terms;
                     txtsupportserviceInstructions.Text = existingUninversity.supprot_service_instructions;
+                    txtvisainstruction.Text = existingUninversity.visa_instructions;
                     foreach (ListItem item in subscription.Items)
                     {
                         string value = existingUninversity.full_service ? "1" : "0";
@@ -187,6 +188,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.rejection_terms = txtRejectionTerms.Text;
             universityObj.withdrawn_terms = txtWithdrawnTerms.Text;
             universityObj.supprot_service_instructions = txtsupportserviceInstructions.Text;
+            universityObj.visa_instructions = txtvisainstruction.Text;
             if (logo.HasFile)  //fileupload control contains a file  
             {
                 docPath = docPath + "/" + universityObj.universityid + "/";

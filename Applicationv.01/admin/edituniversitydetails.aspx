@@ -425,7 +425,16 @@
                             </div>
                         </div>
                     </div>
-
+                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label form-label"> University Instruction for Visa View Status</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtvisainstruction" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
