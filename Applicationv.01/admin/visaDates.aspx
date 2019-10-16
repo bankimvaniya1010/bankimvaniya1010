@@ -21,7 +21,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                   <input id="txtverifedbystaff" runat="server" type="text" class="form-control" placeholder="Select Date" value="">
+                                   <input id="txtverifedbystaff" runat="server" type="text" class="form-control" placeholder="Select Date" value="" readonly="readonly">
                                 </div>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                   <input id="txtsubmittedtodept" runat="server" type="text" class="form-control" placeholder="Select Date" value="">
+                                   <input id="txtsubmittedtodept" runat="server" type="text" class="form-control" placeholder="Select Date" value="" readonly="readonly">
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                   <input id="txtvisadecisionreceived" runat="server" type="text" class="form-control" placeholder="Select Date" value="">
+                                   <input id="txtvisadecisionreceived" runat="server" type="text" class="form-control" placeholder="Select Date" value="" readonly="readonly">
                                 </div>
                             </div>
                         </div>
@@ -94,9 +94,9 @@
             $('#managecity').addClass('active');
 
 
-            $('#ContentPlaceHolder1_txtverifedbystaff').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
-            $('#ContentPlaceHolder1_txtsubmittedtodept').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
-            $('#ContentPlaceHolder1_txtvisadecisionreceived').datepicker({ minDate: new Date(), dateFormat: 'dd-mm-yy' });
+            $('#ContentPlaceHolder1_txtverifedbystaff').datepicker({dateFormat: 'dd-mm-yy' });
+            $('#ContentPlaceHolder1_txtsubmittedtodept').datepicker({dateFormat: 'dd-mm-yy' });
+            $('#ContentPlaceHolder1_txtvisadecisionreceived').datepicker({dateFormat: 'dd-mm-yy' });
         });
     </script>
 

@@ -24,7 +24,11 @@ public partial class visastatus : System.Web.UI.Page
         if (!IsPostBack)
         {
             allfaqQuestion = objCommon.FaqQuestionList();
-            universityInstruction.InnerText = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.visa_instructions).FirstOrDefault();
+            var instruction = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.visa_instructions).FirstOrDefault();
+            if (instruction == null || instruction == "")
+                universityInstruction.InnerText = "No Instructions Set By Institution";
+            else
+                universityInstruction.InnerText = instruction;
             BindVisaStatus();
         }
     }
@@ -64,7 +68,7 @@ public partial class visastatus : System.Web.UI.Page
             }
             //3 4 5 6
             var statusDetails = db.applicantdetails.Where(x => x.applicantid == applicantID && x.universityid == UniversityID).FirstOrDefault();
-            if (statusDetails == null && statusDetails.visaverfied_date == null)
+            if (statusDetails == null || statusDetails.visaverfied_date == null)
             {
                 lblverfiedbystaff.Text = "pending";
                 lblverfiedbystaff.ForeColor = Color.Red;
@@ -74,7 +78,7 @@ public partial class visastatus : System.Web.UI.Page
                 lblverfiedbystaff.Text = Convert.ToDateTime(statusDetails.visaverfied_date).ToString("dd/MM/yyyy");
                 lblverfiedbystaff.ForeColor = Color.Green;
             }
-            if (statusDetails == null && statusDetails.visasubmittedtodepartment_date == null)
+            if (statusDetails == null || statusDetails.visasubmittedtodepartment_date == null)
             {
                 lblsubmited.Text = "pending";
                 lblsubmited.ForeColor = Color.Red;
@@ -84,7 +88,7 @@ public partial class visastatus : System.Web.UI.Page
                 lblsubmited.Text = Convert.ToDateTime(statusDetails.visasubmittedtodepartment_date).ToString("dd/MM/yyyy");
                 lblsubmited.ForeColor = Color.Green;
             }
-            if (statusDetails == null && statusDetails.visadecisionreceived_date == null)
+            if (statusDetails == null || statusDetails.visadecisionreceived_date == null)
             {
                 lbldecisionreceived.Text = "pending";
                 lbldecisionreceived.ForeColor = Color.Red;
@@ -104,7 +108,7 @@ public partial class visastatus : System.Web.UI.Page
                 lblstatus.Text = "Visa Not Granted";
                 lblstatus.ForeColor = Color.Red;
             }
-            if (statusDetails != null && statusDetails.visaremarks != null)
+            if (statusDetails != null && statusDetails.visaremarks != null && statusDetails.visaremarks != "")
             {
                 lblvisaremark.Text = statusDetails.visaremarks;
             }
