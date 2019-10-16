@@ -67,18 +67,24 @@ public partial class admin_visaDates : System.Web.UI.Page
             mode = "update";
             objapplicantdetails = details;
         }
-        var vdateArr = txtverifedbystaff.Value.Split(Convert.ToChar("-"));
-        var visaverfied_date = Convert.ToDateTime(string.Concat(vdateArr[2], "-", vdateArr[1], "-", vdateArr[0]));
-        objapplicantdetails.visaverfied_date = visaverfied_date;
-
-        var sdateArr = txtsubmittedtodept.Value.Split(Convert.ToChar("-"));
-        var visasubmittedtodepartment_date = Convert.ToDateTime(string.Concat(sdateArr[2], "-", sdateArr[1], "-", sdateArr[0]));
-        objapplicantdetails.visasubmittedtodepartment_date = visasubmittedtodepartment_date;
-
-        var ddateArr = txtvisadecisionreceived.Value.Split(Convert.ToChar("-"));
-        var visadecisionreceived_date = Convert.ToDateTime(string.Concat(ddateArr[2], "-", ddateArr[1], "-", ddateArr[0]));
-        objapplicantdetails.visadecisionreceived_date = visadecisionreceived_date;
-
+        if (txtverifedbystaff.Value != "")
+        {
+            var vdateArr = txtverifedbystaff.Value.Split(Convert.ToChar("-"));
+            var visaverfied_date = Convert.ToDateTime(string.Concat(vdateArr[2], "-", vdateArr[1], "-", vdateArr[0]));
+            objapplicantdetails.visaverfied_date = visaverfied_date;
+        }
+        if (txtsubmittedtodept.Value != "")
+        {
+            var sdateArr = txtsubmittedtodept.Value.Split(Convert.ToChar("-"));
+            var visasubmittedtodepartment_date = Convert.ToDateTime(string.Concat(sdateArr[2], "-", sdateArr[1], "-", sdateArr[0]));
+            objapplicantdetails.visasubmittedtodepartment_date = visasubmittedtodepartment_date;
+        }
+        if (txtvisadecisionreceived.Value != "")
+        {
+            var ddateArr = txtvisadecisionreceived.Value.Split(Convert.ToChar("-"));
+            var visadecisionreceived_date = Convert.ToDateTime(string.Concat(ddateArr[2], "-", ddateArr[1], "-", ddateArr[0]));
+            objapplicantdetails.visadecisionreceived_date = visadecisionreceived_date;
+        }
         if (rbYes.Checked)
             objapplicantdetails.visagranted = 1;
         else if (rbNo.Checked)
