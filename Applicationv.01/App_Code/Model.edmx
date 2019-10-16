@@ -1711,7 +1711,7 @@
           <Property Name="due_date" Type="date" Nullable="false" />
           <Property Name="amount" Type="int" Nullable="false" />
           <Property Name="currency_id" Type="int" Nullable="false" />
-          <Property Name="instruction" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="instruction" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="payment_proof_file_name" Type="varchar" MaxLength="100" />
           <Property Name="payment_status" Type="int" Nullable="false" />
           <Property Name="payment_verified_date" Type="date" />
@@ -4862,18 +4862,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="universitycampus_city_mapping" EntitySet="universitycampus_city_mapping" />
           </AssociationSet>
           <EntitySet Name="payment_description_master" EntityType="GTEModel.payment_description_master" />
-          <EntitySet Name="payment_details" EntityType="GTEModel.payment_details" />
           <EntitySet Name="payment_status_master" EntityType="GTEModel.payment_status_master" />
           <EntitySet Name="supportservicemaster" EntityType="GTEModel.supportservicemaster" />
           <EntitySet Name="universitywise_supportservicemapping" EntityType="GTEModel.universitywise_supportservicemapping" />
-          <AssociationSet Name="FK_payment_details_currency_master" Association="GTEModel.FK_payment_details_currency_master">
-            <End Role="currency_master" EntitySet="currency_master" />
-            <End Role="payment_details" EntitySet="payment_details" />
-          </AssociationSet>
-          <AssociationSet Name="FK_payment_details_university_master" Association="GTEModel.FK_payment_details_university_master">
-            <End Role="university_master" EntitySet="university_master" />
-            <End Role="payment_details" EntitySet="payment_details" />
-          </AssociationSet>
           <EntitySet Name="supportservices_enquiries" EntityType="GTEModel.supportservices_enquiries" />
           <EntitySet Name="payment_description_mappings" EntityType="GTEModel.payment_description_mappings" />
           <AssociationSet Name="FK_payment_description_mappings_payment_description_master" Association="GTEModel.FK_payment_description_mappings_payment_description_master">
@@ -4883,6 +4874,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_payment_description_mappings_university_master" Association="GTEModel.FK_payment_description_mappings_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="payment_description_mappings" EntitySet="payment_description_mappings" />
+          </AssociationSet>
+          <EntitySet Name="payment_details" EntityType="GTEModel.payment_details" />
+          <AssociationSet Name="FK_payment_details_currency_master" Association="GTEModel.FK_payment_details_currency_master">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="payment_details" EntitySet="payment_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payment_details_university_master" Association="GTEModel.FK_payment_details_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="payment_details" EntitySet="payment_details" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
@@ -7145,10 +7145,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
           <Property Name="fee_payment_instructions" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="payment_details" Relationship="GTEModel.FK_payment_details_university_master" FromRole="university_master" ToRole="payment_details" />
           <Property Name="supprot_service_instructions" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <Property Name="visa_instructions" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="payment_description_mappings" Relationship="GTEModel.FK_payment_description_mappings_university_master" FromRole="university_master" ToRole="payment_description_mappings" />
+          <NavigationProperty Name="payment_details" Relationship="GTEModel.FK_payment_details_university_master" FromRole="university_master" ToRole="payment_details" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -8610,25 +8610,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="payment_description" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="payment_description_mappings" Relationship="GTEModel.FK_payment_description_mappings_payment_description_master" FromRole="payment_description_master" ToRole="payment_description_mappings" />
         </EntityType>
-        <EntityType Name="payment_details">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicant_id" Type="Int32" Nullable="false" />
-          <Property Name="university_id" Type="Int32" Nullable="false" />
-          <Property Name="request_date" Type="DateTime" Nullable="false" />
-          <Property Name="payment_for" Type="Int32" Nullable="false" />
-          <Property Name="due_date" Type="DateTime" Nullable="false" />
-          <Property Name="amount" Type="Int32" Nullable="false" />
-          <Property Name="currency_id" Type="Int32" Nullable="false" />
-          <Property Name="instruction" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="payment_proof_file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="payment_status" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_payment_details_currency_master" FromRole="payment_details" ToRole="currency_master" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_payment_details_university_master" FromRole="payment_details" ToRole="university_master" />
-          <Property Name="payment_verified_date" Type="DateTime" />
-        </EntityType>
         <EntityType Name="payment_status_master">
           <Key>
             <PropertyRef Name="id" />
@@ -8658,30 +8639,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="created_at" Type="DateTime" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="created_by" Type="Int32" />
         </EntityType>
-        <Association Name="FK_payment_details_currency_master">
-          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
-          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="currency_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="payment_details">
-              <PropertyRef Name="currency_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_payment_details_university_master">
-          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
-          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="university_master">
-              <PropertyRef Name="universityid" />
-            </Principal>
-            <Dependent Role="payment_details">
-              <PropertyRef Name="university_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="supportservices_enquiries">
           <Key>
             <PropertyRef Name="id" />
@@ -8722,6 +8679,49 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <PropertyRef Name="universityid" />
             </Principal>
             <Dependent Role="payment_description_mappings">
+              <PropertyRef Name="university_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="payment_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="request_date" Type="DateTime" Nullable="false" />
+          <Property Name="payment_for" Type="Int32" Nullable="false" />
+          <Property Name="due_date" Type="DateTime" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="currency_id" Type="Int32" Nullable="false" />
+          <Property Name="instruction" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="payment_proof_file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="payment_status" Type="Int32" Nullable="false" />
+          <Property Name="payment_verified_date" Type="DateTime" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_payment_details_currency_master" FromRole="payment_details" ToRole="currency_master" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_payment_details_university_master" FromRole="payment_details" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK_payment_details_currency_master">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payment_details">
+              <PropertyRef Name="currency_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payment_details_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="payment_details">
               <PropertyRef Name="university_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -11050,24 +11050,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="payment_details">
-            <EntityTypeMapping TypeName="GTEModel.payment_details">
-              <MappingFragment StoreEntitySet="payment_details">
-                <ScalarProperty Name="payment_verified_date" ColumnName="payment_verified_date" />
-                <ScalarProperty Name="payment_status" ColumnName="payment_status" />
-                <ScalarProperty Name="payment_proof_file_name" ColumnName="payment_proof_file_name" />
-                <ScalarProperty Name="instruction" ColumnName="instruction" />
-                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="due_date" ColumnName="due_date" />
-                <ScalarProperty Name="payment_for" ColumnName="payment_for" />
-                <ScalarProperty Name="request_date" ColumnName="request_date" />
-                <ScalarProperty Name="university_id" ColumnName="university_id" />
-                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="payment_status_master">
             <EntityTypeMapping TypeName="GTEModel.payment_status_master">
               <MappingFragment StoreEntitySet="payment_status_master">
@@ -11116,6 +11098,24 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="payment_description_mappings">
                 <ScalarProperty Name="university_id" ColumnName="university_id" />
                 <ScalarProperty Name="payment_description_id" ColumnName="payment_description_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payment_details">
+            <EntityTypeMapping TypeName="GTEModel.payment_details">
+              <MappingFragment StoreEntitySet="payment_details">
+                <ScalarProperty Name="payment_verified_date" ColumnName="payment_verified_date" />
+                <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+                <ScalarProperty Name="payment_proof_file_name" ColumnName="payment_proof_file_name" />
+                <ScalarProperty Name="instruction" ColumnName="instruction" />
+                <ScalarProperty Name="currency_id" ColumnName="currency_id" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="due_date" ColumnName="due_date" />
+                <ScalarProperty Name="payment_for" ColumnName="payment_for" />
+                <ScalarProperty Name="request_date" ColumnName="request_date" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -2569,8 +2569,8 @@ public partial class university_master
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
-        this.payment_details = new HashSet<payment_details>();
         this.payment_description_mappings = new HashSet<payment_description_mappings>();
+        this.payment_details = new HashSet<payment_details>();
     }
 
     public int universityid { get; set; }
@@ -2665,9 +2665,9 @@ public partial class university_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<payment_details> payment_details { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<payment_description_mappings> payment_description_mappings { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<payment_details> payment_details { get; set; }
 }
 
 public partial class universitycampus

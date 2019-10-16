@@ -149,7 +149,8 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
                 DropDownList ddlPaymentStatus = row.FindControl("ddlPaymentStatus") as DropDownList;
                 var paymentDetails = db.payment_details.Where(x => x.id == paymentDetailsId).FirstOrDefault();
                 paymentDetails.payment_status = Convert.ToInt32(ddlPaymentStatus.SelectedItem.Value);
-                paymentDetails.payment_verified_date = DateTime.Now;
+                if(ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT VERIFIED"))
+                    paymentDetails.payment_verified_date = DateTime.Now;
                 db.SaveChanges();
                 sendEmailsNotificationForPaymentVerified(applicantID, universityId);
             }
