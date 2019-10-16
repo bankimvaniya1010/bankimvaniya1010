@@ -65,7 +65,7 @@
                                     <asp:LinkButton ID="lnkDownloadGteReport" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="GTE" Text="Download GTE Report"></asp:LinkButton>
                                       <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VisaForm" Text="Download Visa Form"></asp:LinkButton>|
                                       <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="PerDown" Text="Download Information"></asp:LinkButton>|                                      
-                                    <asp:LinkButton ID="lnkProcessPayments" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ProcessPaymentRequest" Text="Process Payment Request"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkProcessPayments" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ProcessPaymentRequest" Text="Process Payment Request"></asp:LinkButton>|
                                     <%--  <asp:LinkButton ID="lnkView" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ViewPersonal" Text="View Applicant Info"></asp:LinkButton>|
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
                                     --%>
