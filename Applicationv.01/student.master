@@ -515,7 +515,7 @@
                                     </li>
                                     
                                     <li class="sidebar-menu-item" id="feepayment_list">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="payments">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#payments">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
                                            Fee & Payments 
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
