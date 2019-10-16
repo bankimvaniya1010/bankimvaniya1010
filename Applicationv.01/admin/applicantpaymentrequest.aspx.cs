@@ -124,8 +124,10 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
         {
             int applicantId = Convert.ToInt32(Session["applicantId"]);
             int universityId = Convert.ToInt32(Session["universityID"]);
+            int paymentDetailsId;
+            Int32.TryParse(Convert.ToString(ViewState["paymentDetailId"]), out paymentDetailsId);
             int paymentFor = Convert.ToInt32(ddlPaymentDescription.SelectedItem.Value);
-            var existingPayment = db.payment_details.Where(x => x.university_id == universityId && x.applicant_id == applicantId).FirstOrDefault();
+            var existingPayment = db.payment_details.Where(x => x.university_id == universityId && x.applicant_id == applicantId && x.id == paymentDetailsId).FirstOrDefault();
             var mode = "new";
             payment_details objPaymentDetail = new payment_details();
             if (existingPayment != null)
