@@ -664,18 +664,18 @@
           <Property Name="anotherIdentitytype2" Type="varchar" MaxLength="50" />
           <Property Name="anotherIdentityNo2" Type="varchar" MaxLength="50" />
           <Property Name="residencecountry" Type="int" />
-          <Property Name="residenceaddressLine1" Type="varchar" MaxLength="50" />
-          <Property Name="residenceaddressLine2" Type="varchar" MaxLength="50" />
+          <Property Name="residenceaddressLine1" Type="varchar" MaxLength="200" />
+          <Property Name="residenceaddressLine2" Type="varchar" MaxLength="200" />
           <Property Name="residenceaddresspostalcode" Type="varchar" MaxLength="50" />
           <Property Name="officehoursContactNoOutsideaustralia" Type="varchar" MaxLength="11" />
           <Property Name="afterhoursContactNoOutsideaustralia" Type="varchar" MaxLength="11" />
-          <Property Name="australiaresidentialaddline1" Type="varchar" MaxLength="50" />
-          <Property Name="australiaresidentialaddline2" Type="varchar" MaxLength="50" />
+          <Property Name="australiaresidentialaddline1" Type="varchar" MaxLength="200" />
+          <Property Name="australiaresidentialaddline2" Type="varchar" MaxLength="200" />
           <Property Name="australiaresidentialpostalcode" Type="varchar" MaxLength="50" />
           <Property Name="officehrContactNoInAustralia" Type="varchar" MaxLength="11" />
           <Property Name="afterhrContactNoInAustralia" Type="varchar" MaxLength="11" />
-          <Property Name="correspondenceaddressline1" Type="varchar" MaxLength="50" />
-          <Property Name="correspondenceaddressline2" Type="varchar" MaxLength="50" />
+          <Property Name="correspondenceaddressline1" Type="varchar" MaxLength="200" />
+          <Property Name="correspondenceaddressline2" Type="varchar" MaxLength="200" />
           <Property Name="correspondenceaddresspoastalcode" Type="varchar" MaxLength="50" />
           <Property Name="agreetocommunicate" Type="int" />
           <Property Name="faxno" Type="varchar" MaxLength="50" />
@@ -684,7 +684,7 @@
           <Property Name="solelegalrights" Type="int" />
           <Property Name="guardiansfamilyname" Type="varchar" MaxLength="50" />
           <Property Name="guardiansgivenname" Type="varchar" MaxLength="50" />
-          <Property Name="guardiansresidentialaddress" Type="varchar" MaxLength="50" />
+          <Property Name="guardiansresidentialaddress" Type="varchar" MaxLength="200" />
           <Property Name="guardianspostalcode" Type="varchar" MaxLength="50" />
           <Property Name="guardianscontactnumber" Type="varchar" MaxLength="11" />
           <Property Name="guardiansrealtionwithstudent" Type="varchar" MaxLength="50" />
@@ -692,7 +692,7 @@
           <Property Name="guardiansstatutorydeclartion" Type="int" />
           <Property Name="guardiansfamilyname1" Type="varchar" MaxLength="50" />
           <Property Name="guardiansgivenname1" Type="varchar" MaxLength="50" />
-          <Property Name="guardiansresidentialaddress1" Type="varchar" MaxLength="50" />
+          <Property Name="guardiansresidentialaddress1" Type="varchar" MaxLength="200" />
           <Property Name="guardianspostalcode1" Type="varchar" MaxLength="50" />
           <Property Name="guardianscontactnumber1" Type="varchar" MaxLength="11" />
           <Property Name="guardiansrealtionwithstudent1" Type="varchar" MaxLength="50" />
@@ -723,7 +723,7 @@
           <Property Name="highestqualification" Type="varchar" MaxLength="50" />
           <Property Name="nameofeducationprovider1" Type="varchar" MaxLength="50" />
           <Property Name="nameofeducationprovider2" Type="varchar" MaxLength="50" />
-          <Property Name="addressofeducationprovider" Type="varchar" MaxLength="50" />
+          <Property Name="addressofeducationprovider" Type="varchar" MaxLength="200" />
           <Property Name="educationproviderpostalcode" Type="varchar" MaxLength="50" />
           <Property Name="commencementdate" Type="datetime" Precision="0" />
           <Property Name="finishdate" Type="datetime" Precision="0" />
@@ -731,7 +731,7 @@
           <Property Name="otherundertakcoursename1" Type="varchar" MaxLength="50" />
           <Property Name="othernameofeducationprovider1" Type="varchar" MaxLength="50" />
           <Property Name="othernameofeducationprovider2" Type="varchar" MaxLength="50" />
-          <Property Name="otheraddressofeducationprovider1" Type="varchar" MaxLength="50" />
+          <Property Name="otheraddressofeducationprovider1" Type="varchar" MaxLength="200" />
           <Property Name="othereduproviderpostalcode1" Type="varchar" MaxLength="50" />
           <Property Name="othercommencementdate1" Type="datetime" Precision="0" />
           <Property Name="otherfinishdate1" Type="datetime" Precision="0" />
@@ -739,7 +739,7 @@
           <Property Name="otherundertakcoursename2" Type="varchar" MaxLength="50" />
           <Property Name="othernameofeducationprovider21" Type="varchar" MaxLength="50" />
           <Property Name="othernameofeducationprovider22" Type="varchar" MaxLength="50" />
-          <Property Name="otheraddressofeducationprovider2" Type="varchar" MaxLength="50" />
+          <Property Name="otheraddressofeducationprovider2" Type="varchar" MaxLength="200" />
           <Property Name="othereduproviderpostalcode2" Type="varchar" MaxLength="50" />
           <Property Name="othercommencementdate2" Type="datetime" Precision="0" />
           <Property Name="otherfinishdate2" Type="datetime" Precision="0" />
@@ -799,32 +799,32 @@
           <Property Name="otherdescription2" Type="varchar" MaxLength="50" />
           <Property Name="position" Type="varchar" MaxLength="50" />
           <Property Name="employername" Type="varchar" MaxLength="50" />
-          <Property Name="employeraddress" Type="varchar" MaxLength="50" />
+          <Property Name="employeraddress" Type="varchar" MaxLength="200" />
           <Property Name="employercontactno" Type="varchar" MaxLength="50" />
           <Property Name="evidenceofemployement" Type="int" />
           <Property Name="currentlystudentinaustralia" Type="int" />
           <Property Name="joboffered" Type="int" />
           <Property Name="kindofemployementseeking" Type="varchar" MaxLength="50" />
           <Property Name="jobofferedname" Type="varchar" MaxLength="50" />
-          <Property Name="jobofferedaddress" Type="varchar" MaxLength="50" />
+          <Property Name="jobofferedaddress" Type="varchar" MaxLength="200" />
           <Property Name="jobofferedcontactno" Type="varchar" MaxLength="50" />
           <Property Name="titleofpositionofferef" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativename" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativerelationship" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativeDob" Type="datetime" Precision="0" />
-          <Property Name="immediaterelativeaddress" Type="varchar" MaxLength="50" />
+          <Property Name="immediaterelativeaddress" Type="varchar" MaxLength="200" />
           <Property Name="immediaterelativepostalcode" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativeimmigrationstatus" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativeDateofarrival" Type="datetime" Precision="0" />
           <Property Name="immediaterelativename1" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativerelationship1" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativeDob1" Type="datetime" Precision="0" />
-          <Property Name="immediaterelativeaddress1" Type="varchar" MaxLength="50" />
+          <Property Name="immediaterelativeaddress1" Type="varchar" MaxLength="200" />
           <Property Name="immediaterelativepostalcode1" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativeimmigrationstatus1" Type="varchar" MaxLength="50" />
           <Property Name="immediaterelativedateofarrival1" Type="datetime" Precision="0" />
           <Property Name="closestrelativename" Type="varchar" MaxLength="50" />
-          <Property Name="closestrelativeaddress" Type="varchar" MaxLength="50" />
+          <Property Name="closestrelativeaddress" Type="varchar" MaxLength="200" />
           <Property Name="closestrelativerelationship" Type="varchar" MaxLength="50" />
           <Property Name="closestrelativepostalcode" Type="varchar" MaxLength="50" />
           <Property Name="closestrelativecontactnumber" Type="varchar" MaxLength="50" />
@@ -838,7 +838,7 @@
           <Property Name="relationshiptostudentpartC" Type="varchar" MaxLength="50" />
           <Property Name="studentdobpartC" Type="datetime" Precision="0" />
           <Property Name="citizenshipofstudentpartC" Type="varchar" MaxLength="50" />
-          <Property Name="studentaddresspartC" Type="varchar" MaxLength="50" />
+          <Property Name="studentaddresspartC" Type="varchar" MaxLength="200" />
           <Property Name="studentaddpostalcodepartC" Type="varchar" MaxLength="50" />
           <Property Name="typeofstudentvisaheldpartC" Type="varchar" MaxLength="50" />
           <Property Name="assessmentlevelpartC" Type="varchar" MaxLength="50" />
@@ -891,7 +891,7 @@
           <Property Name="parentfamilynamePartD" Type="varchar" MaxLength="50" />
           <Property Name="parentgivennamePartD" Type="varchar" MaxLength="50" />
           <Property Name="parentDateofBirthpartD" Type="datetime" Precision="0" />
-          <Property Name="parentaddresspartD" Type="varchar" MaxLength="50" />
+          <Property Name="parentaddresspartD" Type="varchar" MaxLength="200" />
           <Property Name="parentaddresspostalcodepartD" Type="varchar" MaxLength="50" />
           <Property Name="parentvisastatusPartD" Type="int" />
           <Property Name="parentvisalabelno" Type="varchar" MaxLength="50" />
@@ -903,7 +903,7 @@
           <Property Name="familyNameofrelative" Type="varchar" MaxLength="50" />
           <Property Name="givenNameofrelative" Type="varchar" MaxLength="50" />
           <Property Name="dateOfBirthofrelative" Type="datetime" Precision="0" />
-          <Property Name="addressofRelative" Type="varchar" MaxLength="50" />
+          <Property Name="addressofRelative" Type="varchar" MaxLength="200" />
           <Property Name="relationshipofrelative" Type="varchar" MaxLength="50" />
           <Property Name="relativeresideasstatus" Type="int" />
           <Property Name="permitedtostayfor" Type="varchar" MaxLength="50" />
@@ -925,7 +925,7 @@
           <Property Name="parentRelationshipwithstudent1" Type="varchar" MaxLength="50" />
           <Property Name="havesolelegalrights" Type="int" />
           <Property Name="personname" Type="varchar" MaxLength="50" />
-          <Property Name="personaddress" Type="varchar" MaxLength="50" />
+          <Property Name="personaddress" Type="varchar" MaxLength="200" />
           <Property Name="personcontactno" Type="varchar" MaxLength="50" />
           <Property Name="personrelationship" Type="varchar" MaxLength="50" />
           <Property Name="personnatureoflegalrights" Type="varchar" MaxLength="50" />
@@ -942,14 +942,14 @@
           <Property Name="othertitle" Type="varchar" MaxLength="50" />
           <Property Name="assistedpersonfamilyname" Type="varchar" MaxLength="50" />
           <Property Name="assistedpersongivenname" Type="varchar" MaxLength="50" />
-          <Property Name="assistedpersonaddress" Type="varchar" MaxLength="50" />
+          <Property Name="assistedpersonaddress" Type="varchar" MaxLength="200" />
           <Property Name="assistedpersonofficeno" Type="varchar" MaxLength="50" />
           <Property Name="assistedpersonmobileno" Type="varchar" MaxLength="50" />
           <Property Name="isregisteredwithMARA" Type="int" />
           <Property Name="haveeducationagent" Type="int" />
           <Property Name="businessname" Type="varchar" MaxLength="50" />
           <Property Name="registrationno" Type="varchar" MaxLength="50" />
-          <Property Name="educationagentaddress" Type="varchar" MaxLength="50" />
+          <Property Name="educationagentaddress" Type="varchar" MaxLength="200" />
           <Property Name="educationagentemail" Type="varchar" MaxLength="50" />
           <Property Name="educationagentofficeno" Type="varchar" MaxLength="50" />
           <Property Name="educationagentphoneno" Type="varchar" MaxLength="50" />
@@ -965,12 +965,12 @@
           <Property Name="authorizedothertitle" Type="varchar" MaxLength="50" />
           <Property Name="authorisedpersofamilynname" Type="varchar" MaxLength="50" />
           <Property Name="authorisedpersongivenname" Type="varchar" MaxLength="50" />
-          <Property Name="authorisedpersonaddress" Type="varchar" MaxLength="50" />
+          <Property Name="authorisedpersonaddress" Type="varchar" MaxLength="200" />
           <Property Name="authorisedpersonofficeno" Type="varchar" MaxLength="50" />
           <Property Name="authorisedpersonmobileno" Type="varchar" MaxLength="50" />
           <Property Name="haveagreetocommunicate" Type="int" />
           <Property Name="Faxnumber" Type="varchar" MaxLength="50" />
-          <Property Name="authorizedpersonEmailaddress" Type="varchar" MaxLength="50" />
+          <Property Name="authorizedpersonEmailaddress" Type="varchar" MaxLength="200" />
           <Property Name="signatureauthorizedperson" Type="varchar" MaxLength="50" />
           <Property Name="dateofsign" Type="datetime" Precision="0" />
           <Property Name="migratioagentNo" Type="varchar" MaxLength="50" />
@@ -980,12 +980,12 @@
           <Property Name="agentfamilyname" Type="varchar" MaxLength="50" />
           <Property Name="agentgivenname" Type="varchar" MaxLength="50" />
           <Property Name="agentcompanyname" Type="varchar" MaxLength="50" />
-          <Property Name="agenntaddress" Type="varchar" MaxLength="50" />
+          <Property Name="agenntaddress" Type="varchar" MaxLength="200" />
           <Property Name="agentofficeno" Type="varchar" MaxLength="50" />
           <Property Name="agentmobileno" Type="varchar" MaxLength="50" />
           <Property Name="agentagreetocommunicate" Type="int" />
           <Property Name="agentfaxno" Type="varchar" MaxLength="50" />
-          <Property Name="agentemailaddress" Type="varchar" MaxLength="50" />
+          <Property Name="agentemailaddress" Type="varchar" MaxLength="200" />
           <Property Name="agentsignature" Type="varchar" MaxLength="50" />
           <Property Name="agentsigndate" Type="datetime" Precision="0" />
           <Property Name="paymentmethod" Type="int" />
@@ -995,7 +995,7 @@
           <Property Name="creditcardexpirydate" Type="datetime" Precision="0" />
           <Property Name="cardholdarname" Type="varchar" MaxLength="50" />
           <Property Name="contactnumber" Type="varchar" MaxLength="50" />
-          <Property Name="addressofcardholder" Type="varchar" MaxLength="50" />
+          <Property Name="addressofcardholder" Type="varchar" MaxLength="200" />
           <Property Name="signatureofcardholder" Type="varchar" MaxLength="50" />
           <Property Name="declarationsignature" Type="varchar" MaxLength="50" />
           <Property Name="declarationdate" Type="datetime" Precision="0" />

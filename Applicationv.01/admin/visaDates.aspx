@@ -89,9 +89,9 @@
         
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#city_list').addClass('open');
+            $('#manageapplicantions_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#managecity').addClass('active');
+            $('#applicantlist').addClass('active');
 
 
             $('#ContentPlaceHolder1_txtverifedbystaff').datepicker({dateFormat: 'dd-mm-yy' });
