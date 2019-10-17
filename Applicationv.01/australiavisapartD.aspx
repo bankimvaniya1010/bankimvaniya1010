@@ -1444,7 +1444,101 @@
 
     <script>
         $(document).ready(function () {
+             if ($("#<%=rbmyself.ClientID%>").is(":checked") || $("#<%=rbAgentexempted.ClientID%>").is(":checked")) {
+                 $("#<%=question74.ClientID%>").hide();
+                 $("#<%=question75.ClientID%>").hide();
+                 $("#<%=question76.ClientID%>").hide();
+                 $("#<%=question77.ClientID%>").hide();
+                 $("#<%=question78.ClientID%>").hide();
+                 $("#<%=question79.ClientID%>").hide();
+                 $("#<%=question80.ClientID%>").hide();
+             }
+             else
+             {
+                 $("#<%=question74.ClientID%>").show();
+                 $("#<%=question75.ClientID%>").show();
+                 $("#<%=question76.ClientID%>").show();
+                 $("#<%=question77.ClientID%>").show();
+                 $("#<%=question78.ClientID%>").show();
+                 $("#<%=question79.ClientID%>").show();
+                 $("#<%=question80.ClientID%>").show();
+             }
 
+             if ($("#<%=rbmigrationagent.ClientID%>").is(":checked") || $("#<%=rbOffshoreagent.ClientID%>").is(":checked"))
+             {
+                $("#<%=question74.ClientID%>").hide();
+                $("#<%=question75.ClientID%>").hide();
+                $("#<%=question76.ClientID%>").hide();
+                $("#<%=question77.ClientID%>").hide();
+             } 
+             if ($("#<%=maraYes.ClientID%>").is(":checked")) {
+                 $("#<%=question70.ClientID%>").hide();
+                 $("#<%=question71.ClientID%>").hide();
+                 $("#<%=question72.ClientID%>").hide();
+
+             }             
+             else {
+                 $("#<%=question70.ClientID%>").show();
+                 $("#<%=question71.ClientID%>").show();
+                 $("#<%=question72.ClientID%>").show();
+
+             }
+             if ($("#<%=gotoquestion61.ClientID%>").is(":checked"))
+                 $("#<%=question60.ClientID%>").hide();
+             else
+                 $("#<%=question60.ClientID%>").show();
+
+             if ($("#<%=gotoquestion64.ClientID%>").is(":checked")) {
+                 $("#<%=question60.ClientID%>").hide();
+                 $("#<%=question61.ClientID%>").hide();
+                 $("#<%=question62.ClientID%>").hide();
+                 $("#<%=question63.ClientID%>").hide();
+             }
+             else {
+                 
+                 $("#<%=question61.ClientID%>").show();
+                 $("#<%=question62.ClientID%>").show();
+                 $("#<%=question63.ClientID%>").show();
+             }
+             if ($("#<%=rbholdorappliedVisaYes.ClientID%>").is(":checked")) {
+                 $("#<%=question61.ClientID%>").hide(); 
+                 $("#<%=question62.ClientID%>").hide();
+                 $("#<%=question63.ClientID%>").hide();
+                 $("#<%=question64.ClientID%>").hide();
+             }
+             else {
+                 $("#<%=question61.ClientID%>").show();
+                 $("#<%=question62.ClientID%>").show();
+                 $("#<%=question63.ClientID%>").show();
+                 $("#<%=question64.ClientID%>").show();
+             }
+             if ($("#<%=rbunder18ageNo.ClientID%>").is(":checked")) {
+                  $("#<%=showNo.ClientID%>").show();
+                 $("#<%=question59.ClientID%>").hide();
+                 $("#<%=question60.ClientID%>").hide();
+                 $("#<%=question61.ClientID%>").hide();
+                 $("#<%=question62.ClientID%>").hide();
+                 $("#<%=question63.ClientID%>").hide();
+                 $("#<%=question64.ClientID%>").hide();
+                 $("#<%=question65.ClientID%>").hide();
+                 $("#<%=question66.ClientID%>").hide();
+                 $("#<%=question67.ClientID%>").hide();
+
+             }
+             else 
+             {
+                 $("#<%=showNo.ClientID%>").hide();
+                 $("#<%=question59.ClientID%>").show();
+                 $("#<%=question60.ClientID%>").show();
+                 $("#<%=question61.ClientID%>").show();
+                 $("#<%=question62.ClientID%>").show();
+                 $("#<%=question63.ClientID%>").show();
+                 $("#<%=question64.ClientID%>").show();
+                 $("#<%=question65.ClientID%>").show();
+                 $("#<%=question66.ClientID%>").show();
+                 $("#<%=question67.ClientID%>").show();
+                 
+             }
             //50
             if ($("#<%=rboutsidecountryYes.ClientID%>").is(":checked")) 
                     $("#<%=showControls.ClientID%>").show();
@@ -1579,6 +1673,20 @@
                 $("#<%=txtagentothertitle.ClientID%>").show();
             else
                 $("#<%=txtagentothertitle.ClientID%>").hide();
+
+            if ($("#<%=rbreceiveassistanceNo.ClientID%>").is(":checked")) {
+                 $("#<%=question69.ClientID%>").hide();
+                 $("#<%=question70.ClientID%>").hide();
+                 $("#<%=question71.ClientID%>").hide();
+                 $("#<%=question72.ClientID%>").hide();
+            }
+            else
+            {
+                 $("#<%=question69.ClientID%>").show();
+                 $("#<%=question70.ClientID%>").show();
+                 $("#<%=question71.ClientID%>").show();
+                 $("#<%=question72.ClientID%>").show();
+            }
         });
 
         //68 title  

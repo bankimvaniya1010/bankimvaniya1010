@@ -1002,10 +1002,36 @@
             else 
                 $("#<%=que1.ClientID%>").hide();
 
-            if ($("#<%=applyinAustraliaNo.ClientID%>").is(":checked"))
-                $("#<%=que.ClientID%>").show();
-            else 
-                $("#<%=que.ClientID%>").hide();
+            if ($("#<%=applyinAustraliaNo.ClientID%>").is(":checked")) 
+			{
+                 $("#<%=que.ClientID%>").show();
+                 $("#<%=question29.ClientID%>").hide();
+            }
+             else
+			{
+                 $("#<%=que.ClientID%>").hide();
+                 $("#<%=question29.ClientID%>").show();
+            }
+            if ($("#<%=assessmentlevelYes.ClientID%>").is(":checked")) {
+                 $("#<%=que1.ClientID%>").show();
+                 $("#<%=question34.ClientID%>").hide();
+                 $("#<%=question35.ClientID%>").hide();
+             }
+             else {
+                 $("#<%=que1.ClientID%>").hide();
+                 $("#<%=question34.ClientID%>").show();
+                 $("#<%=question35.ClientID%>").show();
+            }
+            if ($("#<%=assessmentlevelYes.ClientID%>").is(":checked")) {
+                 $("#<%=que1.ClientID%>").show();
+                 $("#<%=question34.ClientID%>").hide();
+                 $("#<%=question35.ClientID%>").hide();
+             }
+             else {
+                 $("#<%=que1.ClientID%>").hide();
+                 $("#<%=question34.ClientID%>").show();
+                 $("#<%=question35.ClientID%>").show();
+             }
         });
 
         //28  
