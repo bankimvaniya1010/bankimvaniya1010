@@ -71,7 +71,7 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
 
     protected void paymentRequestGridView_RowDataBound(object sender, GridViewRowEventArgs e)
     {
-        if (e.Row.RowType != DataControlRowType.Header && e.Row.RowType != DataControlRowType.Footer)
+        if (e.Row.RowType != DataControlRowType.Header && e.Row.RowType != DataControlRowType.Footer && e.Row.RowType != DataControlRowType.EmptyDataRow)
         {
             object row = e.Row.DataItem;
             e.Row.FindControl("hypLnkViewPaymentProof").Visible = false;

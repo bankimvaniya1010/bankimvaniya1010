@@ -20,7 +20,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="id"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCommand="paymentsGridView_RowCommand" >
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCommand="paymentsGridView_RowCommand" OnRowDataBound="paymentsGridView_RowDataBound" >
 
                         <Columns>
                             <asp:TemplateField HeaderText="Date">
@@ -52,7 +52,6 @@
                             <asp:TemplateField HeaderText="Upload Proof">
                                 <ItemTemplate>
                                     <asp:FileUpload ID="paymentProof" runat="server" />
-                                    <label for="paymentProof" runat="server" id="fileName">Choose file</label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="View Uploaded Proof">
@@ -125,15 +124,6 @@
                     });
                 });
 
-                $("#ContentPlaceHolder1_paymentsGridView_paymentProof_" + i).change(function (event) {
-                    var id = event.target.id.replace("ContentPlaceHolder1_paymentsGridView_paymentProof_", "");
-                    var path = $(this).val();
-                    if (path != '' && path != null) {
-                        var q = path.substring(path.lastIndexOf('\\') + 1);
-                        $("#ContentPlaceHolder1_paymentsGridView_fileName_" + id).text(q);
-                    }
-                });
-
                 $("#ContentPlaceHolder1_paymentsGridView_lnkSave_" + i).on('click', { value: i }, validateRow);
             }
 
@@ -146,7 +136,7 @@
                     return false;
                 }
                 var ext = uploadedfile.val().split('.').pop();
-                if (!(ext == "pdf")) {
+                if (!(ext.toLowerCase() == "pdf")) {
                     alert("Please upload payment proof in pdf format for payment no: " + (id + 1));
                     return false;
                 }

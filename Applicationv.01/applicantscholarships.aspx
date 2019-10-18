@@ -140,7 +140,7 @@
                         return false;
                     }
                     var ext = uploadedfile.val().split('.').pop();
-                    if (!(ext == "pdf" || ext == "word")) {
+                    if (!(ext.toLowerCase() == "pdf" || ext.toLowerCase() == "word")) {
                         alert("Please upload application form in either pdf or word format for scholarship no: " + (i + 1));
                         return false;
                     }
