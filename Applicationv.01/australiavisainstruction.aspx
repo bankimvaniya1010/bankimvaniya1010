@@ -270,7 +270,7 @@ or Australian mission overseas.</div>
  <script>
      $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
-            $('#Application_list').addClass('open');
+            $('#visaapplication_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantvisa').addClass('active');
         });

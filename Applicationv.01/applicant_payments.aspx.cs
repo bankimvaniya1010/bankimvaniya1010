@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -98,8 +100,29 @@ public partial class applicant_payments : System.Web.UI.Page
                 paymentDetails.payment_status = paymentStatus;
 
                 db.SaveChanges();
+                BindGrid();
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
+
+    protected void paymentsGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            object row = e.Row.DataItem;
+            PropertyInfo pPaymentStatus = row.GetType().GetProperty("payment_status");
+            string paymentStatus = pPaymentStatus.GetValue(row, null) == null ? string.Empty : pPaymentStatus.GetValue(row, null).ToString();
+
+            Regex rgx = new Regex(@"\d{2}-\d{2}-\d{4}"); // dependent on date format of payment verified status
+            if(rgx.Match(paymentStatus).Success)
+                e.Row.FindControl("lnkSave").Visible = false;
+
+            PropertyInfo pFileName = row.GetType().GetProperty("fileName");
+            string fileName = pFileName.GetValue(row, null).ToString();
+            fileName = fileName.Replace("\\Docs\\Payment Proof\\", string.Empty);
+            if (string.IsNullOrEmpty(fileName))
+                e.Row.FindControl("hypLnkProof").Visible = false;
+        }
     }
 }
