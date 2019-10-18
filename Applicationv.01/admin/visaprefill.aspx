@@ -927,7 +927,6 @@ information available outside these hours). If you are outside Australia, please
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
                                 <span class="txt" style="vertical-align: middle;">Visa label number</span>
                             </p>
-                            </p>
 
 				              <p class="txt" style="margin-top: 10px;">
                                   <label style="width: 100px;"></label>
@@ -975,20 +974,20 @@ information available outside these hours). If you are outside Australia, please
                                 <label style="width: 100px;"></label>
                                 <input type="text" id="visagrantnumber1" runat="server" name="" style="width: 240px;" placeholder="V">
                             </p>
-                            <p class="txt" style="margin-top: 10px;">
-                                <label><b class="num-ques">27</b>If you are applying:   </label>
+                            <div class="txt clearfix" style="margin-top: 10px;margin-bottom10px;">
+                                <label style="width: 220px;"><b class="num-ques">27</b>If you are applying:   </label>
                                 <br>
-                                <label style="width: 230px;">as a member of the family unit of a student  </label>
-                                <input type="checkbox" id="chkPartC" runat="server" name="" style="vertical-align: middle;">
+                                <label  style="width: 220px;">as a member of the family unit of a student  </label>
+                                <input type="checkbox" id="chkPartC" runat="server" name="" style="vertical-align: top;">
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
-                                <span class="txt" style="vertical-align: middle;">Go to Part C </span>
-                            </p>
-                            <p class="txt">
+                                <span class="txt" style="vertical-align: top;">Go to Part C </span>
+                            </div>
+                            <div class="txt clearfix" style="margin-bottom:20px;">
                                 <label style="width: 220px; text-align: right; margin-right: 10px;">in all other cases </label>
                                 <input type="checkbox" id="chkPartB" runat="server" name="" style="vertical-align: middle;">
                                 <i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i>
                                 <span class="txt" style="vertical-align: middle;">Go to Part B</span>
-                            </p>
+                            </div>
                         </td>
 
                         <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
@@ -1057,7 +1056,7 @@ information available outside these hours). If you are outside Australia, please
                         </td>
                     </tr>
                     <tr>
-                        <td style="width: 50%; vertical-align: top; padding: 0 15px;">
+                        <td style="width: 50%; vertical-align: top; padding: 45px 15px 0;">
                             <p class="txt" style="margin-top: 10px;">Other course undertaken outside Australia</p>
                             <p class="txt">
                                 <input type="text" id="otherundertakcoursename1" runat="server" name="" style="width: 330px;">
@@ -1917,7 +1916,7 @@ information available outside these hours). If you are outside Australia, please
                     <tr>
                         <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
                             <p class="txt">
-                                <span class="num-ques">56</span> 56	During your proposed visit to Australia, do you, or any children included in this application, expect to incur medical costs, or require treatment or medical follow up for:
+                                <span class="num-ques">56</span> 	During your proposed visit to Australia, do you, or any children included in this application, expect to incur medical costs, or require treatment or medical follow up for:
                             </p>
                             <h6 class="clearfix" style="font-weight: 400;">
                                 <ul style="width: 50%; float: left; margin: 0;">
@@ -2292,7 +2291,7 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="text" name="" style="width: 100%;">
                                 <input type="text" name="" style="width: 100%; margin-bottom: 4px;">
                                 <label>Telephone Number</label>
-                                <input type="text" id="personcontactno" runat="server" name="" style="width: 100%; font-size: 9px; margin-bottom: 4px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <input type="text" id="personcontactno" runat="server" name="" style="width: 100%; margin-bottom: 4px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
                                 <label>Relationship to student visa applicant </label>
                                 <input type="text" id="personrelationship" runat="server" name="" style="width: 100%; margin-bottom: 4px;">
                                 <label>Nature of legal right</label>
@@ -2407,11 +2406,11 @@ information available outside these hours). If you are outside Australia, please
                                 <input type="text" id="educationagentemail" runat="server" name="" style="width: 100%; margin-bottom: 5px;">
                                 <label>Telephone number or daytime contact </label>
                                 <label>Office hours</label>
-                                <input type="text" id="educationagentofficeno" runat="server" name="" style="width: 100%; font-size: 9px; margin-bottom: 4px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <input type="text" id="educationagentofficeno" runat="server" name="" style="width: 100%; margin-bottom: 4px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
                                 <label>Mobile phone</label>
                                 <input type="text" name="" id="educationagentphoneno" runat="server" style="width: 100%; margin-bottom: 5px;">
                                 <label>Fax Number</label>
-                                <input type="text" name="" id="educationagentfaxno" runat="server" style="width: 100%; font-size: 9px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <input type="text" name="" id="educationagentfaxno" runat="server" style="width: 100%; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
                             </p>
 
                             <p class="txt"><span class="num-ques">71</span>Is your agent in Australia?</p>
@@ -2422,7 +2421,7 @@ information available outside these hours). If you are outside Australia, please
                             </p>
 
                         </td>
-                        <td style="width: 50%; vertical-align: top; padding: 0 15px 0 30px;">
+                        <td style="width: 50%; vertical-align: top; padding: 45px 15px 0 30px;">
                             <p class="txt"><span class="num-ques">72</span>Did you pay the person and/or give a gift for this assistance? </p>
                             <p class="txt" style="margin-bottom: 10px;">
                                 <label style="width: 30px;">No</label><input id="rblhavepaytoassistanceNo" runat="server" type="radio" name="" style="vertical-align: middle;">
@@ -2447,7 +2446,7 @@ information available outside these hours). If you are outside Australia, please
                                 <label>Agent exempted from registration</label><input type="radio" id="rblhavewrittencommunicationsAgentExmpted" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">You must complete form 956 Appointment <i>of a migration agent </i>and attach it to this application form. Go to Question 81</span><br>
                                 <label>Authorised recipient</label><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"><input type="radio" id="rblhavewrittencommunicationsAuthorised" runat="server" name="" style="vertical-align: middle;"></i> <span class="txt" style="vertical-align: middle;">This is a person authorised to only receive written communications. All written communications that would otherwise have been sent to you in relation to this application will be sent to that person.</span>
                             </p>
-                            <p class="txt"><span>74</span> Do you want the authorised person to receive health and/or character information about you, your spouse or your dependants, that may arise, or be revealed, in the course of this application (for example, requests for medical investigation, other health information about you, or the results of criminal history checks)?</p>
+                            <p class="txt"><span class="num-ques">74</span> Do you want the authorised person to receive health and/or character information about you, your spouse or your dependants, that may arise, or be revealed, in the course of this application (for example, requests for medical investigation, other health information about you, or the results of criminal history checks)?</p>
                             <p class="txt" style="margin-bottom: 10px;">
                                 <label style="width: 30px;">No</label><input id="rblhaveauthorisedpersonNo" runat="server" type="radio" name="" style="vertical-align: middle;">
                                 <br>
@@ -2491,7 +2490,7 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt"><span class="num-ques">76</span>As the authorised recipient named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means?</p>
                             <p class="txt" style="margin-bottom: 8px;">
                                 <label style="width: 30px;">No</label><input type="radio" id="rblhaveagreetocommunicateNo" runat="server" name="" style="vertical-align: middle;"><br>
-                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveagreetocommunicateYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">GGive details</span>
+                                <label style="width: 30px;">Yes</label><input type="radio" id="rblhaveagreetocommunicateYes" runat="server" name="" style="vertical-align: middle;"><i class="fas fa-caret-right" style="font-size: 18px; vertical-align: middle; margin-left: 3px;"></i> <span class="txt" style="vertical-align: middle;">Give details</span>
                                 <br>
                             </p>
                             <p class="txt" style="margin-bottom: 10px;">
@@ -2550,8 +2549,8 @@ information available outside these hours). If you are outside Australia, please
                             <p class="txt" style="margin-bottom: 10px;">
                                 <label>Telephone number or daytime contact</label><br>
                                 <label style="width: 115px;">Office hours </label>
-                                <input type="text" id="agentofficeno" runat="server" name="" style="width: 250px; font-size: 9px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
-                                <label style="width: 118px;">Mobile phone</label><input type="text" id="agentmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;font-size: 9px;">
+                                <input type="text" id="agentofficeno" runat="server" name="" style="width: 250px; margin-bottom: 5px; height: 25px;" placeholder="( COUNTRY CODE ) ( AREA CODE )      Number ">
+                                <label style="width: 118px;">Mobile phone</label><input type="text" id="agentmobileno" runat="server" name="" style="width: 250px; margin-bottom: 5px;">
                             </p>
                             <h6 class="part-sub"><i>Agent consent</i></h6>
                             <p class="txt"><span class="num-ques">79</span>As the agent named on this form, do you agree to the department communicating with you by fax, e-mail or other electronic means? </p>

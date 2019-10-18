@@ -1288,34 +1288,34 @@
                                             <input type="radio" class="form-check-input" name="paymentby" runat="server" id="rbJCB">JCB                                              
                                             </label>
                                          </div>
-                                         <div class="form-check-inline">
-                                             <label>Australian Dollars</label>
-                                             <input type="text" runat="server" id="txtamountinaustraliandollars">
+                                         <div class="form-group">
+                                             <label class="col-xs-12">Australian Dollars</label>
+                                             <input type="text" runat="server" id="txtamountinaustraliandollars" class="form-control">
                                              </div>
-                                         <div class="form-check-inline">
-                                             <label>Credit card number</label>
-                                             <input type="text" runat="server" id="txtcreditcardno">
+                                         <div class="form-group">
+                                             <label  class="col-xs-12">Credit card number</label>
+                                             <input type="text" runat="server" id="txtcreditcardno" class="form-control">
                                              </div>
-                                          <div class="form-check-inline">
-                                             <label>Expiry date</label>
+                                          <div class="form-group">
+                                             <label class="col-xs-12">Expiry date</label>
                                              <input id="txtcreditcardexpirydate" runat="server" type="text" class="form-control" placeholder="" data-toggle="flatpickr" value="">
                                              </div>
-                                          <div class="form-check-inline">
-                                             <label>Cardholder’s name</label>
-                                             <input type="text" runat="server" id="txtcardholdarname">
+                                          <div class="form-group">
+                                             <label class="col-xs-12">Cardholder’s name</label>
+                                             <input type="text" runat="server" id="txtcardholdarname" class="form-control">
                                              </div>
-                                         <div class="form-check-inline">
-                                             <label>Telephone </label>
-                                             <input type="text" runat="server" id="txtcontactnumber">
+                                         <div class="form-group">
+                                             <label class="col-xs-12">Telephone </label>
+                                             <input type="text" runat="server" id="txtcontactnumber" class="form-control">
                                              </div>
-                                         <div class="form-check-inline">
-                                             <label>Address</label>
-                                             <input type="text" runat="server" id="txtaddressofcardholder">
+                                         <div class="form-group">
+                                             <label  class="col-xs-12">Address</label>
+                                             <input type="text" runat="server" id="txtaddressofcardholder" class="form-control">
                                              </div>
                                          <div class="form-group"  runat="server">
-                                            <label><b>Signature</b></label>
-                                            <div class="fil-upload">
-                                            <input type="file" name="" id="txtsignatureofcardholder" class="d-none" runat="server">
+                                            <label  class="col-xs-12"><b>Signature</b></label>
+                                            <div>
+                                            <input type="text" name="" id="txtsignatureofcardholder" runat="server" class="form-control">
                                             <label for="txtsignatureofcardholder"></label>
                                             </div>
                                       </div>  
@@ -1327,7 +1327,7 @@
                                  <div class="form-group" runat="server" id="question82">
                                        <h5 class="frm-lblttl">Declaration</h5>
                                      <div class="comm-txt"><b> Before signing the declaration refer to the department’s website to ensure that you have attached all documentation listed for your Assessment Level and Education Sector visa subclass.</b></div>
-                                    <label><b class="ques-lbl">82)</b>82	The following declaration must be signed and dated by all people over 18 years of age included in this application.</label>
+                                    <label><b class="ques-lbl">82)</b>	The following declaration must be signed and dated by all people over 18 years of age included in this application.</label>
                                     <div class="comm-txt">Both parents or any person who has legal custody must complete the declaration on behalf of any children under 18 years of age or any person who lacks the legal capacity to sign on their own behalf.</div>
                                      <ul class="italic">
                                          <li>I certify the information supplied on or with this form is correct.</li>
@@ -2084,7 +2084,9 @@
              });
         });   
 
-
+        $('#ContentPlaceHolder1_txtvisaexpirydate').flatpickr({
+            dateFormat: 'Y-m-d', defaultDate: ""
+        });
         $('#ContentPlaceHolder1_txtdeclarationdate').flatpickr({
             dateFormat: 'Y-m-d', defaultDate: ""
         });
@@ -2478,25 +2480,22 @@
             //81                
             else if (!($("#<%=rbBankcheque.ClientID%>").is(':checked') || $("#<%=rbMoneyorder.ClientID%>").is(':checked') || $("#<%=rbDebitcard.ClientID%>").is(':checked') || $("#<%=rbCreditcard.ClientID%>").is(':checked')))
                 alert("Please select methods of payment of field 81");
-            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked'))
-            {
-                if (!($("#<%=rbMasterCard.ClientID%>").is(':checked') || $("#<%=rbBankcard.ClientID%>").is(':checked') || $("#<%=rbAmericanExpress.ClientID%>").is(':checked') || $("#<%=rbVisa.ClientID%>").is(':checked') || $("#<%=rbDinersClub.ClientID%>").is(':checked') || $("#<%=rbJCB.ClientID%>").is(':checked')))
-                    alert("Please select  of field 81");
-                else if ($("#<%=txtamountinaustraliandollars.ClientID%>").val() == "")
-                    alert("Please enter of field 81");
-                else if ($("#<%=txtcreditcardno.ClientID%>").val() == "")
-                    alert("Please enter of field 81");
-                else if ($("#<%=txtcreditcardexpirydate.ClientID%>").val() == "")
-                    alert("Please enter of field 81");
-                else if ($("#<%=txtcardholdarname.ClientID%>").val() == "")
-                    alert("Please enter of field 81");
-                else if ($("#<%=txtcontactnumber.ClientID%>").val() == "")
-                    alert("Please enter of field 81");
-                else if ($("#<%=txtaddressofcardholder.ClientID%>").val() == "")
-                    alert("Please enter of field 81");
-                else if ($("#<%=txtsignatureofcardholder.ClientID%>").val() == "")
-                    alert("Please enter of field 81");
-            }
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && (!($("#<%=rbMasterCard.ClientID%>").is(':checked') || $("#<%=rbBankcard.ClientID%>").is(':checked') || $("#<%=rbAmericanExpress.ClientID%>").is(':checked') || $("#<%=rbVisa.ClientID%>").is(':checked') || $("#<%=rbDinersClub.ClientID%>").is(':checked') || $("#<%=rbJCB.ClientID%>").is(':checked'))))
+                alert("Please select payment by of field 81");
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && $("#<%=txtamountinaustraliandollars.ClientID%>").val() == "")
+                alert("Please enter Australian Dollars of field 81");
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && $("#<%=txtcreditcardno.ClientID%>").val() == "")
+                alert("Please enter Credit card number of field 81");
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && $("#<%=txtcreditcardexpirydate.ClientID%>").val() == "")
+                alert("Please select Expiry date of field 81");
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && $("#<%=txtcardholdarname.ClientID%>").val() == "")
+                alert("Please enter Cardholder’s name of field 81");
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && $("#<%=txtcontactnumber.ClientID%>").val() == "")
+                alert("Please enter Telephone of field 81");
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && $("#<%=txtaddressofcardholder.ClientID%>").val() == "")
+                alert("Please enter Address of field 81");
+            else if ($("#<%=rbCreditcard.ClientID%>").is(':checked') && $("#<%=txtsignatureofcardholder.ClientID%>").val() == "")
+                alert("Please enter Signature of field 81");
                 //82
             else if ($("#<%=txtdeclarationsignature.ClientID%>").val() == "")
                 alert("Please upload signature of field 82");

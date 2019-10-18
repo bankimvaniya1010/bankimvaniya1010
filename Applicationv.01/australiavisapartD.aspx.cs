@@ -998,17 +998,17 @@ public partial class australiavisapartD : System.Web.UI.Page
                 rbDebitcard.Checked = true;
             else if (visaInfo.paymentmethod == 4) {
                 rbCreditcard.Checked = true;
-                if (visaInfo.paymentmethod == 1)
+                if (visaInfo.paymentby == 1)
                     rbMasterCard.Checked = true;
-                else if (visaInfo.paymentmethod == 2)
+                else if (visaInfo.paymentby == 2)
                     rbBankcard.Checked = true;
-                else if (visaInfo.paymentmethod == 3)
+                else if (visaInfo.paymentby == 3)
                     rbAmericanExpress.Checked = true;
-                else if (visaInfo.paymentmethod == 4)
+                else if (visaInfo.paymentby == 4)
                     rbVisa.Checked = true;
-                else if (visaInfo.paymentmethod == 5)
+                else if (visaInfo.paymentby == 5)
                     rbDinersClub.Checked = true;
-                else if (visaInfo.paymentmethod == 6)
+                else if (visaInfo.paymentby == 6)
                     rbJCB.Checked = true;
 
                 txtamountinaustraliandollars.Value = visaInfo.amountinaustraliandollars;

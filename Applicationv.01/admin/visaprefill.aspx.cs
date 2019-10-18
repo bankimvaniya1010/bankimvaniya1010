@@ -784,7 +784,7 @@ public partial class visaprefill : System.Web.UI.Page
                 rblagentagreetocommunicateYes.Checked = true;
             agentfaxno.Value = VisaInfo.agentfaxno;
             agentemailaddress.Value = VisaInfo.agentemailaddress;
-            agentsignature.Value = VisaInfo.agentemailaddress;
+            agentsignature.Value = VisaInfo.agentsignature;
             if (VisaInfo.agentsigndate != null)
                 agentsigndate.Value = Convert.ToDateTime(VisaInfo.agentsigndate).ToString("dd/MMM/yyyy");
 
