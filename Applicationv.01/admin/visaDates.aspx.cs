@@ -47,7 +47,7 @@ public partial class admin_visaDates : System.Web.UI.Page
                     rbYes.Checked = true;
                 else if (details.visagranted == 0)
                     rbNo.Checked = true;
-                details.visaremarks = txtremarks.Value;
+                txtremarks.Value = details.visaremarks;
             }
 
         }

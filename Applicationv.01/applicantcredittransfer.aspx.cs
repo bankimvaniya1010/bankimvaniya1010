@@ -43,23 +43,25 @@ public partial class applicantcredittransfer : System.Web.UI.Page
     }
     protected void btn_credit_Click(object sender, EventArgs e)
     {
-        var mode = "new";
-        var creditInfo = (from cInfo in db.applicantfundingmaster 
-                          where cInfo.applicantid == userID && cInfo.universityid == universityID
-                          select cInfo).FirstOrDefault();
-        applicantfundingmaster objapplicantfundingmaster = new applicantfundingmaster();
-        if (creditInfo != null)
+        applicantfundingmaster applicantfundingmaster = new applicantfundingmaster();
+        var mode = "update";
+        applicantfundingmaster = (from cInfo in db.applicantfundingmaster
+                                  where cInfo.applicantid == userID && cInfo.universityid == universityID
+                                  select cInfo).FirstOrDefault();
+        if (applicantfundingmaster == null)
         {
-             mode = "update";
-            objapplicantfundingmaster = creditInfo;
+            mode = "new";
+            applicantfundingmaster = new applicantfundingmaster();
+            applicantfundingmaster.universityid = universityID;
+            applicantfundingmaster.applicantid = userID;
         }
 
         if (rblCreditYes.Checked)
-            objapplicantfundingmaster.credittransfer = 1;
+            applicantfundingmaster.credittransfer = 1;
         else
-            objapplicantfundingmaster.credittransfer = 2;
+            applicantfundingmaster.credittransfer = 2;
         if (mode == "new")
-            db.applicantfundingmaster.Add(objapplicantfundingmaster);
+            db.applicantfundingmaster.Add(applicantfundingmaster);
         db.SaveChanges();
     }
 }
