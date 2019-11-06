@@ -36,6 +36,13 @@
     <link type="text/css" href="assets/css/app.rtl.css" rel="stylesheet">
     <link type="text/css" href="assets/css/intlTelInput.css" rel="stylesheet">
     <script src="//code.jivosite.com/widget.js" jv-id="<%=System.Configuration.ConfigurationManager.AppSettings["JivoChatID"].ToString() %>" async></script>
+
+    <!--Code for disabling browser back button-->
+    <script type="text/javascript">
+        function disablePrev() { window.history.forward() }
+        window.onload = disablePrev();
+        window.onpageshow = function (evt) { if (evt.persisted) disableBack() }
+    </script>
 </head>
 
 <body class=" layout-fluid">
@@ -867,6 +874,7 @@
             var fullService = ("<%=Session["FullService"]%>".toLowerCase() == "true");
             var declarationCompleted = ("<%=Session["DeclarationCompleted"]%>".toLowerCase() == "true");
             var studentDetailsCompleted = ("<%=Session["ProfileDetailsCompletedByApplicant"]%>".toLowerCase() == "true");
+            var isDomesticStudent = ("<%=Session["isDomesticStudent"]%>".toLowerCase() == "true");
 
             if (!declarationCompleted) { 
                 $("#gtepart1").hide();
@@ -941,6 +949,11 @@
                     $("#gtevideoquestion").hide();
                     $("#gtestudent_sop").hide();
                     $("#gtedocmentupload").hide();
+                }
+
+                if (isDomesticStudent) {
+                    $("#visaapplication_list").hide();
+                    $("#predeparture_list").hide();
                 }
                
             }

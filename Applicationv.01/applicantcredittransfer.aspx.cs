@@ -10,6 +10,7 @@ public partial class applicantcredittransfer : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int userID = 0, ApplicantID = 0, universityID;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    Logger objLog = new Logger();
     Common objCom = new Common();
     protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
@@ -43,25 +44,29 @@ public partial class applicantcredittransfer : System.Web.UI.Page
     }
     protected void btn_credit_Click(object sender, EventArgs e)
     {
-        applicantfundingmaster applicantfundingmaster = new applicantfundingmaster();
-        var mode = "update";
-        applicantfundingmaster = (from cInfo in db.applicantfundingmaster
-                                  where cInfo.applicantid == userID && cInfo.universityid == universityID
-                                  select cInfo).FirstOrDefault();
-        if (applicantfundingmaster == null)
+        //applicantfundingmaster applicantfundingmaster = new applicantfundingmaster();
+        try
         {
-            mode = "new";
-            applicantfundingmaster = new applicantfundingmaster();
-            applicantfundingmaster.universityid = universityID;
-            applicantfundingmaster.applicantid = userID;
-        }
+            var mode = "update";
+            var applicantfundingmaster = (from cInfo in db.applicantfundingmaster
+                                          where cInfo.applicantid == userID && cInfo.universityid == universityID
+                                          select cInfo).FirstOrDefault();
+            if (applicantfundingmaster == null)
+            {
+                mode = "new";
+                applicantfundingmaster = new applicantfundingmaster();
+                applicantfundingmaster.universityid = universityID;
+                applicantfundingmaster.applicantid = userID;
+            }
 
-        if (rblCreditYes.Checked)
-            applicantfundingmaster.credittransfer = 1;
-        else
-            applicantfundingmaster.credittransfer = 2;
-        if (mode == "new")
-            db.applicantfundingmaster.Add(applicantfundingmaster);
-        db.SaveChanges();
+            if (rblCreditYes.Checked)
+                applicantfundingmaster.credittransfer = 1;
+            else
+                applicantfundingmaster.credittransfer = 2;
+            if (mode == "new")
+                db.applicantfundingmaster.Add(applicantfundingmaster);
+            db.SaveChanges();
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 }

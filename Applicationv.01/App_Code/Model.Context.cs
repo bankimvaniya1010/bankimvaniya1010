@@ -61,7 +61,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual DbSet<application_status_master> application_status_master { get; set; }
     public virtual DbSet<applicationmaster> applicationmaster { get; set; }
-    public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
     public virtual DbSet<australiavisadocumentmaster> australiavisadocumentmaster { get; set; }
     public virtual DbSet<australiavisaFamilydetailmaster> australiavisaFamilydetailmaster { get; set; }
     public virtual DbSet<cefrlevelmaster> cefrlevelmaster { get; set; }
@@ -160,7 +159,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<typeofworkexperiencemaster> typeofworkexperiencemaster { get; set; }
     public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
-    public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
@@ -174,12 +172,14 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<visatype> visatype { get; set; }
     public virtual DbSet<workexperienceyearsmaster> workexperienceyearsmaster { get; set; }
     public virtual DbSet<payment_description_master> payment_description_master { get; set; }
-    public virtual DbSet<payment_details> payment_details { get; set; }
     public virtual DbSet<payment_status_master> payment_status_master { get; set; }
     public virtual DbSet<supportservicemaster> supportservicemaster { get; set; }
     public virtual DbSet<universitywise_supportservicemapping> universitywise_supportservicemapping { get; set; }
     public virtual DbSet<supportservices_enquiries> supportservices_enquiries { get; set; }
     public virtual DbSet<payment_description_mappings> payment_description_mappings { get; set; }
+    public virtual DbSet<payment_details> payment_details { get; set; }
+    public virtual DbSet<australiavisadetailmaster> australiavisadetailmaster { get; set; }
+    public virtual DbSet<university_master> university_master { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
