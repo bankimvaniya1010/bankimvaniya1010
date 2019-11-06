@@ -84,7 +84,7 @@ public partial class admin_majordesription : System.Web.UI.Page
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[32].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[3].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter
@@ -110,9 +110,17 @@ public partial class admin_majordesription : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvMajorDescription.DataKeys[e.RowIndex].Values[0]);
             majordiscipline_master objMajor = db.majordiscipline_master.Where(b => b.id == ID).First();
-            db.majordiscipline_master.Remove(objMajor);
-            db.SaveChanges();
-            BindMajorDescription();
+            var existsInApplicationmaster = db.applicationmaster.Where(x=> x.majorofdiscipline == ID).ToList();
+            var existsInApplicantdetails = db.applicantdetails.Where(c => c.fieldofhigheststudy == ID).ToList();
+            var existsIngteapplicantdetails = db.gte_applicantdetails.Where(g => g.highestqualificationfield == ID && g.fieldofstudyapplied == ID).ToList();
+            if (existsInApplicationmaster.Count == 0 && existsInApplicantdetails.Count == 0 && existsIngteapplicantdetails.Count == 0)
+            {
+                db.majordiscipline_master.Remove(objMajor);
+                db.SaveChanges();
+                BindMajorDescription();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Major Discipline as it already Used in another records')", true);
         }
         catch (Exception ex)
         {

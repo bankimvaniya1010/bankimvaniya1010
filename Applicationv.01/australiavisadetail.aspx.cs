@@ -501,6 +501,7 @@ public partial class australiavisadetail : System.Web.UI.Page
                     objaustraliavisadetail.englishlangtestDate = null;
                     objaustraliavisadetail.englishlangtestcetificateno = "";
                     objaustraliavisadetail.studiedmorethan5yrinothercountry = null;
+                    objaustraliavisadetail.employmenthistoryFromDate = null;
                     objaustraliavisadetail.employmenthistoryToDate = null;
                     objaustraliavisadetail.employerInfoL0 = "";
                     objaustraliavisadetail.employerInfoL1 = "";
@@ -524,7 +525,7 @@ public partial class australiavisadetail : System.Web.UI.Page
                     objaustraliavisadetail.employeraddress = "";
                     objaustraliavisadetail.employercontactno = "";
                     objaustraliavisadetail.evidenceofemployement = null;
-                    objaustraliavisadetail.joboffered = 0;
+                    objaustraliavisadetail.joboffered = null ;
                     objaustraliavisadetail.kindofemployementseeking = "";
                     objaustraliavisadetail.jobofferedname = "";
                     objaustraliavisadetail.jobofferedaddress = "";
