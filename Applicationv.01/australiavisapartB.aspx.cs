@@ -466,7 +466,7 @@ public partial class australiavisapartB : System.Web.UI.Page
                 //35
                 if (visaInfo.studiedmorethan5yrinothercountry == 0)
                     leastyearsincountriesNo.Checked = true;
-                else if (visaInfo.studiedmorethan5yrinothercountry == 0)
+                else if (visaInfo.studiedmorethan5yrinothercountry == 1)
                     leastyearsincountriesYes.Checked = true;
                 //36
                 if (visaInfo.employmenthistoryFromDate != null)

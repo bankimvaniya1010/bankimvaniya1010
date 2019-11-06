@@ -120,9 +120,16 @@ public partial class admin_alternateidproof : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvIDProof.DataKeys[e.RowIndex].Values[0]);
             alternateidproofmaster objID = db.alternateidproofmaster.Where(b => b.id == ID).First();
-            db.alternateidproofmaster.Remove(objID);
-            db.SaveChanges();
-            BindIDProof();
+            var existsIndetails = db.applicantdetails.Where(d => d.alternativeIdentityproofId == ID).ToList();
+            var existsIncountrywisemapping = db.countrywisealternateidproofmaster.Where(c => c.alternateidproofID == ID).ToList();
+            if (existsIndetails.Count == 0 && existsIncountrywisemapping.Count == 0)
+            {
+                db.alternateidproofmaster.Remove(objID);
+                db.SaveChanges();
+                BindIDProof();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Alternate ID Proof as it already Used in another records')", true);
         }
         catch (Exception ex)
         {

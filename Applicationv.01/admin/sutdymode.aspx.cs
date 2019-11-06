@@ -112,7 +112,7 @@ public partial class admin_sutdymode : System.Web.UI.Page
                 {
                     string id = e.Row.Cells[0].Text; // Get the id to be deleted
                                                      //cast the ShowDeleteButton link to linkbutton
-                    LinkButton lb = (LinkButton)e.Row.Cells[3].Controls[0];
+                    LinkButton lb = (LinkButton)e.Row.Cells[4].Controls[0];
                     if (lb != null)
                     {
                         //attach the JavaScript function with the ID as the paramter
@@ -138,9 +138,18 @@ public partial class admin_sutdymode : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvStudemode.DataKeys[e.RowIndex].Values[0]);
             studymodemaster ObjMOde = db.studymodemaster.Where(b => b.id == ID).First();
-            db.studymodemaster.Remove(ObjMOde);
-            db.SaveChanges();
-            BindStudyMode();
+            var existsInapplicationlanguagedetails = db.applicantlanguagecompetency.Where(l => l.studymode == ID).ToList();
+            var existsInapplicationmaster = db.applicationmaster.Where(a => a.modeofstudy == ID).ToList();
+            var existsInapplicanteducationdetails = db.applicanteducationdetails.Where(d => d.highschoolmodeid == ID && d.secondarymodestudy == ID && d.diplomastudymodeid == ID).ToList();
+            var existsINapplicanthighereducation = db.applicanthighereducation.Where(h => h.studymodeid == ID).ToList();
+            if (existsInapplicationlanguagedetails.Count == 0 && existsInapplicationmaster.Count == 0 && existsInapplicanteducationdetails.Count == 0 && existsINapplicanthighereducation.Count == 0)
+            {
+                db.studymodemaster.Remove(ObjMOde);
+                db.SaveChanges();
+                BindStudyMode();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Mode Of Study as it already Used in another records')", true);
         }
         catch (Exception ex)
         {

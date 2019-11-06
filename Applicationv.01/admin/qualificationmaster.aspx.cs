@@ -113,9 +113,16 @@ public partial class admin_qualificationmaster : System.Web.UI.Page
         {
             int qualificationID = Convert.ToInt32(QualificationGridView.DataKeys[e.RowIndex].Values[0]);
             qualificationmaster QID = db.qualificationmaster.Where(b => b.qualificationid == qualificationID).First();
-            db.qualificationmaster.Remove(QID);
-            db.SaveChanges();
-            BindQualification();
+            var ExistInapplicantlang = db.applicantlanguagecompetency.Where(l=> l.qualificationtype == qualificationID).ToList();
+            var ExistIneduDetail = db.applicanteducationdetails.Where(d=> d.highschoolqualificationtype == qualificationID && d.secondaryqualificationtype == qualificationID && d.diplomaqualificationtype == qualificationID).ToList();
+            if (ExistInapplicantlang.Count == 0 && ExistIneduDetail.Count == 0)
+            {
+                db.qualificationmaster.Remove(QID);
+                db.SaveChanges();
+                BindQualification();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Qualification as it already Used in another records')", true);
         }
         catch (Exception ex)
         {
