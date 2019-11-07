@@ -512,6 +512,22 @@
             return flag;
         }
 
+        function isValidEnteredDates() {
+            var dobYear = parseInt($("#<%=ddlYear.ClientID%>").val());
+            var dobMonth = parseInt($("#<%=ddlMonth.ClientID%>").val());
+            var qualificationMonth = parseInt($("#<%=ddlHighQualificationCompletedMonth.ClientID%>").val());
+            var qualificationYear = parseInt($("#<%=ddlHighQualificationCompletedYear.ClientID%>").val());
+
+            var dob = new Date(dobYear, dobMonth);
+            var qualificationDate = new Date(qualificationYear, qualificationMonth);
+
+            if (dob > qualificationDate) {
+                alert("Please check Date of Birth/Qualification completion date");
+                return false;
+            }
+            else
+                return true;
+        }
         function validateForm() {
 
             var flag = false;
@@ -565,6 +581,7 @@
                 alert("Please Select valid agent details");
             else if ($("#<%=rblChineseCodeYes.ClientID%>").is(':checked') && ($("#<%=txtChineseCodeNumber.ClientID%>").val() === ""))
                 alert("Please enter chinese commercial code number");
+            else if ((!$("#<%=dob.ClientID%>").is(':hidden')) && (!$("#<%=highQualificationCompleteDate.ClientID%>").is(':hidden')) && !isValidEnteredDates()) { }
             else
                 flag = true;
             if (flag == true)

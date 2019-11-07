@@ -1535,7 +1535,75 @@
 
             }
         }        
-        
+
+        function isValidHighSchoolDates() {
+            var highStartMonth = parseInt($("#<%=ddlHighSchoolStartDateMonth.ClientID%>").val());
+            var highStartYear = parseInt($("#<%=ddlHighSchoolStartDateYear.ClientID%>").val());
+            var highEndMonth = parseInt($("#<%=ddlHighSchoolEndDateMonth.ClientID%>").val());
+            var highEndYear = parseInt($("#<%=ddlHighSchoolEndDateYear.ClientID%>").val());
+
+            var startDate = new Date(highStartYear, highStartMonth);
+            var endDate = new Date(highEndYear, highEndMonth);
+
+            if (startDate > endDate) {
+                alert("Please enter valid high school completion date");
+                return false;
+            }
+            else
+                return true;
+        }
+
+        function isValidSecondarySchoolDates() {
+            var secondStartMonth = parseInt($("#<%=ddlSecondaryStartDateMonth.ClientID%>").val());
+            var secondStartYear = parseInt($("#<%=ddlSecondaryStartDateYear.ClientID%>").val());
+            var secondEndMonth = parseInt($("#<%=ddlSecondaryEndDateMonth.ClientID%>").val());
+            var secondEndYear = parseInt($("#<%=ddlSecondaryEndDateYear.ClientID%>").val());
+
+            var startDate = new Date(secondStartYear, secondStartMonth);
+            var endDate = new Date(secondEndYear, secondEndMonth);
+
+            new Date()
+            if (startDate > endDate) {
+                alert("Please enter valid secondary school completion date");
+                return false;
+            }
+            else
+                return true;
+        }
+
+        function isValidHigherEduDates() {
+            var higherStartMonth = parseInt($("#<%=ddlHigherStartDateMonth.ClientID%>").val());
+            var higherStartYear = parseInt($("#<%=ddlHigherStartDateYear.ClientID%>").val());
+            var higherEndMonth = parseInt($("#<%=ddlHigherEndDateMonth.ClientID%>").val());
+            var higherEndYear = parseInt($("#<%=ddlHigherEndDateYear.ClientID%>").val());
+
+            var startDate = new Date(higherStartYear, higherEndMonth);
+            var endDate = new Date(higherEndYear, higherEndMonth);
+
+            if (startDate > endDate) {
+                alert("Please enter valid higher education completion date");
+                return false;
+            }
+            else
+                return true;
+        }
+
+        function isValidDiplomaDates() {
+            var diplomaStartMonth = parseInt($("#<%=ddlDiplomaStartDateMonth.ClientID%>").val());
+            var diplomaStartYear = parseInt($("#<%=ddlDiplomaStartDateYear.ClientID%>").val());
+            var diplomaEndMonth = parseInt($("#<%=ddlDiplomaEndDateMonth.ClientID%>").val());
+            var diplomaEndYear = parseInt($("#<%=ddlDiplomaEndDateYear.ClientID%>").val());
+
+            var startDate = new Date(diplomaStartYear, diplomaStartMonth);
+            var endDate = new Date(diplomaEndYear, diplomaEndMonth);
+
+            if (startDate > endDate) {
+                alert("Please enter valid diploma completion date");
+                return false;
+            }
+            else
+                return true;
+        }
 
         function validateForm() {
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
@@ -1665,6 +1733,10 @@
                 alert("Please enter a valid diploma e-mail address");
             else if ((!$("#<%=diplomacontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtDiplomacontactMobile.ClientID%>").val() == ""))
                 alert("Please enter  diploma contact mobile no");
+            else if ((!$("#<%=highschoolstartDate.ClientID%>").is(':hidden')) && (!$("#<%=highschoolendDate.ClientID%>").is(':hidden')) && !isValidHighSchoolDates()) { }
+            else if ((!$("#<%=SecondarystartDate.ClientID%>").is(':hidden')) && (!$("#<%=SecondaryendDate.ClientID%>").is(':hidden')) && !isValidSecondarySchoolDates()) { }
+            else if ((!$("#<%=higherstartDate.ClientID%>").is(':hidden')) && (!$("#<%=higherendDate.ClientID%>").is(':hidden')) && !isValidHigherEduDates()) { }
+            else if ((!$("#<%=diplomastartDate.ClientID%>").is(':hidden')) && (!$("#<%=diplomaendDate.ClientID%>").is(':hidden')) && !isValidDiplomaDates()) { }
             else
                 flag = true;
             if (flag == true)

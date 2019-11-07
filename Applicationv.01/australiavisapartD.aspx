@@ -856,7 +856,7 @@
                                      </div>
                                     <div class="form-group">
                                         <label>Telephone number or daytime contact</label>
-                                        <label>Office Hourse</label>
+                                        <label>Office Hours</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtassistedpersonofficeno"/>
                                         </div>
                                     <div class="form-group">
@@ -912,7 +912,7 @@
                                      </div>
                                     <div class="form-group">
                                         <label>Telephone number or daytime contact</label>
-                                        <label>Office Hourse</label>
+                                        <label>Office Hours</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txteducationagentofficeno"/>
 
                                         <label>Mobile Numebr</label>
@@ -1068,7 +1068,7 @@
                                      </div>
                                     <div class="form-group">
                                         <label>Telephone number or daytime contact</label>
-                                        <label>Office Hourse</label>
+                                        <label>Office Hours</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtauthorisedpersonofficeno"/>
 
                                         <label>Mobile Numebr</label>
@@ -1179,7 +1179,7 @@
                                      </div>
                                     <div class="form-group">
                                         <label>Telephone number or daytime contact</label>
-                                        <label>Office Hourse</label>
+                                        <label>Office Hours</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtagentofficeno"/>
 
                                         <label>Mobile Numebr</label>

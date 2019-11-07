@@ -152,10 +152,15 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
                 if(ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT VERIFIED"))
                     paymentDetails.payment_verified_date = DateTime.Now;
                 db.SaveChanges();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Payment details updated successfully.');", true);
                 sendEmailsNotificationForPaymentVerified(applicantID, universityId);
             }
         }
-        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+        catch (Exception ex)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Something went wrong. Please try again.');", true);
+            objLog.WriteLog(ex.ToString());
+        }
     }
 
     protected void btnApplicantPaymentRequest_Click(object sender, EventArgs e)
