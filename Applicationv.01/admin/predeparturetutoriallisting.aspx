@@ -35,7 +35,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="TutorialGridView_RowCancelingEdit" OnRowEditing="TutorialGridView_RowEditing" OnRowUpdating="TutorialGridView_RowUpdating" OnDataBound="TutorialGridView_DataBound" OnRowDeleting="TutorialGridView_RowDeleting" >
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="TutorialGridView_RowCancelingEdit" OnRowEditing="TutorialGridView_RowEditing" OnRowUpdating="TutorialGridView_RowUpdating" OnDataBound="TutorialGridView_DataBound" OnRowDeleting="TutorialGridView_RowDeleting" OnPageIndexChanging="TutorialGridView_PageIndexChanging">
 
                         <Columns>
 

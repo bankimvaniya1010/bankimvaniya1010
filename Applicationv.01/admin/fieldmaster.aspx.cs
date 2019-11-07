@@ -206,8 +206,8 @@ public partial class admin_fieldmaster : System.Web.UI.Page
         try
         {
             int formID = Convert.ToInt32(FormFieldGridView.DataKeys[e.RowIndex].Values[0]);
-            formmaster FormID = db.formmaster.Where(b => b.formid == formID).First();
-            db.formmaster.Remove(FormID);
+            applicantformmaster FormID = db.applicantformmaster.Where(b => b.id == formID).First();
+            db.applicantformmaster.Remove(FormID);
             db.SaveChanges();
             BindFormView();
         }

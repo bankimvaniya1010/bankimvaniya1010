@@ -176,4 +176,10 @@ public partial class admin_alternateaddressproof : System.Web.UI.Page
             log.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvAddressProof_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvAddressProof.PageIndex = e.NewPageIndex;
+        BindAddressProof();
+    }
 }

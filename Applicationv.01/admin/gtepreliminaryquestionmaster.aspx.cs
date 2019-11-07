@@ -165,5 +165,11 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
         }
     }
 
-   
+
+
+    protected void QuestiontGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        QuestiontGridView.PageIndex = e.NewPageIndex;
+        BindGrid();
+    }
 }

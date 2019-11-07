@@ -20,7 +20,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="key"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowDataBound="universityGroupingGridView_RowDataBound" OnRowEditing="universityGroupingGridView_RowEditing">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowDataBound="universityGroupingGridView_RowDataBound" OnRowEditing="universityGroupingGridView_RowEditing" OnPageIndexChanging="universityGroupingGridView_PageIndexChanging">
 
                        <Columns>
                            <asp:BoundField DataField="key" HeaderText="Group Head University ID" InsertVisible="False"

@@ -167,4 +167,10 @@ public partial class admin_majordesription : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvMajorDescription_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvMajorDescription.PageIndex = e.NewPageIndex;
+        BindMajorDescription();
+    }
 }

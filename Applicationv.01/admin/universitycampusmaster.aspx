@@ -15,11 +15,11 @@
                     <asp:Button ID="addNewCampus" runat="server" Text="Add New Campus" OnClick="addNewCampus_Click" class="form-control col-sm-4" />
                 </div>
                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                   <asp:GridView ID="universityCampusGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="true" CellPadding="3"
+                   <asp:GridView ID="universityCampusGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="campusID"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowDataBound="universityCampusGridView_RowDataBound" OnRowEditing="universityCampusGridView_RowEditing">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowDataBound="universityCampusGridView_RowDataBound" OnRowEditing="universityCampusGridView_RowEditing" OnPageIndexChanging="universityCampusGridView_PageIndexChanging">
 
                        <Columns>
                            <asp:BoundField DataField="campusID" HeaderText="Campus ID" InsertVisible="False"

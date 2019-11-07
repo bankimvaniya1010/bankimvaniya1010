@@ -21,7 +21,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="cityID"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="cityGridView_RowEditing">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="cityGridView_RowEditing" OnPageIndexChanging="cityGridView_PageIndexChanging">
 
                         <Columns>
                             <asp:BoundField DataField="cityID" HeaderText="City ID" InsertVisible="False"

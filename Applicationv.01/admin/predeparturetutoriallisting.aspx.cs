@@ -109,4 +109,10 @@ public partial class admin_predeparturetutoriallisting : System.Web.UI.Page
         }
     }
 
+
+    protected void TutorialGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        TutorialGridView.PageIndex = e.NewPageIndex;
+        BindGrid();
+    }
 }

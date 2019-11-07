@@ -172,5 +172,11 @@ public partial class admin_universitywisetooltipslisting : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvField_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvField.PageIndex = e.NewPageIndex;
+        BindGird();
+    }
 }
 

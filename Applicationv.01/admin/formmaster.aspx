@@ -31,7 +31,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="FormGridView_DataBound" OnRowCancelingEdit="FormGridView_RowCancelingEdit" OnRowCommand="FormGridView_RowCommand" OnRowDataBound="FormGridView_RowDataBound" OnRowDeleted="FormGridView_RowDeleted" OnRowDeleting="FormGridView_RowDeleting" OnRowEditing="FormGridView_RowEditing" OnRowUpdated="FormGridView_RowUpdated" OnRowUpdating="FormGridView_RowUpdating">
+                        CellSpacing="2" OnDataBound="FormGridView_DataBound" OnRowCancelingEdit="FormGridView_RowCancelingEdit" OnRowCommand="FormGridView_RowCommand" OnRowDataBound="FormGridView_RowDataBound" OnRowDeleted="FormGridView_RowDeleted" OnRowDeleting="FormGridView_RowDeleting" OnRowEditing="FormGridView_RowEditing" OnRowUpdated="FormGridView_RowUpdated" OnRowUpdating="FormGridView_RowUpdating" OnPageIndexChanging="FormGridView_PageIndexChanging">
 
                         <Columns>
 

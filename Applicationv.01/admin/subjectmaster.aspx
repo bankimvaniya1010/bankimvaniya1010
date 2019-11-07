@@ -31,7 +31,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnRowCancelingEdit="gvsubjectmasterGridView_RowCancelingEdit" OnRowCommand="gvsubjectmasterGridView_RowCommand" OnRowDataBound="gvsubjectmasterGridView_RowDataBound" OnRowDeleting="gvsubjectmasterGridView_RowDeleting" OnRowEditing="gvsubjectmasterGridView_RowEditing" OnRowUpdating="gvsubjectmasterGridView_RowUpdating">
+                        CellSpacing="2" OnRowCancelingEdit="gvsubjectmasterGridView_RowCancelingEdit" OnRowCommand="gvsubjectmasterGridView_RowCommand" OnRowDataBound="gvsubjectmasterGridView_RowDataBound" OnRowDeleting="gvsubjectmasterGridView_RowDeleting" OnRowEditing="gvsubjectmasterGridView_RowEditing" OnRowUpdating="gvsubjectmasterGridView_RowUpdating" OnPageIndexChanging="gvsubjectmasterGridView_PageIndexChanging">
 
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="id" />

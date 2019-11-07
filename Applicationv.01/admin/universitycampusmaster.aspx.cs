@@ -11,9 +11,9 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int universityID;
     protected void Page_Load(object sender, EventArgs e)
-    {
-        int universityID;
+    {   
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
@@ -129,5 +129,11 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
     {
         int campusID = Convert.ToInt32(universityCampusGridView.DataKeys[e.NewEditIndex].Value);
         Response.Redirect("~/admin/edituniversitycampus.aspx?universityCampusID=" + campusID);
+    }
+
+    protected void universityCampusGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        universityCampusGridView.PageIndex = e.NewPageIndex;
+        BindGrid(universityID);
     }
 }

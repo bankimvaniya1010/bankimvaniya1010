@@ -152,4 +152,10 @@ public partial class admin_grademaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvGrade_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvGrade.PageIndex = e.NewPageIndex;
+        BindGrade();
+    }
 }

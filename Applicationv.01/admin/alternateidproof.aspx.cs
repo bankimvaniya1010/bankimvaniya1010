@@ -169,4 +169,10 @@ public partial class admin_alternateidproof : System.Web.UI.Page
             log.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvIDProof_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvIDProof.PageIndex = e.NewPageIndex;
+        BindIDProof();
+    }
 }

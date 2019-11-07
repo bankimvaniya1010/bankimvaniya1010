@@ -31,7 +31,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="gvDOBProof_DataBound" OnRowCancelingEdit="gvDOBProof_RowCancelingEdit" OnRowCommand="gvDOBProof_RowCommand" OnRowDataBound="gvDOBProof_RowDataBound" OnRowDeleted="gvDOBProof_RowDeleted" OnRowDeleting="gvDOBProof_RowDeleting" OnRowEditing="gvDOBProof_RowEditing" OnRowUpdated="gvDOBProof_RowUpdated" OnRowUpdating="gvDOBProof_RowUpdating">
+                        CellSpacing="2" OnDataBound="gvDOBProof_DataBound" OnRowCancelingEdit="gvDOBProof_RowCancelingEdit" OnRowCommand="gvDOBProof_RowCommand" OnRowDataBound="gvDOBProof_RowDataBound" OnRowDeleted="gvDOBProof_RowDeleted" OnRowDeleting="gvDOBProof_RowDeleting" OnRowEditing="gvDOBProof_RowEditing" OnRowUpdated="gvDOBProof_RowUpdated" OnRowUpdating="gvDOBProof_RowUpdating" OnPageIndexChanging="gvDOBProof_PageIndexChanging">
 
                         <Columns>
 

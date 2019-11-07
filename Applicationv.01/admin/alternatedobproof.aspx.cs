@@ -169,4 +169,10 @@ public partial class admin_alternatedobproof : System.Web.UI.Page
             log.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvDOBProof_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvDOBProof.PageIndex = e.NewPageIndex;
+        BindDOBProof();
+    }
 }

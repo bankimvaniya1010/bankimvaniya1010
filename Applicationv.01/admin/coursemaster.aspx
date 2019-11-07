@@ -22,7 +22,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="Courseid"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="CourseGridView_RowEditing" >
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="CourseGridView_RowEditing" OnPageIndexChanging="CourseGridView_PageIndexChanging">
 
                        <Columns>
                            <asp:BoundField DataField="Courseid" HeaderText="Course ID" InsertVisible="False"

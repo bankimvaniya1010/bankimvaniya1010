@@ -160,5 +160,11 @@ public partial class admin_customfieldlisting : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvCustomField_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvCustomField.PageIndex = e.NewPageIndex;
+        BindGird();
+    }
 }
 

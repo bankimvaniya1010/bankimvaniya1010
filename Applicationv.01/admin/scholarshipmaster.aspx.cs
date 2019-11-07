@@ -55,4 +55,10 @@ public partial class admin_scholarshipmaster : System.Web.UI.Page
         int scholarshipId = Convert.ToInt32(scholarshipGridView.DataKeys[e.NewEditIndex].Value);
         Response.Redirect("~/admin/managescholarship.aspx?scholarshipID=" + scholarshipId);
     }
+
+    protected void scholarshipGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        scholarshipGridView.PageIndex = e.NewPageIndex;
+        BindGrid();
+    }
 }
