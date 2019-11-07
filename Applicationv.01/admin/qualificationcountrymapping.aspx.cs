@@ -65,68 +65,26 @@ public partial class admin_qualificationcountrymapping : System.Web.UI.Page
     {
         try
         {
-            int countryID = Convert.ToInt32(ddlCountry.SelectedValue);
-            var list = db.qualificationcountriesmapping.Where(x => x.countryid == countryID).ToList();
+            var countryid = Convert.ToInt32(ddlCountry.SelectedValue);
+            IEnumerable<qualificationcountriesmapping> list = db.qualificationcountriesmapping.Where(x => x.countryid == countryid).ToList();
+            db.qualificationcountriesmapping.RemoveRange(list);
+            db.SaveChanges();
+
             foreach (ListItem li in chkQualification.Items)
             {
-
                 if (li.Selected)
                 {
-                    int QualificationID = Convert.ToInt32(li.Value);
-                    SelectedItems.Add(QualificationID);
-                }
-
-            }
-
-            if (list.Count > 0)
-            {
-
-                bool isAvailbale = false;
-                for (int k = 0; k < SelectedItems.Count; k++)
-                {
-
-                    foreach (var item in list)
-                    {
-                        if (item.qualificationid == Convert.ToInt32(SelectedItems[k]))
-                        {
-                            isAvailbale = true;
-                            break;
-                        }
-
-                    }
-                    if (isAvailbale == false)
-                        AddItem(Convert.ToInt32(SelectedItems[k]), countryID);
-                }
-
-                // To remove Old values if not selected
-
-                foreach (var item in list)
-                {
-                    isAvailbale = false;
-                    for (int k = 0; k < SelectedItems.Count; k++)
-                    {
-                        if (item.qualificationid == Convert.ToInt32(SelectedItems[k]))
-                        {
-                            isAvailbale = true;
-                            break;
-                        }
-
-                    }
-                    if (isAvailbale == false)
-                        RemoveItem(Convert.ToInt32(item.qualificationid));
-                }
-
-            }
-            else
-            {
-                for (int k = 0; k < SelectedItems.Count; k++)
-                {
-                    AddItem(Convert.ToInt32(SelectedItems[k]), countryID);
+                    int qualificationId = Convert.ToInt16(li.Value);
+                    qualificationcountriesmapping mappingObj = new qualificationcountriesmapping();
+                    mappingObj.countryid = countryid;
+                    mappingObj.qualificationid = qualificationId;
+                    db.qualificationcountriesmapping.Add(mappingObj);
+                    db.SaveChanges();
+                    lblMessage.Text = "Date saved successfully";
+                    lblMessage.Visible = true;
                 }
             }
-
-
-
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Saved successfully')", true);
         }
         catch (Exception ex)
         {

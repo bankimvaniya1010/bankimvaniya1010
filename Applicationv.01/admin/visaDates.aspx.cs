@@ -93,5 +93,6 @@ public partial class admin_visaDates : System.Web.UI.Page
         if (mode == "new")
             db.applicantdetails.Add(objapplicantdetails);
         db.SaveChanges();
+        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Saved successfully')", true);
     }
 }

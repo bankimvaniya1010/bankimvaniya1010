@@ -115,7 +115,8 @@ public partial class admin_qualificationmaster : System.Web.UI.Page
             qualificationmaster QID = db.qualificationmaster.Where(b => b.qualificationid == qualificationID).First();
             var ExistInapplicantlang = db.applicantlanguagecompetency.Where(l=> l.qualificationtype == qualificationID).ToList();
             var ExistIneduDetail = db.applicanteducationdetails.Where(d=> d.highschoolqualificationtype == qualificationID && d.secondaryqualificationtype == qualificationID && d.diplomaqualificationtype == qualificationID).ToList();
-            if (ExistInapplicantlang.Count == 0 && ExistIneduDetail.Count == 0)
+            var ExistsInCountrywisemapping = db.qualificationcountriesmapping.Where(q => q.qualificationid == qualificationID).ToList();
+            if (ExistInapplicantlang.Count == 0 && ExistIneduDetail.Count == 0 && ExistsInCountrywisemapping.Count == 0)
             {
                 db.qualificationmaster.Remove(QID);
                 db.SaveChanges();

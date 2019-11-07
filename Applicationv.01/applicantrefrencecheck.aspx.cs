@@ -152,6 +152,9 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
             if (mode == "new")
                 db.applicantreferencecheck.Add(objReference);
             db.SaveChanges();
+            txtName.Value = "";
+            txtMobile.Value = "";
+            txtEmail.Value = "";
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
 
@@ -189,48 +192,9 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
 
     protected void grdtrefernce_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        try
-        {
-            int ID = Convert.ToInt32(grdRefernce.DataKeys[e.RowIndex].Values[0]);
-            applicantreferencecheck objRef = db.applicantreferencecheck.Where(b => b.id == ID).First();
-            db.applicantreferencecheck.Remove(objRef);
-            db.SaveChanges();
-            BindRefrenceList();
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
+       
     }
 
-    protected void grdRefernce_DataBound(object sender, EventArgs e)
-    {
-        try
-        {
-            foreach (GridViewRow row in grdRefernce.Rows)
-            {
-
-                if (row.RowState != DataControlRowState.Edit) // check for RowState
-                {
-                    if (row.RowType == DataControlRowType.DataRow) //check for RowType
-                    {
-                        string id = row.Cells[0].Text; // Get the id to be deleted
-                                                       //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[3].Controls[0];
-                        if (lb != null)
-                        {
-                            //attach the JavaScript function with the ID as the paramter
-                            lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
-                        }
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-    }
 
     protected void grdRefernce_RowEditing(object sender, GridViewEditEventArgs e)
     {
@@ -245,7 +209,14 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
                 int applicantid = Convert.ToInt32(e.CommandArgument.ToString());
                 PopulateRefernceInfo(applicantid);
             }
-
+            if (e.CommandName.Equals("Delete"))
+            {
+                int ID = Convert.ToInt32(e.CommandArgument);
+                applicantreferencecheck objRef = db.applicantreferencecheck.Where(b => b.id == ID).First();
+                db.applicantreferencecheck.Remove(objRef);
+                db.SaveChanges();
+                BindRefrenceList();
+            }
         }
         catch (Exception ex)
         {
