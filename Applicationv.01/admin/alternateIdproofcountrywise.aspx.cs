@@ -60,6 +60,7 @@ public partial class admin_alternateIdproofcountrywise : System.Web.UI.Page
                     lblMessage.Visible = true;
                 }
             }
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Saved successfully')", true);
         }
         catch (Exception ex)
         {

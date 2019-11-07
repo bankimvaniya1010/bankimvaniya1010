@@ -258,6 +258,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
             objCom.SaveAdminComments(ApplicantID, universityID, formId, adminID, adminInputs);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Saved successfully')", true);
         }
         catch (Exception ex)
         {
