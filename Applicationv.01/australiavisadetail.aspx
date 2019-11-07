@@ -280,11 +280,11 @@
                     <div id="telephonenumberOutsideaustralia" runat="server">
                          <label><b class="ques-lbl">17)</b>Your Telephone Number outside Australia</label>
 						 <div class="form-group">
-						    <label>Office Hourse</label>
+						    <label>Office Hours</label>
 						    <input type="text" name="" id="officehrContactNo" class="form-control" runat="server">
 					    </div>
                         <div class="form-group">
-						    <label>After Hourse</label>
+						    <label>After Hours</label>
 						    <input type="text" name="" class="form-control" runat="server" id="afterhrContactNo">
 					    </div>
 					</div>
@@ -1232,7 +1232,7 @@
         else if ($("#<%=txtPostal.ClientID%>").val() == "")
             alert("Please enter Your residential Postal code in your Home country");
         else if ($("#<%=officehrContactNo.ClientID%>").val() == "")
-            alert("Please enter telephone number of office hourse");
+            alert("Please enter telephone number of office hours");
         else if ($("#<%=afterhrContactNo.ClientID%>").val() == "")
             alert("Please enter telephone number  after hourse");
             //20
