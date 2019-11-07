@@ -73,7 +73,7 @@
                             <div class="">
                                 
                                     <div style="margin-top: 10px;" class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                                        <asp:GridView ID="grdRefernce" DataKeyNames="id" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowDeleting="grdtrefernce_RowDeleting" OnDataBound="grdRefernce_DataBound" OnRowCommand="grdRefernce_RowCommand" OnRowEditing="grdRefernce_RowEditing">
+                                        <asp:GridView ID="grdRefernce" DataKeyNames="id" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowDeleting="grdtrefernce_RowDeleting"  OnRowCommand="grdRefernce_RowCommand" OnRowEditing="grdRefernce_RowEditing">
                                             <Columns>
                                                 <asp:TemplateField ItemStyle-Width="30px" HeaderText="Name">
                                                     <ItemTemplate>
@@ -98,7 +98,11 @@
                                                         <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Edit" Text="Edit"></asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                                                 <asp:TemplateField HeaderText="Edit" ShowHeader="False">
+                                                    <ItemTemplate>
+                                                        <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("id")%>' CommandName="Delete" Text="Delete" OnClientClick="return ConfirmOnDelete()"></asp:LinkButton>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
                                     </div>
@@ -146,8 +150,8 @@
     </div>
     <script>       
        
-        function ConfirmOnDelete(item) {
-            if (confirm("Are you sure to delete: " + item + "?") == true)
+        function ConfirmOnDelete() {
+            if (confirm("Are you sure to delete ?") == true)
                 return true;
             else
                 return false;
