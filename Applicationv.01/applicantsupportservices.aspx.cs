@@ -89,6 +89,7 @@ public partial class applicantsupportservices : System.Web.UI.Page
                 objresponse.supportserviceId = serviceID;
                 db.supportservices_enquiries.Add(objresponse);
                 db.SaveChanges();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your Request for the Enquiry of support service is sent .')", true);
                 //send email
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/supportService.html"));
                 html = html.Replace("@providername", providername);

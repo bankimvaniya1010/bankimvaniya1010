@@ -107,9 +107,16 @@ public partial class admin_educationmediummaster : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvEducationMedium.DataKeys[e.RowIndex].Values[0]);
             educationmediummaster ObjMedium = db.educationmediummaster.Where(b => b.id == ID).First();
-            db.educationmediummaster.Remove(ObjMedium);
-            db.SaveChanges();
-            BindEducationMedium();
+            var existsIneducationDetails = db.applicanteducationdetails.Where(d => d.highschoolmediumid == 0 && d.secondarymediumstudy == 0 && d.diplomamediumid == 0).ToList();
+            var existsInhighereduDetail = db.applicanthighereducation.Where(h => h.studymediumid == 0).ToList();
+            if(existsIneducationDetails.Count == 0 && existsInhighereduDetail.Count == 0)
+            {
+                db.educationmediummaster.Remove(ObjMedium);
+                db.SaveChanges();
+                BindEducationMedium();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Education Medium data as it already Used in another records')", true);
         }
         catch (Exception ex)
         {
@@ -148,5 +155,11 @@ public partial class admin_educationmediummaster : System.Web.UI.Page
         {
             objLog.WriteLog(ex.ToString());
         }
+    }
+
+    protected void gvEducationMedium_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvEducationMedium.PageIndex = e.NewPageIndex;
+        BindEducationMedium();
     }
 }

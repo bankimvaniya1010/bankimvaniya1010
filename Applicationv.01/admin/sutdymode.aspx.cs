@@ -191,4 +191,10 @@ public partial class admin_sutdymode : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvStudemode_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvStudemode.PageIndex = e.NewPageIndex;
+        BindStudyMode();
+    }
 }

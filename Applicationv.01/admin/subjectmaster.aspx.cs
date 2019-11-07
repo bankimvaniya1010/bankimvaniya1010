@@ -151,4 +151,10 @@ public partial class admin_subjectmaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvsubjectmasterGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvsubjectmasterGridView.PageIndex = e.NewPageIndex;
+        BindSubject();
+    }
 }

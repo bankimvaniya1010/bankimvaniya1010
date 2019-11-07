@@ -162,4 +162,10 @@ public partial class admin_disability : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvDisability_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvDisability.PageIndex = e.NewPageIndex;
+        BindDisability();
+    }
 }

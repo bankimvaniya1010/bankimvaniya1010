@@ -70,4 +70,10 @@ public partial class admin_universitygroupingmaster : System.Web.UI.Page
         int groupHeadUniversityId = Convert.ToInt32(universityGroupingGridView.DataKeys[e.NewEditIndex].Value);
         Response.Redirect("~/admin/edituniversitygrouping.aspx?headUniversityID=" + groupHeadUniversityId);
     }
+
+    protected void universityGroupingGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        universityGroupingGridView.PageIndex = e.NewPageIndex;
+        bindGrid();
+    }
 }

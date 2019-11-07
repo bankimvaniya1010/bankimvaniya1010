@@ -42,14 +42,14 @@
 
 
 
-                    <asp:GridView ID="gvField" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
+                    <asp:GridView ID="gvField" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="false"
                         DataKeyNames="id"
                         AllowPaging="True"
                         CellPadding="3"
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnRowEditing="gvField_RowEditing" OnRowDataBound="gvField_RowDataBound" OnRowDeleting="gvField_RowDeleting">
+                        CellSpacing="2" OnRowEditing="gvField_RowEditing" OnRowDataBound="gvField_RowDataBound" OnRowDeleting="gvField_RowDeleting" OnPageIndexChanging="gvField_PageIndexChanging">
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />

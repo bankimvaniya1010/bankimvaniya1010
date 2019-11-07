@@ -155,4 +155,10 @@ public partial class admin_titlemaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void gvTitle_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        gvTitle.PageIndex = e.NewPageIndex;
+        BindTitle();
+    }
 }

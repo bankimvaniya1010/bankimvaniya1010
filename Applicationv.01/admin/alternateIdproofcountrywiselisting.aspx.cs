@@ -180,4 +180,10 @@ public partial class admin_alternateIdproofcountrywiselisting : System.Web.UI.Pa
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void alternateidproofGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        alternateidproofGridView.PageIndex = e.NewPageIndex;
+        BindData();
+    }
 }

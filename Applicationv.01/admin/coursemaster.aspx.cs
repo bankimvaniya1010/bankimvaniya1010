@@ -59,4 +59,10 @@ public partial class admin_coursemaster : System.Web.UI.Page
         int id = Convert.ToInt32(CourseGridView.DataKeys[e.NewEditIndex].Value);
         Response.Redirect("~/admin/editCourse.aspx?courseId=" + id);
     }
+
+    protected void CourseGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        CourseGridView.PageIndex = e.NewPageIndex;
+        BindGrid();
+    }
 }

@@ -62,7 +62,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnRowEditing="gvCustomField_RowEditing" OnRowDataBound="gvCustomField_RowDataBound" OnRowDeleting="gvCustomField_RowDeleting">
+                        CellSpacing="2" OnRowEditing="gvCustomField_RowEditing" OnRowDataBound="gvCustomField_RowDataBound" OnRowDeleting="gvCustomField_RowDeleting" OnPageIndexChanging="gvCustomField_PageIndexChanging">
                         <Columns>
                             <asp:BoundField DataField="customfieldid" HeaderText="Custom Field Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />

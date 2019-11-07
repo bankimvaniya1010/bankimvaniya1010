@@ -88,4 +88,10 @@ public partial class admin_supportservicelisting : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void grSupportService_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        grSupportService.PageIndex = e.NewPageIndex;
+        BindGrid();
+    }
 }

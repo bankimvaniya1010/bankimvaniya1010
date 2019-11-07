@@ -31,7 +31,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="QualificationGridView_DataBound" OnRowCancelingEdit="QualificationGridView_RowCancelingEdit" OnRowCommand="QualificationGridView_RowCommand" OnRowDataBound="QualificationGridView_RowDataBound" OnRowDeleted="QualificationGridView_RowDeleted" OnRowDeleting="QualificationGridView_RowDeleting" OnRowEditing="QualificationGridView_RowEditing" OnRowUpdated="QualificationGridView_RowUpdated" OnRowUpdating="QualificationGridView_RowUpdating">
+                        CellSpacing="2" OnDataBound="QualificationGridView_DataBound" OnRowCancelingEdit="QualificationGridView_RowCancelingEdit" OnRowCommand="QualificationGridView_RowCommand" OnRowDataBound="QualificationGridView_RowDataBound" OnRowDeleted="QualificationGridView_RowDeleted" OnRowDeleting="QualificationGridView_RowDeleting" OnRowEditing="QualificationGridView_RowEditing" OnRowUpdated="QualificationGridView_RowUpdated" OnRowUpdating="QualificationGridView_RowUpdating" OnPageIndexChanging="QualificationGridView_PageIndexChanging">
 
                         <Columns>
 

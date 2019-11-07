@@ -29,7 +29,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="gvAddressProof_DataBound" OnRowCancelingEdit="gvAddressProof_RowCancelingEdit" OnRowCommand="gvAddressProof_RowCommand" OnRowDataBound="gvAddressProof_RowDataBound" OnRowDeleted="gvAddressProof_RowDeleted" OnRowDeleting="gvAddressProof_RowDeleting" OnRowEditing="gvAddressProof_RowEditing" OnRowUpdated="gvAddressProof_RowUpdated" OnRowUpdating="gvAddressProof_RowUpdating">
+                        CellSpacing="2" OnDataBound="gvAddressProof_DataBound" OnRowCancelingEdit="gvAddressProof_RowCancelingEdit" OnRowCommand="gvAddressProof_RowCommand" OnRowDataBound="gvAddressProof_RowDataBound" OnRowDeleted="gvAddressProof_RowDeleted" OnRowDeleting="gvAddressProof_RowDeleting" OnRowEditing="gvAddressProof_RowEditing" OnRowUpdated="gvAddressProof_RowUpdated" OnRowUpdating="gvAddressProof_RowUpdating" OnPageIndexChanging="gvAddressProof_PageIndexChanging">
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />

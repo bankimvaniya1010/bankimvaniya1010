@@ -20,7 +20,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px" DataKeyNames="id"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="scholarshipGridView_RowEditing">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="scholarshipGridView_RowEditing" OnPageIndexChanging="scholarshipGridView_PageIndexChanging">
 
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="Scholarship ID" InsertVisible="False"

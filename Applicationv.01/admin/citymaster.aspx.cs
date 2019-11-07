@@ -11,9 +11,9 @@ public partial class admin_citymaster : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int countryID;
     protected void Page_Load(object sender, EventArgs e)
-    {
-        int countryID;
+    {       
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
@@ -73,5 +73,11 @@ public partial class admin_citymaster : System.Web.UI.Page
     protected void btnCreateCity_Click(object sender, EventArgs e)
     {
         Response.Redirect("~/admin/createcity.aspx");
+    }
+
+    protected void cityGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        cityGridView.PageIndex = e.NewPageIndex;
+        BindGrid(countryID);
     }
 }

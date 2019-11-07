@@ -162,4 +162,10 @@ public partial class admin_qualificationmaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void QualificationGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        QualificationGridView.PageIndex = e.NewPageIndex;
+        BindQualification();
+    }
 }

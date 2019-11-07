@@ -29,7 +29,7 @@
                         BorderStyle="None"
                         BorderWidth="1px" 
                         DataKeyNames="id"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowDataBound="alternateidproofGridView_RowDataBound" OnRowCancelingEdit="alternateidproofGridView_RowCancelingEdit" OnRowEditing="alternateidproofGridView_RowEditing" OnRowDeleted="alternateidproofGridView_RowDeleted" OnRowDeleting="alternateidproofGridView_RowDeleting" OnRowUpdated="alternateidproofGridView_RowUpdated" OnRowUpdating="alternateidproofGridView_RowUpdating">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowDataBound="alternateidproofGridView_RowDataBound" OnRowCancelingEdit="alternateidproofGridView_RowCancelingEdit" OnRowEditing="alternateidproofGridView_RowEditing" OnRowDeleted="alternateidproofGridView_RowDeleted" OnRowDeleting="alternateidproofGridView_RowDeleting" OnRowUpdated="alternateidproofGridView_RowUpdated" OnRowUpdating="alternateidproofGridView_RowUpdating" OnPageIndexChanging="alternateidproofGridView_PageIndexChanging">
 
                        <Columns>
                            <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False"

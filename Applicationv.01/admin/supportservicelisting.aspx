@@ -37,7 +37,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found"  OnDataBound="grSupportService_DataBound" OnRowDeleting="grSupportService_RowDeleting">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found"  OnDataBound="grSupportService_DataBound" OnRowDeleting="grSupportService_RowDeleting" OnPageIndexChanging="grSupportService_PageIndexChanging">
 
                         <Columns>
 

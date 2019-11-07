@@ -113,5 +113,11 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
-  
+
+
+    protected void QuestiontGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        QuestiontGridView.PageIndex = e.NewPageIndex;
+        BindGrid();
+    }
 }

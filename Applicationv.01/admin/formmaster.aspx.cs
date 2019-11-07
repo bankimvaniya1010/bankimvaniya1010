@@ -155,4 +155,10 @@ public partial class admin_formmaster : System.Web.UI.Page
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    protected void FormGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        FormGridView.PageIndex = e.NewPageIndex;
+        BindInference();
+    }
 }
