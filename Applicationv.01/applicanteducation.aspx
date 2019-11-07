@@ -1193,14 +1193,14 @@
                 if (course == "tenth")
                 {
                     if (mode == "new") 
-                        $('#ContentPlaceHolder1_grd10').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');                        
+                        $('#ContentPlaceHolder1_grd10').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');                        
                     else
                         $("#ContentPlaceHolder1_grd10").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                 }
                 else if (course == "twelth")
                 {  
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdSecondary').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdSecondary').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
                         $("#ContentPlaceHolder1_grdSecondary").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                     
@@ -1208,14 +1208,14 @@
                 else if (course == "UG" || course == "PG" || course == "Phd" || course == "Other" )
                 {
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdHigher').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdHigher').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
                         $("#ContentPlaceHolder1_grdHigher").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                 }
                 else if (course == "diploma")
                 {
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdDiploma').append('<tr><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdDiploma').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
                         $("#ContentPlaceHolder1_grdDiploma").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');    
                 }
