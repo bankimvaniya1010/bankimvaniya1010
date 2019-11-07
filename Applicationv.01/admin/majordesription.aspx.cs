@@ -113,7 +113,8 @@ public partial class admin_majordesription : System.Web.UI.Page
             var existsInApplicationmaster = db.applicationmaster.Where(x=> x.majorofdiscipline == ID).ToList();
             var existsInApplicantdetails = db.applicantdetails.Where(c => c.fieldofhigheststudy == ID).ToList();
             var existsIngteapplicantdetails = db.gte_applicantdetails.Where(g => g.highestqualificationfield == ID && g.fieldofstudyapplied == ID).ToList();
-            if (existsInApplicationmaster.Count == 0 && existsInApplicantdetails.Count == 0 && existsIngteapplicantdetails.Count == 0)
+            var existsIncoursemaster = db.coursemaster.Where(c => c.modeofstudyId == ID).ToList();
+            if (existsInApplicationmaster.Count == 0 && existsInApplicantdetails.Count == 0 && existsIngteapplicantdetails.Count == 0 && existsIncoursemaster.Count == 0)
             {
                 db.majordiscipline_master.Remove(objMajor);
                 db.SaveChanges();

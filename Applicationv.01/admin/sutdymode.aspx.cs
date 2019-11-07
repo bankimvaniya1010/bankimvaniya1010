@@ -142,7 +142,8 @@ public partial class admin_sutdymode : System.Web.UI.Page
             var existsInapplicationmaster = db.applicationmaster.Where(a => a.modeofstudy == ID).ToList();
             var existsInapplicanteducationdetails = db.applicanteducationdetails.Where(d => d.highschoolmodeid == ID && d.secondarymodestudy == ID && d.diplomastudymodeid == ID).ToList();
             var existsINapplicanthighereducation = db.applicanthighereducation.Where(h => h.studymodeid == ID).ToList();
-            if (existsInapplicationlanguagedetails.Count == 0 && existsInapplicationmaster.Count == 0 && existsInapplicanteducationdetails.Count == 0 && existsINapplicanthighereducation.Count == 0)
+            var existsIncoursemaster = db.coursemaster.Where(c => c.modeofstudyId == ID).ToList();
+            if (existsInapplicationlanguagedetails.Count == 0 && existsInapplicationmaster.Count == 0 && existsInapplicanteducationdetails.Count == 0 && existsINapplicanthighereducation.Count == 0 && existsIncoursemaster.Count == 0)
             {
                 db.studymodemaster.Remove(ObjMOde);
                 db.SaveChanges();
@@ -154,7 +155,7 @@ public partial class admin_sutdymode : System.Web.UI.Page
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
-        }
+        } 
     }
 
     protected void gvStudemode_RowEditing(object sender, GridViewEditEventArgs e)
