@@ -6,17 +6,17 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Update Accomdation Plan</li>
+            <li class="breadcrumb-item active">Update Accommodation Plan</li>
         </ol>
 
-        <h1 class="h2">Update  Accomdation Plan</h1>
+        <h1 class="h2">Update Accommodation Plan</h1>
 
         <div class="card">
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
 
                     <div class="form-group row">
-                        <label for="AccomdationName" class="col-sm-3 col-form-label form-label">Accomdation Name</label>
+                        <label for="AccomdationName" class="col-sm-3 col-form-label form-label">Accommodation Name</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">

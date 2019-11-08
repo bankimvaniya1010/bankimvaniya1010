@@ -102,6 +102,7 @@
             <input type="text" name="" class="form-control" runat="server" id="eduProviderfinishDate">
             </div>
             <div class="form-group">
+                <%--code to upload attachement document pending--%>
             <label>Documentation attached?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -140,6 +141,7 @@
             <input type="text" name="" class="form-control" runat="server" id="othereduproviderfinishdate">
             </div>
             <div class="form-group">
+            <%--code to upload attachement document pending--%>
             <label>Documentation attached?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -178,6 +180,7 @@
             <input type="text" name="" class="form-control" runat="server" id="othereduproviderfinishdate1">
             </div>
             <div class="form-group">
+                <%--code to upload attachement document pending--%>
             <label>Documentation attached?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -307,6 +310,7 @@
             </div>
             <div id="showoption" runat="server">
             <div class="form-group">
+                <%--code to upload attachement document pending--%>
             <label>Is evidence of enrolment attached?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -356,6 +360,7 @@
             </div>
             <div id="showoption1">
             <div class="form-group">
+                <%--code to upload attachement document pending--%>
             <label>Is evidence of enrolment attached?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -540,6 +545,7 @@
             <input type="text" name="" class="form-control" runat="server" id="txtsalarylevel">
             </div>
             <div class="form-group" runat="server">
+                <%--code to upload attachement document pending--%>
             <label>Documentation attached?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -585,6 +591,7 @@
             <input type="text" name="" class="form-control" runat="server" id="txtsalarylevel1">
             </div>
             <div class="form-group" runat="server">
+                <%--code to upload attachement document pending--%>
             <label>Documentation attached?</label>
             <div class="form-check-inline">
              <label class="form-check-label">
@@ -656,6 +663,7 @@
             <input type="text" runat="server" class="form-control" id="employercontactno">
             </div>
             <div class="form-group">
+                <%--code to upload attachement document pending--%>
             <label>Have you attached evidence of your employment details?</label>
             <div class="form-check-inline">
              <label class="form-check-label">

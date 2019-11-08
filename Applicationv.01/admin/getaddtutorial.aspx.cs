@@ -148,6 +148,7 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
             db.SaveChanges();
             lblMessage.Text = "Saved Successfully";
             lblMessage.Visible = true;
+            Response.Redirect("gtetutorialmaster.aspx", true);
         }
         catch (Exception ex)
         {

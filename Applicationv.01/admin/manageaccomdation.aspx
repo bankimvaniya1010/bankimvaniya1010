@@ -4,15 +4,15 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Accomdation Plan</li>
+            <li class="breadcrumb-item active">Accommodation Plan</li>
         </ol>
-        <h1 class="h2">Accomdation Plan</h1>
+        <h1 class="h2">Accommodation Plan</h1>
 
         <div class="card">
 
             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                 <div class="form-row">
-                    <a href="createmanageaccomdation.aspx" style="margin-left: 20px; margin-top: 10px;" class="btn btn-success">Create Accomdation Plan</a>
+                    <a href="createmanageaccomdation.aspx" style="margin-left: 20px; margin-top: 10px;" class="btn btn-success">Create accommodation Plan</a>
 
                 </div>
             </div>
@@ -25,9 +25,9 @@
                         CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowEditing="AccomdationGridView_RowEditing" OnPageIndexChanging="AccomdationGridView_PageIndexChanging">
 
                         <Columns>
-                            <asp:BoundField DataField="id" HeaderText="Accomdation ID" InsertVisible="False"
+                            <asp:BoundField DataField="id" HeaderText="Accommodation ID" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
-                            <asp:TemplateField HeaderText="Accomdation Name">
+                            <asp:TemplateField HeaderText="accommodation Name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblAccomdationName" runat="server" Text='<%# Bind("Accomdationname") %>'></asp:Label>
                                 </ItemTemplate>
@@ -43,7 +43,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Accomdation Fee">
+                            <asp:TemplateField HeaderText="accommodation Fee">
                                 <ItemTemplate>
                                     <asp:Label ID="lblAccomdationFee" runat="server" Text='<%# Bind("amount") %>'></asp:Label>
                                 </ItemTemplate>

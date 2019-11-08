@@ -98,7 +98,7 @@
                                                         <asp:LinkButton ID="lnkEdit" runat="server" CommandArgument='<%#Eval("applicantid")%>' CommandName="Edit" Text="Edit"></asp:LinkButton>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-                                                 <asp:TemplateField HeaderText="Edit" ShowHeader="False">
+                                                 <asp:TemplateField HeaderText="Delete" ShowHeader="False">
                                                     <ItemTemplate>
                                                         <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("id")%>' CommandName="Delete" Text="Delete" OnClientClick="return ConfirmOnDelete()"></asp:LinkButton>
                                                     </ItemTemplate>

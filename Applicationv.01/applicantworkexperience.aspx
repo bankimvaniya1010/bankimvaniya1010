@@ -32,7 +32,7 @@
 
                                             <div class="">
                                                 <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                                                    <asp:GridView ID="grdEmployment" DataKeyNames="employerId" runat="server" CssClass="table" AutoGenerateColumns="false" OnDataBound="grdEmployment_DataBound" OnRowDeleting="grdEmployment_RowDeleting" OnRowEditing="grdEmployment_RowEditing" OnRowCommand="grdEmployment_RowCommand">
+                                                    <asp:GridView ID="grdEmployment" DataKeyNames="employerId" runat="server" CssClass="table" AutoGenerateColumns="false" OnRowDeleting="grdEmployment_RowDeleting" OnRowEditing="grdEmployment_RowEditing" OnRowCommand="grdEmployment_RowCommand">
                                                         <Columns>
                                                             <asp:TemplateField ItemStyle-Width="30px" HeaderText="Designation">
                                                                 <ItemTemplate>
@@ -76,10 +76,13 @@
 
                                                                 </ItemTemplate>
 
+                                                            </asp:TemplateField> 
+                                                            <asp:TemplateField HeaderText="Delete" ShowHeader="False">
+                                                                <ItemTemplate>
+                                                                    <asp:LinkButton ID="lnkDelete" runat="server" CausesValidation="False" CommandArgument='<%#Eval("employerId")%>' CommandName="Delete" Text="Delete" OnClientClick="return ConfirmOnDelete()"></asp:LinkButton>
+                                                                <%--code to pass organization name in ConfirmOnDelete function is remaining--%>
+                                                                </ItemTemplate>
                                                             </asp:TemplateField>
-
-                                                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
-
                                                         </Columns>
                                                     </asp:GridView>
 
@@ -367,7 +370,7 @@
         }
 
         $(document).ready(function () {
-          
+
               $('.fa-info-circle').tipso({
 				position: 'right',
 				background: 'rgba(0,0,0,0.8)',
@@ -431,8 +434,8 @@
 
             dateFormat: 'Y-m-d', defaultDate: ""
         });
-        function ConfirmOnDelete(item) {
-            if (confirm("Are you sure to delete: " + item + "?") == true)
+        function ConfirmOnDelete() {
+            if (confirm("Are you sure to delete record ") == true)
                 return true;
             else
                 return false;

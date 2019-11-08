@@ -148,6 +148,7 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
             db.SaveChanges();
             lblMessage.Text = "Saved Successfully";
             lblMessage.Visible = true;
+            Response.Redirect("preliminaryvideomaster.aspx", true);
         }
         catch (Exception ex)
         {

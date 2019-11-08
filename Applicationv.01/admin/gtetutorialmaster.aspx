@@ -36,7 +36,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnDataBound="QuestiontGridView_DataBound" OnRowDeleting="QuestiontGridView_RowDeleting" OnPageIndexChanging="QuestiontGridView_PageIndexChanging">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnRowDeleting="QuestiontGridView_RowDeleting" OnPageIndexChanging="QuestiontGridView_PageIndexChanging" OnRowCommand="QuestiontGridView_RowCommand">
 
                         <Columns>
 
@@ -81,8 +81,12 @@
                                 </ItemTemplate>
 
                             </asp:TemplateField>
-
-                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
+                            
+                            <asp:TemplateField HeaderText="Delete" ShowHeader="False">
+                                <ItemTemplate>
+                                    <asp:LinkButton ID="lnkDelete" runat="server" CommandArgument='<%#Eval("id")%>' CommandName="Delete" Text="Delete" OnClientClick='<%# Eval("id","return ConfirmOnDelete({0})") %>'></asp:LinkButton>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
 
                         </Columns>
@@ -104,6 +108,7 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#gtetutorialmaster').addClass('active');
         });
+        
     </script>
 </asp:Content>
 
