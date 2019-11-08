@@ -485,11 +485,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     {
         try
         {
-            int id = Convert.ToInt32(grdEmployment.DataKeys[e.RowIndex].Values[0]);
-            applicantemployerdetails grade = db.applicantemployerdetails.Where(b => b.employerid == id).First();
-            db.applicantemployerdetails.Remove(grade);
-            db.SaveChanges();
-            BindEmploymentDetails();
+            
         }
         catch (Exception ex)
         {
@@ -500,36 +496,6 @@ public partial class applicantworkexperience : System.Web.UI.Page
     protected void grdEmployment_RowEditing(object sender, GridViewEditEventArgs e)
     {
 
-    }
-    protected void grdEmployment_DataBound(object sender, EventArgs e)
-    {
-        try
-        {
-            foreach (GridViewRow row in grdEmployment.Rows)
-            {
-
-                if (row.RowState != DataControlRowState.Edit) // check for RowState
-                {
-                    if (row.RowType == DataControlRowType.DataRow) //check for RowType
-                    {
-                        string id = row.Cells[0].Text; // Get the id to be deleted
-                                                       //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lbDelete = (LinkButton)row.Cells[6].Controls[0];
-                        if (lbDelete != null)
-                        {
-                            //attach the JavaScript function with the ID as the paramter
-                            lbDelete.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
-
-                        }
-
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
     }
 
     protected void grdEmployment_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -543,6 +509,14 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 PopulateEmployerInfo(employerid);
                 hdnemployer.Value = e.CommandArgument.ToString();
                 employment.Attributes.Add("style", "display:block");
+            }
+            if (e.CommandName.Equals("Delete"))
+            {
+                int id = Convert.ToInt32(e.CommandArgument.ToString());
+                applicantemployerdetails grade = db.applicantemployerdetails.Where(b => b.employerid == id).First();
+                db.applicantemployerdetails.Remove(grade);
+                db.SaveChanges();
+                BindEmploymentDetails();
             }
         }
         catch (Exception ex)

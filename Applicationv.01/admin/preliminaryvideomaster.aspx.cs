@@ -34,7 +34,7 @@ public partial class admin_preliminaryvideomaster : System.Web.UI.Page
                                     status = q.status,
                                     type = q.type,
                                     UniversityName= um.university_name
-                                }).ToList();
+                                }).SortBy("UniversityName").ToList();
             if (QuestionList != null)
             {
                 QuestiontGridView.DataSource = QuestionList;

@@ -132,7 +132,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[9].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[8].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter

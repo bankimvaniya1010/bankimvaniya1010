@@ -660,7 +660,8 @@
 										<input type="text" name="" class="form-control" runat="server" id="txtguardianslegalrights">
 									</div>
 									<div class="form-group">
-										<label>Statutory declaration attached?</label>
+                                        <%--code to upload attachement pending--%>
+										<label>Statutory declaration attached?</label> 
 										<div class="form-check-inline">
 										  <label class="form-check-label">
 										    <input type="radio" class="form-check-input" name="statutory" runat="server" id="rbguardiansdeclarationNo">No
@@ -704,6 +705,7 @@
 										<input type="text" name="" class="form-control" runat="server"  id="txtguardianslegalrights1">
 									</div>
 									<div class="form-group">
+                                        <%--code to upload attachement document pending--%>
 										<label>Statutory declaration attached?</label>
 										<div class="form-check-inline">
 										  <label class="form-check-label">
