@@ -581,12 +581,12 @@
                 alert("Please select University City");
                 return false;
             }
-            else if (txtUniLatitude == '' || isNaN(parseFloat(txtUniLatitude))) {
-                alert("Please enter University Latitude");
+            else if (txtUniLatitude == '' || isNaN(txtUniLatitude) || isNaN(parseFloat(txtUniLatitude))) {
+                alert("Please enter appropriate University Latitude format. eg. 34.5553");
                 return false;
             }
-            else if (txtUniLongitude == '' || isNaN(parseFloat(txtUniLongitude))) {
-                alert("Please enter University Longitude");
+            else if (txtUniLongitude == '' || isNaN(txtUniLongitude) || isNaN(parseFloat(txtUniLongitude))) {
+                alert("Please enter appropriate University Longitude format. eg. 34.5553");
                 return false;
             }
             else if (UniTimeZoneValue == 0 || isNaN(parseInt(UniTimeZoneValue))) {
