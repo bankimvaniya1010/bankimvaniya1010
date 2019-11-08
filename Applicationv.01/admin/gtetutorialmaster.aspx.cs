@@ -29,7 +29,7 @@ public partial class admin_gtetutorialmaster : System.Web.UI.Page
 
                                 select new
                                 {
-                                    id = q  .id,
+                                    id = q.id,
                                     videourl = q.videourl,
                                     title = q.title,
                                     status = q.status,
