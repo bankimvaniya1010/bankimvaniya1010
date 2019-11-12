@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Your SOP (Statement of purpose)</h1>
+        <h1 class="h2">YOUR SOP (STATEMENT OF PURPOSE)</h1>
     </div>
     <div class="page ">
         <div class="container page__container p-0">

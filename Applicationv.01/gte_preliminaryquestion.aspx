@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">GTE Preliminary Step</li>
         </ol>
-        <h1 class="h2">Test Your Knowledge (Step 2/3)</h1>
+        <h1 class="h2">TEST YOUR KNOWLEDGE (STEP 2/3)</h1>
 
     </div>
     <div class="page ">

@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Clarification Question</li>
         </ol>
-        <h1 class="h2">Clarification Question
+        <h1 class="h2">CLARIFICATION QUESTION
 
         </h1>
 

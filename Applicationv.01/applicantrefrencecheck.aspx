@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Applicant Refernece Check</li>
         </ol>
-        <h1 class="h2">Applicant Refernece Check</h1>
+        <h1 class="h2">APPLICANT REFERENCE CHECK</h1>
 
     </div>
     <div class="page ">

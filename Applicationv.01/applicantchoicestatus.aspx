@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Your Choices</li>
         </ol>
-        <h1 class="h2"> View Status </h1>
+        <h1 class="h2">VIEW STATUS</h1>
 
     </div>
     <div class="page ">

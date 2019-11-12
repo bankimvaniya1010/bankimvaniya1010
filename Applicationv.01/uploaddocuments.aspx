@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Upload Document
+        <h1 class="h2">UPLOAD DOCUMENT
 
         </h1>
 

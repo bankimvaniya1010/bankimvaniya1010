@@ -11,7 +11,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Change Password
+        <h1 class="h2">CHANGE PASSWORD
 
         </h1>
 

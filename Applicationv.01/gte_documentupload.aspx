@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Upload Document</li>
         </ol>
-        <h1 class="h2">Upload Document </h1>
+        <h1 class="h2">UPLOAD DOCUMENT</h1>
     </div>
 
     <div class="page ">

@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Your Scholarships</li>
         </ol>
-        <h1 class="h2">Scholarships and Funding</h1>
+        <h1 class="h2">SCHOLARSHIPS AND FUNDING</h1>
 
     </div>
     <div class="page ">

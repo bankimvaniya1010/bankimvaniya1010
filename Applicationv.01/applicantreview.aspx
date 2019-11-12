@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Review Application
+        <h1 class="h2">REVIEW APPLICATION
 
         </h1>
 

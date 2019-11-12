@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Personal Details</li>
         </ol>
-        <h1 class="h2">Personal Details</h1>
+        <h1 class="h2">PERSONAL DETAILS</h1>
 
     </div>
     <div class="page ">

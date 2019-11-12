@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Your Support Services</li>
         </ol>
-        <h1 class="h2"> Your Support Services </h1>
+        <h1 class="h2">YOUR SUPPORT SERVICES</h1>
 
     </div>
     <div class="page ">
@@ -20,8 +20,9 @@
                        <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                        </div>
                    </div>
+                <br/>
                 <div class="card" id="services" runat="server">
-                         <asp:DataList ID="servicesList" runat="server" GridLines="Horizontal" OnItemCommand="servicesList_ItemCommand">
+                         <asp:DataList ID="servicesList" runat="server" OnItemCommand="servicesList_ItemCommand">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
                                 <div class="card-body">    

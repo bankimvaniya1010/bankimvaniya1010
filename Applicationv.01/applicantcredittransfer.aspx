@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Credit Transfer </li>
         </ol>
-        <h1 class="h2">Credit Transfer </h1>
+        <h1 class="h2">CREDIT TRANSFER</h1>
 
     </div>
     <div class="page ">

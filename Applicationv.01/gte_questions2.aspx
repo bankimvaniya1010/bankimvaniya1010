@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">GTE Questions</li>
         </ol>
-        <h1 class="h2">GTE Questions - Part 2</h1>
+        <h1 class="h2">GTE QUESTIONS - PART 2</h1>
 
     </div>
     <div class="page ">

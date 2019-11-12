@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Your Student Visa : View</li>
         </ol>
-        <h1 class="h2"> Your Student Visa : View</h1>
+        <h1 class="h2">YOUR STUDENT VISA : VIEW</h1>
 
     </div>
     <div class="page ">
@@ -17,7 +17,7 @@
                <div class="col-md-8">
                    <div class="list-group-fit list-group-item">
                        <h3>INSTRUCTIONS</h3>
-                       <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
+                       <div style="margin-left:-20px;" class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                        </div>
                    </div>
                 <div class="card" id="services" runat="server" style="padding-right:0px;">

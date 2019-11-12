@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Thank You</li>
         </ol>
-        <h1 class="h2">Thank You </h1>
+        <h1 class="h2">THANK YOU</h1>
 
     </div>
     <div class="page ">

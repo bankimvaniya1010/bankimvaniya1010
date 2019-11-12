@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Social
+        <h1 class="h2">SOCIAL
 
         </h1>
 

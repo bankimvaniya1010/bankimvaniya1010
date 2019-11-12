@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Work Experience/Employment Details
+        <h1 class="h2">WORK EXPERIENCE / EMPLOYMENT DETAILS
 
         </h1>
 

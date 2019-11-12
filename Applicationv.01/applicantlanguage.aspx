@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">English Language Competency
+        <h1 class="h2">ENGLISH LANGUAGE COMPETENCY
 
         </h1>
 

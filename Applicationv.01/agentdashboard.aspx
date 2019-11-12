@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Agent Dashboard</li>
         </ol>
-        <h1 class="h2">Agent Dashboard</h1>
+        <h1 class="h2">AGENT DASHBOARD</h1>
 
 
 

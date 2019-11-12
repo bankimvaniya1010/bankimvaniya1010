@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Upload Video
+        <h1 class="h2">UPLOAD VIDEO
 
         </h1>
 

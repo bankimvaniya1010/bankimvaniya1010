@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active"></li>
         </ol>
-        <h1 class="h2">Update Preferences  
+        <h1 class="h2">UPDATE PREFERENCES
 
         </h1>
 

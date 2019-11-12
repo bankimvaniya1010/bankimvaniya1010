@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">GTE Video Question</li>
         </ol>
-        <h1 class="h2">GTE Video Question</h1>
+        <h1 class="h2">GTE VIDEO QUESTION</h1>
     </div>
     <div class="page ">
         <div class="container page__container">
