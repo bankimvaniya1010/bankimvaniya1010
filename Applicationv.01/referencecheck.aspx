@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Reference Check </li>
         </ol>
-        <h1 class="h2">Reference Check </h1>
+        <h1 class="h2">REFERENCE CHECK</h1>
 
     </div>
     <div class="page ">

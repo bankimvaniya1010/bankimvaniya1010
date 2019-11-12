@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Funding</li>
         </ol>
-        <h1 class="h2">Funding</h1>
+        <h1 class="h2">FUNDING</h1>
 
     </div>
     <div class="page ">
@@ -44,11 +44,12 @@
                                             <asp:DropDownList ID="ddlFamilyMember" CssClass="form-control" runat="server"> </asp:DropDownList>
                                         </div>
                                     </div>
+                                    <br/>
                                     <div class="form-row">
                                         <label id="label-family-adult" for="phone" class="col-md-3 col-form-label form-label">No of Adult Family members  </label>
                                         <div class="col-md-3">
                                             <asp:DropDownList ID="ddlFamilyAdult" CssClass="form-control" runat="server"></asp:DropDownList>
-                                </div>
+                                        </div>
                                         <label id="label-family-children" for="phone" class="col-md-3 col-form-label form-label">No of Children in Family  </label>
                                         <div class="col-md-3">
                                             <asp:DropDownList ID="ddlFamilyChildren" CssClass="form-control" runat="server"></asp:DropDownList>
@@ -319,8 +320,8 @@
                                     <h5>FAQ's</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div>                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                        {%>  <div class="star-list">                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>

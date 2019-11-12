@@ -6,7 +6,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Identification Details</li>
         </ol>
-        <h1 class="h2">Identification Details</h1>
+        <h1 class="h2">IDENTIFICATION DETAILS</h1>
     </div>
     <div class="page ">
         <div class="container page__container">
@@ -168,8 +168,8 @@
                                     <h5>FAQ's</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div>                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                        {%>  <div class="star-list">                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')" >  <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>

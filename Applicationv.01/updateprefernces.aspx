@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active"></li>
         </ol>
-        <h1 class="h2">Update Preferences  
+        <h1 class="h2">UPDATE PREFERENCES
 
         </h1>
 
@@ -92,8 +92,8 @@
                                     <h5>FAQ's</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div>                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                        {%>  <div class="star-list">                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')">  <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>

@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Declaration (Step 3/3)
+        <h1 class="h2">DECLARATION (STEP 3/3)
 
         </h1>
         <h2 style="font-size: 24px">Please read and accept the User Agreement and Declarations:
@@ -104,8 +104,8 @@
                                     <h5>FAQ's</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div>                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                        {%>  <div class="star-list">                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>

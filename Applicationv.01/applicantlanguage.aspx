@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">English Language Competency
+        <h1 class="h2">ENGLISH LANGUAGE COMPETENCY
 
         </h1>
 
@@ -568,8 +568,8 @@
                                     <h5>FAQ's</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div>                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                        {%>  <div class="star-list">                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')">  <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>

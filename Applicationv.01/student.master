@@ -151,7 +151,7 @@
                                 <ul class="sidebar-menu">
                                       <li class="sidebar-menu-item" id="messageboard">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/message board.png" /></i>
                                            Your Message
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -159,7 +159,7 @@
                                     </li>
                                     <li class="sidebar-menu-item" id="profile_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#profile">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/profile.png" /></i>
                                            Manage Profile
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -178,7 +178,7 @@
                                     </li>
                                     <li class="sidebar-menu-item" id="preliminary_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#preliminary">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/before you start.png" /></i>
                                           Before you start 
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -204,7 +204,7 @@
                                     </li>
                                     <li class="sidebar-menu-item" id="personal_menu_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#personal_menu">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/student info.png" /></i>
                                             Your Details
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -294,7 +294,7 @@
                                     </li>
                                      <li class="sidebar-menu-item" id="studentapplication_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Application">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/student application.png" /></i>
                                                 Your Application
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -323,7 +323,7 @@
                                     </li>
                                     <li class="sidebar-menu-item" id="studentapplication_finances">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#Finances">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/your finance.png" /></i>
                                                 Your Finances
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -412,7 +412,7 @@
                                     </li>--%>
                                     <li class="sidebar-menu-item" id="Gte_list">
                                         <a class="sidebar-menu-button" data-toggle="collapse"  href="#Gte">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/gte.png" /></i>
                                             GTE Assessment 
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -471,7 +471,7 @@
                                     </li>
                                      <li class="sidebar-menu-item" id="admissionsOffer_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#admissionsOffer">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/admissions offer.png" /></i>
                                             Your Choices
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -484,16 +484,22 @@
                                         </ul>
                                     </li>                                     
                                     <li class="sidebar-menu-item" id="viewCOE_list">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#coeOffers">
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/Coe.png" /></i>
                                            Your Offers
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-
+                                        <ul class="sidebar-submenu sm-indent collapse" id="coeOffers">
+                                            <li class="sidebar-menu-item" id="applicantcoes">
+                                                <a class="sidebar-menu-button" href="applicantcoe.aspx">
+                                                    <span class="sidebar-menu-text">View Generated COE's</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="visaapplication_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#visaapplication">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/your visa.png" /></i>
                                             Visa Center
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -523,7 +529,7 @@
                                     
                                     <li class="sidebar-menu-item" id="feepayment_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#payments">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/fee payment.png" /></i>
                                            Fee & Payments 
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -539,7 +545,7 @@
                                     
                                     <li class="sidebar-menu-item" id="predeparture_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#predeparture">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/pre departure.png" /></i>
                                           Pre-Departure
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
@@ -553,7 +559,7 @@
                                     </li>
                                     <li class="sidebar-menu-item" id="supportservice_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#services">
-                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                            <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/Support services.png" /></i>
                                            Support Services
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>

@@ -250,3 +250,6 @@
 .visaStatusBox{width: 19.5%;background: #ebebeb !important;}
 .visaStatusBox+ .visaStatusBox {margin-left: 2px;}
 .visaStatusBox label{word-break: break-all;min-height: 72px;}
+
+.star-list {position: relative;padding-left: 15px;}
+.star-list:before {content: '*';position: absolute;left: 0;top: 0;}

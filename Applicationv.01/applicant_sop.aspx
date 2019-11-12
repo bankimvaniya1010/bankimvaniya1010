@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">Your SOP (Statement of purpose)</h1>
+        <h1 class="h2">YOUR SOP (STATEMENT OF PURPOSE)</h1>
     </div>
     <div class="page ">
         <div class="container page__container p-0">
@@ -51,8 +51,8 @@
                                 <div class="">
                                     <%for (int q = 0; q < allfaqQuestion.Count; q++)
                                         {%>
-                                    <div>
-                                        <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')">* <%=allfaqQuestion[q].question%> </label>
+                                    <div class="star-list">
+                                        <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> <%=allfaqQuestion[q].question%> </label>
                                     </div>
                                     <%} %>
                                 </div>

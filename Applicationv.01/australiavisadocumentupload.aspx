@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Upload Document</li>
         </ol>
-        <h1 class="h2">Upload Document </h1>
+        <h1 class="h2">UPLOAD DOCUMENT</h1>
     </div>
 
      <div class="page ">
@@ -18,7 +18,7 @@
 
                      <div class="card">
                         <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
-                            <li class="nav-item">
+                            <li class="nav-item" style="font-weight:bold">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>
                             </li>
                         </ul>
@@ -179,8 +179,8 @@
                                     <h5>FAQ's</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
-                                        {%>  <div>                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')"> * <%=allQuestions[q].question%> </label>
+                                        {%>  <div class="star-list">                                                             
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')">  <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>

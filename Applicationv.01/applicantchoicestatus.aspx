@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Your Choices</li>
         </ol>
-        <h1 class="h2"> View Status </h1>
+        <h1 class="h2">VIEW STATUS</h1>
 
     </div>
     <div class="page ">
@@ -15,11 +15,12 @@
         <div class="container page__container">
             <div class="row">
                <div class="col-md-8">
-                   <div class="list-group-fit">
+                   <div class="list-group-fit list-group-item">
                        <h3>INSTRUCTIONS</h3>
-                       <div class="list-group list-group-fit" runat="server" id="universityInstruction">
+                       <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                        </div>
                    </div>
+                <br/>
                 <div class="card" id="choices" runat="server">
                     <asp:DataList ID="choiceList" runat="server" OnItemDataBound="choiceList_ItemDataBound" OnItemCommand="choiceList_ItemCommand" GridLines="Horizontal">
                         <ItemTemplate>
@@ -136,8 +137,8 @@
                             <div class="">
                                 <%for (int q = 0; q < allfaqQuestion.Count; q++)
                                     {%>
-                                <div>
-                                    <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')">* <%=allfaqQuestion[q].question%> </label>
+                                <div class="star-list">
+                                    <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> <%=allfaqQuestion[q].question%> </label>
                                 </div>
                                 <%} %>
                             </div>

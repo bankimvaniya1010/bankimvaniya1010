@@ -6,76 +6,107 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Payments</li>
         </ol>
-        <h1 class="h2">Your Payments</h1>
+        <h1 class="h2">YOUR PAYMENTS</h1>
 
-        <div class="card">
-            <div class="tab-content card-body">
-                <div class="list-group-fit">
-                    <h3>INSTRUCTIONS FOR FEE PAYMENT</h3>
-                    <div class="list-group list-group-fit" runat="server" id="universityInstruction">
+        <div class="page ">
+
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="tab-content card-body">
+                            <div class="list-group-fit list-group-item">
+                                <h3>INSTRUCTIONS FOR FEE PAYMENT</h3>
+                                <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
+                                <asp:GridView ID="paymentsGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
+                                    PageSize="25"
+                                    BorderStyle="None"
+                                    BorderWidth="1px" DataKeyNames="id"
+                                    CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCommand="paymentsGridView_RowCommand" OnRowDataBound="paymentsGridView_RowDataBound">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblRequestDate" runat="server" Text='<%# Bind("request_date") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Payment Details">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPaymentDetails" runat="server" Text='<%# Bind("payment_for") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Due Date">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDueDate" runat="server" Text='<%# Bind("due_date") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Amount To be Paid">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("amount") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Payment Instruction">
+                                            <ItemTemplate>
+                                                <lable id="lblPaymentInstruction" runat="server" style="color: DodgerBlue;"> Click for details </lable>
+                                                <asp:HiddenField ID="hidInstruction" runat="server" Value='<%# Bind("instruction") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Upload Proof">
+                                            <ItemTemplate>
+                                                <asp:FileUpload ID="paymentProof" runat="server" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="View Uploaded Proof">
+                                            <ItemTemplate>
+                                                <asp:HyperLink ID="hypLnkProof" Target="_blank" NavigateUrl='<%# Eval("fileName") %>' runat="server"> Uploaded File</asp:HyperLink>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Pay Online">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPayOnline" runat="server" Text='NA'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Payment Verified">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPaymentStatus" runat="server" Text='<%# Bind("payment_status") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="lnkSave" runat="server" CausesValidation="False" CommandName="Save" CommandArgument='<%#Container.DataItemIndex%>' Text="Submit"></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
-                    <asp:GridView ID="paymentsGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
-                        PageSize="25"
-                        BorderStyle="None"
-                        BorderWidth="1px" DataKeyNames="id"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCommand="paymentsGridView_RowCommand" OnRowDataBound="paymentsGridView_RowDataBound" >
 
-                        <Columns>
-                            <asp:TemplateField HeaderText="Date">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblRequestDate" runat="server" Text='<%# Bind("request_date") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Payment Details">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPaymentDetails" runat="server" Text='<%# Bind("payment_for") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Due Date">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblDueDate" runat="server" Text='<%# Bind("due_date") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Amount To be Paid">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("amount") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Payment Instruction">
-                                <ItemTemplate>
-                                    <lable id="lblPaymentInstruction" runat="server" style="color: DodgerBlue;"> Click for details </lable>
-                                    <asp:HiddenField ID="hidInstruction" runat="server" Value='<%# Bind("instruction") %>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Upload Proof">
-                                <ItemTemplate>
-                                    <asp:FileUpload ID="paymentProof" runat="server" />
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="View Uploaded Proof">
-                                <ItemTemplate>
-                                    <asp:HyperLink ID="hypLnkProof" Target="_blank" NavigateUrl='<%# Eval("fileName") %>' runat="server"> Uploaded File</asp:HyperLink>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Pay Online">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPayOnline" runat="server" Text='NA'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Payment Verified">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblPaymentStatus" runat="server" Text='<%# Bind("payment_status") %>'></asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Action">
-                               <ItemTemplate>
-                                   <asp:LinkButton ID="lnkSave" runat="server" CausesValidation="False" CommandName="Save" CommandArgument='<%#Container.DataItemIndex%>' Text="Submit"></asp:LinkButton>
-                               </ItemTemplate>
-                            </asp:TemplateField>
-                        </Columns>
-                    </asp:GridView>
+                <div class="col-md-4">
+                    <div class="banImg-wrp">
+                        <img src="/assets/images/Banner1.jpg" class="img-fluid">
+                    </div>
+                    <div class="card faq-qwrp" id="Div1" runat="server">
+                        <div class="card-body">
+                            <%  if (allfaqQuestion.Count > 0)
+                                { %>
+                            <div id="question" runat="server">
+                                <h5>FAQ's</h5>
+                                <div class="">
+                                    <%for (int q = 0; q < allfaqQuestion.Count; q++)
+                                        {%>
+                                    <div class="star-list">
+                                        <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"><%=allfaqQuestion[q].question%> </label>
+                                    </div>
+                                    <%} %>
+                                </div>
+                            </div>
+                            <%} %>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
