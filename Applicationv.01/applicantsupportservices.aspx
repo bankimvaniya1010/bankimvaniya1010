@@ -15,9 +15,9 @@
         <div class="container page__container">
             <div class="row">
                <div class="col-md-8">
-                   <div class="list-group-fit">
+                   <div class="list-group-fit list-group-item">
                        <h3>INSTRUCTIONS</h3>
-                       <div class="list-group list-group-fit" runat="server" id="universityInstruction">
+                       <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                        </div>
                    </div>
                 <div class="card" id="services" runat="server">
@@ -48,8 +48,9 @@
                                                             <label for="universityCourse" class="col-form-label form-label">Service Description : </label>
                                                             <asp:Label ID="lbldescription" runat="server" Text='<%# Eval("description") %>'></asp:Label>
                                                         </div>
+                                                        <br/>
                                                         <div>
-                                                            <div runat="server" >
+                                                            <div runat="server" style="text-align:center">
                                                                 <asp:Button ID="btnSendEmail" runat="server" Text="SEND And ENQUIRY" CommandName="SendEmail" CommandArgument='<%# Eval("serviceID") + "," + Eval("provideremail") + "," + Eval("providername") +","+ Eval("servicetype") %>' />
                                                             </div>
                                                         </div>
@@ -85,8 +86,8 @@
                             <div class="">
                                 <%for (int q = 0; q < allfaqQuestion.Count; q++)
                                     {%>
-                                <div>
-                                    <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')">* <%=allfaqQuestion[q].question%> </label>
+                                <div class="star-list">
+                                    <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> <%=allfaqQuestion[q].question%> </label>
                                 </div>
                                 <%} %>
                             </div>

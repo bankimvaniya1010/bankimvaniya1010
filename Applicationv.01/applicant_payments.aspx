@@ -10,11 +10,12 @@
 
         <div class="card">
             <div class="tab-content card-body">
-                <div class="list-group-fit">
+                <div class="list-group-fit list-group-item">
                     <h3>INSTRUCTIONS FOR FEE PAYMENT</h3>
-                    <div class="list-group list-group-fit" runat="server" id="universityInstruction">
+                    <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                     </div>
                 </div>
+                <br/>
                 <div class="table-responsive" data-toggle="lists" data-lists-values='["name"]'>
                     <asp:GridView ID="paymentsGridView" CssClass="table" runat="server" Width="200px" AutoGenerateColumns="False" ShowFooter="false" CellPadding="3"
                         PageSize="25"

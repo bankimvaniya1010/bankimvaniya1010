@@ -98,8 +98,8 @@
                                         <h5>FAQ's</h5>
                                         <div class="">
                                         <%for (int q = 0; q < allfaqQuestion.Count; q++)
-                                            {%>  <div>                                                             
-                                                    <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> * <%=allfaqQuestion[q].question%> </label>
+                                            {%>  <div class="star-list">                                                             
+                                                    <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')">  <%=allfaqQuestion[q].question%> </label>
                                                 </div>                                                  
                                         <%} %>
                                     </div>
