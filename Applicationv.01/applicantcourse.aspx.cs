@@ -733,7 +733,7 @@ public partial class applicantcourse : System.Web.UI.Page
                 // Preference 5
                 if (courseInfo.preferenceid == 5)
                 {
-                    four.Attributes.Add("style", "display:block;");
+                    five.Attributes.Add("style", "display:block;");
                     if (courseInfo.college_universityname != null)
                     {
                         ddlCollege5.ClearSelection();
