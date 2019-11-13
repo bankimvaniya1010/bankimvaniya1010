@@ -18,7 +18,7 @@
 
                      <div class="card">
                         <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
-                            <li class="nav-item" style="font-weight:bold">
+                            <li class="col-sm-8 offset-sm-3" style="font-weight:bold">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>
                             </li>
                         </ul>

@@ -39,7 +39,7 @@
                             <div class="list-group-item" id="familymember">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-phone">
                                     <div class="form-row">
-                                        <label id="label-phone" for="phone" class="col-md-4 col-form-label form-label">No of Family members  </label>
+                                        <label id="label-phone" for="phone" class="col-md-5 col-form-label form-label">No of Family members  </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlFamilyMember" CssClass="form-control" runat="server"> </asp:DropDownList>
                                         </div>
@@ -60,7 +60,7 @@
                             <div class="list-group-item" id="accommodation" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skype">
                                     <div class="form-row">
-                                        <label id="label-skype" for="skype" class="col-md-4 col-form-label form-label">Select the kind of accommodation you plan to have </label>
+                                        <label id="label-skype" for="skype" class="col-md-5 col-form-label form-label">Select the kind of accommodation you plan to have </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlAccomdation" CssClass="form-control" runat="server"> </asp:DropDownList>
                                         </div>
@@ -72,7 +72,7 @@
                             <div class="list-group-item" id="managemeal" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
-                                        <label id="label-skypeDesc" for="skypeDesc" class="col-md-4 col-form-label form-label">
+                                        <label id="label-skypeDesc" for="skypeDesc" class="col-md-5 col-form-label form-label">
                                             Select how you plan to manage meals
                                         </label>
                                         <div class="col-md-6">
@@ -84,7 +84,7 @@
                             <div class="list-group-item" id="transportchoice" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                                     <div class="form-row">
-                                        <label id="label-whatsapp" for="whatsapp" class="col-md-4 col-form-label form-label">Select your preferred choice of transport in the city  </label>
+                                        <label id="label-whatsapp" for="whatsapp" class="col-md-5 col-form-label form-label">Select your preferred choice of transport in the city  </label>
                                         <div class="col-md-6">
                                              <asp:DropDownList ID="ddltransportchoice" CssClass="form-control" runat="server"></asp:DropDownList>                                           
                                         </div>
@@ -94,7 +94,7 @@
                             <div class="list-group-item" id="Trips" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
-                                        <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-4 col-form-label form-label">No of Trips you plan to take to your home country in a year</label>
+                                        <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-5 col-form-label form-label">No of Trips you plan to take to your home country in a year</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlTrips" CssClass="form-control" runat="server">  </asp:DropDownList>
                                         </div>
@@ -105,7 +105,7 @@
                             <div class="list-group-item" id="entertainment" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-address">
                                     <div class="form-row">
-                                        <label id="labelentertainment" for="address" class="col-md-4 col-form-label form-label">
+                                        <label id="labelentertainment" for="address" class="col-md-5 col-form-label form-label">
                                             How often in a week do you typically go out (entertainment) 
                                         </label>
                                         <div class="col-md-6">

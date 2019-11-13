@@ -64,9 +64,9 @@
 
                                 </div>
 
-                                <div class="list-group-item">
+                                <div class="">
                                     <label class="form-group m-0" for="enrollmentyear" aria-labelledby="label-password"></label>
-                                    <div class="form-row">
+                                    <div class="col-sm-8 offset-sm-3">
                                         <asp:Button ID="btnupdatepreferences" runat="server" Text="Update Preferences " CssClass="btn btn-success" OnClick="btnupdatepreferences_Click" />
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>

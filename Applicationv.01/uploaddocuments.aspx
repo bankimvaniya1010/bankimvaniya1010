@@ -24,12 +24,12 @@
 
                     <div class="card">
                         <div class="card-body">
-                        <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
+                       <%-- <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Upload Document</a>
                             </li>
 
-                        </ul>
+                        </ul>--%>
                         <div class="tab-content card-body">
                             <div class="tab-pane active" id="first">
 
@@ -49,7 +49,7 @@
                                 <div class="form-group row">
                                     <label for="avatar" class="col-sm-3 col-form-label form-label">Documents</label>
                                     <div class="col-sm-9">
-                                        <div class="media align-items-center flex-wrap">
+                                        <div class="media align-items-center">
                                            
                                             <div class="media-body">
                                                 <div class="custom-file" style="width: auto;">

@@ -75,7 +75,7 @@
             </div>
             <div class="comm-txt italic">All other applicants may be requested to provide evidence where considered necessary.</div>
             <div class="comm-txt italic">In certain limited circumstances, you may be requested to provide copies of any published works written by you.</div>
-            <hr>
+            <hr>       
             <div class="form-group">
             <label>Highest qualification</label>
             <input type="text" name="" class="form-control" runat="server" id="highqualiname">
@@ -115,6 +115,9 @@
              </label>
             </div>
             </div>
+            <hr>
+        <ul>
+         <li>
             <div class="form-group">
             <label>Other course undertaken outside Australia </label>
             <input type="text" name="" class="form-control" runat="server" id="othercoursename">
@@ -154,6 +157,9 @@
              </label>
             </div>
             </div>
+         </li>
+         <li>
+            <hr>
             <div class="form-group">
             <label>Other course undertaken outside Australia </label>
             <input type="text" name="" class="form-control" runat="server" id="othercoursename1">
@@ -193,6 +199,8 @@
              </label>
             </div>
             </div>
+        </li>
+    </ul>
             </div>
             <!-- ques 30 end -->
             <!-- ques 31 start -->
@@ -213,6 +221,8 @@
             <div class="comm-txt">Give details below</div>
             <div class="comm-txt">You <b>must</b> provide evidence of your studies and training, including academic records</div>
             <hr>
+       <ul>
+           <li>
             <div class="form-group">
             <label>Previous course in Australia</label>
             <input type="text" name="" class="form-control" runat="server" id="txtpreviouslycoursename">
@@ -234,6 +244,8 @@
             </div>
             </div>
             </div>
+           </li>
+           <li>
             <div class="form-group">
             <label>Previous course in Australia</label>
             <input type="text" name="" class="form-control" runat="server" id="txtpreviouslycoursename1">
@@ -255,6 +267,8 @@
             </div>
             </div>
             </div>
+            </li>
+           </ul>
             </div>
             </div>
             </div>
@@ -273,7 +287,8 @@
             If you wish to study in Australia as a student sponsored by AusAID or the Australian Department of Defence, you must attach evidence of sponsorship from AusAID or the Department of Defence.
             </div>
             <hr>
-
+        <ul>
+            <li>
             <div class="form-group">
             <label>Intended course</label>
             <input type="text" name="" class="form-control" runat="server" id="txtintendcoursename">
@@ -324,6 +339,8 @@
             </div>
             </div>
             </div>
+         </li>
+         <li>
 
             <div class="form-group" runat="server">
             <label>Intended course</label>
@@ -374,7 +391,8 @@
             </div>
             </div>
             </div>
-           
+           </li>
+           <li>
             <div class="form-group">
             <label>Intended course</label>
             <input type="text" name="" class="form-control" runat="server" id="txtintendcoursename2">
@@ -423,6 +441,8 @@
             </div>
             </div>
             </div>
+            </li>
+        </ul>
             </div>
             <!-- ques 32 end -->
             <!-- ques 33 start -->
@@ -514,6 +534,8 @@
             
             <label><b class="ques-lbl">36)</b>Give details of your employment history since leaving school/college/university.</label>
             <hr>
+        <ul>
+            <li>
             <div class="form-group">
             <label>Period</label>
             <div class="row">
@@ -558,8 +580,8 @@
              </label>
             </div>
             </div>
-            <hr>
-            <br>
+         </li>
+         <li>
             <div class="form-group">
             <label>Period</label>
             <div class="row">
@@ -604,6 +626,8 @@
              </label>
             </div>
             </div>
+        </li>
+        </ul>
             </div>
             <!-- ques 36 end -->
             <!-- ques 37 start -->
@@ -740,6 +764,8 @@
             <div class="frm-lblttl">Other address details</div>
             <label><b class="ques-lbl">39)</b>Give details of any immediate relatives in Australia <i>(ie. parent, spouse, child, brother or sister)</i></label>
             <hr>
+        <ul>
+            <li>
             <div>
                 <div class="form-group">
                 <label>Name</label>
@@ -770,6 +796,8 @@
                 <input id="immediaterelativeDateofArrival" runat="server" type="text" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value="">
                 </div>
             </div>
+            </li>
+            <li>
             <hr>
             <div>
                 <div class="form-group">
@@ -801,6 +829,8 @@
                 <input id="immediaterelativeDateofArrival1" runat="server" type="text" class="form-control" placeholder="Date of Issue" data-toggle="flatpickr" value="">
                 </div>
             </div>
+            </li>
+       </ul>
                 </div>
             <!-- ques 39 end -->
             <!-- ques 40 start -->

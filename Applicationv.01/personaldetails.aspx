@@ -109,7 +109,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-gender">
                                     <div class="form-row">
                                         <label id="labelgender" runat="server" for="gender" class="col-md-3 col-form-label form-label">Gender *</label>
-                                        <div class="col-md-6">
+                                        <div class="col-md-9">
                                             <input type="radio" id="rbtnMale" runat="server" name="gender" required>Male</input>
                                             <input type="radio" id="rbtnFemale" runat="server" name="gender" required>Female</input>
                                             <input type="radio" id="rbtnOther" runat="server" name="gender" required>Other</input>

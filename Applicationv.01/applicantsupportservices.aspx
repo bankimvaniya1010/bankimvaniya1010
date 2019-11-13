@@ -52,7 +52,7 @@
                                                         <br/>
                                                         <div>
                                                             <div runat="server" style="text-align:center">
-                                                                <asp:Button ID="btnSendEmail" runat="server" Text="SEND And ENQUIRY" CommandName="SendEmail" CommandArgument='<%# Eval("serviceID") + "," + Eval("provideremail") + "," + Eval("providername") +","+ Eval("servicetype") %>' />
+                                                                <asp:Button ID="btnSendEmail" runat="server" Text="SEND AN ENQUIRY" CommandName="SendEmail" CommandArgument='<%# Eval("serviceID") + "," + Eval("provideremail") + "," + Eval("providername") +","+ Eval("servicetype") %>' />
                                                             </div>
                                                         </div>
                                                     </div>                                                    

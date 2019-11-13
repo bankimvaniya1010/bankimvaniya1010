@@ -153,8 +153,9 @@
                         <!--- End First Preference-->
 
                         <!---  Second Preference-->
+                        <div class="col-sm-12 offset-sm-3"> 
                         <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('second');">+ Add Second Preference
-                        </a>
+                        </a></div>
                         <div id="second" runat="server">
                             <div class="list-group list-group-fit" id="secondpref">
                                 <div class="list-group-item">
@@ -290,8 +291,9 @@
                         <!--- End Second Preference-->
 
                         <!---  Third Preference-->
+                          <div class="col-sm-12 offset-sm-3"> 
                         <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('third')">+ Add Third Preference
-                        </a>
+                        </a></div>
                         <div id="third" runat="server">
                             <div class="list-group list-group-fit" id="thirdpref">
                                 <div class="list-group-item">
@@ -422,8 +424,9 @@
                         </div>
                         <!--- End Third Preference-->
                         <!---  Fourth Preference-->
+                        <div class="col-sm-12 offset-sm-3"> 
                         <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('four')">+ Add Fourth Preference
-                        </a>
+                        </a></div>
                         <div id="four" runat="server">
                             <div class="list-group list-group-fit" id="fourthPref">
                                 <div class="list-group-item">
@@ -555,8 +558,9 @@
                         <!--- End Fourth Preference-->
 
                         <!---  Fifth Preference-->
+                      <div class="col-sm-12 offset-sm-3"> 
                         <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('five')">+ Add Fifth Preference
-                        </a>
+                        </a></div>
                         <div id="five" runat="server">
                             <div class="list-group list-group-fit" id="fifthpref">
                                 <div class="list-group-item">
@@ -687,9 +691,9 @@
                         </div>
                         <!--- End Fifth Preference-->
 
-                        <div class="list-group-item">
+                        <div class="">
                             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                <div class="form-row">
+                                <div class="col-sm-8 offset-sm-4">
                                     <asp:Button ID="btn_coursedetail" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_coursedetail_Click"  OnClientClick="return validateForm()"/>
                                     <div class="col-md-6">
                                     </div>

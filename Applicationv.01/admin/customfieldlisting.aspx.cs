@@ -125,9 +125,17 @@ public partial class admin_customfieldlisting : System.Web.UI.Page
 
             int ID = Convert.ToInt32(gvCustomField.DataKeys[e.RowIndex].Values[0]);
             customfieldmaster CustomField = db.customfieldmaster.Where(b => b.customfieldid == ID).First();
-            db.customfieldmaster.Remove(CustomField);
-            db.SaveChanges();
-            BindGird();
+            var ExitsInValue = db.customfieldvalue.Where(x => x.customfieldid == ID).ToList();
+            if (ExitsInValue.Count == 0)
+            {
+                db.customfieldmaster.Remove(CustomField);
+                db.SaveChanges();
+                BindGird();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This data as it already Used in another records')", true);
+
+
         }
         catch (Exception ex)
         {
