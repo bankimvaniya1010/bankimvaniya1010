@@ -33,20 +33,24 @@
 
                 </div>
                 <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque necessitatibus distinctio adipisci eius, unde dignissimos maxime doloribus quisquam non harum?
+                    Welcome to the Application Center. In this Application Center portal, you will be able to:
                 </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque necessitatibus distinctio adipisci eius, unde dignissimos maxime doloribus quisquam non harum?
-                </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque necessitatibus distinctio adipisci eius, unde dignissimos maxime doloribus quisquam non harum?
-                </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque necessitatibus distinctio adipisci eius, unde dignissimos maxime doloribus quisquam non harum?
-                </div>
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque necessitatibus distinctio adipisci eius, unde dignissimos maxime doloribus quisquam non harum?
-                </div>
+                <div>
+                  <ol>
+                      <li>Start, complete and submit a course application</li><br>
+                      <li>Check the status of your course application</li><br>
+                      <li>Complete a Genuine Temporary Entrant (GTE) and Genuine Student (GS) assessment</li><br>
+                      <li>Start, complete and submit a visa application</li><br>
+                      <li>Check the status of your visa application</li><br>
+                      <li>Upload supporting documents</li><br>
+                      <li>Access your messages, offer letters and other documentation relevant to your applications</li><br>
+                      <li>Respond to your offers</li><br>
+                      <li>Make payments; and</li><br>
+                      <li>Access other relevant information and support services that will be useful as you prepare to commence your studies with {name of institution}.</li>
+                    
+                </ol>
+             </div>
+               
             </div>
 
 

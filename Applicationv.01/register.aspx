@@ -105,7 +105,7 @@
                                         <span class="far fa-envelope"></span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                           
                         </div>
                         <%--<div class="form-group">
                             <label class="form-label" for="password">Password:</label>
@@ -164,6 +164,10 @@
                             <div class="custom-control custom-checkbox">
                                 <input id="terms" type="checkbox" class="custom-control-input" checked required="">
                                 <label for="terms" class="custom-control-label text-black-70">I agree to the <a href="#" class="text-black-70" style="text-decoration: underline;">Terms of Use</a></label>
+                            </div>
+                            <br>
+                             <div style="font-size: small;">
+                                <label> * Please use your personal email address rather than your work or school email address because this is the email address we will use to communicate with you. So, your email address needs to be one that you will always have access to even when you leave your current employer or school.</label>
                             </div>
                         </div>
 

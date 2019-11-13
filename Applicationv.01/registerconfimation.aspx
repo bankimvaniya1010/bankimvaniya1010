@@ -50,7 +50,10 @@
                         <p>Your Username is: <%=email %></p>
                         <br />
                         <p>
-                            An email has been sent to <%=email %>, along with a one time use password.Please use that to log in .On your first sign in you would be prompted to  change the password.                            
+                            An email has been sent to <%=email %>, along with a one time use password. Please use your username and one-time-password to log into the Application Center for the first time. On your first sign in you would be prompted to change the password.                            
+                        </p>
+                        <p>
+                            If the above-mentioned email is not in your inbox, please check your "Junk Mail" or "Spam Folder" as it may have been redirected there by your email service provider.
                         </p>
                         <br />
                        To log in to the <%=universityName %> Application Center click here <a href="login.aspx">Login</a>
