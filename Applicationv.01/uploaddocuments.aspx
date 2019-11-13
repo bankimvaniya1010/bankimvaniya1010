@@ -49,7 +49,7 @@
                                 <div class="form-group row">
                                     <label for="avatar" class="col-sm-3 col-form-label form-label">Documents</label>
                                     <div class="col-sm-9">
-                                        <div class="media align-items-center flex-wrap">
+                                        <div class="media align-items-center">
                                            
                                             <div class="media-body">
                                                 <div class="custom-file" style="width: auto;">

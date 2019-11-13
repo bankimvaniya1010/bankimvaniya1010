@@ -133,6 +133,12 @@ public partial class admin_customfieldaddition : System.Web.UI.Page
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('This control is already available for the form')", true);
                 return;
             }
+            var existsInValueRecord = db.customfieldvalue.Where(x => x.customfieldid == id).ToList();
+            if (existsInValueRecord.Count != 0 && existingCustomField.type != ddlControlType.SelectedValue)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We Cannot change the control type,as its used over student details page.' )", true);
+                return;
+            }
             if (ddlForm.SelectedValue != "")
                 objCustom.formid = Convert.ToInt32(ddlForm.SelectedValue);
             objCustom.labeldescription = txtDescription.Text.Trim();

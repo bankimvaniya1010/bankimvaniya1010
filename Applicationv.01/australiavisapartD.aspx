@@ -36,7 +36,8 @@
                                         </label>
                                     </div>
                                     <div id="showControls" runat="server">
-                                        <div>
+                                        <ul>
+                                        <li><div>
                                             <div class="form-group">
                                                 <label>Name</label>
                                                 <input type="text" name="" class="form-control" runat="server" id="txtfamilymembername">
@@ -58,9 +59,9 @@
                                                 </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div></li>
 
-                                        <div>
+                                        <li><div>
                                             <div class="form-group">
                                                 <label>Name</label>
                                                 <input type="text" name="" class="form-control" runat="server" id="familymembername1">
@@ -82,9 +83,9 @@
                                                 </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div></li>
 
-                                        <div>
+                                        <li><div>
                                             <div class="form-group">
                                                 <label>Name</label>
                                                 <input type="text" name="" class="form-control" runat="server" id="familymembername2">
@@ -106,7 +107,8 @@
                                                 </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div></li>
+                                        </ul>
                                     </div>
                                </div>
 
@@ -684,6 +686,8 @@
                                       <label><b class="ques-lbl">65)</b> I am satisfied with the reception, care and support arrangements that have been made in Australia for my dependent child under 18 years of age.
                                           <br><b>Note: Both parents must sign this declaration.</b>
                                       </label>
+                                      <ul>
+                                      <li>
                                       <div class="form-group">
                                           <label>Signature of parent/person who has legal custody</label>
                                           <textarea runat="server" class="form-control" id="parentsignature"></textarea>
@@ -700,6 +704,8 @@
                                         <label>Relationship to student applicant</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtrelationwithstudent"/>
                                      </div>
+                                     </li>
+                                     <li>
                                       <div class="form-group"  runat="server">
                                             <label><b>Signature of parent/person who has legal custody</b></label>
                                              <input type="text" name="" id="parentsignature1" class="form-control" runat="server">
@@ -716,6 +722,7 @@
                                         <label>Relationship to student applicant</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtrelationwithstudent1"/>
                                      </div>
+                                    </li></ul>
                                  </div>
                                 
                                  <%-- 66--%>
@@ -762,6 +769,8 @@
                                       <label><b class="ques-lbl">67)</b>	Declaration by the parent(s) or person(s) with legal custody of a student visa applicant under 18 years of age
                                           I am not aware of any reason why the visa applicant should not travel to Australia (the custody/access/guardianship rights of another person are not affected).
                                       </label>
+                                  <ul>
+                                     <li>
                                       <div class="form-group">
                                           <label>Signature of parent/person who has legal custody</label>
                                           <input type="text" runat="server" class="form-control" id="txtparentsignatur67"/>
@@ -778,6 +787,8 @@
                                         <label>Relationship to student applicant</label>
                                         <input type="text" name="" class="form-control" runat="server" id="txtrelationship67"/>
                                      </div>
+                                    </li>
+                                    <li>
                                       <div class="form-group"  runat="server">
                                             <label><b>Signature of parent/person who has legal custody</b></label>
                                             <input type="text" class="form-control" name="" id="parentsignatur67" runat="server">
@@ -794,11 +805,14 @@
                                         <label>Relationship to student applicant</label>
                                         <input type="text" name="" class="form-control" runat="server" id="relationship67"/>
                                      </div>
+                                    </li>
+                                  </ul>
                                  </div>
                                  <div class="frm-lblttl">Assistance with this form</div>
                                  <%--68--%>
                                   <div class="form-group" runat="server" id="question68">
                                      <label> <b class="ques-lbl">68)</b> Did you receive assistance in completing this form?</label>                                    
+                                    <div class="form-group">  
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                         <input type="radio" class="form-check-input" name="receiveassistance" runat="server" id="rbreceiveassistanceNo">No
@@ -809,6 +823,8 @@
                                         <input type="radio" class="form-check-input" name="receiveassistance" runat="server" id="rbreceiveassistanceYes">Yes
                                         </label>
                                     </div>
+                                    </div>
+                                      <hr>
                                     <div class="form-group" runat="server" id="receiveassistanceontrols">
                                         <div class="form-group">
                                         <label>Title</label>                                        
@@ -852,7 +868,7 @@
                                      </div>
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <textarea runat="server" id="txtaddress"></textarea>
+                                        <textarea runat="server" id="txtaddress" class="form-control"></textarea>
                                      </div>
                                     <div class="form-group">
                                         <label>Telephone number or daytime contact</label>
@@ -904,11 +920,11 @@
                                      </div>
                                     <div class="form-group">
                                         <label>Address (if different from address given in Question 68)</label>
-                                        <textarea runat="server" id="txteducationagentaddress"></textarea>
+                                        <textarea runat="server" id="txteducationagentaddress" class="form-control"></textarea>
                                      </div>
                                     <div class="form-group">
                                         <label>E-mail address</label>
-                                        <input type="text" runat="server" id="txteducationagentemail" />
+                                        <input type="text" runat="server" id="txteducationagentemail" class="form-control" />
                                      </div>
                                     <div class="form-group">
                                         <label>Telephone number or daytime contact</label>

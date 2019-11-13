@@ -75,17 +75,18 @@
 						  	<label class="form-check-label">
 						   		<input type="radio" class="form-check-input" value="" runat="server" name="othrname" id="rbanothernameYes">Yes
 						 	</label>
-						 	<div id="anothernamesbloack" runat="server" ><br>
-								<div class="form-group">
-									<label>Family name </label>
-									<input type="text" runat="server" name="" class="form-control" id="txtanotherfamilyname">
-								</div>
-								<div class="form-group">
-									<label>Given names</label>
-									<input type="text" runat="server" name="" class="form-control" id="txtanothergivenname"> 
-								</div>
+                        </div> 
+						<div id="anothernamesbloack" runat="server"><br>
+							<div class="form-group">
+								<label>Family name </label>
+								<input type="text" runat="server" name="" class="form-control" id="txtanotherfamilyname">
 							</div>
-						</div> 								
+							<div class="form-group">
+								<label>Given names</label>
+								<input type="text" runat="server" name="" class="form-control" id="txtanothergivenname"> 
+							</div>
+						</div>
+														
 					</div>
             <%--6--%>
 					    <div class="form-group" id="gender">
@@ -232,22 +233,28 @@
                     <%--14--%>
                     <div id="anotherIdentityNo" runat="server">
 					<label><b class="ques-lbl">14)</b>If you have any other identity numbers required by your government, give details:</label>
-					<div class="form-group">
-						<label>Type of number</label>
-						<input type="text" id="anotherIdentitytype1" name="" class="form-control" runat="server">
-					</div>
-					<div class="form-group">
-						<label>Your number</label>
-						<input type="text" name="" class="form-control" id="anotherIdentityNo1" runat="server">
-					</div>
-					<div class="form-group">
-						<label>Type of number</label>
-						<input type="text" id="anotherIdentitytype2" name="" class="form-control" runat="server">
-					</div>
-					<div class="form-group">
-						<label>Your number</label>
-						<input type="text" name="" class="form-control" id="anotherIdentityNo2" runat="server">
-					</div>
+					<ul>
+                        <li>
+                            <div class="form-group">
+						        <label>Type of number</label>
+						        <input type="text" id="anotherIdentitytype1" name="" class="form-control" runat="server">
+					        </div>
+					        <div class="form-group">
+						        <label>Your number</label>
+						        <input type="text" name="" class="form-control" id="anotherIdentityNo1" runat="server">
+					        </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+						        <label>Type of number</label>
+						        <input type="text" id="anotherIdentitytype2" name="" class="form-control" runat="server">
+					        </div>
+					        <div class="form-group">
+						        <label>Your number</label>
+						        <input type="text" name="" class="form-control" id="anotherIdentityNo2" runat="server">
+					        </div>
+                        </li>
+                    </ul>
                     </div>
                     <%--15--%>
                     <div class="form-group" id="residencecountry">
@@ -364,7 +371,8 @@
 						<label><b class="ques-lbl">22)</b>Give details of all members of your family unit whether or not they intend to accompany you to Australia.</label>
 						<div class="comm-txt italic">Members of the family unit are your spouse (including a de facto spouse) and any unmarried dependent children of you or your spouse who have not yet turned 18 years of age.</div>
 						<hr>
-						<div id="family0">
+                        <ul>
+                            <li><div id="family0">
 							<div class="form-group">
 								<label>Family name</label>
 								<input type="text" name="" class="form-control" runat="server" id="txtaboutfamilyname">
@@ -406,7 +414,7 @@
 									</div>
 									<div class="form-group" runat="server">
 										<label>Country of passport</label>
-                                        <asp:DropDownList runat="server" ID="ddlfamilypassportcountry"> 
+                                        <asp:DropDownList runat="server" ID="ddlfamilypassportcountry" CssClass="form-control"> 
                                         </asp:DropDownList>
 									</div>
 									<div class="form-group" runat="server">
@@ -436,9 +444,10 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<hr>
-						<div>
+						</div></li>
+
+                            <li>
+                                <div>
 							<div class="form-group">
 								<label>Family name</label>
 								<input type="text" name="" class="form-control" runat="server" id="txtaboutfamilyname1">
@@ -512,8 +521,9 @@
 								</div>
 							</div>
 						</div>
-						<hr>
-						<div>
+                            </li>
+                            <li>
+                                <div>
 							<div class="form-group">
 								<label>Family name</label>
 								<input type="text" name="" class="form-control" runat="server" id="txtaboutfamilyname2">
@@ -586,6 +596,8 @@
 								</div>
 							</div>
 						</div>
+                            </li>
+                        </ul>
 					</div>
 					<!-- ques 22 end -->
 					<!-- ques 23 start -->
@@ -630,7 +642,8 @@
 								<div class="comm-txt">Give details of ALL other people not included in this application who have custody, access or guardianship rights in relation to the dependant(s).</div>
 								<div class="comm-txt italic">Attach a statutory declaration from each of these people giving permission for the dependant to accompany you to Australia.</div>
 								<hr>
-								<div>
+                               <ul>
+								<li><div>
 									<div class="form-group">
 										<label>Family name </label>
 										<input type="text" name="" class="form-control" runat="server" id="txtguardiansfamilyname">
@@ -673,9 +686,9 @@
 										  </label>
 										</div>
 									</div>
-								</div>
-								<hr>
-								<div>
+								</div></li>
+								
+								<li><div>
 									<div class="form-group">
 										<label>Family name </label>
 										<input type="text" name="" class="form-control" runat="server"  id="txtguardiansfamilyname1">
@@ -718,7 +731,8 @@
 										  </label>
 										</div>
 									</div>
-								</div>
+								</div></li>
+                               </ul>
 							</div>
 						</div>
 					</div>
@@ -790,7 +804,8 @@
 							</div>
 						</div>
 						<div id="visaControls" runat="server">
-							<div>
+                            <ul>
+							<li><div>
 								<div class="form-group">
 									<label>Name</label>
 									<input type="text" name="" class="form-control" runat="server" id="visaname">
@@ -830,9 +845,9 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<hr>
-							<div>
+							</div></li>
+							
+							<li><div>
 								<div class="form-group">
 									<label>Name</label>
 									<input type="text" name="" class="form-control" runat="server" id="visaname1">
@@ -872,7 +887,8 @@
 										</div>
 									</div>
 			                </div>
-		                </div>
+		                </div></li>
+                            </ul>
                         </div>
                      </div>
                 <!-- ques 27 start -->
