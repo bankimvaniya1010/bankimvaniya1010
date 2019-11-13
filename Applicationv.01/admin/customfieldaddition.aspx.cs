@@ -136,7 +136,7 @@ public partial class admin_customfieldaddition : System.Web.UI.Page
             var existsInValueRecord = db.customfieldvalue.Where(x => x.customfieldid == id).ToList();
             if (existsInValueRecord.Count != 0 && existingCustomField.type != ddlControlType.SelectedValue)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We Cannot change the control type,as its being used in another record')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We Cannot change the control type,as its already used in another record')", true);
                 return;
             }
             if (ddlForm.SelectedValue != "")
