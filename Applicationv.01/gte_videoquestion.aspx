@@ -35,7 +35,7 @@
                                           <input type="file" runat="server" name="FileUpload" id="FileUpload"/>
                                         </div>
                                         <div class="media-left col-md-12">
-                                            <div style="position:relative;width:202px;background:#f0f0f0;margin-bottom: 15px;height:25px;"> 
+                                            <div style="position:relative;width:202px;background:transparent;margin-bottom: 15px;height:25px;"> 
                                                 <div id="progress" class="hide" style="background: blue; height: 25px;width:0;color:#fff;">
                                                     <div class="status" style="margin-left:10px;"></div>
                                                 </div> 

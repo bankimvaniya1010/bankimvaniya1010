@@ -21,7 +21,7 @@
                        </div>
                    </div>
                 <br/>
-                <div class="card" id="choices" runat="server">
+                <div class="list-group-fit list-group-item" id="choices" runat="server">
                     <asp:DataList ID="choiceList" runat="server" OnItemDataBound="choiceList_ItemDataBound" OnItemCommand="choiceList_ItemCommand" GridLines="Horizontal">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">

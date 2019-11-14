@@ -24,7 +24,7 @@
                             <br/>
                             <h3>Student SOP:</h3>
                             <div class="list-group list-group-fit" runat="server" id="studentSOP">
-                                <asp:TextBox ID="txtStudentSOP" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtStudentSOP" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                             </div>
 
                         </div>

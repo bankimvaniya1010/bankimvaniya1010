@@ -75,7 +75,7 @@ public class Common
             SmtpClient SmtpServer = new SmtpClient(ConfigurationManager.AppSettings["Smtp"]);
 
 
-            mail.From = new MailAddress(ConfigurationManager.AppSettings["FromMail"], "GTE Admin");
+            mail.From = new MailAddress(ConfigurationManager.AppSettings["FromMail"], "Application Center Admin");
             //  mail.To.Add(ConfigurationManager.AppSettings["ToMail"]);
             mail.To.Add(EmailId);
             // MailAddress copy = new MailAddress(ConfigurationManager.AppSettings["FromMail"]);
