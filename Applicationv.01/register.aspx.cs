@@ -105,7 +105,7 @@ public partial class register : System.Web.UI.Page
                 LoginURL = webURL + "/login.aspx?active=1";
                 html = html.Replace("@Loginurl", LoginURL);
 
-                objCom.SendMail(email.Value.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["ActivationSubject"].ToString().Replace("@UniversityName", university.university_name));
+                objCom.SendMail(email.Value.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["ActivationSubject"].ToString());
                 webURL = "";
                 webURL = webURL + "registerconfimation.aspx?email=" + email.Value;
                 Response.Redirect(webURL, true);

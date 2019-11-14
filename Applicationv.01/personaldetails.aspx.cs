@@ -136,7 +136,7 @@ public partial class personaldetails : System.Web.UI.Page
         {
             int maxYers = setDefaultMaxYears ? DateTime.Now.AddYears(-15).Year : DateTime.Now.Year;
             //ddl.Items.Add(new ListItem("Please select", "0"));
-            for (int i = 1975; i <= maxYers; i++)
+            for (int i = 1930; i <= maxYers; i++)
             {
                 ddl.Items.Add(i.ToString());
             }
@@ -737,7 +737,7 @@ public partial class personaldetails : System.Web.UI.Page
                         break;
                     case "MIDDLE NAME(S)":
                         middlename.Attributes.Add("style", "display:block;");
-                        labelmiddlename.InnerHtml = setInnerHtml(fields[k]);
+                        labelmiddlename.InnerHtml = fields[k].secondaryfielddnamevalue == "" ? fields[k].primaryfiledname : fields[k].primaryfiledname + "( " + fields[k].secondaryfielddnamevalue + ")";
                         break;
                     case "DATE OF BIRTH":
                         dob.Attributes.Add("style", "display:block;");
