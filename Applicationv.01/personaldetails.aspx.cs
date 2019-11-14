@@ -268,9 +268,7 @@ public partial class personaldetails : System.Web.UI.Page
                 txtPreferedName.Value = profileInfo.prefferedname;
                 if (profileInfo.dateofbirth != null)
                 {
-                    DateTime dob = Convert.ToDateTime(profileInfo.dateofbirth);
-                    FillMonth(ddlMonth);
-                    FillYears(ddlYear);
+                    DateTime dob = Convert.ToDateTime(profileInfo.dateofbirth);                   
                     
                     ddlMonth.ClearSelection();                    
                     ddlYear.ClearSelection();
@@ -417,9 +415,6 @@ public partial class personaldetails : System.Web.UI.Page
                     if (profileInfo.spousedob != null)
                     {
                         DateTime spousedob = Convert.ToDateTime(profileInfo.spousedob);
-                        FillMonth(ddlSpouseDOBMonth);
-                        FillYears(ddlSpouseDOBYear);
-
                         ddlSpouseDOBMonth.ClearSelection();                        
                         ddlSpouseDOBYear.ClearSelection();
                         ddlSpouseDOBMonth.Items.FindByValue(spousedob.Month.ToString()).Selected = true;
@@ -430,9 +425,7 @@ public partial class personaldetails : System.Web.UI.Page
                     if (profileInfo.marriagedate != null)
                     {
                         DateTime marriagedate = Convert.ToDateTime(profileInfo.marriagedate);
-                        FillMonth(ddlMarriageMonth);
-                        FillYears(ddlMarriageYear);
-
+                       
                         ddlMarriageMonth.ClearSelection();                       
                         ddlMarriageYear.ClearSelection();
                         ddlMarriageMonth.Items.FindByValue(marriagedate.Month.ToString()).Selected = true;

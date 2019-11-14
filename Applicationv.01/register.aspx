@@ -99,7 +99,7 @@
                         <div class="form-group">
                             <label class="form-label" for="email">Email address:</label>
                             <div class="input-group input-group-merge">
-                                <input id="email" type="text" runat="server" class="form-control form-control-prepended" placeholder="Your email address">
+                                <input id="email" type="text" runat="server" class="form-control form-control-prepended" placeholder="Your personal* email address">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-envelope"></span>
