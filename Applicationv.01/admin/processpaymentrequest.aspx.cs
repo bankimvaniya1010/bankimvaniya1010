@@ -148,9 +148,14 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
                 GridViewRow row = paymentRequestGridView.Rows[index];
                 DropDownList ddlPaymentStatus = row.FindControl("ddlPaymentStatus") as DropDownList;
                 var paymentDetails = db.payment_details.Where(x => x.id == paymentDetailsId).FirstOrDefault();
+                var applicationmaster = db.applicationmaster.Where(x => x.applicationmasterid == paymentDetails.applicationmaster_id).FirstOrDefault();
+                var applicationStatus = db.application_status_master.AsNoTracking().Select(x => new { x.id, x.status_description });
                 paymentDetails.payment_status = Convert.ToInt32(ddlPaymentStatus.SelectedItem.Value);
                 if(ddlPaymentStatus.SelectedItem.Text.ToUpper().Contains("PAYMENT VERIFIED"))
+                {
                     paymentDetails.payment_verified_date = DateTime.Now;
+                    applicationmaster.current_status = applicationStatus.First(x => x.status_description.ToUpper().Contains("OFFER ACCEPTED, PAYMENT MADE")).id;
+                }
                 db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Payment details updated successfully.');", true);
                 sendEmailsNotificationForPaymentVerified(applicantID, universityId);

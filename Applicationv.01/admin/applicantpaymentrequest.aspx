@@ -63,6 +63,18 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="form-group row">
+                        <label for="Mealfee" class="col-sm-3 col-form-label form-label">Select payment request for student course: </label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlStudentCourse" class="form-control" runat="server"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -87,6 +99,8 @@
             var paymentAmount = $('#<%=txtPaymentAmount.ClientID%>').val();
             var ddlCurrency = $('#<%=ddlCurrency.ClientID%>').val();
             var paymentInstruction = $('#<%=txtPaymentInstruction.ClientID%>').val();
+            var studentCourse = $('#<%=ddlStudentCourse.ClientID%>').val();
+
             if (ddlPaymentDescription == 0 || isNaN(parseInt(ddlPaymentDescription))) {
                 alert("Please select payment description for request.");
                 return false;
@@ -105,6 +119,10 @@
             }
             else if (paymentInstruction == "" || paymentInstruction == null) {
                 alert("Please enter instruction for payment request");
+                return false;
+            }
+            else if (($('#<%=ddlPaymentDescription.ClientID%> option:selected').text().toUpperCase() == 'ACCEPTANCE FEE') && 0 == parseInt(studentCourse)) {
+                alert('Please select course name for adding acceptance payment request or check for student offer accepted status.');
                 return false;
             }
             return true;

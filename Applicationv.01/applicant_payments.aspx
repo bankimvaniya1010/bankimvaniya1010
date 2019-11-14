@@ -37,6 +37,11 @@
                                                 <asp:Label ID="lblPaymentDetails" runat="server" Text='<%# Bind("payment_for") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Payment For Course">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPaymentCourse" runat="server" Text='<%# Bind("courseName") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Due Date">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDueDate" runat="server" Text='<%# Bind("due_date") %>'></asp:Label>
