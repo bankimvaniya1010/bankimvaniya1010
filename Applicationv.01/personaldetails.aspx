@@ -295,8 +295,12 @@
                                     <div class="form-row">
                                         <label id="lblhighQualificationCompleteDate" runat="server" for="highQualificationCompleteDate" class="col-md-3 col-form-label form-label">Completion Date </label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighQualificationCompletedMonth" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <asp:DropDownList ID="ddlHighQualificationCompletedYear" CssClass="form-control" runat="server"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlHighQualificationCompletedMonth" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
+                                            </asp:DropDownList>
+                                            <asp:DropDownList ID="ddlHighQualificationCompletedYear" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
+                                            </asp:DropDownList>
                                         </div>
                                     </div>
                                 </div>
