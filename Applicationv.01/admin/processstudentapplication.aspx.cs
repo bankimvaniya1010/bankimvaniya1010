@@ -194,6 +194,7 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
             string[] commandArgs = e.CommandArgument.ToString().Split(new char[] { ',' });
             int applicationId = Convert.ToInt32(commandArgs[0]);
             var application = db.applicationmaster.Where(x => x.applicationmasterid == applicationId).FirstOrDefault();
+            int row_decision = application.decision.HasValue ? application.decision.Value : -1;
             if (e.CommandName == "Submit")
             {
                 DropDownList ddlDecision = e.Item.FindControl("ddlDecision") as DropDownList;
@@ -255,12 +256,17 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 if (!string.IsNullOrEmpty(admissionRemark))
                     application.admission_remark = admissionRemark;
 
+                int selectedDecision = Convert.ToInt32(ddlDecision.SelectedItem.Value);
+                if(selectedDecision != row_decision || !application.dateofdecision.HasValue)
+                    application.dateofdecision = DateTime.Now;
+
                 application.decision = Convert.ToInt32(ddlDecision.SelectedItem.Value);
-                application.dateofdecision = DateTime.Now;
+                //application.dateofdecision = DateTime.Now;
                 
                 db.SaveChanges();
 
-                sendEmailsNotificationForDecision(application.applicantid, application.universityid);
+                if (selectedDecision != row_decision)
+                    sendEmailsNotificationForDecision(application.applicantid, application.universityid);
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }

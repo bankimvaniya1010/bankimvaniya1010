@@ -13,15 +13,12 @@ public partial class login : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
-    public static string countryName;
     protected void Page_Load(object sender, EventArgs e)
     {
         active = Request.QueryString["active"];
         //var University = db.university_master.FirstOrDefault();
         //string UniversityURL = University.website.Split('.')[0];
         //webURL = webURL.Replace("edu", UniversityURL);
-        int countryId = db.university_master.Where(x => x.universityid == universityID).Select(x => x.countryid).FirstOrDefault();
-        countryName = db.countriesmaster.Where(x => x.id == countryId).Select(x => x.country_name).FirstOrDefault();
 
     }
 
@@ -88,7 +85,7 @@ public partial class login : System.Web.UI.Page
                         bool isDeclarationCompleted;
 
                         pnl_warning.Visible = false;
-                        Session["isDomesticStudent"] = rblDomestic.Checked;
+                        Session["isDomesticStudent"] = chkUser.isDomesticStudent;
                         Session["LoginInfo"] = chkUser;
                         Session["UserID"] = chkUser.studentid;
                         Session["Role"] = "student";

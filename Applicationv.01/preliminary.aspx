@@ -90,13 +90,15 @@
                 <div class="card">
                     <div class="card-body">
                         <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
-                        <label id="lblInstruct1" runat="server" style="font-size:small;">1. Completing this section is mandatory.</label><br />
-                        <label id="lblInstruct2" runat="server" style="font-size:small;">2. Read the attached documents and watch the videos carefully.</label><br />
-                        <label id="lblInstruct3" runat="server" style="font-size:small;">3. Please accept the declaration that you have successfully reviewed and understood the information.</label><br />
-                        <label id="lblInstruct4" runat="server" style="font-size:small;">4. Take a quick test to check your knowledge.</label><br />
-                        <label id="lblInstruct5" runat="server" style="font-size:small;">5. To go to the next section you need to successfully answer the test question and achieve >65% grade.</label><br />
-                        <label id="lblInstruct6" runat="server" style="font-size:small;">6. Else you would required to take the test again post going through the tutorial again.</label><br />
-                        <label id="lblInstruct7" runat="server" style="font-size:small;">7. Lastly please accept the declarations.</label><br />
+                        <ol style="font-size:small; padding-left:15px">
+	                        <li>Completing this section is mandatory.</li><br />
+	                        <li>Read the attached documents and watch the videos carefully.</li><br />
+	                        <li>Please accept the declaration that you have successfully reviewed and understood the information.</li><br />
+	                        <li>Take a quick test to check your knowledge.</li><br />
+	                        <li>To go to the next section you need to successfully answer the test question and achieve >65% grade.</li><br />
+	                        <li>Else you would required to take the test again post going through the tutorial again.</li><br />
+	                        <li>Lastly please accept the declarations.</li>
+                        </ol>
                     </div>
                 </div>
                     <div class="banImg-wrp">

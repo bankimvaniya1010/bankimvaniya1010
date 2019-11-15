@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active"> Student Application </li>
         </ol>
-        <h1 class="h2"> Student Application </h1>
+        <h1 class="h2"> STUDENT APPLICATION</h1>
 
     </div>
     <div class="page ">
@@ -165,6 +165,7 @@
                 $("#ContentPlaceHolder1_choiceList_offerLetterPdf_" + i).change(function (event) {
                     var path = $(this).val();
                     var id = event.target.id.replace("ContentPlaceHolder1_choiceList_offerLetterPdf_", "");
+                    $("#ContentPlaceHolder1_choiceList_pdfOfferLetterFileName_" + id).text('Choose application file');
                     if (path != '' && path != null) {
                         var q = path.substring(path.lastIndexOf('\\') + 1);
                         $("#ContentPlaceHolder1_choiceList_pdfOfferLetterFileName_" + id).text(q);
@@ -174,6 +175,7 @@
                 $("#ContentPlaceHolder1_choiceList_coePdf_" + i).change(function (event) {
                     var path = $(this).val();
                     var id = event.target.id.replace("ContentPlaceHolder1_choiceList_coePdf_", "");
+                    $("#ContentPlaceHolder1_choiceList_pdfCoeFileName_" + id).text('Choose application file');
                     if (path != '' && path != null) {
                         var q = path.substring(path.lastIndexOf('\\') + 1);
                         $("#ContentPlaceHolder1_choiceList_pdfCoeFileName_" + id).text(q);

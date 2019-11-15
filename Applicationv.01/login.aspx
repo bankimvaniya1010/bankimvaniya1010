@@ -122,15 +122,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="form-label" for="password">Logging into <%=login.countryName %> University. <br> Please select your student type</label>
-                                <div class="input-group input-group-merge">
-                                    <asp:RadioButton ID="rblDomestic" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="Domestic" />
-                                    <asp:RadioButton ID="rblInternational" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="International" />
-                                </div>
-                            </div>
                             <div class="form-group ">
-                                <asp:Button ID="btn_login" runat="server" Text="Log In" CssClass="btn btn-primary btn-block" OnClick="btn_login_Click" OnClientClick="return validateForm()" />
+                                <asp:Button ID="btn_login" runat="server" Text="Log In" CssClass="btn btn-primary btn-block" OnClick="btn_login_Click" />
                                  <asp:Label ID="lblMessage" runat="server"></asp:Label>
                             </div>
                             <div class="text-center">
@@ -171,14 +164,3 @@
 
     </body>
     </html>
-
-    <script>
-        function validateForm() {
-            if (!$("#<%=rblDomestic.ClientID%>").is(':checked') && !$("#<%=rblInternational.ClientID%>").is(':checked')) {
-                alert("Please select Domestic / International option before log in.");
-                return false;
-            }
-            else
-                return true;
-        }
-    </script>

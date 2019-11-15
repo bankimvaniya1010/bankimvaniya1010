@@ -10,7 +10,7 @@
             <li class="breadcrumb-item active">Edit University Details</li>
         </ol>
 
-        <h1 class="h2">Edit University Detail</h1>
+        <h1 class="h2">EDIT UNIVERSITY DETAILS</h1>
 
         <div class="card">
             <div class="tab-content card-body">
@@ -426,6 +426,18 @@
                             </div>
                         </div>
                     </div>
+
+                     <div class="form-group row">
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for managing COE</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:TextBox ID="txtUniversityCOE" class="form-control" TextMode="MultiLine" runat="server" Style="width:300px; height:140px" ></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                      <div class="form-group row">
                         <label class="col-sm-3 col-form-label form-label"> University Instruction for Support Services </label>
                         <div class="col-sm-8">
@@ -524,6 +536,7 @@
             var scholarshipInstruction = $('#<%=txtUniversityScholarship.ClientID%>').val();
             var applicationInstruction = $('#<%=txtUniversityApplication.ClientID%>').val();
             var feePaymentInstruction = $('#<%=txtUniversityFeePayment.ClientID%>').val();
+            var coeInstruction = $('#<%=txtUniversityCOE.ClientID%>').val();
 
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
@@ -649,6 +662,10 @@
             }
             else if (feePaymentInstruction == "") {
                 alert("Please enter university fee payment instructions");
+                return false;
+            }
+            else if (coeInstruction == "") {
+                alert("Please enter university COE instructions");
                 return false;
             }
 

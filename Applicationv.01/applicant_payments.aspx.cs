@@ -43,6 +43,9 @@ public partial class applicant_payments : System.Web.UI.Page
             {
                 string currencySymbol = db.currency_master.Where(x => x.id == item.currency_id).Select(x => x.currency_code + x.currency_symbol).FirstOrDefault();
                 string paymentStatus = db.payment_status_master.Where(x => x.id == item.payment_status).Select(x => x.status_description).FirstOrDefault();
+                string courseName = db.applicationmaster.Where(x => x.applicationmasterid == item.applicationmaster_id)
+                                   .Join(db.coursemaster, applicationmaster => applicationmaster.course, coursemaster => coursemaster.courseid,
+                                    (applicationmaster, coursemaster) => new { coursemaster.coursename }).Select(x => x.coursename).FirstOrDefault();
                 if (paymentStatus.ToUpper().Contains("PAYMENT VERIFIED"))
                     paymentStatus = item.payment_verified_date.Value.ToString("dd-MM-yyyy");
                 else if (paymentStatus.ToUpper().Contains("PAYMENT PENDING"))
@@ -60,6 +63,7 @@ public partial class applicant_payments : System.Web.UI.Page
                     amount = currencySymbol + " " + item.amount,
                     item.instruction,
                     fileName = "\\Docs\\Payment Proof\\" + item.payment_proof_file_name,
+                    courseName = courseName,
                     payment_status = paymentStatus
                 };
                 paymentRequestsObj.Add(paymentRequestObj);
