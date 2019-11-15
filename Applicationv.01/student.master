@@ -47,14 +47,6 @@
 
 <body class=" layout-fluid">
 
-
-
-
-
-
-
-
-
     <div class="preloader">
         <div class="sk-double-bounce">
             <div class="sk-child sk-double-bounce1"></div>
@@ -136,8 +128,6 @@
 
 
                 </div>
-
-
 
 
                 <div class="mdk-drawer js-mdk-drawer" id="default-drawer">
@@ -813,8 +803,6 @@
         </div>
     </div>
 
-
-
     <!-- jQuery -->
     <%--  <script src="assets/vendor/jquery.min.js"></script>--%>
 
@@ -837,9 +825,6 @@
 
     <!-- App Settings (safe to remove) -->
     <script src="assets/js/app-settings.js"></script>
-
-
-
 
 
     <!-- Global Settings -->
@@ -913,7 +898,10 @@
                 else {
                     $("#gtestudentdetail").hide();
                     $("#preliminary_list").show();
-                } 
+                }
+
+                if (isDomesticStudent)
+                    $("#Gte_list").hide();
             }
             else {
                 $("#message_menu_list").hide();
@@ -958,6 +946,7 @@
                 }
 
                 if (isDomesticStudent) {
+                    $("#Gte_list").hide();
                     $("#visaapplication_list").hide();
                     $("#predeparture_list").hide();
                 }

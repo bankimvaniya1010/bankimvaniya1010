@@ -123,7 +123,6 @@
         <EntityTypeShape EntityType="GTEModel.secondarylanguagemaster" Width="1.5" PointX="12.75" PointY="21.75" />
         <EntityTypeShape EntityType="GTEModel.student_sop" Width="1.5" PointX="22.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.studentcoursemapping" Width="1.5" PointX="10.5" PointY="142.375" />
-        <EntityTypeShape EntityType="GTEModel.students" Width="1.5" PointX="5.25" PointY="143.875" />
         <EntityTypeShape EntityType="GTEModel.studylevelmaster" Width="1.5" PointX="3" PointY="146.375" />
         <EntityTypeShape EntityType="GTEModel.studymodemaster" Width="1.5" PointX="8.25" PointY="180.625" />
         <EntityTypeShape EntityType="GTEModel.studyoptionmaster" Width="1.5" PointX="22.75" PointY="4.75" />
@@ -154,7 +153,6 @@
         <EntityTypeShape EntityType="GTEModel.workexperienceyearsmaster" Width="1.5" PointX="2.75" PointY="23.75" />
         <AssociationConnector Association="GTEModel.fk_manageaccomdationplan_accomation" />
         <AssociationConnector Association="GTEModel.fk_adminusers_admincomments" />
-        <AssociationConnector Association="GTEModel.fk_applicantdetails_admincomments" />
         <AssociationConnector Association="GTEModel.fk_frommaster_admincomments" />
         <AssociationConnector Association="GTEModel.fk_admintooltips_formmaster" />
         <AssociationConnector Association="GTEModel.fk_admintooltips_primaryfieldmaster" />
@@ -164,17 +162,6 @@
         <AssociationConnector Association="GTEModel.fk_supervisorcomments_adminusers" />
         <AssociationConnector Association="GTEModel.FK__alternateidproofmaster" />
         <AssociationConnector Association="GTEModel.FK_applicantScholarship_scholarships" />
-        <AssociationConnector Association="GTEModel.fk_applicantcampaign_students" />
-        <AssociationConnector Association="GTEModel.FK_applicantdetails_students" />
-        <AssociationConnector Association="GTEModel.FK_applicantdocumentmaster_students" />
-        <AssociationConnector Association="GTEModel.FK_applicanteducationdetails_students" />
-        <AssociationConnector Association="GTEModel.FK_applicantfundingmaster_students" />
-        <AssociationConnector Association="GTEModel.FK_applicanthighereducation_students" />
-        <AssociationConnector Association="GTEModel.FK_applicantlanguagecompetency_students" />
-        <AssociationConnector Association="GTEModel.FK_applicantprogressbar_students" />
-        <AssociationConnector Association="GTEModel.FK_australiavisadetailmaster_students" />
-        <AssociationConnector Association="GTEModel.FK_australiavisadocumentmaster_students" />
-        <AssociationConnector Association="GTEModel.FK_australiavisaFamilydetailmaster_students" />
         <AssociationConnector Association="GTEModel.FK_cityMaster_countriesMaster" />
         <AssociationConnector Association="GTEModel.FK_manageaccomdationplan_citymaster" />
         <AssociationConnector Association="GTEModel.fk_manageentertainment_city" />
@@ -205,7 +192,6 @@
         <AssociationConnector Association="GTEModel.fk_managevisa_currency" />
         <AssociationConnector Association="GTEModel.FK_customfieldmaster_formmaster" />
         <AssociationConnector Association="GTEModel.FK_customfieldvalue_customfieldmaster" />
-        <AssociationConnector Association="GTEModel.FK_customfieldvalue_students" />
         <AssociationConnector Association="GTEModel.fk_manageentertainment_entertainment" />
         <AssociationConnector Association="GTEModel.FK_mapping_facilitiesMaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_campusdetail" />
@@ -214,7 +200,6 @@
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_formmaster" />
         <AssociationConnector Association="GTEModel.FK_answer_gteQuestion" />
         <AssociationConnector Association="GTEModel.FK_resposne_answer" />
-        <AssociationConnector Association="GTEModel.FK__students" />
         <AssociationConnector Association="GTEModel.FK_response_clarification_questionmaster" />
         <AssociationConnector Association="GTEModel.FK_clarification_gte_master_part2" />
         <AssociationConnector Association="GTEModel.FK_response_gteQuestionPart2" />
@@ -231,9 +216,6 @@
         <AssociationConnector Association="GTEModel.FK_qualificationmaster_qualificationcountrymapping" />
         <AssociationConnector Association="GTEModel.FK_studentcoursemapping_registrationcourses" />
         <AssociationConnector Association="GTEModel.FK__rejection_reasonmaster" />
-        <AssociationConnector Association="GTEModel.FK_studentcoursemapping_students" />
-        <AssociationConnector Association="GTEModel.FK_students_studylevelmaster" />
-        <AssociationConnector Association="GTEModel.fk_supervisorcomments_students" />
         <AssociationConnector Association="GTEModel.FK_subjectmaster_subjectwisecountrymapping" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
         <EntityTypeShape EntityType="GTEModel.payment_description_master" Width="1.5" PointX="5.375" PointY="23.75" />
@@ -254,7 +236,6 @@
         <AssociationConnector Association="GTEModel.FK_applicantlanguagecompetency_university_master" />
         <AssociationConnector Association="GTEModel.FK_applicantprogressbar_university_master" />
         <AssociationConnector Association="GTEModel.FK_applicantvisadetails_university_master" />
-        <AssociationConnector Association="GTEModel.FK_applicationmaster_students" />
         <AssociationConnector Association="GTEModel.FK_applicationmaster_university_master" />
         <AssociationConnector Association="GTEModel.FK_australiavisadetailmaster_university_master" />
         <AssociationConnector Association="GTEModel.FK_australiavisadocumentmaster_university_master" />
@@ -276,6 +257,25 @@
         <EntityTypeShape EntityType="GTEModel.payment_details" Width="1.5" PointX="11.25" PointY="111.125" />
         <AssociationConnector Association="GTEModel.FK_payment_details_currency_master" />
         <AssociationConnector Association="GTEModel.FK_payment_details_university_master" />
+        <EntityTypeShape EntityType="GTEModel.students" Width="1.5" PointX="5.25" PointY="143.75" />
+        <AssociationConnector Association="GTEModel.fk_applicantdetails_admincomments" />
+        <AssociationConnector Association="GTEModel.fk_applicantcampaign_students" />
+        <AssociationConnector Association="GTEModel.FK_applicantdetails_students" />
+        <AssociationConnector Association="GTEModel.FK_applicantdocumentmaster_students" />
+        <AssociationConnector Association="GTEModel.FK_applicanteducationdetails_students" />
+        <AssociationConnector Association="GTEModel.FK_applicantfundingmaster_students" />
+        <AssociationConnector Association="GTEModel.FK_applicanthighereducation_students" />
+        <AssociationConnector Association="GTEModel.FK_applicantlanguagecompetency_students" />
+        <AssociationConnector Association="GTEModel.FK_applicantprogressbar_students" />
+        <AssociationConnector Association="GTEModel.FK_applicationmaster_students" />
+        <AssociationConnector Association="GTEModel.FK_australiavisadetailmaster_students" />
+        <AssociationConnector Association="GTEModel.FK_australiavisadocumentmaster_students" />
+        <AssociationConnector Association="GTEModel.FK_australiavisaFamilydetailmaster_students" />
+        <AssociationConnector Association="GTEModel.FK_customfieldvalue_students" />
+        <AssociationConnector Association="GTEModel.FK__students" />
+        <AssociationConnector Association="GTEModel.FK_studentcoursemapping_students" />
+        <AssociationConnector Association="GTEModel.FK_students_studylevelmaster" />
+        <AssociationConnector Association="GTEModel.fk_supervisorcomments_students" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -31,6 +31,11 @@ public partial class _Default : System.Web.UI.Page
             /*SetprogressStatus();*/
             //if (Session["SecondaryLang"] == null)
             //    Session["SecondaryLang"] = "ar";
+
+            if (Session["isDomesticStudent"] == null)
+                domesticDiv.Style.Remove("display");
+            else
+                domesticDiv.Visible = false;
         }
     }
     [WebMethod]
@@ -64,4 +69,18 @@ public partial class _Default : System.Web.UI.Page
 
     //    }
     //}
+
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        var studentDetails = db.students.Where(x => x.studentid == UserID).FirstOrDefault();
+        if (rblYes.Checked)
+            studentDetails.isDomesticStudent = rblYes.Checked;
+        else if(rblNo.Checked)
+            studentDetails.isDomesticStudent = rblYes.Checked;
+
+        db.SaveChanges();
+        Session["isDomesticStudent"] = studentDetails.isDomesticStudent.Value;
+
+        Response.Redirect(Request.Url.ToString(), true);
+    }
 }
