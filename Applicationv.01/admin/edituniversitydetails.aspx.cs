@@ -50,6 +50,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniAffiliation.Value = existingUninversity.affiliation;
                     txtEmail.Value = existingUninversity.email;
                     txtMobile.Value = existingUninversity.mobile;
+                    txtunichatId.Value = existingUninversity.chatid;
                     txtUniType.Value = existingUninversity.type;
                     txtYearEstablish.Value = existingUninversity.year_established;
                     txtUniSDescription.Value = existingUninversity.short_description;
@@ -162,6 +163,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.affiliation = txtUniAffiliation.Value.Trim();
             universityObj.email = txtEmail.Value.Trim();
             universityObj.mobile = txtMobile.Value.Trim();
+            universityObj.chatid = txtunichatId.Value.Trim();
             universityObj.type = txtUniType.Value.Trim();
             universityObj.year_established = txtYearEstablish.Value.Trim();
             universityObj.short_description = txtUniSDescription.Value.Trim();

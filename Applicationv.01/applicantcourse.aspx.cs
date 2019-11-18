@@ -108,8 +108,14 @@ public partial class applicantcourse : System.Web.UI.Page
     [ScriptMethod(UseHttpGet = true)]
     public static string GetMajorDropdown()
     {
-        GTEEntities db1 = new GTEEntities();        
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var temp = (from md in db1.majordiscipline_master
+                    join mn in db1.master_name on md.id equals mn.masterid into mnData
+                    from x in mnData.DefaultIfEmpty()
+                    join umd in db1.universitywisemastermapping on x.masterid equals umd.mastervalueid into umdData
+                    from x1 in umdData.DefaultIfEmpty()
+                    where (x1.universityid == universityID1 && x1.masterid == 6)
                     select new
                     {
                         description = md.description,
@@ -221,7 +227,18 @@ public partial class applicantcourse : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var major = db.majordiscipline_master.ToList();
+            var major = (from md in db.majordiscipline_master
+                         join mn in db.master_name on md.id equals mn.masterid into mnData
+                         from x in mnData.DefaultIfEmpty()
+                         join umd in db.universitywisemastermapping on x.masterid equals umd.mastervalueid into umdData
+                         from x1 in umdData.DefaultIfEmpty()
+                         where (x1.universityid == universityID && x1.masterid == 6)
+                         select new
+                         {
+                             description = md.description,
+                             id = md.id,
+                         }).ToList();
+
             ddl.DataSource = major;
             ddl.DataTextField = "description";
             ddl.DataValueField = "id";

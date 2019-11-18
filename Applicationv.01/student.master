@@ -326,7 +326,7 @@
                                             </li>
                                              <li class="sidebar-menu-item" id="applicantscholarshipstatus">
                                                 <a class="sidebar-menu-button" href="applicantscholarshipstatus.aspx">
-                                                    <span class="sidebar-menu-text">View Applied Scholarships Status</span>
+                                                    <span class="sidebar-menu-text">Scholarships Status</span>
                                                 </a>
                                             </li>
                                              <li class="sidebar-menu-item" id="applicantfunding">

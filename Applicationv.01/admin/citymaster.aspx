@@ -7,11 +7,12 @@
             <li class="breadcrumb-item active">City Master</li>
         </ol>
         <h1 class="h2">City Master</h1>
-
+        
         <div class="card">
+            <asp:Label runat="server">* Please select country from dropdown to view related City mapping</asp:Label><br/>
             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                 <div class="form-row">
-                    <asp:DropDownList ID="ddlCountry" CssClass="col-md-2 form-control" runat="server" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlCountry" style="margin-left: 5%;" CssClass="col-md-2 form-control" runat="server" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                     <asp:Button ID="btnCreateCity" runat="server" Text="Create City" CssClass="btn btn-success" OnClick="btnCreateCity_Click" />
                 </div>
             </div>

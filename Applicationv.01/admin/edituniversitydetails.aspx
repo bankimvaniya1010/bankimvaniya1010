@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="uniEmail" class="col-sm-3 col-form-label form-label">University Email IDe</label>
+                        <label for="uniEmail" class="col-sm-3 col-form-label form-label">University Email ID</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
@@ -91,8 +91,17 @@
                                 </div>
                             </div>
                         </div>
+                    </div>                    
+                    <div class="form-group row">
+                        <label for="unichatId" class="col-sm-3 col-form-label form-label">University Chat ID</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtunichatId" type="text" runat="server" class="form-control" placeholder="University chat ID"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
                     <div class="form-group row">
                         <label for="uniWebsite" class="col-sm-3 col-form-label form-label">University Website</label>
                         <div class="col-sm-8">
@@ -525,6 +534,7 @@
             var txtUniWebsite = $('#<%=txtUniWebsite.ClientID%>').val();
             var txtUniContactPerson = $('#<%=txtUniContactPerson.ClientID%>').val();
             var txtMobile = $('#<%=txtMobile.ClientID%>').val();
+            var txtchatid = $('#<%=txtunichatId.ClientID%>').val();
             var txtUniAirport = $('#<%=txtUniAirport.ClientID%>').val();
             var railDistanceUnit = $('#<%=railDistanceUnit.ClientID%>').val();
             var airDistanceUnit = $('#<%=airDistanceUnit.ClientID%>').val();
@@ -580,6 +590,10 @@
             }
             else if (txtMobile == '') {
                 alert("Please enter valid university mobile number");
+                return false;
+            }                
+            else if (txtchatid == '') {
+                alert("Please enter university chat ID");
                 return false;
             }
             else if (txtUniAddress == '') {
