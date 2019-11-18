@@ -361,6 +361,10 @@
           <Property Name="ishighereducation" Type="int" />
           <Property Name="lastsavetime" Type="datetime" Precision="0" />
           <Property Name="iseducationdetailspresent" Type="bit" Nullable="false" />
+          <Property Name="haveyoustudiedbefore" Type="int" />
+          <Property Name="haveusi_number" Type="int" />
+          <Property Name="usi_number" Type="varchar" MaxLength="100" />
+          <Property Name="studentinstitutionID" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="applicantemployerdetails">
           <Key>
@@ -1863,7 +1867,7 @@
           <Property Name="eligibility" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="application_deadline" Type="datetime" Precision="0" Nullable="false" />
           <Property Name="scholarship_form" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="award_amount" Type="int" Nullable="false" />
+          <Property Name="award_amount" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="awarded_by" Type="varchar" MaxLength="200" Nullable="false" />
         </EntityType>
         <EntityType Name="secondarylanguagemaster">
@@ -2079,6 +2083,7 @@
           <Property Name="contact_person" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="mobile" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="chatid" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="affiliation" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="type" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="year_established" Type="varchar" MaxLength="20" Nullable="false" />
@@ -2086,8 +2091,8 @@
           <Property Name="long_description" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="cityid" Type="int" Nullable="false" />
           <Property Name="countryid" Type="int" Nullable="false" />
-          <Property Name="latitude" Type="decimal" Precision="10" Scale="0" Nullable="false" />
-          <Property Name="longitude" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="latitude" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="longitude" Type="decimal" Precision="10" Scale="5" Nullable="false" />
           <Property Name="time_zone" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="closest_airport" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="distance_from_airport" Type="varchar" MaxLength="50" Nullable="false" />
@@ -3310,9 +3315,18 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_payment_details_applicantdetails' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_payment_details_applicantdetails" />-->
+        <Association Name="FK_payment_details_applicantdetails">
+          <End Role="students" Type="Self.students" Multiplicity="1" />
+          <End Role="payment_details" Type="Self.payment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="payment_details">
+              <PropertyRef Name="applicant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_payment_details_currency_master">
           <End Role="currency_master" Type="Self.currency_master" Multiplicity="1" />
           <End Role="payment_details" Type="Self.payment_details" Multiplicity="*" />
@@ -4155,6 +4169,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="payment_description_mappings" EntitySet="payment_description_mappings" />
           </AssociationSet>
+          <AssociationSet Name="FK_payment_details_applicantdetails" Association="Self.FK_payment_details_applicantdetails">
+            <End Role="students" EntitySet="students" />
+            <End Role="payment_details" EntitySet="payment_details" />
+          </AssociationSet>
           <AssociationSet Name="FK_payment_details_currency_master" Association="Self.FK_payment_details_currency_master">
             <End Role="currency_master" EntitySet="currency_master" />
             <End Role="payment_details" EntitySet="payment_details" />
@@ -4385,7 +4403,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="rejection_reasonmaster" EntityType="GTEModel.rejection_reasonmaster" />
           <EntitySet Name="relative_master" EntityType="GTEModel.relative_master" />
           <EntitySet Name="rolemaster" EntityType="GTEModel.rolemaster" />
-          <EntitySet Name="scholarships" EntityType="GTEModel.scholarships" />
           <EntitySet Name="secondarylanguagemaster" EntityType="GTEModel.secondarylanguagemaster" />
           <EntitySet Name="student_sop" EntityType="GTEModel.student_sop" />
           <EntitySet Name="studentcoursemapping" EntityType="GTEModel.studentcoursemapping" />
@@ -4456,10 +4473,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK__alternateidproofmaster" Association="GTEModel.FK__alternateidproofmaster">
             <End Role="alternateidproofmaster" EntitySet="alternateidproofmaster" />
             <End Role="countrywisealternateidproofmaster" EntitySet="countrywisealternateidproofmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicantScholarship_scholarships" Association="GTEModel.FK_applicantScholarship_scholarships">
-            <End Role="scholarships" EntitySet="scholarships" />
-            <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
           </AssociationSet>
           <AssociationSet Name="FK_cityMaster_countriesMaster" Association="GTEModel.FK_cityMaster_countriesMaster">
             <End Role="countriesmaster" EntitySet="countriesmaster" />
@@ -4697,6 +4710,84 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="australiavisadetailmaster" EntityType="GTEModel.australiavisadetailmaster" />
           <EntitySet Name="applicationmaster" EntityType="GTEModel.applicationmaster" />
+          <EntitySet Name="students" EntityType="GTEModel.students" />
+          <AssociationSet Name="fk_applicantdetails_admincomments" Association="GTEModel.fk_applicantdetails_admincomments">
+            <End Role="students" EntitySet="students" />
+            <End Role="admincomments" EntitySet="admincomments" />
+          </AssociationSet>
+          <AssociationSet Name="fk_applicantcampaign_students" Association="GTEModel.fk_applicantcampaign_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantcampaign" EntitySet="applicantcampaign" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantdetails_students" Association="GTEModel.FK_applicantdetails_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantdetails" EntitySet="applicantdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantdocumentmaster_students" Association="GTEModel.FK_applicantdocumentmaster_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantdocumentmaster" EntitySet="applicantdocumentmaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicanteducationdetails_students" Association="GTEModel.FK_applicanteducationdetails_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicanteducationdetails" EntitySet="applicanteducationdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantfundingmaster_students" Association="GTEModel.FK_applicantfundingmaster_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantfundingmaster" EntitySet="applicantfundingmaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicanthighereducation_students" Association="GTEModel.FK_applicanthighereducation_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicanthighereducation" EntitySet="applicanthighereducation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantlanguagecompetency_students" Association="GTEModel.FK_applicantlanguagecompetency_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantlanguagecompetency" EntitySet="applicantlanguagecompetency" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantprogressbar_students" Association="GTEModel.FK_applicantprogressbar_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantprogressbar" EntitySet="applicantprogressbar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicationmaster_students" Association="GTEModel.FK_applicationmaster_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicationmaster" EntitySet="applicationmaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_australiavisadetailmaster_students" Association="GTEModel.FK_australiavisadetailmaster_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="australiavisadetailmaster" EntitySet="australiavisadetailmaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_australiavisadocumentmaster_students" Association="GTEModel.FK_australiavisadocumentmaster_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="australiavisadocumentmaster" EntitySet="australiavisadocumentmaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_australiavisaFamilydetailmaster_students" Association="GTEModel.FK_australiavisaFamilydetailmaster_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="australiavisaFamilydetailmaster" EntitySet="australiavisaFamilydetailmaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_customfieldvalue_students" Association="GTEModel.FK_customfieldvalue_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="customfieldvalue" EntitySet="customfieldvalue" />
+          </AssociationSet>
+          <AssociationSet Name="FK__students" Association="GTEModel.FK__students">
+            <End Role="students" EntitySet="students" />
+            <End Role="gte_applicantdocument" EntitySet="gte_applicantdocument" />
+          </AssociationSet>
+          <AssociationSet Name="FK_studentcoursemapping_students" Association="GTEModel.FK_studentcoursemapping_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="studentcoursemapping" EntitySet="studentcoursemapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students_studylevelmaster" Association="GTEModel.FK_students_studylevelmaster">
+            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="fk_supervisorcomments_students" Association="GTEModel.fk_supervisorcomments_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
+          </AssociationSet>
+          <EntitySet Name="scholarships" EntityType="GTEModel.scholarships" />
+          <AssociationSet Name="FK_applicantScholarship_scholarships" Association="GTEModel.FK_applicantScholarship_scholarships">
+            <End Role="scholarships" EntitySet="scholarships" />
+            <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
+          </AssociationSet>
           <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
           <AssociationSet Name="fk_university_master_admincomments" Association="GTEModel.fk_university_master_admincomments">
             <End Role="university_master" EntitySet="university_master" />
@@ -4811,82 +4902,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="currency_master" EntitySet="currency_master" />
             <End Role="payment_details" EntitySet="payment_details" />
           </AssociationSet>
+          <AssociationSet Name="FK_payment_details_applicantdetails" Association="GTEModel.FK_payment_details_applicantdetails">
+            <End Role="students" EntitySet="students" />
+            <End Role="payment_details" EntitySet="payment_details" />
+          </AssociationSet>
           <AssociationSet Name="FK_payment_details_university_master" Association="GTEModel.FK_payment_details_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="payment_details" EntitySet="payment_details" />
-          </AssociationSet>
-          <EntitySet Name="students" EntityType="GTEModel.students" />
-          <AssociationSet Name="fk_applicantdetails_admincomments" Association="GTEModel.fk_applicantdetails_admincomments">
-            <End Role="students" EntitySet="students" />
-            <End Role="admincomments" EntitySet="admincomments" />
-          </AssociationSet>
-          <AssociationSet Name="fk_applicantcampaign_students" Association="GTEModel.fk_applicantcampaign_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantcampaign" EntitySet="applicantcampaign" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicantdetails_students" Association="GTEModel.FK_applicantdetails_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantdetails" EntitySet="applicantdetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicantdocumentmaster_students" Association="GTEModel.FK_applicantdocumentmaster_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantdocumentmaster" EntitySet="applicantdocumentmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicanteducationdetails_students" Association="GTEModel.FK_applicanteducationdetails_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicanteducationdetails" EntitySet="applicanteducationdetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicantfundingmaster_students" Association="GTEModel.FK_applicantfundingmaster_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantfundingmaster" EntitySet="applicantfundingmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicanthighereducation_students" Association="GTEModel.FK_applicanthighereducation_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicanthighereducation" EntitySet="applicanthighereducation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicantlanguagecompetency_students" Association="GTEModel.FK_applicantlanguagecompetency_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantlanguagecompetency" EntitySet="applicantlanguagecompetency" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicantprogressbar_students" Association="GTEModel.FK_applicantprogressbar_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantprogressbar" EntitySet="applicantprogressbar" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicationmaster_students" Association="GTEModel.FK_applicationmaster_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicationmaster" EntitySet="applicationmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_australiavisadetailmaster_students" Association="GTEModel.FK_australiavisadetailmaster_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="australiavisadetailmaster" EntitySet="australiavisadetailmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_australiavisadocumentmaster_students" Association="GTEModel.FK_australiavisadocumentmaster_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="australiavisadocumentmaster" EntitySet="australiavisadocumentmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_australiavisaFamilydetailmaster_students" Association="GTEModel.FK_australiavisaFamilydetailmaster_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="australiavisaFamilydetailmaster" EntitySet="australiavisaFamilydetailmaster" />
-          </AssociationSet>
-          <AssociationSet Name="FK_customfieldvalue_students" Association="GTEModel.FK_customfieldvalue_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="customfieldvalue" EntitySet="customfieldvalue" />
-          </AssociationSet>
-          <AssociationSet Name="FK__students" Association="GTEModel.FK__students">
-            <End Role="students" EntitySet="students" />
-            <End Role="gte_applicantdocument" EntitySet="gte_applicantdocument" />
-          </AssociationSet>
-          <AssociationSet Name="FK_studentcoursemapping_students" Association="GTEModel.FK_studentcoursemapping_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="studentcoursemapping" EntitySet="studentcoursemapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_students_studylevelmaster" Association="GTEModel.FK_students_studylevelmaster">
-            <End Role="studylevelmaster" EntitySet="studylevelmaster" />
-            <End Role="students" EntitySet="students" />
-          </AssociationSet>
-          <AssociationSet Name="fk_supervisorcomments_students" Association="GTEModel.fk_supervisorcomments_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="supervisorcomments" EntitySet="supervisorcomments" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
@@ -4924,8 +4946,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="adminaction" Type="Int32" />
           <NavigationProperty Name="adminusers" Relationship="GTEModel.fk_adminusers_admincomments" FromRole="admincomments" ToRole="adminusers" />
           <NavigationProperty Name="formmaster" Relationship="GTEModel.fk_frommaster_admincomments" FromRole="admincomments" ToRole="formmaster" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_university_master_admincomments" FromRole="admincomments" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.fk_applicantdetails_admincomments" FromRole="admincomments" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_university_master_admincomments" FromRole="admincomments" ToRole="university_master" />
         </EntityType>
         <EntityType Name="admintooltips">
           <Key>
@@ -5211,8 +5233,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="filename" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="uploadedtime" Type="DateTime" />
           <Property Name="universityid" Type="Int32" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantdocumentmaster_university_master" FromRole="applicantdocumentmaster" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantdocumentmaster_students" FromRole="applicantdocumentmaster" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantdocumentmaster_university_master" FromRole="applicantdocumentmaster" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicanteducationdetails">
           <Key>
@@ -5276,8 +5298,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="ishighereducation" Type="Int32" />
           <Property Name="lastsavetime" Type="DateTime" />
           <Property Name="iseducationdetailspresent" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicanteducationdetails_university_master" FromRole="applicanteducationdetails" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicanteducationdetails_students" FromRole="applicanteducationdetails" ToRole="students" />
+          <Property Name="haveyoustudiedbefore" Type="Int32" />
+          <Property Name="haveusi_number" Type="Int32" />
+          <Property Name="usi_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="studentinstitutionID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicanteducationdetails_university_master" FromRole="applicanteducationdetails" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicantemployerdetails">
           <Key>
@@ -5334,8 +5360,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="trips" Type="Int32" />
           <Property Name="entertainment" Type="Int32" />
           <Property Name="credittransfer" Type="Int32" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantfundingmaster_university_master" FromRole="applicantfundingmaster" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantfundingmaster_students" FromRole="applicantfundingmaster" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantfundingmaster_university_master" FromRole="applicantfundingmaster" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicanthighereducation">
           <Key>
@@ -5362,8 +5388,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="highereducationverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ishighereducationverified" Type="Boolean" />
           <Property Name="secondaryschoolhighereducationgapreason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicanthighereducation_university_master" FromRole="applicanthighereducation" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicanthighereducation_students" FromRole="applicanthighereducation" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicanthighereducation_university_master" FromRole="applicanthighereducation" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicantlanguagecompetency">
           <Key>
@@ -5401,8 +5427,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="testreportreferenceno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="lastsavedtime" Type="DateTime" />
           <Property Name="islanguagecompetencypresent" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantlanguagecompetency_university_master" FromRole="applicantlanguagecompetency" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantlanguagecompetency_students" FromRole="applicantlanguagecompetency" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantlanguagecompetency_university_master" FromRole="applicantlanguagecompetency" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicantprogressbar">
           <Key>
@@ -5414,8 +5440,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="profile" Type="Int32" />
           <Property Name="question" Type="Int32" />
           <Property Name="declarationdone" Type="Boolean" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantprogressbar_university_master" FromRole="applicantprogressbar" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantprogressbar_students" FromRole="applicantprogressbar" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantprogressbar_university_master" FromRole="applicantprogressbar" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicantreferencecheck">
           <Key>
@@ -5529,8 +5555,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="documentId" Type="Int32" />
           <Property Name="documenttype" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="documentpath" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisadocumentmaster_university_master" FromRole="australiavisadocumentmaster" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_australiavisadocumentmaster_students" FromRole="australiavisadocumentmaster" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisadocumentmaster_university_master" FromRole="australiavisadocumentmaster" ToRole="university_master" />
         </EntityType>
         <EntityType Name="australiavisaFamilydetailmaster">
           <Key>
@@ -5552,8 +5578,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="passportdateofexpiry" Type="DateTime" />
           <Property Name="passportplaceofissue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="studyinAustralia" Type="Int32" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisaFamilydetailmaster_university_master" FromRole="australiavisaFamilydetailmaster" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_australiavisaFamilydetailmaster_students" FromRole="australiavisaFamilydetailmaster" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisaFamilydetailmaster_university_master" FromRole="australiavisaFamilydetailmaster" ToRole="university_master" />
         </EntityType>
         <EntityType Name="cefrlevelmaster">
           <Key>
@@ -6438,20 +6464,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="rolename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="adminusers" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="rolemaster" ToRole="adminusers" />
         </EntityType>
-        <EntityType Name="scholarships">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="eligibility" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="application_deadline" Type="DateTime" Nullable="false" />
-          <Property Name="scholarship_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="award_amount" Type="Int32" Nullable="false" />
-          <Property Name="awarded_by" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="applicant_scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="scholarships" ToRole="applicant_scholarships" />
-        </EntityType>
         <EntityType Name="secondarylanguagemaster">
           <Key>
             <PropertyRef Name="id" />
@@ -6539,8 +6551,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="adminusers" Relationship="GTEModel.fk_supervisorcomments_adminusers" FromRole="supervisorcomments" ToRole="adminusers" />
           <NavigationProperty Name="formmaster" Relationship="GTEModel.fk_supervisorcomments_formmaster" FromRole="supervisorcomments" ToRole="formmaster" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_supervisorcomments_university_master" FromRole="supervisorcomments" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="supervisorcomments" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.fk_supervisorcomments_university_master" FromRole="supervisorcomments" ToRole="university_master" />
         </EntityType>
         <EntityType Name="timezonemaster">
           <Key>
@@ -6663,7 +6675,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="universityid" Type="Int32" Nullable="false" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="universitygrouping" ToRole="university_master" />
           <NavigationProperty Name="university_master1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="universitygrouping" ToRole="university_master" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="universitywise_rejectionreasonmapping">
           <Key>
             <PropertyRef Name="reasonmappingID" />
@@ -6865,18 +6877,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="countrywisealternateidproofmaster">
               <PropertyRef Name="alternateidproofID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicantScholarship_scholarships">
-          <End Type="GTEModel.scholarships" Role="scholarships" Multiplicity="1" />
-          <End Type="GTEModel.applicant_scholarships" Role="applicant_scholarships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="scholarships">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="applicant_scholarships">
-              <PropertyRef Name="scholarship_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -8000,8 +8000,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="declarationsignature3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="declarationdate3" Type="DateTime" />
           <Property Name="recordsaved_at" Type="DateTime" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisadetailmaster_university_master" FromRole="australiavisadetailmaster" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_australiavisadetailmaster_students" FromRole="australiavisadetailmaster" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_australiavisadetailmaster_university_master" FromRole="australiavisadetailmaster" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicationmaster">
           <Key>
@@ -8037,9 +8037,289 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="coe_letter_file" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="coe_download_time" Type="DateTime" />
           <Property Name="eligibility_response" Type="Int32" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicationmaster_university_master" FromRole="applicationmaster" ToRole="university_master" />
           <NavigationProperty Name="students" Relationship="GTEModel.FK_applicationmaster_students" FromRole="applicationmaster" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicationmaster_university_master" FromRole="applicationmaster" ToRole="university_master" />
         </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="studentid" />
+          </Key>
+          <Property Name="studentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enrollmentyear" Type="Int32" Nullable="false" />
+          <Property Name="studylevelid" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="creationdate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="verificationkey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="isverified" Type="Boolean" Nullable="false" />
+          <Property Name="otp" Type="Int32" Nullable="false" />
+          <Property Name="ispasswordset" Type="Boolean" />
+          <Property Name="isDomesticStudent" Type="Boolean" />
+          <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_applicantdetails_admincomments" FromRole="students" ToRole="admincomments" />
+          <NavigationProperty Name="applicantcampaign" Relationship="GTEModel.fk_applicantcampaign_students" FromRole="students" ToRole="applicantcampaign" />
+          <NavigationProperty Name="applicantdetails" Relationship="GTEModel.FK_applicantdetails_students" FromRole="students" ToRole="applicantdetails" />
+          <NavigationProperty Name="applicantdocumentmaster" Relationship="GTEModel.FK_applicantdocumentmaster_students" FromRole="students" ToRole="applicantdocumentmaster" />
+          <NavigationProperty Name="applicanteducationdetails" Relationship="GTEModel.FK_applicanteducationdetails_students" FromRole="students" ToRole="applicanteducationdetails" />
+          <NavigationProperty Name="applicantfundingmaster" Relationship="GTEModel.FK_applicantfundingmaster_students" FromRole="students" ToRole="applicantfundingmaster" />
+          <NavigationProperty Name="applicanthighereducation" Relationship="GTEModel.FK_applicanthighereducation_students" FromRole="students" ToRole="applicanthighereducation" />
+          <NavigationProperty Name="applicantlanguagecompetency" Relationship="GTEModel.FK_applicantlanguagecompetency_students" FromRole="students" ToRole="applicantlanguagecompetency" />
+          <NavigationProperty Name="applicantprogressbar" Relationship="GTEModel.FK_applicantprogressbar_students" FromRole="students" ToRole="applicantprogressbar" />
+          <NavigationProperty Name="applicationmaster" Relationship="GTEModel.FK_applicationmaster_students" FromRole="students" ToRole="applicationmaster" />
+          <NavigationProperty Name="australiavisadetailmaster" Relationship="GTEModel.FK_australiavisadetailmaster_students" FromRole="students" ToRole="australiavisadetailmaster" />
+          <NavigationProperty Name="australiavisadocumentmaster" Relationship="GTEModel.FK_australiavisadocumentmaster_students" FromRole="students" ToRole="australiavisadocumentmaster" />
+          <NavigationProperty Name="australiavisaFamilydetailmaster" Relationship="GTEModel.FK_australiavisaFamilydetailmaster_students" FromRole="students" ToRole="australiavisaFamilydetailmaster" />
+          <NavigationProperty Name="customfieldvalue" Relationship="GTEModel.FK_customfieldvalue_students" FromRole="students" ToRole="customfieldvalue" />
+          <NavigationProperty Name="gte_applicantdocument" Relationship="GTEModel.FK__students" FromRole="students" ToRole="gte_applicantdocument" />
+          <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
+          <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
+          <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="students" ToRole="supervisorcomments" />
+          <NavigationProperty Name="payment_details" Relationship="GTEModel.FK_payment_details_applicantdetails" FromRole="students" ToRole="payment_details" />
+        </EntityType>
+        <Association Name="fk_applicantdetails_admincomments">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.admincomments" Role="admincomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="admincomments">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_applicantcampaign_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicantcampaign" Role="applicantcampaign" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantcampaign">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantdetails_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
+          <End Type="GTEModel.applicantdetails" Role="applicantdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantdetails">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantdocumentmaster_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
+          <End Type="GTEModel.applicantdocumentmaster" Role="applicantdocumentmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantdocumentmaster">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicanteducationdetails_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicanteducationdetails" Role="applicanteducationdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicanteducationdetails">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantfundingmaster_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicantfundingmaster" Role="applicantfundingmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantfundingmaster">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicanthighereducation_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicanthighereducation" Role="applicanthighereducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicanthighereducation">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantlanguagecompetency_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicantlanguagecompetency" Role="applicantlanguagecompetency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantlanguagecompetency">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantprogressbar_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicantprogressbar" Role="applicantprogressbar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantprogressbar">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicationmaster_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicationmaster" Role="applicationmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicationmaster">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_australiavisadetailmaster_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.australiavisadetailmaster" Role="australiavisadetailmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="australiavisadetailmaster">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_australiavisadocumentmaster_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.australiavisadocumentmaster" Role="australiavisadocumentmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="australiavisadocumentmaster">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_australiavisaFamilydetailmaster_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.australiavisaFamilydetailmaster" Role="australiavisaFamilydetailmaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="australiavisaFamilydetailmaster">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_customfieldvalue_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.customfieldvalue" Role="customfieldvalue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="customfieldvalue">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
+          <End Type="GTEModel.gte_applicantdocument" Role="gte_applicantdocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="gte_applicantdocument">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_studentcoursemapping_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.studentcoursemapping" Role="studentcoursemapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="studentcoursemapping">
+              <PropertyRef Name="studentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students_studylevelmaster">
+          <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="1" />
+          <End Type="GTEModel.students" Role="students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="studylevelmaster">
+              <PropertyRef Name="studylevelid" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="studylevelid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_supervisorcomments_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.supervisorcomments" Role="supervisorcomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="supervisorcomments">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="scholarships">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="eligibility" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="application_deadline" Type="DateTime" Nullable="false" />
+          <Property Name="scholarship_form" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="award_amount" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="awarded_by" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="applicant_scholarships" Relationship="GTEModel.FK_applicantScholarship_scholarships" FromRole="scholarships" ToRole="applicant_scholarships" />
+        </EntityType>
+        <Association Name="FK_applicantScholarship_scholarships">
+          <End Type="GTEModel.scholarships" Role="scholarships" Multiplicity="1" />
+          <End Type="GTEModel.applicant_scholarships" Role="applicant_scholarships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="scholarships">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="applicant_scholarships">
+              <PropertyRef Name="scholarship_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="university_master">
           <Key>
             <PropertyRef Name="universityid" />
@@ -8051,6 +8331,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="contact_person" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="email" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="mobile" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="chatid" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="affiliation" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="type" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="year_established" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -8455,6 +8736,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="payment_verified_date" Type="DateTime" />
           <Property Name="applicationmaster_id" Type="Int32" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_payment_details_currency_master" FromRole="payment_details" ToRole="currency_master" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_payment_details_applicantdetails" FromRole="payment_details" ToRole="students" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_payment_details_university_master" FromRole="payment_details" ToRole="university_master" />
         </EntityType>
         <Association Name="FK_payment_details_currency_master">
@@ -8469,6 +8751,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_payment_details_applicantdetails">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="payment_details">
+              <PropertyRef Name="applicant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_payment_details_university_master">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
           <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
@@ -8478,259 +8772,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="payment_details">
               <PropertyRef Name="university_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="students">
-          <Key>
-            <PropertyRef Name="studentid" />
-          </Key>
-          <Property Name="studentid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="enrollmentyear" Type="Int32" Nullable="false" />
-          <Property Name="studylevelid" Type="Int32" Nullable="false" />
-          <Property Name="status" Type="Int32" Nullable="false" />
-          <Property Name="creationdate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="verificationkey" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="isverified" Type="Boolean" Nullable="false" />
-          <Property Name="otp" Type="Int32" Nullable="false" />
-          <Property Name="ispasswordset" Type="Boolean" />
-          <Property Name="isDomesticStudent" Type="Boolean" />
-          <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_applicantdetails_admincomments" FromRole="students" ToRole="admincomments" />
-          <NavigationProperty Name="applicantcampaign" Relationship="GTEModel.fk_applicantcampaign_students" FromRole="students" ToRole="applicantcampaign" />
-          <NavigationProperty Name="applicantdetails" Relationship="GTEModel.FK_applicantdetails_students" FromRole="students" ToRole="applicantdetails" />
-          <NavigationProperty Name="applicantdocumentmaster" Relationship="GTEModel.FK_applicantdocumentmaster_students" FromRole="students" ToRole="applicantdocumentmaster" />
-          <NavigationProperty Name="applicanteducationdetails" Relationship="GTEModel.FK_applicanteducationdetails_students" FromRole="students" ToRole="applicanteducationdetails" />
-          <NavigationProperty Name="applicantfundingmaster" Relationship="GTEModel.FK_applicantfundingmaster_students" FromRole="students" ToRole="applicantfundingmaster" />
-          <NavigationProperty Name="applicanthighereducation" Relationship="GTEModel.FK_applicanthighereducation_students" FromRole="students" ToRole="applicanthighereducation" />
-          <NavigationProperty Name="applicantlanguagecompetency" Relationship="GTEModel.FK_applicantlanguagecompetency_students" FromRole="students" ToRole="applicantlanguagecompetency" />
-          <NavigationProperty Name="applicantprogressbar" Relationship="GTEModel.FK_applicantprogressbar_students" FromRole="students" ToRole="applicantprogressbar" />
-          <NavigationProperty Name="applicationmaster" Relationship="GTEModel.FK_applicationmaster_students" FromRole="students" ToRole="applicationmaster" />
-          <NavigationProperty Name="australiavisadetailmaster" Relationship="GTEModel.FK_australiavisadetailmaster_students" FromRole="students" ToRole="australiavisadetailmaster" />
-          <NavigationProperty Name="australiavisadocumentmaster" Relationship="GTEModel.FK_australiavisadocumentmaster_students" FromRole="students" ToRole="australiavisadocumentmaster" />
-          <NavigationProperty Name="australiavisaFamilydetailmaster" Relationship="GTEModel.FK_australiavisaFamilydetailmaster_students" FromRole="students" ToRole="australiavisaFamilydetailmaster" />
-          <NavigationProperty Name="customfieldvalue" Relationship="GTEModel.FK_customfieldvalue_students" FromRole="students" ToRole="customfieldvalue" />
-          <NavigationProperty Name="gte_applicantdocument" Relationship="GTEModel.FK__students" FromRole="students" ToRole="gte_applicantdocument" />
-          <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
-          <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
-          <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="students" ToRole="supervisorcomments" />
-        </EntityType>
-        <Association Name="fk_applicantdetails_admincomments">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.admincomments" Role="admincomments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="admincomments">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_applicantcampaign_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicantcampaign" Role="applicantcampaign" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantcampaign">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicantdetails_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
-          <End Type="GTEModel.applicantdetails" Role="applicantdetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantdetails">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicantdocumentmaster_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
-          <End Type="GTEModel.applicantdocumentmaster" Role="applicantdocumentmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantdocumentmaster">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicanteducationdetails_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicanteducationdetails" Role="applicanteducationdetails" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicanteducationdetails">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicantfundingmaster_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicantfundingmaster" Role="applicantfundingmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantfundingmaster">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicanthighereducation_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicanthighereducation" Role="applicanthighereducation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicanthighereducation">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicantlanguagecompetency_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicantlanguagecompetency" Role="applicantlanguagecompetency" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantlanguagecompetency">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicantprogressbar_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicantprogressbar" Role="applicantprogressbar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantprogressbar">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicationmaster_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicationmaster" Role="applicationmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicationmaster">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_australiavisadetailmaster_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.australiavisadetailmaster" Role="australiavisadetailmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="australiavisadetailmaster">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_australiavisadocumentmaster_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.australiavisadocumentmaster" Role="australiavisadocumentmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="australiavisadocumentmaster">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_australiavisaFamilydetailmaster_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.australiavisaFamilydetailmaster" Role="australiavisaFamilydetailmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="australiavisaFamilydetailmaster">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_customfieldvalue_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.customfieldvalue" Role="customfieldvalue" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="customfieldvalue">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="0..1" />
-          <End Type="GTEModel.gte_applicantdocument" Role="gte_applicantdocument" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="gte_applicantdocument">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_studentcoursemapping_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.studentcoursemapping" Role="studentcoursemapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="studentcoursemapping">
-              <PropertyRef Name="studentid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_students_studylevelmaster">
-          <End Type="GTEModel.studylevelmaster" Role="studylevelmaster" Multiplicity="1" />
-          <End Type="GTEModel.students" Role="students" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="studylevelmaster">
-              <PropertyRef Name="studylevelid" />
-            </Principal>
-            <Dependent Role="students">
-              <PropertyRef Name="studylevelid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_supervisorcomments_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.supervisorcomments" Role="supervisorcomments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="supervisorcomments">
-              <PropertyRef Name="applicantid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -9071,6 +9112,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicanteducationdetails">
             <EntityTypeMapping TypeName="GTEModel.applicanteducationdetails">
               <MappingFragment StoreEntitySet="applicanteducationdetails">
+                <ScalarProperty Name="studentinstitutionID" ColumnName="studentinstitutionID" />
+                <ScalarProperty Name="usi_number" ColumnName="usi_number" />
+                <ScalarProperty Name="haveusi_number" ColumnName="haveusi_number" />
+                <ScalarProperty Name="haveyoustudiedbefore" ColumnName="haveyoustudiedbefore" />
                 <ScalarProperty Name="iseducationdetailspresent" ColumnName="iseducationdetailspresent" />
                 <ScalarProperty Name="lastsavetime" ColumnName="lastsavetime" />
                 <ScalarProperty Name="ishighereducation" ColumnName="ishighereducation" />
@@ -10259,20 +10304,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="scholarships">
-            <EntityTypeMapping TypeName="GTEModel.scholarships">
-              <MappingFragment StoreEntitySet="scholarships">
-                <ScalarProperty Name="awarded_by" ColumnName="awarded_by" />
-                <ScalarProperty Name="award_amount" ColumnName="award_amount" />
-                <ScalarProperty Name="scholarship_form" ColumnName="scholarship_form" />
-                <ScalarProperty Name="application_deadline" ColumnName="application_deadline" />
-                <ScalarProperty Name="eligibility" ColumnName="eligibility" />
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="secondarylanguagemaster">
             <EntityTypeMapping TypeName="GTEModel.secondarylanguagemaster">
               <MappingFragment StoreEntitySet="secondarylanguagemaster">
@@ -11047,6 +11078,40 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="GTEModel.students">
+              <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="isDomesticStudent" ColumnName="isDomesticStudent" />
+                <ScalarProperty Name="ispasswordset" ColumnName="ispasswordset" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="isverified" ColumnName="isverified" />
+                <ScalarProperty Name="verificationkey" ColumnName="verificationkey" />
+                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="studylevelid" ColumnName="studylevelid" />
+                <ScalarProperty Name="enrollmentyear" ColumnName="enrollmentyear" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="studentid" ColumnName="studentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="scholarships">
+            <EntityTypeMapping TypeName="GTEModel.scholarships">
+              <MappingFragment StoreEntitySet="scholarships">
+                <ScalarProperty Name="awarded_by" ColumnName="awarded_by" />
+                <ScalarProperty Name="award_amount" ColumnName="award_amount" />
+                <ScalarProperty Name="scholarship_form" ColumnName="scholarship_form" />
+                <ScalarProperty Name="application_deadline" ColumnName="application_deadline" />
+                <ScalarProperty Name="eligibility" ColumnName="eligibility" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
@@ -11083,6 +11148,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="year_established" ColumnName="year_established" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="affiliation" ColumnName="affiliation" />
+                <ScalarProperty Name="chatid" ColumnName="chatid" />
                 <ScalarProperty Name="mobile" ColumnName="mobile" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="contact_person" ColumnName="contact_person" />
@@ -11109,26 +11175,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="university_id" ColumnName="university_id" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="students">
-            <EntityTypeMapping TypeName="GTEModel.students">
-              <MappingFragment StoreEntitySet="students">
-                <ScalarProperty Name="isDomesticStudent" ColumnName="isDomesticStudent" />
-                <ScalarProperty Name="ispasswordset" ColumnName="ispasswordset" />
-                <ScalarProperty Name="otp" ColumnName="otp" />
-                <ScalarProperty Name="isverified" ColumnName="isverified" />
-                <ScalarProperty Name="verificationkey" ColumnName="verificationkey" />
-                <ScalarProperty Name="creationdate" ColumnName="creationdate" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="studylevelid" ColumnName="studylevelid" />
-                <ScalarProperty Name="enrollmentyear" ColumnName="enrollmentyear" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="studentid" ColumnName="studentid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

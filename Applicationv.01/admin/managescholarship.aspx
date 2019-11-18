@@ -53,7 +53,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtScholarshipAmount" type="text" runat="server" class="form-control" placeholder="Scholarship Amount" />
+                                    <input id="txtScholarshipAmount" type="text" runat="server" class="form-control" placeholder="AU 1000 to 3000" />
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,7 @@
             var txtScholarshipAmount = $('#<%=txtScholarshipAmount.ClientID%>').val();
             var applicationFormFile = $('#<%=applicationForm.ClientID%>').val();
 
-            if (0 == parseInt(txtScholarshipAmount) || isNaN(parseInt(txtScholarshipAmount))) {
+            if (txtScholarshipAmount == "" || !/^[a-zA-Z0-9 ]*$/.test(txtScholarshipAmount)) {
                 alert("Please enter appropriate scholarship amount");
                 return false;
             }

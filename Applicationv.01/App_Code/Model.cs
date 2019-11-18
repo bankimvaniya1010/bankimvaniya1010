@@ -39,8 +39,8 @@ public partial class admincomments
 
     public virtual adminusers adminusers { get; set; }
     public virtual formmaster formmaster { get; set; }
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class admintooltips
@@ -333,8 +333,8 @@ public partial class applicantdocumentmaster
     public Nullable<System.DateTime> uploadedtime { get; set; }
     public Nullable<int> universityid { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class applicanteducationdetails
@@ -397,9 +397,13 @@ public partial class applicanteducationdetails
     public Nullable<int> ishighereducation { get; set; }
     public Nullable<System.DateTime> lastsavetime { get; set; }
     public bool iseducationdetailspresent { get; set; }
+    public Nullable<int> haveyoustudiedbefore { get; set; }
+    public Nullable<int> haveusi_number { get; set; }
+    public string usi_number { get; set; }
+    public string studentinstitutionID { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class applicantemployerdetails
@@ -454,8 +458,8 @@ public partial class applicantfundingmaster
     public Nullable<int> entertainment { get; set; }
     public Nullable<int> credittransfer { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class applicanthighereducation
@@ -482,8 +486,8 @@ public partial class applicanthighereducation
     public Nullable<bool> ishighereducationverified { get; set; }
     public string secondaryschoolhighereducationgapreason { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class applicantlanguagecompetency
@@ -521,8 +525,8 @@ public partial class applicantlanguagecompetency
     public Nullable<System.DateTime> lastsavedtime { get; set; }
     public bool islanguagecompetencypresent { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class applicantprogressbar
@@ -534,8 +538,8 @@ public partial class applicantprogressbar
     public Nullable<int> question { get; set; }
     public Nullable<bool> declarationdone { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class applicantreferencecheck
@@ -666,8 +670,8 @@ public partial class applicationmaster
     public Nullable<System.DateTime> coe_download_time { get; set; }
     public Nullable<int> eligibility_response { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class australiavisadetailmaster
@@ -1048,8 +1052,8 @@ public partial class australiavisadetailmaster
     public Nullable<System.DateTime> declarationdate3 { get; set; }
     public Nullable<System.DateTime> recordsaved_at { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class australiavisadocumentmaster
@@ -1061,8 +1065,8 @@ public partial class australiavisadocumentmaster
     public string documenttype { get; set; }
     public string documentpath { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class australiavisaFamilydetailmaster
@@ -1084,8 +1088,8 @@ public partial class australiavisaFamilydetailmaster
     public string passportplaceofissue { get; set; }
     public Nullable<int> studyinAustralia { get; set; }
 
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class cefrlevelmaster
@@ -2039,6 +2043,7 @@ public partial class payment_details
     public Nullable<int> applicationmaster_id { get; set; }
 
     public virtual currency_master currency_master { get; set; }
+    public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
 }
 
@@ -2236,7 +2241,7 @@ public partial class scholarships
     public string eligibility { get; set; }
     public System.DateTime application_deadline { get; set; }
     public string scholarship_form { get; set; }
-    public int award_amount { get; set; }
+    public string award_amount { get; set; }
     public string awarded_by { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -2293,6 +2298,7 @@ public partial class students
         this.gte_applicantdocument = new HashSet<gte_applicantdocument>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
+        this.payment_details = new HashSet<payment_details>();
     }
 
     public int studentid { get; set; }
@@ -2345,6 +2351,8 @@ public partial class students
     public virtual studylevelmaster studylevelmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<payment_details> payment_details { get; set; }
 }
 
 public partial class studylevelmaster
@@ -2425,8 +2433,8 @@ public partial class supervisorcomments
 
     public virtual adminusers adminusers { get; set; }
     public virtual formmaster formmaster { get; set; }
-    public virtual university_master university_master { get; set; }
     public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class supportservicemaster
@@ -2583,6 +2591,7 @@ public partial class university_master
     public string contact_person { get; set; }
     public string email { get; set; }
     public string mobile { get; set; }
+    public string chatid { get; set; }
     public string affiliation { get; set; }
     public string type { get; set; }
     public string year_established { get; set; }
