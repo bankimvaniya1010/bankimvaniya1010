@@ -55,6 +55,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.affiliation = txtUniAffiliation.Value.Trim();
                 universityObj.email = txtEmail.Value.Trim();
                 universityObj.mobile = txtMobile.Value.Trim();
+                universityObj.chatid = txtunichatId.Value.Trim();
                 universityObj.type = txtUniType.Value.Trim();
                 universityObj.year_established = txtYearEstablish.Value.Trim();
                 universityObj.short_description = txtUniSDescription.Value.Trim();

@@ -104,6 +104,9 @@ public partial class register : System.Web.UI.Page
                 html = html.Replace("@OTP", otp.ToString());
                 LoginURL = webURL + "/login.aspx?active=1";
                 html = html.Replace("@Loginurl", LoginURL);
+                html = html.Replace("@UniversityEmailID", university.email);
+                html = html.Replace("@UniversityChatID", university.chatid);
+                html = html.Replace("@UniversityMobileNumber", university.mobile);
 
                 objCom.SendMail(email.Value.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["ActivationSubject"].ToString());
                 webURL = "";

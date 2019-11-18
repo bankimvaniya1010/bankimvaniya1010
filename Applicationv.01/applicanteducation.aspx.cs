@@ -48,6 +48,17 @@ public partial class applicanteducation : System.Web.UI.Page
             allQuestions = objCom.FaqQuestionList();
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
+            var universitydetails =  (from um in db.university_master
+                                      join cm in db.countriesmaster on um.countryid equals cm.id
+                                      where(um.universityid == universityID)
+                                      select new {
+                                           universitycountry = cm.country_name,
+                                           univercityname = um.university_name
+                                       }).FirstOrDefault();
+
+            nameofinstitue1.Text = universitydetails.univercityname;
+            nameofinstitue2.Text = universitydetails.univercityname;
+            nameofcountry.Text = universitydetails.universitycountry;
             objCom.BindCountries(ddlCountryHighSchool);
             objCom.BindCountries(ddlDiplomaCountry);
             objCom.BindCountries(ddlHigherCountry);
@@ -646,6 +657,35 @@ public partial class applicanteducation : System.Web.UI.Page
                                  select pInfo).FirstOrDefault();
             if (EducationInfo != null)
             {
+                //USI
+                if (EducationInfo.haveyoustudiedbefore == 1)
+                {
+                    studiedYes.Checked = true;
+                    if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 1)
+                    {
+                        USINumberYes.Checked = true;
+                        txtUSINumber.Value = EducationInfo.usi_number;
+                    }
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 2)
+                        USINumberNo.Checked = true;
+                    else if (EducationInfo.haveusi_number != null && EducationInfo.haveusi_number == 3)
+                        USINumberNotsure.Checked = true;
+                }
+                else if (EducationInfo.haveyoustudiedbefore == 0)
+                {
+                    studiedNo.Checked = true;
+                    studiedininstitutionNo.Checked = true;
+                }
+
+                if (EducationInfo.studentinstitutionID == null && (EducationInfo.haveusi_number == 2 || EducationInfo.haveusi_number == 3))                
+                    studiedininstitutionNo.Checked = true;
+                else if(EducationInfo.studentinstitutionID != null)
+                {
+                    studiedininstitutionYes.Checked = true;
+                    txtstudentID.Value = EducationInfo.studentinstitutionID;
+                }
+
+
                 if (EducationInfo.ishighschooldone == 1)
                     rblHighYes.Checked = true;
                 else if (EducationInfo.ishighschooldone == 2)
@@ -1421,7 +1461,37 @@ public partial class applicanteducation : System.Web.UI.Page
             }
 
             objEdu.applicantid = userID;
+            //USI NUmber
+            if (studiedYes.Checked == true)
+            {
+                objEdu.haveyoustudiedbefore = 1;
+                if (USINumberYes.Checked == true)
+                {
+                    objEdu.haveusi_number = 1;
+                    objEdu.usi_number = txtUSINumber.Value;
+                    objEdu.studentinstitutionID = null;
+                }
+                else if (USINumberNo.Checked == true)
+                    objEdu.haveusi_number = 2;
+                else if (USINumberNotsure.Checked == true)
+                    objEdu.haveusi_number = 3;
+            }
+            else if (studiedNo.Checked == true)
+            {
+                objEdu.haveyoustudiedbefore = 0;
+                USINumberNo.Checked = false;
+                USINumberNotsure.Checked = false;
+                txtstudentID.Value = "";
+                objEdu.haveusi_number = null;
+                objEdu.usi_number = null;
+                objEdu.studentinstitutionID = null;
+            }
 
+            if ((USINumberNo.Checked == true || USINumberNotsure.Checked == true) && studiedininstitutionYes.Checked == true)
+                objEdu.studentinstitutionID = txtstudentID.Value;
+            else
+                objEdu.studentinstitutionID = null;
+          
             /// High School Details
             if (rblHighYes.Checked)
             {

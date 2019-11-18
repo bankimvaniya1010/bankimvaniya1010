@@ -18,6 +18,71 @@
 
                     <div class="card">
                         <div class="card-body list-group list-group-fit">
+                            <!--USI Fields -->
+
+                        <div id="USIFields">
+                             <div class="list-group-item frm-rdbtn" id="studiedbefore" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                    <div class="form-row">
+                                        <label id="label1" runat="server" for="studiedbefore" class="col-md-3 col-form-label form-label">Have you studied IN <asp:label id="nameofcountry" runat="server"></asp:label> before ?</label>
+                                        <div class="col-md-9">
+                                            <asp:RadioButton ID="studiedYes" CssClass="form-control" runat="server" GroupName="studied" Text="Yes" />
+                                            <asp:RadioButton ID="studiedNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="studied" Text="No" />
+                                            <span class="helpicon"><i id="icstudied" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item frm-rdbtn" id="HaveUSINo" runat="server" style="display:none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                    <div class="form-row">
+                                        <label id="label2" runat="server" for="HaveUSINo" class="col-md-3 col-form-label form-label">Do You have an Australian  Unique Student Identifier (USI) Number?</label>
+                                        <div class="col-md-9">
+                                            <asp:RadioButton ID="USINumberYes" CssClass="form-control" runat="server" GroupName="USINumber" Text="Yes" />
+                                            <asp:RadioButton ID="USINumberNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="USINumber" Text="No" />
+                                            <asp:RadioButton ID="USINumberNotsure" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="USINumber" Text="I Am Not Sure" />
+                                            <span class="helpicon"><i id="icUSINumber" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item frm-rdbtn" id="USINumber" runat="server" style="display:none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolName">
+                                    <div class="form-row">
+                                        <label id="label3" runat="server" for="USINumber" class="col-md-3 col-form-label form-label">Enter Your Australian Unique Student Identifier (USI) Number Here</label>
+                                        <div class="col-md-6">
+                                            <input id="txtUSINumber" runat="server" type="text" class="form-control" placeholder="USI Number ">
+                                            <span class="helpicon"><i id="i1" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="list-group-item frm-rdbtn" id="haveyoustudiedininstitution" runat="server" style="display:none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
+                                    <div class="form-row">
+                                        <label id="label4" runat="server" for="haveyoustudiedininstitution" class="col-md-3 col-form-label form-label">HAve you studeied at <asp:label id="nameofinstitue1" runat="server"></asp:label> before?</label>
+                                        <div class="col-md-9">
+                                            <asp:RadioButton ID="studiedininstitutionYes" CssClass="form-control" runat="server" GroupName="studiedininstitution" Text="Yes" />
+                                            <asp:RadioButton ID="studiedininstitutionNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="studiedininstitution" Text="No" />
+                                            <span class="helpicon"><i id="i2" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item frm-rdbtn" id="studentID" runat="server" style="display:none">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolName">
+                                    <div class="form-row">
+                                        <label id="label5" runat="server" for="studentID" class="col-md-3 col-form-label form-label">Enter Your Student Number/ Student ID from <asp:label id="nameofinstitue2" runat="server"></asp:label> here</label>
+                                        <div class="col-md-6">
+                                            <input id="txtstudentID" runat="server" type="text" class="form-control" placeholder="Student ID">
+                                            <span class="helpicon"><i id="icstudentID" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>      
+
+
+                        </div>
                             <!----High School Start------>
                         <div id="highshool">
                             <div class="list-group-item frm-rdbtn" id="highschool" runat="server" style="display: none">
@@ -1186,7 +1251,70 @@
             ToggleHigherEducatin();
             ToggleSecondary();
             ToggleHighSchool();
+            //USI
+            if ($("#<%=studiedNo.ClientID%>").is(":checked"))
+            {
+                $("#<%=HaveUSINo.ClientID%>").hide();
+                $("#<%=USINumber.ClientID%>").hide();
+                $("#<%=haveyoustudiedininstitution.ClientID%>").hide();
+                $("#<%=studentID.ClientID%>").hide();
+            }
+            else if ($("#<%=studiedYes.ClientID%>").is(":checked")) 
+                $("#<%=HaveUSINo.ClientID%>").show();
 
+            if ($("#<%=USINumberYes.ClientID%>").is(":checked")) {
+                $("#<%=USINumber.ClientID%>").show();
+                $("#<%=haveyoustudiedininstitution.ClientID%>").hide();
+                $("#<%=studentID.ClientID%>").hide();
+            }
+            else if ($("#<%=USINumberNo.ClientID%>").is(":checked") || $("#<%=USINumberNotsure.ClientID%>").is(":checked")) 
+            {                
+                $("#<%=haveyoustudiedininstitution.ClientID%>").show();
+                $("#<%=studentID.ClientID%>").hide();
+            }
+
+            if ($("#<%=studiedininstitutionYes.ClientID%>").is(":checked")) 
+                $("#<%=studentID.ClientID%>").show();
+            else
+                $("#<%=studentID.ClientID%>").hide();
+
+        });
+        //USI NUmber
+         $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$studied']").click(function () {
+                if ($("#<%=studiedNo.ClientID%>").is(":checked")) {
+                    $("#<%=HaveUSINo.ClientID%>").hide();
+                    $("#<%=USINumber.ClientID%>").hide();
+                    $("#<%=haveyoustudiedininstitution.ClientID%>").hide();
+                    $("#<%=studentID.ClientID%>").hide();
+                }
+                else if ($("#<%=studiedYes.ClientID%>").is(":checked")) 
+                    $("#<%=HaveUSINo.ClientID%>").show();
+
+            });
+        });
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$USINumber']").click(function () {
+                if ($("#<%=USINumberYes.ClientID%>").is(":checked")) {
+                    $("#<%=USINumber.ClientID%>").show();
+                    $("#<%=haveyoustudiedininstitution.ClientID%>").hide();
+                    $("#<%=studentID.ClientID%>").hide();
+                }
+                else if ($("#<%=USINumberNo.ClientID%>").is(":checked") || $("#<%=USINumberNotsure.ClientID%>").is(":checked")) 
+                {
+                    $("#<%=USINumber.ClientID%>").hide();
+                    $("#<%=haveyoustudiedininstitution.ClientID%>").show();
+                    $("#<%=studentID.ClientID%>").hide();
+                }
+            });
+        });
+         $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$studiedininstitution']").click(function () {
+                if ($("#<%=studiedininstitutionYes.ClientID%>").is(":checked")) 
+                    $("#<%=studentID.ClientID%>").show();
+                else
+                    $("#<%=studentID.ClientID%>").hide();
+            });
         });
         function refreshGrid(gradeid, mode, course, subject, otherSubject, gradeType, grade)
          {             
@@ -1608,7 +1736,17 @@
         function validateForm() {
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var flag = false;
-            if ((!$("#<%=highschool.ClientID%>").is(':hidden')) && !(($("#<%=rblHighYes.ClientID%>").is(":checked")) || ($("#<%=rblHighNo.ClientID%>").is(":checked")) || ($("#<%=rblHighNot.ClientID%>").is(":checked"))))
+            if (!($("#<%=studiedYes.ClientID%>").is(":checked") || $("#<%=studiedNo.ClientID%>").is(":checked")))
+                alert("Please select option for have you studied in your country before");
+            else if ($("#<%=studiedYes.ClientID%>").is(":checked") && (!($("#<%=USINumberYes.ClientID%>").is(":checked") || $("#<%=USINumberNo.ClientID%>").is(":checked") || $("#<%=USINumberNotsure.ClientID%>").is(":checked"))))
+                alert("Please slect option for do you have an USI NUmber ");
+            else if ($("#<%=studiedYes.ClientID%>").is(":checked") && $("#<%=USINumberYes.ClientID%>").is(":checked") && $("#<%=txtUSINumber.ClientID%>").val() == "")
+                alert("Please enter USI Number");
+            else if ($("#<%=studiedYes.ClientID%>").is(":checked") && ($("#<%=USINumberNo.ClientID%>").is(":checked") || $("#<%=USINumberNotsure.ClientID%>").is(":checked")) && (!($("#<%=studiedininstitutionNo.ClientID%>").is(":checked") || $("#<%=studiedininstitutionYes.ClientID%>").is(":checked"))))
+                alert("Please select option for Have you studied at your institution before");
+            else if ($("#<%=studiedYes.ClientID%>").is(":checked") && $("#<%=studiedininstitutionYes.ClientID%>").is(":checked") && $("#<%=txtstudentID.ClientID%>").val() == "")
+                alert("Please enter studentent ID from your Institution");
+            else if ((!$("#<%=highschool.ClientID%>").is(':hidden')) && !(($("#<%=rblHighYes.ClientID%>").is(":checked")) || ($("#<%=rblHighNo.ClientID%>").is(":checked")) || ($("#<%=rblHighNot.ClientID%>").is(":checked"))))
                 alert("Please Select Option to record High School details");            
             else if ((!$("#<%=highschoolCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlCountryHighSchool.ClientID%>").val() == "0"))
                 alert("Please select  high school country");
@@ -1638,7 +1776,7 @@
                 alert("Please enter a valid  e-mail address");
             else if ((!$("#<%=highschoolcontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtHighSchoolcontactMobile.ClientID%>").val() == ""))
                 alert("Please enter  high school contact mobile no");
-            else if ((!$("#<%=Secondary.ClientID%>").is(':hidden')) && !(($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNot.ClientID%>").is(":checked"))))
+            else if ((!$("#<%=Secondary.ClientID%>").is(':hidden')) && $("#<%=rblHighYes.ClientID%>").is(":checked") && !(($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNot.ClientID%>").is(":checked"))))
                 alert("Please Select Option to record Secondary details");
             else if ((!$("#<%=SecondaryCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlSecondaryCountry.ClientID%>").val() == "0"))
                 alert("Please select  secondary country");
@@ -1702,8 +1840,8 @@
                 alert("Please enter a valid higher education e-mail address");
             else if ((!$("#<%=highercontactMobile.ClientID%>").is(':hidden')) && ($("#<%=txtHighercontactMobile.ClientID%>").val() == ""))
                 alert("Please enter  higher education contact mobile no");
-            else if ((!$("#<%=diploma.ClientID%>").is(':hidden')) && !(($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) || ($("#<%=rblSecondaryNot.ClientID%>").is(":checked"))))
-                alert("Please Select Option to record Secondary details");
+            else if ((!$("#<%=diploma.ClientID%>").is(':hidden')) && !(($("#<%=rbldiplomaYes.ClientID%>").is(":checked")) || ($("#<%=rbldiplomaNo.ClientID%>").is(":checked")) || ($("#<%=rbldiplomaNot.ClientID%>").is(":checked"))))
+                alert("Please Select Option to record Diploma details");
             else if ((!$("#<%=diplomaCountry.ClientID%>").is(':hidden')) && ($("#<%=ddlDiplomaCountry.ClientID%>").val() == "0"))
                 alert("Please select  diploma country");
             else if ((!$("#<%=diplomastartDate.ClientID%>").is(':hidden')) && (($("#<%=ddlDiplomaStartDateMonth.ClientID%>").val() == "0") || ($("#<%=ddlDiplomaStartDateYear.ClientID%>").val() == "0")))
