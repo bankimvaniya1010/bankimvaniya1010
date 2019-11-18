@@ -51,7 +51,7 @@ public partial class applicantscholarshipstatus : System.Web.UI.Page
                 var scholarshipObj = new {
                     scholarship_form = "\\Docs\\Scholarship Application Forms\\" + item.upload_form,
                     item.scholarships.name,
-                    award_amount = item.scholarships.award_amount.ToString(),
+                    item.scholarships.award_amount,
                     item.approval_status,
                     awarded_by,
                     image_icon = "/assets/images/pdf-icon.jpg"

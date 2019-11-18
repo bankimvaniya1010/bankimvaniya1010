@@ -156,7 +156,7 @@ public partial class admin_managescholarship : System.Web.UI.Page
         int scholarshipID = Convert.ToInt32(ViewState["scholarshipID"]);
         try
         {
-            var existingScholarship = db.scholarships.Where(x => x.id == scholarshipID && x.name == txtScholarshipName.Value.Trim()).FirstOrDefault();
+            var existingScholarship = db.scholarships.Where(x => x.id == scholarshipID).FirstOrDefault();
             var mode = "new";
             scholarships objScholarship = new scholarships();
             if (existingScholarship != null)
@@ -167,7 +167,7 @@ public partial class admin_managescholarship : System.Web.UI.Page
 
             objScholarship.name = txtScholarshipName.Value.Trim();
             objScholarship.description = txtScholarshipDescription.Value.Trim();
-            objScholarship.award_amount = Convert.ToInt32(txtScholarshipAmount.Value.Trim());
+            objScholarship.award_amount = txtScholarshipAmount.Value.Trim();
             string deadLineDate = ddlYear.SelectedValue + "-" + ddlMonth.SelectedValue + "-" + hidDeadLineDate.Value;
             objScholarship.application_deadline = Convert.ToDateTime(deadLineDate);
             if (rbtnUniversal.Checked)
