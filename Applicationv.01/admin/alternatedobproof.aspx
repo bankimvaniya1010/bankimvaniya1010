@@ -21,17 +21,31 @@
 
         <div class="card">
 
-
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
                     <asp:GridView ID="gvDOBProof" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
                         DataKeyNames="id"
                         AllowPaging="True"
-                        CellPadding="3"
+                        CellPadding="3" BorderStyle="None" BorderWidth="1px" CellSpacing="2"
                         PageSize="25"
-                        BorderStyle="None"
-                        BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="gvDOBProof_DataBound" OnRowCancelingEdit="gvDOBProof_RowCancelingEdit" OnRowCommand="gvDOBProof_RowCommand" OnRowDataBound="gvDOBProof_RowDataBound" OnRowDeleted="gvDOBProof_RowDeleted" OnRowDeleting="gvDOBProof_RowDeleting" OnRowEditing="gvDOBProof_RowEditing" OnRowUpdated="gvDOBProof_RowUpdated" OnRowUpdating="gvDOBProof_RowUpdating" OnPageIndexChanging="gvDOBProof_PageIndexChanging">
+                        OnDataBound="gvDOBProof_DataBound" OnRowCancelingEdit="gvDOBProof_RowCancelingEdit" OnRowCommand="gvDOBProof_RowCommand" OnRowDataBound="gvDOBProof_RowDataBound" OnRowDeleted="gvDOBProof_RowDeleted" OnRowDeleting="gvDOBProof_RowDeleting" OnRowEditing="gvDOBProof_RowEditing" OnRowUpdated="gvDOBProof_RowUpdated" OnRowUpdating="gvDOBProof_RowUpdating" OnPageIndexChanging="gvDOBProof_PageIndexChanging">
+
+                        <EmptyDataTemplate>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </td
+                                <td>
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add Alternate DOB Proof" OnClientClick="return validateEmptyRow()" OnClick="Add" CommandName="EmptyDataTemplate" />
+                                </td>
+                            </tr>
+                        </EmptyDataTemplate>
 
                         <Columns>
 
@@ -88,12 +102,7 @@
 
                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
 
-
-
-
                         </Columns>
-
-
 
                     </asp:GridView>
                 </div>
@@ -104,11 +113,20 @@
 
     </div>
     <script>
+        function validateEmptyRow() {
+            if (!$("#ContentPlaceHolder1_gvDOBProof_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_gvDOBProof_txtEmptyRecordDescription").val() == "") {
+                alert("Description Cannot Be Empty");
+                return false;
+            }
+
+            return true;
+        }
+
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#CustomizeForms_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#alternatedobproof').addClass('active');
         });
-	</script>
+    </script>
 </asp:Content>

@@ -138,18 +138,32 @@
         function validateForm() {
             var flag = false;
             if (!$("#<%=Qualification.ClientID%>").is(':hidden') && $("#<%=ddlCourse.ClientID%>").val() == "")
-                alert("Please Select Course name ");
+                alert("Please Select Course name.");
             else if (!$("#<%=Subject.ClientID%>").is(':hidden') && $("#<%=ddlsubjects.ClientID%>").val() == "0")
-                alert("Please Select Subject ");
+                alert("Please Select Subject.");
             else if (!$("#<%=OtherSubject.ClientID%>").is(':hidden') && $("#<%=txtOther.ClientID%>").val() == "")
-                alert("Please enter other subjects ");
+                alert("Please enter other subjects.");
             else if (!$("#<%=gradeType.ClientID%>").is(':hidden') && $("#<%=ddlGradeType.ClientID%>").val() == "0")
-                alert("Please select valid grade type ");
+                alert("Please select valid grade type.");
             else if (!$("#<%=grade.ClientID%>").is(':hidden') && $("#<%=txtGrade.ClientID%>").val() == "")
-                alert("Please enter grade value ");
+                alert("Please enter grade value.");
+            else if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others' && !isValidOtherSubject()) { }
             else
                 flag = true;
             return flag;
+        }
+
+        function isValidOtherSubject() {
+            var otherSubjectVal = $("#<%=txtOther.ClientID%>").val();
+            var ddl = $('#<%=ddlsubjects.ClientID%> option');
+            for (var i = 0; i < ddl.length; i++) {
+                if (ddl[i].text == otherSubjectVal) {
+                    alert("Please enter other subject different from list.");
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         $(document).ready(function () {

@@ -121,10 +121,19 @@ public partial class addgrade : System.Web.UI.Page
                         select pInfo).FirstOrDefault();
 
             applicantsubjectwisegrade objGrade = new applicantsubjectwisegrade();
-            if (Info != null)
+            if (Info != null && subjectID != 0)
             {
                 mode = "update";
                 objGrade = Info;
+            }
+            else if (subjectID == 0)
+            {
+                var otherSubjectInfo = db.applicantsubjectwisegrade.FirstOrDefault(x => x.applicantid == userID && x.subjectid == subjectID && x.othersubject == txtOther.Value && x.coursename == classname);
+                if (otherSubjectInfo != null)
+                {
+                    mode = "update";
+                    objGrade = otherSubjectInfo;
+                }
             }
 
             objGrade.grade = txtGrade.Value;

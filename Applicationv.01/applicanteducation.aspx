@@ -1222,28 +1222,28 @@
                 var country = $("#<%=ddlCountryHighSchool.ClientID%>").val();
                 var grade = $("#<%=ddlHighSchoolGrade.ClientID%>").val();
                 var course = "tenth";
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars=no,width=screen.width,height = screen.height,fullscreen=yes,top='+top+',left='+left);
 
             });
             $("#<%=btn12th.ClientID%>").click(function () {
                 var country = $("#<%=ddlSecondaryCountry.ClientID%>").val();
                 var grade = $("#<%=ddlSecondaryGrade.ClientID%>").val();
                 var course = "twelth";
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars=no,width=screen.width,height=screen.height,fullscreen=yes,top='+top+',left='+left);
 
             });
             $("#<%=btnhigher.ClientID%>").click(function () {
                 var country = $("#<%=ddlHigherCountry.ClientID%>").val();
                 var grade = $("#<%=ddlHigherGrade.ClientID%>").val();
                 var course = $("#<%=ddlCourse.ClientID%>").val();
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars=no,width=screen.width,height=screen.height,fullscreen=yes,top='+top+',left='+left);
 
             });
             $("#<%=btndiploma.ClientID%>").click(function () {
                 var country = $("#<%=ddlDiplomaCountry.ClientID%>").val();
                 var grade = $("#<%=ddlDiplomaGrade.ClientID%>").val();
                 var course = "diploma";
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars = no,width = 700, height = 500,top ='+top+',left = '+left);
+                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars=no,width=screen.width,height=screen.height,fullscreen=yes,top='+top+',left='+left);
 
             });
 

@@ -115,7 +115,7 @@ public partial class applicantcourse : System.Web.UI.Page
                     from x in mnData.DefaultIfEmpty()
                     join umd in db1.universitywisemastermapping on x.masterid equals umd.mastervalueid into umdData
                     from x1 in umdData.DefaultIfEmpty()
-                    where (x1.universityid == universityID1 && x1.masterid == 6)
+                    where (x1.universityid == universityID1 && x.mastername.ToUpper().Contains("Major Discipline Master"))
                     select new
                     {
                         description = md.description,
@@ -232,7 +232,7 @@ public partial class applicantcourse : System.Web.UI.Page
                          from x in mnData.DefaultIfEmpty()
                          join umd in db.universitywisemastermapping on x.masterid equals umd.mastervalueid into umdData
                          from x1 in umdData.DefaultIfEmpty()
-                         where (x1.universityid == universityID && x1.masterid == 6)
+                         where (x1.universityid == universityID && x.mastername.ToUpper().Contains("Major Discipline Master"))
                          select new
                          {
                              description = md.description,

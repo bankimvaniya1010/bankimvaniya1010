@@ -11,6 +11,7 @@ public partial class admin_alternateaddressproof : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     Logger log = new Logger();
+    int universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckAdminLogin())
@@ -125,9 +126,20 @@ public partial class admin_alternateaddressproof : System.Web.UI.Page
 
             int ID = Convert.ToInt32(gvAddressProof.DataKeys[e.RowIndex].Values[0]);
             alternateadressproofmaster Address = db.alternateadressproofmaster.Where(b => b.id == ID).First();
-            db.alternateadressproofmaster.Remove(Address);
-            db.SaveChanges();
-            BindAddressProof();
+            var existsIndetails = db.applicantdetails.Where(d => d.alternativeresidenceproofId == ID).ToList();
+            var existsInUniversitywisemapping = (from umm in db.universitywisemastermapping
+                                                 join mn in db.master_name on umm.masterid equals mn.masterid
+                                                 where umm.universityid == universityID && mn.mastername.ToUpper().Contains("Alternate Address Proof") && umm.mastervalueid == ID
+                                                 select umm).ToList();
+
+            if (existsIndetails.Count == 0 && existsInUniversitywisemapping.Count == 0)
+            {
+                db.alternateadressproofmaster.Remove(Address);
+                db.SaveChanges();
+                BindAddressProof();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this Alternate Address Proof as it already used in another records')", true);
         }
         catch (Exception ex)
         {
@@ -180,6 +192,29 @@ public partial class admin_alternateaddressproof : System.Web.UI.Page
     protected void gvAddressProof_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvAddressProof.PageIndex = e.NewPageIndex;
+        BindAddressProof();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvAddressProof.FooterRow != null)
+            control = gvAddressProof.FooterRow;
+        else
+            control = gvAddressProof.Controls[0].Controls[0];
+        string addressDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(addressDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        alternateadressproofmaster objAdress = new alternateadressproofmaster();
+
+        objAdress.description = addressDescriptonText;
+
+        db.alternateadressproofmaster.Add(objAdress);
+        db.SaveChanges();
         BindAddressProof();
     }
 }

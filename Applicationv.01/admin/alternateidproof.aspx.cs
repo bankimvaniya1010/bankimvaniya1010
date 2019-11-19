@@ -129,7 +129,7 @@ public partial class admin_alternateidproof : System.Web.UI.Page
                 BindIDProof();
             }
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Alternate ID Proof as it already Used in another records')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this Alternate ID Proof as it already used in another records')", true);
         }
         catch (Exception ex)
         {
@@ -173,6 +173,29 @@ public partial class admin_alternateidproof : System.Web.UI.Page
     protected void gvIDProof_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvIDProof.PageIndex = e.NewPageIndex;
+        BindIDProof();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvIDProof.FooterRow != null)
+            control = gvIDProof.FooterRow;
+        else
+            control = gvIDProof.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        alternateidproofmaster objID = new alternateidproofmaster();
+
+        objID.description = idDescriptonText;
+
+        db.alternateidproofmaster.Add(objID);
+        db.SaveChanges();
         BindIDProof();
     }
 }

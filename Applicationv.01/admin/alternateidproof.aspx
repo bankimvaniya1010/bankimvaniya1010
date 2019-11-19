@@ -21,17 +21,31 @@
 
         <div class="card">
 
-
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
                     <asp:GridView ID="gvIDProof" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
                         DataKeyNames="id"
                         AllowPaging="True"
-                        CellPadding="3"
+                        CellPadding="3" BorderStyle="None" BorderWidth="1px" CellSpacing="2"
                         PageSize="25"
-                        BorderStyle="None"
-                        BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="gvIDProof_DataBound" OnRowCancelingEdit="gvIDProof_RowCancelingEdit" OnRowCommand="gvIDProof_RowCommand" OnRowDataBound="gvIDProof_RowDataBound" OnRowDeleted="gvIDProof_RowDeleted" OnRowDeleting="gvIDProof_RowDeleting" OnRowEditing="gvIDProof_RowEditing" OnRowUpdated="gvIDProof_RowUpdated" OnRowUpdating="gvIDProof_RowUpdating" OnPageIndexChanging="gvIDProof_PageIndexChanging">
+                        OnDataBound="gvIDProof_DataBound" OnRowCancelingEdit="gvIDProof_RowCancelingEdit" OnRowCommand="gvIDProof_RowCommand" OnRowDataBound="gvIDProof_RowDataBound" OnRowDeleted="gvIDProof_RowDeleted" OnRowDeleting="gvIDProof_RowDeleting" OnRowEditing="gvIDProof_RowEditing" OnRowUpdated="gvIDProof_RowUpdated" OnRowUpdating="gvIDProof_RowUpdating" OnPageIndexChanging="gvIDProof_PageIndexChanging">
+
+                        <EmptyDataTemplate>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </td
+                                <td>
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add Alternate ID Proof" OnClientClick="return validateEmptyRow()" OnClick="Add" CommandName="EmptyDataTemplate" />
+                                </td>
+                            </tr>
+                        </EmptyDataTemplate>
 
                         <Columns>
 
@@ -88,22 +102,24 @@
 
                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
 
-
-
-
                         </Columns>
-
-
 
                     </asp:GridView>
                 </div>
 
-
             </div>
         </div>
-
     </div>
     <script>
+        function validateEmptyRow() {
+            if (!$("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").val() == "") {
+                alert("Description Cannot Be Empty");
+                return false;
+            }
+
+            return true;
+        }
+
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#CustomizeForms_list').addClass('open');
