@@ -70,12 +70,22 @@ public partial class admin_alternateidproof : System.Web.UI.Page
                 alternateidproofmaster objID = new alternateidproofmaster();
 
                 TextBox txtDescription = (TextBox)gvIDProof.FooterRow.FindControl("txtDescription1");
+                
+                var existingData = (from data in db.alternateidproofmaster
+                                    where data.description == txtDescription.Text.Trim()
+                                    select data.description).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objID.description = txtDescription.Text.Trim();
 
-                objID.description = txtDescription.Text.Trim();
-
-                db.alternateidproofmaster.Add(objID);
-                db.SaveChanges();
-                BindIDProof();
+                    db.alternateidproofmaster.Add(objID);
+                    db.SaveChanges();
+                    BindIDProof();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)

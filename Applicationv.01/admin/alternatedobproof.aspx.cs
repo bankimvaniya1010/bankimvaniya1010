@@ -72,11 +72,21 @@ public partial class admin_alternatedobproof : System.Web.UI.Page
 
                 TextBox txtDescription = (TextBox)gvDOBProof.FooterRow.FindControl("txtDescription1");
 
-                objDOBAdress.description = txtDescription.Text.Trim();
+                var existingData = (from data in db.alternatedobproof
+                                    where data.description == txtDescription.Text.Trim()
+                                    select data.description).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objDOBAdress.description = txtDescription.Text.Trim();
 
-                db.alternatedobproof.Add(objDOBAdress);
-                db.SaveChanges();
-                BindDOBProof();
+                    db.alternatedobproof.Add(objDOBAdress);
+                    db.SaveChanges();
+                    BindDOBProof();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)

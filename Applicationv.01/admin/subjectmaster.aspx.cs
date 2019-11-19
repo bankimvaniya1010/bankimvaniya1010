@@ -63,11 +63,21 @@ public partial class admin_subjectmaster : System.Web.UI.Page
 
                 TextBox txtDescription = (TextBox)gvsubjectmasterGridView.FooterRow.FindControl("txtDescription1");
 
-                objsubjectmaster.description = txtDescription.Text.Trim();
+                var existingData = (from data in db.subjectmaster
+                                    where data.description == txtDescription.Text.Trim()
+                                    select data.description).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objsubjectmaster.description = txtDescription.Text.Trim();
 
-                db.subjectmaster.Add(objsubjectmaster);
-                db.SaveChanges();
-                BindSubject();
+                    db.subjectmaster.Add(objsubjectmaster);
+                    db.SaveChanges();
+                    BindSubject();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)
@@ -107,9 +117,16 @@ public partial class admin_subjectmaster : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvsubjectmasterGridView.DataKeys[e.RowIndex].Values[0]);
             subjectmaster subject = db.subjectmaster.Where(b => b.id == ID).First();
-            db.subjectmaster.Remove(subject);
-            db.SaveChanges();
-            BindSubject();
+            var existsInCountrywiseSubjectmapping = db.subjectwisecountrymapping.Where(c => c.subjectid == ID).ToList();
+            if (existsInCountrywiseSubjectmapping.Count == 0)
+            {
+                db.subjectmaster.Remove(subject);
+                db.SaveChanges();
+                BindSubject();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Subject as it already Used in country wise mapping records')", true);
+
         }
         catch (Exception ex)
         {
@@ -155,6 +172,29 @@ public partial class admin_subjectmaster : System.Web.UI.Page
     protected void gvsubjectmasterGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvsubjectmasterGridView.PageIndex = e.NewPageIndex;
+        BindSubject();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvsubjectmasterGridView.FooterRow != null)
+            control = gvsubjectmasterGridView.FooterRow;
+        else
+            control = gvsubjectmasterGridView.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        subjectmaster objID = new subjectmaster();
+
+        objID.description = idDescriptonText;
+
+        db.subjectmaster.Add(objID);
+        db.SaveChanges();
         BindSubject();
     }
 }

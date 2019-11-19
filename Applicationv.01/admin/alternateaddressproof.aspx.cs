@@ -74,11 +74,21 @@ public partial class admin_alternateaddressproof : System.Web.UI.Page
 
                 TextBox txtDescription = (TextBox)gvAddressProof.FooterRow.FindControl("txtDescription1");
 
-                objAdress.description = txtDescription.Text.Trim();
+                var existingData = (from data in db.alternateadressproofmaster
+                                    where data.description == txtDescription.Text.Trim()
+                                    select data.description).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objAdress.description = txtDescription.Text.Trim();
 
-                db.alternateadressproofmaster.Add(objAdress);
-                db.SaveChanges();
-                BindAddressProof();
+                    db.alternateadressproofmaster.Add(objAdress);
+                    db.SaveChanges();
+                    BindAddressProof();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)

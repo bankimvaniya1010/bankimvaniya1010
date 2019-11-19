@@ -67,12 +67,22 @@ public partial class admin_sutdymode : System.Web.UI.Page
                 TextBox txtDescription = (TextBox)gvStudemode.FooterRow.FindControl("txtDescription1");
                 DropDownList ddlUniversityFooter = (DropDownList)gvStudemode.FooterRow.FindControl("ddlUniversityFooter");
 
-                ObjMOde.description = txtDescription.Text.Trim();
-                ObjMOde.universityid = Convert.ToInt32(ddlUniversityFooter.SelectedValue);
+                var existingData = (from data in db.studymodemaster
+                                    where data.description == txtDescription.Text.Trim() && data.universityid.ToString() == ddlUniversityFooter.SelectedValue
+                                    select data).FirstOrDefault();
+                if (existingData == null)
+                {
+                    ObjMOde.description = txtDescription.Text.Trim();
+                    ObjMOde.universityid = Convert.ToInt32(ddlUniversityFooter.SelectedValue);
 
-                db.studymodemaster.Add(ObjMOde);
-                db.SaveChanges();
-                BindStudyMode();
+                    db.studymodemaster.Add(ObjMOde);
+                    db.SaveChanges();
+                    BindStudyMode();
+                }
+                else {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description and university')", true);
+                }
+
             }
         }
         catch (Exception ex)
@@ -197,5 +207,45 @@ public partial class admin_sutdymode : System.Web.UI.Page
     {
         gvStudemode.PageIndex = e.NewPageIndex;
         BindStudyMode();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvStudemode.FooterRow != null)
+            control = gvStudemode.FooterRow;
+        else
+            control = gvStudemode.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        DropDownList ddlEmptyRecorduniversity = (control.FindControl("ddlEmptyRecorduniversity") as DropDownList);
+
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        studymodemaster objID = new studymodemaster();
+
+        objID.description = idDescriptonText;
+        objID.universityid = Convert.ToInt32(ddlEmptyRecorduniversity.SelectedValue);
+
+        db.studymodemaster.Add(objID);
+        db.SaveChanges();
+        BindStudyMode();
+    }
+
+    protected void ddlEmptyRecorduniversity_Load(object sender, EventArgs e)
+    {
+        Control control = null;        
+        DropDownList ddlEmptyRecorduniversity = (control.FindControl("ddlEmptyRecorduniversity") as DropDownList);
+
+        var universitymaster = db.university_master.ToList();
+        ListItem lst = new ListItem("Please select", "0");
+        ddlEmptyRecorduniversity.DataSource = universitymaster;
+        ddlEmptyRecorduniversity.DataTextField = "university_name";
+        ddlEmptyRecorduniversity.DataValueField = "universityid";
+        ddlEmptyRecorduniversity.DataBind();
+        ddlEmptyRecorduniversity.Items.Insert(0, lst);
     }
 }

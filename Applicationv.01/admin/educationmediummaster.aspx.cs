@@ -58,11 +58,21 @@ public partial class admin_educationmediummaster : System.Web.UI.Page
 
                 TextBox txtDescription = (TextBox)gvEducationMedium.FooterRow.FindControl("txtDescription1");
 
-                ObjMedium.description = txtDescription.Text.Trim();
+                var existingData = (from data in db.educationmediummaster
+                                    where data.description == txtDescription.Text.Trim()
+                                    select data.description).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    ObjMedium.description = txtDescription.Text.Trim();
 
-                db.educationmediummaster.Add(ObjMedium);
-                db.SaveChanges();
-                BindEducationMedium();
+                    db.educationmediummaster.Add(ObjMedium);
+                    db.SaveChanges();
+                    BindEducationMedium();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)
@@ -160,6 +170,28 @@ public partial class admin_educationmediummaster : System.Web.UI.Page
     protected void gvEducationMedium_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvEducationMedium.PageIndex = e.NewPageIndex;
+        BindEducationMedium();
+    }
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvEducationMedium.FooterRow != null)
+            control = gvEducationMedium.FooterRow;
+        else
+            control = gvEducationMedium.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        educationmediummaster objID = new educationmediummaster();
+
+        objID.description = idDescriptonText;
+
+        db.educationmediummaster.Add(objID);
+        db.SaveChanges();
         BindEducationMedium();
     }
 }

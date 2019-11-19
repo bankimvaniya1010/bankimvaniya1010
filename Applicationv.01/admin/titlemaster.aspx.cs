@@ -64,11 +64,21 @@ public partial class admin_titlemaster : System.Web.UI.Page
 
                 TextBox txtDescription = (TextBox)gvTitle.FooterRow.FindControl("txtDescription1");
 
-                objTitle.titlename = txtDescription.Text.Trim();
+                var existingData = (from data in db.titlemaster
+                                    where data.titlename == txtDescription.Text.Trim()
+                                    select data.titlename).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objTitle.titlename = txtDescription.Text.Trim();
 
-                db.titlemaster.Add(objTitle);
-                db.SaveChanges();
-                BindTitle();
+                    db.titlemaster.Add(objTitle);
+                    db.SaveChanges();
+                    BindTitle();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)
@@ -113,9 +123,16 @@ public partial class admin_titlemaster : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvTitle.DataKeys[e.RowIndex].Values[0]);
             titlemaster objTitle = db.titlemaster.Where(b => b.titleid == ID).First();
-            db.titlemaster.Remove(objTitle);
-            db.SaveChanges();
-            BindTitle();
+            var existsInpersonaldetails = db.applicantdetails.Where(x => x.title == ID).ToList();
+            if (existsInpersonaldetails.Count == 0)
+            {
+                db.titlemaster.Remove(objTitle);
+                db.SaveChanges();
+                BindTitle();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This title as it already Used in another records')", true);
+
         }
         catch (Exception ex)
         {
@@ -159,6 +176,29 @@ public partial class admin_titlemaster : System.Web.UI.Page
     protected void gvTitle_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvTitle.PageIndex = e.NewPageIndex;
+        BindTitle();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvTitle.FooterRow != null)
+            control = gvTitle.FooterRow;
+        else
+            control = gvTitle.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        titlemaster objID = new titlemaster();
+
+        objID.titlename = idDescriptonText;
+
+        db.titlemaster.Add(objID);
+        db.SaveChanges();
         BindTitle();
     }
 }

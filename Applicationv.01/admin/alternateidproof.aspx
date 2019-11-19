@@ -40,9 +40,9 @@
                                 <td></td>
                                 <td>
                                     <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
-                                </td
+                                </td>
                                 <td>
-                                    <asp:Button ID="btnAdd" runat="server" Text="Add Alternate ID Proof" OnClientClick="return validateEmptyRow()" OnClick="Add" CommandName="EmptyDataTemplate" />
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClientClick="return validateEmptyRow()" OnClick="Add" CommandName="EmptyDataTemplate" class="btn btn-success"/>
                                 </td>
                             </tr>
                         </EmptyDataTemplate>
