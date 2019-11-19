@@ -32,6 +32,22 @@
                         BorderWidth="1px"
                         CellSpacing="2" OnDataBound="gvGrade_DataBound" OnRowCancelingEdit="gvGrade_RowCancelingEdit" OnRowCommand="gvGrade_RowCommand" OnRowDataBound="gvGrade_RowDataBound" OnRowDeleted="gvGrade_RowDeleted" OnRowDeleting="gvGrade_RowDeleting" OnRowEditing="gvGrade_RowEditing" OnRowUpdated="gvGrade_RowUpdated" OnRowUpdating="gvGrade_RowUpdating" OnPageIndexChanging="gvGrade_PageIndexChanging">
 
+                        <EmptyDataTemplate>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </td>
+                                <td>
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClientClick="return validateEmptyRow()" OnClick="Add" CommandName="EmptyDataTemplate" class="btn btn-success"/>
+                                </td>
+                            </tr>
+                        </EmptyDataTemplate>
                         <Columns>
 
                             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False"
@@ -103,6 +119,14 @@
 
     </div>
     <script>
+        function validateEmptyRow() {
+            if (!$("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").val() == "") {
+                alert("Description Cannot Be Empty");
+                return false;
+            }
+
+            return true;
+        }
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#CustomizeForms_list').addClass('open');

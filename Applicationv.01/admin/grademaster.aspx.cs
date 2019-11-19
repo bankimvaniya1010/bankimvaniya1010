@@ -11,10 +11,12 @@ public partial class admin_grademaster : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int universityID;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!IsPostBack)
             BindGrade();
     }
@@ -65,11 +67,21 @@ public partial class admin_grademaster : System.Web.UI.Page
 
                 TextBox txtDescription = (TextBox)gvGrade.FooterRow.FindControl("txtDescription1");
 
-                objGrade.description = txtDescription.Text.Trim();
+                var existingData = (from data in db.grademaster
+                                    where data.description == txtDescription.Text.Trim()
+                                    select data.description).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objGrade.description = txtDescription.Text.Trim();
 
-                db.grademaster.Add(objGrade);
-                db.SaveChanges();
-                BindGrade();
+                    db.grademaster.Add(objGrade);
+                    db.SaveChanges();
+                    BindGrade();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)
@@ -114,9 +126,23 @@ public partial class admin_grademaster : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvGrade.DataKeys[e.RowIndex].Values[0]);
             grademaster objGrade = db.grademaster.Where(b => b.id == ID).First();
-            db.grademaster.Remove(objGrade);
-            db.SaveChanges();
-            BindGrade();
+            var existsInUniversitywisemapping = (from umm in db.universitywisemastermapping
+                                                 join mn in db.master_name on umm.masterid equals mn.masterid
+                                                 where umm.universityid == universityID && mn.mastername.ToUpper().Contains("Major Discipline Master") && umm.mastervalueid == ID
+                                                 select umm).ToList();
+            var existsInLanguageDetail = db.applicantlanguagecompetency.Where(x =>x.gradetype == ID.ToString()).ToList();
+            var existsInEducationDetails = db.applicanteducationdetails.Where(d => d.highschoolgradetypeid == ID && d.secondarygradetypeid == ID && d.diplomagradetypeid == ID).ToList();
+            var existsInHigheduDetail = db.applicanthighereducation.Where(h => h.gradetypeid == ID).ToList();
+            var existsInsubjectwisemapping = db.applicantsubjectwisegrade.Where(s => s.gradeid == ID).ToList();
+
+            if (existsInUniversitywisemapping.Count == 0 && existsInLanguageDetail.Count == 0 && existsInsubjectwisemapping.Count == 0 && existsInEducationDetails.Count == 0 && existsInHigheduDetail.Count == 0)
+            {
+                db.grademaster.Remove(objGrade);
+                db.SaveChanges();
+                BindGrade();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This grade as it already Used in another records')", true);
         }
         catch (Exception ex)
         {
@@ -156,6 +182,29 @@ public partial class admin_grademaster : System.Web.UI.Page
     protected void gvGrade_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvGrade.PageIndex = e.NewPageIndex;
+        BindGrade();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvGrade.FooterRow != null)
+            control = gvGrade.FooterRow;
+        else
+            control = gvGrade.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        grademaster objID = new grademaster();
+
+        objID.description = idDescriptonText;
+
+        db.grademaster.Add(objID);
+        db.SaveChanges();
         BindGrade();
     }
 }

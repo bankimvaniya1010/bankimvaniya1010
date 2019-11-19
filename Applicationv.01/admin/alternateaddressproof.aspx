@@ -40,7 +40,7 @@
                                     <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
                                 </td
                                 <td>
-                                    <asp:Button ID="btnAdd" runat="server" Text="Add Alternate Address Proof" OnClick="Add" OnClientClick="return validateEmptyRow()" CommandName="EmptyDataTemplate" />
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClick="Add" OnClientClick="return validateEmptyRow()" CommandName="EmptyDataTemplate" class="btn btn-success"/>
                                 </td>
                             </tr>
                         </EmptyDataTemplate>

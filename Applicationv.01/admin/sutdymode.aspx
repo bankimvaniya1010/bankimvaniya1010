@@ -33,6 +33,27 @@
                         BorderWidth="1px"
                         CellSpacing="2" OnDataBound="gvStudemode_DataBound" OnRowCancelingEdit="gvStudemode_RowCancelingEdit" OnRowCommand="gvStudemode_RowCommand" OnRowDataBound="gvStudemode_RowDataBound" OnRowDeleted="gvStudemode_RowDeleted" OnRowDeleting="gvStudemode_RowDeleting" OnRowEditing="gvStudemode_RowEditing" OnRowUpdated="gvStudemode_RowUpdated" OnRowUpdating="gvStudemode_RowUpdating" OnPageIndexChanging="gvStudemode_PageIndexChanging">
 
+                        <EmptyDataTemplate>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Institution</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </td>
+                                <td>
+                                    <asp:DropDownList ID="ddlEmptyRecorduniversity" OnLoad="ddlEmptyRecorduniversity_Load" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </td>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </EmptyDataTemplate>
+
                         <Columns>
 
                             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False"
@@ -124,6 +145,14 @@
 
     </div>
     <script>
+        
+        function validateEmptyRow() {
+            if (!$("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").val() == "") {
+                alert("Description Cannot Be Empty");
+                return false;
+            }
+            return true;
+        }
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#CustomizeForms_list').addClass('open');

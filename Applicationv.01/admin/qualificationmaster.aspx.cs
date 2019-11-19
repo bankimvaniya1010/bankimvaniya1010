@@ -64,11 +64,22 @@ public partial class admin_qualificationmaster : System.Web.UI.Page
 
                 TextBox txtQualification = (TextBox)QualificationGridView.FooterRow.FindControl("txtQualificationFooter");
 
-                objQualification.qualificationname = txtQualification.Text.Trim();
+                var existingData = (from data in db.qualificationmaster
+                                    where data.qualificationname == txtQualification.Text.Trim()
+                                    select data.qualificationname).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objQualification.qualificationname = txtQualification.Text.Trim();
 
-                db.qualificationmaster.Add(objQualification);
-                db.SaveChanges();
-                BindQualification();
+                    db.qualificationmaster.Add(objQualification);
+                    db.SaveChanges();
+                    BindQualification();
+
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description ')", true);
+                }
             }
         }
         catch (Exception ex)
@@ -167,6 +178,29 @@ public partial class admin_qualificationmaster : System.Web.UI.Page
     protected void QualificationGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         QualificationGridView.PageIndex = e.NewPageIndex;
+        BindQualification();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (QualificationGridView.FooterRow != null)
+            control = QualificationGridView.FooterRow;
+        else
+            control = QualificationGridView.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        qualificationmaster objID = new qualificationmaster();
+
+        objID.qualificationname = idDescriptonText;
+
+        db.qualificationmaster.Add(objID);
+        db.SaveChanges();
         BindQualification();
     }
 }

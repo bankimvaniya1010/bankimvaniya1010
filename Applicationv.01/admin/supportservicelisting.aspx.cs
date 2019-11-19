@@ -50,9 +50,15 @@ public partial class admin_supportservicelisting : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(grSupportService.DataKeys[e.RowIndex].Values[0]);
             supportservicemaster sm = db.supportservicemaster.Where(b => b.supportservicemasterId == ID).First();
-            db.supportservicemaster.Remove(sm);
-            db.SaveChanges();
-            BindGrid();
+            var existsInUniversitywisemapping = db.universitywise_supportservicemapping.Where(x => x.supportserviceID == ID).ToList();
+            if (existsInUniversitywisemapping.Count == 0)
+            {
+                db.supportservicemaster.Remove(sm);
+                db.SaveChanges();
+                BindGrid();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Support Service as it already mapped in university wise mapping records')", true);
         }
         catch (Exception ex)
         {

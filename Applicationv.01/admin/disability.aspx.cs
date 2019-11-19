@@ -11,10 +11,12 @@ public partial class admin_disability : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int universityID;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!IsPostBack)
             BindDisability();
     }
@@ -64,11 +66,21 @@ public partial class admin_disability : System.Web.UI.Page
 
                 TextBox txtDescription = (TextBox)gvDisability.FooterRow.FindControl("txtDescription1");
 
-                objDisability.description = txtDescription.Text.Trim();
+                var existingData = (from data in db.disabilitymaster
+                                    where data.description == txtDescription.Text.Trim()
+                                    select data.description).FirstOrDefault();
+                if (string.IsNullOrEmpty(existingData))
+                {
+                    objDisability.description = txtDescription.Text.Trim();
 
-                db.disabilitymaster.Add(objDisability);
-                db.SaveChanges();
-                BindDisability();
+                    db.disabilitymaster.Add(objDisability);
+                    db.SaveChanges();
+                    BindDisability();
+                }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Data is already recorded with entered description')", true);
+                }
             }
         }
         catch (Exception ex)
@@ -113,9 +125,22 @@ public partial class admin_disability : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvDisability.DataKeys[e.RowIndex].Values[0]);
             disabilitymaster objDisability = db.disabilitymaster.Where(b => b.id == ID).First();
-            db.disabilitymaster.Remove(objDisability);
-            db.SaveChanges();
-            BindDisability();
+            var existsInUniversitywisemapping = (from umm in db.universitywisemastermapping
+                                                 join mn in db.master_name on umm.masterid equals mn.masterid
+                                                 where umm.universityid == universityID && mn.mastername.ToUpper().Contains("Disability Master") && umm.mastervalueid == ID
+                                                 select umm).ToList();
+            var existsInPersonalDetails = db.applicantdetails.Where(d => d.disabilitydescription == ID.ToString()).ToList();
+            if (existsInUniversitywisemapping.Count == 0 && existsInPersonalDetails.Count == 0)
+            {
+                db.disabilitymaster.Remove(objDisability);
+                db.SaveChanges();
+                BindDisability();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Disability as it already Used in another records')", true);
+
+
+
         }
         catch (Exception ex)
         {
@@ -166,6 +191,29 @@ public partial class admin_disability : System.Web.UI.Page
     protected void gvDisability_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvDisability.PageIndex = e.NewPageIndex;
+        BindDisability();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvDisability.FooterRow != null)
+            control = gvDisability.FooterRow;
+        else
+            control = gvDisability.Controls[0].Controls[0];
+        string idDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(idDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        disabilitymaster objID = new disabilitymaster();
+
+        objID.description = idDescriptonText;
+
+        db.disabilitymaster.Add(objID);
+        db.SaveChanges();
         BindDisability();
     }
 }

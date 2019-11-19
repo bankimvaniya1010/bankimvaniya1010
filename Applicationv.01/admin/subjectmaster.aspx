@@ -33,6 +33,24 @@
                         BorderWidth="1px"
                         CellSpacing="2" OnRowCancelingEdit="gvsubjectmasterGridView_RowCancelingEdit" OnRowCommand="gvsubjectmasterGridView_RowCommand" OnRowDataBound="gvsubjectmasterGridView_RowDataBound" OnRowDeleting="gvsubjectmasterGridView_RowDeleting" OnRowEditing="gvsubjectmasterGridView_RowEditing" OnRowUpdating="gvsubjectmasterGridView_RowUpdating" OnPageIndexChanging="gvsubjectmasterGridView_PageIndexChanging">
 
+                        <EmptyDataTemplate>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Subject Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </td>
+                                <td>
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClientClick="return validateEmptyRow()" OnClick="Add" CommandName="EmptyDataTemplate" class="btn btn-success"/>
+                                </td>
+                            </tr>
+                        </EmptyDataTemplate>
+
+
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False" ReadOnly="True" SortExpression="id" />
 
@@ -101,6 +119,13 @@
 
     </div>
     <script>
+         function validateEmptyRow() {
+            if (!$("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").val() == "") {
+                alert("Description Cannot Be Empty");
+                return false;
+            }
+            return true;
+        }
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#CustomizeForms_list').addClass('open');

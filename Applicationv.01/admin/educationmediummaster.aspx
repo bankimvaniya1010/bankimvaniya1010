@@ -33,6 +33,23 @@
                         BorderWidth="1px"
                         CellSpacing="2" OnDataBound="gvEducationMedium_DataBound" OnRowCancelingEdit="gvEducationMedium_RowCancelingEdit" OnRowCommand="gvEducationMedium_RowCommand" OnRowDataBound="gvEducationMedium_RowDataBound" OnRowDeleted="gvEducationMedium_RowDeleted" OnRowDeleting="gvEducationMedium_RowDeleting" OnRowEditing="gvEducationMedium_RowEditing" OnRowUpdated="gvEducationMedium_RowUpdated" OnRowUpdating="gvEducationMedium_RowUpdating" OnPageIndexChanging="gvEducationMedium_PageIndexChanging">
 
+                        <EmptyDataTemplate>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </td>
+                                <td>
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClientClick="return validateEmptyRow()" OnClick="Add" CommandName="EmptyDataTemplate" class="btn btn-success"/>
+                                </td>
+                            </tr>
+                        </EmptyDataTemplate>
+
                         <Columns>
 
                             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False"
@@ -104,6 +121,15 @@
 
     </div>
     <script>
+        
+        function validateEmptyRow() {
+            if (!$("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_gvIDProof_txtEmptyRecordDescription").val() == "") {
+                alert("Description Cannot Be Empty");
+                return false;
+            }
+
+            return true;
+        }
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#CustomizeForms_list').addClass('open');
