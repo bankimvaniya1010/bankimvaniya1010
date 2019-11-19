@@ -25,11 +25,25 @@
                     <asp:GridView ID="gvAddressProof" runat="server" CssClass="table" AutoGenerateColumns="False" ShowFooter="true"
                         DataKeyNames="id"
                         AllowPaging="True"
-                        CellPadding="3"
+                        CellPadding="3" BorderStyle="None" BorderWidth="1px" CellSpacing="2"
                         PageSize="25"
-                        BorderStyle="None"
-                        BorderWidth="1px"
-                        CellSpacing="2" OnDataBound="gvAddressProof_DataBound" OnRowCancelingEdit="gvAddressProof_RowCancelingEdit" OnRowCommand="gvAddressProof_RowCommand" OnRowDataBound="gvAddressProof_RowDataBound" OnRowDeleted="gvAddressProof_RowDeleted" OnRowDeleting="gvAddressProof_RowDeleting" OnRowEditing="gvAddressProof_RowEditing" OnRowUpdated="gvAddressProof_RowUpdated" OnRowUpdating="gvAddressProof_RowUpdating" OnPageIndexChanging="gvAddressProof_PageIndexChanging">
+                        OnDataBound="gvAddressProof_DataBound" OnRowCancelingEdit="gvAddressProof_RowCancelingEdit" OnRowCommand="gvAddressProof_RowCommand" OnRowDataBound="gvAddressProof_RowDataBound" OnRowDeleted="gvAddressProof_RowDeleted" OnRowDeleting="gvAddressProof_RowDeleting" OnRowEditing="gvAddressProof_RowEditing" OnRowUpdated="gvAddressProof_RowUpdated" OnRowUpdating="gvAddressProof_RowUpdating" OnPageIndexChanging="gvAddressProof_PageIndexChanging">
+                        <EmptyDataTemplate>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Description</th>
+                                <th scope="col"></th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyRecordDescription" CssClass="form-control" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                </td
+                                <td>
+                                    <asp:Button ID="btnAdd" runat="server" Text="Add Alternate Address Proof" OnClick="Add" OnClientClick="return validateEmptyRow()" CommandName="EmptyDataTemplate" />
+                                </td>
+                            </tr>
+                        </EmptyDataTemplate>
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="ID" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
@@ -80,27 +94,30 @@
 
                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" ShowHeader="True" />
 
-
-
-
                         </Columns>
-
-
 
                     </asp:GridView>
                 </div>
-
 
             </div>
         </div>
 
     </div>
     <script>
+        function validateEmptyRow() {
+            if (!$("#ContentPlaceHolder1_gvAddressProof_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_gvAddressProof_txtEmptyRecordDescription").val() == "") {
+                alert("Description Cannot Be Empty");
+                return false;
+            }
+
+            return true;
+        }
+
 		$(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#CustomizeForms_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#alternateaddressproof').addClass('active');
         });
-	</script>
+    </script>
 </asp:Content>

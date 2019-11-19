@@ -14,8 +14,10 @@ public partial class _Default : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int UserID = 0, applicantID = 0;
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     string progressStatus = "";
     protected static List<faq> allQuestions = new List<faq>();
+    protected static string universityName = string.Empty;
     Common objCom = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -25,6 +27,8 @@ public partial class _Default : System.Web.UI.Page
         //Applicant_master am = db.Applicant_master.Where(b => b.userid == UserID).First();
         //applicantID = (int)am.applicantID;
         Session["Applicant"] = UserID;
+        universityName = db.university_master.Where(x => x.universityid == UniversityID).Select(x => x.university_name).FirstOrDefault();
+
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList();

@@ -43,7 +43,7 @@
                             <li>Access your messages, offer letters and other documentation relevant to your applications</li><br>
                             <li>Respond to your offers</li><br>
                             <li>Make payments; and</li><br>
-                            <li>Access other relevant information and support services that will be useful as you prepare to commence your studies with {name of institution}.</li>
+                            <li>Access other relevant information and support services that will be useful as you prepare to commence your studies with <%=_Default.universityName %>.</li>
                         </ol>
                     </div>
                 </div>

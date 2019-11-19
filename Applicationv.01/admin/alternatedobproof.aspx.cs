@@ -11,6 +11,7 @@ public partial class admin_alternatedobproof : System.Web.UI.Page
     Logger log = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!Utility.CheckAdminLogin())
@@ -120,9 +121,20 @@ public partial class admin_alternatedobproof : System.Web.UI.Page
         {
             int ID = Convert.ToInt32(gvDOBProof.DataKeys[e.RowIndex].Values[0]);
             alternatedobproof DOB = db.alternatedobproof.Where(b => b.id == ID).First();
-            db.alternatedobproof.Remove(DOB);
-            db.SaveChanges();
-            BindDOBProof();
+            var existsIndetails = db.applicantdetails.Where(d => d.alternativeproofdobId == ID).ToList();
+            var existsInUniversitywisemapping = (from umm in db.universitywisemastermapping
+                                                 join mn in db.master_name on umm.masterid equals mn.masterid
+                                                 where umm.universityid == universityID && mn.mastername.ToUpper().Contains("Alternate DOB Proof") && umm.mastervalueid == ID
+                                                 select umm).ToList();
+
+            if (existsIndetails.Count == 0 && existsInUniversitywisemapping.Count == 0)
+            {
+                db.alternatedobproof.Remove(DOB);
+                db.SaveChanges();
+                BindDOBProof();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this Alternate DOB Proof as it already used in another records')", true);
         }
         catch (Exception ex)
         {
@@ -173,6 +185,29 @@ public partial class admin_alternatedobproof : System.Web.UI.Page
     protected void gvDOBProof_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         gvDOBProof.PageIndex = e.NewPageIndex;
+        BindDOBProof();
+    }
+
+    protected void Add(object sender, EventArgs e)
+    {
+        Control control = null;
+        if (gvDOBProof.FooterRow != null)
+            control = gvDOBProof.FooterRow;
+        else
+            control = gvDOBProof.Controls[0].Controls[0];
+        string dobDescriptonText = (control.FindControl("txtEmptyRecordDescription") as TextBox).Text;
+        if (string.IsNullOrEmpty(dobDescriptonText))
+        {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
+            return;
+        }
+
+        alternatedobproof objDOBAdress = new alternatedobproof();
+
+        objDOBAdress.description = dobDescriptonText;
+
+        db.alternatedobproof.Add(objDOBAdress);
+        db.SaveChanges();
         BindDOBProof();
     }
 }
