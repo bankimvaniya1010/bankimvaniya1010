@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration;
+
 public partial class dashboard : System.Web.UI.Page
 {
     int userID = 0, ApplicantID = 0;
@@ -12,9 +12,10 @@ public partial class dashboard : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected List<tooltipmaster> lstToolTips = new List<tooltipmaster>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (adminusers)Session["LoginInfo"];

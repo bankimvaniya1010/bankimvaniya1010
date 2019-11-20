@@ -38,9 +38,10 @@ public partial class admin_gtereport : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
 
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["downloadPdf"] == null || Request.QueryString["downloadPdf"].ToString() == "")
         { }
         else
@@ -360,7 +361,7 @@ public partial class admin_gtereport : System.Web.UI.Page
 
         db.SaveChanges();
 
-        Response.Redirect("applicantlist.aspx", true);
+        Response.Redirect(webURL + "admin/applicantlist.aspx", true);
     }
 
     private void hidePDFFields()

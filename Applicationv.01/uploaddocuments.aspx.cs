@@ -4,15 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration;
 using System.IO;
+
 public partial class uploaddocuments : System.Web.UI.Page
 {
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     int UserID = 0;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<applicantdetails> appDetails = new List<applicantdetails>();
     protected List<applicanteducationdetails> appEduDetails = new List<applicanteducationdetails>();
     protected List<applicantlanguagecompetency> appLangDetails = new List<applicantlanguagecompetency>();
@@ -24,6 +24,7 @@ public partial class uploaddocuments : System.Web.UI.Page
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());

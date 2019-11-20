@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -16,12 +15,13 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     Logger objLog = new Logger();
 
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());        
@@ -592,6 +592,6 @@ public partial class applicantcontactdetail : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SavePersonalInfo();
-        Response.Redirect("knowyourstudent.aspx?formid=3", true);
+        Response.Redirect(webURL + "knowyourstudent.aspx?formid=3", true);
     }
 }

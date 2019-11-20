@@ -12,9 +12,10 @@ public partial class updateprefernces : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];

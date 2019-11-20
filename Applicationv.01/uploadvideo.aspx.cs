@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections;
-using System.Configuration;
 using System.IO;
 public partial class uploadvideo : System.Web.UI.Page
 {
@@ -13,9 +12,10 @@ public partial class uploadvideo : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());

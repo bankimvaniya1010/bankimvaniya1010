@@ -18,11 +18,12 @@ public partial class gte_documentupload : System.Web.UI.Page
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
     public dynamic fields;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
-    string webURL = Utility.GetWebUrl();   
+    string webURL = String.Empty;
 
     gte_applicantdocument objgte_applicantdocument = new gte_applicantdocument();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());

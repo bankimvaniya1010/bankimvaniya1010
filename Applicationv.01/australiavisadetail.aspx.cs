@@ -11,11 +11,12 @@ public partial class australiavisadetail : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     int userID = 0, ApplicantID = 0, universityID;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     australiavisadetailmaster australiavisadetailmaster = new australiavisadetailmaster();
     protected List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());

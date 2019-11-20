@@ -13,12 +13,13 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     public static int QuestionsCount = 0;
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     Common objCom = new Common();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
@@ -31,7 +32,7 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
 
             if (applicant_response == null)
-                Response.Redirect("default.aspx", true);
+                Response.Redirect(webURL + "default.aspx", true);
 
             if (applicant_response.Count != gteQuestionPart2Count) // Condition for checking gte Questions Part 2 completed
                 displayLabel("GTE Question Part 2 not completed. Please answer all GTE Questions part 2 before attempting this section.");

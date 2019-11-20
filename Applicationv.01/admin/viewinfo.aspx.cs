@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,7 +9,7 @@ public partial class admin_viewinfo : System.Web.UI.Page
 {
     int userID = 0, ApplicantID = 0;
     private GTEEntities db = new GTEEntities();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<applicantdetails> objApplicant = new List<applicantdetails>();
     protected List<applicantemployerdetails> objEmployer = new List<applicantemployerdetails>();
     protected List<applicantlanguagecompetency> objLanguage = new List<applicantlanguagecompetency>();
@@ -22,6 +21,7 @@ public partial class admin_viewinfo : System.Web.UI.Page
     protected Common objComm = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         // var objUser = (user)Session["LoginInfo"];

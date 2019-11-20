@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,7 +9,7 @@ public partial class applicantreview : System.Web.UI.Page
 {
     int userID = 0, ApplicantID = 0 , universityID;
     private GTEEntities db = new GTEEntities();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<applicantdetails> objApplicant = new List<applicantdetails>();
     protected List<applicantemployerdetails> objEmployer = new List<applicantemployerdetails>();
     protected List<applicantlanguagecompetency> objLanguage = new List<applicantlanguagecompetency>();
@@ -24,6 +23,7 @@ public partial class applicantreview : System.Web.UI.Page
     protected static string pageDetail = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if (!Utility.CheckStudentLogin())
@@ -128,7 +128,7 @@ public partial class applicantreview : System.Web.UI.Page
                     "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantlanguage.aspx?formid=5';", true);
                     break;
                 default:
-                    Response.Redirect("default.aspx", true);
+                    Response.Redirect(webURL + "default.aspx", true);
                     break;
             }
         }

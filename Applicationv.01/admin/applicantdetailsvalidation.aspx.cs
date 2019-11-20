@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Web;
@@ -13,7 +12,7 @@ public partial class admin_applicantdetailsvalidation : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     List<applicantdatavalidation> lstField = new List<applicantdatavalidation>();
     protected List<applicantdetails> objApplicant = new List<applicantdetails>();
     protected List<applicantemployerdetails> objEmployer = new List<applicantemployerdetails>();
@@ -25,6 +24,7 @@ public partial class admin_applicantdetailsvalidation : System.Web.UI.Page
     protected string ResidentailAddress = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (Session["LoginInfo"] == null)
             Response.Redirect(webURL + "Login.aspx");
         var objUser = (students)Session["LoginInfo"];

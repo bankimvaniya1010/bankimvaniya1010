@@ -25,9 +25,10 @@ public partial class knowyourstudent : System.Web.UI.Page
     public static string StudentName { get; set; }
     public static string StudentDOB { get; set; }
 
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
 
@@ -57,7 +58,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                     verifiedPassportDetails = obj.verifiedDetails.Value;
             }
             else
-                Response.Redirect("personaldetails.aspx?formid=1", true);
+                Response.Redirect(webURL + "personaldetails.aspx?formid=1", true);
             allQuestions = objCom.FaqQuestionList();
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
@@ -464,6 +465,6 @@ public partial class knowyourstudent : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SaveIdentificationDetails();
-        Response.Redirect("applicanteducation.aspx?formid=4", true);
+        Response.Redirect(webURL + "applicanteducation.aspx?formid=4", true);
     }
 }

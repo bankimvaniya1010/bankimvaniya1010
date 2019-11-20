@@ -19,11 +19,12 @@ public partial class applicantchoicestatus : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCommon = new Common();
     protected static List<faq> allfaqQuestion = new List<faq>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
@@ -128,7 +129,7 @@ public partial class applicantchoicestatus : System.Web.UI.Page
 
             DropDownList ddlDeferPeriod = e.Item.FindControl("deferPeriod") as DropDownList;
             ListItem lst = new ListItem("Please select", "0");
-            var defermentDatesObj = db.course_defermentdates.Where(x => x.courseid == courseId).Select(x => new { x.id, x.defermentdate }).SortBy("defermentdate").ToList();
+            var defermentDatesObj = db.course_defermentdates.Where(x => x.courseid == courseId).Select(x => new { x.id, defermentdate = x.defermentdate.ToString("dd/MM/yyyy") }).SortBy("defermentdate").ToList();
             ddlDeferPeriod.DataSource = defermentDatesObj;
             ddlDeferPeriod.DataTextField = "defermentdate";
             ddlDeferPeriod.DataValueField = "id";

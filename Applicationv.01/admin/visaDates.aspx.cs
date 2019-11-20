@@ -11,9 +11,10 @@ public partial class admin_visaDates : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     int ApplicantID , universityID;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         if ((Request.QueryString["userid"] == null) || (Request.QueryString["userid"].ToString() == ""))
         {

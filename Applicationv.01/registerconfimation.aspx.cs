@@ -13,7 +13,7 @@ public partial class registerconfimation : System.Web.UI.Page
     Logger objLog = new Logger();
     protected string email = "";
     protected string universityName = "";
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
         email = Request.QueryString["email"];

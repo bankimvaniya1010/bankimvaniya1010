@@ -11,10 +11,10 @@ public partial class admin_login : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;// System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        webURL = Utility.GetWebUrl();
     }
     protected void btn_login_Click(object sender, EventArgs e)
     {

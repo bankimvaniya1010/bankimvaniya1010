@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.Entity.Validation;
 using System.Globalization;
 using System.Linq;
@@ -20,7 +19,7 @@ public partial class applicanteducation : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
 
@@ -28,6 +27,7 @@ public partial class applicanteducation : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());        
@@ -1890,7 +1890,7 @@ public partial class applicanteducation : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SaveEducationData();       
-        Response.Redirect("applicantlanguage.aspx?formid=5", true);
+        Response.Redirect(webURL + "applicantlanguage.aspx?formid=5", true);
     }
 
     public class grades

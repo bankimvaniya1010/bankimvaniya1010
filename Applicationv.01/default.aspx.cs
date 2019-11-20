@@ -4,22 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration;
 using System.Web.Services;
 using System.Web.Script.Services;
+
 public partial class _Default : System.Web.UI.Page
 {
     Logger log = new Logger();
     List<int> QuestionList = new List<int>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, applicantID = 0;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();    
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();    
     string progressStatus = "";
     protected static List<faq> allQuestions = new List<faq>();
     protected static string universityName = string.Empty;
     Common objCom = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());

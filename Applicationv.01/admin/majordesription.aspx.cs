@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,10 +9,11 @@ public partial class admin_majordesription : System.Web.UI.Page
 {
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -137,7 +137,7 @@ public partial class admin_majordesription : System.Web.UI.Page
                 BindMajorDescription();
             }
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete This Major Discipline as it already Used in another records')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this Major Discipline as it already used in another records')", true);
         }
         catch (Exception ex)
         {

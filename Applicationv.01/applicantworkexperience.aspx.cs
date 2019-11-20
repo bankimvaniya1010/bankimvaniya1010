@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -15,9 +14,10 @@ public partial class applicantworkexperience : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -25,9 +25,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
         userID = objUser.studentid;
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == "") || !isDeclarationCompleted)
-        {
-            Response.Redirect("default.aspx", true);
-        }
+            Response.Redirect(webURL + "default.aspx", true);
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
@@ -443,7 +441,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SaveEmploymentDetails();
-        Response.Redirect("applicantsocial.aspx?formid=8",true);
+        Response.Redirect(webURL + "applicantsocial.aspx?formid=8",true);
     }
 
     private void BindEmploymentDetails()

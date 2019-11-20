@@ -8,9 +8,10 @@ using System.Web.UI.WebControls;
 public partial class verifynominee : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         if (!IsPostBack)
