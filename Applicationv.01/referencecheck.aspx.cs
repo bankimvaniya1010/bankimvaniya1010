@@ -20,13 +20,13 @@ public partial class referencecheck : System.Web.UI.Page
         if ((Request.QueryString["referncekey"] != null) && (Request.QueryString["referncekey"] != ""))
             referenceKey = Convert.ToString(Request.QueryString["referncekey"]);
         else
-            Response.Redirect("error.aspx", true);
+            Response.Redirect(webURL + "error.aspx", true);
 
         var RefInfo = (from pInfo in db.applicantreferencecheck
                        where pInfo.referncekey == referenceKey
                        select pInfo).FirstOrDefault();
         if (RefInfo == null)
-            Response.Redirect("error.aspx", true);
+            Response.Redirect(webURL + "error.aspx", true);
         else
         {
             if (RefInfo.isverified == 1)

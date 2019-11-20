@@ -9,9 +9,10 @@ public partial class admin_admin : System.Web.UI.MasterPage
 {
     private GTEEntities db = new GTEEntities();
     int roleid = 0;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         roleid = Convert.ToInt32(Session["Role"].ToString());

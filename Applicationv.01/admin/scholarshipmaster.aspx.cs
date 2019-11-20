@@ -10,10 +10,11 @@ public partial class admin_scholarshipmaster : System.Web.UI.Page
 {
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
-    public static string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    public static string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)

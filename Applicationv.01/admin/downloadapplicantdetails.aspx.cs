@@ -13,7 +13,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     protected List<applicantreferencecheck> referenccheckList = new List<applicantreferencecheck>();
     Logger objLog = new Logger();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControlsPersonal = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsConatct = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsKYS = new List<customfieldmaster>();
@@ -33,6 +33,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     protected List<applicanthighereducation> HigherEducation = new List<applicanthighereducation>();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (Request.QueryString["id"] == null || Request.QueryString["id"].ToString() == "" || Request.QueryString["token"] == null || Request.QueryString["token"].ToString() != "XS7MKjHLunMAvqzCGr")
         { }
         else

@@ -12,7 +12,7 @@ public partial class australiavisadocumentupload : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0, universityID, formId = 0;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     australiavisadetailmaster australiavisadetailmaster = new australiavisadetailmaster();
     public DateTime studentDOB;
     australiavisadocumentmaster objaustraliavisadocumentmaster = new australiavisadocumentmaster();
@@ -20,6 +20,7 @@ public partial class australiavisadocumentupload : System.Web.UI.Page
     Common objCom = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());

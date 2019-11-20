@@ -12,11 +12,12 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     private GTEEntities db = new GTEEntities();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
 

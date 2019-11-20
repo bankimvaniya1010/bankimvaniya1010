@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,10 +16,11 @@ public partial class applicantsocial : System.Web.UI.Page
     Logger objLog = new Logger();
     protected  static List<faq> allQuestions = new List<faq>();
     protected int isStudyBefore = 0, isApplyBefore = 0;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -279,6 +279,6 @@ public partial class applicantsocial : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SaveSocialDetails();
-        Response.Redirect("applicantrefrencecheck.aspx?formid=6", true);
+        Response.Redirect(webURL + "applicantrefrencecheck.aspx?formid=6", true);
     }
 }

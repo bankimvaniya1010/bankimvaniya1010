@@ -9,13 +9,13 @@ public partial class applicantcredittransfer : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
     int userID = 0, ApplicantID = 0, universityID;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     Logger objLog = new Logger();
     Common objCom = new Common();
     protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
 

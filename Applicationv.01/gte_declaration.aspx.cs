@@ -13,12 +13,13 @@ public partial class gte_declaration : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     gte_progressbar gteProgressBar = new gte_progressbar();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
@@ -61,9 +62,9 @@ public partial class gte_declaration : System.Web.UI.Page
                 Session["DeclarationCompleted"] = true && declarationCompleted;
                 var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
                 if (isProfileDetailsCompletedByApplicant)
-                    Response.Redirect("gte_questions1.aspx", true);
+                    Response.Redirect(webURL + "gte_questions1.aspx", true);
                 else
-                    Response.Redirect("default.aspx", true);
+                    Response.Redirect(webURL + "default.aspx", true);
             }
             else
             {

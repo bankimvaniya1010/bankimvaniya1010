@@ -11,10 +11,11 @@ public partial class admin_subjectwisecountrymapping : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     ArrayList SelectedItems = new ArrayList();
-   
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)

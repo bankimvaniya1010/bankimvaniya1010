@@ -10,9 +10,10 @@ public partial class admin_admintooltipslisting : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
@@ -91,7 +92,7 @@ public partial class admin_admintooltipslisting : System.Web.UI.Page
         try
         {
             var id = (int)gvField.DataKeys[e.NewEditIndex].Value;
-            Response.Redirect("admintooltips.aspx?id=" + id, true);
+            Response.Redirect(webURL + "admin/admintooltips.aspx?id=" + id, true);
         }
         catch (Exception ex)
         {

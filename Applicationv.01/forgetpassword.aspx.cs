@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration;
 using System.Text;
 using System.IO;
 
@@ -14,10 +13,10 @@ public partial class forgetpassword : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        webURL = Utility.GetWebUrl();
     }
 
     protected void btn_login_Click(object sender, EventArgs e)

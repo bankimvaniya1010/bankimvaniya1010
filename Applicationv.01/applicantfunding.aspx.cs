@@ -17,10 +17,11 @@ public partial class applicantfunding : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -344,7 +345,7 @@ public partial class applicantfunding : System.Web.UI.Page
 
             var tutionFeeCost = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursefee).FirstOrDefault();
             if (tutionFeeCost == null)
-                Response.Redirect("default.aspx", true);
+                Response.Redirect(webURL + "default.aspx", true);
 
             var accomdationDetails = db.manageaccomdationplan.Where(x => x.accomdationid == accomdationSelection && x.cityid == cityId)
                                        .Select(s => new { s.amount, s.currencyid, adult_percentage = s.extra_adult_percentage.HasValue ? (s.extra_adult_percentage.Value / 100) : 0m, child_percentage = s.extra_child_percentage.HasValue ? (s.extra_child_percentage.Value / 100) : 0m })

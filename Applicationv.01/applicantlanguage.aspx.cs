@@ -16,9 +16,10 @@ public partial class applicantlanguage : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
@@ -888,7 +889,7 @@ public partial class applicantlanguage : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SaveLanguageDetails();
-        Response.Redirect("applicantworkexperience.aspx?formid=7", true);
+        Response.Redirect(webURL + "applicantworkexperience.aspx?formid=7", true);
     }
 }
 

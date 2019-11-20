@@ -13,9 +13,10 @@ public partial class australiavisapartB : System.Web.UI.Page
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
     int userID = 0, ApplicantID = 0, universityID;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());

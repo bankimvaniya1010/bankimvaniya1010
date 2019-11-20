@@ -11,13 +11,14 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     Common objCom = new Common();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID ;
     int tutorialId;
 
     tutorialmaster objtutorialmaster = new tutorialmaster();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
@@ -148,7 +149,7 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
             db.SaveChanges();
             lblMessage.Text = "Saved Successfully";
             lblMessage.Visible = true;
-            Response.Redirect("preliminaryvideomaster.aspx", true);
+            Response.Redirect(webURL + "admin/preliminaryvideomaster.aspx", true);
         }
         catch (Exception ex)
         {

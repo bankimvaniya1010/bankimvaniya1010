@@ -37,6 +37,6 @@ public static class Utility
 
     public static string GetWebUrl()
     {
-        return System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+        return System.Configuration.ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", HttpContext.Current.Request.Url.Host.ToLower()).ToString();
     }
 }

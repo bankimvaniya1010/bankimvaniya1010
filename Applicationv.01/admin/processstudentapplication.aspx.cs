@@ -13,10 +13,11 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     private GTEEntities db = new GTEEntities();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
@@ -248,7 +249,9 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                         application.coe_letter_file = filename;
                     }
                 }
-                if (ddlCurrentStatus.SelectedValue != null)
+
+                // Bug in case of Offer defered, after how the application will be re intiated.
+                if (ddlCurrentStatus.SelectedValue != null && !status.ToUpper().Contains("OFFER DEFERRED") && !status.ToUpper().Contains("OFFER REJECTED"))
                     application.current_status = Convert.ToInt32(ddlCurrentStatus.SelectedValue);
 
                 TextBox txtUniveristyRemark = e.Item.FindControl("txtUniversityAdmissionRemark") as TextBox;

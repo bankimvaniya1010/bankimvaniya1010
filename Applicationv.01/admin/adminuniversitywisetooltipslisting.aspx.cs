@@ -10,9 +10,10 @@ public partial class admin_adminuniversitywisetooltipslisting : System.Web.UI.Pa
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
@@ -121,7 +122,7 @@ public partial class admin_adminuniversitywisetooltipslisting : System.Web.UI.Pa
         try
         {
             var id = (int)gvField.DataKeys[e.NewEditIndex].Value;
-            Response.Redirect("adminuniversitywisetooltips.aspx?id=" + id, true);
+            Response.Redirect(webURL + "admin/adminuniversitywisetooltips.aspx?id=" + id, true);
         }
         catch (Exception ex)
         {

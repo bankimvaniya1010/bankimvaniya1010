@@ -16,19 +16,19 @@ public partial class gte_studentdetails : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     gte_applicantdetails objgte_applicantdetails = new gte_applicantdetails();
     bool isuniversityGroupHead;
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
 
         var isFullService = (bool)Session["FullService"];
         if (isFullService)
-            Response.Redirect("default.aspx", true);
+            Response.Redirect(webURL + "default.aspx", true);
 
         universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         isuniversityGroupHead = db.universitygrouping.Where(x => x.groupingheaduniversityid == universityID).ToList().Count > 0;
@@ -259,7 +259,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];
             if (!isProfileDetailsCompletedByApplicant)
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetGteStudentDetailsCompletedStatus(userID, universityID);
-            Response.Redirect("gte_questions1.aspx", true);
+            Response.Redirect(webURL + "gte_questions1.aspx", true);
 
         }
         catch (Exception ex)

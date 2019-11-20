@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Configuration;
 using System.Globalization;
 using System.Text;
 
@@ -18,13 +17,14 @@ public partial class personaldetails : System.Web.UI.Page
     Logger objLog = new Logger();
     protected int isStudyBefore = 0, isApplyBefore = 0;
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
 
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         universityID = Utility.GetUniversityId();       
@@ -813,7 +813,7 @@ public partial class personaldetails : System.Web.UI.Page
     protected void gotoNextPage_Click(object sender, EventArgs e)
     {
         SavePersonaldetails();
-        Response.Redirect("applicantcontactdetail.aspx?formid=2",true);
+        Response.Redirect(webURL + "applicantcontactdetail.aspx?formid=2",true);
     }
 }
 
