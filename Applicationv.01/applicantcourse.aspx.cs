@@ -112,10 +112,10 @@ public partial class applicantcourse : System.Web.UI.Page
         GTEEntities db1 = new GTEEntities();
         var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var temp = (from md in db1.majordiscipline_master
-                    join mn in db1.master_name on md.id equals mn.masterid into mnData
-                    from x in mnData.DefaultIfEmpty()
-                    join umd in db1.universitywisemastermapping on x.masterid equals umd.mastervalueid into umdData
+                    join umd in db1.universitywisemastermapping on md.id equals umd.mastervalueid into umdData
                     from x1 in umdData.DefaultIfEmpty()
+                    join mn in db1.master_name on x1.masterid equals mn.masterid into mnData
+                    from x in mnData.DefaultIfEmpty()
                     where (x1.universityid == universityID1 && x.mastername.ToUpper().Contains("Major Discipline Master"))
                     select new
                     {
@@ -229,10 +229,10 @@ public partial class applicantcourse : System.Web.UI.Page
         {
             ListItem lst = new ListItem("Please select", "0");
             var major = (from md in db.majordiscipline_master
-                         join mn in db.master_name on md.id equals mn.masterid into mnData
-                         from x in mnData.DefaultIfEmpty()
-                         join umd in db.universitywisemastermapping on x.masterid equals umd.mastervalueid into umdData
+                         join umd in db.universitywisemastermapping on md.id equals umd.mastervalueid into umdData
                          from x1 in umdData.DefaultIfEmpty()
+                         join mn in db.master_name on x1.masterid equals mn.masterid into mnData
+                         from x in mnData.DefaultIfEmpty()
                          where (x1.universityid == universityID && x.mastername.ToUpper().Contains("Major Discipline Master"))
                          select new
                          {
