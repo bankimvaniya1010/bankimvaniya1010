@@ -27,18 +27,18 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
             {
                 int applicantID;
                 if (!Int32.TryParse(Request.QueryString["applicantId"], out applicantID))
-                    Response.Redirect("~/admin/default.aspx", true);
+                    Response.Redirect(webURL + "admin/default.aspx", true);
 
                 int universityID;
                 if (!Int32.TryParse(Request.QueryString["universityId"], out universityID))
-                    Response.Redirect("~/admin/default.aspx", true);
+                    Response.Redirect(webURL + "admin/default.aspx", true);
 
                 Session["applicantId"] = applicantID;
                 Session["universityId"] = universityID;
                 bindDataList(applicantID, universityID);
             }
             else
-                Response.Redirect("~/admin/default.aspx", true);
+                Response.Redirect(webURL + "admin/default.aspx", true);
         }
     }
 
@@ -173,6 +173,6 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
     {
         int applicantID = (int)Session["applicantId"];
         int universityId = (int)Session["universityId"];
-        Response.Redirect("applicantpaymentrequest.aspx?applicantId="+ applicantID + "&universityId=" + universityId, true);
+        Response.Redirect(webURL + "applicantpaymentrequest.aspx?applicantId=" + applicantID + "&universityId=" + universityId, true);
     }
 }

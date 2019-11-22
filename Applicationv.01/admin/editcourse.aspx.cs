@@ -30,7 +30,7 @@ public partial class admin_editcourse : System.Web.UI.Page
             {
                 int courseID;
                 if (!Int32.TryParse(Request.QueryString["courseID"], out courseID))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 coursemaster existingCourse = db.coursemaster.Where(obj => obj.courseid == courseID).First();
                 var existingDates = db.course_dates.Where(obj => obj.courseid == courseID).ToList();
@@ -137,7 +137,7 @@ public partial class admin_editcourse : System.Web.UI.Page
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Course does not exists')", true);
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -328,7 +328,7 @@ public partial class admin_editcourse : System.Web.UI.Page
             }
             db.SaveChanges();
 
-            Response.Redirect("~/admin/coursemaster.aspx", true);
+            Response.Redirect(webURL + "admin/coursemaster.aspx", true);
         }
         catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }

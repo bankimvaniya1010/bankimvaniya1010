@@ -25,7 +25,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
             {
                 int cityID;
                 if (!Int32.TryParse(Request.QueryString["cityID"], out cityID))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 citymaster existingCity = db.citymaster.Where(obj => obj.city_id == cityID).First();
 
@@ -48,7 +48,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -67,7 +67,7 @@ public partial class admin_editcitydetails : System.Web.UI.Page
             cityObj.cost_of_living = txtCityCost.Value.Trim();
 
             db.SaveChanges();
-            Response.Redirect("~/admin/citymaster.aspx?countryID=" + cityObj.country_id);
+            Response.Redirect(webURL + "admin/citymaster.aspx?countryID=" + cityObj.country_id);
         }
         catch (Exception ex)
         {

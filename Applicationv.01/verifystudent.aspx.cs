@@ -60,10 +60,10 @@ public partial class verifystudent : System.Web.UI.Page
 
                 }
                 else
-                    Response.Redirect("~/login.aspx");
+                    Response.Redirect(webURL + "login.aspx");
             }
             else
-                Response.Redirect("~/login.aspx");
+                Response.Redirect(webURL + "login.aspx");
         }
     }
 }

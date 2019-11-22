@@ -69,7 +69,7 @@ public partial class admin_universitygroupingmaster : System.Web.UI.Page
     protected void universityGroupingGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int groupHeadUniversityId = Convert.ToInt32(universityGroupingGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/edituniversitygrouping.aspx?headUniversityID=" + groupHeadUniversityId);
+        Response.Redirect(webURL + "admin/edituniversitygrouping.aspx?headUniversityID=" + groupHeadUniversityId);
     }
 
     protected void universityGroupingGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

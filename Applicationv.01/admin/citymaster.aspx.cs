@@ -34,7 +34,7 @@ public partial class admin_citymaster : System.Web.UI.Page
     protected void cityGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int cityId = Convert.ToInt32(cityGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/editcitydetails.aspx?cityID=" + cityId);
+        Response.Redirect(webURL + "admin/editcitydetails.aspx?cityID=" + cityId);
     }
 
     protected void ddlCountry_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,7 +73,7 @@ public partial class admin_citymaster : System.Web.UI.Page
 
     protected void btnCreateCity_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/admin/createcity.aspx");
+        Response.Redirect(webURL + "admin/createcity.aspx");
     }
 
     protected void cityGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

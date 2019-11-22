@@ -26,7 +26,7 @@ public partial class admin_editmealplan : System.Web.UI.Page
             {
                 int id;
                 if (!Int32.TryParse(Request.QueryString["id"], out id))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 managemealplan existingMeal = db.managemealplan.Where(obj => obj.id == id).First();
                 bindMeal();
@@ -65,7 +65,7 @@ public partial class admin_editmealplan : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -161,7 +161,7 @@ public partial class admin_editmealplan : System.Web.UI.Page
 
 
                 db.SaveChanges();
-                Response.Redirect("~/admin/managemealplan.aspx");
+                Response.Redirect(webURL + "admin/managemealplan.aspx");
             }
             catch (Exception ex)
             {

@@ -54,7 +54,7 @@ public partial class admin_managetrips : System.Web.UI.Page
     protected void TripsGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(TripsGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/edittrips.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/edittrips.aspx?id=" + id);
     }
 
     protected void TripsGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

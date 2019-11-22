@@ -27,7 +27,7 @@ public partial class admin_editutilities : System.Web.UI.Page
             {
                 int id;
                 if (!Int32.TryParse(Request.QueryString["id"], out id))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 manageutilities existingUtilities = db.manageutilities.Where(obj => obj.id == id).First();
                 bindUtilities();
@@ -66,7 +66,7 @@ public partial class admin_editutilities : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -160,7 +160,7 @@ public partial class admin_editutilities : System.Web.UI.Page
                 if (txtExtraChildPercentage.Value.Trim() != "")
                     UtilitiesObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
                 db.SaveChanges();
-                Response.Redirect("~/admin/manageUtilities.aspx");
+                Response.Redirect(webURL + "admin/manageUtilities.aspx");
             }
             catch (Exception ex)
             {

@@ -30,7 +30,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             {
                 int universityId;
                 if (!Int32.TryParse(Request.QueryString["universityID"], out universityId))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 university_master existingUninversity = db.university_master.Where(obj => obj.universityid == universityId).First();
 
@@ -119,7 +119,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -210,7 +210,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                 db.SaveChanges();
             }
             db.SaveChanges();
-            Response.Redirect("~/admin/universitymaster.aspx");
+            Response.Redirect(webURL + "admin/universitymaster.aspx");
         }
         catch (Exception ex)
         {

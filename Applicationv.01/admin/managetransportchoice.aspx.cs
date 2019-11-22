@@ -54,7 +54,7 @@ public partial class admin_managetransportchoice : System.Web.UI.Page
     protected void TransportChoiceGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(TransportChoiceGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/edittransportchoice.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/edittransportchoice.aspx?id=" + id);
     }
 
     protected void TransportChoiceGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -48,13 +48,13 @@ public partial class admin_scholarshipmaster : System.Web.UI.Page
 
     protected void btnCreateScholarship_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/admin/managescholarship.aspx");
+        Response.Redirect(webURL + "admin/managescholarship.aspx");
     }
 
     protected void scholarshipGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int scholarshipId = Convert.ToInt32(scholarshipGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/managescholarship.aspx?scholarshipID=" + scholarshipId);
+        Response.Redirect(webURL + "admin/managescholarship.aspx?scholarshipID=" + scholarshipId);
     }
 
     protected void scholarshipGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

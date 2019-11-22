@@ -21,7 +21,7 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
         {
             int headUniversityId;
             if (!Int32.TryParse(Request.QueryString["headUniversityID"], out headUniversityId))
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
 
             if (!IsPostBack)
             {
@@ -74,7 +74,7 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
             
         }
         else
-            Response.Redirect("~/admin/default.aspx");
+            Response.Redirect(webURL + "admin/default.aspx");
     }
 
     private void bindUniversityDropDown(int universityId)
@@ -138,7 +138,7 @@ public partial class admin_edituniversitygrouping : System.Web.UI.Page
                     db.SaveChanges();
                 }
             }
-            Response.Redirect("~/admin/universitygroupingmaster.aspx");
+            Response.Redirect(webURL + "admin/universitygroupingmaster.aspx");
         }
         catch (Exception ex)
         {

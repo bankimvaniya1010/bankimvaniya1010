@@ -89,7 +89,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 else
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
-                    Response.Redirect("default.aspx", true);
+                    Response.Redirect(webURL + "default.aspx", true);
                 }
             }
         }

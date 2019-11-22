@@ -145,7 +145,7 @@ public partial class admin_predeparturetutorialAddedit : System.Web.UI.Page
             if (mode == "new")
                 db.predeparturetutorialmaster.Add(objtutorialmaster);
             db.SaveChanges();            
-            Response.Redirect("predeparturetutoriallisting.aspx", true);
+            Response.Redirect(webURL + "predeparturetutoriallisting.aspx", true);
         }
         catch (Exception ex)
         {

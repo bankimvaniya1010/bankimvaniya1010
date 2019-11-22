@@ -26,7 +26,7 @@ public partial class admin_editentertainment : System.Web.UI.Page
             {
                 int id;
                 if (!Int32.TryParse(Request.QueryString["id"], out id))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 manageentertainment existingEntertainment = db.manageentertainment.Where(obj => obj.id == id).First();
                 bindEntertainment();
@@ -65,7 +65,7 @@ public partial class admin_editentertainment : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -160,7 +160,7 @@ public partial class admin_editentertainment : System.Web.UI.Page
                 if (txtExtraChildPercentage.Value.Trim() != "")
                     EntertainmentObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
                 db.SaveChanges();
-                Response.Redirect("~/admin/manageentertainment.aspx");
+                Response.Redirect(webURL + "admin/manageentertainment.aspx");
             }
             catch (Exception ex)
             {

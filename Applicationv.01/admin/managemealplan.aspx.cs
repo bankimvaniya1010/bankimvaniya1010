@@ -54,7 +54,7 @@ public partial class admin_managemealplan : System.Web.UI.Page
     protected void MealGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(MealGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/editmealplan.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/editmealplan.aspx?id=" + id);
     }
 
     protected void MealGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

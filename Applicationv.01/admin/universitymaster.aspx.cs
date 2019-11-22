@@ -50,6 +50,6 @@ public partial class admin_universitymaster : System.Web.UI.Page
     protected void universityGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(universityGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/edituniversitydetails.aspx?universityID=" +id);
+        Response.Redirect(webURL + "admin/edituniversitydetails.aspx?universityID=" + id);
     }
 }

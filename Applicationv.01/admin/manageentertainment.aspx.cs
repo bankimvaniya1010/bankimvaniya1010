@@ -54,7 +54,7 @@ public partial class admin_manageentertainment : System.Web.UI.Page
     protected void EntertainmentGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(EntertainmentGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/editentertainment.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/editentertainment.aspx?id=" + id);
     }
 
     protected void EntertainmentGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
