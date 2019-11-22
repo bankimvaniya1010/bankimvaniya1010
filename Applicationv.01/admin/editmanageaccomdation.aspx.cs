@@ -26,7 +26,7 @@ public partial class admin_editmanageaccomdation : System.Web.UI.Page
             {
                 int id;
                 if (!Int32.TryParse(Request.QueryString["id"], out id))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 manageaccomdationplan existingAccomdation = db.manageaccomdationplan.Where(obj => obj.id == id).First();
                 bindAccomdation();
@@ -65,7 +65,7 @@ public partial class admin_editmanageaccomdation : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -160,7 +160,7 @@ public partial class admin_editmanageaccomdation : System.Web.UI.Page
                     AccomdationObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
 
                 db.SaveChanges();
-                Response.Redirect("~/admin/manageaccomdation.aspx");
+                Response.Redirect(webURL + "admin/manageaccomdation.aspx");
             }
             catch (Exception ex)
             {

@@ -26,7 +26,7 @@ public partial class admin_edittrips : System.Web.UI.Page
             {
                 int id;
                 if (!Int32.TryParse(Request.QueryString["id"], out id))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 managetrips existingTrips = db.managetrips.Where(obj => obj.id == id).First();
                 bindTrips();
@@ -65,7 +65,7 @@ public partial class admin_edittrips : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -160,7 +160,7 @@ public partial class admin_edittrips : System.Web.UI.Page
                     TripsObj.extra_child_percentage = Convert.ToDecimal(txtExtraChildPercentage.Value.Trim());
 
                 db.SaveChanges();
-                Response.Redirect("~/admin/managetrips.aspx");
+                Response.Redirect(webURL + "admin/managetrips.aspx");
             }
             catch (Exception ex)
             {

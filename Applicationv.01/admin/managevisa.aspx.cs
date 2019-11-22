@@ -54,7 +54,7 @@ public partial class admin_managevisa : System.Web.UI.Page
     protected void VisaGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(VisaGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/editvisa.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/editvisa.aspx?id=" + id);
     }
 
     protected void VisaGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

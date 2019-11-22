@@ -147,7 +147,7 @@ public partial class gte_sop : System.Web.UI.Page
                         applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
 
                     if (applicantdetails == null)
-                        Response.Redirect("default.aspx", true);
+                        Response.Redirect(webURL + "default.aspx", true);
 
                     try
                     {

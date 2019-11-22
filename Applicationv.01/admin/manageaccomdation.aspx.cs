@@ -53,7 +53,7 @@ public partial class admin_manageaccomdation : System.Web.UI.Page
     protected void AccomdationGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(AccomdationGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/editmanageaccomdation.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/editmanageaccomdation.aspx?id=" + id);
     }
 
     protected void AccomdationGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

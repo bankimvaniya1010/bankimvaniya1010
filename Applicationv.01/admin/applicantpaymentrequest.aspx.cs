@@ -26,11 +26,11 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
             {
                 int applicantID;
                 if (!Int32.TryParse(Request.QueryString["applicantId"], out applicantID))
-                    Response.Redirect("~/admin/default.aspx", true);
+                    Response.Redirect(webURL + "admin/default.aspx", true);
 
                 int universityID;
                 if (!Int32.TryParse(Request.QueryString["universityId"], out universityID))
-                    Response.Redirect("~/admin/default.aspx", true);
+                    Response.Redirect(webURL + "admin/default.aspx", true);
 
                 bindPaymentDescription(universityID);
                 bindCurrency();
@@ -42,13 +42,13 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
                 {
                     int paymentDetailsId;
                     if (!Int32.TryParse(Request.QueryString["paymentId"], out paymentDetailsId))
-                        Response.Redirect("~/admin/default.aspx", true);
+                        Response.Redirect(webURL + "admin/default.aspx", true);
 
                     populateDetails(paymentDetailsId);
                 }
             }
             else
-                Response.Redirect("~/admin/default.aspx", true);
+                Response.Redirect(webURL + "admin/default.aspx", true);
         }
     }
 

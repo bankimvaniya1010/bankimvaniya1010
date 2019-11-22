@@ -47,6 +47,6 @@ public partial class admin_managestudentapplication : System.Web.UI.Page
     protected void gvApplications_RowCommand(object sender, GridViewCommandEventArgs e)
     {
         int applicantID = Convert.ToInt32(e.CommandArgument);
-        Response.Redirect("~/admin/processstudentapplication.aspx?applicantId=" + applicantID + "&universityId=" + universityID);
+        Response.Redirect(webURL + "admin/processstudentapplication.aspx?applicantId=" + applicantID + "&universityId=" + universityID);
     }
 }

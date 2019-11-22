@@ -27,7 +27,7 @@ public partial class admin_editvisa : System.Web.UI.Page
             {
                 int id;
                 if (!Int32.TryParse(Request.QueryString["id"], out id))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 managevisa existingVisa = db.managevisa.Where(obj => obj.id == id).First();
                 bindVisa();
@@ -65,7 +65,7 @@ public partial class admin_editvisa : System.Web.UI.Page
 
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -159,7 +159,7 @@ public partial class admin_editvisa : System.Web.UI.Page
                 if (txtExtraChild.Value.Trim() != "")
                     VisaObj.extra_child_amount = Convert.ToDecimal(txtExtraChild.Value.Trim());
                 db.SaveChanges();
-                Response.Redirect("~/admin/manageVisa.aspx");
+                Response.Redirect(webURL + "admin/manageVisa.aspx");
             }
             catch (Exception ex)
             {

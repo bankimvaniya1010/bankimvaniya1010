@@ -175,7 +175,7 @@ public partial class admin_universitywisetooltipsaddedit : System.Web.UI.Page
             else
             {
                 db.SaveChanges();
-                Response.Redirect("~/admin/universitywisetooltipslisting.aspx", true);
+                Response.Redirect(webURL + "admin/universitywisetooltipslisting.aspx", true);
             }
 
         }

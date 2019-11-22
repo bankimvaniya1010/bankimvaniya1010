@@ -55,7 +55,7 @@ public partial class admin_manageutilities : System.Web.UI.Page
     protected void UtilitiesGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(UtilitiesGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/editutilities.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/editutilities.aspx?id=" + id);
     }
 
     protected void UtilitiesGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

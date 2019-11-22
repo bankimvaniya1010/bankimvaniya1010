@@ -136,7 +136,7 @@ public partial class admin_addtooltips : System.Web.UI.Page
             else
             {
                 db.SaveChanges();
-                Response.Redirect("~/admin/tooltipslisting.aspx", true);
+                Response.Redirect(webURL + "admin/tooltipslisting.aspx", true);
             }
 
         }

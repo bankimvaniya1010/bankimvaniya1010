@@ -55,7 +55,7 @@ public partial class admin_Managehealthinsurance : System.Web.UI.Page
     protected void HealthInsuranceGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int id = Convert.ToInt32(HealthInsuranceGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/edithealthinsurance.aspx?id=" + id);
+        Response.Redirect(webURL + "admin/edithealthinsurance.aspx?id=" + id);
     }
 
     protected void HealthInsuranceGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)

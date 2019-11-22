@@ -72,7 +72,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                 if (applicantdetails == null)
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
-                    Response.Redirect("default.aspx", true);
+                    Response.Redirect(webURL + "default.aspx", true);
                 }
 
                 foreach (var response in answeredQuestion)

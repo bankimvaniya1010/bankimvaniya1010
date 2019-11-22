@@ -154,7 +154,7 @@ public partial class admin_customfieldaddition : System.Web.UI.Page
             else
             {
                 db.SaveChanges();
-                Response.Redirect("~/admin/customfieldlisting.aspx", true);
+                Response.Redirect(webURL + "admin/customfieldlisting.aspx", true);
             }
         }
 

@@ -174,7 +174,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
             if (Comamandname.Equals("PerDown"))
                 downloadPerDown(ID);
             if (Comamandname.Equals("ProcessPaymentRequest"))
-                Response.Redirect("~/admin/processpaymentrequest.aspx?applicantId=" + ID + "&universityId=" + universityID);
+                Response.Redirect(webURL + "admin/processpaymentrequest.aspx?applicantId=" + ID + "&universityId=" + universityID);
             //else if (e.CommandName.Equals("ViewPersonal")) { Response.Redirect(webURL + "admin/viewinfo.aspx?ID=" + ID); }
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
             if(Comamandname.Equals("VisaDate"))

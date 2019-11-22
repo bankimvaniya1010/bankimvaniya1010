@@ -27,7 +27,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             {
                 int universityCampusId;
                 if (!Int32.TryParse(Request.QueryString["universityCampusID"], out universityCampusId))
-                    Response.Redirect("~/admin/default.aspx");
+                    Response.Redirect(webURL + "admin/default.aspx");
 
                 universitycampus existingUninversityCampus = db.universitycampus.Where(obj => obj.campusid == universityCampusId).First();
 
@@ -60,7 +60,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University Campus does not exists')", true);
             }
             else
-                Response.Redirect("~/admin/default.aspx");
+                Response.Redirect(webURL + "admin/default.aspx");
         }
     }
 
@@ -118,7 +118,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
                 db.SaveChanges();
             }
 
-            Response.Redirect("~/admin/universitycampusmaster.aspx?universityID=" + universityCampusObj.universityid);
+            Response.Redirect(webURL + "admin/universitycampusmaster.aspx?universityID=" + universityCampusObj.universityid);
         }
         catch (Exception ex)
         {

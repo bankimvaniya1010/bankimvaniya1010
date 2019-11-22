@@ -88,17 +88,17 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
 
     protected void addNewCampus_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/admin/createuniversitycampus.aspx");
+        Response.Redirect(webURL + "admin/createuniversitycampus.aspx");
     }
 
     protected void addNewFacility_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/admin/createfacility.aspx");
+        Response.Redirect(webURL + "admin/createfacility.aspx");
     }
 
     protected void addNewFacilityInCampus_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/admin/createcampusfacilitymapping.aspx");
+        Response.Redirect(webURL + "admin/createcampusfacilitymapping.aspx");
     }
 
     protected void universityCampusGridView_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -129,7 +129,7 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
     protected void universityCampusGridView_RowEditing(object sender, GridViewEditEventArgs e)
     {
         int campusID = Convert.ToInt32(universityCampusGridView.DataKeys[e.NewEditIndex].Value);
-        Response.Redirect("~/admin/edituniversitycampus.aspx?universityCampusID=" + campusID);
+        Response.Redirect(webURL + "admin/edituniversitycampus.aspx?universityCampusID=" + campusID);
     }
 
     protected void universityCampusGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
