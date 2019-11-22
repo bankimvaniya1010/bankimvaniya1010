@@ -180,6 +180,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<scholarships> scholarships { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<payment_details> payment_details { get; set; }
+    public virtual DbSet<universitywise_faqmapping> universitywise_faqmapping { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
