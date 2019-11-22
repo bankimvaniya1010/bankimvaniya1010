@@ -1450,9 +1450,18 @@ public partial class familymember
 
 public partial class faq
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public faq()
+    {
+        this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
+    }
+
     public int id { get; set; }
     public string question { get; set; }
     public string answer { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
 }
 
 public partial class fieldvalidationmaster
@@ -1495,6 +1504,7 @@ public partial class formmaster
         this.supervisorcomments = new HashSet<supervisorcomments>();
         this.tooltipmaster = new HashSet<tooltipmaster>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
+        this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
     }
 
     public int formid { get; set; }
@@ -1514,6 +1524,8 @@ public partial class formmaster
     public virtual ICollection<tooltipmaster> tooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
 }
 
 public partial class grademaster
@@ -2582,6 +2594,7 @@ public partial class university_master
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
         this.payment_details = new HashSet<payment_details>();
+        this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
     }
 
     public int universityid { get; set; }
@@ -2625,6 +2638,7 @@ public partial class university_master
     public string withdrawn_terms { get; set; }
     public string supprot_service_instructions { get; set; }
     public string visa_instructions { get; set; }
+    public string hosturl { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
@@ -2681,6 +2695,8 @@ public partial class university_master
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<payment_details> payment_details { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
 }
 
 public partial class universitycampus
@@ -2728,6 +2744,19 @@ public partial class universitygrouping
 
     public virtual university_master university_master { get; set; }
     public virtual university_master university_master1 { get; set; }
+}
+
+public partial class universitywise_faqmapping
+{
+    public int id { get; set; }
+    public Nullable<int> faq_questionID { get; set; }
+    public Nullable<int> universityid { get; set; }
+    public Nullable<int> formid { get; set; }
+    public Nullable<int> questionranking { get; set; }
+
+    public virtual faq faq { get; set; }
+    public virtual formmaster formmaster { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitywise_rejectionreasonmapping

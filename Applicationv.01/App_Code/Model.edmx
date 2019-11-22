@@ -1264,8 +1264,8 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="question" Type="varchar" MaxLength="100" />
-          <Property Name="answer" Type="varchar" MaxLength="100" />
+          <Property Name="question" Type="varchar" MaxLength="1000" />
+          <Property Name="answer" Type="varchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="fieldvalidationmaster">
           <Key>
@@ -2117,6 +2117,7 @@
           <Property Name="withdrawn_terms" Type="varchar" MaxLength="2000" />
           <Property Name="supprot_service_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="visa_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="hosturl" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -2145,6 +2146,16 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="groupingheaduniversityid" Type="int" Nullable="false" />
           <Property Name="universityid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="universitywise_faqmapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="faq_questionID" Type="int" />
+          <Property Name="universityid" Type="int" />
+          <Property Name="formid" Type="int" />
+          <Property Name="questionranking" Type="int" />
         </EntityType>
         <EntityType Name="universitywise_rejectionreasonmapping">
           <Key>
@@ -3603,6 +3614,42 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_universitywise_faqmapping_faq">
+          <End Role="faq" Type="Self.faq" Multiplicity="0..1" />
+          <End Role="universitywise_faqmapping" Type="Self.universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faq">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="faq_questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_universitywise_faqmapping_formmaster">
+          <End Role="formmaster" Type="Self.formmaster" Multiplicity="0..1" />
+          <End Role="universitywise_faqmapping" Type="Self.universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_universitywise_faqmapping_university_master">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="0..1" />
+          <End Role="universitywise_faqmapping" Type="Self.universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_universitywisetooltipmaster_formmaster">
           <End Role="formmaster" Type="Self.formmaster" Multiplicity="1" />
           <End Role="universitywisetooltipmaster" Type="Self.universitywisetooltipmaster" Multiplicity="*" />
@@ -3792,6 +3839,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="universitycampus" EntityType="Self.universitycampus" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitycampus_city_mapping" EntityType="Self.universitycampus_city_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitygrouping" EntityType="Self.universitygrouping" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="universitywise_faqmapping" EntityType="Self.universitywise_faqmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywise_rejectionreasonmapping" EntityType="Self.universitywise_rejectionreasonmapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywise_supportservicemapping" EntityType="Self.universitywise_supportservicemapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="universitywisefieldmapping" EntityType="Self.universitywisefieldmapping" Schema="GTE" store:Type="Tables" />
@@ -4264,6 +4312,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_universityMaster_cityMaster" Association="Self.FK_universityMaster_cityMaster">
             <End Role="citymaster" EntitySet="citymaster" />
             <End Role="university_master" EntitySet="university_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_universitywise_faqmapping_faq" Association="Self.FK_universitywise_faqmapping_faq">
+            <End Role="faq" EntitySet="faq" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_universitywise_faqmapping_formmaster" Association="Self.FK_universitywise_faqmapping_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_universitywise_faqmapping_university_master" Association="Self.FK_universitywise_faqmapping_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
           </AssociationSet>
           <AssociationSet Name="FK_universitywisetooltipmaster_formmaster" Association="Self.FK_universitywisetooltipmaster_formmaster">
             <End Role="formmaster" EntitySet="formmaster" />
@@ -4909,6 +4969,19 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_payment_details_university_master" Association="GTEModel.FK_payment_details_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="payment_details" EntitySet="payment_details" />
+          </AssociationSet>
+          <EntitySet Name="universitywise_faqmapping" EntityType="GTEModel.universitywise_faqmapping" />
+          <AssociationSet Name="FK_universitywise_faqmapping_faq" Association="GTEModel.FK_universitywise_faqmapping_faq">
+            <End Role="faq" EntitySet="faq" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_universitywise_faqmapping_formmaster" Association="GTEModel.FK_universitywise_faqmapping_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_universitywise_faqmapping_university_master" Association="GTEModel.FK_universitywise_faqmapping_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
@@ -5853,6 +5926,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="question" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="answer" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="universitywise_faqmapping" Relationship="GTEModel.FK_universitywise_faqmapping_faq" FromRole="faq" ToRole="universitywise_faqmapping" />
         </EntityType>
         <EntityType Name="fieldvalidationmaster">
           <Key>
@@ -5898,6 +5972,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_formmaster" FromRole="formmaster" ToRole="supervisorcomments" />
           <NavigationProperty Name="tooltipmaster" Relationship="GTEModel.FK_tooltips_formmaster" FromRole="formmaster" ToRole="tooltipmaster" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_formmaster" FromRole="formmaster" ToRole="universitywisetooltipmaster" />
+          <NavigationProperty Name="universitywise_faqmapping" Relationship="GTEModel.FK_universitywise_faqmapping_formmaster" FromRole="formmaster" ToRole="universitywise_faqmapping" />
         </EntityType>
         <EntityType Name="grademaster">
           <Key>
@@ -8393,6 +8468,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
           <NavigationProperty Name="payment_details" Relationship="GTEModel.FK_payment_details_university_master" FromRole="university_master" ToRole="payment_details" />
+          <Property Name="hosturl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="universitywise_faqmapping" Relationship="GTEModel.FK_universitywise_faqmapping_university_master" FromRole="university_master" ToRole="universitywise_faqmapping" />
         </EntityType>
         <Association Name="fk_university_master_admincomments">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
@@ -8772,6 +8849,55 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Principal>
             <Dependent Role="payment_details">
               <PropertyRef Name="university_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="universitywise_faqmapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="faq_questionID" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="formid" Type="Int32" />
+          <Property Name="questionranking" Type="Int32" />
+          <NavigationProperty Name="faq" Relationship="GTEModel.FK_universitywise_faqmapping_faq" FromRole="universitywise_faqmapping" ToRole="faq" />
+          <NavigationProperty Name="formmaster" Relationship="GTEModel.FK_universitywise_faqmapping_formmaster" FromRole="universitywise_faqmapping" ToRole="formmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universitywise_faqmapping_university_master" FromRole="universitywise_faqmapping" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK_universitywise_faqmapping_faq">
+          <End Type="GTEModel.faq" Role="faq" Multiplicity="0..1" />
+          <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faq">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="faq_questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_universitywise_faqmapping_formmaster">
+          <End Type="GTEModel.formmaster" Role="formmaster" Multiplicity="0..1" />
+          <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_universitywise_faqmapping_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
+          <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -11115,6 +11241,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="university_master">
             <EntityTypeMapping TypeName="GTEModel.university_master">
               <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="hosturl" ColumnName="hosturl" />
                 <ScalarProperty Name="visa_instructions" ColumnName="visa_instructions" />
                 <ScalarProperty Name="supprot_service_instructions" ColumnName="supprot_service_instructions" />
                 <ScalarProperty Name="withdrawn_terms" ColumnName="withdrawn_terms" />
@@ -11174,6 +11301,17 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="request_date" ColumnName="request_date" />
                 <ScalarProperty Name="university_id" ColumnName="university_id" />
                 <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="universitywise_faqmapping">
+            <EntityTypeMapping TypeName="GTEModel.universitywise_faqmapping">
+              <MappingFragment StoreEntitySet="universitywise_faqmapping">
+                <ScalarProperty Name="questionranking" ColumnName="questionranking" />
+                <ScalarProperty Name="formid" ColumnName="formid" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
+                <ScalarProperty Name="faq_questionID" ColumnName="faq_questionID" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

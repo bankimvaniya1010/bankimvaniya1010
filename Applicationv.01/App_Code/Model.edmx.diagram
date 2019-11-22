@@ -277,6 +277,10 @@
         <AssociationConnector Association="GTEModel.FK_payment_details_currency_master" />
         <AssociationConnector Association="GTEModel.FK_payment_details_applicantdetails" />
         <AssociationConnector Association="GTEModel.FK_payment_details_university_master" />
+        <EntityTypeShape EntityType="GTEModel.universitywise_faqmapping" Width="1.5" PointX="10.5" PointY="80.125" />
+        <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_faq" />
+        <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_formmaster" />
+        <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_university_master" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
