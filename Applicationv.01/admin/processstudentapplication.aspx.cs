@@ -251,7 +251,7 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 }
 
                 // Bug in case of Offer defered, after how the application will be re intiated.
-                if (ddlCurrentStatus.SelectedValue != null && !status.ToUpper().Contains("OFFER DEFERRED") && !status.ToUpper().Contains("OFFER REJECTED"))
+                if (ddlCurrentStatus.SelectedValue != null && !ddlCurrentStatus.SelectedItem.Value.Contains("0"))
                     application.current_status = Convert.ToInt32(ddlCurrentStatus.SelectedValue);
 
                 TextBox txtUniveristyRemark = e.Item.FindControl("txtUniversityAdmissionRemark") as TextBox;

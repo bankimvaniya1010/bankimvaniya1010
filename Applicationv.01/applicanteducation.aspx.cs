@@ -635,7 +635,7 @@ public partial class applicanteducation : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var medium = db.educationmediummaster.ToList();
+            var medium = db.educationmediummaster.SortBy("description").ToList();
             ddl.DataSource = medium;
             ddl.DataTextField = "description";
             ddl.DataValueField = "id";

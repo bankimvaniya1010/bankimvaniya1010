@@ -48,9 +48,28 @@ public partial class applicantlanguage : System.Web.UI.Page
             BindGrade();
             BindStudyMode();
             BindCEFRLevel();
+            BindHomeLanguage(ddlhomelanguage);
             BindQualificationType();
             PopulateLanguageDetails();
             SetControlsUniversitywise();
+        }
+    }
+
+    private void BindHomeLanguage(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var medium = db.educationmediummaster.SortBy("description").ToList();
+            ddl.DataSource = medium;
+            ddl.DataTextField = "description";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
         }
     }
 
@@ -615,7 +634,12 @@ public partial class applicantlanguage : System.Web.UI.Page
                                 select pInfo).FirstOrDefault();
             if (LanguageInfo != null)
             {
-                txthomelanguage.Value = LanguageInfo.homelanuage;
+                //txthomelanguage.Value = LanguageInfo.homelanuage;
+                if (LanguageInfo.homelanuage.HasValue)
+                {
+                    ddlhomelanguage.ClearSelection();
+                    ddlhomelanguage.Items.FindByValue(LanguageInfo.homelanuage.ToString()).Selected = true;
+                }
 
                 if (LanguageInfo.isenglishintesive == 1)
                     rblEnglishBackgroundYes.Checked = true;
@@ -745,7 +769,10 @@ public partial class applicantlanguage : System.Web.UI.Page
                 mode = "update";
                 objLanguage = LanguageInfo;
             }
-            objLanguage.homelanuage = txthomelanguage.Value;
+            //objLanguage.homelanuage = txthomelanguage.Value;
+            if (ddlhomelanguage.SelectedValue != "")
+                objLanguage.homelanuage = Convert.ToInt32(ddlhomelanguage.SelectedValue);
+
             if (rblEnglishBackgroundYes.Checked)
             {
                 objLanguage.isenglishintesive = 1;

@@ -17,11 +17,13 @@ public partial class addgrade : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
+
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
             Response.Redirect(webURL + "applicanteducation.aspx", true);
         else

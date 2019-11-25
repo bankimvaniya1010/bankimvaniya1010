@@ -18,9 +18,10 @@ public partial class australiavisainstruction : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         if (!IsPostBack) {
 			allQuestions = objCom.FaqQuestionList();

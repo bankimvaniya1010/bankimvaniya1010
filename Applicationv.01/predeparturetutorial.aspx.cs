@@ -14,10 +14,12 @@ public partial class predeparturetutorial : System.Web.UI.Page
     protected List<predeparturetutorialmaster> allDocuments = new List<predeparturetutorialmaster>();
     private GTEEntities db = new GTEEntities();
     int ApplicantID = 0;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         ApplicantID = Convert.ToInt32(Session["UserID"].ToString());
