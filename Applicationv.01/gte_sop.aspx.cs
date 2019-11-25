@@ -19,11 +19,11 @@ public partial class gte_sop : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         UserID = objUser.studentid;
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
 
         if (!IsPostBack)
         {

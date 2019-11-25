@@ -17,11 +17,12 @@ public partial class gte_tutorial : System.Web.UI.Page
     Logger objLog = new Logger();
     protected string Score, Results = "";
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     gte_progressbar gteProgressBar = new gte_progressbar();
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());

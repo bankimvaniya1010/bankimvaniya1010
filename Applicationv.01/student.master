@@ -235,7 +235,7 @@
                                                     <span class="sidebar-menu-text">Social Profile</span>
                                                 </a>
                                             </li>
-                                             <li class="sidebar-menu-item" id="applicantrefrencecheck">
+                                             <li class="sidebar-menu-item" style="display:none" id="applicantrefrencecheck">
                                                 <a class="sidebar-menu-button" href="applicantrefrencecheck.aspx?formid=6">
                                                     <span class="sidebar-menu-text">Reference Check</span>
                                                 </a>

@@ -25,9 +25,10 @@ public partial class personaldetails : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        universityID = Utility.GetUniversityId();       
+        
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];

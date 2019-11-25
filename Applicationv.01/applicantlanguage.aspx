@@ -28,7 +28,7 @@
                                     <div class="form-row">
                                         <label id="labelhomelanguage" runat="server" for="homelanguage" class="col-md-3 col-form-label form-label">What language do you speak at home</label>
                                         <div class="col-md-6">
-                                            <input id="txthomelanguage" runat="server" type="text" placeholder="What language do you speak at home" value="" class="form-control">
+                                            <asp:DropDownList ID="ddlhomelanguage" runat="server" CssClass="form-control"></asp:DropDownList>
                                             <span class="helpicon"><i id="ichomelanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -602,7 +602,7 @@
             var checksixteendigit = /^\d{16}$/;
             var checOnlykNum = /^[0-9]*$/;
             var flag = false;
-            if (!$("#<%=homelanguage.ClientID%>").is(':hidden') && $("#<%=txthomelanguage.ClientID%>").val() == "")
+            if (!$("#<%=homelanguage.ClientID%>").is(':hidden') && ($("#<%=ddlhomelanguage.ClientID%>").val() == "0"))
                 alert("Please Mention Language You Speak At Home");
 
             else if (!$("#<%=EnglishBackground.ClientID%>").is(':hidden') && !($("#<%=rblEnglishBackgroundYes.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNot.ClientID%>").is(':checked') || $("#<%=rblEnglishBackgroundNo.ClientID%>").is(':checked')))

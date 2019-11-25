@@ -375,6 +375,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
         string giveenglishTest = string.Empty;
         string isfinalGradeachieved = string.Empty;
         string isenglishIntesive = string.Empty;
+        string homeLanguage = "N/A";
 
         worksheet.Name = "LanguageCompetency Details";
         worksheet.Activate();
@@ -448,10 +449,12 @@ public partial class admin_applicantlist : System.Web.UI.Page
             else if (details.isenglishintesive != null && details.isenglishintesive.Value == 3)
                 isenglishIntesive = "No-I have not studied an English Language Intensive Course for people from non-English speaking backgrounds";
 
+            if (details.homelanuage.HasValue)
+                homeLanguage = objCom.GetStudyMedium(details.homelanuage.Value);
 
             worksheet.Cells[2, 1] = details.applicantid;
             worksheet.Cells[2, 2] = universityName;
-            worksheet.Cells[2, 3] = string.IsNullOrEmpty(details.homelanuage) ? "N/A" : details.homelanuage;
+            worksheet.Cells[2, 3] = homeLanguage;
             worksheet.Cells[2, 4] = isenglishIntesive;
             worksheet.Cells[2, 5] = string.IsNullOrEmpty(countryofCourse) ? "N/A" : countryofCourse;
             worksheet.Cells[2, 6] = details.yearofcompletion.HasValue ? details.yearofcompletion.Value.ToString("dd/MM/yyyy") : "N/A";

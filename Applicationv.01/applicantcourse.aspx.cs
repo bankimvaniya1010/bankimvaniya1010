@@ -22,10 +22,10 @@ public partial class applicantcourse : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
 
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
@@ -268,7 +268,7 @@ public partial class applicantcourse : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("select Study Mode", "0");
+            ListItem lst = new ListItem("Select Study Mode", "0");
             var mode = (from sd in db.studymodemaster
                         where sd.universityid == universityID
                         select new
@@ -294,7 +294,7 @@ public partial class applicantcourse : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("select Campus", "0");
+            ListItem lst = new ListItem("Select Campus", "0");
             var campus = (from uc in db.universitycampus
                           where uc.universityid == universityID
                           select new
@@ -320,7 +320,7 @@ public partial class applicantcourse : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("select City", "0");
+            ListItem lst = new ListItem("Select City", "0");
             var campus = (from cm in db.citymaster
                           join um in db.university_master on cm.city_id equals um.cityid
                           where um.universityid == universityID
@@ -406,7 +406,7 @@ public partial class applicantcourse : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Select CommencementDate", "0");
-            var dates = db.course_dates.Where(x => x.courseid == courseId && x.commencementdate > DateTime.Now).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
+            var dates = db.course_dates.Where(x => x.courseid == courseId).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
             ddl.DataSource = dates;
             ddl.DataTextField = "commencementdate";
             ddl.DataValueField = "id";

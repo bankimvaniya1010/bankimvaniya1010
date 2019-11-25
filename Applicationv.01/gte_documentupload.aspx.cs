@@ -24,10 +24,10 @@ public partial class gte_documentupload : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
 
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
             Response.Redirect(webURL + "default.aspx", true);

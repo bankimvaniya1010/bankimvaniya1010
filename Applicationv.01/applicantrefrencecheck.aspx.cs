@@ -20,9 +20,10 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];

@@ -15,11 +15,12 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     Common objCom = new Common();
-    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
     protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         var objUser = (students)Session["LoginInfo"];

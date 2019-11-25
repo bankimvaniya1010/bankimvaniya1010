@@ -11,9 +11,10 @@ public partial class registeragent : System.Web.UI.Page
 
     Common objCom = new Common();
     Logger objLog = new Logger();
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
+        webURL = Utility.GetWebUrl();
     }
 
     protected void btnSignUp_Click(object sender, EventArgs e)
