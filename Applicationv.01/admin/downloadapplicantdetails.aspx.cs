@@ -2769,7 +2769,8 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
                                 select pInfo).FirstOrDefault();
             if (LanguageInfo != null)
             {
-                lblhomelanguage.Text = LanguageInfo.homelanuage;
+                if (LanguageInfo.homelanuage.HasValue)
+                    lblhomelanguage.Text = objCom.GetStudyMedium(LanguageInfo.homelanuage.Value);
 
                 if (LanguageInfo.isenglishintesive == 1)
                     lblEnglishBackground.Text = "";

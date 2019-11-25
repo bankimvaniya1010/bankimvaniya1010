@@ -508,7 +508,8 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                                 select pInfo).FirstOrDefault();
             if (LanguageInfo != null)
             {
-                lblhomelanguage.Text = LanguageInfo.homelanuage;
+                if (LanguageInfo.homelanuage.HasValue)
+                    lblhomelanguage.Text = objCom.GetStudyMedium(LanguageInfo.homelanuage.Value);
 
                 if (LanguageInfo.isenglishintesive == 1)
                 {
