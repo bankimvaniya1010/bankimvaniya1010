@@ -18,6 +18,7 @@ public partial class admin_mastermapping : System.Web.UI.Page
         if (!IsPostBack)
         {
             BindUniversity();
+            BindMaster();
         }
     }
     private void BindUniversity()
@@ -127,12 +128,6 @@ public partial class admin_mastermapping : System.Web.UI.Page
 
         }          
             
-    }
-
-    protected void ddlUniversity_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        BindMaster();
-        chkMasterField.Items.Clear();
     }
 }
 

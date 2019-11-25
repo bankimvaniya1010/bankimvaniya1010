@@ -190,12 +190,12 @@ public partial class applicantcourse : System.Web.UI.Page
                                where (x1.universityid == universityID && x.mastername.ToUpper().Contains("Study Level Master"))
                                select new
                                {
-                                   description = slm.studylevel,
-                                   id = slm.studylevelid
+                                   studylevel = slm.studylevel,
+                                   studylevelid = slm.studylevelid
                                }).ToList();
             ddl.DataSource = coursestype;
-            ddl.DataTextField = "description";
-            ddl.DataValueField = "id";
+            ddl.DataTextField = "studylevel";
+            ddl.DataValueField = "studylevelid";
             ddl.DataBind();
             ddl.Items.Insert(0, lst);
 
