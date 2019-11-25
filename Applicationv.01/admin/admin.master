@@ -267,6 +267,11 @@
                                             <span class="sidebar-menu-text">Manage Subject Master</span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item" id="subjectwisecountrymapping"> 
+                                        <a class="sidebar-menu-button" href="subjectwisecountrymapping.aspx">
+                                            <span class="sidebar-menu-text">Countrywise Subject Selection</span>
+                                        </a>
+                                    </li>
                                     <li class="sidebar-menu-item" id="majordesription">
                                         <a class="sidebar-menu-button" href="majordesription.aspx">
                                             <span class="sidebar-menu-text"> Major Discipline Master</span>
@@ -341,7 +346,7 @@
                                         <a class="sidebar-menu-button" href="universitywisesupportservicemapping.aspx">
                                             <span class="sidebar-menu-text">Institution Support Service Selection</span>
                                         </a>
-                                    </li>
+                                    </li>                                    
                                 </ul>                                
                             </li>                          
                             <li class="sidebar-menu-item" id="course_list">
