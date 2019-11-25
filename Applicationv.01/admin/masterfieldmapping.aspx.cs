@@ -18,7 +18,6 @@ public partial class admin_mastermapping : System.Web.UI.Page
         if (!IsPostBack)
         {
             BindUniversity();
-            BindMaster();
         }
     }
     private void BindUniversity()
@@ -59,25 +58,36 @@ public partial class admin_mastermapping : System.Web.UI.Page
     protected void ddlMaster_SelectedIndexChanged(object sender, EventArgs e)
     {
         int MasterID = Convert.ToInt16(ddlMaster.SelectedValue);
-        dynamic masterdata = null;        
+        dynamic masterdata = null;
         if (MasterID == 0)
             chkMasterField.Items.Clear();
         else if (MasterID == 1)
             masterdata = db.alternateadressproofmaster.ToList();
         else if (MasterID == 2)
-            masterdata = db.alternatedobproof.ToList();       
+            masterdata = db.alternatedobproof.ToList();
         else if (MasterID == 4)
             masterdata = db.disabilitymaster.ToList();
         else if (MasterID == 5)
             masterdata = db.grademaster.ToList();
         else if (MasterID == 6)
             masterdata = db.majordiscipline_master.ToList();
+        else if (MasterID == 7)
+            masterdata = db.studylevelmaster.ToList();
 
-
-        chkMasterField.DataSource = masterdata;
-        chkMasterField.DataTextField = "description";
-        chkMasterField.DataValueField = "id";
-        chkMasterField.DataBind();
+        if (MasterID == 7)
+        {
+            chkMasterField.DataSource = masterdata;
+            chkMasterField.DataTextField = "studylevel";
+            chkMasterField.DataValueField = "studylevelid";
+            chkMasterField.DataBind();
+        }
+        else
+        {
+            chkMasterField.DataSource = masterdata;
+            chkMasterField.DataTextField = "description";
+            chkMasterField.DataValueField = "id";
+            chkMasterField.DataBind();
+        }
         int UniversityID = Convert.ToInt32(ddlUniversity.SelectedValue);
         var universityWise = db.universitywisemastermapping.Where(x => x.universityid == UniversityID && x.masterid == MasterID).ToList();
         for (int k = 0; k < universityWise.Count; k++)
@@ -117,7 +127,13 @@ public partial class admin_mastermapping : System.Web.UI.Page
 
         }          
             
-    }    
+    }
+
+    protected void ddlUniversity_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        BindMaster();
+        chkMasterField.Items.Clear();
+    }
 }
 
 

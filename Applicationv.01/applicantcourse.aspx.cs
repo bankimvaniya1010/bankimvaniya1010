@@ -182,10 +182,20 @@ public partial class applicantcourse : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var coursestype = db.studylevelmaster.ToList();
+            var coursestype = (from slm in db.studylevelmaster
+                               join umd in db.universitywisemastermapping on slm.studylevelid equals umd.mastervalueid into umdData
+                               from x1 in umdData.DefaultIfEmpty()
+                               join mn in db.master_name on x1.masterid equals mn.masterid into mnData
+                               from x in mnData.DefaultIfEmpty()
+                               where (x1.universityid == universityID && x.mastername.ToUpper().Contains("Study Level Master"))
+                               select new
+                               {
+                                   description = slm.studylevel,
+                                   id = slm.studylevelid
+                               }).ToList();
             ddl.DataSource = coursestype;
-            ddl.DataTextField = "studylevel";
-            ddl.DataValueField = "studylevelid";
+            ddl.DataTextField = "description";
+            ddl.DataValueField = "id";
             ddl.DataBind();
             ddl.Items.Insert(0, lst);
 

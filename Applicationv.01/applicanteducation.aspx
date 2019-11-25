@@ -98,114 +98,115 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoolCountry" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolCountry">
-                                    <div class="form-row">
-                                        <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School</label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server" AutoPostBack="false">
-                                            </asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                            <div id="highshoolcontrols" runat="server">
+                                <div class="list-group-item frm-rdbtn" id="highschoolCountry" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolCountry">
+                                        <div class="form-row">
+                                            <label id="labelhighschoolCountry" runat="server" for="highschoolCountry" class="col-md-3 col-form-label form-label">Country of High School</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlCountryHighSchool" CssClass="form-control" runat="server" AutoPostBack="false">
+                                                </asp:DropDownList>
+                                                <span class="helpicon"><i id="ichighschoolCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoolstartDate" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
-                                    <div class="form-row">
-                                        <label id="labelhighschoolstartDate" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighSchoolStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <asp:DropDownList ID="ddlHighSchoolStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolstartDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="highschoolstartDate" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstartDate">
+                                        <div class="form-row">
+                                            <label id="labelhighschoolstartDate" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHighSchoolStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlHighSchoolStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <span class="helpicon"><i id="ichighschoolstartDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoolendDate" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolendateDate">
-                                    <div class="form-row">
-                                        <label id="labelhighschoolendDate" runat="server" for="highschoolendDate" class="col-md-3 col-form-label form-label">End Date </label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighSchoolEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <asp:DropDownList ID="ddlHighSchoolEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolendDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="highschoolendDate" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolendateDate">
+                                        <div class="form-row">
+                                            <label id="labelhighschoolendDate" runat="server" for="highschoolendDate" class="col-md-3 col-form-label form-label">End Date </label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHighSchoolEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlHighSchoolEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <span class="helpicon"><i id="ichighschoolendDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoolName" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolName">
-                                    <div class="form-row">
-                                        <label id="labelhighschoolName" runat="server" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
-                                        <div class="col-md-6">
-                                            <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Name of School">
-                                            <span class="helpicon"><i id="ichighschoolName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="highschoolName" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolName">
+                                        <div class="form-row">
+                                            <label id="labelhighschoolName" runat="server" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
+                                            <div class="col-md-6">
+                                                <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Name of School">
+                                                <span class="helpicon"><i id="ichighschoolName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoolQualificationtype" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolQualificationtype">
-                                    <div class="form-row">
-                                        <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
-                                                  <asp:ListItem value="" selected="True" >Please Select</asp:ListItem>
-                                            </asp:DropDownList>
-                                             <asp:HiddenField runat="server" ID="hidddlHighSchoolQualificationType"/>
-                                            <span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="highschoolQualificationtype" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolQualificationtype">
+                                        <div class="form-row">
+                                            <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
+                                                      <asp:ListItem value="" selected="True" >Please Select</asp:ListItem>
+                                                </asp:DropDownList>
+                                                 <asp:HiddenField runat="server" ID="hidddlHighSchoolQualificationType"/>
+                                                <span class="helpicon"><i id="ichighschoolQualificationtype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoolstudymode" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstudymode">
-                                    <div class="form-row">
-                                        <label id="labelhighschoolstudymode" runat="server" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighSchoolStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoolstudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="highschoolstudymode" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstudymode">
+                                        <div class="form-row">
+                                            <label id="labelhighschoolstudymode" runat="server" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHighSchoolStudyMode" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="ichighschoolstudymode" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoollanguage" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-highschoollanguage">
-                                    <div class="form-row">
-                                        <label id="labelhighschoollanguage" runat="server" for="highschoollanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighschoolMedium" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="ichighschoollanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="highschoollanguage" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-highschoollanguage">
+                                        <div class="form-row">
+                                            <label id="labelhighschoollanguage" runat="server" for="highschoollanguage" class="col-md-3 col-form-label form-label">Language (Medium) of Study</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHighschoolMedium" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="ichighschoollanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="gradetype" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-gradetype">
-                                    <div class="form-row">
-                                        <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
-                                        <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighSchoolGrade" runat="server" CssClass="form-control"></asp:DropDownList>
-                                            <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="gradetype" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-gradetype">
+                                        <div class="form-row">
+                                            <label id="labelgradetype" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Grade Type</label>
+                                            <div class="col-md-6">
+                                                <asp:DropDownList ID="ddlHighSchoolGrade" runat="server" CssClass="form-control"></asp:DropDownList>
+                                                <span class="helpicon"><i id="icgradetype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="highschoolgradeachieved" runat="server" style="display: none">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-gradeachieved">
-                                    <div class="form-row">
-                                        <label id="labelgradeachieved" runat="server" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
-                                        <div class="col-md-9">
-                                            <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
-                                            <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
-                                            <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
-                                            <span class="helpicon"><i id="ichighschoolgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                <div class="list-group-item frm-rdbtn" id="highschoolgradeachieved" runat="server" style="display: none">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-gradeachieved">
+                                        <div class="form-row">
+                                            <label id="labelgradeachieved" runat="server" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
+                                            <div class="col-md-9">
+                                                <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
+                                                <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
+                                                <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
+                                                <span class="helpicon"><i id="ichighschoolgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="list-group-item frm-rdbtn" id="ExpectedHighSchoolDategrade" runat="server" style="display: none">
+                                <div class="list-group-item frm-rdbtn" id="ExpectedHighSchoolDategrade" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-ExpectedHighSchoolDategrade">
                                     <div class="form-row">
                                         <label id="labelExpectedHighSchoolDategrade" runat="server" for="EnglishCourse" class="col-md-3 col-form-label form-label">Expected dates when results will be declared </label>
@@ -216,6 +217,8 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
+                         <div id="highshoolcontactscontrols" runat="server">
                             <div class="list-group-item frm-rdbtn" id="highschoolverify" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolverify">
                                     <div class="form-row">
@@ -261,7 +264,10 @@
                                     </div>
                                 </div>
                             </div>
-                         </div>   
+                         
+                         </div>
+
+                        </div>
 
                         <div class="list-group-item" id="highshoolgrade" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
@@ -283,7 +289,7 @@
                                                         <th scope="col">Grade </th>
                                                         <th scope="col">Delete</th>
 		                                            </tr>
-                                                    <%if (grade10.Count > 0)
+                                                     <%if (grade10.Count > 0)
                                                         {
                                                             for (var i = 0; i < grade10.Count; i++)
                                                             { %>
@@ -338,6 +344,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            <div id="SecondarySectionControls" runat="server">
                                 <div class="list-group-item frm-rdbtn" id="SecondaryCountry" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-SecondaryCountry">
                                         <div class="form-row">
@@ -458,6 +465,8 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div id="SecondaryContactControls" runat="server">
                                 <div class="list-group-item frm-rdbtn" id="Secondaryverify" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondaryverify">
                                         <div class="form-row">
@@ -502,7 +511,8 @@
                                         </div>
                                     </div>
                                 </div>
-                               </div> 
+                            </div>
+                        </div> 
 
                         <div class="list-group-item" id="secondarygrade" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
@@ -584,6 +594,7 @@
                                         </div>
                                     </div>
                                 </div>
+                             <div id="HigherSectionControl" runat="server">
                                 <div class="list-group-item frm-rdbtn" id="highercourse" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highercourse">
                                         <div class="form-row">
@@ -720,6 +731,9 @@
                                         </div>
                                     </div>
                                 </div>
+                             </div>
+                             <div id="HigherContactControl" runat="server">
+
                                 <div class="list-group-item frm-rdbtn" id="higherverify" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higherverify">
                                         <div class="form-row">
@@ -764,7 +778,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                </div>
+                             </div>
+                        </div>
 
                          <div class="list-group-item frm-rdbtn" id="highergrade" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
@@ -902,6 +917,7 @@
                                     </div>
                                 </div>
                             </div>
+                             <div id="diplomacontrol" runat="server">
                             <div class="list-group-item frm-rdbtn" id="diplomaCountry" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaCountry">
                                     <div class="form-row">
@@ -1022,6 +1038,8 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
+                             <div id="diplomaContactControl" runat="server">
                             <div class="list-group-item frm-rdbtn" id="diplomaverify" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diplomaverify">
                                     <div class="form-row">
@@ -1066,6 +1084,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
                                 </div>
 
@@ -1434,232 +1453,79 @@
 
         function ToggleDiploma() {
             if ($("#<%=rbldiplomaYes.ClientID%>").is(":checked")) {
-                $("#<%=diplomaCountry.ClientID%>").show();
-                $("#<%=diplomastartDate.ClientID%>").show();
-                $("#<%=diplomaendDate.ClientID%>").show();
-                $("#<%=diplomaschoolName.ClientID%>").show();
-                $("#<%=diplomaQualificationtype.ClientID%>").show();
-                $("#<%=diplomastudymode.ClientID%>").show();
-                $("#<%=diplomalanguage.ClientID%>").show();
-                $("#<%=diplomagradetype.ClientID%>").show();
-                $("#<%=diplomagradeachieved.ClientID%>").show();
-                $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
-                $("#<%=diplomaverify.ClientID%>").show();
-                $("#<%=diplomarelation.ClientID%>").show();
-                $("#<%=diplomacontactEmail.ClientID%>").show();
-                $("#<%=diplomagrade.ClientID%>").show();
-                $("#<%=diplomacontactMobile.ClientID%>").show();
+                $("#<%=diplomacontrol.ClientID%>").show();
+                $("#<%=diplomaContactControl.ClientID%>").show();
+                $("#<%=diplomagrade.ClientID%>").show(); //pemding
 
             }
             else if ($("#<%=rbldiplomaNo.ClientID%>").is(":checked")) {
-                $("#<%=diplomaCountry.ClientID%>").show();
-                $("#<%=diplomastartDate.ClientID%>").show();
-                $("#<%=diplomaendDate.ClientID%>").show();
-                $("#<%=diplomaschoolName.ClientID%>").show();
-                $("#<%=diplomaQualificationtype.ClientID%>").show();
-                $("#<%=diplomastudymode.ClientID%>").show();
-                $("#<%=diplomalanguage.ClientID%>").show();
-                $("#<%=diplomagradetype.ClientID%>").show();
-                $("#<%=diplomagradeachieved.ClientID%>").show();
-                $("#<%=ExpectedDiplomaDategrade.ClientID%>").show();
-                $("#<%=diplomaverify.ClientID%>").hide();
-                $("#<%=diplomarelation.ClientID%>").hide();
-                $("#<%=diplomacontactEmail.ClientID%>").hide();
+                $("#<%=diplomacontrol.ClientID%>").show();
+                $("#<%=diplomaContactControl.ClientID%>").hide();
                 $("#<%=diplomagrade.ClientID%>").hide();
-                $("#<%=diplomacontactMobile.ClientID%>").hide();
             }
             else {
-                $("#<%=diplomaCountry.ClientID%>").hide();
-                $("#<%=diplomastartDate.ClientID%>").hide();
-                $("#<%=diplomaendDate.ClientID%>").hide();
-                $("#<%=diplomaschoolName.ClientID%>").hide();
-                $("#<%=diplomaQualificationtype.ClientID%>").hide();
-                $("#<%=diplomastudymode.ClientID%>").hide();
-                $("#<%=diplomalanguage.ClientID%>").hide();
-                $("#<%=diplomagradetype.ClientID%>").hide();
-                $("#<%=diplomagradeachieved.ClientID%>").hide();
-                $("#<%=ExpectedDiplomaDategrade.ClientID%>").hide();
-                $("#<%=diplomaverify.ClientID%>").hide();
-                $("#<%=diplomarelation.ClientID%>").hide();
-                $("#<%=diplomacontactEmail.ClientID%>").hide();
+                $("#<%=diplomacontrol.ClientID%>").hide();
+                $("#<%=diplomaContactControl.ClientID%>").hide();
                 $("#<%=diplomagrade.ClientID%>").hide();
-                $("#<%=diplomacontactMobile.ClientID%>").hide();
             }
         }
         function ToggleHigherEducatin() {
             if ($("#<%=rblhigherYes.ClientID%>").is(":checked")) {
-                $("#<%=highercourse.ClientID%>").show();
-                $("#<%=higherCountry.ClientID%>").show();
-                $("#<%=higherstartDate.ClientID%>").show();
-                $("#<%=higherendDate.ClientID%>").show();
-                $("#<%=higherschoolName.ClientID%>").show();
-                $("#<%=higherQualificationtype.ClientID%>").show();
-                $("#<%=higherstudymode.ClientID%>").show();
-                $("#<%=higherlanguage.ClientID%>").show();
-                $("#<%=highergradetype.ClientID%>").show();
-                $("#<%=highergradeachieved.ClientID%>").show();
-                $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
-                $("#<%=higherverify.ClientID%>").show();
-                $("#<%=higherrelation.ClientID%>").show();
-                $("#<%=highercontactEmail.ClientID%>").show();
-                $("#<%=highergrade.ClientID%>").show();
-                $("#<%=addanother.ClientID%>").show();
-                $("#<%=highercontactMobile.ClientID%>").show();
+                $("#<%=HigherSectionControl.ClientID%>").show();
+                $("#<%=HigherContactControl.ClientID%>").show();
+                $("#<%=highergrade.ClientID%>").show(); //pending
+                $("#<%=addanother.ClientID%>").show(); //pending
+
+                
             }
             else if ($("#<%=rblhigherNot.ClientID%>").is(":checked")) {
-                $("#<%=highercourse.ClientID%>").show();
-                $("#<%=higherCountry.ClientID%>").show();
-                $("#<%=higherstartDate.ClientID%>").show();
-                $("#<%=higherendDate.ClientID%>").show();
-                $("#<%=higherschoolName.ClientID%>").show();
-                $("#<%=higherQualificationtype.ClientID%>").show();
-                $("#<%=higherstudymode.ClientID%>").show();
-                $("#<%=higherlanguage.ClientID%>").show();
-                $("#<%=highergradetype.ClientID%>").show();
-                $("#<%=highergradeachieved.ClientID%>").show();
-                $("#<%=ExpectedHigherDategrade.ClientID%>").show();
-                $("#<%=higherverify.ClientID%>").hide();
-                $("#<%=higherrelation.ClientID%>").hide();
-                $("#<%=highercontactEmail.ClientID%>").hide();
+                $("#<%=HigherSectionControl.ClientID%>").show();
+                $("#<%=HigherContactControl.ClientID%>").hide();
                 $("#<%=highergrade.ClientID%>").hide();
                 $("#<%=addanother.ClientID%>").hide();
-                $("#<%=highercontactMobile.ClientID%>").hide();
             }
             else {
-                $("#<%=highercourse.ClientID%>").hide();
-                $("#<%=higherCountry.ClientID%>").hide();
-                $("#<%=higherstartDate.ClientID%>").hide();
-                $("#<%=higherendDate.ClientID%>").hide();
-                $("#<%=higherschoolName.ClientID%>").hide();
-                $("#<%=higherQualificationtype.ClientID%>").hide();
-                $("#<%=higherstudymode.ClientID%>").hide();
-                $("#<%=higherlanguage.ClientID%>").hide();
-                $("#<%=highergradetype.ClientID%>").hide();
-                $("#<%=highergradeachieved.ClientID%>").hide();
-                $("#<%=ExpectedHigherDategrade.ClientID%>").hide();
-                $("#<%=higherverify.ClientID%>").hide();
-                $("#<%=higherrelation.ClientID%>").hide();
-                $("#<%=highercontactEmail.ClientID%>").hide();
+                $("#<%=HigherSectionControl.ClientID%>").hide();
+                $("#<%=HigherContactControl.ClientID%>").hide();
                 $("#<%=highergrade.ClientID%>").hide();
                 $("#<%=addanother.ClientID%>").hide();
-                $("#<%=highercontactMobile.ClientID%>").hide();
             }
         }
         function ToggleSecondary() {
             if ($("#<%=rblSecondaryYes.ClientID%>").is(":checked")) {
-                $("#<%=SecondaryCountry.ClientID%>").show();
-                $("#<%=SecondarystartDate.ClientID%>").show();
-                $("#<%=SecondaryendDate.ClientID%>").show();
-                $("#<%=Secondarystudymode.ClientID%>").show();
-                $("#<%=Secondarylanguage.ClientID%>").show();
-                $("#<%=Secondarygradetype.ClientID%>").show();
-                $("#<%=Secondarygradeachieved.ClientID%>").show();
-                $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
-                $("#<%=Secondaryverify.ClientID%>").show();
-                $("#<%=secondaryschoolrelation.ClientID%>").show();
-                $("#<%=SecondaryschoolName.ClientID%>").show();
-                $("#<%=SecondaryQualificationtype.ClientID%>").show();
-                $("HigherSectionSection").show();
-                $("#<%=secondarycontactEmail.ClientID%>").show();
-                $("#SecondaryEducation").hide();
-                $("#<%=higher.ClientID%>").show();
-                $("#<%=secondarygrade.ClientID%>").show();
-                $("#<%=secondarycontactMobile.ClientID%>").show();
+                $("#<%=SecondarySectionControls.ClientID%>").show();
+                $("#<%=SecondaryContactControls.ClientID%>").show();
+                $("#<%=secondarygrade.ClientID%>").show(); //pending
             }
             else if ($("#<%=rblSecondaryNo.ClientID%>").is(":checked")) {
-                $("#<%=SecondaryCountry.ClientID%>").show();
-                $("#<%=SecondarystartDate.ClientID%>").show();
-                $("#<%=SecondaryendDate.ClientID%>").show();
-                $("#<%=Secondarystudymode.ClientID%>").show();
-                $("#<%=Secondarylanguage.ClientID%>").show();
-                $("#<%=Secondarygradetype.ClientID%>").show();
-                $("#<%=Secondarygradeachieved.ClientID%>").show();
-                $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
-                $("#<%=Secondaryverify.ClientID%>").hide();
-                $("#<%=secondaryschoolrelation.ClientID%>").hide();
-                $("#<%=SecondaryschoolName.ClientID%>").hide();
-                $("#<%=secondarycontactEmail.ClientID%>").hide();
-                $("#<%=SecondaryQualificationtype.ClientID%>").show();
-                $("#<%=secondarygrade.ClientID%>").hide();
-                $("#<%=secondarycontactMobile.ClientID%>").hide();
+                $("#<%=SecondarySectionControls.ClientID%>").show();
+                $("#<%=SecondaryContactControls.ClientID%>").hide();
+                $("#<%=secondarygrade.ClientID%>").show();
             }
             else {
-                $("#<%=SecondaryCountry.ClientID%>").hide();
-                $("#<%=SecondarystartDate.ClientID%>").hide();
-                $("#<%=SecondaryendDate.ClientID%>").hide();
-                $("#<%=Secondarystudymode.ClientID%>").hide();
-                $("#<%=Secondarylanguage.ClientID%>").hide();
-                $("#<%=Secondarygradetype.ClientID%>").hide();
-                $("#<%=Secondarygradeachieved.ClientID%>").hide();
-                $("#<%=ExpectedSecondaryDategrade.ClientID%>").hide();
-                $("#<%=Secondaryverify.ClientID%>").hide();
-                $("#<%=secondaryschoolrelation.ClientID%>").hide();
-                $("#<%=SecondaryschoolName.ClientID%>").hide();
-                $("#<%=SecondaryQualificationtype.ClientID%>").hide();
-                $("#HigherSectionSection").show();
-                $("#<%=secondarycontactEmail.ClientID%>").hide();
-                $("#SecondaryEducation>").hide();
+                $("#<%=SecondarySectionControls.ClientID%>").hide();
+                $("#<%=SecondaryContactControls.ClientID%>").hide();
                 $("#<%=secondarygrade.ClientID%>").hide();
-                $("#<%=secondarycontactMobile.ClientID%>").hide();
             }
         }
         function ToggleHighSchool() {
             if ($("#<%=rblHighYes.ClientID%>").is(":checked")) {
-                $("#<%=highschoolCountry.ClientID%>").show();
-                $("#<%=highschoolstartDate.ClientID%>").show();
-                $("#<%=highschoolendDate.ClientID%>").show();
-                $("#<%=highschoolstudymode.ClientID%>").show();
-                $("#<%=highschoollanguage.ClientID%>").show();
-                $("#<%=gradetype.ClientID%>").show();
-                $("#<%=highschoolgradeachieved.ClientID%>").show();
-                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
-                $("#<%=highschoolverify.ClientID%>").show();
-                $("#<%=highschoolrelation.ClientID%>").show();
-                $("#<%=highschoolcontactEmail.ClientID%>").show();
-                $("#highschoolYear").show();
-                $("#<%=highschoolName.ClientID%>").show();
-                $("#<%=highschoolQualificationtype.ClientID%>").show();
-                $("#<%=highshoolgrade.ClientID%>").show();
-                $("#<%=highschoolcontactMobile.ClientID%>").show();
-                $("#SecondarySection").show();
+                $("#<%=highshoolcontrols.ClientID%>").show();
+                $("#<%=highshoolcontactscontrols.ClientID%>").show();                           
+                $("#SecondarySection").show();                 
+                $("#<%=highshoolgrade.ClientID%>").show();     //pending
             }
             else if ($("#<%=rblHighNo.ClientID%>").is(":checked")) {
-                $("#<%=highschoolCountry.ClientID%>").show();
-                $("#<%=highschoolstartDate.ClientID%>").show();
-                $("#<%=highschoolendDate.ClientID%>").show();
-                $("#<%=highschoolstudymode.ClientID%>").show();
-                $("#<%=highschoollanguage.ClientID%>").show();
-                $("#<%=gradetype.ClientID%>").show();
-                $("#<%=highschoolgradeachieved.ClientID%>").show();
-                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").show();
-                $("#<%=highschoolverify.ClientID%>").hide();
-                $("#<%=highschoolrelation.ClientID%>").hide();
-                $("#<%=highschoolcontactEmail.ClientID%>").hide();
-                $("#highschoolYear").show();
-                $("#<%=highschoolName.ClientID%>").show();
-                $("#<%=highschoolQualificationtype.ClientID%>").show();                
-                $("#SecondarySection").hide();
+                $("#<%=highshoolcontrols.ClientID%>").show();
+                $("#<%=highshoolcontactscontrols.ClientID%>").hide();
                 $("#<%=highshoolgrade.ClientID%>").hide();
-                $("#<%=highschoolcontactMobile.ClientID%>").hide();
+                $("#SecondarySection").hide();
             }
             else {
-                $("#<%=highschoolCountry.ClientID%>").hide();
-                $("#<%=highschoolstartDate.ClientID%>").hide();
-                $("#<%=highschoolendDate.ClientID%>").hide();
-                $("#<%=highschoolstudymode.ClientID%>").hide();
-                $("#<%=highschoollanguage.ClientID%>").hide();
-                $("#<%=gradetype.ClientID%>").hide();
-                $("#<%=highschoolgradeachieved.ClientID%>").hide();
-                $("#<%=ExpectedHighSchoolDategrade.ClientID%>").hide();
-                $("#<%=highschoolverify.ClientID%>").hide();
-                $("#<%=highschoolrelation.ClientID%>").hide();
-                $("#<%=highschoolcontactEmail.ClientID%>").hide();
-                $("#highschoolYear").hide();
-                $("#<%=highschoolName.ClientID%>").hide();
-                $("#<%=highschoolQualificationtype.ClientID%>").hide();
                 $("#SecondarySection").hide();
                 $("#<%=highshoolgrade.ClientID%>").hide();
-                $("#<%=highschoolcontactMobile.ClientID%>").hide();
+                $("#<%=highshoolcontrols.ClientID%>").hide();
+                $("#<%=highshoolcontactscontrols.ClientID%>").hide();
 
             }
         }        
@@ -1927,7 +1793,8 @@
             $('#applicanteducation').addClass('active');
         });
          $(document).ready(function () {
-            //countryofhighschooledu
+             //countryofhighschooledu
+             debugger;
             $("#<%=ddlCountryHighSchool.ClientID%>").change(function () {
                 $.ajax({
                     type: "GET",
