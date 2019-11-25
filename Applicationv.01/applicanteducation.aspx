@@ -1794,7 +1794,6 @@
         });
          $(document).ready(function () {
              //countryofhighschooledu
-             debugger;
             $("#<%=ddlCountryHighSchool.ClientID%>").change(function () {
                 $.ajax({
                     type: "GET",
