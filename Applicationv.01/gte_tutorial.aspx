@@ -30,7 +30,7 @@
                             {
                             %>
                             <div class="pdf-wrpr">
-                                <a href="Docs/<%=allDocuments[v].documentpath %>" target="_blank"><i class="fa-file-pdf fa"></i></a>
+                                <a href="Docs/GteTutorial/<%=allDocuments[v].documentpath %>" target="_blank"><i class="fa-file-pdf fa"></i></a>
                                 <div class="pdf-dcrp"><%=allDocuments[v].title %></div>
                             </div>                            
                         <%} } %>

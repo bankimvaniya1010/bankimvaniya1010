@@ -492,7 +492,7 @@
                         <tr>
                             <td>
                                 <div class="descptn-wrp">
-                                    <div class="ttl text-left">Potential Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
+                                    <div class="ttl text-left">Potential Situation in Australia & Value of the course: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
                                         <%=_potentialStudentAssesment %>
                                     </div>
@@ -502,7 +502,7 @@
                                     </div>
                                 </div>
                                 <div class="descptn-wrp">
-                                    <div class="ttl text-left">Genuine Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
+                                    <div class="ttl text-left">Immigration History & Links to Australia: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
                                         <%=_paragraph4 %>
                                     </div>
@@ -512,7 +512,7 @@
                                     </div>
                                 </div>
                                 <div class="descptn-wrp">
-                                    <div class="ttl text-left">Genuine Student Assessment: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
+                                    <div class="ttl text-left">Character Assessment & Declarations: <span class="d-inline-block">Student Statements & Counsellor Review</span></div>
                                     <div class="txt text-left">
                                         <%=_paragraph5 %>
                                     </div>

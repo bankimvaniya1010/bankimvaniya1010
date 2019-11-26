@@ -18,10 +18,12 @@ public partial class login : System.Web.UI.Page
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
+        if (universityID == -1)
+            Response.Redirect(Request.Url.ToString(), false);
+        else
+            Session["universityId"] = universityID;
         active = Request.QueryString["active"];
-        //var University = db.university_master.FirstOrDefault();
-        //string UniversityURL = University.website.Split('.')[0];
-        //webURL = webURL.Replace("edu", UniversityURL);
+
         var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo }).FirstOrDefault();
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
     }
@@ -44,7 +46,7 @@ public partial class login : System.Web.UI.Page
                 else
                     isActivationMode = false;
 
-                if (isActivationMode && chkUser != null && !chkUser.ispasswordset.Value)
+                if (isActivationMode && chkUser != null && !chkUser.ispasswordset.HasValue)
                     Response.Redirect(webURL + "resetpassword.aspx", true);
                 else
                 {

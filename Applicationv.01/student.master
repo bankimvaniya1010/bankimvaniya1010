@@ -72,7 +72,7 @@
                        
                         <!-- Brand -->
                         <a href="default.aspx" class="navbar-brand">
-                            <img src="assets/images/logo/canning_logo.jpg" class="logo-img"/>
+                            <img src="<%=logourl %>" class="logo-img"/>
                             <span class="d-none d-xs-md-block"><asp:Label ID="lbluniversityName" runat="server"></asp:Label>  - Application Center</span>
                         </a>
 
@@ -885,7 +885,7 @@
                 $("#predeparture_list").hide();
                 $("#personal_menu_list").hide();
                 $("#studentapplication_list").hide();
-                $("#supportservice").hide();
+                $("#supportservice_list").hide();
                 $("#studentapplication_finances").hide();
                 $("#admissionsOffer_list").hide();
                 if (!fullService) {
@@ -899,8 +899,8 @@
                     $("#preliminary_list").show();
                 }
 
-                if (isDomesticStudent)
-                    $("#Gte_list").hide();
+                //if (isDomesticStudent)
+                //    $("#Gte_list").hide();
             }
             else {
                 $("#message_menu_list").hide();
@@ -913,19 +913,27 @@
                 $("#feepayment_list").show();
                 $("#viewCOE_list").show();
                 $("#predeparture_list").show();
-                $("#supportservice").show();
+                $("#supportservice_list").show();
                 $("#gtepart1").show();
                 $("#gtepart2").show();
                 $("#gtevideoquestion").show();
                 $("#gtestudent_sop").show();
                 $("#gtedocmentupload").show();
                 $("#studentapplication_finances").show();
-                $("#admissionsOffer_list").show();
                 if (!fullService) {
                     $("#gtestudentdetail").show();
                     $("#preliminary_list").hide();
                     $("#personal_menu_list").hide();
-                    $("#studentapplication_list").hide();                                      
+                    $("#studentapplication_list").hide();
+
+                    $("#profile_list").hide();
+                    $("#studentapplication_finances").hide();
+                    $("#admissionsOffer_list").hide();
+                    $("#viewCOE_list").hide();
+                    $("#visaapplication_list").hide();
+                    $("#feepayment_list").hide();
+                    $("#predeparture_list").hide();
+                    $("#supportservice_list").hide();
                 }
                 else {
                     $("#gtestudentdetail").hide();

@@ -372,6 +372,12 @@ public partial class gte_sop : System.Web.UI.Page
                     var cityName = db.citymaster.Where(x => x.city_id == applicantdetails.cityofeducationInstitution).Select(x => x.name).FirstOrDefault();
                     item.statement = item.statement.Replace("#Answer_20#", cityName);
                 }
+                if (item.statement.Contains("#Highest_Level_Achieved#"))
+                {
+                    int levelAchieved = Convert.ToInt32(applicantdetails.highestqualifiactionachieved);
+                    var studyLevelName = db.studylevelmaster.Where(x => x.studylevelid == levelAchieved).Select(x => x.studylevel).FirstOrDefault();
+                    item.statement = item.statement.Replace("#Highest_Level_Achieved#", studyLevelName);
+                }
 
                 item.statement = AddContentInText(item.statement);
                 sb.Append(item.statement);

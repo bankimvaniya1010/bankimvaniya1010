@@ -83,7 +83,7 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
                 {
 
                     hidDocumentPath.Value = gtetutorailData.documentpath;
-                    uploadedFile.NavigateUrl = webURL + "/Docs/" + gtetutorailData.documentpath;
+                    uploadedFile.NavigateUrl = webURL + "/Docs/GteTutorial/" + gtetutorailData.documentpath;
                     uploadedFile.Text = "View File";
                 }
                 if (gtetutorailData.type != null)
