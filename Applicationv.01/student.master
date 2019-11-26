@@ -875,8 +875,7 @@
                 $("#gtedocmentupload").hide();
                 $("#message_menu_list").hide();                 
                 $("#student_list").hide();
-                $("#components_list").hide();
-                $("#profile_list").hide();                
+                $("#components_list").hide();                
                 $("#messageboard").hide();                
                 $("#admissionsOffer_list").hide();
                 $("#studentapplication_list").hide();
@@ -906,8 +905,7 @@
             else {
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
-                $("#components_list").hide(); 
-                $("#profile_list").show();                
+                $("#components_list").hide();
                 $("#messageboard").show();
                 $("#admissionsOffer_list").show();
                 $("#studentapplication_list").show();

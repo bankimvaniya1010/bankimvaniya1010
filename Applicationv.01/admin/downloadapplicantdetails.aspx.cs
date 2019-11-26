@@ -38,7 +38,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
         { }
         else
         {
-            universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+            universityID = Utility.GetUniversityId();
             ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
 
             CustomControlsPersonal = objCom.CustomControlist(1, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));

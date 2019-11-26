@@ -51,7 +51,7 @@ public partial class admin_gtereport : System.Web.UI.Page
 
             if ((downloadPdf == 0 && Utility.CheckAdminLogin()) || (downloadPdf == 1 && Request.QueryString["token"] != null && Request.QueryString["token"].ToString() == "XS7MKjHLunMAvqzCGr"))
             {
-                universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+                universityID = Utility.GetUniversityId();
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
                 ViewState["downloadPdf"] = downloadPdf;
 

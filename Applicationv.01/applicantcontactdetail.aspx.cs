@@ -40,7 +40,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlpostalCountry);

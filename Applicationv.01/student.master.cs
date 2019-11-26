@@ -13,11 +13,12 @@ public partial class admin : System.Web.UI.MasterPage
     Logger objLog = new Logger();
     public int? questioncompleted = 0 , isclarificationquestionset = 0;
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());   
+    int universityID;
     int UserID = 0;    
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());

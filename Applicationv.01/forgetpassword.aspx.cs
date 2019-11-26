@@ -14,8 +14,14 @@ public partial class forgetpassword : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    public string logourl = string.Empty;
+    university_master university = new university_master();
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        universityID = Utility.GetUniversityId();
+        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         webURL = Utility.GetWebUrl();
     }
 
@@ -35,8 +41,7 @@ public partial class forgetpassword : System.Web.UI.Page
                 string password = System.Web.Security.Membership.GeneratePassword(8, 2);
                 login.password = objCom.EncodePasswordToMD5(password);
                 db.SaveChanges();
-                universityID = Utility.GetUniversityId();
-                var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/password.html"));
                 html = html.Replace("@UniversityName", university.university_name);
                 html = html.Replace("@universityLogo", webURL + "/Docs/" + login + "/" + university.logo);

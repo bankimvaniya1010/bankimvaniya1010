@@ -14,10 +14,11 @@ public partial class visastatus : System.Web.UI.Page
     Common objCommon = new Common();
     protected static List<faq> allfaqQuestion = new List<faq>();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    int UniversityID;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         applicantID = Convert.ToInt32(Session["UserID"].ToString());

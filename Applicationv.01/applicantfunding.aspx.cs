@@ -37,7 +37,7 @@ public partial class applicantfunding : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             BindStydyOption();
             BindFamilyMember();
             BindAccommodationPlan();

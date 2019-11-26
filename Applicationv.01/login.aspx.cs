@@ -12,15 +12,18 @@ public partial class login : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    int universityID;
+    public string logourl = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         active = Request.QueryString["active"];
         //var University = db.university_master.FirstOrDefault();
         //string UniversityURL = University.website.Split('.')[0];
         //webURL = webURL.Replace("edu", UniversityURL);
-
+        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo }).FirstOrDefault();
+        logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
     }
 
     protected void btn_login_Click(object sender, EventArgs e)
@@ -41,7 +44,7 @@ public partial class login : System.Web.UI.Page
                 else
                     isActivationMode = false;
 
-                if (isActivationMode && chkUser != null)
+                if (isActivationMode && chkUser != null && !chkUser.ispasswordset.Value)
                     Response.Redirect(webURL + "resetpassword.aspx", true);
                 else
                 {

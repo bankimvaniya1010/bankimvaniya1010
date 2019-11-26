@@ -21,7 +21,7 @@ public partial class visaprefill : System.Web.UI.Page
         { }
         else
         {
-            universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+            universityID = Utility.GetUniversityId();
             userID = Convert.ToInt32(Request.QueryString["id"].ToString());
             SetVisaDetails();
             SetFamilyDetail();

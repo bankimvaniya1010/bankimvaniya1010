@@ -25,7 +25,8 @@ public partial class applicantcourse : System.Web.UI.Page
         universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-
+        if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
+            Response.Redirect(webURL + "default.aspx", true);
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
@@ -33,7 +34,7 @@ public partial class applicantcourse : System.Web.UI.Page
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             second.Attributes.Add("style", "display:none;");
             third.Attributes.Add("style", "display:none;");
             four.Attributes.Add("style", "display:none;");

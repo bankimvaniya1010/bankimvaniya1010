@@ -14,11 +14,13 @@ public partial class registerconfimation : System.Web.UI.Page
     protected string email = "";
     protected string universityName = "";
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    public string logourl = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         email = Request.QueryString["email"];
         universityID = Utility.GetUniversityId();
         var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
         universityName = university.university_name;
+        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
     }
 }

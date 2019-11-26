@@ -19,7 +19,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlUniversity" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlUniversity" runat="server" CssClass="form-control"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlType" runat="server">
+                                    <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control">
                                         <asp:ListItem Value="0">Select Type</asp:ListItem>
                                         <asp:ListItem Value="video">Video</asp:ListItem>
                                         <asp:ListItem Value="ppt">PPT</asp:ListItem>
