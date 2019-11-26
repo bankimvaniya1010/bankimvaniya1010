@@ -21,7 +21,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                  <asp:DropDownList ID="ddlUniversity" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged"></asp:DropDownList>
+                                  <asp:DropDownList ID="ddlUniversity" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlUniversity_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                                 </div>
 
                             </div>
@@ -32,7 +32,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                  <asp:DropDownList ID="ddlForm" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlForm_SelectedIndexChanged"></asp:DropDownList>
+                                  <asp:DropDownList ID="ddlForm" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlForm_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                                 </div>
 
                             </div>

@@ -20,7 +20,7 @@
                             <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlUniversity" runat="server"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlUniversity" runat="server" class="form-control"></asp:DropDownList>
                                 </div>
                             </div>
                         </div>

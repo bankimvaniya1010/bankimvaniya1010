@@ -41,12 +41,12 @@
 
                                     <EditItemTemplate>
                                          <asp:Label ID="lblFormEdit" runat="server" Text='<%# Bind("formname") %>' Visible="false"></asp:Label>
-                                        <asp:DropDownList ID="ddlFormname" Width="200px" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlFormname" Width="200px" runat="server" CssClass="form-control"></asp:DropDownList>
                                         <asp:RequiredFieldValidator runat='server' ID='requiredddlFormname' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Please select form name' InitialValue="0" ControlToValidate='ddlFormname' />
                                     </EditItemTemplate>
 
                                     <FooterTemplate>
-                                        <asp:DropDownList ID="ddlFormnameFooter" Width="200px" runat="server" ></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlFormnameFooter" Width="200px" runat="server" CssClass="form-control"></asp:DropDownList>
 
                                         <asp:RequiredFieldValidator runat='server' ID='requiredFormcFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Please select form name' ControlToValidate='ddlFormnameFooter' />
                                     </FooterTemplate>

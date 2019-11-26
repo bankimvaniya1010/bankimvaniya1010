@@ -31,7 +31,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             objCom.BindCountries(ddlCountry);
             SetToolTips();
             Bindworkexperienceyears();

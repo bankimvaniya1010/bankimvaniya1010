@@ -15,7 +15,7 @@ public partial class admin_visaDates : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        universityID = Utility.GetUniversityId();
         if ((Request.QueryString["userid"] == null) || (Request.QueryString["userid"].ToString() == ""))
         {
             Response.Redirect(webURL + "admin/default.aspx", true);

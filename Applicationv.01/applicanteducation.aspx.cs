@@ -28,9 +28,9 @@ public partial class applicanteducation : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
-            Response.Redirect(webURL + "Login.aspx", true);
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());        
+            Response.Redirect(webURL + "Login.aspx", true);        
         var objUser = (students)Session["LoginInfo"];
         userID = objUser.studentid;
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
@@ -45,7 +45,7 @@ public partial class applicanteducation : System.Web.UI.Page
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)
         {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             var universitydetails =  (from um in db.university_master

@@ -16,10 +16,13 @@ public partial class register : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected string LoginURL = "";
+    public string logourl = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-
+        universityID = Utility.GetUniversityId();
+        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;        
         //string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationemail.html"));
         if (!IsPostBack)
         {

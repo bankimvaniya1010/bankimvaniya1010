@@ -20,7 +20,7 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                  <asp:DropDownList ID="ddlCountry" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged"></asp:DropDownList>
+                                  <asp:DropDownList ID="ddlCountry" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlCountry_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                                 </div>
 
                             </div>
@@ -31,7 +31,7 @@
                         <label for="name" class="col-sm-3 col-form-label form-label">Qualification Mapping</label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                    <asp:CheckBoxList ID="chkQualification" runat="server" RepeatDirection="Vertical"></asp:CheckBoxList>
                                 </div>
 

@@ -26,7 +26,7 @@ public partial class applicantcredittransfer : System.Web.UI.Page
         if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
         if (!IsPostBack) {
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             PopulateCreditDetails();
         }
     }

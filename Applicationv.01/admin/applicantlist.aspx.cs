@@ -22,7 +22,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        universityID = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        universityID = Utility.GetUniversityId();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
         roleID = Convert.ToInt32(Session["Role"]);

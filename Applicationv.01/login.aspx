@@ -79,7 +79,7 @@
                 <div class="card navbar-shadow">
                     <div class="card-header text-center">
                         <div class="frnd-hdr logo-img">
-                            <img src="assets/images/logo/canning_logo.jpg" class="logo-img"/>
+                            <img src="<%=logourl %>" class="logo-img"/>
                         </div>
                         <h4 class="card-title">Student Login</h4>
                         <p class="card-subtitle">Access your account</p>
@@ -114,7 +114,7 @@
                                 <label class="form-label" for="password">PASSWORD/OTP:</label>
                                 <div class="input-group input-group-merge">
                                     <asp:TextBox ID="txt_pass" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
-
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter Password" ControlToValidate="txt_pass" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <span class="far fa-key"></span>

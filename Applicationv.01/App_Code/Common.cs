@@ -788,12 +788,22 @@ public class Common
             log.WriteLog(ex.ToString());
         }
     }
-    public List<faq> FaqQuestionList()
+    public List<faq> FaqQuestionList(string formID = "", int universityId = 0)
     {
         List<faq> faqList = new List<faq>();
         try
         {
-            faqList = db.faq.ToList();
+            if(formID == "" && universityId == 0)
+                faqList = db.faq.ToList();
+            else
+                faqList = (from q in db.faq
+                           join ufm in db.universitywise_faqmapping on q.id equals ufm.faq_questionID into unifaqData
+                           from x in unifaqData.DefaultIfEmpty()
+                           join uform in db.universitywiseformmapping on x.formid equals uform.formid into uniformData
+                           from x1 in uniformData.DefaultIfEmpty()
+                           where (x.universityid == universityId && x1.universityid == universityId && x1.formid.ToString() == formID)
+                           select q).ToList();
+
         }
         catch (Exception ex)
         {

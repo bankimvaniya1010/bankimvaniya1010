@@ -58,7 +58,7 @@ public partial class knowyourstudent : System.Web.UI.Page
             }
             else
                 Response.Redirect(webURL + "personaldetails.aspx?formid=1", true);
-            allQuestions = objCom.FaqQuestionList();
+            allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
             objCom.BindCountries(ddlCountryofIssue);
