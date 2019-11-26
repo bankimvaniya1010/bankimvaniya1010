@@ -48,11 +48,11 @@ public partial class gte_studentdetails : System.Web.UI.Page
             Bindworkexperienceyears();          
             FillMonth(ddlhighestqualificationmonth);
             FillYears(ddlhighestqualificationYear);
-            BindMajorDiscipline(ddlhighestqualificationfield);
-            BindMajorDiscipline(ddlfieldofstudy);
+            BindMajorDiscipline(ddlhighestqualificationfield, true);
+            BindMajorDiscipline(ddlfieldofstudy, false);
             Bindannualfee();
-            BindstudyField(ddlhighestqualificationAchieved);
-            BindstudyField(ddlcourseapplied);
+            BindstudyField(ddlhighestqualificationAchieved, true);
+            BindstudyField(ddlcourseapplied, false);
             BindCommencementDate(ddlCommencementdate);
             if (isuniversityGroupHead)
                 BindUnivercity(universityID);
@@ -78,6 +78,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                     }).ToList();
         return JsonConvert.SerializeObject(temp);
     }
+
     private void BindCommencementDate(DropDownList ddl)
     {
         try
@@ -521,17 +522,40 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
     }
 
-    private void BindstudyField(DropDownList ddl)
+    private void BindstudyField(DropDownList ddl, bool displayAll)
     {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var fields = db.studylevelmaster.ToList();
-            ddl.DataSource = fields;
-            ddl.DataTextField = "studylevel";
-            ddl.DataValueField = "studylevelid";
-            ddl.DataBind();
-            ddl.Items.Insert(0, lst);
+            if (displayAll)
+            {
+                var fields = db.studylevelmaster.ToList();
+
+                ddl.DataSource = fields;
+                ddl.DataTextField = "studylevel";
+                ddl.DataValueField = "studylevelid";
+                ddl.DataBind();
+                ddl.Items.Insert(0, lst);
+            }
+            else
+            {
+                var studyLevel = (from slm in db.studylevelmaster
+                                  join umd in db.universitywisemastermapping on slm.studylevelid equals umd.mastervalueid into umdData
+                                  from x1 in umdData.DefaultIfEmpty()
+                                  join mn in db.master_name on x1.masterid equals mn.masterid into mnData
+                                  from x in mnData.DefaultIfEmpty()
+                                  where (x1.universityid == universityID && x.mastername.ToUpper().Contains("Study Level Master"))
+                                  select new
+                                  {
+                                      studylevel = slm.studylevel,
+                                      studylevelid = slm.studylevelid
+                                  }).ToList();
+                ddl.DataSource = studyLevel;
+                ddl.DataTextField = "studylevel";
+                ddl.DataValueField = "studylevelid";
+                ddl.DataBind();
+                ddl.Items.Insert(0, lst);
+            }
         }
         catch (Exception ex)
         {
@@ -557,17 +581,40 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
     }
 
-    private void BindMajorDiscipline(DropDownList ddl)
+    private void BindMajorDiscipline(DropDownList ddl, bool displayAll)
     {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var discipline_master = db.majordiscipline_master.ToList();
-            ddl.DataSource = discipline_master;
-            ddl.DataTextField = "description";
-            ddl.DataValueField = "id";
-            ddl.DataBind();
-            ddl.Items.Insert(0, lst);
+
+            if (displayAll)
+            {
+                var discipline_master = db.majordiscipline_master.ToList();
+                ddl.DataSource = discipline_master;
+                ddl.DataTextField = "description";
+                ddl.DataValueField = "id";
+                ddl.DataBind();
+                ddl.Items.Insert(0, lst);
+            }
+            else
+            {
+                var discipline_master = (from md in db.majordiscipline_master
+                                         join umd in db.universitywisemastermapping on md.id equals umd.mastervalueid into umdData
+                                         from x1 in umdData.DefaultIfEmpty()
+                                         join mn in db.master_name on x1.masterid equals mn.masterid into mnData
+                                         from x in mnData.DefaultIfEmpty()
+                                         where (x1.universityid == universityID && x.mastername.ToUpper().Contains("Major Discipline Master"))
+                                         select new
+                                         {
+                                             description = md.description,
+                                             id = md.id
+                                         }).ToList();
+                ddl.DataSource = discipline_master;
+                ddl.DataTextField = "description";
+                ddl.DataValueField = "id";
+                ddl.DataBind();
+                ddl.Items.Insert(0, lst);
+            }
         }
         catch (Exception ex)
         {

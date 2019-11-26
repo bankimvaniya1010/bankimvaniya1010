@@ -2573,6 +2573,7 @@ public partial class university_master
         this.applicanteducationdetails = new HashSet<applicanteducationdetails>();
         this.applicantfundingmaster = new HashSet<applicantfundingmaster>();
         this.applicanthighereducation = new HashSet<applicanthighereducation>();
+        this.applicantlanguagecompetency = new HashSet<applicantlanguagecompetency>();
         this.applicantprogressbar = new HashSet<applicantprogressbar>();
         this.applicantvisadetails = new HashSet<applicantvisadetails>();
         this.applicationmaster = new HashSet<applicationmaster>();
@@ -2585,16 +2586,15 @@ public partial class university_master
         this.credentialmaster = new HashSet<credentialmaster>();
         this.customfieldmaster = new HashSet<customfieldmaster>();
         this.payment_description_mappings = new HashSet<payment_description_mappings>();
+        this.payment_details = new HashSet<payment_details>();
         this.predeparturetutorialmaster = new HashSet<predeparturetutorialmaster>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
         this.universitywise_rejectionreasonmapping = new HashSet<universitywise_rejectionreasonmapping>();
         this.universitycampus = new HashSet<universitycampus>();
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
-        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
-        this.payment_details = new HashSet<payment_details>();
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
-        this.applicantlanguagecompetency = new HashSet<applicantlanguagecompetency>();
+        this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
     }
 
     public int universityid { get; set; }
@@ -2638,7 +2638,6 @@ public partial class university_master
     public string withdrawn_terms { get; set; }
     public string supprot_service_instructions { get; set; }
     public string visa_instructions { get; set; }
-    public string hosturl { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
@@ -2652,6 +2651,8 @@ public partial class university_master
     public virtual ICollection<applicantfundingmaster> applicantfundingmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<applicanthighereducation> applicanthighereducation { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<applicantprogressbar> applicantprogressbar { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -2678,6 +2679,8 @@ public partial class university_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<payment_description_mappings> payment_description_mappings { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<payment_details> payment_details { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<predeparturetutorialmaster> predeparturetutorialmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
@@ -2690,13 +2693,9 @@ public partial class university_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<payment_details> payment_details { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
+    public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
 
 public partial class universitycampus

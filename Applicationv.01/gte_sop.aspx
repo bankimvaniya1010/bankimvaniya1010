@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Statement Of Purpose</li>
         </ol>
-        <h1 class="h2">STATMENT OF PURPOSE
+        <h1 class="h2">STATEMENT OF PURPOSE
 
         </h1>
     </div>

@@ -2117,7 +2117,6 @@
           <Property Name="withdrawn_terms" Type="varchar" MaxLength="2000" />
           <Property Name="supprot_service_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
           <Property Name="visa_instructions" Type="varchar" MaxLength="2000" Nullable="false" />
-          <Property Name="hosturl" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -4843,6 +4842,29 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="scholarships" EntitySet="scholarships" />
             <End Role="applicant_scholarships" EntitySet="applicant_scholarships" />
           </AssociationSet>
+          <EntitySet Name="payment_details" EntityType="GTEModel.payment_details" />
+          <AssociationSet Name="FK_payment_details_currency_master" Association="GTEModel.FK_payment_details_currency_master">
+            <End Role="currency_master" EntitySet="currency_master" />
+            <End Role="payment_details" EntitySet="payment_details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payment_details_applicantdetails" Association="GTEModel.FK_payment_details_applicantdetails">
+            <End Role="students" EntitySet="students" />
+            <End Role="payment_details" EntitySet="payment_details" />
+          </AssociationSet>
+          <EntitySet Name="universitywise_faqmapping" EntityType="GTEModel.universitywise_faqmapping" />
+          <AssociationSet Name="FK_universitywise_faqmapping_faq" Association="GTEModel.FK_universitywise_faqmapping_faq">
+            <End Role="faq" EntitySet="faq" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_universitywise_faqmapping_formmaster" Association="GTEModel.FK_universitywise_faqmapping_formmaster">
+            <End Role="formmaster" EntitySet="formmaster" />
+            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
+          </AssociationSet>
+          <EntitySet Name="applicantlanguagecompetency" EntityType="GTEModel.applicantlanguagecompetency" />
+          <AssociationSet Name="FK_applicantlanguagecompetency_students" Association="GTEModel.FK_applicantlanguagecompetency_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantlanguagecompetency" EntitySet="applicantlanguagecompetency" />
+          </AssociationSet>
           <EntitySet Name="university_master" EntityType="GTEModel.university_master" />
           <AssociationSet Name="fk_university_master_admincomments" Association="GTEModel.fk_university_master_admincomments">
             <End Role="university_master" EntitySet="university_master" />
@@ -4867,6 +4889,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_applicanthighereducation_university_master" Association="GTEModel.FK_applicanthighereducation_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="applicanthighereducation" EntitySet="applicanthighereducation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantlanguagecompetency_university_master" Association="GTEModel.FK_applicantlanguagecompetency_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="applicantlanguagecompetency" EntitySet="applicantlanguagecompetency" />
           </AssociationSet>
           <AssociationSet Name="FK_applicantprogressbar_university_master" Association="GTEModel.FK_applicantprogressbar_university_master">
             <End Role="university_master" EntitySet="university_master" />
@@ -4920,6 +4946,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="payment_description_mappings" EntitySet="payment_description_mappings" />
           </AssociationSet>
+          <AssociationSet Name="FK_payment_details_university_master" Association="GTEModel.FK_payment_details_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="payment_details" EntitySet="payment_details" />
+          </AssociationSet>
           <AssociationSet Name="FK_predeparturetutorialmaster_university_master" Association="GTEModel.FK_predeparturetutorialmaster_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="predeparturetutorialmaster" EntitySet="predeparturetutorialmaster" />
@@ -4944,44 +4974,13 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitygrouping" EntitySet="universitygrouping" />
           </AssociationSet>
-          <AssociationSet Name="FK_universitywisetooltipmaster_universitymaster" Association="GTEModel.FK_universitywisetooltipmaster_universitymaster">
-            <End Role="university_master" EntitySet="university_master" />
-            <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
-          </AssociationSet>
-          <EntitySet Name="payment_details" EntityType="GTEModel.payment_details" />
-          <AssociationSet Name="FK_payment_details_currency_master" Association="GTEModel.FK_payment_details_currency_master">
-            <End Role="currency_master" EntitySet="currency_master" />
-            <End Role="payment_details" EntitySet="payment_details" />
-          </AssociationSet>
-          <AssociationSet Name="FK_payment_details_applicantdetails" Association="GTEModel.FK_payment_details_applicantdetails">
-            <End Role="students" EntitySet="students" />
-            <End Role="payment_details" EntitySet="payment_details" />
-          </AssociationSet>
-          <AssociationSet Name="FK_payment_details_university_master" Association="GTEModel.FK_payment_details_university_master">
-            <End Role="university_master" EntitySet="university_master" />
-            <End Role="payment_details" EntitySet="payment_details" />
-          </AssociationSet>
-          <EntitySet Name="universitywise_faqmapping" EntityType="GTEModel.universitywise_faqmapping" />
-          <AssociationSet Name="FK_universitywise_faqmapping_faq" Association="GTEModel.FK_universitywise_faqmapping_faq">
-            <End Role="faq" EntitySet="faq" />
-            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_universitywise_faqmapping_formmaster" Association="GTEModel.FK_universitywise_faqmapping_formmaster">
-            <End Role="formmaster" EntitySet="formmaster" />
-            <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
-          </AssociationSet>
           <AssociationSet Name="FK_universitywise_faqmapping_university_master" Association="GTEModel.FK_universitywise_faqmapping_university_master">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitywise_faqmapping" EntitySet="universitywise_faqmapping" />
           </AssociationSet>
-          <EntitySet Name="applicantlanguagecompetency" EntityType="GTEModel.applicantlanguagecompetency" />
-          <AssociationSet Name="FK_applicantlanguagecompetency_students" Association="GTEModel.FK_applicantlanguagecompetency_students">
-            <End Role="students" EntitySet="students" />
-            <End Role="applicantlanguagecompetency" EntitySet="applicantlanguagecompetency" />
-          </AssociationSet>
-          <AssociationSet Name="FK_applicantlanguagecompetency_university_master" Association="GTEModel.FK_applicantlanguagecompetency_university_master">
+          <AssociationSet Name="FK_universitywisetooltipmaster_universitymaster" Association="GTEModel.FK_universitywisetooltipmaster_universitymaster">
             <End Role="university_master" EntitySet="university_master" />
-            <End Role="applicantlanguagecompetency" EntitySet="applicantlanguagecompetency" />
+            <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
@@ -8344,6 +8343,139 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="payment_details">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="request_date" Type="DateTime" Nullable="false" />
+          <Property Name="payment_for" Type="Int32" Nullable="false" />
+          <Property Name="due_date" Type="DateTime" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="currency_id" Type="Int32" Nullable="false" />
+          <Property Name="instruction" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="payment_proof_file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="payment_status" Type="Int32" Nullable="false" />
+          <Property Name="payment_verified_date" Type="DateTime" />
+          <Property Name="applicationmaster_id" Type="Int32" />
+          <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_payment_details_currency_master" FromRole="payment_details" ToRole="currency_master" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_payment_details_applicantdetails" FromRole="payment_details" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_payment_details_university_master" FromRole="payment_details" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK_payment_details_currency_master">
+          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
+          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="currency_master">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payment_details">
+              <PropertyRef Name="currency_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payment_details_applicantdetails">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="payment_details">
+              <PropertyRef Name="applicant_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="universitywise_faqmapping">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="faq_questionID" Type="Int32" />
+          <Property Name="universityid" Type="Int32" />
+          <Property Name="formid" Type="Int32" />
+          <Property Name="questionranking" Type="Int32" />
+          <NavigationProperty Name="faq" Relationship="GTEModel.FK_universitywise_faqmapping_faq" FromRole="universitywise_faqmapping" ToRole="faq" />
+          <NavigationProperty Name="formmaster" Relationship="GTEModel.FK_universitywise_faqmapping_formmaster" FromRole="universitywise_faqmapping" ToRole="formmaster" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universitywise_faqmapping_university_master" FromRole="universitywise_faqmapping" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK_universitywise_faqmapping_faq">
+          <End Type="GTEModel.faq" Role="faq" Multiplicity="0..1" />
+          <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="faq">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="faq_questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_universitywise_faqmapping_formmaster">
+          <End Type="GTEModel.formmaster" Role="formmaster" Multiplicity="0..1" />
+          <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="formmaster">
+              <PropertyRef Name="formid" />
+            </Principal>
+            <Dependent Role="universitywise_faqmapping">
+              <PropertyRef Name="formid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="applicantlanguagecompetency">
+          <Key>
+            <PropertyRef Name="applicantlanguagecompetencyid" />
+          </Key>
+          <Property Name="applicantlanguagecompetencyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantid" Type="Int32" Nullable="false" />
+          <Property Name="universityid" Type="Int32" Nullable="false" />
+          <Property Name="homelanuage" Type="Int32" />
+          <Property Name="isenglishintesive" Type="Int32" />
+          <Property Name="countryofcourse" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="yearofcompletion" Type="DateTime" />
+          <Property Name="instituename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="studymode" Type="Int32" />
+          <Property Name="qualificationtype" Type="Int32" />
+          <Property Name="qualificationname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="gradetype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="isfinalgradeachieved" Type="Int32" />
+          <Property Name="expectedgraderesult" Type="DateTime" />
+          <Property Name="giveenglishtest" Type="Int32" />
+          <Property Name="testname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="centerno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="candidateno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="candidateid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="examdate" Type="DateTime" />
+          <Property Name="testcentercountrty" Type="Int32" />
+          <Property Name="testtakerId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="registrationNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="overallscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="speakingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="listeningscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="readingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="writingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="cefrlevel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="testreportreferenceno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="lastsavedtime" Type="DateTime" />
+          <Property Name="islanguagecompetencypresent" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantlanguagecompetency_students" FromRole="applicantlanguagecompetency" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantlanguagecompetency_university_master" FromRole="applicantlanguagecompetency" ToRole="university_master" />
+        </EntityType>
+        <Association Name="FK_applicantlanguagecompetency_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicantlanguagecompetency" Role="applicantlanguagecompetency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantlanguagecompetency">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="university_master">
           <Key>
             <PropertyRef Name="universityid" />
@@ -8395,6 +8527,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="applicanteducationdetails" Relationship="GTEModel.FK_applicanteducationdetails_university_master" FromRole="university_master" ToRole="applicanteducationdetails" />
           <NavigationProperty Name="applicantfundingmaster" Relationship="GTEModel.FK_applicantfundingmaster_university_master" FromRole="university_master" ToRole="applicantfundingmaster" />
           <NavigationProperty Name="applicanthighereducation" Relationship="GTEModel.FK_applicanthighereducation_university_master" FromRole="university_master" ToRole="applicanthighereducation" />
+          <NavigationProperty Name="applicantlanguagecompetency" Relationship="GTEModel.FK_applicantlanguagecompetency_university_master" FromRole="university_master" ToRole="applicantlanguagecompetency" />
           <NavigationProperty Name="applicantprogressbar" Relationship="GTEModel.FK_applicantprogressbar_university_master" FromRole="university_master" ToRole="applicantprogressbar" />
           <NavigationProperty Name="applicantvisadetails" Relationship="GTEModel.FK_applicantvisadetails_university_master" FromRole="university_master" ToRole="applicantvisadetails" />
           <NavigationProperty Name="applicationmaster" Relationship="GTEModel.FK_applicationmaster_university_master" FromRole="university_master" ToRole="applicationmaster" />
@@ -8408,17 +8541,15 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="credentialmaster" Relationship="GTEModel.FK_credential_university" FromRole="university_master" ToRole="credentialmaster" />
           <NavigationProperty Name="customfieldmaster" Relationship="GTEModel.FK_customfieldmaster_university_master" FromRole="university_master" ToRole="customfieldmaster" />
           <NavigationProperty Name="payment_description_mappings" Relationship="GTEModel.FK_payment_description_mappings_university_master" FromRole="university_master" ToRole="payment_description_mappings" />
+          <NavigationProperty Name="payment_details" Relationship="GTEModel.FK_payment_details_university_master" FromRole="university_master" ToRole="payment_details" />
           <NavigationProperty Name="predeparturetutorialmaster" Relationship="GTEModel.FK_predeparturetutorialmaster_university_master" FromRole="university_master" ToRole="predeparturetutorialmaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_university_master" FromRole="university_master" ToRole="supervisorcomments" />
           <NavigationProperty Name="universitywise_rejectionreasonmapping" Relationship="GTEModel.FK__university_master" FromRole="university_master" ToRole="universitywise_rejectionreasonmapping" />
           <NavigationProperty Name="universitycampus" Relationship="GTEModel.FK_campus_universityMaster" FromRole="university_master" ToRole="universitycampus" />
           <NavigationProperty Name="universitygrouping" Relationship="GTEModel.FK_childsuniversityid_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
           <NavigationProperty Name="universitygrouping1" Relationship="GTEModel.FK_parentUniID_universitymaster" FromRole="university_master" ToRole="universitygrouping" />
-          <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
-          <NavigationProperty Name="payment_details" Relationship="GTEModel.FK_payment_details_university_master" FromRole="university_master" ToRole="payment_details" />
-          <Property Name="hosturl" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="universitywise_faqmapping" Relationship="GTEModel.FK_universitywise_faqmapping_university_master" FromRole="university_master" ToRole="universitywise_faqmapping" />
-          <NavigationProperty Name="applicantlanguagecompetency" Relationship="GTEModel.FK_applicantlanguagecompetency_university_master" FromRole="university_master" ToRole="applicantlanguagecompetency" />
+          <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
         </EntityType>
         <Association Name="fk_university_master_admincomments">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
@@ -8488,6 +8619,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <PropertyRef Name="universityid" />
             </Principal>
             <Dependent Role="applicanthighereducation">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantlanguagecompetency_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.applicantlanguagecompetency" Role="applicantlanguagecompetency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="applicantlanguagecompetency">
               <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
@@ -8648,6 +8791,18 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_payment_details_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="payment_details">
+              <PropertyRef Name="university_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_predeparturetutorialmaster_university_master">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
           <End Type="GTEModel.predeparturetutorialmaster" Role="predeparturetutorialmaster" Multiplicity="*" />
@@ -8720,112 +8875,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_universitywisetooltipmaster_universitymaster">
-          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
-          <End Type="GTEModel.universitywisetooltipmaster" Role="universitywisetooltipmaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="university_master">
-              <PropertyRef Name="universityid" />
-            </Principal>
-            <Dependent Role="universitywisetooltipmaster">
-              <PropertyRef Name="universityid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="payment_details">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicant_id" Type="Int32" Nullable="false" />
-          <Property Name="university_id" Type="Int32" Nullable="false" />
-          <Property Name="request_date" Type="DateTime" Nullable="false" />
-          <Property Name="payment_for" Type="Int32" Nullable="false" />
-          <Property Name="due_date" Type="DateTime" Nullable="false" />
-          <Property Name="amount" Type="Int32" Nullable="false" />
-          <Property Name="currency_id" Type="Int32" Nullable="false" />
-          <Property Name="instruction" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="payment_proof_file_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="payment_status" Type="Int32" Nullable="false" />
-          <Property Name="payment_verified_date" Type="DateTime" />
-          <Property Name="applicationmaster_id" Type="Int32" />
-          <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_payment_details_currency_master" FromRole="payment_details" ToRole="currency_master" />
-          <NavigationProperty Name="students" Relationship="GTEModel.FK_payment_details_applicantdetails" FromRole="payment_details" ToRole="students" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_payment_details_university_master" FromRole="payment_details" ToRole="university_master" />
-        </EntityType>
-        <Association Name="FK_payment_details_currency_master">
-          <End Type="GTEModel.currency_master" Role="currency_master" Multiplicity="1" />
-          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="currency_master">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="payment_details">
-              <PropertyRef Name="currency_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_payment_details_applicantdetails">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="payment_details">
-              <PropertyRef Name="applicant_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_payment_details_university_master">
-          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
-          <End Type="GTEModel.payment_details" Role="payment_details" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="university_master">
-              <PropertyRef Name="universityid" />
-            </Principal>
-            <Dependent Role="payment_details">
-              <PropertyRef Name="university_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="universitywise_faqmapping">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="faq_questionID" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
-          <Property Name="formid" Type="Int32" />
-          <Property Name="questionranking" Type="Int32" />
-          <NavigationProperty Name="faq" Relationship="GTEModel.FK_universitywise_faqmapping_faq" FromRole="universitywise_faqmapping" ToRole="faq" />
-          <NavigationProperty Name="formmaster" Relationship="GTEModel.FK_universitywise_faqmapping_formmaster" FromRole="universitywise_faqmapping" ToRole="formmaster" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_universitywise_faqmapping_university_master" FromRole="universitywise_faqmapping" ToRole="university_master" />
-        </EntityType>
-        <Association Name="FK_universitywise_faqmapping_faq">
-          <End Type="GTEModel.faq" Role="faq" Multiplicity="0..1" />
-          <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="faq">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="universitywise_faqmapping">
-              <PropertyRef Name="faq_questionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_universitywise_faqmapping_formmaster">
-          <End Type="GTEModel.formmaster" Role="formmaster" Multiplicity="0..1" />
-          <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="formmaster">
-              <PropertyRef Name="formid" />
-            </Principal>
-            <Dependent Role="universitywise_faqmapping">
-              <PropertyRef Name="formid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_universitywise_faqmapping_university_master">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="0..1" />
           <End Type="GTEModel.universitywise_faqmapping" Role="universitywise_faqmapping" Multiplicity="*" />
@@ -8838,65 +8887,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="applicantlanguagecompetency">
-          <Key>
-            <PropertyRef Name="applicantlanguagecompetencyid" />
-          </Key>
-          <Property Name="applicantlanguagecompetencyid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" Nullable="false" />
-          <Property Name="universityid" Type="Int32" Nullable="false" />
-          <Property Name="homelanuage" Type="Int32" />
-          <Property Name="isenglishintesive" Type="Int32" />
-          <Property Name="countryofcourse" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="yearofcompletion" Type="DateTime" />
-          <Property Name="instituename" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="studymode" Type="Int32" />
-          <Property Name="qualificationtype" Type="Int32" />
-          <Property Name="qualificationname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="gradetype" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="isfinalgradeachieved" Type="Int32" />
-          <Property Name="expectedgraderesult" Type="DateTime" />
-          <Property Name="giveenglishtest" Type="Int32" />
-          <Property Name="testname" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="centerno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="candidateno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="candidateid" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="examdate" Type="DateTime" />
-          <Property Name="testcentercountrty" Type="Int32" />
-          <Property Name="testtakerId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="registrationNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="overallscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="speakingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="listeningscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="readingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="writingscore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="cefrlevel" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="testreportreferenceno" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="lastsavedtime" Type="DateTime" />
-          <Property Name="islanguagecompetencypresent" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantlanguagecompetency_students" FromRole="applicantlanguagecompetency" ToRole="students" />
-          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantlanguagecompetency_university_master" FromRole="applicantlanguagecompetency" ToRole="university_master" />
-        </EntityType>
-        <Association Name="FK_applicantlanguagecompetency_students">
-          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
-          <End Type="GTEModel.applicantlanguagecompetency" Role="applicantlanguagecompetency" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="students">
-              <PropertyRef Name="studentid" />
-            </Principal>
-            <Dependent Role="applicantlanguagecompetency">
-              <PropertyRef Name="applicantid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_applicantlanguagecompetency_university_master">
+        <Association Name="FK_universitywisetooltipmaster_universitymaster">
           <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
-          <End Type="GTEModel.applicantlanguagecompetency" Role="applicantlanguagecompetency" Multiplicity="*" />
+          <End Type="GTEModel.universitywisetooltipmaster" Role="universitywisetooltipmaster" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="university_master">
               <PropertyRef Name="universityid" />
             </Principal>
-            <Dependent Role="applicantlanguagecompetency">
+            <Dependent Role="universitywisetooltipmaster">
               <PropertyRef Name="universityid" />
             </Dependent>
           </ReferentialConstraint>
@@ -11200,54 +11198,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="university_master">
-            <EntityTypeMapping TypeName="GTEModel.university_master">
-              <MappingFragment StoreEntitySet="university_master">
-                <ScalarProperty Name="hosturl" ColumnName="hosturl" />
-                <ScalarProperty Name="visa_instructions" ColumnName="visa_instructions" />
-                <ScalarProperty Name="supprot_service_instructions" ColumnName="supprot_service_instructions" />
-                <ScalarProperty Name="withdrawn_terms" ColumnName="withdrawn_terms" />
-                <ScalarProperty Name="rejection_terms" ColumnName="rejection_terms" />
-                <ScalarProperty Name="deferment_terms" ColumnName="deferment_terms" />
-                <ScalarProperty Name="acceptance_terms" ColumnName="acceptance_terms" />
-                <ScalarProperty Name="coe_instruction" ColumnName="coe_instruction" />
-                <ScalarProperty Name="fee_payment_instructions" ColumnName="fee_payment_instructions" />
-                <ScalarProperty Name="application_instruction" ColumnName="application_instruction" />
-                <ScalarProperty Name="scholarship_instruction" ColumnName="scholarship_instruction" />
-                <ScalarProperty Name="sop_instruction_for_applicant" ColumnName="sop_instruction_for_applicant" />
-                <ScalarProperty Name="fontcolor" ColumnName="fontcolor" />
-                <ScalarProperty Name="verticalnavigationcolor" ColumnName="verticalnavigationcolor" />
-                <ScalarProperty Name="headerstripcolor" ColumnName="headerstripcolor" />
-                <ScalarProperty Name="logo" ColumnName="logo" />
-                <ScalarProperty Name="notes_disclaimer" ColumnName="notes_disclaimer" />
-                <ScalarProperty Name="full_service" ColumnName="full_service" />
-                <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
-                <ScalarProperty Name="acceptedmaxage" ColumnName="acceptedmaxage" />
-                <ScalarProperty Name="getting_around" ColumnName="getting_around" />
-                <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
-                <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
-                <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
-                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="countryid" ColumnName="countryid" />
-                <ScalarProperty Name="cityid" ColumnName="cityid" />
-                <ScalarProperty Name="long_description" ColumnName="long_description" />
-                <ScalarProperty Name="short_description" ColumnName="short_description" />
-                <ScalarProperty Name="year_established" ColumnName="year_established" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="affiliation" ColumnName="affiliation" />
-                <ScalarProperty Name="chatid" ColumnName="chatid" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
-                <ScalarProperty Name="website" ColumnName="website" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="university_name" ColumnName="university_name" />
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="payment_details">
             <EntityTypeMapping TypeName="GTEModel.payment_details">
               <MappingFragment StoreEntitySet="payment_details">
@@ -11313,6 +11263,53 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityid" ColumnName="universityid" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="applicantlanguagecompetencyid" ColumnName="applicantlanguagecompetencyid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="university_master">
+            <EntityTypeMapping TypeName="GTEModel.university_master">
+              <MappingFragment StoreEntitySet="university_master">
+                <ScalarProperty Name="visa_instructions" ColumnName="visa_instructions" />
+                <ScalarProperty Name="supprot_service_instructions" ColumnName="supprot_service_instructions" />
+                <ScalarProperty Name="withdrawn_terms" ColumnName="withdrawn_terms" />
+                <ScalarProperty Name="rejection_terms" ColumnName="rejection_terms" />
+                <ScalarProperty Name="deferment_terms" ColumnName="deferment_terms" />
+                <ScalarProperty Name="acceptance_terms" ColumnName="acceptance_terms" />
+                <ScalarProperty Name="coe_instruction" ColumnName="coe_instruction" />
+                <ScalarProperty Name="fee_payment_instructions" ColumnName="fee_payment_instructions" />
+                <ScalarProperty Name="application_instruction" ColumnName="application_instruction" />
+                <ScalarProperty Name="scholarship_instruction" ColumnName="scholarship_instruction" />
+                <ScalarProperty Name="sop_instruction_for_applicant" ColumnName="sop_instruction_for_applicant" />
+                <ScalarProperty Name="fontcolor" ColumnName="fontcolor" />
+                <ScalarProperty Name="verticalnavigationcolor" ColumnName="verticalnavigationcolor" />
+                <ScalarProperty Name="headerstripcolor" ColumnName="headerstripcolor" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="notes_disclaimer" ColumnName="notes_disclaimer" />
+                <ScalarProperty Name="full_service" ColumnName="full_service" />
+                <ScalarProperty Name="acceptedminage" ColumnName="acceptedminage" />
+                <ScalarProperty Name="acceptedmaxage" ColumnName="acceptedmaxage" />
+                <ScalarProperty Name="getting_around" ColumnName="getting_around" />
+                <ScalarProperty Name="distance_from_railway" ColumnName="distance_from_railway" />
+                <ScalarProperty Name="distance_from_airport" ColumnName="distance_from_airport" />
+                <ScalarProperty Name="closest_airport" ColumnName="closest_airport" />
+                <ScalarProperty Name="time_zone" ColumnName="time_zone" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="countryid" ColumnName="countryid" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="long_description" ColumnName="long_description" />
+                <ScalarProperty Name="short_description" ColumnName="short_description" />
+                <ScalarProperty Name="year_established" ColumnName="year_established" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="affiliation" ColumnName="affiliation" />
+                <ScalarProperty Name="chatid" ColumnName="chatid" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contact_person" ColumnName="contact_person" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="university_name" ColumnName="university_name" />
+                <ScalarProperty Name="universityid" ColumnName="universityid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
