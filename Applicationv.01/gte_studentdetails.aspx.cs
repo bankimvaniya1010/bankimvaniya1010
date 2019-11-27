@@ -74,7 +74,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     public static string GetWorkTypeDropdown()
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from sd in db1.typeofworkexperiencemaster                    
                     select new
                     {
@@ -122,7 +122,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
     public static string GetCourseDropdown(int coursetypeid , int selectedMajorid, int campusId)
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.coursemaster
                     join mapping in db1.course_campus_mapping on cm.courseid equals mapping.courseid
                     where cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId

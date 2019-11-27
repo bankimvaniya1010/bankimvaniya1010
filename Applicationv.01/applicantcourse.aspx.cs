@@ -64,7 +64,7 @@ public partial class applicantcourse : System.Web.UI.Page
     public static string GetCityDropdown()
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.citymaster
                     join um in db1.university_master on cm.city_id equals um.cityid
                     where um.universityid == universityID1
@@ -80,7 +80,7 @@ public partial class applicantcourse : System.Web.UI.Page
     public static string GetCampusDropdown()
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from uc in db1.universitycampus
                     where uc.universityid == universityID1
                     select new
@@ -95,7 +95,7 @@ public partial class applicantcourse : System.Web.UI.Page
     public static string GetCountryDropdown()
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.countriesmaster
                     join um in db1.university_master on cm.id equals um.countryid
                     where um.universityid == universityID1
@@ -111,7 +111,7 @@ public partial class applicantcourse : System.Web.UI.Page
     public static string GetMajorDropdown()
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from md in db1.majordiscipline_master
                     join umd in db1.universitywisemastermapping on md.id equals umd.mastervalueid into umdData
                     from x1 in umdData.DefaultIfEmpty()
@@ -130,7 +130,7 @@ public partial class applicantcourse : System.Web.UI.Page
     public static string GetModeDropdown()
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from sd in db1.studymodemaster
                     where sd.universityid == universityID1
                     select new
@@ -145,7 +145,7 @@ public partial class applicantcourse : System.Web.UI.Page
     public static string GetCourseDropdown(int coursetypeid,int modeofstudyid ,int selectedMajorid)
     {
         GTEEntities db1 = new GTEEntities();
-        var universityID1 = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());        
+        var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.coursemaster
                     where cm.majordisciplineId == selectedMajorid && cm.modeofstudyId == modeofstudyid && cm.levelofstudyId == coursetypeid
                     select new
