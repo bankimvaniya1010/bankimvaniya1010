@@ -15,8 +15,8 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     int UserID = 0, ApplicantID = 0;
     Logger objLog = new Logger();
     protected string Score, Results = "";
-    string webURL = string.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    string webURL = string.Empty;
+    int UniversityID = -1;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();

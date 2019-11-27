@@ -13,8 +13,8 @@ public partial class gte_declaration : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    string webURL = String.Empty;
+    int UniversityID = -1;
     gte_progressbar gteProgressBar = new gte_progressbar();
 
     protected void Page_Load(object sender, EventArgs e)

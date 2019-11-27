@@ -67,7 +67,6 @@
         <EntityTypeShape EntityType="GTEModel.facilitiesmaster" Width="1.5" PointX="7.5" PointY="314.125" />
         <EntityTypeShape EntityType="GTEModel.facility_campus_mapping" Width="1.5" PointX="9.75" PointY="319.625" />
         <EntityTypeShape EntityType="GTEModel.familymember" Width="1.5" PointX="16.75" PointY="15.75" />
-        <EntityTypeShape EntityType="GTEModel.faq" Width="1.5" PointX="4.75" PointY="17.75" />
         <EntityTypeShape EntityType="GTEModel.fieldvalidationmaster" Width="1.5" PointX="10.75" PointY="17.75" />
         <EntityTypeShape EntityType="GTEModel.formfieldmapping" Width="1.5" PointX="12.75" PointY="17.75" />
         <EntityTypeShape EntityType="GTEModel.formfieldmaster" Width="1.5" PointX="18.75" PointY="0.75" />
@@ -247,7 +246,6 @@
         <AssociationConnector Association="GTEModel.FK_payment_details_currency_master" />
         <AssociationConnector Association="GTEModel.FK_payment_details_applicantdetails" />
         <EntityTypeShape EntityType="GTEModel.universitywise_faqmapping" Width="1.5" PointX="10.5" PointY="80.125" />
-        <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_faq" />
         <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_formmaster" />
         <EntityTypeShape EntityType="GTEModel.applicantlanguagecompetency" Width="1.5" PointX="14.125" PointY="148.75" />
         <AssociationConnector Association="GTEModel.FK_applicantlanguagecompetency_students" />
@@ -281,6 +279,8 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_university_master" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
+        <EntityTypeShape EntityType="GTEModel.faq" Width="1.5" PointX="5.375" PointY="17.875" />
+        <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_faq" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -35,7 +35,7 @@ public partial class admin_supervisorapplicantlanguage : System.Web.UI.Page
         }
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
-        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
         if (!IsPostBack)

@@ -42,7 +42,7 @@ public partial class knowyourstudent : System.Web.UI.Page
         }
         else
             formId = Convert.ToInt32(Request.QueryString["formid"].ToString());
-        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControl(CustomControls, mainDiv);
         if (!IsPostBack)

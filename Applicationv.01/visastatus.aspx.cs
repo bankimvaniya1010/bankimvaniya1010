@@ -13,7 +13,7 @@ public partial class visastatus : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCommon = new Common();
     protected static List<faq> allfaqQuestion = new List<faq>();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     int UniversityID;
     protected void Page_Load(object sender, EventArgs e)
     {

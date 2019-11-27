@@ -15,8 +15,8 @@ public partial class applicant_payments : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     protected static List<faq> allfaqQuestion = new List<faq>();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    string webURL = String.Empty;
+    int UniversityID = -1;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)

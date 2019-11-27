@@ -13,8 +13,8 @@ public partial class gte_questions2 : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCommon = new Common();
     protected static List<faq> allfaqQuestion = new List<faq>();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    string webURL = String.Empty;
+    int UniversityID = -1;
 
     protected void Page_Load(object sender, EventArgs e)
     {
