@@ -16,8 +16,8 @@ public partial class gte_tutorial : System.Web.UI.Page
     int UserID = 0, ApplicantID = 0;
     Logger objLog = new Logger();
     protected string Score, Results = "";
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    string webURL = String.Empty;
+    int UniversityID = -1;
     gte_progressbar gteProgressBar = new gte_progressbar();
     protected void Page_Load(object sender, EventArgs e)
     {

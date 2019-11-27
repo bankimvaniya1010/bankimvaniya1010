@@ -40,7 +40,7 @@ public partial class admin_supervisorapplicantworkexperince : System.Web.UI.Page
         }
         else
             ApplicantID = Convert.ToInt32(Request.QueryString["userid"].ToString());
-        CustomControls = objCom.CustomControlist(formId, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+        CustomControls = objCom.CustomControlist(formId, universityID);
         if (CustomControls.Count > 0)
             objCom.AddCustomControlinAdmin(CustomControls, mainDiv);
         EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();

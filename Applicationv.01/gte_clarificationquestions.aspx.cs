@@ -13,9 +13,9 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
     public static int QuestionsCount = 0;
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     Common objCom = new Common();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    int UniversityID = -1;
     protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
     {

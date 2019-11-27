@@ -2753,9 +2753,9 @@ public partial class universitywise_faqmapping
     public Nullable<int> formid { get; set; }
     public Nullable<int> questionranking { get; set; }
 
-    public virtual faq faq { get; set; }
     public virtual formmaster formmaster { get; set; }
     public virtual university_master university_master { get; set; }
+    public virtual faq faq { get; set; }
 }
 
 public partial class universitywise_rejectionreasonmapping

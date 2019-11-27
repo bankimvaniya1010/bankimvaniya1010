@@ -16,8 +16,8 @@ public partial class preliminary : System.Web.UI.Page
     Common objCom = new Common();
     protected static List<faq> allQuestions = new List<faq>();
     protected string Score, Results = "";
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    string webURL = String.Empty;
+    int UniversityID = -1;
     applicantprogressbar applicantprogressbar = new applicantprogressbar();
     protected void Page_Load(object sender, EventArgs e)
     {

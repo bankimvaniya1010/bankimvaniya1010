@@ -13,7 +13,7 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     protected List<applicantreferencecheck> referenccheckList = new List<applicantreferencecheck>();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected List<customfieldmaster> CustomControlsPersonal = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsConatct = new List<customfieldmaster>();
     protected List<customfieldmaster> CustomControlsKYS = new List<customfieldmaster>();
@@ -41,14 +41,14 @@ public partial class admin_downloadpersonal : System.Web.UI.Page
             universityID = Utility.GetUniversityId();
             ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
 
-            CustomControlsPersonal = objCom.CustomControlist(1, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-            CustomControlsConatct = objCom.CustomControlist(2, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-            CustomControlsKYS = objCom.CustomControlist(3, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-            CustomControlsEdu = objCom.CustomControlist(4, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-            CustomControlsLang = objCom.CustomControlist(5, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-            CustomControlsRef = objCom.CustomControlist(6, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-            CustomControlsSocial = objCom.CustomControlist(8, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
-            CustomControlsEmp = objCom.CustomControlist(7, Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString()));
+            CustomControlsPersonal = objCom.CustomControlist(1, universityID);
+            CustomControlsConatct = objCom.CustomControlist(2, universityID);
+            CustomControlsKYS = objCom.CustomControlist(3, universityID);
+            CustomControlsEdu = objCom.CustomControlist(4, universityID);
+            CustomControlsLang = objCom.CustomControlist(5, universityID);
+            CustomControlsRef = objCom.CustomControlist(6, universityID);
+            CustomControlsSocial = objCom.CustomControlist(8, universityID);
+            CustomControlsEmp = objCom.CustomControlist(7, universityID);
             EmployersDetail = db.applicantemployerdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).ToList();
 
             SetControlsUniversitywiseEmployment(7);

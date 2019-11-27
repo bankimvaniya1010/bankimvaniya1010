@@ -21,7 +21,7 @@ public partial class uploaddocuments : System.Web.UI.Page
     List<string> documentList = new List<string>();
     protected static List<faq> allQuestions = new List<faq>();
     protected Common objCom = new Common();
-    int UniversityID = -1;//Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+    int UniversityID = -1;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
