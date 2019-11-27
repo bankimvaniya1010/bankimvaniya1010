@@ -185,7 +185,7 @@
                             </td>
                             <td class="width25">
                                 <a href="#" class="d-inline-block">
-                                    <img src="/assets/dashboard/img/aiwt-logo.jpg" class="img-fluid">
+                                    <img src="<%=logourl %>" class="img-fluid">
                                 </a>
                             </td>
                         </tr>

@@ -254,3 +254,13 @@
 .star-list {position: relative;padding-left: 15px;}
 .star-list:before {content: '*';position: absolute;left: 0;top: 0;}
 [dir=ltr] .form-control{background-color: #f9f9f9;}
+.faq-question { background-color: #c899613d;font-weight: bold;display: block;  
+    padding: .5rem .75rem;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #495057;
+    background-clip: padding-box;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color .15s ease-in-out,box-shadow .15s;
+}
+.faq-answer{padding-top: 21px;padding-left: 17px;}
