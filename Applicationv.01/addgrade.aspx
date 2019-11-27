@@ -52,8 +52,8 @@
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlCourse" CssClass="form-control" runat="server">
                                                     <asp:ListItem Value="" Text="Select Course"></asp:ListItem>
-                                                    <asp:ListItem Value="tenth" Text="10Th"></asp:ListItem>
-                                                    <asp:ListItem Value="twelth" Text="12th"></asp:ListItem>
+                                                    <asp:ListItem Value="tenth" Text="High School"></asp:ListItem>
+                                                    <asp:ListItem Value="twelth" Text="Senior Secondary School"></asp:ListItem>
                                                     <asp:ListItem Value="UG" Text="Under Graduate"></asp:ListItem>
                                                     <asp:ListItem Value="PG" Text="Post Graduate"></asp:ListItem>
                                                     <asp:ListItem Value="Phd" Text="Phd"></asp:ListItem>

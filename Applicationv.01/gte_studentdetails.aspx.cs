@@ -31,6 +31,11 @@ public partial class gte_studentdetails : System.Web.UI.Page
         if (isFullService)
             Response.Redirect(webURL + "default.aspx", true);
 
+        var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
+        if (!isGteDeclarationDoneByApplicant)
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('GTE Declaration is not completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
         isuniversityGroupHead = db.universitygrouping.Where(x => x.groupingheaduniversityid == universityID).ToList().Count > 0;
 
         var objUser = (students)Session["LoginInfo"];

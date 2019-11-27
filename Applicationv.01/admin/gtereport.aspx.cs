@@ -31,6 +31,7 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _studentRecommended = "";
     protected string _recommendationRemark = "";
     protected string _notesDisclaimer = "";
+    public string logourl = string.Empty;
 
     protected int ApplicantID = 0, universityID = 0;
     string _universityName;
@@ -55,6 +56,9 @@ public partial class admin_gtereport : System.Web.UI.Page
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
                 ViewState["downloadPdf"] = downloadPdf;
 
+                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo , x.notes_disclaimer }).FirstOrDefault();
+                logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
+
                 var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
                 _studentName = Personal.firstname + " " + Personal.lastname;
 
@@ -64,7 +68,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                     _institutionID = universityID.ToString();
                     _reportType = "AU - GS &amp; GTE (TYPE 1)";
                     _reportDate = currentDate.ToString("dd-MMM-y");
-                    _notesDisclaimer = db.university_master.Where(x => x.universityid == universityID).Select(x => x.notes_disclaimer).FirstOrDefault();
+                    _notesDisclaimer = universityDetails.notes_disclaimer;
                     _reportNo = "ECU - " + currentDate.Year + currentDate.ToString("MM") + currentDate.ToString("dd") + currentDate.Hour + currentDate.Minute + ApplicantID;
 
                     var gte_student_sop = db.gte_student_sop

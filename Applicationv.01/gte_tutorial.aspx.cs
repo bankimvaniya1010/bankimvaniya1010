@@ -71,7 +71,8 @@ public partial class gte_tutorial : System.Web.UI.Page
 
             if(mode== "new")
                 db.gte_progressbar.Add(gteProgressBar);
-            db.SaveChanges();            
+            db.SaveChanges();
+            Response.Redirect(webURL + "gte_preliminaryquestion.aspx", true);
         }
         
         catch (Exception ex)

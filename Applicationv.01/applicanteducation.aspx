@@ -780,11 +780,11 @@
                                 </div>
                              </div>
                         </div>
-
+                            
                          <div class="list-group-item frm-rdbtn" id="highergrade" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                         <div class="form-row">
-                                            <input type="button" runat="server" class="btn btn-success" id="btnhigher" value="Add Subject and their Grades" />
+                                            <input type="button" runat="server" class="btn btn-success" id="btnhigher" value="Add Subject and their Grades"/>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-12">
@@ -1255,7 +1255,10 @@
                 var country = $("#<%=ddlHigherCountry.ClientID%>").val();
                 var grade = $("#<%=ddlHigherGrade.ClientID%>").val();
                 var course = $("#<%=ddlCourse.ClientID%>").val();
-                var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars=no,width=screen.width,height=screen.height,fullscreen=yes,top='+top+',left='+left);
+                if (course == "")
+                    alert("Please select Higher Course");
+                else
+                    var w = window.open("/addgrade.aspx?formid=13&g=" + grade + "&c=" + course + "&country=" + country, 'popupWindow', 'scrollbars=no,width=screen.width,height=screen.height,fullscreen=yes,top='+top+',left='+left);
 
             });
             $("#<%=btndiploma.ClientID%>").click(function () {
@@ -1474,9 +1477,7 @@
                 $("#<%=HigherSectionControl.ClientID%>").show();
                 $("#<%=HigherContactControl.ClientID%>").show();
                 $("#<%=highergrade.ClientID%>").show(); //pending
-                $("#<%=addanother.ClientID%>").show(); //pending
-
-                
+                $("#<%=addanother.ClientID%>").show(); //pending                
             }
             else if ($("#<%=rblhigherNot.ClientID%>").is(":checked")) {
                 $("#<%=HigherSectionControl.ClientID%>").show();
