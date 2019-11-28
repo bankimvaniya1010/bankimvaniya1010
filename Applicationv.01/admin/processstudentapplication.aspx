@@ -14,9 +14,9 @@
 
         <div class="container page__container">
             <div class="row">
-                <div class="col-md-8">
-                    <div class="card" id="choices" runat="server">
-                        <asp:DataList ID="choiceList" runat="server" GridLines="Horizontal" OnItemDataBound="choiceList_ItemDataBound" OnItemCommand="choiceList_ItemCommand">
+                <div class="col-md-12">
+                    <div class="col-md-12" id="choices" runat="server">
+                        <asp:DataList ID="choiceList" Width="75%" BackColor="White" runat="server" GridLines="Horizontal" OnItemDataBound="choiceList_ItemDataBound" OnItemCommand="choiceList_ItemCommand">
                             <ItemTemplate>
                                 <asp:Panel ID="options" runat="server">
                                     <div class="card-body">
@@ -42,7 +42,7 @@
                                             <label class="col-form-label form-label">Current Status: </label>
                                             <asp:Label ID="lblCurrentStatus" runat="server" Text="Label"></asp:Label>
                                             <br />
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <asp:DropDownList class="form-control" id="ddlCurrentStatus" runat="server"></asp:DropDownList>
                                             </div>
 
@@ -54,7 +54,7 @@
                                         <div class="form-group">
                                             <label class="col-form-label form-label">Decision </label>
                                             <br />
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <asp:DropDownList class="form-control" id="ddlDecision" runat="server"></asp:DropDownList>
                                             </div>
                                             <div>
@@ -69,35 +69,38 @@
                                             <label for="universityCondition" class="col-form-label form-label">Condition: </label>
                                             <asp:TextBox ID="txtUniversityCondition" runat="server" Text='<%# Eval("condition") %>'></asp:TextBox>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group col-md-8">
                                             <label for="universityAdmissionRemark" class="col-form-label form-label">Admission Office Remarks: </label>
-                                            <asp:TextBox ID="txtUniversityAdmissionRemark" runat="server" placeholder ="Office Remark" Text='<%# Eval("admissionRemarks") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtUniversityAdmissionRemark" runat="server" placeholder ="Office Remark" Text='<%# Eval("admissionRemarks") %>' CssClass="form-control"></asp:TextBox>
                                         </div>
                                         <div class="form-group" id="defermentDiv" runat="server">
                                             <label class="col-form-label form-label">Deferment Date Requested </label>
                                             <br />
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <asp:Label ID="lblDefermentDate" runat="server" Text='<%# Eval("deferment_date") %>'></asp:Label>
-                                            </div>
-
+                                          
                                             <label for="universityDefermentRemark" class="col-form-label form-label">Deferment request comments (Accept / Reject) </label>
                                             <asp:DropDownList ID="ddlDefermentChoice" runat="server" class="form-control">
                                                 <asp:ListItem Value="">Please Select</asp:ListItem>
                                                 <asp:ListItem Value="Accepted">Accepted</asp:ListItem>
                                                 <asp:ListItem Value="Rejected">Rejected</asp:ListItem>
                                             </asp:DropDownList>
-                                            <asp:TextBox ID="txtUniversityDefermentRemark" runat="server" placeholder ="Please enter deferment remarks" Text='<%# Eval("deferment_remark") %>'></asp:TextBox>
-                                        </div>
+                                                <br>
+                                                </div>
+                                             <div class="col-md-8">
+                                                <asp:TextBox ID="txtUniversityDefermentRemark" runat="server" placeholder ="Please enter deferment remarks" Text='<%# Eval("deferment_remark") %>' CssClass="form-control"></asp:TextBox>                                                                             
+                                             </div>
+                                             </div>
                                         <div class="form-group" id="offerLetterDiv" runat="server" style="display:none">
                                             <label for="offerLetterPdf" class="col-form-label form-label">Upload Offer Letter in PDF </label>
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <asp:FileUpload ID="offerLetterPdf" runat="server" CssClass="custom-file-input" />
                                                 <label for="offerLetterPdf" runat="server" id="pdfOfferLetterFileName" class="custom-file-label">Choose application file</label>
                                             </div>
                                         </div>
                                         <div class="form-group" id="coeLetterDiv" runat="server" style="display:none">
                                             <label for="coePdf" class="col-form-label form-label">Upload Confirmation of Enrollment in PDF </label>
-                                            <div class="col-md-6">
+                                            <div class="col-md-8">
                                                 <asp:FileUpload ID="coePdf" runat="server" CssClass="custom-file-input" />
                                                 <label for="coePdf" runat="server" id="pdfCoeFileName" class="custom-file-label">Choose application file</label>
                                             </div>

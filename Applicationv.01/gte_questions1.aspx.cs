@@ -88,10 +88,8 @@ public partial class gte_questions1 : System.Web.UI.Page
                     SetQuestionList(answeredQuestion);
                 }
                 else
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Incomplete profile information. Please complete profile before proceeding.')", true);
-                    Response.Redirect(webURL + "default.aspx", true);
-                }
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Incomplete profile information. Please complete profile before proceeding.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
             }
         }
     }
@@ -230,6 +228,8 @@ public partial class gte_questions1 : System.Web.UI.Page
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
                 lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_questions2.aspx';", true);
             }
         }
         catch (Exception ex)
