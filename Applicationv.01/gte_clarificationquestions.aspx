@@ -37,10 +37,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
+                                <div class="card-body" style="padding-left: 1px;">
 
                                     <div class="form-group option">
-                                        <asp:TextBox ID="txtResponse" runat="server"></asp:TextBox>
+                                        <textarea ID="txtResponse" runat="server" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </asp:Panel>
