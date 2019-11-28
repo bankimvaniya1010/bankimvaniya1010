@@ -11,7 +11,7 @@ public partial class login : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     int universityID;
     public string logourl = string.Empty;
     protected void Page_Load(object sender, EventArgs e)

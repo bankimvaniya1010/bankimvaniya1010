@@ -98,7 +98,7 @@
                                 </select>   
                             </li>
                             <li>
-                                <a href="login.aspx">Logout</a>
+                                <a href="logout.aspx">Logout</a>
                             </li>
                             <!-- // END User dropdown -->
 
