@@ -8,6 +8,8 @@ using System.Web;
 /// </summary>
 public static class Utility
 {
+    internal static GTEEntities db;
+
     public static string GetSecondaryLanguage()
     {
         string SecondaryLanguage = "";
@@ -32,11 +34,41 @@ public static class Utility
 
     public static int GetUniversityId()
     {
-        return Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["UniversityID"].ToString());
+        int? universityId = (int?)HttpContext.Current.Session["universityId"];
+        if (!universityId.HasValue)
+        {
+            using (db = new GTEEntities())
+            {
+                string inBoundUrl = HttpContext.Current.Request.Url.Host.ToLower().ToString();
+                if (inBoundUrl.ToUpper().Contains("www."))
+                    inBoundUrl = inBoundUrl.Replace("www.", string.Empty);
+                var details = db.university_master.Where(x => x.hosturl == inBoundUrl).Select(x => new { x.universityid, x.university_name }).FirstOrDefault();
+                if (details != null)
+                {
+                    universityId = details.universityid;
+                    if (universityId.Value > 0)
+                    {
+                        HttpContext.Current.Session["universityName"] = details.university_name;
+                        return universityId.Value;
+                    }
+                    else
+                        return -1;
+                }
+                else
+                    return -1;
+            }
+        }
+        else
+            return universityId.Value;
     }
 
     public static string GetWebUrl()
     {
         return System.Configuration.ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", HttpContext.Current.Request.Url.Host.ToLower()).ToString();
+    }
+
+    internal static string GetUniversityName()
+    {
+        return (string)HttpContext.Current.Session["universityName"];
     }
 }
