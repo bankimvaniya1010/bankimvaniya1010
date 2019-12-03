@@ -249,7 +249,9 @@
         <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_formmaster" />
         <EntityTypeShape EntityType="GTEModel.applicantlanguagecompetency" Width="1.5" PointX="14.125" PointY="148.75" />
         <AssociationConnector Association="GTEModel.FK_applicantlanguagecompetency_students" />
-        <EntityTypeShape EntityType="GTEModel.university_master" Width="1.5" PointX="5.25" PointY="104.125" />
+        <EntityTypeShape EntityType="GTEModel.faq" Width="1.5" PointX="5.375" PointY="17.875" />
+        <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_faq" />
+        <EntityTypeShape EntityType="GTEModel.university_master" Width="1.5" PointX="5.25" PointY="104" />
         <AssociationConnector Association="GTEModel.fk_university_master_admincomments" />
         <AssociationConnector Association="GTEModel.fk_adminuniversitywisetooltips_university_master" />
         <AssociationConnector Association="GTEModel.FK_applicantdocumentmaster_university_master" />
@@ -279,8 +281,6 @@
         <AssociationConnector Association="GTEModel.FK_parentUniID_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_university_master" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
-        <EntityTypeShape EntityType="GTEModel.faq" Width="1.5" PointX="5.375" PointY="17.875" />
-        <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_faq" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

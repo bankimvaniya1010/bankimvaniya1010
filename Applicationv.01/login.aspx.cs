@@ -19,7 +19,10 @@ public partial class login : System.Web.UI.Page
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
         if (universityID == -1)
-            Response.Redirect(Request.Url.ToString(), false);
+        {
+            Response.Redirect(Request.Url.Host.ToLower().ToString(), true);
+            return;
+        }
         else
             Session["universityId"] = universityID;
         active = Request.QueryString["active"];

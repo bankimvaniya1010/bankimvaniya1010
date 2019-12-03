@@ -2638,6 +2638,7 @@ public partial class university_master
     public string withdrawn_terms { get; set; }
     public string supprot_service_instructions { get; set; }
     public string visa_instructions { get; set; }
+    public string hosturl { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
@@ -2754,8 +2755,8 @@ public partial class universitywise_faqmapping
     public Nullable<int> questionranking { get; set; }
 
     public virtual formmaster formmaster { get; set; }
-    public virtual university_master university_master { get; set; }
     public virtual faq faq { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitywise_rejectionreasonmapping

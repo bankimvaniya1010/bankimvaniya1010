@@ -717,6 +717,7 @@ public class Common
             case "ZR": country = "Zaire"; break;
             case "ZM": country = "Zambia"; break;
             case "ZW": country = "Zimbabwe"; break;
+            case "YU": country = "Yugoslavia"; break;
             default:
                 country = "";
                 break;
