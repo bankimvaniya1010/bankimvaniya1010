@@ -1436,6 +1436,7 @@
           <Property Name="university_id" Type="int" Nullable="false" />
           <Property Name="applicant_response" Type="bit" />
           <Property Name="question_id" Type="int" Nullable="false" />
+          <Property Name="response_time" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="gte_questions_applicant_response">
           <Key>
@@ -6066,6 +6067,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="applicant_response" Type="Boolean" />
           <Property Name="question_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="gte_question_master_part2" Relationship="GTEModel.FK_response_gteQuestionPart2" FromRole="gte_question_part2_applicant_response" ToRole="gte_question_master_part2" />
+          <Property Name="response_time" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="gte_questions_applicant_response">
           <Key>
@@ -9960,6 +9962,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_question_part2_applicant_response">
             <EntityTypeMapping TypeName="GTEModel.gte_question_part2_applicant_response">
               <MappingFragment StoreEntitySet="gte_question_part2_applicant_response">
+                <ScalarProperty Name="response_time" ColumnName="response_time" />
                 <ScalarProperty Name="question_id" ColumnName="question_id" />
                 <ScalarProperty Name="applicant_response" ColumnName="applicant_response" />
                 <ScalarProperty Name="university_id" ColumnName="university_id" />

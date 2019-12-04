@@ -20,6 +20,9 @@
                 <div class="card" id="questions" runat="server">
                     <div style="font-size:medium;text-align:center">
                         Questions <%=ViewState["Display"] %> out of <%=ViewState["QuestionsCount"] %>
+                        <br/>
+                        <label id="minutes"></label><label id="seconds"></label>
+                        <asp:HiddenField ID="hidTime" runat="server" />
                     </div>
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
@@ -122,6 +125,26 @@
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtepart2').addClass('active');
+
+            var minutesLabel = document.getElementById("minutes");	
+            var secondsLabel = document.getElementById("seconds");	
+            var totalSeconds = <%=(int)Session["totalResponseTimeQue2"]%>;	
+            setInterval(setTime, 1000);	
+             function setTime() {	
+                ++totalSeconds;	
+                var questionTime = totalSeconds - <%=(int)Session["totalResponseTimeQue2"]%>;	
+                secondsLabel.innerHTML = ":" + pad(totalSeconds % 60);	
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));	
+                $("#<%=hidTime.ClientID%>").val(questionTime);	
+            }	
+             function pad(val) {	
+                var valString = val + "";	
+                if (valString.length < 2) {	
+                    return "0" + valString;	
+                } else {	
+                    return valString;	
+                }	
+            }	
         });
     </script>
 
