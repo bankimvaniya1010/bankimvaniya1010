@@ -198,11 +198,11 @@
 
             var minutesLabel = document.getElementById("minutes");	
             var secondsLabel = document.getElementById("seconds");	
-            var totalSeconds = <%=gte_questions1.totalResponseTime%>;	
+            var totalSeconds = <%=(int)Session["totalResponseTime"]%>;	
             setInterval(setTime, 1000);	
              function setTime() {	
                 ++totalSeconds;	
-                var questionTime = totalSeconds - <%=gte_questions1.totalResponseTime%>;	
+                var questionTime = totalSeconds - <%=(int)Session["totalResponseTime"]%>;	
                 secondsLabel.innerHTML = ":" + pad(totalSeconds % 60);	
                 minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60));	
                 $("#<%=hidTime.ClientID%>").val(questionTime);	

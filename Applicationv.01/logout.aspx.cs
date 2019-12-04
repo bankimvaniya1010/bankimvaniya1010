@@ -12,6 +12,9 @@ public partial class logout : System.Web.UI.Page
         Session["universityId"] = null;
         Session["universityName"] = null;
 
+        Session["totalResponseTime"] = null;
+        Session["totalResponseTimeQue2"] = null;
+
         Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
         Response.Cache.SetCacheability(HttpCacheability.NoCache);
         Response.Cache.SetNoStore();

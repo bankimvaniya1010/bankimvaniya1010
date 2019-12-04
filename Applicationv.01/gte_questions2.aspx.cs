@@ -22,7 +22,10 @@ public partial class gte_questions2 : System.Web.UI.Page
         UniversityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-        UserID = Convert.ToInt32(Session["UserID"].ToString());
+        UserID = Convert.ToInt32(Session["UserID"].ToString());        
+        if (Session["totalResponseTimeQue2"] == null)
+            Session["totalResponseTimeQue2"] = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID)
+                                             .Select(x => x.response_time).DefaultIfEmpty(0).Max();
 
         if (!IsPostBack)
         {
@@ -31,6 +34,8 @@ public partial class gte_questions2 : System.Web.UI.Page
             var allQuestions = db.gte_question_master_part2.ToList();
             ViewState["QuestionsCount"] = allQuestions.Count;
             ViewState["AnsweredQuestionCount"] = answeredQuestion.Count;
+            if (answeredQuestion.Count > 0)
+                Session["totalResponseTimeQue2"] = answeredQuestion.Max(x => x.response_time);
             if (answeredQuestion.Count == allQuestions.Count)
             {
                 completedDiv.Visible = true;
@@ -142,10 +147,12 @@ public partial class gte_questions2 : System.Web.UI.Page
         var allQuestions = (List<gte_question_master_part2>)Session["allQuestions"];
         try
         {
+            List<int> IDList = new List<int>();
             foreach (DataListItem item in questionList.Items)
             {
                 Label question = (Label)item.FindControl("lblno");
                 questionId = Convert.ToInt32(question.Text);
+                int responsetime = Convert.ToInt32(hidTime.Value);
 
                 bool responseInsertedForQuestion = db.gte_question_part2_applicant_response.Any(x => x.applicant_id == UserID && x.university_id == UniversityID && x.question_id == questionId);
                 if (!responseInsertedForQuestion)
@@ -153,30 +160,30 @@ public partial class gte_questions2 : System.Web.UI.Page
                     RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
                     RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
 
+                    gte_question_part2_applicant_response answer = new gte_question_part2_applicant_response();
+                    answer.applicant_id = UserID;
+                    answer.question_id = questionId;
                     if (rdAnswer1.Checked)
-                    {
-                        gte_question_part2_applicant_response answer = new gte_question_part2_applicant_response()
-                        {
-                            applicant_id = UserID,
-                            question_id = questionId,
-                            applicant_response = true,
-                            university_id = UniversityID
-                        };
-                        db.gte_question_part2_applicant_response.Add(answer);
-                    }
+                        answer.applicant_response = true;
                     else if (rdAnswer2.Checked)
+                        answer.applicant_response = false;
+                    answer.university_id = UniversityID;
+                    db.gte_question_part2_applicant_response.Add(answer);
+                    int saveSuccefull = db.SaveChanges();
+                    if (saveSuccefull == 1)
                     {
-                        gte_question_part2_applicant_response answer = new gte_question_part2_applicant_response()
+                        IDList.Add(answer.id);
+                        if (IDList.Count == QuestionsCount)
                         {
-                            applicant_id = UserID,
-                            question_id = questionId,
-                            applicant_response = false,
-                            university_id = UniversityID
-                        };
-                        db.gte_question_part2_applicant_response.Add(answer);
+                            foreach (int itm in IDList)
+                            {
+                                var recordID = db.gte_question_part2_applicant_response.Where(x => x.id == itm).FirstOrDefault();
+                                recordID.response_time= (int)Session["totalResponseTimeQue2"] + responsetime;
+                                db.SaveChanges();
+                            }                     
+                            Session["totalResponseTimeQue2"] = (int)Session["totalResponseTimeQue2"] + responsetime;
+                        }
                     }
-
-                    db.SaveChanges();
                 }
 
                 allQuestions.RemoveAll(x => x.id == questionId);
@@ -192,6 +199,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
+                Session.Remove("totalResponseTimeQue2");
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
                 var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
                 foreach (var item in applicant_response)

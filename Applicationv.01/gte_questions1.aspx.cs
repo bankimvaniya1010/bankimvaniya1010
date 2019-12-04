@@ -14,7 +14,7 @@ public partial class gte_questions1 : System.Web.UI.Page
     protected static List<faq> allfaqQuestion = new List<faq>();
     string webURL = String.Empty;
     int UniversityID = -1;
-    public static int totalResponseTime = 0;
+    //public static int totalResponseTime = 0;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,9 +23,9 @@ public partial class gte_questions1 : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        if (totalResponseTime == 0)
-            totalResponseTime = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID)
-                                  .Select(x => x.applicant_response_time).DefaultIfEmpty(0).Sum();
+        if (Session["totalResponseTime"] == null)
+            Session["totalResponseTime"] = db.gte_questions_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID)
+                                             .Select(x => x.applicant_response_time).DefaultIfEmpty(0).Sum();
         allfaqQuestion = objCommon.FaqQuestionList();
         if (!IsPostBack)
         {
@@ -35,7 +35,7 @@ public partial class gte_questions1 : System.Web.UI.Page
             ViewState["QuestionsCount"] = allQuestions.Count;
             ViewState["AnsweredQuestionCount"] = answeredQuestion.Count;
             if(answeredQuestion.Count > 0)
-                totalResponseTime = answeredQuestion.Sum(x => x.applicant_response_time);
+                Session["totalResponseTime"] = answeredQuestion.Sum(x => x.applicant_response_time);
             Session["allQuestions"] = allQuestions;
 
             if (answeredQuestion.Count == allQuestions.Count)
@@ -208,7 +208,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                     db.gte_questions_applicant_response.Add(answer);
                     db.SaveChanges();
 
-                    totalResponseTime = totalResponseTime + response_time;
+                    Session["totalResponseTime"] = (int)Session["totalResponseTime"] + response_time;
                 }
                     
                 allAnswers.RemoveAll(x => x.gte_question_id == questionId);
@@ -228,6 +228,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
                 lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
+                Session.Remove("totalResponseTime");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_questions2.aspx';", true);
             }

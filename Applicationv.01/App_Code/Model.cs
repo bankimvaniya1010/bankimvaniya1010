@@ -1694,6 +1694,7 @@ public partial class gte_question_part2_applicant_response
     public int university_id { get; set; }
     public Nullable<bool> applicant_response { get; set; }
     public int question_id { get; set; }
+    public int response_time { get; set; }
 
     public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
 }

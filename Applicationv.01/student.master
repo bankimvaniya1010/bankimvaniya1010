@@ -72,7 +72,7 @@
                        
                         <!-- Brand -->
                         <a href="default.aspx" class="navbar-brand">
-                            <img src="<%=logourl %>" class="logo-img"/>
+                            <img src="<%=logourl %>" class="logo-img img-fluid"/>
                             <span class="d-none d-xs-md-block"><asp:Label ID="lbluniversityName" runat="server"></asp:Label>  - Application Center</span>
                         </a>
 

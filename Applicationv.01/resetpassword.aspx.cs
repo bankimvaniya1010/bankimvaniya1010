@@ -13,9 +13,13 @@ public partial class Resetpassword : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    public string logourl = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
+        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo }).FirstOrDefault();
+        logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
     }
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
@@ -33,7 +37,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 login.password = objCom.EncodePasswordToMD5(password);
                 login.ispasswordset = true;
                 login.isverified = true;
-                db.SaveChanges();
+                db.SaveChanges();                
                 universityID = Utility.GetUniversityId();
                 var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/password.html"));

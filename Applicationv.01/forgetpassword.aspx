@@ -41,7 +41,7 @@
             <div class="card navbar-shadow">
                 <div class="card-header text-center">
                     <div class="frnd-hdr logo-img">
-                        <img src="<%=logourl %>" class="logo-img"/>
+                        <img src="<%=logourl %>" class="logo-img img-fluid"/>
                     </div>
                     <h4 class="card-title">Forgot Password?</h4>
                     <p class="card-subtitle">Recover your account password</p>

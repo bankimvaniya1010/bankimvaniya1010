@@ -218,7 +218,7 @@
 [dir=ltr] .frnd-hdr .sidebar-dark .open>.sidebar-menu-button{color: #fff;}
 [dir=ltr] .frnd-hdr .navbar-dark .navbar-toggler{color: #455560;}
 [dir=ltr] .frnd-hdr .sidebar-dark .sidebar-heading{color: #fff;}
-.frnd-hdr .logo-img{max-width: 80px;z-index: 2;position: absolute;left: 0;top: 0;}
+.frnd-hdr .logo-img{max-width: 80px;z-index: 2;position: absolute;left: 0;top: 0;display: block;max-height: 40px;}
 [dir=ltr] .frnd-hdr .navbar-brand > span{padding-left: 10px;color: #455560;}
 [dir=ltr] .frnd-hdr .navbar-brand{position: relative;z-index: 1;padding-left: 80px;}
 .frnd-hdr .head-bgbtm {height: 20px;background: #e51837;}
