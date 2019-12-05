@@ -45,6 +45,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     string[] railDistanceValue = existingUninversity.distance_from_railway.Split(' ');
 
                     txtUniName.Value = existingUninversity.university_name;
+                    txthosturl.Value = existingUninversity.hosturl;
                     txtUniAddress.Value = existingUninversity.address;
                     txtUniContactPerson.Value = existingUninversity.contact_person;
                     txtUniWebsite.Value = existingUninversity.website;
@@ -88,9 +89,22 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     ddlCountry.SelectedIndex = existingUninversity.countryid;
                     txtUniAcceptedMaxAge.Value = Convert.ToString(existingUninversity.acceptedmaxage);
                     txtUniAcceptedMinAge.Value = Convert.ToString(existingUninversity.acceptedminage);
-                    txtstripcolor.Value = existingUninversity.headerstripcolor;
-                    txtverticalnavigationcolor.Value = existingUninversity.verticalnavigationcolor;
-                    txtfontcolor.Value = existingUninversity.fontcolor;
+                    if (existingUninversity.headerstripcolor != "")
+                    {
+                        txtstripcolor.Attributes.Add("style", "display:block;");
+                        txtstripcolor.Value = existingUninversity.headerstripcolor;
+                        hiddenstripcolorInput.Value = existingUninversity.headerstripcolor;
+                    }
+                    if (existingUninversity.verticalnavigationcolor != "") {
+                        txtverticalnavigationcolor.Attributes.Add("style", "display:block;");
+                        txtverticalnavigationcolor.Value = existingUninversity.verticalnavigationcolor;
+                        hiddennavigationcolorInput.Value = existingUninversity.verticalnavigationcolor;
+                    }                    
+                    if (existingUninversity.fontcolor != "") {
+                        txtfontcolor.Attributes.Add("style", "display:block;");
+                        txtfontcolor.Value = existingUninversity.fontcolor;
+                        hiddenvalueInput.Value = existingUninversity.fontcolor;
+                    }
                     txtUniversitySop.Text = existingUninversity.sop_instruction_for_applicant;
                     txtUniversityScholarship.Text = existingUninversity.scholarship_instruction;
                     txtUniversityApplication.Text = existingUninversity.application_instruction;
@@ -181,10 +195,10 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.acceptedmaxage = Convert.ToInt32(txtUniAcceptedMaxAge.Value.Trim());
             universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
             universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
-            universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
-            universityObj.headerstripcolor = txtstripcolor.Value;
-            universityObj.verticalnavigationcolor = txtverticalnavigationcolor.Value;
-            universityObj.fontcolor = txtfontcolor.Value;
+            universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();            
+            universityObj.headerstripcolor = hiddenstripcolorInput.Value;            
+            universityObj.verticalnavigationcolor = hiddennavigationcolorInput.Value;            
+            universityObj.fontcolor = hiddenvalueInput.Value;
             universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
             universityObj.scholarship_instruction = txtUniversityScholarship.Text;
             universityObj.application_instruction = txtUniversityApplication.Text;

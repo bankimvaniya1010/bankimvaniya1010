@@ -75,9 +75,9 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
                 universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
                 universityObj.logo = "";
-                universityObj.headerstripcolor = headerstripcolor.Value;
-                universityObj.verticalnavigationcolor = verticalnavigationcolor.Value;
-                universityObj.fontcolor = fontcolor.Value;
+                universityObj.headerstripcolor = hiddenstripcolorInput.Value;
+                universityObj.verticalnavigationcolor = hiddennavigationcolorInput.Value;
+                universityObj.fontcolor = hiddenvalueInput.Value;
                 universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
                 universityObj.scholarship_instruction = txtUniversityScholarship.Text;
                 universityObj.acceptance_terms = txtAcceptanceTerms.Text;
@@ -89,6 +89,10 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.fee_payment_instructions = txtUniversityFeePayment.Text;
                 universityObj.coe_instruction = txtUniversityCOE.Text;
                 universityObj.visa_instructions = txtvisainstruction.Text;
+                var url = txthosturl.Value.Trim();
+                if(url.ToLower().Contains("www."))
+                    url = url.Replace("www.", string.Empty);
+                universityObj.hosturl = url;
                 db.university_master.Add(universityObj);
                 db.SaveChanges();
                 if (logo.HasFile)  //fileupload control contains a file  
@@ -102,8 +106,8 @@ public partial class admin_createuniversity : System.Web.UI.Page
                     universityObj.logo = filename;
                     db.SaveChanges();
                 }
-               
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                     "alert('Record Inserted Successfully');window.location='" + Request.ApplicationPath + "admin/universitymaster.aspx';", true);
             }
             else
             {

@@ -990,7 +990,23 @@
                     data: "{ 'tempP': '"+selectedvalue+"' }",
                 });
             });
+            var uniFontColor = '<%=fontColor%>';
+            var uniheadercolor = '<%=headercolor%>'
+            var uniVerticalnavcolor = '<%=verticalnavigationcolor%>'
+            // setter fontcolor
+            document.documentElement.style.setProperty('--font-color', uniFontColor);
+            // getter
+            document.documentElement.style.getPropertyValue('--font-color');
 
+            // setter header color
+            document.documentElement.style.setProperty('--header-color', uniheadercolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--header-color');
+
+            // setter vertical nav color
+            document.documentElement.style.setProperty('--background-color', uniVerticalnavcolor);
+            // getter
+            document.documentElement.style.getPropertyValue('--background-color');
         });
      
     </script>

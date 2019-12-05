@@ -119,6 +119,21 @@ public class Common
         }
         return title;
     }
+    public string GetCourseName(int id)
+    {
+        string CourseName = "";
+        try
+        {
+            var GetCourse = db.coursemaster.Where(x => x.courseid == id).FirstOrDefault();
+            if (GetCourse != null)
+                CourseName = GetCourse.coursename;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return CourseName;
+    }
     public string GetAgentName(int id)
     {
         string agentName = "";
