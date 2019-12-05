@@ -27,6 +27,16 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="hosturl" class="col-sm-3 col-form-label form-label">Host URL</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txthosturl" type="text" runat="server" class="form-control" placeholder="Host URL" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="uniAffiliation" class="col-sm-3 col-form-label form-label">University Affiliation</label>
                         <div class="col-sm-8">
                             <div class="row">
@@ -324,9 +334,14 @@
                         <label for="stripcolor" class="col-sm-3 col-form-label form-label">header strip Color </label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" runat="server" id="headerstripcolor" class="form-control" placeholder="header strip Color"/>                                    
+                                 <div class="col-md-4">
+                                    <button class="jscolor{valueElement:'stripcolorInput'} form-control">Choose Color</button>
+                                    <input type="hidden" runat="server" id="hiddenstripcolorInput"/> 
                                 </div>
+                                <div class="col-md-4">
+                                    <input type="text" runat="server" id="headerstripcolor" class="form-control" style="display:none"/>                                    
+                                    <input type="hidden" id="stripcolorInput" class="form-control" onchange="getstripcolorcode()"/>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -334,9 +349,14 @@
                         <label for="verticalnavigationcolor" class="col-sm-3 col-form-label form-label">Color Of vertical navigation </label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" runat="server" id="verticalnavigationcolor" class="form-control" placeholder="Color Of vertical navigation "/>                                    
+                                 <div class="col-md-4">
+                                    <button class="jscolor{valueElement:'navigationcolorInput'} form-control">Choose Color</button>
+                                    <input type="hidden" runat="server" id="hiddennavigationcolorInput"/> 
                                 </div>
+                                 <div class="col-md-4">
+                                     <input type="text" runat="server" id="verticalnavigationcolor" class="form-control" style="display:none"/>
+                                    <input type="hidden" id="navigationcolorInput" class="form-control" onchange="getNavigationColorcode()"/>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -344,12 +364,17 @@
                         <label for="fontcolor" class="col-sm-3 col-form-label form-label"> font Color </label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" runat="server" id="fontcolor" class="form-control" placeholder="font color"/>                                    
+                                 <div class="col-md-4">
+                                    <button class="jscolor{valueElement:'valueInput'} form-control" id="fontcolorbtn" runat="server">Choose Color</button>
+                                    <input type="hidden" runat="server" id="hiddenvalueInput"/> 
                                 </div>
+                                <div class="col-md-4">
+                                    <input type="text" runat="server" id="fontcolor" class="form-control" style="display:none"/>
+                                    <input type="hidden" id="valueInput" onchange="getFontColorcode()"/>
+                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> 
                     <div class="form-group row">
                         <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for Student Sop </label>
                         <div class="col-sm-8">
@@ -514,6 +539,7 @@
         function validateForm() {
 
             var txtUniName = $('#<%=txtUniName.ClientID%>').val();
+            var hostUrl = $('#<%=txthosturl.ClientID%>').val();
             var txtUniAffiliation = $('#<%=txtUniAffiliation.ClientID%>').val();
             var txtUniType = $('#<%=txtUniType.ClientID%>').val();
             var txtUniGettingAround = $('#<%=txtUniGettingAround.ClientID%>').val();
@@ -540,19 +566,23 @@
             var txtUniAcceptedMinAge = $('#<%=txtUniAcceptedMinAge.ClientID%>').val();
             var subscriptionSelection = $('#<%=subscription.ClientID%>').val();
             var txtNotesDisclaimer = $('#<%=txtNotesDisclaimer.ClientID%>').val();
-            var fllogo = $('#<%=logo.ClientID%>').val();           
+            var fllogo = $('#<%=logo.ClientID%>').val();
             var sopInstruction = $('#<%=txtUniversitySop.ClientID%>').val();
             var scholarshipInstruction = $('#<%=txtUniversityScholarship.ClientID%>').val();
             var applicationInstruction = $('#<%=txtUniversityApplication.ClientID%>').val();
             var feePaymentInstruction = $('#<%=txtUniversityFeePayment.ClientID%>').val();
-            var coeInstruction = $('#<%=txtUniversityCOE.ClientID%>').val();
-
+            var coeInstruction = $('#<%=txtUniversityCOE.ClientID%>').val();            
+      
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
 
             if (txtUniName == '') {
                 alert("Please enter University Name");
+                return false;
+            }
+            if (hostUrl == '' || (hostUrl).match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i)) {
+                alert("Please enter valid Host Url");
                 return false;
             }
             else if (txtUniAffiliation == '') {
@@ -694,6 +724,19 @@
 	        $('#institution_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
 	        $('#createuniversity').addClass('active');
-	    });
+        });
+
+        function getFontColorcode() {            
+                $("#<%=hiddenvalueInput.ClientID%>").val("");
+                $("#<%=hiddenvalueInput.ClientID%>").val("#"+$("#valueInput").val());            
+        }
+        function getNavigationColorcode() {
+                $("#<%=hiddennavigationcolorInput.ClientID%>").val("");
+                $("#<%=hiddennavigationcolorInput.ClientID%>").val("#"+$("#navigationcolorInput").val());
+        }
+        function getstripcolorcode() {
+                $("#<%=hiddenstripcolorInput.ClientID%>").val("");
+                $("#<%=hiddenstripcolorInput.ClientID%>").val("#"+$("#stripcolorInput").val());
+        }
     </script>
 </asp:Content>

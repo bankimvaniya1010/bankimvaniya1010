@@ -28,6 +28,16 @@
                     </div>
 
                     <div class="form-group row">
+                        <label for="hosturl" class="col-sm-3 col-form-label form-label">Host URL</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txthosturl" type="text" runat="server" class="form-control" placeholder="Host URL"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="uniAffiliation" class="col-sm-3 col-form-label form-label">University Affiliation</label>
                         <div class="col-sm-8">
                             <div class="row">
@@ -326,9 +336,14 @@
                         <label for="stripcolor" class="col-sm-3 col-form-label form-label">header strip Color </label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" runat="server" id="txtstripcolor" class="form-control"/>                                    
+                                 <div class="col-md-4">
+                                    <button class="jscolor{valueElement:'stripcolorInput'} form-control">Choose Color</button>
+                                    <input type="hidden" runat="server" id="hiddenstripcolorInput"/> 
                                 </div>
+                                <div class="col-md-4">
+                                    <input type="text" runat="server" id="txtstripcolor" class="form-control" style="display:none"/>                                    
+                                    <input type="hidden" id="stripcolorInput" class="form-control" onchange="getstripcolorcode()"/>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -336,9 +351,14 @@
                         <label for="verticalnavigationcolor" class="col-sm-3 col-form-label form-label">Color Of vertical navigation </label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" runat="server" id="txtverticalnavigationcolor" class="form-control"/>                                    
+                                 <div class="col-md-4">
+                                    <button class="jscolor{valueElement:'navigationcolorInput'} form-control">Choose Color</button>
+                                    <input type="hidden" runat="server" id="hiddennavigationcolorInput"/> 
                                 </div>
+                                 <div class="col-md-4">
+                                     <input type="text" runat="server" id="txtverticalnavigationcolor" class="form-control" style="display:none"/>
+                                    <input type="hidden" id="navigationcolorInput" class="form-control" onchange="getNavigationColorcode()"/>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -346,12 +366,17 @@
                         <label for="fontcolor" class="col-sm-3 col-form-label form-label"> font Color </label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <input type="text" runat="server" id="txtfontcolor" class="form-control"/>                                    
+                                 <div class="col-md-4">
+                                    <button class="jscolor{valueElement:'valueInput'} form-control" id="fontcolorbtn" runat="server">Choose Color</button>
+                                    <input type="hidden" runat="server" id="hiddenvalueInput"/> 
                                 </div>
+                                <div class="col-md-4">
+                                    <input type="text" runat="server" id="txtfontcolor" class="form-control" style="display:none"/>
+                                    <input type="hidden" id="valueInput" onchange="getFontColorcode()"/>
+                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>                  
                     <div class="form-group row">
                         <label for="fontcolor" class="col-sm-3 col-form-label form-label"> University Instruction for Student Sop </label>
                         <div class="col-sm-8">
@@ -689,7 +714,23 @@
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#institution_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
-	        $('#universitymaster').addClass('active');
-	    });
+            $('#universitymaster').addClass('active');
+
+            //hosturl textbox
+            $("#<%=txthosturl.ClientID%>").attr("disabled", "disabled");
+        });     
+            
+        function getFontColorcode() {            
+                $("#<%=hiddenvalueInput.ClientID%>").val("");
+                $("#<%=hiddenvalueInput.ClientID%>").val("#"+$("#valueInput").val());            
+        }
+        function getNavigationColorcode() {
+                $("#<%=hiddennavigationcolorInput.ClientID%>").val("");
+                $("#<%=hiddennavigationcolorInput.ClientID%>").val("#"+$("#navigationcolorInput").val());
+        }
+        function getstripcolorcode() {
+                $("#<%=hiddenstripcolorInput.ClientID%>").val("");
+                $("#<%=hiddenstripcolorInput.ClientID%>").val("#"+$("#stripcolorInput").val());
+        }
     </script>
 </asp:Content>

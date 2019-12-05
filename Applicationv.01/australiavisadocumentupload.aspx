@@ -22,7 +22,7 @@
                                 <a class="nav-link active" href="#first" data-toggle="tab">Visa - Documentary Evidence List</a>
                             </li>
                         </ul>
-                        <div class="tab-content card-body">
+                        <div class="tab-content card-body font-colr">
                             <div class="tab-pane active" id="first">
                                                      
                                 <div class="form-group row" id="identitydoc" runat="server">

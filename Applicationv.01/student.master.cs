@@ -14,8 +14,11 @@ public partial class admin : System.Web.UI.MasterPage
     public int? questioncompleted = 0 , isclarificationquestionset = 0;
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID;
-    int UserID = 0;
+    int UserID = 0;    
     public string logourl = string.Empty;
+    public string fontColor = string.Empty;
+    public string headercolor = string.Empty;
+    public string verticalnavigationcolor = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -48,6 +51,9 @@ public partial class admin : System.Web.UI.MasterPage
         var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.fontcolor, x.headerstripcolor, x.verticalnavigationcolor, x.logo }).FirstOrDefault();
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
         lbluniversityName.Text = universityDetails.university_name;
+        verticalnavigationcolor = universityDetails.verticalnavigationcolor;
+        fontColor = universityDetails.fontcolor;
+        headercolor = universityDetails.headerstripcolor;
     }
 
     private void populateSelectedLanguage()
