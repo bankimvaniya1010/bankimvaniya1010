@@ -185,7 +185,7 @@
                             </td>
                             <td class="width25">
                                 <a href="#" class="d-inline-block">
-                                    <img src="<%=logourl %>" class="img-fluid">
+                                    <img src="<%=logourl %>" class="img-fluid" style="margin-left: 50%;">
                                 </a>
                             </td>
                         </tr>
@@ -199,9 +199,9 @@
                             <td class="width25">
                                 <table cellpadding="0" cellspacing="0">
                                     <tr>
-                                        <td class="width33 txt">Institution ID</td>
+                                        <td class="width33 txt">Institution Name</td>
                                         <td class="width66">
-                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_institutionID %></div>
+                                            <div><%=_universityName %></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -211,7 +211,7 @@
                                     <tr>
                                         <td class="width33 txt">REPORT TYPE</td>
                                         <td class="width66">
-                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_reportType %></div>
+                                            <div><%=_reportType %></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -221,7 +221,7 @@
                                     <tr>
                                         <td class="width33 txt">REPORT DATE</td>
                                         <td class="width66">
-                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_reportDate %></div>
+                                            <div><%=_reportDate %></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -231,7 +231,7 @@
                                     <tr>
                                         <td class="width33 txt">REPORT NUMBER</td>
                                         <td class="width66">
-                                            <div style="background: rgba(0, 0, 0, 0.25);"><%=_reportNo %></div>
+                                            <div><%=_reportNo %></div>
                                         </td>
                                     </tr>
                                 </table>
@@ -253,10 +253,10 @@
                 <td class="std-ddtwrp">
                     <table class="table" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td class="width50" style="width:40%;">
+                             <td class="width50" style="width:40%;">
                                 <div class="ovr-rate">
                                     <div class="hd text-center font-bold">OVERALL RATINGS</div>
-                                    <asp:Chart ID="OverAll" runat="server">
+                                    <asp:Chart ID="OverAll" runat="server" height="350px">
                                         <Series>
                                             <asp:Series Name="SeriesOverAll" YValuesPerPoint="6">
                                             </asp:Series>
@@ -268,30 +268,73 @@
                                     </asp:Chart>
                                 </div>
                             </td>
-                            <td class="width25">
-                                <div class="recommndtn">
-                                    <div class="text-center text-uppercase hd font-bold">Final Recommendation</div>
-                                    <div class="txt text-center d-flex align-items-center justify-content-center">
-                                        <div class="txt" runat="server" id="studentRecommendedPDF"> <%=_studentRecommended %> </div>
-                                        <textarea runat="server" id="studentRecommended"></textarea>
-                                    </div>
+                             
+                             <td class="width50">
+                                <div class="ovr-rate">
+                                 <table class="table">
+                                     <tr>
+                                         <td class="hd font-bold" style="border-top: none;text-align: right">GTE REPORT FOR </td>
+                                         <td class="form-control hd font-bold">
+                                             <%=_studentName %>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                        <td class="width25" style="border-top: none;">
+                                            <div class="recommndtn">
+                                                <div class="text-center text-uppercase hd font-bold">Final Recommendation</div>
+                                                <div class="txt text-center d-flex align-items-center justify-content-center">
+                                                    <div class="txt" runat="server" id="studentRecommendedPDF"> <%=_studentRecommended %> </div>
+                                                    <textarea runat="server" id="studentRecommended"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="recommndtn remrk">
+                                                <div class="txt text-center d-flex align-items-center justify-content-center">
+                                                    <div class="txt" runat="server" id="recommendationRemarkPDF"> <%=_recommendationRemark %> </div>
+                                                    <textarea runat="server" id="recommendationRemark" placeholder="Recommendation Remark"></textarea>
+                                                </div>
+                                            </div>
+                                        </td>                           
+                                        <td class="width50" style="width:40%; border-top:none;">
+                                           <div class="ovr-rate">
+                                                <div class="hd font-bold">Student Details :</div>
+                                                <table style="border-top: none;">
+                                                    <tr>
+                                                        <td style="border-top: none;" class="font-bold">Nationality :</td>
+                                                        <td class="font-bold form-control">
+                                                            <div><%=_studentNAtionality %></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border-top: none;" class="font-bold">Country Of Residenec :</td>
+                                                        <td class="font-bold form-control">
+                                                            <div><%=_studentcountryofresisdence %></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border-top: none;" class="font-bold">Age :</td>
+                                                        <td class="font-bold form-control">
+                                                            <div><%=_studentAge %></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border-top: none;" class="font-bold">Course Applied :</td>
+                                                        <td class="font-bold form-control">
+                                                            <div><%=_studentCourseApplied %></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border-top: none;" class="font-bold">Application ID</td>
+                                                        <td class="font-bold form-control">
+                                                            <div><%=ApplicantID %></div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                     </tr>
+                                 </table>
                                 </div>
-                                <div class="recommndtn remrk">
-                                    <div class="txt text-center d-flex align-items-center justify-content-center">
-                                        <div class="txt" runat="server" id="recommendationRemarkPDF"> <%=_recommendationRemark %> </div>
-                                        <textarea runat="server" id="recommendationRemark" placeholder="Recommendation Remark"></textarea>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="width25">
-                                <div class="student-dtls">
-                                    <div class="text-center hd text-uppercase font-bold">Student Information</div>
-                                    <div class="pic d-flex align-items-center justify-content-center">
-                                        <div class="text-uppercase">Student Photo</div>
-                                    </div>
-                                    <div class="nm" style="text-align:center"><%=_studentName %></div>
-                                </div>
-                            </td>
+                             </td>
                         </tr>
                     </table>
                 </td>
