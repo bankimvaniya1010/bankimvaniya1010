@@ -422,6 +422,8 @@ public partial class gte_sop : System.Web.UI.Page
         btnEdit.Style.Add("display", "none");
         btnSave.Style.Add("display", "none");
         btnsubmit.Style.Add("display", "none");
+        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+            "alert('SOP saved successfully. Thank You for completing GTE SOP.');window.location='" + Request.ApplicationPath + "gte_documentupload.aspx';", true);
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

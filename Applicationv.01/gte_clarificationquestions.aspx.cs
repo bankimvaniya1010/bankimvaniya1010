@@ -164,7 +164,9 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
                 saveClarificationResponse(questionId, response.Text);
             }
 
-            displayLabel("Thank you for answering all clarification questions.");
+            //displayLabel("Thank you for answering all clarification questions.");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Thank you for answering all clarification questions.');window.location='" + Request.ApplicationPath + "gte_videoquestion.aspx';", true);
         }
         catch (Exception ex)
         {

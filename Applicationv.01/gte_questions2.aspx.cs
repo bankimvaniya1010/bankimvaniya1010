@@ -168,6 +168,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                     else if (rdAnswer2.Checked)
                         answer.applicant_response = false;
                     answer.university_id = UniversityID;
+                    answer.response_time = 0;
                     db.gte_question_part2_applicant_response.Add(answer);
                     int saveSuccefull = db.SaveChanges();
                     if (saveSuccefull == 1)
@@ -199,7 +200,7 @@ public partial class gte_questions2 : System.Web.UI.Page
                 completedDiv.Visible = true;
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
-                Session.Remove("totalResponseTimeQue2");
+                //Session.Remove("totalResponseTimeQue2");
                 var clarification_questionsList = db.gte_clarification_questionmaster.ToList();
                 var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
                 foreach (var item in applicant_response)
@@ -208,7 +209,8 @@ public partial class gte_questions2 : System.Web.UI.Page
                 if (clarification_questionsList.Count == 0)
                     lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
                 else
-                    Response.Redirect(webURL + "gte_clarificationquestions.aspx");
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_clarificationquestions.aspx';", true);
 
             }
         }

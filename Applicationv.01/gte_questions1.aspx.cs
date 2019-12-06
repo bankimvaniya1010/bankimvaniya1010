@@ -228,7 +228,7 @@ public partial class gte_questions1 : System.Web.UI.Page
                 completedDiv.Style.Remove("display");
                 questions.Visible = false;
                 lblCompleted.Text = "Thank you for answering all GTE questions in this part.";
-                Session.Remove("totalResponseTime");
+                //Session.Remove("totalResponseTime");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('Thank you for answering all GTE questions in this part.');window.location='" + Request.ApplicationPath + "gte_questions2.aspx';", true);
             }

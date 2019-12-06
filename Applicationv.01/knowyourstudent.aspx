@@ -6,7 +6,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Identification Details</li>
         </ol>
-        <h1 class="h2">IDENTIFICATION DETAILS</h1>
+        <h1 class="h2">IDENTIFICATION DOCUMENT DETAILS</h1>
     </div>
     <div class="page ">
         <div class="container page__container">

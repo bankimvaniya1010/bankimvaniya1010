@@ -31,10 +31,15 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _studentRecommended = "";
     protected string _recommendationRemark = "";
     protected string _notesDisclaimer = "";
+    protected string _studentNAtionality = "";
+    protected string _studentcountryofresisdence = "";
+    protected string _studentAge = "";
+    protected string _studentCourseApplied = "";
+
     public string logourl = string.Empty;
 
     protected int ApplicantID = 0, universityID = 0;
-    string _universityName;
+    protected string _universityName;
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
@@ -52,15 +57,36 @@ public partial class admin_gtereport : System.Web.UI.Page
 
             if ((downloadPdf == 0 && Utility.CheckAdminLogin()) || (downloadPdf == 1 && Request.QueryString["token"] != null && Request.QueryString["token"].ToString() == "XS7MKjHLunMAvqzCGr"))
             {
-                universityID = Utility.GetUniversityId();
+                universityID = 1;
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());
-                ViewState["downloadPdf"] = downloadPdf;
-
-                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo , x.notes_disclaimer }).FirstOrDefault();
+                ViewState["downloadPdf"] = downloadPdf;               
+                
+                var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo , x.notes_disclaimer,x.university_name,x.full_service }).FirstOrDefault();
                 logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
-
+                _universityName = universityDetails.university_name;
+                
                 var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
                 _studentName = Personal.firstname + " " + Personal.lastname;
+
+                if (universityDetails.full_service)
+                {
+                    
+                    var applicationDetails = db.applicationmaster.Where(x => x.applicantid == ApplicantID && x.universityid == universityID && x.preferenceid.Value == 1).FirstOrDefault();
+                    _studentNAtionality = objCom.GetCountryDiscription(Personal.nationality.Value);
+                    _studentcountryofresisdence = objCom.GetCountryDiscription(Personal.residentialcountry.Value);                    
+                    _studentAge = Convert.ToString(new Age(Personal.dateofbirth.Value).Years) + " years";
+                    _studentCourseApplied = objCom.GetCourseName(applicationDetails.course.Value);
+                }
+                else
+                {
+                    var gte_Personal = db.gte_applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
+                    _studentNAtionality = objCom.GetCountryDiscription(gte_Personal.nationality.Value);
+                    _studentcountryofresisdence = objCom.GetCountryDiscription(gte_Personal.residencecountry.Value);
+                    _studentAge = Convert.ToString(new Age(gte_Personal.dateofbirth.Value).Years) + " years";
+                    _studentCourseApplied = objCom.GetCourseName(Convert.ToInt32(gte_Personal.coursename));
+                }
+                
+
 
                 if (!IsPostBack)
                 {
