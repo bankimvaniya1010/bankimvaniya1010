@@ -12,10 +12,14 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string roleName = string.Empty;
+    int universityID = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
             BindGrid();
@@ -27,7 +31,7 @@ public partial class admin_preliminaryquestion : System.Web.UI.Page
         {
             var QuestionList = (from q in db.preliminary_questionmaster
                                 join um in db.university_master
-on q.universityid equals um.universityid
+                                on q.universityid equals um.universityid
 
                                 select new
                                 {
@@ -180,7 +184,15 @@ on q.universityid equals um.universityid
     protected void QuestiontGridView_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         ListItem lst = new ListItem("Please select", "0");
-        var University = db.university_master.ToList();
+        dynamic University;
+        if (roleName.ToLower() == "admin")
+            University = db.university_master.ToList();
+        else
+        {
+            universityID = Convert.ToInt32(Session["universityId"]);
+            University = db.university_master.Where(x => x.universityid == universityID).ToList();
+        }
+
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
             if (e.Row.DataItem != null)

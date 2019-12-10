@@ -11,15 +11,16 @@ using System.Web.UI.WebControls;
 public partial class admin_edituniversitycampus : System.Web.UI.Page
 {
     private GTEEntities db = new GTEEntities();
-
+    string roleName = string.Empty;
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-
+    string webURL = String.Empty;
+    int universityIDs = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);        
 
         if (!IsPostBack)
         {
@@ -69,7 +70,14 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select university", "0");
-            List<university_master> universityMaster = db.university_master.ToList();
+            dynamic universityMaster;
+            if (roleName.ToLower() == "admin")
+                universityMaster = db.university_master.ToList();
+            else
+            {
+                universityIDs = Convert.ToInt32(Session["universityId"]);
+                universityMaster = db.university_master.Where(x => x.universityid == universityIDs).ToList();
+            }
 
             ddlUniversity.DataSource = universityMaster;
             ddlUniversity.DataTextField = "university_name";

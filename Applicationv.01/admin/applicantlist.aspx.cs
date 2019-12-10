@@ -17,13 +17,15 @@ public partial class admin_applicantlist : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
+    string roleName = string.Empty;
 
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         roleID = Convert.ToInt32(Session["Role"]);
         if (!IsPostBack)
@@ -1041,6 +1043,11 @@ public partial class admin_applicantlist : System.Web.UI.Page
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
+            LinkButton LinkButton2 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton2");
+            LinkButton LinkButton3 = (LinkButton)e.Row.Cells[2].FindControl("LinkButton3");
+            LinkButton lnkProcessPayments = (LinkButton)e.Row.Cells[2].FindControl("lnkProcessPayments");
+            LinkButton LinkbtnvisaDates = (LinkButton)e.Row.Cells[2].FindControl("LinkbtnvisaDates");
+
             LinkButton lnkDownloadGteReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadGteReport");
             LinkButton lnkGteReportFeedBack = (LinkButton)e.Row.Cells[2].FindControl("lnkGteReportFeedBack");
             if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
@@ -1055,6 +1062,16 @@ public partial class admin_applicantlist : System.Web.UI.Page
                     lnkDownloadGteReport.Style.Add("display", "none");
                     lnkGteReportFeedBack.Style.Add("display", "none");
                 }
+            }
+
+            if (roleName.ToLower() == "university admin staff 2")
+            {
+                LinkButton2.Style.Add("display", "none");
+                LinkButton3.Style.Add("display", "none");
+                lnkDownloadGteReport.Style.Add("display", "none");
+                lnkGteReportFeedBack.Style.Add("display", "none");
+                lnkProcessPayments.Style.Add("display", "none");
+                LinkbtnvisaDates.Style.Add("display", "none");
             }
         }
     }

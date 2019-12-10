@@ -16,13 +16,15 @@ public partial class admin_editcourse : System.Web.UI.Page
     Common objCommon = new Common();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
-    
+    string roleName = string.Empty;
+    int universityID = 0;
     protected string imagepath = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);       
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
 
         if (!IsPostBack)
         {           
@@ -167,7 +169,14 @@ public partial class admin_editcourse : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var Universiity = db.university_master.ToList();
+            dynamic Universiity;
+            if (roleName.ToLower() == "admin")
+                Universiity = db.university_master.ToList();
+            else
+            {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                Universiity = db.university_master.Where(x => x.universityid == universityID).ToList();
+            }
             ddlUniversity.DataSource = Universiity;
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityid";

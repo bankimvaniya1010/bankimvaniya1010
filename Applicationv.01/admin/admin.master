@@ -188,7 +188,7 @@
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse" id="institution_menu">
-                                                                        <li class="sidebar-menu-item" id="createuniversity"> 
+                                      <li class="sidebar-menu-item" id="createuniversity"> 
                                         <a class="sidebar-menu-button" href="createuniversity.aspx">
                                             <span class="sidebar-menu-text">Create Institution </span>
                                         </a>
@@ -569,8 +569,83 @@
     <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/app-settings.js"></script>
     <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/tipso.min.js"></script>
 
+ <script>
+        $(document).ready(function () {
+            var roleName = '<%=roleName %>';
+            var superviser = roleName.toLowerCase() == "supervisor";
+            var universityadmin = roleName.toLowerCase() == "university";
+            var uniadminstaff1 = roleName.toLowerCase() == "university admin staff 1";
+            var uniadminstaff2 = roleName.toLowerCase() == "university admin staff 2";
 
-
+            if (superviser) {
+                $("#role_list").hide();
+                $("#city_list").hide();
+                $("#institution_list").hide();
+                $("#CustomizeForms_list").hide();
+                $("#FaqManage_list").hide();
+                $("#tooltipslisting").hide();
+                $("#admintooltipslisting").hide();
+                $("#Costcalculator_list").hide();
+                $("#tutorial_list").hide();
+                $("#gte_list").hide();
+                $("#Scholarships_list").hide();
+                $("#managelanguages_list").hide();
+            }
+            else if (universityadmin) {
+                $("#city_list").hide();
+                $("#universitygroupingmaster").hide();
+                $("#createuniversitycampus").hide();
+                $("#createuniversity").hide();
+                $("#addfaq").hide();
+                $("#tooltipslisting").hide();
+                $("#admintooltipslisting").hide();
+                $("#Costcalculator_list").hide();
+                $("#tutorial_list").hide();
+                $("#gte_list").hide();
+                $("#Scholarships_list").hide();
+                $("#managelanguages_list").hide();
+                $("#tooltipslisting").hide();
+                $("#admintooltipslisting").hide();
+                $("#supportservicemaster").hide();
+                $("#customfieldlisting").hide();
+                $("#primaryfieldmaster").hide();
+                $("#alternateIdproofcountrywiselisting").hide();
+                $("#qualificationcountrymapping").hide();
+                $("#formmaster").hide();
+                $("#qualificationmaster").hide();
+                $("#titlemaster").hide();
+                $("#sutdymode").hide();
+                $("#majordesription").hide();
+                $("#subjectwisecountrymapping").hide();
+                $("#subjectmaster").hide();
+                $("#grademaster").hide();
+                $("#disability").hide();
+                $("#alternateidproof").hide();
+                $("#alternatedobproof").hide();
+                $("#alternateaddressproof").hide();
+                $("#educationmediummaster").hide();
+                $("#createfacility").hide();
+            }
+            else if (uniadminstaff1 || uniadminstaff2)
+            {
+                $("#role_list").hide();
+                $("#city_list").hide();
+                $("#institution_list").hide();
+                $("#CustomizeForms_list").hide();
+                $("#FaqManage_list").hide();
+                $("#tooltipslisting").hide();
+                $("#admintooltipslisting").hide();
+                $("#Costcalculator_list").hide();
+                $("#tutorial_list").hide();
+                $("#gte_list").hide();
+                $("#Scholarships_list").hide();
+                $("#managelanguages_list").hide();
+                $("#course_list").hide();
+                $("#managetooltips_list").hide();
+            }
+        });
+    </script>
+   
 </body>
 
 </html>

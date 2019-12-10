@@ -14,14 +14,16 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID;
     int tutorialId;
+    string roleName = string.Empty;
     gte_tutorialmaster objgtetutorialmaster = new gte_tutorialmaster();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
-        if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);        
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
 
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
@@ -47,7 +49,15 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var Universities = db.university_master.ToList();
+            dynamic Universities;
+            if (roleName.ToLower() == "admin")
+                Universities = db.university_master.ToList();
+            else
+            {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+            }
+
             ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityID";
@@ -148,7 +158,7 @@ public partial class admin_getaddtutorial : System.Web.UI.Page
             db.SaveChanges();
             lblMessage.Text = "Saved Successfully";
             lblMessage.Visible = true;
-            Response.Redirect(webURL + "gtetutorialmaster.aspx", true);
+            Response.Redirect(webURL + "admin/gtetutorialmaster.aspx", true);
         }
         catch (Exception ex)
         {

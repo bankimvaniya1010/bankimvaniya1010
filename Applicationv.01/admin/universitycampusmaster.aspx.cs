@@ -12,13 +12,15 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID;
+    string roleName = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
-        {
+        {            
             bindUniversityDropdown();
             if (Request.QueryString["universityID"] != null)
             {
@@ -36,7 +38,14 @@ public partial class admin_universitycampusmaster : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select university", "0");
-            List<university_master> universityMaster = db.university_master.ToList();
+            dynamic universityMaster;
+            if (roleName.ToLower() == "admin")
+                universityMaster = db.university_master.ToList();
+            else
+            {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                universityMaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+            }
 
             ddlUniversity.DataSource = universityMaster;
             ddlUniversity.DataTextField = "university_name";
