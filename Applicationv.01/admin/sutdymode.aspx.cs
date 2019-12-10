@@ -10,10 +10,13 @@ public partial class admin_sutdymode : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string roleName = string.Empty;
+    int universityID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
             BindStudyMode();
@@ -21,16 +24,16 @@ public partial class admin_sutdymode : System.Web.UI.Page
     private void BindStudyMode()
     {
         try
-        {
-            var ModeList = (from q in db.studymodemaster
-                            join um in db.university_master
-                            on q.universityid equals um.universityid
-                            select new
-                            {
-                                id = q.id,
-                                description = q.description,
-                                universityid = um.university_name,
-                            }).ToList();
+        {                   
+           var ModeList = (from q in db.studymodemaster
+                                join um in db.university_master
+                                on q.universityid equals um.universityid
+                                select new
+                                {
+                                    id = q.id,
+                                    description = q.description,
+                                    universityid = um.university_name,
+                                }).ToList();
             if (ModeList != null)
             {
                 gvStudemode.DataSource = ModeList;
@@ -95,7 +98,15 @@ public partial class admin_sutdymode : System.Web.UI.Page
     {
         try
         {
-            var universitymaster = db.university_master.ToList();
+            dynamic universitymaster;
+            if (roleName.ToLower() == "admin")
+                universitymaster = db.university_master.ToList();
+            else
+            {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                universitymaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+            }
+            
             DropDownList ddlUniversityEdit = (e.Row.FindControl("ddlUniversity") as DropDownList);
             DropDownList ddlUniversityFooter = (e.Row.FindControl("ddlUniversityFooter") as DropDownList);
             ListItem lst = new ListItem("Please select", "0");
@@ -240,8 +251,14 @@ public partial class admin_sutdymode : System.Web.UI.Page
         Control control = null;        
         DropDownList ddlEmptyRecorduniversity = (control.FindControl("ddlEmptyRecorduniversity") as DropDownList);
 
-        var universitymaster = db.university_master.ToList();
+        
         ListItem lst = new ListItem("Please select", "0");
+        List<university_master> universitymaster = new List<university_master>();
+        if (roleName == "Admin")
+            universitymaster = db.university_master.ToList();
+        else
+            universitymaster = db.university_master.Where(x => x.universityid == universityID).ToList();
+
         ddlEmptyRecorduniversity.DataSource = universitymaster;
         ddlEmptyRecorduniversity.DataTextField = "university_name";
         ddlEmptyRecorduniversity.DataValueField = "universityid";

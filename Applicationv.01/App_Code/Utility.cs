@@ -17,7 +17,7 @@ public static class Utility
             SecondaryLanguage = HttpContext.Current.Session["SecondaryLang"].ToString();
         return SecondaryLanguage;
     }
-
+      
     public static Boolean CheckStudentLogin()
     {
         if (HttpContext.Current.Session["Role"] == null || HttpContext.Current.Session["UserID"] == null || !HttpContext.Current.Session["Role"].ToString().Equals("student"))
@@ -70,5 +70,24 @@ public static class Utility
     internal static string GetUniversityName()
     {
         return (string)HttpContext.Current.Session["universityName"];
+    }
+
+    public static string GetRoleName()
+    {        
+        int? roleID = (int?)HttpContext.Current.Session["Role"];
+        string roleName = (string)HttpContext.Current.Session["RoleName"];
+        if (roleName == null)
+        {
+            using (db = new GTEEntities())
+            {
+                var GetRole = db.rolemaster.Where(x => x.roleid == roleID).Select(x => new { x.rolename }).FirstOrDefault();
+                if (GetRole != null)
+                    HttpContext.Current.Session["RoleName"] = GetRole.rolename;
+
+                return GetRole.rolename;
+            }
+        }
+        else
+            return roleName;
     }
 }

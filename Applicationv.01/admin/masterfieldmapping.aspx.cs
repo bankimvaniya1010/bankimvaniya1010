@@ -10,10 +10,13 @@ public partial class admin_mastermapping : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string roleName = string.Empty;
+    int universityID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
         {
@@ -26,7 +29,15 @@ public partial class admin_mastermapping : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var Universities = db.university_master.ToList();
+			dynamic Universities;
+            if (roleName.ToLower() == "admin")
+                Universities = db.university_master.ToList();
+            else
+            {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+            }
+
             ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityID";

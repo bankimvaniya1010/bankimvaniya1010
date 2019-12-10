@@ -11,10 +11,14 @@ public partial class admin_customfieldlisting : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string roleName = string.Empty;
+    int universityID = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
         {
@@ -29,14 +33,16 @@ public partial class admin_customfieldlisting : System.Web.UI.Page
         {
             ListItem lst = new ListItem("Please select", "0");
             // List<formmaster> forms = new List<formmaster>();
-            var forms = (from a in db.university_master
+            dynamic Universities;
+            if (roleName.ToLower() == "admin")
+                Universities = db.university_master.ToList();
+            else
+            {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+            }
 
-                         select new
-                         {
-                             universityid = a.universityid,
-                             university_name = a.university_name
-                         }).ToList();
-            ddlUniversity.DataSource = forms;
+            ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();

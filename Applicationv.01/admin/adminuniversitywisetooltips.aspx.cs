@@ -12,10 +12,14 @@ public partial class admin_adminuniversitywisetooltips : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string roleName = string.Empty;
+    int universityID = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
         {
@@ -54,14 +58,21 @@ public partial class admin_adminuniversitywisetooltips : System.Web.UI.Page
         {
             ListItem lst = new ListItem("Please select", "0");
             // List<formmaster> forms = new List<formmaster>();
-            var forms = (from a in db.university_master
+            dynamic Universities;
+            if (roleName.ToLower() == "admin")
+                Universities = (from a in db.university_master
 
                          select new
                          {
                              universityid = a.universityid,
                              university_name = a.university_name
                          }).ToList();
-            ddlUniversity.DataSource = forms;
+            else
+				{
+					universityID = Convert.ToInt32(Session["universityId"]);
+                	Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+			 	}
+            ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();

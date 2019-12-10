@@ -11,6 +11,7 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     Common objCom = new Common();
+    string roleName = string.Empty;
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     int universityID ;
     int tutorialId;
@@ -20,8 +21,9 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
-        if (!Utility.CheckAdminLogin())
-            Response.Redirect(webURL + "admin/Login.aspx", true);        
+        roleName = Utility.GetRoleName();        
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
 
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
@@ -47,7 +49,15 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var Universities = db.university_master.ToList();
+            dynamic Universities;
+            if (roleName.ToLower() == "admin")
+                Universities = db.university_master.ToList();
+            else
+            {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                Universities = db.university_master.Where(x => x.universityid == universityID).ToList();
+            }
+
             ddlUniversity.DataSource = Universities;
             ddlUniversity.DataTextField = "university_name";
             ddlUniversity.DataValueField = "universityID";

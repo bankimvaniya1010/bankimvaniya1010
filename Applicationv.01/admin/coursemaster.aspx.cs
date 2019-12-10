@@ -10,10 +10,13 @@ public partial class admin_coursemaster : System.Web.UI.Page
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string roleName = string.Empty;
+    int universityID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
         if (!IsPostBack)
             BindGrid();
@@ -22,8 +25,11 @@ public partial class admin_coursemaster : System.Web.UI.Page
     private void BindGrid()
      {
         try
-        {          
-            var courseList = (from cm in db.coursemaster
+        {
+            dynamic courseList;
+            if (roleName.ToLower() == "admin")
+            {
+                courseList = (from cm in db.coursemaster
                               join displine in db.majordiscipline_master on cm.majordisciplineId equals displine.id into displineData
                               from x in displineData.DefaultIfEmpty()
                               join study in db.studymodemaster on cm.modeofstudyId equals study.id into studyData
@@ -41,7 +47,32 @@ public partial class admin_coursemaster : System.Web.UI.Page
                                   studylevel = x2.studylevel == null ? string.Empty : x2.studylevel,
                                   universityname = x3.university_name == null ? string.Empty : x3.university_name,
                                   coursefee = cm.coursefee == null ? 0 : cm.coursefee,
-                              }).SortBy("courseid").ToList();          
+                              }).SortBy("courseid").ToList();
+            }
+            else {
+                universityID = Convert.ToInt32(Session["universityId"]);
+                courseList = (from cm in db.coursemaster
+                              join displine in db.majordiscipline_master on cm.majordisciplineId equals displine.id into displineData
+                              from x in displineData.DefaultIfEmpty()
+                              join study in db.studymodemaster on cm.modeofstudyId equals study.id into studyData
+                              from x1 in studyData.DefaultIfEmpty()
+                              join level in db.studylevelmaster on cm.levelofstudyId equals level.studylevelid into levelData
+                              from x2 in levelData.DefaultIfEmpty()
+                              join um in db.university_master on cm.universityid equals um.universityid into universityData
+                              from x3 in universityData.DefaultIfEmpty()
+                              where cm.universityid == universityID
+                              select new
+                              {
+                                  courseid = cm.courseid,
+                                  coursename = cm.coursename,
+                                  displineDesc = (x.description == null) ? string.Empty : x.description,
+                                  studyDesc = x1.description == null ? string.Empty : x1.description,
+                                  studylevel = x2.studylevel == null ? string.Empty : x2.studylevel,
+                                  universityname = x3.university_name == null ? string.Empty : x3.university_name,
+                                  coursefee = cm.coursefee == null ? 0 : cm.coursefee,
+                              }).SortBy("courseid").ToList();
+
+            }
             if (courseList != null)
             {
                CourseGridView.DataSource = courseList;
