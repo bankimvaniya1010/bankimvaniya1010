@@ -110,7 +110,7 @@
 
                                     <EditItemTemplate>
                                         <asp:Label ID="lblsecondaryfeldnamelanguage" Visible="false" runat="server" Text='<%# Bind("secondaryfielddnamevalue") %>'></asp:Label>
-                                        <asp:TextBox ID="txtSecondayFieldvalue" Width="200px" runat="server" Text='<%# Bind("secondaryfeldnamevalue") %>'></asp:TextBox>
+                                        <asp:TextBox ID="txtSecondayFieldvalue" Width="200px" runat="server" Text='<%# Bind("secondaryfielddnamevalue") %>'></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="rfvEditddlSecondaryfieldValue" runat="server" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' ControlToValidate="txtSecondayFieldvalue"  ErrorMessage="Please enter secondary value" />
                                     </EditItemTemplate>
 

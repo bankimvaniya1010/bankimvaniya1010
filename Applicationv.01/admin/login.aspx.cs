@@ -35,6 +35,7 @@ public partial class admin_login : System.Web.UI.Page
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.adminid;
                 Session["Role"] = chkUser.roleid;
+                Session["universityId"] = Utility.GetUniversityId();
                 Response.Redirect(webURL + "admin/default.aspx");              
                
             }

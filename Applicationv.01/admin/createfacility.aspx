@@ -54,7 +54,7 @@
         }
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
-	        $('#institution_list').addClass('open');
+	        $('#CustomizeForms_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
 	        $('#createfacility').addClass('active');
 	    });

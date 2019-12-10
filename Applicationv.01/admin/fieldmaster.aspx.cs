@@ -100,17 +100,17 @@ public partial class admin_fieldmaster : System.Web.UI.Page
         {
             if (e.Row.RowState != DataControlRowState.Edit) // check for RowState
             {
-                //if (e.Row.RowType == DataControlRowType.DataRow) //check for RowType
-                //{
-                //    string id = e.Row.Cells[0].Text; // Get the id to be deleted
-                //                                     //cast the ShowDeleteButton link to linkbutton
-                //    LinkButton lb = (LinkButton)e.Row.Cells[8].Controls[0];
-                //    if (lb != null)
-                //    {
-                //        //attach the JavaScript function with the ID as the paramter
-                //        lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
-                //    }
-                //}
+            //    if (e.Row.RowType == DataControlRowType.DataRow) //check for RowType
+            //    {
+            //        string id = e.Row.Cells[0].Text; // Get the id to be deleted
+            //                                         //cast the ShowDeleteButton link to linkbutton
+            //        LinkButton lb = (LinkButton)e.Row.Cells[8].Controls[0];
+            //        if (lb != null)
+            //        {
+            //            //attach the JavaScript function with the ID as the paramter
+            //            lb.Attributes.Add("onclick", "return ConfirmOnDelete('" + id + "');");
+            //        }
+            //    }
             }
             if ((e.Row.RowType == DataControlRowType.DataRow && FormFieldGridView.EditIndex == e.Row.RowIndex) || (e.Row.RowType == DataControlRowType.Footer))
             {
@@ -132,6 +132,12 @@ public partial class admin_fieldmaster : System.Web.UI.Page
                     selectedFieldName = Fieldname.Text;
                 if (FormName != null)
                     selectedFormName = FormName.Text;
+
+                string selectedlanguage = "";
+                Label LanguageName = (e.Row.FindControl("lblfeldnamelanguage") as Label);
+                if (LanguageName != null)
+                    selectedlanguage = LanguageName.Text;
+
                 if (ddlFormNameEdit != null)
                 {
 
@@ -169,6 +175,7 @@ public partial class admin_fieldmaster : System.Web.UI.Page
                     ddlFieldNameEdit.DataValueField = "primaryfieldid";
                     ddlFieldNameEdit.DataBind();
                     ddlFieldNameEdit.Items.Insert(0, lst);
+                    ddlFieldNameEdit.Items.FindByText(selectedFieldName).Selected = true;
                 }
                 if (ddlSecondaryLangFooter != null)
                 {
@@ -177,7 +184,7 @@ public partial class admin_fieldmaster : System.Web.UI.Page
                     ddlSecondaryLangFooter.DataTextField = "secondaryLanguagename";
                     ddlSecondaryLangFooter.DataValueField = "languagecode";
                     ddlSecondaryLangFooter.DataBind();
-                    ddlSecondaryLangFooter.Items.Insert(0, lst);
+                    ddlSecondaryLangFooter.Items.Insert(0, lst);                    
                     // ddlSecondaryLangFooter.Items.FindByText(selectedQuestion).Selected = true;
                 }
                 if (ddlSecondaryLangEdit != null)
@@ -188,6 +195,7 @@ public partial class admin_fieldmaster : System.Web.UI.Page
                     ddlSecondaryLangEdit.DataValueField = "languagecode";
                     ddlSecondaryLangEdit.DataBind();
                     ddlSecondaryLangEdit.Items.Insert(0, lst);
+                    ddlSecondaryLangEdit.Items.FindByValue(selectedlanguage).Selected = true;
                 }
             }
         }
@@ -233,10 +241,22 @@ public partial class admin_fieldmaster : System.Web.UI.Page
     {
         try
         {
-            int formID = Convert.ToInt32(FormFieldGridView.DataKeys[e.RowIndex].Values[0]);
-            formmaster fn = db.formmaster.Where(b => b.formid == formID).First();
+            int RecordID = Convert.ToInt32(FormFieldGridView.DataKeys[e.RowIndex].Values[0]);
+            applicantformmaster objmaster = db.applicantformmaster.Where(b => b.id == RecordID).First();
+            
+            DropDownList ddlFormName = (DropDownList)FormFieldGridView.Rows[e.RowIndex].FindControl("ddlFormname");
+            DropDownList ddlFieldName = (DropDownList)FormFieldGridView.Rows[e.RowIndex].FindControl("ddlfieldName");
+            DropDownList ddlSecondaryLang = (DropDownList)FormFieldGridView.Rows[e.RowIndex].FindControl("ddlSecondaryLang");
+            TextBox SecondayFieldvalue = (TextBox)FormFieldGridView.Rows[e.RowIndex].FindControl("txtSecondayFieldvalue");
+            TextBox PrimaryInstructions = (TextBox)FormFieldGridView.Rows[e.RowIndex].FindControl("txtPrimaryInstructions");
+            TextBox SecondaryInstructions = (TextBox)FormFieldGridView.Rows[e.RowIndex].FindControl("txtSecondaryInstructions");
 
-
+            objmaster.formname = Convert.ToInt32(ddlFormName.SelectedValue);
+            objmaster.primaryfieldid = Convert.ToInt32(ddlFieldName.SelectedValue);
+            objmaster.secondaryfieldnamelanguage = ddlSecondaryLang.SelectedValue;
+            objmaster.secondaryfielddnamevalue = SecondayFieldvalue.Text;
+            objmaster.fieldnameinstructions = PrimaryInstructions.Text;
+            objmaster.secondaryfieldnameinstructions = SecondaryInstructions.Text;            
 
             FormFieldGridView.EditIndex = -1;
             db.SaveChanges();

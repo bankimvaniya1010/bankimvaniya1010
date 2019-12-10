@@ -90,21 +90,11 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniAcceptedMaxAge.Value = Convert.ToString(existingUninversity.acceptedmaxage);
                     txtUniAcceptedMinAge.Value = Convert.ToString(existingUninversity.acceptedminage);
                     if (existingUninversity.headerstripcolor != "")
-                    {
-                        txtstripcolor.Attributes.Add("style", "display:block;");
-                        txtstripcolor.Value = existingUninversity.headerstripcolor;
-                        hiddenstripcolorInput.Value = existingUninversity.headerstripcolor;
-                    }
-                    if (existingUninversity.verticalnavigationcolor != "") {
-                        txtverticalnavigationcolor.Attributes.Add("style", "display:block;");
+                        txtstripcolor.Value = existingUninversity.headerstripcolor;                        
+                    if (existingUninversity.verticalnavigationcolor != "")
                         txtverticalnavigationcolor.Value = existingUninversity.verticalnavigationcolor;
-                        hiddennavigationcolorInput.Value = existingUninversity.verticalnavigationcolor;
-                    }                    
-                    if (existingUninversity.fontcolor != "") {
-                        txtfontcolor.Attributes.Add("style", "display:block;");
+                    if (existingUninversity.fontcolor != "")
                         txtfontcolor.Value = existingUninversity.fontcolor;
-                        hiddenvalueInput.Value = existingUninversity.fontcolor;
-                    }
                     txtUniversitySop.Text = existingUninversity.sop_instruction_for_applicant;
                     txtUniversityScholarship.Text = existingUninversity.scholarship_instruction;
                     txtUniversityApplication.Text = existingUninversity.application_instruction;
@@ -196,9 +186,9 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.acceptedminage = Convert.ToInt32(txtUniAcceptedMinAge.Value.Trim());
             universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
             universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();            
-            universityObj.headerstripcolor = hiddenstripcolorInput.Value;            
-            universityObj.verticalnavigationcolor = hiddennavigationcolorInput.Value;            
-            universityObj.fontcolor = hiddenvalueInput.Value;
+            universityObj.headerstripcolor = txtstripcolor.Value.Trim();
+            universityObj.verticalnavigationcolor = txtverticalnavigationcolor.Value.Trim();
+            universityObj.fontcolor = txtfontcolor.Value;
             universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
             universityObj.scholarship_instruction = txtUniversityScholarship.Text;
             universityObj.application_instruction = txtUniversityApplication.Text;
