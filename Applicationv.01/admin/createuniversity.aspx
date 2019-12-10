@@ -297,7 +297,7 @@
                         <label for="uniSubscribeGte" class="col-sm-3 col-form-label form-label">Subscribe Gte Service</label>
                         <div class="col-sm-8">
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <select id="subscription" name="gtesubscription" runat="server" class="form-control">
                                         <option value="" selected="selected" disabled="disabled">Please Select</option>
                                         <option value="0">GTE Service</option>
@@ -335,12 +335,11 @@
                         <div class="col-sm-8">
                             <div class="row">
                                  <div class="col-md-4">
-                                    <button class="jscolor{valueElement:'stripcolorInput'} form-control">Choose Color</button>
-                                    <input type="hidden" runat="server" id="hiddenstripcolorInput"/> 
+                                    <button class="jscolor{valueElement:'stripcolorInput'} form-control" onblur="getstripcolorcode()">Choose Color</button>                                    
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" runat="server" id="headerstripcolor" class="form-control" style="display:none"/>                                    
-                                    <input type="hidden" id="stripcolorInput" class="form-control" onchange="getstripcolorcode()"/>
+                                    <input type="text" runat="server" id="headerstripcolor" class="form-control"/>
+                                    <input type="hidden" id="stripcolorInput" class="form-control"/>
                                  </div>
                             </div>
                         </div>
@@ -350,12 +349,11 @@
                         <div class="col-sm-8">
                             <div class="row">
                                  <div class="col-md-4">
-                                    <button class="jscolor{valueElement:'navigationcolorInput'} form-control">Choose Color</button>
-                                    <input type="hidden" runat="server" id="hiddennavigationcolorInput"/> 
+                                    <button class="jscolor{valueElement:'navigationcolorInput'} form-control" onblur="getNavigationColorcode()">Choose Color</button>                                    
                                 </div>
                                  <div class="col-md-4">
-                                     <input type="text" runat="server" id="verticalnavigationcolor" class="form-control" style="display:none"/>
-                                    <input type="hidden" id="navigationcolorInput" class="form-control" onchange="getNavigationColorcode()"/>
+                                     <input type="text" runat="server" id="verticalnavigationcolor" class="form-control"/>
+                                    <input type="hidden" id="navigationcolorInput" class="form-control"/>
                                  </div>
                             </div>
                         </div>
@@ -365,12 +363,11 @@
                         <div class="col-sm-8">
                             <div class="row">
                                  <div class="col-md-4">
-                                    <button class="jscolor{valueElement:'valueInput'} form-control" id="fontcolorbtn" runat="server">Choose Color</button>
-                                    <input type="hidden" runat="server" id="hiddenvalueInput"/> 
+                                    <button class="jscolor{valueElement:'valueInput'} form-control" id="fontcolorbtn" runat="server" onblur="getFontColorcode()">Choose Color</button>                                    
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="text" runat="server" id="fontcolor" class="form-control" style="display:none"/>
-                                    <input type="hidden" id="valueInput" onchange="getFontColorcode()"/>
+                                    <input type="text" runat="server" id="fontcolor" class="form-control"/>
+                                    <input type="hidden" id="valueInput"/>
                                  </div>
                             </div>
                         </div>
@@ -572,10 +569,13 @@
             var applicationInstruction = $('#<%=txtUniversityApplication.ClientID%>').val();
             var feePaymentInstruction = $('#<%=txtUniversityFeePayment.ClientID%>').val();
             var coeInstruction = $('#<%=txtUniversityCOE.ClientID%>').val();            
-      
+            var fontcolor = $('#<%=fontcolor.ClientID%>').val();
+            var headercolor = $('#<%=headerstripcolor.ClientID%>').val();
+            var verticalNavcolor =$('#<%=verticalnavigationcolor.ClientID%>').val();
             //regex
             var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
+            var colorcodeRegex =/^#(?:[0-9a-fA-F]{3}){1,2}$/;
 
             if (txtUniName == '') {
                 alert("Please enter University Name");
@@ -612,7 +612,7 @@
             else if (txtUniWebsite == '' || !urlRegex.test(txtUniWebsite)) {
                 alert("Please enter university website");
                 return false;
-            }
+            }            
             else if (txtUniContactPerson == '') {
                 alert("Please enter University contact person");
                 return false;
@@ -714,8 +714,19 @@
             else if (coeInstruction == "") {
                 alert("Please enter university COE instructions");
                 return false;
+            }            
+            else if (headercolor == '' || !colorcodeRegex.test(headercolor)) {
+                alert("Please enter Valid header strip Color.");
+                return false;
             }
-
+            else if (verticalNavcolor == '' || !colorcodeRegex.test(verticalNavcolor)) {
+                alert("Please enter Valid vertical navigation color.");
+                return false;
+            }
+            else if (fontcolor == '' || !colorcodeRegex.test(fontcolor)) {
+                alert("Please enter Valid Font Color.");
+                return false;
+            }
             return true;
 
         }
@@ -723,20 +734,20 @@
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#institution_list').addClass('open');
 	        $('.sidebar-menu-item').removeClass('active');
-	        $('#createuniversity').addClass('active');
+            $('#createuniversity').addClass('active');
         });
 
         function getFontColorcode() {            
-                $("#<%=hiddenvalueInput.ClientID%>").val("");
-                $("#<%=hiddenvalueInput.ClientID%>").val("#"+$("#valueInput").val());            
+                $("#<%=fontcolor.ClientID%>").val("");
+                $("#<%=fontcolor.ClientID%>").val("#"+$("#valueInput").val());            
         }
         function getNavigationColorcode() {
-                $("#<%=hiddennavigationcolorInput.ClientID%>").val("");
-                $("#<%=hiddennavigationcolorInput.ClientID%>").val("#"+$("#navigationcolorInput").val());
+                $("#<%=verticalnavigationcolor.ClientID%>").val("");
+                $("#<%=verticalnavigationcolor.ClientID%>").val("#"+$("#navigationcolorInput").val());
         }
         function getstripcolorcode() {
-                $("#<%=hiddenstripcolorInput.ClientID%>").val("");
-                $("#<%=hiddenstripcolorInput.ClientID%>").val("#"+$("#stripcolorInput").val());
+                $("#<%=headerstripcolor.ClientID%>").val("");
+                $("#<%=headerstripcolor.ClientID%>").val("#"+$("#stripcolorInput").val());
         }
     </script>
 </asp:Content>

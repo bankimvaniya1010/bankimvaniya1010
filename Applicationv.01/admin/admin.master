@@ -202,12 +202,7 @@
                                         <a class="sidebar-menu-button" href="createuniversitycrendentials.aspx">
                                             <span class="sidebar-menu-text"> Add Institution Rankings</span>
                                         </a>
-                                    </li>
-                                    <li class="sidebar-menu-item" id="createfacility"> 
-                                        <a class="sidebar-menu-button" href="createfacility.aspx">
-                                            <span class="sidebar-menu-text">Add Institution Facility</span>
-                                        </a>
-                                    </li>
+                                    </li>                                    
                                     <li class="sidebar-menu-item" id="universitycampusmaster"> 
                                         <a class="sidebar-menu-button" href="universitycampusmaster.aspx">
                                             <span class="sidebar-menu-text">View all campus </span>
@@ -322,6 +317,16 @@
                                     <li class="sidebar-menu-item" id="universityfieldmapping"> 
                                         <a class="sidebar-menu-button" href="universityfieldmapping.aspx">
                                             <span class="sidebar-menu-text"> Institution Fields</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="createfacility"> 
+                                        <a class="sidebar-menu-button" href="createfacility.aspx">
+                                            <span class="sidebar-menu-text">Facility Master</span>
+                                        </a>
+                                    </li>
+                                     <li class="sidebar-menu-item" id="rejectionreason"> 
+                                        <a class="sidebar-menu-button" href="rejectionreasonmaster.aspx">
+                                            <span class="sidebar-menu-text">Rejection Reason Master</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="rejectionreasonmapping"> 
@@ -625,6 +630,7 @@
                 $("#alternateaddressproof").hide();
                 $("#educationmediummaster").hide();
                 $("#createfacility").hide();
+                $("#rejectionreason").hide();
             }
             else if (uniadminstaff1 || uniadminstaff2)
             {

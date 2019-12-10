@@ -75,9 +75,9 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.full_service = Convert.ToInt32(subscription.Value) == 1;
                 universityObj.notes_disclaimer = txtNotesDisclaimer.Value.Trim();
                 universityObj.logo = "";
-                universityObj.headerstripcolor = hiddenstripcolorInput.Value;
-                universityObj.verticalnavigationcolor = hiddennavigationcolorInput.Value;
-                universityObj.fontcolor = hiddenvalueInput.Value;
+                universityObj.headerstripcolor = headerstripcolor.Value.Trim();
+                universityObj.verticalnavigationcolor = verticalnavigationcolor.Value.Trim();
+                universityObj.fontcolor = fontcolor.Value.Trim();
                 universityObj.sop_instruction_for_applicant = txtUniversitySop.Text;
                 universityObj.scholarship_instruction = txtUniversityScholarship.Text;
                 universityObj.acceptance_terms = txtAcceptanceTerms.Text;
