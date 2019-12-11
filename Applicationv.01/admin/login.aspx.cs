@@ -11,7 +11,7 @@ public partial class admin_login : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;// System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -30,17 +30,24 @@ public partial class admin_login : System.Web.UI.Page
                 lbl_warning.Text = "Please enter valid user name and password.";
                 pnl_warning.Visible = true;
             }
+            else if (!(chkUser.rolemaster.rolename.ToUpper() == "ADMIN") && chkUser.universityId != universityID)
+            {
+                lbl_warning.Text = "Please Log on to correct admin portal.";
+                pnl_warning.Visible = true;
+            }
             else
             {
                 if (chkUser.universityId == universityID)
-                    Session["universityId"] = Utility.GetUniversityId();
+                    Session["universityId"] = chkUser.universityId;
+                else
+                    Session["universityId"] = universityID;
 
                 pnl_warning.Visible = false;
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.adminid;
-                Session["Role"] = chkUser.roleid;                
-                Response.Redirect(webURL + "admin/default.aspx");              
-               
+                Session["Role"] = chkUser.roleid;
+                Response.Redirect(webURL + "admin/default.aspx");
+
             }
         }
 

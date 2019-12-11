@@ -87,6 +87,7 @@
                                     <select id="ddlUniversityCampuses" name="ddlUniversityCampuses" runat="server" class="form-control" multiple="true">
                                     </select>
                                     <asp:HiddenField ID="hidUniversityCampuses" runat="server" Value="" />
+                                    <p>Hold Ctrl (windows) / Command (Mac) to select multiple options.</p>
                                 </div>
                             </div>
                         </div>

@@ -73,7 +73,8 @@ public partial class admin_gtereport : System.Web.UI.Page
                     
                     var applicationDetails = db.applicationmaster.Where(x => x.applicantid == ApplicantID && x.universityid == universityID && x.preferenceid.Value == 1).FirstOrDefault();
                     _studentNAtionality = objCom.GetCountryDiscription(Personal.nationality.Value);
-                    _studentcountryofresisdence = objCom.GetCountryDiscription(Personal.residentialcountry.Value);                    
+                    int residencecountry = Personal.issameaspostal.Value == 1 ? Personal.postalcountry.Value : Personal.residentialcountry.Value;
+                    _studentcountryofresisdence = objCom.GetCountryDiscription(residencecountry);
                     _studentAge = Convert.ToString(new Age(Personal.dateofbirth.Value).Years) + " years";
                     _studentCourseApplied = objCom.GetCourseName(applicationDetails.course.Value);
                 }

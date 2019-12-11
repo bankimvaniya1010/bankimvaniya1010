@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class admin_Default : System.Web.UI.Page
 {
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();

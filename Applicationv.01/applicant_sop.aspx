@@ -52,7 +52,7 @@
                                     <%for (int q = 0; q < allfaqQuestion.Count; q++)
                                         {%>
                                     <div class="star-list">
-                                        <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer%>')"> <%=allfaqQuestion[q].question%> </label>
+                                        <label onclick="showFaqQuestion('<%=allfaqQuestion[q].question%>','<%=allfaqQuestion[q].answer.Replace(Environment.NewLine, "<br />") %>')"> <%=allfaqQuestion[q].question%> </label>
                                     </div>
                                     <%} %>
                                 </div>
