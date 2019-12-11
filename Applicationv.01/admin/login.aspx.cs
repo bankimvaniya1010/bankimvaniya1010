@@ -21,6 +21,7 @@ public partial class admin_login : System.Web.UI.Page
         try
         {
             string encodedPassword = objCom.EncodePasswordToMD5(txt_pass.Text.ToString());
+            int universityID = Utility.GetUniversityId();
             var chkUser = (from usr in db.adminusers
                            where (usr.username.Equals(txtUser.Text.Trim()) && usr.password.Equals(encodedPassword))
                            select usr).FirstOrDefault();
@@ -31,11 +32,13 @@ public partial class admin_login : System.Web.UI.Page
             }
             else
             {
+                if (chkUser.universityId == universityID)
+                    Session["universityId"] = Utility.GetUniversityId();
+
                 pnl_warning.Visible = false;
                 Session["LoginInfo"] = chkUser;
                 Session["UserID"] = chkUser.adminid;
-                Session["Role"] = chkUser.roleid;
-                Session["universityId"] = Utility.GetUniversityId();
+                Session["Role"] = chkUser.roleid;                
                 Response.Redirect(webURL + "admin/default.aspx");              
                
             }

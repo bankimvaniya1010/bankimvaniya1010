@@ -88,7 +88,7 @@
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
                                 <div class="media-left">
-                                    <asp:Button ID="btn_login" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="Button1_Click" />
+                                    <asp:Button ID="btn_login" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="Button1_Click" OnClientClick="return validateForm()"/>
                                     <asp:Label ID="lblMessage" runat="server"></asp:Label>
                                 </div>
                             </div>
@@ -111,6 +111,44 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#createuser').addClass('active');
         });
+
+        function validateForm()
+        {
+            var name = $('#<%=txtName.ClientID%>').val();
+            var username = $('#<%=txtUsername.ClientID%>').val();
+            var email = $('#<%=txtEmail.ClientID%>').val();
+            var mobile = $('#<%=TxtMobile.ClientID%>').val();
+            var password = $('#<%=Txtpassword.ClientID%>').val();
+            var role = $('#<%=ddlRole.ClientID%>').val();
+
+            var emailRegex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,10}(?:\.[a-z]{10})?)$/i;
+
+            if (name == '') {
+                alert("Please enter name");
+                return false;
+            }
+            else if (username == '') {
+                alert("Please enter user name");
+                return false;
+            }
+            else if (email == '' || !emailRegex.test(email)) {
+                alert("Please enter valid user email Id");
+                return false;
+            }
+            else if (mobile == '') {
+                alert("Please enter user mobile number");
+                return false;
+            }
+            else if (password == '') {
+                alert("Please enter user password");
+                return false;
+            }
+            else if (role == 0) {
+                alert("Please select Role of user");
+                return false;
+            }
+            return true;
+        }
 	</script>
 </asp:Content>
 
