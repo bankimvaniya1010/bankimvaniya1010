@@ -12,7 +12,7 @@ public partial class Resetpassword : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     public string logourl = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {

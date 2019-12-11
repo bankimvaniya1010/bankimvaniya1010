@@ -44,7 +44,7 @@ public partial class admin_gtereport : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
 
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();

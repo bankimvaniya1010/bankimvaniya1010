@@ -14,7 +14,7 @@ public partial class admin_managescholarship : System.Web.UI.Page
 
     Common objCommon = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {

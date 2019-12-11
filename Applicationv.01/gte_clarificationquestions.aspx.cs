@@ -160,8 +160,8 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
             {
                 Label labelId = (Label)item.FindControl("lblno");
                 questionId = Convert.ToInt32(labelId.Text);
-                TextBox response = (TextBox)item.FindControl("txtResponse");
-                saveClarificationResponse(questionId, response.Text);
+                System.Web.UI.HtmlControls.HtmlTextArea response = (System.Web.UI.HtmlControls.HtmlTextArea)item.FindControl("txtResponse");
+                saveClarificationResponse(questionId, response.Value.Trim());
             }
 
             //displayLabel("Thank you for answering all clarification questions.");

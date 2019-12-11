@@ -33,7 +33,7 @@
                                     <asp:Label ID="lblEmail" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblEmailYes" GroupName="Email" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblEmailYes" GroupName="Email" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblEmailNo" GroupName="Email" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icEmail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -54,7 +54,7 @@
                                     <asp:Label ID="lblMobile" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblMobileYes" GroupName="Mobile" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblMobileYes" GroupName="Mobile" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblMobileNo" GroupName="Mobile" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icMobile" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -75,7 +75,7 @@
                                     <asp:Label ID="lblHomePhone" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblHomePhoneYes" GroupName="HomePhone" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblHomePhoneYes" GroupName="HomePhone" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblHomePhoneNo" GroupName="HomePhone" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icHomePhone" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -96,7 +96,7 @@
                                     <asp:Label ID="lblSkype" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblSkypeYes" GroupName="Skype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSkypeYes" GroupName="Skype" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblSkypeNo" GroupName="Skype" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icSkype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -118,7 +118,7 @@
                                     <asp:Label ID="lblSkypeDescription" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblSkypeDescriptionYes" GroupName="SkypeDescription" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblSkypeDescriptionYes" GroupName="SkypeDescription" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblSkypeDescriptionNo" GroupName="SkypeDescription" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icSkypeDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -139,7 +139,7 @@
                                     <asp:Label ID="lblWhatsapp" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblWhatsappYes" GroupName="Whatsapp" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblWhatsappYes" GroupName="Whatsapp" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblWhatsappNo" GroupName="Whatsapp" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icWhatsapp" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -161,7 +161,7 @@
                                     <asp:Label ID="lblWhatsapphave" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblWhatsapphaveYes" GroupName="Whatsapphave" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblWhatsapphaveYes" GroupName="Whatsapphave" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblWhatsapphaveNo" GroupName="Whatsapphave" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icWhatsapphave" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -182,7 +182,7 @@
                                     <asp:Label ID="lblWhastappDesription" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblwhatsappDescYes" GroupName="whatsappDesc" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblwhatsappDescYes" GroupName="whatsappDesc" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblwhatsappDescNo" GroupName="whatsappDesc" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icWhatsappDesc" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -204,7 +204,7 @@
                                     <asp:Label ID="lblPostalAddress" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblPostalAddressYes" GroupName="PostalAddress" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblPostalAddressYes" GroupName="PostalAddress" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblPostalAddressNo" GroupName="PostalAddress" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icPostal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -225,7 +225,7 @@
                                     <asp:Label ID="lblAddress" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblAddressYes" GroupName="Address" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblAddressYes" GroupName="Address" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblAddressNo" GroupName="Address" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -242,7 +242,7 @@
                                     <asp:Label ID="lblCurrentAddress" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblCurrentAddressYes" GroupName="CurrentAddress" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblCurrentAddressYes" GroupName="CurrentAddress" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblCurrentAddressNo" GroupName="CurrentAddress" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icCurrentAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -263,7 +263,7 @@
                                     <asp:Label ID="lblResidential" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblResidentialYes" GroupName="Residential" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblResidentialYes" GroupName="Residential" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblResidentialNo" GroupName="Residential" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icResedentail" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>

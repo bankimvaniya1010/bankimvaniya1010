@@ -75,10 +75,6 @@ public partial class gte_videoquestion : System.Web.UI.Page
                 db.gte_videouploadmaster.Add(objgte_videouploadmaster);
             db.SaveChanges();
 
-            if(mode == "new")
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Thank you for uploading video.');window.location='" + Request.ApplicationPath + "gte_sop.aspx';", true);
-
         }
         catch (Exception ex)
         {

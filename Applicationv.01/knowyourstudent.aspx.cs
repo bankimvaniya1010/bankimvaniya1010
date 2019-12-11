@@ -25,7 +25,7 @@ public partial class knowyourstudent : System.Web.UI.Page
     public static string StudentName { get; set; }
     public static string StudentDOB { get; set; }
 
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -454,7 +454,7 @@ public partial class knowyourstudent : System.Web.UI.Page
     public static void postConfirmation(bool confirmation)
     {
         GTEEntities db1 = new GTEEntities();
-        int universityID = Convert.ToInt32(ConfigurationManager.AppSettings["UniversityID"].ToString());
+        int universityID = Utility.GetUniversityId();
         int userID = Convert.ToInt32(HttpContext.Current.Session["UserID"]);
         var details = db1.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
         details.verifiedpassportnamedob = confirmation;

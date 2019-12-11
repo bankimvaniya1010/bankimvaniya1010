@@ -33,7 +33,7 @@
                                     <asp:Label ID="lblLinkedin" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblLinkedinYes" GroupName="Linkedin" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblLinkedinYes" GroupName="Linkedin" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblLinkedinNo" GroupName="Linkedin" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -54,7 +54,7 @@
                                     <asp:Label ID="lblFacebook" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblFacebookYes" GroupName="Facebook" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblFacebookYes" GroupName="Facebook" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblFacebookNo" GroupName="Facebook" Text="No" runat="server" />
                                 </div>
 
@@ -77,7 +77,7 @@
                                     <asp:Label ID="lblTwitter" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblTwitterYes" GroupName="twitter" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblTwitterYes" GroupName="twitter" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblTwitterNo" GroupName="twitter" Text="No" runat="server" />
                                 </div>
 

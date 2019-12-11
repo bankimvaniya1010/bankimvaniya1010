@@ -139,7 +139,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<student_sop> student_sop { get; set; }
     public virtual DbSet<studentcoursemapping> studentcoursemapping { get; set; }
     public virtual DbSet<studylevelmaster> studylevelmaster { get; set; }
-    public virtual DbSet<studymodemaster> studymodemaster { get; set; }
     public virtual DbSet<studyoptionmaster> studyoptionmaster { get; set; }
     public virtual DbSet<subjectmaster> subjectmaster { get; set; }
     public virtual DbSet<subjectwisecountrymapping> subjectwisecountrymapping { get; set; }
@@ -154,7 +153,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<typeofworkexperiencemaster> typeofworkexperiencemaster { get; set; }
     public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
-    public virtual DbSet<universitycampus> universitycampus { get; set; }
     public virtual DbSet<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
     public virtual DbSet<universitygrouping> universitygrouping { get; set; }
     public virtual DbSet<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
@@ -181,6 +179,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantlanguagecompetency> applicantlanguagecompetency { get; set; }
     public virtual DbSet<faq> faq { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }
+    public virtual DbSet<studymodemaster> studymodemaster { get; set; }
+    public virtual DbSet<universitycampus> universitycampus { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

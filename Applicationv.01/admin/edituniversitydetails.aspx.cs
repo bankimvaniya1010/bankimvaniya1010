@@ -15,7 +15,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
 
     Common objCommon = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
     protected string imagepath = "";
     protected void Page_Load(object sender, EventArgs e)
@@ -140,10 +140,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
             ddlCity.DataBind();
             ddlCity.Items.Insert(0, new ListItem("Please Select", ""));
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 
     [WebMethod]
@@ -158,6 +155,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         int universityID = Convert.ToInt32(ViewState["universityID"]);
+        int check = -1;
         university_master universityObj = db.university_master.Where(x => x.universityid == universityID).First();
         try
         {
@@ -211,14 +209,14 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     File.Delete(docPath + filename);
                 logo.SaveAs(docPath + filename);
                 universityObj.logo = filename;
-                db.SaveChanges();
+                check = db.SaveChanges();
             }
-            db.SaveChanges();
-            Response.Redirect(webURL + "admin/universitymaster.aspx");
+            if(check < 0)
+                db.SaveChanges();
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('University details updated successfully.');window.location='" + webURL + "admin/universitymaster.aspx';", true);
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 }

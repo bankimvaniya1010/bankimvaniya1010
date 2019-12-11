@@ -11,7 +11,7 @@ public partial class admin_createutilities : System.Web.UI.Page
 
     Common objCommon = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -42,11 +42,9 @@ public partial class admin_createutilities : System.Web.UI.Page
             //ddldiscipline.SelectedIndex = universityID;
 
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     private void bindUtilities()
     {
         try
@@ -62,11 +60,9 @@ public partial class admin_createutilities : System.Web.UI.Page
             //ddlstudylevel.SelectedIndex = universityID;
 
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     private void bindCurrency()
     {
         try
@@ -82,11 +78,9 @@ public partial class admin_createutilities : System.Web.UI.Page
             // ddlstudymode.SelectedIndex = universityID;
 
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         manageutilities UtilitiesObj = new manageutilities();
@@ -104,7 +98,6 @@ public partial class admin_createutilities : System.Web.UI.Page
                                  select Utilities).FirstOrDefault();
             if (existingUtilities == null)
             {
-
                 UtilitiesObj.utilityid = UtilitiesID;
                 UtilitiesObj.cityid = CityID;
                 UtilitiesObj.currencyid = Currencyid;
@@ -117,16 +110,12 @@ public partial class admin_createutilities : System.Web.UI.Page
                 db.manageutilities.Add(UtilitiesObj);
                 db.SaveChanges();
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Record Inserted Successfully.');window.location='" + webURL + "admin/manageutilities.aspx';", true);
             }
             else
-            {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Utilities details already exists for the selected city')", true);
-            }
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 }
