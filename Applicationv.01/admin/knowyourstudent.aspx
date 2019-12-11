@@ -32,7 +32,7 @@
                                     <asp:Label ID="lblPassportNo" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblPassportNoYes" GroupName="PassportNo" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblPassportNoNo" GroupName="PassportNo" Text="No" runat="server" />
                                 </div>
                                 <span><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -54,7 +54,7 @@
                                     <asp:Label ID="lblDateOfissue" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblDateOfissueYes" GroupName="DateOfissue" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblDateOfissueYes" GroupName="DateOfissue" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblDateOfissueNo" GroupName="DateOfissue" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icPassportIssueDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -76,7 +76,7 @@
                                     <asp:Label ID="lblExpiryDate" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblExpiryDateYes" GroupName="ExpiryDate" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblExpiryDateYes" GroupName="ExpiryDate" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblExpiryDateNo" GroupName="ExpiryDate" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -97,7 +97,7 @@
                                     <asp:Label ID="lblcountryIssue" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblcountryIssueYes" GroupName="countryIssue" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblcountryIssueNo" GroupName="countryIssue" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icCountryofIssue" style="display: none" runat="server" class="fa fa-info-circle"></i></span>
@@ -119,7 +119,7 @@
                                     <asp:Label ID="lblissueplace" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblissueplaceYes" GroupName="issueplace" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblissueplaceYes" GroupName="issueplace" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblissueplaceNo" GroupName="issueplace" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icCityofIssue" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -140,7 +140,7 @@
                                     <asp:Label ID="lblalternateIdentitytype" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblalternateIdentitytypeYes" GroupName="alternateIdentitytype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateIdentitytypeYes" GroupName="alternateIdentitytype" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblalternateIdentitytypeNo" GroupName="alternateIdentitytype" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icIdentityProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -161,7 +161,7 @@
                                     <asp:Label ID="lblalternateIdentityNo" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblalternateIdentityNoYes" GroupName="alternateIdentityNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateIdentityNoYes" GroupName="alternateIdentityNo" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblalternateIdentityNoNo" GroupName="alternateIdentityNo" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icIdentityProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -184,7 +184,7 @@
                                     <asp:Label ID="lblalternatedobIdentitytype" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblalternatedobIdentitytypeYes" GroupName="alternatedobIdentitytype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternatedobIdentitytypeYes" GroupName="alternatedobIdentitytype" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblalternatedobIdentitytypeNo" GroupName="alternatedobIdentitytype" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icDOBProofType" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -205,7 +205,7 @@
                                     <asp:Label ID="lblalternatedobIdentityNo" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblalternatedobIdentityNoYes" GroupName="alternatedobIdentityNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternatedobIdentityNoYes" GroupName="alternatedobIdentityNo" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblalternatedobIdentityNoNo" GroupName="alternatedobIdentityNo" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icDOBProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -227,7 +227,7 @@
                                     <asp:Label ID="lblalternateresidenceIdentitytype" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblalternateresidenceIdentitytypeYes" GroupName="alternateresidenceIdentitytype" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateresidenceIdentitytypeYes" GroupName="alternateresidenceIdentitytype" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblalternateresidenceIdentitytypeNo" GroupName="alternateresidenceIdentitytype" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icResidencyProof" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -248,7 +248,7 @@
                                     <asp:Label ID="lblalternateresidenceIdentityNo" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblalternateresidenceIdentityNoYes" GroupName="alternateresidenceIdentityNo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblalternateresidenceIdentityNoYes" GroupName="alternateresidenceIdentityNo" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblalternateresidenceIdentityNoNo" GroupName="alternateresidenceIdentityNo" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icResidencyProofNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>

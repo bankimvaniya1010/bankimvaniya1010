@@ -12,7 +12,7 @@ public partial class admin : System.Web.UI.MasterPage
     Common objCom = new Common();
     Logger objLog = new Logger();
     public int? questioncompleted = 0 , isclarificationquestionset = 0;
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     int universityID;
     int UserID = 0;    
     public string logourl = string.Empty;

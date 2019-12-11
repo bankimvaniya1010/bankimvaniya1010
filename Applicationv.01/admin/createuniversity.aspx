@@ -301,7 +301,7 @@
                                     <select id="subscription" name="gtesubscription" runat="server" class="form-control">
                                         <option value="" selected="selected" disabled="disabled">Please Select</option>
                                         <option value="0">GTE Service</option>
-                                        <option value="1">Full Servive</option>
+                                        <option value="1">Full Service</option>
                                     </select>
                                 </div>
                             </div>
@@ -331,7 +331,7 @@
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label for="stripcolor" class="col-sm-3 col-form-label form-label">header strip Color </label>
+                        <label for="stripcolor" class="col-sm-3 col-form-label form-label">Header strip Color </label>
                         <div class="col-sm-8">
                             <div class="row">
                                  <div class="col-md-4">
@@ -359,7 +359,7 @@
                         </div>
                     </div>
                      <div class="form-group row">
-                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> font Color </label>
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label"> Font Color </label>
                         <div class="col-sm-8">
                             <div class="row">
                                  <div class="col-md-4">
@@ -434,7 +434,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="fontcolor" class="col-sm-3 col-form-label form-label">Withdrawn Terms</label>
+                        <label for="fontcolor" class="col-sm-3 col-form-label form-label">Withdrawal Terms</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">

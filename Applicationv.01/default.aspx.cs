@@ -13,7 +13,7 @@ public partial class _Default : System.Web.UI.Page
     List<int> QuestionList = new List<int>();
     private GTEEntities db = new GTEEntities();
     int UserID = 0, applicantID = 0;
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();    
+    string webURL = String.Empty;
     string progressStatus = "";
     protected static List<faq> allQuestions = new List<faq>();
     protected static string universityName = string.Empty;
@@ -24,16 +24,12 @@ public partial class _Default : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        //Applicant_master am = db.Applicant_master.Where(b => b.userid == UserID).First();
-        //applicantID = (int)am.applicantID;
+
         Session["Applicant"] = UserID;
 
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList();
-            /*SetprogressStatus();*/
-            //if (Session["SecondaryLang"] == null)
-            //    Session["SecondaryLang"] = "ar";
 
             if (Session["isDomesticStudent"] == null)
                 domesticDiv.Style.Remove("display");

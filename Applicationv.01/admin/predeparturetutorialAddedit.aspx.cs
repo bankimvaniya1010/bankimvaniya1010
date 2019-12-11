@@ -11,7 +11,7 @@ public partial class admin_predeparturetutorialAddedit : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     Common objCom = new Common();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     int adminId = 0;
     int tutorialId;
     int universityID = 0;
@@ -156,7 +156,7 @@ public partial class admin_predeparturetutorialAddedit : System.Web.UI.Page
             if (mode == "new")
                 db.predeparturetutorialmaster.Add(objtutorialmaster);
             db.SaveChanges();            
-            Response.Redirect(webURL + "predeparturetutoriallisting.aspx", true);
+            Response.Redirect(webURL + "admin/predeparturetutoriallisting.aspx", true);
         }
         catch (Exception ex)
         {

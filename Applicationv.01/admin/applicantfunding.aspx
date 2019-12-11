@@ -39,7 +39,7 @@
                                     <asp:Label ID="lblstudy" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblstudyYes" GroupName="study" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblstudyYes" GroupName="study" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblstudyNo" GroupName="study" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icstudy" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -60,7 +60,7 @@
                                     <asp:Label ID="lblfamilymember" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblfamilymemberYes" GroupName="familymember" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblfamilymemberYes" GroupName="familymember" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblfamilymemberNo" GroupName="familymember" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icfamilymember" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -81,7 +81,7 @@
                                     <asp:Label ID="lblaccommodation" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblaccommodationYes" GroupName="accommodation" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblaccommodationYes" GroupName="accommodation" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblaccommodationNo" GroupName="accommodation" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icaccommodation" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -105,7 +105,7 @@
                                     <asp:Label ID="lblmanagemeal" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblmanagemealYes" GroupName="managemeal" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblmanagemealYes" GroupName="managemeal" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblmanagemealNo" GroupName="managemeal" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icmanagemeal" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -126,7 +126,7 @@
                                     <asp:Label ID="lbltransportchoice" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rbltransportchoiceYes" GroupName="transportchoice" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rbltransportchoiceYes" GroupName="transportchoice" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rbltransportchoiceNo" GroupName="transportchoice" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="ictransportchoice" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -147,7 +147,7 @@
                                     <asp:Label ID="lblTrips" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblTripsYes" GroupName="Trips" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblTripsYes" GroupName="Trips" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblTripsNo" GroupName="Trips" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icTrips" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -171,7 +171,7 @@
                                     <asp:Label ID="lblentertainment" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblentertainmentYes" GroupName="entertainment" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblentertainmentYes" GroupName="entertainment" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblentertainmentNo" GroupName="entertainment" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icentertainment" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>

@@ -35,7 +35,7 @@
                                     <asp:Label ID="lblHaveVisa" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblHaveVisaYes" GroupName="HaveVisa" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblHaveVisaYes" GroupName="HaveVisa" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblHaveVisaNo" GroupName="HaveVisa" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icHaveVisa" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -57,7 +57,7 @@
                                     <asp:Label ID="lblvisa" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblvisaYes" GroupName="visa" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblvisaYes" GroupName="visa" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblvisaNo" GroupName="visa" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icvisa" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -78,7 +78,7 @@
                                     <asp:Label ID="lblvalidityFrom" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblvalidityFromYes" GroupName="validityFrom" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblvalidityFromYes" GroupName="validityFrom" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblvalidityFromNo" GroupName="validityFrom" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icvalidityFrom" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -99,7 +99,7 @@
                                     <asp:Label ID="lblvalidityTo" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblvalidityToYes" GroupName="validityTo" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblvalidityToYes" GroupName="validityTo" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblvalidityToNo" GroupName="validityTo" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icvalidityTo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -121,7 +121,7 @@
                                     <asp:Label ID="lblvisano" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblvisanoYes" GroupName="visano" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblvisanoYes" GroupName="visano" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblvisanoNo" GroupName="visano" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="i4" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -145,7 +145,7 @@
                                     <asp:Label ID="lblvisaapplied" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblvisaappliedCountryYes" GroupName="visaappliedCountry" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblvisaappliedCountryYes" GroupName="visaappliedCountry" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblvisaappliedCountryNo" GroupName="visaappliedCountry" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icvisaappliedCountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -169,7 +169,7 @@
                                     <asp:Label ID="lblvisacity" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblvisacityYes" GroupName="visacity" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblvisacityYes" GroupName="visacity" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblvisacityNo" GroupName="visacity" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icvisacity" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -190,7 +190,7 @@
                                     <asp:Label ID="lblvisacountry" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblvisacountryYes" GroupName="visacountry" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblvisacountryYes" GroupName="visacountry" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblvisacountryNo" GroupName="visacountry" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icvisacountry" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -211,7 +211,7 @@
                                     <asp:Label ID="lblfirstvisit" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblfirstvisitYes" GroupName="firstvisit" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblfirstvisitYes" GroupName="firstvisit" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblfirstvisitNo" GroupName="firstvisit" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icfirstvisit" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -235,7 +235,7 @@
                                     <asp:Label ID="lblPreviuosstay" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblPreviuosstayYes" GroupName="Previuosstay" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblPreviuosstayYes" GroupName="Previuosstay" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblPreviuosstayNo" GroupName="Previuosstay" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icPreviuosstay" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -259,7 +259,7 @@
                                     <asp:Label ID="lblparent" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblparentYes" GroupName="parent" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblparentYes" GroupName="parent" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblparentNo" GroupName="parent" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icparent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -282,7 +282,7 @@
                                     <asp:Label ID="lblDeniedVisa" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblDeniedVisaYes" GroupName="DeniedVisa" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblDeniedVisaYes" GroupName="DeniedVisa" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblDeniedVisaNo" GroupName="DeniedVisa" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icDeniedVisa" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -306,7 +306,7 @@
                                     <asp:Label ID="lblparentdeny" runat="server"></asp:Label>
                                 </div>
                                 <div class="prdtl-vrfy">
-                                    <asp:RadioButton ID="rblparentdenyYes" GroupName="parentdeny" Text="Yes" runat="server" />
+                                    <asp:RadioButton ID="rblparentdenyYes" GroupName="parentdeny" Text="Yes" runat="server" Checked="true"/>
                                     <asp:RadioButton ID="rblparentdenyNo" GroupName="parentdeny" Text="No" runat="server" />
                                 </div>
                                 <span class="helpicon"><i id="icparentdeny" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>

@@ -99,9 +99,9 @@ public partial class gte_documentupload : System.Web.UI.Page
             }
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(UserID, formId, CustomControls, mainDiv);
-            populatedocument();
-            if (CustomControls.Count > 0)
-                objCom.SetCustomData(formId, UserID, CustomControls, mainDiv);
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                    "alert('Document upload complete. Thank you for uploading required documents.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
         }
         catch (Exception ex)
         {

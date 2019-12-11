@@ -1268,8 +1268,8 @@ public partial class coursemaster
     public virtual ICollection<course_defermentdates> course_defermentdates { get; set; }
     public virtual majordiscipline_master majordiscipline_master { get; set; }
     public virtual studylevelmaster studylevelmaster { get; set; }
-    public virtual studymodemaster studymodemaster { get; set; }
     public virtual university_master university_master { get; set; }
+    public virtual studymodemaster studymodemaster { get; set; }
 }
 
 public partial class coursetypemaster
@@ -2591,11 +2591,11 @@ public partial class university_master
         this.predeparturetutorialmaster = new HashSet<predeparturetutorialmaster>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
         this.universitywise_rejectionreasonmapping = new HashSet<universitywise_rejectionreasonmapping>();
-        this.universitycampus = new HashSet<universitycampus>();
         this.universitygrouping = new HashSet<universitygrouping>();
         this.universitygrouping1 = new HashSet<universitygrouping>();
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
+        this.universitycampus = new HashSet<universitycampus>();
     }
 
     public int universityid { get; set; }
@@ -2689,8 +2689,6 @@ public partial class university_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitycampus> universitycampus { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitygrouping> universitygrouping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitygrouping> universitygrouping1 { get; set; }
@@ -2698,6 +2696,8 @@ public partial class university_master
     public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitycampus> universitycampus { get; set; }
 }
 
 public partial class universitycampus
@@ -2722,9 +2722,9 @@ public partial class universitycampus
     public virtual ICollection<course_campus_mapping> course_campus_mapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<facility_campus_mapping> facility_campus_mapping { get; set; }
+    public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus_city_mapping> universitycampus_city_mapping { get; set; }
-    public virtual university_master university_master { get; set; }
 }
 
 public partial class universitycampus_city_mapping

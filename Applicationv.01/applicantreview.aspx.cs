@@ -9,7 +9,7 @@ public partial class applicantreview : System.Web.UI.Page
 {
     int userID = 0, ApplicantID = 0 , universityID;
     private GTEEntities db = new GTEEntities();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected List<applicantdetails> objApplicant = new List<applicantdetails>();
     protected List<applicantemployerdetails> objEmployer = new List<applicantemployerdetails>();
     protected List<applicantlanguagecompetency> objLanguage = new List<applicantlanguagecompetency>();
@@ -41,7 +41,6 @@ public partial class applicantreview : System.Web.UI.Page
             string Institutename = "";
             if (objApplicant[0].universityid != null)
             {
-                // int universityID = Convert.ToInt32(objApplicant[0].universityid);
                 var institute = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
                 if (institute != null)
                     Institutename = institute.university_name;
