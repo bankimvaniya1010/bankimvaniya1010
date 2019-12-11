@@ -53,6 +53,7 @@
           </Key>
           <Property Name="adminid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="roleid" Type="int" Nullable="false" />
+          <Property Name="universityId" Type="int" Nullable="false" />
           <Property Name="username" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
@@ -5065,6 +5066,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="admincomments" Relationship="GTEModel.fk_adminusers_admincomments" FromRole="adminusers" ToRole="admincomments" />
           <NavigationProperty Name="rolemaster" Relationship="GTEModel.FK_adminusers_rolemaster" FromRole="adminusers" ToRole="rolemaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_adminusers" FromRole="adminusers" ToRole="supervisorcomments" />
+          <Property Name="universityId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="agentmaster">
           <Key>
@@ -8973,6 +8975,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="adminusers">
             <EntityTypeMapping TypeName="GTEModel.adminusers">
               <MappingFragment StoreEntitySet="adminusers">
+                <ScalarProperty Name="universityId" ColumnName="universityId" />
                 <ScalarProperty Name="creationdate" ColumnName="creationdate" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="mobile" ColumnName="mobile" />

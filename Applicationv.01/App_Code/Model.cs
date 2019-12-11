@@ -87,6 +87,7 @@ public partial class adminusers
     public string mobile { get; set; }
     public int status { get; set; }
     public System.DateTime creationdate { get; set; }
+    public int universityId { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }

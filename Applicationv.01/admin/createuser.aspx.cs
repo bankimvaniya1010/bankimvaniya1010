@@ -10,11 +10,14 @@ public partial class createuser : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Common objCom = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
+    string roleName = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        if (!Utility.CheckAdminLogin())
+        roleName = Utility.GetRoleName();
+        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
         if (!IsPostBack)
@@ -25,13 +28,20 @@ public partial class createuser : System.Web.UI.Page
     {
         try
         {
-            List<rolemaster> roleMaster = db.rolemaster.ToList();
+            ListItem lst = new ListItem("Please select", "0");
+            dynamic roleMaster = db.rolemaster.ToList();
 
-        ddlRole.DataSource = roleMaster;
-        ddlRole.DataBind();
-        ddlRole.DataTextField = "rolename";
-        ddlRole.DataValueField = "roleid";
-        ddlRole.DataBind();
+            ddlRole.DataSource = roleMaster;
+            ddlRole.DataBind();
+            ddlRole.DataTextField = "rolename";
+            ddlRole.DataValueField = "roleid";
+            ddlRole.DataBind();
+            ddlRole.Items.Insert(0, lst);
+            if (roleName.ToLower() == "university")
+            {
+                ListItem removeListItem = ddlRole.Items.FindByText("Admin");
+                ddlRole.Items.Remove(removeListItem);
+            }
         }
         catch (Exception ex)
         {
@@ -57,6 +67,7 @@ public partial class createuser : System.Web.UI.Page
                 usrObj.password = objCom.EncodePasswordToMD5(Txtpassword.Value.Trim());
                 usrObj.roleid = Convert.ToInt32(ddlRole.SelectedItem.Value);
                 usrObj.email = txtEmail.Value.Trim();
+                usrObj.universityId = Utility.GetUniversityId();
                 // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
                 usrObj.status = 1;
                 db.adminusers.Add(usrObj);
