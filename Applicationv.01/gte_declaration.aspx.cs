@@ -16,6 +16,7 @@ public partial class gte_declaration : System.Web.UI.Page
     string webURL = String.Empty;
     int UniversityID = -1;
     gte_progressbar gteProgressBar = new gte_progressbar();
+    protected static string universityName = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,6 +36,12 @@ public partial class gte_declaration : System.Web.UI.Page
             if (gteProgressBar != null)
                 questionsCompleted = gteProgressBar.is_gte_question_completed.Value;
         }
+    }
+
+    protected void Page_PreRender(object sender, EventArgs e)
+    {
+        Label lbluniversityName = (Label)this.Master.FindControl("lbluniversityName");
+        universityName = lbluniversityName.Text;
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

@@ -298,7 +298,7 @@
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             
-                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer%>')">  <%=allQuestions[q].question%> </label>
+                                                <label onclick="showFaqQuestion('<%=allQuestions[q].question%>','<%=allQuestions[q].answer.Replace(Environment.NewLine, "<br />") %>')">  <%=allQuestions[q].question%> </label>
                                             </div>                                                  
                                     <%} %>
                                 </div>

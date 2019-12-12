@@ -1057,7 +1057,14 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 var displayLinkButton = db.gte_student_sop.Where(x => x.applicant_id == applicant_id && x.universityid == universityID)
                                           .Select(x => x.is_sop_submitted_by_applicant).FirstOrDefault();
 
-                if (!displayLinkButton)
+                var universityFullService = db.university_master.Where(x => x.universityid == universityID).Select(x => x.full_service).FirstOrDefault();
+                bool detailsFlagCheck;
+                if (universityFullService)
+                    detailsFlagCheck = db.applicantdetails.Any(x => x.applicantid == applicant_id && x.universityid == universityID);
+                else
+                    detailsFlagCheck = db.gte_applicantdetails.Any(x => x.applicantid == applicant_id && x.universityid == universityID);
+
+                if (!displayLinkButton || !detailsFlagCheck)
                 {
                     lnkDownloadGteReport.Style.Add("display", "none");
                     lnkGteReportFeedBack.Style.Add("display", "none");
