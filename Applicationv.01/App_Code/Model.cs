@@ -458,6 +458,13 @@ public partial class applicantfundingmaster
     public Nullable<int> trips { get; set; }
     public Nullable<int> entertainment { get; set; }
     public Nullable<int> credittransfer { get; set; }
+    public Nullable<int> adultmemberCount { get; set; }
+    public Nullable<int> childrenmemberCount { get; set; }
+    public Nullable<decimal> PrivateFinancePercentage { get; set; }
+    public Nullable<decimal> ScholarshipPercentage { get; set; }
+    public Nullable<decimal> studentLoanPercentage { get; set; }
+    public Nullable<decimal> SponsorshipPercentage { get; set; }
+    public Nullable<decimal> PartTimeWorkPercentage { get; set; }
 
     public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
@@ -1372,6 +1379,18 @@ public partial class customfieldvalue
     public virtual students students { get; set; }
 }
 
+public partial class declaration_master
+{
+    public int Id { get; set; }
+    public Nullable<bool> Issummarystatements { get; set; }
+    public string statement_description { get; set; }
+    public Nullable<int> universityId { get; set; }
+    public System.DateTime created_at { get; set; }
+    public Nullable<int> edited_by { get; set; }
+
+    public virtual university_master university_master { get; set; }
+}
+
 public partial class disabilitymaster
 {
     public int id { get; set; }
@@ -1506,6 +1525,7 @@ public partial class formmaster
         this.tooltipmaster = new HashSet<tooltipmaster>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
+        this.universitywiseformmapping = new HashSet<universitywiseformmapping>();
     }
 
     public int formid { get; set; }
@@ -1527,6 +1547,8 @@ public partial class formmaster
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywiseformmapping> universitywiseformmapping { get; set; }
 }
 
 public partial class grademaster
@@ -1622,6 +1644,18 @@ public partial class gte_clarification_questionmaster
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_clarification_applicantresponse> gte_clarification_applicantresponse { get; set; }
     public virtual gte_question_master_part2 gte_question_master_part2 { get; set; }
+}
+
+public partial class gte_declaration_master
+{
+    public int Id { get; set; }
+    public Nullable<int> universityId { get; set; }
+    public string statementdescription { get; set; }
+    public Nullable<bool> statement_type { get; set; }
+    public System.DateTime created_at { get; set; }
+    public Nullable<int> edited_by { get; set; }
+
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class GTE_documentverification
@@ -2247,6 +2281,7 @@ public partial class scholarships
     public scholarships()
     {
         this.applicant_scholarships = new HashSet<applicant_scholarships>();
+        this.universitywise_scholarshipmapping = new HashSet<universitywise_scholarshipmapping>();
     }
 
     public int id { get; set; }
@@ -2260,6 +2295,8 @@ public partial class scholarships
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<applicant_scholarships> applicant_scholarships { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }
 }
 
 public partial class secondarylanguagemaster
@@ -2597,6 +2634,9 @@ public partial class university_master
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
         this.universitycampus = new HashSet<universitycampus>();
+        this.declaration_master = new HashSet<declaration_master>();
+        this.gte_declaration_master = new HashSet<gte_declaration_master>();
+        this.universitywise_scholarshipmapping = new HashSet<universitywise_scholarshipmapping>();
     }
 
     public int universityid { get; set; }
@@ -2699,6 +2739,12 @@ public partial class university_master
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus> universitycampus { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<declaration_master> declaration_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<gte_declaration_master> gte_declaration_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }
 }
 
 public partial class universitycampus
@@ -2773,6 +2819,16 @@ public partial class universitywise_rejectionreasonmapping
     public virtual university_master university_master { get; set; }
 }
 
+public partial class universitywise_scholarshipmapping
+{
+    public int id { get; set; }
+    public Nullable<int> universityId { get; set; }
+    public Nullable<int> scholarshipId { get; set; }
+
+    public virtual scholarships scholarships { get; set; }
+    public virtual university_master university_master { get; set; }
+}
+
 public partial class universitywise_supportservicemapping
 {
     public int id { get; set; }
@@ -2795,6 +2851,8 @@ public partial class universitywiseformmapping
     public int universitywiseformmappingid { get; set; }
     public Nullable<int> universityid { get; set; }
     public Nullable<int> formid { get; set; }
+
+    public virtual formmaster formmaster { get; set; }
 }
 
 public partial class universitywisemastermapping

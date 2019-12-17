@@ -47,13 +47,23 @@ public partial class admin : System.Web.UI.MasterPage
             Bindseclanguagelist();
             populateSelectedLanguage();
         }
+
+        if (Session["universitylogo"] == null || Session["universityverticalnavigationcolor"] == null || Session["universityfontColor"] == null || Session["universityheadercolor"] == null)
+        {
+            var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.fontcolor, x.headerstripcolor, x.verticalnavigationcolor, x.logo }).FirstOrDefault();
+
+            Session["universitylogo"] = universityDetails.logo;
+            Session["universityverticalnavigationcolor"] = universityDetails.verticalnavigationcolor;
+            Session["universityfontColor"] = universityDetails.fontcolor;
+            Session["universityheadercolor"] = universityDetails.headerstripcolor;
+        }
+
         lblusername.Text = name;
-        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.universityid, x.fontcolor, x.headerstripcolor, x.verticalnavigationcolor, x.logo }).FirstOrDefault();
-        logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
-        lbluniversityName.Text = universityDetails.university_name;
-        verticalnavigationcolor = universityDetails.verticalnavigationcolor;
-        fontColor = universityDetails.fontcolor;
-        headercolor = universityDetails.headerstripcolor;
+        logourl = webURL + "/Docs/" + universityID + "/" + (string)Session["universitylogo"];
+        lbluniversityName.Text = (string)Session["universityName"];
+        verticalnavigationcolor = (string)Session["universityverticalnavigationcolor"];
+        fontColor = (string)Session["universityfontColor"];
+        headercolor = (string)Session["universityheadercolor"];
     }
 
     private void populateSelectedLanguage()

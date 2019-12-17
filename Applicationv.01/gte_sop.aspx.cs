@@ -144,7 +144,11 @@ public partial class gte_sop : System.Web.UI.Page
                             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Student Application missing. Please complete Student Application section before proceeding.');window.location='" + webURL + "default.aspx';", true);
                     }
                     else
+                    {
                         applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                        int courseId = Convert.ToInt32(applicantdetails.coursename);
+                        applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursename).FirstOrDefault();
+                    }
 
                     if (applicantdetails == null)
                         Response.Redirect(webURL + "default.aspx", true);
@@ -199,7 +203,7 @@ public partial class gte_sop : System.Web.UI.Page
 
         try
         {
-            if (paragraphNo == 2 || paragraphNo == 1)
+            if (paragraphNo == 2 || paragraphNo == 1 || paragraphNo == 3)
             {
                 nationality = objCommon.GetCountryDiscription(applicantdetails.nationality.Value);
                 residentialCountry = objCommon.GetCountryDiscription(applicantdetails.residencecountry.Value);

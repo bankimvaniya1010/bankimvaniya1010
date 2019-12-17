@@ -140,7 +140,7 @@
                                                         Skype ID: <%= objApplicant[0].skypeid == null ? "" : objApplicant[0].skypeid.ToString() %>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        Another Whatsapp no<%= objApplicant[0].whatsappno == null ? "" : objApplicant[0].whatsappno.ToString() %>
+                                                        Another Whatsapp Number<%= objApplicant[0].whatsappno == null ? "" : objApplicant[0].whatsappno.ToString() %>
                                                     </div>
                                                 </div>
                                             </div>

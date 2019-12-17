@@ -181,6 +181,9 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<university_master> university_master { get; set; }
     public virtual DbSet<studymodemaster> studymodemaster { get; set; }
     public virtual DbSet<universitycampus> universitycampus { get; set; }
+    public virtual DbSet<declaration_master> declaration_master { get; set; }
+    public virtual DbSet<gte_declaration_master> gte_declaration_master { get; set; }
+    public virtual DbSet<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

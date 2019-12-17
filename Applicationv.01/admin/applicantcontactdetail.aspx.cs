@@ -235,7 +235,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         icWhatsapp.Attributes.Add("style", "display:block;");
                         icWhatsapp.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
                         icWhatsapphave.Attributes.Add("style", "display:block;");
                         icWhatsapphave.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -342,7 +342,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         whatsapp.Attributes.Add("style", "display:block;");
                         labelwhatsapp.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
                         whatsappHave.Attributes.Add("style", "display:block;");
                         labelwhatsappHave.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -441,7 +441,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         rblWhatsappYes.Checked = true;
                     txtWhatsapp.Value = setComments(Comments[k]);
                     break;
-                case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
                     if (Comments[k].adminaction == 0)
                         rblWhatsapphaveNo.Checked = true;
                     else
@@ -546,7 +546,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             if (whatsapp.Style.Value != "display: none")
                 adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP", txtWhatsapp.Value.Trim() + "~" + (rblWhatsappNo.Checked == true ? 0 : 1));
             if (whatsappHave.Style.Value != "display: none")
-                adminInputs.Add("IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO", txtWhastappHave.Value.Trim() + "~" + (rblWhatsapphaveNo.Checked == true ? 0 : 1));
+                adminInputs.Add("IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER", txtWhastappHave.Value.Trim() + "~" + (rblWhatsapphaveNo.Checked == true ? 0 : 1));
             if (whatsappDesc.Style.Value != "display: none")
                 adminInputs.Add("Whatsapp Number", txtWhatsappDescription.Value.Trim() + "~" + (rblwhatsappDescNo.Checked == true ? 0 : 1));
             if (postal.Style.Value != "display: none")

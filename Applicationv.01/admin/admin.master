@@ -219,7 +219,7 @@
                                         <a class="sidebar-menu-button" href="universitygroupingmaster.aspx">
                                             <span class="sidebar-menu-text">Institution Grouping</span>
                                         </a>
-                                    </li>    
+                                    </li>                                      
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="CustomizeForms_list">
@@ -484,6 +484,11 @@
                                             <span class="sidebar-menu-text">Tutorials Master</span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item" id="declaration_master">
+                                        <a class="sidebar-menu-button" href="managedeclaration_master.aspx">
+                                            <span class="sidebar-menu-text">Declaration Statement Master</span>
+                                        </a>
+                                    </li>
                                     <li class="sidebar-menu-item" id="predeparturetutorial">
                                         <a class="sidebar-menu-button" href="predeparturetutoriallisting.aspx">
                                             <span class="sidebar-menu-text">Predeparture Tutorials Master</span>
@@ -508,6 +513,11 @@
                                             <span class="sidebar-menu-text">GTE Preliminary Question</span>
                                         </a>
                                     </li>
+                                     <li class="sidebar-menu-item" id="gte_declaration_master">
+                                        <a class="sidebar-menu-button" href="gtemanagedeclaration_master.aspx">
+                                            <span class="sidebar-menu-text">GTE Declaration Statement Master</span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="Scholarships_list">
@@ -521,7 +531,12 @@
                                         <a class="sidebar-menu-button" href="scholarshipmaster.aspx">
                                             <span class="sidebar-menu-text">Manage Scholarships</span>
                                         </a>
-                                    </li>                                    
+                                    </li>
+                                     <li class="sidebar-menu-item" id="manageUniversitywiseScholarships">
+                                        <a class="sidebar-menu-button" href="scholarshipmappinguniversitywise.aspx">
+                                            <span class="sidebar-menu-text">Institution Scholarships Selection</span>
+                                        </a>
+                                    </li>                                  
                                 </ul>
                             </li>
                             <li class="sidebar-menu-item" id="managelanguages_list">
@@ -607,7 +622,7 @@
                 $("#Costcalculator_list").hide();
                 $("#tutorial_list").hide();
                 $("#gte_list").hide();
-                $("#Scholarships_list").hide();
+                $("#manageScholarships").hide();
                 $("#managelanguages_list").hide();
                 $("#tooltipslisting").hide();
                 $("#admintooltipslisting").hide();
