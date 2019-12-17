@@ -59,8 +59,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                               <asp:TemplateField HeaderText="Active Status">
-                                <ItemTemplate>
-                                    <%--<asp:CheckBox ID="chkValid" runat="server" Checked='<%# bool.Parse(Eval("isValid").ToString()=="1"?"True":"False") %>' />--%>
+                                <ItemTemplate>                                    
                                     <asp:CheckBox ID="chkactive" runat="server" Checked='<%# bool.Parse(Eval("check").ToString()=="1"?"True":"False") %>'/>
                                 </ItemTemplate>
                             </asp:TemplateField>
@@ -79,11 +78,11 @@
 
     </div>
     <script>
-		//$(document).ready(function () {
-  //          $('.sidebar-menu-item').removeClass('open');
-  //          $('#Scholarships_list').addClass('open');
-  //          $('.sidebar-menu-item').removeClass('active');
-  //          $('#manageScholarships').addClass('active');
-  //      });
+		$(document).ready(function () {
+            $('.sidebar-menu-item').removeClass('open');
+            $('#Scholarships_list').addClass('open');
+            $('.sidebar-menu-item').removeClass('active');
+            $('#manageUniversitywiseScholarships').addClass('active');
+        });
 	</script>
 </asp:Content>

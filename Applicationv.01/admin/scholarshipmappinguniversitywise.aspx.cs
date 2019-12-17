@@ -144,33 +144,5 @@ public partial class admin_scholarshipmappinguniversitywise : System.Web.UI.Page
     protected void scholarshipGridView_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         
-    }
-
-    //protected void lnkSubmit_Click(object sender, EventArgs e)
-    //{
-
-    //    foreach (GridViewRow gvrow in scholarshipGridView.Rows)
-    //    {
-    //        int scholarshipID = Convert.ToInt32(gvrow.Cells[0].Text);
-    //        IEnumerable<universitywise_scholarshipmapping> list = db.universitywise_scholarshipmapping.Where(x => x.universityId == sessionuniversityId).ToList();
-    //        db.universitywise_scholarshipmapping.RemoveRange(list);
-    //        db.SaveChanges();
-
-    //        universitywise_scholarshipmapping objmapping = new universitywise_scholarshipmapping();
-    //        var checkbox = gvrow.FindControl("chkactive") as CheckBox;
-    //        if (checkbox.Checked)
-    //        {
-    //            objmapping.scholarshipId = scholarshipID;
-    //            objmapping.universityId = Utility.GetUniversityId();
-    //            db.universitywise_scholarshipmapping.Add(objmapping);
-    //            db.SaveChanges();
-    //            //BindGrid();
-    //        }
-    //        else
-    //            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select Chekboc')", true);
-    //    }
-    //    BindGrid();
-
-    //}
-
+    }    
 }
