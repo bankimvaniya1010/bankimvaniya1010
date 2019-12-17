@@ -231,7 +231,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         icWhatsapp.Attributes.Add("style", "display:block;");
                         icWhatsapp.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
                         icWhatsapphave.Attributes.Add("style", "display:block;");
                         icWhatsapphave.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -350,7 +350,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         whatsapp.Attributes.Add("style", "display:block;");
                         labelwhatsapp.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
                         whatsappHave.Attributes.Add("style", "display:block;");
                         labelwhatsappHave.InnerHtml = setInnerHtml(fields[k]);
                         break;
