@@ -608,7 +608,7 @@
                 $("#Costcalculator_list").hide();
                 $("#tutorial_list").hide();
                 $("#gte_list").hide();
-                $("#Scholarships_list").hide();
+                $("#manageScholarships").hide();
                 $("#managelanguages_list").hide();
             }
             else if (universityadmin) {

@@ -30,11 +30,7 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _paragraphComment5 = "";
     protected string _studentRecommended = "";
     protected string _recommendationRemark = "";
-    protected string _notesDisclaimer = "";
-    protected string _studentNAtionality = "";
-    protected string _studentcountryofresisdence = "";
-    protected string _studentAge = "";
-    protected string _studentCourseApplied = "";
+    protected string _notesDisclaimer = "";    
 
     public string logourl = string.Empty;
 
@@ -67,28 +63,7 @@ public partial class admin_gtereport : System.Web.UI.Page
                 
                 var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
                 _studentName = Personal.firstname + " " + Personal.lastname;
-
-                if (universityDetails.full_service)
-                {
-                    
-                    var applicationDetails = db.applicationmaster.Where(x => x.applicantid == ApplicantID && x.universityid == universityID && x.preferenceid.Value == 1).FirstOrDefault();
-                    _studentNAtionality = objCom.GetCountryDiscription(Personal.nationality.Value);
-                    int residencecountry = Personal.issameaspostal.Value == 1 ? Personal.postalcountry.Value : Personal.residentialcountry.Value;
-                    _studentcountryofresisdence = objCom.GetCountryDiscription(residencecountry);
-                    _studentAge = Convert.ToString(new Age(Personal.dateofbirth.Value).Years) + " years";
-                    _studentCourseApplied = objCom.GetCourseName(applicationDetails.course.Value);
-                }
-                else
-                {
-                    var gte_Personal = db.gte_applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
-                    _studentNAtionality = objCom.GetCountryDiscription(gte_Personal.nationality.Value);
-                    _studentcountryofresisdence = objCom.GetCountryDiscription(gte_Personal.residencecountry.Value);
-                    _studentAge = Convert.ToString(new Age(gte_Personal.dateofbirth.Value).Years) + " years";
-                    _studentCourseApplied = objCom.GetCourseName(Convert.ToInt32(gte_Personal.coursename));
-                }
-                
-
-
+                               
                 if (!IsPostBack)
                 {
                     DateTime currentDate = DateTime.Now;

@@ -542,7 +542,7 @@
                                          <ul class="sidebar-submenu sm-indent collapse" id="predeparture">
                                             <li class="sidebar-menu-item" id="predeparturetutorial">
                                                 <a class="sidebar-menu-button" href="predeparturetutorial.aspx">
-                                                    <span class="sidebar-menu-text">predeparture</span>
+                                                    <span class="sidebar-menu-text">Pre - Departure</span>
                                                 </a>
                                             </li>
                                          </ul>
