@@ -353,7 +353,7 @@
             else if ($("#<%=ddlTrips.ClientID%>").val() == "0")
                 alert("Please Select No of Trips you plan to take to your home country per year");
             else if ($("#<%=ddlEntertainment.ClientID%>").val() == "0")
-                alert("Please Select  How often in a week do you typically go out (entertainment) ");
+                alert("Please Select  How often in a week do you typically go out (entertainment) ");            
             else
                 flag = true;
             
@@ -380,8 +380,10 @@
          $(function() {
             $("#<%=ddlstudy.ClientID%>").change(function() {
                 $("#<%=hidAccomdation.ClientID%>").val("");
+                $("#<%=ddlAccomdation.ClientID%>").val("0");
+                hidecostandbutton();
                 if ($(this).val() == "2") {
-                    $("#familymember").show();               
+                    $("#familymember").show();                    
                     removeAccommodationOptionsForFamily();
                 }
                 else {
@@ -424,6 +426,9 @@
             $('#<%=ddlAccomdation.ClientID%> option:contains(Off Campus - Shared)').remove();
         }
         $(document).ready(function () {
+
+            $("#<%=btn_fundingdetails.ClientID%>").attr("disabled", "disabled");            
+                        
             if ($("#<%=ddlstudy.ClientID%>").val() == "2") {
                 $("#familymember").show();
                 removeAccommodationOptionsForFamily();
@@ -432,47 +437,31 @@
                 $("#familymember").hide();
 
 
-            var Amount = parseInt(<%=hidAmount.Value%>);
-            $("#<%=txtPrivateFinancePercentage.ClientID%>").val("0");
-            $("#<%=txtScholarshipPercentage.ClientID%>").val("0");
-            $("#<%=txtLoanPercentage.ClientID%>").val("0");
-            $("#<%=txtPartTimeWorkPercentage.ClientID%>").val("0");
-            $("#<%=txtSponsorshipPercentage.ClientID%>").val("0");
-            $("#<%=txtTotalPercentage.ClientID%>").val("0");
+            getprivateFinanceAmount();
+            getscholarshipAmount();
+            getloanAmount();
+            getsponsorshipAmount();
+            getpartTimeWorkAmount();
+            checkContributionPercentage();
 
             $("#<%=txtPrivateFinancePercentage.ClientID%>").change(function () {
-                var privateFinanceAmount = Math.round(Amount * $("#<%=txtPrivateFinancePercentage.ClientID%>").val()) / 100;
-                $("#txtCalcPrivateFinance").val(privateFinanceAmount);
-                var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
-                $("#<%=txtTotalPercentage.ClientID%>").val(total);
+                getprivateFinanceAmount();
             });
 
             $("#<%=txtScholarshipPercentage.ClientID%>").change(function () {
-                var scholarshipAmount = Math.round(Amount * $("#<%=txtScholarshipPercentage.ClientID%>").val()) / 100;
-                $("#txtCalcScholarshipAmount").val(scholarshipAmount);
-                var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
-                $("#<%=txtTotalPercentage.ClientID%>").val(total);
+                getscholarshipAmount();
             });
 
             $("#<%=txtLoanPercentage.ClientID%>").change(function () {
-                var loanAmount = Math.round(Amount * $("#<%=txtLoanPercentage.ClientID%>").val()) / 100;
-                $("#txtCalcLoanAmount").val(loanAmount);
-                var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
-                $("#<%=txtTotalPercentage.ClientID%>").val(total);
+                getloanAmount();
             });
 
             $("#<%=txtSponsorshipPercentage.ClientID%>").change(function () {
-                var sponsorshipAmount = Math.round(Amount * $("#<%=txtSponsorshipPercentage.ClientID%>").val()) / 100;
-                $("#txtCalcSponsorshipAmount").val(sponsorshipAmount);
-                var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
-                $("#<%=txtTotalPercentage.ClientID%>").val(total);
+                getsponsorshipAmount();
             });
 
             $("#<%=txtPartTimeWorkPercentage.ClientID%>").change(function () {
-                var partTimeWorkAmount = Math.round(Amount * $("#<%=txtPartTimeWorkPercentage.ClientID%>").val()) / 100;
-                $("#txtCalcPartimeAmount").val(partTimeWorkAmount);
-                var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
-                $("#<%=txtTotalPercentage.ClientID%>").val(total);
+                getpartTimeWorkAmount();
             });
 
             $("#<%=txtPrivateFinancePercentage.ClientID%>").blur(function () {
@@ -509,13 +498,102 @@
             var total = privateFinancePercentage + scholarshipPercentage + loanPercentage + sponsorshipPercentage + partTimeWorkPercentage;
             var totalAmount = Math.round(privateFinanceAmount + scholarshipAmount + loanAmount + sponsorshipAmount + partTimeWorkAmount);
             $("#txtSumTotalAmount").val(totalAmount);
-            var flag = false;
-            if (total > 100)
-                alert("Please check contribution percentage once again as total exceeds 100");
+
+            if (total > 100 || total != 100) 
+                $("#<%=btn_fundingdetails.ClientID%>").attr("disabled", "disabled");
             else
-                flag = true;
-            return true;
+                $("#<%=btn_fundingdetails.ClientID%>").removeAttr("disabled");
+
         }
+
+        var Amount = parseInt(<%=hidAmount.Value%>);
+
+        function getprivateFinanceAmount()
+        {
+	        var privateFinanceAmount = Math.round(Amount * $("#<%=txtPrivateFinancePercentage.ClientID%>").val()) / 100;
+            $("#txtCalcPrivateFinance").val(privateFinanceAmount);
+            var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
+            $("#<%=txtTotalPercentage.ClientID%>").val(total);
+        }
+
+        function getscholarshipAmount()
+        {
+	        var scholarshipAmount = Math.round(Amount * $("#<%=txtScholarshipPercentage.ClientID%>").val()) / 100;
+            $("#txtCalcScholarshipAmount").val(scholarshipAmount);
+            var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
+            $("#<%=txtTotalPercentage.ClientID%>").val(total);
+        }
+
+        function getloanAmount()
+        {
+	        var loanAmount = Math.round(Amount * $("#<%=txtLoanPercentage.ClientID%>").val()) / 100;
+            $("#txtCalcLoanAmount").val(loanAmount);
+            var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
+            $("#<%=txtTotalPercentage.ClientID%>").val(total);
+        }
+
+        function getsponsorshipAmount()
+        {
+	        var sponsorshipAmount = Math.round(Amount * $("#<%=txtSponsorshipPercentage.ClientID%>").val()) / 100;
+            $("#txtCalcSponsorshipAmount").val(sponsorshipAmount);
+            var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
+            $("#<%=txtTotalPercentage.ClientID%>").val(total);
+        } 
+
+        function getpartTimeWorkAmount()
+        {
+	        var partTimeWorkAmount = Math.round(Amount * $("#<%=txtPartTimeWorkPercentage.ClientID%>").val()) / 100;
+            $("#txtCalcPartimeAmount").val(partTimeWorkAmount);
+            var total = parseFloat($("#<%=txtPrivateFinancePercentage.ClientID%>").val()) + parseFloat($("#<%=txtScholarshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtLoanPercentage.ClientID%>").val()) + parseFloat($("#<%=txtSponsorshipPercentage.ClientID%>").val()) + parseFloat($("#<%=txtPartTimeWorkPercentage.ClientID%>").val());
+            $("#<%=txtTotalPercentage.ClientID%>").val(total);
+        }
+
+        function hidecostandbutton()
+        {
+            $("#<%=cost.ClientID%>").hide();
+            $("#<%=funding.ClientID%>").hide();
+            $("#<%=btn_fundingdetails.ClientID%>").attr("disabled", "disabled");
+        }
+        $(function () {
+            $("#<%=ddlFamilyMember.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
+        $(function () {
+            $("#<%=ddlFamilyAdult.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
+        $(function () {
+            $("#<%=ddlFamilyChildren.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
+        $(function () {
+            $("#<%=ddlAccomdation.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
+        $(function () {
+            $("#<%=ddlCooking.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
+        $(function () {
+            $("#<%=ddltransportchoice.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
+        $(function () {
+            $("#<%=ddlTrips.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
+        $(function () {
+            $("#<%=ddlEntertainment.ClientID%>").change(function () {
+                hidecostandbutton();
+            });
+        });
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#studentapplication_finances').addClass('open');

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,7 +17,8 @@ public partial class applicantdeclaration : System.Web.UI.Page
     string webURL = String.Empty;
     int UniversityID = -1;
     applicantprogressbar applicantprogressbar = new applicantprogressbar();
-    
+    protected List<declaration_master> allStatements = new List<declaration_master>();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -34,7 +36,18 @@ public partial class applicantdeclaration : System.Web.UI.Page
             applicantprogressbar = db.applicantprogressbar.Where(x => x.applicantid == UserID && x.universityid == UniversityID).FirstOrDefault();
             if (applicantprogressbar != null)
                 questionGiven = applicantprogressbar.question;
+
+            allStatements = db.declaration_master.Where(x => x.universityId == UniversityID).ToList();
+            foreach(var item in allStatements)
+                item.statement_description = AddLinkInText(item.statement_description);
         }
+    }
+
+    public string AddLinkInText(string text)
+    {
+        Regex r = new Regex(@"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})");
+        text = r.Replace(text, "<a href=\"$1\" target=\"_blank\">$1</a>");
+        return text;
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

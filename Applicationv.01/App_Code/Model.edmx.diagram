@@ -281,14 +281,14 @@
         <AssociationConnector Association="GTEModel.FK_mapping_campusdetail" />
         <AssociationConnector Association="GTEModel.FK_campus_universityMaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
-        <EntityTypeShape EntityType="GTEModel.declaration_master" Width="1.5" PointX="7.5" PointY="90.625" />
-        <EntityTypeShape EntityType="GTEModel.gte_declaration_master" Width="1.5" PointX="7.5" PointY="86.75" />
         <EntityTypeShape EntityType="GTEModel.universitywise_scholarshipmapping" Width="1.5" PointX="10" PointY="59.125" />
-        <AssociationConnector Association="GTEModel.FK_declaration_master_university_master" />
         <AssociationConnector Association="GTEModel.FK_universitywiseformmapping_formmaster" />
-        <AssociationConnector Association="GTEModel.FK_gte_declaration_master_university_master" />
         <AssociationConnector Association="GTEModel.FK_universitywise_scholarshipmapping_scholarships" />
         <AssociationConnector Association="GTEModel.FK_universitywise_scholarshipmapping_university_master" />
+        <EntityTypeShape EntityType="GTEModel.declaration_master" Width="1.5" PointX="7.5" PointY="90.5" />
+        <AssociationConnector Association="GTEModel.FK_declaration_master_university_master" />
+        <EntityTypeShape EntityType="GTEModel.gte_declaration_master" Width="1.5" PointX="7.5" PointY="86.5" />
+        <AssociationConnector Association="GTEModel.FK_gte_declaration_master_university_master" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

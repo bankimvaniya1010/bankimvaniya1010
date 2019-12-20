@@ -22,7 +22,7 @@ public partial class admin_declaration_master : System.Web.UI.Page
         roleName = Utility.GetRoleName();
         if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
             Response.Redirect(webURL + "admin/Login.aspx", true);
-
+        
         universityID = Utility.GetUniversityId();
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
@@ -38,7 +38,7 @@ public partial class admin_declaration_master : System.Web.UI.Page
         {
             BindUniversity();
             if (objdeclarationmaster!= null)
-                PopulateInfo();
+                PopulateInfo();            
         }
     }
 
@@ -57,15 +57,7 @@ public partial class admin_declaration_master : System.Web.UI.Page
                     ddlUniversity.Items.FindByValue(declarationData.universityId.ToString()).Selected = true;
                 }
                 txtstatement.Value = declarationData.statement_description;
-                
-                if (declarationData.Issummarystatements!= null)
-                {
-                    ddlType.ClearSelection();
-                    if (declarationData.Issummarystatements == true)
-                        ddlType.Items.FindByValue("summary").Selected = true;                    
-                    else
-                        ddlType.Items.FindByValue("declaration").Selected = true;
-                }
+                txtheaderstatements.Value = declarationData.header_description;               
             }
         }
         catch (Exception ex)
@@ -117,11 +109,7 @@ public partial class admin_declaration_master : System.Web.UI.Page
             }
                        
             objdeclarationmaster.statement_description = txtstatement.Value;
-            if (ddlType.SelectedValue == "summary")
-                objdeclarationmaster.Issummarystatements = true;
-            else if(ddlType.SelectedValue == "declaration")
-                objdeclarationmaster.Issummarystatements = false;
-
+            objdeclarationmaster.header_description = txtheaderstatements.Value;
             objdeclarationmaster.universityId = Convert.ToInt32(ddlUniversity.SelectedValue);
             objdeclarationmaster.edited_by = Convert.ToInt32(Session["Role"]);
             if (mode == "new")

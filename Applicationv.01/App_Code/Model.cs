@@ -1382,7 +1382,7 @@ public partial class customfieldvalue
 public partial class declaration_master
 {
     public int Id { get; set; }
-    public Nullable<bool> Issummarystatements { get; set; }
+    public string header_description { get; set; }
     public string statement_description { get; set; }
     public Nullable<int> universityId { get; set; }
     public System.DateTime created_at { get; set; }
@@ -1603,6 +1603,9 @@ public partial class gte_applicantdetails
     public Nullable<int> tuitionandlivingcost { get; set; }
     public Nullable<int> nameofuniversityappliedfor { get; set; }
     public Nullable<int> cityofeducationInstitution { get; set; }
+    public Nullable<int> isstudentreferbyagent { get; set; }
+    public Nullable<int> agentid { get; set; }
+    public string profilepicturepath { get; set; }
 }
 
 public partial class gte_applicantdocument
@@ -1651,7 +1654,7 @@ public partial class gte_declaration_master
     public int Id { get; set; }
     public Nullable<int> universityId { get; set; }
     public string statementdescription { get; set; }
-    public Nullable<bool> statement_type { get; set; }
+    public string header_description { get; set; }
     public System.DateTime created_at { get; set; }
     public Nullable<int> edited_by { get; set; }
 
@@ -2634,9 +2637,9 @@ public partial class university_master
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
         this.universitycampus = new HashSet<universitycampus>();
+        this.universitywise_scholarshipmapping = new HashSet<universitywise_scholarshipmapping>();
         this.declaration_master = new HashSet<declaration_master>();
         this.gte_declaration_master = new HashSet<gte_declaration_master>();
-        this.universitywise_scholarshipmapping = new HashSet<universitywise_scholarshipmapping>();
     }
 
     public int universityid { get; set; }
@@ -2740,11 +2743,11 @@ public partial class university_master
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitycampus> universitycampus { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<declaration_master> declaration_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<gte_declaration_master> gte_declaration_master { get; set; }
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-    public virtual ICollection<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }
 }
 
 public partial class universitycampus

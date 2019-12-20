@@ -17,7 +17,7 @@ public partial class applicantfunding : System.Web.UI.Page
     protected static List<faq> allQuestions = new List<faq>();
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -206,6 +206,16 @@ public partial class applicantfunding : System.Web.UI.Page
                     ddlFamilyMember.ClearSelection();
                     ddlFamilyMember.Items.FindByValue(fundingInfo.familymember.ToString()).Selected = true;
                 }
+                if (fundingInfo.adultmemberCount != null)
+                {
+                    ddlFamilyAdult.ClearSelection();
+                    ddlFamilyAdult.Items.FindByValue(fundingInfo.adultmemberCount.ToString()).Selected = true;
+                }
+                if (fundingInfo.childrenmemberCount != null)
+                {
+                    ddlFamilyChildren.ClearSelection();
+                    ddlFamilyChildren.Items.FindByValue(fundingInfo.childrenmemberCount.ToString()).Selected = true;
+                }
                 if (fundingInfo.accommodationplan != null)
                 {
                     ddlAccomdation.ClearSelection();
@@ -233,6 +243,24 @@ public partial class applicantfunding : System.Web.UI.Page
                     ddlEntertainment.ClearSelection();
                     ddlEntertainment.Items.FindByValue(fundingInfo.entertainment.ToString()).Selected = true;
                 }
+
+                if (fundingInfo.PrivateFinancePercentage != null)
+                    txtPrivateFinancePercentage.Value = fundingInfo.PrivateFinancePercentage.ToString();
+
+                if (fundingInfo.ScholarshipPercentage != null)
+                    txtScholarshipPercentage.Value = Convert.ToString(fundingInfo.ScholarshipPercentage);
+
+                if (fundingInfo.studentLoanPercentage != null)
+                    txtLoanPercentage.Value = Convert.ToString(fundingInfo.studentLoanPercentage);
+
+                if (fundingInfo.SponsorshipPercentage != null)
+                    txtSponsorshipPercentage.Value = Convert.ToString(fundingInfo.SponsorshipPercentage);
+
+                if (fundingInfo.PartTimeWorkPercentage != null)
+                    txtPartTimeWorkPercentage.Value = Convert.ToString(fundingInfo.PartTimeWorkPercentage);
+
+                if (fundingInfo.PrivateFinancePercentage != null && fundingInfo.ScholarshipPercentage != null && fundingInfo.studentLoanPercentage != null && fundingInfo.SponsorshipPercentage != null && fundingInfo.PartTimeWorkPercentage != null)
+                    calucluateCost();
             }
         }
         catch (Exception ex)
@@ -259,12 +287,18 @@ public partial class applicantfunding : System.Web.UI.Page
             {
                 objapplicantfunding.studyoption = Convert.ToInt32(ddlstudy.SelectedValue);
                 objapplicantfunding.familymember = null;
+                objapplicantfunding.adultmemberCount = null;
+                objapplicantfunding.childrenmemberCount = null;
             }
             if (ddlstudy.SelectedValue == "2")
             {
                 if (ddlFamilyMember.SelectedValue != "")
                 {
                     objapplicantfunding.familymember = Convert.ToInt32(ddlFamilyMember.SelectedValue);
+                    if (ddlFamilyAdult.SelectedValue != "")
+                        objapplicantfunding.adultmemberCount = Convert.ToInt32(ddlFamilyAdult.SelectedValue);
+                    if (ddlFamilyChildren.SelectedValue != "")
+                        objapplicantfunding.childrenmemberCount = Convert.ToInt32(ddlFamilyChildren.SelectedValue);
                 }
             }
             if (ddlAccomdation.SelectedValue != "")
@@ -290,15 +324,29 @@ public partial class applicantfunding : System.Web.UI.Page
                 objapplicantfunding.entertainment = Convert.ToInt32(ddlEntertainment.SelectedValue);
             }
 
+            //cost           
+
+            if (Convert.ToDecimal(txtPrivateFinancePercentage.Value) != 0)
+                objapplicantfunding.PrivateFinancePercentage = Math.Round(Convert.ToDecimal(txtPrivateFinancePercentage.Value),2);
+
+            if (Convert.ToDecimal(txtScholarshipPercentage.Value) != 0)
+                objapplicantfunding.ScholarshipPercentage = Math.Round(Convert.ToDecimal(txtScholarshipPercentage.Value), 2);
+
+            if (Convert.ToDecimal(txtLoanPercentage.Value) != 0)
+                objapplicantfunding.studentLoanPercentage = Math.Round(Convert.ToDecimal(txtLoanPercentage.Value), 2);
+
+            if (Convert.ToDecimal(txtSponsorshipPercentage.Value) != 0)
+                objapplicantfunding.SponsorshipPercentage = Math.Round(Convert.ToDecimal(txtSponsorshipPercentage.Value), 2);
+
+            if (Convert.ToDecimal(txtPartTimeWorkPercentage.Value) != 0)
+                objapplicantfunding.PartTimeWorkPercentage = Math.Round(Convert.ToDecimal(txtPartTimeWorkPercentage.Value), 2);
 
             objapplicantfunding.applicantid = userID;
             objapplicantfunding.universityid = universityID;
             if (mode == "new")
                 db.applicantfundingmaster.Add(objapplicantfunding);
             db.SaveChanges();
-            
-            
-
+            PopulateFundingDetails();
         }
         catch (Exception ex)
         {
@@ -317,6 +365,15 @@ public partial class applicantfunding : System.Web.UI.Page
 
     protected void btnCalculateCosts_Click(object sender, EventArgs e)
     {
+        txtPrivateFinancePercentage.Value = "0";
+        txtScholarshipPercentage.Value = "0";
+        txtLoanPercentage.Value = "0";
+        txtSponsorshipPercentage.Value = "0";
+        txtPartTimeWorkPercentage.Value = "0";
+        calucluateCost();
+    }
+
+    private void calucluateCost() {
         var studyWithChoice = ddlstudy.SelectedItem;
         var noOfAdultFamilyMember = 0;
         var noOfChildFamilyMember = 0;
@@ -375,49 +432,56 @@ public partial class applicantfunding : System.Web.UI.Page
             var healthCostDetails = db.managehealth_insurance.Where(x => x.cityid == cityId).Select(s => new { s.amount, child_insurance = s.extra_child_amount.Value, extra_adult_insurance = s.extra_adult_amount.Value }).FirstOrDefault();
             var visaCostDetails = db.managevisa.Where(x => x.cityid == cityId).Select(s => new { s.amount, child_visa = s.extra_adult_amount.Value, extra_adult_visa = s.extra_child_amount.Value }).FirstOrDefault();
 
-            var currencyDetails = db.currency_master.Where(x => x.id == accomdationDetails.currencyid).Select(x => new { symbol = x.currency_symbol, code = x.currency_code }).FirstOrDefault();
-            var accomdationCost = accomdationDetails.amount;
-            var mealsCost = mealsCostDetails.amount;
-            var transportationCost = transportationCostDetails.amount;
-            var tripsCost = tripsCostDetails.amount;
-            var entertainmentCost = entertainmentCostDetails.amount;
-            var utilitiesCost = utilitiesCostDetails.amount;
-
-            var healthCost = healthCostDetails.amount;
-            var visaCost = visaCostDetails.amount;
-
-            var living_expenses = accomdationCost + mealsCost + transportationCost + tripsCost + entertainmentCost + utilitiesCost + healthCost + visaCost;
-
-            if (studyWithChoice.Text.Contains("Family"))
+            //check for any null data from any master
+            if (accomdationDetails == null || mealsCostDetails == null || transportationCostDetails == null || tripsCostDetails == null || entertainmentCostDetails == null || utilitiesCostDetails == null || healthCostDetails == null || visaCostDetails == null)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Unable to calculate cost for your select set of entries. Please contact to your administrator');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+            else
             {
-                accomdationCost = accomdationCost + (accomdationCost * noOfAdultFamilyMember * accomdationDetails.adult_percentage) + (accomdationCost * noOfChildFamilyMember * accomdationDetails.child_percentage);
-                mealsCost = mealsCost + (mealsCost * noOfAdultFamilyMember * mealsCostDetails.adult_percentage) + (mealsCost * noOfChildFamilyMember * mealsCostDetails.child_percentage);
-                transportationCost = transportationCost + (transportationCost * noOfAdultFamilyMember * transportationCostDetails.adult_percentage) + (transportationCost * noOfChildFamilyMember * transportationCostDetails.child_percentage);
-                tripsCost = tripsCost + (tripsCost * noOfAdultFamilyMember * tripsCostDetails.adult_percentage) + (tripsCost * noOfChildFamilyMember * tripsCostDetails.child_percentage);
-                entertainmentCost = entertainmentCost + (entertainmentCost * noOfAdultFamilyMember * entertainmentCostDetails.adult_percentage) + (entertainmentCost * noOfChildFamilyMember * entertainmentCostDetails.child_percentage);
-                utilitiesCost = utilitiesCost + (utilitiesCost * noOfAdultFamilyMember * utilitiesCostDetails.adult_percentage) + (utilitiesCost * noOfChildFamilyMember * utilitiesCostDetails.child_percentage);
+                var currencyDetails = db.currency_master.Where(x => x.id == accomdationDetails.currencyid).Select(x => new { symbol = x.currency_symbol, code = x.currency_code }).FirstOrDefault();
+                var accomdationCost = accomdationDetails.amount;
+                var mealsCost = mealsCostDetails.amount;
+                var transportationCost = transportationCostDetails.amount;
+                var tripsCost = tripsCostDetails.amount;
+                var entertainmentCost = entertainmentCostDetails.amount;
+                var utilitiesCost = utilitiesCostDetails.amount;
 
-                healthCost = healthCost + (noOfAdultFamilyMember * healthCostDetails.extra_adult_insurance) + (noOfChildFamilyMember * healthCostDetails.child_insurance);
-                visaCost = visaCost + (noOfAdultFamilyMember * visaCostDetails.extra_adult_visa) + (noOfChildFamilyMember * visaCostDetails.child_visa);
+                var healthCost = healthCostDetails.amount;
+                var visaCost = visaCostDetails.amount;
 
-                living_expenses = accomdationCost + mealsCost + transportationCost + tripsCost + entertainmentCost + utilitiesCost + healthCost + visaCost;
+                var living_expenses = accomdationCost + mealsCost + transportationCost + tripsCost + entertainmentCost + utilitiesCost + healthCost + visaCost;
+
+                if (studyWithChoice.Text.Contains("Family"))
+                {
+                    accomdationCost = accomdationCost + (accomdationCost * noOfAdultFamilyMember * accomdationDetails.adult_percentage) + (accomdationCost * noOfChildFamilyMember * accomdationDetails.child_percentage);
+                    mealsCost = mealsCost + (mealsCost * noOfAdultFamilyMember * mealsCostDetails.adult_percentage) + (mealsCost * noOfChildFamilyMember * mealsCostDetails.child_percentage);
+                    transportationCost = transportationCost + (transportationCost * noOfAdultFamilyMember * transportationCostDetails.adult_percentage) + (transportationCost * noOfChildFamilyMember * transportationCostDetails.child_percentage);
+                    tripsCost = tripsCost + (tripsCost * noOfAdultFamilyMember * tripsCostDetails.adult_percentage) + (tripsCost * noOfChildFamilyMember * tripsCostDetails.child_percentage);
+                    entertainmentCost = entertainmentCost + (entertainmentCost * noOfAdultFamilyMember * entertainmentCostDetails.adult_percentage) + (entertainmentCost * noOfChildFamilyMember * entertainmentCostDetails.child_percentage);
+                    utilitiesCost = utilitiesCost + (utilitiesCost * noOfAdultFamilyMember * utilitiesCostDetails.adult_percentage) + (utilitiesCost * noOfChildFamilyMember * utilitiesCostDetails.child_percentage);
+
+                    healthCost = healthCost + (noOfAdultFamilyMember * healthCostDetails.extra_adult_insurance) + (noOfChildFamilyMember * healthCostDetails.child_insurance);
+                    visaCost = visaCost + (noOfAdultFamilyMember * visaCostDetails.extra_adult_visa) + (noOfChildFamilyMember * visaCostDetails.child_visa);
+
+                    living_expenses = accomdationCost + mealsCost + transportationCost + tripsCost + entertainmentCost + utilitiesCost + healthCost + visaCost;
+                }
+
+                tution_fee.InnerText = currencyDetails.symbol + Math.Round(tutionFeeCost.Value, 0).ToString();
+                accomodation_cost.InnerText = currencyDetails.symbol + Math.Round(accomdationCost, 0).ToString();
+                meals_cost.InnerText = currencyDetails.symbol + Math.Round(mealsCost, 0).ToString();
+                transportation_cost.InnerText = currencyDetails.symbol + Math.Round(transportationCost, 0).ToString();
+                trips_cost.InnerText = currencyDetails.symbol + Math.Round(tripsCost, 0).ToString();
+                entertainment_cost.InnerText = currencyDetails.symbol + Math.Round(entertainmentCost, 0).ToString();
+                utilities_cost.InnerText = currencyDetails.symbol + Math.Round(utilitiesCost, 0).ToString();
+                health_insurance_cost.InnerText = currencyDetails.symbol + Math.Round(healthCost, 0).ToString();
+                visa_cost.InnerText = currencyDetails.symbol + Math.Round(visaCost, 0).ToString();
+
+                living_cost.InnerText = currencyDetails.symbol + Math.Round(living_expenses, 0).ToString();
+                living_cost1.InnerText = living_cost.InnerText;
+                grand_total.InnerText = currencyDetails.symbol + Math.Round(tutionFeeCost.Value + living_expenses, 0).ToString();
+                hidCurrency.Value = currencyDetails.code + currencyDetails.symbol;
+                hidAmount.Value = Math.Round(tutionFeeCost.Value + living_expenses, 0).ToString();
             }
 
-            tution_fee.InnerText = currencyDetails.symbol + Math.Round(tutionFeeCost.Value, 0).ToString();
-            accomodation_cost.InnerText = currencyDetails.symbol + Math.Round(accomdationCost, 0).ToString();
-            meals_cost.InnerText = currencyDetails.symbol + Math.Round(mealsCost, 0).ToString();
-            transportation_cost.InnerText = currencyDetails.symbol + Math.Round(transportationCost, 0).ToString();
-            trips_cost.InnerText = currencyDetails.symbol + Math.Round(tripsCost, 0).ToString();
-            entertainment_cost.InnerText = currencyDetails.symbol + Math.Round(entertainmentCost, 0).ToString();
-            utilities_cost.InnerText = currencyDetails.symbol + Math.Round(utilitiesCost, 0).ToString();
-            health_insurance_cost.InnerText = currencyDetails.symbol + Math.Round(healthCost, 0).ToString();
-            visa_cost.InnerText = currencyDetails.symbol + Math.Round(visaCost, 0).ToString();
-
-            living_cost.InnerText = currencyDetails.symbol + Math.Round(living_expenses, 0).ToString();
-            living_cost1.InnerText = living_cost.InnerText;
-            grand_total.InnerText = currencyDetails.symbol + Math.Round(tutionFeeCost.Value + living_expenses, 0).ToString();
-            hidCurrency.Value = currencyDetails.code + currencyDetails.symbol;
-            hidAmount.Value = Math.Round(tutionFeeCost.Value + living_expenses, 0).ToString();
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
 

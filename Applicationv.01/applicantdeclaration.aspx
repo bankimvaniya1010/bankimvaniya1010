@@ -25,56 +25,65 @@
 
                     <div class="card">
                         <div class="list-group list-group-fit">
-                            <label style="font-size:large;">The following information will be reported:</label>
+                            <%--<label style="font-size:large;margin-left: 12px;margin-top: 10px;">The following information will be reported:</label>--%>
                             <div class="list-group-item">
-                                <div class="form-group">
-                                    <div class="form-row">
-                                        <label id="lblSummaryHeader" runat="server" style="font-size:large;font-weight:500;">Summary</label><br />
-                                    </div>
-                                    <div class="form-row">
-                                        <label id="lblSummaryPoint1" runat="server" style="font-size:small;">I have met the requirements in my Job Plan for this period.</label><br />
-                                        <label id="lblSummaryPoint2" runat="server" style="font-size:small;">I have worked 4 hours for PAINT STORE and earned $120.00 this period.</label><br />
-                                        <label id="lblSummaryPoint3" runat="server" style="font-size:small;">My partner has worked 2 hours for SHOP 2 and earned $42.00 this period.</label>
-                                    </div>
-                                    <div class="form-row">
-                                        <label id="lblDeclarationHeader1" runat="server" style="font-size:large;font-weight:500;margin-left: 20px;">
-                                            <input type="checkbox" id="decHeader1" style="margin-left: -20px;"/>
-                                            I hereby declare that the information given by me is true and correct to the best of my knowledge and belief.
-                                        </label>
-                                    </div>
-                                    <div class="form-row">
-                                        <label id="lblDeclarationHeader2" runat="server" style="font-size: medium;">I understand that:</label><br />
-                                    </div>
-                                    <div class="form-row">
-                                        <label id="lblDeclarationPoint1" runat="server" style="font-size:small;margin-left: 20px;">
-                                            <input type="checkbox" id="decPoint1" style="margin-left: -20px;"/>
-                                            Giving false or misleading information is a serious offence.
-                                        </label>
-                                        <label id="lblDeclarationPoint2" runat="server" style="font-size:small;margin-left: 20px;">
-                                            <input type="checkbox" id="decPoint2" style="margin-left: -20px;"/>
-                                            The Department of Human Services can make any enquiry necessary to ensure I receive the correct payment.
-                                        </label>
-                                        <label id="lblDeclarationPoint3" runat="server" style="font-size:small;margin-left: 20px;">
-                                            <input type="checkbox" id="decPoint3" style="margin-left: -20px;"/>
-                                            I need to advise Department of Human Services of any changes to my circumstances as soon as the change occurs.
-                                        </label>
-                                        <label id="lblDeclarationPoint4" runat="server" style="font-size:small;margin-left: 20px;">
-                                            <input type="checkbox" id="decPoint4" style="margin-left: -20px;"/>
-                                            I may need to provide further information if requested. I must keep a record of my job search efforts for each reporting period, as I may be requested to provide this information.
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="list-group-item" id="employerwebsite">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                    <div class="form-row">                                         
-                                        <a href="preliminary.aspx" class="btn btn-danger" style="margin-right:90px;">I do not accept</a> 
-                                        <asp:Button ID="btnSave" runat="server" Text="I accept" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
-                                    </div>
-                                </div>
-                            </div>
+                                <div class="form-group">                                   
+                                    <div>                                        
+                                    <% if (allStatements.Count > 0)
+                                    {%>
+                                        <div class="form-row">
+                                            <label id="lblSummaryHeader" runat="server" style="font-size:large;font-weight:500;">Headers</label><br />
+                                        </div>
 
+                                        <% for (int v = 0; v < allStatements.Count; v++)
+                                            { %>            
+                                                
+                                                <div class="form-row" style="font-size:small;">
+                                                    <label> <%=allStatements[v].header_description.Replace(Environment.NewLine, "<br />") %></label><br />                                                    
+                                                </div>      
+                                            <%}
+                                    }%>
+                                </div>
+                                <%--<div class="form-row" style="margin-top: 15px;}">
+                                    <label id="lblDeclarationHeader1" runat="server" style="font-size:large;font-weight:500;margin-left: 20px;">
+                                        <input type="checkbox" id="decHeader1" style="margin-left: -20px;"/>
+                                        I hereby declare that the information given by me is true and correct to the best of my knowledge and belief.
+                                    </label>
+                                </div>--%>
+                                    <div style="font-size:small;">
+                                      <% if (allStatements.Count > 0)
+                                        {%>
+                                            <div class="form-row">
+                                                <label id="Label1" runat="server" style="font-size:large;font-weight:500;">Statements</label><br />
+                                            </div>
+
+                                            <% for (int v = 0; v < allStatements.Count; v++)
+                                                { %>                                                 
+                                                    <div class="form-row" style="font-size:small;">
+                                                        <label> <%=allStatements[v].statement_description.Replace(Environment.NewLine, "<br />") %></label><br />                                                    
+                                                    </div>      
+                                                <%}
+                                        }%>
+                                    </div>
+                                </div>
+                            </div>
+                            <% if (allStatements.Count > 0)
+                                { %>
+                                <div class="list-group-item" id="employerwebsite">
+                                    <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
+                                        <div class="form-row">                                         
+                                            <a href="preliminary.aspx" class="btn btn-danger" style="margin-right:90px;">I do not accept</a> 
+                                            <asp:Button ID="btnSave" runat="server" Text="I accept" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
+                                        </div>
+                                    </div>
+                                </div>
+                            <% }
+                               else
+                               { %>
+                                     <div runat="server" class="list-group-item">                                      
+                                            <asp:Label ID="lblmsg" runat="server" Text="Declations Not Set By Institution"></asp:Label>                                      
+                                     </div>
+                            <% } %>
                         </div>
                     </div>
                 </div>
@@ -118,19 +127,30 @@
     </div>
     <script>
         var questionGiven = '<%=questionGiven%>';
-        
+       <%-- var allstatementscount = '<%=allStatements.Count%>';
+        var summarycount = '<%=summarystatCount%>';--%>
+
         function validate() {
             if (questionGiven == 0) {
                 alert("Please first complete Quick Test");
-            }
-            else if (!$('#decHeader1').is(":checked") || !$('#decPoint1').is(":checked") || !$('#decPoint2').is(":checked") || !$('#decPoint3').is(":checked") || !$('#decPoint4').is(":checked")) {
-                alert("Please tick all check boxes before proceeding.");
                 return false;
             }
+            //else if (!$('#decHeader1').is(":checked")) {
+            //    alert("Please tick all check boxes before proceeding.");
+            //    return false;
+            //}
+            //for (var i = summarycount; i < allstatementscount; i++) {
+            //    var chk = $("#declarationchk_" + i);
+
+            //    if (!chk.is(':checked')) {
+            //        alert("Please tick all check boxes before proceeding.");
+            //        return false;
+            //    }
+            //}
             return !(questionGiven == 0);
         }
 
-         $(document).ready(function () {
+        $(document).ready(function () {
               $('.sidebar-menu-item').removeClass('open');
               $('#preliminary_list').addClass('open');
               $('.sidebar-menu-item').removeClass('active');

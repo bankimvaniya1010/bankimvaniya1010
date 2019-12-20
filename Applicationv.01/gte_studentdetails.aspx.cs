@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
@@ -58,7 +59,8 @@ public partial class gte_studentdetails : System.Web.UI.Page
             Bindannualfee();
             BindstudyField(ddlhighestqualificationAchieved, true);
             BindstudyField(ddlcourseapplied, false);
-            BindCommencementDate(ddlCommencementdate);
+            BindAgent();
+            //BindCommencementDate(ddlCommencementdate);
             if (isuniversityGroupHead)
                 BindUnivercity(universityID);
             else
@@ -69,6 +71,16 @@ public partial class gte_studentdetails : System.Web.UI.Page
             populategteapplicantdetail();            
         }
     }
+
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string GetCommenceDateDropdown(int courseid)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var temp = db1.course_dates.Where(x => x.courseid == courseid && x.commencementdate > DateTime.Now).OrderBy(x => x.commencementdate).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
+        return JsonConvert.SerializeObject(temp);
+    }
+
     [WebMethod]
     [ScriptMethod(UseHttpGet = true)]
     public static string GetWorkTypeDropdown()
@@ -84,17 +96,17 @@ public partial class gte_studentdetails : System.Web.UI.Page
         return JsonConvert.SerializeObject(temp);
     }
 
-    private void BindCommencementDate(DropDownList ddl)
+    private void BindCommencementDate(int courseId, DropDownList ddl)
     {
         try
         {
             ListItem lst = new ListItem("Please select", "0");
-            var dates = db.course_dates.Where(x => x.coursemaster.universityid == universityID && x.commencementdate > DateTime.Now).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
-            ddlCommencementdate.DataSource = dates;
-            ddlCommencementdate.DataTextField = "commencementdate";
-            ddlCommencementdate.DataValueField = "id";
-            ddlCommencementdate.DataBind();
-            ddlCommencementdate.Items.Insert(0, lst);
+            var dates = db.course_dates.Where(x => x.courseid == courseId).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MM/yyyy"), x.id });
+            ddl.DataSource = dates;
+            ddl.DataTextField = "commencementdate";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
@@ -125,7 +137,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.coursemaster
                     join mapping in db1.course_campus_mapping on cm.courseid equals mapping.courseid
-                    where cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId
+                    where cm.universityid == universityID1  && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId
                     select new
                     {
                         coursename = cm.coursename,
@@ -140,8 +152,6 @@ public partial class gte_studentdetails : System.Web.UI.Page
         {
             ListItem lst = new ListItem("Please select", "0");
             var courses = (from cm in db.coursemaster
-                           join md in db.majordiscipline_master on cm.majordisciplineId equals md.id
-                           join sl in db.studylevelmaster on cm.levelofstudyId equals sl.studylevelid
                            join mapping in db.course_campus_mapping on cm.courseid equals mapping.courseid
                            where cm.universityid == universityID && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId
                            select new
@@ -220,9 +230,9 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (ddlfieldofstudy.SelectedValue != "")
                 objgte_applicantdetails.fieldofstudyapplied = Convert.ToInt32(ddlfieldofstudy.SelectedValue);
             objgte_applicantdetails.coursename = hidnameofcourse.Value;
-            if (ddlCommencementdate.SelectedValue != "")
-                objgte_applicantdetails.commencementdate = ddlCommencementdate.SelectedValue;
-            //objgte_applicantdetails.commencementdate = Convert.ToDateTime(txtcommencementdate.Value);
+                        
+            if (hidCommencementDate.Value != "")
+                objgte_applicantdetails.commencementdate = hidCommencementDate.Value;
 
             if (ddlworkexperience.SelectedValue != "" && Convert.ToInt32(ddlworkexperience.SelectedValue) == 1)
                 objgte_applicantdetails.workexperience = 0;
@@ -232,7 +242,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
 
             if (Convert.ToInt32(ddlworkexperience.SelectedValue) == 1)
                 objgte_applicantdetails.typeofworkexperience = 0;
-            else 
+            else
                 objgte_applicantdetails.typeofworkexperience = Convert.ToInt32(hidddltypeofworkexperience.Value);
 
 
@@ -253,8 +263,35 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 objgte_applicantdetails.cityofeducationInstitution = Convert.ToInt32(ddleduinstitutioncity.Value);
             }
 
-            if(ddlUniversityCampus.SelectedValue != "")
+            if (ddlUniversityCampus.SelectedValue != "")
                 objgte_applicantdetails.campusid = Convert.ToInt32(ddlUniversityCampus.SelectedValue);
+
+            //agent 
+            if (rblAgentYes.Checked)
+            {
+                objgte_applicantdetails.isstudentreferbyagent = 1;
+                if (ddlAgent.SelectedValue != "")
+                    objgte_applicantdetails.agentid = Convert.ToInt32(ddlAgent.SelectedValue);
+
+            }
+            else if (rblAgentNo.Checked)
+            {
+                objgte_applicantdetails.isstudentreferbyagent = 0;
+                objgte_applicantdetails.agentid = null;
+            }
+
+            //profile pic
+            if (FileUpload.HasFile)
+            {
+                string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+                docPath = docPath + "/GTEProfileDetail/";
+                if (!Directory.Exists(docPath))
+                    Directory.CreateDirectory(docPath);
+                string extension = Path.GetExtension(FileUpload.PostedFile.FileName);
+                string filename = userID + extension;
+                FileUpload.PostedFile.SaveAs(docPath + filename);
+                objgte_applicantdetails.profilepicturepath = filename;
+            }
 
             objgte_applicantdetails.applicantid = userID;
             objgte_applicantdetails.universityid = universityID;
@@ -266,7 +303,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             if (!isProfileDetailsCompletedByApplicant)
                 Session["ProfileDetailsCompletedByApplicant"] = objCom.SetGteStudentDetailsCompletedStatus(userID, universityID);
             Response.Redirect(webURL + "gte_questions1.aspx", true);
-
+           
         }
         catch (Exception ex)
         {
@@ -407,8 +444,28 @@ public partial class gte_studentdetails : System.Web.UI.Page
                 }
                 if (studentInfo.commencementdate != null)
                 {
+                    BindCommencementDate(Convert.ToInt32(hidnameofcourse.Value), ddlCommencementdate);
                     ddlCommencementdate.ClearSelection();
                     ddlCommencementdate.Items.FindByValue(studentInfo.commencementdate.ToString()).Selected = true;
+                    hidCommencementDate.Value = studentInfo.commencementdate.ToString();
+                }
+
+                //agent
+                if (studentInfo.isstudentreferbyagent == 1)
+                    rblAgentYes.Checked = true;
+                else if (studentInfo.isstudentreferbyagent == 0)
+                    rblAgentNo.Checked = true;
+                if (studentInfo.agentid != null)
+                {
+                    ddlAgent.ClearSelection();
+                    ddlAgent.Items.FindByValue(studentInfo.agentid.ToString()).Selected = true;
+                }
+                //profile pic
+                if (studentInfo.profilepicturepath != null)
+                {
+                    hidDocumentPath.Value = studentInfo.profilepicturepath;
+                    uploadedFile.NavigateUrl = webURL + "/Docs/GTEProfileDetail/" + studentInfo.profilepicturepath;
+                    uploadedFile.Text = "View File";
                 }
             }
         }
@@ -688,5 +745,31 @@ public partial class gte_studentdetails : System.Web.UI.Page
         }
     }
 
+    protected void btnNewAgent_Click(object sender, EventArgs e)
+    {
+        System.Text.StringBuilder sb = new System.Text.StringBuilder();
+        sb.Append("Dear Agent,<br/>");
+        sb.Append("Please find below registration page to The Application Center to get your credit <br/>");
+        sb.Append(webURL + "registeragent.aspx" + " <br/>");
+        sb.Append("Thank You Backend Team The Application Center,<br/>");
+        objCom.SendMail(txtAgentname.Text, sb.ToString(), "Agent Registration Link");
+    }
     
+    private void BindAgent()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var agent = db.agentmaster.ToList();
+            ddlAgent.DataSource = agent;
+            ddlAgent.DataTextField = "agentname";
+            ddlAgent.DataValueField = "agentid";
+            ddlAgent.DataBind();
+            ddlAgent.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
 }

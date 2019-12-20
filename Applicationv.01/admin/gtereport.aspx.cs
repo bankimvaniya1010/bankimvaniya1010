@@ -33,6 +33,7 @@ public partial class admin_gtereport : System.Web.UI.Page
     protected string _notesDisclaimer = "";    
 
     public string logourl = string.Empty;
+    public string studentphoto = string.Empty;
 
     protected int ApplicantID = 0, universityID = 0;
     protected string _universityName;
@@ -60,7 +61,12 @@ public partial class admin_gtereport : System.Web.UI.Page
                 var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo , x.notes_disclaimer,x.university_name,x.full_service }).FirstOrDefault();
                 logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
                 _universityName = universityDetails.university_name;
-                
+
+                //studentphoto field is missing for fullservice
+                var gte_applicantdetails = db.gte_applicantdetails.Where(x => x.universityid == universityID && x.applicantid == ApplicantID).FirstOrDefault();
+                if (gte_applicantdetails != null && gte_applicantdetails.profilepicturepath != "")
+                    studentphoto = webURL + "/Docs/GTEProfileDetail/" + gte_applicantdetails.profilepicturepath;
+
                 var Personal = db.applicantdetails.Where(x => x.applicantid == ApplicantID && x.universityid == universityID).FirstOrDefault();
                 _studentName = Personal.firstname + " " + Personal.lastname;
                                

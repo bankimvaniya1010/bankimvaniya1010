@@ -28,31 +28,26 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Statments Description</label>
+                        <label class="col-sm-3 col-form-label form-label">Header Statement </label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <textarea runat="server" id="txtstatement" class="form-control" style="height: 180px;width: 400px;"></textarea>
-                                </div>
-
+                                    <textarea runat="server" id="txtheaderstatements" class="form-control" style="height: 180px;width: 400px;"></textarea>                                    
+                                </div>                                
                             </div>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-3 col-form-label form-label">Statement Type</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Statments Description<br/><br/>
+                            (*Please enter next statements in new line)</label>                          
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <asp:DropDownList ID="ddlType" CssClass="form-control" runat="server">
-                                        <asp:ListItem Value="0">Please Select</asp:ListItem>
-                                        <asp:ListItem Value="summary">Summary</asp:ListItem>
-                                        <asp:ListItem Value="declaration">Declaration</asp:ListItem>
-                                    </asp:DropDownList>
-                                </div>
-
+                                    <textarea runat="server" id="txtstatement" class="form-control" style="height: 180px;width: 400px;"></textarea>                                                                      
+                                </div>                                
                             </div>
                         </div>
-                    </div>
+                    </div>                    
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
@@ -78,24 +73,25 @@
         {
             var university = $('#<%=ddlUniversity.ClientID%>').val();
             var description = $('#<%=txtstatement.ClientID%>').val();
-            var statementtype = $('#<%=ddlType.ClientID%>').val();
+            var statementtype = $('#<%=txtheaderstatements.ClientID%>').val();
 
             if (university == 0) {
                 alert("Please select University");
+                return false;
+            }
+            else if (statementtype == '') {
+                alert("Please enter header statement");
                 return false;
             }
             else if (description == '') {
                 alert("Please enter Statements");
                 return false;
             }
-            else if (statementtype == 0) {
-                alert("Please select Type of statement");
-                return false;
-            }
+           
             return true;
 
         }
-		$(document).ready(function () {
+        $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#tutorial_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
