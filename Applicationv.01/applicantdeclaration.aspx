@@ -28,19 +28,18 @@
                             <%--<label style="font-size:large;margin-left: 12px;margin-top: 10px;">The following information will be reported:</label>--%>
                             <div class="list-group-item">
                                 <div class="form-group">                                   
-                                    <div>                                        
+                                    <div >                                        
                                     <% if (allStatements.Count > 0)
-                                    {%>
-                                        <div class="form-row">
-                                            <label id="lblSummaryHeader" runat="server" style="font-size:large;font-weight:500;">Headers</label><br />
-                                        </div>
-
+                                    {%>                                        
                                         <% for (int v = 0; v < allStatements.Count; v++)
                                             { %>            
                                                 
                                                 <div class="form-row" style="font-size:small;">
                                                     <label> <%=allStatements[v].header_description.Replace(Environment.NewLine, "<br />") %></label><br />                                                    
-                                                </div>      
+                                                </div> <br />
+                                                 <div class="form-row" style="font-size:small;">
+                                                       <label> <%=allStatements[v].statement_description.Replace(Environment.NewLine, "<br /><br />") %></label><br /><br />                                                   
+                                                 </div>      
                                             <%}
                                     }%>
                                 </div>
@@ -49,22 +48,7 @@
                                         <input type="checkbox" id="decHeader1" style="margin-left: -20px;"/>
                                         I hereby declare that the information given by me is true and correct to the best of my knowledge and belief.
                                     </label>
-                                </div>--%>
-                                    <div style="font-size:small;">
-                                      <% if (allStatements.Count > 0)
-                                        {%>
-                                            <div class="form-row">
-                                                <label id="Label1" runat="server" style="font-size:large;font-weight:500;">Statements</label><br />
-                                            </div>
-
-                                            <% for (int v = 0; v < allStatements.Count; v++)
-                                                { %>                                                 
-                                                    <div class="form-row" style="font-size:small;">
-                                                        <label> <%=allStatements[v].statement_description.Replace(Environment.NewLine, "<br />") %></label><br />                                                    
-                                                    </div>      
-                                                <%}
-                                        }%>
-                                    </div>
+                                </div>--%>                                    
                                 </div>
                             </div>
                             <% if (allStatements.Count > 0)

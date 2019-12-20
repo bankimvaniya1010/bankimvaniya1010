@@ -118,10 +118,7 @@
                                 <a href="forgetpassword.aspx" class="text-black-70" style="text-decoration: underline;">Forgot Password?</a>
                             </div>
                         </form>
-                    </div>
-                    <div class="card-footer text-center text-black-50">
-                    Not yet a student? <a href="register.aspx">Sign Up</a>
-                </div>
+                    </div>                    
                 </div>
             </div>
         </div>
