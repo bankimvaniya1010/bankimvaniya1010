@@ -40,6 +40,12 @@
                             <asp:BoundField DataField="id" HeaderText="Id" InsertVisible="False"
                                 ReadOnly="True" SortExpression="id" />
                            
+                            <asp:TemplateField HeaderText="Header">
+                                <ItemTemplate>
+                                     <asp:Label ID="labltype" runat="server" Text='<%# Bind("header")%>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Description">
                                 <ItemTemplate>
                                     <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("description") %>'></asp:Label>
@@ -50,11 +56,6 @@
                                     <asp:Label ID="lblUniversity" runat="server" Text='<%# Bind("UniversityName") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Type">
-                                <ItemTemplate>
-                                     <asp:Label ID="labltype" runat="server" Text='<%# Bind("type")%>' />
-                                </ItemTemplate>
-                            </asp:TemplateField>                          
 
 
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False"> 

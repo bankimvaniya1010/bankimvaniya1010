@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -17,6 +18,7 @@ public partial class gte_declaration : System.Web.UI.Page
     int UniversityID = -1;
     gte_progressbar gteProgressBar = new gte_progressbar();
     protected static string universityName = string.Empty;
+    protected List<gte_declaration_master> allStatements = new List<gte_declaration_master>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,7 +37,18 @@ public partial class gte_declaration : System.Web.UI.Page
             gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
             if (gteProgressBar != null)
                 questionsCompleted = gteProgressBar.is_gte_question_completed.Value;
+
+            allStatements = db.gte_declaration_master.Where(x => x.universityId == UniversityID).ToList();            
+            foreach (var item in allStatements)
+                item.statementdescription = AddLinkInText(item.statementdescription);
         }
+    }
+
+    public string AddLinkInText(string text)
+    {
+        Regex r = new Regex(@"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})");
+        text = r.Replace(text, "<a href=\"$1\" target=\"_blank\">$1</a>");
+        return text;
     }
 
     protected void Page_PreRender(object sender, EventArgs e)

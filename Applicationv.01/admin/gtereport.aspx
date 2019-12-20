@@ -287,8 +287,8 @@
                                 <div class="student-dtls">
                                     <div class="text-center hd text-uppercase font-bold">Student Information</div>
                                     <div class="pic d-flex align-items-center justify-content-center">
-                                        <div class="text-uppercase">Student Photo</div>
-                                    </div>
+                                        <img src="<%=studentphoto %>" class="img-fluid">
+                                    </div>                                    
                                     <div class="nm" style="text-align:center"><%=_studentName %></div>
                                 </div>
                             </td>

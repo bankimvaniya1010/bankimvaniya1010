@@ -15,7 +15,7 @@
 
                     <div class="card">
                         <div class="card-body list-group list-group-fit">
-                            <h5>Personal Particulars</h5>
+                            <h5>Personal Particulars</h5>                            
                              <div class="list-group-item" id="dob">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-dob">
                                     <div class="form-row">
@@ -99,6 +99,19 @@
                                 </div>
                             </div>
                         </div>
+                            <div class="list-group-item" id="profilepic">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-dob">
+                                    <div class="form-row">
+                                        <label id="Label1" runat="server" for="dateofissue" class="col-md-3 col-form-label form-label">Upload Profile Picture</label>
+                                        <div class="col-md-6">
+                                            <asp:Label ID="lblupload" runat="server" />
+                                            <asp:FileUpload ID="FileUpload" runat="server" /> 
+                                            <input type="hidden" id="hidDocumentPath" runat="server" />
+                                            <asp:HyperLink runat="server" ID="uploadedFile" Target="_blank"></asp:HyperLink>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
                                 <h5>Prior Qualifications</h5>
                              <div class="list-group-item" id="highestqualification" >
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highestqualification">
@@ -215,7 +228,7 @@
                                         <label id="lblcourseapplied" runat="server" for="courseapplied" class="col-md-3 col-form-label form-label">Level of Course you are applying for </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlcourseapplied" CssClass="form-control" runat="server">
-                                            </asp:DropDownList>
+                                            </asp:DropDownList>                                            
                                             <span class="helpicon"><i id="iccourseapplied" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -257,6 +270,7 @@
                                              <asp:DropDownList runat="server" ID="ddlCommencementdate" CssClass="form-control">
                                                 <asp:ListItem Value="0">Please Select </asp:ListItem>
                                             </asp:DropDownList>
+                                            <asp:HiddenField ID="hidCommencementDate" runat="server" />
                                             <span class="helpicon"><i id="iccommencementdate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -289,8 +303,43 @@
                                     </div>
                                 </div>
                             </div>
-                            
+                            <div class="list-group-item" id="agent" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-agent">
+                                    <div class="form-row">
+                                        <label id="labelagent" runat="server" for="agent" class="col-md-3 col-form-label form-label">Are you reffered by Agent</label>
+                                        <div class="col-md-6">
+                                            <asp:RadioButton ID="rblAgentYes" runat="server" CssClass="form-control" GroupName="agent" Text="Yes" />
+                                            <asp:RadioButton ID="rblAgentNo" runat="server" CssClass="form-control" GroupName="agent" Text="No" /><span class="helpicon"><i id="icAgent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="agentList" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-agentList">
+                                    <div class="form-row">
+                                        <label id="labelagentList" runat="server" for="agentList" class="col-md-3 col-form-label form-label">Agent Name</label>
+                                        <div class="col-md-6">
+                                            <asp:DropDownList ID="ddlAgent" runat="server" CssClass="form-control"></asp:DropDownList><span class="helpicon"><i id="icAgentList" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="list-group-item" id="addnewagent" runat="server">
+                                <div class="form-group m-0" role="group" aria-labelledby="label-addnewagent">
+                                    <div class="form-row">
+                                        <label id="labeladdnewagent" runat="server" for="addnewagent" class="col-md-3 col-form-label form-label">If didn't find agent name in the list then add his email ID to sent registeration link</label>
+                                        <div class="col-md-6">
+                                            <asp:TextBox ID="txtAgentname" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icNewAgent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            &nbsp;
+                                              <div class="col-md-6">
+                                                  <asp:Button ID="btnNewAgent" runat="server" Text="Ask to Register" CssClass="btn btn-success" OnClick="btnNewAgent_Click" />
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                            
+
 
                             <div id="mainDiv" runat="server"></div>
                             <div class="list-group-item" id="gteapplicantdetail">
@@ -375,6 +424,12 @@
                 alert("Please Select Date OF Marriage");
             else if ($("#<%=ddlspousenationality.ClientID%>").val() == "0" && $("#<%=ddlmaritalstatus.ClientID%> option:selected").text() == "Married")
                 alert("Please Select Spouse NationalityOF Birth"); 
+            else if ($("#<%=FileUpload.ClientID%>").val() == "" && $("#<%=hidDocumentPath.ClientID%>").val() == "")
+                alert("Please upload profile picture");
+            else if (!validfileExtention($("#<%=FileUpload.ClientID%>").val(), $("#<%=hidDocumentPath.ClientID%>").val()))
+                alert("Please upload valid file format");
+            else if (!checkFileSize()) 
+                alert("photo Size should be less than 16MB");                        
             else if ($("#<%=txthighestqualification.ClientID%>").val() == "")
                 alert("Please Enter Highest Education Name");
             else if ($("#<%=ddlhighestqualificationAchieved.ClientID%>").val() == "0")
@@ -402,12 +457,48 @@
             else if ($("#<%=ddluniversityname.ClientID%>").val() == "0")
                 alert("Please Select Name of University Apply for ");
             else if ($("#<%=ddleduinstitutioncity.ClientID%>").val() == null && isNaN(parseInt($('#ContentPlaceHolder1_hidCityField').val())))
-                alert("Please Select Name of City of Educational Institution");         
+                alert("Please Select Name of City of Educational Institution");
+            else if (!($("#<%=rblAgentYes.ClientID%>").is(':checked') || $("#<%=rblAgentNo.ClientID%>").is(':checked')))
+                alert("Please Select Option to record reffrerd by agent");
+            else if ($("#<%=rblAgentYes.ClientID%>").is(':checked') && ($("#<%=ddlAgent.ClientID%>").val() == "0"))
+                alert("Please Select valid agent details");
             else
                 flag = true;
            return flag;
         }
-       
+
+        function validfileExtention(filepath , hidDocumentPath) {
+            if (filepath == "")
+            {
+               filepath = hidDocumentPath;
+            }
+            if (!filepath)
+                return false;
+            var fileExtension = filepath.substring(filepath.lastIndexOf(".") + 1).toString().toLowerCase();
+            if (filepath != "")
+            {
+                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension !="jpeg")                    
+                    return false;                                   
+            }
+            return true;
+        }
+        function checkFileSize() {
+            var fileSize = $("#ContentPlaceHolder1_FileUpload")[0].files[0].size;
+            var fileSizeInMB = (fileSize / 1024) / 1024;
+            return (fileSizeInMB < 16);
+        }
+
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$agent']").click(function () {
+                if ($("#<%=rblAgentYes.ClientID%>").is(":checked")) {
+                   $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
+                }
+                else {
+                    $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide();
+                }
+            });
+        });
+
         $(document).ready(function () {
 
             $('.fa-info-circle').tipso({
@@ -415,6 +506,10 @@
                 background: 'rgba(0,0,0,0.8)',
                 useTitle: false,
             });
+
+            if ($("#<%=rblAgentYes.ClientID%>").is(':checked')) {
+                    $("#<%=agentList.ClientID%>").show(); $("#<%=addnewagent.ClientID%>").show();
+            } else { $("#<%=agentList.ClientID%>").hide(); $("#<%=addnewagent.ClientID%>").hide(); }
 
             var maritalStatus = $("#<%=ddlmaritalstatus.ClientID%> option:selected").text();
             $("#<%=ddlmaritalstatus.ClientID%>").change(function () {
@@ -578,6 +673,36 @@
             $("#<%=hidnameofcourse.ClientID%>").val($("#<%=ddlnameofcourse.ClientID%>").val());
         });
 
+        //comm date
+         $("#<%=ddlnameofcourse.ClientID%>").change(function () {
+            $("#<%=hidnameofcourse.ClientID%>").val($("#<%=ddlnameofcourse.ClientID%>").val());
+
+            if ($("#<%=hidnameofcourse.ClientID%>").val() != "") {
+                var courseId = $("#<%=ddlnameofcourse.ClientID%>").val();
+                $.ajax({
+                    type: "POST",
+                    url: "applicantcourse.aspx/GetCommenceDateDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'courseid': '" + courseId + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlCommencementdate.ClientID%>").length >= 1) {
+                                $("#<%=ddlCommencementdate.ClientID%>").empty();
+                                $("#<%=ddlCommencementdate.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlCommencementdate.ClientID%>").append($("<option></option>").val(result[i].id).html(result[i].commencementdate));
+                        }
+                    }
+                });
+            }
+        });
+
+        $("#<%=ddlCommencementdate.ClientID%>").change(function () {
+            $("#<%=hidCommencementDate.ClientID%>").val($("#<%=ddlCommencementdate.ClientID%>").val());
+        });
         $(document).ready(function () {
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');

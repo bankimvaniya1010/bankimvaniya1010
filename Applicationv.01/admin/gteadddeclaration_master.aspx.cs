@@ -56,15 +56,7 @@ public partial class admin_gteadddeclaration_master : System.Web.UI.Page
                     ddlUniversity.Items.FindByValue(declarationData.universityId.ToString()).Selected = true;
                 }
                 txtstatement.Value = declarationData.statementdescription;
-
-                if (declarationData.statement_type!= null)
-                {
-                    ddlType.ClearSelection();
-                    if (declarationData.statement_type == true)
-                        ddlType.Items.FindByValue("summary").Selected = true;
-                    else
-                        ddlType.Items.FindByValue("declaration").Selected = true;
-                }
+                txtheaderstatement.Value = declarationData.header_description;
             }
         }
         catch (Exception ex)
@@ -117,11 +109,7 @@ public partial class admin_gteadddeclaration_master : System.Web.UI.Page
             }
 
             objdeclarationmaster.statementdescription = txtstatement.Value;
-            if (ddlType.SelectedValue == "summary")
-                objdeclarationmaster.statement_type= true;
-            else if (ddlType.SelectedValue == "declaration")
-                objdeclarationmaster.statement_type = false;
-
+            objdeclarationmaster.header_description = txtheaderstatement.Value;
             objdeclarationmaster.universityId = Convert.ToInt32(ddlUniversity.SelectedValue);
             objdeclarationmaster.edited_by = Convert.ToInt32(Session["Role"]);
             if (mode == "new")

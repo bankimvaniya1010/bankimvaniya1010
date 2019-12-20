@@ -31,9 +31,9 @@ public partial class admin_gtemanagedeclaration_master : System.Web.UI.Page
                                    select new
                                    {
                                        id = d.Id,
-                                       description = d.statementdescription,
-                                       type = d.statement_type == true ? "Summary" : "Declaration",
-                                       UniversityName = um.university_name
+                                       description = d.statementdescription.Replace(Environment.NewLine, "<br />"),
+                                       header = d.header_description.Replace(Environment.NewLine, "<br />"),
+                                       UniversityName = um.university_name,
                                    }).ToList();
             if (declarationList != null)
             {
