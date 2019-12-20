@@ -12,7 +12,7 @@ public partial class admin_gteadddeclaration_master : System.Web.UI.Page
     string webURL = String.Empty;
     string roleName = string.Empty;
     int universityID = 0;
-    int RecordID;
+    int RecordID = 0;
     gte_declaration_master objdeclarationmaster = new gte_declaration_master();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -26,6 +26,7 @@ public partial class admin_gteadddeclaration_master : System.Web.UI.Page
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
             RecordID = -1;
+            ddlUniversity.Enabled = false;
             if (int.TryParse(Request.QueryString["id"], out RecordID))
             {
                 objdeclarationmaster = db.gte_declaration_master.Where(obj => obj.Id == RecordID).FirstOrDefault();
@@ -94,29 +95,44 @@ public partial class admin_gteadddeclaration_master : System.Web.UI.Page
     {
         try
         {
-            var mode = "new";
-            if (RecordID != -1)
+            int selectedUniversityID = Convert.ToInt32(ddlUniversity.SelectedValue);
+            var RecordOFUniversity = (from tInfo in db.gte_declaration_master
+                                      where tInfo.universityId == selectedUniversityID
+                                      select tInfo).FirstOrDefault();
+            if (RecordOFUniversity != null && RecordID == 0)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Record already present with selected Institution.');window.location='" + Request.ApplicationPath + "admin/gtemanagedeclaration_master.aspx';", true);
+            else
             {
-                var RecordData = (from tInfo in db.gte_declaration_master
-                                  where tInfo.universityId == universityID && tInfo.Id == RecordID
-                                  select tInfo).FirstOrDefault();
-
-                if (RecordData != null)
+                var mode = "new";
+                if (RecordID != -1)
                 {
-                    mode = "update";
-                    objdeclarationmaster = RecordData;
-                }
-            }
+                    var RecordData = (from tInfo in db.gte_declaration_master
+                                      where tInfo.universityId == selectedUniversityID && tInfo.Id == RecordID
+                                      select tInfo).FirstOrDefault();
 
-            objdeclarationmaster.statementdescription = txtstatement.Value;
-            objdeclarationmaster.header_description = txtheaderstatement.Value;
-            objdeclarationmaster.universityId = Convert.ToInt32(ddlUniversity.SelectedValue);
-            objdeclarationmaster.edited_by = Convert.ToInt32(Session["Role"]);
-            if (mode == "new")
-                db.gte_declaration_master.Add(objdeclarationmaster);
-            db.SaveChanges();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Record Inserted Successfully');window.location='" + Request.ApplicationPath + "admin/gtemanagedeclaration_master.aspx';", true);            
+                    if (RecordData != null)
+                    {
+                        mode = "update";
+                        objdeclarationmaster = RecordData;
+                    }
+                }
+
+                objdeclarationmaster.statementdescription = txtstatement.Value;
+                objdeclarationmaster.header_description = txtheaderstatement.Value;
+                objdeclarationmaster.universityId = Convert.ToInt32(ddlUniversity.SelectedValue);
+                objdeclarationmaster.edited_by = Convert.ToInt32(Session["Role"]);
+                if (mode == "new")
+                    db.gte_declaration_master.Add(objdeclarationmaster);
+                db.SaveChanges();
+
+                if (mode == "new")
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                            "alert('Record Inserted Successfully');window.location='" + Request.ApplicationPath + "admin/gtemanagedeclaration_master.aspx';", true);
+                else if (mode == "update")
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                            "alert('Record Updated Successfully');window.location='" + Request.ApplicationPath + "admin/gtemanagedeclaration_master.aspx';", true);
+            }
         }
         catch (Exception ex)
         {

@@ -12,7 +12,7 @@ public partial class admin_declaration_master : System.Web.UI.Page
     string webURL = String.Empty;
     string roleName = string.Empty;
     int universityID = 0;
-    int RecordID;
+    int RecordID = 0;
     declaration_master objdeclarationmaster = new declaration_master();
 
 
@@ -27,6 +27,7 @@ public partial class admin_declaration_master : System.Web.UI.Page
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
             RecordID = -1;
+            ddlUniversity.Enabled = false;
             if (int.TryParse(Request.QueryString["id"], out RecordID))
             {
                 objdeclarationmaster = db.declaration_master.Where(obj => obj.Id == RecordID).FirstOrDefault();
@@ -94,30 +95,44 @@ public partial class admin_declaration_master : System.Web.UI.Page
     {
         try
         {
-            var mode = "new";
-            if (RecordID != -1)
+            int selectedUniversityID = Convert.ToInt32(ddlUniversity.SelectedValue);
+            var RecordOFUniversity = (from tInfo in db.declaration_master
+                                      where tInfo.universityId == selectedUniversityID
+                                      select tInfo).FirstOrDefault();
+            if (RecordOFUniversity != null && RecordID == 0)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Record already present with selected Institution.');window.location='" + Request.ApplicationPath + "admin/managedeclaration_master.aspx';", true);
+            else
             {
-                var RecordData = (from tInfo in db.declaration_master
-                                  where tInfo.universityId == universityID && tInfo.Id == RecordID 
-                                  select tInfo).FirstOrDefault();
-
-                if (RecordData!= null)
+                var mode = "new";
+                if (RecordID != -1)
                 {
-                    mode = "update";
-                    objdeclarationmaster = RecordData;
-                }
-            }
-                       
-            objdeclarationmaster.statement_description = txtstatement.Value;
-            objdeclarationmaster.header_description = txtheaderstatements.Value;
-            objdeclarationmaster.universityId = Convert.ToInt32(ddlUniversity.SelectedValue);
-            objdeclarationmaster.edited_by = Convert.ToInt32(Session["Role"]);
-            if (mode == "new")
-                db.declaration_master.Add(objdeclarationmaster);
-            db.SaveChanges();
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Record Inserted Successfully');window.location='" + Request.ApplicationPath + "admin/managedeclaration_master.aspx';", true);
+                    var RecordData = (from tInfo in db.declaration_master
+                                      where tInfo.universityId == selectedUniversityID && tInfo.Id == RecordID
+                                      select tInfo).FirstOrDefault();
 
+                    if (RecordData != null)
+                    {
+                        mode = "update";
+                        objdeclarationmaster = RecordData;
+                    }
+                }
+
+                objdeclarationmaster.statement_description = txtstatement.Value;
+                objdeclarationmaster.header_description = txtheaderstatements.Value;
+                objdeclarationmaster.universityId = Convert.ToInt32(ddlUniversity.SelectedValue);
+                objdeclarationmaster.edited_by = Convert.ToInt32(Session["Role"]);
+                if (mode == "new")
+                    db.declaration_master.Add(objdeclarationmaster);
+                db.SaveChanges();
+
+                if (mode == "new")
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                            "alert('Record Inserted Successfully');window.location='" + Request.ApplicationPath + "admin/managedeclaration_master.aspx';", true);
+                else if (mode == "update")
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                            "alert('Record Updated Successfully');window.location='" + Request.ApplicationPath + "admin/managedeclaration_master.aspx';", true);
+            }
         }
         catch (Exception ex)
         {

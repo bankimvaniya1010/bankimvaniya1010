@@ -36,21 +36,12 @@
                                                 
                                                 <div class="form-row" style="font-size:small;">
                                                     <label> <%=allStatements[v].header_description.Replace(Environment.NewLine, "<br />") %></label><br />                                                    
-                                                </div>      
-                                            <%}
-                                    }%>
-
-                                     <% if (allStatements.Count > 0)
-                                    {%>                                       
-
-                                        <% for (int v = 0; v < allStatements.Count; v++)
-                                            { %>            
-                                                
+                                                </div><br />
                                                 <div class="form-row" style="font-size:small;">
                                                     <label> <%=allStatements[v].statementdescription.Replace(Environment.NewLine, "<br />") %></label><br />                                                    
                                                 </div>      
                                             <%}
-                                    }%>
+                                    }%>                                                                        
                                 </div>
                             </div>
                              <% if (allStatements.Count > 0)
