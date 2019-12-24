@@ -17,6 +17,9 @@
             <div class="col-md-8">
               
                 <div class="card" id="questions" runat="server">
+                    <div id="divUserScore" runat="server" style="font-size:medium;text-align:center;display:none">
+                        Score : <label id="lblUserScore" runat="server" />
+                    </div>
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
@@ -48,15 +51,23 @@
 
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("answer1") %>' />
+                                        <i id="correctTick1" style="display: none" runat="server" class="fas fa-check-circle"></i>
+                                        <i id="incorrectTick1" style="display:none" runat="server" class="fas fa-times-circle"></i>
                                     </div>
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("answer2") %>' />
+                                        <i id="correctTick2" style="display:none" runat="server" class="fas fa-check-circle"></i>
+                                        <i id="incorrectTick2" style="display:none" runat="server" class="fas fa-times-circle"></i>
                                     </div>
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("answer3") %>' />
+                                        <i id="correctTick3" style="display:none" runat="server" class="fas fa-check-circle"></i>
+                                        <i id="incorrectTick3" style="display:none" runat="server" class="fas fa-times-circle"></i>
                                     </div>
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("answer4") %>' />
+                                        <i id="correctTick4" style="display:none" runat="server" class="fas fa-check-circle"></i>
+                                        <i id="incorrectTick4" style="display:none" runat="server" class="fas fa-times-circle"></i>
                                     </div>
 
                                 </div>
@@ -64,8 +75,10 @@
                         </ItemTemplate>
                     </asp:DataList>
                     <div class="card-footer" id="button" runat="server">
-
-                        <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
+                        <div class="form-row justify-content-between">
+                        	<asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
+                            <asp:Button ID="btnGoToDeclaration" runat="server" CssClass="btn btn-success" Text="Go To Declaration" OnClick="btnGoToDeclaration_Click" OnClientClick="return validateForm()" />
+                        </div>
 
                         <%-- <a href="#" class="btn btn-white">Skip</a>
                         <a href="#" class="btn btn-success float-right">Submit <i class="material-icons btn__icon--right">send</i></a>--%>
