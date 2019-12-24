@@ -18,6 +18,7 @@ public partial class gte_tutorial : System.Web.UI.Page
     protected string Score, Results = "";
     string webURL = String.Empty;
     int UniversityID = -1;
+    bool? istutorialcomplete;
     gte_progressbar gteProgressBar = new gte_progressbar();
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -26,10 +27,11 @@ public partial class gte_tutorial : System.Web.UI.Page
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
-        if (isGteDeclarationDoneByApplicant)
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+       
+        istutorialcomplete = db.gte_progressbar.Where(x => x.applicantid == UserID).Select(x => x.is_gte_tutorial_completed).FirstOrDefault();
+        if (istutorialcomplete != null && istutorialcomplete == true)
+            declaration.Attributes.Add("style", "display:none");
+
         if (!IsPostBack)
         {
             allQuestions = objCom.FaqQuestionList();

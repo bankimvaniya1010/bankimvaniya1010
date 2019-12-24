@@ -32,7 +32,7 @@
                         </ul>
                         <div class="tab-content card-body">
                             <div class="tab-pane active" id="first">
-
+                       
 
                                 <div class="form-group row">
                                     <label for="name" class="col-sm-3 col-form-label form-label">Document Name</label>
@@ -56,17 +56,16 @@
                                                 <asp:Label ID="lblavatar" runat="server" />
                                                 <asp:FileUpload ID="avatar" runat="server" />                                                
                                                 </div>
-                                            </div>
-                                             <div style="position:relative;width:202px;margin-bottom: 15px;height:25px;display:block;"> 
-                                                <div id="progress" class="hide" style="background:#f0f0f0; height: 25px;width:0;color:#fff;">
-                                                    <div class="status" style="margin-left:10px;"></div>
-                                                </div> 
-                                            </div> 
+                                            </div>                                             
 
                                         </div>
                                     </div>
                                 </div>
-
+                                <div style="position:relative;width:202px;margin-bottom: 15px;height:25px;display:block;margin-left:100px;"> 
+                                    <div id="progress" class="hide" style="background:#f0f0f0; height: 25px;width:0;color:#fff;">
+                                        <div class="status" style="margin-left:10px;"></div>
+                                    </div> 
+                                </div> 
                                 <div class="form-group row">
                                     <div class="col-sm-8 offset-sm-3">
                                         <div class="media align-items-center">
@@ -149,13 +148,32 @@
             </div>
         </div>
     </div>
-    <script>
+    <script>      
+        function validfileExtention(filepath) {
+            if (filepath == "")            
+                return false;
+            var fileExtension = filepath.substring(filepath.lastIndexOf(".") + 1).toString().toLowerCase();
+            if (filepath != "")
+            {
+                if (fileExtension != "jpg" && fileExtension != "png" && fileExtension !="jpeg")
+                    return false;
+            }
+            return true;
+        }
+
         function validateUploadedFile() {                    
             var flag = false;
             if ($("#<%=ddlDocuments.ClientID%>").val() == "0")
                 alert("Please select document name");
             else if ($("#<%=avatar.ClientID%>").val() == "")
                 alert("Please upload valid document");
+            else if ($("#<%=ddlDocuments.ClientID%>").val() == "Profile Photo")
+            {
+                if (!validfileExtention($("#<%=avatar.ClientID%>").val()))
+                    alert("Please upload valid file format");
+                else
+                    flag = true;
+            }
             else
                 flag = true;            
             if (flag) {
@@ -166,10 +184,10 @@
                 progressEle.css("background-color", "red");
 
                 var formData = new FormData();                
-                var data = $("#ContentPlaceHolder1_avatar")[0].files[0];                
+                var data = $("#ContentPlaceHolder1_avatar")[0].files[0];               
                 formData.append("doc_name", $("#<%=ddlDocuments.ClientID%>").val());
                 formData.append("files", data);
-
+                
                 var dummyProgress = 1;
                 var intervalId = -1;
                 var req = new XMLHttpRequest();

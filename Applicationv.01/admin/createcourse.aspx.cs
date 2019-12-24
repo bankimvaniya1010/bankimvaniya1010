@@ -21,9 +21,13 @@ public partial class admin_createcourse : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        roleName = Utility.GetRoleName();
-        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+        if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+
+        roleName = Utility.GetRoleName();
+        if (String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
 
         if (!IsPostBack)
         {
@@ -164,7 +168,9 @@ public partial class admin_createcourse : System.Web.UI.Page
                     db.course_campus_mapping.Add(mapping);
                 }
                 db.SaveChanges();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('Record Inserted Successfully.');window.location='" + Request.ApplicationPath + "coursemaster.aspx';", true);
+                
             }
             else
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Course already exists')", true);

@@ -14,9 +14,9 @@ public partial class admin_alternatedobproof : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        universityID = Utility.GetUniversityId();
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        universityID = Utility.GetUniversityId();
         if (!IsPostBack)
             BindDOBProof();
     }

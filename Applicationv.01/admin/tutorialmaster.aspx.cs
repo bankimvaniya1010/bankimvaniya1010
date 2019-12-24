@@ -20,11 +20,15 @@ public partial class admin_tutorialmaster : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        universityID = Utility.GetUniversityId();
-        roleName = Utility.GetRoleName();        
-        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+        if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
 
+        roleName = Utility.GetRoleName();
+        if (String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
+        universityID = Utility.GetUniversityId();
+        
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
             tutorialId = -1;

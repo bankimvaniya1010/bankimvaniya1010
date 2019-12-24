@@ -13,10 +13,10 @@ public partial class admin_majordesription : System.Web.UI.Page
     int universityID;
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();
-        universityID = Utility.GetUniversityId();
+        webURL = Utility.GetWebUrl();        
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        universityID = Utility.GetUniversityId();
         if (!IsPostBack)
             BindMajorDescription();
     }

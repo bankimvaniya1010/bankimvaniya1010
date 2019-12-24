@@ -259,7 +259,7 @@ public partial class applicantfunding : System.Web.UI.Page
                 if (fundingInfo.PartTimeWorkPercentage != null)
                     txtPartTimeWorkPercentage.Value = Convert.ToString(fundingInfo.PartTimeWorkPercentage);
 
-                if (fundingInfo.PrivateFinancePercentage != null && fundingInfo.ScholarshipPercentage != null && fundingInfo.studentLoanPercentage != null && fundingInfo.SponsorshipPercentage != null && fundingInfo.PartTimeWorkPercentage != null)
+                if (fundingInfo.PrivateFinancePercentage != null || fundingInfo.ScholarshipPercentage != null || fundingInfo.studentLoanPercentage != null || fundingInfo.SponsorshipPercentage != null || fundingInfo.PartTimeWorkPercentage != null)
                     calucluateCost();
             }
         }
@@ -327,19 +327,29 @@ public partial class applicantfunding : System.Web.UI.Page
             //cost           
 
             if (Convert.ToDecimal(txtPrivateFinancePercentage.Value) != 0)
-                objapplicantfunding.PrivateFinancePercentage = Math.Round(Convert.ToDecimal(txtPrivateFinancePercentage.Value),2);
+                objapplicantfunding.PrivateFinancePercentage = Math.Round(Convert.ToDecimal(txtPrivateFinancePercentage.Value), 2);
+            else
+                objapplicantfunding.PrivateFinancePercentage = null;
 
             if (Convert.ToDecimal(txtScholarshipPercentage.Value) != 0)
                 objapplicantfunding.ScholarshipPercentage = Math.Round(Convert.ToDecimal(txtScholarshipPercentage.Value), 2);
+            else
+                objapplicantfunding.ScholarshipPercentage = null;
 
             if (Convert.ToDecimal(txtLoanPercentage.Value) != 0)
                 objapplicantfunding.studentLoanPercentage = Math.Round(Convert.ToDecimal(txtLoanPercentage.Value), 2);
+            else
+                objapplicantfunding.studentLoanPercentage = null;
 
             if (Convert.ToDecimal(txtSponsorshipPercentage.Value) != 0)
                 objapplicantfunding.SponsorshipPercentage = Math.Round(Convert.ToDecimal(txtSponsorshipPercentage.Value), 2);
+            else
+                objapplicantfunding.SponsorshipPercentage = null;
 
             if (Convert.ToDecimal(txtPartTimeWorkPercentage.Value) != 0)
                 objapplicantfunding.PartTimeWorkPercentage = Math.Round(Convert.ToDecimal(txtPartTimeWorkPercentage.Value), 2);
+            else
+                objapplicantfunding.PartTimeWorkPercentage = null;
 
             objapplicantfunding.applicantid = userID;
             objapplicantfunding.universityid = universityID;

@@ -41,6 +41,7 @@ public partial class uploaddocuments : System.Web.UI.Page
             appLangDetails = db.applicantlanguagecompetency.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
             appEmpDetails = db.applicantemployerdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
             appHigherDetails = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
+            documentList.Add("Profile Photo");
             documentList.Add("Passport Size Photo Graph");
             documentList.Add("Passport Copy (Bio Pages)");
             if ((appDetails.Count > 0) && (appDetails[0].alternativeIdentityproofId != null && appDetails[0].alternativeIdentityproofId != 0))
@@ -82,7 +83,7 @@ public partial class uploaddocuments : System.Web.UI.Page
             ddlDocuments.DataBind();
             ddlDocuments.Items.Insert(0, lst);
             BindDocuments();
-            HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;
+            HttpFileCollection httpPostedFile = HttpContext.Current.Request.Files;            
             if (httpPostedFile.Count > 0)
                 uploadDoc(httpPostedFile[0], HttpContext.Current.Request["doc_name"]);
         }
@@ -106,13 +107,13 @@ public partial class uploaddocuments : System.Web.UI.Page
             if (!Directory.Exists(docPath))
                 Directory.CreateDirectory(docPath);
             string extension = Path.GetExtension(httpPostedFile.FileName);
-            string filename = Guid.NewGuid() + extension;
+            string filename = Guid.NewGuid() + extension;            
             httpPostedFile.SaveAs(docPath + filename);          // file path where you want to upload  
                               
             objDocument.applicantid = UserID;
             objDocument.universityid = UniversityID;
-            objDocument.filename = filename;
-            objDocument.documentname = docName;
+            objDocument.filename = filename;           
+            objDocument.documentname = docName;           
             objDocument.uploadedtime = DateTime.Now;
             if (mode == "new")
                 db.applicantdocumentmaster.Add(objDocument);
