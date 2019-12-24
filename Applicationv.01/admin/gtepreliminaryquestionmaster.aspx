@@ -32,7 +32,7 @@
                         PageSize="25"
                         BorderStyle="None"
                         BorderWidth="1px"
-                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowCommand="QuestiontGridView_RowCommand" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnDataBound="QuestiontGridView_DataBound" OnRowDeleting="QuestiontGridView_RowDeleting" OnPageIndexChanging="QuestiontGridView_PageIndexChanging">
+                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCancelingEdit="QuestiontGridView_RowCancelingEdit" OnRowCommand="QuestiontGridView_RowCommand" OnRowEditing="QuestiontGridView_RowEditing" OnRowUpdating="QuestiontGridView_RowUpdating" OnDataBound="QuestiontGridView_DataBound" OnRowDeleting="QuestiontGridView_RowDeleting" OnPageIndexChanging="QuestiontGridView_PageIndexChanging" OnRowDataBound="QuestiontGridView_RowDataBound">
 
                         <Columns>
 
@@ -111,12 +111,12 @@
 
                             <asp:TemplateField HeaderText="Correct Answer" SortExpression="correctanswer">
                                 <EditItemTemplate>
-                                    <asp:TextBox ID="txtCorrectAnswer" TextMode="MultiLine" runat="server" Text='<%# Bind("correctanswer") %>'></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredCorrectAnswerEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Correct Answer Cannot Be Empty' ControlToValidate='txtCorrectAnswer' />
+                                    <asp:DropDownList ID="ddlCorrectAnswer" runat="server"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredCorrectAnswerEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Correct Answer Cannot Be Empty' ControlToValidate='ddlCorrectAnswer' />
                                 </EditItemTemplate>
                                 <FooterTemplate>
-                                    <asp:TextBox ID="txtCorrectAnswerFooter" runat="server" TextMode="MultiLine"></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat='server' ID='requiredCorrectAnswerFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Correct Answer Cannot Be Empty' ControlToValidate='txtCorrectAnswerFooter' />
+                                    <asp:DropDownList ID="ddlCorrectAnswer" runat="server"></asp:DropDownList>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredCorrectAnswerFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Correct Answer Cannot Be Empty' ControlToValidate='ddlCorrectAnswer' />
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblCorrectAnswer" runat="server" Text='<%# Bind("correctanswer") %>'></asp:Label>
