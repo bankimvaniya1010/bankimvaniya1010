@@ -12,12 +12,17 @@ public partial class admin_universitywisefaqmapping : System.Web.UI.Page
     Logger objLog = new Logger();
     string roleName = string.Empty;
     int universityID = 0;
-    string webURL = System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
-    {        
-        roleName = Utility.GetRoleName();
-        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+    {
+        webURL = Utility.GetWebUrl();
+        if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+
+        roleName = Utility.GetRoleName();
+        if (String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
         if (!IsPostBack)
         {
             BindUniversity();

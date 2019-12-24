@@ -16,9 +16,13 @@ public partial class admin_universitywiserejectionreasonmapping : System.Web.UI.
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
+        if (!Utility.CheckAdminLogin())
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
         roleName = Utility.GetRoleName();
-        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
-            Response.Redirect(webURL + "admin/Login.aspx", true);        
+        if (String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
         if (!IsPostBack)
         {
             BindUniversity();

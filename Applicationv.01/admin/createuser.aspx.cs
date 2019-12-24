@@ -16,9 +16,13 @@ public partial class createuser : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
-        roleName = Utility.GetRoleName();
-        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+        if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+
+        roleName = Utility.GetRoleName();
+        if (String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
 
         if (!IsPostBack)
         { bindDropdown(); }
@@ -55,11 +59,12 @@ public partial class createuser : System.Web.UI.Page
         adminusers usrObj = new adminusers();
         try
         {
-
+            int selectedrole = Convert.ToInt32(ddlRole.SelectedValue);
             var existingUser = (from cats in db.adminusers
-                                where cats.username.Equals(txtUsername.Value.Trim())
-                                select cats.username).SingleOrDefault();
-            if (string.IsNullOrEmpty(existingUser))
+                                where (cats.username == txtUsername.Value.Trim() && cats.email == txtEmail.Value && cats.roleid == selectedrole)
+                                select cats).SingleOrDefault();                              
+                                
+            if (existingUser != null)
             {
                 usrObj.name = txtName.Value.Trim();
                 usrObj.username = txtUsername.Value.Trim();
@@ -76,7 +81,7 @@ public partial class createuser : System.Web.UI.Page
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Username already available')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Username with entered email already available')", true);
             }
         }
         catch (Exception ex)

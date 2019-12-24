@@ -20,10 +20,10 @@ public partial class admin_supervisorpersonaldetails : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();
-        universityID = Utility.GetUniversityId();
+        webURL = Utility.GetWebUrl();        
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        universityID = Utility.GetUniversityId();
         userID = Convert.ToInt32(Session["UserID"]);
         if ((Request.QueryString["formid"] == null) || (Request.QueryString["formid"].ToString() == ""))
         {

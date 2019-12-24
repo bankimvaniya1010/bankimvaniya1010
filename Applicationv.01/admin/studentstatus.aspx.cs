@@ -15,10 +15,10 @@ public partial class admin_studentstatus : System.Web.UI.Page
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();
-        universityID = Utility.GetUniversityId();
+        webURL = Utility.GetWebUrl();        
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+        universityID = Utility.GetUniversityId();
         userID = Convert.ToInt32(Session["UserID"]);
 
         if ((Request.QueryString["userid"] == null) || (Request.QueryString["userid"].ToString() == ""))

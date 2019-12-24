@@ -15,10 +15,14 @@ public partial class admin_universitywisesupportservicemapping : System.Web.UI.P
     int universityID = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();
-        roleName = Utility.GetRoleName();
-        if (!Utility.CheckAdminLogin() || String.IsNullOrEmpty(roleName))
+        webURL = Utility.GetWebUrl();        
+        if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
+
+        roleName = Utility.GetRoleName();
+        if (String.IsNullOrEmpty(roleName))
+            Response.Redirect(webURL + "admin/Login.aspx", true);
+
         if (!IsPostBack)
         {
             BindUniversity();

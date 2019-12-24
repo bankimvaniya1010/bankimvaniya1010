@@ -17,11 +17,11 @@ public partial class admin_supportservicemaster : System.Web.UI.Page
     int serviceId;
     protected void Page_Load(object sender, EventArgs e)
     {
-        webURL = Utility.GetWebUrl();
-        universityID = Utility.GetUniversityId();
+        webURL = Utility.GetWebUrl();        
         if (!Utility.CheckAdminLogin())
             Response.Redirect(webURL + "admin/Login.aspx", true);
-        
+        universityID = Utility.GetUniversityId();
+
         if (Request.QueryString["id"] != null && Request.QueryString["id"].ToString() != "")
         {
             serviceId = -1;
