@@ -326,7 +326,7 @@
                                     <asp:FileUpload ID="logo" runat="server" CssClass="custom-file-input" />
 
                                     <label for="logo" class="custom-file-label">Choose file</label>
-                                   <img src="<%=imagepath %>" alt="logo" />
+                                    <img id="universityLogo" src="<%=imagepath %>" alt="logo" />
                                         
                                 </div>
                             </div>
@@ -533,6 +533,10 @@
             $("#<%=ddlCity.ClientID%>").change(function () {
                 $("#<%=hidCityField.ClientID%>").val($("#<%=ddlCity.ClientID%>").val());
             });
+
+            var universityImgLogo = $("#universityLogo").attr("src");
+            var d = new Date();
+            $("#universityLogo").attr("src", universityImgLogo + "?v=" + d.getTime());
 
         });
 
