@@ -139,13 +139,19 @@
                                 <!-- Account menu -->
                                 <div class="sidebar-heading">Account</div>
                                 <ul class="sidebar-menu">
-                                      <li class="sidebar-menu-item" id="messageboard">
-                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#">
+                                      <li class="sidebar-menu-item" id="schedulecounselling">
+                                        <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#counselling">
                                             <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons"><img src="assets/images/menu_icons/message board.png" /></i>
-                                           Your Message
+                                           Schedule Counselling
                                             <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                         </a>
-
+                                        <ul class="sidebar-submenu sm-indent collapse" id="counselling">
+                                            <li class="sidebar-menu-item" id="schedule">
+                                                <a class="sidebar-menu-button" href="schedule_conselling.aspx">
+                                                    <span class="sidebar-menu-text">Schedule</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </li>
                                     <li class="sidebar-menu-item" id="profile_list">
                                         <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#profile">
@@ -876,7 +882,7 @@
                 $("#message_menu_list").hide();                 
                 $("#student_list").hide();
                 $("#components_list").hide();                
-                $("#messageboard").hide();                
+                $("#schedulecounselling").hide();                
                 $("#admissionsOffer_list").hide();
                 $("#studentapplication_list").hide();
                 $("#visaapplication_list").hide();
@@ -906,7 +912,7 @@
                 $("#message_menu_list").hide();
                 $("#student_list").hide();
                 $("#components_list").hide();
-                $("#messageboard").show();
+                $("#schedulecounselling").show();
                 $("#admissionsOffer_list").show();
                 $("#studentapplication_list").show();
                 $("#visaapplication_list").show();
