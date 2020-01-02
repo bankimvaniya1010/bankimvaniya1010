@@ -13,19 +13,19 @@
     <meta name="robots" content="noindex">
 
     <!-- Perfect Scrollbar -->
-    <link type="text/css" href="~/assets/vendor/perfect-scrollbar.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/perfect-scrollbar.css" rel="stylesheet">
 
     <!-- Material Design Icons -->
-    <link type="text/css" href="~/assets/css/material-icons.css" rel="stylesheet">
-    <link type="text/css" href="~/assets/css/material-icons.rtl.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/material-icons.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/material-icons.rtl.css" rel="stylesheet">
 
     <!-- Font Awesome Icons -->
-    <link type="text/css" href="~/assets/css/fontawesome.css" rel="stylesheet">
-    <link type="text/css" href="~/assets/css/fontawesome.rtl.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/fontawesome.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/fontawesome.rtl.css" rel="stylesheet">
 
     <!-- App CSS -->
-    <link type="text/css" href="~/assets/css/app.css" rel="stylesheet">
-    <link type="text/css" href="~/assets/css/app.rtl.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/app.css" rel="stylesheet">
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/app.rtl.css" rel="stylesheet">
 </head>
 <body class="login">
     <!DOCTYPE html>
@@ -41,19 +41,19 @@
         <meta name="robots" content="noindex">
 
         <!-- Perfect Scrollbar -->
-        <link type="text/css" href="~/assets/vendor/perfect-scrollbar.css" rel="stylesheet">
+        <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/perfect-scrollbar.css" rel="stylesheet">
 
         <!-- Material Design Icons -->
-        <link type="text/css" href="~/assets/css/material-icons.css" rel="stylesheet">
-        <link type="text/css" href="~/assets/css/material-icons.rtl.css" rel="stylesheet">
+        <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/material-icons.css" rel="stylesheet">
+        <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/material-icons.rtl.css" rel="stylesheet">
 
         <!-- Font Awesome Icons -->
-        <link type="text/css" href="~/assets/css/fontawesome.css" rel="stylesheet">
-        <link type="text/css" href="~/assets/css/fontawesome.rtl.css" rel="stylesheet">
+        <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/fontawesome.css" rel="stylesheet">
+        <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/fontawesome.rtl.css" rel="stylesheet">
 
         <!-- App CSS -->
-        <link type="text/css" href="~/assets/css/app.css" rel="stylesheet">
-        <link type="text/css" href="~/assets/css/app.rtl.css" rel="stylesheet">
+        <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/app.css" rel="stylesheet">
+        <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/app.rtl.css" rel="stylesheet">
     </head>
 
     <body class="login">
@@ -125,27 +125,27 @@
 
 
         <!-- jQuery -->
-        <script src="~/assets/vendor/jquery.min.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/jquery.min.js"></script>
 
         <!-- Bootstrap -->
-        <script src="~/assets/vendor/popper.min.js"></script>
-        <script src="~/assets/vendor/bootstrap.min.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/popper.min.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/bootstrap.min.js"></script>
 
         <!-- Perfect Scrollbar -->
-        <script src="~/assets/vendor/perfect-scrollbar.min.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/perfect-scrollbar.min.js"></script>
 
         <!-- MDK -->
-        <script src="~/assets/vendor/dom-factory.js"></script>
-        <script src="~/assets/vendor/material-design-kit.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/dom-factory.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/vendor/material-design-kit.js"></script>
 
         <!-- App JS -->
-        <script src="~/assets/js/app.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/app.js"></script>
 
         <!-- Highlight.js -->
-        <script src="~/assets/js/hljs.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/hljs.js"></script>
 
         <!-- App Settings (safe to remove) -->
-        <script src="~/assets/js/app-settings.js"></script>
+        <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/app-settings.js"></script>
 
     </body>
     </html>

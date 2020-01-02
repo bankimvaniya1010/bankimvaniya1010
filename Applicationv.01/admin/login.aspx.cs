@@ -37,17 +37,22 @@ public partial class admin_login : System.Web.UI.Page
             }
             else
             {
-                if (chkUser.universityId == universityID)
-                    Session["universityId"] = chkUser.universityId;
+                if (chkUser.status == 0)
+                    Response.Redirect(webURL + "admin/resetpassword.aspx", true);
                 else
-                    Session["universityId"] = universityID;
+                {
 
-                pnl_warning.Visible = false;
-                Session["LoginInfo"] = chkUser;
-                Session["UserID"] = chkUser.adminid;
-                Session["Role"] = chkUser.roleid;
-                Response.Redirect(webURL + "admin/default.aspx");
+                    if (chkUser.universityId == universityID)
+                        Session["universityId"] = chkUser.universityId;
+                    else
+                        Session["universityId"] = universityID;
 
+                    pnl_warning.Visible = false;
+                    Session["LoginInfo"] = chkUser;
+                    Session["UserID"] = chkUser.adminid;
+                    Session["Role"] = chkUser.roleid;
+                    Response.Redirect(webURL + "admin/default.aspx");
+                }
             }
         }
 

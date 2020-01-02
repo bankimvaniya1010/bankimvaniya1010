@@ -18,11 +18,10 @@ public partial class forgetpassword : System.Web.UI.Page
     university_master university = new university_master();
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        universityID = Utility.GetUniversityId();
-        var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
         webURL = Utility.GetWebUrl();
+        universityID = Utility.GetUniversityId();
+        university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;        
     }
 
     protected void btn_login_Click(object sender, EventArgs e)
