@@ -111,7 +111,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select Currency", "0");
+            ListItem lst = new ListItem("Please Select Currency", "0");
             var currencymaster = db.currency_master.Select(x => new { x.id, text = x.currency_code + x.currency_symbol }).SortBy("id").ToList();
 
             ddlCurrency.DataSource = currencymaster;
@@ -127,7 +127,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
     {
         try
         {
-            ListItem lst = new ListItem("Please select Payment Decription", "0");
+            ListItem lst = new ListItem("Please Select Payment Decription", "0");
             var decriptionsObj = db.payment_description_master
                                    .Join(db.payment_description_mappings.Where(x => x.university_id == universityID), master => master.id, mapping => mapping.payment_description_id,
                                     (master, mapping) => new { master.id, master.payment_description }).ToList();

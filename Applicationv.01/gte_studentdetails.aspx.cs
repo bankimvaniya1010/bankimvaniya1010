@@ -319,7 +319,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
                                select pInfo).FirstOrDefault();
             if (studentInfo != null) {
                 if(studentInfo.dateofbirth != null)
-                    txtdob.Value = Convert.ToDateTime(studentInfo.dateofbirth).ToString("dd-MM-yyyy");
+                    txtdob.Value = Convert.ToDateTime(studentInfo.dateofbirth).ToString("yyyy-MM-dd");
                 if (studentInfo.nationality != null)
                 {
                     ddlnationality.ClearSelection();
