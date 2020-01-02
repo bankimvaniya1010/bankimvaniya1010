@@ -173,6 +173,6 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
     {
         int applicantID = (int)Session["applicantId"];
         int universityId = (int)Session["universityId"];
-        Response.Redirect(webURL + "applicantpaymentrequest.aspx?applicantId=" + applicantID + "&universityId=" + universityId, true);
+        Response.Redirect(webURL + "admin/applicantpaymentrequest.aspx?applicantId=" + applicantID + "&universityId=" + universityId, true);
     }
 }
