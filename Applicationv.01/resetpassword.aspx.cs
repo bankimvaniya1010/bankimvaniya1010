@@ -14,12 +14,14 @@ public partial class Resetpassword : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     string webURL = String.Empty;
     public string logourl = string.Empty;
+    university_master university = new university_master();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
-        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo }).FirstOrDefault();
-        logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
+        university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
     }
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
@@ -38,8 +40,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 login.ispasswordset = true;
                 login.isverified = true;
                 db.SaveChanges();                
-                universityID = Utility.GetUniversityId();
-                var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
+                universityID = Utility.GetUniversityId();                
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/password.html"));
                 html = html.Replace("@UniversityName", university.university_name);
                 html = html.Replace("@universityLogo", webURL + "/Docs/" + Utility.GetUniversityId() + "/" + university.logo);

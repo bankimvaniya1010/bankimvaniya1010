@@ -149,9 +149,14 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
         {
             int QuestionID = Convert.ToInt32(QuestiontGridView.DataKeys[e.RowIndex].Values[0]);
             gte_preliminary_questionmaster qm = db.gte_preliminary_questionmaster.Where(b => b.gte_preliminaryid == QuestionID).First();
-            db.gte_preliminary_questionmaster.Remove(qm);
-            db.SaveChanges();
-            BindGrid();
+            var anstoquestionexists = db.gte_preliminaryapplicantanswers.Where(a => a.gte_preliminary_question_id == QuestionID).ToList();
+            if (anstoquestionexists.Count == 0){
+                db.gte_preliminary_questionmaster.Remove(qm);
+                db.SaveChanges();
+                BindGrid();
+            }
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('We can not delete this Question as it already used in another records')", true);
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
