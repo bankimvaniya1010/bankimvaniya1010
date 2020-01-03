@@ -15,7 +15,7 @@ public partial class admin_editcourse : System.Web.UI.Page
 
     Common objCommon = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     string roleName = string.Empty;
     int universityID = 0;
     protected string imagepath = "";
@@ -51,6 +51,9 @@ public partial class admin_editcourse : System.Web.UI.Page
 
                     txtCourseName.Value = existingCourse.coursename;
                     txtCoursefee.Value = Convert.ToString(existingCourse.coursefee);
+                    txtCourseURL.Value = existingCourse.courseurl;
+                    txtCourseDuration.Value = existingCourse.courseduration;
+                    txtCourseDescription.Value = existingCourse.coursedescription;
                     if (existingCourse.majordisciplineId != null)
                     {
                         ddldiscipline.ClearSelection();
@@ -186,13 +189,10 @@ public partial class admin_editcourse : System.Web.UI.Page
             ddlUniversity.DataValueField = "universityid";
             ddlUniversity.DataBind();
             ddlUniversity.Items.Insert(0, lst);
-
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     private void bindMajorDisciplineDropdown()
     {
         try
@@ -205,14 +205,10 @@ public partial class admin_editcourse : System.Web.UI.Page
             ddldiscipline.DataValueField = "id";
             ddldiscipline.DataBind();
             ddldiscipline.Items.Insert(0, lst);
-            //ddldiscipline.SelectedIndex = universityID;
-
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     private void bindStudyLevelDropdown()
     {
         try
@@ -225,14 +221,10 @@ public partial class admin_editcourse : System.Web.UI.Page
             ddlstudylevel.DataValueField = "studylevelid";
             ddlstudylevel.DataBind();
             ddlstudylevel.Items.Insert(0, lst);
-            //ddlstudylevel.SelectedIndex = universityID;
-
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     private void bindStudyModeDropdown(HtmlSelect ddlstudymode, int universityId)
     {
         try
@@ -294,6 +286,9 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
             CourseObj.courseeligibility = txtcourseeligibility.Value;
             CourseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
+            CourseObj.courseurl = txtCourseURL.Value.Trim();
+            CourseObj.courseduration = txtCourseDuration.Value.Trim();
+            CourseObj.coursedescription = txtCourseDescription.Value.Trim();
             db.SaveChanges();
 
             //commencement date

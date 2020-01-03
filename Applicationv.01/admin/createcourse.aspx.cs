@@ -14,7 +14,7 @@ public partial class admin_createcourse : System.Web.UI.Page
 
     Common objCommon = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     string roleName = string.Empty;
     int universityID = 0;
 
@@ -58,11 +58,9 @@ public partial class admin_createcourse : System.Web.UI.Page
             ddlUniversity.Items.Insert(0, lst);            
 
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     private void bindMajorDisciplineDropdown()
     {
         try
@@ -75,14 +73,10 @@ public partial class admin_createcourse : System.Web.UI.Page
             ddldiscipline.DataValueField = "id";
             ddldiscipline.DataBind();
             ddldiscipline.Items.Insert(0, lst);
-            //ddldiscipline.SelectedIndex = universityID;
-
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
+
     private void bindStudyLevelDropdown()
     {
         try
@@ -95,13 +89,8 @@ public partial class admin_createcourse : System.Web.UI.Page
             ddlstudylevel.DataValueField = "studylevelid";
             ddlstudylevel.DataBind();
             ddlstudylevel.Items.Insert(0, lst);
-            //ddlstudylevel.SelectedIndex = universityID;
-
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 
     [WebMethod]
@@ -139,6 +128,9 @@ public partial class admin_createcourse : System.Web.UI.Page
                 courseObj.coursefee = Convert.ToDecimal(txtCoursefee.Value.Trim());
                 courseObj.universityid = Convert.ToInt32(ddlUniversity.SelectedValue);
                 courseObj.courseeligibility = txtcourseeligibility.Value;
+                courseObj.courseurl = txtCourseURL.Value;
+                courseObj.courseduration = txtCourseDuration.Value;
+                courseObj.coursedescription = txtCourseDescription.Value;
 
                 db.coursemaster.Add(courseObj);
                 db.SaveChanges();

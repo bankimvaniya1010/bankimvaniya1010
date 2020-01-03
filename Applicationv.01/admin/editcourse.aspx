@@ -16,12 +16,23 @@
             <div class="tab-content card-body">
                 <div class="tab-pane active" id="first">
 
-                       <div class="form-group row">
+                    <div class="form-group row">
                         <label for="CourseName" class="col-sm-3 col-form-label form-label">Course Name</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <input id="txtCourseName" type="text" runat="server" class="form-control" placeholder="Course Name" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="CourseDescription" class="col-sm-3 col-form-label form-label">Course Description</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea runat="server" id="txtCourseDescription" class="form-control edit-textarea"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -91,17 +102,41 @@
                             </div>
                         </div>
                     </div>
-                      <div class="form-group row">
+
+                    <div class="form-group row">
+                        <label for="CourseURL" class="col-sm-3 col-form-label form-label">Course URL</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtCourseURL" type="text" runat="server" class="form-control" placeholder="Course URL" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="CourseDuration" class="col-sm-3 col-form-label form-label">Course Duration</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="txtCourseDuration" type="text" runat="server" class="form-control" placeholder="Course Duration" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="courseeligibility" class="col-sm-3 col-form-label form-label">Course eligibility</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-12">
                                     <textarea runat="server" id="txtcourseeligibility" class="form-control edit-textarea"></textarea>
                                 </div>
-                                <input id="btnAddCommencementDate" type="button" class="form-control" value="Add Commencement Date" />                                
+                                <input id="btnAddCommencementDate" type="button" class="form-control" value="Add Commencement Date" />
                             </div>
                         </div>
                     </div>
+
                     <asp:HiddenField ID="hidCommencementDateCount" runat="server" Value="0" />
                     <asp:HiddenField ID="hidCommencementDates" runat="server" Value="" />
                     <asp:HiddenField ID="hidExistingCommencementDates" runat="server" Value=""/>
@@ -231,12 +266,19 @@
 
             var universityCampuses = $("#<%=hidUniversityCampuses.ClientID%>").val().split(',');
             universityCampuses = $.grep(universityCampuses, function (n) { return (n); });
+            var txtCourseUrl = $('#<%=txtCourseURL.ClientID%>').val();
+            var txtCourseDuration = $('#<%=txtCourseDuration.ClientID%>').val();
+            var txtCourseDescription = $('#<%=txtCourseDescription.ClientID%>').val();
+            var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
 
             if (txtCourse == '') {
                 alert("Please enter Course Name");
                 return false;
             }
-
+            else if (txtCourseDescription == '') {
+                alert("Please enter Course Description");
+                return false;
+            }
             else if (discipline == 0 || isNaN(parseInt(discipline))) {
                 alert("Please select Major Discipline");
                 return false;
@@ -259,6 +301,14 @@
             }
             else if (universityCampuses.length < 1) {
                 alert("Please select applicable university campuses for the course");
+                return false;
+            }
+            else if (txtCourseUrl == '' || !urlRegex.test(txtCourseUrl)) {
+                alert("Please enter course URL");
+                return false;
+            }
+            else if (txtCourseDuration == '') {
+                alert("Please enter Course Duration in weeks");
                 return false;
             }
             else if (!isValidCommencementDate()) { return false; }
