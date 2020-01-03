@@ -53,7 +53,6 @@
         <EntityTypeShape EntityType="GTEModel.course_campus_mapping" Width="1.5" PointX="12.75" PointY="237" />
         <EntityTypeShape EntityType="GTEModel.course_dates" Width="1.5" PointX="12.75" PointY="142.75" />
         <EntityTypeShape EntityType="GTEModel.course_defermentdates" Width="1.5" PointX="12.75" PointY="146.25" />
-        <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="10.5" PointY="153.375" />
         <EntityTypeShape EntityType="GTEModel.coursetypemaster" Width="1.5" PointX="7.5" PointY="316.875" />
         <EntityTypeShape EntityType="GTEModel.credentialmaster" Width="1.5" PointX="7.5" PointY="163.875" />
         <EntityTypeShape EntityType="GTEModel.currency_master" Width="1.5" PointX="9" PointY="118.5" />
@@ -79,7 +78,6 @@
         <EntityTypeShape EntityType="GTEModel.gte_clarification_questionmaster" Width="1.5" PointX="3" PointY="8" />
         <EntityTypeShape EntityType="GTEModel.gte_preliminary_questionmaster" Width="1.5" PointX="18.75" PointY="11.75" />
         <EntityTypeShape EntityType="GTEModel.gte_preliminaryapplicantanswers" Width="1.5" PointX="14.75" PointY="18.75" />
-        <EntityTypeShape EntityType="GTEModel.gte_progressbar" Width="1.5" PointX="18.75" PointY="15.75" />
         <EntityTypeShape EntityType="GTEModel.gte_question_master_part2" Width="1.5" PointX="0.75" PointY="6.375" />
         <EntityTypeShape EntityType="GTEModel.gte_question_part2_applicant_response" Width="1.5" PointX="3" PointY="5.125" />
         <EntityTypeShape EntityType="GTEModel.gte_questions_applicant_response" Width="1.5" PointX="5.25" PointY="1" />
@@ -169,11 +167,6 @@
         <AssociationConnector Association="GTEModel.FK_clarificationmaster_clarificationquestion_mapping" />
         <AssociationConnector Association="GTEModel.FK__countriesmaster" />
         <AssociationConnector Association="GTEModel.FK_qualificationcountriesmapping_countriesmaster" />
-        <AssociationConnector Association="GTEModel.FK_courseMapping_coursemaster" />
-        <AssociationConnector Association="GTEModel.FK_courseDates_coursemaster_" />
-        <AssociationConnector Association="GTEModel.FK_defermentDate_coursemaster" />
-        <AssociationConnector Association="GTEModel.FK_coursemaster_majordiscipline_master" />
-        <AssociationConnector Association="GTEModel.FK_coursemaster_studylevelmaster" />
         <AssociationConnector Association="GTEModel.fk_manageaccomdationplan_cureency" />
         <AssociationConnector Association="GTEModel.fk_manageentertainment_currency" />
         <AssociationConnector Association="GTEModel.fk_managehealth_insurance_currency" />
@@ -261,7 +254,6 @@
         <AssociationConnector Association="GTEModel.FK_australiavisaFamilydetailmaster_university_master" />
         <AssociationConnector Association="GTEModel.FK_universityMaster_cityMaster" />
         <AssociationConnector Association="GTEModel.FK_university_clarificationquestion_mapping" />
-        <AssociationConnector Association="GTEModel.FK_coursemaster_universitymaster" />
         <AssociationConnector Association="GTEModel.FK_coursetypemaster_university_master" />
         <AssociationConnector Association="GTEModel.FK_credential_university" />
         <AssociationConnector Association="GTEModel.FK_customfieldmaster_university_master" />
@@ -277,7 +269,6 @@
         <EntityTypeShape EntityType="GTEModel.studymodemaster" Width="1.5" PointX="8.25" PointY="168.375" />
         <EntityTypeShape EntityType="GTEModel.universitycampus" Width="1.5" PointX="7.5" PointY="99.75" />
         <AssociationConnector Association="GTEModel.FK_courseMapping_universitycampus" />
-        <AssociationConnector Association="GTEModel.FK_coursemaster_studymodemaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_campusdetail" />
         <AssociationConnector Association="GTEModel.FK_campus_universityMaster" />
         <AssociationConnector Association="GTEModel.FK_mapping_universitycampus" />
@@ -289,6 +280,15 @@
         <AssociationConnector Association="GTEModel.FK_declaration_master_university_master" />
         <EntityTypeShape EntityType="GTEModel.gte_declaration_master" Width="1.5" PointX="7.5" PointY="86.5" />
         <AssociationConnector Association="GTEModel.FK_gte_declaration_master_university_master" />
+        <EntityTypeShape EntityType="GTEModel.gte_progressbar" Width="1.5" PointX="18.75" PointY="15.125" />
+        <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="10.5" PointY="153" />
+        <AssociationConnector Association="GTEModel.FK_courseMapping_coursemaster" />
+        <AssociationConnector Association="GTEModel.FK_courseDates_coursemaster_" />
+        <AssociationConnector Association="GTEModel.FK_defermentDate_coursemaster" />
+        <AssociationConnector Association="GTEModel.FK_coursemaster_majordiscipline_master" />
+        <AssociationConnector Association="GTEModel.FK_coursemaster_studylevelmaster" />
+        <AssociationConnector Association="GTEModel.FK_coursemaster_studymodemaster" />
+        <AssociationConnector Association="GTEModel.FK_coursemaster_universitymaster" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
