@@ -186,12 +186,33 @@ public partial class admin_applicantlist : System.Web.UI.Page
             //else if (e.CommandName.Equals("ValidateData")) { Response.Redirect(webURL + "admin/applicantdetailsvalidation.aspx?ID=" + ID); }
             if(Comamandname.Equals("VisaDate"))
                 Response.Redirect(webURL + "admin/visaDates.aspx?userid=" + ID, true);
+            if (Comamandname.Equals("SOP"))
+                downloadSOPReport(ID);            
         }
         catch (Exception ex)
         {
             objLog.WriteLog(ex.ToString());
         }
     }
+
+    private void downloadSOPReport(int applicantID)
+    {
+        var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+        htmlToPdf.Orientation = PageOrientation.Portrait;
+        htmlToPdf.Size = PageSize.A4;
+        htmlToPdf.Grayscale = false;
+        htmlToPdf.PageWidth = 200f;
+        string dirPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"];
+        string fileName = Guid.NewGuid() + ".pdf";
+        string filePath = string.Concat(dirPath, "\\", fileName);
+        htmlToPdf.GeneratePdfFromFile(webURL + "admin/sopreport.aspx?token=YKUcfdhNWwp17azByk&id=" + applicantID + "&downloadPdf=1", null, filePath);
+
+        Response.ContentType = "application/pdf";
+        Response.AppendHeader("Content-Disposition", "attachment; filename=SOP_Report_" + fileName);
+        Response.TransmitFile(filePath);
+        Response.End();
+    }
+
     private void downloadPerDown(int applicantID)
     {
         var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
@@ -1055,6 +1076,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
 
             LinkButton lnkDownloadGteReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadGteReport");
             LinkButton lnkGteReportFeedBack = (LinkButton)e.Row.Cells[2].FindControl("lnkGteReportFeedBack");
+            LinkButton lnkDownloadSOPReport = (LinkButton)e.Row.Cells[2].FindControl("lnkDownloadSOPReport");
             if (lnkDownloadGteReport != null || lnkGteReportFeedBack != null)
             {
                 int applicant_id = Convert.ToInt32(e.Row.Cells[0].Text);
@@ -1066,9 +1088,9 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 {
                     lnkDownloadGteReport.Style.Add("display", "none");
                     lnkGteReportFeedBack.Style.Add("display", "none");
+                    lnkDownloadSOPReport.Style.Add("display", "none");
                 }
             }
-
             if (roleName.ToLower() == "university admin staff 2")
             {
                 LinkButton2.Style.Add("display", "none");
@@ -1077,6 +1099,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 lnkGteReportFeedBack.Style.Add("display", "none");
                 lnkProcessPayments.Style.Add("display", "none");
                 LinkbtnvisaDates.Style.Add("display", "none");
+                lnkDownloadSOPReport.Style.Add("display", "none");
             }
         }
     }

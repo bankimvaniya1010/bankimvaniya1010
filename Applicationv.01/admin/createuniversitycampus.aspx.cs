@@ -13,6 +13,7 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
 
     Logger objLog = new Logger();
+    Common objcom = new Common();
     string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
     string roleName = string.Empty;
     int universityID = 0;
@@ -29,7 +30,9 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
 
 
         if (!IsPostBack)
-        { bindUniversityDropdown(); }
+        {
+            objcom.BindCountries(ddlcountry);
+            bindUniversityDropdown(); }
     }
 
     private void bindUniversityDropdown()
@@ -75,21 +78,9 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
                 universityCampusObj.universityid = universityId;
                 universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
                 universityCampusObj.research = txtCampResearch.Value.Trim();
-                
+                universityCampusObj.cityid = Convert.ToInt32(hidCityID.Value);            
                 db.universitycampus.Add(universityCampusObj);
                 db.SaveChanges();
-
-                string[] citiesList = hidCities.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-                int count = citiesList.Length;
-                for (int i = 0; i < count; i++)
-                {
-                    universitycampus_city_mapping mapping = new universitycampus_city_mapping();
-
-                    mapping.campusid = universityCampusObj.campusid;
-                    mapping.cityid = Convert.ToInt32(citiesList[i]);
-                    db.universitycampus_city_mapping.Add(mapping);
-                    db.SaveChanges();
-                }
 
                 string[] facilitiesList = hidFacilities.Value.Split(';');
                 string[] facilitiesCostList = hidFacilityCost.Value.Split(';');
@@ -130,23 +121,14 @@ public partial class admin_createuniversitycampus : System.Web.UI.Page
     }
 
     [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static string GetCityDropdown(int countryId)
     {
         GTEEntities db1 = new GTEEntities();
         var temp = db1.citymaster.Where(x => x.country_id == countryId).Select(x => new { x.city_id, x.name }).ToList();
         return JsonConvert.SerializeObject(temp);
     }
-
-    [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
-    public static string GetCountries()
-    {
-        GTEEntities db1 = new GTEEntities();
-        var temp = db1.countriesmaster.Select(x => new { countryID = x.id, countryName = x.country_name }).ToList();
-        return JsonConvert.SerializeObject(temp);
-    }
-
+        
     [WebMethod]
     [ScriptMethod(UseHttpGet = true)]
     public static string GetAllFacilities()
