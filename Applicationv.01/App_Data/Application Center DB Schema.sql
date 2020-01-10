@@ -1249,6 +1249,9 @@ CREATE TABLE IF NOT EXISTS `coursemaster` (
   `universityid` int(1) DEFAULT NULL,
   `coursefee` decimal(10,2) DEFAULT NULL,
   `courseeligibility` varchar(2000) DEFAULT NULL,
+  `courseurl` varchar(500) DEFAULT NULL,
+  `courseduration` varchar(500) DEFAULT NULL,
+  `coursedescription` varchar(2000) DEFAULT NULL,
   PRIMARY KEY (`courseid`),
   KEY `FK_coursemaster_studymodemaster` (`modeofstudyId`),
   KEY `FK_coursemaster_studylevelmaster` (`levelofstudyId`),
@@ -1668,6 +1671,10 @@ CREATE TABLE IF NOT EXISTS `gte_progressbar` (
   `is_gte_tutorial_completed` bit(1) DEFAULT NULL,
   `is_gte_question_completed` bit(1) DEFAULT NULL,
   `is_gte_declaration_completed` bit(1) DEFAULT NULL,
+  `is_gte_certificate_generated` bit(1) DEFAULT NULL,
+  `certificate_name` varchar(50) DEFAULT NULL,
+  `certificate_creation_date` date DEFAULT NULL,
+  `performance_category` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

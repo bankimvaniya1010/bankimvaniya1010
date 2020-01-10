@@ -13,7 +13,7 @@ public partial class gte_sop : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
     Common objCommon = new Common();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     gte_applicantdetails applicantdetails;
     protected static List<faq> allQuestions = new List<faq>();
     protected void Page_Load(object sender, EventArgs e)
@@ -145,7 +145,7 @@ public partial class gte_sop : System.Web.UI.Page
                     }
                     else
                     {
-                        applicantdetails = db.gte_applicantdetails.Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
+                        applicantdetails = db.gte_applicantdetails.AsNoTracking().Where(x => x.applicantid == UserID && x.universityid == universityID).FirstOrDefault();
                         int courseId = Convert.ToInt32(applicantdetails.coursename);
                         applicantdetails.coursename = db.coursemaster.Where(x => x.courseid == courseId).Select(x => x.coursename).FirstOrDefault();
                     }
