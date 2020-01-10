@@ -70,6 +70,7 @@
                                     <asp:LinkButton ID="lnkValidate" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="ValidateData" Text="ValidateData"></asp:LinkButton>|
                                     --%>
                                     <asp:LinkButton ID="LinkbtnvisaDates" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="VisaDate" Text="Add Visa Dates Details"></asp:LinkButton>
+                                    <asp:LinkButton ID="lnkDownloadSOPReport" runat="server" CausesValidation="False" CommandArgument='<%#Eval("applicantid")%>' CommandName="SOP" Text="Download SOP Report "></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>                              
 
