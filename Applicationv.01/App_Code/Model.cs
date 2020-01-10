@@ -1705,6 +1705,8 @@ public partial class gte_progressbar
     public Nullable<bool> is_gte_declaration_completed { get; set; }
     public Nullable<bool> is_gte_certificate_generated { get; set; }
     public string certificate_name { get; set; }
+    public Nullable<System.DateTime> certificate_creation_date { get; set; }
+    public string performance_category { get; set; }
 }
 
 public partial class gte_question_master_part2

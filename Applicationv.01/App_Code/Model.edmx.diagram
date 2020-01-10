@@ -280,7 +280,6 @@
         <AssociationConnector Association="GTEModel.FK_declaration_master_university_master" />
         <EntityTypeShape EntityType="GTEModel.gte_declaration_master" Width="1.5" PointX="7.5" PointY="86.5" />
         <AssociationConnector Association="GTEModel.FK_gte_declaration_master_university_master" />
-        <EntityTypeShape EntityType="GTEModel.gte_progressbar" Width="1.5" PointX="18.75" PointY="15.125" />
         <EntityTypeShape EntityType="GTEModel.coursemaster" Width="1.5" PointX="10.5" PointY="153" />
         <AssociationConnector Association="GTEModel.FK_courseMapping_coursemaster" />
         <AssociationConnector Association="GTEModel.FK_courseDates_coursemaster_" />
@@ -289,6 +288,7 @@
         <AssociationConnector Association="GTEModel.FK_coursemaster_studylevelmaster" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_studymodemaster" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_universitymaster" />
+        <EntityTypeShape EntityType="GTEModel.gte_progressbar" Width="1.5" PointX="18.75" PointY="15" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

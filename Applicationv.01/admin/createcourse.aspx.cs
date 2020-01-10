@@ -161,7 +161,7 @@ public partial class admin_createcourse : System.Web.UI.Page
                 }
                 db.SaveChanges();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('Record Inserted Successfully.');window.location='" + Request.ApplicationPath + "coursemaster.aspx';", true);
+                        "alert('Record Inserted Successfully.');window.location='" + Request.ApplicationPath + "admin/coursemaster.aspx';", true);
                 
             }
             else
