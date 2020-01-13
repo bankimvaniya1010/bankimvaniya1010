@@ -16,7 +16,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     private GTEEntities db = new GTEEntities();
     int UserID = 0, ApplicantID = 0;
     Logger objLog = new Logger();
-    protected string Score, Results = "";
+
     string webURL = string.Empty;
     int userScore = 0;
     int UniversityID = -1;
@@ -70,6 +70,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     {
         try
         {
+            bool responseInsertedForQuestion = false;
             Hashtable answer = new Hashtable();
             var preliminaryQuestionList = db.gte_preliminary_questionmaster.AsNoTracking().ToList();
             foreach (DataListItem item in questionList.Items)
@@ -121,7 +122,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                         ((HtmlGenericControl)item.FindControl("incorrectTick4")).Style.Remove("display");
                 }
 
-                bool responseInsertedForQuestion = db.gte_preliminaryapplicantanswers.Any(x => x.applicantid == UserID && x.gte_preliminary_question_id == questionId);
+                responseInsertedForQuestion = db.gte_preliminaryapplicantanswers.Any(x => x.applicantid == UserID && x.gte_preliminary_question_id == questionId);
                 if (!responseInsertedForQuestion)
                     answer.Add(questionID.Text, SelectedValue);
 
@@ -150,13 +151,72 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 Save(answer);
             calculateStudentScore(preliminaryQuestionList);
             divUserScore.Style.Remove("display");
+
+            if (!responseInsertedForQuestion && !gteProgressBar.is_gte_certificate_generated.HasValue)
+            {
+                int userPercentageScore = (int)Math.Ceiling((decimal)userScore / questionList.Items.Count * 100);
+                if (userPercentageScore > 40 && userPercentageScore <= 65)
+                    generateParticipationCertificate("Satisfactory");
+                else if (userPercentageScore > 65 && userPercentageScore <= 85)
+                    generateParticipationCertificate("Good");
+                else if (userPercentageScore > 85)
+                    generateParticipationCertificate("Excellent");
+                else
+                    linkCertificate.Style.Add("display", "none");
+            }
+
             lblUserScore.InnerText = Math.Round((decimal)userScore / questionList.Items.Count * 100, 2).ToString() + "%";
             btnsubmit.Enabled = false;
-            btnGoToDeclaration.Enabled = true;
+            btnGoToDeclaration.Enabled = true; // Depending upon flag for Only GTE Certificate or complete GTE Module will be visible
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "navigateToTop", "window.scrollTo(0, 0);", true);
         }
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }
+    }
+
+    private void generateParticipationCertificate(string performanceCategory)
+    {
+        try
+        {
+            var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+            if (gteProgressBar != null)
+            {
+                string certificateNumber = generateCertificateNumber();
+                objLog.WriteLog("Certificate Number: " + certificateNumber + " generated for applicant ID: " + UserID);
+                gteProgressBar.is_gte_certificate_generated = true;
+                gteProgressBar.certificate_creation_date = DateTime.Today;
+                gteProgressBar.performance_category = performanceCategory;
+                gteProgressBar.certificate_name = certificateNumber;
+                db.SaveChanges();
+            }
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
+
+    private string generateCertificateNumber()
+    {
+        string certificateNumber = "";
+        while (true)
+        {
+            certificateNumber = RandomAplhaNumericString();
+            if (!db.gte_progressbar.Any(x => x.certificate_name == certificateNumber))
+                return certificateNumber;
+        }
+    }
+
+    public static string RandomAplhaNumericString() // Generated Format "ABCD9999"
+    {
+        const string chars = "ABCD";
+        Random random = new Random();
+        int randomNumber = random.Next(0, 9999);
+        string aplhaNumericNumber = "";
+        string randomString = new string(Enumerable.Repeat(chars, 4).Select(s => s[random.Next(s.Length)]).ToArray());
+        if (randomNumber < 1000)
+            aplhaNumericNumber = randomString + "0" + randomNumber.ToString();
+        else
+            aplhaNumericNumber = randomString + randomNumber.ToString();
+
+        return aplhaNumericNumber;
     }
 
     private void calculateStudentScore(List<gte_preliminary_questionmaster> preliminaryQuestionList)
