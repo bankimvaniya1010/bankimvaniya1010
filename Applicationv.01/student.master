@@ -463,6 +463,11 @@
                                                         <span class="sidebar-menu-text">Statement of Purpose</span>
                                                     </a>
                                                 </li>
+                                                <li class="sidebar-menu-item" id="gte_downlload_your_sop">
+                                                    <a class="sidebar-menu-button" href="download_reports.aspx">
+                                                        <span class="sidebar-menu-text">Download SOP</span>
+                                                    </a>
+                                                </li>
                                                 <li class="sidebar-menu-item" id="gtedocmentupload">
                                                     <a class="sidebar-menu-button" href="gte_documentupload.aspx?formid=15">
                                                         <span class="sidebar-menu-text">Documents Upload</span>
@@ -883,6 +888,7 @@
                 $("#gtepart2").hide();
                 $("#gtevideoquestion").hide();
                 $("#gtestudent_sop").hide();
+                $("#gte_downlload_your_sop").hide();
                 $("#gtedocmentupload").hide();
                 $("#message_menu_list").hide();                 
                 $("#student_list").hide();
@@ -929,6 +935,7 @@
                 $("#gtepart2").show();
                 $("#gtevideoquestion").show();
                 $("#gtestudent_sop").show();
+                $("#gte_downlload_your_sop").show();
                 $("#gtedocmentupload").show();
                 $("#studentapplication_finances").show();
                 if (!fullService) {
@@ -959,6 +966,7 @@
                     $("#gtepart2").hide();
                     $("#gtevideoquestion").hide();
                     $("#gtestudent_sop").hide();
+                    $("#gte_downlload_your_sop").hide();
                     $("#gtedocmentupload").hide();
                 }
 

@@ -15,6 +15,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = String.Empty;
     int universityIDs = 0;
+    Common objcom = new Common();
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -46,20 +47,13 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
                     txtCampResearch.Value = existingUninversityCampus.research;
                     txtFacultyDescription.Value = existingUninversityCampus.faculty_description;
 
-                    var lstOfCities = db.universitycampus_city_mapping.Where(x => x.campusid == universityCampusId)
-                                        .Join(db.citymaster, mapping => mapping.cityid, cities => cities.city_id,
-                                        (mapping, cities) => new { cityid = mapping.cityid, countryid = cities.country_id })
-                                        .ToList();
-                    if (lstOfCities != null)
-                    {
-                        for (int i = 0; i < lstOfCities.Count; i++)
-                        {
-                            hidCities.Value += lstOfCities[i].cityid + ";";
-                            hidCountries.Value += lstOfCities[i].countryid + ";";
-                        }
-                            
-                    }
+                    var countryID = db.citymaster.Where(x => x.city_id == existingUninversityCampus.cityid).Select(x => x.country_id).FirstOrDefault();
 
+                    BindCity(countryID);
+                    ddlcity.Items.FindByValue(existingUninversityCampus.cityid.ToString()).Selected = true;
+                    
+                    objcom.BindCountries(ddlcountry);
+                    ddlcountry.Items.FindByValue(countryID.ToString()).Selected = true;                    
                 }
                 else
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('University Campus does not exists')", true);
@@ -101,13 +95,7 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
     {
         int campusID = Convert.ToInt32(ViewState["campusID"]);
 
-        universitycampus universityCampusObj = db.universitycampus.Where(x => x.campusid == campusID).First();
-        var existinglst = db.universitycampus_city_mapping.Where(x => x.campusid == campusID).ToList();
-        if (existinglst != null)
-        {
-            db.universitycampus_city_mapping.RemoveRange(existinglst);
-            db.SaveChanges();
-        }
+        universitycampus universityCampusObj = db.universitycampus.Where(x => x.campusid == campusID).First();        
         try
         {
             universityCampusObj.universityid = Convert.ToInt32(ddlUniversity.SelectedItem.Value);
@@ -115,21 +103,8 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             universityCampusObj.description = txtCampDescription.Value.Trim();
             universityCampusObj.faculty_description = txtFacultyDescription.Value.Trim();
             universityCampusObj.research = txtCampResearch.Value.Trim();
-
+            universityCampusObj.cityid = Convert.ToInt32(hidCityID.Value);
             db.SaveChanges();
-
-            string[] citiesList = hidCities.Value.Split(new char[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
-            int count = citiesList.Length;
-            for (int i = 0; i < count; i++)
-            {
-                universitycampus_city_mapping mapping = new universitycampus_city_mapping();
-
-                mapping.campusid = universityCampusObj.campusid;
-                mapping.cityid = Convert.ToInt32(citiesList[i]);
-                db.universitycampus_city_mapping.Add(mapping);
-                db.SaveChanges();
-            }
-
             Response.Redirect(webURL + "admin/universitycampusmaster.aspx?universityID=" + universityCampusObj.universityid);
         }
         catch (Exception ex)
@@ -137,9 +112,8 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
             objLog.WriteLog(ex.StackTrace.ToString());
         }
     }
-
     [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
     public static string GetCityDropdown(int countryId)
     {
         GTEEntities db1 = new GTEEntities();
@@ -147,12 +121,19 @@ public partial class admin_edituniversitycampus : System.Web.UI.Page
         return JsonConvert.SerializeObject(temp);
     }
 
-    [WebMethod]
-    [ScriptMethod(UseHttpGet = true)]
-    public static string GetCountries()
+    private void BindCity(int countryID)
     {
-        GTEEntities db1 = new GTEEntities();
-        var temp = db1.countriesmaster.Select(x => new { countryID = x.id, countryName = x.country_name }).ToList();
-        return JsonConvert.SerializeObject(temp);
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var temp = db.citymaster.Where(x => x.country_id == countryID).ToList();
+            ddlcity.DataSource = temp;
+            ddlcity.DataTextField = "name";
+            ddlcity.DataValueField = "city_id";
+            ddlcity.DataBind();
+            ddlcity.Items.Insert(0, lst);
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+
     }
 }
