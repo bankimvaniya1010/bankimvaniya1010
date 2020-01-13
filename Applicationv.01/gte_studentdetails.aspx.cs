@@ -519,7 +519,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         var campusIds = db1.universitycampus.Where(x => x.universityid == universityId).Select(x => x.campusid).ToList();
         List<object> cityDetails = new List<object>();
         foreach (int campusid in campusIds)
-            cityDetails.AddRange(db1.universitycampus_city_mapping.Where(x => x.campusid == campusid).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name}).ToList());
+            cityDetails.AddRange(db1.universitycampus.Where(x => x.campusid == campusid).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name}).ToList());
 
         if (cityDetails.Count == 0)
             cityDetails.Add(db1.university_master.Where(x => x.universityid == universityId).Select(x => new { city_id = x.cityid, cityName = x.citymaster.name }));
