@@ -151,7 +151,7 @@
                 var countryId = $("#<%=ddlcountry.ClientID%>").val();
                 $.ajax({
                     type: "POST",
-                    url: "createuniversitycampus.aspx/GetCityDropdown",
+                    url: "edituniversitycampus.aspx/GetCityDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: "{'countryId': '" + countryId + "'}",
