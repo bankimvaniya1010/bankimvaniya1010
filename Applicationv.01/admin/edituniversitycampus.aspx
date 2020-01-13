@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="edituniversitycampus.aspx.cs" Inherits="admin_edituniversitycampus" MasterPageFile="~/admin/admin.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="edituniversitycampus.aspx.cs" Inherits="admin_edituniversitycampus" MasterPageFile="~/admin/admin.master" EnableEventValidation="false"%>
 
 <asp:Content ID="content1" runat="server" ContentPlaceHolderID="head">
 </asp:Content>
@@ -69,17 +69,31 @@
                             </div>
                         </div>
                     </div>
-
-                    <asp:HiddenField ID="hidCountryCount" runat="server" Value="0" />
-                    <asp:HiddenField ID="hidCities" runat="server" Value="" />
-                    <asp:HiddenField ID="hidCountries" runat="server" Value="" />
-                    <div id="container" class="form-group row"></div>
-
+                    <div class="form-group row">
+                         <label class="col-sm-3 col-form-label form-label">Select Country</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlcountry" runat="server" class="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                         <label class="col-sm-3 col-form-label form-label">Select City</label>
+                            <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlcity" runat="server" class="form-control"></asp:DropDownList>
+                                    <asp:HiddenField runat="server" ID="hidCityID"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <div class="col-sm-8 offset-sm-3">
                             <div class="media align-items-center">
-                                <div class="media-left">
-                                    <input id="btnAddCountry" type="button" class="form-control" value="Add Country" />
+                                <div class="media-left">                                    
                                     <asp:Button ID="btnSubmit" runat="server" Text="Submit" CssClass="btn btn-primary btn-block" OnClick="btnSubmit_Click" OnClientClick="return validateForm()" />
                                 </div>
                             </div>
@@ -91,96 +105,7 @@
         </div>
     </div>
     <script type="text/javascript">
-
-        function populateCity(count, cityIndex) {
-
-            $.ajax({
-                type: "GET",
-                url: "edituniversitycampus.aspx/GetCityDropdown",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: { countryId: $("#ddlCountry_" + count).val() },
-                success: function (response) {
-                    if (response.d) {
-                        var result = JSON.parse(response.d);
-                        if ($("#ddlCity_" + count).length >= 1) {
-                            $("#ddlCity_" + count).empty();
-                            $("#ddlCity_" + count).append($('<option selected="selected" disabled="disabled"></option>').val("0").html("Please Select City"));
-                        }
-                        else {
-                            var content = '<label for="ddlCity_' + count + '" class="col-sm-3 col-form-label form-label">City</label>' +
-                                    '<div class="col-sm-8">' +
-                                    '<div class="row">' +
-                                    '<div class="col-md-6">' +
-                                    '<select id="ddlCity_' + count + '" name="ddlCity_' + count + '" class="form-control"><option value="0" disabled="disabled">Please Select City</option></select>' +
-                                    '</div></div></div>';
-                                $(content).insertAfter($('#country_city_block_' + count));
-                        }
-                        for (var i = 0; i < result.length; i++) {
-                            $("#ddlCity_" + count).append($("<option></option>").val(result[i].city_id).html(result[i].name));
-                        }
-                    }
-                }
-            });
-            if (cityIndex > 0)
-                $("#ddlCity_" + count + " select").val(cityIndex);
-        }
-
-        function createCountryElement(countryIndex, cityIndex) {
-            var hfCountryCount = $("#<%=hidCountryCount.ClientID %>");
-            var count = parseInt(hfCountryCount.val());
-            hfCountryCount.val(count + 1);
-
-            $("#container").append('<label for="ddlCountry_' + count + '" class="col-sm-3 col-form-label form-label">Country</label>' +
-                '<div class="col-sm-8" id=country_city_block_' + count + '>' +
-                '<div class="row">' +
-                '<div class="col-md-6">' +
-                '<select id="ddlCountry_' + count + '" class="form-control"><option value="0" selected="selected" disabled="disabled">Please Select Country</option></select>' +
-                '</div></div></div>');
-
-            $.ajax({
-                type: "GET",
-                url: "edituniversitycampus.aspx/GetCountries",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    if (response.d) {
-                        var result = JSON.parse(response.d);
-                        for (var i = 0; i < result.length; i++) {
-                            $("#ddlCountry_" + count).append($("<option></option>").val(result[i].countryID).html(result[i].countryName));
-                        }
-                        if (countryIndex > 0) {
-                            $("#ddlCountry_" + count).prop('selectedIndex', countryIndex);
-                            populateCity(count, cityIndex);
-                        }
-                    }
-                }
-            });
-
-            $("#ddlCountry_" + count).change(function () {
-                populateCity(count, cityIndex);
-            });
-        }
-
-        function isvalidCities() {
-
-            var countryCount = $("#<%=hidCountryCount.ClientID %>").val();
-            $("#<%=hidCities.ClientID %>").val('');
-
-            for (var i = 0; i < countryCount; i++) {
-                if ($("#ddlCity_" + i).val() == null || $("#ddlCity_" + i).val() == undefined) {
-                    alert("Please select city for country " + $("#ddlCountry_" + i + " option:selected").text());
-                    return false;
-                }
-                else {
-                    var data = $('#ddlCity_' + i).val() + ";" + $("#<%=hidCities.ClientID %>").val();
-                    $("#<%=hidCities.ClientID %>").val(data);
-                }
-            }
-
-            return true;
-        }
-
+        
         function validateForm() {
 
             var universityValue = $('#<%=ddlUniversity.ClientID%>').val();
@@ -188,6 +113,8 @@
             var campDescription = $('#<%=txtCampDescription.ClientID%>').val();
             var campResearch = $('#<%=txtCampResearch.ClientID%>').val();
             var campFacultyDescription = $('#<%=txtFacultyDescription.ClientID%>').val();
+            var country = $('#<%=ddlcountry.ClientID%>').val();
+            var city = $('#<%=ddlcity.ClientID%>').val();
 
             if (universityValue == 0 || isNaN(parseInt(universityValue))) {
                 alert("Please select university for campus");
@@ -209,25 +136,43 @@
                 alert("Please enter campus faculty description");
                 return false;
             }
-            else if (!isvalidCities()) { return false; }
-
+            else if (country == 0) {
+                alert("Please select Country");
+                return false;
+            }
+            else if (city == 0) {
+                alert("Please select city");
+                return false;
+            }
             return true;         
         }
 
-
-        $(document).ready(function () {
-            $("#container").empty();
-            $("#btnAddCountry").click(function () {
-                createCountryElement(-1, -1);
-            });
-
-            var citiesArray = $("#<%=hidCities.ClientID %>").val().split(';');
-            var countryArray = $("#<%=hidCountries.ClientID %>").val().split(';');
-
-            var count = citiesArray.length - 1;
-            for (var i = 0; i < count; i++)
-                createCountryElement(countryArray[i], citiesArray[i]);
+        $("#<%=ddlcountry.ClientID%>").change(function () {
+                var countryId = $("#<%=ddlcountry.ClientID%>").val();
+                $.ajax({
+                    type: "POST",
+                    url: "edituniversitycampus.aspx/GetCityDropdown",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: "{'countryId': '" + countryId + "'}",
+                    success: function (response) {
+                        if (response.d) {
+                            var result = JSON.parse(response.d);
+                            if ($("#<%=ddlcity.ClientID%>").length >= 1) {
+                                $("#<%=ddlcity.ClientID%>").empty();
+                                $("#<%=ddlcity.ClientID%>").append($('<option selected="selected"></option>').val(0).html("Please Select"));
+                            }
+                            for (var i = 0; i < result.length; i++)
+                                $("#<%=ddlcity.ClientID%>").append($("<option></option>").val(result[i].city_id).html(result[i].name));
+                        }
+                    }
+                });
+            
         });
+
+        $("#<%=ddlcity.ClientID%>").change(function () {
+            $("#<%=hidCityID.ClientID%>").val($("#<%=ddlcity.ClientID%>").val());
+        });      
         $(document).ready(function () {
 	        $('.sidebar-menu-item').removeClass('open');
 	        $('#institution_list').addClass('open');
