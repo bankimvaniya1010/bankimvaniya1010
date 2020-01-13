@@ -17,8 +17,11 @@
             <div class="col-md-8">
               
                 <div class="card" id="questions" runat="server">
-                    <div id="divUserScore" runat="server" style="font-size:medium;text-align:center;display:none">
+                    <div id="divUserScore" runat="server" style="font-size:medium;display:none">
+                        <p style="float: left;text-align:left;width:66.66666%;padding-left:15px">
                         Score : <label id="lblUserScore" runat="server" />
+                        </p>
+                        <label runat="server" id="linkCertificate" style="color: DodgerBlue;float: left;text-align:right;width:33.33333%;"> View Certificate </label>
                     </div>
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
@@ -153,6 +156,11 @@
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
             $('#gtequicktest').addClass('active');
+
+            $("#<%=linkCertificate.ClientID%>").click(function () {
+                var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
+                location.replace(hostName + "gte_certificate.aspx");
+            });
         });
     </script>
 

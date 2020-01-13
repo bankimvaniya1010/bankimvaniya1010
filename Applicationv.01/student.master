@@ -41,7 +41,7 @@
     <script type="text/javascript">
         function disablePrev() { window.history.forward() }
         window.onload = disablePrev();
-        window.onpageshow = function (evt) { if (evt.persisted) disableBack() }
+        window.onpageshow = function (evt) { if (evt.persisted) disablePrev() }
     </script>
 </head>
 
@@ -421,6 +421,11 @@
                                                 <li class="sidebar-menu-item" id="gtequicktest">
                                                     <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx">
                                                         <span class="sidebar-menu-text">Test your Knowledge</span>
+                                                    </a>
+                                                </li>
+                                                <li class="sidebar-menu-item" id="gteCertificate">
+                                                    <a class="sidebar-menu-button" href="gte_certificate.aspx">
+                                                        <span class="sidebar-menu-text">View GTE Certificate</span>
                                                     </a>
                                                 </li>
                                                 <li class="sidebar-menu-item" id="gtedeclaration">
