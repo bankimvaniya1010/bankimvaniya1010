@@ -296,7 +296,7 @@
                                         </a>
                                          <ul class="sidebar-submenu sm-indent collapse" id="Application">
                                             <li class="sidebar-menu-item" id="applicantcourse">
-                                                <a class="sidebar-menu-button" href="applicantcourse.aspx?formid=14">
+                                                <a class="sidebar-menu-button" href="courseapplication.aspx">
                                                     <span class="sidebar-menu-text">Application</span>
                                                 </a>
                                             </li>
