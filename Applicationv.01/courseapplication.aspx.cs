@@ -198,7 +198,7 @@ public partial class courseapplication : System.Web.UI.Page
         GTEEntities db1 = new GTEEntities();
         var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.coursemaster
-                    join um in db1.university_master on cm.universityid equals um.universityid
+                    join um in db1.university_master on cm.universityid equals um.universityid                    
                     where cm.universityid == universityID1 && cm.courseid == courseid
                     select new
                     {
@@ -208,6 +208,24 @@ public partial class courseapplication : System.Web.UI.Page
                         eligibility = cm.courseeligibility == "" ? "No Eligibility" : cm.courseeligibility.Replace(Environment.NewLine, "<br />"),
                         university_name = um.university_name,
 
+                    }).ToList();
+        return JsonConvert.SerializeObject(temp);
+    }
+    [WebMethod]
+    [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+    public static string GetcareerOutcomes(int courseid)
+    {
+        GTEEntities db1 = new GTEEntities();
+        var universityID1 = Utility.GetUniversityId();
+        var temp = (from cm in db1.careerposition_course_mapping
+                    join om in db1.careeroutcomes_master on cm.careeroutcomeId equals om.careerID into outcomeData
+                    from x1 in outcomeData.DefaultIfEmpty()
+                    join pm in db1.careeroutcomes_position_master on cm.positionID equals pm.careerpositionID
+                    where cm.courseID == courseid
+                    select new
+                    {
+                        Careeroutcome = x1.description,
+                        Careeroutcomepositions = pm.description
                     }).ToList();
         return JsonConvert.SerializeObject(temp);
     }

@@ -370,6 +370,30 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li class="sidebar-menu-item" id="careeroutcomes_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#outcomes_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                   Manage Career Outcomes
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse " id="outcomes_menu">
+                                    <li class="sidebar-menu-item" id="careeroutcomesmaster"> 
+                                        <a class="sidebar-menu-button" href="outcome_master.aspx">
+                                            <span class="sidebar-menu-text">Manage Outcomes</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="courseoutcomespositionmaster"> 
+                                        <a class="sidebar-menu-button" href="outcome_position_master.aspx">
+                                            <span class="sidebar-menu-text">Manage Career position</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="courseoutcomespositionmapping"> 
+                                        <a class="sidebar-menu-button" href="outcomeposition_mappingmaster.aspx">
+                                            <span class="sidebar-menu-text">Manage career position Mapping</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li class="sidebar-menu-item" id="FaqManage_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#FaqManage_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -610,6 +634,7 @@
                 $("#gte_list").hide();
                 $("#manageScholarships").hide();
                 $("#managelanguages_list").hide();
+                $("#careeroutcomes_list").hide();
             }
             else if (universityadmin) {
                 $("#city_list").hide();
@@ -663,6 +688,7 @@
                 $("#managelanguages_list").hide();
                 $("#course_list").hide();
                 $("#managetooltips_list").hide();
+                $("#careeroutcomes_list").hide();
             }
         });
     </script>

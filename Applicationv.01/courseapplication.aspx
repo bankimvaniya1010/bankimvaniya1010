@@ -13,8 +13,8 @@
     </div>
     <div class="page ">
         <div class="container page__container">
-            <div class="row">
-                <div class="col-md-7">
+            <div class="row" style="margin-right: -1.625rem;">
+                <div class="col-md-8">
 
                     <div class="card">
                         <div class="card-body list-group list-group-fit">
@@ -48,7 +48,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <%--country--%>
+                            <%--country--%>                            
                             <div class="col-sm-12">
                                 <a class="btn btn-success appcnt-add" onclick="toggleDivVisibility('country');">Select Country +
                                 </a>
@@ -178,7 +178,7 @@
                                                     <asp:HiddenField runat="server" ID="Hidmodeofstudyid" Value='<%# Bind("modeofstudyid") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Level OF Study">
+                                            <%--<asp:TemplateField HeaderText="Level OF Study">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbllevelofstudy" runat="server" Text='<%# Bind("levelodstudy") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="HidlevelofstudyID" Value='<%# Bind("levelodstudyID") %>' />
@@ -189,14 +189,18 @@
                                                     <asp:Label ID="lblmajor" runat="server" Text='<%# Bind("major") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="HidmajorDisciplineID" Value='<%# Bind("majorID") %>' />
                                                 </ItemTemplate>
-                                            </asp:TemplateField>
+                                            </asp:TemplateField>--%>
                                             <asp:TemplateField HeaderText="Fee">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCoursefee" runat="server" Text='<%# Bind("coursefee") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="HidSelectedcampusCityID" Value='<%#Bind("campuscityID") %>' />
                                                     <asp:HiddenField runat="server" ID="HidSelectedcampusCityName" Value='<%#Bind("campuscityname") %>' />
                                                     <asp:HiddenField runat="server" ID="HidSelectedcampusCountryID" Value='<%#Bind("campuscontryID") %>' />
-                                                    <asp:HiddenField runat="server" ID="HidSelectedcampusCountryName" Value='<%#Bind("campuscountryName") %>' />
+                                                    <asp:HiddenField runat="server" ID="HidSelectedcampusCountryName" Value='<%#Bind("campuscountryName") %>' />                                                    
+                                                    <asp:HiddenField runat="server" ID="HidlevelofstudyID" Value='<%# Bind("levelodstudyID") %>' />
+                                                    <asp:HiddenField runat="server" ID="Hidlbllevelofstudy" Value='<%#Bind("levelodstudy") %>'/>
+                                                    <asp:HiddenField runat="server" ID="HidmajorDisciplineID" Value='<%# Bind("majorID") %>' />
+                                                    <asp:HiddenField runat="server" ID="Hidlblmajor" Value='<%# Bind("major") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -206,7 +210,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
 
                     <% if (appliedcourseData.Count > 0)
                         { %>
@@ -312,8 +316,9 @@
                                         </tr>
                                         <tr>
                                             <td>Career Outcome :</td>
-                                            <td>
-                                                <label runat="server" id="lblCareeroutcome">Not Set </label>
+                                            <td id="outcomeContainer">
+                                                <%--<label runat="server" id="lblCareeroutcome"> </label>
+                                                <label runat="server" id="lblCareeroutcomepositions"> </label>--%>
                                             </td>
                                         </tr>
                                         <tr>
@@ -393,9 +398,9 @@
             var campusname = $("#ContentPlaceHolder1_courseGridView_lblCampus_" + id).text();
             var studymode = $("#ContentPlaceHolder1_courseGridView_lblStudymode_" + id).text();
             var fee = $("#ContentPlaceHolder1_courseGridView_lblCoursefee_" + id).text();
-            var selectedlevelofstudy = $("#ContentPlaceHolder1_courseGridView_lbllevelofstudy_" + id).text();
+            var selectedlevelofstudy = $("#ContentPlaceHolder1_courseGridView_Hidlbllevelofstudy_" + id).val();
             var selectedlevelofstudyID = $("#ContentPlaceHolder1_courseGridView_HidlevelofstudyID_" + id).val();
-            var selectedmajor = $("#ContentPlaceHolder1_courseGridView_lblmajor_" + id).text();
+            var selectedmajor = $("#ContentPlaceHolder1_courseGridView_Hidlblmajor_" + id).val();
             var selectedMajorID = $("#ContentPlaceHolder1_courseGridView_HidmajorDisciplineID_" + id).val();
 
             //data from rb
@@ -452,7 +457,36 @@
                 }
             });
             getcommencemntsDates(courseid);
+            getcareerOutcomes(courseid);
         };
+        function getcareerOutcomes(courseid) {            
+            $.ajax({
+                type: "POST",
+                url: "courseapplication.aspx/GetcareerOutcomes",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{'courseid': '" + courseid + "'}",
+                success: function (response) {
+                    if (response.d) {
+                        var result = JSON.parse(response.d);
+                        if (result.length >= 1)
+                            $("#outcomeContainer").empty();
+                        else {
+                            $("#outcomeContainer").empty();
+                            $('#outcomeContainer').append($('<label>').text("Not Set"));
+                        }
+
+                        for (var i = 0; i < result.length; i++) {
+                            var $target = $('#outcomeContainer');                            
+                            $target.append($('<label>').text(result[i].Careeroutcomepositions));
+                            $target.append($('<label>').text("( "+result[i].Careeroutcome + " )"));
+                            $target.append('<br/>')
+                        }
+                    }
+                }
+            });
+
+        }
         function getcommencemntsDates(courseid) {
 
             $.ajax({
@@ -510,7 +544,7 @@
                   $("#<%=city.ClientID%>").hide();
                   $("#<%=levelofstudyDiv.ClientID%>").hide();
                   $("#<%=majorDiv.ClientID%>").hide();
-              }
+          }
           }
           if (divId == 'levelofstudy') {
               if ($("#<%=levelofstudy.ClientID%>").is(':hidden')) {
@@ -520,7 +554,7 @@
               else {
                   $("#<%=levelofstudy.ClientID%>").hide();
                   $("#<%=majorDiv.ClientID%>").hide();
-              }
+          }
           }
           if (divId == 'major') {
               if ($("#<%=major.ClientID%>").is(':hidden'))
