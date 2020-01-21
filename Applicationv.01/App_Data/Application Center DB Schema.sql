@@ -611,16 +611,6 @@ CREATE TABLE IF NOT EXISTS `applicantsubjectwisegrade` (
   PRIMARY KEY (`applicantgradeid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
--- Dumping structure for table GTE_Prod.applicantuniversitymapping
-CREATE TABLE IF NOT EXISTS `applicantuniversitymapping` (
-  `mappingid` int(11) NOT NULL AUTO_INCREMENT,
-  `applicantid` int(11) DEFAULT NULL,
-  `universityid` int(1) DEFAULT NULL,
-  PRIMARY KEY (`mappingid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 -- Dumping structure for table GTE_Prod.applicantvideomaster
 CREATE TABLE IF NOT EXISTS `applicantvideomaster` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2512,22 +2502,10 @@ CREATE TABLE IF NOT EXISTS `universitycampus` (
   `cityid` int(11) NOT NULL,
   PRIMARY KEY (`campusid`),
   KEY `universityid` (`universityid`),
-  CONSTRAINT `FK_campus_universityMaster` FOREIGN KEY (`universityid`) REFERENCES `university_master` (`universityid`)
+  KEY `FK_universitycampus_citymaster` (`cityid`),
+  CONSTRAINT `FK_campus_universityMaster` FOREIGN KEY (`universityid`) REFERENCES `university_master` (`universityid`),
+  CONSTRAINT `FK_universitycampus_citymaster` FOREIGN KEY (`cityid`) REFERENCES `citymaster` (`city_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
--- Dumping structure for table GTE_Prod.universitycampus_city_mapping
-CREATE TABLE IF NOT EXISTS `universitycampus_city_mapping` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `campusid` int(11) NOT NULL,
-  `cityid` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `campusid` (`campusid`),
-  KEY `cityid` (`cityid`),
-  CONSTRAINT `FK_mapping_citymaster` FOREIGN KEY (`cityid`) REFERENCES `citymaster` (`city_id`),
-  CONSTRAINT `FK_mapping_universitycampus` FOREIGN KEY (`campusid`) REFERENCES `universitycampus` (`campusid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- Dumping structure for table GTE_Prod.universitygrouping
 CREATE TABLE IF NOT EXISTS `universitygrouping` (
