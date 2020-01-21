@@ -289,6 +289,11 @@
         <EntityTypeShape EntityType="GTEModel.applicant_meeting_schedule" Width="1.5" PointX="5.375" PointY="24.75" />
         <EntityTypeShape EntityType="GTEModel.careeroutcomes_master" Width="1.5" PointX="23.375" PointY="24.75" />
         <EntityTypeShape EntityType="GTEModel.careeroutcomes_position_master" Width="1.5" PointX="25.375" PointY="3.75" />
+        <EntityTypeShape EntityType="GTEModel.careerposition_course_mapping" Width="1.5" PointX="27.625" PointY="86.375" />
+        <AssociationConnector Association="GTEModel.FK_careeroutcomes_position_master_careeroutcomes_master" />
+        <AssociationConnector Association="GTEModel.FK_careerposition_course_mapping_careeroutcomes_master" />
+        <AssociationConnector Association="GTEModel.FK_careerposition_course_mapping_careeroutcomes_position_master" />
+        <AssociationConnector Association="GTEModel.FK_careerposition_course_mapping_coursemaster" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

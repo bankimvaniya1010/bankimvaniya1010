@@ -1109,15 +1109,49 @@ public partial class australiavisaFamilydetailmaster
 
 public partial class careeroutcomes_master
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public careeroutcomes_master()
+    {
+        this.careeroutcomes_position_master = new HashSet<careeroutcomes_position_master>();
+        this.careerposition_course_mapping = new HashSet<careerposition_course_mapping>();
+    }
+
     public int careerID { get; set; }
     public string description { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<careeroutcomes_position_master> careeroutcomes_position_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<careerposition_course_mapping> careerposition_course_mapping { get; set; }
 }
 
 public partial class careeroutcomes_position_master
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public careeroutcomes_position_master()
+    {
+        this.careerposition_course_mapping = new HashSet<careerposition_course_mapping>();
+    }
+
     public int careerpositionID { get; set; }
     public string description { get; set; }
     public Nullable<int> careerID { get; set; }
+
+    public virtual careeroutcomes_master careeroutcomes_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<careerposition_course_mapping> careerposition_course_mapping { get; set; }
+}
+
+public partial class careerposition_course_mapping
+{
+    public int mappingID { get; set; }
+    public Nullable<int> courseID { get; set; }
+    public Nullable<int> careeroutcomeId { get; set; }
+    public Nullable<int> positionID { get; set; }
+
+    public virtual careeroutcomes_master careeroutcomes_master { get; set; }
+    public virtual careeroutcomes_position_master careeroutcomes_position_master { get; set; }
+    public virtual coursemaster coursemaster { get; set; }
 }
 
 public partial class cefrlevelmaster
@@ -1277,6 +1311,7 @@ public partial class coursemaster
         this.course_campus_mapping = new HashSet<course_campus_mapping>();
         this.course_dates = new HashSet<course_dates>();
         this.course_defermentdates = new HashSet<course_defermentdates>();
+        this.careerposition_course_mapping = new HashSet<careerposition_course_mapping>();
     }
 
     public int courseid { get; set; }
@@ -1301,6 +1336,8 @@ public partial class coursemaster
     public virtual studylevelmaster studylevelmaster { get; set; }
     public virtual studymodemaster studymodemaster { get; set; }
     public virtual university_master university_master { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<careerposition_course_mapping> careerposition_course_mapping { get; set; }
 }
 
 public partial class coursetypemaster

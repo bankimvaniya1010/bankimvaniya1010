@@ -185,6 +185,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicant_meeting_schedule> applicant_meeting_schedule { get; set; }
     public virtual DbSet<careeroutcomes_master> careeroutcomes_master { get; set; }
     public virtual DbSet<careeroutcomes_position_master> careeroutcomes_position_master { get; set; }
+    public virtual DbSet<careerposition_course_mapping> careerposition_course_mapping { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

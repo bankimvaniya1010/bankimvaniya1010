@@ -1074,6 +1074,15 @@
           <Property Name="description" Type="varchar" MaxLength="200" />
           <Property Name="careerID" Type="int" />
         </EntityType>
+        <EntityType Name="careerposition_course_mapping">
+          <Key>
+            <PropertyRef Name="mappingID" />
+          </Key>
+          <Property Name="mappingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseID" Type="int" />
+          <Property Name="careeroutcomeId" Type="int" />
+          <Property Name="positionID" Type="int" />
+        </EntityType>
         <EntityType Name="cefrlevelmaster">
           <Key>
             <PropertyRef Name="id" />
@@ -2789,6 +2798,54 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_careeroutcomes_position_master_careeroutcomes_master">
+          <End Role="careeroutcomes_master" Type="Self.careeroutcomes_master" Multiplicity="0..1" />
+          <End Role="careeroutcomes_position_master" Type="Self.careeroutcomes_position_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="careeroutcomes_master">
+              <PropertyRef Name="careerID" />
+            </Principal>
+            <Dependent Role="careeroutcomes_position_master">
+              <PropertyRef Name="careerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_careerposition_course_mapping_careeroutcomes_master">
+          <End Role="careeroutcomes_master" Type="Self.careeroutcomes_master" Multiplicity="0..1" />
+          <End Role="careerposition_course_mapping" Type="Self.careerposition_course_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="careeroutcomes_master">
+              <PropertyRef Name="careerID" />
+            </Principal>
+            <Dependent Role="careerposition_course_mapping">
+              <PropertyRef Name="careeroutcomeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_careerposition_course_mapping_careeroutcomes_position_master">
+          <End Role="careeroutcomes_position_master" Type="Self.careeroutcomes_position_master" Multiplicity="0..1" />
+          <End Role="careerposition_course_mapping" Type="Self.careerposition_course_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="careeroutcomes_position_master">
+              <PropertyRef Name="careerpositionID" />
+            </Principal>
+            <Dependent Role="careerposition_course_mapping">
+              <PropertyRef Name="positionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_careerposition_course_mapping_coursemaster">
+          <End Role="coursemaster" Type="Self.coursemaster" Multiplicity="0..1" />
+          <End Role="careerposition_course_mapping" Type="Self.careerposition_course_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursemaster">
+              <PropertyRef Name="courseid" />
+            </Principal>
+            <Dependent Role="careerposition_course_mapping">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_childsuniversityid_universitymaster">
           <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
           <End Role="universitygrouping" Type="Self.universitygrouping" Multiplicity="*" />
@@ -3846,6 +3903,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="australiavisaFamilydetailmaster" EntityType="Self.australiavisaFamilydetailmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="careeroutcomes_master" EntityType="Self.careeroutcomes_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="careeroutcomes_position_master" EntityType="Self.careeroutcomes_position_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="careerposition_course_mapping" EntityType="Self.careerposition_course_mapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="cefrlevelmaster" EntityType="Self.cefrlevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="clarificationquestion_university_mapping" EntityType="Self.clarificationquestion_university_mapping" Schema="GTE" store:Type="Tables" />
@@ -4131,6 +4189,22 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <AssociationSet Name="FK_campus_universityMaster" Association="Self.FK_campus_universityMaster">
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitycampus" EntitySet="universitycampus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_careeroutcomes_position_master_careeroutcomes_master" Association="Self.FK_careeroutcomes_position_master_careeroutcomes_master">
+            <End Role="careeroutcomes_master" EntitySet="careeroutcomes_master" />
+            <End Role="careeroutcomes_position_master" EntitySet="careeroutcomes_position_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_careerposition_course_mapping_careeroutcomes_master" Association="Self.FK_careerposition_course_mapping_careeroutcomes_master">
+            <End Role="careeroutcomes_master" EntitySet="careeroutcomes_master" />
+            <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_careerposition_course_mapping_careeroutcomes_position_master" Association="Self.FK_careerposition_course_mapping_careeroutcomes_position_master">
+            <End Role="careeroutcomes_position_master" EntitySet="careeroutcomes_position_master" />
+            <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_careerposition_course_mapping_coursemaster" Association="Self.FK_careerposition_course_mapping_coursemaster">
+            <End Role="coursemaster" EntitySet="coursemaster" />
+            <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
           </AssociationSet>
           <AssociationSet Name="FK_childsuniversityid_universitymaster" Association="Self.FK_childsuniversityid_universitymaster">
             <End Role="university_master" EntitySet="university_master" />
@@ -5134,6 +5208,23 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicant_meeting_schedule" EntityType="GTEModel.applicant_meeting_schedule" />
           <EntitySet Name="careeroutcomes_master" EntityType="GTEModel.careeroutcomes_master" />
           <EntitySet Name="careeroutcomes_position_master" EntityType="GTEModel.careeroutcomes_position_master" />
+          <EntitySet Name="careerposition_course_mapping" EntityType="GTEModel.careerposition_course_mapping" />
+          <AssociationSet Name="FK_careeroutcomes_position_master_careeroutcomes_master" Association="GTEModel.FK_careeroutcomes_position_master_careeroutcomes_master">
+            <End Role="careeroutcomes_master" EntitySet="careeroutcomes_master" />
+            <End Role="careeroutcomes_position_master" EntitySet="careeroutcomes_position_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_careerposition_course_mapping_careeroutcomes_master" Association="GTEModel.FK_careerposition_course_mapping_careeroutcomes_master">
+            <End Role="careeroutcomes_master" EntitySet="careeroutcomes_master" />
+            <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_careerposition_course_mapping_careeroutcomes_position_master" Association="GTEModel.FK_careerposition_course_mapping_careeroutcomes_position_master">
+            <End Role="careeroutcomes_position_master" EntitySet="careeroutcomes_position_master" />
+            <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK_careerposition_course_mapping_coursemaster" Association="GTEModel.FK_careerposition_course_mapping_coursemaster">
+            <End Role="coursemaster" EntitySet="coursemaster" />
+            <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -6354,6 +6445,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_coursemaster_studylevelmaster" FromRole="coursemaster" ToRole="studylevelmaster" />
           <NavigationProperty Name="studymodemaster" Relationship="GTEModel.FK_coursemaster_studymodemaster" FromRole="coursemaster" ToRole="studymodemaster" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_coursemaster_universitymaster" FromRole="coursemaster" ToRole="university_master" />
+          <NavigationProperty Name="careerposition_course_mapping" Relationship="GTEModel.FK_careerposition_course_mapping_coursemaster" FromRole="coursemaster" ToRole="careerposition_course_mapping" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -9162,6 +9254,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </Key>
           <Property Name="careerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="careeroutcomes_position_master" Relationship="GTEModel.FK_careeroutcomes_position_master_careeroutcomes_master" FromRole="careeroutcomes_master" ToRole="careeroutcomes_position_master" />
+          <NavigationProperty Name="careerposition_course_mapping" Relationship="GTEModel.FK_careerposition_course_mapping_careeroutcomes_master" FromRole="careeroutcomes_master" ToRole="careerposition_course_mapping" />
         </EntityType>
         <EntityType Name="careeroutcomes_position_master">
           <Key>
@@ -9170,7 +9264,69 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="careerpositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="careerID" Type="Int32" />
+          <NavigationProperty Name="careeroutcomes_master" Relationship="GTEModel.FK_careeroutcomes_position_master_careeroutcomes_master" FromRole="careeroutcomes_position_master" ToRole="careeroutcomes_master" />
+          <NavigationProperty Name="careerposition_course_mapping" Relationship="GTEModel.FK_careerposition_course_mapping_careeroutcomes_position_master" FromRole="careeroutcomes_position_master" ToRole="careerposition_course_mapping" />
         </EntityType>
+        <EntityType Name="careerposition_course_mapping">
+          <Key>
+            <PropertyRef Name="mappingID" />
+          </Key>
+          <Property Name="mappingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseID" Type="Int32" />
+          <Property Name="careeroutcomeId" Type="Int32" />
+          <Property Name="positionID" Type="Int32" />
+          <NavigationProperty Name="careeroutcomes_master" Relationship="GTEModel.FK_careerposition_course_mapping_careeroutcomes_master" FromRole="careerposition_course_mapping" ToRole="careeroutcomes_master" />
+          <NavigationProperty Name="careeroutcomes_position_master" Relationship="GTEModel.FK_careerposition_course_mapping_careeroutcomes_position_master" FromRole="careerposition_course_mapping" ToRole="careeroutcomes_position_master" />
+          <NavigationProperty Name="coursemaster" Relationship="GTEModel.FK_careerposition_course_mapping_coursemaster" FromRole="careerposition_course_mapping" ToRole="coursemaster" />
+        </EntityType>
+        <Association Name="FK_careeroutcomes_position_master_careeroutcomes_master">
+          <End Type="GTEModel.careeroutcomes_master" Role="careeroutcomes_master" Multiplicity="0..1" />
+          <End Type="GTEModel.careeroutcomes_position_master" Role="careeroutcomes_position_master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="careeroutcomes_master">
+              <PropertyRef Name="careerID" />
+            </Principal>
+            <Dependent Role="careeroutcomes_position_master">
+              <PropertyRef Name="careerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_careerposition_course_mapping_careeroutcomes_master">
+          <End Type="GTEModel.careeroutcomes_master" Role="careeroutcomes_master" Multiplicity="0..1" />
+          <End Type="GTEModel.careerposition_course_mapping" Role="careerposition_course_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="careeroutcomes_master">
+              <PropertyRef Name="careerID" />
+            </Principal>
+            <Dependent Role="careerposition_course_mapping">
+              <PropertyRef Name="careeroutcomeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_careerposition_course_mapping_careeroutcomes_position_master">
+          <End Type="GTEModel.careeroutcomes_position_master" Role="careeroutcomes_position_master" Multiplicity="0..1" />
+          <End Type="GTEModel.careerposition_course_mapping" Role="careerposition_course_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="careeroutcomes_position_master">
+              <PropertyRef Name="careerpositionID" />
+            </Principal>
+            <Dependent Role="careerposition_course_mapping">
+              <PropertyRef Name="positionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_careerposition_course_mapping_coursemaster">
+          <End Type="GTEModel.coursemaster" Role="coursemaster" Multiplicity="0..1" />
+          <End Type="GTEModel.careerposition_course_mapping" Role="careerposition_course_mapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="coursemaster">
+              <PropertyRef Name="courseid" />
+            </Principal>
+            <Dependent Role="careerposition_course_mapping">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11650,6 +11806,16 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="careerID" ColumnName="careerID" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="careerpositionID" ColumnName="careerpositionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="careerposition_course_mapping">
+            <EntityTypeMapping TypeName="GTEModel.careerposition_course_mapping">
+              <MappingFragment StoreEntitySet="careerposition_course_mapping">
+                <ScalarProperty Name="positionID" ColumnName="positionID" />
+                <ScalarProperty Name="careeroutcomeId" ColumnName="careeroutcomeId" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="mappingID" ColumnName="mappingID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
