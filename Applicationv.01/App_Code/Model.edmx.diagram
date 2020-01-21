@@ -37,7 +37,6 @@
         <EntityTypeShape EntityType="GTEModel.applicantresidencehistory" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.applicantscores" Width="1.5" PointX="0.75" PointY="14.75" />
         <EntityTypeShape EntityType="GTEModel.applicantsubjectwisegrade" Width="1.5" PointX="2.75" PointY="14.75" />
-        <EntityTypeShape EntityType="GTEModel.applicantuniversitymapping" Width="1.5" PointX="14.75" PointY="5.75" />
         <EntityTypeShape EntityType="GTEModel.applicantvideomaster" Width="1.5" PointX="14.75" PointY="8.75" />
         <EntityTypeShape EntityType="GTEModel.applicantvisadetails" Width="1.5" PointX="7.5" PointY="353.375" />
         <EntityTypeShape EntityType="GTEModel.application_status_master" Width="1.5" PointX="14.75" PointY="11.75" />
@@ -287,6 +286,9 @@
         <AssociationConnector Association="GTEModel.FK_universitywise_faqmapping_university_master" />
         <AssociationConnector Association="GTEModel.FK_universitywise_scholarshipmapping_university_master" />
         <AssociationConnector Association="GTEModel.FK_universitywisetooltipmaster_universitymaster" />
+        <EntityTypeShape EntityType="GTEModel.applicant_meeting_schedule" Width="1.5" PointX="5.375" PointY="24.75" />
+        <EntityTypeShape EntityType="GTEModel.careeroutcomes_master" Width="1.5" PointX="23.375" PointY="24.75" />
+        <EntityTypeShape EntityType="GTEModel.careeroutcomes_position_master" Width="1.5" PointX="25.375" PointY="3.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -142,6 +142,21 @@
           <Property Name="repeats_backlog" Type="varchar" MaxLength="200" />
           <Property Name="othercourse_name" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="applicant_meeting_schedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicant_id" Type="int" Nullable="false" />
+          <Property Name="university_id" Type="int" Nullable="false" />
+          <Property Name="applicant_email_id" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="utc_meeting_time" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="applicant_time_zone" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="schedule_once_meeting_id" Type="int" />
+          <Property Name="is_otp_generated" Type="bit" />
+          <Property Name="otp" Type="int" />
+          <Property Name="is_meeting_completed" Type="bit" />
+        </EntityType>
         <EntityType Name="applicant_scholarships">
           <Key>
             <PropertyRef Name="id" />
@@ -558,14 +573,6 @@
           <Property Name="othersubject" Type="varchar" MaxLength="50" />
           <Property Name="grade" Type="varchar" MaxLength="45" />
           <Property Name="subjectid" Type="int" />
-        </EntityType>
-        <EntityType Name="applicantuniversitymapping">
-          <Key>
-            <PropertyRef Name="mappingid" />
-          </Key>
-          <Property Name="mappingid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="applicantid" Type="int" />
-          <Property Name="universityid" Type="int" />
         </EntityType>
         <EntityType Name="applicantvideomaster">
           <Key>
@@ -1051,6 +1058,21 @@
           <Property Name="passportdateofexpiry" Type="datetime" Precision="0" />
           <Property Name="passportplaceofissue" Type="varchar" MaxLength="50" />
           <Property Name="studyinAustralia" Type="int" />
+        </EntityType>
+        <EntityType Name="careeroutcomes_master">
+          <Key>
+            <PropertyRef Name="careerID" />
+          </Key>
+          <Property Name="careerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="careeroutcomes_position_master">
+          <Key>
+            <PropertyRef Name="careerpositionID" />
+          </Key>
+          <Property Name="careerpositionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="200" />
+          <Property Name="careerID" Type="int" />
         </EntityType>
         <EntityType Name="cefrlevelmaster">
           <Key>
@@ -3798,6 +3820,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="answeroptionssecondary" EntityType="Self.answeroptionssecondary" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applcantdetailfieldvalidationmaster" EntityType="Self.applcantdetailfieldvalidationmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicant_education" EntityType="Self.applicant_education" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="applicant_meeting_schedule" EntityType="Self.applicant_meeting_schedule" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicant_scholarships" EntityType="Self.applicant_scholarships" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantcampaign" EntityType="Self.applicantcampaign" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantdatavalidation" EntityType="Self.applicantdatavalidation" Schema="GTE" store:Type="Tables" />
@@ -3814,7 +3837,6 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="applicantresidencehistory" EntityType="Self.applicantresidencehistory" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantscores" EntityType="Self.applicantscores" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantsubjectwisegrade" EntityType="Self.applicantsubjectwisegrade" Schema="GTE" store:Type="Tables" />
-          <EntitySet Name="applicantuniversitymapping" EntityType="Self.applicantuniversitymapping" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvideomaster" EntityType="Self.applicantvideomaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="applicantvisadetails" EntityType="Self.applicantvisadetails" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="application_status_master" EntityType="Self.application_status_master" Schema="GTE" store:Type="Tables" />
@@ -3822,6 +3844,8 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="australiavisadetailmaster" EntityType="Self.australiavisadetailmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisadocumentmaster" EntityType="Self.australiavisadocumentmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="australiavisaFamilydetailmaster" EntityType="Self.australiavisaFamilydetailmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="careeroutcomes_master" EntityType="Self.careeroutcomes_master" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="careeroutcomes_position_master" EntityType="Self.careeroutcomes_position_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="cefrlevelmaster" EntityType="Self.cefrlevelmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="citymaster" EntityType="Self.citymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="clarificationquestion_university_mapping" EntityType="Self.clarificationquestion_university_mapping" Schema="GTE" store:Type="Tables" />
@@ -4489,7 +4513,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="applicantresidencehistory" EntityType="GTEModel.applicantresidencehistory" />
           <EntitySet Name="applicantscores" EntityType="GTEModel.applicantscores" />
           <EntitySet Name="applicantsubjectwisegrade" EntityType="GTEModel.applicantsubjectwisegrade" />
-          <EntitySet Name="applicantuniversitymapping" EntityType="GTEModel.applicantuniversitymapping" />
           <EntitySet Name="applicantvideomaster" EntityType="GTEModel.applicantvideomaster" />
           <EntitySet Name="applicantvisadetails" EntityType="GTEModel.applicantvisadetails" />
           <EntitySet Name="application_status_master" EntityType="GTEModel.application_status_master" />
@@ -5108,6 +5131,9 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="universitywisetooltipmaster" EntitySet="universitywisetooltipmaster" />
           </AssociationSet>
+          <EntitySet Name="applicant_meeting_schedule" EntityType="GTEModel.applicant_meeting_schedule" />
+          <EntitySet Name="careeroutcomes_master" EntityType="GTEModel.careeroutcomes_master" />
+          <EntitySet Name="careeroutcomes_position_master" EntityType="GTEModel.careeroutcomes_position_master" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -5703,14 +5729,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="othersubject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="grade" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="subjectid" Type="Int32" />
-        </EntityType>
-        <EntityType Name="applicantuniversitymapping">
-          <Key>
-            <PropertyRef Name="mappingid" />
-          </Key>
-          <Property Name="mappingid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="applicantid" Type="Int32" />
-          <Property Name="universityid" Type="Int32" />
         </EntityType>
         <EntityType Name="applicantvideomaster">
           <Key>
@@ -9123,6 +9141,36 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="applicant_meeting_schedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicant_id" Type="Int32" Nullable="false" />
+          <Property Name="university_id" Type="Int32" Nullable="false" />
+          <Property Name="applicant_email_id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="utc_meeting_time" Type="DateTime" Nullable="false" />
+          <Property Name="applicant_time_zone" Type="DateTime" Nullable="false" />
+          <Property Name="schedule_once_meeting_id" Type="Int32" />
+          <Property Name="is_otp_generated" Type="Boolean" />
+          <Property Name="otp" Type="Int32" />
+          <Property Name="is_meeting_completed" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="careeroutcomes_master">
+          <Key>
+            <PropertyRef Name="careerID" />
+          </Key>
+          <Property Name="careerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="careeroutcomes_position_master">
+          <Key>
+            <PropertyRef Name="careerpositionID" />
+          </Key>
+          <Property Name="careerpositionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="careerID" Type="Int32" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9725,15 +9773,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
                 <ScalarProperty Name="coursename" ColumnName="coursename" />
                 <ScalarProperty Name="applicantgradeid" ColumnName="applicantgradeid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="applicantuniversitymapping">
-            <EntityTypeMapping TypeName="GTEModel.applicantuniversitymapping">
-              <MappingFragment StoreEntitySet="applicantuniversitymapping">
-                <ScalarProperty Name="universityid" ColumnName="universityid" />
-                <ScalarProperty Name="applicantid" ColumnName="applicantid" />
-                <ScalarProperty Name="mappingid" ColumnName="mappingid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -11578,6 +11617,39 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               <MappingFragment StoreEntitySet="workexperienceyearsmaster">
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="workexperienceyearsid" ColumnName="workexperienceyearsid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="applicant_meeting_schedule">
+            <EntityTypeMapping TypeName="GTEModel.applicant_meeting_schedule">
+              <MappingFragment StoreEntitySet="applicant_meeting_schedule">
+                <ScalarProperty Name="is_meeting_completed" ColumnName="is_meeting_completed" />
+                <ScalarProperty Name="otp" ColumnName="otp" />
+                <ScalarProperty Name="is_otp_generated" ColumnName="is_otp_generated" />
+                <ScalarProperty Name="schedule_once_meeting_id" ColumnName="schedule_once_meeting_id" />
+                <ScalarProperty Name="applicant_time_zone" ColumnName="applicant_time_zone" />
+                <ScalarProperty Name="utc_meeting_time" ColumnName="utc_meeting_time" />
+                <ScalarProperty Name="applicant_email_id" ColumnName="applicant_email_id" />
+                <ScalarProperty Name="university_id" ColumnName="university_id" />
+                <ScalarProperty Name="applicant_id" ColumnName="applicant_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="careeroutcomes_master">
+            <EntityTypeMapping TypeName="GTEModel.careeroutcomes_master">
+              <MappingFragment StoreEntitySet="careeroutcomes_master">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="careerID" ColumnName="careerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="careeroutcomes_position_master">
+            <EntityTypeMapping TypeName="GTEModel.careeroutcomes_position_master">
+              <MappingFragment StoreEntitySet="careeroutcomes_position_master">
+                <ScalarProperty Name="careerID" ColumnName="careerID" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="careerpositionID" ColumnName="careerpositionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

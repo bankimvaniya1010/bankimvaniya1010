@@ -176,6 +176,20 @@ public partial class applicant_education
     public string othercourse_name { get; set; }
 }
 
+public partial class applicant_meeting_schedule
+{
+    public int id { get; set; }
+    public int applicant_id { get; set; }
+    public int university_id { get; set; }
+    public string applicant_email_id { get; set; }
+    public System.DateTime utc_meeting_time { get; set; }
+    public System.DateTime applicant_time_zone { get; set; }
+    public Nullable<int> schedule_once_meeting_id { get; set; }
+    public Nullable<bool> is_otp_generated { get; set; }
+    public Nullable<int> otp { get; set; }
+    public Nullable<bool> is_meeting_completed { get; set; }
+}
+
 public partial class applicant_scholarships
 {
     public int id { get; set; }
@@ -599,13 +613,6 @@ public partial class applicantsubjectwisegrade
     public string othersubject { get; set; }
     public string grade { get; set; }
     public Nullable<int> subjectid { get; set; }
-}
-
-public partial class applicantuniversitymapping
-{
-    public int mappingid { get; set; }
-    public Nullable<int> applicantid { get; set; }
-    public Nullable<int> universityid { get; set; }
 }
 
 public partial class applicantvideomaster
@@ -1098,6 +1105,19 @@ public partial class australiavisaFamilydetailmaster
 
     public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
+}
+
+public partial class careeroutcomes_master
+{
+    public int careerID { get; set; }
+    public string description { get; set; }
+}
+
+public partial class careeroutcomes_position_master
+{
+    public int careerpositionID { get; set; }
+    public string description { get; set; }
+    public Nullable<int> careerID { get; set; }
 }
 
 public partial class cefrlevelmaster
