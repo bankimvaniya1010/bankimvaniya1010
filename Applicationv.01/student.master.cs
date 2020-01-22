@@ -19,6 +19,9 @@ public partial class admin : System.Web.UI.MasterPage
     public string fontColor = string.Empty;
     public string headercolor = string.Empty;
     public string verticalnavigationcolor = string.Empty;
+    public string username = string.Empty;
+    public string useremail = string.Empty;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -26,7 +29,6 @@ public partial class admin : System.Web.UI.MasterPage
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
         UserID = Convert.ToInt32(Session["UserID"].ToString());
-        string name = db.students.Where(x => x.studentid == UserID).Select(x => x.name).FirstOrDefault();
         var gteQuestionPart2Count = db.gte_question_master_part2.Count();
         var applicant_response = db.gte_question_part2_applicant_response.Where(x => x.applicant_id == UserID && x.university_id == universityID).ToList();
 
@@ -58,7 +60,10 @@ public partial class admin : System.Web.UI.MasterPage
             Session["universityheadercolor"] = universityDetails.headerstripcolor;
         }
 
-        lblusername.Text = name;
+        students loggedInApplicant = (students)Session["LoginInfo"];
+        lblusername.Text = loggedInApplicant.name;
+        username = loggedInApplicant.name;
+        useremail = loggedInApplicant.email;
         logourl = webURL + "/Docs/" + universityID + "/" + (string)Session["universitylogo"];
         lbluniversityName.Text = (string)Session["universityName"];
         verticalnavigationcolor = (string)Session["universityverticalnavigationcolor"];

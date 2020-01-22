@@ -19,6 +19,7 @@ public class SchduleOnceAPIHandler : IHttpHandler
             string utcMeetingTime = request.QueryString["utcMeetingTime"];
             string timezone = request.QueryString["timezone"];
             string meetingId = request.QueryString["meetingId"];
+            //int applicantId = Convert.ToInt32(request.QueryString["applicant_id"]);  // Need to add dynamic field in schedule once to get applicant applicant id
 
             var universityDetails = GetUniversityDetailsfromHostName(hostname);
             int universityId = (int)universityDetails.GetType().GetProperty("universityId").GetValue(universityDetails);
