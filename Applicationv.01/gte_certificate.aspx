@@ -49,7 +49,7 @@
                     <div class="certi-info-txt clearfix"><span class="certi-info-txt-t1">ON THIS DAY:</span><span class="certi-info-txt-t2"><%=_certificateCreationDate %></span></div>
                 </div>
                 <div class="certi-logo-img">
-                    <img src="../assets/images/logo.png"><!-- Pending with Himanshu for GTE Logo -->
+                    <img src="../assets/images/gte_direct_logo.png">
                 </div>
             </div>
         </div>
