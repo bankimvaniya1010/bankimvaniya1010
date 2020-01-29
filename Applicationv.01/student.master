@@ -147,7 +147,7 @@
                                         </a>
                                         <ul class="sidebar-submenu sm-indent collapse" id="counselling">
                                             <li class="sidebar-menu-item" id="schedule">
-                                                <a class="sidebar-menu-button" href="schedule_conselling.aspx">
+                                                <a class="sidebar-menu-button" href="schedule_conselling.aspx?name=<%=username %>&email=<%=useremail%>">
                                                     <span class="sidebar-menu-text">Schedule</span>
                                                 </a>
                                             </li>
