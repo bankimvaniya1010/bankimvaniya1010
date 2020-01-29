@@ -417,7 +417,7 @@
                                                     <a class="sidebar-menu-button" href="gte_tutorial.aspx">
                                                         <span class="sidebar-menu-text">Tutorial</span>
                                                     </a>
-                                                </li>                                            
+                                                </li> 
                                                 <li class="sidebar-menu-item" id="gtequicktest">
                                                     <a class="sidebar-menu-button" href="gte_preliminaryquestion.aspx">
                                                         <span class="sidebar-menu-text">Test your Knowledge</span>
@@ -869,6 +869,40 @@
     <script src="assets/js/prism.js"></script>
     <!-- Init -->
     <script src="assets/js/countdown.js"></script>
+    <script>
+        function SOAfterConfirmationFunction(data) {
+            //logic using the data object passed to the function   
+            var UniversityID = '<%= Utility.GetUniversityId()%>';
+            var ApplicantID = '<%=HttpContext.Current.Session["UserID"]%>';
+            var meetingtime = data.bookingInfo.MeetingTimes["0"].UTCTime;
+            var CustomerTime = data.bookingInfo.MeetingTimes["0"].CustomerTime;
+            var msg = data.bookingInfo.Note;
+            var customername = data.bookingInfo.CustomerName;
+            var customeremail = data.bookingInfo.CustomerEmail;
+            var custormerphone = data.bookingInfo.CustomerPhone;
+            var eventtyprname = data.bookingInfo.EventTypeName;
+
+            var userData = {
+                universityid :UniversityID,
+                applicantid : ApplicantID,
+                name: customername,
+                email: customeremail,
+                eventtype: eventtyprname,
+                message: msg,
+                meetingtime: meetingtime,
+                CustomerTime:CustomerTime
+            };
+
+            var uData = JSON.stringify(userData);
+            $.ajax({
+                type: "POST",
+                url: "schedule_conselling.aspx/AddBookingData",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: "{ 'uData': '"+ uData +"' }",
+            });            
+        }
+    </script>;
     <script>
         function showFaqQuestion(question, answer) {
             $('body').append('<div class="modal" id="faq-ans-modal" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="faq-modal-header modal-header"><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><div class="faq-question">' + question + '</div><div class="faq-answer">' + answer + '</div></div></div></div></div>');                                    
