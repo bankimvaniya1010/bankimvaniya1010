@@ -1744,6 +1744,15 @@ public partial class gte_preliminary_questionmaster
     public Nullable<int> status { get; set; }
 }
 
+public partial class gte_preliminary_section_questionmaster
+{
+    public int gte_questionID { get; set; }
+    public string question { get; set; }
+    public string answer1 { get; set; }
+    public string answer2 { get; set; }
+    public string correctanswer { get; set; }
+}
+
 public partial class gte_preliminaryapplicantanswers
 {
     public long id { get; set; }
@@ -1912,6 +1921,15 @@ public partial class gte_videouploadmaster
     public Nullable<int> applicantid { get; set; }
     public Nullable<int> universityid { get; set; }
     public string videourl { get; set; }
+}
+
+public partial class gtepreliminarysection_applicantanswers
+{
+    public int id { get; set; }
+    public int applicantId { get; set; }
+    public int gte_preliminary_section_question_id { get; set; }
+    public string answer { get; set; }
+    public System.DateTime answersubmittedtime { get; set; }
 }
 
 public partial class health_insurance

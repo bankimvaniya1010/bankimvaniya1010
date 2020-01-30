@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_preliminaryquestion.aspx.cs" Inherits="gte_preliminaryquestion" MasterPageFile ="~/student.master"%>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gte_preliminary_section.aspx.cs" Inherits="gte_preliminary_section" MasterPageFile="~/student.master"%>
 
 <asp:Content ID="content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
 
@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">GTE Preliminary Step</li>
         </ol>
-        <h1 class="h2">TEST YOUR KNOWLEDGE (STEP 3/4)</h1>
+        <h1 class="h2">TEST YOUR KNOWLEDGE (STEP 2/4)</h1>
 
     </div>
     <div class="page ">
@@ -16,19 +16,13 @@
         <div class="row">
             <div class="col-md-8">
               
-                <div class="card" id="questions" runat="server">
-                    <div id="divUserScore" runat="server" style="font-size:medium;display:none">
-                        <p style="float: left;text-align:left;width:66.66666%;padding-left:15px">
-                        Score : <label id="lblUserScore" runat="server" />
-                        </p>
-                        <label runat="server" id="linkCertificate" style="color: DodgerBlue;float: left;text-align:right;width:33.33333%;"> View Certificate </label>
-                    </div>
+                <div class="card" id="questions" runat="server">                    
                     <asp:DataList ID="questionList" runat="server">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
                                 <div class="card-header">
                                     <div style="display: none;">
-                                        <asp:Label ID="lblno" runat="server" Text='<%# Eval("gte_preliminaryid") %>'></asp:Label>
+                                        <asp:Label ID="lblno" runat="server" Text='<%# Eval("gte_questionID") %>'></asp:Label>
                                     </div>
                                     <div class="media align-items-center">
 
@@ -62,17 +56,6 @@
                                         <i id="correctTick2" style="display:none" runat="server" class="fas fa-check-circle"></i>
                                         <i id="incorrectTick2" style="display:none" runat="server" class="fas fa-times-circle"></i>
                                     </div>
-                                    <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans3" runat="server" GroupName="A" Text='<%# Eval("answer3") %>' />
-                                        <i id="correctTick3" style="display:none" runat="server" class="fas fa-check-circle"></i>
-                                        <i id="incorrectTick3" style="display:none" runat="server" class="fas fa-times-circle"></i>
-                                    </div>
-                                    <div class="form-group option">
-                                        <asp:RadioButton ID="rdoans4" runat="server" GroupName="A" Text='<%# Eval("answer4") %>' />
-                                        <i id="correctTick4" style="display:none" runat="server" class="fas fa-check-circle"></i>
-                                        <i id="incorrectTick4" style="display:none" runat="server" class="fas fa-times-circle"></i>
-                                    </div>
-
                                 </div>
                             </asp:Panel>
                         </ItemTemplate>
@@ -80,7 +63,7 @@
                     <div class="card-footer" id="button" runat="server">
                         <div class="form-row justify-content-between">
                         	<asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
-                            <asp:Button ID="btnGoToDeclaration" runat="server" CssClass="btn btn-success" Text="Go To Declaration" OnClick="btnGoToDeclaration_Click" OnClientClick="return validateForm()" />
+                            <asp:Button ID="btnGoToNextPage" runat="server" CssClass="btn btn-success" Text="Go To Next" OnClick="btnGoToNextPage_Click" OnClientClick="return validateForm()" />
                         </div>
 
                         <%-- <a href="#" class="btn btn-white">Skip</a>
@@ -135,14 +118,12 @@
     </div>
     <script>
         function validateForm() {
-            var questionCount = <%=gte_preliminaryquestion.QuestionsCount%>;
+            var questionCount = <%=gte_preliminary_section.QuestionsCount%>;
             for (var i = 0; i < questionCount; i++) {
                 var rdoans1 = $("#ContentPlaceHolder1_questionList_rdoans1_" + i);
                 var rdoans2 = $("#ContentPlaceHolder1_questionList_rdoans2_" + i);
-                var rdoans3 = $("#ContentPlaceHolder1_questionList_rdoans3_" + i);
-                var rdoans4 = $("#ContentPlaceHolder1_questionList_rdoans4_" + i);
-
-                if (!(rdoans1.is(':checked') || rdoans2.is(':checked') || rdoans3.is(':checked') || rdoans4.is(':checked'))) {
+                
+                if (!(rdoans1.is(':checked') || rdoans2.is(':checked'))) {
                     alert("Please select one option for question no: " + (i + 1));
                     return false;
                 }
@@ -155,12 +136,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gtequicktest').addClass('active');
-
-            $("#<%=linkCertificate.ClientID%>").click(function () {
-                var hostName = "<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>";
-                location.replace(hostName + "gte_certificate.aspx");
-            });
+            $('#gtepretest').addClass('active');
         });
     </script>
 

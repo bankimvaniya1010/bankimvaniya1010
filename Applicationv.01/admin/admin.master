@@ -532,6 +532,11 @@
                                             <span class="sidebar-menu-text">GTE Tutorial</span>
                                         </a>
                                     </li>
+                                    <li class="sidebar-menu-item" id="gtepreliminary_section">
+                                        <a class="sidebar-menu-button" href="gtepreliminary_section_questionmaster.aspx">
+                                            <span class="sidebar-menu-text">Gte preliminary_section Master</span>
+                                        </a>
+                                    </li>
                                     <li class="sidebar-menu-item" id="gtepreliminaryquestionmaster"> 
                                         <a class="sidebar-menu-button" href="gtepreliminaryquestionmaster.aspx">
                                             <span class="sidebar-menu-text">GTE Preliminary Question</span>

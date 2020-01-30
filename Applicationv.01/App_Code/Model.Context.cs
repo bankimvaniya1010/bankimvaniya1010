@@ -186,6 +186,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<careeroutcomes_master> careeroutcomes_master { get; set; }
     public virtual DbSet<careeroutcomes_position_master> careeroutcomes_position_master { get; set; }
     public virtual DbSet<careerposition_course_mapping> careerposition_course_mapping { get; set; }
+    public virtual DbSet<gte_preliminary_section_questionmaster> gte_preliminary_section_questionmaster { get; set; }
+    public virtual DbSet<gtepreliminarysection_applicantanswers> gtepreliminarysection_applicantanswers { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
