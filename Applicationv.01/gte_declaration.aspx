@@ -10,7 +10,7 @@
 
             </li>
         </ol>
-        <h1 class="h2">DECLARATION (STEP 3/3)
+        <h1 class="h2">DECLARATION (STEP 4/4)
 
         </h1>
         <h2 style="font-size: 24px">Read and accept user agreement and declarations:

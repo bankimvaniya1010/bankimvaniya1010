@@ -1462,6 +1462,16 @@
           <Property Name="correctanswer" Type="varchar" MaxLength="45" />
           <Property Name="status" Type="int" />
         </EntityType>
+        <EntityType Name="gte_preliminary_section_questionmaster">
+          <Key>
+            <PropertyRef Name="gte_questionID" />
+          </Key>
+          <Property Name="gte_questionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="question" Type="varchar" MaxLength="1000" />
+          <Property Name="answer1" Type="varchar" MaxLength="50" />
+          <Property Name="answer2" Type="varchar" MaxLength="50" />
+          <Property Name="correctanswer" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="gte_preliminaryapplicantanswers">
           <Key>
             <PropertyRef Name="id" />
@@ -1602,6 +1612,16 @@
           <Property Name="applicantid" Type="int" />
           <Property Name="universityid" Type="int" />
           <Property Name="videourl" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="gtepreliminarysection_applicantanswers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantId" Type="int" Nullable="false" />
+          <Property Name="gte_preliminary_section_question_id" Type="int" Nullable="false" />
+          <Property Name="answer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="answersubmittedtime" Type="datetime" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="health_insurance">
           <Key>
@@ -3942,6 +3962,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="gte_clarification_questionmaster" EntityType="Self.gte_clarification_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_declaration_master" EntityType="Self.gte_declaration_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_preliminary_questionmaster" EntityType="Self.gte_preliminary_questionmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gte_preliminary_section_questionmaster" EntityType="Self.gte_preliminary_section_questionmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_preliminaryapplicantanswers" EntityType="Self.gte_preliminaryapplicantanswers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_progressbar" EntityType="Self.gte_progressbar" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_question_master_part2" EntityType="Self.gte_question_master_part2" Schema="GTE" store:Type="Tables" />
@@ -3953,6 +3974,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="gte_student_sop" EntityType="Self.gte_student_sop" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_tutorialmaster" EntityType="Self.gte_tutorialmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="gte_videouploadmaster" EntityType="Self.gte_videouploadmaster" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="gtepreliminarysection_applicantanswers" EntityType="Self.gtepreliminarysection_applicantanswers" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="health_insurance" EntityType="Self.health_insurance" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="inferencemaster" EntityType="Self.inferencemaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="invalidatamaster" EntityType="Self.invalidatamaster" Schema="GTE" store:Type="Tables" />
@@ -5225,6 +5247,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="coursemaster" EntitySet="coursemaster" />
             <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
           </AssociationSet>
+          <EntitySet Name="gte_preliminary_section_questionmaster" EntityType="GTEModel.gte_preliminary_section_questionmaster" />
+          <EntitySet Name="gtepreliminarysection_applicantanswers" EntityType="GTEModel.gtepreliminarysection_applicantanswers" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -9327,6 +9351,26 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="gte_preliminary_section_questionmaster">
+          <Key>
+            <PropertyRef Name="gte_questionID" />
+          </Key>
+          <Property Name="gte_questionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="answer1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="answer2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correctanswer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gtepreliminarysection_applicantanswers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantId" Type="Int32" Nullable="false" />
+          <Property Name="gte_preliminary_section_question_id" Type="Int32" Nullable="false" />
+          <Property Name="answer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="answersubmittedtime" Type="DateTime" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11816,6 +11860,28 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="careeroutcomeId" ColumnName="careeroutcomeId" />
                 <ScalarProperty Name="courseID" ColumnName="courseID" />
                 <ScalarProperty Name="mappingID" ColumnName="mappingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_preliminary_section_questionmaster">
+            <EntityTypeMapping TypeName="GTEModel.gte_preliminary_section_questionmaster">
+              <MappingFragment StoreEntitySet="gte_preliminary_section_questionmaster">
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="answer2" ColumnName="answer2" />
+                <ScalarProperty Name="answer1" ColumnName="answer1" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="gte_questionID" ColumnName="gte_questionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gtepreliminarysection_applicantanswers">
+            <EntityTypeMapping TypeName="GTEModel.gtepreliminarysection_applicantanswers">
+              <MappingFragment StoreEntitySet="gtepreliminarysection_applicantanswers">
+                <ScalarProperty Name="answersubmittedtime" ColumnName="answersubmittedtime" />
+                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="gte_preliminary_section_question_id" ColumnName="gte_preliminary_section_question_id" />
+                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

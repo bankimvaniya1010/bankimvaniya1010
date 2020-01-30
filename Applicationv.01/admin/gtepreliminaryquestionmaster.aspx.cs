@@ -61,7 +61,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                 TextBox txtAnswer1 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer1Footer");
                 TextBox txtAnswer2 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer2Footer");
                 TextBox txtAnswer3 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer3Footer");
-                TextBox txtAnswer4 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer4Footer");
+                TextBox txtAnswer4 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer4Footer");                
                 //TextBox txtCorrectAnswer = (TextBox)QuestiontGridView.FooterRow.FindControl("txtCorrectAnswerFooter");
                 DropDownList ddlCorrectAnswer = (DropDownList)QuestiontGridView.FooterRow.FindControl("ddlCorrectAnswer");
                 objQuestion.question = txtQuestion.Text.Trim();
@@ -170,24 +170,27 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
     protected void QuestiontGridView_RowDataBound(object sender, GridViewRowEventArgs e)
     {
         object row = e.Row.DataItem;
-
-        if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowState != DataControlRowState.Edit)
+        
+        if (e.Row.RowType == DataControlRowType.DataRow && (e.Row.RowState != (DataControlRowState.Edit | DataControlRowState.Alternate)))
         {
-            PropertyInfo pCorrectAnswer = row.GetType().GetProperty("correctanswer");
-            string correctAnswer = pCorrectAnswer.GetValue(row, null) == null ? string.Empty : pCorrectAnswer.GetValue(row, null).ToString();
+            if(e.Row.RowState != DataControlRowState.Edit)
+            {
+                PropertyInfo pCorrectAnswer = row.GetType().GetProperty("correctanswer");
+                string correctAnswer = pCorrectAnswer.GetValue(row, null) == null ? string.Empty : pCorrectAnswer.GetValue(row, null).ToString();
 
-            Label lblCorrectAnswer = e.Row.FindControl("lblCorrectAnswer") as Label;
-            if(correctAnswer.ToLower().Contains("answer1"))
-                lblCorrectAnswer.Text = "Answer 1";
-            else if(correctAnswer.ToLower().Contains("answer2"))
-                lblCorrectAnswer.Text = "Answer 2";
-            else if (correctAnswer.ToLower().Contains("answer3"))
-                lblCorrectAnswer.Text = "Answer 3";
-            else if (correctAnswer.ToLower().Contains("answer4"))
-                lblCorrectAnswer.Text = "Answer 4";
+                Label lblCorrectAnswer = e.Row.FindControl("lblCorrectAnswer") as Label;
+                if (correctAnswer.ToLower().Contains("answer1"))
+                    lblCorrectAnswer.Text = "Answer 1";
+                else if (correctAnswer.ToLower().Contains("answer2"))
+                    lblCorrectAnswer.Text = "Answer 2";
+                else if (correctAnswer.ToLower().Contains("answer3"))
+                    lblCorrectAnswer.Text = "Answer 3";
+                else if (correctAnswer.ToLower().Contains("answer4"))
+                    lblCorrectAnswer.Text = "Answer 4";
+            }
         }
 
-        if (e.Row.RowType == DataControlRowType.Footer || e.Row.RowState == DataControlRowState.Edit)
+        if (e.Row.RowType == DataControlRowType.Footer || e.Row.RowState == (DataControlRowState.Edit | DataControlRowState.Alternate) || e.Row.RowState == DataControlRowState.Edit)
         {
             DropDownList ddlCorrectAnswer = e.Row.FindControl("ddlCorrectAnswer") as DropDownList;
             ddlCorrectAnswer.ClearSelection();
@@ -197,7 +200,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
             ListItem lst3 = new ListItem("Answer 3", "answer3");
             ListItem lst4 = new ListItem("Answer 4", "answer4");
 
-            if(ddlCorrectAnswer.Items.Count == 0)
+            if (ddlCorrectAnswer.Items.Count == 0)
             {
                 ddlCorrectAnswer.Items.Insert(0, lst0);
                 ddlCorrectAnswer.Items.Insert(1, lst1);
@@ -205,8 +208,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                 ddlCorrectAnswer.Items.Insert(3, lst3);
                 ddlCorrectAnswer.Items.Insert(4, lst4);
             }
-
-            if (e.Row.RowState == DataControlRowState.Edit)
+            if (e.Row.RowState == DataControlRowState.Edit || e.Row.RowState == (DataControlRowState.Edit | DataControlRowState.Alternate))
             {
                 PropertyInfo pCorrectAnswer = row.GetType().GetProperty("correctanswer");
                 string correctAnswer = pCorrectAnswer.GetValue(row, null) == null ? string.Empty : pCorrectAnswer.GetValue(row, null).ToString();
@@ -216,7 +218,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                     ddlCorrectAnswer.ClearSelection();
                     ddlCorrectAnswer.Items.FindByValue(correctAnswer.ToString()).Selected = true;
                 }
-            } 
+            }
         }
     }
 }
