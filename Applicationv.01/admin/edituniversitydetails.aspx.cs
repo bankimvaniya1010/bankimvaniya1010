@@ -58,7 +58,7 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtUniSDescription.Value = existingUninversity.short_description;
                     txtUniLDescription.Value = existingUninversity.long_description;
                     txtUniAirport.Value = existingUninversity.closest_airport;
-
+                    
                     txtUniAirportDistance.Value = airportDistanceValue[0];
                     foreach (ListItem item in airDistanceUnit.Items)
                     {
@@ -106,6 +106,8 @@ public partial class edituniversitydetails : System.Web.UI.Page
                     txtWithdrawnTerms.Text = existingUninversity.withdrawn_terms;
                     txtsupportserviceInstructions.Text = existingUninversity.supprot_service_instructions;
                     txtvisainstruction.Text = existingUninversity.visa_instructions;
+                    txtgtmcode.Text = Convert.ToString(existingUninversity.university_gtm_code);
+
                     foreach (ListItem item in subscription.Items)
                     {
                         string value = existingUninversity.full_service ? "1" : "0";
@@ -198,6 +200,8 @@ public partial class edituniversitydetails : System.Web.UI.Page
             universityObj.withdrawn_terms = txtWithdrawnTerms.Text;
             universityObj.supprot_service_instructions = txtsupportserviceInstructions.Text;
             universityObj.visa_instructions = txtvisainstruction.Text;
+            universityObj.university_gtm_code = txtgtmcode.Text.Trim();
+
             if (logo.HasFile)  //fileupload control contains a file  
             {
                 docPath = docPath + "/" + universityObj.universityid + "/";

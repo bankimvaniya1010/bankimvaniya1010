@@ -2777,6 +2777,7 @@ public partial class university_master
     public string supprot_service_instructions { get; set; }
     public string visa_instructions { get; set; }
     public string hosturl { get; set; }
+    public string university_gtm_code { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<admincomments> admincomments { get; set; }
