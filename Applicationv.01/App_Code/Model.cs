@@ -1778,7 +1778,8 @@ public partial class gte_progressbar
     public int id { get; set; }
     public int applicantid { get; set; }
     public Nullable<bool> is_gte_tutorial_completed { get; set; }
-    public Nullable<bool> is_gte_question_completed { get; set; }
+    public Nullable<bool> is_gte_preliminarysection1_completed { get; set; }
+    public Nullable<bool> is_gte_preliminarysection2_completed { get; set; }
     public Nullable<bool> is_gte_declaration_completed { get; set; }
     public Nullable<bool> is_gte_certificate_generated { get; set; }
     public string certificate_name { get; set; }

@@ -534,12 +534,12 @@
                                     </li>
                                     <li class="sidebar-menu-item" id="gtepreliminary_section">
                                         <a class="sidebar-menu-button" href="gtepreliminary_section_questionmaster.aspx">
-                                            <span class="sidebar-menu-text">Gte preliminary_section Master</span>
+                                            <span class="sidebar-menu-text">Gte Preliminary Question - 1</span>
                                         </a>
                                     </li>
                                     <li class="sidebar-menu-item" id="gtepreliminaryquestionmaster"> 
                                         <a class="sidebar-menu-button" href="gtepreliminaryquestionmaster.aspx">
-                                            <span class="sidebar-menu-text">GTE Preliminary Question</span>
+                                            <span class="sidebar-menu-text">GTE Preliminary Question - 2</span>
                                         </a>
                                     </li>
                                      <li class="sidebar-menu-item" id="gte_declaration_master">
