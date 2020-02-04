@@ -38,7 +38,9 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Answer 1</th>
+                                <th scope="col">Answer1 Description</th>
                                 <th scope="col">Answer 2</th>
+                                <th scope="col">Answer2 Description</th>
                                 <th scope="col">Correct Answer</th>
                                 <th scope="col"></th>
                             </tr>
@@ -51,7 +53,13 @@
                                     <asp:Label runat="server" ID="lblEmptyTrue">True</asp:Label>
                                 </td>
                                 <td>
+                                    <asp:TextBox ID="txtEmptyDescription_answer1" CssClass="form-control" runat="server" TextMode="MultiLine" Width="196px" height="110px"></asp:TextBox>
+                                </td>
+                                <td>
                                     <asp:Label runat="server" ID="lblEmptyFalse">False</asp:Label>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyDescription_answer2" CssClass="form-control" runat="server" TextMode="MultiLine" Width="196px" height="110px"></asp:TextBox>
                                 </td>
                                 <td>
                                     <asp:DropDownList ID="ddlEmptyCorrectans" runat="server" CssClass="form-control" Width="145px">
@@ -97,7 +105,21 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Answer 2">
+                             <asp:TemplateField HeaderText="Incorrect Description ">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer1" TextMode="MultiLine" runat="server" Text='<%# Bind("answer1_description") %>' height="110px" width="196px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer1' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect  Description Cannot Be Empty' ControlToValidate='txtDescrip_answer1' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer1Footer" runat="server" TextMode="MultiLine" height="110px" width="196px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer1Footer' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer1Footer' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtDescrip_answer1" runat="server" Text='<%# Bind("answer1_description") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Answer 2" ControlStyle-Width="">
                                 <EditItemTemplate>
                                     <asp:Label ID="txtAnswer2" runat="server" Text="False"></asp:Label>                                    
                                 </EditItemTemplate>
@@ -109,6 +131,20 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                             <asp:TemplateField HeaderText="Incorrect Description ">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer2" TextMode="MultiLine" runat="server" Text='<%# Bind("answer2_description") %>' height="110px" width="196px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer2' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer2' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer2Footer" runat="server" TextMode="MultiLine" height="110px" width="196px"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer2Footer' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer2Footer' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtDescrip_answer2" runat="server" Text='<%# Bind("answer2_description") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                             
                             <asp:TemplateField HeaderText="Correct Answer" SortExpression="correctanswer">
                                 <EditItemTemplate>
                                     <asp:DropDownList ID="ddlCorrectAnswer" runat="server" CssClass="form-control" Width="145px"></asp:DropDownList>
@@ -147,6 +183,14 @@
         function validateEmptyRow() {
             if (!$("#ContentPlaceHolder1_section2queGridView_txtEmptyRecordDescription").is(':hidden') && $("#ContentPlaceHolder1_section2queGridView_txtEmptyRecordDescription").val() == "") {
                 alert("Description Cannot Be Empty");
+                return false;
+            }
+            else if (!$("#ContentPlaceHolder1_section2queGridView_txtEmptyDescription_answer1").is(':hidden') && $("#ContentPlaceHolder1_section2queGridView_txtEmptyDescription_answer1").val() == "") {
+                alert("Answer 1 Description Cannot Be Empty");
+                return false;
+            }
+            else if (!$("#ContentPlaceHolder1_section2queGridView_txtEmptyDescription_answer2").is(':hidden') && $("#ContentPlaceHolder1_section2queGridView_txtEmptyDescription_answer2").val() == "") {
+                alert("Answer 2 Description Cannot Be Empty");
                 return false;
             }
             else if (!$("#ContentPlaceHolder1_section2queGridView_ddlEmptyCorrectans").is(':hidden') && $("#ContentPlaceHolder1_section2queGridView_ddlEmptyCorrectans").val() == "") {

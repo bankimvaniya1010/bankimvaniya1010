@@ -91,7 +91,11 @@ public partial class gte_preliminary_section : System.Web.UI.Page
                     if (SelectedValue == correctAnswer)
                         ((HtmlGenericControl)item.FindControl("correctTick1")).Style.Remove("display");
                     else
+                    {
                         ((HtmlGenericControl)item.FindControl("incorrectTick1")).Style.Remove("display");
+                        HtmlGenericControl lbincorrectTooltip1 = (HtmlGenericControl)item.FindControl("icincorrectTick1");
+                        setIncorrectTooltip(questionId, SelectedValue, lbincorrectTooltip1);
+                    }
                 }
                 if (rdAnswer2.Checked)
                 {
@@ -99,7 +103,11 @@ public partial class gte_preliminary_section : System.Web.UI.Page
                     if (SelectedValue == correctAnswer)
                         ((HtmlGenericControl)item.FindControl("correctTick2")).Style.Remove("display");
                     else
+                    {
                         ((HtmlGenericControl)item.FindControl("incorrectTick2")).Style.Remove("display");
+                        HtmlGenericControl lbincorrectTooltip2 = (HtmlGenericControl)item.FindControl("icincorrectTick2");
+                        setIncorrectTooltip(questionId, SelectedValue, lbincorrectTooltip2);
+                    }
                 }
                 
                 responseInsertedForQuestion = db.gtepreliminarysection_applicantanswers.Any(x => x.applicantId == UserID && x.gte_preliminary_section_question_id == questionId);
@@ -119,6 +127,32 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         }
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }
+    }
+
+    private void setIncorrectTooltip(int questionID, string SelectedValue, HtmlGenericControl lbincorrectTooltip)
+    {
+        try
+        {
+            var preliminaryQuestionData = db.gte_preliminary_section_questionmaster.Where(x => x.gte_questionID == questionID).Select(x => new { answer1_description = x.answer1_description, answer2_description = x.answer2_description }).FirstOrDefault();
+
+            if (SelectedValue == "answer1")
+            {
+                lbincorrectTooltip.Attributes.Add("style", "display:block;");
+                if (preliminaryQuestionData.answer1_description == null)
+                    lbincorrectTooltip.Attributes.Add("data-tipso", "Not Set");
+                else
+                    lbincorrectTooltip.Attributes.Add("data-tipso", preliminaryQuestionData.answer1_description);
+            }
+            else if (SelectedValue == "answer2")
+            {
+                lbincorrectTooltip.Attributes.Add("style", "display:block;");
+                if (preliminaryQuestionData.answer2_description == null)
+                    lbincorrectTooltip.Attributes.Add("data-tipso", "Not Set");
+                else
+                    lbincorrectTooltip.Attributes.Add("data-tipso", preliminaryQuestionData.answer2_description);
+            }
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 
     private void Save(Hashtable UserValues)

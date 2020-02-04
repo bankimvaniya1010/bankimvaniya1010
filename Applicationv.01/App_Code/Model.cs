@@ -1325,6 +1325,7 @@ public partial class coursemaster
     public string courseurl { get; set; }
     public string courseduration { get; set; }
     public string coursedescription { get; set; }
+    public Nullable<int> currencyid { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<course_campus_mapping> course_campus_mapping { get; set; }
@@ -1338,6 +1339,7 @@ public partial class coursemaster
     public virtual university_master university_master { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<careerposition_course_mapping> careerposition_course_mapping { get; set; }
+    public virtual currency_master currency_master { get; set; }
 }
 
 public partial class coursetypemaster
@@ -1379,6 +1381,7 @@ public partial class currency_master
         this.manageutilities = new HashSet<manageutilities>();
         this.managevisa = new HashSet<managevisa>();
         this.payment_details = new HashSet<payment_details>();
+        this.coursemaster = new HashSet<coursemaster>();
     }
 
     public int id { get; set; }
@@ -1403,6 +1406,8 @@ public partial class currency_master
     public virtual ICollection<managevisa> managevisa { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<payment_details> payment_details { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<coursemaster> coursemaster { get; set; }
 }
 
 public partial class customfieldmaster
@@ -1742,6 +1747,10 @@ public partial class gte_preliminary_questionmaster
     public string answer4 { get; set; }
     public string correctanswer { get; set; }
     public Nullable<int> status { get; set; }
+    public string answer1_description { get; set; }
+    public string answer2_description { get; set; }
+    public string answer3_description { get; set; }
+    public string answer4_description { get; set; }
 }
 
 public partial class gte_preliminary_section_questionmaster
@@ -1751,6 +1760,8 @@ public partial class gte_preliminary_section_questionmaster
     public string answer1 { get; set; }
     public string answer2 { get; set; }
     public string correctanswer { get; set; }
+    public string answer1_description { get; set; }
+    public string answer2_description { get; set; }
 }
 
 public partial class gte_preliminaryapplicantanswers
