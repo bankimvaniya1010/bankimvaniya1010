@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -20,6 +21,8 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
     string webURL = string.Empty;
     int userScore = 0;
     int UniversityID = -1;
+    int section1Question;
+    int section2Question;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -31,8 +34,22 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         if (isGteDeclarationDoneByApplicant)
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
+        section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
+        section2Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection2Question"]);
         if (!IsPostBack)
         {
+            var gte_progress = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+            var isGtePreliminarySection1Done = gte_progress.is_gte_preliminarysection1_completed.Value;
+            var isGtePreliminarySection2Done = gte_progress.is_gte_preliminarysection2_completed.Value;
+            if (!isGtePreliminarySection1Done)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('GTE Test your Knowledge - 1 is not completed. Please complete Section 1 before proceeding');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+
+            if (isGtePreliminarySection2Done)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('GTE Test your Knowledge - 2 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
             GetQuestion();
             allQuestions = objCom.FaqQuestionList();
             btnGoToDeclaration.Enabled = false;
@@ -56,10 +73,10 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         try
         {
             var QuestionsList = db.gte_preliminary_questionmaster.ToList();
-            QuestionsCount = QuestionsList.Count;
+            QuestionsCount = section2Question;
             QuestionsList = Randomize(QuestionsList);
-            Session["Questions"] = QuestionsList;
-            questionList.DataSource = QuestionsList;
+            Session["Questions"] = QuestionsList.Take(section2Question);
+            questionList.DataSource = QuestionsList.Take(section2Question);
             questionList.DataBind();
         }
         catch (Exception ex)
@@ -158,7 +175,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 gteProgressBar.applicantid = UserID;
             }
 
-            gteProgressBar.is_gte_question_completed = true;
+            gteProgressBar.is_gte_preliminarysection2_completed = true;
             if (mode == "new")
                 db.gte_progressbar.Add(gteProgressBar);
             db.SaveChanges();
@@ -167,10 +184,11 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                 Save(answer);
             calculateStudentScore(preliminaryQuestionList);
             divUserScore.Style.Remove("display");
+            int totalQuestion = section1Question + section2Question;
 
             if (!responseInsertedForQuestion && !gteProgressBar.is_gte_certificate_generated.HasValue)
             {
-                int userPercentageScore = (int)Math.Ceiling((decimal)userScore / questionList.Items.Count * 100);
+                int userPercentageScore = (int)Math.Ceiling((decimal)userScore / totalQuestion * 100);
                 if (userPercentageScore > 40 && userPercentageScore <= 65)
                     generateParticipationCertificate("Satisfactory");
                 else if (userPercentageScore > 65 && userPercentageScore <= 85)
@@ -181,7 +199,7 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     linkCertificate.Style.Add("display", "none");
             }
 
-            lblUserScore.InnerText = Math.Round((decimal)userScore / questionList.Items.Count * 100, 2).ToString() + "%";
+            lblUserScore.InnerText = Math.Round((decimal)userScore / totalQuestion * 100, 2).ToString() + "%";
             btnsubmit.Enabled = false;
             btnGoToDeclaration.Enabled = true; // Depending upon flag for Only GTE Certificate or complete GTE Module will be visible
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "navigateToTop", "window.scrollTo(0, 0);", true);
@@ -286,6 +304,20 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         foreach (var answer in preliminaryAnswerList)
         {
             gte_preliminary_questionmaster test = preliminaryQuestionList.Where(x => x.gte_preliminaryid == answer.gte_preliminary_question_id).FirstOrDefault();
+            if (answer.answer == test.correctanswer)
+                userScore++;
+        }
+
+        //Logic to calculate answered section 1 questions
+        var preliminaryAnswerListSection1 = db.gtepreliminarysection_applicantanswers
+                                              .Where(x => x.applicantId == UserID)
+                                              .Select(x => new { x.gte_preliminary_section_question_id, x.answer }).ToList();
+
+        var preliminaryQuestionListSection1 = db.gte_preliminary_section_questionmaster.AsNoTracking().ToList();
+
+        foreach (var answer in preliminaryAnswerListSection1)
+        {
+            gte_preliminary_section_questionmaster test = preliminaryQuestionListSection1.Where(x => x.gte_questionID == answer.gte_preliminary_section_question_id).FirstOrDefault();
             if (answer.answer == test.correctanswer)
                 userScore++;
         }

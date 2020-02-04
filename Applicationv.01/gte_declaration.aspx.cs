@@ -36,7 +36,7 @@ public partial class gte_declaration : System.Web.UI.Page
             allQuestions= objCom.FaqQuestionList();
             gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
             if (gteProgressBar != null)
-                questionsCompleted = gteProgressBar.is_gte_question_completed.Value;
+                questionsCompleted = gteProgressBar.is_gte_preliminarysection1_completed.Value && gteProgressBar.is_gte_preliminarysection2_completed.Value;
 
             allStatements = db.gte_declaration_master.Where(x => x.universityId == UniversityID).ToList();            
             foreach (var item in allStatements)

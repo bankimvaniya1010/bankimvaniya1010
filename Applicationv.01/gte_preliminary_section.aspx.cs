@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -19,6 +20,7 @@ public partial class gte_preliminary_section : System.Web.UI.Page
     Logger objLog = new Logger();
     string webURL = string.Empty;
     int UniversityID = -1;
+    int section1Question;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,8 +33,14 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         if (isGteDeclarationDoneByApplicant)
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+        section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
         if (!IsPostBack)
         {
+            var isGtePreliminarySectionDone = db.gte_progressbar.First(x => x.applicantid == UserID).is_gte_preliminarysection1_completed.Value;
+            if (isGtePreliminarySectionDone)
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                        "alert('GTE Test your Knowledge - 1 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+
             GetQuestion();
             allQuestions = objCom.FaqQuestionList();
             btnGoToNextPage.Enabled = false;
@@ -56,10 +64,10 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         try
         {
             var QuestionsList = db.gte_preliminary_section_questionmaster.ToList();
-            QuestionsCount = QuestionsList.Count;
+            QuestionsCount = section1Question;
             QuestionsList = Randomize(QuestionsList);
-            Session["Questions"] = QuestionsList;
-            questionList.DataSource = QuestionsList;
+            Session["Questions"] = QuestionsList.Take(section1Question);
+            questionList.DataSource = QuestionsList.Take(section1Question);
             questionList.DataBind();
         }
         catch (Exception ex)
@@ -80,7 +88,6 @@ public partial class gte_preliminary_section : System.Web.UI.Page
                 Label lblQuestion = (Label)item.FindControl("lblQuestion");                 
                 RadioButton rdAnswer1 = (RadioButton)item.FindControl("rdoans1");
                 RadioButton rdAnswer2 = (RadioButton)item.FindControl("rdoans2");
-                RadioButton rdStrongDisAgree = (RadioButton)item.FindControl("rdoans5");
 
                 int questionId = Convert.ToInt32(questionID.Text);
                 string correctAnswer = preliminaryQuestionList.FirstOrDefault(x => x.gte_questionID == questionId).correctanswer;
@@ -121,7 +128,22 @@ public partial class gte_preliminary_section : System.Web.UI.Page
                 }
             }
             if (answer.Count > 0)
+            {
                 Save(answer);            
+                var mode = "update";
+                var gteProgressBar = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
+                if (gteProgressBar == null)
+                {
+                    mode = "new";
+                    gteProgressBar = new gte_progressbar();
+                    gteProgressBar.applicantid = UserID;
+                }
+
+                gteProgressBar.is_gte_preliminarysection1_completed = true;
+                if (mode == "new")
+                    db.gte_progressbar.Add(gteProgressBar);
+                db.SaveChanges();
+            }
             btnsubmit.Enabled = false;
             btnGoToNextPage.Enabled = true;
         }
