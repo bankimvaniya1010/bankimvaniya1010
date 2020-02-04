@@ -89,6 +89,7 @@ public partial class admin_createuniversity : System.Web.UI.Page
                 universityObj.fee_payment_instructions = txtUniversityFeePayment.Text;
                 universityObj.coe_instruction = txtUniversityCOE.Text;
                 universityObj.visa_instructions = txtvisainstruction.Text;
+                universityObj.university_gtm_code = txtgtmcode.Text.Trim();
                 var url = txthosturl.Value.Trim();
                 if(url.ToLower().Contains("www."))
                     url = url.Replace("www.", string.Empty);

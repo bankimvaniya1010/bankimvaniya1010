@@ -296,6 +296,7 @@
         <AssociationConnector Association="GTEModel.FK_careerposition_course_mapping_coursemaster" />
         <EntityTypeShape EntityType="GTEModel.gte_preliminary_section_questionmaster" Width="1.5" PointX="25.375" PointY="6.75" />
         <EntityTypeShape EntityType="GTEModel.gtepreliminarysection_applicantanswers" Width="1.5" PointX="7.375" PointY="25.75" />
+        <AssociationConnector Association="GTEModel.FK_coursemaster_currency_master" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -95,7 +95,11 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     if (SelectedValue == correctAnswer)
                         ((HtmlGenericControl)item.FindControl("correctTick1")).Style.Remove("display");
                     else
+                    {
                         ((HtmlGenericControl)item.FindControl("incorrectTick1")).Style.Remove("display");
+                        HtmlGenericControl lbincorrectTooltip1 = (HtmlGenericControl)item.FindControl("icincorrectTick1");
+                        setIncorrectTooltip(questionId,SelectedValue, lbincorrectTooltip1);
+                    }
                 }
                 if (rdAnswer2.Checked)
                 {
@@ -103,7 +107,11 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     if (SelectedValue == correctAnswer)
                         ((HtmlGenericControl)item.FindControl("correctTick2")).Style.Remove("display");
                     else
+                    {
                         ((HtmlGenericControl)item.FindControl("incorrectTick2")).Style.Remove("display");
+                        HtmlGenericControl lbincorrectTooltip2 = (HtmlGenericControl)item.FindControl("icincorrectTick2");
+                        setIncorrectTooltip(questionId, SelectedValue, lbincorrectTooltip2);
+                    }
                 }
                 if (rdAnswer3.Checked)
                 {
@@ -111,7 +119,11 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     if (SelectedValue == correctAnswer)
                         ((HtmlGenericControl)item.FindControl("correctTick3")).Style.Remove("display");
                     else
+                    {
                         ((HtmlGenericControl)item.FindControl("incorrectTick3")).Style.Remove("display");
+                        HtmlGenericControl lbincorrectTooltip3 = (HtmlGenericControl)item.FindControl("icincorrectTick3");
+                        setIncorrectTooltip(questionId, SelectedValue, lbincorrectTooltip3);
+                    }
                 }
                 if (rdAnswer4.Checked)
                 {
@@ -119,7 +131,11 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
                     if (SelectedValue == correctAnswer)
                         ((HtmlGenericControl)item.FindControl("correctTick4")).Style.Remove("display");
                     else
+                    {
                         ((HtmlGenericControl)item.FindControl("incorrectTick4")).Style.Remove("display");
+                        HtmlGenericControl lbincorrectTooltip4 = (HtmlGenericControl)item.FindControl("icincorrectTick4");
+                        setIncorrectTooltip(questionId, SelectedValue, lbincorrectTooltip4);
+                    }
                 }
 
                 responseInsertedForQuestion = db.gte_preliminaryapplicantanswers.Any(x => x.applicantid == UserID && x.gte_preliminary_question_id == questionId);
@@ -172,6 +188,48 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         }
         catch (Exception ex)
         { objLog.WriteLog(ex.ToString()); }
+    }
+
+    private void setIncorrectTooltip(int questionID, string SelectedValue, HtmlGenericControl lbincorrectTooltip)
+    {
+        try
+        {
+            var preliminaryQuestionData = db.gte_preliminary_questionmaster.Where(x => x.gte_preliminaryid == questionID).Select(x => new { answer1_description = x.answer1_description, answer2_description = x.answer2_description, answer3_description = x.answer3_description, answer4_description = x.answer4_description }).FirstOrDefault();
+
+            if (SelectedValue == "answer1")
+            {
+                lbincorrectTooltip.Attributes.Add("style", "display:block;");
+                if (preliminaryQuestionData.answer1_description == null)
+                    lbincorrectTooltip.Attributes.Add("data-tipso", "Not Set");
+                else
+                    lbincorrectTooltip.Attributes.Add("data-tipso", preliminaryQuestionData.answer1_description);
+            }
+            else if (SelectedValue == "answer2")
+            {
+                lbincorrectTooltip.Attributes.Add("style", "display:block;");
+                if(preliminaryQuestionData.answer2_description == null)
+                    lbincorrectTooltip.Attributes.Add("data-tipso", "Not Set");
+                else
+                    lbincorrectTooltip.Attributes.Add("data-tipso", preliminaryQuestionData.answer2_description);
+            }
+            else if (SelectedValue == "answer3")
+            {
+                lbincorrectTooltip.Attributes.Add("style", "display:block;");
+                if(preliminaryQuestionData.answer3_description == null)
+                    lbincorrectTooltip.Attributes.Add("data-tipso", "Not Set");
+                else
+                    lbincorrectTooltip.Attributes.Add("data-tipso", preliminaryQuestionData.answer3_description);
+            }
+            else if (SelectedValue == "answer4")
+            {
+                lbincorrectTooltip.Attributes.Add("style", "display:block;");
+                if(preliminaryQuestionData.answer4_description== null)
+                    lbincorrectTooltip.Attributes.Add("data-tipso", "Not Set");
+                else
+                    lbincorrectTooltip.Attributes.Add("data-tipso", preliminaryQuestionData.answer4_description);
+            }
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 
     private void generateParticipationCertificate(string performanceCategory)

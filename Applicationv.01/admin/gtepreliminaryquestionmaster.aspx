@@ -66,6 +66,20 @@
                                     <asp:Label ID="lblAnswer1" runat="server" Text='<%# Bind("answer1") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Incorrect Description ">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer1" TextMode="MultiLine" runat="server" Text='<%# Bind("answer1_description") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer1' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer1' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer1Footer" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer1Footer' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer1Footer' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtDescrip_answer1" runat="server" Text='<%# Bind("answer1_description") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Answer 2" SortExpression="answer2">
                                 <EditItemTemplate>
@@ -78,6 +92,20 @@
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblAnswer2" runat="server" Text='<%# Bind("answer2") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Incorrect Description ">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer2" TextMode="MultiLine" runat="server" Text='<%# Bind("answer2_description") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer2' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer2' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer2Footer" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer2Footer' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer2Footer' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtDescrip_answer2" runat="server" Text='<%# Bind("answer2_description") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -94,8 +122,22 @@
                                     <asp:Label ID="lblAnswer3" runat="server" Text='<%# Bind("answer3") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Incorrect Description ">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer3" TextMode="MultiLine" runat="server" Text='<%# Bind("answer3_description") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer3' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer3' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer3Footer" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer3Footer' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer3Footer' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtDescrip_answer3" runat="server" Text='<%# Bind("answer3_description") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Answer 4" SortExpression="answer4">
+                            <asp:TemplateField HeaderText="Answer 4">
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtAnswer4" TextMode="MultiLine" runat="server" Text='<%# Bind("answer4") %>'></asp:TextBox>
                                     <asp:RequiredFieldValidator runat='server' ID='requiredAnswer4Edit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Answer 4 Cannot Be Empty' ControlToValidate='txtAnswer4' />
@@ -106,6 +148,20 @@
                                 </FooterTemplate>
                                 <ItemTemplate>
                                     <asp:Label ID="lblAnswer4" runat="server" Text='<%# Bind("answer4") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Incorrect Description ">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer4" TextMode="MultiLine" runat="server" Text='<%# Bind("answer4_description") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer4' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer4' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtDescrip_answer4Footer" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredtxtDescrip_answer4Footer' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Incorrect Description Cannot Be Empty' ControlToValidate='txtDescrip_answer4Footer' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtDescrip_answer4" runat="server" Text='<%# Bind("answer4_description") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

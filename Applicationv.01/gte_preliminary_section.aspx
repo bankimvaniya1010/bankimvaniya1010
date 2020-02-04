@@ -50,11 +50,13 @@
                                         <asp:RadioButton ID="rdoans1" runat="server" GroupName="A" Text='<%# Eval("answer1") %>' />
                                         <i id="correctTick1" style="display: none" runat="server" class="fas fa-check-circle"></i>
                                         <i id="incorrectTick1" style="display:none" runat="server" class="fas fa-times-circle"></i>
+                                        <span class="helpicon"><i id="icincorrectTick1" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>                                        
                                     </div>
                                     <div class="form-group option">
                                         <asp:RadioButton ID="rdoans2" runat="server" GroupName="A" Text='<%# Eval("answer2") %>' />
                                         <i id="correctTick2" style="display:none" runat="server" class="fas fa-check-circle"></i>
                                         <i id="incorrectTick2" style="display:none" runat="server" class="fas fa-times-circle"></i>
+                                        <span class="helpicon"><i id="icincorrectTick2" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                     </div>
                                 </div>
                             </asp:Panel>
@@ -132,7 +134,13 @@
 
         }
 
-          $(document).ready(function () {
+        $(document).ready(function () {
+            $('.fa-info-circle').tipso({
+                position: 'left',
+                background: 'rgba(0,0,0,0.8)',
+                useTitle: false,
+            });
+
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');

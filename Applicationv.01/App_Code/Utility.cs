@@ -42,13 +42,14 @@ public static class Utility
                 string inBoundUrl = HttpContext.Current.Request.Url.Host.ToLower().ToString();
                 if (inBoundUrl.ToUpper().Contains("www."))
                     inBoundUrl = inBoundUrl.Replace("www.", string.Empty);
-                var details = db.university_master.Where(x => x.hosturl == inBoundUrl).Select(x => new { x.universityid, x.university_name }).FirstOrDefault();
+                var details = db.university_master.Where(x => x.hosturl == inBoundUrl).Select(x => new { x.universityid, x.university_name,x.university_gtm_code }).FirstOrDefault();
                 if (details != null)
                 {
                     universityId = details.universityid;
                     if (universityId.Value > 0)
                     {
                         HttpContext.Current.Session["universityName"] = details.university_name;
+                        HttpContext.Current.Session["universityGoogleTagID"] = details.university_gtm_code;
                         return universityId.Value;
                     }
                     else

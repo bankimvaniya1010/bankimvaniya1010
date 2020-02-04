@@ -34,6 +34,10 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                                     answer2 = q.answer2,
                                     answer3 = q.answer3,
                                     answer4 = q.answer4,
+                                    answer1_description = string.IsNullOrEmpty(q.answer1_description) ? string.Empty : q.answer1_description,
+                                    answer2_description = string.IsNullOrEmpty(q.answer2_description) ? string.Empty : q.answer2_description,
+                                    answer3_description = string.IsNullOrEmpty(q.answer3_description) ? string.Empty : q.answer3_description,
+                                    answer4_description = string.IsNullOrEmpty(q.answer4_description) ? string.Empty : q.answer4_description,
                                     correctanswer = q.correctanswer                                    
                                 }).ToList();
             if (QuestionList != null)
@@ -61,15 +65,23 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                 TextBox txtAnswer1 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer1Footer");
                 TextBox txtAnswer2 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer2Footer");
                 TextBox txtAnswer3 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer3Footer");
-                TextBox txtAnswer4 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer4Footer");                
-                //TextBox txtCorrectAnswer = (TextBox)QuestiontGridView.FooterRow.FindControl("txtCorrectAnswerFooter");
+                TextBox txtAnswer4 = (TextBox)QuestiontGridView.FooterRow.FindControl("txtAnswer4Footer");
+                TextBox txtAnswer1_description = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescrip_answer1Footer");
+                TextBox txtAnswer2_description = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescrip_answer2Footer");
+                TextBox txtAnswer3_description = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescrip_answer3Footer");
+                TextBox txtAnswer4_description = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescrip_answer4Footer");                                
                 DropDownList ddlCorrectAnswer = (DropDownList)QuestiontGridView.FooterRow.FindControl("ddlCorrectAnswer");
+
                 objQuestion.question = txtQuestion.Text.Trim();
                 objQuestion.answer1 = txtAnswer1.Text.Trim();
                 objQuestion.answer2 = txtAnswer2.Text.Trim();
                 objQuestion.answer3 = txtAnswer3.Text.Trim();
                 objQuestion.answer4 = txtAnswer4.Text.Trim();
-                objQuestion.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();//txtCorrectAnswer.Text.Trim();
+                objQuestion.answer1_description = txtAnswer1_description.Text.Trim();
+                objQuestion.answer2_description = txtAnswer2_description.Text.Trim();
+                objQuestion.answer3_description = txtAnswer3_description.Text.Trim();
+                objQuestion.answer4_description = txtAnswer4_description.Text.Trim();
+                objQuestion.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();
                 db.gte_preliminary_questionmaster.Add(objQuestion);
                 db.SaveChanges();
                 BindGrid();
@@ -95,7 +107,10 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
             TextBox txtAnswer2 = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtAnswer2");
             TextBox txtAnswer3 = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtAnswer3");
             TextBox txtAnswer4 = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtAnswer4");
-            //TextBox txtCorrectAnswer = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtCorrectAnswer");
+            TextBox txtAnswer1_description = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer1");
+            TextBox txtAnswer2_description = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer2");
+            TextBox txtAnswer3_description = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer3");
+            TextBox txtAnswer4_description = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer4");
             DropDownList ddlCorrectAnswer = (DropDownList)QuestiontGridView.Rows[e.RowIndex].FindControl("ddlCorrectAnswer");
 
             qm.question = txtQuestion.Text.Trim();
@@ -103,7 +118,11 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
             qm.answer2 = txtAnswer2.Text.Trim();
             qm.answer3 = txtAnswer3.Text.Trim();
             qm.answer4 = txtAnswer4.Text.Trim();
-            qm.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();//txtCorrectAnswer.Text.Trim();
+            qm.answer1_description = txtAnswer1_description.Text.Trim();
+            qm.answer2_description = txtAnswer2_description.Text.Trim();
+            qm.answer3_description = txtAnswer3_description.Text.Trim();
+            qm.answer4_description = txtAnswer4_description.Text.Trim();
+            qm.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();
             QuestiontGridView.EditIndex = -1;
             db.SaveChanges();
             BindGrid();
@@ -130,7 +149,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[8].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[12].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
