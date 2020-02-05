@@ -31,15 +31,22 @@ public partial class gte_preliminary_section : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
+        {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+            return;
+        }
+
         section1Question = Convert.ToInt32(ConfigurationManager.AppSettings["GTEPreliminiarySection1Question"]);
         if (!IsPostBack)
         {
-            var isGtePreliminarySectionDone = db.gte_progressbar.First(x => x.applicantid == UserID).is_gte_preliminarysection1_completed.Value;
+            var isGtePreliminarySectionDone = db.gte_progressbar.Where(x => x.applicantid == UserID).Select(x => x.is_gte_preliminarysection1_completed.HasValue && x.is_gte_preliminarysection1_completed.Value).FirstOrDefault();
             if (isGtePreliminarySectionDone)
+            {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                         "alert('GTE Test your Knowledge - 1 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                return;
+            }
 
             GetQuestion();
             allQuestions = objCom.FaqQuestionList();
