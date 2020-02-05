@@ -45,6 +45,7 @@ public partial class admin_editcourse : System.Web.UI.Page
                 bindMajorDisciplineDropdown();
                 bindStudyLevelDropdown();
                 BindUniversity();
+                BindCurrency();
                 if (existingCourse != null && existingDates != null)
                 {
                     ViewState["courseID"] = courseID;
@@ -54,6 +55,11 @@ public partial class admin_editcourse : System.Web.UI.Page
                     txtCourseURL.Value = existingCourse.courseurl;
                     txtCourseDuration.Value = existingCourse.courseduration;
                     txtCourseDescription.Value = existingCourse.coursedescription;
+                    if (existingCourse.currencyid != null)
+                    {
+                        ddlcurrency.ClearSelection();
+                        ddlcurrency.Items.FindByValue(existingCourse.currencyid.ToString()).Selected = true;
+                    }
                     if (existingCourse.majordisciplineId != null)
                     {
                         ddldiscipline.ClearSelection();
@@ -148,6 +154,22 @@ public partial class admin_editcourse : System.Web.UI.Page
             else
                 Response.Redirect(webURL + "admin/default.aspx");
         }
+    }
+
+    private void BindCurrency()
+    {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var currency = db.currency_master.ToList();
+            ddlcurrency.DataSource = currency;
+            ddlcurrency.DataTextField = "currency_symbol";
+            ddlcurrency.DataValueField = "id";
+            ddlcurrency.DataBind();
+            ddlcurrency.Items.Insert(0, lst);
+
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
 
     private void BindUniversityCampus(int universityId)
@@ -289,6 +311,7 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.courseurl = txtCourseURL.Value.Trim();
             CourseObj.courseduration = txtCourseDuration.Value.Trim();
             CourseObj.coursedescription = txtCourseDescription.Value.Trim();
+            CourseObj.currencyid = Convert.ToInt32(ddlcurrency.SelectedValue);
             db.SaveChanges();
 
             //commencement date

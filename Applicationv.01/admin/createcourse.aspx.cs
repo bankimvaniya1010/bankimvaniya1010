@@ -34,9 +34,24 @@ public partial class admin_createcourse : System.Web.UI.Page
             bindMajorDisciplineDropdown();
             bindStudyLevelDropdown();
             BindUniversity();
+            BindCurrency();
         }
     }
 
+    private void BindCurrency() {
+        try
+        {
+            ListItem lst = new ListItem("Please select", "0");
+            var currency = db.currency_master.ToList();
+            ddlcurrency.DataSource = currency;
+            ddlcurrency.DataTextField = "currency_symbol";
+            ddlcurrency.DataValueField = "id";
+            ddlcurrency.DataBind();
+            ddlcurrency.Items.Insert(0, lst);
+
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
+    }
     private void BindUniversity()
     {
         try
@@ -131,6 +146,7 @@ public partial class admin_createcourse : System.Web.UI.Page
                 courseObj.courseurl = txtCourseURL.Value;
                 courseObj.courseduration = txtCourseDuration.Value;
                 courseObj.coursedescription = txtCourseDescription.Value;
+                courseObj.currencyid = Convert.ToInt32(ddlcurrency.SelectedValue);
 
                 db.coursemaster.Add(courseObj);
                 db.SaveChanges();
