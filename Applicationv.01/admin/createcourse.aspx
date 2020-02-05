@@ -84,7 +84,11 @@
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input id="txtCoursefee" type="text" runat="server" class="form-control" placeholder="Course Fee" />
+                                    <input id="txtCoursefee" type="text" runat="server" class="form-control" placeholder="Course Fee" />                                    
+                                </div>
+                                <div class="col-md-4">
+                                    <asp:DropDownList ID="ddlcurrency" runat="server" CssClass="form-control">                                        
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                         </div>
@@ -237,6 +241,7 @@
 
             var txtCourse = $('#<%=txtCourseName.ClientID%>').val();
             var txtcoursefee = $('#<%=txtCoursefee.ClientID%>').val();
+            var currency = $('#<%=ddlcurrency.ClientID%>').val();
             var discipline = $('#<%=ddldiscipline.ClientID%>').val();
             var studyLevel = $('#<%=ddlstudylevel.ClientID%>').val();
             var studymode = $('#<%=hidStudyMode.ClientID%>').val();
@@ -270,6 +275,10 @@
             }
             else if (txtcoursefee == '') {
                 alert("Please enter Course fee");
+                return false;
+            }
+            else if (currency == 0) {
+                alert("Please Select Currency");
                 return false;
             }
             else if (university == 0) {
