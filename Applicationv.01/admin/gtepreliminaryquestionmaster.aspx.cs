@@ -38,7 +38,8 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                                     answer2_description = string.IsNullOrEmpty(q.answer2_description) ? string.Empty : q.answer2_description,
                                     answer3_description = string.IsNullOrEmpty(q.answer3_description) ? string.Empty : q.answer3_description,
                                     answer4_description = string.IsNullOrEmpty(q.answer4_description) ? string.Empty : q.answer4_description,
-                                    correctanswer = q.correctanswer                                    
+                                    correctanswer = q.correctanswer,
+                                    question_tag = string.IsNullOrEmpty(q.question_tag) ? string.Empty : q.question_tag,
                                 }).ToList();
             if (QuestionList != null)
             {
@@ -71,6 +72,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                 TextBox txtAnswer3_description = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescrip_answer3Footer");
                 TextBox txtAnswer4_description = (TextBox)QuestiontGridView.FooterRow.FindControl("txtDescrip_answer4Footer");                                
                 DropDownList ddlCorrectAnswer = (DropDownList)QuestiontGridView.FooterRow.FindControl("ddlCorrectAnswer");
+                TextBox txtquestion_tagFooter = (TextBox)QuestiontGridView.FooterRow.FindControl("txtquestion_tagFooter");
 
                 objQuestion.question = txtQuestion.Text.Trim();
                 objQuestion.answer1 = txtAnswer1.Text.Trim();
@@ -82,6 +84,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                 objQuestion.answer3_description = txtAnswer3_description.Text.Trim();
                 objQuestion.answer4_description = txtAnswer4_description.Text.Trim();
                 objQuestion.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();
+                objQuestion.question_tag = txtquestion_tagFooter.Text.Trim();
                 db.gte_preliminary_questionmaster.Add(objQuestion);
                 db.SaveChanges();
                 BindGrid();
@@ -112,6 +115,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
             TextBox txtAnswer3_description = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer3");
             TextBox txtAnswer4_description = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer4");
             DropDownList ddlCorrectAnswer = (DropDownList)QuestiontGridView.Rows[e.RowIndex].FindControl("ddlCorrectAnswer");
+            TextBox txtquestion_tag = (TextBox)QuestiontGridView.Rows[e.RowIndex].FindControl("txtquestion_tag");
 
             qm.question = txtQuestion.Text.Trim();
             qm.answer1 = txtAnswer1.Text.Trim();
@@ -123,6 +127,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
             qm.answer3_description = txtAnswer3_description.Text.Trim();
             qm.answer4_description = txtAnswer4_description.Text.Trim();
             qm.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();
+            qm.question_tag = txtquestion_tag.Text.Trim();
             QuestiontGridView.EditIndex = -1;
             db.SaveChanges();
             BindGrid();
@@ -149,7 +154,7 @@ public partial class admin_gtepreliminaryquestionmaster : System.Web.UI.Page
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[12].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[13].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter

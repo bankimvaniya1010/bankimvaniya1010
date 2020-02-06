@@ -30,7 +30,7 @@ public partial class sop_report : System.Web.UI.Page
         {
             int downloadPdf = 0;
             int.TryParse(Request.QueryString["downloadPdf"].ToString(), out downloadPdf);
-            if ((downloadPdf == 0 && Utility.CheckAdminLogin()) || (downloadPdf == 1 && Request.QueryString["token"] != null && Request.QueryString["token"].ToString() == "YKUcfdhNWwp17azByk"))
+            if ((downloadPdf == 0 && Utility.CheckStudentLogin()) || (downloadPdf == 1 && Request.QueryString["token"] != null && Request.QueryString["token"].ToString() == "YKUcfdhNWwp17azByk"))
             {
                 universityID = Utility.GetUniversityId();
                 ApplicantID = Convert.ToInt32(Request.QueryString["id"].ToString());

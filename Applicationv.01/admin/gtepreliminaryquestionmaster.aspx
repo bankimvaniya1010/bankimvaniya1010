@@ -179,6 +179,20 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Question Tag">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtquestion_tag" TextMode="MultiLine" runat="server" Text='<%# Bind("question_tag") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredQuestiontagEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Question Tag Cannot Be Empty' ControlToValidate='txtquestion_tag' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtquestion_tagFooter" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredQuestiontagFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Question Tag Cannot Be Empty' ControlToValidate='txtquestion_tagFooter' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtquestion_tag" runat="server" Text='<%# Bind("question_tag") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                 <EditItemTemplate>
                                     <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>

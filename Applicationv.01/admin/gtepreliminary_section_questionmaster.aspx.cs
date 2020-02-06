@@ -35,6 +35,7 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
                                     correctanswer = q.correctanswer,
                                     answer1_description = string.IsNullOrEmpty(q.answer1_description) ? string.Empty : q.answer1_description,
                                     answer2_description = string.IsNullOrEmpty(q.answer2_description) ? string.Empty : q.answer2_description,
+                                    question_tag = string.IsNullOrEmpty(q.question_tag) ? string.Empty : q.question_tag,
                                 }).ToList();
             if (QuestionList != null)
             {
@@ -67,6 +68,7 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
                 TextBox txtDescrip_answer1Footer = (TextBox)section2queGridView.FooterRow.FindControl("txtDescrip_answer1Footer");
                 TextBox txtDescrip_answer2Footer = (TextBox)section2queGridView.FooterRow.FindControl("txtDescrip_answer2Footer");
                 DropDownList ddlCorrectAnswer = (DropDownList)section2queGridView.FooterRow.FindControl("ddlCorrectAnswer");
+                TextBox txtquestion_tagFooter = (TextBox)section2queGridView.FooterRow.FindControl("txtquestion_tagFooter");
 
                 objQuestion.question = txtQuestion.Text.Trim();
                 objQuestion.answer1 = txtAnswer1.Text;
@@ -74,6 +76,7 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
                 objQuestion.answer1_description = txtDescrip_answer1Footer.Text.Trim();
                 objQuestion.answer2_description = txtDescrip_answer2Footer.Text.Trim();
                 objQuestion.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();
+                objQuestion.question_tag = txtquestion_tagFooter.Text.Trim();
                 db.gte_preliminary_section_questionmaster.Add(objQuestion);
                 db.SaveChanges();
                 BindGrid();
@@ -102,6 +105,7 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
             TextBox txtDescrip_answer1 = (TextBox)section2queGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer1");
             TextBox txtDescrip_answer2 = (TextBox)section2queGridView.Rows[e.RowIndex].FindControl("txtDescrip_answer2");
             DropDownList ddlCorrectAnswer = (DropDownList)section2queGridView.Rows[e.RowIndex].FindControl("ddlCorrectAnswer");
+            TextBox txtquestion_tag = (TextBox)section2queGridView.Rows[e.RowIndex].FindControl("txtquestion_tag");
 
             qm.question = txtQuestion.Text.Trim();
             qm.answer1 = txtAnswer1.Text;
@@ -109,6 +113,7 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
             qm.answer1_description = txtDescrip_answer1.Text.Trim();
             qm.answer2_description = txtDescrip_answer2.Text.Trim();
             qm.correctanswer = ddlCorrectAnswer.SelectedItem.Value.Trim();
+            qm.question_tag = txtquestion_tag.Text.Trim();
             section2queGridView.EditIndex = -1;
             db.SaveChanges();
             BindGrid();
@@ -129,7 +134,7 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
                     {
                         string id = row.Cells[0].Text; // Get the id to be deleted
                                                        //cast the ShowDeleteButton link to linkbutton
-                        LinkButton lb = (LinkButton)row.Cells[8].Controls[0];
+                        LinkButton lb = (LinkButton)row.Cells[9].Controls[0];
                         if (lb != null)
                         {
                             //attach the JavaScript function with the ID as the paramter
@@ -228,7 +233,8 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
         string txtEmptyDescription_answer1 = (control.FindControl("txtEmptyDescription_answer1") as TextBox).Text;
         string txtEmptyDescription_answer2 = (control.FindControl("txtEmptyDescription_answer2") as TextBox).Text;
         DropDownList ddlcorrectans = (control.FindControl("ddlEmptyCorrectans") as DropDownList);
-
+        string txtEmptyQuestionTag = (control.FindControl("txtEmptyQuestionTag") as TextBox).Text;
+        
         if (string.IsNullOrEmpty(idDescriptonText))
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Description Cannot Be Empty')", true);
@@ -242,6 +248,7 @@ public partial class admin_gtepreliminary_section_questionmaster : System.Web.UI
         objID.answer1_description = txtEmptyDescription_answer1;
         objID.answer2_description = txtEmptyDescription_answer2;
         objID.correctanswer = ddlcorrectans.SelectedValue;
+        objID.question_tag = txtEmptyQuestionTag;
         db.gte_preliminary_section_questionmaster.Add(objID);
         db.SaveChanges();
         BindGrid();

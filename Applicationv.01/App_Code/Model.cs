@@ -1751,6 +1751,7 @@ public partial class gte_preliminary_questionmaster
     public string answer2_description { get; set; }
     public string answer3_description { get; set; }
     public string answer4_description { get; set; }
+    public string question_tag { get; set; }
 }
 
 public partial class gte_preliminary_section_questionmaster
@@ -1762,6 +1763,7 @@ public partial class gte_preliminary_section_questionmaster
     public string correctanswer { get; set; }
     public string answer1_description { get; set; }
     public string answer2_description { get; set; }
+    public string question_tag { get; set; }
 }
 
 public partial class gte_preliminaryapplicantanswers
