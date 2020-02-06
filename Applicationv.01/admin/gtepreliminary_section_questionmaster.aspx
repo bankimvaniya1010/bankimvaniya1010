@@ -42,6 +42,7 @@
                                 <th scope="col">Answer 2</th>
                                 <th scope="col">Answer2 Description</th>
                                 <th scope="col">Correct Answer</th>
+                                <th scope="col">Question Tag </th>
                                 <th scope="col"></th>
                             </tr>
                             <tr>
@@ -67,6 +68,9 @@
                                         <asp:ListItem Value="answer1">Answer 1</asp:ListItem>
                                         <asp:ListItem Value="answer2">Answer 2</asp:ListItem>
                                     </asp:DropDownList>
+                                </td>
+                                <td>
+                                    <asp:TextBox ID="txtEmptyQuestionTag" CssClass="form-control" runat="server" TextMode="MultiLine" Width="196px" height="110px"></asp:TextBox>
                                 </td>
                                 <td>
                                     <asp:Button ID="btnAdd" runat="server" Text="Add New" OnClick="Add" CommandName="EmptyDataTemplate" class="btn btn-success" OnClientClick="return validateEmptyRow()"/>
@@ -159,6 +163,20 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Question Tag">
+                                <EditItemTemplate>
+                                    <asp:TextBox ID="txtquestion_tag" TextMode="MultiLine" runat="server" Text='<%# Bind("question_tag") %>'></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredQuestiontagEdit' ValidationGroup='<%# "Group_" + Container.DataItemIndex %>' Display="Dynamic" ErrorMessage='Question Tag Cannot Be Empty' ControlToValidate='txtquestion_tag' />
+                                </EditItemTemplate>
+                                <FooterTemplate>
+                                    <asp:TextBox ID="txtquestion_tagFooter" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat='server' ID='requiredQuestiontagFooter' ValidationGroup='<%# "GroupF_" + Container.DataItemIndex %>' ErrorMessage='Question Tag Cannot Be Empty' ControlToValidate='txtquestion_tagFooter' />
+                                </FooterTemplate>
+                                <ItemTemplate>
+                                    <asp:Label ID="lbltxtquestion_tag" runat="server" Text='<%# Bind("question_tag") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                 <EditItemTemplate>
                                     <asp:LinkButton ID="lnkUpdate" runat="server" CausesValidation="True" CommandName="Update" Text="Update" ValidationGroup='<%# "Group_" + Container.DataItemIndex %>'></asp:LinkButton>
@@ -195,6 +213,10 @@
             }
             else if (!$("#ContentPlaceHolder1_section2queGridView_ddlEmptyCorrectans").is(':hidden') && $("#ContentPlaceHolder1_section2queGridView_ddlEmptyCorrectans").val() == "") {
                 alert("Please Select Correct Answer");
+                return false;
+            }
+            else if (!$("#ContentPlaceHolder1_section2queGridView_txtEmptyQuestionTag").is(':hidden') && $("#ContentPlaceHolder1_section2queGridView_txtEmptyQuestionTag").val() == "") {
+                alert("Please Enter Question Tag");
                 return false;
             }
             return true;

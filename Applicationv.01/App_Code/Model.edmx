@@ -1466,6 +1466,7 @@
           <Property Name="answer2_description" Type="varchar" MaxLength="500" />
           <Property Name="answer3_description" Type="varchar" MaxLength="500" />
           <Property Name="answer4_description" Type="varchar" MaxLength="500" />
+          <Property Name="question_tag" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="gte_preliminary_section_questionmaster">
           <Key>
@@ -1478,6 +1479,7 @@
           <Property Name="correctanswer" Type="varchar" MaxLength="50" />
           <Property Name="answer1_description" Type="varchar" MaxLength="500" />
           <Property Name="answer2_description" Type="varchar" MaxLength="500" />
+          <Property Name="question_tag" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="gte_preliminaryapplicantanswers">
           <Key>
@@ -6822,6 +6824,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="answer2_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="answer3_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="answer4_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="question_tag" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gte_preliminaryapplicantanswers">
           <Key>
@@ -9385,6 +9388,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="correctanswer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="answer1_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="answer2_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="question_tag" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gtepreliminarysection_applicantanswers">
           <Key>
@@ -10927,6 +10931,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_preliminary_questionmaster">
             <EntityTypeMapping TypeName="GTEModel.gte_preliminary_questionmaster">
               <MappingFragment StoreEntitySet="gte_preliminary_questionmaster">
+                <ScalarProperty Name="question_tag" ColumnName="question_tag" />
                 <ScalarProperty Name="answer4_description" ColumnName="answer4_description" />
                 <ScalarProperty Name="answer3_description" ColumnName="answer3_description" />
                 <ScalarProperty Name="answer2_description" ColumnName="answer2_description" />
@@ -11909,6 +11914,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="gte_preliminary_section_questionmaster">
             <EntityTypeMapping TypeName="GTEModel.gte_preliminary_section_questionmaster">
               <MappingFragment StoreEntitySet="gte_preliminary_section_questionmaster">
+                <ScalarProperty Name="question_tag" ColumnName="question_tag" />
                 <ScalarProperty Name="answer2_description" ColumnName="answer2_description" />
                 <ScalarProperty Name="answer1_description" ColumnName="answer1_description" />
                 <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
