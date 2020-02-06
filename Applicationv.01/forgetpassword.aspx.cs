@@ -13,15 +13,17 @@ public partial class forgetpassword : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     private GTEEntities db = new GTEEntities();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     public string logourl = string.Empty;
+    public string universityGTMCode = string.Empty;
     university_master university = new university_master();
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
         university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;        
+        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
+        universityGTMCode = university.university_gtm_code;
     }
 
     protected void btn_login_Click(object sender, EventArgs e)

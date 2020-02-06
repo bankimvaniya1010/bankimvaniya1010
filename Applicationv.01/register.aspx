@@ -27,6 +27,20 @@
     <!-- App CSS -->
     <link type="text/css" href="assets/css/app.css" rel="stylesheet">
     <link type="text/css" href="assets/css/app.rtl.css" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '<%=universityGTMCode%>');
+    </script>
+    <!-- End Google Tag Manager -->
+
 </head>
 
 <body class="login">
@@ -44,13 +58,10 @@
                     </div>
                     <div class="card-body">
 
-
-
                          <div class="form-group" runat="server" visible="false" id="lblerror" >
                             <label class="form-label badge-danger" for="course" >User is already registered with entered email address</label>
                             
                         </div>
-
 
                         <div class="form-group">
                             <label class="form-label" for="name">Name:</label>
@@ -63,39 +74,6 @@
                                 </div>
                             </div>
                         </div>
-                       <%--  <div class="form-group">
-                            <label class="form-label" for="mname">Middle Name:</label>
-                            <div class="input-group input-group-merge">
-                                <input id="mname" type="text" runat="server" class="form-control form-control-prepended" placeholder="Middle name">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <span class="far fa-user"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="form-group">
-                            <label class="form-label" for="lname">Last Name:</label>
-                            <div class="input-group input-group-merge">
-                                <input id="lname" type="text" runat="server" class="form-control form-control-prepended" placeholder="last name">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <span class="far fa-user"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="email">UserName:</label>
-                            <div class="input-group input-group-merge">
-                                <input id="username" runat="server" type="text" class="form-control form-control-prepended" placeholder="Your username">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <span class="far fa-envelope"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>--%>
                         <div class="form-group">
                             <label class="form-label" for="email">Email address:</label>
                             <div class="input-group input-group-merge">
@@ -107,57 +85,6 @@
                                 </div>
                             </div>                           
                         </div>
-                        <%--<div class="form-group">
-                            <label class="form-label" for="password">Password:</label>
-                            <div class="input-group input-group-merge">
-                                <input id="password" type="password" runat="server" class="form-control form-control-prepended" placeholder="Choose a password">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <span class="far fa-key"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="password">Password:</label>
-                            <div class="input-group input-group-merge">
-                                <input id="confirmpassword" type="password" runat="server" class="form-control form-control-prepended" placeholder="Choose a password">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <span class="far fa-key"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="enrollmentyear">When you want to enrol:</label>
-                            <div class="input-group input-group-merge">
-                                <div class="col-md-9">
-                                    <asp:RadioButton ID="rblYear1" runat="server" GroupName="enrollmentyear" />
-                                    <asp:RadioButton ID="rblYear2" runat="server" GroupName="enrollmentyear" />
-                                    <asp:RadioButton ID="rblYear3" runat="server" GroupName="enrollmentyear" />
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="studylevel">Study Level:</label>
-                            <div class="input-group input-group-merge">
-                                <div class="col-md-9">
-                                    <asp:RadioButtonList ID="rblstudyLevel" RepeatColumns="2" runat="server"></asp:RadioButtonList>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-group" >
-                            <label class="form-label" for="course">Course:</label>
-                            <div class="input-group input-group-merge">
-                                <div class="col-md-9">
-                                    <asp:ListBox ID="lstCourse" SelectionMode="Multiple" CssClass="form-control" runat="server"></asp:ListBox>
-                                </div>
-
-                            </div>
-                        </div>--%>
                         <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" />
                          
                         <div class="form-group text-center mb-0">
@@ -200,21 +127,18 @@
     <!-- App Settings (safe to remove) -->
     <script src="assets/js/app-settings.js"></script>
 
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=<%=universityGTMCode%>" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <script language="javascript" type="text/javascript">
         $(function () {
             $('#btnSignUp').click(function () {
                 var summary = "";
                 summary += isvalidname();
-                //summary += isvalidmname();
-                //summary += isvalidlname();
-                //summary += isvaliduser();
                 summary += isvalidemail();
-                //summary += isvalidpassword();
-                //summary += isvalidconfirmpass();
-                //summary += isvalidenrollmentyear();
-                //summary += isvalidStudyLevel();
-                //summary += isvalidCourse();
                 summary += isvalidterms();
                 if (summary != "") {
                     alert(summary);
@@ -228,32 +152,6 @@
         function isvalidname() {
             if ($("#name").val() == "") {
                 return ("Please enter name" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-         function isvalidmname() {
-            if ($("#mname").val() == "") {
-                return ("Please enter middle name" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-
-         function isvalidlname() {
-            if ($("#lname").val() == "") {
-                return ("Please enter last name" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvaliduser() {
-
-            if ($("#username").val() == "") {
-                return ("Please enter username" + "\n");
             }
             else {
                 return "";
@@ -277,56 +175,6 @@
                 }
             }
         }
-        function isvalidpassword() {
-
-            if ($("#password").val() == "") {
-                return ("Please enter password" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
-        function isvalidconfirmpass() {
-
-            if ($("#confirmpassword").val() == "") {
-                return ("Please enter eonfirm password" + "\n");
-            }
-            else {
-                if ($("#confirmpassword").val() == $("#password").val()) {
-                    return "";
-                }
-                else { return ("Please enter same password" + "\n"); }
-            }
-        }
-        function isvalidenrollmentyear() {
-            if ($('input[name="enrollmentyear"]:checked').length > 0) {
-                // if ($('#enrollmentyear :radio:checked').length > 0) {
-                return "";
-            }
-            else {
-                return ("Please select enrollment year" + "\n");
-
-            }
-        }
-        function isvalidStudyLevel() {
-            if ($('#rblstudyLevel :radio:checked').length > 0) {
-                return "";
-            }
-            else {
-                return ("Please select study level" + "\n");
-
-            }
-
-        }
-        function isvalidCourse() {
-
-            if ($('#lstCourse').val().length == 0) {
-                return ("Please select course" + "\n");
-            }
-            else {
-                return "";
-            }
-        }
         function isvalidterms() {
 
             if ($("#terms").prop('checked') == true) {
@@ -336,13 +184,7 @@
                 return ("Please check terms & conditions " + "\n");
             }
         }
-
-
-    //do something
-
     </script>
-
-
 
 </body>
 

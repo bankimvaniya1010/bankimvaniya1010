@@ -15,13 +15,14 @@ public partial class Resetpassword : System.Web.UI.Page
     string webURL = String.Empty;
     public string logourl = string.Empty;
     university_master university = new university_master();
-
+    public string universityGTMCode = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
         university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
+        universityGTMCode = university.university_gtm_code;
     }
     protected void btnSignUp_Click(object sender, EventArgs e)
     {
