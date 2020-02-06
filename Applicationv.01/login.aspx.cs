@@ -14,6 +14,7 @@ public partial class login : System.Web.UI.Page
     string webURL = String.Empty;
     int universityID;
     public string logourl = string.Empty;
+    public string universityGTMCode = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -27,8 +28,9 @@ public partial class login : System.Web.UI.Page
             Session["universityId"] = universityID;
         active = Request.QueryString["active"];
 
-        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo }).FirstOrDefault();
+        var universityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.universityid, x.logo, x.university_gtm_code}).FirstOrDefault();
         logourl = webURL + "/Docs/" + universityDetails.universityid + "/" + universityDetails.logo;
+        universityGTMCode = universityDetails.university_gtm_code;
     }
 
     protected void btn_login_Click(object sender, EventArgs e)

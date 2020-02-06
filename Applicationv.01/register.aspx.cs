@@ -14,24 +14,17 @@ public partial class register : System.Web.UI.Page
     int universityID = 0;
     Common objCom = new Common();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected string LoginURL = "";
     public string logourl = string.Empty;
+    public string universityGTMCode = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
         universityID = Utility.GetUniversityId();
         var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;        
-        //string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationemail.html"));
-        if (!IsPostBack)
-        {
-            // BindCourses();
-            // BindStudyLevel();
-            //rblYear1.Text = DateTime.Now.Year.ToString();
-            //rblYear2.Text = DateTime.Now.AddYears(1).Year.ToString();
-            //rblYear3.Text = DateTime.Now.AddYears(2).Year.ToString();
-        }
+        logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
+        universityGTMCode = university.university_gtm_code;
     }
 
     protected void btnSignUp_Click(object sender, EventArgs e)
@@ -49,20 +42,10 @@ public partial class register : System.Web.UI.Page
             {
                 usrObj.name = name.Value.Trim();
 
-                // string password = RandomPassword(8);
-                // usrObj.password = objCom.EncodePasswordToMD5(password);
-                // usrObj.role = 3;
                 usrObj.email = email.Value.Trim();
                 int otp = objCom.RandomNumber(100000, 999999);
                 usrObj.otp = otp;
-                // usrObj.usercreationdate = Convert.ToDateTime(DateTime.Now.ToString(), System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
-                usrObj.studylevelid = 1;// Convert.ToInt32(rblstudyLevel.SelectedValue);
-                //if (rblYear1.Checked)
-                //    usrObj.enrollmentyear = Convert.ToInt32(rblYear1.Text);
-                //else if (rblYear2.Checked)
-                //    usrObj.enrollmentyear = Convert.ToInt32(rblYear2.Text);
-                //else if (rblYear3.Checked)
-                //    usrObj.enrollmentyear = Convert.ToInt32(rblYear3.Text);
+                usrObj.studylevelid = 1;
 
                 usrObj.verificationkey = Guid.NewGuid().ToString();
                 usrObj.isverified = false;
@@ -70,7 +53,6 @@ public partial class register : System.Web.UI.Page
                 db.SaveChanges();
                 var id = usrObj.studentid;
                 objapplicant.applicantid = id;
-                // objapplicant = Convert.ToInt32(ddlUniversity.SelectedValue);
                 objapplicant.email = email.Value.Trim();
 
                 string[] nameArr = name.Value.Split(' ');
@@ -80,28 +62,13 @@ public partial class register : System.Web.UI.Page
 
                 universityID = Utility.GetUniversityId();
                 objapplicant.universityid = universityID;
-                //objapplicant.middlename = mname.Value.Trim();
-                //objapplicant.lastname = lname.Value.Trim();
                 db.applicantdetails.Add(objapplicant);
                 db.SaveChanges();
-                // SaveCourses(id);
                 var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
-                //string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationemail.html"));
-                //html = html.Replace("@UniversityName", university.university_name);
-                //html = html.Replace("@universityLogo", webURL + "/Docs/" + universityID + "/" + university.logo);
-                //html = html.Replace("@Name", name.Value == "" ? "Hello" : name.Value);
-                //html = html.Replace("@Email", email.Value);
-
-                //webURL = webURL + "verifystudent.aspx?key=" + usrObj.verificationkey;
-                //html = html.Replace("@url", webURL);
-                //html = html.Replace("@Loginurl", webURL + "/login.aspx");
-                //webURL = "";
-                //webURL = webURL + "registerconfimation.aspx?email="+ email.Value;
 
                 string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/registerconfirmationwithotp.html"));
                 html = html.Replace("@UniversityName", university.university_name);
                 html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + university.logo);
-                //html = html.Replace("@universityLogo", "http://edu.applydirect.online/assets/dashboard/img/aiwt-logo.jpg");
 
                 html = html.Replace("@Name", name.Value == "" ? "Hello" : name.Value);
                 html = html.Replace("@Email", email.Value);
@@ -117,52 +84,9 @@ public partial class register : System.Web.UI.Page
                 webURL = webURL + "registerconfimation.aspx?email=" + email.Value;
                 Response.Redirect(webURL, true);
             }
-
             else
-            {
                 lblerror.Visible = true;
-            }
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.StackTrace.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.StackTrace.ToString()); }
     }
-    private void BindCourses()
-    {
-        //ListItem lst = new ListItem("Please select", "0");
-        //var courses = db.registrationcourses.ToList();
-        //lstCourse.DataSource = courses;
-        //lstCourse.DataTextField = "coursename";
-        //lstCourse.DataValueField = "courseid";
-        //lstCourse.DataBind();
-        //lstCourse.Items.Insert(0, lst);
-    }
-    private void BindStudyLevel()
-    {
-
-        //var studyLevel = db.studylevelmaster.ToList();
-        //rblstudyLevel.DataSource = studyLevel;
-        //rblstudyLevel.DataTextField = "studylevel";
-        //rblstudyLevel.DataValueField = "studylevelid";
-        //rblstudyLevel.DataBind();
-
-    }
-    private void SaveCourses(int studentid)
-    {
-        //for (int i = 0; i < lstCourse.Items.Count; i++)
-        //{
-        //    studentcoursemapping objCourse = new studentcoursemapping();
-        //    if (lstCourse.Items[i].Selected == true)
-        //    {
-        //        objCourse.studentid = studentid;
-        //        objCourse.courseid = Convert.ToInt32(lstCourse.Items[i].Value);
-        //        db.studentcoursemapping.Add(objCourse);
-        //        db.SaveChanges();
-        //    }
-
-        //}
-    }
-
-    
 }

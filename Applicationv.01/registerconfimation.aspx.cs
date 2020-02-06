@@ -13,8 +13,9 @@ public partial class registerconfimation : System.Web.UI.Page
     Logger objLog = new Logger();
     protected string email = "";
     protected string universityName = "";
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     public string logourl = string.Empty;
+    public string universityGTMCode = string.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         email = Request.QueryString["email"];
@@ -22,5 +23,6 @@ public partial class registerconfimation : System.Web.UI.Page
         var university = db.university_master.Where(x => x.universityid == universityID).FirstOrDefault();
         universityName = university.university_name;
         logourl = webURL + "/Docs/" + university.universityid + "/" + university.logo;
+        universityGTMCode = university.university_gtm_code;
     }
 }
