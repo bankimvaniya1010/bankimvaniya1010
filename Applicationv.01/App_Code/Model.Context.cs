@@ -102,7 +102,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_declaration_master> gte_declaration_master { get; set; }
     public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
     public virtual DbSet<gte_preliminaryapplicantanswers> gte_preliminaryapplicantanswers { get; set; }
-    public virtual DbSet<gte_progressbar> gte_progressbar { get; set; }
     public virtual DbSet<gte_question_master_part2> gte_question_master_part2 { get; set; }
     public virtual DbSet<gte_question_part2_applicant_response> gte_question_part2_applicant_response { get; set; }
     public virtual DbSet<gte_questions_applicant_response> gte_questions_applicant_response { get; set; }
@@ -188,6 +187,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<careerposition_course_mapping> careerposition_course_mapping { get; set; }
     public virtual DbSet<gte_preliminary_section_questionmaster> gte_preliminary_section_questionmaster { get; set; }
     public virtual DbSet<gtepreliminarysection_applicantanswers> gtepreliminarysection_applicantanswers { get; set; }
+    public virtual DbSet<gte_progressbar> gte_progressbar { get; set; }
+    public virtual DbSet<educationdetailcheck_referee_response> educationdetailcheck_referee_response { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

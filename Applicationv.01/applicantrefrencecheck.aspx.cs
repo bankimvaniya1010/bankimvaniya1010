@@ -151,12 +151,10 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
             objReference.requestsenttime = DateTime.Now;
             objReference.universityid = universityID;
             objReference.referncekey = Guid.NewGuid().ToString();
+            objReference.isverified = null;
             if (mode == "new")
                 db.applicantreferencecheck.Add(objReference);
-            db.SaveChanges();
-            txtName.Value = "";
-            txtMobile.Value = "";
-            txtEmail.Value = "";
+            db.SaveChanges();           
             if (CustomControls.Count > 0)
                 objCom.SaveCustomData(userID, formId, CustomControls, mainDiv);
 
@@ -185,6 +183,9 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
             sb.Append("The Application Center Validation Team <br/>");
             objCom.SendMail(txtEmail.Value, sb.ToString(), "Refrence Check for " + Applicantname);
             BindRefrenceList();
+            txtName.Value = "";
+            txtMobile.Value ="";
+            txtEmail.Value = "";
         }
         catch (Exception ex)
         {

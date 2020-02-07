@@ -446,6 +446,12 @@ public partial class applicantemployerdetails
     public string employerverificationkey { get; set; }
     public Nullable<bool> isemployerdetailverified { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
+    public string verifyrecord_refereeresponse { get; set; }
+    public string howlongyouknow_refereeresponse { get; set; }
+    public string opinionforstudycourse_refereeresponse { get; set; }
+    public string biggeststrenthknown_refereeresponse { get; set; }
+    public string getalongwithmanagement_refereeresponse { get; set; }
+    public string wouldyourehire_refereeresponse { get; set; }
 }
 
 public partial class applicantformmaster
@@ -576,6 +582,10 @@ public partial class applicantreferencecheck
     public string referncekey { get; set; }
     public Nullable<System.DateTime> requestsenttime { get; set; }
     public Nullable<System.DateTime> referenceverifiedtime { get; set; }
+    public string howlongyouknow_refereesponse { get; set; }
+    public string describeskill_refereesponse { get; set; }
+    public string greateststrength_refereesponse { get; set; }
+    public string whyyouchoosetoreferthisstudent_refereesponse { get; set; }
 }
 
 public partial class applicantresidencehistory
@@ -1469,6 +1479,19 @@ public partial class documentvalidationbyagent
     public Nullable<int> agentid { get; set; }
     public Nullable<System.DateTime> lastupdatedate { get; set; }
     public string remarks { get; set; }
+}
+
+public partial class educationdetailcheck_referee_response
+{
+    public int id { get; set; }
+    public Nullable<int> applicantId { get; set; }
+    public Nullable<int> universityId { get; set; }
+    public string type { get; set; }
+    public Nullable<int> verifieddetailsresponse { get; set; }
+    public string howlongknoweachresponse { get; set; }
+    public string performancedescription { get; set; }
+    public string greateststrengthresponse { get; set; }
+    public string additionalInforesponse { get; set; }
 }
 
 public partial class educationmediummaster

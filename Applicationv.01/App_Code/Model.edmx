@@ -408,6 +408,12 @@
           <Property Name="linkedinidofcontact" Type="varchar" MaxLength="45" />
           <Property Name="employerverificationkey" Type="varchar" MaxLength="50" />
           <Property Name="isemployerdetailverified" Type="bit" />
+          <Property Name="verifyrecord_refereeresponse" Type="varchar" MaxLength="200" />
+          <Property Name="howlongyouknow_refereeresponse" Type="varchar" MaxLength="200" />
+          <Property Name="opinionforstudycourse_refereeresponse" Type="varchar" MaxLength="200" />
+          <Property Name="biggeststrenthknown_refereeresponse" Type="varchar" MaxLength="200" />
+          <Property Name="getalongwithmanagement_refereeresponse" Type="varchar" MaxLength="200" />
+          <Property Name="wouldyourehire_refereeresponse" Type="varchar" MaxLength="200" />
           <Property Name="lastsavedtime" Type="datetime" Precision="0" />
         </EntityType>
         <EntityType Name="applicantformmaster">
@@ -533,6 +539,10 @@
           <Property Name="referncekey" Type="varchar" MaxLength="50" />
           <Property Name="requestsenttime" Type="datetime" Precision="0" />
           <Property Name="referenceverifiedtime" Type="datetime" Precision="0" />
+          <Property Name="howlongyouknow_refereesponse" Type="varchar" MaxLength="100" />
+          <Property Name="describeskill_refereesponse" Type="varchar" MaxLength="100" />
+          <Property Name="greateststrength_refereesponse" Type="varchar" MaxLength="100" />
+          <Property Name="whyyouchoosetoreferthisstudent_refereesponse" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="applicantresidencehistory">
           <Key>
@@ -1265,6 +1275,20 @@
           <Property Name="agentid" Type="int" />
           <Property Name="lastupdatedate" Type="datetime" Precision="0" />
           <Property Name="remarks" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="educationdetailcheck_referee_response">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="applicantId" Type="int" />
+          <Property Name="universityId" Type="int" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="verifieddetailsresponse" Type="int" />
+          <Property Name="howlongknoweachresponse" Type="varchar" MaxLength="200" />
+          <Property Name="performancedescription" Type="varchar" MaxLength="200" />
+          <Property Name="greateststrengthresponse" Type="varchar" MaxLength="200" />
+          <Property Name="additionalInforesponse" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="educationmediummaster">
           <Key>
@@ -3966,6 +3990,7 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
           <EntitySet Name="declaration_master" EntityType="Self.declaration_master" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="disabilitymaster" EntityType="Self.disabilitymaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="documentvalidationbyagent" EntityType="Self.documentvalidationbyagent" Schema="GTE" store:Type="Tables" />
+          <EntitySet Name="educationdetailcheck_referee_response" EntityType="Self.educationdetailcheck_referee_response" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationmediummaster" EntityType="Self.educationmediummaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="educationverificationcontactmaster" EntityType="Self.educationverificationcontactmaster" Schema="GTE" store:Type="Tables" />
           <EntitySet Name="entertainment" EntityType="Self.entertainment" Schema="GTE" store:Type="Tables" />
@@ -5280,6 +5305,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="coursemaster" EntitySet="coursemaster" />
           </AssociationSet>
           <EntitySet Name="gte_progressbar" EntityType="GTEModel.gte_progressbar" />
+          <EntitySet Name="educationdetailcheck_referee_response" EntityType="GTEModel.educationdetailcheck_referee_response" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -5703,6 +5729,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="employerverificationkey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="isemployerdetailverified" Type="Boolean" />
           <Property Name="lastsavedtime" Type="DateTime" />
+          <Property Name="verifyrecord_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="howlongyouknow_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="opinionforstudycourse_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="biggeststrenthknown_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="getalongwithmanagement_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="wouldyourehire_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicantformmaster">
           <Key>
@@ -5835,6 +5867,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="referncekey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="requestsenttime" Type="DateTime" />
           <Property Name="referenceverifiedtime" Type="DateTime" />
+          <Property Name="howlongyouknow_refereesponse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="describeskill_refereesponse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="greateststrength_refereesponse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="whyyouchoosetoreferthisstudent_refereesponse" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="applicantresidencehistory">
           <Key>
@@ -9427,6 +9463,20 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="certificate_creation_date" Type="DateTime" />
           <Property Name="performance_category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="educationdetailcheck_referee_response">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="applicantId" Type="Int32" />
+          <Property Name="universityId" Type="Int32" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="verifieddetailsresponse" Type="Int32" />
+          <Property Name="howlongknoweachresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="performancedescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="greateststrengthresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="additionalInforesponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -9833,6 +9883,12 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantemployerdetails">
             <EntityTypeMapping TypeName="GTEModel.applicantemployerdetails">
               <MappingFragment StoreEntitySet="applicantemployerdetails">
+                <ScalarProperty Name="wouldyourehire_refereeresponse" ColumnName="wouldyourehire_refereeresponse" />
+                <ScalarProperty Name="getalongwithmanagement_refereeresponse" ColumnName="getalongwithmanagement_refereeresponse" />
+                <ScalarProperty Name="biggeststrenthknown_refereeresponse" ColumnName="biggeststrenthknown_refereeresponse" />
+                <ScalarProperty Name="opinionforstudycourse_refereeresponse" ColumnName="opinionforstudycourse_refereeresponse" />
+                <ScalarProperty Name="howlongyouknow_refereeresponse" ColumnName="howlongyouknow_refereeresponse" />
+                <ScalarProperty Name="verifyrecord_refereeresponse" ColumnName="verifyrecord_refereeresponse" />
                 <ScalarProperty Name="lastsavedtime" ColumnName="lastsavedtime" />
                 <ScalarProperty Name="isemployerdetailverified" ColumnName="isemployerdetailverified" />
                 <ScalarProperty Name="employerverificationkey" ColumnName="employerverificationkey" />
@@ -9976,6 +10032,10 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="applicantreferencecheck">
             <EntityTypeMapping TypeName="GTEModel.applicantreferencecheck">
               <MappingFragment StoreEntitySet="applicantreferencecheck">
+                <ScalarProperty Name="whyyouchoosetoreferthisstudent_refereesponse" ColumnName="whyyouchoosetoreferthisstudent_refereesponse" />
+                <ScalarProperty Name="greateststrength_refereesponse" ColumnName="greateststrength_refereesponse" />
+                <ScalarProperty Name="describeskill_refereesponse" ColumnName="describeskill_refereesponse" />
+                <ScalarProperty Name="howlongyouknow_refereesponse" ColumnName="howlongyouknow_refereesponse" />
                 <ScalarProperty Name="referenceverifiedtime" ColumnName="referenceverifiedtime" />
                 <ScalarProperty Name="requestsenttime" ColumnName="requestsenttime" />
                 <ScalarProperty Name="referncekey" ColumnName="referncekey" />
@@ -11948,6 +12008,21 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="is_gte_preliminarysection1_completed" ColumnName="is_gte_preliminarysection1_completed" />
                 <ScalarProperty Name="is_gte_tutorial_completed" ColumnName="is_gte_tutorial_completed" />
                 <ScalarProperty Name="applicantid" ColumnName="applicantid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="educationdetailcheck_referee_response">
+            <EntityTypeMapping TypeName="GTEModel.educationdetailcheck_referee_response">
+              <MappingFragment StoreEntitySet="educationdetailcheck_referee_response">
+                <ScalarProperty Name="additionalInforesponse" ColumnName="additionalInforesponse" />
+                <ScalarProperty Name="greateststrengthresponse" ColumnName="greateststrengthresponse" />
+                <ScalarProperty Name="performancedescription" ColumnName="performancedescription" />
+                <ScalarProperty Name="howlongknoweachresponse" ColumnName="howlongknoweachresponse" />
+                <ScalarProperty Name="verifieddetailsresponse" ColumnName="verifieddetailsresponse" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="universityId" ColumnName="universityId" />
+                <ScalarProperty Name="applicantId" ColumnName="applicantId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
