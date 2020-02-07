@@ -660,6 +660,20 @@ CREATE TABLE IF NOT EXISTS `applicant_education` (
   PRIMARY KEY (`applicationeduId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Dumping structure for table GTE_Prod.applicant_meeting_schedule
+CREATE TABLE IF NOT EXISTS `applicant_meeting_schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `applicant_id` int(11) NOT NULL,
+  `university_id` int(11) NOT NULL,
+  `applicant_email_id` varchar(100) NOT NULL,
+  `utc_meeting_time` datetime NOT NULL,
+  `applicant_time_zone` datetime NOT NULL,
+  `schedule_once_meeting_id` int(11) DEFAULT NULL,
+  `is_otp_generated` bit(1) DEFAULT NULL,
+  `otp` int(11) DEFAULT NULL,
+  `is_meeting_completed` bit(1) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping structure for table GTE_Prod.applicant_scholarships
 CREATE TABLE IF NOT EXISTS `applicant_scholarships` (
@@ -1150,6 +1164,37 @@ CREATE TABLE IF NOT EXISTS `australiavisaFamilydetailmaster` (
   CONSTRAINT `FK_australiavisaFamilydetailmaster_university_master` FOREIGN KEY (`universityid`) REFERENCES `university_master` (`universityid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Dumping structure for table GTE_Prod.careeroutcomes_master
+CREATE TABLE IF NOT EXISTS `careeroutcomes_master` (
+  `careerID` int(10) NOT NULL AUTO_INCREMENT,
+  `description` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`careerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping structure for table GTE_Prod.careeroutcomes_position_master
+CREATE TABLE IF NOT EXISTS `careeroutcomes_position_master` (
+  `careerpositionID` int(10) NOT NULL AUTO_INCREMENT,
+  `description` varchar(200) DEFAULT NULL,
+  `careerID` int(10) DEFAULT NULL,
+  PRIMARY KEY (`careerpositionID`),
+  KEY `FK_careeroutcomes_position_master_careeroutcomes_master` (`careerID`),
+  CONSTRAINT `FK_careeroutcomes_position_master_careeroutcomes_master` FOREIGN KEY (`careerID`) REFERENCES `careeroutcomes_master` (`careerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping structure for table GTE_Prod.careerposition_course_mapping
+CREATE TABLE IF NOT EXISTS `careerposition_course_mapping` (
+  `mappingID` int(10) NOT NULL AUTO_INCREMENT,
+  `courseID` int(10) DEFAULT NULL,
+  `careeroutcomeId` int(10) DEFAULT NULL,
+  `positionID` int(10) DEFAULT NULL,
+  PRIMARY KEY (`mappingID`),
+  KEY `FK_careerposition_course_mapping_coursemaster` (`courseID`),
+  KEY `FK_careerposition_course_mapping_careeroutcomes_master` (`careeroutcomeId`),
+  KEY `FK_careerposition_course_mapping_careeroutcomes_position_master` (`positionID`),
+  CONSTRAINT `FK_careerposition_course_mapping_careeroutcomes_master` FOREIGN KEY (`careeroutcomeId`) REFERENCES `careeroutcomes_master` (`careerID`),
+  CONSTRAINT `FK_careerposition_course_mapping_careeroutcomes_position_master` FOREIGN KEY (`positionID`) REFERENCES `careeroutcomes_position_master` (`careerpositionID`),
+  CONSTRAINT `FK_careerposition_course_mapping_coursemaster` FOREIGN KEY (`courseID`) REFERENCES `coursemaster` (`courseid`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping structure for table GTE_Prod.cefrlevelmaster
 CREATE TABLE IF NOT EXISTS `cefrlevelmaster` (
@@ -1242,11 +1287,14 @@ CREATE TABLE IF NOT EXISTS `coursemaster` (
   `courseurl` varchar(500) DEFAULT NULL,
   `courseduration` varchar(500) DEFAULT NULL,
   `coursedescription` varchar(2000) DEFAULT NULL,
+  `currencyid` int(10) DEFAULT NULL,
   PRIMARY KEY (`courseid`),
   KEY `FK_coursemaster_studymodemaster` (`modeofstudyId`),
   KEY `FK_coursemaster_studylevelmaster` (`levelofstudyId`),
   KEY `FK_coursemaster_majordiscipline_master` (`majordisciplineId`),
   KEY `universityid` (`universityid`),
+  KEY `FK_coursemaster_currency_master` (`currencyid`),
+  CONSTRAINT `FK_coursemaster_currency_master` FOREIGN KEY (`currencyid`) REFERENCES `currency_master` (`id`),
   CONSTRAINT `FK_coursemaster_majordiscipline_master` FOREIGN KEY (`majordisciplineId`) REFERENCES `majordiscipline_master` (`id`),
   CONSTRAINT `FK_coursemaster_studylevelmaster` FOREIGN KEY (`levelofstudyId`) REFERENCES `studylevelmaster` (`studylevelid`),
   CONSTRAINT `FK_coursemaster_studymodemaster` FOREIGN KEY (`modeofstudyId`) REFERENCES `studymodemaster` (`id`),
@@ -1529,6 +1577,16 @@ CREATE TABLE `GTE.documentverification` (
 	`remarks` VARCHAR(200) NULL COLLATE 'latin1_swedish_ci'
 ) ENGINE=MyISAM;
 
+-- Dumping structure for table GTE_Prod.gtepreliminarysection_applicantanswers
+CREATE TABLE IF NOT EXISTS `gtepreliminarysection_applicantanswers` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `applicantId` int(10) NOT NULL,
+  `gte_preliminary_section_question_id` int(10) NOT NULL,
+  `answer` varchar(50) NOT NULL,
+  `answersubmittedtime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 -- Dumping structure for table GTE_Prod.gte_answer_master
 CREATE TABLE IF NOT EXISTS `gte_answer_master` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1643,23 +1701,41 @@ CREATE TABLE IF NOT EXISTS `gte_preliminaryapplicantanswers` (
 -- Dumping structure for table GTE_Prod.gte_preliminary_questionmaster
 CREATE TABLE IF NOT EXISTS `gte_preliminary_questionmaster` (
   `gte_preliminaryid` int(10) NOT NULL AUTO_INCREMENT,
-  `question` varchar(200) DEFAULT NULL,
-  `answer1` varchar(45) DEFAULT NULL,
-  `answer2` varchar(45) DEFAULT NULL,
-  `answer3` varchar(45) DEFAULT NULL,
-  `answer4` varchar(45) DEFAULT NULL,
+  `question` varchar(500) DEFAULT NULL,
+  `answer1` varchar(500) DEFAULT NULL,
+  `answer2` varchar(500) DEFAULT NULL,
+  `answer3` varchar(500) DEFAULT NULL,
+  `answer4` varchar(500) DEFAULT NULL,
   `correctanswer` varchar(45) DEFAULT NULL,
   `status` int(1) DEFAULT NULL,
+  `answer1_description` varchar(1000) DEFAULT NULL,
+  `answer2_description` varchar(1000) DEFAULT NULL,
+  `answer3_description` varchar(1000) DEFAULT NULL,
+  `answer4_description` varchar(1000) DEFAULT NULL,
+  `question_tag` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`gte_preliminaryid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Dumping structure for table GTE_Prod.gte_preliminary_section_questionmaster
+CREATE TABLE IF NOT EXISTS `gte_preliminary_section_questionmaster` (
+  `gte_questionID` int(10) NOT NULL AUTO_INCREMENT,
+  `question` varchar(1000) DEFAULT NULL,
+  `answer1` varchar(10) DEFAULT NULL,
+  `answer2` varchar(10) DEFAULT NULL,
+  `correctanswer` varchar(10) DEFAULT NULL,
+  `answer1_description` varchar(1000) DEFAULT NULL,
+  `answer2_description` varchar(1000) DEFAULT NULL,
+  `question_tag` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`gte_questionID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping structure for table GTE_Prod.gte_progressbar
 CREATE TABLE IF NOT EXISTS `gte_progressbar` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `applicantid` int(11) NOT NULL,
   `is_gte_tutorial_completed` bit(1) DEFAULT NULL,
-  `is_gte_question_completed` bit(1) DEFAULT NULL,
+  `is_gte_preliminarysection1_completed` bit(1) DEFAULT NULL,
+  `is_gte_preliminarysection2_completed` bit(1) DEFAULT NULL,
   `is_gte_declaration_completed` bit(1) DEFAULT NULL,
   `is_gte_certificate_generated` bit(1) DEFAULT NULL,
   `certificate_name` varchar(50) DEFAULT NULL,
@@ -2681,6 +2757,7 @@ CREATE TABLE IF NOT EXISTS `university_master` (
   `supprot_service_instructions` varchar(2000) NOT NULL,
   `visa_instructions` varchar(2000) NOT NULL,
   `hosturl` varchar(100) NOT NULL,
+  `university_gtm_code` varchar(100) NOT NULL,
   PRIMARY KEY (`universityid`),
   KEY `FK_universityMaster_cityMaster` (`cityid`),
   CONSTRAINT `FK_universityMaster_cityMaster` FOREIGN KEY (`cityid`) REFERENCES `citymaster` (`city_id`)

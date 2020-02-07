@@ -1479,18 +1479,18 @@
             <PropertyRef Name="gte_preliminaryid" />
           </Key>
           <Property Name="gte_preliminaryid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="question" Type="varchar" MaxLength="200" />
-          <Property Name="answer1" Type="varchar" MaxLength="45" />
-          <Property Name="answer2" Type="varchar" MaxLength="45" />
-          <Property Name="answer3" Type="varchar" MaxLength="45" />
-          <Property Name="answer4" Type="varchar" MaxLength="45" />
+          <Property Name="question" Type="varchar" MaxLength="500" />
+          <Property Name="answer1" Type="varchar" MaxLength="500" />
+          <Property Name="answer2" Type="varchar" MaxLength="500" />
+          <Property Name="answer3" Type="varchar" MaxLength="500" />
+          <Property Name="answer4" Type="varchar" MaxLength="500" />
           <Property Name="correctanswer" Type="varchar" MaxLength="45" />
           <Property Name="status" Type="int" />
-          <Property Name="answer1_description" Type="varchar" MaxLength="500" />
-          <Property Name="answer2_description" Type="varchar" MaxLength="500" />
-          <Property Name="answer3_description" Type="varchar" MaxLength="500" />
-          <Property Name="answer4_description" Type="varchar" MaxLength="500" />
-          <Property Name="question_tag" Type="varchar" MaxLength="100" />
+          <Property Name="answer1_description" Type="varchar" MaxLength="1000" />
+          <Property Name="answer2_description" Type="varchar" MaxLength="1000" />
+          <Property Name="answer3_description" Type="varchar" MaxLength="1000" />
+          <Property Name="answer4_description" Type="varchar" MaxLength="1000" />
+          <Property Name="question_tag" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="gte_preliminary_section_questionmaster">
           <Key>
@@ -1498,12 +1498,12 @@
           </Key>
           <Property Name="gte_questionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="question" Type="varchar" MaxLength="1000" />
-          <Property Name="answer1" Type="varchar" MaxLength="50" />
-          <Property Name="answer2" Type="varchar" MaxLength="50" />
-          <Property Name="correctanswer" Type="varchar" MaxLength="50" />
-          <Property Name="answer1_description" Type="varchar" MaxLength="500" />
-          <Property Name="answer2_description" Type="varchar" MaxLength="500" />
-          <Property Name="question_tag" Type="varchar" MaxLength="100" />
+          <Property Name="answer1" Type="varchar" MaxLength="10" />
+          <Property Name="answer2" Type="varchar" MaxLength="10" />
+          <Property Name="correctanswer" Type="varchar" MaxLength="10" />
+          <Property Name="answer1_description" Type="varchar" MaxLength="1000" />
+          <Property Name="answer2_description" Type="varchar" MaxLength="1000" />
+          <Property Name="question_tag" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="gte_preliminaryapplicantanswers">
           <Key>
@@ -4705,7 +4705,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="gte_clarification_applicantresponse" EntityType="GTEModel.gte_clarification_applicantresponse" />
           <EntitySet Name="gte_clarification_questionmaster" EntityType="GTEModel.gte_clarification_questionmaster" />
           <EntitySet Name="gte_declaration_master" EntityType="GTEModel.gte_declaration_master" />
-          <EntitySet Name="gte_preliminary_questionmaster" EntityType="GTEModel.gte_preliminary_questionmaster" />
           <EntitySet Name="gte_preliminaryapplicantanswers" EntityType="GTEModel.gte_preliminaryapplicantanswers" />
           <EntitySet Name="gte_question_master_part2" EntityType="GTEModel.gte_question_master_part2" />
           <EntitySet Name="gte_question_part2_applicant_response" EntityType="GTEModel.gte_question_part2_applicant_response" />
@@ -5298,7 +5297,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="coursemaster" EntitySet="coursemaster" />
             <End Role="careerposition_course_mapping" EntitySet="careerposition_course_mapping" />
           </AssociationSet>
-          <EntitySet Name="gte_preliminary_section_questionmaster" EntityType="GTEModel.gte_preliminary_section_questionmaster" />
           <EntitySet Name="gtepreliminarysection_applicantanswers" EntityType="GTEModel.gtepreliminarysection_applicantanswers" />
           <AssociationSet Name="FK_coursemaster_currency_master" Association="GTEModel.FK_coursemaster_currency_master">
             <End Role="currency_master" EntitySet="currency_master" />
@@ -5306,6 +5304,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           </AssociationSet>
           <EntitySet Name="gte_progressbar" EntityType="GTEModel.gte_progressbar" />
           <EntitySet Name="educationdetailcheck_referee_response" EntityType="GTEModel.educationdetailcheck_referee_response" />
+          <EntitySet Name="gte_preliminary_questionmaster" EntityType="GTEModel.gte_preliminary_questionmaster" />
+          <EntitySet Name="gte_preliminary_section_questionmaster" EntityType="GTEModel.gte_preliminary_section_questionmaster" />
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -6843,24 +6843,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="created_at" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="edited_by" Type="Int32" />
           <NavigationProperty Name="university_master" Relationship="GTEModel.FK_gte_declaration_master_university_master" FromRole="gte_declaration_master" ToRole="university_master" />
-        </EntityType>
-        <EntityType Name="gte_preliminary_questionmaster">
-          <Key>
-            <PropertyRef Name="gte_preliminaryid" />
-          </Key>
-          <Property Name="gte_preliminaryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="question" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="answer1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="answer2" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="answer3" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="answer4" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="correctanswer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Int32" />
-          <Property Name="answer1_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="answer2_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="answer3_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="answer4_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="question_tag" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="gte_preliminaryapplicantanswers">
           <Key>
@@ -9413,19 +9395,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="gte_preliminary_section_questionmaster">
-          <Key>
-            <PropertyRef Name="gte_questionID" />
-          </Key>
-          <Property Name="gte_questionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="question" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="answer1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="answer2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="correctanswer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="answer1_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="answer2_description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="question_tag" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="gtepreliminarysection_applicantanswers">
           <Key>
             <PropertyRef Name="id" />
@@ -9476,6 +9445,37 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="performancedescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="greateststrengthresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="additionalInforesponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gte_preliminary_questionmaster">
+          <Key>
+            <PropertyRef Name="gte_preliminaryid" />
+          </Key>
+          <Property Name="gte_preliminaryid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="answer1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="answer2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="answer3" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="answer4" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="correctanswer" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="answer1_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="answer2_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="answer3_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="answer4_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="question_tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="gte_preliminary_section_questionmaster">
+          <Key>
+            <PropertyRef Name="gte_questionID" />
+          </Key>
+          <Property Name="gte_questionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="question" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="answer1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="answer2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="correctanswer" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="answer1_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="answer2_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="question_tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -10988,25 +10988,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="gte_preliminary_questionmaster">
-            <EntityTypeMapping TypeName="GTEModel.gte_preliminary_questionmaster">
-              <MappingFragment StoreEntitySet="gte_preliminary_questionmaster">
-                <ScalarProperty Name="question_tag" ColumnName="question_tag" />
-                <ScalarProperty Name="answer4_description" ColumnName="answer4_description" />
-                <ScalarProperty Name="answer3_description" ColumnName="answer3_description" />
-                <ScalarProperty Name="answer2_description" ColumnName="answer2_description" />
-                <ScalarProperty Name="answer1_description" ColumnName="answer1_description" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
-                <ScalarProperty Name="answer4" ColumnName="answer4" />
-                <ScalarProperty Name="answer3" ColumnName="answer3" />
-                <ScalarProperty Name="answer2" ColumnName="answer2" />
-                <ScalarProperty Name="answer1" ColumnName="answer1" />
-                <ScalarProperty Name="question" ColumnName="question" />
-                <ScalarProperty Name="gte_preliminaryid" ColumnName="gte_preliminaryid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="gte_preliminaryapplicantanswers">
             <EntityTypeMapping TypeName="GTEModel.gte_preliminaryapplicantanswers">
               <MappingFragment StoreEntitySet="gte_preliminaryapplicantanswers">
@@ -11971,20 +11952,6 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="gte_preliminary_section_questionmaster">
-            <EntityTypeMapping TypeName="GTEModel.gte_preliminary_section_questionmaster">
-              <MappingFragment StoreEntitySet="gte_preliminary_section_questionmaster">
-                <ScalarProperty Name="question_tag" ColumnName="question_tag" />
-                <ScalarProperty Name="answer2_description" ColumnName="answer2_description" />
-                <ScalarProperty Name="answer1_description" ColumnName="answer1_description" />
-                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
-                <ScalarProperty Name="answer2" ColumnName="answer2" />
-                <ScalarProperty Name="answer1" ColumnName="answer1" />
-                <ScalarProperty Name="question" ColumnName="question" />
-                <ScalarProperty Name="gte_questionID" ColumnName="gte_questionID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="gtepreliminarysection_applicantanswers">
             <EntityTypeMapping TypeName="GTEModel.gtepreliminarysection_applicantanswers">
               <MappingFragment StoreEntitySet="gtepreliminarysection_applicantanswers">
@@ -12024,6 +11991,39 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
                 <ScalarProperty Name="universityId" ColumnName="universityId" />
                 <ScalarProperty Name="applicantId" ColumnName="applicantId" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_preliminary_questionmaster">
+            <EntityTypeMapping TypeName="GTEModel.gte_preliminary_questionmaster">
+              <MappingFragment StoreEntitySet="gte_preliminary_questionmaster">
+                <ScalarProperty Name="question_tag" ColumnName="question_tag" />
+                <ScalarProperty Name="answer4_description" ColumnName="answer4_description" />
+                <ScalarProperty Name="answer3_description" ColumnName="answer3_description" />
+                <ScalarProperty Name="answer2_description" ColumnName="answer2_description" />
+                <ScalarProperty Name="answer1_description" ColumnName="answer1_description" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="answer4" ColumnName="answer4" />
+                <ScalarProperty Name="answer3" ColumnName="answer3" />
+                <ScalarProperty Name="answer2" ColumnName="answer2" />
+                <ScalarProperty Name="answer1" ColumnName="answer1" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="gte_preliminaryid" ColumnName="gte_preliminaryid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gte_preliminary_section_questionmaster">
+            <EntityTypeMapping TypeName="GTEModel.gte_preliminary_section_questionmaster">
+              <MappingFragment StoreEntitySet="gte_preliminary_section_questionmaster">
+                <ScalarProperty Name="question_tag" ColumnName="question_tag" />
+                <ScalarProperty Name="answer2_description" ColumnName="answer2_description" />
+                <ScalarProperty Name="answer1_description" ColumnName="answer1_description" />
+                <ScalarProperty Name="correctanswer" ColumnName="correctanswer" />
+                <ScalarProperty Name="answer2" ColumnName="answer2" />
+                <ScalarProperty Name="answer1" ColumnName="answer1" />
+                <ScalarProperty Name="question" ColumnName="question" />
+                <ScalarProperty Name="gte_questionID" ColumnName="gte_questionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
