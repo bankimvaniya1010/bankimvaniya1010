@@ -34,6 +34,20 @@
     <!-- App CSS -->
     <link type="text/css" href="assets/css/app.css" rel="stylesheet">
     <link type="text/css" href="assets/css/app.rtl.css" rel="stylesheet">
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', '<%=Session["universityGoogleTagID"]%>');
+    </script>
+    <!-- End Google Tag Manager -->
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -113,14 +127,11 @@
                                 <input type="hidden" runat="server" id="hidModeStatus" value="" />
                             </div>
 
-
                         </div>
                     </div>
 
-
                 </div>
             </div>
-
 
             <div class="container page__container">
                 <div class="footer">
@@ -130,10 +141,15 @@
         </div>
     </form>
     <script src="assets/vendor/jquery.min.js"></script>
-      <script src="assets/js/tipso.min.js"></script>
+    <script src="assets/js/tipso.min.js"></script>
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=<%=Session["universityGoogleTagID"]%>" height="0" width="0" style="display: none; visibility: hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <script type="text/javascript">
-
-
 
         function validateForm() {
             var flag = false;

@@ -298,6 +298,8 @@
         <EntityTypeShape EntityType="GTEModel.educationdetailcheck_referee_response" Width="1.5" PointX="9.375" PointY="25.75" />
         <EntityTypeShape EntityType="GTEModel.gte_preliminary_questionmaster" Width="1.5" PointX="25.375" PointY="6.75" />
         <EntityTypeShape EntityType="GTEModel.gte_preliminary_section_questionmaster" Width="1.5" PointX="25.375" PointY="11.75" />
+        <AssociationConnector Association="GTEModel.FK_applicantemployerdetails_students" />
+        <AssociationConnector Association="GTEModel.FK_applicantemployerdetails_university_master" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

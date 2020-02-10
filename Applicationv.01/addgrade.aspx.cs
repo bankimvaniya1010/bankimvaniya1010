@@ -11,9 +11,10 @@ public partial class addgrade : System.Web.UI.Page
     int userID = 0, ApplicantID = 0, CountryID = 0;
     private GTEEntities db = new GTEEntities();
     Logger objLog = new Logger();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     string gradeValue = "";
     string classname = "";
+
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -50,11 +51,8 @@ public partial class addgrade : System.Web.UI.Page
             if (classname != "")
                 ddlCourse.Items.FindByValue(classname).Selected = true;
             ddlCourse.Enabled = false;
-            // ddlCourse.SelectedItem.Attributes.Add("ReadOnly", "true");
         }
-
     }
-
 
     private void BindGrade()
     {
@@ -69,14 +67,10 @@ public partial class addgrade : System.Web.UI.Page
             ddlGradeType.Items.Insert(0, lst);
             if (gradeValue != "")
                 ddlGradeType.Items.FindByValue(gradeValue).Selected = true; ;
-            // ddlGradeType.SelectedItem.Enabled = false;
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
+
     private void BindSubjects(int CountryID)
     {
         try
@@ -97,19 +91,14 @@ public partial class addgrade : System.Web.UI.Page
             ddlsubjects.DataBind();
             ddlsubjects.Items.Insert(0, lst);
             ddlsubjects.Items.Insert(Subjects.Count + 1, "Others");
-            // ddlGradeType.SelectedItem.Enabled = false;
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
-
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
+
     protected void btn_login_Click(object sender, EventArgs e)
     {
         try
         {
-
             var subject = ddlsubjects.SelectedValue;
             int subjectID;
             if (subject == "Others")
@@ -158,19 +147,12 @@ public partial class addgrade : System.Web.UI.Page
             lblMessage.Text = "Record Saved successfully";
             lblMessage.Visible = true;
             hidStatus.Value = "true";
-
-
-
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
+
     private void SetToolTips()
     {
-
-
         try
         {
             var fields = (from pfm in db.primaryfieldmaster
@@ -213,27 +195,24 @@ public partial class addgrade : System.Web.UI.Page
                         icGrade.Attributes.Add("style", "display:block;");
                         icGrade.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                   
                     default:
                         break;
-
                 }
             }
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
+
     private String setTooltips(dynamic obj)
     {
         return obj.universitywiseToolTips == "" ? obj.tooltips : obj.universitywiseToolTips;
     }
+
     private String setInnerHtml(dynamic obj)
     {
         return obj.secondaryfielddnamevalue == "" ? obj.primaryfiledname + " * " : obj.primaryfiledname + "( " + obj.secondaryfielddnamevalue + ") * ";
     }
+
     private void SetControlsUniversitywise()
     {
         try
@@ -298,9 +277,6 @@ public partial class addgrade : System.Web.UI.Page
                 }
             }
         }
-        catch (Exception ex)
-        {
-            objLog.WriteLog(ex.ToString());
-        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 }
