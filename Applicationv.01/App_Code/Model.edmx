@@ -2625,6 +2625,30 @@ warning 6002: The table/view 'def.GTE.GTE.documentverification' does not have a 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_applicantemployerdetails_students">
+          <End Role="students" Type="Self.students" Multiplicity="1" />
+          <End Role="applicantemployerdetails" Type="Self.applicantemployerdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantemployerdetails">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantemployerdetails_university_master">
+          <End Role="university_master" Type="Self.university_master" Multiplicity="1" />
+          <End Role="applicantemployerdetails" Type="Self.applicantemployerdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="applicantemployerdetails">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_applicantfundingmaster_students">
           <End Role="students" Type="Self.students" Multiplicity="1" />
           <End Role="applicantfundingmaster" Type="Self.applicantfundingmaster" Multiplicity="*" />
@@ -4184,6 +4208,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
             <End Role="university_master" EntitySet="university_master" />
             <End Role="applicanteducationdetails" EntitySet="applicanteducationdetails" />
           </AssociationSet>
+          <AssociationSet Name="FK_applicantemployerdetails_students" Association="Self.FK_applicantemployerdetails_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantemployerdetails" EntitySet="applicantemployerdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantemployerdetails_university_master" Association="Self.FK_applicantemployerdetails_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="applicantemployerdetails" EntitySet="applicantemployerdetails" />
+          </AssociationSet>
           <AssociationSet Name="FK_applicantfundingmaster_students" Association="Self.FK_applicantfundingmaster_students">
             <End Role="students" EntitySet="students" />
             <End Role="applicantfundingmaster" EntitySet="applicantfundingmaster" />
@@ -5306,6 +5338,14 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySet Name="educationdetailcheck_referee_response" EntityType="GTEModel.educationdetailcheck_referee_response" />
           <EntitySet Name="gte_preliminary_questionmaster" EntityType="GTEModel.gte_preliminary_questionmaster" />
           <EntitySet Name="gte_preliminary_section_questionmaster" EntityType="GTEModel.gte_preliminary_section_questionmaster" />
+          <AssociationSet Name="FK_applicantemployerdetails_students" Association="GTEModel.FK_applicantemployerdetails_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="applicantemployerdetails" EntitySet="applicantemployerdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_applicantemployerdetails_university_master" Association="GTEModel.FK_applicantemployerdetails_university_master">
+            <End Role="university_master" EntitySet="university_master" />
+            <End Role="applicantemployerdetails" EntitySet="applicantemployerdetails" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="GTE_documentverification">
           <Key>
@@ -5735,6 +5775,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="biggeststrenthknown_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="getalongwithmanagement_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="wouldyourehire_refereeresponse" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="students" Relationship="GTEModel.FK_applicantemployerdetails_students" FromRole="applicantemployerdetails" ToRole="students" />
+          <NavigationProperty Name="university_master" Relationship="GTEModel.FK_applicantemployerdetails_university_master" FromRole="applicantemployerdetails" ToRole="university_master" />
         </EntityType>
         <EntityType Name="applicantformmaster">
           <Key>
@@ -7432,6 +7474,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="studentcoursemapping" Relationship="GTEModel.FK_studentcoursemapping_students" FromRole="students" ToRole="studentcoursemapping" />
           <NavigationProperty Name="studylevelmaster" Relationship="GTEModel.FK_students_studylevelmaster" FromRole="students" ToRole="studylevelmaster" />
           <NavigationProperty Name="supervisorcomments" Relationship="GTEModel.fk_supervisorcomments_students" FromRole="students" ToRole="supervisorcomments" />
+          <NavigationProperty Name="applicantemployerdetails" Relationship="GTEModel.FK_applicantemployerdetails_students" FromRole="students" ToRole="applicantemployerdetails" />
         </EntityType>
         <EntityType Name="studylevelmaster">
           <Key>
@@ -7680,6 +7723,7 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="universitywise_scholarshipmapping" Relationship="GTEModel.FK_universitywise_scholarshipmapping_university_master" FromRole="university_master" ToRole="universitywise_scholarshipmapping" />
           <NavigationProperty Name="universitywisetooltipmaster" Relationship="GTEModel.FK_universitywisetooltipmaster_universitymaster" FromRole="university_master" ToRole="universitywisetooltipmaster" />
           <Property Name="university_gtm_code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="applicantemployerdetails" Relationship="GTEModel.FK_applicantemployerdetails_university_master" FromRole="university_master" ToRole="applicantemployerdetails" />
         </EntityType>
         <EntityType Name="universitycampus">
           <Key>
@@ -9477,6 +9521,30 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <Property Name="answer2_description" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="question_tag" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="FK_applicantemployerdetails_students">
+          <End Type="GTEModel.students" Role="students" Multiplicity="1" />
+          <End Type="GTEModel.applicantemployerdetails" Role="applicantemployerdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="studentid" />
+            </Principal>
+            <Dependent Role="applicantemployerdetails">
+              <PropertyRef Name="applicantid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_applicantemployerdetails_university_master">
+          <End Type="GTEModel.university_master" Role="university_master" Multiplicity="1" />
+          <End Type="GTEModel.applicantemployerdetails" Role="applicantemployerdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="university_master">
+              <PropertyRef Name="universityid" />
+            </Principal>
+            <Dependent Role="applicantemployerdetails">
+              <PropertyRef Name="universityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

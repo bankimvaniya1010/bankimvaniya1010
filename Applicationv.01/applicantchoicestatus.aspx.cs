@@ -130,7 +130,7 @@ public partial class applicantchoicestatus : System.Web.UI.Page
 
             DropDownList ddlDeferPeriod = e.Item.FindControl("deferPeriod") as DropDownList;
             ListItem lst = new ListItem("Please select", "0");
-            var defermentDatesObj = db.course_defermentdates.Where(x => x.courseid == courseId).Select(x => new { x.id, defermentdate = x.defermentdate.ToString("dd/MM/yyyy") }).SortBy("defermentdate").ToList();
+            var defermentDatesObj = db.course_defermentdates.Where(x => x.courseid == courseId && x.defermentdate >= DateTime.Today).SortBy("defermentdate").ToList().Select(x => new { x.id, defermentdate = x.defermentdate.ToString("dd/MM/yyyy") });
             ddlDeferPeriod.DataSource = defermentDatesObj;
             ddlDeferPeriod.DataTextField = "defermentdate";
             ddlDeferPeriod.DataValueField = "id";

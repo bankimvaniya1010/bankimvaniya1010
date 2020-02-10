@@ -29,8 +29,11 @@ public partial class gte_declaration : System.Web.UI.Page
         UserID = Convert.ToInt32(Session["UserID"].ToString());
         var isGteDeclarationDoneByApplicant = (bool)Session["GteDeclarationDoneByApplicant"];
         if (isGteDeclarationDoneByApplicant)
+        {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
                     "alert('GTE Declaration is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+            return;
+        }
         if (!IsPostBack)
         {
             allQuestions= objCom.FaqQuestionList();

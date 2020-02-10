@@ -337,7 +337,7 @@
                                         <tr id="eligibilityresponseNote" style="display: none" runat="server">
                                             <td></td>
                                             <td>
-                                                <label>*If you do not meet the eligibility criteria, you may still apply for this course; our couselors would recomend a pathway program</label></td>
+                                                <label>*If you do not meet the eligibility criteria, you may still apply for this course; our counsellors would recommend a pathway program</label></td>
                                         </tr>
                                         <tr>
                                             <td>Select Commencement Date :

@@ -452,6 +452,9 @@ public partial class applicantemployerdetails
     public string biggeststrenthknown_refereeresponse { get; set; }
     public string getalongwithmanagement_refereeresponse { get; set; }
     public string wouldyourehire_refereeresponse { get; set; }
+
+    public virtual students students { get; set; }
+    public virtual university_master university_master { get; set; }
 }
 
 public partial class applicantformmaster
@@ -2472,6 +2475,7 @@ public partial class students
         this.payment_details = new HashSet<payment_details>();
         this.studentcoursemapping = new HashSet<studentcoursemapping>();
         this.supervisorcomments = new HashSet<supervisorcomments>();
+        this.applicantemployerdetails = new HashSet<applicantemployerdetails>();
     }
 
     public int studentid { get; set; }
@@ -2526,6 +2530,8 @@ public partial class students
     public virtual studylevelmaster studylevelmaster { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<supervisorcomments> supervisorcomments { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantemployerdetails> applicantemployerdetails { get; set; }
 }
 
 public partial class studylevelmaster
@@ -2759,6 +2765,7 @@ public partial class university_master
         this.universitywise_faqmapping = new HashSet<universitywise_faqmapping>();
         this.universitywise_scholarshipmapping = new HashSet<universitywise_scholarshipmapping>();
         this.universitywisetooltipmaster = new HashSet<universitywisetooltipmaster>();
+        this.applicantemployerdetails = new HashSet<applicantemployerdetails>();
     }
 
     public int universityid { get; set; }
@@ -2868,6 +2875,8 @@ public partial class university_master
     public virtual ICollection<universitywise_scholarshipmapping> universitywise_scholarshipmapping { get; set; }
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<applicantemployerdetails> applicantemployerdetails { get; set; }
 }
 
 public partial class universitycampus

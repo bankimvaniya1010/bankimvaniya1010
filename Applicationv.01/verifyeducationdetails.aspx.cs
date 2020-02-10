@@ -16,6 +16,7 @@ public partial class verifyhighschool : System.Web.UI.Page
     string qualificationtype = string.Empty;
     string verificationKey = string.Empty;
     int applicantid = 0;
+    public string universityGTMCode = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -41,6 +42,8 @@ public partial class verifyhighschool : System.Web.UI.Page
                 if (educationDetails != null)
                 {
                     var applicantdetails = db.applicantdetails.Where(x => x.applicantid == educationDetails.applicantid && x.universityid == educationDetails.universityid).Select(x => new { x.firstname,x.applicantid }).FirstOrDefault();
+                    universityGTMCode = educationDetails.university_master.university_gtm_code;
+                    lbluniversityName = educationDetails.university_master.university_name;
                     if (applicantdetails.firstname != null)
                     {
                         lblfirstname = applicantdetails.firstname;
@@ -95,6 +98,15 @@ public partial class verifyhighschool : System.Web.UI.Page
                 }
                 else if (higherEducationDetails != null)
                 {
+                    var applicantdetails = db.applicantdetails.Where(x => x.applicantid == higherEducationDetails.applicantid && x.universityid == higherEducationDetails.universityid).Select(x => new { x.firstname, x.applicantid }).FirstOrDefault();
+                    universityGTMCode = higherEducationDetails.university_master.university_gtm_code;
+                    lbluniversityName = higherEducationDetails.university_master.university_name;
+                    if (applicantdetails.firstname != null)
+                    {
+                        lblfirstname = applicantdetails.firstname;
+                        applicantid = Convert.ToInt32(applicantdetails.applicantid);
+                    }
+
                     if (higherEducationDetails.ishighereducationverified.HasValue && higherEducationDetails.ishighereducationverified.Value)
                         alreadyVerified();
                     else

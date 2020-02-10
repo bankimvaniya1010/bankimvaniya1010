@@ -13,6 +13,7 @@ public partial class verifyemployment : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     string verificationKey = string.Empty;
+    public string universityGTMCode = string.Empty;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,6 +36,7 @@ public partial class verifyemployment : System.Web.UI.Page
                         lblfirstname = applicantdetails.firstname;
                         lblyearsofworkexper.InnerText = applicantdetails.totalyearofexperience;
                     }
+                    universityGTMCode = details.university_master.university_gtm_code;
                     lblnameoforganisation.InnerText = details.organization;
                     lblreportingmanager.InnerText = details.nameofreportingmanger;
                     lblposition.InnerText = details.designation;
