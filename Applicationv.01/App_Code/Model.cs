@@ -1339,6 +1339,8 @@ public partial class coursemaster
     public string courseduration { get; set; }
     public string coursedescription { get; set; }
     public Nullable<int> currencyid { get; set; }
+    public Nullable<bool> isactive { get; set; }
+    public Nullable<bool> isdomestic_course { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<course_campus_mapping> course_campus_mapping { get; set; }

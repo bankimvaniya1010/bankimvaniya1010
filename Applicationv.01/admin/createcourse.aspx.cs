@@ -147,6 +147,10 @@ public partial class admin_createcourse : System.Web.UI.Page
                 courseObj.courseduration = txtCourseDuration.Value;
                 courseObj.coursedescription = txtCourseDescription.Value;
                 courseObj.currencyid = Convert.ToInt32(ddlcurrency.SelectedValue);
+                if (ddlactivestatus.SelectedValue == "True")
+                    courseObj.isactive = true;
+                else if (ddlactivestatus.SelectedValue == "False")
+                    courseObj.isactive = false;
 
                 db.coursemaster.Add(courseObj);
                 db.SaveChanges();

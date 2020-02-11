@@ -49,6 +49,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="Courseactive" class="col-sm-3 col-form-label form-label">Course Active Status</label>
+                        <div class="col-sm-8">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:DropDownList ID="ddlactivestatus" runat="server" CssClass="form-control">
+                                        <asp:ListItem Value="0">Please Select</asp:ListItem>
+                                        <asp:ListItem Value="True">True</asp:ListItem>
+                                        <asp:ListItem Value="False">False</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="discipline" class="col-sm-3 col-form-label form-label">Major Discipline</label>
                         <div class="col-sm-8">
                             <div class="row">
@@ -274,6 +288,7 @@
             var txtCourseUrl = $('#<%=txtCourseURL.ClientID%>').val();
             var txtCourseDuration = $('#<%=txtCourseDuration.ClientID%>').val();
             var txtCourseDescription = $('#<%=txtCourseDescription.ClientID%>').val();
+            var ddlactivestatus = $('#<%=ddlactivestatus.ClientID%>').val();
             var urlRegex = /^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/;
 
             if (txtCourse == '') {
@@ -282,6 +297,10 @@
             }
             else if (txtCourseDescription == '') {
                 alert("Please enter Course Description");
+                return false;
+            }
+            else if (ddlactivestatus == 0) {
+                alert("Please enter Course Active status");
                 return false;
             }
             else if (discipline == 0 || isNaN(parseInt(discipline))) {
