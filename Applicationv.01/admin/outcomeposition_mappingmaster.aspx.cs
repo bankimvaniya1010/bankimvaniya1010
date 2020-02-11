@@ -65,7 +65,7 @@ public partial class admin_outcomeposition_mappingmaster : System.Web.UI.Page
     private void BindPositions(int carrerid) {
         try
         {            
-            var positions = db.careeroutcomes_position_master.Where(x=>x.careerID == carrerid).ToList();
+            var positions = db.careeroutcomes_position_master.Where(x=>x.careerID == carrerid).SortBy("description").ToList();
             chkpositions.DataSource = positions;
             chkpositions.DataTextField = "description";
             chkpositions.DataValueField = "careerpositionID";

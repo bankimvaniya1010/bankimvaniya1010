@@ -37,6 +37,10 @@
 </head>
 <body>
     <form runat="server">
+        <div runat="server" id="btnDiv" class="form-row justify-content-between" style="display: none;margin: auto;width: 50%;padding: 10px;">
+            <input id="backNavLink" runat="server" type="button" value="Back" onclick="return window.location = '/default.aspx';"/>
+            <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-success" Text="Download Certificate" OnClick="btnDownload_Click" />
+        </div>
         <div class="certificate-container">
             <div class="certi-heading">CERTIFICATE <span>of</span> PARTICIPATION</div>
             <div class="partici-name text-center"><%=_studentName %></div>
@@ -52,10 +56,6 @@
                     <img src="../assets/images/gte_direct_logo.png">
                 </div>
             </div>
-        </div>
-        <div runat="server" id="btnDiv" class="form-row justify-content-between" style="display: none;margin: auto;width: 50%;padding: 10px;">
-            <input id="backNavLink" runat="server" type="button" value="Back" onclick="return window.location = '/default.aspx';"/>
-            <asp:Button ID="btnDownload" runat="server" CssClass="btn btn-success" Text="Download Certificate" OnClick="btnDownload_Click" />
         </div>
     </form>
 </body>

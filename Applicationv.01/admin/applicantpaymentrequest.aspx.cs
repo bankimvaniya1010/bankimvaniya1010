@@ -112,7 +112,7 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
         try
         {
             ListItem lst = new ListItem("Please Select Currency", "0");
-            var currencymaster = db.currency_master.Select(x => new { x.id, text = x.currency_code + x.currency_symbol }).SortBy("id").ToList();
+            var currencymaster = db.currency_master.Select(x => new { x.id, text = x.currency_symbol + "(" + x.currency_code + ")" }).SortBy("id").ToList();
 
             ddlCurrency.DataSource = currencymaster;
             ddlCurrency.DataTextField = "text";

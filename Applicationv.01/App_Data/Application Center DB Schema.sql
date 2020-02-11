@@ -1372,9 +1372,7 @@ CREATE TABLE IF NOT EXISTS `currency_master` (
   `currency_symbol` varchar(50) NOT NULL,
   `currency_code` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- Dumping structure for table GTE_Prod.customfieldmaster
 CREATE TABLE IF NOT EXISTS `customfieldmaster` (
   `customfieldid` int(11) NOT NULL AUTO_INCREMENT,
