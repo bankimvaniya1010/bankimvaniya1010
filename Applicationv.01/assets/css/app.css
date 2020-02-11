@@ -271,3 +271,14 @@ html{
 	--background-color : #1c2329;
 }
 .crs-desc {position: relative;padding-left: 15px;}
+.rbt-postion {position: absolute;margin-left: -3%;}
+
+.selectionPills .selectionPillsList,.selectionPills .selectionPillsList div {
+	display: inline-block;
+}
+.selectionPills .selectionPillsList + .selectionPillsList {
+	margin-left: 15px;
+}
+.selectionPills .selectionPillsList .selectionPillsListLabel {
+	font-weight: bold;
+}

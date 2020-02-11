@@ -37,6 +37,9 @@
     <link type="text/css" href="assets/css/intlTelInput.css" rel="stylesheet">
     <script src="//code.jivosite.com/widget.js" jv-id="<%=System.Configuration.ConfigurationManager.AppSettings["JivoChatID"].ToString() %>" async></script>
 
+    <script src="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/js/jquery-ui-1.12.1.min.js"></script>
+    <link type="text/css" href="<%=ConfigurationManager.AppSettings["WebUrl"].Replace("#DOMAIN#", Request.Url.Host.ToLower()).ToString() %>/assets/css/jquery-ui-1.12.1.min.css" rel="stylesheet">
+
     <!--Code for disabling browser back button-->
     <script type="text/javascript">
         function disablePrev() { window.history.forward() }

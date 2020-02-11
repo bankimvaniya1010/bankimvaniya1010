@@ -1194,6 +1194,8 @@
           <Property Name="courseduration" Type="varchar" MaxLength="500" />
           <Property Name="coursedescription" Type="varchar" MaxLength="2000" />
           <Property Name="currencyid" Type="int" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="isdomestic_course" Type="bit" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -6581,6 +6583,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <NavigationProperty Name="careerposition_course_mapping" Relationship="GTEModel.FK_careerposition_course_mapping_coursemaster" FromRole="coursemaster" ToRole="careerposition_course_mapping" />
           <Property Name="currencyid" Type="Int32" />
           <NavigationProperty Name="currency_master" Relationship="GTEModel.FK_coursemaster_currency_master" FromRole="coursemaster" ToRole="currency_master" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="isdomestic_course" Type="Boolean" />
         </EntityType>
         <EntityType Name="coursetypemaster">
           <Key>
@@ -10750,6 +10754,8 @@ FROM `GTE.documentverification` AS `GTE_documentverification`</DefiningQuery>
           <EntitySetMapping Name="coursemaster">
             <EntityTypeMapping TypeName="GTEModel.coursemaster">
               <MappingFragment StoreEntitySet="coursemaster">
+                <ScalarProperty Name="isdomestic_course" ColumnName="isdomestic_course" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
                 <ScalarProperty Name="currencyid" ColumnName="currencyid" />
                 <ScalarProperty Name="coursedescription" ColumnName="coursedescription" />
                 <ScalarProperty Name="courseduration" ColumnName="courseduration" />

@@ -70,6 +70,11 @@ public partial class admin_editcourse : System.Web.UI.Page
                         ddlstudylevel.ClearSelection();
                         ddlstudylevel.Items.FindByValue(existingCourse.levelofstudyId.ToString()).Selected = true;
                     }
+                    if (existingCourse.isactive != null)
+                    {
+                        ddlactivestatus.ClearSelection();
+                        ddlactivestatus.Items.FindByValue(existingCourse.isactive.ToString()).Selected = true;
+                    }
                     if (existingCourse.universityid != null)
                     {
                         ddlUniversity.ClearSelection();
@@ -312,6 +317,11 @@ public partial class admin_editcourse : System.Web.UI.Page
             CourseObj.courseduration = txtCourseDuration.Value.Trim();
             CourseObj.coursedescription = txtCourseDescription.Value.Trim();
             CourseObj.currencyid = Convert.ToInt32(ddlcurrency.SelectedValue);
+            if (ddlactivestatus.SelectedValue == "True")
+                CourseObj.isactive = true;
+            else if (ddlactivestatus.SelectedValue == "False")
+                CourseObj.isactive = false;
+
             db.SaveChanges();
 
             //commencement date
