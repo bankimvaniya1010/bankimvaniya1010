@@ -24,7 +24,7 @@ public partial class courseapplication : System.Web.UI.Page
         universityID = Utility.GetUniversityId();
         if (!Utility.CheckStudentLogin())
             Response.Redirect(webURL + "Login.aspx", true);
-                
+
         var isDeclarationCompleted = (bool)Session["DeclarationCompleted"];
         if (!isDeclarationCompleted)
             Response.Redirect(webURL + "default.aspx", true);
@@ -68,6 +68,8 @@ public partial class courseapplication : System.Web.UI.Page
                        from x6 in sldData.DefaultIfEmpty()
                        join major in db.majordiscipline_master on cm.majordisciplineId equals major.id into majorData
                        from x7 in majorData.DefaultIfEmpty()
+                       join currency in db.currency_master on cm.currencyid equals currency.id into currencyData
+                       from x8 in currencyData.DefaultIfEmpty()
                        where cm.universityid == universityID
                        select new CoursegridData()
                        {
@@ -88,6 +90,7 @@ public partial class courseapplication : System.Web.UI.Page
                            levelodstudy = x6.studylevel,
                            major = x7.description,
                            majorID = cm.majordisciplineId,
+                           currencysymbol = x8.currency_symbol,
 
                        }).ToList();
             if (cityID != 0)
@@ -99,7 +102,8 @@ public partial class courseapplication : System.Web.UI.Page
 
             courseGridView.DataSource = courses;
             courseGridView.DataBind();
-
+            Hidresultcount.Value = Convert.ToString(courses.Count);
+            lblresultcount.InnerText = Hidresultcount.Value;
         }
         catch (Exception ex)
         {
@@ -198,14 +202,14 @@ public partial class courseapplication : System.Web.UI.Page
         GTEEntities db1 = new GTEEntities();
         var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.coursemaster
-                    join um in db1.university_master on cm.universityid equals um.universityid                    
+                    join um in db1.university_master on cm.universityid equals um.universityid
                     where cm.universityid == universityID1 && cm.courseid == courseid
                     select new
                     {
-                        coursedescription = cm.coursedescription == null ? "Not set" : cm.coursedescription,
-                        courseduration = cm.courseduration == null ? "Not set" : cm.courseduration,
-                        courseurl = cm.courseurl == null ? "#" : cm.courseurl,
-                        eligibility = cm.courseeligibility == "" ? "No Eligibility" : cm.courseeligibility.Replace(Environment.NewLine, "<br />"),
+                        coursedescription = string.IsNullOrEmpty(cm.coursedescription) ? "Not set" : cm.coursedescription,
+                        courseduration = string.IsNullOrEmpty(cm.courseduration) ? "Not set" : cm.courseduration,
+                        courseurl = string.IsNullOrEmpty(cm.courseurl) ? "#" : cm.courseurl,
+                        eligibility = string.IsNullOrEmpty(cm.courseeligibility) ? "No Eligibility" : cm.courseeligibility.Replace(Environment.NewLine, "<br />"),
                         university_name = um.university_name,
 
                     }).ToList();
@@ -241,29 +245,24 @@ public partial class courseapplication : System.Web.UI.Page
 
     protected void btnsearchcourse_Click(object sender, EventArgs e)
     {
-        int CountryID = Convert.ToInt32(rblcountry.SelectedValue);
-        int CityID = Convert.ToInt32(HidRBSelectedcityID.Value);// Convert.ToInt32(rblcity.SelectedValue);
-
-        int levelodstudyID = Convert.ToInt32(rbllevelofstudy.SelectedValue);
-        int majorID = Convert.ToInt32(rblmajor.SelectedValue);
+        //to bind grid
+        int CountryID = Convert.ToInt32(HidselectedcountryID.Value);
+        int CityID = Convert.ToInt32(HidselectedcityID.Value);
+        int levelodstudyID = Convert.ToInt32(HidselectedstudylevelID.Value);
+        int majorID = Convert.ToInt32(HidselectedmajorID.Value);
 
         coursegrid.Attributes.Add("style", "display:block");
         BindGrid(CityID, levelodstudyID, majorID);
 
-        HidselectedcountryID.Value = rblcountry.SelectedValue;
-        HidselectedcityID.Value = HidRBSelectedcityID.Value;
-        HidselectedstudylevelID.Value = rbllevelofstudy.SelectedValue;
-        HidselectedmajorID.Value = rblmajor.SelectedValue;
+        //statusbar
+        selectedcountry.InnerText = HidselectedcountryName.Value;
+        selectedcity.InnerText = HidselectedcityName.Value;
+        selectedstudylevel.InnerText = HidselectedstudylevelName.Value;
+        selectedmajor.InnerText = HidselectedmajorName.Value;
+        Hidresultcount.Value = Convert.ToString(courses.Count);
+        lblresultcount.InnerText = Hidresultcount.Value;
 
-        selectedbar.Attributes.Add("style", "display:block");
-        selectedcountry.InnerText = Convert.ToString(rblcountry.SelectedItem);
-        selectedcity.InnerText = Convert.ToString(HidRBSelectedcityName.Value);
-        selectedstudylevel.InnerText = Convert.ToString(rbllevelofstudy.SelectedItem);
-        selectedmajor.InnerText = Convert.ToString(rblmajor.SelectedItem);
         populateAppliedCourseData();
-        rblcountry.ClearSelection();
-        rbllevelofstudy.ClearSelection();
-        rblmajor.ClearSelection();
     }
 
     protected void savedata_Click(object sender, EventArgs e)
@@ -318,7 +317,7 @@ public partial class courseapplication : System.Web.UI.Page
     protected void courseGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         courseGridView.PageIndex = e.NewPageIndex;
-        coursegrid.Attributes.Add("style", "display:block");
+        coursegrid.Attributes.Add("style", "display:block");        
         BindGrid(Convert.ToInt32(HidselectedcityID.Value), Convert.ToInt32(HidselectedstudylevelID.Value), Convert.ToInt32(HidselectedmajorID.Value));
     }
 
@@ -349,9 +348,9 @@ public partial class courseapplication : System.Web.UI.Page
                             city_id = cm.city_id
                         }).Distinct().ToList();
         cityList.Add(new cityData { name = "All", city_id = 0 });
-        return JsonConvert.SerializeObject(cityList.OrderBy(x=>x.city_id));
+        return JsonConvert.SerializeObject(cityList.OrderBy(x => x.city_id));
     }
-
+   
     public class cityData
     {
         public int city_id { get; set; }
@@ -384,6 +383,7 @@ public partial class courseapplication : System.Web.UI.Page
         public string levelodstudy { get; set; }
         public string major { get; set; }
         public int? majorID { get; set; }
+        public string currencysymbol { get; set; }
 
 
         public CoursegridData()
@@ -405,6 +405,7 @@ public partial class courseapplication : System.Web.UI.Page
             this.levelodstudyID = null;
             this.majorID = null;
             this.coursefee = null;
+            this.currencysymbol = null;
         }
     }
 }
