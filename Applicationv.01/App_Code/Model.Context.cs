@@ -73,7 +73,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<course_campus_mapping> course_campus_mapping { get; set; }
     public virtual DbSet<course_dates> course_dates { get; set; }
     public virtual DbSet<course_defermentdates> course_defermentdates { get; set; }
-    public virtual DbSet<coursemaster> coursemaster { get; set; }
     public virtual DbSet<coursetypemaster> coursetypemaster { get; set; }
     public virtual DbSet<credentialmaster> credentialmaster { get; set; }
     public virtual DbSet<currency_master> currency_master { get; set; }
@@ -189,6 +188,7 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<educationdetailcheck_referee_response> educationdetailcheck_referee_response { get; set; }
     public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
     public virtual DbSet<gte_preliminary_section_questionmaster> gte_preliminary_section_questionmaster { get; set; }
+    public virtual DbSet<coursemaster> coursemaster { get; set; }
 
     public virtual int fetchapplicantDetail()
     {
