@@ -166,7 +166,26 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </li>                         
+                            </li>
+                            <li class="sidebar-menu-item" id="payment_list">
+                                <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#payment_menu">
+                                    <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
+                                   Manage Payment
+                                <span class="ml-auto sidebar-menu-toggle-icon"></span>
+                                </a>
+                                <ul class="sidebar-submenu sm-indent collapse" id="payment_menu">
+                                    <li class="sidebar-menu-item" id="paymentdescriptionmaster">
+                                        <a class="sidebar-menu-button" href="paymentdescriptionmaster.aspx">
+                                            <span class="sidebar-menu-text">Add Payment Description</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item" id="paymentdescription_mappings">
+                                        <a class="sidebar-menu-button" href="universitywise_payment_description_mappings.aspx">
+                                            <span class="sidebar-menu-text">Institution payment description selection</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li> 
                             <li class="sidebar-menu-item" id="city_list">
                                 <a class="sidebar-menu-button sidebar-js-collapse" data-toggle="collapse" href="#city_menu">
                                     <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">person_outline</i>
@@ -640,6 +659,7 @@
                 $("#manageScholarships").hide();
                 $("#managelanguages_list").hide();
                 $("#careeroutcomes_list").hide();
+                $("#payment_list").hide();
             }
             else if (universityadmin) {
                 $("#city_list").hide();
@@ -676,6 +696,7 @@
                 $("#educationmediummaster").hide();
                 $("#createfacility").hide();
                 $("#rejectionreason").hide();
+                $("#payment_list").hide();
             }
             else if (uniadminstaff1 || uniadminstaff2)
             {
@@ -694,6 +715,7 @@
                 $("#course_list").hide();
                 $("#managetooltips_list").hide();
                 $("#careeroutcomes_list").hide();
+                $("#payment_list").hide();
             }
         });
     </script>
