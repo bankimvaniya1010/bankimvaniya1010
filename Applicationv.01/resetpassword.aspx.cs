@@ -49,7 +49,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 html = html.Replace("@Email", login.email);
                 html = html.Replace("@OTP", password);
                 html = html.Replace("@Loginurl", webURL + "/login.aspx");
-                objCom.SendMail(login.email.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["PasswordReset"].ToString().Replace("@UniversityName", university.university_name));
+                objCom.SendMail(login.email.Trim(), html, "Password Reset Email");
                 lblMessage.Text = "Password has been set and sent to your registered email address.";
 
                 var isRecordPresent = db.applicantdetails.Any(x => x.applicantid == login.studentid && x.universityid == universityID);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -58,14 +59,16 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
     {
         try
         {
+            var studentEmailAddress = db.students.Where(x => x.studentid == applicantid).Select(x => x.email).FirstOrDefault();
             var details = db.applicantdetails.Where(x => x.applicantid == applicantid && x.universityid == universityid).FirstOrDefault();
-            StringBuilder sb = new StringBuilder();
-            sb.Clear();
-            sb.Append("Dear " + details.firstname + ",<br/><br/>");
-            sb.Append("Test Mail for Payment Verified<br/>");
-            sb.Append("<br/> Thank You <br/>");
-            sb.Append("The Application Center Admin Team <br/>");
-            objCom.SendMail(details.email, sb.ToString(), "Notification for payment verified");
+            var universitydetails = db.university_master.Where(x => x.universityid == universityid).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+
+            string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/paymentverifiedNotification.html"));
+            html = html.Replace("@UniversityName", universitydetails.university_name);
+            html = html.Replace("@universityLogo", webURL + "Docs/" + universityid + "/" + universitydetails.logo);
+            html = html.Replace("@applicantFirstname", details.firstname);
+            html = html.Replace("@Loginurl", webURL + "login.aspx");
+            objCom.SendMail(studentEmailAddress, html, "Notification for Payment Verified");
         }
         catch (Exception e) { objLog.WriteLog(e.ToString()); }
     }

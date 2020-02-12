@@ -40,7 +40,7 @@ public partial class verifyemployment : System.Web.UI.Page
                     lblnameoforganisation.InnerText = details.organization;
                     lblreportingmanager.InnerText = details.nameofreportingmanger;
                     lblposition.InnerText = details.designation;
-                    lbllocation.InnerText = objCom.GetCountryDiscription(Convert.ToInt32(details.country));
+                    lbllocation.InnerText = objCom.GetCityName(Convert.ToInt32(details.city))+","+ objCom.GetCountryDiscription(Convert.ToInt32(details.country));
                     if(details.durationfrom != null)
                         lblstartdate.InnerText = Convert.ToDateTime(details.durationfrom).ToString("dd/MM/yyyy");
                     if (details.durationto != null)

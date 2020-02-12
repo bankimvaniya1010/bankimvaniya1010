@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -1448,7 +1449,7 @@ public partial class applicanteducation : System.Web.UI.Page
     {
         try
         {
-            string applicantName = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
+            var applicantNameDetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new  {x.firstname , x.middlename ,x.lastname}).FirstOrDefault();
             var mode = "new";
             var EducationInfo = (from pInfo in db.applicanteducationdetails
                                  where pInfo.applicantid == userID && pInfo.universityid == universityID
@@ -1810,60 +1811,72 @@ public partial class applicanteducation : System.Web.UI.Page
             }
             db.SaveChanges();
             EducationDetails();
+            string applicantName = applicantNameDetails.firstname + " " + applicantNameDetails.middlename + " " + applicantNameDetails.lastname;
+            string applicantFirstName = applicantNameDetails.firstname;
+            var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.cityid }).FirstOrDefault();
+
             if (rblHighYes.Checked)
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.highschoolverificationkey + "&type=highschool";
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Dear " + objEdu.highschoolverificationname + ",<br/><br/>");
-
-                sb.Append(applicantName + " has given your reference for high school education details check at the time of applying for his/her course.<br/>");
-                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
-                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
-                sb.Append("Thank You <br/>");
-                sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEdu.highschoolverificationemail, sb.ToString(), "Education Detail check for " + applicantName);
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/educationdetailcheck.html"));
+                html = html.Replace("@UniversityName", univresityDetails.university_name);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+                html = html.Replace("@locationofInstitution",objCom.GetCityName(Convert.ToInt32(univresityDetails.cityid)));
+                html = html.Replace("@applicatFullName", applicantName);
+                html = html.Replace("@applicantFirstname", applicantFirstName); 
+                html = html.Replace("@QualificationName", objCom.GetQualificationType(Convert.ToInt32(objEdu.highschoolqualificationtype)));
+                html = html.Replace("@NameofSchool", objEdu.highschoolname);
+                html = html.Replace("@MediumofStudy", objCom.GetStudyMedium(Convert.ToInt32(objEdu.highschoolmediumid)));
+                html = html.Replace("@refereepageUrl", url);
+                objCom.SendMail(objEdu.highschoolverificationemail, html, "Education Detail check for " + applicantName);
             }
 
             if (rblSecondaryYes.Checked)
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.secondaryverificationkey + "&type=secondary";
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Dear " + objEdu.secondaryverificationname + ",<br/><br/>");
-
-                sb.Append(applicantName + " has given your reference for secondary school education details check at the time of applying for his/her course.<br/>");
-                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
-                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
-                sb.Append("Thank You <br/>");
-                sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEdu.secondaryverificationemail, sb.ToString(), "Education Detail check for " + applicantName);
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/educationdetailcheck.html"));
+                html = html.Replace("@UniversityName", univresityDetails.university_name);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+                html = html.Replace("@locationofInstitution", objCom.GetCityName(Convert.ToInt32(univresityDetails.cityid)));
+                html = html.Replace("@applicatFullName", applicantName);
+                html = html.Replace("@applicantFirstname", applicantFirstName);
+                html = html.Replace("@QualificationName", objCom.GetQualificationType(Convert.ToInt32(objEdu.secondaryqualificationtype)));
+                html = html.Replace("@NameofSchool", objEdu.secondaryname);
+                html = html.Replace("@MediumofStudy", objCom.GetStudyMedium(Convert.ToInt32(objEdu.secondarymediumstudy)));
+                html = html.Replace("@refereepageUrl", url);
+                objCom.SendMail(objEdu.secondaryverificationemail, html, "Education Detail check for " + applicantName);                                
             }
 
             if (rbldiplomaYes.Checked)
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEdu.diplomaverificationkey + "&type=diploma";
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Dear " + objEdu.diplomaverificationname + ",<br/><br/>");
-
-                sb.Append(applicantName + " has given your reference for diploma education details check at the time of applying for his/her course.<br/>");
-                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
-                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
-                sb.Append("Thank You <br/>");
-                sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEdu.diplomaverificationemail, sb.ToString(), "Education Detail check for " + applicantName);
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/educationdetailcheck.html"));
+                html = html.Replace("@UniversityName", univresityDetails.university_name);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+                html = html.Replace("@locationofInstitution", objCom.GetCityName(Convert.ToInt32(univresityDetails.cityid)));
+                html = html.Replace("@applicatFullName", applicantName);
+                html = html.Replace("@applicantFirstname", applicantFirstName);
+                html = html.Replace("@QualificationName", "Diploma");
+                html = html.Replace("@NameofSchool", objCom.GetQualificationType(Convert.ToInt32(objEdu.diplomaqualificationtype)));
+                html = html.Replace("@MediumofStudy", objCom.GetStudyMedium(Convert.ToInt32(objEdu.diplomamediumid)));
+                html = html.Replace("@refereepageUrl", url);
+                objCom.SendMail(objEdu.diplomaverificationemail, html, "Education Detail check for " + applicantName);
             }
 
             if (ddlCourse.SelectedValue != "" && rblhigherYes.Checked)
             {
                 string url = webURL + "verifyeducationdetails.aspx?key=" + objEducation.highereducationverificationkey + "&type=highereducation";
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Dear " + objEducation.verificationname + ",<br/><br/>");
-
-                sb.Append(applicantName + " has given your reference for higher education details check at the time of applying for his/her course.<br/>");
-                sb.Append("Please validate education details of " + applicantName + " with link given below <br/>");
-                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
-                sb.Append("Thank You <br/>");
-                sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEducation.verificationemail, sb.ToString(), "Education Detail check for " + applicantName);
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/educationdetailcheck.html"));
+                html = html.Replace("@UniversityName", univresityDetails.university_name);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+                html = html.Replace("@locationofInstitution", objCom.GetCityName(Convert.ToInt32(univresityDetails.cityid)));
+                html = html.Replace("@applicatFullName", applicantName);
+                html = html.Replace("@applicantFirstname", applicantFirstName);
+                html = html.Replace("@QualificationName", objCom.GetQualificationType(Convert.ToInt32(objEducation.qualificationtype)));
+                html = html.Replace("@NameofSchool", objEducation.schoolname);
+                html = html.Replace("@MediumofStudy", objCom.GetStudyMedium(Convert.ToInt32(objEducation.studymediumid)));
+                html = html.Replace("@refereepageUrl", url);
+                objCom.SendMail(objEducation.verificationemail, html, "Education Detail check for " + applicantName);                
             }
 
             var isProfileDetailsCompletedByApplicant = (bool)Session["ProfileDetailsCompletedByApplicant"];

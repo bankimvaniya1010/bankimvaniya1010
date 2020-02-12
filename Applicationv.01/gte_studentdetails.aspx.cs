@@ -747,12 +747,16 @@ public partial class gte_studentdetails : System.Web.UI.Page
 
     protected void btnNewAgent_Click(object sender, EventArgs e)
     {
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        sb.Append("Dear Agent,<br/>");
-        sb.Append("Please find below registration page to The Application Center to get your credit <br/>");
-        sb.Append(webURL + "registeragent.aspx" + " <br/>");
-        sb.Append("Thank You Backend Team The Application Center,<br/>");
-        objCom.SendMail(txtAgentname.Text, sb.ToString(), "Agent Registration Link");
+        var applicantNameDetails = db.students.Where(x => x.studentid == userID).Select(x => new { x.name}).FirstOrDefault();        
+        var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+
+        string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_agentResgistrationNotification.html"));
+        html = html.Replace("@UniversityName", univresityDetails.university_name);
+        html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+        html = html.Replace("@applicatFullName", applicantNameDetails.name + "'s");
+        html = html.Replace("@applicantFirstname", applicantNameDetails.name);
+        html = html.Replace("@agentRegistrationurl", webURL + "registeragent.aspx");
+        objCom.SendMail(txtAgentname.Text, html, "Agent Registration Link");        
     }
     
     private void BindAgent()

@@ -754,6 +754,23 @@ public class Common
         }
         return country;
     }
+
+    public string GetCityName(int cityid)
+    {
+        string city = "";
+        try
+        {
+            var citydata = db.citymaster.Where(x => x.city_id == cityid).FirstOrDefault();
+            if (citydata != null)
+                city = citydata.name;
+        }
+        catch (Exception ex)
+        {
+            log.WriteLog(ex.ToString());
+        }
+        return city;
+    }
+
     public void BindCountries(DropDownList ddl, bool addCitizenshipFlag = false)
     {
         try

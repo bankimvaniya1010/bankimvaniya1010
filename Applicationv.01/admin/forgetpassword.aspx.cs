@@ -41,13 +41,14 @@ public partial class admin_forgetpassword : System.Web.UI.Page
                 adminlogin.status = 0;
                 db.SaveChanges();
 
-                StringBuilder sb = new StringBuilder();
-                var loginurl = webURL + "admin/login.aspx";
-                sb.Append("Dear " + adminlogin.name + ",<br/><br/>");                
-                sb.Append("Your Username is: " + adminlogin.username + "<br/>");
-                sb.Append("Your otp is: " + password + "<br/><br/>");
-                sb.Append("Use your otp to login to Admin Center. <a href="+ loginurl +">Click Here</a> <br/>");                
-                objCom.SendMail(adminlogin.email.Trim(), sb.ToString(), "Your New Password");
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/password.html"));
+                html = html.Replace("@UniversityName", university.university_name);
+                html = html.Replace("@universityLogo", webURL + "/Docs/" + Utility.GetUniversityId() + "/" + university.logo);
+                html = html.Replace("@Name", adminlogin.name);
+                html = html.Replace("@Email", adminlogin.username);
+                html = html.Replace("@OTP", password);
+                html = html.Replace("@Loginurl", webURL + "admin/login.aspx");
+                objCom.SendMail(adminlogin.email.Trim(), html, "Password Reset Email");
 
                 lblMessage.Text = "We have sent the password to above mentioned email address";
             }

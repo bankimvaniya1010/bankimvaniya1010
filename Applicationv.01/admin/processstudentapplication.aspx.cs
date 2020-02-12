@@ -171,19 +171,24 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
     }
 
     // Send Mail when university uploads a decision
-    private void sendEmailsNotificationForDecision(int applicantId, int universityId)
+    private void sendEmailsNotificationForDecision(int applicantId, int universityId, string courseName)
     {
         try
         {
+            var studentEmailAddress = db.students.Where(x => x.studentid == applicantId).Select(x => x.email).FirstOrDefault();
             var details = db.applicantdetails.Where(x => x.applicantid == applicantId && x.universityid == universityId).FirstOrDefault();
-            StringBuilder sb = new StringBuilder();
-            sb.Clear();
-            sb.Append("Dear " + details.firstname + ",<br/><br/>");
-            sb.Append("Test Mail for Decision Upload<br/>");
-            //sb.Append(question.clarification_question + "<br/>");
-            sb.Append("<br/> Thank You <br/>");
-            sb.Append("The Application Center Admin Team <br/>");
-            objCom.SendMail(details.email, sb.ToString(), "Notification for decision updation");
+            var universitydetails = db.university_master.Where(x => x.universityid == universityId).Select(x => new { x.university_name, x.logo,x.cityid,x.countryid }).FirstOrDefault();
+
+            string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/decisionupdationNotification.html"));
+            html = html.Replace("@UniversityName", universitydetails.university_name);
+            html = html.Replace("@universityLogo", webURL + "Docs/" + universityId + "/" + universitydetails.logo);
+            html = html.Replace("@UniversityCity", objCom.GetCityName(Convert.ToInt32(universitydetails.cityid)));
+            html = html.Replace("@countryofInstitution", objCom.GetCountryDiscription(Convert.ToInt32(universitydetails.countryid)));
+            html = html.Replace("@applicantname", details.firstname);
+            html = html.Replace("@courseName", courseName);
+            html = html.Replace("@Loginurl", webURL + "login.aspx");
+            objCom.SendMail(studentEmailAddress, html, "Notification for Decision Updation");
+
         }
         catch (Exception e) { objLog.WriteLog(e.ToString()); }
     }
@@ -268,8 +273,11 @@ public partial class admin_processstudentapplication : System.Web.UI.Page
                 
                 db.SaveChanges();
 
+                Label lblCourseName = e.Item.FindControl("lblUniversityCourse") as Label;
+                string courseName = lblCourseName.Text;
+
                 if (selectedDecision != row_decision)
-                    sendEmailsNotificationForDecision(application.applicantid, application.universityid);
+                    sendEmailsNotificationForDecision(application.applicantid, application.universityid, courseName);
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
