@@ -50,7 +50,7 @@ public partial class forgetpassword : System.Web.UI.Page
                 html = html.Replace("@Email", login.email);
                 html = html.Replace("@OTP", password);
                 html = html.Replace("@Loginurl", webURL + "/login.aspx");
-                objCom.SendMail(login.email.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["PasswordReset"].ToString().Replace("@UniversityName", university.university_name));
+                objCom.SendMail(login.email.Trim(), html, "Password Reset Email");
                 lblMessage.Text = "We have sent the password to above mentioned email address";
             }
             else

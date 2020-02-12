@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using System.IO;
+
 public partial class applicantrefrencecheck : System.Web.UI.Page
 {
     int formId = 0;
@@ -13,7 +15,7 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected List<customfieldmaster> CustomControls = new List<customfieldmaster>();
     List<customfieldvalue> CustomControlsValue = new List<customfieldvalue>();
 
@@ -162,6 +164,8 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
                                where pInfo.applicantid == userID && pInfo.universityid == universityID
                                select pInfo).FirstOrDefault();
             string Applicantname = "";
+            string applicantFirstName = "";
+            applicantFirstName = profileInfo.firstname;
             string Title = objCom.GetTitle(Convert.ToInt32(profileInfo.title));
             if (Title == "Others")
             {
@@ -173,19 +177,17 @@ public partial class applicantrefrencecheck : System.Web.UI.Page
                 if ((profileInfo.firstname != null) && (profileInfo.lastname != null))
                     Applicantname = Title + " " + profileInfo.firstname.ToString() + " " + profileInfo.lastname.ToString();
             }
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Dear" + txtName.Value + "<br/><br/>");
-
-            sb.Append(Applicantname + " has given your details for reference check at the time of applying his/her for course.<br/>");
-            sb.Append("Please validate that you know him very well by confirming the check box in below page<br/>");
-            sb.AppendFormat(webURL + "referencecheck.aspx?referncekey=" + objReference.referncekey + "<br/>");
-            sb.Append("Thank You <br/>");
-            sb.Append("The Application Center Validation Team <br/>");
-            objCom.SendMail(txtEmail.Value, sb.ToString(), "Refrence Check for " + Applicantname);
-            BindRefrenceList();
-            txtName.Value = "";
-            txtMobile.Value ="";
-            txtEmail.Value = "";
+            var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.cityid }).FirstOrDefault();
+            
+            string url = webURL + "referencecheck.aspx?referncekey=" + objReference.referncekey;
+            string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/referencecheckNotification.html"));
+            html = html.Replace("@UniversityName", univresityDetails.university_name);
+            html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);
+            html = html.Replace("@locationofInstitution", objCom.GetCityName(Convert.ToInt32(univresityDetails.cityid)));
+            html = html.Replace("@applicatFullName", Applicantname);
+            html = html.Replace("@applicantFirstname", applicantFirstName);            
+            html = html.Replace("@refereepageUrl", url);
+            objCom.SendMail(txtEmail.Value, html, "Refrence Check for " + Applicantname);
         }
         catch (Exception ex)
         {

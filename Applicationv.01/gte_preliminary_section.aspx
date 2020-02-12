@@ -144,7 +144,7 @@
             $('.sidebar-menu-item').removeClass('open');
             $('#Gte_list').addClass('open');
             $('.sidebar-menu-item').removeClass('active');
-            $('#gtepretest').addClass('active');
+            $('#gtepreliminarysection1').addClass('active');
         });
     </script>
 

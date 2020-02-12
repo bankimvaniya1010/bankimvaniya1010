@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -217,15 +218,16 @@ public partial class admin_applicantpaymentrequest : System.Web.UI.Page
     {
         try
         {
+            var universitydetails = db.university_master.Where(x => x.universityid == universityId).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+
             var studentEmailAddress = db.students.Where(x => x.studentid == applicantId).Select(x => x.email).FirstOrDefault();
             var name = db.applicantdetails.Where(x => x.applicantid == applicantId && x.universityid == universityId).Select(x => x.firstname).FirstOrDefault();
-            StringBuilder sb = new StringBuilder();
-            sb.Clear();
-            sb.Append("Dear " + name + ",<br/><br/>");
-            sb.Append("Payment Request has been uploaded.<br/>");
-            sb.Append("<br/> Thank You <br/>");
-            sb.Append("The Application Center Admin Team <br/>");
-            objCommon.SendMail(studentEmailAddress, sb.ToString(), "Payment Request Uploaded Notification");
+            string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/paymentrequestuploadedNotification.html"));
+            html = html.Replace("@UniversityName", universitydetails.university_name);
+            html = html.Replace("@universityLogo", webURL + "Docs/" + universityId + "/" + universitydetails.logo);
+            html = html.Replace("@applicantFirstname", name);
+            html = html.Replace("@Loginurl", webURL + "login.aspx");
+            objCommon.SendMail(studentEmailAddress, html, "Payment Request Uploaded Notification");            
         }
         catch (Exception e) { objLog.WriteLog(e.ToString()); }
     }

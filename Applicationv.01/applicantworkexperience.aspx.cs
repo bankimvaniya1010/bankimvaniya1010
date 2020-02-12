@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -344,7 +345,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     {
         try
         {
-            string applicantName = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => x.firstname + " " + x.lastname).FirstOrDefault();
+            var applicantNameDetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { x.firstname, x.lastname ,x.middlename,x.totalyearofexperience }).FirstOrDefault();
             var noExperience = (from ad in db.applicantdetails
                                 where ad.applicantid == userID && ad.universityid == universityID
                                 select ad).FirstOrDefault();
@@ -408,18 +409,26 @@ public partial class applicantworkexperience : System.Web.UI.Page
             }
             db.SaveChanges();
 
+            string applicantName = applicantNameDetails.firstname + " " + applicantNameDetails.middlename + " " + applicantNameDetails.lastname;
+            string applicantFirstName = applicantNameDetails.firstname;
+            var universitydetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo, x.cityid }).FirstOrDefault();
+
             if (rblEmploymentYes.Checked)
             {
                 string url = webURL + "verifyemployment.aspx?key=" + objEmployer.employerverificationkey;
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Dear " + objEmployer.contactpersonwithdetails + ",<br/><br/>");
-
-                sb.Append(applicantName + " has given your reference for past employment verification.<br/>");
-                sb.Append("Please validate employment details of " + applicantName + " with link given below <br/>");
-                sb.Append("<a href=" + url + ">Validate Now</a> <br/>");
-                sb.Append("Thank You <br/>");
-                sb.Append("The Application Center Validation Team <br/>");
-                objCom.SendMail(objEmployer.emailid, sb.ToString(), "Employment detail check for " + applicantName);
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/employmentdetailNotification.html"));
+                html = html.Replace("@UniversityName", universitydetails.university_name);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + universitydetails.logo);
+                html = html.Replace("@locationofInstitution", objCom.GetCityName(Convert.ToInt32(universitydetails.cityid)));
+                html = html.Replace("@applicatFullName", applicantName);
+                html = html.Replace("@applicantFirstname", applicantFirstName);
+                html = html.Replace("@yearsofWorkExperience", applicantNameDetails.totalyearofexperience);
+                html = html.Replace("@Positioninorganisation", objEmployer.designation);
+                html = html.Replace("@NameofOrganisation", objEmployer.organization);
+                html = html.Replace("@City",objCom.GetCityName(Convert.ToInt32(objEmployer.city)));
+                html = html.Replace("@Country", objCom.GetCountryDiscription(Convert.ToInt32(objEmployer.country)));
+                html = html.Replace("@verifyemploymenturl", url);
+                objCom.SendMail(objEmployer.emailid, html, "Employment detail check for " + applicantName);
             }
 
             lblMessage.Text = "Your Work Experience Details have been saved";

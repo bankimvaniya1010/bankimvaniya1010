@@ -74,12 +74,13 @@ public partial class register : System.Web.UI.Page
                 html = html.Replace("@Email", email.Value);
                 html = html.Replace("@OTP", otp.ToString());
                 LoginURL = webURL + "/login.aspx?active=1";
-                html = html.Replace("@Loginurl", LoginURL);
+                html = html.Replace("@activeLoginurl", LoginURL);
+                html = html.Replace("@Loginurl", webURL+"login.aspx"); 
                 html = html.Replace("@UniversityEmailID", university.email);
                 html = html.Replace("@UniversityChatID", university.chatid);
                 html = html.Replace("@UniversityMobileNumber", university.mobile);
 
-                objCom.SendMail(email.Value.Trim(), html, System.Configuration.ConfigurationManager.AppSettings["ActivationSubject"].ToString());
+                objCom.SendMail(email.Value.Trim(), html, "Application Centre Account Created Email");
                 webURL = "";
                 webURL = webURL + "registerconfimation.aspx?email=" + email.Value;
                 Response.Redirect(webURL, true);

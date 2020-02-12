@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Globalization;
 using System.Text;
+using System.IO;
 
 public partial class personaldetails : System.Web.UI.Page
 {
@@ -803,12 +804,18 @@ public partial class personaldetails : System.Web.UI.Page
     }
     protected void btnNewAgent_Click(object sender, EventArgs e)
     {
-        StringBuilder sb = new StringBuilder();
-        sb.Append("Dear Agent,<br/>");
-        sb.Append("Please find below registration page to The Application Center to get your credit <br/>");
-        sb.Append(webURL + "registeragent.aspx" + " <br/>");
-        sb.Append("Thank You Backend Team The Application Center,<br/>");
-        objCom.SendMail(txtAgentname.Text, sb.ToString(), "Agent Registration Link");
+        var applicantNameDetails = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).Select(x => new { x.firstname, x.lastname, x.middlename}).FirstOrDefault();
+        string applicantName = applicantNameDetails.firstname + " " + applicantNameDetails.middlename + " " + applicantNameDetails.lastname;
+        string applicantFirstName = applicantNameDetails.firstname;
+        var univresityDetails = db.university_master.Where(x => x.universityid == universityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+
+        string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/agentRegistrationNotification.html"));
+        html = html.Replace("@UniversityName", univresityDetails.university_name);
+        html = html.Replace("@universityLogo", webURL + "Docs/" + universityID + "/" + univresityDetails.logo);        
+        html = html.Replace("@applicatFullName", applicantName);
+        html = html.Replace("@applicantFirstname", applicantFirstName);
+        html = html.Replace("@agentRegistrationurl", webURL + "registeragent.aspx");
+        objCom.SendMail(txtAgentname.Text, html, "Agent Registration Link");
     }
 
     protected void gotoNextPage_Click(object sender, EventArgs e)

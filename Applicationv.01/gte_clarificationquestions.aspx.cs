@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -134,16 +135,15 @@ public partial class gte_clarificationquestions : System.Web.UI.Page
         {
             var studentEmailAddress = db.students.Where(x => x.studentid == UserID).Select(x => x.email).FirstOrDefault();
             var name = db.applicantdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).Select(x => x.firstname).FirstOrDefault();
-            StringBuilder sb = new StringBuilder();
+            var universitydetails = db.university_master.Where(x => x.universityid == UniversityID).Select(x => new { x.university_name, x.logo }).FirstOrDefault();
+
             foreach (var question in sendEmailQuestionList)
-            {
-                sb.Clear();
-                sb.Append("Dear " + name + ",<br/><br/>");
-                sb.Append("Following your attempt to stage 2 assessment, we would like you to be notified regarding laws and regulation.<br/>");
-                sb.Append(question.clarification_question + "<br/>");
-                sb.Append("<br/> Thank You <br/>");
-                sb.Append("The Application Center Admin Team <br/>");
-                objCom.SendMail(studentEmailAddress, sb.ToString(), "Test Clarification Notification");
+            {                
+                string html = File.ReadAllText(Server.MapPath("/assets/Emailtemplate/gte_clarificationquestionNotification.html"));
+                html = html.Replace("@UniversityName", universitydetails.university_name);
+                html = html.Replace("@universityLogo", webURL + "Docs/" + UniversityID + "/" + universitydetails.logo);
+                html = html.Replace("@applicantFirstname", name);
+                objCom.SendMail(studentEmailAddress, html, "GTE Clarification Question Notification");
 
                 saveClarificationResponse(question.id, "Email Sent");
             }
