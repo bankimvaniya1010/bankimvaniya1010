@@ -174,11 +174,6 @@
                                 <span class="ml-auto sidebar-menu-toggle-icon"></span>
                                 </a>
                                 <ul class="sidebar-submenu sm-indent collapse" id="payment_menu">
-                                    <li class="sidebar-menu-item" id="paymentdescriptionmaster">
-                                        <a class="sidebar-menu-button" href="paymentdescriptionmaster.aspx">
-                                            <span class="sidebar-menu-text">Add Payment Description</span>
-                                        </a>
-                                    </li>
                                     <li class="sidebar-menu-item" id="paymentdescription_mappings">
                                         <a class="sidebar-menu-button" href="universitywise_payment_description_mappings.aspx">
                                             <span class="sidebar-menu-text">Institution payment description selection</span>

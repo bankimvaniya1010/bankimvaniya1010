@@ -43,7 +43,7 @@ public partial class applicant_payments : System.Web.UI.Page
             var paymentRequestsList = db.payment_details.AsNoTracking().Where(x => x.applicant_id == UserID && x.university_id == UniversityID).ToList();
             foreach (var item in paymentRequestsList)
             {
-                string currencySymbol = db.currency_master.Where(x => x.id == item.currency_id).Select(x => x.currency_symbol + "(" + x.currency_code + ")").FirstOrDefault();
+                string currencySymbol = db.currency_master.Where(x => x.id == item.currency_id).Select(x => x.currency_symbol).FirstOrDefault();
                 string paymentStatus = db.payment_status_master.Where(x => x.id == item.payment_status).Select(x => x.status_description).FirstOrDefault();
                 string courseName = db.applicationmaster.Where(x => x.applicationmasterid == item.applicationmaster_id)
                                    .Join(db.coursemaster, applicationmaster => applicationmaster.course, coursemaster => coursemaster.courseid,

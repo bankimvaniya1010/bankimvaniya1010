@@ -48,7 +48,7 @@ public partial class Resetpassword : System.Web.UI.Page
                 html = html.Replace("@Name", login.name == "" ? "Hello" : login.name);
                 html = html.Replace("@Email", login.email);
                 html = html.Replace("@OTP", password);
-                html = html.Replace("@Loginurl", webURL + "/login.aspx");
+                html = html.Replace("@Loginurl", webURL + "login.aspx");
                 objCom.SendMail(login.email.Trim(), html, "Password Reset Email");
                 lblMessage.Text = "Password has been set and sent to your registered email address.";
 
