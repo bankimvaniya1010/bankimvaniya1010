@@ -15,7 +15,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
     Common objCom = new Common();
     Logger objLog = new Logger();
     protected static List<faq> allQuestions = new List<faq>();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     protected void Page_Load(object sender, EventArgs e)
     {
         webURL = Utility.GetWebUrl();
@@ -425,7 +425,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                 html = html.Replace("@yearsofWorkExperience", applicantNameDetails.totalyearofexperience);
                 html = html.Replace("@Positioninorganisation", objEmployer.designation);
                 html = html.Replace("@NameofOrganisation", objEmployer.organization);
-                html = html.Replace("@City",objCom.GetCityName(Convert.ToInt32(objEmployer.city)));
+                html = html.Replace("@City", objEmployer.city);
                 html = html.Replace("@Country", objCom.GetCountryDiscription(Convert.ToInt32(objEmployer.country)));
                 html = html.Replace("@verifyemploymenturl", url);
                 objCom.SendMail(objEmployer.emailid, html, "Employment detail check for " + applicantName);

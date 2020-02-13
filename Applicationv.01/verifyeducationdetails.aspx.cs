@@ -58,7 +58,7 @@ public partial class verifyhighschool : System.Web.UI.Page
                         {
                             questionDIv.Visible = true;
                             //acc bind lbl                                
-                            lblqualificationName.InnerText = "High School";
+                            lblqualificationName.InnerText = objCom.GetQualificationType(Convert.ToInt32(educationDetails.highschoolqualificationtype));
                             lblhighschoolName.InnerText = educationDetails.highschoolname;
                             lblstartdateofQualification.InnerText = educationDetails.highschoolstartdate;
                             lblenddateofQualification.InnerText = educationDetails.highschoolendate;
@@ -73,7 +73,7 @@ public partial class verifyhighschool : System.Web.UI.Page
                         {
                             questionDIv.Visible = true;
                             //acc bind lbl
-                            lblqualificationName.InnerText = "Secondary";
+                            lblqualificationName.InnerText = objCom.GetQualificationType(Convert.ToInt32(educationDetails.secondaryqualificationtype));
                             lblhighschoolName.InnerText = educationDetails.secondaryname;
                             lblstartdateofQualification.InnerText = educationDetails.secondarystartdate;
                             lblenddateofQualification.InnerText = educationDetails.secondaryendate;
@@ -88,7 +88,7 @@ public partial class verifyhighschool : System.Web.UI.Page
                         {
                             questionDIv.Visible = true;
                             //acc bind lbl
-                            lblqualificationName.InnerText = "Diploma";
+                            lblqualificationName.InnerText = objCom.GetQualificationType(Convert.ToInt32(educationDetails.diplomaqualificationtype));
                             lblhighschoolName.InnerText = educationDetails.diplomaschoolname;
                             lblstartdateofQualification.InnerText = educationDetails.diplomastartdate;
                             lblenddateofQualification.InnerText = educationDetails.diplomaendate;
@@ -112,7 +112,7 @@ public partial class verifyhighschool : System.Web.UI.Page
                     else
                     {
                         questionDIv.Visible = true;
-                        lblqualificationName.InnerText = higherEducationDetails.coursename;
+                        lblqualificationName.InnerText = objCom.GetQualificationType(Convert.ToInt32(higherEducationDetails.qualificationtype));
                         lblhighschoolName.InnerText = higherEducationDetails.schoolname;
                         lblstartdateofQualification.InnerText = higherEducationDetails.startdate;
                         lblenddateofQualification.InnerText = higherEducationDetails.endate;

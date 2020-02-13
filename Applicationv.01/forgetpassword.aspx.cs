@@ -49,7 +49,7 @@ public partial class forgetpassword : System.Web.UI.Page
                 html = html.Replace("@Name", login.name == "" ? "Hello" : login.name);
                 html = html.Replace("@Email", login.email);
                 html = html.Replace("@OTP", password);
-                html = html.Replace("@Loginurl", webURL + "/login.aspx");
+                html = html.Replace("@Loginurl", webURL + "login.aspx");
                 objCom.SendMail(login.email.Trim(), html, "Password Reset Email");
                 lblMessage.Text = "We have sent the password to above mentioned email address";
             }
