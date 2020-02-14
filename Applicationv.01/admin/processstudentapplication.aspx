@@ -211,6 +211,8 @@
                     alert("Current Status cannot be set to " + ddlCurrentStatusValueText + " as decision selected is " + ddlDecisionValueText);
                 else if (ddlDecisionValueText.includes("application withdrawn") && !ddlCurrentStatusValueText.includes("application withdrawn")) // Check for decision of "APPLICATION WITHDRAWN" and current Status "APPLICATION WITHDRAWN"
                     alert("Current Status cannot be set to " + ddlCurrentStatusValueText + " as decision selected is " + ddlDecisionValueText);
+                else if (ddlDecisionValueText.includes("application accepted (conditional)") && !ddlCurrentStatusValueText.includes("conditional")) // Check for decision of "APPLICATION ACCEPTED(CONDITIONAL)" and current Status is not "CONDITIONAL OFFER RELEASED"
+                    alert("Current Status cannot be set to " + ddlCurrentStatusValueText + " as decision selected is " + ddlDecisionValueText);
                 else if (lblCurrentStatusText.includes("offer deferred") && !checkDefermentValidation(id)) { } // Check for current status if offer derferred, then check for accept or reject and deferment remark
                 else if (!$("#ContentPlaceHolder1_choiceList_offerLetterDiv_" + id).is(':hidden') && ddlDecisionValueText.includes("accepted") && !checkFileUploadValidation("offer letter", id)) { } // Check for offer letter if decision is APPLICATION ACCEPTED 
                 else if (ddlCurrentStatusValueText.includes("confirmation of enrolment") && !checkFileUploadValidation("CoE letter", id)) { } // Check for coe letter if current status is CONFIRMATION OF ENROLMENT GENERATED

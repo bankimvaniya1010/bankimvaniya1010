@@ -22,13 +22,11 @@ public partial class verifyemployment : System.Web.UI.Page
         if (!IsPostBack)
         {
             if (Request.QueryString["key"] != null)
-            {   
+            {
                 applicantemployerdetails details = db.applicantemployerdetails.Where(obj => obj.employerverificationkey == verificationKey).FirstOrDefault();
-
                 if (details != null)
                 {
                     //info
-
                     var applicantdetails = db.applicantdetails.Where(x => x.applicantid == details.applicantid && x.universityid == details.universityid).Select(x => new { x.firstname, x.totalyearofexperience }).FirstOrDefault();
                     if (applicantdetails.firstname != null && applicantdetails.totalyearofexperience != null)
                     {
@@ -40,26 +38,22 @@ public partial class verifyemployment : System.Web.UI.Page
                     lblnameoforganisation.InnerText = details.organization;
                     lblreportingmanager.InnerText = details.nameofreportingmanger;
                     lblposition.InnerText = details.designation;
-                    lbllocation.InnerText = objCom.GetCityName(Convert.ToInt32(details.city))+","+ objCom.GetCountryDiscription(Convert.ToInt32(details.country));
-                    if(details.durationfrom != null)
+                    lbllocation.InnerText = details.city + ", " + objCom.GetCountryDiscription(Convert.ToInt32(details.country));
+                    if (details.durationfrom != null)
                         lblstartdate.InnerText = Convert.ToDateTime(details.durationfrom).ToString("dd/MM/yyyy");
                     if (details.durationto != null)
                         lblEndDate.InnerText = Convert.ToDateTime(details.durationto).ToString("dd/MM/yyyy");
                     else
                     {
-                        if(details.iscurrentworking != null)
+                        if (details.iscurrentworking != null)
                             lblEndDate.InnerText = "Currently Working";
                     }
                     lbljobdescription.InnerText = details.briefdescription;
 
                     if (details.isemployerdetailverified.HasValue && details.isemployerdetailverified.Value)
-                    {
                         alreadyVerified();
-                    }
                     else
-                    {
                         questionDIv.Visible = true;
-                    }
                 }
                 else
                     notFound();
@@ -92,7 +86,7 @@ public partial class verifyemployment : System.Web.UI.Page
         verified.Visible = false;
         questionDIv.Visible = false;
     }
-       
+
     protected void btn_Save_Click1(object sender, EventArgs e)
     {
         try
@@ -104,7 +98,7 @@ public partial class verifyemployment : System.Web.UI.Page
             {
                 mode = "update";
                 objapplicantemployerdetails = details;
-            }             
+            }
             if (details != null)
             {
                 objapplicantemployerdetails.isemployerdetailverified = true;

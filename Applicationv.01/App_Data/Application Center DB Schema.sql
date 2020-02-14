@@ -414,6 +414,12 @@ CREATE TABLE IF NOT EXISTS `applicantemployerdetails` (
   `linkedinidofcontact` varchar(45) DEFAULT NULL,
   `employerverificationkey` varchar(50) DEFAULT NULL,
   `isemployerdetailverified` bit(1) DEFAULT NULL,
+  `verifyrecord_refereeresponse` varchar(200) DEFAULT NULL,
+  `howlongyouknow_refereeresponse` varchar(200) DEFAULT NULL,
+  `opinionforstudycourse_refereeresponse` varchar(200) DEFAULT NULL,
+  `biggeststrenthknown_refereeresponse` varchar(200) DEFAULT NULL,
+  `getalongwithmanagement_refereeresponse` varchar(200) DEFAULT NULL,
+  `wouldyourehire_refereeresponse` varchar(200) DEFAULT NULL,
   `lastsavedtime` datetime DEFAULT NULL,
   PRIMARY KEY (`employerid`),
   KEY `FK_applicantemployerdetails_students` (`applicantid`),
@@ -565,6 +571,10 @@ CREATE TABLE IF NOT EXISTS `applicantreferencecheck` (
   `referncekey` varchar(50) DEFAULT NULL,
   `requestsenttime` datetime DEFAULT NULL,
   `referenceverifiedtime` datetime DEFAULT NULL,
+  `howlongyouknow_refereesponse` varchar(100) DEFAULT NULL,
+  `describeskill_refereesponse` varchar(100) DEFAULT NULL,
+  `greateststrength_refereesponse` varchar(100) DEFAULT NULL,
+  `whyyouchoosetoreferthisstudent_refereesponse` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -1288,6 +1298,8 @@ CREATE TABLE IF NOT EXISTS `coursemaster` (
   `courseduration` varchar(500) DEFAULT NULL,
   `coursedescription` varchar(2000) DEFAULT NULL,
   `currencyid` int(10) DEFAULT NULL,
+  `isactive` bit(1) DEFAULT b'0',
+  `isdomestic_course` bit(1) DEFAULT NULL,
   PRIMARY KEY (`courseid`),
   KEY `FK_coursemaster_studymodemaster` (`modeofstudyId`),
   KEY `FK_coursemaster_studylevelmaster` (`levelofstudyId`),
@@ -1437,6 +1449,19 @@ CREATE TABLE IF NOT EXISTS `documentvalidationbyagent` (
   PRIMARY KEY (`documentvalidationid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- Dumping structure for table GTE_Prod.educationdetailcheck_referee_response
+CREATE TABLE IF NOT EXISTS `educationdetailcheck_referee_response` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `applicantId` int(10) DEFAULT NULL,
+  `universityId` int(10) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `verifieddetailsresponse` int(10) DEFAULT NULL,
+  `howlongknoweachresponse` varchar(200) DEFAULT NULL,
+  `performancedescription` varchar(200) DEFAULT NULL,
+  `greateststrengthresponse` varchar(200) DEFAULT NULL,
+  `additionalInforesponse` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Dumping structure for table GTE_Prod.educationmediummaster
 CREATE TABLE IF NOT EXISTS `educationmediummaster` (

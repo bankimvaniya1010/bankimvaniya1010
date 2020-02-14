@@ -13,7 +13,7 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
     Logger objLog = new Logger();
     Common objCom = new Common();
     private GTEEntities db = new GTEEntities();
-    string webURL = String.Empty;//System.Configuration.ConfigurationManager.AppSettings["WebUrl"].ToString();
+    string webURL = String.Empty;
     string docPath = System.Configuration.ConfigurationManager.AppSettings["DocPath"].ToString();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -125,11 +125,17 @@ public partial class admin_processpaymentrequest : System.Web.UI.Page
             {
                 ddlPaymentStatus.ClearSelection();
                 ddlPaymentStatus.Items.FindByValue(paymentStatus.ToString()).Selected = true;
+                string ddlSelectedPayment_status = ddlPaymentStatus.SelectedItem.Text.ToUpper();
+                if (ddlSelectedPayment_status.Contains("PAYMENT VERIFIED") || ddlSelectedPayment_status.Contains("PAYMENT REJECTED"))
+                {
+                    e.Row.FindControl("lnkSave").Visible = false;
+                    e.Row.FindControl("lnkEdit").Visible = false;
+                }
             }
 
             PropertyInfo pCurrencyId = row.GetType().GetProperty("currency_id");
             int currencyId = (int)pCurrencyId.GetValue(row, null);
-            string curencySymbol = db.currency_master.Where(x => x.id == currencyId).Select(x => x.currency_code + x.currency_symbol).FirstOrDefault();
+            string curencySymbol = db.currency_master.Where(x => x.id == currencyId).Select(x => x.currency_symbol).FirstOrDefault();
             Label lblAmount = e.Row.FindControl("lblAmount") as Label;
             lblAmount.Text = curencySymbol + " " + lblAmount.Text;
         }
