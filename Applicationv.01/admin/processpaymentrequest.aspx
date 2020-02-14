@@ -63,8 +63,8 @@
                             </asp:TemplateField>
                            <asp:TemplateField HeaderText="Action">
                                <ItemTemplate>
-                                   <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" CommandArgument='<%#Container.DataItemIndex%>' Text="Edit"></asp:LinkButton>|
-                                   <asp:LinkButton ID="lnkSave" runat="server" CausesValidation="False" CommandName="Save" CommandArgument='<%#Container.DataItemIndex%>' Text="Submit"></asp:LinkButton>
+                                   <asp:LinkButton ID="lnkEdit" runat="server" CausesValidation="False" CommandName="Edit" CommandArgument='<%#Container.DataItemIndex%>' Text="Edit"></asp:LinkButton>
+                                   <asp:LinkButton ID="lnkSave" runat="server" CausesValidation="False" CommandName="Save" CommandArgument='<%#Container.DataItemIndex%>' Text="| Submit"></asp:LinkButton>
                                </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

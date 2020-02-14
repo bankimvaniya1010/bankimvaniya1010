@@ -681,7 +681,7 @@
                 var courseId = $("#<%=ddlnameofcourse.ClientID%>").val();
                 $.ajax({
                     type: "POST",
-                    url: "applicantcourse.aspx/GetCommenceDateDropdown",
+                    url: "gte_studentdetails.aspx/GetCommenceDateDropdown",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: "{'courseid': '" + courseId + "'}",
