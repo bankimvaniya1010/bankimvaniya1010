@@ -27,16 +27,16 @@ public partial class admin_managestudentapplication : System.Web.UI.Page
     {
         try
         {
-            var applicantList = db.applicationmaster.Where(x => x.universityid == universityID).Select(x => x.applicantid).Distinct().ToList();
+            var applicantList = db.applicationmaster.Where(x => x.universityid == universityID).Select(x => new { applicantid = x.applicantid }).Distinct().SortBy("applicantid").ToList();
             List<object> list = new List<object>();
             foreach (var applicant in applicantList)
             {
-                var details = db.applicantdetails.Where(x => x.applicantid == applicant && x.universityid == universityID).FirstOrDefault();
+                var details = db.applicantdetails.Where(x => x.applicantid == applicant.applicantid && x.universityid == universityID).FirstOrDefault();
                 string nationality = string.Empty;
                 if (details.nationality.HasValue)
                     nationality = objCom.GetCountryDiscription(details.nationality.Value);
                 var obj = new { details.applicantid, name = details.firstname + " " + details.lastname, nationality };
-                list.Add(obj);
+                list.Add(obj);                
             }
             gvApplications.DataSource = list;
             gvApplications.DataBind();

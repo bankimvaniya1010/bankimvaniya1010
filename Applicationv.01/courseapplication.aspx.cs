@@ -70,7 +70,7 @@ public partial class courseapplication : System.Web.UI.Page
                        from x7 in majorData.DefaultIfEmpty()
                        join currency in db.currency_master on cm.currencyid equals currency.id into currencyData
                        from x8 in currencyData.DefaultIfEmpty()
-                       where cm.universityid == universityID
+                       where cm.universityid == universityID && cm.isactive == true
                        select new CoursegridData()
                        {
                            id = cm.courseid,
