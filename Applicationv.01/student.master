@@ -417,7 +417,7 @@
                                         <ul class="sidebar-submenu sm-indent collapse" id="coeOffers">
                                             <li class="sidebar-menu-item" id="applicantcoes">
                                                 <a class="sidebar-menu-button" href="applicantcoe.aspx">
-                                                    <span class="sidebar-menu-text">View Generated COE's</span>
+                                                    <span class="sidebar-menu-text">View Generated COE(s)</span>
                                                 </a>
                                             </li>
                                         </ul>
@@ -476,7 +476,7 @@
                                          <ul class="sidebar-submenu sm-indent collapse" id="predeparture">
                                             <li class="sidebar-menu-item" id="predeparturetutorial">
                                                 <a class="sidebar-menu-button" href="predeparturetutorial.aspx">
-                                                    <span class="sidebar-menu-text">Pre - Departure</span>
+                                                    <span class="sidebar-menu-text">Tutorial</span>
                                                 </a>
                                             </li>
                                          </ul>

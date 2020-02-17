@@ -5,9 +5,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Your Choices</li>
+            <li class="breadcrumb-item active">VIEW STATUS</li>
         </ol>
-        <h1 class="h2">VIEW STATUS</h1>
+        <h1 class="h2">VIEW YOUR APPLICATION STATUS</h1>
 
     </div>
     <div class="page ">
@@ -16,7 +16,7 @@
             <div class="row">
                <div class="col-md-8">
                    <div class="list-group-fit list-group-item">
-                       <h3>INSTRUCTIONS</h3>
+                       <h3>INSTRUCTIONS FOR VIEWING YOUR APPLICATION STATUS:</h3>
                        <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                        </div>
                    </div>

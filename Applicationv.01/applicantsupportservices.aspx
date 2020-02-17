@@ -5,7 +5,7 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Your Support Services</li>
+            <li class="breadcrumb-item active">SUPPORT SERVICES</li>
         </ol>
         <h1 class="h2">YOUR SUPPORT SERVICES</h1>
 
@@ -16,7 +16,7 @@
             <div class="row">
                <div class="col-md-8">
                    <div class="list-group-fit list-group-item">
-                       <h3>INSTRUCTIONS</h3>
+                       <h3>INSTRUCTIONS FOR USING SUPPORT SERVICES:</h3>
                        <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                        </div>
                    </div>
@@ -42,16 +42,12 @@
                                                             <asp:Label ID="lblservicetype" runat="server" Text='<%# Eval("servicetype") %>'></asp:Label>
                                                         </div>
                                                         <div>
-                                                            <label for="universityCampus" class="col-form-label form-label">Service Provider: </label>
-                                                            <asp:Label ID="lblprovidername" runat="server" Text='<%# Eval("providername") %>'></asp:Label>
-                                                        </div>
-                                                        <div>
-                                                            <label for="universityCourse" class="col-form-label form-label">Service Description : </label>
+                                                            <label for="universityCourse" class="col-form-label form-label">Service Description : </label><br/>
                                                             <asp:Label ID="lbldescription" runat="server" Text='<%# Eval("description") %>'></asp:Label>
                                                         </div>
                                                         <br/>
                                                         <div>
-                                                            <div runat="server" style="text-align:center">
+                                                            <div runat="server" style="text-align:left">
                                                                 <asp:Button ID="btnSendEmail" runat="server" Text="SEND AN ENQUIRY" CommandName="SendEmail" CommandArgument='<%# Eval("serviceID") + "," + Eval("provideremail") + "," + Eval("providername") +","+ Eval("servicetype") %>' />
                                                             </div>
                                                         </div>

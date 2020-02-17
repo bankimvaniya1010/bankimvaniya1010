@@ -48,7 +48,7 @@ public partial class applicantscholarships : System.Web.UI.Page
                 emptyScholarshipDiv.Visible = true;
                 emptyScholarshipDiv.Style.Remove("display");
                 scholarships.Visible = false;
-                lblEmptyList.Text = "No scholarships available. Please check again later";
+                lblEmptyList.Text = "No scholarships are available at the moment for " + Session["universityName"] + ". Please check again later.";
             }
             else
                 bindDataList(allScholarshipList);

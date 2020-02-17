@@ -6,7 +6,7 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Your Scholarships</li>
+            <li class="breadcrumb-item active">SCHOLARSHIPS</li>
         </ol>
         <h1 class="h2">SCHOLARSHIPS AND FUNDING</h1>
 
@@ -17,7 +17,7 @@
             <div class="row">
                <div class="col-md-8">
                    <div class="list-group-fit list-group-item">
-                       <h3>INSTRUCTIONS FOR SCHOLARSHIPS & FUNDING</h3>
+                       <h3>INSTRUCTIONS FOR SCHOLARSHIPS AND FUNDING:</h3>
                        <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                        </div>
                    </div>

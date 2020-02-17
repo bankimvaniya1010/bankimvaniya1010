@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Funding</li>
+            <li class="breadcrumb-item active">COST CALCULATOR</li>
         </ol>
-        <h1 class="h2">FUNDING</h1>
+        <h1 class="h2">CALCULATE AND PLAN YOUR BUDGET USING THE COST CALCULATOR</h1>
 
     </div>
     <div class="page ">
@@ -19,17 +19,10 @@
                     <div class="card">
 
                         <div class="card-body list-group list-group-fit">
-                            <div class="list-group-item" id="labelstudylive">
-                                <div class="form-group m-0" role="group" aria-labelledby="label-calculator">
-                                    <div class="form-row">
-                                        <label id="label-calculator" for="calculator" class="col-form-label form-label">Study-N-Live Budget Calculator</label>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="list-group-item" id="study" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-Mobile">
                                     <div class="form-row">
-                                        <label id="label-Mobile" for="Mobile" class="col-md-5 col-form-label form-label">Would you study-n-live alone or would your family members come along </label>
+                                        <label id="label-Mobile" for="Mobile" class="col-md-5 col-form-label form-label">Would you study-n-live alone or with family members?</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlstudy" CssClass="form-control" runat="server"></asp:DropDownList>
                                         </div>
@@ -60,7 +53,7 @@
                             <div class="list-group-item" id="accommodation" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skype">
                                     <div class="form-row">
-                                        <label id="label-skype" for="skype" class="col-md-5 col-form-label form-label">Select the kind of accommodation you plan to have </label>
+                                        <label id="label-skype" for="skype" class="col-md-5 col-form-label form-label">What type of accommodation do you plan to have? </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlAccomdation" CssClass="form-control" runat="server"> </asp:DropDownList>
                                         </div>
@@ -72,9 +65,7 @@
                             <div class="list-group-item" id="managemeal" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
-                                        <label id="label-skypeDesc" for="skypeDesc" class="col-md-5 col-form-label form-label">
-                                            Select how you plan to manage meals
-                                        </label>
+                                        <label id="label-skypeDesc" for="skypeDesc" class="col-md-5 col-form-label form-label"> How do you plan to manage meals? </label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlCooking" CssClass="form-control" runat="server"></asp:DropDownList>
                                         </div>
@@ -84,7 +75,7 @@
                             <div class="list-group-item" id="transportchoice" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                                     <div class="form-row">
-                                        <label id="label-whatsapp" for="whatsapp" class="col-md-5 col-form-label form-label">Select your preferred choice of transport in the city  </label>
+                                        <label id="label-whatsapp" for="whatsapp" class="col-md-5 col-form-label form-label"> How would you be getting around the city?  </label>
                                         <div class="col-md-6">
                                              <asp:DropDownList ID="ddltransportchoice" CssClass="form-control" runat="server"></asp:DropDownList>                                           
                                         </div>
@@ -94,7 +85,7 @@
                             <div class="list-group-item" id="Trips" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skypeDesc">
                                     <div class="form-row">
-                                        <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-5 col-form-label form-label">No of Trips you plan to take to your home country in a year</label>
+                                        <label id="label-whatsappDesc" for="whatsappDesc" class="col-md-5 col-form-label form-label">How Many trips do you plan to take to your home country in an year?</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlTrips" CssClass="form-control" runat="server">  </asp:DropDownList>
                                         </div>
@@ -105,9 +96,7 @@
                             <div class="list-group-item" id="entertainment" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-address">
                                     <div class="form-row">
-                                        <label id="labelentertainment" for="address" class="col-md-5 col-form-label form-label">
-                                            How often in a week do you typically go out (entertainment) 
-                                        </label>
+                                        <label id="labelentertainment" for="address" class="col-md-5 col-form-label form-label"> How often do you typically go out in a week?</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlEntertainment" CssClass="form-control" runat="server"> </asp:DropDownList>
                                         </div>
@@ -118,7 +107,7 @@
                             <div class="list-group-item">
                                 <div class="form-group">
                                     <div class="form-row">
-                                        <asp:Button ID="btnCalculateCosts" runat="server" CssClass="btn btn-success" Text="Calculate Costs" OnClientClick="return validateForm()" OnClick="btnCalculateCosts_Click" />
+                                        <asp:Button ID="btnCalculateCosts" runat="server" CssClass="btn btn-success" Text="Calculate My Estimated Costs" OnClientClick="return validateForm()" OnClick="btnCalculateCosts_Click" />
                                     </div>
                                 </div>
                             </div>
@@ -299,7 +288,7 @@
                              <div class="list-group-item">
                             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                 <div class="form-row">
-                                    <asp:Button ID="btn_fundingdetails" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click"  OnClientClick="return validateForm()"/>
+                                    <asp:Button ID="btn_fundingdetails" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btn_fundingdetails_Click"  OnClientClick="return validateForm()"/>
                                     <div class="col-md-6">
                                     </div>
                                 </div>
