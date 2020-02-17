@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3 col-form-label form-label">Support Services</label>
+                        <label for="name" class="col-sm-3 col-form-label form-label">Positions</label>
                         <div class="col-sm-8">
                             <div class="row">
                                 <div class="col-md-6">

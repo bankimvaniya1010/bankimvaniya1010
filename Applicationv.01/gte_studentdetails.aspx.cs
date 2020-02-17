@@ -137,7 +137,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
         var universityID1 = Utility.GetUniversityId();
         var temp = (from cm in db1.coursemaster
                     join mapping in db1.course_campus_mapping on cm.courseid equals mapping.courseid
-                    where cm.universityid == universityID1  && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId
+                    where cm.universityid == universityID1  && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId && cm.isactive == true
                     select new
                     {
                         coursename = cm.coursename,
@@ -153,7 +153,7 @@ public partial class gte_studentdetails : System.Web.UI.Page
             ListItem lst = new ListItem("Please select", "0");
             var courses = (from cm in db.coursemaster
                            join mapping in db.course_campus_mapping on cm.courseid equals mapping.courseid
-                           where cm.universityid == universityID && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId
+                           where cm.universityid == universityID && cm.majordisciplineId == selectedMajorid && cm.levelofstudyId == coursetypeid && mapping.campusid == campusId && cm.isactive == true
                            select new
                            {
                                coursename = cm.coursename,
