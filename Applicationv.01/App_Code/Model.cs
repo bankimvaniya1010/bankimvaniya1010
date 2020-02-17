@@ -1577,13 +1577,6 @@ public partial class faq
     public virtual ICollection<universitywise_faqmapping> universitywise_faqmapping { get; set; }
 }
 
-public partial class fieldvalidationmaster
-{
-    public int fieldvalidationid { get; set; }
-    public Nullable<int> formfieldid { get; set; }
-    public string regularexpression { get; set; }
-}
-
 public partial class formfieldmapping
 {
     public int id { get; set; }
@@ -1995,17 +1988,6 @@ public partial class inferencemaster
     public string description { get; set; }
 }
 
-public partial class invalidatamaster
-{
-    public int id { get; set; }
-    public string emailaddress { get; set; }
-    public string name { get; set; }
-    public string passportno { get; set; }
-    public Nullable<System.DateTime> creationtime { get; set; }
-    public Nullable<int> isfollowupdone { get; set; }
-    public Nullable<int> status { get; set; }
-}
-
 public partial class majordiscipline_master
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -2289,18 +2271,6 @@ public partial class primaryfieldmaster
     public virtual ICollection<universitywisetooltipmaster> universitywisetooltipmaster { get; set; }
 }
 
-public partial class profilemaster
-{
-    public int id { get; set; }
-    public Nullable<int> applicantid { get; set; }
-    public Nullable<int> basicinfo { get; set; }
-    public Nullable<int> educationinfo { get; set; }
-    public Nullable<int> employerinfo { get; set; }
-    public Nullable<int> finacialinfo { get; set; }
-    public Nullable<int> englishtest { get; set; }
-    public Nullable<int> sponsorsdetails { get; set; }
-}
-
 public partial class qualificationcountriesmapping
 {
     public int id { get; set; }
@@ -2368,23 +2338,6 @@ public partial class rejection_reasonmaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
-}
-
-public partial class relative_master
-{
-    public long id { get; set; }
-    public Nullable<long> applicantid { get; set; }
-    public string name { get; set; }
-    public Nullable<int> age { get; set; }
-    public string relationship { get; set; }
-    public string city { get; set; }
-    public string country { get; set; }
-    public Nullable<int> isinautralia { get; set; }
-    public Nullable<int> isdependent { get; set; }
-    public string firstName { get; set; }
-    public string passport_no { get; set; }
-    public string nationality { get; set; }
-    public Nullable<System.DateTime> dob { get; set; }
 }
 
 public partial class rolemaster
@@ -2709,14 +2662,6 @@ public partial class tutorialmaster
     public string title { get; set; }
     public Nullable<int> status { get; set; }
     public Nullable<System.DateTime> created_at { get; set; }
-}
-
-public partial class typemaster
-{
-    public int typemasterid { get; set; }
-    public Nullable<int> typeid { get; set; }
-    public string value { get; set; }
-    public Nullable<int> formfieldid { get; set; }
 }
 
 public partial class typeofworkexperiencemaster

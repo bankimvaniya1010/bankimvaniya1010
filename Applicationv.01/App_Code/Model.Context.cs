@@ -88,7 +88,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<facility_campus_mapping> facility_campus_mapping { get; set; }
     public virtual DbSet<familymember> familymember { get; set; }
     public virtual DbSet<faq> faq { get; set; }
-    public virtual DbSet<fieldvalidationmaster> fieldvalidationmaster { get; set; }
     public virtual DbSet<formfieldmapping> formfieldmapping { get; set; }
     public virtual DbSet<formfieldmaster> formfieldmaster { get; set; }
     public virtual DbSet<formmaster> formmaster { get; set; }
@@ -111,7 +110,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_videouploadmaster> gte_videouploadmaster { get; set; }
     public virtual DbSet<health_insurance> health_insurance { get; set; }
     public virtual DbSet<inferencemaster> inferencemaster { get; set; }
-    public virtual DbSet<invalidatamaster> invalidatamaster { get; set; }
     public virtual DbSet<majordiscipline_master> majordiscipline_master { get; set; }
     public virtual DbSet<manageaccomdationplan> manageaccomdationplan { get; set; }
     public virtual DbSet<manageentertainment> manageentertainment { get; set; }
@@ -132,14 +130,12 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<preliminary_questionmaster> preliminary_questionmaster { get; set; }
     public virtual DbSet<preliminaryapplicantanswers> preliminaryapplicantanswers { get; set; }
     public virtual DbSet<primaryfieldmaster> primaryfieldmaster { get; set; }
-    public virtual DbSet<profilemaster> profilemaster { get; set; }
     public virtual DbSet<qualificationcountriesmapping> qualificationcountriesmapping { get; set; }
     public virtual DbSet<qualificationmaster> qualificationmaster { get; set; }
     public virtual DbSet<question_master> question_master { get; set; }
     public virtual DbSet<realtionshipmaster> realtionshipmaster { get; set; }
     public virtual DbSet<registrationcourses> registrationcourses { get; set; }
     public virtual DbSet<rejection_reasonmaster> rejection_reasonmaster { get; set; }
-    public virtual DbSet<relative_master> relative_master { get; set; }
     public virtual DbSet<rolemaster> rolemaster { get; set; }
     public virtual DbSet<scholarships> scholarships { get; set; }
     public virtual DbSet<secondarylanguagemaster> secondarylanguagemaster { get; set; }
@@ -161,7 +157,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<trips> trips { get; set; }
     public virtual DbSet<tuitionAndlivingcostmaster> tuitionAndlivingcostmaster { get; set; }
     public virtual DbSet<tutorialmaster> tutorialmaster { get; set; }
-    public virtual DbSet<typemaster> typemaster { get; set; }
     public virtual DbSet<typeofworkexperiencemaster> typeofworkexperiencemaster { get; set; }
     public virtual DbSet<university_application_decision_master> university_application_decision_master { get; set; }
     public virtual DbSet<university_master> university_master { get; set; }

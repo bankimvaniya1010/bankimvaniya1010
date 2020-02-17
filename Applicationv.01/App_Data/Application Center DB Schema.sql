@@ -1538,15 +1538,6 @@ where  DATEDIFF(now(),creationtime)<4 order by Days and (isanswerdquestion is nu
 END//
 DELIMITER ;
 
--- Dumping structure for table GTE_Prod.fieldvalidationmaster
-CREATE TABLE IF NOT EXISTS `fieldvalidationmaster` (
-  `fieldvalidationid` int(11) NOT NULL AUTO_INCREMENT,
-  `formfieldid` int(11) DEFAULT NULL,
-  `regularexpression` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`fieldvalidationid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 -- Dumping structure for table GTE_Prod.formfieldmapping
 CREATE TABLE IF NOT EXISTS `formfieldmapping` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -1917,20 +1908,6 @@ CREATE TABLE IF NOT EXISTS `inferencemaster` (
   PRIMARY KEY (`inferenceid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
--- Dumping structure for table GTE_Prod.invalidatamaster
-CREATE TABLE IF NOT EXISTS `invalidatamaster` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `emailaddress` varchar(100) DEFAULT NULL,
-  `name` varchar(100) DEFAULT NULL,
-  `passportno` varchar(45) DEFAULT NULL,
-  `creationtime` datetime DEFAULT CURRENT_TIMESTAMP,
-  `isfollowupdone` int(1) DEFAULT NULL,
-  `status` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
 -- Dumping structure for table GTE_Prod.majordiscipline_master
 CREATE TABLE IF NOT EXISTS `majordiscipline_master` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -2226,21 +2203,6 @@ CREATE TABLE IF NOT EXISTS `primaryfieldmaster` (
   `primaryfiledname` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`primaryfieldid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
--- Dumping structure for table GTE_Prod.profilemaster
-CREATE TABLE IF NOT EXISTS `profilemaster` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `applicantid` int(11) DEFAULT NULL,
-  `basicinfo` int(1) DEFAULT NULL,
-  `educationinfo` int(1) DEFAULT NULL,
-  `employerinfo` int(1) DEFAULT NULL,
-  `finacialinfo` int(1) DEFAULT NULL,
-  `englishtest` int(1) DEFAULT NULL,
-  `sponsorsdetails` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- Dumping structure for table GTE_Prod.qualificationcountriesmapping
 CREATE TABLE IF NOT EXISTS `qualificationcountriesmapping` (
@@ -2570,17 +2532,6 @@ CREATE TABLE IF NOT EXISTS `tutorialmaster` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
--- Dumping structure for table GTE_Prod.typemaster
-CREATE TABLE IF NOT EXISTS `typemaster` (
-  `typemasterid` int(11) NOT NULL AUTO_INCREMENT,
-  `typeid` int(11) DEFAULT NULL,
-  `value` varchar(200) DEFAULT NULL,
-  `formfieldid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`typemasterid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- Dumping structure for table GTE_Prod.typeofworkexperiencemaster
 CREATE TABLE IF NOT EXISTS `typeofworkexperiencemaster` (
