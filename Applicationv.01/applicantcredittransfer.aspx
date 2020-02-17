@@ -21,7 +21,7 @@
                             <div class="list-group-item" id="credittransfer">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-email">
                                     <div class="form-row">
-                                        <label id="label-email" for="email" class="col-md-5 col-form-label form-label">Do you plan to undertake a credit transfer  </label>
+                                        <label id="label-email" for="email" class="col-md-5 col-form-label form-label">Do you plan to undertake a credit transfer?  </label>
                                         <div class="col-md-6">
                                             <div class="col-md-6">
                                             <asp:RadioButton ID="rblCreditYes" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="credittransfer" Text="Yes" />
@@ -36,7 +36,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="col-sm-12 offset-sm-3">
-                                        <asp:Button ID="btn_credit" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_credit_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="btn_credit" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btn_credit_Click" OnClientClick="return validateForm()" />
                                         <div class="col-md-6">
                                         </div>
                                     </div>

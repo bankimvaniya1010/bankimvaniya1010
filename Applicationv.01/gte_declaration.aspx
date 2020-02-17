@@ -13,7 +13,7 @@
         <h1 class="h2">DECLARATION (STEP 4/4)
 
         </h1>
-        <h2 style="font-size: 24px">Read and accept user agreement and declarations:
+        <h2 style="font-size: 24px">Read and accept the User Agreement and Declarations:
 
         </h2>
 
@@ -48,9 +48,9 @@
                                 { %>
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
-                                    <div class="form-row">                                         
-                                        <a href="Default.aspx" class="btn btn-danger" style="margin-right:90px;">Cancel</a> 
-                                        <asp:Button ID="btnSave" runat="server" Text="Accept Declaration and Submit" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
+                                    <div class="form-row">
+                                        <asp:Button ID="btnSave" runat="server" Text="I Accept" CssClass="btn btn-success" OnClick="btnSave_Click" OnClientClick="return validate()"/>                                      
+                                        <a href="Default.aspx" class="btn btn-danger" style="margin-right:90px;">I Do Not Accept</a> 
                                     </div>
                                 </div>
                             </div>
@@ -70,8 +70,8 @@
                             <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
                             <ol style="font-size:small; padding-left:15px">
                                 <li>Completing this section is mandatory.</li><br/>
-                                <li>Read the attached documents and watch the videos carefully.</li><br/>
-                                <li>Please accept the declaration that you have successfully reviewed and understood the information.</li><br/>
+                                <li>Please read all the conditions given on the left carefully.</li><br/>
+                                <li>After you agree to all the conditions, click on the ‘I Accept’ button to proceed further</li><br/>
                                 <li>Take a quick test to check your knowledge.</li><br/>
                                 <li>To go to the next section you need to successfully answer the test question and achieve >65% grade.</li><br/>
                                 <li>Else you would required to take the test again post going through the tutorial again.</li><br/>

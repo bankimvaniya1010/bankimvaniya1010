@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Tutorial</li>
         </ol>
-        <h1 class="h2">TUTORIAL</h1>
+        <h1 class="h2">PRE-DEPARTURE TUTORIAL</h1>
     </div>
 
     <div class="page ">
@@ -21,7 +21,7 @@
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
-                    <h5>Please Read The Following Documents:</h5>
+                    <h5>Please read the following documents:</h5>
                     <div class="pdf-container clearfix">
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
@@ -42,7 +42,7 @@
                     {
                     %>
                 <div class="card video-container" id="video" runat="server">
-                     <h5>Please Watch The Following Videos:</h5>
+                     <h5>Please watch the following videos:</h5>
                        <div class="row">
                       <%for (int v = 0; v < allDocuments.Count; v++)
                           {

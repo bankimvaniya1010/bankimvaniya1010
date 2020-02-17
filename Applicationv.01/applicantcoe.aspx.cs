@@ -44,7 +44,7 @@ public partial class applicantcoe : System.Web.UI.Page
                 emptyChoicesDiv.Visible = true;
                 emptyChoicesDiv.Style.Remove("display");
                 coeCard.Visible = false;
-                lblEmptyList.Text = "Confirmation of Enrollment not generated for any choice within your application. Please check status of application form.";
+                lblEmptyList.Text = "No Confirmation of Enrolment has been generated for any of your course application(s). Come back again to check whether you have received a COE for any of your course choice(s).";
             }
             else
             {

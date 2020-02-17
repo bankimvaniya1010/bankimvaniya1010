@@ -4,9 +4,9 @@
     <div class="container page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Payments</li>
+            <li class="breadcrumb-item active">YOUR PAYMENTS</li>
         </ol>
-        <h1 class="h2">YOUR PAYMENTS</h1>
+        <h1 class="h2">MAKE PAYMENT(S), UPLOAD PROOF OF PAYMENT(S) & VIEW PREVIOUS PAYMENT(S)</h1>
 
         <div class="page ">
 
@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="tab-content card-body">
                             <div class="list-group-fit list-group-item">
-                                <h3>INSTRUCTIONS FOR FEE PAYMENT</h3>
+                                <h3>INSTRUCTIONS FOR MAKING PAYMENT(S), UPLOADING PROOF OF PAYMENT(S) & VIEWING YOUR PREVIOUS PAYMENT(S):</h3>
                                 <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                                 </div>
                             </div>
@@ -27,12 +27,12 @@
                                     BorderWidth="1px" DataKeyNames="id"
                                     CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnRowCommand="paymentsGridView_RowCommand" OnRowDataBound="paymentsGridView_RowDataBound">
                                     <Columns>
-                                        <asp:TemplateField HeaderText="Date">
+                                        <asp:TemplateField HeaderText="Date of Payment">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblRequestDate" runat="server" Text='<%# Bind("request_date") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Payment Details">
+                                        <asp:TemplateField HeaderText="Payment Name">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPaymentDetails" runat="server" Text='<%# Bind("payment_for") %>'></asp:Label>
                                             </ItemTemplate>
@@ -47,18 +47,18 @@
                                                 <asp:Label ID="lblDueDate" runat="server" Text='<%# Bind("due_date") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Amount To be Paid">
+                                        <asp:TemplateField HeaderText="Fee Amount">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("amount") %>'></asp:Label>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Payment Instruction">
+                                        <asp:TemplateField HeaderText="Instruction(s)">
                                             <ItemTemplate>
                                                 <lable id="lblPaymentInstruction" runat="server" style="color: DodgerBlue;"> Click for details </lable>
                                                 <asp:HiddenField ID="hidInstruction" runat="server" Value='<%# Bind("instruction") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Upload Proof">
+                                        <asp:TemplateField HeaderText="Upload Proof of Payment">
                                             <ItemTemplate>
                                                 <asp:FileUpload ID="paymentProof" runat="server" />
                                             </ItemTemplate>
@@ -68,7 +68,7 @@
                                                 <asp:HyperLink ID="hypLnkProof" Target="_blank" NavigateUrl='<%# Eval("fileName") %>' runat="server"> Uploaded File</asp:HyperLink>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Pay Online">
+                                        <asp:TemplateField HeaderText="Make Online Payment">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPayOnline" runat="server" Text='NA'></asp:Label>
                                             </ItemTemplate>

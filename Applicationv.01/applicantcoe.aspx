@@ -5,9 +5,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Your Generated COE's</li>
+            <li class="breadcrumb-item active">VIEW YOUR GENERATED COE(S)</li>
         </ol>
-        <h1 class="h2">VIEW COE's</h1>
+        <h1 class="h2">VIEW YOUR GENERATED COE(S)</h1>
     </div>
     <div class="page ">
 
@@ -15,7 +15,7 @@
             <div class="row">
                <div class="col-md-8">
                    <div class="list-group-fit list-group-item">
-                        <h3>INSTRUCTIONS</h3>
+                        <h3>INTSRUCTIONS FOR VIEWING YOUR GENERATED COE(S):</h3>
                         <div class="list-group list-group-fit list-group-item" runat="server" id="universityInstruction">
                         </div>
                     </div>
