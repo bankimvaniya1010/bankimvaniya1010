@@ -633,7 +633,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icMarital.Attributes.Add("style", "display:block;");
                         icMarital.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
+                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT OR LONG-TERM CONDITION? ":
                         icdisability.Attributes.Add("style", "display:block;");
                         icdisability.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -641,7 +641,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icdisabilitydescription.Attributes.Add("style", "display:block;");
                         icdisabilitydescription.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "ARE YOU REFERRED BY AGENT":
+                    case "ARE YOU REFERRED BY AN AGENT?":
                         icAgent.Attributes.Add("style", "display:block;");
                         icAgent.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -649,7 +649,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icAgentList.Attributes.Add("style", "display:block;");
                         icAgentList.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IF DIDN'T FIND AGENT NAME IN THE LIST THEN ADD HIS EMAIL ID TO SENT REGISTRATION LINK":
+                    case "IF YOU DIDN’T FIND YOUR AGENT NAME IN THE LIST, ADD YOUR AGENT’S EMAILL ID TO SEND THEM A REGISTRATION LINK":
                         icNewAgent.Attributes.Add("style", "display:block;");
                         icNewAgent.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
