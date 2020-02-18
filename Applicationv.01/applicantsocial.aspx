@@ -6,11 +6,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Social
+            <li class="breadcrumb-item active">SOCIAL PROFILE
 
             </li>
         </ol>
-        <h1 class="h2">SOCIAL
+        <h1 class="h2">SOCIAL PROFILE
 
         </h1>
 
@@ -27,10 +27,10 @@
                             <div class="list-group-item" id="linkedin" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-linked">
                                     <div class="form-row">
-                                        <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">Link to your LinkedIn profile</label>
+                                        <label id="labellinked" runat="server" for="linked" class="col-md-3 col-form-label form-label">LINKEDIN PROFILE</label>
                                         <div class="col-md-6">
-                                            <input id="txtLinkedin" runat="server" type="text" class="form-control" placeholder="Link to your LinkedIn profile ">
-                                            <asp:CheckBox ID="chkLinkeIn" runat="server" Text="Does Not Have LinkedIn Account" class="form-label"/>
+                                            <input id="txtLinkedin" runat="server" type="text" class="form-control" placeholder="Enter the link to your LinkedIN profile">
+                                            <asp:CheckBox ID="chkLinkeIn" runat="server" Text="I DO NOT HAVE A LINKEDIN ACCOUNT." class="form-label"/>
                                             <span class="helpicon"><i id="icLinkedin" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -39,10 +39,10 @@
                             <div class="list-group-item" id="facebook" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-facebook">
                                     <div class="form-row">
-                                        <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">Link to your Facebook profile </label>
+                                        <label id="labelfacebook" runat="server" for="employer" class="col-md-3 col-form-label form-label">FACEBOOK PROFILE</label>
                                         <div class="col-md-6">
-                                            <input id="txtFacebook" runat="server" type="text" class="form-control" placeholder="Link to your Facebook profile ">
-                                            <asp:CheckBox ID="ChkFacebook" runat="server" Text="Does Not Have Facebook Account" class="form-label"/>
+                                            <input id="txtFacebook" runat="server" type="text" class="form-control" placeholder="Enter the link to your Facebook profile">
+                                            <asp:CheckBox ID="ChkFacebook" runat="server" Text="I DO NOT HAVE A FACEBOOK ACCOUNT." class="form-label"/>
                                             <span class="helpicon"><i id="icFacebook" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -51,10 +51,10 @@
                             <div class="list-group-item" id="twitter" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-twitter">
                                     <div class="form-row">
-                                        <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">Link to your twitter handle </label>
+                                        <label id="labeltwitter" runat="server" for="twitter" class="col-md-3 col-form-label form-label">TWITTER HANDLE</label>
                                         <div class="col-md-6">
-                                            <input id="txtTwitter" runat="server" type="text" class="form-control" placeholder="Link to your twitter handle ">
-                                            <asp:CheckBox ID="chkTwitter" runat="server" Text="Does Not Have Twitter Account" class="form-label" />
+                                            <input id="txtTwitter" runat="server" type="text" class="form-control" placeholder="Enter the link to your Twitter handle">
+                                            <asp:CheckBox ID="chkTwitter" runat="server" Text="I DO NOT HAVE A TWITTER ACCOUNT." class="form-label" />
                                             <span class="helpicon"><i id="icTwitter" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -64,8 +64,8 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
-                                        <asp:Button ID="btnsocial" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnsocial_Click" OnClientClick="return validateForm()" />
-                                        <%--<asp:Button ID="gotoNextPage" runat="server" Text="Go To Reference Check" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>--%>                                        
+                                        <asp:Button ID="btnsocial" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnsocial_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Review and Submit" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
@@ -86,7 +86,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             

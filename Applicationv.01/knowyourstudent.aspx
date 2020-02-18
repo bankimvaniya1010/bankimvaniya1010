@@ -6,7 +6,7 @@
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
             <li class="breadcrumb-item active">Identification Details</li>
         </ol>
-        <h1 class="h2">IDENTIFICATION DOCUMENT DETAILS</h1>
+        <h1 class="h2">Identification Details</h1>
     </div>
     <div class="page ">
         <div class="container page__container">
@@ -21,7 +21,7 @@
                                     <div class="form-row">
                                         <label id="labelpassportno" runat="server" for="passportno" class="col-md-3 col-form-label form-label">Passport Number </label>
                                         <div class="col-md-6">
-                                            <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Passport Number"><span class="helpicon"><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtPassportNo" runat="server" type="text" class="form-control" placeholder="Enter your passport number"><span class="helpicon"><i id="icPassport" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -41,9 +41,9 @@
                             <div class="list-group-item" runat="server" style="display: none;" id="expirydate">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-expirydate">
                                     <div class="form-row">
-                                        <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">Expiry Date </label>
+                                        <label id="labelexpirydate" runat="server" for="expirydate" class="col-md-3 col-form-label form-label">PASSPORT EXPIRY DATE</label>
                                         <div class="col-md-6">
-                                            <input id="txtexpirydate" runat="server" type="text" class="form-control" placeholder="Expiry Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtexpirydate" runat="server" type="text" class="form-control" placeholder="Enter your passport expiry date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icPassportExpiryDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -142,8 +142,8 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
-                                        <asp:Button ID="btnidentification" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btnidentification_Click" OnClientClick="return validateForm()" />
-                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To Education Details" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                        
+                                        <asp:Button ID="btnidentification" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnidentification_Click" OnClientClick="return validateForm()" />
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Education Details" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                        
 
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
@@ -165,7 +165,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             
@@ -273,7 +273,7 @@
             var verifiedpassportDetails = "<%=knowyourstudent.verifiedPassportDetails %>";
 
             if (verifiedpassportDetails.toString().toLowerCase() == "false") {
-                var result = confirm("Kindly confirm name and date of birth details are same as in passport.\n Name: " + studentname + "\n Date of Birth: " + studentDateofBirth);
+                var result = confirm("Kindly confirm that your name and date of birth given below are the same as those mentioned in your passport.\n Name: " + studentname + "\n Date of Birth: " + studentDateofBirth);
 
                 if (result) {
                     $.ajax({

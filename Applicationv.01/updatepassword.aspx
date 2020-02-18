@@ -29,7 +29,7 @@
                              <div class="list-group-item" id="exsistingpassword" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-password">
                                     <div class="form-row">
-                                        <label id="lblexsistingpassword" runat="server" for="exsistingpassword" class="col-md-3 col-form-label form-label">Enter Exsisting password</label>
+                                        <label id="lblexsistingpassword" runat="server" for="exsistingpassword" class="col-md-3 col-form-label form-label">ENTER NEW PASSWORD</label>
                                         <div class="col-md-6">
                                             <input id="txtexsistingpassword" runat="server" type="password" class="form-control">                                            
                                         </div>
@@ -39,7 +39,7 @@
                             <div class="list-group-item" id="password" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-password">
                                     <div class="form-row">
-                                        <label id="lblpassword" runat="server" for="password" class="col-md-3 col-form-label form-label">New Password</label>
+                                        <label id="lblpassword" runat="server" for="password" class="col-md-3 col-form-label form-label">Enter New Password</label>
                                         <div class="col-md-6">
                                             <input id="txtpassword"  runat="server" type="password" class="form-control">                                            
                                         </div>
@@ -60,7 +60,7 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">                                        
-                                        <asp:Button ID="btnupdatepassword" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btnupdatepassword_Click"/>
+                                        <asp:Button ID="btnupdatepassword" runat="server" Text="Save" CssClass="btn btn-success" OnClientClick="return validateForm()" OnClick="btnupdatepassword_Click"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblErrorMessage" runat="server" Visible="false"></asp:Label>
@@ -82,7 +82,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             

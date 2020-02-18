@@ -34,14 +34,11 @@
                                     <div class="form-row">
                                         <label id="labelfirstname" runat="server" for="firstname" class="col-md-3 col-form-label form-label">First Name *</label>
                                         <div class="col-md-6">
-                                            <input id="txtFirstName" runat="server" type="text" placeholder="First name as it appears in your passport
-
-"
-                                                value="" class="form-control" required=""> <span class="helpicon"><i id="icfirstname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtFirstName" runat="server" type="text" placeholder="Enter your legal first name" value="" class="form-control" required=""> <span class="helpicon"><i id="icfirstname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             
                                         </div>
                                     </div>
-                                    <asp:CheckBox ID="passportFirstName" runat="server" /><span class="form-label">Please Confirm the first name is same as in your passport</span>
+                                    <asp:CheckBox ID="passportFirstName" runat="server" /><span class="form-label">PLEASE CONFIRM THAT YOUR FIRST NAME GIVEN ABOVE IS THE SAME ON YOUR PASSPORT</span>
                                 </div>
                             </div>
                             <div class="list-group-item" id="middlename" runat="server" style="display: none">
@@ -49,38 +46,30 @@
                                     <div class="form-row">
                                         <label id="labelmiddlename" runat="server" for="middlename" class="col-md-3 col-form-label form-label">Middle Name(s)</label>
                                         <div class="col-md-6">
-                                            <input id="txtMiddleName" runat="server" type="text" placeholder="As they appear in your passport
-
-"
-                                                value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                            <input id="txtMiddleName" runat="server" type="text" placeholder="Enter your legal middle name(s)" value="" class="form-control"> <span class="helpicon"><i id="icmiddlename" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
-                                    <asp:CheckBox ID="passportMiddleName" runat="server" /><span class="form-label">Please Confirm the middle name is same as in your passport</span>
+                                    <asp:CheckBox ID="passportMiddleName" runat="server" /><span class="form-label">PLEASE CONFIRM THAT YOUR MIDDLE NAME(S) GIVEN ABOVE IS THE SAME ON YOUR PASSPORT</span>
                                 </div>
                             </div>
                             <div class="list-group-item" id="lastname" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-lastname">
                                     <div class="form-row">
                                         <label id="labellastname" runat="server" for="lastname" class="col-md-3 col-form-label form-label">Family Name *</label>
-                                        <div class="col-md-6">
-                                            <input id="txtLastName" runat="server" type="text" class="form-control" placeholder="Family name as it appears in your passport
-
-"
-                                                required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        <div class="col-md-7">
+                                            <input id="txtLastName" runat="server" type="text" class="form-control" placeholder="Enter your legal family name / surname" required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                           
                                     </div>
                                     </div>
-                                    <asp:CheckBox ID="passportLastName" runat="server" /><span class="form-label">Please Confirm the family name is same as in your passport</span>
+                                    <asp:CheckBox ID="passportLastName" runat="server" /><span class="form-label">PLEASE CONFIRM THAT YOUR FAMILY NAME GIVEN ABOVE IS THE SAME ON YOUR PASSPORT</span>
                                 </div>
                             </div>
                             <div class="list-group-item" id="preferedname" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-preferreName">
                                     <div class="form-row">
                                         <label id="labelpreferreName" runat="server" for="preferreName" class="col-md-3 col-form-label form-label">Preferred Name</label>
-                                        <div class="col-md-6">
-                                            <input id="txtPreferedName" runat="server" type="text" class="form-control" placeholder="What name do you want us to use when we are communicating with you?
-
-"> <span class="helpicon"><i id="icPreferredname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                        <div class="col-md-7">
+                                            <input id="txtPreferedName" runat="server" type="text" class="form-control" placeholder="How would you like us to address you"> <span class="helpicon"><i id="icPreferredname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +249,7 @@
                              <div class="list-group-item" id="higheststudy" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-higheststudy">
                                     <div class="form-row">
-                                        <label id="lblhigheststudy" runat="server" for="higheststudy" class="col-md-3 col-form-label form-label">Highest study level successfully completed</label>
+                                        <label id="lblhigheststudy" runat="server" for="higheststudy" class="col-md-3 col-form-label form-label">HIGHEST LEVEL OF STUDY SUCCESSFULLY COMPLETED</label>
                                         <div class="col-md-6">
                                         <asp:DropDownList runat="server" ID="ddlhigheststudy"  CssClass="form-control">
                                         </asp:DropDownList>    
@@ -271,7 +260,7 @@
                             <div class="list-group-item" id="fieldstudy" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-fieldstudy">
                                     <div class="form-row">
-                                        <label id="lblfieldstudy" runat="server" for="fieldstudy" class="col-md-3 col-form-label form-label">Completed highest study in field of</label>
+                                        <label id="lblfieldstudy" runat="server" for="fieldstudy" class="col-md-3 col-form-label form-label">HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED</label>
                                         <div class="col-md-6">
                                         <asp:DropDownList runat="server" ID="ddlfieldstudy" CssClass="form-control">
                                         </asp:DropDownList>    
@@ -295,11 +284,11 @@
                                     <div class="form-row">
                                         <label id="lblhighQualificationCompleteDate" runat="server" for="highQualificationCompleteDate" class="col-md-3 col-form-label form-label">Completion Date </label>
                                         <div class="col-md-6">
-                                            <asp:DropDownList ID="ddlHighQualificationCompletedMonth" CssClass="form-control" runat="server">
-                                                <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
-                                            </asp:DropDownList>
                                             <asp:DropDownList ID="ddlHighQualificationCompletedYear" CssClass="form-control" runat="server">
                                                 <asp:ListItem Value="0" Selected="True">Select Year</asp:ListItem>
+                                            </asp:DropDownList>
+                                            <asp:DropDownList ID="ddlHighQualificationCompletedMonth" CssClass="form-control" runat="server">
+                                                <asp:ListItem Value="0" Selected="True">Select Month</asp:ListItem>
                                             </asp:DropDownList>
                                         </div>
                                     </div>
@@ -309,7 +298,7 @@
                             <div class="list-group-item" id="disability" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-disability">
                                     <div class="form-row">
-                                        <label id="labeldisability" runat="server" for="disability" class="col-md-3 col-form-label form-label">Do you have any disability, impairment, or a long term condition</label>
+                                        <label id="labeldisability" runat="server" for="disability" class="col-md-3 col-form-label form-label">DO YOU HAVE ANY DISABILITY, IMPAIRMENT OR LONG-TERM CONDITION? </label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblDisabilityYes" runat="server" CssClass="form-control" GroupName="disability" Text="Yes" />
                                             <asp:RadioButton ID="rblDisabilityNo" runat="server" CssClass="form-control" GroupName="disability" Text="No" /> <span class="helpicon"><i id="icdisability" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -331,7 +320,7 @@
                             <div class="list-group-item" id="agent" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-agent">
                                     <div class="form-row">
-                                        <label id="labelagent" runat="server" for="agent" class="col-md-3 col-form-label form-label">Are you reffered by Agent</label>
+                                        <label id="labelagent" runat="server" for="agent" class="col-md-3 col-form-label form-label">ARE YOU REFERRED BY AN AGENT?</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblAgentYes" runat="server" CssClass="form-control" GroupName="agent" Text="Yes" />
                                             <asp:RadioButton ID="rblAgentNo" runat="server" CssClass="form-control" GroupName="agent" Text="No" /><span class="helpicon"><i id="icAgent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -352,12 +341,12 @@
                             <div class="list-group-item" id="addnewagent" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-addnewagent">
                                     <div class="form-row">
-                                        <label id="labeladdnewagent" runat="server" for="addnewagent" class="col-md-3 col-form-label form-label">If didn't find agent name in the list then add his email ID to sent registeration link</label>
+                                        <label id="labeladdnewagent" runat="server" for="addnewagent" class="col-md-3 col-form-label form-label">IF YOU DIDN’T FIND YOUR AGENT NAME IN THE LIST, ADD YOUR AGENT’S EMAILL ID TO SEND THEM A REGISTRATION LINK</label>
                                         <div class="col-md-6">
                                             <asp:TextBox ID="txtAgentname" runat="server" CssClass="form-control"></asp:TextBox><span class="helpicon"><i id="icNewAgent" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             &nbsp;
                                               <div class="col-md-6">
-                                                  <asp:Button ID="btnNewAgent" runat="server" Text="Ask to Register" CssClass="btn btn-success" OnClick="btnNewAgent_Click" />
+                                                  <asp:Button ID="btnNewAgent" runat="server" Text="Ask Agent to Register" CssClass="btn btn-success" OnClick="btnNewAgent_Click" />
                                               </div>
                                         </div>
                                     </div>
@@ -368,8 +357,8 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">                                        
-                                        <asp:Button ID="btn_login" OnClientClick="return validateForm();" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
-                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To Contact Details" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                                                               
+                                        <asp:Button ID="btn_login" OnClientClick="return validateForm();" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Contact Details section" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                                                               
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible="false"></asp:Label>
@@ -391,7 +380,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             

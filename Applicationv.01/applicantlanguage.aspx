@@ -26,7 +26,7 @@
                             <div class="list-group-item" id="homelanguage" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-homelanguage">
                                     <div class="form-row">
-                                        <label id="labelhomelanguage" runat="server" for="homelanguage" class="col-md-3 col-form-label form-label">What language do you speak at home</label>
+                                        <label id="labelhomelanguage" runat="server" for="homelanguage" class="col-md-3 col-form-label form-label">WHICH LANGUAGE DO YOU SPEAK AT HOME?</label>
                                         <div class="col-md-6">
                                             <asp:DropDownList ID="ddlhomelanguage" runat="server" CssClass="form-control"></asp:DropDownList>
                                             <span class="helpicon"><i id="ichomelanguage" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -38,11 +38,11 @@
                             <div class="list-group-item" id="EnglishBackground" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-EnglishBackground">
                                     <div class="form-row">
-                                        <label id="labelEnglishBackground" runat="server" for="EnglishBackground" class="col-md-3 col-form-label form-label">Have you studied an English Language Intensive Course for students from non-English speaking backgrounds</label>
+                                        <label id="labelEnglishBackground" runat="server" for="EnglishBackground" class="col-md-3 col-form-label form-label">HAVE YOU STUDIED AN ELICOS COURSE?</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblEnglishBackgroundYes" runat="server" GroupName="EnglishBackground" Text="Yes" /> <br />
-                                           <div class="clearfix big-rdtxtwrp"> <asp:RadioButton ID="rblEnglishBackgroundNot" runat="server" GroupName="EnglishBackground"  Text="No  - I am currently still studying for my English Language Course" /></div>
-                                            <div class="clearfix big-rdtxtwrp"><asp:RadioButton ID="rblEnglishBackgroundNo" runat="server" GroupName="EnglishBackground" Text="No - I have not studied an English Language Intensive Course for people from non-English speaking backgrounds" /></div>
+                                           <div class="clearfix big-rdtxtwrp"> <asp:RadioButton ID="rblEnglishBackgroundNot" runat="server" GroupName="EnglishBackground"  Text="No, I am currently studying an ELICOS course" /></div>
+                                            <div class="clearfix big-rdtxtwrp"><asp:RadioButton ID="rblEnglishBackgroundNo" runat="server" GroupName="EnglishBackground" Text="No, I am not studying / have not studied an ELICOS course" /></div>
                                             <span class="helpicon"><i id="icEnglishBackground" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -158,7 +158,7 @@
                             <div class="list-group-item" id="EnglishTest" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-EnglishTest">
                                     <div class="form-row">
-                                        <label id="labelEnglishTest" runat="server" for="EnglishTest" class="col-md-3 col-form-label form-label">Have you sat any one of the following English Language competency tests</label>
+                                        <label id="labelEnglishTest" runat="server" for="EnglishTest" class="col-md-3 col-form-label form-label">HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?</label>
                                         <div class="col-md-6">
                                             <div class="form-check-inline">
                                                 <div class="form-check-label">
@@ -187,7 +187,7 @@
                                         <div class="form-row">
                                             <label id="labeltestName" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Name </label>
                                             <div class="col-md-6">
-                                                <input id="txtTestName" runat="server" type="text" placeholder="Test Name" value="" class="form-control">
+                                                <input id="txtTestName" runat="server" type="text" placeholder="Enter your test name" value="" class="form-control">
                                                 <span class="helpicon"><i id="ictestName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                                         <div class="form-row">
                                             <label id="labelCandidateID" runat="server" for="CandidateID" class="col-md-3 col-form-label form-label">Candidate ID </label>
                                             <div class="col-md-6">
-                                                <input id="txtCandidateID" runat="server" type="text" placeholder="Candidate ID" value="" class="form-control">
+                                                <input id="txtCandidateID" runat="server" type="text" placeholder="Enter your candidate ID" value="" class="form-control">
                                                 <span class="helpicon"><i id="icCandidateID" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -207,9 +207,9 @@
                                 <div class="list-group-item" id="CandidateNo" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-CandidateNo">
                                         <div class="form-row">
-                                            <label id="labelCandidateNo" runat="server" for="CandidateNo" class="col-md-3 col-form-label form-label">Candidate No </label>
+                                            <label id="labelCandidateNo" runat="server" for="CandidateNo" class="col-md-3 col-form-label form-label">CANDIDATE NUMBER </label>
                                             <div class="col-md-6">
-                                                <input id="txtCandidateNo" runat="server" type="text" placeholder="Candidate No" value="" class="form-control">
+                                                <input id="txtCandidateNo" runat="server" type="text" placeholder="Enter your candidate number" value="" class="form-control">
                                                 <span class="helpicon"><i id="icCandidateNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -220,7 +220,7 @@
                                         <div class="form-row">
                                             <label id="labelieltsTestDate" runat="server" for="ieltsTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
                                             <div class="col-md-6">
-                                                <input id="txtieltsTestDate" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="">
+                                                <input id="txtieltsTestDate" runat="server" type="text" class="form-control" placeholder="Enter your test date" data-toggle="flatpickr" value="">
                                                 <span class="helpicon"><i id="icieltsTestDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -231,7 +231,7 @@
                                         <div class="form-row">
                                             <label id="labelCentreNo" runat="server" for="testName" class="col-md-3 col-form-label form-label">Test Centre No </label>
                                             <div class="col-md-6">
-                                                <input id="txtCentreNo" runat="server" type="text" placeholder="Centre No" value="" class="form-control">
+                                                <input id="txtCentreNo" runat="server" type="text" placeholder="Enter your centre number" value="" class="form-control">
                                                 <span class="helpicon"><i id="icCenterno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -243,7 +243,7 @@
                                         <div class="form-row">
                                             <label id="labelReadingScore" runat="server" for="ReadingScore" class="col-md-3 col-form-label form-label">Reading Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtReading" runat="server" type="text" placeholder="Reading Score" value="" class="form-control">
+                                                <input id="txtReading" runat="server" type="text" placeholder="Enter your Reading component score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icReadingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -254,7 +254,7 @@
                                         <div class="form-row">
                                             <label id="labelListeningScore" runat="server" for="ListeningScore" class="col-md-3 col-form-label form-label">Listening Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtListening" runat="server" type="text" placeholder="Listening Score " value="" class="form-control">
+                                                <input id="txtListening" runat="server" type="text" placeholder="Enter your Listening component score " value="" class="form-control">
                                                 <span class="helpicon"><i id="icListeningScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -265,7 +265,7 @@
                                         <div class="form-row">
                                             <label id="labelSpeakingScore" runat="server" for="SpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtSpeaking" runat="server" type="text" placeholder="Speaking Score" value="" class="form-control">
+                                                <input id="txtSpeaking" runat="server" type="text" placeholder="Enter your Speaking component score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icSpeakingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -276,7 +276,7 @@
                                         <div class="form-row">
                                             <label id="labelWritingScore" runat="server" for="WritingScore" class="col-md-3 col-form-label form-label">Writing Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtWriting" runat="server" type="text" placeholder="Writing Score " value="" class="form-control">
+                                                <input id="txtWriting" runat="server" type="text" placeholder="Enter your Writing component score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icWritingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -301,7 +301,7 @@
                                         <div class="form-row">
                                             <label id="labelptetesttaker" runat="server" for="ptetesttaker" class="col-md-3 col-form-label form-label">Test Taker ID</label>
                                             <div class="col-md-6">
-                                                <input id="txtptetesttaker" runat="server" type="text" placeholder="Test Taker ID" value="" class="form-control">
+                                                <input id="txtptetesttaker" runat="server" type="text" placeholder="Enter your test taker ID" value="" class="form-control">
                                                 <span class="helpicon"><i id="icpteTesttaker" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -312,7 +312,7 @@
                                         <div class="form-row">
                                             <label id="labelpteregistrationno" runat="server" for="pteregistrationno" class="col-md-3 col-form-label form-label">Registration Number </label>
                                             <div class="col-md-6">
-                                                <input id="txtpteregistrationNo" runat="server" type="text" placeholder="Registration No" value="" class="form-control" maxlength="9">
+                                                <input id="txtpteregistrationNo" runat="server" type="text" placeholder="Enter your registration number" value="" class="form-control" maxlength="9">
                                                 <span class="helpicon"><i id="icpteregistrationno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -323,7 +323,7 @@
                                         <div class="form-row">
                                             <label id="labelpteTestDate" runat="server" for="pteTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
                                             <div class="col-md-6">
-                                                <input id="txtpteTestDate" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="">
+                                                <input id="txtpteTestDate" runat="server" type="text" class="form-control" placeholder="Enter your test date" data-toggle="flatpickr" value="">
                                                 <span class="helpicon"><i id="icpteTestDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -344,9 +344,9 @@
                                  <div class="list-group-item" id="ptetestcenterNo" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-ptetestcenterNo">
                                         <div class="form-row">
-                                            <label id="labelptetestcenterNo" runat="server" for="ptetestcenterNo" class="col-md-3 col-form-label form-label">Test Centre No </label>
+                                            <label id="labelptetestcenterNo" runat="server" for="ptetestcenterNo" class="col-md-3 col-form-label form-label">CENTER NUMBER </label>
                                             <div class="col-md-6">
-                                                <input id="txtptetestcenterNo" runat="server" type="text" placeholder="Centre No" value="" class="form-control">
+                                                <input id="txtptetestcenterNo" runat="server" type="text" placeholder="Enter your center number" value="" class="form-control">
                                                 <span class="helpicon"><i id="icptetestcenterNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -356,9 +356,9 @@
                                  <div class="list-group-item" id="pteReadingScore" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-pteReadingScore">
                                         <div class="form-row">
-                                            <label id="labelpteReadingScore" runat="server" for="pteReadingScore" class="col-md-3 col-form-label form-label">Reading Score</label>
+                                            <label id="labelpteReadingScore" runat="server" for="pteReadingScore" class="col-md-3 col-form-label form-label">COMMUNICATIVE SKILLS READING SCORE</label>
                                             <div class="col-md-6">
-                                                <input id="txtpteReadingScore" runat="server" type="text" placeholder="Reading Score" value="" class="form-control">
+                                                <input id="txtpteReadingScore" runat="server" type="text" placeholder="Enter your Reading score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icpteReadingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -369,7 +369,7 @@
                                         <div class="form-row">
                                             <label id="labelpteListeningScore" runat="server" for="pteListeningScore" class="col-md-3 col-form-label form-label">Listening Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtpteListeningScore" runat="server" type="text" placeholder="Listening Score " value="" class="form-control">
+                                                <input id="txtpteListeningScore" runat="server" type="text" placeholder="Enter your Listening score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icpteListeningScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -380,7 +380,7 @@
                                         <div class="form-row">
                                             <label id="labelpteSpeakingScore" runat="server" for="pteSpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtpteSpeakingScore" runat="server" type="text" placeholder="Speaking Score" value="" class="form-control">
+                                                <input id="txtpteSpeakingScore" runat="server" type="text" placeholder="Enter your Speaking score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icpteSpeakingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -391,7 +391,7 @@
                                         <div class="form-row">
                                             <label id="labelpteWritingScore" runat="server" for="pteWritingScore" class="col-md-3 col-form-label form-label">Writing Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtpteWritingScore" runat="server" type="text" placeholder="Writing Score " value="" class="form-control">
+                                                <input id="txtpteWritingScore" runat="server" type="text" placeholder="Enter your Writing score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icpteWritingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -402,7 +402,7 @@
                                         <div class="form-row">
                                             <label id="labelpteTotalScore" runat="server" for="pteTotalScore" class="col-md-3 col-form-label form-label">Total Score</label>
                                             <div class="col-md-6">
-                                                <input id="txtpteTotalScore" runat="server" type="text" placeholder="Total Score" value="" class="form-control">
+                                                <input id="txtpteTotalScore" runat="server" type="text" placeholder="Enter your total score" value="" class="form-control">
                                                 <span class="helpicon"><i id="icpteTotalScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -417,7 +417,7 @@
                                         <div class="form-row">
                                             <label id="labeltofelregistrationno" runat="server" for="tofelregistrationno" class="col-md-3 col-form-label form-label">Registration Number </label>
                                             <div class="col-md-6">
-                                                <input id="txttofelregistrationno" runat="server" type="text" placeholder="Registration No" value="" class="form-control" maxlength="16">
+                                                <input id="txttofelregistrationno" runat="server" type="text" placeholder="Enter your registration number" value="" class="form-control" maxlength="16">
                                                 <span class="helpicon"><i id="ictofelregistrationno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -428,7 +428,7 @@
                                         <div class="form-row">
                                             <label id="labeltofelTestDate" runat="server" for="tofelTestDate" class="col-md-3 col-form-label form-label">Test Date</label>
                                             <div class="col-md-6">
-                                                <input id="txttofelTestDate" runat="server" type="text" class="form-control" placeholder="Test Date" data-toggle="flatpickr" value="">
+                                                <input id="txttofelTestDate" runat="server" type="text" class="form-control" placeholder="Enter your test date" data-toggle="flatpickr" value="">
                                                 <span class="helpicon"><i id="ictofelTestDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -449,9 +449,9 @@
                                  <div class="list-group-item" id="tofelcenterNo" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-tofelcenterNo">
                                         <div class="form-row">
-                                            <label id="labeltofelcenterNo" runat="server" for="tofelcenterNo" class="col-md-3 col-form-label form-label">Test Centre No </label>
+                                            <label id="labeltofelcenterNo" runat="server" for="tofelcenterNo" class="col-md-3 col-form-label form-label">Centre Number </label>
                                             <div class="col-md-6">
-                                                <input id="txttofelcenterNo" runat="server" type="text" placeholder="Centre No" value="" class="form-control">
+                                                <input id="txttofelcenterNo" runat="server" type="text" placeholder="Enter your centre number" value="" class="form-control">
                                                 <span class="helpicon"><i id="itofelcenterNo" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -463,7 +463,7 @@
                                         <div class="form-row">
                                             <label id="labeltofelReadingScore" runat="server" for="tofelReadingScore" class="col-md-3 col-form-label form-label">Reading Score</label>
                                             <div class="col-md-6">
-                                                <input id="txttofelReadingScore" runat="server" type="text" placeholder="Reading Score" value="" class="form-control">
+                                                <input id="txttofelReadingScore" runat="server" type="text" placeholder="Enter your Reading score" value="" class="form-control">
                                                 <span class="helpicon"><i id="ictofelReadingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -474,7 +474,7 @@
                                         <div class="form-row">
                                             <label id="labeltofelListeningScore" runat="server" for="tofelListeningScore" class="col-md-3 col-form-label form-label">Listening Score</label>
                                             <div class="col-md-6">
-                                                <input id="txttofelListeningScore" runat="server" type="text" placeholder="Listening Score " value="" class="form-control">
+                                                <input id="txttofelListeningScore" runat="server" type="text" placeholder="Enter your Listening Score " value="" class="form-control">
                                                 <span class="helpicon"><i id="ictofelListeningScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -485,7 +485,7 @@
                                         <div class="form-row">
                                             <label id="labeltofelSpeakingScore" runat="server" for="tofelSpeakingScore" class="col-md-3 col-form-label form-label">Speaking Score</label>
                                             <div class="col-md-6">
-                                                <input id="txttofelSpeakingScore" runat="server" type="text" placeholder="Speaking Score" value="" class="form-control">
+                                                <input id="txttofelSpeakingScore" runat="server" type="text" placeholder="Enter your Speaking Score" value="" class="form-control">
                                                 <span class="helpicon"><i id="ictofelSpeakingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -496,7 +496,7 @@
                                         <div class="form-row">
                                             <label id="labeltofelWritingScore" runat="server" for="tofelWritingScore" class="col-md-3 col-form-label form-label">Writing Score</label>
                                             <div class="col-md-6">
-                                                <input id="txttofelWritingScore" runat="server" type="text" placeholder="Writing Score " value="" class="form-control">
+                                                <input id="txttofelWritingScore" runat="server" type="text" placeholder="Enter your Writing Score " value="" class="form-control">
                                                 <span class="helpicon"><i id="ictofelWritingScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -507,7 +507,7 @@
                                         <div class="form-row">
                                             <label id="labeltofelTotalScore" runat="server" for="tofelTotalScore" class="col-md-3 col-form-label form-label">Total Score</label>
                                             <div class="col-md-6">
-                                                <input id="txttofelTotalScore" runat="server" type="text" placeholder="Total Score" value="" class="form-control">
+                                                <input id="txttofelTotalScore" runat="server" type="text" placeholder="Enter your Total Score" value="" class="form-control">
                                                 <span class="helpicon"><i id="ictofelTotalScore" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -530,9 +530,9 @@
                             <div class="list-group-item" id="testRefno" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-testRefno">
                                     <div class="form-row">
-                                        <label id="labeltestRefno" runat="server" for="testRefno" class="col-md-3 col-form-label form-label">Test Report Reference No </label>
+                                        <label id="labeltestRefno" runat="server" for="testRefno" class="col-md-3 col-form-label form-label">TEST REPORT REFERENCE NUMBER </label>
                                         <div class="col-md-6">
-                                            <input id="txttestRefno" runat="server" type="text" placeholder="Report Reference Number" value="" class="form-control">
+                                            <input id="txttestRefno" runat="server" type="text" placeholder="Enter your test report reference number" value="" class="form-control">
                                             <span class="helpicon"><i id="ictestRefno" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -565,7 +565,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             

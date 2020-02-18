@@ -59,9 +59,9 @@
                     <div class="card-body">
                         <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                         <div class="form-group">
-                            <label class="form-label" for="password">Old Password:</label>
+                            <label class="form-label" for="password">Old Password / OTP:</label>
                             <div class="input-group input-group-merge">
-                                <input id="oldpassword" type="password" runat="server" class="form-control form-control-prepended" placeholder="Choose a password">
+                                <input id="oldpassword" type="password" runat="server" class="form-control form-control-prepended" placeholder="Enter your old password / OTP">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-key"></span>
@@ -70,9 +70,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="password">Password:</label>
+                            <label class="form-label" for="password">NEW PASSWORD:</label>
                             <div class="input-group input-group-merge">
-                                <input id="newpassword" type="password" runat="server" class="form-control form-control-prepended" placeholder="Choose a password">
+                                <input id="newpassword" type="password" runat="server" class="form-control form-control-prepended" placeholder="Enter your new password">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-key"></span>
@@ -81,9 +81,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="form-label" for="password">Confirm Password:</label>
+                            <label class="form-label" for="password">CONFIRM NEW PASSWORD:</label>
                             <div class="input-group input-group-merge">
-                                <input id="confirmpassword" type="password" runat="server" class="form-control form-control-prepended" placeholder="Choose a password">
+                                <input id="confirmpassword" type="password" runat="server" class="form-control form-control-prepended" placeholder="Re-enter your new password">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-key"></span>
@@ -91,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                        <asp:Button ID="btnSignUp" runat="server" Text="Reset password" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" />
+                        <asp:Button ID="btnSignUp" runat="server" Text="Reset Password" CssClass="btn btn-primary btn-block mb-3" OnClick="btnSignUp_Click" />
                     </div>
                     <div class="card-footer text-center text-black-50">Already signed up? <a href="login.aspx">Login</a></div>
                 </div>

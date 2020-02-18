@@ -95,16 +95,16 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         icemployerwebsite.Attributes.Add("style", "display:block;");
                         icemployerwebsite.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "NAME OF ORGANIZATION":
+                    case "NAME OF EMPLOYER ORGANISATION":
                         icemployer.Attributes.Add("style", "display:block;");
                         icemployer.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
 
-                    case "CITY":
+                    case "CITY OF EMPLOYER’S LOCATION":
                         icemployercity.Attributes.Add("style", "display:block;");
                         icemployercity.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COUNTRY":
+                    case "COUNTRY OF EMPLOYER’S LOCATION":
                         icemployercountry.Attributes.Add("style", "display:block;");
                         icemployercountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -112,15 +112,15 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         icposition.Attributes.Add("style", "display:block;");
                         icposition.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "START DATE":
+                    case "START DATE OF EMPLOYMENT":
                         icstartdate.Attributes.Add("style", "display:block;");
                         icstartdate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "END DATE":
+                    case "END DATE OF EMPLOYMENT":
                         icenddate.Attributes.Add("style", "display:block;");
                         icenddate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "BRIEF DESCRIPTION OF WHAT YOU DID":
+                    case "BRIEF JOB DESCRIPTION":
                         icemploymentInfo.Attributes.Add("style", "display:block;");
                         icemploymentInfo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -144,7 +144,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         iclinkedin.Attributes.Add("style", "display:block;");
                         iclinkedin.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "How many years of work experience Do You Wish To Record":
+                    case "HOW MANY YEARS OF WORK EXPERIENCE DO YOU WISH TO RECORD?":
                         icyearsOfexp.Attributes.Add("style", "display:block;");
                         icyearsOfexp.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -216,16 +216,16 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         employerwebsite.Attributes.Add("style", "display:block;");
                         labelemployerwebsite.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "NAME OF ORGANIZATION":
+                    case "NAME OF EMPLOYER ORGANISATION":
                         employer.Attributes.Add("style", "display:block;");
                         labelemployer.InnerHtml = setInnerHtml(fields[k]);
                         break;
 
-                    case "CITY":
+                    case "CITY OF EMPLOYER’S LOCATION":
                         employercity.Attributes.Add("style", "display:block;");
                         labelemployercity.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY":
+                    case "COUNTRY OF EMPLOYER’S LOCATION":
                         employercountry.Attributes.Add("style", "display:block;");
                         labelemployercountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -233,15 +233,15 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         position.Attributes.Add("style", "display:block;");
                         labelposition.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "START DATE":
+                    case "START DATE OF EMPLOYMENT":
                         startdate.Attributes.Add("style", "display:block;");
                         labelstartdate.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "END DATE":
+                    case "END DATE OF EMPLOYMENT":
                         endate.Attributes.Add("style", "display:block;");
                         labelendate.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "BRIEF DESCRIPTION OF WHAT YOU DID":
+                    case "BRIEF JOB DESCRIPTION":
                         briefDescription.Attributes.Add("style", "display:block;");
                         labelbriefDescription.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -265,7 +265,7 @@ public partial class applicantworkexperience : System.Web.UI.Page
                         linkedin.Attributes.Add("style", "display:block;");
                         labellinkedin.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "How many years of work experience Do You Wish To Record":
+                    case "HOW MANY YEARS OF WORK EXPERIENCE DO YOU WISH TO RECORD?":
                         yearsOfexp.Attributes.Add("style", "display:block;");
                         labelyearsOfexp.InnerHtml = setInnerHtml(fields[k]);
                         break;

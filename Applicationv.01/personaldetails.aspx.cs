@@ -124,7 +124,7 @@ public partial class personaldetails : System.Web.UI.Page
             //ddl.Items.Add(new ListItem("Please select", "0"));
             for (int i = 1; i <= 12; i++)
             {
-                ddl.Items.Add(new ListItem(info.GetMonthName(i).Substring(0, 3).ToUpper(), i.ToString()));
+                ddl.Items.Add(new ListItem(info.GetMonthName(i), i.ToString()));
             }
         }
         catch (Exception ex)
@@ -633,7 +633,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icMarital.Attributes.Add("style", "display:block;");
                         icMarital.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
+                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT OR LONG-TERM CONDITION? ":
                         icdisability.Attributes.Add("style", "display:block;");
                         icdisability.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -641,7 +641,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icdisabilitydescription.Attributes.Add("style", "display:block;");
                         icdisabilitydescription.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "ARE YOU REFERRED BY AGENT":
+                    case "ARE YOU REFERRED BY AN AGENT?":
                         icAgent.Attributes.Add("style", "display:block;");
                         icAgent.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -649,7 +649,7 @@ public partial class personaldetails : System.Web.UI.Page
                         icAgentList.Attributes.Add("style", "display:block;");
                         icAgentList.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IF DIDN'T FIND AGENT NAME IN THE LIST THEN ADD HIS EMAIL ID TO SENT REGISTRATION LINK":
+                    case "IF YOU DIDN’T FIND YOUR AGENT NAME IN THE LIST, ADD YOUR AGENT’S EMAILL ID TO SEND THEM A REGISTRATION LINK":
                         icNewAgent.Attributes.Add("style", "display:block;");
                         icNewAgent.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -754,7 +754,7 @@ public partial class personaldetails : System.Web.UI.Page
                         marital.Attributes.Add("style", "display:block;");
                         labelMarital.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
+                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT OR LONG-TERM CONDITION? ":
                         disability.Attributes.Add("style", "display:block;");
                         labeldisability.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -762,23 +762,23 @@ public partial class personaldetails : System.Web.UI.Page
                         disabilitydesc.Attributes.Add("style", "display:block;");
                         labeldisabilitydesc.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "ARE YOU REFERRED BY AGENT":
+                    case "ARE YOU REFERRED BY AN AGENT?":
                         agent.Attributes.Add("style", "display:block;");
                         labelagent.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "AGENT NAME":
                         agentList.Attributes.Add("style", "display:block;");
                         labelagentList.InnerHtml = setInnerHtml(fields[k]);
-                        break;
-                    case "IF DIDN'T FIND AGENT NAME IN THE LIST THEN ADD HIS EMAIL ID TO SENT REGISTRATION LINK":
+                        break;                        
+                    case "IF YOU DIDN’T FIND YOUR AGENT NAME IN THE LIST, ADD YOUR AGENT’S EMAILL ID TO SEND THEM A REGISTRATION LINK":
                         addnewagent.Attributes.Add("style", "display:block;");
                         labeladdnewagent.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Highest study level successfully completed":
+                    case "HIGHEST LEVEL OF STUDY SUCCESSFULLY COMPLETED":
                         higheststudy.Attributes.Add("style", "display:block;");
                         lblhigheststudy.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Highest study successfully completed field":
+                    case "HIGHEST FIELD OF STUDY SUCCESSFULLY COMPLETED":
                         fieldstudy.Attributes.Add("style", "display:block;");
                         lblfieldstudy.InnerHtml = setInnerHtml(fields[k]);
                         break;

@@ -105,27 +105,27 @@ public partial class applicantreview : System.Web.UI.Page
             {
                 case "Contact Details":
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantcontactdetail.aspx?formid=2';", true);
+                    "alert('Please complete the " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantcontactdetail.aspx?formid=2';", true);
                     break;                                                                              
                 case "Personal Details":                                                                
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
-                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "personaldetails.aspx?formid=1';", true);
+                    "alert('Please complete the " + pageDetail + " section to proceed.');window.location='" + webURL + "personaldetails.aspx?formid=1';", true);
                     break;                                                                              
                 case "Social Profile":                                                                  
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
-                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantsocial.aspx?formid=8';", true);
+                    "alert('Please complete the " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantsocial.aspx?formid=8';", true);
                     break;                                                                              
                 case "Identification":                                                                  
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
-                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "knowyourstudent.aspx?formid=3';", true);
+                    "alert('Please complete the " + pageDetail + " section to proceed.');window.location='" + webURL + "knowyourstudent.aspx?formid=3';", true);
                     break;                                                                              
                 case "Education Qualification":                                                         
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
-                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicanteducation.aspx?formid=4';", true);
+                    "alert('Please complete the " + pageDetail + " section to proceed.');window.location='" + webURL + "applicanteducation.aspx?formid=4';", true);
                     break;                                                                              
                 case "English Competency":                                                              
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",       
-                    "alert('Please complete " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantlanguage.aspx?formid=5';", true);
+                    "alert('Please complete the " + pageDetail + " section to proceed.');window.location='" + webURL + "applicantlanguage.aspx?formid=5';", true);
                     break;
                 default:
                     Response.Redirect(webURL + "default.aspx", true);

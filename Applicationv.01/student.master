@@ -261,7 +261,7 @@
                                             </li>
                                             <li class="sidebar-menu-item" id="clarificationquestion">
                                                 <a class="sidebar-menu-button" href="clarificationquestion.aspx">
-                                                    <span class="sidebar-menu-text">Clarification Question</span>
+                                                    <span class="sidebar-menu-text">Clarification Question(s)</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="uploaddocuments">
@@ -285,7 +285,7 @@
                                             </li>    
                                             <li class="sidebar-menu-item" id="your_sop">
                                                 <a class="sidebar-menu-button" href="applicant_sop.aspx">
-                                                    <span class="sidebar-menu-text">Your SOP</span>
+                                                    <span class="sidebar-menu-text">SOP / Essay</span>
                                                 </a>
                                             </li>
                                             <li class="sidebar-menu-item" id="applicantcredittransfer">

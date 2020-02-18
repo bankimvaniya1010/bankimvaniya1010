@@ -240,7 +240,7 @@ or Australian mission overseas.</div>
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="Div3" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">

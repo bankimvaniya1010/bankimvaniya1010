@@ -10,7 +10,7 @@
         <h1 class="h2">WELCOME TO THE APPLICATION CENTER</h1>
         <div id="domesticDiv" runat="server" class="form-group" style="display: none">
             <div class="col-lg-8 list-group-item">
-                <label class="form-label" for="password">Are you an Australian citizen, an Australian Permanent Residency Visa holder or a citizen of New Zealand ?</label>
+                <label class="form-label" for="password">Are you an Australian Citizen, an Australian Permanent Resident or a Citizen of New Zealand?</label>
                 <div class="input-group input-group-merge">
                     <asp:RadioButton ID="rblYes" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="Yes" />
                     <asp:RadioButton ID="rblNo" runat="server" CssClass="form-control frm-cntrl-rdo" GroupName="residency" Text="No" />
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        Welcome to the Application Center. In this Application Center portal, you will be able to:
+                        In this Application Center portal, you will be able to:
                     </div>
                     <div>
                         <ol>
@@ -58,7 +58,7 @@
                         <%  if (allQuestions.Count > 0)
                             { %>
                         <div id="question" runat="server">
-                            <h5>FAQ's</h5>
+                            <h5>Frequently Asked Questions (FAQs)</h5>
                             <div class="">
                                 <%for (int q = 0; q < allQuestions.Count; q++)
                                     {%>

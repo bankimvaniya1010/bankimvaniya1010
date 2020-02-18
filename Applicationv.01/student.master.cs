@@ -81,7 +81,7 @@ public partial class admin : System.Web.UI.MasterPage
 
     private void Bindseclanguagelist()
     {
-        ListItem lst = new ListItem("Please select", "0");
+        ListItem lst = new ListItem("Select Language", "0");
         var slm = db.secondarylanguagemaster.ToList();
         ddlseclanguage.DataSource = slm;
         ddlseclanguage.DataTextField = "secondarylanguagename";

@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Clarification Question</li>
+            <li class="breadcrumb-item active">CLARIFICATION QUESTION(S)</li>
         </ol>
-        <h1 class="h2">CLARIFICATION QUESTION
+        <h1 class="h2">CLARIFICATION QUESTION(S)
 
         </h1>
 
@@ -58,7 +58,8 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row">
-                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" Visible="false"/>                                          
+                                        <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" Visible="false"/>
+                                        
                                         <div class="col-md-6">
                                              <asp:Label ID="LabelMessage" runat="server" text=""></asp:Label>      
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
@@ -66,7 +67,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                           
+                            </div>
+                            <div class="list-group-item" id="">
+                                <div class="form-group m-0">
+                                    <div class="form-row">
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Documents Upload" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
+                                        <div class="col-md-6">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
 
                         </div>
                     </div>
@@ -82,7 +92,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             
