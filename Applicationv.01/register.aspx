@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <label class="form-label" for="name">Name:</label>
                             <div class="input-group input-group-merge">
-                                <input id="name" type="text" runat="server" class="form-control form-control-prepended" placeholder="Name">
+                                <input id="name" type="text" runat="server" class="form-control form-control-prepended" placeholder="Enter your full name">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <span class="far fa-user"></span>

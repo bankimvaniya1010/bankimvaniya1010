@@ -27,7 +27,7 @@
                             <div class="list-group-item">
                                 <label class="form-group m-0" for="enrollmentyear" aria-labelledby="label-password"></label>
                                 <div class="form-row">
-                                    <label id="lblEnrol" for="exsistingpassword" class="col-md-3 col-form-label form-label">When you want to enrol</label>
+                                    <label id="lblEnrol" for="exsistingpassword" class="col-md-3 col-form-label form-label">WHICH YEAR DO YOU WANT TO ENROL?</label>
                                     <div class="col-md-6">
                                         <div class="form-check-inline">
                                             <div class="form-check-label"><asp:RadioButton ID="rblYear1" runat="server" GroupName="enrollmentyear" /></div>
@@ -89,7 +89,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             

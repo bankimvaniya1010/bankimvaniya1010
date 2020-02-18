@@ -58,19 +58,18 @@
                     </div>
                     <div class="card-body">
                         <p>
-                            Thank you for registering to apply for admission to
-                        <%=universityName %>
+                            Thank you for registering with <%=universityName %> – Application Centre.                        
                         </p>
-                        <p>Your Username is: <%=email %></p>
-                        <br />
+                        <p>Your Username is:<b> <%=email %> </b></p>                        
                         <p>
-                            An email has been sent to <%=email %>, along with a one time use password. Please use your username and one-time-password to log into the Application Center for the first time. On your first sign in you would be prompted to change the password.                            
+                            An email has been sent to <%=email %> along with a one-time password (OTP). Please use your given username and OTP to login to the Application Centre for the first time.On your first login, you will be asked to set a new password. Be sure to set a password that you can easily remember. In case you forget your password, you could always click on "Forget Password?" on the Student Login page and set a new one.
                         </p>
                         <p>
-                            If the above-mentioned email is not in your inbox, please check your "Junk Mail" or "Spam Folder" as it may have been redirected there by your email service provider.
-                        </p>
-                        <br />
-                       To log in to the <%=universityName %> Application Center click here <a href="login.aspx">Login</a>
+                            If an email from us is not in your Inbox, please check your 'Junk Mail' or 'Spam Folder' as it may have been redirected by your email service provider.
+                        </p>                        
+                        <p>
+                            To login to <%=universityName %> – Application Centre, click <a href="login.aspx">here</a>.
+                        </p>                       
 
                     </div>
                    

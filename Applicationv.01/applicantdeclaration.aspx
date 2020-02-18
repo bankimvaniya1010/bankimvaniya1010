@@ -74,12 +74,11 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
+                            <h2 style="font-size: 24px">Instructions:</h2><br />
                             <ol style="font-size:small; padding-left:15px">
-                                <li>Completing this section is mandatory.</li><br/>
-                                <li>Please Read the attached documents carefully and watch the recommended videos.</li><br/>
-                                <li>Take a quick test to check the knowledge you have gained after reading the suggested documents and watching the videos. Please note that you can proceed to the next section only if you achieve a 65% above.</li><br/>
-                                <li>Lastly, please accept the declarations given below.</li>
+                                <li>Completing this section is mandatory</li><br/>
+                                <li>Please read all the conditions given on the left carefully.</li><br/>
+                                <li>After you agree to all the conditions, click on the ‘I Accept’ button to proceed further.</li><br/>                                
                             </ol>
                         </div>
                     </div>
@@ -92,7 +91,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             

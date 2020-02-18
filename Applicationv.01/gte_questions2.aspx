@@ -74,7 +74,7 @@
                             <%  if (allfaqQuestion.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allfaqQuestion.Count; q++)
                                         {%>  <div class="star-list">                                                             

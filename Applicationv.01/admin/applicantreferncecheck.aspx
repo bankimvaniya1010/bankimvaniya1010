@@ -238,12 +238,12 @@
             <li class="breadcrumb-item active">Applicant Reference Check</li>
         </ol>
         <h1 class="h2">Applicant Reference Check</h1>
-        <div class="card">
+        <div class="">
             <div class="list-group list-group-fit">
                 <asp:HiddenField ID="hdnValue" runat="server" />
 
                 <div class="card">
-                    <% 
+                    <% if(referenccheckList.Count > 0) { 
                         for (int k = 0; k < referenccheckList.Count; k++)
                         {
 
@@ -318,7 +318,7 @@
                             </div>
                         </div>
 
-                        <%} %>
+                         <%} %>
                         <div id="mainDiv" runat="server"></div>
                         <div class="list-group-item" id="employerwebsite">
                             <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
@@ -332,7 +332,16 @@
                             </div>
                         </div>
                     </div>
-
+                    <%}
+                        else if (referenccheckList.Count == 0) { %>
+                    <div class="list-group-item">
+                        <div class="form-group m-0" role="group" aria-labelledby="label-employment">
+                            <div class="form-row">
+                                <label id="norecord" for="employment" class="col-md-12 col-form-label form-label">NO Data Found</label>
+                            </div>
+                        </div>
+                    </div>
+                    <%} %>
                 </div>
 
             </div>

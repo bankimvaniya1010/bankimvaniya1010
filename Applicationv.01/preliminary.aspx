@@ -21,7 +21,7 @@
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
-                    <h5>Please Read The Following Documents:</h5>
+                    <h5>Please read the following documents:</h5>
                     <div class="pdf-container clearfix">
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
@@ -42,7 +42,7 @@
                     {
                     %>
                 <div class="card video-container" id="video" runat="server">
-                     <h5>Please Watch The Following Videos:</h5>
+                     <h5>Please watch the following videos:</h5>
                        <div class="row">
                       <%for (int v = 0; v < allDocuments.Count; v++)
                           {
@@ -91,13 +91,13 @@
                     <div class="card-body">
                         <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
                         <ol style="font-size:small; padding-left:15px">
-	                        <li>Completing this section is mandatory.</li><br />
-	                        <li>Read the attached documents and watch the videos carefully.</li><br />
-	                        <li>Please accept the declaration that you have successfully reviewed and understood the information.</li><br />
-	                        <li>Take a quick test to check your knowledge.</li><br />
-	                        <li>To go to the next section you need to successfully answer the test question and achieve >65% grade.</li><br />
+	                        <li>Completing this section is necessary</li><br />
+	                        <li>Read all the attached documents in detail and watch the given videos carefully</li><br />
+	                        <li>Accept the declaration given below that you have read the documents and watched the videos required</li><br />
+	                        <li>Click on ‘Next’ to proceed to Step 2 of the Tutorial.</li><br />
+	                        <%--<li>To go to the next section you need to successfully answer the test question and achieve >65% grade.</li><br />
 	                        <li>Else you would required to take the test again post going through the tutorial again.</li><br />
-	                        <li>Lastly please accept the declarations.</li>
+	                        <li>Lastly please accept the declarations.</li>--%>
                         </ol>
                     </div>
                 </div>
@@ -110,7 +110,7 @@
                             <%  if (allQuestions.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                    <h5>FAQ's</h5>
+                                    <h5>Frequently Asked Questions (FAQs)</h5>
                                     <div class="">
                                     <%for (int q = 0; q < allQuestions.Count; q++)
                                         {%>  <div class="star-list">                                                             

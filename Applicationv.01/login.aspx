@@ -109,9 +109,9 @@
                             </div>
                         </asp:Panel>
                             <div class="form-group">
-                                <label class="form-label" >Enter your Username:</label>
+                                <label class="form-label" >USERNAME :</label>
                                 <div class="input-group input-group-merge">
-                                    <asp:TextBox ID="txtUser" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter username"></asp:TextBox>
+                                    <asp:TextBox ID="txtUser" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter your username"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Enter user name" ControlToValidate="txtUser" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
 
 
@@ -126,7 +126,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="password">PASSWORD/OTP:</label>
                                 <div class="input-group input-group-merge">
-                                    <asp:TextBox ID="txt_pass" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter your Password" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="txt_pass" runat="server" CssClass="form-control form-control-prepended" placeholder="Enter your password" TextMode="Password"></asp:TextBox>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter Password" ControlToValidate="txt_pass" Display="Dynamic" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">

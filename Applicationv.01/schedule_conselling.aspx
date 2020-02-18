@@ -6,11 +6,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Schedule Conselling
+            <li class="breadcrumb-item active">Schedule COUNSELLING
 
             </li>
         </ol>
-        <h1 class="h2">Schedule a Free 1-on-1 Session with our Counselors</h1>
+        <h1 class="h2">Schedule a FREE 1-on-1 session with our Counsellors</h1>
     </div>
     <div class="page">
         <div class="container page__container">
@@ -34,7 +34,7 @@
                             <%  if (allfaqQuestion.Count > 0)
                                 { %>
                             <div id="question" runat="server">
-                                <h5>FAQ's</h5>
+                                <h5>Frequently Asked Questions (FAQs)</h5>
                                 <div class="">
                                     <%for (int q = 0; q < allfaqQuestion.Count; q++)
                                         {%>
