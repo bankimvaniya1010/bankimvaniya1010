@@ -119,11 +119,11 @@ public partial class applicantlanguage : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
+                    case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                         homelanguage.Attributes.Add("style", "display:block;");
                         labelhomelanguage.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
+                    case "HAVE YOU STUDIED AN ELICOS COURSE?":
                         EnglishBackground.Attributes.Add("style", "display:block;");
                         labelEnglishBackground.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -163,7 +163,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         CEFR.Attributes.Add("style", "display:block;");
                         labelCEFR.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "TEST REPORT REFERENCE NO":
+                    case "TEST REPORT REFERENCE NUMBER":
                         testRefno.Attributes.Add("style", "display:block;");
                         labeltestRefno.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -171,7 +171,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         ExpectedDategrade.Attributes.Add("style", "display:block;");
                         labelExpectedDategrade.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                    case "HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?":
                         EnglishTest.Attributes.Add("style", "display:block;");
                         labelEnglishTest.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -181,7 +181,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         testName.Attributes.Add("style", "display:block;");
                         labeltestName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "CANDIDATE NO":
+                    case "CANDIDATE NUMBER":
                         CandidateNo.Attributes.Add("style", "display:block;");
                         labelCandidateNo.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -189,7 +189,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         CandidateID.Attributes.Add("style", "display:block;");
                         labelCandidateID.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "CENTRE NO":
+                    case "CENTER NUMBER":
                         CentreNo.Attributes.Add("style", "display:block;");
                         labelCentreNo.InnerHtml = setInnerHtml(fields[k]);                        
                         labelptetestcenterNo.InnerHtml = setInnerHtml(fields[k]);                        
@@ -224,19 +224,19 @@ public partial class applicantlanguage : System.Web.UI.Page
                         break;
                     //PTE
                   
-                    case "COMMUNICATIVE SKILLS READING":
+                    case "COMMUNICATIVE SKILLS READING SCORE":
                         pteReadingScore.Attributes.Add("style", "display:block;");
                         labelpteReadingScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COMMUNICATIVE SKILLS LISTENING":
+                    case "COMMUNICATIVE SKILLS LISTENING SCORE":
                         pteListeningScore.Attributes.Add("style", "display:block;");
                         labelpteListeningScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COMMUNICATIVE SKILLS SPEAKING":
+                    case "COMMUNICATIVE SKILLS SPEAKING SCORE":
                         pteSpeakingScore.Attributes.Add("style", "display:block;");
                         labelpteSpeakingScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COMMUNICATIVE SKILLS WRITING":
+                    case "COMMUNICATIVE SKILLS WRITING SCORE":
                         pteWritingScore.Attributes.Add("style", "display:block;");
                         labelpteWritingScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -338,11 +338,11 @@ public partial class applicantlanguage : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
+                    case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                         ichomelanguage.Attributes.Add("style", "display:block;");
                         ichomelanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
+                    case "HAVE YOU STUDIED AN ELICOS COURSE?":
                         icEnglishBackground.Attributes.Add("style", "display:block;");
                         icEnglishBackground.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;                   
@@ -382,7 +382,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         icgradeachieved.Attributes.Add("style", "display:block;");
                         icgradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                    case "HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?":
                         icEnglishTest.Attributes.Add("style", "display:block;");
                         icEnglishTest.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -391,7 +391,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         ictestName.Attributes.Add("style", "display:block;");
                         ictestName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "CANDIDATE NO":
+                    case "CANDIDATE NUMBER":
                         icCandidateNo.Attributes.Add("style", "display:block;");
                         icCandidateNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -399,7 +399,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         icCandidateID.Attributes.Add("style", "display:block;");
                         icCandidateID.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "CENTRE NO":
+                    case "CENTER NUMBER":
                         icCenterno.Attributes.Add("style", "display:block;");
                         icCenterno.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -449,19 +449,19 @@ public partial class applicantlanguage : System.Web.UI.Page
                         icptetestcenterNo.Attributes.Add("style", "display:block;");
                         icptetestcenterNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COMMUNICATIVE SKILLS READING":
+                    case "COMMUNICATIVE SKILLS READING SCORE":
                         icpteReadingScore.Attributes.Add("style", "display:block;");
                         icpteReadingScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COMMUNICATIVE SKILLS LISTENING":
+                    case "COMMUNICATIVE SKILLS LISTENING SCORE":
                         icpteListeningScore.Attributes.Add("style", "display:block;");
                         icpteListeningScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COMMUNICATIVE SKILLS SPEAKING":
+                    case "COMMUNICATIVE SKILLS SPEAKING SCORE":
                         icpteSpeakingScore.Attributes.Add("style", "display:block;");
                         icpteSpeakingScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COMMUNICATIVE SKILLS WRITING":
+                    case "COMMUNICATIVE SKILLS WRITING SCORE":
                         icpteWritingScore.Attributes.Add("style", "display:block;");
                         icpteWritingScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -516,7 +516,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                         icCEFR.Attributes.Add("style", "display:block;");
                         icCEFR.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "TEST REPORT REFERENCE NO":
+                    case "TEST REPORT REFERENCE NUMBER":
                         ictestRefno.Attributes.Add("style", "display:block;");
                         ictestRefno.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;

@@ -306,7 +306,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                         icCountryofIssue.Attributes.Add("style", "display:block;");
                         icCountryofIssue.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "EXPIRY DATE":
+                    case "PASSPORT EXPIRY DATE":
                         icPassportExpiryDate.Attributes.Add("style", "display:block;");
                         icPassportExpiryDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -410,7 +410,7 @@ public partial class knowyourstudent : System.Web.UI.Page
                         countryIssue.Attributes.Add("style", "display:block;");
                         labelcountryIssue.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "EXPIRY DATE":
+                    case "PASSPORT EXPIRY DATE":
                         expirydate.Attributes.Add("style", "display:block;");
                         labelexpirydate.InnerHtml = setInnerHtml(fields[k]);
                         break;

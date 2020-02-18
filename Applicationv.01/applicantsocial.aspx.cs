@@ -73,15 +73,15 @@ public partial class applicantsocial : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "LINK TO YOUR LINKEDIN PROFILE":
+                    case "LINKEDIN PROFILE":
                         icLinkedin.Attributes.Add("style", "display:block;");
                         icLinkedin.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "LINK TO YOUR FACEBOOK PROFILE":
+                    case "FACEBOOK PROFILE":
                         icFacebook.Attributes.Add("style", "display:block;");
                         icFacebook.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "LINK TO YOUR TWITTER HANDLE":
+                    case "TWITTER HANDLE":
                         icTwitter.Attributes.Add("style", "display:block;");
                         icTwitter.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -182,15 +182,15 @@ public partial class applicantsocial : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "LINK TO YOUR LINKEDIN PROFILE":
+                    case "LINKEDIN PROFILE":
                         linkedin.Attributes.Add("style", "display:block;");
                         labellinked.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LINK TO YOUR FACEBOOK PROFILE":
+                    case "FACEBOOK PROFILE":
                         facebook.Attributes.Add("style", "display:block;");
                         labelfacebook.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LINK TO YOUR TWITTER HANDLE":
+                    case "TWITTER HANDLE":
                         twitter.Attributes.Add("style", "display:block;");
                         labeltwitter.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -277,9 +277,9 @@ public partial class applicantsocial : System.Web.UI.Page
         SaveSocialDetails();
     }
 
-    //protected void gotoNextPage_Click(object sender, EventArgs e)
-    //{
-    //    SaveSocialDetails();
-    //    Response.Redirect(webURL + "applicantrefrencecheck.aspx?formid=6", true);
-    //}
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        SaveSocialDetails();
+        Response.Redirect(webURL + "applicantrefrencecheck.aspx?formid=6", true);
+    }
 }

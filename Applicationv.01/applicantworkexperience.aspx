@@ -94,7 +94,7 @@
 
                                 </div>
                             </div>
-                            <a class="btn btn-success" style="width: 200px;margin:10px;" role="button" href="javascript:void(0)" onclick="toggleDisplay()">Add work experience</a>
+                            <a class="btn btn-success" style="width: 200px;margin:10px;" role="button" href="javascript:void(0)" onclick="toggleDisplay()">Add Work Experience</a>
                             <div id="employment" runat="server" style="display: none;">
                                 <div class="list-group-item" id="employmentInfo" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employment">
@@ -121,7 +121,7 @@
                                     <div class="list-group-item" id="yearsOfexp" runat="server" style="display: none;">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-yearsOfexp">
                                             <div class="form-row">
-                                                <label id="labelyearsOfexp" runat="server" for="yearsOfexp" class="col-md-3 col-form-label form-label">How many years of work experience Do You Wish To Record </label>
+                                                <label id="labelyearsOfexp" runat="server" for="yearsOfexp" class="col-md-3 col-form-label form-label">HOW MANY YEARS OF WORK EXPERIENCE DO YOU WISH TO RECORD? </label>
                                                 <div class="col-md-6">
                                                     <asp:DropDownList ID="ddlworkexperience" CssClass="form-control" runat="server">
                                                     </asp:DropDownList>
@@ -133,9 +133,9 @@
                                     <div class="list-group-item" id="employer" runat="server" style="display: none;">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-employer">
                                             <div class="form-row">
-                                                <label id="labelemployer" runat="server" for="employer" class="col-md-3 col-form-label form-label">Name of Organization </label>
+                                                <label id="labelemployer" runat="server" for="employer" class="col-md-3 col-form-label form-label">NAME OF EMPLOYER ORGANISATION</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtEmployer" runat="server" type="text" class="form-control" placeholder="Name of Organization ">
+                                                    <input id="txtEmployer" runat="server" type="text" class="form-control" placeholder="Enter the name of your employer organisation">
                                                     <span class="helpicon"><i id="icemployer" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
@@ -156,9 +156,9 @@
                                     <div class="list-group-item" id="employercity" runat="server" style="display: none">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-employercity">
                                             <div class="form-row">
-                                                <label id="labelemployercity" runat="server" for="employercity" class="col-md-3 col-form-label form-label">City</label>
+                                                <label id="labelemployercity" runat="server" for="employercity" class="col-md-3 col-form-label form-label">CITY OF EMPLOYER’S LOCATION</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtCity" runat="server" type="text" class="form-control" placeholder="City "><span class="helpicon"><i id="icemployercity" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
+                                                    <input id="txtCity" runat="server" type="text" class="form-control" placeholder="Enter the name of the city where your employer is /was located "><span class="helpicon"><i id="icemployercity" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@
                                     <div class="list-group-item" id="employercountry" runat="server" style="display: none">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-employercountry">
                                             <div class="form-row">
-                                                <label id="labelemployercountry" runat="server" for="employercountry" class="col-md-3 col-form-label form-label">Country</label>
+                                                <label id="labelemployercountry" runat="server" for="employercountry" class="col-md-3 col-form-label form-label">COUNTRY OF EMPLOYER’S LOCATION</label>
                                                 <div class="col-md-6">
                                                     <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control">
                                                     </asp:DropDownList><span class="helpicon"><i id="icemployercountry" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
@@ -179,7 +179,7 @@
                                             <div class="form-row">
                                                 <label id="labelposition" runat="server" for="position" class="col-md-3 col-form-label form-label">Position/Role in</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtPosition" runat="server" type="text" class="form-control" placeholder="Designation/Position"><span class="helpicon"><i id="icposition" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
+                                                    <input id="txtPosition" runat="server" type="text" class="form-control" placeholder="Enter your position / role in employer organisation"><span class="helpicon"><i id="icposition" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,9 +188,9 @@
                                     <div class="list-group-item" id="startdate" runat="server" style="display: none">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-startdate">
                                             <div class="form-row">
-                                                <label id="labelstartdate" runat="server" for="startdate" class="col-md-3 col-form-label form-label">Start Date</label>
+                                                <label id="labelstartdate" runat="server" for="startdate" class="col-md-3 col-form-label form-label">START DATE OF EMPLOYMENT</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icstartdate" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
+                                                    <input id="txtStartDate" runat="server" type="text" class="form-control" placeholder="Enter the start date of your employment" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icstartdate" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -198,10 +198,10 @@
                                     <div class="list-group-item" id="endate" runat="server" style="display: none">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-endate">
                                             <div class="form-row">
-                                                <label id="labelendate" runat="server" for="endate" class="col-md-3 col-form-label form-label">End Date</label>
+                                                <label id="labelendate" runat="server" for="endate" class="col-md-3 col-form-label form-label">END DATE OF EMPLOYMENT</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtEndate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icenddate" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
-                                                    <asp:CheckBox ID="chkCurrentlyWorking" runat="server" Text="Currently Work Here" class="form-label"/>
+                                                    <input id="txtEndate" runat="server" type="text" class="form-control" placeholder="Enter the end date of your employment" data-toggle="flatpickr" value=""><span class="helpicon"><i id="icenddate" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
+                                                    <asp:CheckBox ID="chkCurrentlyWorking" runat="server" Text="I am currently working at this employer organisation." class="form-label"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -209,9 +209,9 @@
                                     <div class="list-group-item" id="briefDescription" runat="server" style="display: none">
                                         <div class="form-group m-0" role="group" aria-labelledby="label-briefDescription">
                                             <div class="form-row">
-                                                <label id="labelbriefDescription" runat="server" for="briefDescription" class="col-md-3 col-form-label form-label">Brief Description of what you did</label>
+                                                <label id="labelbriefDescription" runat="server" for="briefDescription" class="col-md-3 col-form-label form-label">BRIEF JOB DESCRIPTION</label>
                                                 <div class="col-md-6">
-                                                    <input id="txtbriefDescription" runat="server" type="text" class="form-control" placeholder="Brief Description of what you did"><span class="helpicon"><i id="icbriefDescription" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
+                                                    <input id="txtbriefDescription" runat="server" type="text" class="form-control" placeholder="Enter a brief description of what you did here"><span class="helpicon"><i id="icbriefDescription" runat="server" class="fa fa-info-circle" style="display: none"></i></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -272,8 +272,8 @@
                                 <div class="list-group-item">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                         <div class="form-row justify-content-between">
-                                            <asp:Button ID="btn_Save" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_Save_Click" OnClientClick="return validateForm()" />
-                                            <asp:Button ID="gotoNextPage" runat="server" Text="Go To Social" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>                                                                                    
+                                            <asp:Button ID="btn_Save" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btn_Save_Click" OnClientClick="return validateForm()" />
+                                            <asp:Button ID="gotoNextPage" runat="server" Text="Go to Social Profile" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                             </div>
                                     </div>
                                             <div class="col-md-6">

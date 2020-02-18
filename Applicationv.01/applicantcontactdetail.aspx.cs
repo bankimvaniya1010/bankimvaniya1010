@@ -219,7 +219,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         icHomePhone.Attributes.Add("style", "display:block;");
                         icHomePhone.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE?":
                         icSkype.Attributes.Add("style", "display:block;");
                         icSkype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -227,11 +227,11 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         icSkypeDesc.Attributes.Add("style", "display:block;");
                         icSkypeDesc.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP?":
                         icWhatsapp.Attributes.Add("style", "display:block;");
                         icWhatsapp.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?":
                         icWhatsapphave.Attributes.Add("style", "display:block;");
                         icWhatsapphave.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -243,7 +243,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         icPostal.Attributes.Add("style", "display:block;");
                         icPostal.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
+                    case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                         icAddress.Attributes.Add("style", "display:block;");
                         icAddress.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -338,19 +338,19 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         phone.Attributes.Add("style", "display:block;");
                         labelphone.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE?":
                         skype.Attributes.Add("style", "display:block;");
                         labelskype.InnerHtml = setInnerHtml(fields[k]);
                         break;
                     case "SKYPE ID":
                         skypeDesc.Attributes.Add("style", "display:block;");
-                        labelskype.InnerHtml = setInnerHtml(fields[k]);
+                        labelskypeDesc.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP?":
                         whatsapp.Attributes.Add("style", "display:block;");
                         labelwhatsapp.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?":
                         whatsappHave.Attributes.Add("style", "display:block;");
                         labelwhatsappHave.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -362,7 +362,7 @@ public partial class applicantcontactdetail : System.Web.UI.Page
                         postal.Attributes.Add("style", "display:block;");
                         labelpostal.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
+                    case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                         address.Attributes.Add("style", "display:block;");
                         labeladdress.InnerHtml = setInnerHtml(fields[k]);
                         break;

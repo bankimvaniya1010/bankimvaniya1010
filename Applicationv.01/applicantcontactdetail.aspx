@@ -6,9 +6,9 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Applicant Contact Details</li>
+            <li class="breadcrumb-item active">CONTACT DETAILS</li>
         </ol>
-        <h1 class="h2">APPLICANT CONTACT DETAILS</h1>
+        <h1 class="h2">CONTACT DETAILS</h1>
 
     </div>
     <div class="page ">
@@ -50,7 +50,7 @@
                             <div class="list-group-item" id="skype" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-skype">
                                     <div class="form-row">
-                                        <label id="labelskype" runat="server" for="skype" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE</label>
+                                        <label id="labelskype" runat="server" for="skype" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA SKYPE?</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblSkypeYes" runat="server" CssClass="form-control" GroupName="skype" Text="Yes" />
                                             <asp:RadioButton ID="rblSkypeNo" runat="server" CssClass="form-control" GroupName="skype" Text="No" /><span class="helpicon"><i id="icSkype" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -72,7 +72,7 @@
                             <div class="list-group-item" id="whatsapp" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsapp">
                                     <div class="form-row">
-                                        <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP </label>
+                                        <label id="labelwhatsapp" runat="server" for="whatsapp" class="col-md-3 col-form-label form-label">WOULD YOU LIKE TO CONNECT VIA WHATSAPP? </label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblwhatsappYes" runat="server" CssClass="form-control" GroupName="whatsapp" Text="Yes" />
                                             <asp:RadioButton ID="rblwhatsappNo" runat="server" CssClass="form-control" GroupName="whatsapp" Text="No" /><span class="helpicon"><i id="icWhatsapp" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -84,7 +84,7 @@
                             <div class="list-group-item" id="whatsappHave" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-whatsappHave">
                                     <div class="form-row">
-                                        <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-3 col-form-label form-label">IS YOUR WHATSAPP NO SAME AS YOUR MOBILE NO </label>
+                                        <label id="labelwhatsappHave" runat="server" for="whatsappHave" class="col-md-3 col-form-label form-label">IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblWhatsupsameYes" runat="server" CssClass="form-control" GroupName="whatsappSame" Text="Yes" />
                                             <asp:RadioButton ID="rblWhatsupsameNo" runat="server" CssClass="form-control" GroupName="whatsappSame" Text="No" /><span class="helpicon"><i id="icWhatsapphave" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -112,7 +112,7 @@
                                             <input id="txtAddressLine3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control" maxlength="200">
                                             <input id="txtCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
                                             <input id="txtState" runat="server" type="text" placeholder="State" value="" class="form-control">
-                                            <input id="txtPostal" runat="server" type="text" placeholder="Postal" value="" class="form-control">
+                                            <input id="txtPostal" runat="server" type="text" placeholder="Postal Code" value="" class="form-control">
                                             <asp:DropDownList ID="ddlpostalCountry" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
                                         </div>
@@ -122,7 +122,7 @@
                             <div class="list-group-item" id="address" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-address">
                                     <div class="form-row">
-                                        <label id="labeladdress" runat="server" for="address" class="col-md-3 col-form-label form-label">Is your Postal Address same as your current residential address</label>
+                                        <label id="labeladdress" runat="server" for="address" class="col-md-3 col-form-label form-label">IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?</label>
                                         <div class="col-md-6">
                                             <asp:RadioButton ID="rblAddressYes" runat="server" CssClass="form-control" GroupName="address" Text="Yes" />
                                             <asp:RadioButton ID="rblAddressNo" runat="server" CssClass="form-control" GroupName="address" Text="No" /><span class="helpicon"><i id="icAddress" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
@@ -171,20 +171,20 @@
                                     <div class="form-row">
                                         <label id="lblPrevAddress" runat="server" for="prevaddress" class="col-md-3 col-form-label form-label">Previous Address History Details</label>
                                         <div class="col-md-6">
-                                            <input id="txtPrevAddStartDate" runat="server" type="text" class="form-control" placeholder="Start Date" data-toggle="flatpickr" value="">
-                                            <input id="txtPrevAddEndDate" runat="server" type="text" class="form-control" placeholder="End Date" data-toggle="flatpickr" value="">
+                                            <input id="txtPrevAddStartDate" runat="server" type="text" class="form-control" placeholder="Date you started living at your previous residence" data-toggle="flatpickr" value="">
+                                            <input id="txtPrevAddEndDate" runat="server" type="text" class="form-control" placeholder="Date you ended living at your previous residence" data-toggle="flatpickr" value="">
                                             <input id="prevAddress1" runat="server" type="text" placeholder="Address line 1" value="" class="form-control" maxlength="200">
                                             <input id="prevAddress2" runat="server" type="text" placeholder="Address line 2" value="" class="form-control" maxlength="200">
                                             <input id="prevAddress3" runat="server" type="text" placeholder="Address line 3" value="" class="form-control" maxlength="200">
                                             <input id="prevAddressCity" runat="server" type="text" placeholder="City, Town or Suburb" value="" class="form-control">
                                             <input id="prevAddressState" runat="server" type="text" placeholder="State" value="" class="form-control">
-                                            <input id="prevAddressPostalCode" runat="server" type="text" placeholder="Postal code" value="" class="form-control">
+                                            <input id="prevAddressPostalCode" runat="server" type="text" placeholder="Postal Code" value="" class="form-control">
                                             <asp:DropDownList ID="ddlPrevAddressCountry" CssClass="form-control" runat="server">
                                             </asp:DropDownList>
                                         </div>
                                     </div>
                                     <div id="container"></div>
-                                    <input id="addPrevAddressDiv" type="button" class="btn btn-success" value="Add More" />
+                                    <input id="addPrevAddressDiv" type="button" class="btn btn-success" value="Add More Places of Previous Residence (within 1 year from current date)" />
                                 </div>
                             </div>
                             <div id="guardian" runat="server" visible="false">
@@ -237,8 +237,8 @@
                             <div class="list-group-item" id="employerwebsite">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
-                                        <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
-                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To Identification Details" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
+                                        <asp:Button ID="btn_Save" runat="server" Text="Save" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to Identification Details" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server" Visible ="false"></asp:Label>

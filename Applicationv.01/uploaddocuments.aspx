@@ -6,11 +6,11 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">Upload Document
+            <li class="breadcrumb-item active">DOCUMENTS UPLOAD
 
             </li>
         </ol>
-        <h1 class="h2">UPLOAD DOCUMENT
+        <h1 class="h2">UPLOAD YOUR DOCUMENT(S)
 
         </h1>
 
@@ -24,12 +24,12 @@
 
                     <div class="card">
                         <div class="card-body">
-                        <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
+                       <%-- <ul class="nav nav-tabs nav-tabs-card" style="background:#fff;border-bottom:0;">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#first" data-toggle="tab">Upload Document</a>
                             </li>
 
-                        </ul>
+                        </ul>--%>
                         <div class="tab-content card-body">
                             <div class="tab-pane active" id="first">
                        
@@ -47,7 +47,7 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="avatar" class="col-sm-3 col-form-label form-label">Documents</label>
+                                    <label for="avatar" class="col-sm-3 col-form-label form-label">DOCUMENT UPLOAD</label>
                                     <div class="col-sm-9">
                                         <div class="media align-items-center">
                                            
@@ -70,7 +70,7 @@
                                     <div class="col-sm-8 offset-sm-3">
                                         <div class="media align-items-center">
                                             <div class="media-left">
-                                                <asp:Button ID="btn_login" runat="server" Text="Save Documents" CssClass="btn btn-success" OnClientClick="return validateUploadedFile()"/>
+                                                <asp:Button ID="btn_login" runat="server" Text="Save" CssClass="btn btn-success" OnClientClick="return validateUploadedFile()"/>
 
                                             </div>
                                         </div>

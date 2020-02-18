@@ -91,7 +91,7 @@ public partial class clarificationquestion : System.Web.UI.Page
                 if (showButton) 
                     btn_login.Visible = true;                                    
                 else
-                    LabelMessage.Text = "No Clarification Question.";
+                    LabelMessage.Text = "You are not required to answer any additional clarification question(s). You can proceed to the next section";
             }
         }
     }
@@ -105,22 +105,34 @@ public partial class clarificationquestion : System.Web.UI.Page
         return months <= 0 ? 0 : months;
     }
 
+    private void SaveDetails() {
+        try
+        {
+            var applicantDetail = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+            var applicantEduDetail = db.applicanteducationdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+            var applicantHighEduDetail = db.applicanthighereducation.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+
+            if (applicantEduDetail != null && txtSecondHighGapReason != null)
+                applicantEduDetail.highschoolsecondaryschoolgapreason = txtSecondHighGapReason.Value;
+
+            if (applicantEduDetail != null && applicantHighEduDetail != null && txtHigherSecondaryGap != null)
+                applicantHighEduDetail.secondaryschoolhighereducationgapreason = txtHigherSecondaryGap.Value;
+
+            if (applicantDetail != null && txtMotivationReason != null)
+                applicantDetail.motivationreason = txtMotivationReason.Value;
+
+            if (applicantEduDetail != null || applicantDetail != null || applicantHighEduDetail != null)
+                db.SaveChanges();
+        }
+        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    }
     protected void btn_login_Click(object sender, EventArgs e)
     {
-        var applicantDetail = db.applicantdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
-        var applicantEduDetail = db.applicanteducationdetails.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
-        var applicantHighEduDetail = db.applicanthighereducation.Where(x => x.applicantid == userID && x.universityid == universityID).FirstOrDefault();
+        SaveDetails();
+    }
 
-        if (applicantEduDetail != null && txtSecondHighGapReason != null)
-            applicantEduDetail.highschoolsecondaryschoolgapreason = txtSecondHighGapReason.Value;
-
-        if (applicantEduDetail != null && applicantHighEduDetail != null && txtHigherSecondaryGap != null)
-            applicantHighEduDetail.secondaryschoolhighereducationgapreason = txtHigherSecondaryGap.Value;
-
-        if (applicantDetail != null && txtMotivationReason != null)
-            applicantDetail.motivationreason = txtMotivationReason.Value;
-
-        if(applicantEduDetail != null || applicantDetail != null || applicantHighEduDetail != null)
-            db.SaveChanges();
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {        
+        Response.Redirect(webURL + "uploaddocuments.aspx", true);
     }
 }

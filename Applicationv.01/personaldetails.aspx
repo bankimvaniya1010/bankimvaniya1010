@@ -56,7 +56,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-lastname">
                                     <div class="form-row">
                                         <label id="labellastname" runat="server" for="lastname" class="col-md-3 col-form-label form-label">Family Name *</label>
-                                        <div class="col-md-6">
+                                        <div class="col-md-7">
                                             <input id="txtLastName" runat="server" type="text" class="form-control" placeholder="Enter your legal family name / surname" required=""> <span class="helpicon"><i id="iclastname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                           
                                     </div>
@@ -68,7 +68,7 @@
                                 <div class="form-group m-0" role="group" aria-labelledby="label-preferreName">
                                     <div class="form-row">
                                         <label id="labelpreferreName" runat="server" for="preferreName" class="col-md-3 col-form-label form-label">Preferred Name</label>
-                                        <div class="col-md-9">
+                                        <div class="col-md-7">
                                             <input id="txtPreferedName" runat="server" type="text" class="form-control" placeholder="How would you like us to address you"> <span class="helpicon"><i id="icPreferredname" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
