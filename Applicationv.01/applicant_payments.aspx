@@ -86,6 +86,9 @@
                                     </Columns>
                                 </asp:GridView>
                             </div>
+                            <div style="margin-left: 50%">
+                                <asp:button id="gotonext" runat="server" cssclass="btn btn-success" text="Go to Pre-Departure section" onclick="gotonext_Click" />
+                            </div>
                         </div>
                     </div>
                 </div>

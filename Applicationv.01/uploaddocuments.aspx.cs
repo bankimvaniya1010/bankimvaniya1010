@@ -41,8 +41,8 @@ public partial class uploaddocuments : System.Web.UI.Page
             appLangDetails = db.applicantlanguagecompetency.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
             appEmpDetails = db.applicantemployerdetails.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
             appHigherDetails = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
-            documentList.Add("Profile Photo");
-            documentList.Add("Passport Size Photo Graph");
+            documentList.Add("Profile Photo for Application Centre");
+            documentList.Add("Recent Passport-size Photograph");
             documentList.Add("Passport Copy (Bio Pages)");
             if ((appDetails.Count > 0) && (appDetails[0].alternativeIdentityproofId != null && appDetails[0].alternativeIdentityproofId != 0))
                 documentList.Add("Alternate Proof of Identity");
@@ -127,8 +127,11 @@ public partial class uploaddocuments : System.Web.UI.Page
     }
 
     private void BindDocuments()
-    {
-        var videoList = db.applicantdocumentmaster.Where(x => x.applicantid == UserID && x.universityid==UniversityID).ToList();
+    {       
+
+        var videoList = db.applicantdocumentmaster   
+            .Where(x => x.applicantid == UserID && x.universityid==UniversityID)
+            .Select(x=> new{ documentname = x.documentname , filename = webURL + "/Docs/" + UserID + "/Documents/"+x.filename }).ToList();
         rptVideo.DataSource = videoList;
         rptVideo.DataBind();
 

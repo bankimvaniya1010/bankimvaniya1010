@@ -137,4 +137,9 @@ public partial class applicantscholarships : System.Web.UI.Page
             Response.End();
         }
     }
+
+    protected void gotonext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "applicantfunding.aspx?formid=11", true);
+    }
 }

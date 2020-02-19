@@ -32,4 +32,9 @@ public partial class predeparturetutorial : System.Web.UI.Page
             otherDocCount = allDocuments.Where(c => c.type != "video").ToList().Count;
         }
     }
+
+    protected void gotonext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "applicantsupportservices.aspx", true);
+    }
 }

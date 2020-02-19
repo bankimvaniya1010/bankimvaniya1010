@@ -16,7 +16,7 @@
     <div class="container-fluid page__container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="Default.aspx">Home</a></li>
-            <li class="breadcrumb-item active">YOUR APPLICATION</li>
+            <li class="breadcrumb-item active">APPLICATION</li>
         </ol>
         <h1 class="h2">YOUR COURSE APPLICATION</h1>
 
@@ -57,7 +57,7 @@
                                     </div>
 
                                     <div class="selectionPillsList" id="progressbar_studylevel" style="display:none">
-                                        <div class="selectionPillsListLabel">Studylevel:</div>
+                                        <div class="selectionPillsListLabel">Level of Study:</div>
                                         <div class="selectionPillsListText">
                                             <label id="selectedstudylevel" runat="server"></label>
                                         </div>
@@ -70,7 +70,7 @@
                                     </div>
 
                                     <div class="selectionPillsList" id="progressbar_major" style="display:none">
-                                        <div class="selectionPillsListLabel">Major:</div>
+                                        <div class="selectionPillsListLabel">Major / Discipline:</div>
                                         <div class="selectionPillsListText">
                                             <label id="selectedmajor" runat="server"></label>
                                         </div>
@@ -82,75 +82,48 @@
                                     </div>
                                 </div>
                             </div>
-                                    <%--accordion--%>
-                                    <div id="accordion">
+                            <%--accordion--%>
+                            <div id="accordion">
 
-                                        <h3 aria-expanded="false" aria-selected="false">Select Country +</h3>
-                                        <div id="rbCountryContainer">
-                                            <p>
-                                                <asp:RadioButtonList ID="rblcountry" runat="server" RepeatDirection="Vertical"></asp:RadioButtonList>
-                                            </p>
-                                        </div>
-
-                                        <h3 id="citybtn">Select City +</h3>
-
-                                        <div class="col-md-12 updt-prftbl" id="rbCityContainer" style="height: auto;">
-                                        </div>
-                                        <asp:HiddenField runat="server" ID="HidRBSelectedcityID" />
-                                        <asp:HiddenField runat="server" ID="HidRBSelectedcityName" />
-
-                                        <h3>Select Level Of Study  +</h3>
-                                        <div id="studylevelcontainer" class="col-md-12 updt-prftbl">
-                                            <p>
-                                                <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="3"></asp:RadioButtonList>
-                                            </p>
-                                        </div>
-
-                                        <h3>Select Major / Discipline +</h3>
-                                        <div id="majorcontainer" class="col-md-12 updt-prftbl">
-                                            <p>
-                                                <asp:RadioButtonList ID="rblmajor" runat="server" RepeatColumns="2"></asp:RadioButtonList>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <%--Finish accordion--%>
-
-                                    <div class="">
-                                        <label class="form-group m-0" for="enrollmentyear" aria-labelledby="label-password"></label>
-                                        <div class="col-sm-8 offset-sm-3">
-                                            <asp:Button ID="btnsearchcourse" runat="server" Text="Search For Course" CssClass="btn btn-success" OnClick="btnsearchcourse_Click" OnClientClick="return validateform()" />
-                                        </div>
-                                    </div>
-
+                                <h3 aria-expanded="false" aria-selected="false">Select Country +</h3>
+                                <div id="rbCountryContainer">
+                                    <p>
+                                        <asp:RadioButtonList ID="rblcountry" runat="server" RepeatDirection="Vertical"></asp:RadioButtonList>
+                                    </p>
                                 </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
 
-                    <% if (appliedcourseData.Count > 0)
-                        { %>
-                    <div class="card">
-                        <div class="card-body" style="margin-bottom:40%;">
-                            <asp:HiddenField runat="server" ID="HidpreferenceID" />
-                            <label style="font-size: 77%;">You may apply for a maximum of 5 courses</label>
-                            <label id="lblInstructionHeader" runat="server" style="font-size: medium; font-weight: bold;">Courses for which your Application have been successfully submitted :</label><br />
-                            <ol style="font-size: small; padding-left: 15px;">
-                                <% for (int i = 0; i < appliedcourseData.Count; i++)
-                                    { %>
-                                <li>
-                                    <%= appliedcourseData[i].coursename %>
-                                </li>
-                                <% } %>
-                            </ol>
-                        </div>
-                    </div>
-                    <%} %>
-                </div>
-            </div>
-            <div class="row" style="margin-right: -1.625rem;">
-                <div class="col-md-8">
-                    <div id="coursegrid" runat="server" style="display: none">
+                                <h3 id="citybtn">Select City +</h3>
+
+                                <div class="col-md-12 updt-prftbl" id="rbCityContainer" style="height: auto;">
+                                </div>
+                                <asp:HiddenField runat="server" ID="HidRBSelectedcityID" />
+                                <asp:HiddenField runat="server" ID="HidRBSelectedcityName" />
+
+                                <h3>Select Level Of Study  +</h3>
+                                <div id="studylevelcontainer" class="col-md-12 updt-prftbl">
+                                    <p>
+                                        <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="3"></asp:RadioButtonList>
+                                    </p>
+                                </div>
+
+                                <h3>Select Major / Discipline +</h3>
+                                <div id="majorcontainer" class="col-md-12 updt-prftbl">
+                                    <p>
+                                        <asp:RadioButtonList ID="rblmajor" runat="server" RepeatColumns="2"></asp:RadioButtonList>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <%--Finish accordion--%>
+
+                            <div class="">
+                                <label class="form-group m-0" for="enrollmentyear" aria-labelledby="label-password"></label>
+                                <div class="col-sm-8 offset-sm-0">
+                                    <asp:button id="btnsearchcourse" runat="server" text="Search for Course(s)" cssclass="btn btn-success" onclick="btnsearchcourse_Click" onclientclick="return validateform()" />
+                                </div>
+                            </div>
+
+                            <div id="coursegrid" runat="server" style="display: none" class="course-table-wrpr">
                         <div class="card">
                             <div class="card-body">
                                 <asp:HiddenField runat="server" ID="Hidresultcount" />
@@ -169,36 +142,36 @@
                                         AllowPaging="true"
                                         PageSize="7"
                                         BorderStyle="None"
-                                        BorderWidth="1px" DataKeyNames="id" Font-Size="X-Small"
-                                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No Records Found" OnPageIndexChanging="courseGridView_PageIndexChanging">
+                                        BorderWidth="1px" DataKeyNames="id" Font-Size="12px"
+                                        CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No courses found. Change your preferences above and retry." OnPageIndexChanging="courseGridView_PageIndexChanging">
 
                                         <Columns>
-                                            <asp:TemplateField HeaderText="" ItemStyle-Width="2%" FooterStyle-Width="2%" ControlStyle-Width="2%">
+                                            <asp:TemplateField HeaderText="Select this Course">
                                                 <ItemTemplate>
                                                     <asp:RadioButton runat="server" ID="selectedRB" OnClick="javascript:SelectSingleRadiobutton(this.id)"></asp:RadioButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Courses">
+                                            <asp:TemplateField HeaderText="Course Name">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCourse" runat="server" Text='<%# Bind("coursename") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="courseid" Value='<%# Bind("id") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="University">
+                                            <asp:TemplateField HeaderText="Course Provider">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lbluniversityname" runat="server" Text='<%# Bind("universityname") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="Hiduniversityid" Value='<%# Bind("universityid") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Campus">
+                                            <asp:TemplateField HeaderText="Campus Name">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblCampus" runat="server" Text='<%# Bind("campus") %>'></asp:Label>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("campus") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="Hidcampusid" Value='<%# Bind("campusid") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Study Mode">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblStudymode" runat="server" Text='<%# Bind("modeofstudy") %>'></asp:Label>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("modeofstudy") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="Hidmodeofstudyid" Value='<%# Bind("modeofstudyid") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
@@ -214,8 +187,7 @@
                                                     <asp:HiddenField runat="server" ID="HidmajorDisciplineID" Value='<%# Bind("majorID") %>' />
                                                 </ItemTemplate>
                                             </asp:TemplateField>--%>
-                                            <asp:TemplateField HeaderText="Fee">
-                                                <ItemTemplate>
+                                            <asp:TemplateField HeaderText="Course Tuition Fee (in Australian Dollars)"><ItemTemplate>
                                                     <asp:Label ID="lblcurrency" runat="server" Text='<%# Bind("currencysymbol") %>'></asp:Label>
                                                     <asp:Label ID="lblCoursefee" runat="server" Text='<%# Bind("coursefee") %>'></asp:Label>
                                                     <asp:HiddenField runat="server" ID="HidSelectedcampusCityID" Value='<%#Bind("campuscityID") %>' />
@@ -234,9 +206,38 @@
                             </div>
                         </div>
                     </div>
+                             <div style="margin-left:60%">                            
+                                 <asp:Button ID="gotoNextPage" runat="server" Text="Go to Your SOP section" CssClass="btn btn-success" onclick="gotoNextPage_Click"/>
+                              </div>
+                         </div>
+                    </div>
                 </div>
                 <div class="col-md-4">
-                    <div id="courseInfo" style="display: none">
+                    <div class="card">
+                        <div class="card-body" style="margin-bottom:40%;">
+                            <asp:HiddenField runat="server" ID="HidpreferenceID" />
+                            <label style="font-size: 77%;">You may apply for a maximum of 5 courses</label>
+                            <label id="lblInstructionHeader" runat="server" style="font-size: medium; font-weight: bold;">Courses for which your Application have been successfully submitted :</label><br />
+                            
+                            
+                            <% if (appliedcourseData.Count > 0)
+                                { %>
+                            <ol style="font-size: small; padding-left: 15px;">
+                                <% for (int i = 0; i < appliedcourseData.Count; i++)
+                                    { %>
+                                <li>
+                                    <%= appliedcourseData[i].coursename %>
+                                </li>
+                                <% } %>
+                            </ol>
+                              <%}
+                                  else
+                                  {%>
+                            <label runat="server"> NO Applied Courses.</label>
+                            <%} %>
+                        </div>
+                    </div>
+                      <div id="courseInfo" style="display: none">
                         <div class="card">
                             <div class="card-body">
                                 <div>
@@ -258,7 +259,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Institution :</td>
+                                            <td style="vertical-align: initial;">Course Provider :</td>
                                             <td>
                                                 <label runat="server" id="lblInstitution"></label>
                                                 <asp:HiddenField runat="server" ID="HidInstitutionId" />
@@ -266,7 +267,7 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Campus :</td>
+                                            <td style="vertical-align: initial;">Campus :</td>
                                             <td>
                                                 <label runat="server" id="lblCampus"></label>
                                                 <asp:HiddenField runat="server" ID="HidCampusID" />
@@ -274,62 +275,62 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>City :</td>
+                                            <td style="vertical-align: initial;">City of Location :</td>
                                             <td>
                                                 <label runat="server" id="lblCity"></label>
                                                 <asp:HiddenField runat="server" ID="HidCampusCityID" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Country :</td>
+                                            <td style="vertical-align: initial;">Country of Location :</td>
                                             <td>
                                                 <label runat="server" id="lblCountry"></label>
                                                 <asp:HiddenField runat="server" ID="HidCampusCountryID" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Study Level :</td>
+                                            <td style="vertical-align: initial;">Level of Study :</td>
                                             <td>
                                                 <label runat="server" id="lblstudylevel"></label>
                                                 <asp:HiddenField runat="server" ID="HidStudylevelID" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Major / Discipline :</td>
+                                            <td style="vertical-align: initial;">Major / Discipline :</td>
                                             <td>
                                                 <label runat="server" id="lblmajor"></label>
                                                 <asp:HiddenField runat="server" ID="HidMajorID" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Study Mode :</td>
+                                            <td style="vertical-align: initial;">Study Mode :</td>
                                             <td>
                                                 <label runat="server" id="lblstudymode"></label>
                                                 <asp:HiddenField runat="server" ID="HidstudymodeID" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Fee :</td>
+                                            <td style="vertical-align: initial;">Course Tuition Fee :</td>
                                             <td>
                                                 <label runat="server" id="lblcurrencyshow"></label>
                                                 <label runat="server" id="lblFee"></label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Duration :</td>
+                                            <td style="vertical-align: initial;">Course Duration :</td>
                                             <td>
                                                 <label runat="server" id="lblDuration"></label>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="vertical-align: initial;">Career Outcome :</td>
+                                            <td style="vertical-align: initial;">Possible Career Outcome(s) :</td>
                                             <td id="outcomeContainer">
                                                 <%--<label runat="server" id="lblCareeroutcome"> </label>
                                                 <label runat="server" id="lblCareeroutcomepositions"> </label>--%>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td style="vertical-align: initial;">Eligibility :</td>
+                                            <td style="vertical-align: initial;">Entry Requirements :</td>
                                             <td>
                                                 <label runat="server" id="lblEligibility"></label>
                                             </td>
@@ -347,15 +348,15 @@
                                                 <label>*If you do not meet the eligibility criteria, you may still apply for this course; our counsellors would recommend a pathway program</label></td>
                                         </tr>
                                         <tr>
-                                            <td>Select Commencement Date :
+                                            <td style="vertical-align: initial;">Select the date you want to start this Course :
                                            <asp:HiddenField runat="server" ID="HidSelectedDateID" />
-                                                <asp:HiddenField runat="server" ID="HidSelectedDateText" />
+                                           <asp:HiddenField runat="server" ID="HidSelectedDateText" />
                                             </td>
                                             <td id="commencementDateContainer" style="vertical-align: initial;"</td>
                                         </tr>
                                         <tr>
                                             <td colspan="2">
-                                                <asp:Button runat="server" ID="savedata" Text="Submit Your application for this" CssClass="btn btn-success" OnClick="savedata_Click" OnClientClick="return validatecourseInfo()" />
+                                                <asp:Button runat="server" ID="savedata" Text="Submit Application for this Course" CssClass="btn btn-success" OnClick="savedata_Click" OnClientClick="return validatecourseInfo()" />
                                                 <asp:HiddenField runat="server" ID="recordsaveDateTime" />
                                             </td>
                                         </tr>
@@ -364,8 +365,22 @@
                             </div>
                         </div>
                     </div>
+                  
                 </div>
             </div>
+           <%-- <div class="row" style="margin-right: -1.625rem;">
+                <div class="col-md-8">
+                    
+                    <div class="card">
+                        <div style="margin-left:60%">
+                            <asp:Button ID="gotoNextPage" runat="server" Text="Go to Your SOP section" CssClass="btn btn-success" onclick="gotoNextPage_Click"/>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="col-md-4">
+                  
+                </div>
+            </div>--%>
         
             <div id="page-nav" class="col-lg-auto page-nav">
                 <div>
@@ -517,6 +532,7 @@
                             var $target = $('#commencementDateContainer');
                             $target.append($('<label>').text(result[i].commencementdate)
                                 .prepend($('<input type="radio" name="commencementdate" id="commencementdate_' + i + '"/>').val(result[i].id)));
+                            $target.append("<br/>");
                         }
                     }
                 }

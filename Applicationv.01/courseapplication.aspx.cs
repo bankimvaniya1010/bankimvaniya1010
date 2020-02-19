@@ -239,7 +239,7 @@ public partial class courseapplication : System.Web.UI.Page
     public static string GetCommenceDateDropdown(int courseid)
     {
         GTEEntities db1 = new GTEEntities();
-        var temp = db1.course_dates.Where(x => x.courseid == courseid && x.commencementdate > DateTime.Now).OrderBy(x => x.commencementdate).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd/MMM/yyyy"), x.id });
+        var temp = db1.course_dates.Where(x => x.courseid == courseid && x.commencementdate > DateTime.Now).OrderBy(x => x.commencementdate).ToList().Select(x => new { commencementdate = x.commencementdate.ToString("dd MMM, yyy "), x.id });//dd/MMM/yyyy
         return JsonConvert.SerializeObject(temp);
     }
 
@@ -300,9 +300,9 @@ public partial class courseapplication : System.Web.UI.Page
             recordsaveDateTime.Value = DateTime.Now.ToString("dd/MM/yyyy hh:mm");
             int? remainingcoursecount = 5 - objapplicationmaster.preferenceid;
             if (remainingcoursecount != 0)
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your Course Application for " + Hidcoursename.Value + " at " + HidUniversityName.Value + "," + HidCampusname.Value + " for commencement date " + HidSelectedDateText.Value + " has been sucessfully submitted on " + recordsaveDateTime.Value + ". You can submit " + remainingcoursecount + " more applications.')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Congratulations! Your course application for " + Hidcoursename.Value + " at " + HidCampusname.Value + " of " + HidUniversityName.Value +" for course commencement date as " + HidSelectedDateText.Value + " has been successfully submitted. You can submit " + remainingcoursecount +" more course application in the Application Centre.')", true);
             else
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your Course Application for " + Hidcoursename.Value + " at " + HidUniversityName.Value + "," + HidCampusname.Value + " for commencement date " + HidSelectedDateText.Value + " has been sucessfully submitted on " + recordsaveDateTime.Value + ".Course Application limit Exhausted.')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Congratulations! Your course application for " + Hidcoursename.Value + " at " + HidCampusname.Value + " of " + HidUniversityName.Value +" for course commencement date as " + HidSelectedDateText.Value + " has been successfully submitted. Course Application limit Exhausted.')", true);
             populateAppliedCourseData();
             BindCountry();
             Bindlevelofstudy();
@@ -407,5 +407,10 @@ public partial class courseapplication : System.Web.UI.Page
             this.coursefee = null;
             this.currencysymbol = null;
         }
+    }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "applicant_sop.aspx?formid=12", true);
     }
 }

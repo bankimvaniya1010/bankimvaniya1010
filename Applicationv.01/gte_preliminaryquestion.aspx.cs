@@ -43,22 +43,25 @@ public partial class gte_preliminaryquestion : System.Web.UI.Page
         if (!IsPostBack)
         {
             var gte_progress = db.gte_progressbar.Where(x => x.applicantid == UserID).FirstOrDefault();
-            var isGtePreliminarySection1Done = gte_progress.is_gte_preliminarysection1_completed.HasValue && gte_progress.is_gte_preliminarysection1_completed.Value;
-            var isGtePreliminarySection2Done = gte_progress.is_gte_preliminarysection2_completed.HasValue && gte_progress.is_gte_preliminarysection2_completed.Value;
-            if (!isGtePreliminarySection1Done)
+            if (gte_progress != null)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('GTE Test your Knowledge - 1 is not completed. Please complete Section 1 before proceeding');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
-                return;
-            }
+                var isGtePreliminarySection1Done = gte_progress.is_gte_preliminarysection1_completed.HasValue && gte_progress.is_gte_preliminarysection1_completed.Value;
+                var isGtePreliminarySection2Done = gte_progress.is_gte_preliminarysection2_completed.HasValue && gte_progress.is_gte_preliminarysection2_completed.Value;
 
-            if (isGtePreliminarySection2Done)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                        "alert('GTE Test your Knowledge - 2 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
-                return;
-            }
+                if (!isGtePreliminarySection1Done)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                            "alert('GTE Test your Knowledge - 1 is not completed. Please complete Section 1 before proceeding');window.location='" + Request.ApplicationPath + "gte_preliminary_section.aspx';", true);
+                    return;
+                }
 
+                if (isGtePreliminarySection2Done)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                            "alert('GTE Test your Knowledge - 2 is completed.');window.location='" + Request.ApplicationPath + "default.aspx';", true);
+                    return;
+                }
+            }
             GetQuestion();
             allQuestions = objCom.FaqQuestionList();
             btnGoToDeclaration.Enabled = false;

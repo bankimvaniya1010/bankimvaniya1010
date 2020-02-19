@@ -94,4 +94,9 @@ public partial class applicant_sop : System.Web.UI.Page
             db.student_sop.Add(sopObj);
         db.SaveChanges();
     }
+
+    protected void gotoNextPage_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "applicantcredittransfer.aspx?formid=12", true);
+    }
 }

@@ -18,7 +18,7 @@
                 <div class="col-md-8">
                     <div class="card" runat="server">
                         <div class="card-body list-group-fit">
-                            <h3>INSTRUCTIONS FOR WRITING YOUR SOP</h3>
+                            <h3>INSTRUCTION FOR WRITING YOUR STATEMENT OF PURPOSE (SOP) / ESSAY:</h3>
                             <div class="list-group list-group-fit" runat="server" id="universityInstruction">
                             </div>
                             <br/>
@@ -33,10 +33,14 @@
                             <asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClientClick="return validateForm()" OnClick="btnsubmit_Click" />
                             <input id="btnEdit" type="button" runat="server" class="btn btn-success" value="Edit" />
                             <asp:Button ID="btnSave" runat="server" CssClass="btn btn-success" Text="Save" OnClick="btnSave_Click" OnClientClick="return validateForm()" />
+                            
+                            <div style="margin-left:60%">
+                                <asp:Button ID="gotoNextPage" runat="server" Text="Go to Credit Transfer section" CssClass="btn btn-success" OnClick="gotoNextPage_Click" />
+                            </div>
+                            
 
-                        </div>
+                        </div>                       
                     </div>
-
                 </div>
                 <div class="col-md-4">
                     <div class="banImg-wrp">
