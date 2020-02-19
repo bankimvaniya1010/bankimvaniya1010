@@ -282,3 +282,9 @@ html{
 .selectionPills .selectionPillsList .selectionPillsListLabel {
 	font-weight: bold;
 }
+.course-table-wrpr .card, .course-table-wrpr .card-body {
+    padding: 0 !important;
+}
+.course-table-wrpr .table td {
+    font-size: 12px !important;
+}

@@ -35,10 +35,10 @@
                        
 
                                 <div class="form-group row">
-                                    <label for="name" class="col-sm-3 col-form-label form-label">Document Name</label>
-                                    <div class="col-sm-9">
-                                        <div class="row" style="padding-left:0px;">
-                                            <div class="col-md-8">
+                                    <label for="name" class="col-sm-4 col-form-label form-label">Document Name</label>
+                                    <div class="col-sm-7">
+                                        <div class="" style="padding-left:0px;">
+                                            <div class="">
                                                 <asp:DropDownList ID="ddlDocuments" CssClass="form-control" runat="server"></asp:DropDownList>
                                             </div>
 
@@ -47,8 +47,8 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="avatar" class="col-sm-3 col-form-label form-label">DOCUMENT UPLOAD</label>
-                                    <div class="col-sm-9">
+                                    <label for="avatar" class="col-sm-4 col-form-label form-label">DOCUMENT UPLOAD</label>
+                                    <div class="col-sm-8">
                                         <div class="media align-items-center">
                                            
                                             <div class="media-body">
@@ -60,12 +60,7 @@
 
                                         </div>
                                     </div>
-                                </div>
-                                <div style="position:relative;width:202px;margin-bottom: 15px;height:25px;display:block;margin-left:100px;"> 
-                                    <div id="progress" class="hide" style="background:#f0f0f0; height: 25px;width:0;color:#fff;">
-                                        <div class="status" style="margin-left:10px;"></div>
-                                    </div> 
-                                </div> 
+                                </div>                                 
                                 <div class="form-group row">
                                     <div class="col-sm-8 offset-sm-3">
                                         <div class="media align-items-center">
@@ -75,6 +70,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div style="position:relative;width:202px;margin-bottom: 15px;height:25px;display:block;margin-left:100px;"> 
+                                    <div id="progress" class="hide" style="background:#f0f0f0; height: 25px;width:0;color:#fff;">
+                                        <div class="status" style="margin-left:10px;"></div>
+                                    </div> 
                                 </div>
 
                                 <div class="form-group row">
@@ -92,7 +92,7 @@
                                                                     <asp:Label ID="lblSubject" runat="server" Text='<%#Eval("documentname") %>' Font-Bold="true" />
                                                                 </td>
                                                                 <td>
-                                                                    <asp:LinkButton ID="btnDownoad" CommandArgument='<%#Eval("filename") %>' runat="server" OnClick="Download">View Documents</asp:LinkButton>
+                                                                    <a href="<%#Eval("filename") %>" target="_blank">View this document</a>                                                                    
                                                                 </td>
                                                             </tr>
                                                         </table>

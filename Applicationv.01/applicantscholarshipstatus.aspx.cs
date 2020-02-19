@@ -68,4 +68,9 @@ public partial class applicantscholarshipstatus : System.Web.UI.Page
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
+
+    protected void gotonext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "applicantfunding.aspx?formid=11", true);
+    }
 }

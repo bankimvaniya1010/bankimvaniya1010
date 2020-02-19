@@ -131,4 +131,9 @@ public partial class applicant_payments : System.Web.UI.Page
                 e.Row.FindControl("hypLnkProof").Visible = false;
         }
     }
+
+    protected void gotonext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "predeparturetutorial.aspx", true);
+    }
 }

@@ -78,10 +78,14 @@
 
                     </div>
                 </div>
-                
-                <div class="" id="emptyScholarshipDiv" runat="server" style="display: none;">
-                    <div>
-                        <asp:Label ID="lblEmptyList" runat="server" Text=""></asp:Label>
+                <div class="card">
+                    <div class="card-body" id="emptyScholarshipDiv" runat="server" style="display: none;">
+                        <div>
+                            <asp:Label ID="lblEmptyList" runat="server" Text=""></asp:Label>
+                        </div>
+                    </div>
+                    <div style="margin-left:50%">
+                        <asp:Button ID="gotonext" runat="server" CssClass="btn btn-success" Text="Go to Cost Calculator section" OnClick="gotonext_Click" />
                     </div>
                 </div>
                </div>

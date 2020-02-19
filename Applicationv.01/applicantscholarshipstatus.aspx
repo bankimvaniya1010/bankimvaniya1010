@@ -52,6 +52,9 @@
                                     </Columns>
                                 </asp:GridView>
                             </div>
+                            <div style="margin-left: 40%">
+                                <asp:Button ID="gotonext" runat="server" CssClass="btn btn-success" Text="Go to Cost Calculator section" OnClick="gotonext_Click" />
+                            </div>
                         </div>
                     </div>
                 </div>

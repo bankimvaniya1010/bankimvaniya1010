@@ -60,7 +60,7 @@
                                     <div class="form-row">
                                         <asp:Button ID="btn_login" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" OnClientClick="return validateForm()" Visible="false"/>
                                         
-                                        <div class="col-md-6">
+                                        <div class="col-md-12">
                                              <asp:Label ID="LabelMessage" runat="server" text=""></asp:Label>      
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="list-group-item" id="">
                                 <div class="form-group m-0">
-                                    <div class="form-row">
+                                    <div class="form-row" style="margin-left: 60%;">
                                         <asp:Button ID="gotoNextPage" runat="server" Text="Go to Documents Upload" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                         </div>

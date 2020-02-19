@@ -85,6 +85,9 @@
                                 </div>
                             </div>   
                     <%} %>
+                <div style="margin-left: 50%">
+                    <asp:Button ID="gotonext" runat="server" CssClass="btn btn-success" Text="Go to Support Services section" OnClick="gotonext_Click" />
+                </div>
             </div>
 
             <div class="col-md-4">                

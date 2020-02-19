@@ -48,8 +48,11 @@ public partial class clarificationquestion : System.Web.UI.Page
                     {
                         if (applicantEduDetail != null)
                         {
-                            if (applicantEduDetail.ishighschooldone.Value == 1 && applicantEduDetail.issecondarydone.Value == 1)
-                                monthGap1012 = monthDiff(Convert.ToDateTime(applicantEduDetail.highschoolendate), Convert.ToDateTime(applicantEduDetail.secondaryendate));
+                            if (applicantEduDetail.ishighschooldone != null && applicantEduDetail.issecondarydone != null)
+                            {
+                                if (applicantEduDetail.ishighschooldone.Value == 1 && applicantEduDetail.issecondarydone.Value == 1)
+                                    monthGap1012 = monthDiff(Convert.ToDateTime(applicantEduDetail.highschoolendate), Convert.ToDateTime(applicantEduDetail.secondaryendate));
+                            }
                         }
                         if (monthGap1012 != 0 && monthGap1012 > GlobalVariables.GetHighSchoolSecondaryAllowedGap)
                         {
@@ -61,7 +64,7 @@ public partial class clarificationquestion : System.Web.UI.Page
                     else if (item.questiontype == "12_highereducation_gap")
                     {
                         if (applicantEduDetail != null && applicantHighEduDetail != null)
-                        {
+                        {                            
                             if (applicantHighEduDetail.startdate != null && applicantEduDetail.issecondarydone.Value == 1)
                                 higheredumonthGap12 = monthDiff(Convert.ToDateTime(applicantEduDetail.secondaryendate), Convert.ToDateTime(applicantHighEduDetail.startdate));
                         }
