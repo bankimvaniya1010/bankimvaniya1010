@@ -45,8 +45,7 @@ public partial class applicantchoicestatus : System.Web.UI.Page
             var allChoicesList = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID).SortBy("preferenceid").ToList();
             if (allChoicesList.Count == 0)
             {
-                emptyChoicesDiv.Visible = true;
-                emptyChoicesDiv.Style.Remove("display");
+                lblEmptyList.Visible = true;                
                 choices.Visible = false;
                 lblEmptyList.Text = "Student Application missing. Please check again after submitting application form";
             }
@@ -246,4 +245,10 @@ public partial class applicantchoicestatus : System.Web.UI.Page
     //    }
     //    return IPAddress;
     //}
+
+    
+    protected void gottonext_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(webURL + "applicantcoe.aspx", true);
+    }
 }

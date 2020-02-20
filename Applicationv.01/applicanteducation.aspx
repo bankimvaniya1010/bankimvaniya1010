@@ -24,7 +24,7 @@
                              <div class="list-group-item frm-rdbtn" id="studiedbefore" runat="server">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                     <div class="form-row">
-                                        <label id="label1" runat="server" for="studiedbefore" class="col-md-3 col-form-label form-label">Have you studied IN <asp:label id="nameofcountry" runat="server"></asp:label> before ?</label>
+                                        <label id="label1" runat="server" for="studiedbefore" class="col-md-3 col-form-label form-label">Have you studied IN <asp:label id="nameofcountry" runat="server"></asp:label> before?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="studiedYes" CssClass="form-control" runat="server" GroupName="studied" Text="Yes" />
                                             <asp:RadioButton ID="studiedNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="studied" Text="No" />
@@ -40,7 +40,7 @@
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="USINumberYes" CssClass="form-control" runat="server" GroupName="USINumber" Text="Yes" />
                                             <asp:RadioButton ID="USINumberNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="USINumber" Text="No" />
-                                            <asp:RadioButton ID="USINumberNotsure" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="USINumber" Text="I Am Not Sure" />
+                                            <asp:RadioButton ID="USINumberNotsure" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="USINumber" Text="I am not sure" />
                                             <span class="helpicon"><i id="icUSINumber" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
                             <div class="list-group-item frm-rdbtn" id="haveyoustudiedininstitution" runat="server" style="display:none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                     <div class="form-row">
-                                        <label id="label4" runat="server" for="haveyoustudiedininstitution" class="col-md-3 col-form-label form-label">HAve you studeied at <asp:label id="nameofinstitue1" runat="server"></asp:label> before?</label>
+                                        <label id="label4" runat="server" for="haveyoustudiedininstitution" class="col-md-3 col-form-label form-label">HAve you STUDIED at <asp:label id="nameofinstitue1" runat="server"></asp:label> before?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="studiedininstitutionYes" CssClass="form-control" runat="server" GroupName="studiedininstitution" Text="Yes" />
                                             <asp:RadioButton ID="studiedininstitutionNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="studiedininstitution" Text="No" />
@@ -88,11 +88,11 @@
                             <div class="list-group-item frm-rdbtn" id="highschool" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschool">
                                     <div class="form-row">
-                                        <label id="labelhighschool" runat="server" for="highschool" class="col-md-3 col-form-label form-label">Have you completed high school?</label>
+                                        <label id="labelhighschool" runat="server" for="highschool" class="col-md-3 col-form-label form-label">HAVE YOU COMPLETED HIGH SCHOOL?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton ID="rblHighYes" CssClass="form-control" runat="server" GroupName="highschool" Text="Yes" />
-                                            <asp:RadioButton ID="rblHighNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="highschool" Text="No- I am currently studying for my high school qualification " />
-                                            <asp:RadioButton ID="rblHighNot" CssClass="form-control" runat="server" GroupName="highschool" Text="No- I do not have a high school qualification " />
+                                            <asp:RadioButton ID="rblHighNo" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="highschool" Text="No, I am currently studying in high school" />
+                                            <asp:RadioButton ID="rblHighNot" CssClass="form-control" runat="server" GroupName="highschool" Text="No, I am not studying / have not studied in high school" />
                                             <span class="helpicon"><i id="ichighschool" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -116,8 +116,8 @@
                                         <div class="form-row">
                                             <label id="labelhighschoolstartDate" runat="server" for="highschoolstartDate" class="col-md-3 col-form-label form-label">Start Date </label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlHighSchoolStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlHighSchoolStartDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlHighSchoolStartDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>                                                
                                                 <span class="helpicon"><i id="ichighschoolstartDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -128,8 +128,8 @@
                                         <div class="form-row">
                                             <label id="labelhighschoolendDate" runat="server" for="highschoolendDate" class="col-md-3 col-form-label form-label">End Date </label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlHighSchoolEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>
                                                 <asp:DropDownList ID="ddlHighSchoolEndDateYear" CssClass="form-control" runat="server"></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlHighSchoolEndDateMonth" CssClass="form-control" runat="server"></asp:DropDownList>                                                
                                                 <span class="helpicon"><i id="ichighschoolendDate" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                         <div class="form-row">
                                             <label id="labelhighschoolName" runat="server" for="highschoolName" class="col-md-3 col-form-label form-label">Name of School</label>
                                             <div class="col-md-6">
-                                                <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Name of School">
+                                                <input id="txthighschoolName" runat="server" type="text" class="form-control" placeholder="Enter the name of your high school">
                                                 <span class="helpicon"><i id="ichighschoolName" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -149,7 +149,7 @@
                                 <div class="list-group-item frm-rdbtn" id="highschoolQualificationtype" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolQualificationtype">
                                         <div class="form-row">
-                                            <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">Qualification Name</label>
+                                            <label id="labelhighschoolQualificationtype" runat="server" for="highschoolQualificationtype" class="col-md-3 col-form-label form-label">NAME OF HIGH SCHOOL QUALIFICATION</label>
                                             <div class="col-md-6">
                                                 <asp:DropDownList ID="ddlHighSchoolQualificationType" CssClass="form-control" runat="server">
                                                       <asp:ListItem value="" selected="True" >Please Select</asp:ListItem>
@@ -160,7 +160,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item frm-rdbtn" id="highschoolstudymode" runat="server" style="display: none">
+                               <%-- <div class="list-group-item frm-rdbtn" id="highschoolstudymode" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoolstudymode">
                                         <div class="form-row">
                                             <label id="labelhighschoolstudymode" runat="server" for="highschoolstudymode" class="col-md-3 col-form-label form-label">Mode of study</label>
@@ -170,7 +170,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <div class="list-group-item frm-rdbtn" id="highschoollanguage" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-highschoollanguage">
                                         <div class="form-row">
@@ -198,9 +198,9 @@
                                         <div class="form-row">
                                             <label id="labelgradeachieved" runat="server" for="gradeachieved" class="col-md-3 col-form-label form-label">Final Grade Achieved </label>
                                             <div class="col-md-9">
-                                                <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results Declared" />
-                                                <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text=" Examination not conducted yet" />
-                                                <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Examination Conducted, but Result not declared" />
+                                                <asp:RadioButton ID="rblYes" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Results have been declared" />
+                                                <asp:RadioButton ID="rblYetToConduct" CssClass="form-control" runat="server" GroupName="HighschoolGrade" Text="Final examination has not been conducted yet" />
+                                                <asp:RadioButton ID="rblNot" runat="server" CssClass="form-control" GroupName="HighschoolGrade" Text="Final examination has been conducted, but results are undeclared" />
                                                 <span class="helpicon"><i id="ichighschoolgradeachieved" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -272,7 +272,7 @@
                         <div class="list-group-item" id="highshoolgrade" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-highschoolYear">
                                     <div class="form-row">
-                                        <input type="button" runat="server" class="btn btn-success" id="btn10th" value="Add Subject and their Grades" />
+                                        <input type="button" runat="server" class="btn btn-success" id="btn10th" value="Add Subject(s) & Grade(s) " />
                                     </div>
                                         <div class="form-row">
                                         <div class="col-md-12">                                            
@@ -282,12 +282,12 @@
 		                                        <tbody>                                                       
                                                     <tr>
 			                                            <th scope="col">ID</th>
-                                                        <th scope="col">Course Name</th>
-                                                        <th scope="col">Subject</th>
+                                                        <th scope="col">Qualification Name</th>
+                                                        <th scope="col">Subject</th>                                                        
                                                         <th scope="col">Others </th>
                                                         <th scope="col">Grade Type</th>
                                                         <th scope="col">Grade </th>
-                                                        <th scope="col">Delete</th>
+                                                        <th scope="col">Delete this Subject?</th>
 		                                            </tr>
                                                      <%if (grade10.Count > 0)
                                                         {
@@ -334,11 +334,11 @@
                                 <div class="list-group-item frm-rdbtn" id="Secondary" runat="server" style="display: none">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Secondary">
                                         <div class="form-row">
-                                            <label id="labelSecondary" runat="server" for="Secondary" class="col-md-3 col-form-label form-label">Have you completed Senior Secondary school? (Year 12)?</label>
+                                            <label id="labelSecondary" runat="server" for="Secondary" class="col-md-3 col-form-label form-label">HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL (YEAR 12)?</label>
                                             <div class="col-md-9">
                                                 <asp:RadioButton ID="rblSecondaryYes" CssClass="form-control" runat="server" GroupName="Secondary" Text="Yes" />
-                                                <asp:RadioButton ID="rblSecondaryNo" CssClass="form-control" runat="server" GroupName="Secondary" Text="No  - I am currently still studying for my Senior Secondary " />
-                                                <asp:RadioButton ID="rblSecondaryNot" CssClass="form-control" runat="server" GroupName="Secondary" Text="No - I do not have a Senior Secondary qualification" />
+                                                <asp:RadioButton ID="rblSecondaryNo" CssClass="form-control" runat="server" GroupName="Secondary" Text="No, I am currently studying in Senior Secondary school" />
+                                                <asp:RadioButton ID="rblSecondaryNot" CssClass="form-control" runat="server" GroupName="Secondary" Text="No, I am not studying / have not studied in Senior Secondary school" />
                                                 <span class="helpicon"><i id="icSecondary" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -527,12 +527,12 @@
                                                       <tbody>
                                                             <tr>
 			                                                    <th scope="col">ID</th>
-                                                                <th scope="col">Course Name</th>
-                                                                <th scope="col">Subject</th>
+                                                                <th scope="col">Qualification Name</th>
+                                                                <th scope="col">Subject</th>                                                                
                                                                 <th scope="col">Others </th>
                                                                 <th scope="col">Grade Type</th>
                                                                 <th scope="col">Grade </th>
-                                                                <th scope="col">Delete</th>
+                                                                <th scope="col">Delete this Subject?</th>
 		                                                    </tr>
                                                           <%if (gradeSecondary.Count > 0)
                                                               {
@@ -546,7 +546,7 @@
                                                               </td>
                                                               <td style="width: 30px;">
                                                                   <span><%=gradeSecondary[i].subject%></span>
-                                                              </td>
+                                                              </td>                                                             
                                                               <td style="width: 30px;">
                                                                   <span><%=gradeSecondary[i].othersubject%></span>
                                                               </td>
@@ -583,12 +583,12 @@
                                     <div class="form-group m-0" role="group" aria-labelledby="label-higher">
                                         <div class="form-row">
                                             <label id="labelhigher" runat="server" for="higher" class="col-md-3 col-form-label form-label">
-                                                Have you completed any Higher (Under Graduate, Masters or PhD) degree? 
+                                                HAVE YOU COMPLETED A DEGREE HIGHER THAN YEAR 12?
 ?</label>
                                             <div class="col-md-9">
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherYes" runat="server" GroupName="higher" Text="Yes" />
-                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text=" I am currently studying for my higher qualification" />
-                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text="No- I do not have a higher qualification " />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text="No, I am currently studying my higher qualification" />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text="No, I am not studying / have not studies any higher" />
                                                 <span class="helpicon"><i id="ichigher" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -793,12 +793,12 @@
                                                         <tbody>
                                                         <tr>
                                                             <th scope="col">ID</th>
-                                                            <th scope="col">Course Name</th>
+                                                            <th scope="col">Qualification Name</th>
                                                             <th scope="col">Subject</th>
                                                             <th scope="col">Others </th>
                                                             <th scope="col">Grade Type</th>
                                                             <th scope="col">Grade </th>
-                                                            <th scope="col">Delete</th>
+                                                            <th scope="col">Delete this Subject?</th>
                                                         </tr>
                                                             <%if (gradehigher.Count > 0)
                                                                 {
@@ -907,11 +907,11 @@
                             <div class="list-group-item frm-rdbtn" id="diploma" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-diploma">
                                     <div class="form-row">
-                                        <label id="labeldiploma" runat="server" for="diploma" class="col-md-3 col-form-label form-label">Have you completed any Diploma or Certificate Programs ?</label>
+                                        <label id="labeldiploma" runat="server" for="diploma" class="col-md-3 col-form-label form-label">HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAM(S)?</label>
                                         <div class="col-md-9">
                                             <asp:RadioButton CssClass="form-control" ID="rbldiplomaYes" runat="server" GroupName="diploma" Text="Yes" />
-                                            <asp:RadioButton CssClass="form-control" ID="rbldiplomaNo" runat="server" GroupName="diploma" Text="I am currently studying for my Diploma/Certificate" />
-                                            <asp:RadioButton CssClass="form-control" ID="rbldiplomaNot" runat="server" GroupName="diploma" Text="No - I do not have a Diploma/Certificate qualification" />
+                                            <asp:RadioButton CssClass="form-control" ID="rbldiplomaNo" runat="server" GroupName="diploma" Text="No, I am currently studying a Diploma or Certificate program" />
+                                            <asp:RadioButton CssClass="form-control" ID="rbldiplomaNot" runat="server" GroupName="diploma" Text="No, I am not studying / have not studied any Diploma or Certificate program" />
                                             <span class="helpicon"><i id="icdiploma" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
@@ -1100,12 +1100,12 @@
                                                      <tbody>
                                                             <tr>
                                                                 <th scope="col">ID</th>
-                                                                <th scope="col">Course Name</th>
-                                                                <th scope="col">Subject</th>
+                                                                <th scope="col">Qualification Name</th>
+                                                                <th scope="col">Subject</th>                                                                
                                                                 <th scope="col">Others </th>
                                                                 <th scope="col">Grade Type</th>
                                                                 <th scope="col">Grade </th>
-                                                                <th scope="col">Delete</th>
+                                                                <th scope="col">Delete this Subject?</th>
                                                             </tr>
                                                          <%if (gradediploma.Count > 0)
                                                              {
@@ -1152,8 +1152,8 @@
                             <div class="list-group-item">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-employerwebsite">
                                     <div class="form-row justify-content-between">
-                                        <asp:Button ID="btn_Save" runat="server" Text="Save Changes" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
-                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go To English Competency" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
+                                        <asp:Button ID="btn_Save" runat="server" Text="Save" OnClientClick="return validateForm()" CssClass="btn btn-success" OnClick="btn_Save_Click" />
+                                        <asp:Button ID="gotoNextPage" runat="server" Text="Go to English Competency" CssClass="btn btn-success" OnClick="gotoNextPage_Click" OnClientClick="return validateForm()"/>
                                         <div class="col-md-6">
                                             <asp:Label ID="lblMessage" runat="server" Visible="false"></asp:Label>
                                             <asp:Label ID="lblSaveTime" runat="server"></asp:Label>
@@ -1625,8 +1625,8 @@
                 alert("Please enter high school name");
             else if ((!$("#<%=highschoolQualificationtype.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolQualificationType.ClientID%>").val() == "0"))
                 alert("Please select high school qualification name");
-            else if ((!$("#<%=highschoolstudymode.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolStudyMode.ClientID%>").val() == "0"))
-                alert("Please select high school study mode");
+            <%--else if ((!$("#<%=highschoolstudymode.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolStudyMode.ClientID%>").val() == "0"))
+                alert("Please select high school study mode");--%>
             else if ((!$("#<%=highschoollanguage.ClientID%>").is(':hidden')) && ($("#<%=ddlHighschoolMedium.ClientID%>").val() == "0"))
                 alert("Please select  high school medium");
             else if ((!$("#<%=gradetype.ClientID%>").is(':hidden')) && ($("#<%=ddlHighSchoolGrade.ClientID%>").val() == "0"))

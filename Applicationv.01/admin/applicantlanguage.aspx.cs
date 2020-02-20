@@ -82,11 +82,11 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
+                    case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                         homelanguage.Attributes.Add("style", "display:block;");
                         labelhomelanguage.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
+                    case "HAVE YOU STUDIED AN ELICOS COURSE?":
                         EnglishBackground.Attributes.Add("style", "display:block;");
                         labelEnglishBackground.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -126,7 +126,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         ExpectedDategrade.Attributes.Add("style", "display:block;");
                         labelExpectedDategrade.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                    case "HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?":
                         EnglishTest.Attributes.Add("style", "display:block;");
                         labelEnglishTest.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -134,7 +134,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         CEFR.Attributes.Add("style", "display:block;");
                         labelCEFR.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "TEST REPORT REFERENCE NO":
+                    case "TEST REPORT REFERENCE NUMBER":
                         testRefno.Attributes.Add("style", "display:block;");
                         labeltestRefno.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -145,7 +145,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         testName.Attributes.Add("style", "display:block;");
                         labeltestName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "CANDIDATE NO":
+                    case "CANDIDATE NUMBER":
                         CandidateNo.Attributes.Add("style", "display:block;");
                         labelCandidateNo.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -188,7 +188,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         break;
                     //PTE
 
-                    case "COMMUNICATIVE SKILLS READING":
+                    case "COMMUNICATIVE SKILLS READING SCORE":
                         pteReadingScore.Attributes.Add("style", "display:block;");
                         labelpteReadingScore.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -301,11 +301,11 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "WHAT LANGUAGE DO YOU SPEAK AT HOME":
+                    case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                         ichomelanguage.Attributes.Add("style", "display:block;");
                         ichomelanguage.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HAVE YOU STUDIED AN ENGLISH LANGUAGE INTENSIVE COURSE FOR STUDENTS FROM NON-ENGLISH SPEAKING BACKGROUNDS":
+                    case "HAVE YOU STUDIED AN ELICOS COURSE?":
                         icEnglishBackground.Attributes.Add("style", "display:block;");
                         icEnglishBackground.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -345,7 +345,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         icgradeachieved.Attributes.Add("style", "display:block;");
                         icgradeachieved.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HAVE YOU SAT ANY ONE OF THE FOLLOWING ENGLISH LANGUAGE COMPETENCY TESTS":
+                    case "HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?":
                         icEnglishTest.Attributes.Add("style", "display:block;");
                         icEnglishTest.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -354,7 +354,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         ictestName.Attributes.Add("style", "display:block;");
                         ictestName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "CANDIDATE NO":
+                    case "CANDIDATE NUMBER":
                         icCandidateNo.Attributes.Add("style", "display:block;");
                         icCandidateNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -412,7 +412,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         icptetestcenterNo.Attributes.Add("style", "display:block;");
                         icptetestcenterNo.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COMMUNICATIVE SKILLS READING":
+                    case "COMMUNICATIVE SKILLS READING SCORE":
                         icpteReadingScore.Attributes.Add("style", "display:block;");
                         icpteReadingScore.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -479,7 +479,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         icCEFR.Attributes.Add("style", "display:block;");
                         icCEFR.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "TEST REPORT REFERENCE NO":
+                    case "TEST REPORT REFERENCE NUMBER":
                         ictestRefno.Attributes.Add("style", "display:block;");
                         ictestRefno.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -653,14 +653,14 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "What language do you speak at home":
+                case "WHICH LANGUAGE DO YOU SPEAK AT HOME?":
                     if (Comments[k].adminaction == 0)
                         rblhomelanguageNo.Checked = true;
                     else
                         rblhomelanguageYes.Checked = true;
                     txthomelanguage.Value = setComments(Comments[k]);
                     break;
-                case "Have you studied an English Language Intensive Course for students from non-English speaking backgrounds":
+                case "HAVE YOU STUDIED AN ELICOS COURSE?":
                     if (Comments[k].adminaction == 0)
                         rblEnglishBackgroundNo.Checked = true;
                     else
@@ -730,7 +730,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                         rblExpectedDategradeYes.Checked = true;
                     txtExpectedDategrade.Value = setComments(Comments[k]);
                     break;
-                case "Have you sat any one of the following English Language competency tests":
+                case "HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?":
                     if (Comments[k].adminaction == 0)
                         rblEnglishTestNo.Checked = true;
                     else
@@ -761,7 +761,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                     txtptetestcenterNo.Value = setComments(Comments[k]);
                     txttofelcenterNo.Value = setComments(Comments[k]);
                     break;
-                case "Candidate No":
+                case "CANDIDATE NUMBER":
                     if (Comments[k].adminaction == 0)
                         rblCandidateNoNo.Checked = true;
                     else
@@ -916,7 +916,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
                     else
                         rblCEFRYes.Checked = true;
                     break;
-                case "Test Report Reference No":
+                case "TEST REPORT REFERENCE NUMBER":
                     txttestRefno.Value = setComments(Comments[k]);
                     if (Comments[k].adminaction == 0)
                         rbltestRefnoNo.Checked = true;
@@ -938,9 +938,9 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
         try
         {
             if (homelanguage.Style.Value != "display: none")
-                adminInputs.Add("What language do you speak at home", txthomelanguage.Value.Trim() + "~" + (rblhomelanguageNo.Checked == true ? 0 : 1));
+                adminInputs.Add("WHICH LANGUAGE DO YOU SPEAK AT HOME?", txthomelanguage.Value.Trim() + "~" + (rblhomelanguageNo.Checked == true ? 0 : 1));
             if (EnglishBackground.Style.Value != "display: none")
-                adminInputs.Add("Have you studied an English Language Intensive Course for students from non-English speaking backgrounds", txtEnglishBackground.Value.Trim() + "~" + (rblEnglishBackgroundNo.Checked == true ? 0 : 1));
+                adminInputs.Add("HAVE YOU STUDIED AN ELICOS COURSE?", txtEnglishBackground.Value.Trim() + "~" + (rblEnglishBackgroundNo.Checked == true ? 0 : 1));
             if (Language.Style.Value != "display: none")
                 adminInputs.Add("Country of English Language Intensive Course", txtLanguage.Value.Trim() + "~" + (rblLanguageNo.Checked == true ? 0 : 1));
             if (YearCompletion.Style.Value != "display: none")
@@ -960,13 +960,13 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             if (ExpectedDategrade.Style.Value != "display: none")
                 adminInputs.Add("Expected dates when results will be declared", txtExpectedDategrade.Value.Trim() + "~" + (rblExpectedDategradeNo.Checked == true ? 0 : 1));
             if (EnglishTest.Style.Value != "display: none")
-                adminInputs.Add("Have you sat any one of the following English Language competency tests", txtEnglishTest.Value.Trim() + "~" + (rblEnglishTestNo.Checked == true ? 0 : 1));
+                adminInputs.Add("HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?", txtEnglishTest.Value.Trim() + "~" + (rblEnglishTestNo.Checked == true ? 0 : 1));
             if (testName.Style.Value != "display: none")
                 adminInputs.Add("Test Name", txttestName.Value.Trim() + "~" + (rbltestNameNo.Checked == true ? 0 : 1));
             if (CentreNo.Style.Value != "display: none")
-                adminInputs.Add("Centre No", txtCentreNo.Value.Trim() + "~" + (rblCentreNoNo.Checked == true ? 0 : 1));
+                adminInputs.Add("CENTER NUMBER", txtCentreNo.Value.Trim() + "~" + (rblCentreNoNo.Checked == true ? 0 : 1));
             if (CandidateNo.Style.Value != "display: none")
-                adminInputs.Add("Candidate No", txtCandidateNo.Value.Trim() + "~" + (rblCandidateNoNo.Checked == true ? 0 : 1));
+                adminInputs.Add("CANDIDATE NUMBER", txtCandidateNo.Value.Trim() + "~" + (rblCandidateNoNo.Checked == true ? 0 : 1));
             if (CandidateID.Style.Value != "display: none")
                 adminInputs.Add("Candidate ID", txtCandidateID.Value.Trim() + "~" + (rblCandidateIDNo.Checked == true ? 0 : 1));
             if (ieltsTestDate.Style.Value != "display: none")
@@ -1024,7 +1024,7 @@ public partial class admin_applicantlanguage : System.Web.UI.Page
             if (CEFR.Style.Value != "display: none")
                 adminInputs.Add("CEFR Level", txtCEFR.Value.Trim() + "~" + (rblCEFRNo.Checked == true ? 0 : 1));
             if (testRefno.Style.Value != "display: none")
-                adminInputs.Add("Test Report Reference No", txttestRefno.Value.Trim() + "~" + (rbltestRefnoNo.Checked == true ? 0 : 1));
+                adminInputs.Add("TEST REPORT REFERENCE NUMBER", txttestRefno.Value.Trim() + "~" + (rbltestRefnoNo.Checked == true ? 0 : 1));
 
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);

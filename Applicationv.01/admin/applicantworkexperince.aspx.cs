@@ -84,26 +84,26 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
                     case "WEBSITE":
                         employerwebsiteToolTips = setTooltips(fields[k]);
                         break;
-                    case "NAME OF ORGANIZATION":
+                    case "NAME OF EMPLOYER ORGANISATION":
                         employerToolTips = setTooltips(fields[k]);
                         break;
 
-                    case "CITY":
+                    case "CITY OF EMPLOYER’S LOCATION":
                         employercityToolTips = setTooltips(fields[k]);
                         break;
-                    case "COUNTRY":
+                    case "COUNTRY OF EMPLOYER’S LOCATION":
                         employercountryToolTips = setTooltips(fields[k]);
                         break;
                     case "POSITION/ROLE IN":
                         positionToolTips = setTooltips(fields[k]);
                         break;
-                    case "START DATE":
+                    case "START DATE OF EMPLOYMENT":
                         startdateToolTips = setTooltips(fields[k]);
                         break;
-                    case "END DATE":
+                    case "END DATE OF EMPLOYMENT":
                         enddateToolTips = setTooltips(fields[k]);
                         break;
-                    case "BRIEF DESCRIPTION OF WHAT YOU DID":
+                    case "BRIEF JOB DESCRIPTION":
                         BriefDescriptionToolTips = setTooltips(fields[k]);
                         break;
                     case "NAME OF YOUR REPORTING MANAGER":
@@ -175,26 +175,26 @@ public partial class admin_applicantworkexperince : System.Web.UI.Page
                     case "WEBSITE":
                         employerwebsite = setInnerHtml(fields[k]);
                         break;
-                    case "NAME OF ORGANIZATION":
+                    case "NAME OF EMPLOYER ORGANISATION":
                         employer = setInnerHtml(fields[k]);
                         break;
 
-                    case "CITY":
+                    case "CITY OF EMPLOYER’S LOCATION":
                         employercity = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY":
+                    case "COUNTRY OF EMPLOYER’S LOCATION":
                         employercountry = setInnerHtml(fields[k]);
                         break;
                     case "POSITION/ROLE IN":
                         position = setInnerHtml(fields[k]);
                         break;
-                    case "START DATE":
+                    case "START DATE OF EMPLOYMENT":
                         startdate = setInnerHtml(fields[k]);
                         break;
-                    case "END DATE":
+                    case "END DATE OF EMPLOYMENT":
                         enddate = setInnerHtml(fields[k]);
                         break;
-                    case "BRIEF DESCRIPTION OF WHAT YOU DID":
+                    case "BRIEF JOB DESCRIPTION":
                         BriefDescription = setInnerHtml(fields[k]);
                         break;
                     case "NAME OF YOUR REPORTING MANAGER":

@@ -84,7 +84,7 @@
                     <div class="card-footer" id="button" runat="server">
                         <div class="form-row justify-content-between">
                         	<asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-success" Text="Submit" OnClick="btnsubmit_Click" OnClientClick="return validateForm()" />
-                            <asp:Button ID="btnGoToDeclaration" runat="server" CssClass="btn btn-success" Text="Go To Declaration" OnClick="btnGoToDeclaration_Click" OnClientClick="return validateForm()" />
+                            <asp:Button ID="btnGoToDeclaration" runat="server" CssClass="btn btn-success" Text="Next" OnClick="btnGoToDeclaration_Click" OnClientClick="return validateForm()" />
                         </div>
 
                         <%-- <a href="#" class="btn btn-white">Skip</a>
@@ -96,12 +96,12 @@
                 <div class="col-md-4">  
                 <div class="card">
                     <div class="card-body">
-                        <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
+                        <label id="lblInstructionHeader" runat="server" style="font-size:17px;font-weight: 800;font-style: normal;">Instructions:</label><br />
                         <ol style="font-size:small; padding-left:15px">
                             <li>Completing this section is mandatory.</li><br/>
-                            <li>Please Read the attached documents carefully and watch the recommended videos.</li><br/>
-                            <li>Take a quick test to check the knowledge you have gained after reading the suggested documents and watching the videos. Please note that you can proceed to the next section only if you achieve a 65% above.</li><br/>
-                            <li>Lastly, please accept the declarations given below.</li>
+                            <li>Please go through all the questions on this page carefully and answer them to the best of your knowledge.</li><br/>
+                            <li>After you have answered all questions, click on Submit.</li><br/>
+                            <li>Click on Next to proceed to the next section.</li>
                         </ol>
                     </div>
                 </div>

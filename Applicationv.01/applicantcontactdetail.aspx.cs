@@ -43,14 +43,34 @@ public partial class applicantcontactdetail : System.Web.UI.Page
             allQuestions = objCom.FaqQuestionList(Request.QueryString["formid"], universityID);
             if (CustomControls.Count > 0)
                 objCom.SetCustomData(formId, userID, CustomControls, mainDiv);
-            objCom.BindCountries(ddlpostalCountry);
-            objCom.BindCountries(ddlResidentialCountry);
-            objCom.BindCountries(ddlPrevAddressCountry);
+            BindCountries(ddlpostalCountry);
+            BindCountries(ddlResidentialCountry);
+            BindCountries(ddlPrevAddressCountry);
             PopulatePersonalInfo();
             SetToolTips();
             SetControlsUniversitywise();
         }
     }
+
+    public void BindCountries(DropDownList ddl)
+    {
+        try
+        {
+            ListItem lst = new ListItem("Country", "0");
+            var country = db.countriesmaster.ToList();
+
+            ddl.DataSource = country;
+            ddl.DataTextField = "country_name";
+            ddl.DataValueField = "id";
+            ddl.DataBind();
+            ddl.Items.Insert(0, lst);
+        }
+        catch (Exception ex)
+        {
+            objLog.WriteLog(ex.ToString());
+        }
+    }
+
     private void PopulatePersonalInfo()
     {
         try

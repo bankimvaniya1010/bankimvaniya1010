@@ -67,15 +67,11 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
+                            <label id="lblInstructionHeader" runat="server" style="font-size:17px;font-weight: 800;font-style: normal;">Instructions:</label><br />
                             <ol style="font-size:small; padding-left:15px">
                                 <li>Completing this section is mandatory.</li><br/>
                                 <li>Please read all the conditions given on the left carefully.</li><br/>
-                                <li>After you agree to all the conditions, click on the ‘I Accept’ button to proceed further</li><br/>
-                                <li>Take a quick test to check your knowledge.</li><br/>
-                                <li>To go to the next section you need to successfully answer the test question and achieve >65% grade.</li><br/>
-                                <li>Else you would required to take the test again post going through the tutorial again.</li><br/>
-                                <li>Lastly please accept the declarations.</li>
+                                <li>After you agree to all the conditions, click on the ‘I Accept’ button to proceed further</li><br/>                                
                             </ol>
                         </div>
                     </div>

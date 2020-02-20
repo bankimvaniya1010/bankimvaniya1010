@@ -21,7 +21,7 @@
                     {
                     %>
                 <div class="card pdf-doc-wrpr" id="document" runat="server">
-                    <h5> Something For You To Read</h5>
+                    <h5> Please read the following documents:</h5>
                     <div class="pdf-container clearfix">
                         <%for (int v = 0; v < allDocuments.Count; v++)
                             {
@@ -64,11 +64,11 @@
                     %>
                     <div class="card" id="declaration" runat="server">
                         <div class="card-body">
-                            <asp:CheckBox ID="checkCondition" runat="server" Text="I have read the given documents, watched the given videos and do fully understand the information contained in them." class=" col-form-label form-label" />
+                            <asp:CheckBox ID="checkCondition" runat="server" Text="I HAVE READ THE DOCUMENTS GIVEN ABOVE AND DO FULLY UNDERSTAND THE INFORMATION CONTAINED IN THEM." class=" col-form-label form-label" />
                             
                             <div class="media align-items-center">  
                                 <div class="form-row" style="align-content:center">
-                                    <asp:Button ID="btnnext" runat="server" Text="Next Step" CssClass="btn btn-success" OnClick="btnnext_Click" />
+                                    <asp:Button ID="btnnext" runat="server" Text="Next" CssClass="btn btn-success" OnClick="btnnext_Click" />
                                     <%--<a href="gte_preliminaryquestion.aspx" class="btn btn-success" id="btnnext" runat="server">Next</a>                                      --%>
                                 </div>
                             </div>
@@ -91,13 +91,12 @@
             <div class="col-md-4">               
                 <div class="card">
                     <div class="card-body">
-                        <label id="lblInstructionHeader" runat="server" style="font-size:medium;">Instructions:</label><br />
+                        <label id="lblInstructionHeader" runat="server" style="font-size:17px;font-weight: 800;font-style: normal;">Instructions:</label><br />
                         
                         <ol style="font-size:small; padding-left:15px">
                             <li>Completing this section is mandatory.</li><br/>
-                            <li>Please Read the attached documents carefully and watch the recommended videos.</li><br/>
-                            <li>Take a quick test to check the knowledge you have gained after reading the suggested documents and watching the videos. Please note that you can proceed to the next section only if you achieve a 65% above.</li><br/>
-                            <li>Lastly, please accept the declarations given below.</li>
+                            <li>Please read the given documents carefully.</li><br/>
+                            <li>After you have read the required documents, accept the declaration below to proceed to the next step.</li>                            
                         </ol>
                      </div>                     
                 </div>
