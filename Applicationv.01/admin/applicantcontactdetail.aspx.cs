@@ -223,7 +223,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         icHomePhone.Attributes.Add("style", "display:block;");
                         icHomePhone.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE?":
                         icSkype.Attributes.Add("style", "display:block;");
                         icSkype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -231,11 +231,11 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         icSkypeDesc.Attributes.Add("style", "display:block;");
                         icSkypeDesc.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP?":
                         icWhatsapp.Attributes.Add("style", "display:block;");
                         icWhatsapp.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?":
                         icWhatsapphave.Attributes.Add("style", "display:block;");
                         icWhatsapphave.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -247,7 +247,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         icPostal.Attributes.Add("style", "display:block;");
                         icPostal.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
+                    case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                         icAddress.Attributes.Add("style", "display:block;");
                         icAddress.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -330,7 +330,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         phone.Attributes.Add("style", "display:block;");
                         labelphone.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                    case "WOULD YOU LIKE TO CONNECT VIA SKYPE?":
                         skype.Attributes.Add("style", "display:block;");
                         labelskype.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -338,11 +338,11 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         skypeDesc.Attributes.Add("style", "display:block;");
                         labelskypeDesc.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                    case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP?":
                         whatsapp.Attributes.Add("style", "display:block;");
                         labelwhatsapp.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
+                    case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?":
                         whatsappHave.Attributes.Add("style", "display:block;");
                         labelwhatsappHave.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -354,7 +354,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         postal.Attributes.Add("style", "display:block;");
                         labelpostal.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "IS YOUR POSTAL ADDRESS SAME AS YOUR CURRENT RESIDENTIAL ADDRESS":
+                    case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                         address.Attributes.Add("style", "display:block;");
                         labeladdress.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -420,7 +420,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         rblHomePhoneYes.Checked = true;
                     txtHomePhone.Value = setComments(Comments[k]);
                     break;
-                case "WOULD YOU LIKE TO CONNECT VIA SKYPE":
+                case "WOULD YOU LIKE TO CONNECT VIA SKYPE?":
                     if (Comments[k].adminaction == 0)
                         rblSkypeNo.Checked = true;
                     else
@@ -434,14 +434,14 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         rblSkypeDescriptionYes.Checked = true;
                     txtSkypeDescription.Value = setComments(Comments[k]);
                     break;
-                case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP":
+                case "WOULD YOU LIKE TO CONNECT VIA WHATSAPP?":
                     if (Comments[k].adminaction == 0)
                         rblWhatsappNo.Checked = true;
                     else
                         rblWhatsappYes.Checked = true;
                     txtWhatsapp.Value = setComments(Comments[k]);
                     break;
-                case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER":
+                case "IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?":
                     if (Comments[k].adminaction == 0)
                         rblWhatsapphaveNo.Checked = true;
                     else
@@ -462,7 +462,7 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
                         rblPostalAddressYes.Checked = true;
                     txtPostalAddress.Value = setComments(Comments[k]);
                     break;
-                case "Is your Postal Address same as your current residential address":
+                case "IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?":
                     if (Comments[k].adminaction == 0)
                         rblAddressNo.Checked = true;
                     else
@@ -540,20 +540,20 @@ public partial class admin_applicantcontactdetail : System.Web.UI.Page
             if (phone.Style.Value != "display: none")
                 adminInputs.Add("Home phone", txtHomePhone.Value.Trim() + "~" + (rblHomePhoneNo.Checked == true ? 0 : 1));
             if (skype.Style.Value != "display: none")
-                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA SKYPE", txtSkype.Value.Trim() + "~" + (rblSkypeNo.Checked == true ? 0 : 1));
+                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA SKYPE?", txtSkype.Value.Trim() + "~" + (rblSkypeNo.Checked == true ? 0 : 1));
             if (skypeDesc.Style.Value != "display: none")
                 adminInputs.Add("Skype ID", txtSkypeDescription.Value.Trim() + "~" + (rblSkypeDescriptionNo.Checked == true ? 0 : 1));
             if (whatsapp.Style.Value != "display: none")
-                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP", txtWhatsapp.Value.Trim() + "~" + (rblWhatsappNo.Checked == true ? 0 : 1));
+                adminInputs.Add("WOULD YOU LIKE TO CONNECT VIA WHATSAPP?", txtWhatsapp.Value.Trim() + "~" + (rblWhatsappNo.Checked == true ? 0 : 1));
             if (whatsappHave.Style.Value != "display: none")
-                adminInputs.Add("IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER", txtWhastappHave.Value.Trim() + "~" + (rblWhatsapphaveNo.Checked == true ? 0 : 1));
+                adminInputs.Add("IS YOUR WHATSAPP NUMBER SAME AS YOUR MOBILE NUMBER ABOVE?", txtWhastappHave.Value.Trim() + "~" + (rblWhatsapphaveNo.Checked == true ? 0 : 1));
             if (whatsappDesc.Style.Value != "display: none")
                 adminInputs.Add("Whatsapp Number", txtWhatsappDescription.Value.Trim() + "~" + (rblwhatsappDescNo.Checked == true ? 0 : 1));
             if (postal.Style.Value != "display: none")
                 adminInputs.Add("Postal Address", txtPostalAddress.Value.Trim() + "~" + (rblPostalAddressNo.Checked == true ? 0 : 1));
             if (address.Style.Value != "display: none")
             {
-                adminInputs.Add("Is your Postal Address same as your current residential address", txtAddress.Value.Trim() + "~" + (rblAddressNo.Checked == true ? 0 : 1));
+                adminInputs.Add("IS YOUR POSTAL ADDRESS THE SAME AS YOUR CURRENT RESIDENTIAL ADDRESS?", txtAddress.Value.Trim() + "~" + (rblAddressNo.Checked == true ? 0 : 1));
                 adminInputs.Add("HAVE YOU BEEN LIVING IN THE CURRENT ADDRESS FOR LESS THAN 1 YEAR ?", txtCurrentAddress.Value.Trim() + "~" + (rblCurrentAddressNo.Checked == true ? 0 : 1));
             }
             if (residential.Style.Value != "display: none")

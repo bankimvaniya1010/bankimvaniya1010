@@ -87,7 +87,7 @@ public partial class applicanteducation : System.Web.UI.Page
             FillYears(ddlDiplomaEndDateYear);
 
             SetToolTips();
-            BindStudyMode(ddlHighSchoolStudyMode);
+            //BindStudyMode(ddlHighSchoolStudyMode);
             BindStudyMode(ddlSecondaryStudyMode);
             BindStudyMode(ddlHigherStudyMode);
             BindStudyMode(ddlDiplomaStudyMode);
@@ -170,11 +170,11 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "HAVE YOU COMPLETED HIGH SCHOOL":
+                    case "HAVE YOU COMPLETED HIGH SCHOOL?":
                         highschool.Attributes.Add("style", "display:block;");
                         labelhighschool.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "COUNTRY OF HIGH SCHOOL":
+                    case "COUNTRY WHERE YOU HAVE STUDIED HIGH SCHOOL":
                         highschoolCountry.Attributes.Add("style", "display:block;");
                         labelhighschoolCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -208,9 +208,11 @@ public partial class applicanteducation : System.Web.UI.Page
                         diplomaschoolName.Attributes.Add("style", "display:block;");
                         labeldiplomaschoolName.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "QUALIFICATION NAME":
+                    case "NAME OF HIGH SCHOOL QUALIFICATION":
                         highschoolQualificationtype.Attributes.Add("style", "display:block;");
                         labelhighschoolQualificationtype.InnerHtml = setInnerHtml(fields[k]);
+                        break;
+                    case "QUALIFICATION NAME":                        
                         SecondaryQualificationtype.Attributes.Add("style", "display:block;");
                         labelSecondaryQualificationtype.InnerHtml = setInnerHtml(fields[k]);
                         higherQualificationtype.Attributes.Add("style", "display:block;");
@@ -220,8 +222,8 @@ public partial class applicanteducation : System.Web.UI.Page
                         break;
 
                     case "MODE OF STUDY":
-                        highschoolstudymode.Attributes.Add("style", "display:block;");
-                        labelhighschoolstudymode.InnerHtml = setInnerHtml(fields[k]);
+                        //highschoolstudymode.Attributes.Add("style", "display:block;");
+                        //labelhighschoolstudymode.InnerHtml = setInnerHtml(fields[k]);
                         Secondarystudymode.Attributes.Add("style", "display:block;");
                         labelSecondarystudymode.InnerHtml = setInnerHtml(fields[k]);
                         higherstudymode.Attributes.Add("style", "display:block;");
@@ -309,7 +311,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         diplomacontactMobile.Attributes.Add("style", "display:block;");
                         labeldiplomacontactMobile.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
+                    case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL (YEAR 12)?":
                         Secondary.Attributes.Add("style", "display:block;");
                         labelSecondary.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -317,7 +319,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         SecondaryCountry.Attributes.Add("style", "display:block;");
                         labelSecondaryCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Add Subject and their Grades":
+                    case "Add Subject(s) & Grade(s)":
                         highshoolgrade.Attributes.Add("style", "display:block;");
                         btn10th.Value = setInnerHtml(fields[k]);
                         secondarygrade.Attributes.Add("style", "display:block;");
@@ -327,7 +329,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         diplomagrade.Attributes.Add("style", "display:block;");
                         btndiploma.Value = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU COMPLETED ANY HIGHER (UNDER GRADUATE, MASTERS OR PHD) DEGREE":
+                    case "HAVE YOU COMPLETED A DEGREE HIGHER THAN YEAR 12?":
                         higher.Attributes.Add("style", "display:block;");
                         labelhigher.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -389,11 +391,11 @@ public partial class applicanteducation : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "HAVE YOU COMPLETED HIGH SCHOOL":
+                    case "HAVE YOU COMPLETED HIGH SCHOOL?":
                         ichighschool.Attributes.Add("style", "display:block;");
                         ichighschool.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "COUNTRY OF HIGH SCHOOL":
+                    case "COUNTRY WHERE YOU HAVE STUDIED HIGH SCHOOL":
                         ichighschoolCountry.Attributes.Add("style", "display:block;");
                         ichighschoolCountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -427,9 +429,11 @@ public partial class applicanteducation : System.Web.UI.Page
                         icdiplomaschoolName.Attributes.Add("style", "display:block;");
                         icdiplomaschoolName.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "QUALIFICATION NAME":
+                    case "NAME OF HIGH SCHOOL QUALIFICATION":
                         ichighschoolQualificationtype.Attributes.Add("style", "display:block;");
                         ichighschoolQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        break;
+                    case "QUALIFICATION NAME":                        
                         icSecondaryQualificationtype.Attributes.Add("style", "display:block;");
                         icSecondaryQualificationtype.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         ichigherQualificationtype.Attributes.Add("style", "display:block;");
@@ -439,8 +443,8 @@ public partial class applicanteducation : System.Web.UI.Page
                         break;
 
                     case "MODE OF STUDY":
-                        ichighschoolstudymode.Attributes.Add("style", "display:block;");
-                        ichighschoolstudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                        //ichighschoolstudymode.Attributes.Add("style", "display:block;");
+                        //ichighschoolstudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         icSecondarystudymode.Attributes.Add("style", "display:block;");
                         icSecondarystudymode.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         ichigherstudymode.Attributes.Add("style", "display:block;");
@@ -528,7 +532,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         icdiplomacontactMobile.Attributes.Add("style", "display:block;");
                         icdiplomacontactMobile.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;                  
-                    case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL? (YEAR 12)":
+                    case "HAVE YOU COMPLETED SENIOR SECONDARY SCHOOL (YEAR 12)?":
                         icSecondary.Attributes.Add("style", "display:block;");
                         icSecondary.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -536,7 +540,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         icSecondaryCountry.Attributes.Add("style", "display:block;");
                         icSecondaryCountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HAVE YOU COMPLETED ANY HIGHER (UNDER GRADUATE, MASTERS OR PHD) DEGREE":
+                    case "HAVE YOU COMPLETED A DEGREE HIGHER THAN YEAR 12?":
                         ichigher.Attributes.Add("style", "display:block;");
                         ichigher.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -548,7 +552,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         ichigherCountry.Attributes.Add("style", "display:block;");
                         ichigherCountry.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAMS":
+                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAM(S)?":
                         icdiploma.Attributes.Add("style", "display:block;");
                         icdiploma.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -725,11 +729,11 @@ public partial class applicanteducation : System.Web.UI.Page
                     ddlHighSchoolQualificationType.Items.FindByValue(EducationInfo.highschoolqualificationtype.ToString()).Selected = true;
                     hidddlHighSchoolQualificationType.Value = EducationInfo.highschoolqualificationtype.ToString();
                 }
-               if (EducationInfo.highschoolmodeid != null)
-                {
-                    ddlHighSchoolStudyMode.ClearSelection();
-                    ddlHighSchoolStudyMode.Items.FindByValue(EducationInfo.highschoolmodeid.ToString()).Selected = true;
-                }
+               //if (EducationInfo.highschoolmodeid != null)
+               // {
+               //     ddlHighSchoolStudyMode.ClearSelection();
+               //     ddlHighSchoolStudyMode.Items.FindByValue(EducationInfo.highschoolmodeid.ToString()).Selected = true;
+               // }
 
                 if (EducationInfo.highschoolmediumid != null)
                 {
@@ -1009,7 +1013,7 @@ public partial class applicanteducation : System.Web.UI.Page
             // ddlYear.Items.FindByValue(System.DateTime.Now.Year.ToString()).Selected = true;  //set current year as selected
             DateTimeFormatInfo info = DateTimeFormatInfo.GetInstance(null);
             //Fill Months
-            ddl.Items.Add(new ListItem("Please select", "0"));
+            ddl.Items.Add(new ListItem("Select Month", "0"));
             for (int i = 1; i <= 12; i++)
             {
                 ddl.Items.Add(new ListItem(info.GetMonthName(i).Substring(0, 3).ToUpper(), i.ToString().PadLeft(2, '0')));
@@ -1026,7 +1030,7 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             int maxYers = DateTime.Now.Year;
             int minYrs = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["YearsSince"].ToString());
-            ddl.Items.Add(new ListItem("Please select", "0"));
+            ddl.Items.Add(new ListItem("Select Year", "0"));
             for (int i = minYrs; i <= maxYers; i++)
             {
                 ddl.Items.Add(i.ToString());
@@ -1547,8 +1551,8 @@ public partial class applicanteducation : System.Web.UI.Page
                 objEdu.highschoolname = txthighschoolName.Value;
                 if (hidddlHighSchoolQualificationType.Value != "")
                     objEdu.highschoolqualificationtype = Convert.ToInt32(hidddlHighSchoolQualificationType.Value);
-                if (ddlHigherStudyMode.SelectedValue != "")
-                    objEdu.highschoolmodeid = Convert.ToInt32(ddlHighSchoolStudyMode.SelectedValue);
+                //if (ddlHigherStudyMode.SelectedValue != "")
+                //    objEdu.highschoolmodeid = Convert.ToInt32(ddlHighSchoolStudyMode.SelectedValue);
                 if (ddlHighschoolMedium.SelectedValue != "")
                     objEdu.highschoolmediumid = Convert.ToInt32(ddlHighschoolMedium.SelectedValue);
                 if (ddlHighSchoolGrade.SelectedValue != "")

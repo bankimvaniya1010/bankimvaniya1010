@@ -22,7 +22,7 @@
                    </div>
                 <br/>
                 <div class="list-group-fit list-group-item" id="choices" runat="server">
-                    <asp:DataList ID="choiceList" runat="server" OnItemDataBound="choiceList_ItemDataBound" OnItemCommand="choiceList_ItemCommand" GridLines="Horizontal">
+                    <asp:DataList ID="choiceList" runat="server" OnItemDataBound="choiceList_ItemDataBound" OnItemCommand="choiceList_ItemCommand" GridLines="Horizontal" CssClass="table">
                         <ItemTemplate>
                             <asp:Panel ID="options" runat="server">
                                 <div class="card-body">
@@ -118,9 +118,12 @@
                         </ItemTemplate>
                     </asp:DataList>
                 </div>
-                <div id="emptyChoicesDiv" runat="server" style="display: none;">
-                    <div>
-                        <asp:Label ID="lblEmptyList" runat="server" Text=""></asp:Label>
+                <div id="emptyChoicesDiv" runat="server" class="card">
+                    <div class="card-body">
+                        <asp:Label ID="lblEmptyList" runat="server" Text="" Visible="false"></asp:Label>
+                        <div style="margin-left:50%">
+                            <asp:Button runat="server" class="btn btn-success" Text="Go to Your Offers section" OnClick="gottonext_Click" ID="gottonext"/>
+                        </div>                        
                     </div>
                 </div>
                </div>

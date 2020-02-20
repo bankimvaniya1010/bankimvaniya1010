@@ -312,7 +312,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         icMarital.Attributes.Add("style", "display:block;");
                         icMarital.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
+                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT OR LONG-TERM CONDITION? ":
                         icdisability.Attributes.Add("style", "display:block;");
                         icdisability.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -320,7 +320,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         icdisabilitydescription.Attributes.Add("style", "display:block;");
                         icdisabilitydescription.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "ARE YOU REFERRED BY AGENT":
+                    case "ARE YOU REFERRED BY AN AGENT?":
                         icAgent.Attributes.Add("style", "display:block;");
                         icAgent.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -435,7 +435,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         marital.Attributes.Add("style", "display:block;");
                         labelMarital.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT, OR A LONG TERM CONDITION":
+                    case "DO YOU HAVE ANY DISABILITY, IMPAIRMENT OR LONG-TERM CONDITION? ":
                         disability.Attributes.Add("style", "display:block;");
                         labeldisability.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -443,7 +443,7 @@ public partial class admin_personaldetail : System.Web.UI.Page
                         disabilitydesc.Attributes.Add("style", "display:block;");
                         labeldisabilitydesc.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "ARE YOU REFERRED BY AGENT":
+                    case "ARE YOU REFERRED BY AN AGENT?":
                         agent.Attributes.Add("style", "display:block;");
                         labelagent.InnerHtml = setInnerHtml(fields[k]);
                         break;

@@ -135,7 +135,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
                         icCountryofIssue.Attributes.Add("style", "display:block;");
                         icCountryofIssue.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "EXPIRY DATE":
+                    case "PASSPORT EXPIRY DATE":
                         icPassportExpiryDate.Attributes.Add("style", "display:block;");
                         icPassportExpiryDate.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -227,7 +227,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
                         countryIssue.Attributes.Add("style", "display:block;");
                         labelcountryIssue.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "EXPIRY DATE":
+                    case "PASSPORT EXPIRY DATE":
                         expirydate.Attributes.Add("style", "display:block;");
                         labelexpirydate.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -290,7 +290,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
                         rblDateOfissueYes.Checked = true;
                     txtDateOfissue.Value = setComments(Comments[k]);
                     break;
-                case "Expiry Date":
+                case "PASSPORT EXPIRY DATE":
                     if (Comments[k].adminaction == 0)
                         rblExpiryDateNo.Checked = true;
                     else
@@ -375,7 +375,7 @@ public partial class admin_knowyourstudent : System.Web.UI.Page
             if (dateofissue.Style.Value != "display: none")
                 adminInputs.Add("Date of Issue", txtDateOfissue.Value.Trim() + "~" + (rblDateOfissueNo.Checked == true ? 0 : 1));
             if (expirydate.Style.Value != "display: none")
-                adminInputs.Add("Expiry Date", txtExpiryDate.Value.Trim() + "~" + (rblExpiryDateNo.Checked == true ? 0 : 1));
+                adminInputs.Add("PASSPORT EXPIRY DATE", txtExpiryDate.Value.Trim() + "~" + (rblExpiryDateNo.Checked == true ? 0 : 1));
             if (countryIssue.Style.Value != "display: none")
                 adminInputs.Add("COUNTRY OF ISSUE", txtcountryIssue.Value.Trim() + "~" + (rblcountryIssueNo.Checked == true ? 0 : 1));
             if (issueplace.Style.Value != "display: none")

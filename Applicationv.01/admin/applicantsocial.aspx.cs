@@ -75,15 +75,15 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "LINK TO YOUR LINKEDIN PROFILE":
+                    case "LINKEDIN PROFILE":
                         icLinkedin.Attributes.Add("style", "display:block;");
                         icLinkedin.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "LINK TO YOUR FACEBOOK PROFILE":
+                    case "FACEBOOK PROFILE":
                         icFacebook.Attributes.Add("style", "display:block;");
                         icFacebook.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "LINK TO YOUR TWITTER HANDLE":
+                    case "TWITTER HANDLE":
                         icTwitter.Attributes.Add("style", "display:block;");
                         icTwitter.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
@@ -170,15 +170,15 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             {
                 switch (fields[k].primaryfiledname)
                 {
-                    case "LINK TO YOUR LINKEDIN PROFILE":
+                    case "LINKEDIN PROFILE":
                         linkedin.Attributes.Add("style", "display:block;");
                         labellinked.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LINK TO YOUR FACEBOOK PROFILE":
+                    case "FACEBOOK PROFILE":
                         facebook.Attributes.Add("style", "display:block;");
                         labelfacebook.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "LINK TO YOUR TWITTER HANDLE":
+                    case "TWITTER HANDLE":
                         twitter.Attributes.Add("style", "display:block;");
                         labeltwitter.InnerHtml = setInnerHtml(fields[k]);
                         break;
@@ -203,7 +203,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
         {
             switch (Comments[k].fieldname)
             {
-                case "Link to your LinkedIn profile":
+                case "LINKEDIN PROFILE":
                     {
                         txtLinkedinComments.Value = setComments(Comments[k]);
                         if (Comments[k].adminaction == 0)
@@ -212,7 +212,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
                             rblLinkedinYes.Checked = true;
                     }
                     break;
-                case "Link to your Facebook profile":
+                case "FACEBOOK PROFILE":
                     {
                         txtFacebookComments.Value = setComments(Comments[k]);
                         if (Comments[k].adminaction == 0)
@@ -221,7 +221,7 @@ public partial class admin_applicantsocial : System.Web.UI.Page
                             rblFacebookYes.Checked = true;
                     }
                     break;
-                case "Link to your twitter handle":
+                case "TWITTER HANDLE":
                     {
                         txtTwitterComments.Value = setComments(Comments[k]);
                         if (Comments[k].adminaction == 0)
@@ -249,12 +249,12 @@ public partial class admin_applicantsocial : System.Web.UI.Page
             if (linkedin.Style.Value != "display: none")
             {
 
-                adminInputs.Add("Link to your LinkedIn profile", txtLinkedinComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
+                adminInputs.Add("LINKEDIN PROFILE", txtLinkedinComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
             }
             if (facebook.Style.Value != "display: none")
-                adminInputs.Add("Link to your Facebook profile", txtFacebookComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
+                adminInputs.Add("FACEBOOK PROFILE", txtFacebookComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
             if (twitter.Style.Value != "display: none")
-                adminInputs.Add("Link to your twitter handle", txtTwitterComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
+                adminInputs.Add("TWITTER HANDLE", txtTwitterComments.Value.Trim() + "~" + (rblLinkedinNo.Checked == true ? 0 : 1));
             if (CustomControls.Count > 0)
                 objCom.ReadCustomfieldAdmininput(ApplicantID, formId, CustomControls, mainDiv, adminInputs);
 
