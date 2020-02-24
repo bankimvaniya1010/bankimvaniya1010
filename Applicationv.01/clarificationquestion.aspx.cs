@@ -64,9 +64,12 @@ public partial class clarificationquestion : System.Web.UI.Page
                     else if (item.questiontype == "12_highereducation_gap")
                     {
                         if (applicantEduDetail != null && applicantHighEduDetail != null)
-                        {                            
-                            if (applicantHighEduDetail.startdate != null && applicantEduDetail.issecondarydone.Value == 1)
-                                higheredumonthGap12 = monthDiff(Convert.ToDateTime(applicantEduDetail.secondaryendate), Convert.ToDateTime(applicantHighEduDetail.startdate));
+                        {
+                            if (applicantHighEduDetail.startdate != null && applicantEduDetail.issecondarydone != null)
+                            {
+                                if (applicantHighEduDetail.startdate != null && applicantEduDetail.issecondarydone.Value == 1)
+                                    higheredumonthGap12 = monthDiff(Convert.ToDateTime(applicantEduDetail.secondaryendate), Convert.ToDateTime(applicantHighEduDetail.startdate));
+                            }
                         }
                         if (higheredumonthGap12 !=0 && higheredumonthGap12 > GlobalVariables.GetHigherEduSecondarySchoolAllowedGap)
                         {
