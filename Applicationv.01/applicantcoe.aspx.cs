@@ -37,7 +37,7 @@ public partial class applicantcoe : System.Web.UI.Page
     {
         try
         {
-            var coeStatus = db.application_status_master.Where(x => x.status_for == "university" && x.status_description == "CONFIRMATION OF ENROLMENT GENERATED").Select(x => x.id).FirstOrDefault();
+            var coeStatus = db.application_status_master.Where(x => x.status_for == "university" && x.status_description.ToUpper() == "CONFIRMATION OF ENROLMENT GENERATED").Select(x => x.id).FirstOrDefault();
             var allCoeList = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID && x.current_status == coeStatus).SortBy("preferenceid").ToList();
             if (allCoeList.Count == 0)
             {

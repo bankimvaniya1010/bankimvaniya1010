@@ -36,7 +36,6 @@
         <EntityTypeShape EntityType="GTEModel.applicantreferencecheck" Width="1.5" PointX="8.75" PointY="13.75" />
         <EntityTypeShape EntityType="GTEModel.applicantresidencehistory" Width="1.5" PointX="14.75" PointY="0.75" />
         <EntityTypeShape EntityType="GTEModel.applicantscores" Width="1.5" PointX="0.75" PointY="15.875" />
-        <EntityTypeShape EntityType="GTEModel.applicantsubjectwisegrade" Width="1.5" PointX="2.75" PointY="14.75" />
         <EntityTypeShape EntityType="GTEModel.applicantvideomaster" Width="1.5" PointX="14.75" PointY="8.75" />
         <EntityTypeShape EntityType="GTEModel.applicantvisadetails" Width="1.5" PointX="5.5" PointY="33" />
         <EntityTypeShape EntityType="GTEModel.application_status_master" Width="1.5" PointX="14.75" PointY="11.75" />
@@ -295,6 +294,8 @@
         <AssociationConnector Association="GTEModel.FK_coursemaster_studylevelmaster" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_studymodemaster" />
         <AssociationConnector Association="GTEModel.FK_coursemaster_universitymaster" />
+        <EntityTypeShape EntityType="GTEModel.relative_master" Width="1.5" PointX="23.375" PointY="0.75" />
+        <EntityTypeShape EntityType="GTEModel.applicantsubjectwisegrade" Width="1.5" PointX="23.375" PointY="5.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

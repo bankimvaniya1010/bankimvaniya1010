@@ -756,8 +756,8 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         {
             var grade10 = (from a in db.applicantsubjectwisegrade
                            join g in db.grademaster on a.gradeid equals g.id
-                           join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                           from x in tmp.DefaultIfEmpty()
+                           //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                           //from x in tmp.DefaultIfEmpty()
                            where a.applicantid == ApplicantID && a.coursename == "tenth"
 
                            select new
@@ -765,7 +765,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                                applicantgradeid = a.applicantgradeid,
                                coursename = a.coursename,
                                othersubject = a.othersubject,
-                               subject = x.description,
+                               subject = a.subject_name,
                                gradetype = g.description,
                                studentgrade = a.grade
                            }).ToList();
@@ -783,8 +783,8 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         {
             var gradediploma = (from a in db.applicantsubjectwisegrade
                                 join g in db.grademaster on a.gradeid equals g.id
-                                join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                                from x in tmp.DefaultIfEmpty()
+                                //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                                //from x in tmp.DefaultIfEmpty()
                                 where a.applicantid == ApplicantID && a.coursename == "diploma"
 
                                 select new
@@ -792,7 +792,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                                     applicantgradeid = a.applicantgradeid,
                                     coursename = a.coursename,
                                     othersubject = a.othersubject,
-                                    subject = x.description,
+                                    subject =a.subject_name,
                                     gradetype = g.description,
                                     studentgrade = a.grade
                                 }).ToList();
@@ -810,8 +810,8 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         {
             var gradeSecondary = (from a in db.applicantsubjectwisegrade
                                   join g in db.grademaster on a.gradeid equals g.id
-                                  join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                                  from x in tmp.DefaultIfEmpty()
+                                  //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                                  //from x in tmp.DefaultIfEmpty()
                                   where a.applicantid == ApplicantID && a.coursename == "twelth"
 
                                   select new
@@ -819,7 +819,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                                       applicantgradeid = a.applicantgradeid,
                                       coursename = a.coursename,
                                       othersubject = a.othersubject,
-                                      subject = x.description,
+                                      subject = a.subject_name,
                                       gradetype = g.description,
                                       studentgrade = a.grade
                                   }).ToList();
@@ -837,8 +837,8 @@ public partial class admin_applicanteducation : System.Web.UI.Page
         {
             var gradehigher = (from a in db.applicantsubjectwisegrade
                                join g in db.grademaster on a.gradeid equals g.id
-                               join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                               from x in tmp.DefaultIfEmpty()
+                               //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                               //from x in tmp.DefaultIfEmpty()
                                where a.applicantid == ApplicantID && (a.coursename == "UG" || a.coursename == "PG" || a.coursename == "Phd" || a.coursename == "Other")
 
                                select new
@@ -846,7 +846,7 @@ public partial class admin_applicanteducation : System.Web.UI.Page
                                    applicantgradeid = a.applicantgradeid,
                                    coursename = a.coursename,
                                    othersubject = a.othersubject,
-                                   subject = x.description,
+                                   subject = a.subject_name,
                                    gradetype = g.description,
                                    studentgrade = a.grade
                                }).ToList();

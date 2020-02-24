@@ -55,7 +55,6 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<applicantreferencecheck> applicantreferencecheck { get; set; }
     public virtual DbSet<applicantresidencehistory> applicantresidencehistory { get; set; }
     public virtual DbSet<applicantscores> applicantscores { get; set; }
-    public virtual DbSet<applicantsubjectwisegrade> applicantsubjectwisegrade { get; set; }
     public virtual DbSet<applicantvideomaster> applicantvideomaster { get; set; }
     public virtual DbSet<applicantvisadetails> applicantvisadetails { get; set; }
     public virtual DbSet<application_status_master> application_status_master { get; set; }
@@ -184,6 +183,8 @@ public partial class GTEEntities : DbContext
     public virtual DbSet<gte_preliminary_questionmaster> gte_preliminary_questionmaster { get; set; }
     public virtual DbSet<gte_preliminary_section_questionmaster> gte_preliminary_section_questionmaster { get; set; }
     public virtual DbSet<coursemaster> coursemaster { get; set; }
+    public virtual DbSet<relative_master> relative_master { get; set; }
+    public virtual DbSet<applicantsubjectwisegrade> applicantsubjectwisegrade { get; set; }
 
     public virtual int fetchapplicantDetail()
     {

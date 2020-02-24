@@ -45,7 +45,7 @@ public partial class addgrade : System.Web.UI.Page
         {
             SetToolTips();
             SetControlsUniversitywise();
-            BindSubjects(CountryID);
+           // BindSubjects(CountryID);
             BindGrade();
             ddlCourse.ClearSelection();
             if (classname != "")
@@ -71,60 +71,74 @@ public partial class addgrade : System.Web.UI.Page
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
     }
 
-    private void BindSubjects(int CountryID)
-    {
-        try
-        {
-            ListItem lst = new ListItem("Please select", "0");
-            var Subjects = (from sm in db.subjectmaster
-                            join scm in db.subjectwisecountrymapping on sm.id equals scm.subjectid
-                            where scm.countryid == CountryID
-                            select new
-                            {
-                                id = sm.id,
-                                description = sm.description,
-                            }).ToList();
+    //private void BindSubjects(int CountryID)
+    //{
+    //    try
+    //    {
+    //        ListItem lst = new ListItem("Please select", "0");
+    //        var Subjects = (from sm in db.subjectmaster
+    //                        join scm in db.subjectwisecountrymapping on sm.id equals scm.subjectid
+    //                        where scm.countryid == CountryID
+    //                        select new
+    //                        {
+    //                            id = sm.id,
+    //                            description = sm.description,
+    //                        }).ToList();
 
-            ddlsubjects.DataSource = Subjects;
-            ddlsubjects.DataTextField = "description";
-            ddlsubjects.DataValueField = "id";
-            ddlsubjects.DataBind();
-            ddlsubjects.Items.Insert(0, lst);
-            ddlsubjects.Items.Insert(Subjects.Count + 1, "Others");
-        }
-        catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
-    }
+    //        ddlsubjects.DataSource = Subjects;
+    //        ddlsubjects.DataTextField = "description";
+    //        ddlsubjects.DataValueField = "id";
+    //        ddlsubjects.DataBind();
+    //        ddlsubjects.Items.Insert(0, lst);
+    //        ddlsubjects.Items.Insert(Subjects.Count + 1, "Others");
+    //    }
+    //    catch (Exception ex) { objLog.WriteLog(ex.ToString()); }
+    //}
 
     protected void btn_login_Click(object sender, EventArgs e)
     {
         try
         {
-            var subject = ddlsubjects.SelectedValue;
-            int subjectID;
-            if (subject == "Others")
-                subjectID = 0;
-            else
-                subjectID = Convert.ToInt32(ddlsubjects.SelectedValue);
+            //var subject = ddlsubjects.SelectedValue;
+            //int subjectID;
+            //if (subject == "Others")
+            //    subjectID = 0;
+            //else
+            //    subjectID = Convert.ToInt32(ddlsubjects.SelectedValue);
 
+            //var mode = "new";
+            //var Info = (from pInfo in db.applicantsubjectwisegrade
+            //            where pInfo.applicantid == userID && pInfo.subjectid == subjectID && pInfo.coursename == classname
+            //            select pInfo).FirstOrDefault();
+
+            //applicantsubjectwisegrade objGrade = new applicantsubjectwisegrade();
+            //if (Info != null && subjectID != 0)
+            //{
+            //    mode = "update";
+            //    objGrade = Info;
+            //}
+            //else if (subjectID == 0)
+            //{
+            //    var otherSubjectInfo = db.applicantsubjectwisegrade.FirstOrDefault(x => x.applicantid == userID && x.subjectid == subjectID && x.othersubject == txtOther.Value && x.coursename == classname);
+            //    if (otherSubjectInfo != null)
+            //    {
+            //        mode = "update";
+            //        objGrade = otherSubjectInfo;
+            //    }
+            //}
+
+            var subject = txtsubjects.Value.Trim();
             var mode = "new";
             var Info = (from pInfo in db.applicantsubjectwisegrade
-                        where pInfo.applicantid == userID && pInfo.subjectid == subjectID && pInfo.coursename == classname
+                        where pInfo.applicantid == userID && pInfo.subject_name == subject && pInfo.coursename == classname
                         select pInfo).FirstOrDefault();
 
             applicantsubjectwisegrade objGrade = new applicantsubjectwisegrade();
-            if (Info != null && subjectID != 0)
+
+            if (Info != null)
             {
                 mode = "update";
                 objGrade = Info;
-            }
-            else if (subjectID == 0)
-            {
-                var otherSubjectInfo = db.applicantsubjectwisegrade.FirstOrDefault(x => x.applicantid == userID && x.subjectid == subjectID && x.othersubject == txtOther.Value && x.coursename == classname);
-                if (otherSubjectInfo != null)
-                {
-                    mode = "update";
-                    objGrade = otherSubjectInfo;
-                }
             }
 
             objGrade.grade = txtGrade.Value;
@@ -132,13 +146,14 @@ public partial class addgrade : System.Web.UI.Page
             objGrade.coursename = ddlCourse.SelectedValue;
             if (ddlGradeType.SelectedValue != "")
                 objGrade.gradeid = Convert.ToInt32(ddlGradeType.SelectedValue);
-            if ((ddlsubjects.SelectedValue != "") && (ddlsubjects.SelectedValue != "Others"))
-                objGrade.subjectid = Convert.ToInt32(ddlsubjects.SelectedValue);
-            else if(ddlsubjects.SelectedValue != "" && ddlsubjects.SelectedValue == "Others")
-            {
-                objGrade.subjectid = 0;
-                objGrade.othersubject = txtOther.Value;
-            }
+            //if ((ddlsubjects.SelectedValue != "") && (ddlsubjects.SelectedValue != "Others"))
+            //    objGrade.subjectid = Convert.ToInt32(ddlsubjects.SelectedValue);
+            //else if(ddlsubjects.SelectedValue != "" && ddlsubjects.SelectedValue == "Others")
+            //{
+            //    objGrade.subjectid = 0;
+            //    objGrade.othersubject = txtOther.Value;
+            //}
+            objGrade.subject_name = txtsubjects.Value.Trim();
             if(mode== "new")
                 db.applicantsubjectwisegrade.Add(objGrade);
             db.SaveChanges();
@@ -183,10 +198,10 @@ public partial class addgrade : System.Web.UI.Page
                         icSubject.Attributes.Add("style", "display:block;");
                         icSubject.Attributes.Add("data-tipso", setTooltips(fields[k]));
                         break;
-                    case "Other Subject":
-                        icOtherSubject.Attributes.Add("style", "display:block;");
-                        icOtherSubject.Attributes.Add("data-tipso", setTooltips(fields[k]));
-                        break;
+                    //case "Other Subject":
+                    //    icOtherSubject.Attributes.Add("style", "display:block;");
+                    //    icOtherSubject.Attributes.Add("data-tipso", setTooltips(fields[k]));
+                    //    break;
                     case "Grade Type":
                         icGradeType.Attributes.Add("style", "display:block;");
                         icGradeType.Attributes.Add("data-tipso", setTooltips(fields[k]));
@@ -260,10 +275,10 @@ public partial class addgrade : System.Web.UI.Page
                         Subject.Attributes.Add("style", "display:block;");
                         labelSubject.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "Other Subject":
-                        OtherSubject.Attributes.Add("style", "display:block;");
-                        labelothers.InnerHtml = setInnerHtml(fields[k]);
-                        break;
+                    //case "Other Subject":
+                    //    OtherSubject.Attributes.Add("style", "display:block;");
+                    //    labelothers.InnerHtml = setInnerHtml(fields[k]);
+                    //    break;
                     case "Grade Type":
                         gradeType.Attributes.Add("style", "display:block;");
                         labelgradeType.InnerHtml = setInnerHtml(fields[k]);

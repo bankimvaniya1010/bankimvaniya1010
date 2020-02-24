@@ -1174,8 +1174,8 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             grade10 = (from a in db.applicantsubjectwisegrade
                            join g in db.grademaster on a.gradeid equals g.id
-                           join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                           from x in tmp.DefaultIfEmpty()
+                           //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                           //from x in tmp.DefaultIfEmpty()
                            where a.applicantid == userID && a.coursename == "tenth"
 
                            select new grades()
@@ -1183,7 +1183,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                applicantgradeid = a.applicantgradeid,
                                coursename = (a.coursename == null) ? string.Empty : a.coursename,
                                othersubject =(a.othersubject == null) ?string.Empty: a.othersubject,
-                               subject = (x.description == null)? "Others" : x.description,
+                               subject = a.subject_name,//(x.description == null)? "Others" : x.description,
                                gradetype = (g.description == null) ? string.Empty : g.description,
                                studentgrade = (a.grade == null) ? string.Empty : a.grade
                            }).ToList();
@@ -1199,8 +1199,8 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             gradediploma = (from a in db.applicantsubjectwisegrade
                                 join g in db.grademaster on a.gradeid equals g.id
-                                join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                                from x in tmp.DefaultIfEmpty()
+                                //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                                //from x in tmp.DefaultIfEmpty()
                                 where a.applicantid == userID && a.coursename == "diploma"
 
                                 select new grades()
@@ -1208,7 +1208,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                     applicantgradeid = a.applicantgradeid,
                                     coursename = (a.coursename == null) ? string.Empty : a.coursename,
                                     othersubject = (a.othersubject == null) ? string.Empty : a.othersubject,
-                                    subject = (x.description == null) ? "Others" : x.description,
+                                    subject = a.subject_name,//(x.description == null) ? "Others" : x.description,
                                     gradetype = (g.description == null) ? string.Empty : g.description,
                                     studentgrade = (a.grade == null) ? string.Empty : a.grade
                                 }).ToList();
@@ -1224,8 +1224,8 @@ public partial class applicanteducation : System.Web.UI.Page
         {
             gradeSecondary = (from a in db.applicantsubjectwisegrade
                                   join g in db.grademaster on a.gradeid equals g.id
-                                  join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                                  from x in tmp.DefaultIfEmpty()
+                                  //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                                  //from x in tmp.DefaultIfEmpty()
                                   where a.applicantid == userID && a.coursename == "twelth"
 
                                   select new grades()
@@ -1233,7 +1233,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                       applicantgradeid = a.applicantgradeid,
                                       coursename = (a.coursename == null) ? string.Empty : a.coursename,
                                       othersubject = (a.othersubject == null) ? string.Empty : a.othersubject,
-                                      subject = (x.description == null) ? "Others" : x.description,
+                                      subject = a.subject_name,//(x.description == null) ? "Others" : x.description,
                                       gradetype = (g.description == null) ? string.Empty : g.description,
                                       studentgrade = (a.grade == null) ? string.Empty : a.grade
                                   }).ToList();
@@ -1249,8 +1249,8 @@ public partial class applicanteducation : System.Web.UI.Page
         {
              gradehigher = (from a in db.applicantsubjectwisegrade
                                join g in db.grademaster on a.gradeid equals g.id
-                               join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
-                               from x in tmp.DefaultIfEmpty()
+                               //join sm in db.subjectmaster on a.subjectid equals sm.id into tmp
+                               //from x in tmp.DefaultIfEmpty()
                                where a.applicantid == userID && (a.coursename == "UG" || a.coursename == "PG" || a.coursename == "Phd" || a.coursename == "Other")
 
                                select new grades()
@@ -1258,7 +1258,7 @@ public partial class applicanteducation : System.Web.UI.Page
                                    applicantgradeid = a.applicantgradeid,
                                    coursename = (a.coursename == null) ? string.Empty : a.coursename,
                                    othersubject = (a.othersubject == null) ? string.Empty : a.othersubject,
-                                   subject = (x.description == null) ? "Others" : x.description,
+                                   subject = a.subject_name,//(x.description == null) ? "Others" : x.description,
                                    gradetype = (g.description == null) ? string.Empty : g.description,
                                    studentgrade = (a.grade == null) ? string.Empty : a.grade
                                }).ToList();
