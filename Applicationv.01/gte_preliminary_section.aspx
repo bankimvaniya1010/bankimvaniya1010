@@ -77,7 +77,7 @@
                 <div class="col-md-4">  
                 <div class="card">
                     <div class="card-body">
-                        <label id="lblInstructionHeader" runat="server" style="font-size:17px;font-weight: 800;font-style: normal;">Instructions:</label><br />
+                        <label id="lblInstructionHeader" runat="server" class="instructn">Instructions:</label><br />
                         <ol style="font-size:small; padding-left:15px">
                             <li>Completing this section is mandatory.</li><br/>
                             <li>Please go through all the questions on this page carefully and answer them to the best of your knowledge.</li><br/>

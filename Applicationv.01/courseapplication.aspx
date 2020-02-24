@@ -36,7 +36,7 @@
                                             <label id="selectedcountry" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" style="width: 30px;height:14px;" class="close" id="countryclosebtn">
+                                            <button type="button" style="width: 30px;height:15px;" class="close" id="countryclosebtn">
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
@@ -50,7 +50,7 @@
                                             <label id="selectedcity" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" class="close" style="width: 30px; height:14px;" id="cityclosebtn"><span aria-hidden="true">×</span></button>
+                                            <button type="button" class="close" style="width: 30px; height:15px;" id="cityclosebtn"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <asp:HiddenField runat="server" ID="HidselectedcityID" />
                                         <asp:HiddenField runat="server" ID="HidselectedcityName" />
@@ -62,7 +62,7 @@
                                             <label id="selectedstudylevel" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" class="close" style="width: 30px;height:14px;" id="levelclosebtn"><span aria-hidden="true">×</span></button>
+                                            <button type="button" class="close" style="width: 30px;height:15px;" id="levelclosebtn"><span aria-hidden="true">×</span></button>
                                         </div>
 
                                         <asp:HiddenField runat="server" ID="HidselectedstudylevelID" />
@@ -75,7 +75,7 @@
                                             <label id="selectedmajor" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" class="close" style="width: 30px;height:14px;" id="majorclosebtn"><span aria-hidden="true">×</span></button>
+                                            <button type="button" class="close" style="width: 30px;height:15px;" id="majorclosebtn"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <asp:HiddenField runat="server" ID="HidselectedmajorID" />
                                         <asp:HiddenField runat="server" ID="HidselectedmajorName" />
@@ -206,7 +206,7 @@
                             </div>
                         </div>
                     </div>
-                             <div style="margin-left:60%">                            
+                             <div style="margin-left:60%;">                            
                                  <asp:Button ID="gotoNextPage" runat="server" Text="Go to Your SOP section" CssClass="btn btn-success" onclick="gotoNextPage_Click"/>
                               </div>
                          </div>
@@ -233,7 +233,7 @@
                               <%}
                                   else
                                   {%>
-                            <label runat="server"> NO Applied Courses.</label>
+                            <label runat="server"> No Applied Courses.</label>
                             <%} %>
                         </div>
                     </div>
