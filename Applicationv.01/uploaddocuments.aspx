@@ -47,14 +47,16 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label for="avatar" class="col-sm-4 col-form-label form-label">DOCUMENT UPLOAD</label>
+                                    <label for="avatar" class="col-sm-4 col-form-label form-label">DOCUMENT UPLOAD</label>                                    
+
                                     <div class="col-sm-8">
                                         <div class="media align-items-center">
                                            
                                             <div class="media-body">
                                                 <div class="custom-file" style="width: auto;">
                                                 <asp:Label ID="lblavatar" runat="server" />
-                                                <asp:FileUpload ID="avatar" runat="server" />                                                
+                                                <asp:FileUpload ID="avatar" runat="server" />
+                                                <label style="font-size: small;">The file formats you can upload are -  jpg, png, .pdf</label>
                                                 </div>
                                             </div>                                             
 

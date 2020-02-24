@@ -241,7 +241,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <label style="font-size: small;">Your Selected Course for more details <a href='#' id="courselink" target="_blank">Click Here</a> </label>
+                                    <label style="font-size: small;">For more details about this course, visit <u><a href='#' id="courselink" target="_blank"> <label id="uniName" runat="server" style="text-decoration: underline;"></label>’s course page </a> </u></label>
                                 </div>
                                 <div id="selectedcourseDiv" style="font-size: smaller; display: none" class="table-responsive">
                                     <table>
@@ -455,6 +455,7 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
+                        $("#<%= uniName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
                         $("#<%= lblcoursedescription.ClientID%>").val(result[0].coursedescription).html(result[0].coursedescription);
                         $("#<%= lblInstitution.ClientID%>").val(result[0].university_name).html(result[0].university_name);
                         $("#<%= HidUniversityName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
@@ -471,7 +472,7 @@
                         }
 
                         var url = result[0].courseurl;
-                        $("#courselink")[0].href = url;
+                        $("#courselink")[0].href = url;                        
                     }
                 }
             });
