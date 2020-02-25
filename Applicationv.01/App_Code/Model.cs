@@ -555,6 +555,7 @@ public partial class applicantlanguagecompetency
     public string testreportreferenceno { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
     public bool islanguagecompetencypresent { get; set; }
+    public Nullable<int> isgiventest_yes_or_no { get; set; }
 
     public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
@@ -625,7 +626,7 @@ public partial class applicantsubjectwisegrade
     public Nullable<int> gradeid { get; set; }
     public string othersubject { get; set; }
     public string grade { get; set; }
-    public Nullable<int> subjectid { get; set; }
+    public string subject_name { get; set; }
 }
 
 public partial class applicantvideomaster
@@ -2338,6 +2339,23 @@ public partial class rejection_reasonmaster
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<universitywise_rejectionreasonmapping> universitywise_rejectionreasonmapping { get; set; }
+}
+
+public partial class relative_master
+{
+    public long id { get; set; }
+    public Nullable<long> applicantid { get; set; }
+    public string name { get; set; }
+    public Nullable<int> age { get; set; }
+    public string relationship { get; set; }
+    public string city { get; set; }
+    public string country { get; set; }
+    public Nullable<int> isinautralia { get; set; }
+    public Nullable<int> isdependent { get; set; }
+    public string firstName { get; set; }
+    public string passport_no { get; set; }
+    public string nationality { get; set; }
+    public Nullable<System.DateTime> dob { get; set; }
 }
 
 public partial class rolemaster

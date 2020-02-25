@@ -89,7 +89,7 @@
                         </ItemTemplate>
                     </asp:DataList>
                 </div>
-                <div id="emptyChoicesDiv" runat="server" style="display: none;">
+                <div id="emptyChoicesDiv" runat="server">
                     <div>
                         <asp:Label ID="lblEmptyList" runat="server" Text=""></asp:Label>
                     </div>

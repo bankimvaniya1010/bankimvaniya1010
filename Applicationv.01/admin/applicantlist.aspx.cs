@@ -807,7 +807,7 @@ public partial class admin_applicantlist : System.Web.UI.Page
                 worksheet.Cells[1, 49] = "Course Name";
                 worksheet.Cells[rowNum, 49] = applicantsubjectwisegrade[i].coursename;
                 worksheet.Cells[1, 50] = "Subject Name";
-                worksheet.Cells[rowNum, 50] = applicantsubjectwisegrade[i].subjectid;
+                worksheet.Cells[rowNum, 50] = applicantsubjectwisegrade[i].subject_name;
                 worksheet.Cells[1, 51] = "Other Subject";
                 worksheet.Cells[rowNum, 51] = applicantsubjectwisegrade[i].othersubject;
                 worksheet.Cells[1, 52] = "Grade Type";

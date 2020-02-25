@@ -36,7 +36,7 @@
                                             <label id="selectedcountry" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" style="width: 30px;height:14px;" class="close" id="countryclosebtn">
+                                            <button type="button" style="width: 30px;height:15px;" class="close" id="countryclosebtn">
                                                 <span aria-hidden="true">×</span>
                                             </button>
                                         </div>
@@ -50,7 +50,7 @@
                                             <label id="selectedcity" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" class="close" style="width: 30px; height:14px;" id="cityclosebtn"><span aria-hidden="true">×</span></button>
+                                            <button type="button" class="close" style="width: 30px; height:15px;" id="cityclosebtn"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <asp:HiddenField runat="server" ID="HidselectedcityID" />
                                         <asp:HiddenField runat="server" ID="HidselectedcityName" />
@@ -62,7 +62,7 @@
                                             <label id="selectedstudylevel" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" class="close" style="width: 30px;height:14px;" id="levelclosebtn"><span aria-hidden="true">×</span></button>
+                                            <button type="button" class="close" style="width: 30px;height:15px;" id="levelclosebtn"><span aria-hidden="true">×</span></button>
                                         </div>
 
                                         <asp:HiddenField runat="server" ID="HidselectedstudylevelID" />
@@ -75,7 +75,7 @@
                                             <label id="selectedmajor" runat="server"></label>
                                         </div>
                                         <div class="selectionPillsListRemove">
-                                            <button type="button" class="close" style="width: 30px;height:14px;" id="majorclosebtn"><span aria-hidden="true">×</span></button>
+                                            <button type="button" class="close" style="width: 30px;height:15px;" id="majorclosebtn"><span aria-hidden="true">×</span></button>
                                         </div>
                                         <asp:HiddenField runat="server" ID="HidselectedmajorID" />
                                         <asp:HiddenField runat="server" ID="HidselectedmajorName" />
@@ -206,7 +206,7 @@
                             </div>
                         </div>
                     </div>
-                             <div style="margin-left:60%">                            
+                             <div style="margin-left:60%;">                            
                                  <asp:Button ID="gotoNextPage" runat="server" Text="Go to Your SOP section" CssClass="btn btn-success" onclick="gotoNextPage_Click"/>
                               </div>
                          </div>
@@ -233,7 +233,7 @@
                               <%}
                                   else
                                   {%>
-                            <label runat="server"> NO Applied Courses.</label>
+                            <label runat="server"> No Applied Courses.</label>
                             <%} %>
                         </div>
                     </div>
@@ -241,7 +241,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <label style="font-size: small;">Your Selected Course for more details <a href='#' id="courselink" target="_blank">Click Here</a> </label>
+                                    <label style="font-size: small;">For more details about this course, visit <u><a href='#' id="courselink" target="_blank"> <label id="uniName" runat="server" style="text-decoration: underline;"></label>’s course page </a> </u></label>
                                 </div>
                                 <div id="selectedcourseDiv" style="font-size: smaller; display: none" class="table-responsive">
                                     <table>
@@ -455,6 +455,7 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
+                        $("#<%= uniName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
                         $("#<%= lblcoursedescription.ClientID%>").val(result[0].coursedescription).html(result[0].coursedescription);
                         $("#<%= lblInstitution.ClientID%>").val(result[0].university_name).html(result[0].university_name);
                         $("#<%= HidUniversityName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
@@ -471,7 +472,7 @@
                         }
 
                         var url = result[0].courseurl;
-                        $("#courselink")[0].href = url;
+                        $("#courselink")[0].href = url;                        
                     }
                 }
             });

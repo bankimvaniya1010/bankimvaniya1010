@@ -37,7 +37,7 @@ public partial class applicantcoe : System.Web.UI.Page
     {
         try
         {
-            var coeStatus = db.application_status_master.Where(x => x.status_for == "university" && x.status_description == "CONFIRMATION OF ENROLMENT GENERATED").Select(x => x.id).FirstOrDefault();
+            var coeStatus = db.application_status_master.Where(x => x.status_for == "university" && x.status_description.ToUpper() == "CONFIRMATION OF ENROLMENT GENERATED").Select(x => x.id).FirstOrDefault();
             var allCoeList = db.applicationmaster.Where(x => x.applicantid == UserID && x.universityid == UniversityID && x.current_status == coeStatus).SortBy("preferenceid").ToList();
             if (allCoeList.Count == 0)
             {
@@ -48,6 +48,7 @@ public partial class applicantcoe : System.Web.UI.Page
             }
             else
             {
+                lblEmptyList.Text = "Congratulations! You have received Confirmation of Enrolment(s) for [No_of_COEs_issued]. Click on the relevant link below to view your COE(s).";
                 var applicantChoicesList = new List<object>();
                 foreach (var item in allCoeList)
                 {

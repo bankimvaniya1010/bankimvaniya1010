@@ -284,7 +284,6 @@
 			                                            <th scope="col">ID</th>
                                                         <th scope="col">Qualification Name</th>
                                                         <th scope="col">Subject</th>                                                        
-                                                        <th scope="col">Others </th>
                                                         <th scope="col">Grade Type</th>
                                                         <th scope="col">Grade </th>
                                                         <th scope="col">Delete this Subject?</th>
@@ -300,9 +299,6 @@
                                                         </td>
                                                         <td style="width: 30px;">
                                                             <span><%=grade10[i].subject%></span>
-                                                        </td>
-                                                        <td style="width: 30px;">
-                                                            <span><%=grade10[i].othersubject%></span>
                                                         </td>
                                                         <td style="width: 30px;">
                                                             <span><%=grade10[i].gradetype%></span>
@@ -528,8 +524,7 @@
                                                             <tr>
 			                                                    <th scope="col">ID</th>
                                                                 <th scope="col">Qualification Name</th>
-                                                                <th scope="col">Subject</th>                                                                
-                                                                <th scope="col">Others </th>
+                                                                <th scope="col">Subject</th>
                                                                 <th scope="col">Grade Type</th>
                                                                 <th scope="col">Grade </th>
                                                                 <th scope="col">Delete this Subject?</th>
@@ -546,9 +541,6 @@
                                                               </td>
                                                               <td style="width: 30px;">
                                                                   <span><%=gradeSecondary[i].subject%></span>
-                                                              </td>                                                             
-                                                              <td style="width: 30px;">
-                                                                  <span><%=gradeSecondary[i].othersubject%></span>
                                                               </td>
                                                               <td style="width: 30px;">
                                                                   <span><%=gradeSecondary[i].gradetype%></span>
@@ -588,7 +580,7 @@
                                             <div class="col-md-9">
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherYes" runat="server" GroupName="higher" Text="Yes" />
                                                 <asp:RadioButton CssClass="form-control" ID="rblhigherNot" runat="server" GroupName="higher" Text="No, I am currently studying my higher qualification" />
-                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text="No, I am not studying / have not studies any higher" />
+                                                <asp:RadioButton CssClass="form-control" ID="rblhigherNo" runat="server" GroupName="higher" Text="No, I am not studying / have not studies any higher qualification" />
                                                 <span class="helpicon"><i id="ichigher" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
@@ -795,7 +787,6 @@
                                                             <th scope="col">ID</th>
                                                             <th scope="col">Qualification Name</th>
                                                             <th scope="col">Subject</th>
-                                                            <th scope="col">Others </th>
                                                             <th scope="col">Grade Type</th>
                                                             <th scope="col">Grade </th>
                                                             <th scope="col">Delete this Subject?</th>
@@ -812,9 +803,6 @@
                                                                 </td>
                                                                 <td style="width: 30px;">
                                                                     <span><%=gradehigher[i].subject%></span>
-                                                                </td>
-                                                                <td style="width: 30px;">
-                                                                    <span><%=gradehigher[i].othersubject%></span>
                                                                 </td>
                                                                 <td style="width: 30px;">
                                                                     <span><%=gradehigher[i].gradetype%></span>
@@ -1101,8 +1089,7 @@
                                                             <tr>
                                                                 <th scope="col">ID</th>
                                                                 <th scope="col">Qualification Name</th>
-                                                                <th scope="col">Subject</th>                                                                
-                                                                <th scope="col">Others </th>
+                                                                <th scope="col">Subject</th>
                                                                 <th scope="col">Grade Type</th>
                                                                 <th scope="col">Grade </th>
                                                                 <th scope="col">Delete this Subject?</th>
@@ -1119,9 +1106,6 @@
                                                              </td>
                                                              <td style="width: 30px;">
                                                                  <span><%=gradediploma[i].subject%></span>
-                                                             </td>
-                                                             <td style="width: 30px;">
-                                                                 <span><%=gradediploma[i].othersubject%></span>
                                                              </td>
                                                              <td style="width: 30px;">
                                                                  <span><%=gradediploma[i].gradetype%></span>
@@ -1338,36 +1322,36 @@
                     $("#<%=studentID.ClientID%>").hide();
             });
         });
-        function refreshGrid(gradeid, mode, course, subject, otherSubject, gradeType, grade)
+        function refreshGrid(gradeid, mode, course, subject, gradeType, grade)
          {             
                 if (course == "tenth")
                 {
                     if (mode == "new") 
-                        $('#ContentPlaceHolder1_grd10').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');                        
+                        $('#ContentPlaceHolder1_grd10').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');                        
                     else
-                        $("#ContentPlaceHolder1_grd10").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
+                        $("#ContentPlaceHolder1_grd10").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                 }
                 else if (course == "twelth")
                 {  
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdSecondary').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdSecondary').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
-                        $("#ContentPlaceHolder1_grdSecondary").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
+                        $("#ContentPlaceHolder1_grdSecondary").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                     
                 }
                 else if (course == "UG" || course == "PG" || course == "Phd" || course == "Other" )
                 {
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdHigher').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdHigher').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
-                        $("#ContentPlaceHolder1_grdHigher").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
+                        $("#ContentPlaceHolder1_grdHigher").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');
                 }
                 else if (course == "diploma")
                 {
                     if (mode == "new")
-                        $('#ContentPlaceHolder1_grdDiploma').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
+                        $('#ContentPlaceHolder1_grdDiploma').append('<tr id=grade_tr_' +gradeid + '><td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete(' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td></tr>');
                     else
-                        $("#ContentPlaceHolder1_grdDiploma").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + otherSubject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');    
+                        $("#ContentPlaceHolder1_grdDiploma").find('#grade_tr_' + gradeid).html('<td>' + gradeid + '</td><td>' + course + '</td><td>' + subject + '</td><td>' + gradeType + '</td><td>' + grade + '</td><td><a onclick="return ConfirmOnDelete' + gradeid +',\'' + subject +'\',\'' +course + '\');" href="javascript:void(0)">Delete</a></td>');    
                 }
          }
           function ConfirmOnDelete(recordID, subject, coursename) {

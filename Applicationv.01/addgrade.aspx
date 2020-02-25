@@ -83,12 +83,13 @@
                                         <div class="form-row">
                                             <label id="labelSubject" runat="server" for="Subject" class="col-md-3 col-form-label form-label">Subject</label>
                                             <div class="col-md-6">
-                                                <asp:DropDownList ID="ddlsubjects" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icSubject" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                                <%--<asp:DropDownList ID="ddlsubjects" CssClass="form-control" runat="server"></asp:DropDownList><span class="helpicon"><i id="icSubject" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>--%>
+                                                <input id="txtsubjects" runat="server" type="text" placeholder="Subject" value="" class="form-control" /><span class="helpicon"><i id="icSubject" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-group-item" id="OtherSubject" runat="server" style="display: none;">
+                                <%--<div class="list-group-item" id="OtherSubject" runat="server" style="display: none;">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-Others">
                                         <div class="form-row">
                                             <label id="labelothers" runat="server" for="Others" class="col-md-3 col-form-label form-label">Other Subject</label>
@@ -97,7 +98,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <div class="list-group-item" id="gradeType" runat="server" style="display: none;">
                                     <div class="form-group m-0" role="group" aria-labelledby="label-gradeType">
                                         <div class="form-row">
@@ -113,13 +114,13 @@
                                         <div class="form-row">
                                             <label id="labelGrade" runat="server" for="grade" class="col-md-3 col-form-label form-label">Grade</label>
                                             <div class="col-md-6">
-                                                <input id="txtGrade" runat="server" type="text" placeholder="Grade" value="" class="form-control" /><span class="helpicon"><i id="icGrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                                <input id="txtGrade" runat="server" type="text" placeholder="Enter your grade (for example: “70” for 70%)" value="" class="form-control" /><span class="helpicon"><i id="icGrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="page-nav__content" style="margin: 20px">
-                                    <asp:Button ID="btn_login" OnClientClick="return validateForm()" runat="server" Text="Save Changes" CssClass="btn btn-success" OnClick="btn_login_Click" />
+                                    <asp:Button ID="btn_login" OnClientClick="return validateForm()" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btn_login_Click" />
                                     <asp:Label runat="server" ID="lblMessage" Visible="false"></asp:Label>
                                 </div>
                                 <input type="hidden" runat="server" id="hidStatus" value="false" />
@@ -155,21 +156,21 @@
             var flag = false;
             if (!$("#<%=Qualification.ClientID%>").is(':hidden') && $("#<%=ddlCourse.ClientID%>").val() == "")
                 alert("Please Select Course name.");
-            else if (!$("#<%=Subject.ClientID%>").is(':hidden') && $("#<%=ddlsubjects.ClientID%>").val() == "0")
+            else if (!$("#<%=Subject.ClientID%>").is(':hidden') && $("#<%=txtsubjects.ClientID%>").val() == "")
                 alert("Please Select Subject.");
-            else if (!$("#<%=OtherSubject.ClientID%>").is(':hidden') && $("#<%=txtOther.ClientID%>").val() == "")
-                alert("Please enter other subjects.");
+            <%--else if (!$("#<%=OtherSubject.ClientID%>").is(':hidden') && $("#<%=txtOther.ClientID%>").val() == "")
+                alert("Please enter other subjects.");--%>
             else if (!$("#<%=gradeType.ClientID%>").is(':hidden') && $("#<%=ddlGradeType.ClientID%>").val() == "0")
                 alert("Please select valid grade type.");
             else if (!$("#<%=grade.ClientID%>").is(':hidden') && $("#<%=txtGrade.ClientID%>").val() == "")
                 alert("Please enter grade value.");
-            else if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others' && !isValidOtherSubject()) { }
+            <%--else if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others' && !isValidOtherSubject()) { }--%>
             else
                 flag = true;
             return flag;
         }
 
-        function isValidOtherSubject() {
+        <%--function isValidOtherSubject() {
             var otherSubjectVal = $("#<%=txtOther.ClientID%>").val();
             var ddl = $('#<%=ddlsubjects.ClientID%> option');
             for (var i = 0; i < ddl.length; i++) {
@@ -180,18 +181,18 @@
             }
 
             return true;
-        }
+        }--%>
 
         $(document).ready(function () {
             if (window.opener != null && !window.opener.closed && $("#<%=hidStatus.ClientID%>").val() && $("#<%=hidStatus.ClientID%>").val() == "true") {                
-                window.opener.refreshGrid($("#<%=hidGradeId.ClientID%>").val(), $("#<%=hidModeStatus.ClientID%>").val(), $("#<%=ddlCourse.ClientID%>").val(), $("#ddlsubjects option:selected").text(), $("#<%=txtOther.ClientID%>").val(), $("#ddlGradeType option:selected").text(), $("#<%=txtGrade.ClientID%>").val());
+                window.opener.refreshGrid($("#<%=hidGradeId.ClientID%>").val(), $("#<%=hidModeStatus.ClientID%>").val(), $("#<%=ddlCourse.ClientID%>").val(), $("#<%=txtsubjects.ClientID%>").val(), $("#ddlGradeType option:selected").text(), $("#<%=txtGrade.ClientID%>").val());
                 self.window.close();
             }
             
-            if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') 
+           <%-- if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') 
                 $("#<%=OtherSubject.ClientID%>").show();                
             else 
-                $("#<%=OtherSubject.ClientID%>").hide();
+                $("#<%=OtherSubject.ClientID%>").hide();--%>
      
             $('.fa-info-circle').tipso({
                 position: 'right',
@@ -199,12 +200,12 @@
                 useTitle: false,
             });
         });
-        $('#<%=ddlsubjects.ClientID%>').change(function () {
+       <%-- $('#<%=ddlsubjects.ClientID%>').change(function () {
             if ($('#<%=ddlsubjects.ClientID%> option:selected').text() == 'Others') 
                 $("#<%=OtherSubject.ClientID%>").show();                
             else 
                 $("#<%=OtherSubject.ClientID%>").hide();                
-        });
+        });--%>
      
     </script>
 </body>

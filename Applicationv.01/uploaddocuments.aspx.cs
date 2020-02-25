@@ -66,11 +66,11 @@ public partial class uploaddocuments : System.Web.UI.Page
                     documentList.Add("Proof of Higher Education(Other)");
             }
             if ((appEduDetails.Count > 0) && appEduDetails[0].isdiplomadone == 1)
-                documentList.Add("Proof of Certificate / Diploma");
+                documentList.Add("Diploma / Certificate Transcripts");//Proof of Certificate / Diploma
             if ((appLangDetails.Count > 0) && (appLangDetails[0].isenglishintesive == 1))
-                documentList.Add("Proof of Study - English Language Intensive");
-            if ((appLangDetails.Count > 0) && (appLangDetails[0].testname != "" && appLangDetails[0].testname != null))
-                documentList.Add("Proof of English Language Test");
+                documentList.Add("English Language Test Report");
+            if ((appLangDetails.Count > 0) && appLangDetails[0].giveenglishtest != null)
+                documentList.Add("Standardised Test(s) Report");
             int empCount = 0;
             for (int employ = 0; employ < appEmpDetails.Count; employ++)
             {
