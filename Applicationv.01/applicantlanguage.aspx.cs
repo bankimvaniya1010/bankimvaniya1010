@@ -682,70 +682,77 @@ public partial class applicantlanguage : System.Web.UI.Page
                     txtYearCompletion.Value = Convert.ToDateTime(LanguageInfo.yearofcompletion).ToString("yyyy-MM-dd");
                 txtQualificationName.Value = LanguageInfo.qualificationname;
 
-
-                if (LanguageInfo.giveenglishtest == 1)
+                if (LanguageInfo.isgiventest_yes_or_no == 1)
                 {
-                    rblLanguageielts.Checked = true;
-                    txtTestName.Value = LanguageInfo.testname;
-                    txtCentreNo.Value = LanguageInfo.centerno;
-                    txtCandidateNo.Value = LanguageInfo.candidateno;
-                    txtCandidateID.Value = LanguageInfo.candidateid;
-                    if (LanguageInfo.examdate != null)
-                        txtieltsTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-                    
-                    txtLanguageScore.Value = LanguageInfo.overallscore;
-                    txtSpeaking.Value = LanguageInfo.speakingscore;
-                    txtListening.Value = LanguageInfo.listeningscore;
-                    txtWriting.Value = LanguageInfo.writingscore;
-                    txtReading.Value = LanguageInfo.readingscore;
-
-                }
-
-                else if (LanguageInfo.giveenglishtest == 2)
-                {
-                    rblLanguagepte.Checked = true;
-                    txtptetesttaker.Value = LanguageInfo.testtakerId;
-                    txtpteregistrationNo.Value = LanguageInfo.registrationNo;
-                    txtptetestcenterNo.Value = LanguageInfo.centerno;
-                    if (LanguageInfo.examdate != null)
-                        txtpteTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-                    if (LanguageInfo.testcentercountrty != null) {
-                        ddlptecentercountry.ClearSelection();
-                        ddlptecentercountry.Items.FindByValue(LanguageInfo.testcentercountrty.ToString()).Selected = true;
-                    }
-
-                    txtpteTotalScore.Value = LanguageInfo.overallscore;
-                    txtpteSpeakingScore.Value = LanguageInfo.speakingscore;
-                    txtpteListeningScore.Value = LanguageInfo.listeningscore;
-                    txtpteWritingScore.Value = LanguageInfo.writingscore;
-                    txtpteReadingScore.Value = LanguageInfo.readingscore;
-
-                }
-
-                else if (LanguageInfo.giveenglishtest == 3) {
-                    rblLanguagtofel.Checked = true; 
-                    txttofelregistrationno.Value = LanguageInfo.registrationNo;
-                    txttofelcenterNo.Value = LanguageInfo.centerno;
-                    if (LanguageInfo.examdate != null)
-                        txttofelTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
-                    if (LanguageInfo.testcentercountrty != null)
+                    if (LanguageInfo.giveenglishtest == 1)
                     {
-                        ddltofelcentercountry.ClearSelection();
-                        ddltofelcentercountry.Items.FindByValue(LanguageInfo.testcentercountrty.ToString()).Selected = true;
+                        rblLanguageielts.Checked = true;
+                        txtTestName.Value = LanguageInfo.testname;
+                        txtCentreNo.Value = LanguageInfo.centerno;
+                        txtCandidateNo.Value = LanguageInfo.candidateno;
+                        txtCandidateID.Value = LanguageInfo.candidateid;
+                        if (LanguageInfo.examdate != null)
+                            txtieltsTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+
+                        txtLanguageScore.Value = LanguageInfo.overallscore;
+                        txtSpeaking.Value = LanguageInfo.speakingscore;
+                        txtListening.Value = LanguageInfo.listeningscore;
+                        txtWriting.Value = LanguageInfo.writingscore;
+                        txtReading.Value = LanguageInfo.readingscore;
+
                     }
 
-                    txttofelTotalScore.Value = LanguageInfo.overallscore;
-                    txttofelSpeakingScore.Value = LanguageInfo.speakingscore;
-                    txttofelListeningScore.Value = LanguageInfo.listeningscore;
-                    txttofelWritingScore.Value = LanguageInfo.writingscore;
-                    txttofelReadingScore.Value = LanguageInfo.readingscore;
+                    else if (LanguageInfo.giveenglishtest == 2)
+                    {
+                        rblLanguagepte.Checked = true;
+                        txtptetesttaker.Value = LanguageInfo.testtakerId;
+                        txtpteregistrationNo.Value = LanguageInfo.registrationNo;
+                        txtptetestcenterNo.Value = LanguageInfo.centerno;
+                        if (LanguageInfo.examdate != null)
+                            txtpteTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+                        if (LanguageInfo.testcentercountrty != null)
+                        {
+                            ddlptecentercountry.ClearSelection();
+                            ddlptecentercountry.Items.FindByValue(LanguageInfo.testcentercountrty.ToString()).Selected = true;
+                        }
+
+                        txtpteTotalScore.Value = LanguageInfo.overallscore;
+                        txtpteSpeakingScore.Value = LanguageInfo.speakingscore;
+                        txtpteListeningScore.Value = LanguageInfo.listeningscore;
+                        txtpteWritingScore.Value = LanguageInfo.writingscore;
+                        txtpteReadingScore.Value = LanguageInfo.readingscore;
+
+                    }
+
+                    else if (LanguageInfo.giveenglishtest == 3)
+                    {
+                        rblLanguagtofel.Checked = true;
+                        txttofelregistrationno.Value = LanguageInfo.registrationNo;
+                        txttofelcenterNo.Value = LanguageInfo.centerno;
+                        if (LanguageInfo.examdate != null)
+                            txttofelTestDate.Value = Convert.ToDateTime(LanguageInfo.examdate).ToString("yyyy-MM-dd");
+                        if (LanguageInfo.testcentercountrty != null)
+                        {
+                            ddltofelcentercountry.ClearSelection();
+                            ddltofelcentercountry.Items.FindByValue(LanguageInfo.testcentercountrty.ToString()).Selected = true;
+                        }
+
+                        txttofelTotalScore.Value = LanguageInfo.overallscore;
+                        txttofelSpeakingScore.Value = LanguageInfo.speakingscore;
+                        txttofelListeningScore.Value = LanguageInfo.listeningscore;
+                        txttofelWritingScore.Value = LanguageInfo.writingscore;
+                        txttofelReadingScore.Value = LanguageInfo.readingscore;
+                    }
                 }
-                     
-                txttestRefno.Value = LanguageInfo.testreportreferenceno;
-                if (LanguageInfo.cefrlevel != null)
+                else if (LanguageInfo.isgiventest_yes_or_no == 0)
                 {
-                    ddlCEFR.ClearSelection();
-                    ddlCEFR.Items.FindByValue(LanguageInfo.cefrlevel.ToString()).Selected = true;
+
+                    txttestRefno.Value = LanguageInfo.testreportreferenceno;
+                    if (LanguageInfo.cefrlevel != null)
+                    {
+                        ddlCEFR.ClearSelection();
+                        ddlCEFR.Items.FindByValue(LanguageInfo.cefrlevel.ToString()).Selected = true;
+                    }
                 }
                 lblSaveTime.Text = " Record was last saved at " + LanguageInfo.lastsavedtime.ToString();
             }
@@ -818,75 +825,102 @@ public partial class applicantlanguage : System.Web.UI.Page
                 objLanguage.expectedgraderesult = null;
             }
 
-            if (rblLanguageielts.Checked)
+            if (rbyes.Checked)
             {
-                objLanguage.giveenglishtest = 1;
-                objLanguage.testname = txtTestName.Value;
-                objLanguage.candidateid = txtCandidateID.Value;
-                objLanguage.candidateno = txtCandidateNo.Value;
-                objLanguage.centerno = txtCentreNo.Value;
-                objLanguage.examdate = Convert.ToDateTime(txtieltsTestDate.Value);
+                objLanguage.isgiventest_yes_or_no = 1;
+                if (rblLanguageielts.Checked)
+                {
+                    objLanguage.giveenglishtest = 1;
+                    objLanguage.testname = txtTestName.Value;
+                    objLanguage.candidateid = txtCandidateID.Value;
+                    objLanguage.candidateno = txtCandidateNo.Value;
+                    objLanguage.centerno = txtCentreNo.Value;
+                    objLanguage.examdate = Convert.ToDateTime(txtieltsTestDate.Value);
 
-                objLanguage.readingscore = txtReading.Value;
-                objLanguage.listeningscore = txtListening.Value;
-                objLanguage.speakingscore = txtSpeaking.Value;
-                objLanguage.writingscore = txtWriting.Value;
-                objLanguage.overallscore = txtLanguageScore.Value;
+                    objLanguage.readingscore = txtReading.Value;
+                    objLanguage.listeningscore = txtListening.Value;
+                    objLanguage.speakingscore = txtSpeaking.Value;
+                    objLanguage.writingscore = txtWriting.Value;
+                    objLanguage.overallscore = txtLanguageScore.Value;
 
-                objLanguage.testtakerId = null;
-                objLanguage.registrationNo = null;
+                    objLanguage.testtakerId = null;
+                    objLanguage.registrationNo = null;
+                }
+
+                else if (rblLanguagepte.Checked)
+                {
+                    objLanguage.giveenglishtest = 2;
+                    objLanguage.testtakerId = txtptetesttaker.Value;
+                    objLanguage.registrationNo = txtpteregistrationNo.Value;
+                    objLanguage.examdate = Convert.ToDateTime(txtpteTestDate.Value);
+                    if (ddlptecentercountry.SelectedValue != null)
+                        objLanguage.testcentercountrty = Convert.ToInt32(ddlptecentercountry.SelectedValue);
+                    objLanguage.centerno = txtptetestcenterNo.Value;
+
+                    objLanguage.readingscore = txtpteReadingScore.Value;
+                    objLanguage.listeningscore = txtpteListeningScore.Value;
+                    objLanguage.speakingscore = txtpteSpeakingScore.Value;
+                    objLanguage.writingscore = txtpteWritingScore.Value;
+                    objLanguage.overallscore = txtpteTotalScore.Value;
+
+                    objLanguage.testname = null;
+                    objLanguage.candidateid = null;
+                    objLanguage.candidateno = null;
+
+                }
+
+                else if (rblLanguagtofel.Checked)
+                {
+                    objLanguage.giveenglishtest = 3;
+                    objLanguage.registrationNo = txttofelregistrationno.Value;
+                    objLanguage.examdate = Convert.ToDateTime(txttofelTestDate.Value);
+                    if (ddltofelcentercountry.SelectedValue != null)
+                        objLanguage.testcentercountrty = Convert.ToInt32(ddltofelcentercountry.SelectedValue);
+                    objLanguage.centerno = txttofelcenterNo.Value;
+
+                    objLanguage.readingscore = txttofelReadingScore.Value;
+                    objLanguage.listeningscore = txttofelListeningScore.Value;
+                    objLanguage.speakingscore = txttofelSpeakingScore.Value;
+                    objLanguage.writingscore = txttofelWritingScore.Value;
+                    objLanguage.overallscore = txttofelTotalScore.Value;
+
+                    objLanguage.testtakerId = null;
+                    objLanguage.testname = null;
+                    objLanguage.candidateid = null;
+                    objLanguage.candidateno = null;
+
+
+                }
+
+                objLanguage.cefrlevel = null;
+                objLanguage.testreportreferenceno = null;
             }
-
-            else if (rblLanguagepte.Checked)
+            else if(rbno.Checked)
             {
-                objLanguage.giveenglishtest = 2;
-                objLanguage.testtakerId = txtptetesttaker.Value;
-                objLanguage.registrationNo = txtpteregistrationNo.Value;
-                objLanguage.examdate = Convert.ToDateTime(txtpteTestDate.Value);
-                if (ddlptecentercountry.SelectedValue != null)
-                    objLanguage.testcentercountrty = Convert.ToInt32(ddlptecentercountry.SelectedValue);
-                objLanguage.centerno = txtptetestcenterNo.Value;
+                objLanguage.isgiventest_yes_or_no = 0;
+                if (ddlCEFR.SelectedValue != "")
+                {
+                    objLanguage.cefrlevel = ddlCEFR.SelectedValue;
+                }
+                objLanguage.testreportreferenceno = txttestRefno.Value;
 
-                objLanguage.readingscore = txtpteReadingScore.Value;
-                objLanguage.listeningscore = txtpteListeningScore.Value;
-                objLanguage.speakingscore = txtpteSpeakingScore.Value;
-                objLanguage.writingscore = txtpteWritingScore.Value;
-                objLanguage.overallscore = txtpteTotalScore.Value;
-
+                //set to null
+                objLanguage.giveenglishtest = null;
                 objLanguage.testname = null;
                 objLanguage.candidateid = null;
                 objLanguage.candidateno = null;
-
-            }
-
-            else if (rblLanguagtofel.Checked)
-            {
-                objLanguage.giveenglishtest = 3;
-                objLanguage.registrationNo = txttofelregistrationno.Value;
-                objLanguage.examdate = Convert.ToDateTime(txttofelTestDate.Value);
-                if (ddltofelcentercountry.SelectedValue != null)
-                    objLanguage.testcentercountrty = Convert.ToInt32(ddltofelcentercountry.SelectedValue);
-                objLanguage.centerno = txttofelcenterNo.Value;
-
-                objLanguage.readingscore = txttofelReadingScore.Value;
-                objLanguage.listeningscore = txttofelListeningScore.Value;
-                objLanguage.speakingscore = txttofelSpeakingScore.Value;
-                objLanguage.writingscore = txttofelWritingScore.Value;
-                objLanguage.overallscore = txttofelTotalScore.Value;
-
+                objLanguage.centerno = null;
+                objLanguage.examdate = null;
                 objLanguage.testtakerId = null;
-                objLanguage.testname = null;
-                objLanguage.candidateid = null;
-                objLanguage.candidateno = null;
+                objLanguage.registrationNo = null;                
+                objLanguage.testcentercountrty = null;
+                objLanguage.readingscore = null;
+                objLanguage.listeningscore = null;
+                objLanguage.speakingscore = null;
+                objLanguage.writingscore = null;
+                objLanguage.overallscore = null;
 
-
-            }
-
-            if (ddlCEFR.SelectedValue != "")
-            {
-                objLanguage.cefrlevel = ddlCEFR.SelectedValue;
-            }
-            objLanguage.testreportreferenceno = txttestRefno.Value;
+            }            
             objLanguage.applicantid = userID;
             objLanguage.lastsavedtime = DateTime.Now;
             objLanguage.islanguagecompetencypresent = true;

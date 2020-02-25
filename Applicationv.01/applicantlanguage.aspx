@@ -160,6 +160,10 @@
                                     <div class="form-row">
                                         <label id="labelEnglishTest" runat="server" for="EnglishTest" class="col-md-3 col-form-label form-label">HAVE YOU TAKEN ANY ENGLISH LANGUAGE TEST?</label>
                                         <div class="col-md-6">
+                                            <asp:RadioButton ID="rbyes" CssClass="form-control" runat="server" GroupName="testgiven" Text="Yes" />
+                                            <asp:RadioButton ID="rbno" CssClass="form-control frm-cntrl-rdo" runat="server" GroupName="testgiven" Text="No" />
+                                                <br/>
+                                            <div id="testnameDiv" runat="server">
                                             <div class="form-check-inline">
                                                 <div class="form-check-label">
                                                     <asp:RadioButton ID="rblLanguageielts" runat="server" GroupName="EnglishTest" Text="IELTS" />
@@ -174,8 +178,9 @@
                                                 <div class="form-check-label">
                                                     <asp:RadioButton ID="rblLanguagtofel" runat="server" GroupName="EnglishTest" Text="TOEFL iBT" />
                                                 </div>
+                                            </div>                                            
+                                                <span class="helpicon"><i id="icEnglishTest" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
-                                            <span class="helpicon"><i id="icEnglishTest" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -515,6 +520,7 @@
                                 </div>   
                              </div>   
 
+                            <div runat="server" id="cefr_referenceDiv">
                             <div class="list-group-item" id="CEFR" runat="server" style="display: none">
                                 <div class="form-group m-0" role="group" aria-labelledby="label-CEFR">
                                     <div class="form-row">
@@ -537,6 +543,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                             </div>
 
                             <div id="mainDiv" runat="server"></div>
@@ -654,148 +661,166 @@
 
                 if (flag1) {
 
-                    if (!$("#<%=EnglishTest.ClientID%>").is(':hidden') && !($("#<%=rblLanguageielts.ClientID%>").is(':checked') || $("#<%=rblLanguagepte.ClientID%>").is(':checked') || $("#<%=rblLanguagtofel.ClientID%>").is(':checked')))
-                        alert("Please Select Option If You Have you sat any one English Language competency tests ");
-                    else {
-                        var flag2 = true;
+                    if (!$("#<%=EnglishTest.ClientID%>").is(':hidden') && !($("#<%=rbyes.ClientID%>").is(':checked') || $("#<%=rbno.ClientID%>").is(':checked'))) {
+                        alert("Please Select Option If You Have you given any English Language competency tests ");
+                        return false;
+                    }                   
+                    if ($("#<%=rbyes.ClientID%>").is(':checked'))
+                    {
+                        if (!$("#<%=EnglishTest.ClientID%>").is(':hidden') && !($("#<%=rblLanguageielts.ClientID%>").is(':checked') || $("#<%=rblLanguagepte.ClientID%>").is(':checked') || $("#<%=rblLanguagtofel.ClientID%>").is(':checked'))) {
+                            alert("Please Select Option English Language competency tests ");
+                            return false;
+                        }
+
                         if ($("#<%=rblLanguagtofel.ClientID%>").is(':checked')) {
                             if ((!$("#<%=tofelregistrationno.ClientID%>").is(':hidden') && $("#<%=txttofelregistrationno.ClientID%>").val() == "") || !checksixteendigit.test($("#<%=txttofelregistrationno.ClientID%>").val())) {
                                 alert("Please Enter valid Registration number");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=tofelTestDate.ClientID%>").is(':hidden') && $("#<%=txttofelTestDate.ClientID%>").val() == "") {
                                 alert("Please Select Test Date");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=tofelcenterNo.ClientID%>").is(':hidden') && $("#<%=txttofelcenterNo.ClientID%>").val() == "") {
                                 alert("Please Enter Center Number");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=tofelcentercountry.ClientID%>").is(':hidden') && $("#<%=ddltofelcentercountry.ClientID%>").val() == "0") {
                                 alert("Please Select Test Country");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=tofelReadingScore.ClientID%>").is(':hidden') && $("#<%=txttofelReadingScore.ClientID%>").val() == "") || !checkuptoThirty.test($("#<%=txttofelReadingScore.ClientID%>").val())) {
                                 alert("Please Enter valid Reading Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=tofelListeningScore.ClientID%>").is(':hidden') && $("#<%=txttofelListeningScore.ClientID%>").val() == "") || !checkuptoThirty.test($("#<%=txttofelListeningScore.ClientID%>").val())) {
                                 alert("Please Enter valid Listening Score ");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=tofelSpeakingScore.ClientID%>").is(':hidden') && $("#<%=txttofelSpeakingScore.ClientID%>").val() == "") || !checkuptoThirty.test($("#<%=txttofelSpeakingScore.ClientID%>").val())) {
                                 alert("Please Enter valid Speaking Score ");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=tofelWritingScore.ClientID%>").is(':hidden') && $("#<%=txttofelWritingScore.ClientID%>").val() == "") || !checkuptoThirty.test($("#<%=txttofelWritingScore.ClientID%>").val())) {
                                 alert("Please Enter valid Writing Score ");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=tofelTotalScore.ClientID%>").is(':hidden') && (parseInt($("#<%=txttofelTotalScore.ClientID%>").val()) < 0 || parseInt($("#<%=txttofelTotalScore.ClientID%>").val()) > 120)) || $("#<%=txttofelTotalScore.ClientID%>").val() == "" || !checOnlykNum.test($("#<%=txttofelTotalScore.ClientID%>").val())) {
                                 alert("Please Enter valid Total Score");
-                                flag2 = false;
+                                return false;
                             }
-
+                            else
+                                flag = true;
                         }
                         else if ($("#<%=rblLanguagepte.ClientID%>").is(':checked')) {
                             if ((!$("#<%=ptetesttaker.ClientID%>").is(':hidden') && $("#<%=txtptetesttaker.ClientID%>").val() == "") || !checktesterId.test($("#<%=txtptetesttaker.ClientID%>").val())) {
                                 alert("Please Enter valid Test Taker ID");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=pteregistrationno.ClientID%>").is(':hidden') && $("#<%=txtpteregistrationNo.ClientID%>").val() == "") || !checkninedigit.test($("#<%=txtpteregistrationNo.ClientID%>").val())) {
                                 alert("Please Enter valid Registration number");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=pteTestDate.ClientID%>").is(':hidden') && $("#<%=txtpteTestDate.ClientID%>").val() == "") {
                                 alert("Please Select Test Date");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=ptetestcenterNo.ClientID%>").is(':hidden') && $("#<%=txtptetestcenterNo.ClientID%>").val() == "") {
                                 alert("Please Enter Center Number");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=ptecentercountry.ClientID%>").is(':hidden') && $("#<%=ddlptecentercountry.ClientID%>").val() == "0") {
                                 alert("Please Select Test Country");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=pteReadingScore.ClientID%>").is(':hidden') && $("#<%=txtpteReadingScore.ClientID%>").val() == "") || !checkuptoHundred.test($("#<%=txtpteReadingScore.ClientID%>").val())) {
                                 alert("Please Enter valid Reading Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=pteListeningScore.ClientID%>").is(':hidden') && $("#<%=txtpteListeningScore.ClientID%>").val() == "") || !checkuptoHundred.test($("#<%=txtpteListeningScore.ClientID%>").val())) {
                                 alert("Please Enter valid Listening Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=pteSpeakingScore.ClientID%>").is(':hidden') && $("#<%=txtpteSpeakingScore.ClientID%>").val() == "") || !checkuptoHundred.test($("#<%=txtpteSpeakingScore.ClientID%>").val())) {
                                 alert("Please Enter valid Speaking Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=pteWritingScore.ClientID%>").is(':hidden') && $("#<%=txtpteWritingScore.ClientID%>").val() == "") || !checkuptoHundred.test($("#<%=txtpteWritingScore.ClientID%>").val())) {
                                 alert("Please Enter valid Writing Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if ((!$("#<%=pteTotalScore.ClientID%>").is(':hidden') && $("#<%=txtpteTotalScore.ClientID%>").val() == "") || !checkuptoHundred.test($("#<%=txtpteTotalScore.ClientID%>").val())) {
                                 alert("Please Enter valid Total Score");
-                                flag2 = false;
+                                return false;
                             }
-
+                            else
+                                flag = true;
                         }
                         else if ($("#<%=rblLanguageielts.ClientID%>").is(':checked')) {
                             if (!$("#<%=testName.ClientID%>").is(':hidden') && $("#<%=txtTestName.ClientID%>").val() == "") {
                                 alert("Please Enter Test Name");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=CandidateID.ClientID%>").is(':hidden') && $("#<%=txtCandidateID.ClientID%>").val() == "") {
                                 alert("Please Enter Candidate ID");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=CandidateNo.ClientID%>").is(':hidden') && $("#<%=txtCandidateNo.ClientID%>").val() == "") {
                                 alert("Please Enter Candidate Number");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=ieltsTestDate.ClientID%>").is(':hidden') && $("#<%=txtieltsTestDate.ClientID%>").val() == "") {
                                 alert("Please Select Test Date");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=CentreNo.ClientID%>").is(':hidden') && $("#<%=txtCentreNo.ClientID%>").val() == "") {
                                 alert("Please Enter Center Number");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=ReadingScore.ClientID%>").is(':hidden') && $("#<%=txtReading.ClientID%>").val() == "") {
                                 alert("Please Enter Reading Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=ListeningScore.ClientID%>").is(':hidden') && $("#<%=txtListening.ClientID%>").val() == "") {
                                 alert("Please Enter Listening Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=SpeakingScore.ClientID%>").is(':hidden') && $("#<%=txtSpeaking.ClientID%>").val() == "") {
                                 alert("Please Enter Speaking Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=WritingScore.ClientID%>").is(':hidden') && $("#<%=txtWriting.ClientID%>").val() == "") {
                                 alert("Please Enter Writing Score");
-                                flag2 = false;
+                                return false;
                             }
                             else if (!$("#<%=LanguageScore.ClientID%>").is(':hidden') && $("#<%=txtLanguageScore.ClientID%>").val() == "") {
                                 alert("Please Enter OverAll Score");
-                                flag2 = false;
+                                return false;
                             }
-                        }
-                    }
-                    if (flag2)
-                    {
-                            if (!$("#<%=CEFR.ClientID%>").is(':hidden') && $("#<%=ddlCEFR.ClientID%>").val() === "0")
-                                alert("Please Select CEFR Test");
-                            else if (!$("#<%=testRefno.ClientID%>").is(':hidden') && $("#<%=txttestRefno.ClientID%>").val() == "")
-                                alert("Please Enter Test Refference Number");
                             else
                                 flag = true;
+                        }
+                        else
+                            flag = true;
                     }
-                    
-                }
-            }
-           
+                    else if ($("#<%=rbno.ClientID%>").is(':checked')) {
+                        if (!$("#<%=CEFR.ClientID%>").is(':hidden') && $("#<%=ddlCEFR.ClientID%>").val() === "0") {
+                            alert("Please Select CEFR Test");
+                            return false;
+                        }
+                        else if (!$("#<%=testRefno.ClientID%>").is(':hidden') && $("#<%=txttestRefno.ClientID%>").val() == "") {
+                            alert("Please Enter Test Refference Number");
+                            return false;
+                        }
+                        else
+                            flag = true;
+                    }
+                    else
+                    flag = true;
+                }                
+                else
+                    flag = true;
+            }           
            if (flag == true)
                 flag = customcontrolValidation();
             return flag;
@@ -876,6 +901,33 @@
             else 
                 $("#<%=tofelfieldContainer.ClientID%>").hide();
 
+            if ($("#<%=rbyes.ClientID%>").is(":checked")) {
+                $("#<%= testnameDiv.ClientID%>").show();
+                $("#<%= cefr_referenceDiv.ClientID%>").hide();
+            }
+            else {
+                $("#<%= testnameDiv.ClientID%>").hide();
+                $("#<%=ieltsfieldContainer.ClientID%>").hide();
+                $("#<%=ptefieldContainer.ClientID%>").hide();
+                $("#<%=tofelfieldContainer.ClientID%>").hide();
+                $("#<%= cefr_referenceDiv.ClientID%>").show();
+            }
+        });
+
+        $(function () {
+            $("input[name='ctl00$ContentPlaceHolder1$testgiven']").click(function () {
+                if ($("#<%=rbyes.ClientID%>").is(":checked")) {
+                    $("#<%= testnameDiv.ClientID%>").show();
+                    $("#<%= cefr_referenceDiv.ClientID%>").hide();
+                }
+                else {
+                    $("#<%= testnameDiv.ClientID%>").hide();
+                    $("#<%=ieltsfieldContainer.ClientID%>").hide();
+                    $("#<%=ptefieldContainer.ClientID%>").hide();
+                    $("#<%=tofelfieldContainer.ClientID%>").hide();
+                    $("#<%= cefr_referenceDiv.ClientID%>").show();
+                }
+            });
         });
 
         $(function () {

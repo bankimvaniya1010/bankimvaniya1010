@@ -555,6 +555,7 @@ public partial class applicantlanguagecompetency
     public string testreportreferenceno { get; set; }
     public Nullable<System.DateTime> lastsavedtime { get; set; }
     public bool islanguagecompetencypresent { get; set; }
+    public Nullable<int> isgiventest_yes_or_no { get; set; }
 
     public virtual students students { get; set; }
     public virtual university_master university_master { get; set; }
