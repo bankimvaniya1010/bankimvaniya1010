@@ -48,9 +48,9 @@
     <div class="d-flex align-items-center" style="min-height: 100vh">
         <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">            
             <div class="card navbar-shadow">
-                <div class="card-header text-center">
+                <div class="card-header text-center" style="position:relative">
                     <div class="frnd-hdr logo-img">
-                        <img src="<%=logourl %>" class="logo-img img-fluid"/>
+                        <img src="<%=logourl %>" class="logo-img img-fluid" style="transform: translateY(-60%);"/>
                     </div>
                     <h4 class="card-title">Forgot Password?</h4>
                     <p class="card-subtitle">Recover your account password</p>

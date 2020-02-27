@@ -906,6 +906,7 @@
                 $("#<%= cefr_referenceDiv.ClientID%>").hide();
             }
             else {
+                $("input[name='ctl00$ContentPlaceHolder1$EnglishTest']").prop('checked', false);
                 $("#<%= testnameDiv.ClientID%>").hide();
                 $("#<%=ieltsfieldContainer.ClientID%>").hide();
                 $("#<%=ptefieldContainer.ClientID%>").hide();
@@ -921,6 +922,7 @@
                     $("#<%= cefr_referenceDiv.ClientID%>").hide();
                 }
                 else {
+                    $("input[name='ctl00$ContentPlaceHolder1$EnglishTest']").prop('checked', false);
                     $("#<%= testnameDiv.ClientID%>").hide();
                     $("#<%=ieltsfieldContainer.ClientID%>").hide();
                     $("#<%=ptefieldContainer.ClientID%>").hide();

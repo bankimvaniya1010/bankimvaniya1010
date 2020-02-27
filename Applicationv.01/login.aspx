@@ -90,7 +90,7 @@
                     <a class="navbar-brand m-0">The Application Center</a>
                 </div>
                 <div class="card navbar-shadow">
-                    <div class="card-header text-center">
+                    <div class="card-header text-center" style="position: relative;">
                         <div class="frnd-hdr logo-img">
                             <img src="<%=logourl %>" class="logo-img"/>
                         </div>
