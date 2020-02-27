@@ -718,8 +718,9 @@
 
                 if (!$("#<%=chineseCode.ClientID%>").is(':hidden')) {
                     $("#<%=chineseCode.ClientID%>").hide();
-                    $("#<%=chineseCode.ClientID %> input[type='radio']").prop('checked', false);
+                    $("#<%=chineseCode.ClientID %> input[type='radio']").prop('checked', false);                    
                     $("#<%=txtChineseCodeNumber.ClientID %>").val('');
+                    $("#<%=textChineseCodeDiv.ClientID%>").hide();
                 }
                 else if (!$("#<%=russianName.ClientID%>").is(':hidden')) {
                     $("#<%=russianName.ClientID%>").hide();

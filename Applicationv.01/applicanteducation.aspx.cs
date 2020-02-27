@@ -346,7 +346,7 @@ public partial class applicanteducation : System.Web.UI.Page
                         higherCountry.Attributes.Add("style", "display:block;");
                         labelhigherCountry.InnerHtml = setInnerHtml(fields[k]);
                         break;
-                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAMS":
+                    case "HAVE YOU COMPLETED ANY DIPLOMA OR CERTIFICATE PROGRAM(S)?":
                         diploma.Attributes.Add("style", "display:block;");
                         labeldiploma.InnerHtml = setInnerHtml(fields[k]);
                         break;
