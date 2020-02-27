@@ -684,6 +684,7 @@ public partial class applicantlanguage : System.Web.UI.Page
 
                 if (LanguageInfo.isgiventest_yes_or_no == 1)
                 {
+                    rbyes.Checked = true;
                     if (LanguageInfo.giveenglishtest == 1)
                     {
                         rblLanguageielts.Checked = true;
@@ -746,7 +747,7 @@ public partial class applicantlanguage : System.Web.UI.Page
                 }
                 else if (LanguageInfo.isgiventest_yes_or_no == 0)
                 {
-
+                    rbno.Checked = true;
                     txttestRefno.Value = LanguageInfo.testreportreferenceno;
                     if (LanguageInfo.cefrlevel != null)
                     {

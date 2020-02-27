@@ -209,6 +209,7 @@ public partial class applicantchoicestatus : System.Web.UI.Page
                 application.activity_date = DateTime.Now; // Activity Date Value
                 db.SaveChanges();
                 objLog.WriteLog("User IP Address: " + Request.UserHostAddress);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your response Saved successfully.')", true);
             }
         }
         catch (Exception ex) { objLog.WriteLog(ex.ToString()); }

@@ -43,7 +43,7 @@ public partial class uploaddocuments : System.Web.UI.Page
             appHigherDetails = db.applicanthighereducation.Where(x => x.applicantid == UserID && x.universityid == UniversityID).ToList();
             documentList.Add("Profile Photo for Application Centre");
             documentList.Add("Recent Passport-size Photograph");
-            documentList.Add("Passport Copy (Bio Pages)");
+            documentList.Add("National ID Card");
             if ((appDetails.Count > 0) && (appDetails[0].alternativeIdentityproofId != null && appDetails[0].alternativeIdentityproofId != 0))
                 documentList.Add("Alternate Proof of Identity");
             if ((appDetails.Count > 0) && (appDetails[0].alternativeproofdobId != null && appDetails[0].alternativeproofdobId != 0))
@@ -65,6 +65,8 @@ public partial class uploaddocuments : System.Web.UI.Page
                 if (appHigherDetails[higher].coursename == "Other")
                     documentList.Add("Proof of Higher Education(Other)");
             }
+            if ((appEduDetails.Count > 0) && appEduDetails[0].ishighereducation == 1)
+                documentList.Add("Higher Degree Transcripts");
             if ((appEduDetails.Count > 0) && appEduDetails[0].isdiplomadone == 1)
                 documentList.Add("Diploma / Certificate Transcripts");//Proof of Certificate / Diploma
             if ((appLangDetails.Count > 0) && (appLangDetails[0].isenglishintesive == 1))
