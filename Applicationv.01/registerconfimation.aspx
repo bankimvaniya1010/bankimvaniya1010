@@ -49,7 +49,7 @@
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto" style="min-width: 300px;">
 
                 <div class="card navbar-shadow">
-                    <div class="card-header text-center logn-head">
+                    <div class="card-header text-center logn-head positnrel">
                          <div class="frnd-hdr logo-img">
                             <img src="<%=logourl %>" class="logo-img"/>
                         </div>

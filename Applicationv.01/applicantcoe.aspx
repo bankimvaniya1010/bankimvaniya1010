@@ -20,6 +20,11 @@
                         </div>
                     </div>
                 <br/>
+                   <div id="emptyChoicesDiv" runat="server" class="card">
+                       <div class="card-body">
+                           <asp:Label ID="lblEmptyList" runat="server" Text=""></asp:Label>
+                       </div>
+                   </div>
                 <div class="card" id="coeCard" runat="server">
                     <asp:DataList ID="coeList" runat="server" GridLines="Horizontal" OnItemDataBound="coeList_ItemDataBound" OnItemCommand="coeList_ItemCommand">
                         <ItemTemplate>
@@ -89,11 +94,7 @@
                         </ItemTemplate>
                     </asp:DataList>
                 </div>
-                <div id="emptyChoicesDiv" runat="server">
-                    <div>
-                        <asp:Label ID="lblEmptyList" runat="server" Text=""></asp:Label>
-                    </div>
-                </div>
+                
                </div>
                 <div class="col-md-4">
                     <div class="banImg-wrp">

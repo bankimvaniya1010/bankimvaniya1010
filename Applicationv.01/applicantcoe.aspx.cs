@@ -48,7 +48,7 @@ public partial class applicantcoe : System.Web.UI.Page
             }
             else
             {
-                lblEmptyList.Text = "Congratulations! You have received Confirmation of Enrolment(s) for [No_of_COEs_issued]. Click on the relevant link below to view your COE(s).";
+                lblEmptyList.Text = "Congratulations! You have received Confirmation of Enrolment(s) for "+ allCoeList .Count+ ". Click on the relevant link below to view your COE(s).";
                 var applicantChoicesList = new List<object>();
                 foreach (var item in allCoeList)
                 {

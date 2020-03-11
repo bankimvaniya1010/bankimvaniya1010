@@ -94,7 +94,7 @@
                                         <div class="form-row">
                                             <label id="labelothers" runat="server" for="Others" class="col-md-3 col-form-label form-label">Other Subject</label>
                                             <div class="col-md-6">
-                                                <input id="txtOther" runat="server" type="text" placeholder="Subject" value="" class="form-control" /><span class="helpicon"><i id="icOtherSubject" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                                <input id="txtOther" runat="server" type="text" placeholder="Enter your subject name" value="" class="form-control" /><span class="helpicon"><i id="icOtherSubject" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +114,7 @@
                                         <div class="form-row">
                                             <label id="labelGrade" runat="server" for="grade" class="col-md-3 col-form-label form-label">Grade</label>
                                             <div class="col-md-6">
-                                                <input id="txtGrade" runat="server" type="text" placeholder="Enter your grade (for example: “70” for 70%)" value="" class="form-control" /><span class="helpicon"><i id="icGrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
+                                                <input id="txtGrade" runat="server" type="text" placeholder="Enter your grade (for example: “70” for 70%)" value="" class="form-control" style="width: 110%;"/><span class="helpicon"><i id="icGrade" runat="server" class="fa fa-info-circle" style="display: none;"></i></span>
                                             </div>
                                         </div>
                                     </div>

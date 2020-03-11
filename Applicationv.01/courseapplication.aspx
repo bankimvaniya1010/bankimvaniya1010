@@ -88,28 +88,28 @@
                                 <h3 aria-expanded="false" aria-selected="false">Select Country +</h3>
                                 <div id="rbCountryContainer">
                                     <p>
-                                        <asp:RadioButtonList ID="rblcountry" runat="server" RepeatDirection="Vertical"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rblcountry" runat="server" RepeatDirection="Vertical" CssClass="course-radioButtonList"></asp:RadioButtonList>
                                     </p>
                                 </div>
 
                                 <h3 id="citybtn">Select City +</h3>
 
-                                <div class="col-md-12 updt-prftbl" id="rbCityContainer" style="height: auto;">
+                                <div id="rbCityContainer" style="height: auto;">
                                 </div>
                                 <asp:HiddenField runat="server" ID="HidRBSelectedcityID" />
                                 <asp:HiddenField runat="server" ID="HidRBSelectedcityName" />
 
                                 <h3>Select Level Of Study  +</h3>
-                                <div id="studylevelcontainer" class="col-md-12 updt-prftbl">
+                                <div id="studylevelcontainer">
                                     <p>
-                                        <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="3"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rbllevelofstudy" runat="server" RepeatColumns="3" CssClass="course-radioButtonList"></asp:RadioButtonList>
                                     </p>
                                 </div>
 
                                 <h3>Select Major / Discipline +</h3>
-                                <div id="majorcontainer" class="col-md-12 updt-prftbl">
+                                <div id="majorcontainer">
                                     <p>
-                                        <asp:RadioButtonList ID="rblmajor" runat="server" RepeatColumns="2"></asp:RadioButtonList>
+                                        <asp:RadioButtonList ID="rblmajor" runat="server" RepeatColumns="2" CssClass="course-radioButtonList"></asp:RadioButtonList>
                                     </p>
                                 </div>
                             </div>
@@ -241,7 +241,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div>
-                                    <label style="font-size: small;">For more details about this course, visit <u><a href='#' id="courselink" target="_blank"> <label id="uniName" runat="server" style="text-decoration: underline;"></label>’s course page </a> </u></label>
+                                    <label style="font-size: small;">For more details about this course, visit <u><a href='#' id="courselink" target="_blank"> <%= universityname %>’s course page </a> </u></label>
                                 </div>
                                 <div id="selectedcourseDiv" style="font-size: smaller; display: none" class="table-responsive">
                                     <table>
@@ -455,7 +455,7 @@
                 success: function (response) {
                     if (response.d) {
                         var result = JSON.parse(response.d);
-                        $("#<%= uniName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
+                        <%--$("#<%= uniName.ClientID%>").val(result[0].university_name).html(result[0].university_name);--%>
                         $("#<%= lblcoursedescription.ClientID%>").val(result[0].coursedescription).html(result[0].coursedescription);
                         $("#<%= lblInstitution.ClientID%>").val(result[0].university_name).html(result[0].university_name);
                         $("#<%= HidUniversityName.ClientID%>").val(result[0].university_name).html(result[0].university_name);
@@ -602,7 +602,7 @@
                         for (var i = 0; i < result.length; i++) {
                             var $container = $('#rbCityContainer');
                             $container.append($('<label style="margin-right: 29px;">').text(result[i].name)
-                                .prepend($('<input type="radio" name="rblcity" id="rblcity_' + i + '" OnClick="javascript:SelectSingle(' + i + ')"/>').val(result[i].city_id)));
+                                .prepend($('<input type="radio" style="margin-right: 5px;" name="rblcity" id="rblcity_' + i + '" OnClick="javascript:SelectSingle(' + i + ')"/>').val(result[i].city_id)));
                         }
                     }
                 }
@@ -644,8 +644,7 @@
 
         $("#citybtn").click(function () {
             if ($("#ContentPlaceHolder1_selectedcountry").val() == "") {
-                alert("Please Select Country");
-                $("#rbCityContainer").collapse();
+                alert("Please Select Country");                
                 $("#rbCityContainer").hide();
                 $("#rbCityContainer").removeClass();
                 $("#citybtn").removeClass();
@@ -731,16 +730,16 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantcourse').addClass('active');
         });
-        $(document).keydown(function (event) {
-            if (event.keyCode == 123) { // Prevent F12
-                return false;
-            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-                return false;
-            }
-        });
-        $(document).on("contextmenu", function (e) {   //prevent inspect     
-            e.preventDefault();
-        });
+        //$(document).keydown(function (event) {
+        //    if (event.keyCode == 123) { // Prevent F12
+        //        return false;
+        //    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        //        return false;
+        //    }
+        //});
+        //$(document).on("contextmenu", function (e) {   //prevent inspect     
+        //    e.preventDefault();
+        //});
 
         $(function () {
             $("#accordion").accordion({
