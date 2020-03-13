@@ -146,7 +146,7 @@
                                         CellSpacing="2" ShowHeaderWhenEmpty="true" EmptyDataText="No courses found. Change your preferences above and retry." OnPageIndexChanging="courseGridView_PageIndexChanging">
 
                                         <Columns>
-                                            <asp:TemplateField HeaderText="Select this Course">
+                                            <asp:TemplateField HeaderText="">
                                                 <ItemTemplate>
                                                     <asp:RadioButton runat="server" ID="selectedRB" OnClick="javascript:SelectSingleRadiobutton(this.id)"></asp:RadioButton>
                                                 </ItemTemplate>
@@ -247,7 +247,7 @@
                                     <table>
                                         <tr>
                                             <td colspan="2">
-                                                <label runat="server" id="lblCourseName" style="font-size: 20px; font-weight: 500;"></label>
+                                                <label runat="server" id="lblCourseName" style="font-size: 17px; font-weight: 500;"></label>
                                                 <asp:HiddenField runat="server" ID="Hidcoursename" />
                                             </td>
                                         </tr>
@@ -338,8 +338,8 @@
                                         <tr id="eligibilityresponse" style="display: none" runat="server">
                                             <td>I meet the eligibility of the course:</td>
                                             <td>
-                                                <input type="radio" runat="server" id="yesRB" name="eligibility" />Yes
-                                           <input type="radio" runat="server" id="NoRB" name="eligibility" />NO
+                                                <input type="radio" runat="server" id="yesRB" name="eligibility" style="margin-right: 5px;" />Yes
+                                           <input type="radio" runat="server" id="NoRB" name="eligibility" style="margin-right: 5px;" />NO
                                             </td>
                                         </tr>
                                         <tr id="eligibilityresponseNote" style="display: none" runat="server">
@@ -531,8 +531,12 @@
 
                         for (var i = 0; i < result.length; i++) {
                             var $target = $('#commencementDateContainer');
-                            $target.append($('<label>').text(result[i].commencementdate)
-                                .prepend($('<input type="radio" name="commencementdate" id="commencementdate_' + i + '"/>').val(result[i].id)));
+
+                            $target.append($('<label style="margin-right: 29px;">').text(result[i].commencementdate)
+                                .prepend($('<input type="radio" style="margin-right: 5px;" name="commencementdate" id="commencementdate_' + i + '" OnClick="javascript:SelectSingle(' + i + ')"/>').val(result[i].id)));
+
+                            //$target.append($('<label>').text(result[i].commencementdate)
+                            //    .prepend($('<input type="radio" name="commencementdate" id="commencementdate_' + i + '"/>').val(result[i].id)));
                             $target.append("<br/>");
                         }
                     }
@@ -730,16 +734,16 @@
             $('.sidebar-menu-item').removeClass('active');
             $('#applicantcourse').addClass('active');
         });
-        //$(document).keydown(function (event) {
-        //    if (event.keyCode == 123) { // Prevent F12
-        //        return false;
-        //    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
-        //        return false;
-        //    }
-        //});
-        //$(document).on("contextmenu", function (e) {   //prevent inspect     
-        //    e.preventDefault();
-        //});
+        $(document).keydown(function (event) {
+            if (event.keyCode == 123) { // Prevent F12
+                return false;
+            } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+                return false;
+            }
+        });
+        $(document).on("contextmenu", function (e) {   //prevent inspect     
+            e.preventDefault();
+        });
 
         $(function () {
             $("#accordion").accordion({
