@@ -635,8 +635,8 @@
  <script>
         $(document).ready(function () {
             var roleName = '<%=roleName %>';
-            var superviser = roleName.toLowerCase() == "supervisor";
-            var universityadmin = roleName.toLowerCase() == "university";
+            var superviser = roleName.toLowerCase() == "university supervisor";
+            var universityadmin = roleName.toLowerCase() == "university admin";
             var uniadminstaff1 = roleName.toLowerCase() == "university admin staff 1";
             var uniadminstaff2 = roleName.toLowerCase() == "university admin staff 2";
 
@@ -655,6 +655,7 @@
                 $("#managelanguages_list").hide();
                 $("#careeroutcomes_list").hide();
                 $("#payment_list").hide();
+                $("#Scholarships_list").hide();
             }
             else if (universityadmin) {
                 $("#city_list").hide();
@@ -692,6 +693,7 @@
                 $("#createfacility").hide();
                 $("#rejectionreason").hide();
                 $("#payment_list").hide();
+                $("#Scholarships_list").hide();
             }
             else if (uniadminstaff1 || uniadminstaff2)
             {

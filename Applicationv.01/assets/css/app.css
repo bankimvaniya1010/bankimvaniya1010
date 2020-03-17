@@ -302,3 +302,5 @@ html{
    margin-right: 10px;
    display: inline;
 }
+.card-header.text-center.positnrel{position: relative;}
+.table#ContentPlaceHolder1_courseGridView th{width: 0%;}
